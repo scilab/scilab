@@ -112,10 +112,16 @@ public class ScilabIntegerCodec extends ScilabObjectCodec {
 				return obj;
 			}
 
-
+			/* Default values */
 			final Node precNode = attrs.getNamedItem(PRECISION);
-			ScilabIntegerTypeEnum precision = ScilabIntegerTypeEnum.valueOf(precNode.getNodeValue());
+			ScilabIntegerTypeEnum precision;
+			if (precNode != null) {
+				precision = ScilabIntegerTypeEnum.valueOf(precNode.getNodeValue());
+			} else {
+				precision = ScilabIntegerTypeEnum.sci_uint8;
+			}
 
+			/* Compatibility for pre-5.2.2 version */
 			final Node prec = attrs.getNamedItem(PREC);
 			if (prec != null) {
 				/* Old version, we have to convert to the new one */

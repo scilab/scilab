@@ -9,5 +9,8 @@
 
 function t=datatipGetStruct(curve)
 //to be customized when a specific field will be dedicated to datatips
+  if argn(2)<>1 then
+    error(msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"),"datatipGetStruct",1))
+  end
   t=curve.user_data
 endfunction

@@ -1,5 +1,8 @@
 
 function Modelicainitialize_()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
   Cmenu=[]
 
@@ -53,6 +56,9 @@ function Modelicainitialize_()
 endfunction
 
 function  Doubleclick(name,last_name)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  
   %cpr=tlist(['cpr','corinv'],corinv)
 

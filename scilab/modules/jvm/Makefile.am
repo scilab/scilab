@@ -16,7 +16,7 @@ modulename=jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscijvm_la_root_DATA =  license.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
@@ -53,7 +53,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
 endif
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
 
 if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM

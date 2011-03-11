@@ -92,7 +92,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="java"><![CDATA[ 
 // A Scilab / Java example 
 // Filename: ScilabExample.java
 
@@ -114,8 +114,8 @@ public class ScilabExample {
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
     <member>

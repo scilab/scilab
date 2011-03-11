@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xrpoly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xrpoly</refname>
+    <refpurpose>正多角形を描画する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータs</title>
+    <variablelist>
+      <varlistentry>
+        <term>orig</term>
+        <listitem>
+          <para>大きさ 2のベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数, 辺の数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>実数スカラー.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta</term>
+        <listitem>
+          <para>実数, 角度(単位:ラジアン); 0 がデフォルト値です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xrpoly</literal> は,
+	点<literal>orig</literal>を中心とする
+	直径<literal>r</literal>の円に包含される
+	正<literal>n</literal>角形を描画します.
+	<literal>theta</literal> は回転角(単位:ラジアン)を指定します.
+	この関数はカレントのグラフィックスケールを使用します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d(0,0,-1,"012"," ",[0,0,10,10])
+xrpoly([5,5],5,5)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

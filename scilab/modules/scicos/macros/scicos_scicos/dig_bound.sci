@@ -20,6 +20,8 @@
 //
 
 function [rect] = dig_bound(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
 
   n = lstsize(scs_m.objs);
   

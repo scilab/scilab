@@ -30,7 +30,7 @@ libscicall_scilab_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscicall_scilab.la
 
-libscicall_scilab_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscicall_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscicall_scilab_la_SOURCES = $(CALLSCILAB_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -49,7 +49,7 @@ modulename=call_scilab
 
 #### call_scilab : Conf files ####
 libscicall_scilab_la_rootdir = $(mydatadir)
-libscicall_scilab_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicall_scilab_la_root_DATA =  license.txt version.xml
 
 
 #### call_scilab : init scripts ####

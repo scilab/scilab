@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1988 - INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sd2sci">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sd2sci</refname>
+    <refpurpose> Scilab命令コンバータのgr_menu構造体</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C呼び出し手順</title>
+    <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>sd</term>
+        <listitem>
+          <para>gr_menuにより構築されるデータ構造体.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sz</term>
+        <listitem>
+          <para>2つの要素を有する数字または文字列のベクトル, xおよびy方向のズーム倍率を指定</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orig</term>
+        <listitem>
+          <para>つの要素を有する数字または文字列のベクトル, 原点の変換ベクトルを指定</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>gr_menu</literal>により生成された<literal>sd</literal>データ構造体を指定すると,
+	<literal>sd2sci</literal>は,<literal>gr_menu</literal>により編集されたグラフィックに
+	対応するScilab命令のベクトルを作成します.</para>
+    <para>
+	オプションの引数 <literal>sz</literal>および <literal>orig</literal> により,
+	最初のグラフィックをズームおよびシフトすることができます.</para>
+    <para>
+    <literal>sz</literal> または <literal>orig</literal> が文字列で指定される場合,
+	生成される命令は通常の式として使用します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Serge Steer INRIA 1988</para>
+  </refsection>
+</refentry>

@@ -32,7 +32,7 @@ public enum TerminalAccessor {
 	// CSOFF: JavadocMethod
 	NAME(ModelicaMessages.NAME, String.class, false) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			return terminal.getName();
 		}
 
@@ -45,7 +45,7 @@ public enum TerminalAccessor {
 	},
 	ID(ModelicaMessages.ID, String.class, false) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			return terminal.getId();
 		}
 
@@ -58,7 +58,7 @@ public enum TerminalAccessor {
 	},
 	KIND(ModelicaMessages.KIND, String.class, false) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			return terminal.getKind();
 		}
 
@@ -72,7 +72,7 @@ public enum TerminalAccessor {
 	},
 	FIXED(ModelicaMessages.FIXED, Boolean.class, false) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			if (terminal.getFixed() == null) {
 				terminal.setFixed(new ModelicaValue());
 			}
@@ -96,7 +96,7 @@ public enum TerminalAccessor {
 	},
 	INITIAL(ModelicaMessages.INITIAL, Double.class, true) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			if (terminal.getInitialValue() == null) {
 				terminal.setInitialValue(new ModelicaValue());
 			}
@@ -119,7 +119,7 @@ public enum TerminalAccessor {
 	},
 	WEIGHT(ModelicaMessages.WEIGHT, Double.class, true) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			if (terminal.getWeight() == null) {
 				terminal.setWeight(new ModelicaValue());
 			}
@@ -150,7 +150,7 @@ public enum TerminalAccessor {
 	},
 	MAX(ModelicaMessages.MAX, Double.class, true) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			if (terminal.getMax() == null) {
 				terminal.setMax(new ModelicaValue());
 			}
@@ -172,7 +172,7 @@ public enum TerminalAccessor {
 	},
 	MIN(ModelicaMessages.MIN, Double.class, true) {
 		@Override
-		public Double getData(Terminal terminal) {
+		protected Double getData(Terminal terminal) {
 			if (terminal.getMin() == null) {
 				terminal.setMin(new ModelicaValue());
 			}
@@ -194,7 +194,7 @@ public enum TerminalAccessor {
 	},
 	NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
 		@Override
-		public Double getData(Terminal terminal) {
+		protected Double getData(Terminal terminal) {
 			if (terminal.getNominalValue() == null) {
 				terminal.setNominalValue(new ModelicaValue());
 			}
@@ -217,7 +217,7 @@ public enum TerminalAccessor {
 	},
 	COMMENT(ModelicaMessages.COMMENT, String.class, true) {
 		@Override
-		public Object getData(Terminal terminal) {
+		protected Object getData(Terminal terminal) {
 			if (terminal.getComment() == null) {
 				terminal.setComment(new ModelicaValue());
 			}
@@ -237,7 +237,7 @@ public enum TerminalAccessor {
 		private static final String FALSE = "n";
 
 		@Override
-		public Boolean getData(Terminal terminal) {
+		protected Boolean getData(Terminal terminal) {
 			if (terminal.getSelected() == null) {
 				terminal.setSelected(new ModelicaValue());
 			}
@@ -389,40 +389,38 @@ public enum TerminalAccessor {
 			}
 		}
 	}
-
+	
 	private static final String VARIABLE = "variable";
 	private static final String FIXED_PARAMETER = "fixed_parameter";
 
 	private static ChangeSupport pcs = new ChangeSupport();
-
+	
 	/**
 	 * static constructor used to setup the Terminal change support
 	 */
 	static {
 		// update the fixed state on update
-		TerminalAccessor.WEIGHT
-				.addChangeListener(new TerminalAccessor.ChangeListener() {
-					@Override
-					public void change(TerminalAccessor.ChangeEvent event) {
-						final Terminal terminal = event.getTerminal();
-
-						if (terminal.getKind().equals(FIXED_PARAMETER)
-								|| terminal.getKind().equals(VARIABLE)) {
-							if (Double.valueOf(1.0).equals(
-									TerminalAccessor.WEIGHT.getData(terminal))) {
-								TerminalAccessor.FIXED.setData(Boolean.TRUE,
-										terminal);
-							} else {
-								TerminalAccessor.FIXED.setData(Boolean.FALSE,
-										terminal);
-							}
-						} else {
-							TerminalAccessor.FIXED.setData(Boolean.FALSE,
-									terminal);
-						}
-					}
-				});
-
+//		WEIGHT.addChangeListener(new ChangeListener() {
+//					@Override
+//					public void change(TerminalAccessor.ChangeEvent event) {
+//						final Terminal terminal = event.getTerminal();
+//
+//						if (terminal.getKind().equals(FIXED_PARAMETER)
+//								|| terminal.getKind().equals(VARIABLE)) {
+//							if (((Double) getData(WEIGHT,terminal)) >= 1.0) {
+//								FIXED.setData(Boolean.TRUE,
+//										terminal);
+//							} else {
+//								FIXED.setData(Boolean.FALSE,
+//										terminal);
+//							}
+//						} else {
+//							FIXED.setData(Boolean.FALSE,
+//									terminal);
+//						}
+//					}
+//				});
+		
 		// set a default initial value on weight change
 		TerminalAccessor.WEIGHT.addChangeListener(new ChangeListener() {
 			@Override
@@ -432,7 +430,6 @@ public enum TerminalAccessor {
 				final Double notUsed = getData(INITIAL, event.getTerminal());
 			}
 		});
-
 	}
 
 	private String name;
@@ -499,7 +496,7 @@ public enum TerminalAccessor {
 	 *            the terminal data
 	 * @return the identifier data
 	 */
-	public abstract Object getData(Terminal terminal);
+	protected abstract Object getData(Terminal terminal);
 
 	/**
 	 * Set the data for the current identifier

@@ -43,7 +43,7 @@ void CommandHistoryInitialize (void)
 {
     if (!alreadyLoadedJava && (getScilabMode() == SCILAB_STD))
     {
-        loadOnUseClassPath("SciNotes");
+        loadOnUseClassPath(const_cast<char*>("SciNotes"));
         alreadyLoadedJava = TRUE;
     }
 

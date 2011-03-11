@@ -16,6 +16,11 @@
 #include <hdf5.h>
 #include "dynlib_hdf5_scilab.h"
 
+
+#define unknow_type     -2
+#define sci_undefined   -1
+#define sci_void        0
+
 HDF5_SCILAB_IMPEXP int isComplexData(int _iDatasetId);
 
 HDF5_SCILAB_IMPEXP int getVariableNames(int _iFile, char **pstNameList);

@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - DIGITEO - Clément DAVID
+ * Copyright (C) 2010-2011 - DIGITEO - Clément DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,7 +22,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
@@ -32,17 +31,22 @@ import javax.swing.SpinnerModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.block.SuperBlock;
+import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -74,6 +78,8 @@ public class EditFormatAction extends DefaultAction {
 	 * The default color used on non initialized filled color.
 	 */
 	private static final Color DEFAULT_FILLCOLOR = Color.WHITE;
+
+	private static final String HASH_IDENTIFIER = "#identifier";
 	
 	/**
 	 * Default constructor
@@ -115,12 +121,12 @@ public class EditFormatAction extends DefaultAction {
 
 	/**
 	 * Create the dialog and set the default values
-	 * @param selectedCell the current selected cell
+	 * @param cell the current selected cell
 	 * @param graph the current graph
 	 * @param window the current windows
 	 * @return the instantiated dialog
 	 */
-	private static EditFormatDialog createDialog(mxCell selectedCell, final XcosDiagram graph, 
+	private static EditFormatDialog createDialog(final mxCell cell, final XcosDiagram graph, 
 			final Frame window) {
 		String working;
 		Color border;
@@ -132,56 +138,82 @@ public class EditFormatAction extends DefaultAction {
 		String text;
 		String image = null;
 		
-		StyleMap style = new StyleMap(selectedCell.getStyle());
+		final mxGraphModel model = (mxGraphModel) graph.getModel();
+		final StyleMap cellStyle = new StyleMap(cell.getStyle());
+		final mxCell identifier;
+		final StyleMap identifierStyle;
+		{
+			if (cell instanceof TextBlock) {
+				identifier = cell;
+				identifierStyle = cellStyle;
+			} else {
+				final String cellId = cell.getId() + HASH_IDENTIFIER;
+				if (model.getCell(cellId) == null) {
+					// create the identifier
+					identifier = new mxCell(null, new mxGeometry(0.5, 1.1, 0.0, 0.0), "noLabel=0;opacity=0;");
+					identifier.getGeometry().setRelative(true);
+					identifier.setVertex(true);
+					identifier.setConnectable(false);
+					identifier.setId(cellId);
+					
+					// add the identifier
+					model.add(cell, identifier, cell.getChildCount());
+				} else {
+					identifier = (mxCell) model.getCell(cellId);
+				}
+				
+				identifierStyle = new StyleMap(identifier.getStyle());
+			}
+		}
 		
-		working = style.get(mxConstants.STYLE_STROKECOLOR);
+		working = cellStyle.get(mxConstants.STYLE_STROKECOLOR);
 		if (working == null) {
 			border = DEFAULT_BORDERCOLOR;
 		} else {
 			border = mxUtils.parseColor(working);
 		}
 		
-		working = style.get(mxConstants.STYLE_FILLCOLOR);
+		working = cellStyle.get(mxConstants.STYLE_FILLCOLOR);
 		if (working == null) {
 			fill = DEFAULT_FILLCOLOR;
 		} else {
 			fill = mxUtils.parseColor(working);
 		}
 		
-		working = style.get(mxConstants.STYLE_FONTFAMILY);
+		working = identifierStyle.get(mxConstants.STYLE_FONTFAMILY);
 		if (working == null) {
 			font = mxConstants.DEFAULT_FONTFAMILY;
 		} else {
 			font = working;
 		}
 		
-		working = style.get(mxConstants.STYLE_FONTSIZE);
+		working = identifierStyle.get(mxConstants.STYLE_FONTSIZE);
 		if (working == null) {
 			fontSize = mxConstants.DEFAULT_FONTSIZE;
 		} else {
 			fontSize = Integer.parseInt(working);
 		}
 
-		working = style.get(mxConstants.STYLE_FONTSTYLE);
+		working = identifierStyle.get(mxConstants.STYLE_FONTSTYLE);
 		if (working == null) {
 			fontStyle = 0;
 		} else {
 			fontStyle = Integer.parseInt(working);
 		}
 		
-		working = style.get(mxConstants.STYLE_FONTCOLOR);
+		working = identifierStyle.get(mxConstants.STYLE_FONTCOLOR);
 		if (working == null) {
 			textColor = Color.BLACK;
 		} else {
 			textColor = mxUtils.parseColor(working);
 		}
 		
-		working = style.get(mxConstants.STYLE_IMAGE);
+		working = cellStyle.get(mxConstants.STYLE_IMAGE);
 		if(working != null) {
 			image = working;
 		}
-		
-		Object current = selectedCell.getValue();
+
+		final Object current = model.getValue(identifier);
 		if (current == null) {
 			text = "";
 		} else {
@@ -191,7 +223,7 @@ public class EditFormatAction extends DefaultAction {
 		EditFormatDialog dialog = new EditFormatDialog(window);
 		dialog.setValues(border, fill, font, fontSize, fontStyle, textColor, text, image);
 		dialog.setGraph(graph);
-		dialog.setCell(selectedCell);
+		dialog.setCell(cell);
 		return dialog;
 	}
 	
@@ -203,38 +235,63 @@ public class EditFormatAction extends DefaultAction {
 	 * @param backgroundColor the selected background color
 	 * @param fontName the selected font name
 	 * @param fontSize the selected font size
+	 * @param isBold is the text bold ?
+	 * @param isItalic is the text italic ?
 	 * @param textColor the selected color
 	 * @param text the typed text
 	 * @param image the image URL
 	 */
 	private static void updateFromDialog(EditFormatDialog dialog, Color borderColor, Color backgroundColor, 
-				String fontName, int fontSize, Color textColor, String text, String image) {
-		mxCell cell = dialog.getCell();
+				String fontName, int fontSize, Color textColor, boolean isBold, boolean isItalic, String text, String image) {
+		final XcosDiagram graph = dialog.getGraph();
+		final mxGraphModel model = (mxGraphModel) graph.getModel();
 		
-		StyleMap style = new StyleMap(cell.getStyle());
+		final mxCell cell = dialog.getCell();
+		final StyleMap cellStyle = new StyleMap(cell.getStyle());
+		final mxCell identifier; 
+		final StyleMap identifierStyle;
+		{
+			if (cell instanceof TextBlock) {
+				identifier = cell;
+				identifierStyle = cellStyle;
+			} else {
+				final String cellId = cell.getId() + HASH_IDENTIFIER;
+				identifier = (mxCell) model.getCell(cellId);
+				
+				identifierStyle = new StyleMap(identifier.getStyle());
+			}
+		}
 		
 		if (!borderColor.equals(DEFAULT_BORDERCOLOR)) {
-			style.put(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(borderColor));
+			cellStyle.put(mxConstants.STYLE_STROKECOLOR, mxUtils.hexString(borderColor));
 		}
 		
 		if (!backgroundColor.equals(DEFAULT_FILLCOLOR)) {
-			style.put(mxConstants.STYLE_FILLCOLOR, mxUtils.hexString(backgroundColor));
+			cellStyle.put(mxConstants.STYLE_FILLCOLOR, mxUtils.hexString(backgroundColor));
 		}
 		
 		if (!fontName.equals(mxConstants.DEFAULT_FONTFAMILY)) {
-			style.put(mxConstants.STYLE_FONTFAMILY, fontName);
+			identifierStyle.put(mxConstants.STYLE_FONTFAMILY, fontName);
 		}
 		
-		if (!fontName.equals(mxConstants.DEFAULT_FONTFAMILY)) {
-			style.put(mxConstants.STYLE_FONTFAMILY, fontName);
+		{
+			int fontStyle = 0;
+			if (isBold) {
+				fontStyle |= mxConstants.FONT_BOLD;
+			}
+			if (isItalic) {
+				fontStyle |= mxConstants.FONT_ITALIC;
+			}
+			
+			identifierStyle.put(mxConstants.STYLE_FONTSTYLE, Integer.toString(fontStyle));
 		}
 		
 		if (fontSize != mxConstants.DEFAULT_FONTSIZE) {
-			style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(fontSize));
+			identifierStyle.put(mxConstants.STYLE_FONTSIZE, Integer.toString(fontSize));
 		}
 		
 		if (!textColor.equals(DEFAULT_BORDERCOLOR)) {
-			style.put(mxConstants.STYLE_FONTCOLOR, mxUtils.hexString(textColor));
+			identifierStyle.put(mxConstants.STYLE_FONTCOLOR, mxUtils.hexString(textColor));
 		}
 
 		if (image != null && !image.isEmpty()) {
@@ -246,14 +303,26 @@ public class EditFormatAction extends DefaultAction {
 				path = image;
 			}
 			
-			style.put(mxConstants.STYLE_IMAGE, path);
+			cellStyle.put(mxConstants.STYLE_IMAGE, path);
 		} else {
-			style.remove(mxConstants.STYLE_IMAGE);
+			cellStyle.remove(mxConstants.STYLE_IMAGE);
 		}
 			
+		model.setStyle(cell, cellStyle.toString());
+		if (cell != identifier) {
+			model.setStyle(identifier, identifierStyle.toString());
+		}
 		
-		cell.setStyle(style.toString());
-		cell.setValue(text);
+		graph.cellLabelChanged(identifier, text, false);
+		graph.fireEvent(new mxEventObject(mxEvent.LABEL_CHANGED,
+				"cell", identifier, "value", text, "parent", cell));
+		
+		/*
+		 * Should also update diagram title
+		 */
+		if (cell instanceof SuperBlock) {
+			graph.cellLabelChanged(cell, text, false);
+		}
 	}
 	
 	/**
@@ -264,13 +333,16 @@ public class EditFormatAction extends DefaultAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		XcosDiagram graph = (XcosDiagram) getGraph(null);
-		Object[] selectedCells = graph.getSelectionCells();
+		final Object selectedCell = graph.getSelectionCell();
+		
+		if (selectedCell == null) {
+			return;
+		}
 		
 		EditFormatAction.showDialog((ScilabComponent) graph
-				.getAsComponent(), NAME, (mxCell) selectedCells[0], graph);
+				.getAsComponent(), NAME, (mxCell) selectedCell, graph);
 		
-		graph.getView().clear(selectedCells[0], true, true);
-		graph.updateCellSize(selectedCells[0]);
+		graph.getView().clear(selectedCell, true, true);
 		graph.refresh();
 	}
 	
@@ -589,14 +661,18 @@ public class EditFormatAction extends DefaultAction {
 				 */
 				@Override
 				public void actionPerformed(ActionEvent e) {
+					graph.getModel().beginUpdate();
 					EditFormatAction.updateFromDialog(getDialog(),
 							borderColorChooser.getColor(),
 							backgroundColorChooser.getColor(),
 							(String) fontNameComboBox.getSelectedItem(),
 							(Integer) fontSizeSpinner.getValue(), 
 							textColorChooser.getColor(),
+							fontStyleBold.isSelected(),
+							fontStyleItalic.isSelected(),
 							textArea.getText(),
 							imagePath.getText());
+					graph.getModel().endUpdate();
 					getDialog().dispose();
 				}
 			});

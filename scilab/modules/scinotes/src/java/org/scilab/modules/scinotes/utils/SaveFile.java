@@ -54,7 +54,6 @@ public final class SaveFile {
      * @return true if saved
      */
     public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
-
         ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
         boolean enc = false;
         if (!styledDocument.getEncoding().equalsIgnoreCase(ConfigSciNotesManager.getDefaultEncoding())) {
@@ -63,6 +62,17 @@ public final class SaveFile {
                 return false;
             }
             enc = true;
+        }
+
+        try {
+            fOut.createNewFile();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+
+        if (!fOut.canWrite()) {
+            ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            return false;
         }
 
         // get default eol
@@ -86,8 +96,10 @@ public final class SaveFile {
             bw.flush();
             bReturn = true;
         } catch (IOException e) {
+            System.err.println(e);
             bReturn = false;
         } catch (BadLocationException e) {
+            System.err.println(e);
             bReturn = false;
         } finally {
             try {
@@ -100,7 +112,9 @@ public final class SaveFile {
                 if (bw != null) {
                     bw.close();
                 }
-            } catch (IOException e) { }
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
 
         // restore default eol

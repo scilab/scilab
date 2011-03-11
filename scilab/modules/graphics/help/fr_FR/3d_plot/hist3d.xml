@@ -107,8 +107,8 @@ hist3d(Z);
  ]]></programlisting>
 
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member>

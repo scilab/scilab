@@ -188,8 +188,8 @@ Gamma=10.18425636157899;
 [AK,BK,CK,DK] = hinf(A,B,C,D,2,2,Gamma)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="dhinf">dhinf</link>

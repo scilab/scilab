@@ -52,7 +52,9 @@ int C2F(sci_fromjava)(char *fname,unsigned long fname_len);
 int C2F(sci_getmemory)(char *fname,unsigned long fname_len);
 int C2F(sci_fromc)(char *fname,unsigned long fname_len);
 //int C2F(sci_getmd5)(char *fname,unsigned long fname_len); -> C++
-int C2F(sci_islittleendian)(char *fname,unsigned long fname_len);
+int C2F(sci_getmodules)(char *fname,unsigned long fname_len);
+int C2F(sci_with_module)(char *fname,unsigned long fname_len);
+int C2F(sci_getscilabmode)(char *fname,unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname,unsigned long fname_len);
 int C2F(sci_getvariablesonstack)(char *fname,unsigned long fname_len);
 int C2F(sci_readgateway)(char *fname,unsigned long fname_len);

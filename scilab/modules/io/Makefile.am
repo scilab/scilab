@@ -73,7 +73,7 @@ libsciio_la_CPPFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciio.la
 
-libsciio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciio_la_SOURCES = $(IO_C_SOURCES) $(IO_FORTRAN_SOURCES) $(IO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
 
@@ -89,7 +89,7 @@ modulename=io
 
 #### io : Conf files ####
 libsciio_la_rootdir = $(mydatadir)
-libsciio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciio_la_root_DATA =  license.txt version.xml
 
 
 ####io : init scripts ####

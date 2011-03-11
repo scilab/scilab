@@ -140,7 +140,7 @@ libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
 
-libscidifferential_equations_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -157,7 +157,7 @@ modulename=differential_equations
 
 #### differential_equations : Conf files ####
 libscidifferential_equations_la_rootdir = $(mydatadir)
-libscidifferential_equations_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscidifferential_equations_la_root_DATA =  license.txt version.xml
 
 #### differential_equations : init scripts ####
 libscidifferential_equations_la_etcdir = $(mydatadir)/etc

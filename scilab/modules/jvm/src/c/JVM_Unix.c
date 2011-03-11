@@ -56,14 +56,14 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	JVMLibFullName=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMLibFullName,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/libjava",SHARED_LIB_EXT);
 
-	if (LoadFuntionsJVM(JVMLibFullName)==NULL)
+	if (LoadFunctionsJVM(JVMLibFullName)==NULL)
 	{
 		  /* 2. search in LD_LIBRARY_PATH */
 			if (JVMLibFullName){FREE(JVMLibFullName);JVMLibFullName=NULL;};
 
                         JVMLibFullName=(char*)MALLOC( (strlen(LIBJAVANAME)+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
                         sprintf(JVMLibFullName,"%s%s",LIBJAVANAME,SHARED_LIB_EXT);
-			if (LoadFuntionsJVM(JVMLibFullName)) bOK=TRUE;
+			if (LoadFunctionsJVM(JVMLibFullName)) bOK=TRUE;
 	}
 	else 
 	{
@@ -95,7 +95,7 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 
 	FreeDynLibJVM();
 	
-	if (LoadFuntionsJVM(JVMLibFullName))
+	if (LoadFunctionsJVM(JVMLibFullName))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 
@@ -122,7 +122,7 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 	JVMLibFullName=(char*)MALLOC( (strlen("libjava")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMLibFullName,"%s%s","libjava",SHARED_LIB_EXT);
 
-	if (LoadFuntionsJVM(JVMLibFullName))
+	if (LoadFunctionsJVM(JVMLibFullName))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 		if ( jvm_count == 1 ) 
@@ -139,14 +139,20 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 JavaVM *FindCreatedJavaVM(char *SCILAB_PATH)
 {
 	JavaVM *jvm = NULL;
-
+#ifndef __APPLE__
+/* Under Mac OS X, we are using the JVM provided by the distribution.
+ * However, this might change with Java 7 since Apple will no longer provide
+ * Java with Mac OS X */
 	jvm = SearchCreatedJavaVMEmbedded(SCILAB_PATH);
 	if (jvm) return jvm;
 	else
 	{
+#endif
 			jvm = SearchCreatedJavaVMPath();
 			if (jvm) return jvm;
+#ifndef __APPLE__
 	}
+#endif
 	return NULL;
 }
 /*--------------------------------------------------------------------------*/ 

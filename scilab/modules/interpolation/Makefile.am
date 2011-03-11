@@ -38,7 +38,7 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
-libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciinterpolation_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -58,7 +58,7 @@ modulename=interpolation
 
 #### interpolation : Conf files ####
 libsciinterpolation_la_rootdir = $(mydatadir)
-libsciinterpolation_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciinterpolation_la_root_DATA =  license.txt version.xml
 
 
 ####�interpolation : init scripts ####

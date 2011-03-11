@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,21 +13,25 @@
 
 package org.scilab.modules.console;
 
-import org.scilab.modules.history_manager.HistoryManagement;
-import org.scilab.modules.commons.gui.ScilabCaret;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
 import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
@@ -37,11 +42,16 @@ import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
 
+import org.scilab.modules.commons.gui.ScilabCaret;
+import org.scilab.modules.console.utils.ScilabLaTeXViewer;
+import org.scilab.modules.history_manager.HistoryManagement;
+
 /**
  * Scilab UI that contains the line edited by the user
  * @author Vincent COUVERT
+ * @author Calixte DENIZET
  */
-public class SciInputCommandView extends ConsoleTextPane implements InputCommandView {
+public class SciInputCommandView extends ConsoleTextPane implements InputCommandView, CaretListener {
 
     private static final long serialVersionUID = 1L;
     private static final String END_LINE = "\n";
@@ -49,12 +59,18 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private static final int TOP_BORDER = 1;
     private static final int BOTTOM_BORDER = 2;
 
+    // A clearest pattern: ['"] \$ [^\\\$'"]* (( [\\].? | ['"]{2} ) [^\\\$'"]* )+
+    private static final Pattern latexPattern = Pattern.compile("[\'\"]\\$[^\\\\\\$\'\"]*(?:(?:[\\\\].?|[\'\"]{2})[^\\\\\\$\'\"]*)*");
+    private static final int INSET = 3;
+    private static final int DEFAULTSIZE = 15;
+
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
 
     private Thread concurrentThread = null;
 
     private SciConsole console;
+    private Dimension defaultSize;
 
     /**
      * Constructor
@@ -68,6 +84,8 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         ScilabCaret caret = new ScilabCaret(this);
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
+        addCaretListener(this);
+        defaultSize = getPreferredSize();
     }
 
     /**
@@ -155,46 +173,76 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
         // BUG 2510 fix: automatic validation of pasted lines
         this.getDocument().addDocumentListener(new DocumentListener() {
-            public void changedUpdate(DocumentEvent e) {
-                // Nothing to do in Scilab
-            }
+                public void changedUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-            public void insertUpdate(DocumentEvent e) {
-                // Validates commands if followed by a carriage return
-                String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
+                public void insertUpdate(DocumentEvent e) {
+                    // Validates commands if followed by a carriage return
+                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                    if ((e.getLength()) > 1 && (wholeTxt.lastIndexOf(StringConstants.NEW_LINE) == (wholeTxt.length() - 1))) {
                         EventQueue.invokeLater(new Runnable() {
                                 public void run() {
-                                        String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
-                                        console.sendCommandsToScilab(wholeTxt, true, true);
+                                    String wholeTxt = console.getConfiguration().getInputParsingManager().getCommandLine();
+                                    console.sendCommandsToScilab(wholeTxt, true, true);
                                 };
-                        });
+                            });
+                    }
                 }
-            }
 
-            public void removeUpdate(DocumentEvent e) {
-                // Nothing to do in Scilab
-            }
-        });
+                public void removeUpdate(DocumentEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
 
         this.addKeyListener(new KeyListener() {
-            public void keyPressed (KeyEvent e) {
-                if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
+                public void keyPressed (KeyEvent e) {
+                    if (e.getKeyCode()==KeyEvent.VK_BACK_SPACE) {
                         if (console.getConfiguration().getHistoryManager().isInHistory()) {
-                                //console.getConfiguration().getInputParsingManager().reset();
-                                //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
-                                console.getConfiguration().getHistoryManager().setInHistory(false);
+                            //console.getConfiguration().getInputParsingManager().reset();
+                            //console.getConfiguration().getInputParsingManager().append(console.getConfiguration().getHistoryManager().getTmpEntry());
+                            console.getConfiguration().getHistoryManager().setInHistory(false);
                         }
+                    }
                 }
-            }
 
-            public void keyReleased (KeyEvent e) {
-                // Nothing to do in Scilab
-            }
+                public void keyReleased (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
 
-            public void keyTyped (KeyEvent e) {
-                // Nothing to do in Scilab
+                public void keyTyped (KeyEvent e) {
+                    // Nothing to do in Scilab
+                }
+            });
+    }
+
+    /**
+     * This class listens to the caret event
+     * @param e event
+     */
+    public void caretUpdate(CaretEvent e) {
+        String str = getText().substring(0, e.getDot());
+        Matcher matcher = latexPattern.matcher(str);
+        if (matcher.find() && matcher.end() == str.length()) {
+            String latex = matcher.group().replace("\'\'", "\'").replace("\"\"", "\"");
+            latex = latex.substring(2, latex.length());
+            int hl = ScilabLaTeXViewer.displayExpression(this, Integer.MAX_VALUE, latex, 0, e.getDot()) + 2;
+            int y = 0;
+            try {
+                Rectangle rect = modelToView(getCaretPosition());
+                y = (int) (rect.height + rect.y + 1);
+            } catch (BadLocationException ex) { }
+
+            if (getPreferredSize().getHeight() < y + hl) {
+                Dimension newDim = new Dimension((int) getPreferredSize().getWidth(), y + hl);
+                setPreferredSize(newDim);
+                invalidate();
+                doLayout();
+                console.updateScrollPosition();
+                console.setInputCommandViewSizeForced(true);
             }
-});
+        } else {
+            ScilabLaTeXViewer.removeLaTeXViewer(this);
+        }
     }
 }

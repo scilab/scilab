@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -38,29 +38,30 @@
 #define READ_ONLY_TEXT_MODE "r"
 #endif
 /*--------------------------------------------------------------------------*/
-#define NB_FORMAT_SUPPORTED 7 
-static char *supportedFormat[NB_FORMAT_SUPPORTED] = 
+#define NB_FORMAT_SUPPORTED 7
+static char *supportedFormat[NB_FORMAT_SUPPORTED] =
 {"lf", "lg", "d", "i", "e", "f", "g"};
 /*--------------------------------------------------------------------------*/
 static BOOL itCanBeMatrixLine(char *line, char *format, char *separator);
 static int getNbColumnsInLine(char *line, char *format, char *separator);
-static int getNumbersColumnsInLines(char **lines, int sizelines, 
+static int getNumbersColumnsInLines(char **lines, int sizelines,
                                     int nbLinesText,
                                     char *format, char *separator);
 static int getNumbersLinesOfText(char **lines, int sizelines,
                                  char *format, char *separator);
 static char **splitLine(char *str, char *sep, int *toks, char meta);
-static double *getDoubleValuesFromLines(char **lines, int sizelines, 
+static double *getDoubleValuesFromLines(char **lines, int sizelines,
                                         int nbLinesText,
                                         char *format, char *separator,
                                         int m, int n);
 static double *getDoubleValuesInLine(char *line,
-                                     char *format, char *separator, 
+                                     char *format, char *separator,
                                      int nbColumnsMax);
 static double returnINF(BOOL bPositive);
 static double returnNAN(void);
 static BOOL checkFscanfMatFormat(char *format);
 static char *getCleanedFormat(char *format);
+static BOOL isOnlyBlankLine(const char *line);
 static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines);
 static BOOL isValidLineWithOnlyOneNumber(char *line);
 /*--------------------------------------------------------------------------*/
@@ -88,7 +89,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator, BOOL a
         return NULL;
     }
 
-    if (!checkFscanfMatFormat(format)) 
+    if (!checkFscanfMatFormat(format))
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
         if (resultFscanfMat)
@@ -289,7 +290,7 @@ static int getNumbersLinesOfText(char **lines, int sizelines,
     return numberOfLines;
 }
 /*--------------------------------------------------------------------------*/
-static int getNumbersColumnsInLines(char **lines, int sizelines, 
+static int getNumbersColumnsInLines(char **lines, int sizelines,
                                     int nbLinesText,
                                     char *format, char *separator)
 {
@@ -490,7 +491,7 @@ static char **splitLine(char *str, char *sep, int *toks, char meta)
     {
         retstr[curr_str] = (char *) MALLOC((sizeof(char) * len) + 1);
 
-        if(retstr[curr_str] == NULL) 
+        if(retstr[curr_str] == NULL)
         {
             *toks = 0;
             return NULL;
@@ -664,7 +665,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = strlen(percent) - strlen(token);          
+                    int nbcharacters = (int)(strlen(percent) - strlen(token));
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( (nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1]) ||
@@ -696,7 +697,7 @@ static char **removeEmptyLinesAtTheEnd(char **lines, int *sizelines)
         {
             if (lines[i])
             {
-                if (strcmp(lines[i], "") == 0) 
+                if ( (strcmp(lines[i], "") == 0) || (isOnlyBlankLine(lines[i])) )
                 {
                     FREE(lines[i]);
                     lines[i] = NULL;
@@ -735,8 +736,8 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
         else
         {
             if ((strncmp(line, NanString, (int)strlen(NanString)) == 0) ||
-            (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
-            (strncmp(line, InfString, (int)strlen(InfString)) == 0))
+                (strncmp(line, NegInfString, (int)strlen(NegInfString)) == 0) ||
+                (strncmp(line, InfString, (int)strlen(InfString)) == 0))
             {
                 return TRUE;
             }
@@ -745,4 +746,16 @@ static BOOL isValidLineWithOnlyOneNumber(char *line)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-
+static BOOL isOnlyBlankLine(const char *line)
+{
+    if (line)
+    {
+        int i = 0;
+        for (i = 0; i < (int) strlen(line); i++)
+        {
+            if (line[i] != ' ') return FALSE;
+        }
+    }
+    return TRUE;
+}
+/*--------------------------------------------------------------------------*/

@@ -34,8 +34,8 @@ rhs=argn(2)</synopsis>
     opcionais.</para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="function">function</link></member>

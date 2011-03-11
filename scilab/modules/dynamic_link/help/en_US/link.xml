@@ -113,11 +113,12 @@ lst = link()</synopsis>
     id of the shared library which is loaded into Scilab. This number can then
     be used as the first argument of the link function in order to link
     additional function from the linked shared library. The shared library is
-    removed with the <literal>ulink</literal> command.</para>
+    removed with the <link linkend="ulink">ulink</link> command.</para>
 
-    <para>A routine can be unlinked with <literal>ulink</literal>. If the
-    linked function has been modified between two links, it is required to
-    <literal>ulink</literal> the previous instance before the new link.</para>
+    <para>A routine can be unlinked with <link linkend="ulink">ulink</link>.
+    If the linked function has been modified between two links, it is required
+    to <link linkend="ulink">ulink</link> the previous instance before the new 
+    link.</para>
 
     <para><literal>link('show')</literal> returns the current linked
     routines.</para>
@@ -171,10 +172,12 @@ exec cleaner.sce;
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
+      <member><link linkend="ulink">ulink</link></member>
+
       <member><link linkend="call">call</link></member>
 
       <member><link linkend="external">external</link></member>

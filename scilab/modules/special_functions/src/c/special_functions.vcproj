@@ -423,22 +423,6 @@
 				RelativePath="..\..\sci_gateway\c\sci_lgamma.c"
 				>
 			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldbesseli.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldbesselj.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldbesselk.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_oldbessely.c"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"

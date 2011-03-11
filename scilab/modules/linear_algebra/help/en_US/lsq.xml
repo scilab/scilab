@@ -97,8 +97,8 @@ X2=A\b
 [A*X1-b, A*X2-b] //the residuals are the same
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="backslash">backslash</link>

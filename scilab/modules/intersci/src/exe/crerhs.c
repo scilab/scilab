@@ -543,7 +543,7 @@ void GetDim(char *lstr,IVAR ivar)
   char *s;
   s=Forname2Int(variables[ivar-1],0);
   if ( strncmp(s,"stk",3)==0 || strncmp(s,"istk",4)==0
-       || strncmp(s,"sstk",4)==0 || strncmp(s,"stk",3)==0 ||
+       || strncmp(s,"sstk",4)==0 ||
        strncmp(s,"cstk",4)==0 )
     {
       strcpy(lstr,s);

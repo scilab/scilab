@@ -602,7 +602,7 @@ char* getLastErrorMessageSingle(void) {
 
     for (i=0; i<iNbLines; i++)
     {
-        nbChar += strlen(msgs[i]);
+        nbChar += (int)strlen(msgs[i]);
     }
     concat = (char*)malloc((nbChar+1)*sizeof(char));
     strcpy(concat,"");

@@ -23,9 +23,7 @@ Source: bin\{#BOOLEAN}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#BOOLEAN}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\VERSION.xml; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\readme.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 Source: modules\{#BOOLEAN}\license.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
-Source: modules\{#BOOLEAN}\changelog.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\sci_gateway\{#BOOLEAN}_gateway.xml; DestDir: {app}\modules\{#BOOLEAN}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

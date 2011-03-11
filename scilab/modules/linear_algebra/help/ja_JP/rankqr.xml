@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rankqr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rankqr</refname>
+    <refpurpose>QR分解に基づく階数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Q,R,JPVT,RANK,SVAL]=rankqr(A, [RCOND,JPVT])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>RCOND</term>
+        <listitem>
+          <para>
+	<literal>A</literal>の実効階数(ランク)を定義するために使用される実数です.
+	この階数は,
+	<literal>A</literal>のピボット選択付きのQR分解の中の
+	最大の先頭の部分三角行列<literal>R11</literal>の次数として定義されます.
+	その推定された条件数は &lt; <literal>1/RCOND</literal> となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>JPVT</term>
+        <listitem>
+          <para>エントリの整数ベクトル, <literal>JPVT(i)</literal> が 0でない場合,
+	<literal> A</literal>の<literal>i</literal>列目は
+	<literal>AP</literal>の先頭と交換され,
+	それ以外の場合,<literal>i</literal>は自由な列となります.
+	処理終了時に<literal>JPVT(i) = k</literal>の場合,
+	<literal>A*P</literal>の<literal>i</literal>列目は,
+	<literal>A</literal>の<literal>k</literal>列目となっています.
+  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>RANK</term>
+        <listitem>
+          <para>
+	<literal>A</literal>の実効ランク,すなわち,
+	部分行列<literal>R11</literal>の次数.
+	これは,<literal>A</literal>の完全な直交分解における
+	部分行列<literal>T1</literal>の次数と同じです.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SVAL</term>
+        <listitem>
+          <para>
+	3つの要素を有する実数ベクトル;三角分解<literal>R</literal>の
+	特異値の推定値.</para>
+          <para><literal>SVAL(1)</literal> は,
+  <literal>R(1:RANK,1:RANK)</literal>の最大特異値です;</para>
+          <para><literal>SVAL(2)</literal> は,
+  <literal>R(1:RANK,1:RANK)</literal>の最小特異値です;</para>
+          <para><literal>SVAL(3)</literal> は,
+  <literal>RANK</literal> &lt; <literal>MIN(M,N)</literal>の場合,
+	<literal>R(1:RANK+1,1:RANK+1)</literal>,
+	 そうでない場合, <literal>R(1:RANK,1:RANK)</literal>の最小特異値です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+実数または複素数のM行N列一般行列<literal>A</literal>の(オプションで)
+ランク出力を伴なうQR分解を計算します.
+ランクが不完全になる可能性があり,実効ランクを条件数のインクリメンタル推定により
+推定します.</para>
+    <para>
+このルーチンは列ピボット選択付きのQR分解を使用します:</para>
+    <programlisting role = ""><![CDATA[ 
+A * P = Q * R,  where  R = [ R11 R12 ],
+                           [  0  R22 ]
+ ]]></programlisting>
+    <para>
+<literal>R11</literal>は,条件数の推定値が<literal>1/RCOND</literal>未満となる
+最大の部分行列として定義されます.
+<literal>R11</literal>, <literal>RANK</literal>の次数は,
+<literal>A</literal>の実効階数です.
+</para>
+    <para>
+三角分解が階数出力を伴なう場合 (これは先頭の列が健全(well-conditioned)な場合です),
+<literal>SVAL(1)</literal>は<literal>A</literal>の最大特異値の
+推定値となり,<literal>SVAL(2)</literal> および
+<literal>SVAL(3)</literal>は,それぞれ <literal>A</literal>の
+<literal>RANK</literal>番目および<literal>(RANK+1)</literal>番目の
+特異値の推定値となります.</para>
+    <para>
+これらの値を評価することにより,選択した<literal>RCOND</literal>の
+値により階数が良好に定義されることを確認することができます.
+比 <literal>SVAL(1)/SVAL(2)</literal> は,
+<literal>R(1:RANK,1:RANK)</literal>の条件数の推定値です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,3)*rand(3,7);
+[Q,R,JPVT,RANK,SVAL]=rankqr(A,%eps)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="rank">rank</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para>
+    Slicot library routines MB03OD, ZB03OD.</para>
+  </refsection>
+</refentry>

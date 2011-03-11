@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -27,15 +27,15 @@
 
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#define finite(x) _finite(x) 
+#define finite(x) _finite(x)
 #endif
 #define EOL "\n"
 #define NanString "Nan"
 #define InfString "Inf"
 #define NegInfString "-Inf"
 /*--------------------------------------------------------------------------*/
-#define NB_FORMAT_SUPPORTED 7 
-static char *supportedFormat[NB_FORMAT_SUPPORTED] = 
+#define NB_FORMAT_SUPPORTED 7
+static char *supportedFormat[NB_FORMAT_SUPPORTED] =
 {"lf", "lg", "d", "i", "e", "f", "g"};
 /*--------------------------------------------------------------------------*/
 static BOOL checkFprintfMatFormat(char *format);
@@ -57,7 +57,7 @@ static int signbit(double x)
     return u.i[1] < 0;
 #else
     return u.s[3] < 0;
-#endif 
+#endif
 }
 #endif /* signbit */
 /*--------------------------------------------------------------------------*/
@@ -89,7 +89,7 @@ fprintfMatError fprintfMat(char *filename, char *format, char *separator,
     {
         if (textAdded)
         {
-            for (i = 0; i < sizeTextAdded; i++) 
+            for (i = 0; i < sizeTextAdded; i++)
             {
                 if (textAdded[i])
                 {
@@ -218,7 +218,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = strlen(percent) - strlen(token);          
+                    int nbcharacters = (int)(strlen(percent) - strlen(token));
                     cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1])) ||

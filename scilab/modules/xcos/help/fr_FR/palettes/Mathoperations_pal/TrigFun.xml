@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) INRIA\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="TrigFun"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>TrigFun</refname>
+    <refpurpose>Fonction trigonométrique</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/TrigFun.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_TrigFun">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TrigFun">Fonction trigonométrique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_TrigFun">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_TrigFun">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_TrigFun">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_TrigFun">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_TrigFun">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_TrigFun">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_TrigFun">Voir aussi</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_TrigFun">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_TrigFun">
+    <title>Description</title>
+    <para>
+      Le bloc Trigonometric Function exécute de nombreuses fonctions trigonométriques communes. Vous pouvez sélectionner
+      une fonction parmi celles citées dans ce tableau :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left"><emphasis role="bold">Fonction</emphasis></td>
+        <td align="left"><emphasis role="bold">Définition</emphasis></td>
+        <td align="left"><emphasis role="bold">Sortie</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left">sin</td>
+        <td align="left">Sinus de l'entrée (radians)</td>
+        <td align="left">y = sin(u)</td>
+      </tr>
+      <tr>
+        <td align="left">cos</td>
+        <td align="left">Cosinus de l'entrée (radians)</td>
+        <td align="left">y = cos(u)</td>
+      </tr>
+      <tr>
+        <td align="left">tan</td>
+        <td align="left">Tangente de l'entrée (radians)</td>
+        <td align="left">y = tan(u)</td>
+      </tr>
+      <tr>
+        <td align="left">asin</td>
+        <td align="left">Arc sinus (radians) de l'entrée</td>
+        <td align="left">y = asin(u)</td>
+      </tr>
+      <tr>
+        <td align="left">acos</td>
+        <td align="left">Arc cosinus (radians) de l'entrée</td>
+        <td align="left">y = acos(u)</td>
+      </tr>
+      <tr>
+        <td align="left">atan</td>
+        <td align="left">Arc tangente (radians) de l'entrée</td>
+        <td align="left">y = atan(u)</td>
+      </tr>
+      <tr>
+        <td align="left">atan2</td>
+        <td align="left">Arc tangente quatre quadrants (radians) de l'entrée</td>
+        <td align="left">y = atan2(u)</td>
+      </tr>
+       <tr>
+        <td align="left">sinh</td>
+        <td align="left">Sinus hyperbolique de l'entrée</td>
+        <td align="left">y = sinh(u)</td>
+      </tr>
+       <tr>
+        <td align="left">cosh</td>
+        <td align="left">Cosinus hyperbolique de l'entrée</td>
+        <td align="left">y = cosh(u)</td>
+      </tr>
+       <tr>
+        <td align="left">tanh</td>
+        <td align="left">Tangente hyperbolique de l'entrée</td>
+        <td align="left">y = tanh(u)</td>
+      </tr>
+    </informaltable>
+    <para>
+      La sortie du bloc est le résultat de la fonction appliquée sur l'entrée scalaire ou sur les éléments du vecteur d'entrée.
+    </para>
+  </refsection>
+  <refsection id="Dialogbox_TrigFun">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/TrigFun_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Function</emphasis>
+        </para>
+        <para> La fonction trigonométrique.</para>
+        <para> Propriétés : Type 'str' de taille 1</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_TrigFun">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">sin_blk</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_TrigFun">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/TrigFun.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_TrigFun">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/sin_blk.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_TrigFun">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="COSBLK_f">COSBLK_f - Cosinus (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SINBLK_f">SINBLK_f - Sinus (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="TANBLK_f">TANBLK_f - Tangente (Bloc Xcos)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="loadScicos">
+  <refnamediv>
+    <refname>loadScicos</refname>
+    <refpurpose>Load the Xcos simulation native library.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>loadScicos()</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_loadScicos">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_loadScicos">
+    <title>Description</title>
+    <para>The Xcos simulation need a native shared library. This call force the loading this library</para>
+  </refsection>
+  <refsection id="Parameters_loadScicos">
+    <title>Arguments</title>
+    <para>None</para>
+  </refsection>
+  <refsection id="Example_loadScicos">
+    <title>Example</title>
+    <programlisting role="example">loadScicos();</programlisting>
+  </refsection>
+  <refsection id="SeeAlso_loadScicos">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos"><programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="loadXcosLibs"><programlisting>loadXcosLibs</programlisting> - Load the blocks macros libraries.</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_loadScicos">
+    <title>Authors</title>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
+  </refsection>
+</refentry>

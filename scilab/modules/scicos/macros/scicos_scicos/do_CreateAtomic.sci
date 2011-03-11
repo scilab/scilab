@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [o,needcompile,ok]=do_CreateAtomic(o,k,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 ok=%t
 
 model=o.model

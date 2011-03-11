@@ -69,7 +69,7 @@ libscihistory_manager_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 # the system)
 pkglib_LTLIBRARIES = libscihistory_manager.la
 
-libscihistory_manager_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihistory_manager_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
@@ -84,7 +84,7 @@ modulename=history_manager
 
 #### history_manager : Conf files ####
 libscihistory_manager_la_rootdir = $(mydatadir)
-libscihistory_manager_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihistory_manager_la_root_DATA =  license.txt version.xml
 
 #### history_manager : init scripts ####
 libscihistory_manager_la_etcdir = $(mydatadir)/etc

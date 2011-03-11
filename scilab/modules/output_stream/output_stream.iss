@@ -24,11 +24,7 @@ Source: bin\{#OUTPUT_STREAM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB
 Source: bin\{#OUTPUT_STREAM}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\{#OUTPUT_STREAM}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#OUTPUT_STREAM}\changelog.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB};
 Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
-Source: modules\{#OUTPUT_STREAM}\readme.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\version.xml; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OUTPUT_STREAM}\includes\*.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}
@@ -46,8 +42,10 @@ Source: modules\{#OUTPUT_STREAM}\etc\{#OUTPUT_STREAM}.start; DestDir: {app}\modu
 Source: modules\{#OUTPUT_STREAM}\macros\buildmacros.sce; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\macros\buildmacros.bat; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\macros\cleanmacros.bat; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#OUTPUT_STREAM}\macros\*.bin; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\macros\*.sci; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\macros\lib; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#OUTPUT_STREAM}\macros\names; DestDir: {app}\modules\{#OUTPUT_STREAM}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OUTPUT_STREAM}\demos\*.*; DestDir: {app}\modules\{#OUTPUT_STREAM}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

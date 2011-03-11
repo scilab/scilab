@@ -23,9 +23,7 @@ Source: bin\lib{#SHELL}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\jar\org.scilab.modules.{#SHELL}.jar;DestDir: {app}\modules\{#SHELL}\jar; Components: {#COMPN_SCILAB}
 ;
 ;
-Source: modules\{#SHELL}\changelog.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB};
 Source: modules\{#SHELL}\license.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\readme.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\sci_gateway\{#SHELL}_gateway.xml; DestDir: {app}\modules\{#SHELL}\sci_gateway; Components: {#COMPN_SCILAB}

@@ -46,7 +46,7 @@ int sci_show_banner = 1;
 int Console_Main(int argc, char **argv)
 {
     int iExitCode = 0;
-    int nowin = 0, argcount = 0, lpath = 0;
+    int argcount = 0, lpath = 0;
     InitScriptType pathtype = SCILAB_SCRIPT;
     char *path = NULL;
     char *ScilabDirectory = NULL;
@@ -83,11 +83,7 @@ int Console_Main(int argc, char **argv)
     while (argcount > 0)
     {
         argcount--;
-        if (_stricmp (my_argv[argcount], "-NW") == 0) 
-        {
-            nowin = 1;
-        }
-        else if (_stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
+        if (_stricmp (my_argv[argcount], "-NS") == 0) startupf = 1;
         else if ( _stricmp(my_argv[argcount],"-NB") == 0) { sci_show_banner = 0; }
         else if (_stricmp (my_argv[argcount], "-NWNI") == 0)
         {

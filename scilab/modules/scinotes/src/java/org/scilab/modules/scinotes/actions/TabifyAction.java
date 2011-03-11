@@ -18,6 +18,7 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.SciNotesCaret;
 import org.scilab.modules.scinotes.TabManager;
 import org.scilab.modules.scinotes.ScilabDocument;
 
@@ -49,14 +50,31 @@ public final class TabifyAction extends DefaultAction {
         ScilabDocument doc = (ScilabDocument) sep.getDocument();
 
         doc.mergeEditsBegin();
-        if (start == end) {
-            tab.insertTab(start);
-        } else {
-            int[] ret = tab.tabifyLines(start, end - 1);
-            if (ret != null) {
-                sep.setSelectionStart(ret[0]);
-                sep.setSelectionEnd(ret[1]);
+        if (((SciNotesCaret) sep.getCaret()).isEmptySelection()) {
+            if (start == end) {
+                tab.insertTab(start);
+            } else {
+                int[] ret = tab.tabifyLines(start, end - 1);
+                if (ret != null) {
+                    sep.setSelectionStart(ret[0]);
+                    sep.setSelectionEnd(ret[1]);
+                }
             }
+        } else {
+            int[][] pos = ((SciNotesCaret) sep.getCaret()).getSelectedPositions();
+            ((SciNotesCaret) sep.getCaret()).protectHighlights(true);
+            int ret;
+            int sret = 0;
+            for (int i = 0; i < pos.length; i++) {
+                if (pos[i][0] < pos[i][1]) {
+                    ret = tab.insertTab(pos[i][0] + sret);
+                    sret += ret;
+                    pos[i][0] += sret;
+                    pos[i][1] += sret;
+                }
+            }
+            ((SciNotesCaret) sep.getCaret()).protectHighlights(false);
+            ((SciNotesCaret) sep.getCaret()).updateHighlights();
         }
         doc.mergeEditsEnd();
     }

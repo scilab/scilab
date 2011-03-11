@@ -16,6 +16,7 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
@@ -40,6 +41,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 	
 	private static final int GRAPHICS_PIN_INDEX = 6;
 	private static final int GRAPHICS_INIMPL_INDEX = 12;
+	private static final int GRAPHICS_INSTYLE_INDEX = 14;
 	
 	private static final int MODEL_IN_DATALINE_INDEX = 2;
 	private static final int MODEL_IN_DATACOL_INDEX = 3;
@@ -98,7 +100,8 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		
 		port = beforeDecode(element, port);
 		
-		fillParameters(port);
+		decodeModel(port);
+		decodeGraphics(port);
 		
 		// Update the index counter
 		alreadyDecodedCount++;
@@ -163,7 +166,7 @@ public class InputPortElement extends AbstractElement<InputPort> {
 	 * Fill the port with the parameters from the model structure.
 	 * @param port the target instance 
 	 */
-	private void fillParameters(InputPort port) {
+	private void decodeModel(InputPort port) {
 		ScilabDouble dataLines = (ScilabDouble) model.get(MODEL_IN_DATALINE_INDEX);
 		ScilabDouble dataColumns = (ScilabDouble) model.get(MODEL_IN_DATACOL_INDEX);
 		ScilabDouble dataType = (ScilabDouble) model.get(MODEL_IN_DATATYPE_INDEX);
@@ -205,6 +208,27 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		}
 	}
 
+	/**
+	 * Fill the port with the parameters from the graphics structure.
+	 * @param port the target instance 
+	 */
+	private void decodeGraphics(InputPort port) {
+		// protection against previously stored blocks
+		if (graphics.size() <= GRAPHICS_INSTYLE_INDEX) {
+			return;
+		}
+		
+		final ScilabString styles = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
+		if (styles.getData() != null) {
+			final String style;
+
+			try {
+				style = styles.getData()[alreadyDecodedCount][0];
+				port.setStyle(new StyleMap(port.getStyle()).putAll(style).toString());
+			} catch (ArrayIndexOutOfBoundsException e) { }
+		}
+	}
+	
 	/**
 	 * Test if the current instance can be used to decode the element
 	 * 
@@ -313,7 +337,12 @@ public class InputPortElement extends AbstractElement<InputPort> {
 		// in_implicit
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_INIMPL_INDEX);
 		strings = sciStrings.getData();
-		strings[alreadyDecodedCount][0] = from.getType().getAsString();		
+		strings[alreadyDecodedCount][0] = from.getType().getAsString();
+		
+		// in_style
+		sciStrings = (ScilabString) graphics.get(GRAPHICS_INSTYLE_INDEX);
+		strings = sciStrings.getData();
+		strings[alreadyDecodedCount][0] = from.getStyle();
 	}
 	
 	/**

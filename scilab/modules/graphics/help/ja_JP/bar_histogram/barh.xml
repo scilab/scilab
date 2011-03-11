@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="barh">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>barh</refname>
+    <refpurpose>棒ヒストグラムの水平表示</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>barh(y)
+barh(x,y)
+barh([h],x,y [,width [,color [,style]]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>axesハンドル, (デフォルト: h=gca() ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>実数スカラー, 大きさ Nのベクトル, または N*M行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数スカラー, 大きさ Nのベクトル, (デフォルト:  y がベクトルの場合,
+		x はベクトルで xの長さはyの長さに等しくなります.
+		yが行列の場合,xはベクトルとなりxの長さはyの行数と等しくなります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>width</term>
+        <listitem>
+          <para>(オプション), 実数スカラー, bar の幅 (利用可能な空間の割合) を定義
+	 (デフォルト: 0.8, すなわち 80%).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>color</term>
+        <listitem>
+          <para>(オプション), 文字列 (デフォルト: 'blue'), カラーバーの内側の色を指定.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style:</term>
+        <listitem>
+          <para>文字列, 'grouped' または 'stacked' (デフォルト: 'grouped').</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>barh(y,...) :</literal> 
+	y がベクトルの場合, barh 関数は
+	<literal>polyline_style</literal>  6型を有するポリラインを描画します.
+	y がベクトルの場合, barh はベクトルyをベクトル1:size(y,'*')に対して
+	描画します. y が行列 N*M の場合, barh は M個のポリライン(6型)を描画し,
+	各ポリラインはyの列に対してベクトルx=1:size(y,1)に対応します.</para>
+    <para><literal>barh(x,y,...) :</literal> yがベクトルの場合, barh 関数は
+	<literal>polyline_style</literal> 6型 を有するポリラインを描画します.
+	ただし, xの長さ = yの長さとなります.
+	y が行列 NxMの場合, barh 関数は6型 を有するM本のポリラインを描画します.
+	各ポリラインはyの列に対するベクトルxに対応します.</para>
+    <para><literal>barh(h,...) :</literal> は描画を実行中のカレントの軸を定義します.</para>
+    <para><literal>barh(...,width,...) :</literal> 
+	は棒の幅をパーセント単位で
+	定義します(通常: 0&lt;width&lt;=1).</para>
+    <para><literal>barh(...,style,...) :</literal> は棒の描画方法を定義します.
+	y が行列 N*M の場合 (つまり, M本の6型ポリライン),
+	M個の棒を描画する方法が二種類あります.
+	styleオプション = 'grouped'により,
+	M個のポリラインをxの各要素に対して中心に置くことができます,
+	そして, style オプション 'stacked' によりこれらをスタックすることができます.</para>
+    <para><literal>barh(...,color,...) : </literal>は,棒の色を定義します.
+	barh関数は<literal>plot</literal>関数と同じカラーマップを使用します.</para>
+    <para>barhを複数回コールする場合,
+	<literal>barhomogenize</literal>関数により
+	カレントの軸に含まれる
+	全ての棒(すなわち,6型のポリライン)の幅とスタイルを均質化できます.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 最初の例: 棒を描画 (すなわち,polyline_style type =6のポリライン) ただし,
+// width=0.5 , color='yellow' で default style='grouped', x=1:length(y).
+scf(0);
+y=[1 -3 5];
+barh(y,0.5,'yellow');
+
+// 2番目の例: 棒を 3 つ描画 (すなわち,polyline_style type =6の3個のポリライン),default style='grouped
+scf(1);
+x=[1 2 5]; y=[1  -5 6;3 -2 7;4  -3 8];
+barh(x,y);
+
+// 3番目の例 : style='stacked'.
+scf(2);
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6  9];
+barh(x,y,'stacked');
+
+// 4番目の例: width=0.2;color='green'; default style='grouped'
+scf(3);
+x=[1 2 5]; y=[1 4 7;2 5 8;3 6 9];
+barh(x,y,0.2,'green');
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bar">bar</link>
+      </member>
+      <member>
+        <link linkend="barhomogenize">barhomogenize</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="polyline_properties">polyline_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Farid Belahcene</para>
+  </refsection>
+</refentry>

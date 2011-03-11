@@ -20,6 +20,9 @@
 //
 
 function XcosMenuRename()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
     Cmenu = [] ;
     [scs_m,edited] = do_rename(scs_m) ;

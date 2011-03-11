@@ -83,11 +83,7 @@ lib /DEF:&quot;$(InputDir)special_functions_Import.def&quot; /SUBSYSTEM:WINDOWS 
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_calerf.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dlgamma.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_gamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesseli.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselj.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbesselk.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_oldbessely.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_lgamma.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
 		<File RelativePath="..\..\Makefile.am"/>

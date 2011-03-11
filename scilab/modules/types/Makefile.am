@@ -16,7 +16,7 @@ modulename=types
 
 #### types : Conf files ####
 libscitypes_la_rootdir = $(mydatadir)
-libscitypes_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitypes_la_root_DATA =  license.txt version.xml
 
 
 #### types : init scripts ####
@@ -108,7 +108,7 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 
 pkglib_LTLIBRARIES = libscitypes.la
 
-libscitypes_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(TYPES_CPP_SOURCES)
 
@@ -134,7 +134,7 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitypes_la_sci_gateway_DATA =
 
-if GUI
+if NEED_JAVA
 USEANT=1
 endif
 

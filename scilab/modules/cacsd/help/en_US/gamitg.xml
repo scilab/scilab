@@ -74,8 +74,8 @@ B = ( B1 , B2 ) ,    C = ( C1 ) ,    D = ( D11  D12)
     With <literal>option='t'</literal>, <literal>gamitg</literal> traces each bisection step, i.e., 
     displays the lower and upper bounds and the current test point.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ccontrg">ccontrg</link>

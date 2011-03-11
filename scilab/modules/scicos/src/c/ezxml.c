@@ -212,7 +212,7 @@ char *ezxml_decode(char *s, char **ent, char t)
 
             if (ent[b++]) { // found a match
                 if ((c = (long)strlen(ent[b])) - 1 > (e = strchr(s, ';')) - s) {
-                    l = (long)(d = (s - r)) + c + (long)strlen(e); // new length
+                    l = (long)(d = (long)(s - r)) + c + (long)strlen(e); // new length
                     r = (r == m) ? strcpy(MALLOC(l), r) : REALLOC(r, l);
                     e = strchr((s = r + d), ';'); // fix up pointers
                 }

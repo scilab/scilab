@@ -1,0 +1,354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="EXTTRI"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>EXTTRI</refname>
+
+    <refpurpose>Extraction triangulaire ou diagonale</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/EXTTRI.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_EXTTRI">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="EXTTRI">Extraction triangulaire ou diagonale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_EXTTRI">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_EXTTRI">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_EXTTRI">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <link linkend="EXTTRI">Exemple</link>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_EXTTRI">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_EXTTRI">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_EXTTRI">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_EXTTRI">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_EXTTRI">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_EXTTRI">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Matrix_pal">Palette Opérations matricielles</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_EXTTRI">
+    <title>Description</title>
+
+    <para>
+      Le bloc EXTTRI extrait des éléments de la matrice d'entrée u. Les dimensions de la matrice de sortie sont les mêmes que celles de la matrice d'entrée.
+    </para>
+    <para>Quand le paramètre <emphasis role="bold">extraction type)</emphasis> est initialisé à :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis> : Le bloc copie les éléments de et au-dessus de la diagonale
+          principale dans la matrice de sortie. Les éléments sous la diagonale principale sont mis à 0.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis> : Le bloc copie les éléments de et en-dessous de la diagonale
+          principale dans la matrice de sortie. Les éléments au-dessus de la diagonale principale sont mis à 0.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">3</emphasis> : Le bloc copie les éléments de la diagonale principale dans
+          la matrice de sortie. Les éléments sous et au-dessus de la diagonale principale sont mis à 0.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Les functions équivalentes de EXTTRI dans Scilab sont respectively (1) <link linkend="triu">triu(u)</link>,
+      (2) <link linkend="tril">tril(u)</link> et (3) <link linkend="diag">diag(u)</link>
+    </para>
+    <para />
+  </refsection>
+
+  <refsection id="Dialogbox_EXTTRI">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/EXTTRI_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
+        </para>
+
+        <para>
+          Il indique le type de la sortie. Il supporte seulement les types double (1) et complexe (2).
+          Si on entre une autre valeur dans ce paramètre, Xcos affiche le message "Datatype is not supported".
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">extraction type (1=lower 2=upper 3=diagonal)</emphasis>
+        </para>
+
+        <para>
+          Il indique la forme de la matrice de sortie. Elle peut être une matrice triangulaire supérieure,
+          triangulaire inférieure ou diagonale.
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_EXTTRI">
+    <title>Exemple</title>
+
+    <programlisting role="example">
+A=[1 2 3;4 5 6;7 8 9;10 11 12]
+Si le type d'extraction est 2 alors la sortie est
+B=[1 0 0;4 5 0;7 8 9;10 11 12]
+ </programlisting>
+  </refsection>
+
+  <refsection id="Defaultproperties_EXTTRI">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">extrilz</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_EXTTRI">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/MatrixOp/EXTTRI.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_EXTTRI">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/exttril.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/exttriu.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/extdiag.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/exttrilz.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/exttriuz.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/extdiagz.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_EXTTRI">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="EXTRACT">EXTRACT - Extraction de matrice (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="triu">triu (Fonction Scilab)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="tril">tril (Fonction Scilab)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="diag">diag (Fonction Scilab)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_EXTTRI">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("scilab editor",SCI+"/modules/scinotes/help/pt_BR",%T);
+add_help_chapter("Scilab editor (Scinotes)",SCI+"/modules/scinotes/help/pt_BR",%T);
 

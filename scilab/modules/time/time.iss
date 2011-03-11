@@ -21,11 +21,7 @@
 Source: bin\{#TIME}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TIME}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: bin\{#TIME}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-;
-Source: modules\{#TIME}\changelog.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\license.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\readme.txt; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\VERSION.xml; DestDir: {app}\modules\{#TIME}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#TIME}\includes\*.h; DestDir: {app}\modules\{#TIME}\includes; Components: {#COMPN_SCILAB}
@@ -41,8 +37,10 @@ Source: modules\{#TIME}\etc\{#TIME}.start; DestDir: {app}\modules\{#TIME}\etc; C
 Source: modules\{#TIME}\macros\buildmacros.sce; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\buildmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.sci; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\lib; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#TIME}\macros\names; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\tests\*.*; DestDir: {app}\modules\{#TIME}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

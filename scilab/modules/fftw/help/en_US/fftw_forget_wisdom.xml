@@ -39,8 +39,8 @@ set_fftw_wisdom(txt);
 fftw_forget_wisdom();
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fftw">fftw</link>

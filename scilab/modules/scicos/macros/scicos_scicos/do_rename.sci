@@ -20,6 +20,9 @@
 //
 
 function [scs_m,edited,ok]=do_rename(scs_m, pal_mode)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   ok=%t
   if argn(2)==1 then pal_mode=%f, end
 

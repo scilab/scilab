@@ -116,8 +116,8 @@ frq=(0:0.01:0.5)/dom;repf=repfreq(h,frq);
 clf();plot2d1("onn",frq',abs([repf;rep2])');
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>

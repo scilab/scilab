@@ -27,8 +27,8 @@
     <title>Description</title>
     <para>Returns list of modules installed in Scilab.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="with_module">with_module</link>

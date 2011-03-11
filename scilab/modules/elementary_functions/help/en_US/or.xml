@@ -70,8 +70,8 @@ or([%t %t %f])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="or_op">or operator (|)</link></member>

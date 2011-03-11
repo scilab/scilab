@@ -249,6 +249,28 @@ SciErr createTListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent
  */
 SciErr createMListInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos, int _iNbItem, int** _piAddress);
 
+/*********************************
+ * void and undefined functions  *
+ *********************************/
+
+/**
+ * Create a void item in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent pointer to the parent
+ * @param[in] _iItemPos position of the created mlist in the parent list
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
+ */
+SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos);
+
+/**
+ * Create a undefined item in a named list
+ * @param[in] _pstName variable name
+ * @param[in] _piParent pointer to the parent
+ * @param[in] _iItemPos position of the created mlist in the parent list
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
+ */
+SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos);
+
 /*********************
  * double functions  *
  *********************/

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="ssrand" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ssrand</refname>
+
+    <refpurpose>乱数生成器</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>sl=ssrand(nout,nin,nstate)
+[sl,U]=ssrand(nout,nin,nstate,flag)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>nout</term>
+
+        <listitem>
+          <para>整数 (出力の数)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nin</term>
+
+        <listitem>
+          <para>整数 (入力の数)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nstate</term>
+
+        <listitem>
+          <para>整数 (状態空間の次元)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>list made of one character string and one or several
+          integers</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sl</term>
+
+        <listitem>
+          <para>list (<literal>syslin</literal> list)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>U</term>
+
+        <listitem>
+          <para>square <literal>(nstate x nstate)</literal> nonsingular
+          matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>sl=ssrand(nout,nin,nstate)</literal> は,
+	<literal>syslin</literal>リストで定義され,
+	<literal>nstate</literal>個の状態変数を有する
+	大きさ <literal>[nout,nint]</literal>の
+	厳密にプロパー(<literal>D=0</literal>)でランダムな状態空間システム
+	を返します.</para>
+
+    <para><literal>[sl,U]=ssrand(nout,nin,nstate,flag)</literal> は
+	<literal>flag</literal>で指定したプロパティを有する線形システムを
+	返します.<literal>flag</literal>は以下のどれかとすることができます:</para>
+
+    <programlisting role = ""><![CDATA[ 
+flag=list('co',dim_cont_subs)  
+flag=list('uo',dim_unobs_subs)
+flag=list('ncno',dim_cno,dim_ncno,dim_co,dim_nco)
+flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+flag=list('dt',dim_inst_unob,dim_instb0,dim_unobs)
+flag=list('on',nr,ng,ng0,nv,rk)
+flag=list('ui',nw,nwu,nwui,nwuis,rk)
+ ]]></programlisting>
+
+    <para>
+	<literal>Sys</literal>の完全な説明は,
+	(<literal>SCIDIR/macros/util</literal>にある)
+	<literal>ssrand</literal>関数の
+	コード内に記述されています.
+	例えば,
+    <literal>flag=list('co',dim_cont_subs)</literal> を指定すると,
+	可制御でないシステムが返され,
+	<literal>dim_cont_subs</literal> は<literal>Sys</literal>の可制御部分空間の
+	次元となります.
+	文字列<literal>'co','uo','ncno','st','dt','on','ui'</literal> は
+    "可制御(controllable)", "不可観測(unobservable)", "不可制御-不可観測(non-controllable-non-observable)",
+    "可安定(stabilizable)","可検出(detectable)","出力ゼロ化(output-nulling)","未知入力(unknown-input)"を意味します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//flag=list('st',dim_cont_subs,dim_stab_subs,dim_stab0)  
+//dim_cont_subs&lt;=dim_stab_subs&lt;=dim_stab0  
+//pair (A,B) U-similar to:
+//    [*,*,*,*;     [*;    
+//    [0,s,*,*;     [0;
+//A=  [0,0,i,*;   B=[0;
+//    [0,0,0,u]     [0]
+//     
+// (A11,B1) controllable  s=stable matrix i=neutral matrix u=unstable matrix
+[Sl,U]=ssrand(2,3,8,list('st',2,5,5));
+w=ss2ss(Sl,inv(U)); //undo the random change of basis => form as above
+[n,nc,u,sl]=st_ility(Sl);n,nc
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="syslin">syslin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

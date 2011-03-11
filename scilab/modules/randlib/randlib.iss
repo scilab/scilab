@@ -22,9 +22,7 @@ Source: bin\{#RANDLIB}.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
 Source: bin\{#RANDLIB}_f.dll; DestDir: {app}\bin; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\VERSION.xml; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\readme.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 Source: modules\{#RANDLIB}\license.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
-Source: modules\{#RANDLIB}\changelog.txt; DestDir: {app}\modules\{#RANDLIB}; Components: {#COMPN_RANDLIB}
 ;
 Source: modules\{#RANDLIB}\sci_gateway\{#RANDLIB}_gateway.xml; DestDir: {app}\modules\{#RANDLIB}\sci_gateway; Components: {#COMPN_RANDLIB}
 ;

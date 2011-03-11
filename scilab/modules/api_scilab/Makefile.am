@@ -51,7 +51,7 @@ libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciapi_scilab.la
 
-libsciapi_scilab_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -69,7 +69,7 @@ modulename=api_scilab
 
 #### api_scilab : Conf files ####
 libsciapi_scilab_la_rootdir = $(mydatadir)
-libsciapi_scilab_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciapi_scilab_la_root_DATA =  license.txt version.xml
 
 
 #### api_scilab : init scripts ####

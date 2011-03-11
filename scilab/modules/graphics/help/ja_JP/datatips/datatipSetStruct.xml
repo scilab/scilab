@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipSetStruct">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+     <refname>datatipSetStruct</refname>
+    <refpurpose>曲線または曲面エンティティにdatatipsデータ構造体を保存する. </refpurpose>
+  </refnamediv>
+ 
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+       datatipSetStruct(curve_handle,datatips_struct)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handle</term>
+        <listitem>
+          <para>
+	曲線または曲面のハンドル. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+	<term>datatips_struct</term>
+        <listitem>
+          <para>
+            <literal>datatips</literal>型のtlist.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+        <literal>datatipSetStruct</literal> は
+	曲線または曲面エンティティにdatatipsデータ構造体を保存します.
+	この関数は,ユーティリティ関数で直接コールされることはありません.
+    </para>
+   
+  </refsection>
+ 
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="datatips" >datatips</link></member>
+     <member><link linkend="datatipGetStruct" >datatipGetStruct</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

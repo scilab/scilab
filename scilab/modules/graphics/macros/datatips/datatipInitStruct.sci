@@ -15,7 +15,10 @@ function ok=datatipInitStruct(curve_handle,varargin)
 // curve_handle : a handle on a polyline, the parent of the datatips data structure
 // varargin     : a list containing a sequence of pairs;
 //               (<property name), <property value>);
-;
+  if argn(2)<1 then
+    error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipInitStruct",1))
+  end
+
   ok=%t
   ud=datatipGetStruct(curve_handle)
   if typeof(ud)<>'datatips' then;

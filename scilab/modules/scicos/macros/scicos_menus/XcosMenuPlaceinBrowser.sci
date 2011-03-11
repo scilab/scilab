@@ -20,6 +20,9 @@
 //
 
 function XcosMenuPlaceinBrowser()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Cmenu=[]
   %superpath='root,'+strcat(string(super_path),',')
   %superpath1='root,'+strcat(string(super_path(1)),',')

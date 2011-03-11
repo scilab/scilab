@@ -35,7 +35,7 @@ int
 sci_scinotes(char * fname, int *_piKey)
 {
     SciErr sciErr;
-    CheckRhs(0, 2);
+    CheckRhs(0, 3);
     CheckLhs(0, 1);
 
     if (Rhs == 0)
@@ -62,6 +62,7 @@ sci_scinotes(char * fname, int *_piKey)
         int *lenStVarOne = NULL;
         int i = 0;
         int iType1 = 0;
+        char *functionName = NULL;
 
         sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
         if (sciErr.iErr)
@@ -147,7 +148,7 @@ sci_scinotes(char * fname, int *_piKey)
             return 0;
         }
 
-        if (Rhs == 2) //get line numbers
+        if (Rhs >= 2) //get line numbers
         {
             int* piAddressVarTwo = NULL;
             int m2 = 0, n2 = 0;
@@ -326,24 +327,52 @@ sci_scinotes(char * fname, int *_piKey)
                     return 0;
                 }
 
+                if (Rhs == 3)
+                {
+                    int *piAddressVarThree = NULL;
+
+                    sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return 0;
+                    }
+
+                    if (!isStringType(_piKey, piAddressVarThree))
+                    {
+                        Scierror(
+                                 999,
+                                 _("%s: Wrong type for argument %d: A single string.\n"),
+                                 fname, 3);
+                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        FREE(lenStVarOne);
+                        return 0;
+                    }
+
+                    int ret = getAllocatedSingleString(_piKey, piAddressVarThree, &functionName);
+                    if (ret)
+                    {
+                        Scierror(
+                                 999,
+                                 _("%s: Wrong type for argument %d: A single string.\n"),
+                                 fname, 3);
+                        freeArrayOfWideString(pStVarOne, m1 * n1);
+                        FREE(lenStVarOne);
+                        return 0;
+                    }
+                }
+
                 try
                 {
-                    callSciNotesWWithLineNumber(pStVarOne, pdblVarTwo, m1 * n1);
+                    callSciNotesWWithLineNumberAndFunction(pStVarOne, pdblVarTwo, functionName, m1 * n1);
                 }
                 catch (GiwsException::JniCallMethodException exception)
                 {
-                    Scierror(999, "%s: %s\n", fname,
-                            exception.getJavaDescription().c_str());
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
-                    FREE(lenStVarOne);
-                    return 0;
+                    Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
                 }
                 catch (GiwsException::JniException exception)
                 {
                     Scierror(999, "%s: %s\n", fname, exception.what());
-                    freeArrayOfWideString(pStVarOne, m1 * n1);
-                    FREE(lenStVarOne);
-                    return 0;
                 }
             }
         }
@@ -355,24 +384,20 @@ sci_scinotes(char * fname, int *_piKey)
             }
             catch (GiwsException::JniCallMethodException exception)
             {
-                Scierror(999, "%s: %s\n", fname,
-                        exception.getJavaDescription().c_str());
-                freeArrayOfWideString(pStVarOne, m1 * n1);
-                FREE(lenStVarOne);
-                return  0;
+                Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
             }
             catch (GiwsException::JniException exception)
             {
                 Scierror(999, "%s: %s\n", fname, exception.what());
-                freeArrayOfWideString(pStVarOne, m1 * n1);
-                FREE(lenStVarOne);
-                return  0;
             }
-
         }
 
         freeArrayOfWideString(pStVarOne, m1 * n1);
         FREE(lenStVarOne);
+        if (functionName)
+        {
+            freeAllocatedSingleString(functionName);
+        }
     }
 
     LhsVar(1) = 0;

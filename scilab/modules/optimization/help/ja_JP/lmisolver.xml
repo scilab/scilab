@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lmisolver" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lmisolver</refname>
+
+    <refpurpose>LMIソルバー</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[XLISTF[,OPT]] = lmisolver(XLIST0,evalfunc [,options])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>XLIST0</term>
+
+        <listitem>
+          <para>初期推定値を有するリスト (例:
+          <literal>XLIST0=list(X1,X2,..,Xn)</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>evalfunc</term>
+
+        <listitem>
+          <para>Scilab関数 (指定した構文を有する"external" 関数)</para>
+
+          <para>関数<literal>evalfunc</literal>の構文は以下のようになります:</para>
+
+          <para><literal>[LME,LMI,OBJ]=evalfunct(X)</literal> ただし,
+          <literal>X</literal> は行列のリストです, <literal>LME,
+          LMI</literal> はリストでa <literal>OBJ</literal> は実数スカラーです.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>XLISTF</term>
+
+        <listitem>
+          <para>行列のリスト (例:
+          <literal>XLIST0=list(X1,X2,..,Xn)</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>options</term>
+
+        <listitem>
+          <para>オプションのパラメータ. 指定された場合, <literal>options</literal> は
+	5つの要素<literal>[Mbound,abstol,nu,maxiters,reltol]</literal>を有する実数行ベクトルです.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>lmisolver</literal> は以下の問題を解きます:</para>
+
+    <para>minimize <literal>f(X1,X2,...,Xn)</literal> Xiの線形関数</para>
+
+    <para>拘束条件: <literal>Gi(X1,X2,...,Xn)=0</literal>
+    ただし, i=1,...,p および LMI (linear matrix inequalities) 拘束条件:</para>
+
+    <para><literal>Hj(X1,X2,...,Xn) &gt; 0</literal> for j=1,...,q</para>
+
+    <para>関数 f, G, H は,Scilab 関数<literal>evalfunc</literal>および
+	リストX (すなわち,<literal>X=list(X1,...,Xn)</literal>)に基づく行列の集合 Xiで
+	コード化されます.</para>
+
+    <para>関数<literal>evalfun</literal> は,リスト<literal>LME</literal>に
+	行列<literal>G1(X),...,Gp(X)</literal>
+	(すなわち,<literal>LME(i)=Gi(X1,...,Xn),</literal> i=1,...,p)を返す必要があります.
+	<literal>evalfun</literal>は,リスト<literal>LMI</literal>に
+	行列<literal>H1(X0),...,Hq(X)</literal>(すなわち,
+	<literal>LMI(j)=Hj(X1,...,Xn)</literal>, j=1,...,q)を返す必要があります.
+	<literal>evalfun</literal> は, <literal>OBJ</literal> に
+	<literal>f(X)</literal>(すなわち,<literal>OBJ=f(X1,...,Xn)</literal>)の値を返す
+	必要があります.</para>
+
+    <para><literal>lmisolver</literal> は<literal>XLISTF</literal>に, 
+	実数行列のリスト,すなわち,<literal>XLIST=list(X1,X2,..,Xn)</literal>
+	を返します.ただし,Xiについて解くのはLMI問題です:</para>
+
+    <para><literal>[Y,Z,cost]=evalfunc(XLIST)</literal>, <literal>Y</literal>
+	はゼロ行列のリストです, <literal>Y=list(Y1,...,Yp)</literal>,
+    <literal>Y1=0, Y2=0, ..., Yp=0</literal>.</para>
+
+    <para><literal> Z</literal> は,正方対称行列のリスト
+    <literal> Z=list(Z1,...,Zq) </literal> で, 半正定
+    <literal> Z1&gt;0, Z2&gt;0, ..., Zq&gt;0</literal> です(すなわち
+    <literal>spec(Z(j))</literal> &gt; 0),</para>
+
+    <para><literal>cost</literal> は最小化されます.</para>
+
+    <para><literal>lmisolver</literal> は,
+	<literal>Xi</literal>が行列ではなく行列のリストである
+	LMI問題を解くこともできます.
+	より詳細については,LMITOOLのドキュメントで参照可能です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// A1'*X+X*A1+Q1 < 0, A2'*X+X*A2+Q2 < 0 (q=2) となるような
+// 対角行列 X (すなわち X=diag(diag(X), p=1) を見つけます.
+// trace(X) は最大化されます.
+n  = 2;
+A1 = rand(n,n);
+A2 = rand(n,n);
+Xs = diag(1:n);
+Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
+Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
+
+deff('[LME,LMI,OBJ]=evalf(Xlist)','X   = Xlist(1); ...
+                                   LME = X-diag(diag(X));...
+                                   LMI = list(-(A1''*X+X*A1+Q1),-(A2''*X+X*A2+Q2)); ...
+                                   OBJ = -sum(diag(X))  ');
+
+X=lmisolver(list(zeros(A1)),evalf);
+
+X=X(1)
+[Y,Z,c]=evalf(X)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="lmitool">lmitool</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

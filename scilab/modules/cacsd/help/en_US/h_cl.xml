@@ -63,8 +63,8 @@
     <para><literal>Acl</literal> is the <literal>A</literal>-matrix of the linear system <literal>[I -P22;-K I]^-1</literal> i.e.
     the <literal>A</literal>-matrix of <literal>lft(P,r,K)</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lft">lft</link>

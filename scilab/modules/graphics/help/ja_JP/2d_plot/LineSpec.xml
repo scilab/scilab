@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="LineSpec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>LineSpec</refname>
+    <refpurpose>プロットの線の外観を簡単にカスタマイズするための仕様</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	LineSpecは, plot コマンド内で使用できるオプションの引数で,
+	各ラインの外観をカスタマイズするために使用されます.
+	このオプションは,色,線の種類やマーカといった情報を含む文字列を結合したもので指定します.
+	このオプションは,基本的な線のプロパティを簡単に指定したい場合に非常に便利です.</para>
+    <para>ひし形のマーカを付けた赤い長い一点鎖線を指定するには,
+	文字列は'r-.diam'となります. 
+	見てわかるように,各プロパティ値のスペルを完全に記述する必要はありませんが,
+	これらの3種類のプロパティを結合したもの(順番は任意)は,一義的である必要があります.
+	更に,文字列の指定では大文字小文字は区別されません.</para>
+    <para>( <link linkend="plot">plot</link>により)指定可能な全ての<literal>LineSpec</literal>型の
+	一覧を以下に示します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>LineStyle: </term>
+        <listitem>
+          <para>線種を定義する文字列.このプロパティは
+	オブジェクトの<literal>line_style</literal>プロパティとリンクしています
+	(
+        <link linkend="polyline_properties">polyline_properties</link>参照).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>指定子</literal>
+              </td>
+              <td>
+                <literal>線種</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-</literal>
+              </td>
+              <td>実線 (デフォルト)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>--</literal>
+              </td>
+              <td>破線e</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>:</literal>
+              </td>
+              <td>点線</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-.</literal>
+              </td>
+              <td>一点鎖線</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Color: </term>
+        <listitem>
+          <para>線の色を定義する文字列. このプロパティは
+        オブジェクトの <literal>foreground</literal>プロパティとリンクしています (
+        <link linkend="polyline_properties">polyline_properties</link>参照).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>指定子</literal>
+              </td>
+              <td>
+                <literal>色r</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>r</literal>
+              </td>
+              <td>赤</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>g</literal>
+              </td>
+              <td>緑</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>b</literal>
+              </td>
+              <td>青</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>c</literal>
+              </td>
+              <td>シアン</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>m</literal>
+              </td>
+              <td>マゼンタ</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>y</literal>
+              </td>
+              <td>黄色</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>k</literal>
+              </td>
+              <td>黒</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>w</literal>
+              </td>
+              <td>白</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term/>
+        <listitem>
+          <para>
+	( <literal>LineSpec</literal> または
+        <link linkend="GlobalProperty">GlobalProperty</link>のどちらかで)
+	色を指定しない場合,
+	曲線をプロットする際にはデフォルトの色テーブルが使用されます.
+	複数の線を描画する際,プロットコマンドは自動的にこのテーブルを巡回します.
+	以下に使用される色を示します:</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term/>
+        <listitem>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>R</literal>
+              </td>
+              <td>
+                <literal>G</literal>
+              </td>
+              <td>
+                <literal>B</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.</td>
+              <td>1.</td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.5</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>1.</td>
+              <td>0.</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>0.</td>
+              <td>0.75</td>
+              <td>0.75</td>
+            </tr>
+            <tr>
+              <td>0.75</td>
+              <td>0.</td>
+              <td>0.75</td>
+            </tr>
+            <tr>
+              <td>0.75</td>
+              <td>0.75</td>
+              <td>0.</td>
+            </tr>
+            <tr>
+              <td>0.25</td>
+              <td>0.25</td>
+              <td>0.25</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Marker type: </term>
+        <listitem>
+          <para>マーカの種類を定義する文字列.
+	線種を指定しないでマーカを指定する場合,
+	マーカのみが描画されることに注意してください.
+	このプロパティはオブジェクトの <literal>mark_style</literal> および
+	<literal>mark_mode</literal>プロパティにリンクしています
+	 (
+        <link linkend="polyline_properties">polyline_properties</link>参照).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>指定子</literal>
+              </td>
+              <td>
+                <literal>マーカ型</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>+</literal>
+              </td>
+              <td>プラス記号</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>o</literal>
+              </td>
+              <td>円</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>*</literal>
+              </td>
+              <td>アスタリスク</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>.</literal>
+              </td>
+              <td>点</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>x</literal>
+              </td>
+              <td>十字</td>
+            </tr>
+            <tr>
+              <td><literal>'square'</literal> or
+            <literal>'s'</literal></td>
+              <td>四角</td>
+            </tr>
+            <tr>
+              <td><literal>'diamond'</literal> or
+            <literal>'d'</literal></td>
+              <td>ひし形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>^</literal>
+              </td>
+              <td>上向きの三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>v</literal>
+              </td>
+              <td>下向きの三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&gt;</literal>
+              </td>
+              <td>右向きの三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&lt;</literal>
+              </td>
+              <td>左向きの三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'pentagram'</literal>
+              </td>
+              <td>星型五角形 (ペンタグラム)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'none'</literal>
+              </td>
+              <td>マーカなし (デフォルト)</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=1:0.1:10; // Init.
+plot(x,sin(x),'r.->') // 右向き三角形が各点の中心についた一点破線をプロット
+clf();
+
+// 線種を指定せずにマーカを指定した場合, マーカのみが描画されます
+plot(x,sin(x),'d') // ひし形のマーカでプロット
+
+x=1:10; // 初期化.
+// 組み合わせの順序は任意です
+plot(x,x.*x,'*cya--') 
+
+//複数のプロットに異なる LineSpecsを適用
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="GlobalProperty">GlobalProperty</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

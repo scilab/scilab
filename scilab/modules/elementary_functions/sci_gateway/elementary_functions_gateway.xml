@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
@@ -82,8 +82,5 @@
 <PRIMITIVE gatewayId="6" primitiveId="49" primitiveName="spones" />
 <PRIMITIVE gatewayId="6" primitiveId="50" primitiveName="gsort" />
 <PRIMITIVE gatewayId="6" primitiveId="51" primitiveName="isequalbitwise" />
-<PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="matrix" />
-<PRIMITIVE gatewayId="6" primitiveId="53" primitiveName="rat" />
-<PRIMITIVE gatewayId="6" primitiveId="54" primitiveName="maxi" />
-<PRIMITIVE gatewayId="6" primitiveId="55" primitiveName="mini" />
+<PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="rat" />
 </GATEWAY>

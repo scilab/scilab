@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="quit">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quit</refname>
+    <refpurpose>Scilabを終了またはpauseレベルを減らす</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>quit</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para><literal>quit</literal> コマンドには,コールするコンテキストに依存して
+	以下の2種類の意味があります:</para>
+    <variablelist>
+      <varlistentry>
+        <term>アクティブな <literal>pause</literal> がない場合,</term>
+        <listitem>
+          <para>
+	コマンドが関数の内部でコールされた場合であっても
+          <literal>quit</literal>コマンドはScilab を終了します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>アクティブな<literal>pause</literal> がある場合,</term>
+        <listitem>
+          <para>
+          <literal>quit</literal>コマンドはこのpauseレベルで開始された命令を
+	破棄し,カレントのpauseレベルを終了します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+  </refsection>
+ <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// Scilabを終了
+function foo(x),if x then quit,end,endfunction
+foo(%t) //scilabを終了
+
+//pauseコンテキストで開始された命令を終了
+function foo(x),if x then quit,end,endfunction
+pause
+foo(%t) //メインプロンプトレベルにリターンl
+
+function foo1(x),
+  mprintf('P1\n')
+  if x then pause, mprintf('P2\n'),end,
+  mprintf('P3\n')
+endfunction
+     
+foo1(%t) //以下のプロンプトでquitを入力してください
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="exit">exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

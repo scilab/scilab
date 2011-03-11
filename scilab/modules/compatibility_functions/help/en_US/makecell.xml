@@ -66,8 +66,8 @@
 makecell([2,3],1,2,3,'x','y','z')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cell" >cell</link>

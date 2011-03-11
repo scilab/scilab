@@ -15,6 +15,7 @@
 #define __GW_STRING__
 #include "api_scilab.h"
 #include "dynlib_string.h"
+#include "BOOL.h"
 
 /*--------------------------------------------------------------------------*/
 STRING_IMPEXP int gw_string(void);
@@ -29,8 +30,6 @@ STRING_IMPEXP int sci_strcmp(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_isletter(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strcspn(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strncpy(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_strrchr(char *fname,unsigned long fname_len);
-STRING_IMPEXP int sci_strchr(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strstr(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strrev(char *fname,unsigned long fname_len);
 STRING_IMPEXP int sci_strtok(char *fname,unsigned long fname_len);
@@ -43,6 +42,7 @@ STRING_IMPEXP int sci_strsplit(char *fname, int* _piKey);
 STRING_IMPEXP int sci_isdigit(char *fname, int* _piKey);
 STRING_IMPEXP int sci_isalphanum(char *fname, int* _piKey);
 STRING_IMPEXP int sci_isascii(char *fname, int* _piKey);
+STRING_IMPEXP int sci_strchr(char *fname, int* _piKey);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_STRING__ */
 /*--------------------------------------------------------------------------*/

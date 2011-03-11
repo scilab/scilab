@@ -1,15 +1,17 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
  * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include <string.h>
 
 #include "GetMatlabVariable.h"
 #include "sci_types.h"
@@ -64,7 +66,7 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
       	}
       _SciErr = getMatrixOfStringInList(pvApiCtx, var_addr, 1, &nbRow, &nbFields, pilen, fieldNames); MATIO_ERROR;
       FREE(pilen);
-      
+
       if (strcmp(fieldNames[0], "ce")==0)
         {
           freeArrayOfString(fieldNames, nbRow * nbFields);
@@ -73,20 +75,20 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
       else if (strcmp(fieldNames[0], "st")==0)
         {
           tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
-	  return tmp_res;
+          freeArrayOfString(fieldNames, nbFields);
+          return tmp_res;
         }
       else if (strcmp(fieldNames[0], "hm")==0)
         {
           /* TODO */
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
+          freeArrayOfString(fieldNames, nbFields);
           return NULL;
         }
       else
         {
           Scierror(999, _("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", fieldNames[0]);
-          freeArrayOfString(fieldNames, nbRow * nbFields);
+          freeArrayOfString(fieldNames, nbFields);
           return NULL;
         }
     }

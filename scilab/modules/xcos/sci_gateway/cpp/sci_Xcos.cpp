@@ -33,7 +33,7 @@ int sci_Xcos(char *fname, int* _piKey)
 	if (Rhs == 0)
 	{
 		callXcos(NULL, 0);
-		loadOnUseClassPath("xcos_block_rendering");
+		loadOnUseClassPath(const_cast<char*>("xcos_block_rendering"));
 	}
 	else
 	{
@@ -131,7 +131,7 @@ int sci_Xcos(char *fname, int* _piKey)
 			freeArrayOfString(pStVarOne, m1 * n1);
 
 			callXcos(pStFullFilenames, m1 * n1);
-			loadOnUseClassPath("xcos_block_rendering");
+			loadOnUseClassPath(const_cast<char*>("xcos_block_rendering"));
 
 			freeArrayOfString(pStFullFilenames, m1 * n1);
 		}

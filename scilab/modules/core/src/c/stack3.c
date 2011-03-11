@@ -2159,7 +2159,7 @@ int* piGetParentNode(int* _piStart, int* _piToFind, int *_piPos)
 			else
 			{
 				int *piTemp = piGetParentNode(piChild, _piToFind, _piPos);
-				if(piTemp != 0)
+				if(piTemp != NULL)
 				{
 					return piTemp;
 				}

@@ -577,7 +577,7 @@ int getAllocatedMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, 
 
 	for(i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
-		*_pwstData[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (piLen[i] + 1));//+1 for null termination
+		(*_pwstData)[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (piLen[i] + 1));//+1 for null termination
 	}
 
 	sciErr = getMatrixOfWideString(_pvCtx, _piAddress, _piRows, _piCols, piLen, *_pwstData);

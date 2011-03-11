@@ -73,8 +73,8 @@ txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="macr2tree">macr2tree</link>

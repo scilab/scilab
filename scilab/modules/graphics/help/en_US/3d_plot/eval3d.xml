@@ -65,8 +65,8 @@ z=feval(x,y,f);
 plot3d(x,y,z);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="feval">feval</link>

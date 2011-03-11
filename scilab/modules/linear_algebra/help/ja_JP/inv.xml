@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="inv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inv</refname>
+    <refpurpose> 逆行列</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>inv(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素数の正方行列, 多項式行列および
+	    伝達関数または状態空間表現の有理行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>inv(X)</literal> は正方行列 <literal>X</literal>の逆行列
+      となる. 
+      <literal>X</literal> のスケーリングが
+      悪い場合や特異行列に近い場合には警告を出力する.</para>
+    <para>
+      多項式行列または伝達関数表現の有理行列の場合,
+    <literal>inv(X)</literal> は <literal>invr(X)</literal>に等しくなる.</para>
+    <para>
+      状態空間表現の線形システム(<literal>syslin</literal> リスト)の場合,
+    <literal>invr(X)</literal> は <literal>invsyslin(X)</literal>に等しくなる.
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <para>数値行列用の<literal>inv</literal> 関数は Lapack ルーチン
+      DGETRF, DGETRI (実数行列の場合)および  ZGETRF, ZGETRI
+      (複素数の場合)に基づいている.
+      多項式および有理行列に関する <literal>inv</literal> は
+      Scilab関数<literal>invr</literal>に基づいている.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(3,3);inv(A)*A
+
+x=poly(0,'x');
+A=[x,1,x;x^2,2,1+x;1,2,3];inv(A)*A
+
+A=[1/x,2;2+x,2/(1+x)]
+inv(A)*A
+
+A=ssrand(2,2,3);
+W=inv(A)*A
+clean(ss2tf(W))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="slash">slash</link>
+      </member>
+      <member>
+        <link linkend="backslash">backslash</link>
+      </member>
+      <member>
+        <link linkend="pinv">pinv</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="invr">invr</link>
+      </member>
+      <member>
+        <link linkend="coff">coff</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

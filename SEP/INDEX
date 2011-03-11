@@ -19,7 +19,7 @@ SEP #19 : extend exit
 SEP #20 : Sparse Matrices Algorithms
 SEP #21 : Nelder-Mead Optimization Algorithm
 SEP #22 : Sorting Algorithms
-SEP #23 : Extend «diary()»
+SEP #23 : Extend Â«diary()Â»
 SEP #24 : Introduce an easy way to manage sub chapters in the documentation
 SEP #25 : Extend "fileinfo" to manage a column vector as input argument
 SEP #26 : Extend "strsplit" to manage a column vector as input argument
@@ -45,3 +45,8 @@ SEP #45 : Xcos palette management
 SEP #46 : sum/cumsum/prod/cumprod revision
 SEP #47 : Scilab Desktop
 SEP #48 : Scilab Preferences
+SEP #49 : repmat function
+SEP #50 : Xcos Help Folders
+SEP #51 : Linear Programming
+SEP #52 : Assert
+

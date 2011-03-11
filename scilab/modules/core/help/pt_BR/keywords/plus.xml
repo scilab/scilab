@@ -65,8 +65,8 @@ str1+str2</synopsis>
     <literal>overloading</literal>).</para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <programlisting role="example"><![CDATA[ 
 [1,2]+1
@@ -78,8 +78,8 @@ s+2
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="addf">addf</link></member>

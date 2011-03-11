@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plot2d3">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot2d3</refname>
+    <refpurpose>2次元プロット (垂直棒グラフ)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>plot2d3([logflags,] x,y,[style,strf,leg,rect,nax])
+plot232(y)
+plot2d3(x,y &lt;,opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>args</term>
+        <listitem>
+          <para>パラメータの説明については<literal>plot2d</literal> 参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>plot2d3</literal> は<literal>plot2d</literal> と同じですが,
+	曲線が垂直棒グラフとしてプロットされます.</para>
+    <para>デフォルトで, 連続するプロットは重ね描きされます.前のプロットを消去するには
+     <literal>clf()</literal>を使用してください.</para>
+    <para>コマンド <literal>plot2d3()</literal> を入力するとデモを参照できます.
+	<literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
+	<literal>plot2d</literal>を用いて,
+	<literal>polyline_style</literal>オプションを対応する数字に設定することにより,
+	有効にすることができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// compare the following with plot2d1
+x=[0:0.1:2*%pi]';
+plot2d3(x,[sin(x) sin(2*x) sin(3*x)])
+clf()
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+e=gce();
+e.children(1).polyline_style=3;
+e.children(2).polyline_style=3;
+e.children(3).polyline_style=3;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d2">plot2d2</link>
+      </member>
+      <member>
+        <link linkend="plot2d4">plot2d4</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="polyline_properties">polyline_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

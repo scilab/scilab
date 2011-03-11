@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="comp" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 08:50:39 +0000 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>comp</refname>
+
+    <refpurpose>scilab 関数のコンパイル</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>comp(function [,opt])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>function</term>
+
+        <listitem>
+          <para>コンパイルされていないscilab関数 (タイプ 11)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>opt</term>
+
+        <listitem>
+          <para>フラグ. 値は 0 (デフォルト), 1 または 2.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+      <literal>comp(function)</literal> は関数
+    <literal>function</literal>をコンパイルします. 
+    コンパイル済みの関数と解釈された関数は等価ですが,
+    通常はコンパイル済みの関数の方がはるかに高速です.
+    標準ライブラリとして提供される関数はコンパイルされています.
+    </para>
+
+    <para>
+      
+      コマンド<literal>exec</literal>と<literal>deff</literal>の短縮構文と
+      同様に,オンライン定義もコンパイルされた関数を生成します.
+      このため, comp は非常に多くの場面で使用されます.
+      コンパイルされていない関数を作成するには,
+      <link linkend="exec">exec</link> または
+    <link linkend="deff">deff</link> に
+    オプション  <literal>"n"</literal> を指定する必要があります.
+    </para>
+
+    <para>値 opt==2 は,"プロファイル用に"コンパイルされた
+      関数を作成します.
+      <link linkend="add_profiling">add_profiling</link>関数により,
+      コンパイル後でもプロファイル命令を追加することが可能になっています.
+    </para>
+
+    <para>古い opt==1 オプションは
+      コード解析用で無視されます.
+    </para>
+
+    <para>注意: コンパイルは"インプレース"で行われます, すなわち,
+      元の関数は修正され,新しいオブジェクトは生成されません.
+    </para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="deff">deff</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="function">function</link></member>
+     <member><link linkend="add_profiling">add_profiling</link></member>
+      <member><link linkend="profile">profile</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -21,80 +21,119 @@
 #include "freeArrayOfString.h"
 #include "stringsstrrchr.h"
 /*----------------------------------------------------------------------------*/
-int sci_strchr(char *fname,unsigned long fname_len)
+static wchar_t **getInputArgumentAsMatrixOfWideString( int *_piKey, int _iVar,
+                                       const char *fname,
+                                       int *m, int *n, int *iErr);
+/*----------------------------------------------------------------------------*/
+int sci_strchr(char *fname, int *_piKey)
 {
-	CheckRhs(2,2);
-	CheckLhs(0,1);
+    SciErr sciErr;
+    int iErr = 0;
 
-	if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
-	{
-		int m1 = 0, n1 = 0;
-		char **Input_StringMatrix_1 = NULL;
-		int m1n1 = 0;
+    wchar_t **pStrVarOne = NULL;
+    int m1 = 0; int n1 = 0;
 
-		int m2 = 0, n2 = 0;
-		char **Input_StringMatrix_2 = NULL;
-		int m2n2 = 0;
+    wchar_t **pStrVarTwo = NULL;
+    int m2 = 0; int n2 = 0;
 
-		GetRhsVar(1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,&Input_StringMatrix_1);
-		m1n1 = m1 * n1 ;
+    int i = 0;
+    BOOL do_strchr = (strcmp(fname, "strchr") == 0);
 
-		GetRhsVar(2,MATRIX_OF_STRING_DATATYPE,&m2,&n2,&Input_StringMatrix_2);
-		m2n2 = m2 * n2 ;
+    wchar_t **wcOutput_Strings = NULL;
 
-		if ( ((m1==m2) &&(n1==n2)) || (m2n2 == 1) )
-		{
-			char **Output_Strings = NULL;
-			int i = 0;
+    pStrVarOne = getInputArgumentAsMatrixOfWideString(_piKey, 1, fname, &m1, &n1, &iErr);
+    if (iErr) return 0;
 
-			for(i = 0;i < m2n2; i++)
-			{
-				if (strlen(Input_StringMatrix_2[i]) != 1)
-				{
-					freeArrayOfString(Input_StringMatrix_1,m1n1);
-					freeArrayOfString(Input_StringMatrix_2,m2n2);
-					Scierror(999,_("%s: Wrong size for input argument #%d: A character expected.\n"),fname,2);
-					return 0;
-				}
-			}
+    pStrVarTwo = getInputArgumentAsMatrixOfWideString(_piKey, 2, fname, &m2, &n2, &iErr);
+    if (iErr)
+    {
+        if (pStrVarOne) {freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne); pStrVarOne = NULL;}
+        return 0;
+    }
 
-			Output_Strings = strings_strrchr(Input_StringMatrix_1,m1n1,Input_StringMatrix_2,m2n2,FALSE);
-			if (Output_Strings)
-			{
-				CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE,&m1,&n1,Output_Strings);
-				LhsVar(1) = Rhs+1 ;
-				C2F(putlhsvar)();
+    for (i = 0; i < m2 * n2; i++)
+    {
+		if (wcslen(pStrVarTwo[i]) != 1)
+        {
+            if (pStrVarOne) {freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne); pStrVarOne = NULL;}
+            if (pStrVarTwo) {freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo); pStrVarTwo = NULL;}
+            Scierror(999, _("%s: Wrong size for input argument #%d: A character expected.\n"), fname, 2);
+            return 0;
+        }
+    }
 
-				freeArrayOfString(Input_StringMatrix_1,m1n1);
-				freeArrayOfString(Input_StringMatrix_2,m2n2);
-				freeArrayOfString(Output_Strings,m1n1);
-			}
-			else
-			{
-				freeArrayOfString(Input_StringMatrix_1,m1n1);
-				freeArrayOfString(Input_StringMatrix_2,m2n2);
-				Scierror(999,_("%s: No more memory.\n"),fname);
-			}
-		}
-		else
-		{
-			freeArrayOfString(Input_StringMatrix_1,m1n1);
-			freeArrayOfString(Input_StringMatrix_2,m2n2);
-			Scierror(999,_("%s : Wrong size for input argument #%d.\n"),fname,2);
-			return 0;
-		}
-	}
-	else
-	{
-		if(GetType(1) != sci_strings)
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),fname,1);
-		}
-		else
-		{
-			Scierror(999,_("%s: Wrong type for input argument #%d: A character expected.\n"),fname,2);
-		}
-	}
-	return 0;
+    wcOutput_Strings = strings_wcsrchr(pStrVarOne, m1 * n1, pStrVarTwo, m2 * n2, do_strchr);
+    if (pStrVarOne) {freeAllocatedMatrixOfWideString(m1, n1, pStrVarOne); pStrVarOne = NULL;}
+    if (pStrVarTwo) {freeAllocatedMatrixOfWideString(m2, n2, pStrVarTwo); pStrVarTwo = NULL;}
+
+    if (wcOutput_Strings)
+    {
+        sciErr = createMatrixOfWideString(_piKey, Rhs + 1 , m1, n1, wcOutput_Strings);
+
+        if (wcOutput_Strings) {freeAllocatedMatrixOfWideString(m1, n1, wcOutput_Strings); wcOutput_Strings = NULL;}
+
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        LhsVar(1) = Rhs+1 ;
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999,_("%s: No more memory.\n"), fname);
+    }
+    return 0;
 }
-/*--------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*/
+static wchar_t **getInputArgumentAsMatrixOfWideString( int *_piKey, int _iVar,
+                                       const char *fname,
+                                       int *m, int *n, int *iErr)
+{
+    SciErr sciErr;
+    wchar_t **pStringValues = NULL;
+    int *piAddressVar = NULL;
+    int m_ = 0, n_ = 0;
+    int iType = 0;
+
+    sciErr = getVarAddressFromPosition(_piKey, _iVar, &piAddressVar);
+    if(sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    sciErr = getVarType(_piKey, piAddressVar, &iType);
+    if(sciErr.iErr)
+    {
+        *iErr = sciErr.iErr;
+        printError(&sciErr, 0);
+        return NULL;
+    }
+
+    if (iType != sci_strings)
+    {
+        *iErr =  API_ERROR_INVALID_TYPE;
+        Scierror(999,_("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+        return NULL;
+    }
+
+    *iErr = getAllocatedMatrixOfWideString(_piKey, piAddressVar, &m_, &n_, &pStringValues);
+    if (*iErr)
+    {
+        if (pStringValues) {freeAllocatedMatrixOfWideString(m_, n_, pStringValues); pStringValues = NULL;}
+        *m = 0;
+        *n = 0;
+    }
+    else
+    {
+        *m = m_;
+        *n = n_;
+    }
+
+    return pStringValues;
+}
+/*----------------------------------------------------------------------------*/

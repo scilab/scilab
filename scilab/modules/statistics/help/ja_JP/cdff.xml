@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="cdff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>cdff</refname>
+    <refpurpose>累積分布関数: F分布</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[P,Q]=cdff("PQ",F,Dfn,Dfd)
+[F]=cdff("F",Dfn,Dfd,P,Q);
+[Dfn]=cdff("Dfn",Dfd,P,Q,F);
+[Dfd]=cdff("Dfd",P,Q,F,Dfn)</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P,Q,F,Dfn,Dfd</term>
+        <listitem>
+          <para>同じ大きさの実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P,Q (Q=1-P)  </term>
+        <listitem>
+          <para>F分布の0からFまでの積分. 入力範囲: [0,1].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>F密度の積分の上限. 入力範囲: [0, +infinity). 探索範囲: [0,1E300]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Dfn</term>
+        <listitem>
+          <para>分子の二乗和の自由度. 入力範囲: (0, +infinity). 探索範囲: [ 1E-300, 1E300]</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Dfd</term>
+        <listitem>
+          <para>分母の二乗和の自由度. 入力範囲: (0, +infinity). 探索範囲: [ 1E-300, 1E300]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	F分布のパラメータの一つをそれ以外のパラメータの値を
+	指定して計算します.</para>
+    <para>
+    AbramowitzおよびStegunによる, Handbook  of
+    Mathematical Functions   (1966)の式26.6.2 が
+	F分布の累積分布関数の計算を不完全ベータ関数の計算に
+	縮減させるために使用されます.</para>
+    <para>
+	その他のパラメータの計算には,
+	Pの指定された値を出力する値の探索を含みます.
+	この探索は他のパラメータに対するPの単調性に依存します.</para>
+    <para>
+	F分布の累積値はどの自由度でも単調である必要はありません.
+	このため,指定したCDF値を実現する値が2つ存在する可能性があります.
+	このルーチンは単調性を仮定しており,
+	2つの値から任意の値を見つけます.
+	</para>
+    <para>
+    DCDFLIBから: 累積分布関数, 逆, および他のパラメータ用のFortranルーチンの
+	ライブラリ(February, 1994)
+     Barry W. Brown, James Lovato and Kathy Russell. The University of
+    Texas.</para>
+  </refsection>
+</refentry>

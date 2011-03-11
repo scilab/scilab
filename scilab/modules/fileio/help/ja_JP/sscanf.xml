@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sscanf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sscanf</refname>
+    <refpurpose>文字列で指定した入力をフォーマット変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[v_1,...v_n]=sscanf (string,format)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>フォーマット変換を指定.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>string</term>
+        <listitem>
+          <para>読み込む入力を指定.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は古い関数であり, より効率的でC言語の<literal>sscanf</literal>
+	プロシージャとの互換性がより高い <literal>msscanf</literal>関数の
+	使用を推奨します.
+    </para>
+    <para>
+    sscanf 関数は format に基づき文字列を解釈し,
+	変換した結果を返します.
+  </para>
+    <para>
+	format パラメータには,入力を解釈する際に使用される
+	変換指定子が含まれます.
+  </para>
+    <para>
+	formatパラメータには空白文字 (空白,タブ,改行,またはフォームフィード)
+	が含まれ,以下の2つの場合を除き次の
+	非空白文字まで読み込みます.
+	制御文字に一致しない限り,
+	(改行文字を含む)末尾の空白文字は読み込まれません.
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	% (パーセント記号)以外の任意の文字で,
+	入力ストリームの次の文字に一致する必要があります.</para>
+      </listitem>
+      <listitem>
+        <para>次の入力フィールドの変換を指示する変換指定子.
+	詳細は <link linkend="scanf_conversion">scanf_conversion</link> 参照.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="msscanf">msscanf</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="scanf_conversion">scanf_conversion</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

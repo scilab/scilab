@@ -152,18 +152,18 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      * @return the window icon associated with this tab
      */
     public Image getWindowIcon() {
-	if (icon ==null) {
-	    return SCILAB_ICON;
-	} else {
-	    return icon;
-	}
+        if (icon ==null) {
+            return SCILAB_ICON;
+        } else {
+            return icon;
+        }
     }
 
     /**
      * @param the window icon associated with this tab
      */
     public void setWindowIcon(Image icon) {
-	this.icon = icon;
+        this.icon = icon;
     }
 
     /**
@@ -229,13 +229,10 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      * @see org.scilab.modules.gui.tab.Tab#setName()
      */
     public void setName(String newTabName) {
-            setTitle(newTabName, true);
+        setTitle(newTabName, true);
 
-            getTitlePane().repaint();
-            if (isActive()) {
-                        SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this)
-                                        .setName(newTabName);
-            }
+        getTitlePane().repaint();
+        SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this).setName(newTabName);
     }
 
     /**
@@ -266,11 +263,11 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        setVisible(true);
-                        paintImmediately();
-                    }
-                });
+                        public void run() {
+                            setVisible(true);
+                            paintImmediately();
+                        }
+                    });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -340,28 +337,28 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         int result;
 
         if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-                int[] currentView = getViewingRegion();
-                final SwingScilabTab thisF = this;
-                try {
-                        SwingUtilities.invokeAndWait(new Runnable() {
-                                public void run() {
-                                        scrolling = new AwtScilabScrollPane(contentPane, thisF);
-                                        setContentPane(scrolling.getAsContainer());
-                                        revalidate();
+            int[] currentView = getViewingRegion();
+            final SwingScilabTab thisF = this;
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                        public void run() {
+                            scrolling = new AwtScilabScrollPane(contentPane, thisF);
+                            setContentPane(scrolling.getAsContainer());
+                            revalidate();
 
-                                }
-                        });
-                } catch (InterruptedException e) {
-                        e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                        e.getCause().printStackTrace();
-                }
-                // set the canvas after doing every thing
-                result = contentPane.addMember(member);
-                // set the same viewport as before
-                setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
+                        }
+                    });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.getCause().printStackTrace();
+            }
+            // set the canvas after doing every thing
+            result = contentPane.addMember(member);
+            // set the same viewport as before
+            setViewingRegion(currentView[0], currentView[1], currentView[2], currentView[2 + 1]);
         } else {
-                result = contentPane.addMember(member);
+            result = contentPane.addMember(member);
         }
         return result;
     }
@@ -373,19 +370,19 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
     public void removeMember(Canvas member) {
         contentPane.removeMember(member);
         if (SwingScilabCanvasImpl.isGLCanvasEnabled()) {
-                try {
-                        SwingUtilities.invokeAndWait(new Runnable() {
-                                public void run() {
-                                        scrolling = new SwingScilabScrollPane(contentPane);
-                                        setContentPane(scrolling.getAsContainer());
-                                        revalidate();
-                                }
-                        });
-                } catch (InterruptedException e) {
-                        e.printStackTrace();
-                } catch (InvocationTargetException e) {
-                        e.getCause().printStackTrace();
-                }
+            try {
+                SwingUtilities.invokeAndWait(new Runnable() {
+                        public void run() {
+                            scrolling = new SwingScilabScrollPane(contentPane);
+                            setContentPane(scrolling.getAsContainer());
+                            revalidate();
+                        }
+                    });
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.getCause().printStackTrace();
+            }
         }
     }
 
@@ -981,10 +978,10 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
             final Point realPos = new Point(realPosX, realPosY);
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
-                    public void run() {
-                        scrolling.setViewPosition(realPos.x, realPos.y);
-                    }
-                });
+                        public void run() {
+                            scrolling.setViewPosition(realPos.x, realPos.y);
+                        }
+                    });
             } catch (InterruptedException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -1037,25 +1034,25 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         return contentPane.getRotationDisplacement(displacement);
     }
 
-        /**
-         * Close the tab and disable it.
-         */
-        public void close() {
-                this.getContentPane().removeAll();
-                this.setMenuBar(null);
-                this.setToolBar(null);
-                this.setInfoBar(null);
-                this.setTitlebar(null);
-                this.removeAll();
-                setActive(false);
+    /**
+     * Close the tab and disable it.
+     */
+    public void close() {
+        this.getContentPane().removeAll();
+        this.setMenuBar(null);
+        this.setToolBar(null);
+        this.setInfoBar(null);
+        this.setTitlebar(null);
+        this.removeAll();
+        setActive(false);
 
-                scrolling = null;
-                contentPane = null;
+        scrolling = null;
+        contentPane = null;
 
-                // without this children canvas are not released.
-                Container dummyContainer = new Container();
-                this.setContentPane(dummyContainer);
-        }
+        // without this children canvas are not released.
+        Container dummyContainer = new Container();
+        this.setContentPane(dummyContainer);
+    }
 
     /**
      * Asynchronous stop of rotation tracking.
@@ -1079,5 +1076,4 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
         }
         super.paintChildren(g);
     }
-
 }

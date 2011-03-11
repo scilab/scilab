@@ -56,7 +56,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
     BOOL LaunchAFile = FALSE;
     char *ScilabDirectory = NULL;
     wchar_t *pwcFullCmdLineTmp = NULL;
-    BOOL ShowMessageBoxInfo = TRUE;	
     LPWSTR *szArglist = NULL;
     char FileName[PATH_MAX * 2];
     int nArgs = 0;
@@ -95,14 +94,6 @@ int Windows_Main (HINSTANCE hInstance, HINSTANCE hPrevInstance,PSTR szCmdLine, i
     }
 
     setCommandLineArgs(my_argv, my_argc);
-
-    for (i=1;i<my_argc;i++)
-    {
-        if  ( _stricmp (my_argv[i], "-NB") == 0 )
-        {
-            ShowMessageBoxInfo = FALSE;
-        }
-    }
 
     for (i = 1; i < my_argc; i++)
     {

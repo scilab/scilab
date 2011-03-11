@@ -100,8 +100,8 @@ clf()
 champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="champ1">champ1</link>

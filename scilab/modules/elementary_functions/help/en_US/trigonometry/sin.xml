@@ -63,8 +63,8 @@ asin(sin([1,0,%i]))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sinm">sinm</link></member>

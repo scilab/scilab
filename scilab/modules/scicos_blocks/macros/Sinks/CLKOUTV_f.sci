@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -83,12 +84,13 @@ case 'set' then
   model=arg1.model;
   exprs=graphics.exprs;
     while %t do
-    [ok,prt,exprs]=scicos_getvalue('Set Event Output block parameters',..
-	'Port number',list('vec',1),exprs)
+      [ok,prt,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"),"CLKOUTV_f");" ";gettext("Event output port")],..
+	      gettext("Port number"),list('vec',1),exprs)	
     if ~ok then break,end
     prt=int(prt)
     if prt<=0 then
-      message('Port number must be a positive integer')
+        block_parameter_error(msprintf(gettext("Wrong value for ''Port Number'' parameter: %d."),prt), ..
+          gettext("Strictly positive integer expected."));     
     else
       model.ipar=prt
       model.evtin=1

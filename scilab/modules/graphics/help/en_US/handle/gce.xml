@@ -54,8 +54,8 @@ delete(gce()); // delete current entity
 delete(gcf()); // delete current figure
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcf">gcf</link>

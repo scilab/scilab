@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="delbpt" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>delbpt</refname>
+
+    <refpurpose>ブレークポイントを削除する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>delbpt([macroname [,linenumb]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>macroname</term>
+
+        <listitem>
+          <para>string</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>linenumb</term>
+
+        <listitem>
+          <para>スカラー整数または整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+    関数 <literal>macroname</literal>の<literal>linenumb</literal> 行目の
+	ブレークポイントを削除する.</para>
+
+    <para><literal>linenumb</literal> には行または行番号の
+	列ベクトルまたはスカラーの行番号を指定することができます.</para>
+
+    <para>Line numbers in <literal>linenumb</literal> の行番号は
+	関数<literal>macroname</literal>における物理的な行番号です.
+	5.0より前のバージョンのScilabでは,
+	論理的な行番号が使用されていたことに注意してください.
+	物理的行番号と論理的行番号の差は,
+	継続行の数です(<link linkend="dot">dot</link>参照).
+	</para>
+
+    <para><literal>linenumb</literal> を省略した場合,<literal>macroname</literal>関数内
+	の全てのブレークポイントが削除されます.</para>
+
+    <para><literal>macroname</literal> 	と <literal>linenumb</literal>の
+	両方が省略された場合, 全ての関数の全てのブレークポイントが削除されます.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+setbpt('foo',1),setbpt('foo',10),delbpt('foo',10),dispbpt()
+delbpt('foo',1),dispbpt()
+
+setbpt('foo1',4),setbpt('foo1',9),setbpt('foo2',6),setbpt('foo3',8),dispbpt()
+delbpt('foo2'),dispbpt()
+delbpt(),dispbpt()
+
+delbpt('foo',[1,2,5,6]),dispbpt()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="setbpt">setbpt</link></member>
+
+      <member><link linkend="dispbpt">dispbpt</link></member>
+
+      <member><link linkend="pause">pause</link></member>
+
+      <member><link linkend="resume">resume</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

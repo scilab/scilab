@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="varargin" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>varargin</refname>
+
+    <refpurpose>入力引数リストの引数の数を可変にする</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	最後の入力引数が<literal>varargin</literal>となる関数は
+	入力引数リストに示した数よりも多くの入力引数を指定して
+	コールすることができます.
+	<literal>varargin</literal>キーワードよりも後に渡された入力引数は,
+	関数内では<literal>varargin</literal>という名前のリストとして取得することが
+	できます.
+	</para>
+
+    <para>
+	<literal>varargin</literal>キーワードが形式的な入力引数リストの中で
+	<literal>n</literal>番目の引数と仮定すると,
+	関数が <literal>n-1</literal> 個未満の入力引数を指定して
+	コールされた場合,
+	<literal>varargin</literal>リストは定義されませんが,
+	<literal>n-1</literal>個の引数を指定してコールされた場合には
+	<literal>varargin</literal>リストは空のリストとなります.
+	</para>
+
+    <para><literal>y = function ex(varargin)</literal> は
+	任意の数の入力引数を指定してコールすることが可能です.
+	関数<literal>ex</literal>の中では, 入力引数は
+	<literal>varargin(i)</literal>,<literal>i=1:length(varargin)</literal>
+	により取得可能です.</para>
+
+    <para>
+	関数の最後の入力引数ではない場合,
+	<literal>varargin</literal>は,特殊な意味を持たない通常の
+	入力引数の名前となります.</para>
+
+    <para>実際の入力引数の総数は,<link
+    linkend="argn">argn(2)</link>で取得できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>
+	<literal>foo(...,key=value) </literal>のような名前付き引数構文は
+	vararginとは互換性がありません.
+	その理由は,
+	値に対応する名前(すなわち, keys) が  varargin リストに
+	保存されないためです.
+	例えば,以下について考えてみてください:</para>
+
+    <para>function
+    foo(varargin),disp([varargin(1),varargin(2)]),endfunction</para>
+
+    <para>foo(a=1,b=2)</para>
+
+    <para>Scilab answers: 1. 2.</para>
+
+    <para>foo(b=1,a=2)</para>
+
+    <para>Scilab answers: 1. 2.</para>
+
+    <para>結果は同じですが, 引数は逆になります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+deff('exampl(a,varargin)',['[lhs,rhs]=argn(0)'
+                          'if rhs>=1 then disp(varargin),end'])
+exampl(1)
+exampl()
+exampl(1,2,3)
+l=list('a',%s,%t);
+exampl(1,l(2:3))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="varargout">varargout</link></member>
+
+      <member><link linkend="list">list</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -69,10 +69,7 @@ static gw_generic_table Tab[] =
 	{sci_spones,"spones"},
 	{NULL, ""}, //gsort
 	{sci_isequalbitwise,"isequalbitwise"},
-    {NULL, ""}, //matrix
     {NULL, ""}, //rat
-    {sci_maxi, "maxi"},
-    {sci_maxi, "mini"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_elementary_functions(void)

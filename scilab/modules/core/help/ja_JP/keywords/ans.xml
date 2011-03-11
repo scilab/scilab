@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ans">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ans</refname>
+    <refpurpose> 答え</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para><literal>ans</literal> は "answer"を意味します.
+    式が代入されない場合,変数 <literal>ans</literal> が自動的に作成されます.
+	<literal>ans</literal>は,直近の代入されていない評価式の値を有しています.</para>
+    <para>変数 <literal>ans</literal> は <literal>predef</literal>で保護されません.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="predef">predef</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

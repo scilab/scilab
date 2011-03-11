@@ -53,7 +53,7 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 	JVMDLLFULLNAME=(char*)MALLOC( (strlen(SCILAB_PATH)+strlen(JRE_PATH)+strlen("/bin/")+strlen(JVM_TYPE)+strlen("/jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMDLLFULLNAME,"%s%s%s%s%s%s",SCILAB_PATH,JRE_PATH,"/bin/",JVM_TYPE,"/jvm",SHARED_LIB_EXT);
 
-	if (!LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (!LoadFunctionsJVM(JVMDLLFULLNAME))
 	{
 		/* 2] search in windows registry */
 		/* We try to find JRE on Windows registry*/
@@ -61,12 +61,12 @@ BOOL LoadDynLibJVM(char *SCILAB_PATH)
 		JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
 
 		/* 3] search in PATH */
-		if (!LoadFuntionsJVM(JVMDLLFULLNAME))
+		if (!LoadFunctionsJVM(JVMDLLFULLNAME))
 		{
 			if (JVMDLLFULLNAME){FREE(JVMDLLFULLNAME);JVMDLLFULLNAME=NULL;};
 			JVMDLLFULLNAME=(char*)MALLOC( (strlen("jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 			sprintf(JVMDLLFULLNAME,"%s%s%s%s",SCILAB_PATH,JRE_PATH,"jvm",SHARED_LIB_EXT);
-			if ( LoadFuntionsJVM(JVMDLLFULLNAME) ) bOK = TRUE;
+			if ( LoadFunctionsJVM(JVMDLLFULLNAME) ) bOK = TRUE;
 		}
 		else bOK = TRUE;
 	}
@@ -169,7 +169,7 @@ static JavaVM *SearchCreatedJavaVMEmbedded(char *SCILAB_PATH)
 
 	FreeDynLibJVM();
 
-	if (LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFunctionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 
@@ -194,7 +194,7 @@ JavaVM *SearchCreatedJavaVMRegistry(void)
 	JVMDLLFULLNAME=Search_Java_RuntimeLib_in_Windows_Registry();
 	FreeDynLibJVM();
 
-	if (LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFunctionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 		
@@ -221,7 +221,7 @@ static JavaVM *SearchCreatedJavaVMPath(void)
 	JVMDLLFULLNAME=(char*)MALLOC( (strlen("jvm")+strlen(SHARED_LIB_EXT)+1)*sizeof(char));
 	sprintf(JVMDLLFULLNAME,"%s%s","jvm",SHARED_LIB_EXT);
 
-	if (LoadFuntionsJVM(JVMDLLFULLNAME))
+	if (LoadFunctionsJVM(JVMDLLFULLNAME))
 	{
 		res = SciJNI_GetCreatedJavaVMs (&jvm, 1, &jvm_count);
 		if ( jvm_count == 1 ) 

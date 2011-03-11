@@ -48,8 +48,8 @@ deff('[]=%t_p(l)','disp(l(3),l(2))')
 disp(tlist('t',1,2))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lines">lines</link>

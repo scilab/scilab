@@ -145,7 +145,7 @@ int sci_exec(char *fname, int* _piKey)
 						iVarTwo = (int)pdVarTwo[0];
 						if (*pdVarTwo != (double)iVarTwo)
 						{
-							Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,2);
+							Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,2);
 							return 0;
 						}
 					}
@@ -224,7 +224,7 @@ int sci_exec(char *fname, int* _piKey)
 						iVarThree = (int)pdVarThree[0];
 						if (*pdVarThree != (double)iVarThree)
 						{
-							Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,3);
+							Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,3);
 							return 0;
 						}
 					}

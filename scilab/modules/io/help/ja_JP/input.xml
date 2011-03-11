@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="input">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>input</refname>
+    <refpurpose>ユーザ入力用のプロンプト</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>x = input(message [, "string"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>message</term>
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"string"  </term>
+        <listitem>
+          <para>文字列 <literal>"string"</literal> (
+	    <literal>"s"</literal>と短縮できます)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数 (
+	    <literal>"string"</literal>が呼び出し手順にある場合に文字列)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>input(message)</literal> は
+	テキスト文字列でユーザプロンプトを定義し,
+	キーボードからの入力を待ちます.
+	入力は<link linkend="evstr">evstr</link>で評価される式とすることができます.
+	復改以外の入力が行われない場合,
+	プロンプト <literal>input(message)</literal> は空の行列を返します.
+    </para>
+    <para>
+	2つの引数を指定してコールされた場合,
+	出力はキーボードで入力された式の文字列となります.
+	復改以外の入力が行われない場合,
+	プロンプト <literal>input(message)</literal> は空白 <literal>" "</literal>を返します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//x=input("How many iterations?")
+//x=input("What is your name?","string")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+      <member>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -74,8 +74,8 @@ asind(x)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="sin">sin</link></member>

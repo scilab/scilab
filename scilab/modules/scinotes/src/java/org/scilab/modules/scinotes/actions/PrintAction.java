@@ -12,23 +12,23 @@
 
 package org.scilab.modules.scinotes.actions;
 
-import java.awt.print.PageFormat;
-import java.awt.print.PrinterException;
-import java.awt.print.PrinterJob;
-
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.PrinterWriter;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.utils.CodeExporter;
 
 /**
  * Class Print action for SciNotes
  * @author Sylvestre Koumar
- *
+ * @author Calixte DENIZET
  */
 public class PrintAction extends DefaultAction {
+
+    private boolean codeConverterLoaded;
 
     /**
      * Default constructor
@@ -43,7 +43,13 @@ public class PrintAction extends DefaultAction {
      * Function doAction
      */
     public void doAction() {
-        printSciNotesDocument(getEditor());
+        if (!codeConverterLoaded) {
+            LoadClassPath.loadOnUse("copyAsHTMLinScinotes");
+            LoadClassPath.loadOnUse("pdf_ps_eps_graphic_export");
+            codeConverterLoaded = true;
+        }
+        ScilabEditorPane pane = (ScilabEditorPane) getEditor().getTextPane();
+        CodeExporter.convert(pane, null, CodeExporter.PRINT, PageSetupAction.getPageFormat());
     }
 
     /**
@@ -66,33 +72,5 @@ public class PrintAction extends DefaultAction {
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new PrintAction(tooltip, editor));
-    }
-
-    /**
-     * This function allow to print a document
-     * by calling a printer job
-     * @param editor Editor
-     * @return a boolean
-     */
-    public static boolean printSciNotesDocument(SciNotes editor) {
-
-        PrinterJob printTask = PrinterJob.getPrinterJob();
-
-        PageFormat pageFormat = PageSetupAction.getPageFormat();
-        if (pageFormat != null) {
-            printTask.setPrintable(new PrinterWriter(editor.getTextPane()), pageFormat);
-        } else {
-            printTask.setPrintable(new PrinterWriter(editor.getTextPane()));
-        }
-
-        if (printTask.printDialog()) {
-            try {
-                printTask.print();
-            } catch (PrinterException e) {
-                e.printStackTrace();
-                return false;
-            }
-        }
-        return true;
     }
 }

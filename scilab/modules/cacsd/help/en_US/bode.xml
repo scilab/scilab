@@ -183,8 +183,8 @@ clf();bode([h1;h2],0.01,100,['h1';'h2'])
     </para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="black">black</link></member>

@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ENPC/INRIA
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -20,7 +20,7 @@ function ilib_build(ilib_name, ..
                     cc)
 
   if ~haveacompiler() then
-    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"), 'ilib_build'));
+    error(msprintf(gettext("%s: A Fortran or C compiler is required.\n"), "ilib_build"));
     return;
   end
 
@@ -31,54 +31,63 @@ function ilib_build(ilib_name, ..
   end
 
   if type(ilib_name) <> 10 then
-    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), 'ilib_build', 1));
+    error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_build", 1));
   end
 
-  if size(ilib_name,'*') <> 1 then
-    error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), 'ilib_build', 1));
+  if size(ilib_name,"*") <> 1 then
+    error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_build", 1));
   end
 
   if type(table) <> 10 then
-    error(999,msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), 'ilib_build', 2));
+    error(999,msprintf(_("%s: Wrong type for input argument #%d: A matrix of strings expected.\n"), "ilib_build", 2));
   end
 
-  if size(table,'*') > 999 * 2 then
-    error(999,msprintf(_("%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"), 'ilib_build', 2));
+  if size(table,"*") > 999 * 2 then
+    error(999,msprintf(_("%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"), "ilib_build", 2));
   end
 
-  if getos() <> 'Windows' & strncpy(ilib_name, 3) <> "lib" then
+  if getos() <> "Windows" & strncpy(ilib_name, 3) <> "lib" then
     // We add a leading lib under Linux/Unix because it is the way
     ilib_name = "lib" + ilib_name;
   end
 
+  if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
+    error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_build", 3));
+  end
+
   if rhs > 4 then
-    if (makename <> [] & makename <> '') then
-      warning(msprintf(_("%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"), 'ilib_build', 5));
+    if (makename <> [] & makename <> "") then
+      warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_build", 5));
     end
   end
 
-  if rhs <= 5 then ldflags = ''; end
-  if rhs <= 6 then cflags  = ''; end
-  if rhs <= 7 then fflags  = ''; end
-  if rhs <= 8 then ismex  = %f; end
-  if rhs <= 9 then cc  = ''; end
+  if ~isempty(files) & ~and(isfile(files)) then
+    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_build", 3));
+  end  
 
-  if getos() == 'Windows' then
-    if ~isdef('makename') | (makename == '') | (makename == []) then
-      // Load dynamic_link Internal lib if it's not already loaded
+
+  if rhs <= 5 then ldflags = ""; end
+  if rhs <= 6 then cflags  = ""; end
+  if rhs <= 7 then fflags  = ""; end
+  if rhs <= 8 then ismex  = %f; end
+  if rhs <= 9 then cc  = ""; end
+
+  if getos() == "Windows" then
+    if ~isdef("makename") | (makename == "") | (makename == []) then
+      // Load dynamic_link Internal lib if it"s not already loaded
       if ~exists("dynamic_linkwindowslib") then
         load("SCI/modules/dynamic_link/macros/windows/lib");
       end
       makename = dlwGetDefltMakefileName();
     end
   else
-    makename = 'Makefile';
+    makename = "Makefile";
   end
 
   // check if library is not already loaded
   if or(link() == ilib_name) then
-    error(999, msprintf(_('%s: ''%s'' already loaded in scilab.'),'ilib_build',ilib_name) + ..
-    ascii(10) + _('You need to unload this library before.'));
+    error(999, msprintf(_("%s: ""%s"" already loaded in scilab."),"ilib_build",ilib_name) + ..
+    ascii(10) + _("You need to unload this library before."));
   end
 
   // generate the gateway file
@@ -100,16 +109,16 @@ function ilib_build(ilib_name, ..
 
   // generate a Makefile
   if ( ilib_verbose() <> 0 ) then
-      if getos() == 'Windows'
+      if getos() == "Windows"
         mprintf(_("   Generate a Makefile: %s\n"), makename);
       else
         mprintf(_("   Generate a Makefile\n"));
       end
   end
 
-  if getos() <> 'Windows' then // Needs to copy the libfoo.c which contains important stuff
+  if getos() <> "Windows" then // Needs to copy the libfoo.c which contains important stuff
     files = files(:)';
-    files = [files, ilib_name + '.c'];
+    files = [files, ilib_name + ".c"];
   end
 
   ilib_gen_Make(ilib_name, table, files, libs, makename, %t, ldflags, cflags, fflags, cc);
@@ -124,7 +133,7 @@ function ilib_build(ilib_name, ..
   if ( ilib_verbose() <> 0 ) then
     mprintf(_("   Generate a cleaner file\n"));
   end
-  ilib_gen_cleaner(makename, 'loader.sce', [libn; file_gw_name]);
+  ilib_gen_cleaner(makename, "loader.sce", [libn; file_gw_name]);
 
 endfunction
 //=============================================================================

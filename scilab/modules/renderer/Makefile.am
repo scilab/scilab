@@ -16,7 +16,7 @@ modulename=renderer
 
 #### renderer : Conf files ####
 libscirenderer_la_rootdir = $(mydatadir)
-libscirenderer_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscirenderer_la_root_DATA =  license.txt version.xml
 
 #### renderer : init scripts ####
 libscirenderer_la_etcdir = $(mydatadir)/etc
@@ -376,7 +376,7 @@ USEANT=1
 pkglib_LTLIBRARIES = libscirenderer.la
 endif
 
-libscirenderer_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### renderer : gateway declaration ####
 #libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway

@@ -71,9 +71,6 @@ host_triplet = @host@
 DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_4 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_5 = test
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -81,16 +78,16 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -211,7 +208,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	sci_gateway/c/sci_macr2tree.c sci_gateway/c/sci_iserror.c \
 	sci_gateway/c/sci_getdebuginfo.c sci_gateway/c/sci_debug.c \
 	sci_gateway/c/gw_core.c sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c sci_gateway/c/sci_islittleendian.c \
+	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_getvariablesonstack.c \
 	sci_gateway/c/sci_readgateway.c sci_gateway/c/sci_comp.c \
 	sci_gateway/fortran/sci_global.f \
@@ -327,7 +324,6 @@ am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_iserror.lo libscicore_la-sci_getdebuginfo.lo \
 	libscicore_la-sci_debug.lo libscicore_la-gw_core.lo \
 	libscicore_la-gw_user.lo libscicore_la-gw_user2.lo \
-	libscicore_la-sci_islittleendian.lo \
 	libscicore_la-sci_getvariablesonstack.lo \
 	libscicore_la-sci_readgateway.lo libscicore_la-sci_comp.lo
 am__objects_7 = sci_global.lo sci_mtlb_mode.lo sci_resume.lo \
@@ -436,6 +432,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -458,10 +455,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -479,6 +476,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LEX = @LEX@
@@ -547,8 +545,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -569,6 +570,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -750,7 +752,6 @@ sci_gateway/c/sci_debug.c \
 sci_gateway/c/gw_core.c \
 sci_gateway/c/gw_user.c \
 sci_gateway/c/gw_user2.c \
-sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c
@@ -834,7 +835,7 @@ libscicore_la_CPPFLAGS = \
 	        -I$(top_srcdir)/modules/fileio/includes
 
 pkglib_LTLIBRARIES = libscicore.la
-libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC = $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -849,7 +850,7 @@ modulename = core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicore_la_root_DATA = license.txt version.xml
 
 #### core : init scripts ####
 libscicore_la_etcdir = $(mydatadir)/etc
@@ -906,7 +907,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_4) $(am__append_5)
+TARGETS_ALL = $(am__append_4)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -1127,7 +1128,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_intppty.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_iserror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_isglobal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_islittleendian.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_lasterror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_macr2lst.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-sci_macr2tree.Plo@am__quote@
@@ -1926,13 +1926,6 @@ libscicore_la-gw_user2.lo: sci_gateway/c/gw_user2.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/gw_user2.c' object='libscicore_la-gw_user2.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
-
-libscicore_la-sci_islittleendian.lo: sci_gateway/c/sci_islittleendian.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_islittleendian.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_islittleendian.Tpo -c -o libscicore_la-sci_islittleendian.lo `test -f 'sci_gateway/c/sci_islittleendian.c' || echo '$(srcdir)/'`sci_gateway/c/sci_islittleendian.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-sci_islittleendian.Tpo $(DEPDIR)/libscicore_la-sci_islittleendian.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_islittleendian.c' object='libscicore_la-sci_islittleendian.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -c -o libscicore_la-sci_islittleendian.lo `test -f 'sci_gateway/c/sci_islittleendian.c' || echo '$(srcdir)/'`sci_gateway/c/sci_islittleendian.c
 
 libscicore_la-sci_getvariablesonstack.lo: sci_gateway/c/sci_getvariablesonstack.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_la_CFLAGS) $(CFLAGS) -MT libscicore_la-sci_getvariablesonstack.lo -MD -MP -MF $(DEPDIR)/libscicore_la-sci_getvariablesonstack.Tpo -c -o libscicore_la-sci_getvariablesonstack.lo `test -f 'sci_gateway/c/sci_getvariablesonstack.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getvariablesonstack.c
@@ -2942,6 +2935,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \

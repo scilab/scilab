@@ -73,8 +73,8 @@ scf(f4); // set first created figure as current one
 plot3d() //draw in current figure (id=4)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

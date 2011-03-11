@@ -85,8 +85,8 @@ Secondes = grand(5,10,'uin',0,59)
 datenum(Annees,Mois,Jours,Heures,Minutes,Secondes)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="datevec">datevec</link>

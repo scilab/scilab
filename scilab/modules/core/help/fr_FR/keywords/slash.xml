@@ -35,8 +35,8 @@
     La suite de symboles <literal>//</literal> met une ligne en commentaire, c'est à dire, les lignes commençant par <literal>//</literal> sont ignorées par l'interpréteur.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="inv">inv</link>

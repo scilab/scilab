@@ -47,7 +47,7 @@ libsciboolean_la_CPPFLAGS = \
 
 pkglib_LTLIBRARIES = libsciboolean.la
 
-libsciboolean_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES)
 
@@ -63,7 +63,7 @@ modulename=boolean
 
 #### boolean : Conf files ####
 libsciboolean_la_rootdir = $(mydatadir)
-libsciboolean_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciboolean_la_root_DATA =  license.txt version.xml
 
 
 ####�boolean : init scripts ####

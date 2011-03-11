@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+  version="5.0-subset Scilab"
+  xml:id="LOGICAL_OP"
+  xml:lang="fr">
+  <refnamediv>
+    <refname>LOGICAL_OP</refname>
+    <refpurpose>Opération logique</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/LOGICAL_OP.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_LOGICAL_OP">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="LOGICAL_OP">Opération logique</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_LOGICAL_OP">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_LOGICAL_OP">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_LOGICAL_OP">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_LOGICAL_OP">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_LOGICAL_OP">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_LOGICAL_OP">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_LOGICAL_OP">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_LOGICAL_OP">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Commonlyusedblocks_pal">Palette Blocs couramment utilisés</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_LOGICAL_OP">
+    <title>Description</title>
+    <para>
+Le bloc Opération logique effectue l'opération logique spécifiée sur ses entrées.
+Une valeur d'entrée est VRAIE (1) si elle est différente de zéro et FAUSSE (0) si
+elle est égale à zéro.
+</para>
+  </refsection>
+  <refsection id="Dialogbox_LOGICAL_OP">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/LOGICAL_OP_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">number of inputs</emphasis>
+        </para>
+        <para> Le nombre d'entrées du bloc. La valeur doit être appropriée à l'opérateur sélectionnné.</para>
+        <para> Propriétés : Type 'vec' de taille 1 </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Operator: AND </emphasis>
+        </para>
+        <para> L'opérateur logique à appliquer sur les entrées du bloc. Les choix possibles sont les opérateurs de la liste.</para>
+        <para> Propriétés : Type 'vec' de taille 1</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_LOGICAL_OP">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">logicalop</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_LOGICAL_OP">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/LOGICAL_OP.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_LOGICAL_OP">
+    <title>Fonctions de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_i32.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_i16.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_i8.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui32.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui16.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logicalop_ui8.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_LOGICAL_OP">
+    <title>Auteurs</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Fady NASSIF</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -165,7 +165,7 @@ libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la
 
-libscisparse_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -182,7 +182,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisparse_la_root_DATA =  license.txt version.xml
 
 
 #### sparse : init scripts ####

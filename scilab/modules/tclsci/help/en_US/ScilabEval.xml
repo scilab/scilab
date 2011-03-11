@@ -160,8 +160,8 @@ TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
 // The ScilabEval are executed  synchronously with TCL_EvalFile
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="TCL_EvalFile">TCL_EvalFile</link>

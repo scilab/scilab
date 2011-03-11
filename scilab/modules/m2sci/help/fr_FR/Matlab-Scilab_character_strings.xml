@@ -37,8 +37,8 @@
   Toutes ces différences peuvent conduire à des résultats différents pour l'exécution des mêmes commandes dans Scilab ou dans Matlab, particulièrement pour les fonctions travaillant sur les dimensions comme length() ou size().
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mstr2sci">mstr2sci</link>

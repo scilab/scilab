@@ -41,6 +41,9 @@ public class SciNotesMessages {
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
     public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+    public static final String READONLY = Messages.gettext("The file is not writable so it is opened in read-only mode");
+    public static final String NOTWRITABLE = Messages.gettext("You do not have the permissions to write this file");
+    public static final String NOTREADABLE = Messages.gettext("You do not have the permissions to read this file");
 
     /**
      * "Save All" message
@@ -49,6 +52,8 @@ public class SciNotesMessages {
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
+    public static final String EXPORTERROR = Messages.gettext("An error occured when exporting the code using FOP");
+    public static final String PRINTERERROR = Messages.gettext("An error occured when printing");
     public static final String CLOSE = Messages.gettext("Close");
     public static final String CLOSEALL = Messages.gettext("Close All");
     public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
@@ -83,7 +88,7 @@ public class SciNotesMessages {
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");
     public static final String FIND_NEXT = Messages.gettext("Find Next");
     public static final String FIND_PREVIOUS = Messages.gettext("Find Previous");
-    public static final String GOTO_LINE = Messages .gettext("Goto line");
+    public static final String GOTO_LINE = Messages.gettext("Goto line");
 
     /** VIEW MENU */
     public static final String VIEW = Messages.gettext("View");
@@ -159,7 +164,7 @@ public class SciNotesMessages {
     public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist\nDo you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
     public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
@@ -181,24 +186,26 @@ public class SciNotesMessages {
     public static final String BIG_FILE_WARNING = Messages.gettext("This file is very long. \"Execute File Into Scilab\" could be better.\nAre you sure to continue ?");
 
 
-    public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
-    public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
+    public static final String ENTER_LINE_NUMBER = Messages.gettext("Enter line number");
+    public static final String BINARY_FILE = Messages.gettext("This file is a binary, saving it will result in a corrupt file.");
 
     /* Status bar messages */
-    public static final String LOADING = Messages .gettext("Loading") + DOTS;
-    public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
-    public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
-    public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
-    public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
-    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
-    public static final String MAILTO = Messages .gettext("Mail to ");
-    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
-    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
+    public static final String LOADING = Messages.gettext("Loading") + DOTS;
+    public static final String COLORIZATION_CANCELED = Messages.gettext("Colorization canceled");
+    public static final String BINARY_FILE_MODE = Messages.gettext("Binary file: read-only mode");
+    public static final String READ_ONLY_MODE = Messages.gettext("Read-only mode");
+    public static final String CLICKABLE_URL = Messages.gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages.gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages.gettext("Mail to ");
+    public static final String OPENSOURCE = Messages.gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages.gettext("Show the definition of the macro ");
+    public static final String POSFUN_IN_DOC = Messages.gettext("Line %s, Column %s. Function '%s' at Line %s.");
+    public static final String POS_IN_DOC = Messages.gettext("Line %s, Column %s.");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2010";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2011";
 
     public static final String SCINOTES_ERROR = Messages.gettext("SciNotes error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");

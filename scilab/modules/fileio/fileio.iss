@@ -21,9 +21,7 @@
 Source: bin\{#FILEIO}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\VERSION.xml; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\readme.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 Source: modules\{#FILEIO}\license.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
-Source: modules\{#FILEIO}\changelog.txt; DestDir: {app}\modules\{#FILEIO}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FILEIO}\sci_gateway\{#FILEIO}_gateway.xml; DestDir: {app}\modules\{#FILEIO}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

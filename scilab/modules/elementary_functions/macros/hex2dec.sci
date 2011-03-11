@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,35 +12,35 @@
 //
 // hex2dec function
 //
-// hex2dec(h) returns in vector d the numbers corresponding to the 
+// hex2dec(h) returns in vector d the numbers corresponding to the
 // hexadecimal representation h.
 //
 // -Input :
-//    str : a string (or a vector/matrix of strings)
+//  str : a string (or a vector/matrix of strings)
 // -Output :
-//    y : a scalar/vector/matrix
+//  y : a scalar/vector/matrix
 //
 // =============================================================================
 
-function d=hex2dec(h)
-	
-	if type(h)<> 10 then
-		error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
-	end
-	
-	[nr,nc] = size(h)
-	n       = length(h)
-	p       = cumprod([1,16*ones(1,max(n)-1)]);
-	d       = zeros(h);
-	
-	for i=1:nr
-		for j=1:nc
-			s = abs(str2code(h(i,j)));
-			if max(s)>15 then
-				error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"),"hex2dec",1));
-			end
-			d(i,j) = p(n(i,j):-1:1)*s;
-		end
-	end
-	
+function d = hex2dec(h)
+
+  if type(h)<> 10 then
+    error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"),"hex2dec",1));
+  end
+
+  [nr, nc] = size(h);
+
+  d = [];
+
+  for i = 1:size(h, "*")
+    r = msscanf(h(i), "%X");
+    if r <> [] then
+      d(i) = r;
+    else
+      error(msprintf(gettext("%s: Wrong value for input argument #%d: Valid hexadecimal representations expected.\n"), "hex2dec", 1));
+    end
+  end
+
+  d = matrix(d, nr, nc);
+
 endfunction

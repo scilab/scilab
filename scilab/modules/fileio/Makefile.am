@@ -143,7 +143,7 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscifileio_la_SOURCES = $(FILEIO_C_SOURCES) $(FILEIO_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
@@ -164,7 +164,7 @@ modulename=fileio
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscifileio_la_root_DATA =  license.txt version.xml
 
 
 #### fileio : init scripts ####

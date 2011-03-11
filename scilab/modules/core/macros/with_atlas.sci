@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function r = with_atlas()
+  warnobsolete("getdebuginfo", "5.4.0");
   [v, opt] = getversion();
   r = or(opt == 'atlas');
 endfunction

@@ -59,8 +59,8 @@ p=[s, s*(s+1)^2, 2*s^2+s^3];
 clean(p'*p*U), det(U)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="hrmt">hrmt</link>

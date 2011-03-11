@@ -20,6 +20,9 @@
 //
 
 function result=tk_mdialog(titlex,items,init)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 if argn(2)<1 then
   titlex=['this is a demo';'this is a demo']
   items=['item 1';'item 2']
@@ -46,6 +49,9 @@ endfunction
 
 
 function txt=tk_create_txt(titlex,items,init)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 txt=['set www .formxx'
      'catch {destroy $www}'
      'toplevel $www'

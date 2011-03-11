@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [p] = tk_getfile_scicos(file_mask,path,Title,multip)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 if ~with_tk() then
   error("Tcl/Tk interface not defined"),
 end;

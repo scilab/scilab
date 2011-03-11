@@ -9,14 +9,14 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
-libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
+libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 #### Target ######
 modulename=scicos_blocks
 
 include $(top_srcdir)/Makefile.incl.am
 
-if SCICOS
+if XCOS
 
 # All the filename are important here.
 # The filename must be the same as the function name
@@ -349,6 +349,9 @@ NON_BLOCK_CPP_SOURCES = \
 src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
+GIWS_WRAPPERS = \
+src/jni/Blocks.giws.xml
+
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
 src/fortran/affich.f \
 src/fortran/csslti.f \
@@ -463,6 +466,10 @@ INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 BUILT_SOURCES = includes/blocks.h
 
+if GIWS
+BUILT_SOURCES+=giws
+endif
+
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
 	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
@@ -506,14 +513,14 @@ libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la  
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciscicos_blocks_la_root_DATA =  license.txt version.xml
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
-libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
+libsciscicos_blocks_la_includedir=$(pkgincludedir)
 libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
 includes/blocks.h

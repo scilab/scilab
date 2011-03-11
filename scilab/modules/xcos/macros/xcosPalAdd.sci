@@ -33,7 +33,7 @@ function [status, msg] = xcosPalAdd(pal, category)
 // The optional category argument can be used to add the palette to a customized category path. If not specified, the root category is used.
 // 
 // Examples
-//   loadScicosLibs();
+//   loadXcosLibs();
 //   pal = xcosPal();
 //   pal = xcosPalAddBlock(pal, "SUM_f");
 //   pal = xcosPalAddBlock(pal, "BIGSOM_f");

@@ -87,15 +87,15 @@ BOOL setlanguage(wchar_t *lang)
                 wchar_t *ret = getLocaleUserInfo();
                 #endif
 
-                //                  This stuff causes pb when locales have been compiled
-                if (ret==NULL)
-                {
-                    #ifndef _MSC_VER
-                    fprintf(stderr, "Warning: Localization issue. Doesn't support the locale '%ls' %ls %s.\n", lang, ret, setlocale(LC_MESSAGES,NULL));
-                    #else
-                    fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
-                    #endif
-                }
+				//				  This stuff causes pb when locales have been compiled
+				if (ret==NULL)
+				{
+					#ifndef _MSC_VER
+					fprintf(stderr, "Warning: Localization issue. Does not support the locale '%s' %s %s.\n",lang,ret,setlocale(LC_MESSAGES,NULL));
+					#else
+					fprintf(stderr, "Warning: Localization issue. Cannot detect user locale.\n");
+					#endif
+				}
 
                 /* change language */
                 if (wcscmp(lang, L"C") == 0 || ret == NULL || wcscmp(ret, L"C") == 0)

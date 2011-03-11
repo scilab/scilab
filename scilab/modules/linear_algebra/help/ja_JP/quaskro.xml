@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="quaskro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>quaskro</refname>
+    <refpurpose>準クロネッカー形式</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(F,tol)
+[Q,Z,Qd,Zd,numbeps,numbeta]=quaskro(E,A,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>実数行列ペンシル <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E,A</term>
+        <listitem>
+          <para>同じ次元の実数行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数 (許容誤差,デフォルト値=1.d-10)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,Z</term>
+        <listitem>
+          <para>正方直交行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Qd,Zd</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>numbeps</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	行列ペンシルの準クロネッカー形式:
+	<literal>quaskro</literal>は,ペンシル<literal>F=s*E -A</literal>を上三角行列形式に変換する
+	直交行列 <literal>Q, Z</literal>を計算します:</para>
+    <programlisting role = ""><![CDATA[ 
+           | sE(eps)-A(eps) |        X       |      X     |
+           |----------------|----------------|------------|
+           |        O       | sE(inf)-A(inf) |      X     |
+Q(sE-A)Z = |=================================|============|
+           |                                 |            |
+           |                O                | sE(r)-A(r) |
+ ]]></programlisting>
+    <para>
+	ブロックの次元は次のように指定されます:</para>
+    <para><literal>eps=Qd(1) x Zd(1)</literal>, <literal>inf=Qd(2) x Zd(2)</literal>,
+    <literal>r = Qd(3) x Zd(3)</literal></para>
+    <para>
+    <literal>inf</literal> ブロックには, ペンシルの無限大モードが含まれます.</para>
+    <para>
+    <literal>f</literal> ブロックには, ペンシルの有限モードが含まれます.</para>
+    <para>
+	epsilonブロックの構造は次のように指定されます:</para>
+    <para><literal>numbeps(1)</literal> = 大きさ 0 x 1のepsブロックの数</para>
+    <para><literal>numbeps(2)</literal> = 大きさ 1 x 2のepsブロックの数</para>
+    <para><literal>numbeps(3)</literal> = 大きさ 2 x 3のepsブロックの数     etc...</para>
+    <para>
+	完全な(4ブロックの)クロネッカー形式は,
+	(pertransposed)ペンシル<literal>sE(r)-A(r)</literal>を指定して
+	<literal>quaskro</literal>をコールする
+	関数<literal>kroneck</literal>により指定されます.</para>
+    <para>
+   このコード T. Beelenによるものです.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+      <member>
+        <link linkend="gschur">gschur</link>
+      </member>
+      <member>
+        <link linkend="gspec">gspec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

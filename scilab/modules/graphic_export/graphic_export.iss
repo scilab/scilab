@@ -26,9 +26,7 @@ Source: tools\pstoedit\*.*; DestDir: {app}\tools\pstoedit; Flags: recursesubdirs
 ;
 Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.{#GRAPHIC_EXPORT}.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
 ;
-Source: modules\{#GRAPHIC_EXPORT}\changelog.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS};
 Source: modules\{#GRAPHIC_EXPORT}\license.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHIC_EXPORT}\readme.txt; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHIC_EXPORT}\version.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHIC_EXPORT}\sci_gateway\{#GRAPHIC_EXPORT}_gateway.xml; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\sci_gateway; Components: {#COMPN_GRAPHICS}

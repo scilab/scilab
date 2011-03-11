@@ -76,7 +76,7 @@ int sci_umfpack(char* fname,unsigned long l)
 	int mA, nA, mb, nb, lrb, lib, itb, ms, ns, ls, itx, lrx, lix, i;
 	int num_A, num_b, one=1;
 	int mW, lW, lWi;
-	int Case, LastNum, stat;
+	int Case, stat;
 	double *br, *bi, *xr, *xi;
 	SciSparse AA;
 	CcsSparse A;
@@ -140,11 +140,10 @@ int sci_umfpack(char* fname,unsigned long l)
 	br = stk(lrb); bi = stk(lib);
 	if ( A.it == 1  &&  itb == 0 )
 	{
-		CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib); LastNum = 8;
+		CreateVar(8,MATRIX_OF_DOUBLE_DATATYPE, &mb, &nb, &lib); 
 		bi = stk(lib);
 		for ( i = 0 ; i < mb*nb ; i++ ) bi[i] = 0.0;
 	}
-	else LastNum = 7;
 
 	/* Now calling umfpack routines */
 	if (A.it == 1)

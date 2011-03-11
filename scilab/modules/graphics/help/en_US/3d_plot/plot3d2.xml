@@ -264,8 +264,8 @@ e.data=TL;
 e.color_flag=2;
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

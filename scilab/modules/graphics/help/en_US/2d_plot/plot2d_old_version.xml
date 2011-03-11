@@ -431,8 +431,8 @@ plot2d(x-4,sin(x),1,"185","sin(x)")
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="plot2d1">plot2d1</link></member>

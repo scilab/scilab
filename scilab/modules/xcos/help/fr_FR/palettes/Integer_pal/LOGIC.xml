@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="LOGIC" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>LOGIC</refname>
+    <refpurpose>Logique combinatoire</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/LOGIC.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_LOGIC">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="LOGIC">Logique combinatoire</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_LOGIC">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_LOGIC">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_LOGIC">Types de données</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_LOGIC">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_LOGIC">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Example_1_LOGIC">Exemple 1</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="Example_2_LOGIC">Exemple 2</link>
+            </para>
+          </listitem>          
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_LOGIC">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_LOGIC">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_LOGIC">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_LOGIC">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_LOGIC">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_LOGIC">
+    <title>Description</title>
+    <para>
+      Le bloc implémente une table de vérité standard pour la modélisation de tableaux de programmation,
+      de circuits digitaux et de toute autre expression booléenne.
+    </para>
+    <para>
+      L'utilisateur doit spécifier une matrice qui définit toutes les sorties de bloc possibles dans
+      le champ <emphasis role="bold">Truth Table</emphasis>. En conséquence, le nombre de lignes doit être 
+      une puissance de deux.
+      Chaque ligne de la matrice contient une combinaison logique des éléments d'entrée
+    </para>
+    <para>
+      L'initialisation du paramètre  <emphasis role="bold">Truth Table</emphasis> définit le nombre
+      d'entrées et de sorties du bloc de la façon suivante :
+    </para>
+    <itemizedlist>
+      <listitem>
+      <para>
+        Le nombre d'entrées est défini par la relation :
+      </para>
+      <para />
+      <para>
+        <latex><![CDATA[Nombre\,de\,lignes = {(Nombre\,d'entrées)}^2]]></latex>
+      </para>
+      <para />
+      </listitem>
+      <listitem>
+        <para>
+          Le nombre de sorties est égal au nombre de colonnes de la matrice.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Ce bloc peut être activé par un événement d'entrée implicite ou hériter de l'horloge à partir
+      de l'entrée régulière (paramètre <emphasis role="bold">Accepts inherited events</emphasis>).
+    </para>
+  </refsection>
+
+  <refsection id="Data_Type_LOGIC">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+      <itemizedlist>
+        <listitem>
+          <para>
+            Entrée : scalaire. Tout type entier de Scilab.
+          </para>
+          <para>
+            Une entrée positive est considérée comme un 1 logique, une entrée négative ou nulle est considérée comme un 0 logique.
+          </para>
+          <para />
+        </listitem>
+        <listitem>
+          <para>
+            Sortie : scalaire. Même type que l'entrée.
+          </para>
+        </listitem>
+      </itemizedlist>
+  </refsection>
+
+  <refsection id="Dialogbox_LOGIC">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/integer_pal/fr_FR/LOGIC_gui.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Truth Table</emphasis>
+        </para>
+        <para>
+          La matrice des sorties. Les éléments doivent être 0 ou 1. Pour plus d'information voir la partie description.
+        </para>
+        <para> Propriétés : Type 'mat' de taille [-1,-2]. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Accepts Inherited Events (0:No, 1:Yes)</emphasis>
+        </para>
+        <para>Spécifie si l'horloge est héritée ou pas. 0 ou 1</para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+
+  <refsection id="Defaultproperties_LOGIC">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 5</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 5</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">logic</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_1_LOGIC">
+    <title>Exemple 1</title>
+    <para>
+       L'exemple le plus simple à considérer est le OR. Dans ce cas nous avons deux entrées et seulement une sortie. La table 
+       de vérité pour cet exemple est :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td>
+          <emphasis role="bold">input 1</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">input 2</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">output</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>0</td><td>0</td><td>0</td>
+      </tr>
+      <tr>
+        <td>0</td><td>1</td><td>1</td>
+      </tr>
+      <tr>
+        <td>1</td><td>0</td><td>1</td>
+      </tr>
+      <tr>
+        <td>1</td><td>1</td><td>1</td>
+      </tr>
+    </informaltable>
+    <para>
+      et le paramètre <emphasis role="bold">Truth Table</emphasis> est écrit :
+    </para>
+    <para />
+    <programlisting role="example"><![CDATA[[0;1;1;1]]]></programlisting>    
+  </refsection>
+
+  <refsection id="Example_2_LOGIC">
+    <title>Exemple 2</title>
+    <para>
+      Cet exemple montre l'utilisation du bloc LOGIC en tant que démultiplexeur. Le but est d'envoyer l'entrée constante égale 
+      à vrai sur une des quatre sorties en accord avec l'état des deux entrées de sélection : 
+      <emphasis><literal>a</literal></emphasis> et <emphasis><literal>b</literal></emphasis>.
+      La table de vérité est la suivante :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td>
+          <emphasis role="bold">Constant</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">a</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">b</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q0</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q1</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q2</emphasis>
+        </td>
+        <td>
+          <emphasis role="bold">Q3</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>0</td><td>X</td><td>X</td><td>0</td><td>0</td><td>0</td><td>0</td>
+      </tr>
+      <tr>
+        <td>1</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0</td>
+      </tr>
+      <tr>
+        <td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0</td>
+      </tr>
+      <tr>
+        <td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td><td>0</td>
+      </tr>
+      <tr>
+        <td>1</td><td>1</td><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td>
+      </tr>
+    </informaltable>
+    <para>où <emphasis><literal>X</literal></emphasis> signifie "indifférent".</para>
+
+    <para>
+      Pour mettre cette table dans le paramètre <emphasis role="bold">Truth Table</emphasis>, on peut simplement écrire :
+    </para>
+    <para />
+    <programlisting role="example">
+    <![CDATA[
+      [zeros(4,4) ; eye(4,4)]
+    ]]>
+    </programlisting>
+
+    <para />
+    <para>
+      La figure suivante montre les sorties <emphasis><literal>Q<subscript>0</subscript></literal></emphasis> à 
+      <emphasis><literal>Q<subscript>3</subscript></literal></emphasis> obtenues pendant la simulation quand les entrées
+       <emphasis><literal>a</literal></emphasis> et <emphasis><literal>b</literal></emphasis> de sélection du bloc sont générées par 
+       un compteur binaire.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/LOGIC_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/integer_pal/fr_FR/logic_diagram_fr_FR.png" align="center" />
+      </imageobject>
+    </mediaobject>
+
+  </refsection>
+
+  <refsection id="Interfacingfunction_LOGIC">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/LOGIC.sci">SCI/modules/scicos_blocks/macros/IntegerOp/LOGIC.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_LOGIC">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/logic.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_LOGIC">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="BITSET">BITSET</link>
+      </listitem>
+      <listitem>
+        <link linkend="BITCLEAR">BITCLEAR</link>
+      </listitem>
+      <listitem>
+        <link linkend="LOGICAL_OP">LOGICAL_OP</link>
+      </listitem>    
+      <listitem>
+        <link linkend="EXTRACTBITS">EXTRACTBITS</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_LOGIC">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

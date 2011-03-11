@@ -19,8 +19,8 @@ fac3d1(x,y,z,[theta,alpha,leg,flag,ebox])</synopsis>
     <literal>plot3d</literal> et <literal>plot3d1</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

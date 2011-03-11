@@ -23,9 +23,7 @@ Source: bin\{#CORE}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;not generated (hardcoded)
 ;
 Source: modules\{#CORE}\VERSION.xml; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\readme.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\license.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\changelog.txt; DestDir: {app}\modules\{#CORE}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#CORE}\sci_gateway\{#CORE}_gateway.xml; DestDir: {app}\modules\{#CORE}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

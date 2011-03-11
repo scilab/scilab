@@ -40,8 +40,8 @@
     "exec" or "execstr" if instruction lies in ans exec file or an execstr
     instruction</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="whereami">whereami</link>

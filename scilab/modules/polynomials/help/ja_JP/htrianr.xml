@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="htrianr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>htrianr</refname>
+    <refpurpose>多項式行列の三角化</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Ar,U,rk]=htrianr(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ar</term>
+        <listitem>
+          <para>多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>ユニモジュラ多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数, <literal>A</literal>の通常ランク</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    多項式行列 <literal>A</literal>の三角化.</para>
+    <para><literal>A</literal> は <literal>[m,n]</literal> ,   <literal>m &lt;= n</literal>です.</para>
+    <para>
+      <literal>Ar=A*U</literal>
+    </para>
+    <para>
+    警告: "小さい"項の削除が行われます(関数コードを参照).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+M=[x;x^2;2+x^3]*[1,x-2,x^4];
+[Mu,U,rk]=htrianr(M)
+det(U)
+M*U(:,1:2)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hrmt">hrmt</link>
+      </member>
+      <member>
+        <link linkend="colcompr">colcompr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

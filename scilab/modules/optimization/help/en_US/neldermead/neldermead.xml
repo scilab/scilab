@@ -2518,8 +2518,8 @@ Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
     <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="optimbase">optimbase</link></member>

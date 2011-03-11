@@ -1,6 +1,8 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - INRIA - Serge Steer
+
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,15 +21,15 @@
 // See the file ./license.txt
 //
 
-function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
+function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 // Function for running scicos simulation in batch mode
-// Info = scicos_simulate(scs_m[,Info][,%scicos_context][,flag][,Ignb])
+// Info = scicos_simulate(scs_m[,Info][,updated_vars][,flag][,Ignb])
 //
 // scs_m: scicos diagram (obtained by "load file.cos"). Note that
 // the version of file.cos must be the current version. If not, load
 // into scicos and save.
 //
-// %scicos_context: a scilab struct containing values of
+// updated_vars: a scilab struct containing values of
 // symbolic variables used in the context and Scicos blocks. This
 // is often used to change a parameter in the diagram context. In that
 // case, make sure that in the diagram context the variable is defined such
@@ -37,7 +39,7 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
 //  if ~exists('a') then a=1,end
 // If you want then to run the simulation in batch mode using the value
 // a=2, set:
-// %scicos_context.a=2
+// updated_vars.a=2
 //
 // Info: a list. It must be list() at the first call, then use output
 // Info as input Info for the next calls. Info contains compilation and
@@ -54,144 +56,148 @@ function Info = scicos_simulate(scs_m, Info, %scicos_context, flag, Ignb)
 // of blocks to ignore.
 //
 
-  noguimode = find(sciargs() == "-nogui");
-  if (noguimode <> []) then
-     clear noguimode
-     flag = 'nw'
-  //    warning(" Scilab in no gui mode : Scicos unavailable");
-  //    abort;
+
+//** check/set rhs parameters
+//---------------------------
+  if argn(2) == 1 then
+    //scicos_simulate(scs_m)
+    Info            = list()
+    updated_vars = struct()
+    flag            = ""
+    Ignb            = ""
+  elseif argn(2) == 2 then
+    //scicos_simulate(scs_m, Info)
+    //or scicos_simulate(scs_m,updated_vars)
+    //or scicos_simulate(scs_m,flag)
+    select typeof(Info)
+    case "st" then //scicos_simulate(scs_m,updated_vars)
+      updated_vars = Info
+      Info=list()
+      ku=2
+      flag = ""
+    case "string" then //scicos_simulate(scs_m,flag)
+      flag=Info
+      Info=list()
+      kf=2
+      updated_vars = struct()
+    else  //scicos_simulate(scs_m,Info)
+      flag = ""
+      updated_vars = struct()
+      ki=2
+    end
+    Ignb = ""
+  elseif argn(2) == 3 then
+    //scicos_simulate(scs_m, Info,updated_vars) or scicos_simulate(scs_m, Info,"nw")
+    if type(updated_vars) == 10 then
+      flag = updated_vars
+      updated_vars = struct()
+    else
+      ku=3
+      flag = ""
+    end
+    Ignb = ""
+  elseif argn(2) >= 4 then
+    //scicos_simulate(scs_m, Info,updated_vars,"nw") or
+    //scicos_simulate(scs_m, Info,"nw",updated_vars)
+    ku=3;kf=4
+    if type(updated_vars) == 10 then
+      [updated_vars,flag]=(flag,updated_vars)
+      kf=3;ku=4
+    end
+    if argn(2) == 4 then Ignb = "",end
+  else
+    error(mprintf(_("%s: Wrong number of input arguments. Must be between %d and %d.\n"),...
+                  "scicos_simulate", 1, 5))
   end
-  clear noguimode
 
-if ~isdef('scicos_menuslib') then
-  load('SCI/modules/scicos/macros/scicos_menus/lib')
-end
+  //Check variable types
+  if typeof(scs_m)<>"diagram" then
+    error(msprintf(_("%s: Wrong type for input argument #%d: %s data structure expected.\n"),...
+                   "scicos_simulate",1,"scs_m"))
+  end
+  if type(Info)<>15 then
+    error(msprintf(_("%s: Wrong type for input argument #%d: A list expected.\n"),..
+                   "scicos_simulate",2))
+  end
+  if typeof(updated_vars)<>"st" then
+    error(msprintf(_("%s: Wrong type for input argument #%d: A list expected.\n"),...
+                   "scicos_simulate",ku))
+  end
+  if and(stripblanks(flag)<>["nw" ""]) then
+    error(msprintf(_("%s: Wrong value for input argument #%d: ''%s'' expected.\n"),...
+                   "scicos_simulate",kf,"nw"))
+  end
+  if type(Ignb) <> 10 then
+    error(msprintf(_("%s: Wrong type for input argument #%d: String array expected.\n"),...
+                   "scicos_simulate",5))
+  end
 
-if exists('scicos_scicoslib')==0 then
+  if or(sciargs() == "-nogui")|or(sciargs() == "-nwni")  then
+    flag = 'nw'
+  end
+  //**blocks to ignore requested by user
+  Ignb = matrix(Ignb,1,-1)//make it row vector
+
+  //**blocks to ignore in any cases
+  Ignore=['affich',...
+          'affich2']
+  //**blocks to ignore with flag=="nw"
+  Ignoreb = ['bouncexy', ...
+             'cscope', ...
+             'cmscope', ...
+             'canimxy', ...
+             'canimxy3d', ...
+             'cevscpe', ...
+             'cfscope', ...
+             'cscopxy', ...
+             'cscopxy3d', ...
+             'cmatview', ...
+             'cmat3d']
+
+  //** load the scicos function libraries
+  //------------------------------------
+  if exists('scicos_menuslib')==0 then
+    load("SCI/modules/scicos/macros/scicos_menus/lib") ;
+  end
+
+  if exists('scicos_scicoslib')==0 then
     load("SCI/modules/scicos/macros/scicos_scicos/lib") ;
-end
+  end
 
-if exists('scicos_autolib')==0 then
+  if exists('scicos_autolib')==0 then
     load("SCI/modules/scicos/macros/scicos_auto/lib") ;
-end
+  end
 
-if exists('scicos_utilslib')==0 then
+  if exists('scicos_utilslib')==0 then
     load("SCI/modules/scicos/macros/scicos_utils/lib") ;
-end
+  end
 
-// Define Scicos data tables ===========================================
-if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
-     ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
-     ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
-     ~isdef("scicos_pal_libs") ) then
-  [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
-   %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
-   %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
-end
-// =====================================================================
+  //** Define Scicos data tables
+  //----------------------------
+  if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
+       ~isdef("%scicos_short") | ~isdef("%scicos_help") | ..
+       ~isdef("%scicos_display_mode") | ~isdef("modelica_libs") | ..
+       ~isdef("scicos_pal_libs") ) then
+    [scicos_pal, %scicos_menu, %scicos_short, modelica_libs, scicos_pal_libs,...
+     %scicos_lhb_list, %CmenuTypeOneVector, %scicos_gif,%scicos_contrib, ..
+     %scicos_libs, %scicos_with_grid, %scs_wgrid] = initial_scicos_tables();
+  end
+  // =====================================================================
 
   //** initialize a "scicos_debug_gr" variable
   %scicos_debug_gr = %f;
 
-  //** list of scopes to ignore
-  Ignoreb = ['bouncexy', ...
-             'cscope', ...
-	     'cmscope', ...
-	     'canimxy', ...
-	     'canimxy3d', ...
-	     'cevscpe', ...
-	     'cfscope', ...
-	     'cscopxy', ...
-	     'cscopxy3d', ...
-	     'cmatview', ...
-	     'cmat3d', ...
-	     'affich', ...
-	     'affich2']
 
-  //** load macros libraries and palettes
-  // Scilab 5 new modules split
-  load('SCI/modules/scicos/macros/scicos_auto/lib')
-  load('SCI/modules/scicos/macros/scicos_utils/lib')
-  load('SCI/modules/scicos/macros/scicos_scicos/lib')
-
+  //** load palettes
+  //----------------
   exec(loadpallibs,-1)
 
-  //** redefine some gui functions
+  //** redefine some  functions
   prot = funcprot();funcprot(0);
   do_terminate = do_terminate1
   funcprot(prot)
 
-  //** check/set rhs parameters
-  if argn(2) == 1 then
-    Info            = list()
-    %scicos_context = struct()
-    flag            = []
-    Ignb            = []
 
-  elseif argn(2) == 2 then
-    if type(Info) == 10 & (stripblanks(Info) == 'nw') then
-      Info = list()
-      flag = 'nw'
-    elseif type(Info) <> 15 then
-      Info = list()
-      flag = []
-    else
-      flag = []
-    end
-    %scicos_context = struct()
-    Ignb = []
-
-	elseif argn(2) == 3 then
-    if type(Info) <> 15 then
-      Info = list()
-    end
-    if type(%scicos_context) == 10 & (stripblanks(%scicos_context) == 'nw') then
-      %scicos_context = struct()
-      flag = 'nw'
-    elseif type(%scicos_context) <> 17 then
-      %scicos_context = struct()
-      flag = []
-    else
-      flag = []
-    end
-    Ignb = []
-
-  elseif argn(2) == 4 then
-    if type(Info) <> 15 then
-      Info = list()
-    end
-    if type(%scicos_context) <> 17 then
-      %scicos_context = struct()
-    end
-    if type(flag) <> 10 then
-     flag = []
-    elseif (stripblanks(flag) <> 'nw') then
-       flag = []
-    end
-    Ignb = []
-
-  elseif argn(2) == 5 then
-    if type(Info) <> 15 then
-      Info = list()
-    end
-    if type(%scicos_context) <> 17 then
-      %scicos_context = struct()
-    end
-    if type(flag) <> 10 then
-      flag = []
-    elseif (stripblanks(flag) <> 'nw') then
-      flag = []
-    end
-    if type(Ignb) <> 10 then
-      Ignb = []
-    else
-      Ignb = (Ignb(:))'
-    end
-
-  else
-    error(mprintf(gettext("%s: Wrong number of input arguments. Must be between %d and %d.\n"), "scicos_simulate", 1, 5))
-  end
-  
   //check version
   current_version = get_scicos_version()
   scicos_ver = find_scicos_version(scs_m)
@@ -200,42 +206,20 @@ end
   if scicos_ver <> current_version then
     ierr = execstr('scs_m = do_version(scs_m, scicos_ver)','errcatch')
     if ierr <> 0 then
-      messagebox("Can''t convert old diagram (problem in version)","modal")
+      messagebox(_("Can''t convert old diagram (problem in version)"),"modal")
       return
     end
   end
 
-  //prepare from and to workspace stuff
-  curdir = pwd()
-  chdir(TMPDIR)
-  mkdir('Workspace')
-  chdir('Workspace')
-  %a = who('get');
-  %a = %a(1:$-predef()+1);  // exclude protected variables
-  for %ij = 1:size(%a,1)
-    var = %a(%ij)
-    if var <> 'ans' & typeof(evstr(var)) == 'st' then
-      ierr = execstr('x = ' + var + '.values','errcatch')
-      if ierr == 0 then
-        ierr = execstr('t = ' + var + '.time','errcatch')
-      end
-      if ierr == 0 then
-        execstr('save('"' + var + ''",x,t)')
-      end
-    end
-  end
-  chdir(curdir)
-  // end of /prepare from and to workspace stuff
-
-  Ignore = []
+  //** prepare from and to workspace stuff
+  //-------------------------------------
+  scicos_workspace_init()
 
   if flag == 'nw' then
-    Ignore = Ignoreb
+    Ignore = [Ignore,Ignoreb]
   end
-
-  if Ignb <> [] then
-    Ignore = [Ignore, Ignb]
-  end
+  //add user ignored blocks if any
+  Ignore = [Ignore, Ignb]
 
   //** retrieve Info list
   if Info <> list() then
@@ -253,15 +237,23 @@ end
   tolerances     = scs_m.props.tol
   solver         = tolerances(6)
   %scicos_solver = solver
-
   //** set variables of context
-  [%scicos_context, ierr] = script2var(scs_m.props.context, ...
-		%scicos_context);
+  [%scicos_context, ierr] = script2var(scs_m.props.context,struct())
+  //overload %scicos_context variables with those defined by updated_vars
+  contextvars=fieldnames(%scicos_context)
+  updatedvars=fieldnames(updated_vars)
+  for k=1:size(updatedvars,'*')
+    u=updatedvars(k)
+    if or(u==contextvars) then
+      %scicos_context(u)=updated_vars(u)
+    else
+      mprintf(_("Warning the variable %s do not match any context variable name\nignored"),u)
+    end
+  end
   if ierr == 0 then //++ no error
-
-    [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr)
-    if ~ok then 
-       error(['Error during block parameters evaluation , ' + lasterror()])
+    [scs_m, %cpr, needcompile, ok] = do_eval(scs_m, %cpr,%scicos_context)
+    if ~ok then
+      error(['Error during block parameters evaluation , ' + lasterror()])
     end
     if needcompile <> 4 & size(%cpr) > 0 then
       %state0 = %cpr.state
@@ -278,8 +270,8 @@ end
   end
 
   [%cpr, %state0_n, needcompile, alreadyran, ok] = do_update(%cpr, ...
-		%state0, needcompile)   
-  
+                                                  %state0, needcompile)
+
   if ~ok then
     error('Error updating parameters.')
   end
@@ -290,14 +282,12 @@ end
     choix = []
   end
   if (%cpr.sim.xptr($) - 1) < size(%cpr.state.x,'*') & solver < 100 then
-    warning(['Diagram has been compiled for implicit solver'
-	     'switching to implicit solver'])
+    warning(msprintf(_("Diagram has been compiled for implicit solver\nswitching to implicit solver")))
     solver = 100
     tolerances(6) = solver
   elseif (%cpr.sim.xptr($) - 1) == size(%cpr.state.x,'*') & ...
-		solver == 100 & size(%cpr.state.x,'*') <> 0 then
-    warning(['Diagram has been compiled for explicit solver'
-	     'switching to explicit solver'])
+        solver == 100 & size(%cpr.state.x,'*') <> 0 then
+    warning(msprintf(_("Diagram has been compiled for explicit solver\nswitching to explicit solver")))
     solver = 0
     tolerances(6) = solver
   end
@@ -305,9 +295,9 @@ end
   if need_suppress then //this is done only once
     for i = 1:length(%cpr.sim.funs)
       if type(%cpr.sim.funs(i)) <> 13 then
-	if find(%cpr.sim.funs(i)(1) == Ignore) <> [] then
-	  %cpr.sim.funs(i)(1) = 'trash';
-	end
+        if find(%cpr.sim.funs(i)(1) == Ignore) <> [] then
+          %cpr.sim.funs(i)(1) = 'trash';
+        end
       end
     end
   end
@@ -321,18 +311,18 @@ end
     %cpr.state = %state0
     tf = scs_m.props.tf;
     if tf*tolerances == [] then
-      error(['Simulation parameters not set']);
+      error(_("Simulation parameters not set:"));
     end
     ierr = execstr('[state, t] = scicosim(%cpr.state, %tcur, tf, %cpr.sim,' + ..
-		 '''start'', tolerances)','errcatch')
+                   '''start'', tolerances)','errcatch')
     if ierr <> 0 then
-      error(['Initialisation problem:'])
+      error(_("Initialisation problem:"))
     end
     %cpr.state = state
   end
 
   ierr = execstr('[state, t] = scicosim(%cpr.state, %tcur, tf, %cpr.sim,' + ..
-		'''run'', tolerances)','errcatch')
+                 '''run'', tolerances)','errcatch')
   if ierr == 0 then
     %cpr.state = state
     alreadyran = %t
@@ -343,7 +333,7 @@ end
       %tcur = t
     end
   else
-    error(['Simulation problem: ';lasterror()])
+    error([_("Simulation problem: ");lasterror()])
   end
 
   Info = list(%tcur, %cpr, alreadyran, needstart, needcompile, %state0)
@@ -361,11 +351,11 @@ function [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
 // Copyright INRIA
 
   if prod(size(%cpr)) < 2 then
-		alreadyran = %f
-		return
-	end
+    alreadyran = %f
+    return
+  end
 
-	par = scs_m.props;
+  par = scs_m.props;
 
   if alreadyran then
     alreadyran = %f
@@ -374,7 +364,7 @@ function [alreadyran, %cpr] = do_terminate1(scs_m, %cpr)
 
     %cpr.state = state
     if ierr <> 0 then
-      error(['End problem: ' ; lasterror()])
+      error([_("End problem: ");lasterror()])
     end
   end
 endfunction

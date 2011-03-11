@@ -476,10 +476,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_strrchr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_strrev.c"
 				>
 			</File>

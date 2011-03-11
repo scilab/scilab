@@ -400,8 +400,8 @@ echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
 echo $? </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="exit">exit</link></member>

@@ -182,6 +182,7 @@ SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddres
     //getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
 
     //*_piAddress = piAddr;
+
     return sciErr;
 }
 

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="Electrical_pal"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>Electrical_pal</refname>
+
+    <refpurpose>Palette électrique</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CCS" fileref="../../../../../../modules/xcos/images/palettes/CCS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CVS" fileref="../../../../../../modules/xcos/images/palettes/CVS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Capacitor" fileref="../../../../../../modules/xcos/images/palettes/Capacitor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="ConstantVoltage" fileref="../../../../../../modules/xcos/images/palettes/ConstantVoltage.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CurrentSensor" fileref="../../../../../../modules/xcos/images/palettes/CurrentSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Diode" fileref="../../../../../../modules/xcos/images/palettes/Diode.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Ground" fileref="../../../../../../modules/xcos/images/palettes/Ground.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Gyrator" fileref="../../../../../../modules/xcos/images/palettes/Gyrator.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="IdealTransformer" fileref="../../../../../../modules/xcos/images/palettes/IdealTransformer.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Inductor" fileref="../../../../../../modules/xcos/images/palettes/Inductor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="NMOS" fileref="../../../../../../modules/xcos/images/palettes/NMOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="NPN" fileref="../../../../../../modules/xcos/images/palettes/NPN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="OpAmp" fileref="../../../../../../modules/xcos/images/palettes/OpAmp.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PMOS" fileref="../../../../../../modules/xcos/images/palettes/PMOS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PNP" fileref="../../../../../../modules/xcos/images/palettes/PNP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PotentialSensor" fileref="../../../../../../modules/xcos/images/palettes/PotentialSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Resistor" fileref="../../../../../../modules/xcos/images/palettes/Resistor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SineVoltage" fileref="../../../../../../modules/xcos/images/palettes/SineVoltage.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Switch" fileref="../../../../../../modules/xcos/images/palettes/Switch.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="VVsourceAC" fileref="../../../../../../modules/xcos/images/palettes/VVsourceAC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="VariableResistor" fileref="../../../../../../modules/xcos/images/palettes/VariableResistor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="VoltageSensor" fileref="../../../../../../modules/xcos/images/palettes/VoltageSensor.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="VsourceAC" fileref="../../../../../../modules/xcos/images/palettes/VsourceAC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Electrical_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Electrical_pal">
+    <title>Description</title>
+
+    <para>La boîte à outils Electrique contient les composants électrique de base tels que : source de tension, diode, capacité, etc.</para>
+  </refsection>
+
+  <refsection id="Blocks_Electrical_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Capacitor">Capacitor - Capacité électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CCS">CCS - Source de courant contrôlable Modelica</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="ConstantVoltage">ConstantVoltage - Source de tension continue</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CurrentSensor">CurrentSensor - Capteur de courant électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CVS">CVS - Source de tension contrôlable Modelica</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Diode">Diode - Diode électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Ground">Ground - Masse (Référence du potentiel zéro)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Gyrator">Gyrator - Gyrateur Modelica</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="IdealTransformer">IdealTransformer - Transformateur idéal</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Inductor">Inductor - Inductance électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NMOS">NMOS - Transistor NMOS simple</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="NPN">NPN - Transistor NPN</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="OpAmp">OpAmp - Amplificateur opérationnel idéal (Paire norator-nullator)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PMOS">PMOS - Transistor PMOS simple </link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PNP">PNP - Transistor PNP </link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PotentialSensor">PotentialSensor - Capteur de tension</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Resistor">Resistor - Résistance électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SineVoltage">SineVoltage - Source de tension sinusoïdale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="Switch">Switch - Interrupteur non-idéal</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VariableResistor">VariableResistor - Résistance électrique variable</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VoltageSensor">VoltageSensor - Capteur de tension électrique</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VsourceAC">VsourceAC - Source de tension sinusoïdale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VVsourceAC">VVsourceAC -Source de tension variable sinusoïdale</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

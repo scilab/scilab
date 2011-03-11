@@ -74,8 +74,8 @@ delete(a); //delete the axes
 delete("all"); //delete all the graphics objects of the figure
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>

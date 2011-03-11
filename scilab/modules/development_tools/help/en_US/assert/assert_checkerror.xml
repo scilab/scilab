@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="assert_checkerror" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>assert_checkerror</refname><refpurpose>Check that an instruction produces the expected error.</refpurpose>
+  </refnamediv>
+
+
+
+<refsynopsisdiv>
+   <title>Calling Sequence</title>
+   <synopsis>
+   flag = assert_checkerror ( instr , expectedmsg )
+   flag = assert_checkerror ( instr , expectedmsg , expectederrnb )
+   [flag,errmsg] = assert_checkerror ( ... )
+   
+   </synopsis>
+</refsynopsisdiv>
+
+<refsection>
+   <title>Parameters</title>
+   <variablelist>
+   <varlistentry><term>instr:</term>
+      <listitem><para> a 1x1 matrix of strings, an expression to evaluate</para></listitem></varlistentry>
+   <varlistentry><term>expectedmsg :</term>
+      <listitem><para> a 1x1 matrix of strings, the error message to be produced</para></listitem></varlistentry>
+   <varlistentry><term>expectederrnb :</term>
+      <listitem><para> a 1x1 matrix of floating point integers, the error number (default expectederrnb=[]).</para></listitem></varlistentry>
+   <varlistentry><term>flag :</term>
+      <listitem><para> a 1x1 matrix of boolean, %t if computed is close to expected, %f if not</para></listitem></varlistentry>
+   <varlistentry><term>errmsg :</term>
+      <listitem><para> a 1x1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para></listitem></varlistentry>
+   </variablelist>
+</refsection>
+
+<refsection>
+   <title>Description</title>
+   <para>
+If the expression does not generate an error, then assert_checkerror generates an error.
+Performs silently if the evaluated expression generates the expected error message.
+If the error number is provided, we additionnally check that the generated error number matches the
+expected one.
+   </para>
+   <para>
+The string matching is strict string equality: no pattern or regular expression can be used.
+   </para>
+   <para>
+If the error message is not expected or the error number is not expected,
+<itemizedlist>
+<listitem>if the errmsg output variable is not used, an error is generated,</listitem>
+<listitem>if the errmsg output variable is used, no error is generated.</listitem>
+</itemizedlist>
+   </para>
+   <para>
+The goal of this function is to enable the tester to check the error
+cases in a simplified framework.
+   </para>
+   <para>
+</para>
+</refsection>
+
+<refsection>
+   <title>Examples</title>
+   <programlisting role="example"><![CDATA[
+// This function generates an error when
+// * the number of input arguments in wrong
+// * the type of x is wrong
+function y = f(x)
+[lhs,rhs]=argn()
+if ( rhs <> 1 ) then
+errmsg = sprintf ( gettext ( "%s: Unexpected number of input arguments : %d provided while %d to %d are expected.") , "f" , rhs , 1 , 1 )
+error(errmsg)
+end
+if ( typeof(x) <> "constant" ) then
+localstr = gettext ( "%s: Unexpected type of input argument #%d : variable %s has type %s while %s is expected.")
+errmsg = sprintf ( localstr , "f" , 1 , "x" , typeof(x) , "constant" )
+error(errmsg,123456789)
+end
+y = x
+endfunction
+// Our task is to check the error messages produced by this function
+// Test which pass : the error message is the expected one
+msg1="f: Unexpected number of input arguments : 0 provided while 1 to 1 are expected.";
+msg2="f: Unexpected type of input argument #1 : variable x has type string while constant is expected.";
+assert_checkerror ( "y=f()"      , msg1 );
+assert_checkerror ( "y=f(""a"")" , msg2 );
+// Also check the error number
+assert_checkerror ( "y=f()"      , msg1 , 10000 );
+assert_checkerror ( "y=f(""a"")" , msg2 , 123456789 );
+// Test which fail
+assert_checkerror ( "y=f()"      , "oups" );
+assert_checkerror ( "y=f()"      , msg1 , 12 );
+
+// When errmsg is given as output argument, no error is generated
+// A test which pass: flag is %t, errmsg is empty
+[flag,errmsg] = assert_checkerror ( "y=f()"      , msg1 )
+// A test which fail: flag is %f, errmsg is not empty
+[flag,errmsg] = assert_checkerror ( "y=f()"      , "oups" )
+
+   ]]></programlisting>
+</refsection>
+
+<refsection>
+   <title>Authors</title>
+   <simplelist type="vert">
+   <member>Copyright (C) 2010 - DIGITEO - Michael Baudin</member>
+   </simplelist>
+</refsection>
+</refentry>

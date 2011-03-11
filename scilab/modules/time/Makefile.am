@@ -36,7 +36,7 @@ libscitime_la_CPPFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscitime.la
 
-libscitime_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
@@ -55,7 +55,7 @@ modulename=time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
-libscitime_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitime_la_root_DATA =  license.txt version.xml
 
 
 #### time : init scripts ####

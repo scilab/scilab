@@ -396,7 +396,7 @@ BLOCKS_CPP = [
 //
 // load the scicos libs
 //
-loadScicosLibs(); haltscicos();
+loadXcosLibs(); haltscicos();
 
 //
 // Link them

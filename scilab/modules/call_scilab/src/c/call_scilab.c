@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "BOOL.h"
 #include "call_scilab.h"
+#include "lasterror.h" /* clearLastError */
 #include "MALLOC.h"
 #include "sci_mode.h"
 #include "fromc.h"
@@ -160,8 +161,12 @@ int Call_ScilabOpen(char* SCIpath, BOOL advancedMode, char *ScilabStartup, int S
     defineTMPDIR();
 
     /* Scilab Initialization */
-    C2F(inisci)(&iflag,&StacksizeUsed,&ierr);
-    if ( ierr > 0 ) return ierr;
+    C2F(inisci)(&iflag, &StacksizeUsed, &ierr);
+
+    if ( ierr > 0 ) {
+        if (ScilabStartupUsed) {FREE(ScilabStartupUsed); ScilabStartupUsed = NULL;}
+        return ierr;
+    }
 
     lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));
     InitStringToScilab = (char*)MALLOC(lengthStringToScilab*sizeof(char));
@@ -188,6 +193,12 @@ BOOL TerminateScilab(char *ScilabQuit)
         {
             TerminateCorePart2();
         }
+
+        /* Make sure that the error management is reset. See bug #8830 */
+        // /!\ Must call ConfigVariable::clearLastError()
+        //clearLastError();
+
+
         ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
 

@@ -23,7 +23,7 @@ libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciparameters.la
 
-libsciparameters_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
@@ -38,7 +38,7 @@ modulename=parameters
 
 #### parameters : Conf files ####
 libparameters_la_rootdir = $(mydatadir)
-libparameters_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libparameters_la_root_DATA =  license.txt version.xml
 
 #### parameters : init scripts ####
 libparameters_la_etcdir = $(mydatadir)/etc

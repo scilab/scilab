@@ -103,7 +103,7 @@ history_browser
 #SUBDIRS += mpi
 #endif
 
-if SCICOS
+if XCOS
 SUBDIRS += scicos_blocks
 endif
 
@@ -207,7 +207,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la \
-	$(top_builddir)/modules/pvm/libscipvm.la
+	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/fftw/libscifftw.la
 
 
 # These libraries are loaded dynamically from Scilab.

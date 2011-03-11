@@ -135,13 +135,14 @@ static long years_to_days (unsigned year)
 /*--------------------------------------------------------------------------*/
 static long ymd_to_scalar (unsigned year, unsigned month, unsigned day)
 {
-  long scalaire;
-  scalaire = day + months_to_days(month);
-  if ( month > 2 )
-    scalaire -= isBissextile(year) ? 1 : 2;
-  year--;
-  scalaire += years_to_days(year);
-  return scalaire;
+    long scalaire;
+    scalaire = day + months_to_days(month);
+    if ( month > 2 ) {
+        scalaire -= isBissextile(year) ? 1 : 2;
+    }
+    year--;
+    scalaire += years_to_days(year);
+    return scalaire;
 }
 /*--------------------------------------------------------------------------*/
 

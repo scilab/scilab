@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="gda">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>gda</refname>
+    <refpurpose>デフォルトの軸(axes)のハンドルを取得.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>a = gda()
+a = get("default_axes")</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Pパラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>ハンドル, デフォルトの軸のハンドル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>デフォルトの axesは決して描画されないグラフィックエンティティです.
+	これは, axes のプロパティのデフォルト値の基準として使用されます.
+	これらのデフォルトのプロパティ値は図の中で新しい軸(axes)を初期化する
+	際に使用されます.</para>
+    <para><literal>gda</literal> 関数はデフォルトの軸のハンドルを返します.
+	ユーザはこのハンドルを用いて
+	axes のプロパティのデフォルト値を設定または取得することができます.</para>
+    <para>figureエンティティに関しても等価なデフォルトのグラフィックエンティティが
+	存在することに注意してください ( <literal>gdf</literal>参照).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=gda() // 軸(axes)のハンドルを取得
+// プロパティを設定
+a.box="off";
+a.foreground=2;
+a.labels_font_size=3;
+a.labels_font_color=5;
+a.sub_tics=[5 5 3];
+a.x_location="top";
+
+//描画に軸を使用
+subplot(211) // axes エンティティを作成
+plot2d() 
+
+// 他のプロパティを設定
+a.background=color('gray')
+a.grid=[5 5 5];
+subplot(212)
+t=0:0.1:5*%pi; 
+plot2d(sin(t),cos(t)) 
+ 
+set(a,"default_values",1); // モデルのデフォルト値を返す
+                           // sda() 関数を参照
+clf()
+plot2d(sin(t),cos(t))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="sda">sda</link>
+      </member>
+      <member>
+        <link linkend="sdf">sdf</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -12,8 +12,7 @@ getVarDimension
 getMatrixOfDouble
 getMatrixOfWideString
 createMatrixOfBoolean
-api_Rhs
-api_Lhs
-api_CheckRhs
-api_CheckLhs
-api_LhsVar
+checkVarDimension
+getAllocatedSingleString
+createMatrixOfString
+freeAllocatedSingleString

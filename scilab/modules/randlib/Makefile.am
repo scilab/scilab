@@ -49,7 +49,7 @@ libscirandlib_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscirandlib.la
 
-libscirandlib_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscirandlib_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscirandlib_la_SOURCES = $(RANDLIB_C_SOURCES) $(GATEWAY_C_SOURCES) $(RANDLIB_FORTRAN_SOURCES)
 
@@ -68,7 +68,7 @@ modulename=randlib
 
 #### randlib : Conf files ####
 libscirandlib_la_rootdir = $(mydatadir)
-libscirandlib_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscirandlib_la_root_DATA =  license.txt version.xml
 
 
 #### randlib : init scripts ####

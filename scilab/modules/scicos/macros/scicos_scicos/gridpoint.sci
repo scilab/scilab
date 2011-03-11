@@ -20,6 +20,9 @@
 //
 
 function pt=gridpoint(pt)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //find the nearest grid point for a given point.
 //!
 xo=gridvalues(1);yo=gridvalues(2);dx=gridvalues(3);dy=gridvalues(4);

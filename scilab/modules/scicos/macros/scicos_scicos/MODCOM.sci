@@ -124,19 +124,11 @@ function class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
       if vpprop(i)==0 then
          head='      parameter Real '
          if size(vparamv(i),'*')==1 then
-           if int(vparamv(i))==vparamv(i) then
-             head=head+vparam(i)+'='+string(vparamv(i))+'.0;'
-           else
-             head=head+vparam(i)+'='+string(vparamv(i))+';'
-           end
+           head=head+msprintf('%s = %e;', vparam(i), vparamv(i));
          else
            head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+']={';
            for j=1:size(vparamv(i),'*')
-             if int(vparamv(i)(j))==vparamv(i)(j) then
-               head=head+string(vparamv(i)(j))+'.0'
-             else
-               head=head+string(vparamv(i)(j))
-             end
+             head=head+msprintf('%e', vparamv(i)(j));
              if j<>size(vparamv(i),'*') then
                head=head+','
              end
@@ -147,19 +139,11 @@ function class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
       elseif vpprop(i)==1 then
          head='      Real           '
          if size(vparamv(i),'*')==1 then
-           if int(vparamv(i))==vparamv(i) then
-             head=head+vparam(i)+'(start='+string(vparamv(i))+'.0);'
-           else
-             head=head+vparam(i)+'(start='+string(vparamv(i))+');'
-           end
+           head=head+msprintf('%s (start=%e);', vparam(i), vparamv(i));
          else
            head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+'](start={';
            for j=1:size(vparamv(i),'*')
-             if int(vparamv(i)(j))==vparamv(i)(j) then
-               head=head+string(vparamv(i)(j))+'.0'
-             else
-               head=head+string(vparamv(i)(j))
-             end
+             head=head+msprintf('%e', vparamv(i)(j));
              if j<>size(vparamv(i),'*') then
                head=head+','
              end
@@ -170,20 +154,12 @@ function class_txt=build_classhead(funam,vinp,vout,vparam,vparamv,vpprop)
       elseif vpprop(i)==2 then
          head='      Real           '
          if size(vparamv(i),'*')==1 then
-           if int(vparamv(i))==vparamv(i) then
-             head=head+vparam(i)+'(fixed=true,start='+string(vparamv(i))+'.0);'
-           else
-             head=head+vparam(i)+'(fixed=true,start='+string(vparamv(i))+');'
-           end
+           head=head+msprintf('%s (fixed=true,start=%e);', vparam(i), vparamv(i));
          else
            head=head+vparam(i)+'['+string(size(vparamv(i),'*'))+'](start={';
            P_fix='fixed={'
            for j=1:size(vparamv(i),'*')
-             if int(vparamv(i)(j))==vparamv(i)(j) then
-               head=head+string(vparamv(i)(j))+'.0'
-             else
-               head=head+string(vparamv(i)(j))
-             end
+             head=head+msprintf('%e', vparamv(i)(j));
              P_fix=P_fix+'true'
              if j<>size(vparamv(i),'*') then
                head=head+','
