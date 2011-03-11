@@ -158,6 +158,8 @@ Xcos
 
 * tbx_build_pal_loader function added to ease external module creation (See SEP #120).
 
+* A demo sub-panel has been added for event demos.
+
 
 Obsolete & Removed Functions
 ============================
