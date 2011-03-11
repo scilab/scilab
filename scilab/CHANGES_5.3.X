@@ -103,6 +103,8 @@ Bug fixes:
 * bug 9147 fixed - Javasci v1 was broken since the introduction of the
                    version 2.
 
+* bug 9170 fixed - 'help clink' threw an exception.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================

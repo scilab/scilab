@@ -304,15 +304,15 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             return;
         }
         final String kw = keyword;
-        try {
-            SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
                         jhelp.setCurrentID(kw);
+                    } catch (BadIDException e) {
+                        fullTextSearch(kw);
                     }
-                });
-        } catch (BadIDException e) {
-            fullTextSearch(keyword);
-        }
+                }
+            });
     }
 
     /**
