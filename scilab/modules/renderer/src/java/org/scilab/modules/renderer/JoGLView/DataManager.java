@@ -56,6 +56,7 @@ public class DataManager {
 
 
     private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
+    private final Map<String, ElementsBuffer> colorBufferMap = new HashMap<String, ElementsBuffer>();
     private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
     private final Canvas canvas;
@@ -78,6 +79,22 @@ public class DataManager {
             fillVertexBuffer(vertexBuffer, id);
             vertexBufferMap.put(id, vertexBuffer);
             return vertexBuffer;
+        }
+    }
+
+    /**
+     * Return the color buffer of the given object.
+     * @param id the given object Id.
+     * @return the color buffer of the given object.
+     */
+    public ElementsBuffer getColorBuffer(String id) {
+        if (colorBufferMap.containsKey(id)) {
+            return colorBufferMap.get(id);
+        } else {
+            ElementsBuffer colorBuffer = canvas.getBuffersManager().createElementsBuffer();
+            fillColorBuffer(colorBuffer, id);
+            colorBufferMap.put(id, colorBuffer);
+            return colorBuffer;
         }
     }
 
@@ -125,6 +142,11 @@ public class DataManager {
                 fillVertexBuffer(vertexBuffer, id);
             }
 
+            ElementsBuffer colorBuffer = colorBufferMap.get(id);
+            if (colorBuffer != null) {
+                fillColorBuffer(colorBuffer, id);
+            }
+
             IndicesBuffer indexBuffer = indexBufferMap.get(id);
             if (indexBuffer != null) {
                 fillIndexBuffer(indexBuffer, id);
@@ -147,6 +169,11 @@ public class DataManager {
             vertexBufferMap.remove(id);
         }
 
+        if (colorBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(colorBufferMap.get(id));
+            colorBufferMap.remove(id);
+        }
+
         if (indexBufferMap.containsKey(id)) {
             canvas.getBuffersManager().dispose(indexBufferMap.get(id));
             indexBufferMap.remove(id);
@@ -164,6 +191,13 @@ public class DataManager {
             FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
             DataLoader.fillVertices(id, data, length, 4, 0x1 | 0x2 | 0x4 | 0x8, DEFAULT_SCALE, DEFAULT_TRANSLATE, DEFAULT_LOG_MASK);
             vertexBuffer.setData(data, 4);
+    }
+
+    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) {
+            int length = DataLoader.getDataSize(id);
+            FloatBuffer data = BufferUtil.newFloatBuffer(length * 4);
+            DataLoader.fillColors(id, data, length, 4);
+            colorBuffer.setData(data, 4);
     }
 
     private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) {
