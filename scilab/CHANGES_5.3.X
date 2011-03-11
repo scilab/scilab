@@ -133,6 +133,8 @@ Bug fixes:
 
 * bug 9121 fixed - Doc generation did not fail when an invalid image was met.
 
+* bug 9125 fixed - Scilab could not start when called through a symbolic link.
+
 * bug 9126 fixed - Some new files of the module/toolbox skeleton introduced in
                    Scilab 5.3.1 were not installed.
 
