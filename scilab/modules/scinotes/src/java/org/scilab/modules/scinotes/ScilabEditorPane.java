@@ -134,7 +134,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         this.uuid = UUID.randomUUID();
-        updateCaret();
         edComponent = new EditorComponent(this);
 
         addCaretListener(this);
@@ -1243,13 +1242,22 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Add a the ScilabCaret
+     * {@inheritDoc}
      */
-    private void updateCaret() {
-        Caret caret = new SciNotesCaret(this);
-        caret.setBlinkRate(getCaret().getBlinkRate());
-        setCaretColor(getCaretColor());
-        setCaret(caret);
+    public void setCaret(Caret c) {
+        if (!(c instanceof ScilabCaret)) {
+            final Caret cc = c;
+            final Caret caret = new SciNotesCaret(this);
+            setCaretColor(getCaretColor());
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        caret.setBlinkRate(cc.getBlinkRate());
+                    }
+                });
+            super.setCaret(caret);
+        } else {
+            super.setCaret(c);
+        }
     }
 
     public void select(int start, int end) {

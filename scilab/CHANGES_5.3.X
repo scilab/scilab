@@ -10,6 +10,8 @@ Scinotes:
 * bug 9047 fixed - edit('foo',12) now opens the function foo 12 lines after the
                    definition of foo.
 
+* bug 9171 fixed - Problem to enter Japanese chars under Windows with IME.
+
 Xcos:
 =====
 
