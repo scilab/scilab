@@ -375,7 +375,7 @@ void visitprivate(const CallExp &e)
                 else
                 {
                     std::wostringstream os;
-                    os << L"inconsistent row/column dimensions\n";
+                    os << L"Invalid index\n";
                     //os << ((*e.args_get().begin())->location_get()).location_getString() << std::endl;
                     throw ScilabError(os.str(), 999, (*e.args_get().begin())->location_get());
                 }

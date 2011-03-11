@@ -650,6 +650,207 @@ namespace types
             return true;
         }
 
+        InternalType* remove(typed_list* _pArgs)
+	    {
+		    ArrayOf<T>* pOut    = NULL;
+            int iDims           = (int)_pArgs->size();
+            typed_list pArg;
+
+            int* piMaxDim       = new int[iDims];
+            int* piCountDim     = new int[iDims];
+
+            //evaluate each argument and replace by appropriate value and compute the count of combinations
+            int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+            if(iSeqCount == 0)
+            {//no Seq, no change but no error.
+                return this;
+            }
+            
+            bool* pbFull = new bool[iDims];
+            //coord must represent all values on a dimension
+            for(int i = 0 ; i < iDims ; i++)
+            {
+                pbFull[i]       = false;
+                int iDimToCheck = getVarMaxDim(i, iDims);
+                int iIndexSize  = pArg[i]->getAsGenericType()->getSize();
+
+                //we can have index more than once
+                if(iIndexSize >= iDimToCheck) 
+                {
+                    //size is good, now check datas
+                    double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
+                    for(int j = 0 ; j < iDimToCheck ; j++)
+                    {
+                        bool bFind = false;
+                        for(int k = 0 ; k < iIndexSize ; k++)
+                        {
+                            if((int)pIndexes[k] == j+1)
+                            {
+                                bFind = true;
+                                break;
+                            }
+                        }
+                        pbFull[i]  = bFind;
+                    }
+                }
+            }
+
+            //only one dims can be not full/entire
+            bool bNotEntire = false;
+            int iNotEntire  = 0;
+            bool bTooMuchNotEntire = false;
+            for(int i = 0 ; i < iDims ; i++)
+            {
+                if(pbFull[i] == false)
+                {
+                    if(bNotEntire == false)
+                    {
+                        bNotEntire = true;
+                        iNotEntire = i;
+                    }
+                    else
+                    {
+                        bTooMuchNotEntire = true;
+                        break;
+                    }
+                }
+            }
+
+            if(bTooMuchNotEntire == true)
+            {
+                return NULL;
+            }
+
+            delete[] pbFull;
+
+            //find index to keep
+            int iNotEntireSize          = pArg[iNotEntire]->getAsGenericType()->getSize();
+            double* piNotEntireIndex    = getDoubleArrayFromDouble(pArg[iNotEntire]);
+            int iKeepSize               = getVarMaxDim(iNotEntire, iDims);
+            bool* pbKeep                = new bool[iKeepSize];
+
+            //fill pbKeep with true value
+            for(int i = 0 ; i < iKeepSize ; i++)
+            {
+                pbKeep[i] = true;
+            }
+
+            for(int i = 0 ; i < iNotEntireSize ; i++)
+            {
+                int idx = piNotEntireIndex[i] - 1;
+
+                //don't care of value out of bounds
+                if(idx < iKeepSize)
+                {
+                    pbKeep[idx] = false;
+                }
+            }
+
+            int iNewDimSize = 0;
+            for(int i = 0 ; i < iKeepSize ; i++)
+            {
+                if(pbKeep[i] == true)
+                {
+                    iNewDimSize++;
+                }
+            }
+            delete[] pbKeep;
+
+            int* piNewDims = new int[iDims];
+            for(int i = 0 ; i < iDims ; i++)
+            {
+                if(i == iNotEntire)
+                {
+                    piNewDims[i] = iNewDimSize;
+                }
+                else
+                {
+                    piNewDims[i] = getVarMaxDim(i, iDims);
+                }
+            }
+
+            //remove last dimension if are == 1
+            int iOrigDims = iDims;
+            for(int i = (iDims - 1) ; i >= 2 ; i--)
+            {
+                if(piNewDims[i] == 1)
+                {
+                    iDims--;
+                }
+                else
+                {
+                    break;
+                }
+            }
+
+            if(iDims == 1)
+            {
+                if(iNewDimSize == 0)
+                {
+                    return createEmptyDouble();
+                }
+                else
+                {
+                    //two cases, depends of original matrix/vector
+                    if((*_pArgs)[0]->isColon() == false && m_iDims == 2 && m_piDims[1] != 1)
+                    {//special case for row vector
+                        int piRealDim[2] = {1, iNewDimSize};
+                        pOut = createEmpty(2, piRealDim, isComplex());
+                        //in this case we have to care of 2nd dimension
+                        iNotEntire = 1;
+                    }
+                    else
+                    {
+                        int piRealDim[2] = {iNewDimSize, 1};
+                        pOut = createEmpty(2, piRealDim, isComplex());
+                    }
+                }
+            }
+            else
+            {
+                pOut = createEmpty(iDims, piNewDims, isComplex());
+            }
+
+            delete[] piNewDims;
+            //find a way to copy existing data to new variable ...
+            int iNewPos = 0;
+            int* piIndexes = new int[iOrigDims];
+            int* piViewDims = new int[iOrigDims];
+            for(int i = 0 ; i < iOrigDims ; i++)
+            {
+                piViewDims[i] = getVarMaxDim(i, iOrigDims);
+            }
+
+            for(int i = 0 ; i < getSize() ; i++)
+            {
+                bool bByPass = false;
+                getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
+
+                //check if piIndexes use removed indexes
+                for(int j = 0 ; j < iNotEntireSize ; j++)
+                {
+                    if((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+                    {//by pass this value
+                        bByPass = true;
+                        break;
+                    }
+                }
+
+                if(bByPass == false)
+                {//compute new index
+                    pOut->set(iNewPos, get(i));
+                    if(isComplex())
+                    {
+                        pOut->setImg(iNewPos, getImg(i));
+                    }
+                    iNewPos++;
+                }
+            }
+            delete[] piIndexes;
+            delete[] piViewDims;
+            return pOut;
+        }
+
         InternalType* extract(typed_list* _pArgs)
 	    {
 		    ArrayOf<T>* pOut    = NULL;

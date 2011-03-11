@@ -175,6 +175,7 @@ void visitprivate(const AssignExp  &e)
 
             /*getting what to assign*/
             e.right_exp_get().accept(execMeR);
+            InternalType* pITR = execMeR.result_get();
             if(pIT == NULL)
             {//Var doesn't exist, create it with good dimensions
                 bNew = true;
@@ -192,67 +193,136 @@ void visitprivate(const AssignExp  &e)
             InternalType *pOut	= NULL;
 
             //fisrt extract implicit list
-            if(execMeR.result_get()->isImplicitList())
+            if(pITR->isImplicitList())
             {
-                InternalType *pIL = execMeR.result_get()->getAsImplicitList()->extractFullMatrix();
-                execMeR.result_set(pIL);
+                InternalType *pIL = pITR->getAsImplicitList()->extractFullMatrix();
+                pITR = pIL;
             }
-            else if(execMeR.result_get()->isContainer() && execMeR.result_get()->isRef())
+            else if(pITR->isContainer() && pITR->isRef())
             {
                 //std::cout << "assign container type during insertion" << std::endl;
-                InternalType* pIL = execMeR.result_get()->clone();
-                execMeR.result_set(pIL);
+                InternalType* pIL = pITR->clone();
+                pITR = pIL;
             }
 
-            //insert in a new variable or []
-            if(pIT == NULL || (pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0))
-            {//call static insert function
+            if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty())
+            {//insert [] so deletion !
+                if(pIT == NULL)
+                {
+                    pOut = Double::Empty();
+                    bNew = true;
+                }
+                else
+                {
+                    if(pIT->isDouble())
+                    {
+                        pOut = pIT->getAs<Double>()->remove(pArgs);
+                    }
+                    else if(pIT->isString())
+                    {
+                        pOut = pIT->getAs<String>()->remove(pArgs);
+                    }
+                    else if(pIT->isCell())
+                    {
+                        pOut = pIT->getAs<Cell>()->remove(pArgs);
+                    }
+                    else if(pIT->isBool())
+                    {
+                        pOut = pIT->getAs<Bool>()->remove(pArgs);
+                    }
+                    else if(pIT->isPoly())
+                    {
+                        pOut = pIT->getAs<Polynom>()->remove(pArgs);
+                    }
+                    else if(pIT->isInt8())
+                    {
+                        pOut = pIT->getAs<Int8>()->remove(pArgs);
+                    }
+                    else if(pIT->isUInt8())
+                    {
+                        pOut = pIT->getAs<UInt8>()->remove(pArgs);
+                    }
+                    else if(pIT->isInt16())
+                    {
+                        pOut = pIT->getAs<Int16>()->remove(pArgs);
+                    }
+                    else if(pIT->isUInt16())
+                    {
+                        pOut = pIT->getAs<UInt16>()->remove(pArgs);
+                    }
+                    else if(pIT->isInt32())
+                    {
+                        pOut = pIT->getAs<Int32>()->remove(pArgs);
+                    }
+                    else if(pIT->isUInt32())
+                    {
+                        pOut = pIT->getAs<UInt32>()->remove(pArgs);
+                    }
+                    else if(pIT->isInt64())
+                    {
+                        pOut = pIT->getAs<Int64>()->remove(pArgs);
+                    }
+                    else if(pIT->isUInt64())
+                    {
+                        pOut = pIT->getAs<UInt64>()->remove(pArgs);
+                    }
+
+                    if(pOut && pOut != pIT)
+                    {
+                        bNew = true;
+                    }
+                }
+            }
+            else if(pIT == NULL || (pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0))
+            {
+                //insert in a new variable or []
+                //call static insert function
                 //special case for insertion in [] 
                 if(pIT != NULL && pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0)
                 {
                     bNew = true;
                 }
 
-                switch(execMeR.result_get()->getType())
+                switch(pITR->getType())
                 {
                 case InternalType::RealDouble :
-                    pOut = Double::insertNew(pArgs, execMeR.result_get());
+                    pOut = Double::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealString :
-                    pOut = String::insertNew(pArgs, execMeR.result_get());
+                    pOut = String::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealCell :
-                    pOut = Cell::insertNew(pArgs, execMeR.result_get());
+                    pOut = Cell::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealBool :
-                    pOut = Bool::insertNew(pArgs, execMeR.result_get());
+                    pOut = Bool::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealPoly :
-                    pOut = Polynom::insertNew(pArgs, execMeR.result_get());
+                    pOut = Polynom::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealInt8 :
-                    pOut = Int8::insertNew(pArgs, execMeR.result_get());
+                    pOut = Int8::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealUInt8 :
-                    pOut = UInt8::insertNew(pArgs, execMeR.result_get());
+                    pOut = UInt8::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealInt16 :
-                    pOut = Int16::insertNew(pArgs, execMeR.result_get());
+                    pOut = Int16::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealUInt16 :
-                    pOut = UInt16::insertNew(pArgs, execMeR.result_get());
+                    pOut = UInt16::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealInt32 :
-                    pOut = Int32::insertNew(pArgs, execMeR.result_get());
+                    pOut = Int32::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealUInt32 :
-                    pOut = UInt32::insertNew(pArgs, execMeR.result_get());
+                    pOut = UInt32::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealInt64 :
-                    pOut = Int64::insertNew(pArgs, execMeR.result_get());
+                    pOut = Int64::insertNew(pArgs, pITR);
                     break;
                 case InternalType::RealUInt64 :
-                    pOut = UInt64::insertNew(pArgs, execMeR.result_get());
+                    pOut = UInt64::insertNew(pArgs, pITR);
                     break;
                 default :
                     {
@@ -268,7 +338,7 @@ void visitprivate(const AssignExp  &e)
             else
             {//call type insert function
                 InternalType* pRet = NULL;
-                InternalType* pInsert = execMeR.result_get();
+                InternalType* pInsert = pITR;
                 //check types compatibilties
 
                 if(pIT->isDouble() && pInsert->isDouble())
