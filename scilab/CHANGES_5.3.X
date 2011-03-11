@@ -43,6 +43,8 @@ Xcos:
 
 * bug 9122 fixed - Java check failed on diagram validation.
 
+* bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
+
 Javasci:
 ========
 
