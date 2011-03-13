@@ -16036,7 +16036,7 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar junit used
                 JUNIT=$PACKAGE_JAR_FILE
 
 
-		# CCSM Commons
+        # CCSM Commons
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking ccsm-commons" >&5
 $as_echo_n "checking ccsm-commons... " >&6; }
@@ -16132,7 +16132,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar ccsm-commons used by CCSM Commons (looking for package edu.tum.cs.commons.logging.*)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar ccsm-commons used by CCSM Commons (looking for package edu.tum.cs.commons.logging.*)" >&2;}
 	  else
@@ -16140,10 +16140,10 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar ccsm-commo
 	  fi
     fi
 
-	  	CCSM=$PACKAGE_JAR_FILE
+          CCSM=$PACKAGE_JAR_FILE
 
 
-		# CCSM Simulink
+        # CCSM Simulink
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking simulink" >&5
 $as_echo_n "checking simulink... " >&6; }
@@ -16239,7 +16239,7 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
+	  if test "" = "yes"; then
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar simulink used by CCSM Simulink model (looking for package edu.tum.cs.simulink.model.*)" >&5
 $as_echo "$as_me: WARNING: Could not find or use the Java package/jar simulink used by CCSM Simulink model (looking for package edu.tum.cs.simulink.model.*)" >&2;}
 	  else
@@ -16247,19 +16247,19 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar simulink u
 	  fi
     fi
 
-	  	SIMULINK=$PACKAGE_JAR_FILE
+          SIMULINK=$PACKAGE_JAR_FILE
 
 
-		# CCSM Cup runtime
+        # CCSM Cup runtime
 
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking cup-runtime" >&5
-$as_echo_n "checking cup-runtime... " >&6; }
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking cup" >&5
+$as_echo_n "checking cup... " >&6; }
 	PACKAGE_JAR_FILE=
 	found_jar=no
 	saved_ac_java_classpath=$ac_java_classpath
 	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/cup-runtime.jar" "$jardir/libcup-runtime.jar" "$jardir/libcup-runtime-java.jar" "$jardir/cup-runtime*.jar"; do
+      for jar in "$jardir/cup.jar" "$jardir/libcup.jar" "$jardir/libcup-java.jar" "$jardir/cup*.jar"; do
 #	jar=`echo $jar|sed -e 's/ /\\ /'`
 #	echo "protected $jar"
 #	jar_resolved=`ls $jar 2>/dev/null`
@@ -16346,15 +16346,15 @@ $as_echo "$jar_resolved" >&6; }
     if test "$found_jar" = "no"; then
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-	  if test ""yes"" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar cup-runtime used by Cup runtime (looking for package java_cup.runtime.*)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar cup-runtime used by Cup runtime (looking for package java_cup.runtime.*)" >&2;}
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar cup used by Cup runtime (looking for package java_cup.runtime.*)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar cup used by Cup runtime (looking for package java_cup.runtime.*)" >&2;}
 	  else
-		  as_fn_error $? "Could not find or use the Java package/jar cup-runtime used by Cup runtime (looking for package java_cup.runtime.*)" "$LINENO" 5
+		  as_fn_error $? "Could not find or use the Java package/jar cup used by Cup runtime (looking for package java_cup.runtime.*)" "$LINENO" 5
 	  fi
     fi
 
-	  	JAVA_CUP=$PACKAGE_JAR_FILE
+          JAVA_CUP=$PACKAGE_JAR_FILE
 
 
 
