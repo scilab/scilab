@@ -28,13 +28,11 @@ extern "C"
 InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
 
     /*
     ** DOUBLE + DOUBLE
     */
-    if(TypeR == GenericType::RealDouble && TypeL == GenericType::RealDouble)
+    if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Double *pR = _pRightOperand->getAs<Double>();
@@ -58,7 +56,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** STRING + STRING
     */
-    else if(TypeL == GenericType::RealString && TypeR == GenericType::RealString)
+    else if(_pLeftOperand->isString() && _pRightOperand->isString())
     {
         String *pL = _pLeftOperand->getAs<types::String>();
         String *pR = _pRightOperand->getAs<types::String>();
@@ -82,7 +80,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** DOUBLE + POLY
     */
-    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    else if(_pLeftOperand->isDouble() && _pRightOperand->isPoly())
     {
         Double *pL          = _pLeftOperand->getAs<Double>();
         Polynom *pR      = _pRightOperand->getAs<types::Polynom>();
@@ -100,7 +98,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** POLY + DOUBLE
     */
-    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    else if(_pLeftOperand->isPoly() && _pRightOperand->isDouble())
     {
         Double *pR	        = _pRightOperand->getAs<Double>();
         Polynom *pL      = _pLeftOperand->getAs<types::Polynom>();
@@ -118,7 +116,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** POLY + POLY
     */
-    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    else if(_pLeftOperand->isPoly() && _pRightOperand->isPoly())
     {
         Polynom *pL	= _pLeftOperand->getAs<types::Polynom>();
         Polynom *pR	= _pRightOperand->getAs<types::Polynom>();
@@ -146,7 +144,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** DOUBLE + STRING
     */
-    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealString)
+    else if(_pLeftOperand->isDouble() && _pRightOperand->isString())
     {
         if(_pLeftOperand->getAs<Double>()->getSize() == 0)
         {//[] + "" -> ""
@@ -162,7 +160,7 @@ InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOper
     /*
     ** STRING + DOUBLE
     */
-    else if(TypeL == GenericType::RealString && TypeR == GenericType::RealDouble)
+    else if(_pLeftOperand->isString() && _pRightOperand->isDouble())
     {
         if(_pRightOperand->getAs<Double>()->getSize() == 0)
         {//"text" + [] -> ""
@@ -345,7 +343,7 @@ int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut
 					(*_pDoubleOut)->getReal(), (*_pDoubleOut)->getImg());
 		}
 	}
-	else 
+	else
     {
         //check dimension compatibilities ( same number of dimension and same size for each dimension
         if(iDims1 != iDims2)

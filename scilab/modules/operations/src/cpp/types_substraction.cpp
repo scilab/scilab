@@ -25,13 +25,11 @@ extern "C"
 InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOperand)
 {
     InternalType *pResult = NULL;
-    GenericType::RealType TypeL = _pLeftOperand->getType();
-    GenericType::RealType TypeR = _pRightOperand->getType();
 
     /*
     ** DOUBLE - DOUBLE
     */
-    if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+    if(_pLeftOperand->isDouble() && _pRightOperand->isDouble())
     {
         Double *pL = _pLeftOperand->getAs<Double>();
         Double *pR = _pRightOperand->getAs<Double>();
@@ -47,7 +45,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
     /*
     ** DOUBLE - POLY
     */
-    else if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealPoly)
+    else if(_pLeftOperand->isDouble() && _pRightOperand->isPoly())
     {
         Double *pL              = _pLeftOperand->getAs<Double>();
         Polynom *pR          = _pRightOperand->getAs<types::Polynom>();
@@ -63,7 +61,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
     /*
     ** POLY - DOUBLE
     */
-    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+    else if(_pLeftOperand->isPoly() && _pRightOperand->isDouble())
     {
         Polynom *pL			= _pLeftOperand->getAs<types::Polynom>();
         Double *pR				= _pRightOperand->getAs<Double>();
@@ -79,7 +77,7 @@ InternalType* GenericMinus(InternalType* _pLeftOperand, InternalType* _pRightOpe
     /*
     ** POLY - POLY
     */
-    else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealPoly)
+    else if(_pLeftOperand->isPoly() && _pRightOperand->isPoly())
     {
         Polynom *pL			= _pLeftOperand->getAs<types::Polynom>();
         Polynom *pR			= _pRightOperand->getAs<types::Polynom>();
