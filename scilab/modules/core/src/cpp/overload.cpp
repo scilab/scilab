@@ -13,8 +13,10 @@ extern "C"
 {
 #include "stdarg.h"
 #include "localization.h"
+#include "os_swprintf.h"
 }
 
+#include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
 #include "scilabexception.hxx"
@@ -48,8 +50,24 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     {
         throw ast::ScilabError(_W("check or define function ") + _stOverloadingFunctionName + _W(" for overloading.\n\n"), 999, *new Location());
     }
-
-    return pIT->getAsCallable()->call(in, _iRetCount, out, _execMe);
+    types::Callable *pCall = pIT->getAs<types::Callable>();
+    try
+    {
+        return pCall->call(in, _iRetCount, out, _execMe);
+    }
+    catch (ScilabException se)
+    {
+        if(pCall->isMacro() || pCall->isMacroFile())
+        {
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), se.GetErrorLocation().first_line, pCall->getName().c_str());
+            throw ScilabMessage(szError);
+        }
+        else
+        {
+            throw se;
+        }
+    }
 }
 
 std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
