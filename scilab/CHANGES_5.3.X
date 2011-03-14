@@ -58,6 +58,10 @@ Javasci:
 
 * Javasci v2 FAQ updated.
 
+* bug 6823 fixed - In Javasci v1, the constructor 
+                   SciStringArray(String name, int r, int c) did not work.
+                   Thanks to F. Legrand for providing the fix.
+
 * bug 9147 fixed - Javasci v1 was broken since the introduction of the
                    version 2.
 
