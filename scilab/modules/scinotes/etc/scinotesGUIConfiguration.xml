@@ -73,6 +73,9 @@
       <menuitem action="FindPreviousAction" label="Find Previous"/>
       <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
       <separator/>
+      <menuitem action="SearchWordInFilesAction" label="Find word in files"/>
+      <menuitem action="SearchFilesAction" label="Find files"/>
+      <separator/>
       <menuitem action="SetAnchorAction" label="Set anchor"/>
       <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
       <menuitem action="GotoNextAnchorAction" label="Go to next anchor"/>

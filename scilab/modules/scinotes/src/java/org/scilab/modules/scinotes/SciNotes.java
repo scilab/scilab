@@ -87,9 +87,11 @@ import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
 import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.SetColorsAction;
+import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
+import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
@@ -186,11 +188,17 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void setTitle(String title) {
         super.setTitle(title);
-        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities
-            .getAncestorOfClass(SwingScilabWindow.class, tabPane);
+        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
         if (window != null) {
             window.setTitle(title);
         }
+    }
+
+    /**
+     * @return the SwingScilabWindow containing this editor
+     */
+    public SwingScilabWindow getSwingParentWindow() {
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
     /**
@@ -456,6 +464,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
         ConfigTabulationsAction.closeConfTabWindow();
+        SearchWordInFilesAction.closeWindow();
 
         while (getTabPane().getTabCount() > 0) {
             closeTabAt(0, true);
@@ -463,6 +472,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         scinotesList.remove(this);
         if (scinotesList.size() == 0) {
             NavigatorWindow.closeCurrent();
+            SearchFile.closeCurrent();
         }
         editor = null;
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
@@ -1810,6 +1820,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         }
                         scinotesList.clear();
                         NavigatorWindow.closeCurrent();
+                        SearchFile.closeCurrent();
                     }
                 });
         } catch (InterruptedException e) {
