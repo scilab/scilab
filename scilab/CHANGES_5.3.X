@@ -86,6 +86,8 @@ Bug fixes:
 
 * bug 7954 fixed - Using TCL_EvalStr randomly froze Scilab.
 
+* bug 8317 fixed - Confusing examples updated.
+
 * bug 8371 fixed - Each thread used to get the command line was not detached
                    from the JVM.
 
