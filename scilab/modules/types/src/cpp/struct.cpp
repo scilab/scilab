@@ -14,6 +14,13 @@
 #include "symbol.hxx"
 #include "struct.hxx"
 #include "string.hxx"
+#include "scilabexception.hxx"
+
+extern "C"
+{
+#include "localization.h"
+#include "charEncoding.h"
+}
 
 namespace types
 {
@@ -177,6 +184,33 @@ namespace types
             }
         }
         return ostr.str();
+    }
+
+    InternalType* Struct::insert(typed_list* _pArgs, InternalType* _pSource)
+    {
+        //check input param
+        if(_pArgs->size() != 1)
+        {
+            std::wostringstream os;
+            os << _W("Unable to insert multiple item in a struct.\n");
+            throw ast::ScilabError(os.str());
+        }
+        String* pstKey = (*_pArgs)[0]->getAs<String>();
+
+        if(pstKey == NULL)
+        {
+            std::wostringstream os;
+            os << _W("Assignment between unlike types is not allowed.\n");
+            throw ast::ScilabError(os.str());
+        }
+
+        for (int i = 0 ; i < pstKey->getSize() ; ++i)
+        {
+            this->add(std::wstring(pstKey->get(i)), _pSource);
+        }
+
+        return this;
+
     }
 
     std::vector<InternalType*> Struct::extract(std::list<std::wstring> _stFields)

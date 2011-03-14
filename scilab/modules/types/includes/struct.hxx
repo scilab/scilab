@@ -60,6 +60,7 @@ namespace types
         */
         bool                                    exists(const std::wstring& _sKey);
 
+        InternalType*                           insert(typed_list* _pArgs, InternalType* _pSource);
         std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
         String*                                 getFieldNames();
 

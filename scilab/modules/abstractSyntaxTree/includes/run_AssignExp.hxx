@@ -266,6 +266,11 @@ void visitprivate(const AssignExp  &e)
                     {
                         pOut = pIT->getAs<UInt64>()->remove(pArgs);
                     }
+                    else if(pIT->isStruct())
+                    {
+                        // a.b = [] is not a deletion !!
+                        pOut = pIT->getAs<Struct>()->insert(pArgs, pITR);
+                    }
 
                     if(pOut && pOut != pIT)
                     {
@@ -277,7 +282,7 @@ void visitprivate(const AssignExp  &e)
             {
                 //insert in a new variable or []
                 //call static insert function
-                //special case for insertion in [] 
+                //special case for insertion in []
                 if(pIT != NULL && pIT->isDouble() && pIT->getAs<Double>()->getSize() == 0)
                 {
                     bNew = true;
@@ -397,6 +402,10 @@ void visitprivate(const AssignExp  &e)
                 {
                     pRet = pIT->getAsList()->insert(pArgs, pInsert);
                 }
+                else if(pIT->isStruct())
+                {
+                    pRet = pIT->getAsStruct()->insert(pArgs, pInsert);
+                }
                 else
                 {//overloading
                     T execMe;
@@ -450,7 +459,7 @@ void visitprivate(const AssignExp  &e)
                 {
                     bNew = true;
                 }
-                
+
                 pOut = pRet;
             }
 
