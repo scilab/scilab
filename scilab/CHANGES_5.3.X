@@ -12,7 +12,11 @@ Scinotes:
 
 * bug 9171 fixed - Problem to enter Japanese chars under Windows with IME.
 
+* bug 9186 fixed - An exception was thrown when textfield got the focus in code
+                   navigator.
+
 * bug 9189 fixed - Certains keywords were not helpable.
+
 
 Xcos:
 =====
