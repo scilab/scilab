@@ -54,6 +54,13 @@ Javasci:
                    version 2.
 
 
+Graphics:
+=========
+
+* It was not possible to set the compression quality when exporting into jpeg.
+  See bug 5573 and SEP 52.
+
+
 Localization:
 =============
 

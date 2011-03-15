@@ -49,7 +49,7 @@ public class FileExporter {
      * @return 0 if everything worked fine, a non null integer if an exception occured
      *         depending on the kind of error
      */
-    public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
+    public static int fileExport(int figureIndex, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
         int saveFileType = -1;
         String saveFileName = "";
     
@@ -129,7 +129,7 @@ public class FileExporter {
         }
     
         ExportRenderer export;
-        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
+        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, jpegCompressionQuality, fileOrientation);
 
         // To be sure that their is a GLContext active for export
         exportedFig.openGraphicCanvas();
