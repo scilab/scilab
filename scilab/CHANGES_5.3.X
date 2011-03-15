@@ -77,6 +77,16 @@ Xcos:
 
 * bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
 
+Packaging:
+==========
+
+* In the source tree, Scilab's icons moved from icons/ to desktop/
+
+* In the source tree, scilab-adv-cli.desktop, scilab-cli.desktop,
+  scilab.desktop can be found desktop/. This follows the FreeDesktop Standards:
+  "Desktop Entry Specification".
+
+
 Javasci:
 ========
 
