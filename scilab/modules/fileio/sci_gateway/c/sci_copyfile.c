@@ -25,6 +25,7 @@
 #include "splitpath.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+#include "api_oldstack.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t* getFilenameWithExtension(wchar_t* wcFullFilename);
 static int returnCopyFileResultOnStack(int ierr, char *fname, int* _piKEy);

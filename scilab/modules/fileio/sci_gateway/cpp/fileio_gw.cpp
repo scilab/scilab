@@ -46,5 +46,6 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fileext", &sci_fileext, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"createdir", &sci_createdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fullpath", &sci_fullpath, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"copyfile", &sci_copyfile, MODULE_NAME));
     return true;
 }
