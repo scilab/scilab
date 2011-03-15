@@ -5,7 +5,7 @@
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -50,22 +50,26 @@ public class ExportBitmap extends ExportToFile {
 	 * @return a int which is a type of error
 	 */
 	public int exportToBitmap() {				
-    String suffix = ExportRenderer.getFileExtension();
+	String suffix = ExportRenderer.getFileExtension();
 
-    if (suffix.length() == 0) {
+	if (suffix.length() == 0) {
 		  switch (getFiletype()) {
-		    case ExportRenderer.BMP_EXPORT:  suffix = "bmp";
-		    break;
-		    case ExportRenderer.GIF_EXPORT:  suffix = "gif";
-		    break;
-		    case ExportRenderer.JPG_EXPORT:  suffix = "jpg";
-		    break;
-		    case ExportRenderer.PNG_EXPORT:  suffix = "png";
-		    break;
-		    
-		    default: return ExportRenderer.INVALID_FILE;
-      }
-    }
+			case ExportRenderer.BMP_EXPORT:
+				suffix = "bmp";
+			break;
+			case ExportRenderer.GIF_EXPORT:
+				suffix = "gif";
+			break;
+			case ExportRenderer.JPG_EXPORT:
+				suffix = "jpg";
+			break;
+			case ExportRenderer.PNG_EXPORT:
+				suffix = "png";
+			break;
+			default: 
+				return ExportRenderer.INVALID_FILE;
+	  }
+	}
 
 		/** Select the screen-shot format */		
 		switch (getFiletype()) {
@@ -82,7 +86,7 @@ public class ExportBitmap extends ExportToFile {
 		try {			
 			/** Generate the screen-shot */		
 			//Check if we have the permission to export			
-			if (checkWritePermission(file) == ExportRenderer.SUCCESS) {
+			if (Utils.checkWritePermission(file) == ExportRenderer.SUCCESS) {
 				dump = Screenshot.readToBufferedImage(getWidth(), getHeight());
 				//flip the screen-shot if the dump is mirrored
 				dumpFlip();
@@ -97,29 +101,10 @@ public class ExportBitmap extends ExportToFile {
 	}
 
 	/**
-	 * Check if we have the permission to export on this file
-	 * @param file exported file
-	 * @return permission status
-	 */
-	public int checkWritePermission(File file) {
-		try {
-			file.createNewFile();			
-			if (!file.canWrite()) {
-				return ExportRenderer.INVALID_FILE;
-			}
-			return ExportRenderer.SUCCESS;
-		} catch (IOException e1) {
-			return ExportRenderer.IOEXCEPTION_ERROR;
-		} catch (SecurityException e2) {
-			return ExportRenderer.INVALID_FILE;
-		}
-	}
-
-	/**
 	 * flip the screen-shot if it's mirrored
 	 * @return result of dumpFlip (success or fail)
 	 */
-	public int dumpFlip() {
+	private int dumpFlip() {
 		// check if it was the case
 		boolean needFlip;
 		try {
@@ -145,7 +130,7 @@ public class ExportBitmap extends ExportToFile {
 	 * Gives the extension of a file name
 	 * @return the extension of the file
 	 */
-	public String getFileExtension() {		
+	private String getFileExtension() {		
 		
 		String fileName = file.getName().toLowerCase();
 		fileExtension = fileName.substring(fileName.lastIndexOf('.') + 1, fileName.length());
