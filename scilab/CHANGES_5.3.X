@@ -125,6 +125,9 @@ Bug fixes:
 * bug 5687 fixed - The window title of a figure was not immediately updated when
                    figure_name was changed.
 
+* bug 6945 fixed - Conflicting options were confusing Scilab argument processing
+                   (example: scilab-cli with the -nw option)
+
 * bug 7954 fixed - Using TCL_EvalStr randomly froze Scilab.
 
 * bug 7976 fixed - help/cleaner_help.sce was not called when cleaning a toolbox.

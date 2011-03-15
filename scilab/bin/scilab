@@ -805,7 +805,19 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
+            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+                ;;
+            -nw)
+                if test "$SCILAB_MODE" = "nwni"; then
+                    echo "Cannot use scilab-cli with option -nw"
+                    exit 5
+                fi
+                ;;
+            -nwni)
+                if test "$SCILAB_MODE" = "nw"; then
+                    echo "Cannot use scilab-adv-cli with option -nwni"
+                    exit 5
+                fi
                 ;;
             -psn_*)
         # Under Mac OS X, .app is adding the arg -psn_0_xxxx
