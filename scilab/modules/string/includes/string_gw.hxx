@@ -38,6 +38,7 @@ CPP_GATEWAY_PROTOTYPE(sci_strsubst);
 CPP_GATEWAY_PROTOTYPE(sci_ascii);
 CPP_GATEWAY_PROTOTYPE(sci_strcat);
 CPP_GATEWAY_PROTOTYPE(sci_string);
+CPP_GATEWAY_PROTOTYPE(sci_convstr);
 
 
 #endif /* !__STRING_GW_HXX__ */

@@ -436,10 +436,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_convstr.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_isalphanum.c"
 				>
 			</File>
