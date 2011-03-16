@@ -105,6 +105,8 @@ Bug fixes:
 
 * bug 7954 fixed - Using TCL_EvalStr randomly froze Scilab.
 
+* bug 7976 fixed - help/cleaner_help.sce was not called when cleaning a toolbox.
+
 * bug 8317 fixed - Confusing examples updated.
 
 * bug 8371 fixed - Each thread used to get the command line was not detached
