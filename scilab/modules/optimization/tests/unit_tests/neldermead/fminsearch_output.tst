@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,42 +10,6 @@
 
 // <-- ENGLISH IMPOSED -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -101,26 +66,32 @@ function outfun ( x , optimValues , state )
   mprintf ( "%d %e %d -%s- %s\n" , fc , fv , it , pr , state )
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
 //
 // Use several output functions
 //
 function outfun2 ( x , optimValues , state )
-  scf ( fig1 );
+  global __fig1__
+  scf ( __fig1__ );
   plot( x(1),x(2),'.');
 endfunction
 function outfun3 ( x , optimValues , state )
-  scf ( fig2 );
+  global __fig2__
+  scf ( __fig2__ );
   plot( x(1),x(2),'o');
 endfunction
 myfunctions = list ( outfun2 , outfun3 );
-fig1 = scf(1000);
-fig2 = scf(1001);
+global __fig1__
+global __fig2__
+__fig1__ = scf();
+__fig2__ = scf();
 opt = optimset ( "OutputFcn" , myfunctions );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close(fig1);
-close(fig2);
+close(__fig1__);
+close(__fig2__);
 //
 // Use plot function
 //
@@ -141,51 +112,63 @@ function plotfun ( x , optimValues , state )
   plot(x(1),x(2),'.');
 endfunction
 opt = optimset ( "PlotFcns" , plotfun);
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
 //
 // Use several plot functions
 //
 function plotfun2 ( x , optimValues , state )
-  scf ( fig1 );
+  global __fig1__
+  scf ( __fig1__ );
   plot( x(1),x(2),'.');
 endfunction
 function plotfun3 ( x , optimValues , state )
-  scf ( fig2 );
+  global __fig2__
+  scf ( __fig2__ );
   plot( x(1),x(2),'o');
 endfunction
 myfunctions = list ( plotfun2 , plotfun3 );
-fig1 = scf(1000);
-fig2 = scf(1001);
+global __fig1__
+global __fig2__
+__fig1__ = scf();
+__fig2__ = scf();
 opt = optimset ( "PlotFcns" , myfunctions );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close(fig1);
-close(fig2);
+close(__fig1__);
+close(__fig2__);
 //
 // Use optimplotfval plot function
 //
 opt = optimset ( "PlotFcns" , optimplotfval );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
 //
 // Use optimplotx plot function
 //
 opt = optimset ( "PlotFcns" , optimplotx );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
 //
 // Use optimplotfunccount plot function
 //
 opt = optimset ( "PlotFcns" , optimplotfunccount );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
 
 //
 // Use all 3 plot functions
 //
 myfunctions = list ( optimplotfval , optimplotx , optimplotfunccount );
 opt = optimset ( "PlotFcns" , myfunctions );
+opt = optimset ( opt , "MaxIter" , 10 );
 [x fval] = fminsearch ( rosenbrock , [-1.2 1] , opt );
-close();
+close(gcf());
+close(gcf());
+close(gcf());
 
 

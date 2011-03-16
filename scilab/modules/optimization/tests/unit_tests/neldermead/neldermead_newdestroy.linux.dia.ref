@@ -96,7 +96,7 @@ str = string(nm)
 !                                                                      !
 !Kelley Stagnation : F                                                 !
 !                                                                      !
-!Restart Epsilon : 2.220446e-016                                       !
+!Restart Epsilon : 2.220446e-16                                        !
 !                                                                      !
 !Restart Step : 1                                                      !
 !                                                                      !
@@ -148,7 +148,7 @@ str = string(nm)
 !                                                                      !
 !Optimum Parameters : [0]                                              !
 !                                                                      !
-!Optimum Function Value :0.000000e+000                                 !
+!Optimum Function Value :0.000000e+00                                  !
 !                                                                      !
 !Number of iterations : 0                                              !
 !                                                                      !
@@ -239,7 +239,7 @@ Expansion Factor (chi) : 2
 Contraction Factor (gamma) : 0.5
 Shrinkage Factor (sigma) : 0.5
 Kelley Stagnation : F
-Restart Epsilon : 2.220446e-016
+Restart Epsilon : 2.220446e-16
 Restart Step : 1
 Restart Maximum : 3
 Restart Simplex Method : oriented
@@ -265,7 +265,7 @@ Number of Inequality Constraints :0
 Bounds Mininimum : []
 Bounds Maxinimum :[]
 Optimum Parameters : [0]
-Optimum Function Value :0.000000e+000
+Optimum Function Value :0.000000e+00
 Number of iterations : 0
 Maximum number of iterations : 100
 Number function evaluations : 0
@@ -407,7 +407,7 @@ str = string(nm)
 !                                                                      !
 !Kelley Stagnation : F                                                 !
 !                                                                      !
-!Restart Epsilon : 2.220446e-016                                       !
+!Restart Epsilon : 2.220446e-16                                        !
 !                                                                      !
 !Restart Step : 1                                                      !
 !                                                                      !
@@ -459,7 +459,7 @@ str = string(nm)
 !                                                                      !
 !Optimum Parameters : [0]                                              !
 !                                                                      !
-!Optimum Function Value :0.000000e+000                                 !
+!Optimum Function Value :0.000000e+00                                  !
 !                                                                      !
 !Number of iterations : 0                                              !
 !                                                                      !
@@ -550,7 +550,7 @@ Expansion Factor (chi) : 2
 Contraction Factor (gamma) : 0.5
 Shrinkage Factor (sigma) : 0.5
 Kelley Stagnation : F
-Restart Epsilon : 2.220446e-016
+Restart Epsilon : 2.220446e-16
 Restart Step : 1
 Restart Maximum : 3
 Restart Simplex Method : oriented
@@ -576,7 +576,7 @@ Number of Inequality Constraints :3
 Bounds Mininimum : []
 Bounds Maxinimum :[]
 Optimum Parameters : [0]
-Optimum Function Value :0.000000e+000
+Optimum Function Value :0.000000e+00
 Number of iterations : 0
 Maximum number of iterations : 200
 Number function evaluations : 0
