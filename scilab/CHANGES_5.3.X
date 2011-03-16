@@ -75,6 +75,14 @@ Javasci:
                    version 2.
 
 
+Dynamic link:
+=============
+
+* Under GNU/Linux and Mac OS X, the dynamic link is now creating a subdirectory
+  of TMPDIR instead of doing everything in the same directory. This could have
+  lead to unexpected side effects.
+
+
 Graphics:
 =========
 
