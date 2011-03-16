@@ -404,6 +404,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getBlasType.c"
+				>
+			</File>
+			<File
 				RelativePath=".\getScilabDirectory.c"
 				>
 			</File>
@@ -510,6 +514,10 @@
 			</File>
 			<File
 				RelativePath=".\forbiddenToUseScilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getBlasType.h"
 				>
 			</File>
 			<File

@@ -1981,7 +1981,6 @@ check_modules_xml
 ver
 add_demo
 edit
-with_atlas
 whereami
 with_texmacs
 with_tk

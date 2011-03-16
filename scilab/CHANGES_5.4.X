@@ -48,6 +48,8 @@ Removed functions (previously declared as obsolete):
 * ilib_for_link, ilib_build do not accept files with ".o" or ".obj" extensions
   for source files.
 
+* 'with_atlas' removed. Please use 'getdebuginfo' instead.
+
 
 Performance:
 ============
