@@ -9,20 +9,21 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
 #include "function.hxx"
+#include "overload.hxx"
 
 extern "C"
 {
 #include <stdlib.h>
 #include "api_oldstack.h"
 #include "sciprint.h"
-#include "Scierror.h" 
-#include "localization.h" 
-#include "charEncoding.h" 
+#include "Scierror.h"
+#include "localization.h"
+#include "charEncoding.h"
 }
 
 using namespace types;
@@ -123,12 +124,34 @@ int* api_LhsVar(int _iVal, void* _pvCtx)
 	{
 		return &api_fake_int;
 	}
-	
+
 	int* pVal = &(pStr->m_pOutOrder[_iVal - 1]);
 	return pVal;
 }
 
-void api_OverLoad(int _iVal)
+void api_OverLoad(int _iVal, int* _piKey)
 {
-	sciprint((char*)"call overload %d\n", _iVal);
+    GatewayStruct* pStr = (GatewayStruct*)_piKey;
+    Function::ReturnValue callResult;
+
+    if (_iVal == 0)
+    {
+        typed_list tlReturnedValues;
+        typed_list::iterator it;
+        int i = 0;
+        std::wstring wsFunName = std::wstring(L"%_") + std::wstring(pStr->m_pstName);
+
+        callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount),
+                                    tlReturnedValues, pStr->m_pVisitor);
+
+        if (callResult == Function::OK)
+        {
+            for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
+            {
+                (pStr->m_pOut)[i] = *it;
+                pStr->m_pOutOrder[i] = pStr->m_pIn->size() + i + 1;
+            }
+        }
+    }
+
 }

@@ -77,9 +77,9 @@ int* api_LhsVar(int _iVal, void* _pvCtx);
 
 #ifdef OverLoad
 #undef OverLoad
-#define OverLoad(x) api_OverLoad(x)
+#define OverLoad(x) api_OverLoad(x, _piKey)
 #endif
-void api_OverLoad(int _iVal);
+void api_OverLoad(int _iVal, int *_piKey);
 
 #ifdef __cplusplus
 }
