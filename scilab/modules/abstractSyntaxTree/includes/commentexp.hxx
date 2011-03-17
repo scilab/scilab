@@ -24,7 +24,7 @@ namespace ast
     {
     public:
         CommentExp (const Location& location,
-            std::wstring* comment) 
+            std::wstring* comment)
             : ConstExp (location),
             _comment (comment)
         {
@@ -41,7 +41,7 @@ namespace ast
         virtual CommentExp* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new CommentExp(*newloc, &comment_get());
+            return new CommentExp(*newloc, new std::wstring(comment_get()));
         }
 
         /** \name Visitors entry point.

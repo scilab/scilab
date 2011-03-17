@@ -81,7 +81,7 @@ namespace ast
         virtual VarDec* clone()
         {
             Location* newloc = const_cast<Location*>(&location_get())->clone();
-            return new VarDec(*newloc, name_get(), *init_get().clone());
+            return new VarDec(*newloc, *new symbol::Symbol(name_get().name_get()), *init_get().clone());
         }
         /** \name Visitors entry point.
         ** \{ */
