@@ -15,4 +15,6 @@ libdevelopment_tools_la_root_DATA =  license.txt version.xml
 libdevelopment_tools_la_etcdir = $(mydatadir)/etc
 libdevelopment_tools_la_etc_DATA = etc/development_tools.quit etc/development_tools.start
 
+MACROSDIRSEXT =  macros/assert
+
 include $(top_srcdir)/Makefile.incl.am
