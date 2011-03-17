@@ -109,10 +109,11 @@ namespace types
         gStr.m_pOut = tmpOut;
         gStr.m_piRetCount = &_iRetCount;
         gStr.m_pstName = const_cast<wchar_t*>(m_stName.c_str());
+        gStr.m_pVisitor = execFunc;
         // we should use a stack array of the max size to avoid dynamic alloc.
         std::vector<int> outOrder(_iRetCount < 1 ? 1 : _iRetCount, -1);
         gStr.m_pOutOrder = &outOrder[0];
-        
+
         char* pFunctionName = wide_string_to_UTF8(m_stName.c_str());
         //call gateway (thoses cast should looks  suspicious)
         iRet = m_pOldFunc(pFunctionName, reinterpret_cast<int*>(&gStr));

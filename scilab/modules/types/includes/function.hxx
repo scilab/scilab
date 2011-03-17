@@ -89,6 +89,7 @@ namespace types
         int*                    m_piRetCount;
         wchar_t*                m_pstName;
         int*                    m_pOutOrder;
+        ast::ConstVisitor*      m_pVisitor;
 
                                 GatewayStruct(){};
                                 ~GatewayStruct(){};
