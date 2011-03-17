@@ -140,7 +140,7 @@ wstring formatString(const wstring& wstFormat, ...)
     wchar_t pwstTemp[1024];
     va_list arglist;
     va_start(arglist, wstFormat);
-    int iLen = vswprintf(pwstTemp, 1024, wstFormat.c_str(), arglist);
+    int iLen = os_swprintf(pwstTemp, 1024, wstFormat.c_str(), arglist);
     va_end(arglist);
 
     return wstring(pwstTemp, iLen);
