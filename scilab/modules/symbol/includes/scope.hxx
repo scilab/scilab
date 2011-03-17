@@ -178,7 +178,14 @@ namespace symbol
             std::map<symbol::Symbol, types::InternalType*>::const_iterator it_scope;
             for(it_scope = _scope->begin() ; it_scope != _scope->end() ; ++it_scope)
             {
-                ostr << it_scope->first.name_get() << " = " << it_scope->second->toString(10,75) << std::endl;
+                //ostr << it_scope->first.name_get() << " = " << it_scope->second->toString(10,75) << std::endl;
+                if (it_scope->second->isMacroFile() == false && it_scope->second->isFunction() == false)
+                {
+                    ostr.width(25);
+                    ostr << it_scope->first.name_get();
+                    ostr << " (" << it_scope->second->getRef();
+                    ostr << ") = " << it_scope->second->getTypeStr() << std::endl;
+                }
             }
         }
 

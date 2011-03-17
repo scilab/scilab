@@ -28,7 +28,7 @@ namespace symbol
 {
 
     /** \brief Define class Context.
-    */
+     */
     class EXTERN_SYMBOL Context
     {
     public :
@@ -36,21 +36,21 @@ namespace symbol
         static Context* getInstance(void);
 
         /** Open a context scope i.e
-        ** open the heap table one
-        ** and the env table too. */
+         ** open the heap table one
+         ** and the env table too. */
         void scope_begin();
 
         /** Close a context scope i.e
-        ** close the heap table one
-        ** and the env table too. */
+         ** close the heap table one
+         ** and the env table too. */
         void scope_end();
 
         /** If key was associated to some Entry_T in the open scopes, return the
-        ** most recent insertion. Otherwise return the empty pointer. */
+         ** most recent insertion. Otherwise return the empty pointer. */
         types::InternalType*	get(const symbol::Symbol& key) const;
 
         /** If key was associated to some Entry_T in the last opened scope, return it.
-        ** Otherwise return the empty pointer. */
+         ** Otherwise return the empty pointer. */
         types::InternalType*	getCurrentLevel(const symbol::Symbol& key) const;
 
         /** If key was associated to some Entry_T in the open scopes, return the
@@ -58,7 +58,7 @@ namespace symbol
         types::InternalType*	getAllButCurrentLevel(const symbol::Symbol& key) const;
 
         /** If key was associated to some Entry_T in the open scopes, return the
-        ** most recent insertion. Otherwise return the empty pointer. */
+         ** most recent insertion. Otherwise return the empty pointer. */
         types::InternalType*	get_fun(const symbol::Symbol& key) const;
 
         /*return function list in the module _stModuleName*/
@@ -105,7 +105,21 @@ namespace symbol
         bool AddFunction(types::Function *_info);
         bool AddMacro(types::Macro *_info);
         bool AddMacroFile(types::MacroFile *_info);
-
+        void print(std::wostream& ostr) const
+        {
+            //ostr << L"  Global Functions:" << std::endl;
+            //ostr << L"=====================" << std::endl;
+            //ostr << HeapFunTable;
+            //ostr << L"  Global Variables:" << std::endl;
+            //ostr << L"=====================" << std::endl;
+            //ostr << HeapVarTable;
+            ostr << L"  Environment Functions:" << std::endl;
+            ostr << L"==========================" << std::endl;
+            ostr << EnvFunTable;
+            ostr << L"  Environment Variables:" << std::endl;
+            ostr << L"==========================" << std::endl;
+            ostr << EnvVarTable;
+        };
     private :
         Stack PrivateFunTable;
         Stack PrivateVarTable;
@@ -116,5 +130,12 @@ namespace symbol
 
         static Context* me;
     };
+
+    inline std::wostream& operator<< (std::wostream& ostr, const Context &ctx)
+    {
+        ctx.print(ostr);
+        return ostr;
+    }
+
 }
 #endif /* !__CONTEXT_HXX__ */

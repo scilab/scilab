@@ -207,23 +207,6 @@ namespace symbol
         return true;
     }
 
-    void Context::print()
-    {
-        //std::wcout << "PrivateFunTable : " << std::endl;
-        //std::wcout << PrivateFunTable << std::endl << std::endl;
-        //std::wcout << "PrivateVarTable : " << std::endl;
-        //std::wcout << PrivateVarTable << std::endl << std::endl;
-        //std::wcout << "EnvFunTable : " << std::endl;
-        //std::wcout << EnvFunTable << std::endl << std::endl;
-        std::wcout << "EnvVarTable : " << std::endl;
-        std::wcout << EnvVarTable << std::endl << std::endl;
-        //std::wcout << "HeapFunTable : " << std::endl;
-        //std::wcout << HeapFunTable << std::endl << std::endl;
-        std::wcout << "HeapVarTable : " << std::endl;
-        std::wcout << HeapVarTable << std::endl << std::endl;
-        //FIXME
-    }
-
     bool Context::AddFunction(types::Function *_info)
     {
         EnvFunTable.put(symbol::Symbol(_info->getName()), *_info);

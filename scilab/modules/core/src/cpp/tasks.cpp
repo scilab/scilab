@@ -174,7 +174,7 @@ void dumpStackTask(bool timed)
         _timer.start();
     }
 
-    symbol::Context::getInstance()->print();
+    symbol::Context::getInstance()->print(std::wcout);
 
     if(timed)
     {
