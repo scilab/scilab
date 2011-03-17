@@ -497,7 +497,7 @@ void visitprivate(const AssignExp  &e)
             if(execMeR.result_getSize() != 1)
             {
                 std::wostringstream os;
-                os << L"Lhs != Rhs";
+                os << L"Can not assign multiple value in a single variable" << std::endl;;
                 //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
@@ -545,7 +545,8 @@ void visitprivate(const AssignExp  &e)
             if(execMeR.result_getSize() != execMeR.expected_getSize())
             {
                 std::wostringstream os;
-                os << L"Lhs != Rhs";
+                os << L"Incompatible assignation: trying to assign " << execMeR.result_getSize();
+                os << " values in " << execMeR.expected_getSize() << " variables." << std::endl;
                 throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
             }
 
@@ -580,7 +581,7 @@ void visitprivate(const AssignExp  &e)
             {
                 //a is not a struct
                 const SimpleVar* pListVar =  dynamic_cast<const SimpleVar*>(pField->head_get());
-                if(pVar == NULL)
+                if(pListVar == NULL)
                 {
                     std::cout << "Houston ..." << std::endl;
                 }
