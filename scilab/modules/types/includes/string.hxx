@@ -57,7 +57,6 @@ namespace types
         virtual std::wstring    getShortTypeStr() {return L"c";}
         InternalType*           clone();
 
-    protected :
         RealType                getType();//			{ return RealString; }
         bool                    isString() { return true; }
 
