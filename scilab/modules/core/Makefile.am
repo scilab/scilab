@@ -188,7 +188,6 @@ CORE_CPP_SOURCES = \
     src/cpp/search_functions.cpp \
     src/cpp/storeCommand.cpp \
     src/cpp/banner.cpp \
-    src/cpp/overload.cpp \
 	src/cpp/with_module.cpp \
 	src/cpp/runner.cpp
 

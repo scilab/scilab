@@ -426,6 +426,10 @@
 				RelativePath=".\src\c\DllmainApi_scilab.c"
 				>
 			</File>
+			<File
+				RelativePath=".\src\cpp\overload.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -522,6 +526,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\dynlib_api_scilab.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\overload.hxx"
 				>
 			</File>
 			<File

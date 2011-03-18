@@ -18,7 +18,8 @@ src/cpp/api_sparse.cpp \
 src/cpp/api_string.cpp \
 src/cpp/api_pointer.cpp \
 src/cpp/api_oldstack.cpp \
-src/cpp/api_error.cpp
+src/cpp/api_error.cpp \
+src/cpp/overload.cpp
 
 
 libsciapi_scilab_la_CFLAGS=-I$(srcdir)/includes/ \
@@ -57,9 +58,9 @@ libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) 
 
 # For the code check (splint)
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)
-INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS) 
+INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS)
 
-libsciapi_scilab_la_LIBADD =  
+libsciapi_scilab_la_LIBADD =
 #
 
 

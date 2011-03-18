@@ -190,8 +190,7 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/relocstack.f src/cpp/core_gw.cpp \
 	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
 	src/cpp/search_functions.cpp src/cpp/storeCommand.cpp \
-	src/cpp/banner.cpp src/cpp/overload.cpp \
-	src/cpp/with_module.cpp src/cpp/runner.cpp \
+	src/cpp/banner.cpp src/cpp/with_module.cpp src/cpp/runner.cpp \
 	sci_gateway/c/sci_stacksize.c sci_gateway/c/sci_mtlb_mode.c \
 	sci_gateway/c/sci_where.c sci_gateway/c/sci_errcatch.c \
 	sci_gateway/c/sci_format.c sci_gateway/c/sci_getmemory.c \
@@ -305,8 +304,7 @@ am__objects_5 = libscicore_la-core_gw.lo \
 	libscicore_la-hashtable_core.lo libscicore_la-namstr.lo \
 	libscicore_la-search_functions.lo \
 	libscicore_la-storeCommand.lo libscicore_la-banner.lo \
-	libscicore_la-overload.lo libscicore_la-with_module.lo \
-	libscicore_la-runner.lo
+	libscicore_la-with_module.lo libscicore_la-runner.lo
 am__objects_6 = libscicore_la-sci_stacksize.lo \
 	libscicore_la-sci_mtlb_mode.lo libscicore_la-sci_where.lo \
 	libscicore_la-sci_errcatch.lo libscicore_la-sci_format.lo \
@@ -715,7 +713,6 @@ CORE_CPP_SOURCES = \
     src/cpp/search_functions.cpp \
     src/cpp/storeCommand.cpp \
     src/cpp/banner.cpp \
-    src/cpp/overload.cpp \
 	src/cpp/with_module.cpp \
 	src/cpp/runner.cpp
 
@@ -1084,7 +1081,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-md5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-mode_exec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-namstr.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-overload.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-parse.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_la-readGateway.Plo@am__quote@
@@ -2010,13 +2006,6 @@ libscicore_la-banner.lo: src/cpp/banner.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/banner.cpp' object='libscicore_la-banner.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-banner.lo `test -f 'src/cpp/banner.cpp' || echo '$(srcdir)/'`src/cpp/banner.cpp
-
-libscicore_la-overload.lo: src/cpp/overload.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-overload.lo -MD -MP -MF $(DEPDIR)/libscicore_la-overload.Tpo -c -o libscicore_la-overload.lo `test -f 'src/cpp/overload.cpp' || echo '$(srcdir)/'`src/cpp/overload.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscicore_la-overload.Tpo $(DEPDIR)/libscicore_la-overload.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/overload.cpp' object='libscicore_la-overload.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscicore_la-overload.lo `test -f 'src/cpp/overload.cpp' || echo '$(srcdir)/'`src/cpp/overload.cpp
 
 libscicore_la-with_module.lo: src/cpp/with_module.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscicore_la-with_module.lo -MD -MP -MF $(DEPDIR)/libscicore_la-with_module.Tpo -c -o libscicore_la-with_module.lo `test -f 'src/cpp/with_module.cpp' || echo '$(srcdir)/'`src/cpp/with_module.cpp
