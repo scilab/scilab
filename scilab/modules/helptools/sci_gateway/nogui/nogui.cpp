@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Simon LIPP
+ *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,10 +11,14 @@
  *
  */
 
+#include "helptools_gw.hxx"
+
+extern "C"
+{
 #include "Scierror.h"
 #include "localization.h"
 #include "gw_helptools.h"
-
+}
 /*--------------------------------------------------------------------------*/
 int gw_helptools()
 {
@@ -26,3 +31,9 @@ int sci_buildDoc(char *fname, unsigned long l)
 	return 0;
 }
 /*--------------------------------------------------------------------------*/
+
+bool HelptoolsModule::Load()
+{
+    /* Do Nothing */
+    return true;
+}

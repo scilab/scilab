@@ -33,5 +33,6 @@
     <module name="localization" activate="yes"/>
     <module name="windows_tools" activate="yes"/>
     <module name="jvm" activate="yes"/>
+    <module name="helptools" activate="yes"/>
 </modules>
 

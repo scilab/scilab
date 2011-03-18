@@ -15,7 +15,8 @@ HELPTOOLS_SOURCES = src/jni/BuildDocObject.cpp \
 GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
 
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
-	sci_gateway/cpp/sci_buildDocv2.cpp
+	sci_gateway/cpp/sci_buildDocv2.cpp \
+	sci_gateway/cpp/helptools_gw.cpp
 
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
@@ -27,14 +28,16 @@ BUILT_SOURCES=giws
 endif
 
 else
-GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
+GATEWAY_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
 endif
 
 else
-GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
+GATEWAY_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
 endif
 
-pkglib_LTLIBRARIES = libscihelptools.la
+HELPTOOLS_DISABLE_CPP_SOURCES = sci_gateway/nogui/nogui.cpp
+
+pkglib_LTLIBRARIES = libscihelptools.la libscihelptools-disable.la
 
 libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -48,12 +51,19 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/system_env/includes/ \
 				-I$(top_srcdir)/modules/operations/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/symbol/includes/ \
+				-I$(top_srcdir)/modules/types/includes/ \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/
 
 
 libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
+
+libscihelptools_disable_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+
+libscihelptools_disable_la_SOURCES =  $(HELPTOOLS_DISABLE_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
