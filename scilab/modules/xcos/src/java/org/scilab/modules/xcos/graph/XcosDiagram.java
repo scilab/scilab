@@ -47,6 +47,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -1691,7 +1692,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void save(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
-		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
 		
 		final DOMSource src = new DOMSource(codec.encode(this));
@@ -1707,7 +1708,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void load(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
-		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
 		
 		final StreamSource src = new StreamSource(file);

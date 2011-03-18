@@ -48,6 +48,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -2100,23 +2101,28 @@ public final class ConfigSciNotesManager {
      * Save the modifications
      */
     private static void writeDocument() {
-
         Transformer transformer = null;
         try {
-            transformer = TransformerFactory.newInstance().newTransformer();
+            transformer = ScilabTransformerFactory.newInstance().newTransformer();
         } catch (TransformerConfigurationException e1) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(e1);
         } catch (TransformerFactoryConfigurationError e1) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(e1);
         }
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-        StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
-        DOMSource source = new DOMSource(document);
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException e) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+        if (transformer != null) {
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
+            DOMSource source = new DOMSource(document);
+            try {
+                transformer.transform(source, result);
+            } catch (TransformerException e) {
+                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+                System.err.println(e);
+            }
         }
     }
 
