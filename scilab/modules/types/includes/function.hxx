@@ -32,11 +32,12 @@ namespace types
     class Function : public Callable
     {
     public :
+        typedef void (*LOAD_DEPS)(void);
         typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
         typedef int (*OLDGW_FUNC)(char *fname, int* _piKey);
 
                                 Function() : Callable() {};
-                                Function(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
+                                Function(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
                                 ~Function();
 
         //FIXME : Should not return NULL
@@ -44,6 +45,8 @@ namespace types
 
         static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, std::wstring _szModule);
         static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _szName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
+        static Function*        createFunction(std::wstring _szName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
 
         Function*               getAsFunction(void);
         RealType                getType(void) { return RealFunction; }
@@ -61,6 +64,11 @@ namespace types
         virtual std::wstring    getShortTypeStr() {return L"fptr";}
 
         GW_FUNC                 getFunc() { return m_pFunc; }
+        LOAD_DEPS               getDeps() { return m_pLoadDeps; }
+
+    protected:
+        LOAD_DEPS               m_pLoadDeps;
+
     private :
         GW_FUNC                 m_pFunc;
     };
@@ -70,7 +78,7 @@ namespace types
     private :
                                 WrapFunction(WrapFunction* _pWrapFunction);
     public :
-                                WrapFunction(std::wstring _szName, OLDGW_FUNC _pFunc, std::wstring _szModule);
+                                WrapFunction(std::wstring _szName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _szModule);
 
                                 Callable::ReturnValue call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
         InternalType*           clone();

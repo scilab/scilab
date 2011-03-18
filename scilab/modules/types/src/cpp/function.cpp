@@ -26,15 +26,25 @@ namespace types
 {
     Function *Function::createFunction(std::wstring _stName, GW_FUNC _pFunc, std::wstring _stModule)
     {
-        return new Function(_stName, _pFunc, _stModule);
+        return new Function(_stName, _pFunc, NULL, _stModule);
     }
 
     Function *Function::createFunction(std::wstring _stName, OLDGW_FUNC _pFunc, std::wstring _stModule)
     {
-        return new WrapFunction(_stName, _pFunc, _stModule);
+        return new WrapFunction(_stName, _pFunc, NULL, _stModule);
     }
 
-    Function::Function(std::wstring _stName, GW_FUNC _pFunc, std::wstring _stModule) : Callable(), m_pFunc(_pFunc)
+    Function *Function::createFunction(std::wstring _stName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
+    {
+        return new Function(_stName, _pFunc, _pLoadDeps, _stModule);
+    }
+
+    Function *Function::createFunction(std::wstring _stName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
+    {
+        return new WrapFunction(_stName, _pFunc, _pLoadDeps, _stModule);
+    }
+
+    Function::Function(std::wstring _stName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
     {
         setName(_stName);
         setModule(_stModule);
@@ -54,6 +64,10 @@ namespace types
 
     Function::ReturnValue Function::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
+        if (m_pLoadDeps != NULL)
+        {
+            m_pLoadDeps();
+        }
         return this->m_pFunc(in, _iRetCount, out);
     }
 
@@ -78,11 +92,12 @@ namespace types
         return this;
     }
 
-    WrapFunction::WrapFunction(std::wstring _stName, OLDGW_FUNC _pFunc, std::wstring _stModule)
+    WrapFunction::WrapFunction(std::wstring _stName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _stModule)
     {
         m_stName = _stName;
         m_pOldFunc = _pFunc;
         m_stModule = _stModule;
+        m_pLoadDeps = _pLoadDeps;
     }
 
     WrapFunction::WrapFunction(WrapFunction* _pWrapFunction)
@@ -90,6 +105,7 @@ namespace types
         m_stModule  = _pWrapFunction->getModule();
         m_stName    = _pWrapFunction->getName();
         m_pOldFunc  = _pWrapFunction->getFunc();
+        m_pLoadDeps = _pWrapFunction->getDeps();
     }
 
     InternalType* WrapFunction::clone()
@@ -99,6 +115,11 @@ namespace types
 
     Function::ReturnValue WrapFunction::call(typed_list &in, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
     {
+        if (m_pLoadDeps != NULL)
+        {
+            m_pLoadDeps();
+        }
+
         ReturnValue retVal = Callable::OK;
         int iRet ;
         GatewayStruct gStr;
