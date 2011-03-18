@@ -63,7 +63,12 @@ public class ScilabConstants {
     	SCI = new File(value).getAbsoluteFile();
     	
     	value = ScilabCommons.getSCIHOME();
-    	SCIHOME = new File(value);
+    	if ("empty_SCIHOME".equals(value)) {
+    		// Empty java value is TMPDIR
+			SCIHOME = TMPDIR;
+		} else {
+			SCIHOME = new File(value);
+		}
     }
     
     /** This class is a static singleton, thus it must not be instantiated */
