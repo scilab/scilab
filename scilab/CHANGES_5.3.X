@@ -64,7 +64,7 @@ Javasci:
 
 * Javasci v2 FAQ updated.
 
-* bug 6823 fixed - In Javasci v1, the constructor 
+* bug 6823 fixed - In Javasci v1, the constructor
                    SciStringArray(String name, int r, int c) did not work.
                    Thanks to F. Legrand for providing the fix.
 
@@ -153,7 +153,11 @@ Bug fixes:
 
 * bug 9170 fixed - 'help clink' threw an exception.
 
+* bug 9195 fixed - Empty lines entered in Scilab console were displayed in
+                   the history browser.
+
 * bug 9200 fixed - perl.sci script crashed on Windows with a wrong error message.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
