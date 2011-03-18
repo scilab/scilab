@@ -47,6 +47,13 @@ public :
     static double getLog10Value(double value);
 
     /**
+     * Determines if a single-component point is valid in logarithmic scale.
+     * @param[in] the point's coordinate.
+     * @return 1 if the point is valid, 0 if it is not.
+     */
+    static int isLogValid(double x);
+
+    /**
      * Determines if a point is valid in logarithmic scale.
      * It checks whether any of the component is strictly less than 0 (if the
      * logarithmic scale applies). In the event of the former, the point is
@@ -59,12 +66,24 @@ public :
      */
     static int isLogValid(double x, double y, double z, int logMask);
 
-   /**
-    * Utility function which outputs the triangle indices of a rectangle decomposed
-    * into 2 adjacent triangles. Decomposition is always performed the same way as it does not
-    * depend on input vertex values. This function should therefore be used only for rectangles.
-    * @param[out] the triangle indices (v0, v1, v2), (v3, v4, v5).
-    */
+    /**
+     * Returns the maximum representable double value.
+     * @return the maximum representable double value.
+     */
+    static double getMaxDoubleValue(void);
+
+    /**
+     * Returns the minimum representable double value.
+     * @return the minimum representable double value.
+     */
+    static double getMinDoubleValue(void);
+
+    /**
+     * Utility function which outputs the triangle indices of a rectangle decomposed
+     * into 2 adjacent triangles. Decomposition is always performed the same way as it does not
+     * depend on input vertex values. This function should therefore be used only for rectangles.
+     * @param[out] the triangle indices (v0, v1, v2), (v3, v4, v5).
+     */
     static void getDecomposedRectangleTriangleIndices(int* indices);
 };
 

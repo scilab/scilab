@@ -15,8 +15,8 @@
 extern "C"
 {
 #include <math.h>
-#ifdef _MSC_VER
 #include <float.h>
+#ifdef _MSC_VER
 #define isnan _isnan
 #endif
 }
@@ -50,6 +50,18 @@ double DecompositionUtils::getLog10Value(double value)
     return log10(value);
 }
 
+int DecompositionUtils::isLogValid(double x)
+{
+    if (x > 0.0)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+
 int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
 {
     int valid = 1;
@@ -70,6 +82,16 @@ int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
     }
 
     return valid;
+}
+
+double DecompositionUtils::getMaxDoubleValue(void)
+{
+    return DBL_MAX;
+}
+
+double DecompositionUtils::getMinDoubleValue(void)
+{
+    return DBL_MIN;
 }
 
 /*
