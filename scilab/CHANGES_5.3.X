@@ -158,6 +158,8 @@ Bug fixes:
 
 * bug 9200 fixed - perl.sci script crashed on Windows with a wrong error message.
 
+* bug 9211 fixed - set("userdata", list()) crashed Scilab.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
