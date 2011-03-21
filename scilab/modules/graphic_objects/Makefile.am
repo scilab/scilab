@@ -47,6 +47,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/NgonPolylineData.cpp \
 								src/cpp/TriangleMeshData.cpp \
 								src/cpp/TriangleMeshFecData.cpp \
+								src/cpp/ColorComputer.cpp \
 								src/cpp/DecompositionUtils.cpp \
 								src/cpp/PolylineDecomposer.cpp
 

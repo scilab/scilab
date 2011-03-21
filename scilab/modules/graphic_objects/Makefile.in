@@ -147,6 +147,7 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-NgonPolylineData.lo \
 	libscigraphic_objects_la-TriangleMeshData.lo \
 	libscigraphic_objects_la-TriangleMeshFecData.lo \
+	libscigraphic_objects_la-ColorComputer.lo \
 	libscigraphic_objects_la-DecompositionUtils.lo \
 	libscigraphic_objects_la-PolylineDecomposer.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
@@ -539,6 +540,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/NgonPolylineData.cpp \
 								src/cpp/TriangleMeshData.cpp \
 								src/cpp/TriangleMeshFecData.cpp \
+								src/cpp/ColorComputer.cpp \
 								src/cpp/DecompositionUtils.cpp \
 								src/cpp/PolylineDecomposer.cpp
 
@@ -668,6 +670,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_disable_la-nographic_objects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-CallGraphicController.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-ColorComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Data3D.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-DataLoader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-DataLoader_wrap.Plo@am__quote@
@@ -862,6 +865,13 @@ libscigraphic_objects_la-TriangleMeshFecData.lo: src/cpp/TriangleMeshFecData.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshFecData.cpp' object='libscigraphic_objects_la-TriangleMeshFecData.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshFecData.lo `test -f 'src/cpp/TriangleMeshFecData.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecData.cpp
+
+libscigraphic_objects_la-ColorComputer.lo: src/cpp/ColorComputer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-ColorComputer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-ColorComputer.Tpo -c -o libscigraphic_objects_la-ColorComputer.lo `test -f 'src/cpp/ColorComputer.cpp' || echo '$(srcdir)/'`src/cpp/ColorComputer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-ColorComputer.Tpo $(DEPDIR)/libscigraphic_objects_la-ColorComputer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/ColorComputer.cpp' object='libscigraphic_objects_la-ColorComputer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-ColorComputer.lo `test -f 'src/cpp/ColorComputer.cpp' || echo '$(srcdir)/'`src/cpp/ColorComputer.cpp
 
 libscigraphic_objects_la-DecompositionUtils.lo: src/cpp/DecompositionUtils.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-DecompositionUtils.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Tpo -c -o libscigraphic_objects_la-DecompositionUtils.lo `test -f 'src/cpp/DecompositionUtils.cpp' || echo '$(srcdir)/'`src/cpp/DecompositionUtils.cpp

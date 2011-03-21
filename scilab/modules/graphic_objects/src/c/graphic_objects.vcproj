@@ -376,6 +376,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\ColorComputer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\createGraphicObject.cpp"
 				>
 			</File>
