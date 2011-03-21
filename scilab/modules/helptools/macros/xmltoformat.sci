@@ -28,7 +28,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // if dirs is not specified or [] then standard scilab man are assumed and
     // titles are searched in %helps
     // =========================================================================
-    
+
     my_wanted_language  = getlanguage(); // This variable is only need when
                                          // build all scilab help
 
@@ -842,21 +842,21 @@ function x2f_reset_help_mod_var(language)
 
     // Reset the variable in hand
     %helps_modules = [];
-    
+
     modules_ordered_list = mgetl(SCI + "/modules/helptools/etc/MAIN_CHAPTERS");
     // remove empty lines in MAIN_CHAPTERS
     modules_ordered_list(modules_ordered_list == "") = [];
-      
+
     // get current modules used by scilab
     current_modules_list = getmodules();
-      
+
     size_current_modules = size(current_modules_list, "*");
     size_modules_ordered = size(modules_ordered_list, "*");
-    
+
     if size_current_modules > size_modules_ordered then
       error(msprintf(gettext("%s: Please check %s, number of modules is invalid.\n"), "xmltoformat", SCI + "/modules/helptools/etc/MAIN_CHAPTERS"));
     end
-    
+
     // Remove modules not present
     k = 1;
     cleaned_ordered_modules = [];
@@ -868,9 +868,9 @@ function x2f_reset_help_mod_var(language)
         end
       end
     end
-    
+
     size_cleaned_modules = size(cleaned_ordered_modules, "*");
-    
+
     // Loop on modules available ordered
     for k = 1:size_cleaned_modules;
       addchapter_path = SCI + "/modules/" + cleaned_ordered_modules(k) + "/help/" + language + "/addchapter.sce";
@@ -1065,7 +1065,7 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     // remove duplicated names in current directory (example: case ".xml~")
     xmlfiles = unique(basename(findfiles(directory, "*.xml")));
-    
+
     xmlfiles = gsort(xmlfiles, "lr", "i");
     xmlfiles(grep(xmlfiles,"master_help")) = [];
     xmlfiles(grep(xmlfiles,"master"))      = [];
@@ -1346,7 +1346,7 @@ function desc_out = x2f_cat(desc_in_1,desc_in_2)
     // ... and now, Action
     // =========================================================================
 
-    fields_in_2      = getfield(1,desc_in_2);
+    fields_in_2      = fieldnames(desc_in_2);
     fields_in_2(1:2) = [];
 
     if or(isfield(desc_in_1,fields_in_2)) then
@@ -1410,6 +1410,7 @@ function master_document = x2f_tree_to_master( tree )
     tree_xmllist = x2f_cat_xmllist( tree , [] )
 
     // Process the path if under windows
+    pause
     if getos() == 'Windows' then
         tree_xmllist(:,2) = "file:///"+ strsubst(getshortpathname(tree_xmllist(:,2)) ,"\","/");
     end
@@ -1488,7 +1489,7 @@ function master_document = x2f_tree_to_master( tree )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees = fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1580,13 +1581,13 @@ function master_section = x2f_tree_to_section( tree , offset )
         // title built with the directory name
         section_title = tree("title_default");
     end
-    
+
     if (isfield(tree, "xml_id")) then
         xml_id = tree("xml_id");
     else
         xml_id = "section_"+getmd5(strsubst(tree("path"),SCI,""),"string");
     end
-    
+
     section_title  = strsubst(section_title,"&"  ,"&amp;");
     section_title  = strsubst(section_title,"""" ,"&quot;");
     section_title  = strsubst(section_title,">"  ,"&gt;");
@@ -1599,7 +1600,7 @@ function master_section = x2f_tree_to_section( tree , offset )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees =fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1656,7 +1657,7 @@ function tree_out = x2f_merge_trees( tree_in_1 , tree_in_2 )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree_in_1);
+    my_subtrees = fieldnames(tree_in_1);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
@@ -1748,7 +1749,7 @@ function xmllist_out = x2f_cat_xmllist( tree , xmllist_in )
     // Loop on dir_
     // =========================================================================
 
-    my_subtrees = getfield(1,tree);
+    my_subtrees = fieldnames(tree);
     my_subtrees(find(part(my_subtrees,1:4)<>"dir_")) = [];
 
     for i=1:size(my_subtrees,"*")
