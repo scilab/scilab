@@ -114,28 +114,19 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciparallel_la_rootdir)" \
 	"$(DESTDIR)$(libsciparallel_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libsciparallel_la_includedir)"
-LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libsciparallel_algo_la_LIBADD =
-am__objects_1 =
-@OPENMP_TRUE@am_libsciparallel_algo_la_OBJECTS = $(am__objects_1) \
-@OPENMP_TRUE@	$(am__objects_1)
-libsciparallel_algo_la_OBJECTS = $(am_libsciparallel_algo_la_OBJECTS)
-libsciparallel_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(libsciparallel_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
-libsciparallel_la_DEPENDENCIES = libsciparallel-algo.la
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libsciparallel_la_LIBADD =
 am__libsciparallel_la_SOURCES_DIST = src/noparallel/noparallel.h \
 	src/noparallel/noparallel.c sci_gateway/c/gw_parallel.c \
 	sci_gateway/c/sci_parallel_concurrency.c \
 	sci_gateway/cpp/sci_parallel_run.cpp
-am__objects_2 = libsciparallel_la-gw_parallel.lo \
+am__objects_1 = libsciparallel_la-gw_parallel.lo \
 	libsciparallel_la-sci_parallel_concurrency.lo
-am__objects_3 = libsciparallel_la-sci_parallel_run.lo
+am__objects_2 = libsciparallel_la-sci_parallel_run.lo
 @OPENMP_FALSE@am_libsciparallel_la_OBJECTS =  \
 @OPENMP_FALSE@	libsciparallel_la-noparallel.lo
-@OPENMP_TRUE@am_libsciparallel_la_OBJECTS = $(am__objects_2) \
-@OPENMP_TRUE@	$(am__objects_3)
+@OPENMP_TRUE@am_libsciparallel_la_OBJECTS = $(am__objects_1) \
+@OPENMP_TRUE@	$(am__objects_2)
 libsciparallel_la_OBJECTS = $(am_libsciparallel_la_OBJECTS)
 libsciparallel_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -162,10 +153,8 @@ CXXLD = $(CXX)
 CXXLINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciparallel_algo_la_SOURCES) \
-	$(libsciparallel_la_SOURCES)
-DIST_SOURCES = $(libsciparallel_algo_la_SOURCES) \
-	$(am__libsciparallel_la_SOURCES_DIST)
+SOURCES = $(libsciparallel_la_SOURCES)
+DIST_SOURCES = $(am__libsciparallel_la_SOURCES_DIST)
 DATA = $(libsciparallel_la_etc_DATA) $(libsciparallel_la_root_DATA) \
 	$(libsciparallel_la_sci_gateway_DATA)
 HEADERS = $(libsciparallel_la_include_HEADERS)
@@ -448,16 +437,18 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libsciparallel.la
-noinst_LTLIBRARIES = libsciparallel-algo.la
+#noinst_LTLIBRARIES = libsciparallel-algo.la
 libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
-libsciparallel_la_LIBADD = libsciparallel-algo.la
-@OPENMP_TRUE@libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
+#libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
+#libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
 @OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 @OPENMP_FALSE@src/noparallel/noparallel.c
 
+
+#libsciparallel_la_LIBADD = libsciparallel-algo.la
+
+#libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
 @OPENMP_TRUE@libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-@OPENMP_TRUE@libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
-@OPENMP_TRUE@libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -578,15 +569,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
-	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
-	  test "$$dir" != "$$p" || dir=.; \
-	  echo "rm -f \"$${dir}/so_locations\""; \
-	  rm -f "$${dir}/so_locations"; \
-	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -618,8 +600,6 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
-libsciparallel-algo.la: $(libsciparallel_algo_la_OBJECTS) $(libsciparallel_algo_la_DEPENDENCIES) 
-	$(libsciparallel_algo_la_LINK)  $(libsciparallel_algo_la_OBJECTS) $(libsciparallel_algo_la_LIBADD) $(LIBS)
 libsciparallel.la: $(libsciparallel_la_OBJECTS) $(libsciparallel_la_DEPENDENCIES) 
 	$(libsciparallel_la_LINK) -rpath $(pkglibdir) $(libsciparallel_la_OBJECTS) $(libsciparallel_la_LIBADD) $(LIBS)
 
@@ -908,7 +888,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -987,14 +967,14 @@ uninstall-am: uninstall-libsciparallel_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
-	distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-local distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libsciparallel_la_etcDATA \
+	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libsciparallel_la_etcDATA \
 	install-libsciparallel_la_includeHEADERS \
 	install-libsciparallel_la_rootDATA \
 	install-libsciparallel_la_sci_gatewayDATA install-man \

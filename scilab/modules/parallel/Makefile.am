@@ -36,17 +36,17 @@ libsciparallel_la_CPPFLAGS= $(OPENMP_CXXFLAGS) \
 
 
 pkglib_LTLIBRARIES = libsciparallel.la
-noinst_LTLIBRARIES = libsciparallel-algo.la
+#noinst_LTLIBRARIES = libsciparallel-algo.la
 
 libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciparallel_la_LIBADD = libsciparallel-algo.la
+#libsciparallel_la_LIBADD = libsciparallel-algo.la
 
 if OPENMP
-libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
+#libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
 libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
-libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
+#libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
+#libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
 else
 libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 src/noparallel/noparallel.c
