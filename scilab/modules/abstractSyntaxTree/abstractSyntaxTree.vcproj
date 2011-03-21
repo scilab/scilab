@@ -533,6 +533,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\resource.h"
+				>
+			</File>
+			<File
 				RelativePath=".\includes\returnexp.hxx"
 				>
 			</File>
@@ -625,6 +629,10 @@
 		</File>
 		<File
 			RelativePath="..\..\bin\lapack.lib"
+			>
+		</File>
+		<File
+			RelativePath="..\..\bin\libintl.lib"
 			>
 		</File>
 	</Files>

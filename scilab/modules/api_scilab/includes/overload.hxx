@@ -17,7 +17,12 @@
 #include "visitor.hxx"
 #include "opexp.hxx"
 
-class Overload
+extern "C"
+{
+#include "dynlib_api_scilab.h"
+}
+
+class API_SCILAB_IMPEXP Overload
 {
 public:
     /**
