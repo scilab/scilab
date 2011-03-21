@@ -192,7 +192,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // ---------------------------------------------------------------------
 
     elseif rhs == 4 then
-
         language_system   = [];
         default_language  = [];
 
@@ -284,7 +283,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         //
 
         for k=1:size(dirs_m,"*")
-
             this_tree                     = x2f_dir_to_tree(dirs_m(k),1);
             this_tree("title_addchapter") = titles_m(k);
             this_tree("language")         = directory_language_m(k);
@@ -523,7 +521,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // Check if the help file has been generated
-        if fileinfo(buildDoc_file)==[] then
+        if ~isfile(buildDoc_file) then
             error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
         end
 
@@ -621,7 +619,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // Check if the help file has been generated
-            if fileinfo(buildDoc_file)==[] then
+            if ~isfile(buildDoc_file) then
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -744,7 +742,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
              end
 
              // Check if the help file has been generated
-            if fileinfo(buildDoc_file)==[] then
+            if ~isfile(buildDoc_file) then
                 error(msprintf(gettext("%s: %s has not been generated."),"xmltoformat",buildDoc_file));
             end
 
@@ -944,14 +942,13 @@ function tree = x2f_dir_to_tree(directory,level)
     // Normalize the directory path
     directory    = pathconvert(directory);
 
-
     // init the structure
     tree          = struct();
     tree("path")  = directory;
     tree("level") = level;
 
     // If a master.xml file exists, don't go past
-    if fileinfo(directory+"master.xml")<>[] then
+    if isfile(directory+"master.xml") then
         tree("master.xml") = %T;
         return;
     else
@@ -963,17 +960,17 @@ function tree = x2f_dir_to_tree(directory,level)
     //
 
     // Parse the CHAPTER file to get the directory title if this file is present
-    if fileinfo(directory+"CHAPTER")<>[] then
+    if isfile(directory+"CHAPTER") then
         tree = x2f_cat(tree,x2f_read_CHAPTER(directory+"CHAPTER"));
     end
 
     // Check if the addchapter.sce is present
-    if fileinfo(directory+"addchapter.sce")<>[] then
+    if isfile(directory+"addchapter.sce") then
         tree("title_addchapter") = basename(directory);
     end
 
     // Check if the last_successful_build is present
-    if fileinfo(directory+".last_successful_build")<>[] then
+    if isfile(directory+".last_successful_build") then
         tree = x2f_cat(tree , x2f_read_lsb(directory+".last_successful_build"));
     end
 
@@ -1053,7 +1050,6 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     // Check the directory existence
     // =========================================================================
-
     if ~isdir(directory) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing directory is expected.\n"),"x2f_get_xml_files",1));
     end
@@ -1084,10 +1080,10 @@ function xmlfiles = x2f_get_xml_files(directory)
 
     if xmlpaths<>[] then
         infos = fileinfo(xmlpaths);
-        ft = format();
-        format(20);
+        //ft = format();
+        //format(20);
         lmt   = string(infos(:,7));
-        format(ft(2),ft(1));
+        //format(ft(2),ft(1));
     else
         lmt   = [];
     end
@@ -1206,7 +1202,7 @@ function desc_out = x2f_read_CHAPTER(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if fileinfo( file_in ) == [] then
+    if ~isfile(file_in) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_CHAPTER",1));
     end
 
@@ -1276,7 +1272,7 @@ function desc_out = x2f_read_lsb(file_in)
     // Check the input file existence
     // =========================================================================
 
-    if fileinfo( file_in ) == [] then
+    if ~isfile(file_in) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: A valid existing file is expected.\n"),"x2f_read_lsb",1));
     end
 
@@ -1324,7 +1320,6 @@ endfunction
 function desc_out = x2f_cat(desc_in_1,desc_in_2)
 
     rhs = argn(2);
-
     // Check number of input arguments
     // =========================================================================
 
@@ -1347,7 +1342,7 @@ function desc_out = x2f_cat(desc_in_1,desc_in_2)
     // =========================================================================
 
     fields_in_2      = fieldnames(desc_in_2);
-    fields_in_2(1:2) = [];
+    //fields_in_2(1:2) = [];
 
     if or(isfield(desc_in_1,fields_in_2)) then
         error(msprintf(gettext("%s: The 2 mlist must not have any field in common .\n"),"x2f_cat"));
@@ -1410,7 +1405,6 @@ function master_document = x2f_tree_to_master( tree )
     tree_xmllist = x2f_cat_xmllist( tree , [] )
 
     // Process the path if under windows
-    pause
     if getos() == 'Windows' then
         tree_xmllist(:,2) = "file:///"+ strsubst(getshortpathname(tree_xmllist(:,2)) ,"\","/");
     end
