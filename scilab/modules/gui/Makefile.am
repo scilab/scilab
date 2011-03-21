@@ -181,7 +181,6 @@ sci_gateway/c/sci_mpopup.c \
 sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
-sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
@@ -199,6 +198,7 @@ sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
 sci_gateway/cpp/sci_about.cpp \
+sci_gateway/cpp/sci_helpbrowser.cpp \
 sci_gateway/cpp/gui_gw.cpp
 
 libscigui_la_CFLAGS=	-I$(srcdir)/src/c/ \
@@ -253,7 +253,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/types/includes/
 
 # Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \
@@ -261,7 +262,9 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
-libscigui_disable_la_CPPFLAGS = -Iincludes/
+libscigui_disable_la_CPPFLAGS = -Iincludes/ \
+								-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+								-I$(top_srcdir)/modules/types/includes/
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
 GUI_DISABLE_CPP_SOURCES = src/nogui/nogui_gw.cpp

@@ -154,8 +154,7 @@ am__objects_4 = libscigui_la-sci_x_choice.lo libscigui_la-gw_gui.lo \
 	libscigui_la-sci_uiwait.lo libscigui_la-sci_mpopup.lo \
 	libscigui_la-sci_messagebox.lo libscigui_la-sci_waitbar.lo \
 	libscigui_la-sci_progressionbar.lo \
-	libscigui_la-sci_helpbrowser.lo libscigui_la-sci_uigetfont.lo \
-	libscigui_la-sci_uigetcolor.lo \
+	libscigui_la-sci_uigetfont.lo libscigui_la-sci_uigetcolor.lo \
 	libscigui_la-sci_getcallbackobject.lo \
 	libscigui_la-sci_exportUI.lo
 am__objects_5 = libscigui_la-sci_printsetupbox.lo \
@@ -165,7 +164,8 @@ am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
-	libscigui_la-sci_about.lo libscigui_la-gui_gw.lo
+	libscigui_la-sci_about.lo libscigui_la-sci_helpbrowser.lo \
+	libscigui_la-gui_gw.lo
 am__objects_6 = libscigui_la-InitUIMenu.lo \
 	libscigui_la-CallScilabBridge.lo libscigui_la-Jxclick.lo \
 	libscigui_la-DestroyUimenu.lo libscigui_la-DestroyUicontrol.lo \
@@ -755,7 +755,6 @@ sci_gateway/c/sci_mpopup.c \
 sci_gateway/c/sci_messagebox.c \
 sci_gateway/c/sci_waitbar.c \
 sci_gateway/c/sci_progressionbar.c \
-sci_gateway/c/sci_helpbrowser.c \
 sci_gateway/c/sci_uigetfont.c \
 sci_gateway/c/sci_uigetcolor.c \
 sci_gateway/c/sci_getcallbackobject.c \
@@ -773,6 +772,7 @@ sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
 sci_gateway/cpp/sci_about.cpp \
+sci_gateway/cpp/sci_helpbrowser.cpp \
 sci_gateway/cpp/gui_gw.cpp
 
 libscigui_la_CFLAGS = -I$(srcdir)/src/c/ -I$(srcdir)/src/c/xsci/ \
@@ -821,7 +821,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/types/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
-			-I$(top_srcdir)/modules/symbol/includes/
+			-I$(top_srcdir)/modules/symbol/includes/ \
+			-I$(top_srcdir)/modules/types/includes/
 
 
 # Without the GUI module
@@ -830,7 +831,10 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
-libscigui_disable_la_CPPFLAGS = -Iincludes/
+libscigui_disable_la_CPPFLAGS = -Iincludes/ \
+								-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+								-I$(top_srcdir)/modules/types/includes/
+
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
 GUI_DISABLE_CPP_SOURCES = src/nogui/nogui_gw.cpp
 libscigui_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
@@ -1390,13 +1394,6 @@ libscigui_la-sci_progressionbar.lo: sci_gateway/c/sci_progressionbar.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_progressionbar.lo `test -f 'sci_gateway/c/sci_progressionbar.c' || echo '$(srcdir)/'`sci_gateway/c/sci_progressionbar.c
 
-libscigui_la-sci_helpbrowser.lo: sci_gateway/c/sci_helpbrowser.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_helpbrowser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_helpbrowser.Tpo -c -o libscigui_la-sci_helpbrowser.lo `test -f 'sci_gateway/c/sci_helpbrowser.c' || echo '$(srcdir)/'`sci_gateway/c/sci_helpbrowser.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_helpbrowser.Tpo $(DEPDIR)/libscigui_la-sci_helpbrowser.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='sci_gateway/c/sci_helpbrowser.c' object='libscigui_la-sci_helpbrowser.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -c -o libscigui_la-sci_helpbrowser.lo `test -f 'sci_gateway/c/sci_helpbrowser.c' || echo '$(srcdir)/'`sci_gateway/c/sci_helpbrowser.c
-
 libscigui_la-sci_uigetfont.lo: sci_gateway/c/sci_uigetfont.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(libscigui_la_CFLAGS) $(CFLAGS) -MT libscigui_la-sci_uigetfont.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_uigetfont.Tpo -c -o libscigui_la-sci_uigetfont.lo `test -f 'sci_gateway/c/sci_uigetfont.c' || echo '$(srcdir)/'`sci_gateway/c/sci_uigetfont.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_uigetfont.Tpo $(DEPDIR)/libscigui_la-sci_uigetfont.Plo
@@ -1529,6 +1526,13 @@ libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_about.cpp' object='libscigui_la-sci_about.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp
+
+libscigui_la-sci_helpbrowser.lo: sci_gateway/cpp/sci_helpbrowser.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_helpbrowser.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_helpbrowser.Tpo -c -o libscigui_la-sci_helpbrowser.lo `test -f 'sci_gateway/cpp/sci_helpbrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_helpbrowser.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_helpbrowser.Tpo $(DEPDIR)/libscigui_la-sci_helpbrowser.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_helpbrowser.cpp' object='libscigui_la-sci_helpbrowser.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_helpbrowser.lo `test -f 'sci_gateway/cpp/sci_helpbrowser.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_helpbrowser.cpp
 
 libscigui_la-gui_gw.lo: sci_gateway/cpp/gui_gw.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-gui_gw.lo -MD -MP -MF $(DEPDIR)/libscigui_la-gui_gw.Tpo -c -o libscigui_la-gui_gw.lo `test -f 'sci_gateway/cpp/gui_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/gui_gw.cpp

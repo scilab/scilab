@@ -47,7 +47,7 @@ static gw_generic_table Tab[]=
 	{sci_messagebox,"messagebox"},
 	{sci_waitbar,"waitbar"},
 	{sci_progressionbar,"progressionbar"},
-	{sci_helpbrowser,"helpbrowser"},
+	{NULL, ""}, // helpbrowser
 	{sci_uigetfont,"uigetfont"},
 	{sci_uigetcolor,"uigetcolor"},
 	{sci_getcallbackobject, "getcallbackobject"},
