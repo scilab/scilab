@@ -150,6 +150,7 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-ColorComputer.lo \
 	libscigraphic_objects_la-DecompositionUtils.lo \
 	libscigraphic_objects_la-NgonGridDataDecomposer.lo \
+	libscigraphic_objects_la-Plot3DDecomposer.lo \
 	libscigraphic_objects_la-PolylineDecomposer.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
@@ -544,6 +545,7 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/ColorComputer.cpp \
 								src/cpp/DecompositionUtils.cpp \
 								src/cpp/NgonGridDataDecomposer.cpp \
+								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
@@ -683,6 +685,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridDataDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonGridMatplotData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-NgonPolylineData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
@@ -889,6 +892,13 @@ libscigraphic_objects_la-NgonGridDataDecomposer.lo: src/cpp/NgonGridDataDecompos
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/NgonGridDataDecomposer.cpp' object='libscigraphic_objects_la-NgonGridDataDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-NgonGridDataDecomposer.lo `test -f 'src/cpp/NgonGridDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/NgonGridDataDecomposer.cpp
+
+libscigraphic_objects_la-Plot3DDecomposer.lo: src/cpp/Plot3DDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-Plot3DDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Tpo -c -o libscigraphic_objects_la-Plot3DDecomposer.lo `test -f 'src/cpp/Plot3DDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/Plot3DDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Tpo $(DEPDIR)/libscigraphic_objects_la-Plot3DDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Plot3DDecomposer.cpp' object='libscigraphic_objects_la-Plot3DDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-Plot3DDecomposer.lo `test -f 'src/cpp/Plot3DDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/Plot3DDecomposer.cpp
 
 libscigraphic_objects_la-PolylineDecomposer.lo: src/cpp/PolylineDecomposer.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-PolylineDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Tpo -c -o libscigraphic_objects_la-PolylineDecomposer.lo `test -f 'src/cpp/PolylineDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/PolylineDecomposer.cpp

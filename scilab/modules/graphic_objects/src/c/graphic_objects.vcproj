@@ -448,6 +448,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Plot3DDecomposer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\PolylineDecomposer.cpp"
 				>
 			</File>
@@ -534,6 +538,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\NgonPolylineData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Plot3DDecomposer.hxx"
 				>
 			</File>
 			<File
