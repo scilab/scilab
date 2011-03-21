@@ -1,28 +1,28 @@
 # Localization of the module dynamic_link
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 14:19+0100\n"
 
-# File: macros/ilib_gen_Make_unix.sci, line: 263
+# File: macros/ilib_gen_Make_unix.sci, line: 271
 #, c-format
 msgid "   %s: Command: %s\n"
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 142
-# File: macros/ilib_gen_Make_unix.sci, line: 165
+# File: macros/ilib_gen_Make_unix.sci, line: 173
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
 msgstr ""
@@ -38,87 +38,87 @@ msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 172
+# File: macros/ilib_gen_Make_unix.sci, line: 180
 #, c-format
 msgid "   %s: File %s ignored.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 216
+# File: macros/ilib_gen_Make_unix.sci, line: 224
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 186
+# File: macros/ilib_gen_Make_unix.sci, line: 194
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 224
+# File: macros/ilib_gen_Make_unix.sci, line: 232
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 196
+# File: macros/ilib_gen_Make_unix.sci, line: 204
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 255
+# File: macros/ilib_gen_Make_unix.sci, line: 263
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 77
+# File: macros/ilib_compile.sci, line: 84
 msgid "   Building shared library (be patient)\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 225
+# File: macros/ilib_gen_Make_unix.sci, line: 233
 #, c-format
 msgid "   Command: %s\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 71
+# File: macros/ilib_compile.sci, line: 78
 msgid "   Compilation of "
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 106
-# File: macros/ilib_for_link.sci, line: 84
+# File: macros/ilib_build.sci, line: 110
+# File: macros/ilib_for_link.sci, line: 88
 msgid "   Generate a Makefile\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 104
+# File: macros/ilib_build.sci, line: 108
 #, c-format
 msgid "   Generate a Makefile: %s\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 125
-# File: macros/ilib_for_link.sci, line: 110
+# File: macros/ilib_build.sci, line: 129
+# File: macros/ilib_for_link.sci, line: 114
 msgid "   Generate a cleaner file\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 86
+# File: macros/ilib_build.sci, line: 90
 msgid "   Generate a gateway file\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 93
-# File: macros/ilib_for_link.sci, line: 56
+# File: macros/ilib_build.sci, line: 97
+# File: macros/ilib_for_link.sci, line: 60
 msgid "   Generate a loader file\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 264
+# File: macros/ilib_gen_Make_unix.sci, line: 272
 #, c-format
 msgid "   Output: %s\n"
 msgstr ""
 #
-# File: macros/ilib_for_link.sci, line: 100
+# File: macros/ilib_for_link.sci, line: 104
 msgid "   Running the Makefile\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 119
+# File: macros/ilib_build.sci, line: 123
 msgid "   Running the makefile\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 265
+# File: macros/ilib_gen_Make_unix.sci, line: 273
 #, c-format
 msgid "   stderr: %s\n"
 msgstr ""
@@ -149,6 +149,11 @@ msgstr ""
 msgid "%s is not an entry point.\n"
 msgstr ""
 #
+# File: macros/ilib_build.sci, line: 84
+#, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr ""
+#
 # File: macros/ilib_build.sci, line: 23
 # File: macros/ilib_mex_build.sci, line: 15
 #, c-format
@@ -160,12 +165,12 @@ msgstr ""
 msgid "%s: Already loaded from library %s\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 151
+# File: macros/ilib_compile.sci, line: 158
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 272
+# File: macros/ilib_gen_Make_unix.sci, line: 280
 #, c-format
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
@@ -173,13 +178,13 @@ msgid ""
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 112
-# File: macros/ilib_gen_Make_unix.sci, line: 200
+# File: macros/ilib_gen_Make_unix.sci, line: 208
 # File: src/c/dl_genErrorMessage.c, line: 42
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 145
+# File: macros/ilib_compile.sci, line: 152
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
@@ -196,12 +201,12 @@ msgstr ""
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 85
+# File: macros/ilib_compile.sci, line: 92
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 234
+# File: macros/ilib_gen_Make_unix.sci, line: 242
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
 msgstr ""
@@ -216,7 +221,7 @@ msgstr ""
 msgid "%s: Shared lib %s does not exist.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 155
+# File: macros/ilib_compile.sci, line: 162
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
@@ -243,14 +248,14 @@ msgstr ""
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 164
+# File: macros/ilib_compile.sci, line: 171
 #, c-format
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 129
+# File: macros/ilib_compile.sci, line: 136
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
@@ -342,7 +347,7 @@ msgstr ""
 # File: macros/dllinfo.sci, line: 29
 # File: macros/dllinfo.sci, line: 42
 # File: macros/ilib_build.sci, line: 34
-# File: macros/ilib_compile.sci, line: 40
+# File: macros/ilib_compile.sci, line: 47
 # File: macros/ilib_gen_loader.sci, line: 47
 # File: macros/ilib_gen_loader.sci, line: 79
 # File: macros/ilib_gen_loader.sci, line: 87
@@ -379,7 +384,7 @@ msgstr ""
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 56
+# File: macros/ilib_build.sci, line: 60
 # File: macros/ilib_mex_build.sci, line: 26
 # File: macros/ilib_for_link.sci, line: 32
 #, c-format
@@ -398,6 +403,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 #
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
+# File: macros/ilib_gen_Make_unix.sci, line: 152
+# File: macros/ilib_gen_Make_unix.sci, line: 168
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+#
 # File: src/c/dl_genErrorMessage.c, line: 39
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
@@ -405,6 +417,14 @@ msgstr ""
 #
 # File: macros/ilib_compile.sci, line: 31
 msgid "A Fortran or C compiler is required."
+msgstr ""
+#
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 41
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
 msgstr ""
 #
 # File: src/c/dynamic_link.c, line: 119
@@ -436,8 +456,12 @@ msgstr ""
 msgid "Error: Not a valid internal routine number %d.\n"
 msgstr ""
 #
-# File: macros/ilib_for_link.sci, line: 69
+# File: macros/ilib_for_link.sci, line: 73
 msgid "F2C cannot build fortran 90"
+msgstr ""
+#
+# File: macros/detectmsifort64tools.sci, line: 34
+msgid "Intel Fortran Comiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 #
 # File: src/c/addinter.c, line: 234
@@ -466,8 +490,8 @@ msgid ""
 "Shared libraries :\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 227
-# File: macros/ilib_compile.sci, line: 146
+# File: macros/ilib_gen_Make_unix.sci, line: 235
+# File: macros/ilib_compile.sci, line: 153
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
@@ -484,6 +508,10 @@ msgstr ""
 msgid "Unique id of a shared library expected."
 msgstr ""
 #
+# File: macros/ilib_build.sci, line: 85
+msgid "You need to unload this library before."
+msgstr ""
+#
 # File: src/c/dynamic_link.c, line: 313
 #, c-format
 msgid "] : %d libraries.\n"
@@ -494,8 +522,8 @@ msgstr ""
 msgid "] : %d library.\n"
 msgstr ""
 #
-# File: macros/ilib_gen_Make_unix.sci, line: 229
-# File: macros/ilib_compile.sci, line: 147
+# File: macros/ilib_gen_Make_unix.sci, line: 237
+# File: macros/ilib_compile.sci, line: 154
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""

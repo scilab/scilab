@@ -64,7 +64,7 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID jintfileExportjintjstringjintjintID; // cache method id
+jmethodID jintfileExportjintjstringjintjfloatjintID; // cache method id
 
 
 
@@ -121,7 +121,7 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static int fileExport(JavaVM * jvm_, int figureIndex, char * fileName, int fileType, int orientation);
+static int fileExport(JavaVM * jvm_, int figureIndex, char * fileName, int fileType, float jpegCompressionQuality, int orientation);
 
 
                         /**

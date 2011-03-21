@@ -35,14 +35,14 @@ xcos_open(1, %t);
 if callWithUID <> "" | callWithShowed then bugmes();quit;end
 // test with doc
 xcos_open(2);
-if callWithUID <> "id2" | callWithShowed <> %t then bugmes();quit;end
+if callWithUID <> "id2" | ~callWithShowed then bugmes();quit;end
 callWithUID = "";
 callWithShowed = %f;
 // test with doc but showed
 xcos_open(2, %t);
-if callWithUID <> "id2" | callWithShowed <> %t then bugmes();quit;end
+if callWithUID <> "id2" | ~callWithShowed then bugmes();quit;end
 callWithUID = "";
 callWithShowed = %f;
 // test with doc and garbage
 xcos_open(3);
-if callWithUID <> "id3" | callWithShowed <> %t then bugmes();quit;end
+if callWithUID <> "id3" | ~callWithShowed then bugmes();quit;end

@@ -28,6 +28,7 @@ import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.helptools.scilab.AbstractScilabCodeHandler;
@@ -128,12 +129,14 @@ public class CodeExporter extends FOCodeConverter {
             } else {
                 fop = fopFactory.newFop(type, userAgent);
             }
+            String factoryName = ScilabTransformerFactory.useDefaultTransformerFactoryImpl();
             TransformerFactory factory = TransformerFactory.newInstance();
             Transformer transformer = factory.newTransformer();
             String str = super.convert(code, lineNumberArray, format);
             Source src = new StreamSource(new StringReader(str));
             Result res = new SAXResult(fop.getDefaultHandler());
             transformer.transform(src, res);
+            ScilabTransformerFactory.restoreTransformerFactoryImpl(factoryName);
         } catch (Exception e) {
             if (type.equals(PRINT)) {
                 ScilabModalDialog.show(editor, SciNotesMessages.PRINTERERROR + "\n" + e.getLocalizedMessage());

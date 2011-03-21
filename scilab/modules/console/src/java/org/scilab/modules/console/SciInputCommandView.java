@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010-2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -62,7 +62,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     // A clearest pattern: ['"] \$ [^\\\$'"]* (( [\\].? | ['"]{2} ) [^\\\$'"]* )+
     private static final Pattern latexPattern = Pattern.compile("[\'\"]\\$[^\\\\\\$\'\"]*(?:(?:[\\\\].?|[\'\"]{2})[^\\\\\\$\'\"]*)*");
     private static final int INSET = 3;
-    private static final int DEFAULTSIZE = 15;
 
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
@@ -70,7 +69,9 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     private Thread concurrentThread = null;
 
     private SciConsole console;
-    private Dimension defaultSize;
+    private int height = -1;
+    private int width = -1;
+    private boolean isLatex;
 
     /**
      * Constructor
@@ -85,7 +86,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
         caret.setBlinkRate(getCaret().getBlinkRate());
         setCaret(caret);
         addCaretListener(this);
-        defaultSize = getPreferredSize();
     }
 
     /**
@@ -222,27 +222,68 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      */
     public void caretUpdate(CaretEvent e) {
         String str = getText().substring(0, e.getDot());
+        int lastPos = str.lastIndexOf("\"$");
+        if (lastPos != -1) {
+            str = str.substring(lastPos);
+        }
+
         Matcher matcher = latexPattern.matcher(str);
         if (matcher.find() && matcher.end() == str.length()) {
             String latex = matcher.group().replace("\'\'", "\'").replace("\"\"", "\"");
             latex = latex.substring(2, latex.length());
-            int hl = ScilabLaTeXViewer.displayExpression(this, Integer.MAX_VALUE, latex, 0, e.getDot()) + 2;
+            int hl = ScilabLaTeXViewer.displayExpression(this, Integer.MAX_VALUE, latex, lastPos, e.getDot()) + 2;
             int y = 0;
             try {
                 Rectangle rect = modelToView(getCaretPosition());
                 y = (int) (rect.height + rect.y + 1);
             } catch (BadLocationException ex) { }
 
-            if (getPreferredSize().getHeight() < y + hl) {
-                Dimension newDim = new Dimension((int) getPreferredSize().getWidth(), y + hl);
-                setPreferredSize(newDim);
-                invalidate();
-                doLayout();
+            int sheight = height;
+            height = y + hl;
+            if (height != sheight) {
+                validate();
                 console.updateScrollPosition();
-                console.setInputCommandViewSizeForced(true);
             }
+            isLatex = true;
         } else {
-            ScilabLaTeXViewer.removeLaTeXViewer(this);
+            if (isLatex) {
+                ScilabLaTeXViewer.removeLaTeXViewer(this);
+                if (height != -1) {
+                    height = -1;
+                    validate();
+                }
+                isLatex = false;
+            }
         }
+    }
+
+    /**
+     * Set the height of this text component.
+     * @param height the height, -1 to have the natural preferred height
+     */
+    public void setPreferredHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * Set the width of this text component.
+     * @param width the width, -1 to have the natural preferred width
+     */
+    public void setPreferredWidth(int width) {
+        this.width = width;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public Dimension getPreferredSize() {
+        Dimension dim = super.getPreferredSize();
+        if (height != -1) {
+            dim.height = Math.max(height, dim.height);
+        }
+        if (width != -1) {
+            dim.width = Math.max(width, dim.width);
+        }
+        return dim;
     }
 }

@@ -12,9 +12,13 @@
 
 package org.scilab.tests.modules.xcos;
 
+import java.awt.EventQueue;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.palette.PaletteManager;
-import org.testng.SkipException;
 import org.testng.annotations.Test;
 
 /**
@@ -32,20 +36,27 @@ public class XcosTest {
 	}
 	
 	@Test
-	public void launchWithoutFilename() {
-		try {
-			Xcos.xcos();
-			
-			assert PaletteManager.isVisible();
-			assert Xcos.getInstance().getDiagrams().size() == 1;
-			
-			Xcos.closeSession();
-			
-			assert !PaletteManager.isVisible();
-			assert Xcos.getInstance().getDiagrams().size() == 0;
-		} catch (RuntimeException e) {
-			throw new SkipException("wrong dependency check failed", e);
-		}
+	public void launchWithoutFilename() throws InterruptedException, InvocationTargetException {
+		Xcos.xcos();
+		
+		// perform assert on the EDT Thread and after all events
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				assert PaletteManager.isVisible();
+				assert Xcos.getInstance().getDiagrams().size() == 1;
+			}
+		});
+		
+		Xcos.closeXcosFromScilab();
+		
+		// perform assert on the EDT Thread and after all events
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				assert !PaletteManager.isVisible();
+				assert Xcos.getInstance().getDiagrams().size() == 0;
+			}
+		});
 	}
-	
 }

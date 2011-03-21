@@ -23,6 +23,7 @@ import java.util.Enumeration;
 import java.util.Locale;
 
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import javax.help.BadIDException;
 import javax.help.DefaultHelpHistoryModel;
@@ -302,11 +303,16 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
                                + mainJarPath + "*" + jarExtension + " files exist and are Java Help files.");
             return;
         }
-        try {
-            jhelp.setCurrentID(keyword);
-        } catch (BadIDException e) {
-            fullTextSearch(keyword);
-        }
+        final String kw = keyword;
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        jhelp.setCurrentID(kw);
+                    } catch (BadIDException e) {
+                        fullTextSearch(kw);
+                    }
+                }
+            });
     }
 
     /**

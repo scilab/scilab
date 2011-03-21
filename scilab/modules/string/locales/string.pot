@@ -1,31 +1,26 @@
 # Localization of the module string
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:38+0100\n"
+"Revision-Date: 2011-03-09 14:19+0100\n"
 
 # File: sci_gateway/c/sci_strcmp.c, line: 93
 # File: sci_gateway/c/sci_stripblanks.c, line: 97
 # File: sci_gateway/c/sci_stripblanks.c, line: 108
 #, c-format
 msgid "%s : No more memory.\n"
-msgstr ""
-#
-# File: sci_gateway/c/sci_strchr.c, line: 83
-#, c-format
-msgid "%s : Wrong size for input argument #%d.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_strcat.c, line: 423
@@ -99,7 +94,7 @@ msgstr ""
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grep.c, line: 273
+# File: sci_gateway/c/sci_grep.c, line: 271
 # File: sci_gateway/c/sci_part.c, line: 114
 # File: sci_gateway/c/sci_strncpy.c, line: 61
 # File: sci_gateway/c/sci_strncpy.c, line: 101
@@ -127,17 +122,16 @@ msgstr ""
 # File: sci_gateway/c/sci_length.c, line: 152
 # File: sci_gateway/c/sci_length.c, line: 163
 # File: sci_gateway/c/sci_length.c, line: 185
-# File: sci_gateway/c/sci_length.c, line: 279
-# File: sci_gateway/c/sci_length.c, line: 317
-# File: sci_gateway/c/sci_length.c, line: 355
+# File: sci_gateway/c/sci_length.c, line: 297
+# File: sci_gateway/c/sci_length.c, line: 335
+# File: sci_gateway/c/sci_length.c, line: 373
 # File: sci_gateway/c/sci_strrev.c, line: 54
 # File: sci_gateway/c/sci_regexp.c, line: 256
 # File: sci_gateway/c/sci_regexp.c, line: 294
-# File: sci_gateway/c/sci_strrchr.c, line: 77
 # File: sci_gateway/c/sci_strtod.c, line: 50
 # File: sci_gateway/c/sci_strtod.c, line: 59
 # File: sci_gateway/c/sci_strtod.c, line: 76
-# File: sci_gateway/c/sci_strchr.c, line: 76
+# File: sci_gateway/c/sci_strchr.c, line: 86
 # File: sci_gateway/c/sci_str2code.c, line: 83
 # File: src/c/pcre_error.c, line: 28
 #, c-format
@@ -198,7 +192,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strchr.c, line: 56
+# File: sci_gateway/c/sci_strchr.c, line: 60
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character expected.\n"
 msgstr ""
@@ -308,14 +302,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_strrchr.c, line: 57
-# File: sci_gateway/c/sci_strrchr.c, line: 84
-# File: sci_gateway/c/sci_strrchr.c, line: 96
-# File: sci_gateway/c/sci_strchr.c, line: 95
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A character expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_tokens.c, line: 74
 # File: sci_gateway/c/sci_tokens.c, line: 86
 #, c-format
@@ -351,6 +337,7 @@ msgstr ""
 # File: sci_gateway/c/sci_strsplit.c, line: 112
 # File: sci_gateway/c/sci_strsplit.c, line: 142
 # File: sci_gateway/c/sci_strsplit.c, line: 162
+# File: sci_gateway/c/sci_strchr.c, line: 120
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -366,8 +353,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_emptystr.c, line: 168
-# File: sci_gateway/c/sci_emptystr.c, line: 172
+# File: sci_gateway/c/sci_emptystr.c, line: 167
+# File: sci_gateway/c/sci_emptystr.c, line: 171
 # File: sci_gateway/c/sci_strncpy.c, line: 174
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
@@ -383,8 +370,6 @@ msgstr ""
 # File: sci_gateway/c/sci_convstr.c, line: 102
 # File: sci_gateway/c/sci_convstr.c, line: 108
 # File: sci_gateway/c/sci_strrev.c, line: 60
-# File: sci_gateway/c/sci_strrchr.c, line: 92
-# File: sci_gateway/c/sci_strchr.c, line: 91
 # File: sci_gateway/c/sci_str2code.c, line: 89
 # File: sci_gateway/c/sci_strspn.c, line: 98
 # File: sci_gateway/c/sci_strspn.c, line: 102
@@ -457,7 +442,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_length.c, line: 253
+# File: sci_gateway/c/sci_length.c, line: 271
 #, c-format
 msgid "%s: Wrong type for input argument(s).\n"
 msgstr ""

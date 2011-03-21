@@ -121,9 +121,10 @@
         <pathelement location="${classes.test.dir}"/>
       </classpath>
       <classfileset dir="${build.test.dir}" includes="**/*.class"/>
+      <!-- Where ${basedir} is the module base directory -->
+      <env key="SCI" value="${basedir}/../.."/>
       <jvmarg value="-DtestngTests=1"/>
-      <jvmarg value="-DSCI=${base.dir}"/>
-      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
+      <jvmarg value="-Djava.library.path=${base.dir}/modules/.libs/:${base.dir}/modules/javasci/.libs/:${base.dir}/modules/localization/.libs/:${base.dir}/modules/commons/.libs/:${base.dir}/modules/action_binding/.libs/:${base.dir}/thirdparty/:${base.dir}/bin/:/usr/lib/jni/:/usr/lib64/jni:"/>
     </testng>
   </target>
   <target name="validate">

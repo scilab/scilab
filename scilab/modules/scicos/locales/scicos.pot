@@ -1,20 +1,20 @@
 # Localization of the module scicos
 # Please see in SCI/tools/localization for localization management
-# Copyright (C) 2007/2008 - INRIA / Scilab
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
 # This file is distributed under the same license as the Scilab package.
-# Sylvestre Ledru <sylvestre.ledru@inria.fr>, 2007/2008.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"Last-Translator: Sylvestre Ledru <sylvestre.ledru@inria.fr>\n"
-"Language-Team: Scilab Localization <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2010-11-18 15:37+0100\n"
+"Revision-Date: 2011-03-09 14:19+0100\n"
 
 # File: src/c/scicos.c, line: 3061
 msgid ""
@@ -28,7 +28,7 @@ msgid ""
 "         your model. Please check your model\n"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 5138
+# File: src/c/scicos.c, line: 5145
 msgid ""
 "\n"
 " The residual function returns NAN/Inf. \n"
@@ -43,7 +43,7 @@ msgid ""
 " Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 4734
+# File: src/c/scicos.c, line: 4741
 msgid ""
 "\n"
 " error in Jacobian"
@@ -80,14 +80,14 @@ msgid ""
 "Warning: The computing function #%d returns a NaN/Inf"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 5042
+# File: src/c/scicos.c, line: 5049
 #, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 5137
+# File: src/c/scicos.c, line: 5144
 #, c-format
 msgid ""
 "\n"
@@ -124,22 +124,22 @@ msgstr ""
 msgid "  that must be informed with the following values :\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 79
+# File: macros/scicos_scicos/genmoc.sci, line: 82
 #, c-format
 msgid " %s.mo cannot be compiled\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 55
+# File: macros/scicos_scicos/genmoc.sci, line: 58
 #, c-format
 msgid " %s.mo compilation forced\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 76
+# File: macros/scicos_scicos/genmoc.sci, line: 79
 #, c-format
 msgid " %s.mo must be recompiled\n"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 69
+# File: macros/scicos_auto/scicos.sci, line: 72
 msgid " Scilab is in no gui mode : Scicos is unavailable"
 msgstr ""
 #
@@ -476,12 +476,12 @@ msgstr ""
 msgid "%s :the handle is not or no more valid.\n"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuExportAll.sci, line: 34
+# File: macros/scicos_menus/XcosMenuExportAll.sci, line: 37
 #, c-format
 msgid "%s is not a valid directory\n"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuModelicaInit.sci, line: 27
+# File: macros/scicos_menus/XcosMenuModelicaInit.sci, line: 30
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
 msgstr ""
@@ -491,13 +491,15 @@ msgstr ""
 msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 45
+# File: macros/scicos_scicos/genmoc.sci, line: 48
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
 msgstr ""
 #
-# File: macros/scicos_auto/lincos.sci, line: 140
+# File: macros/scicos_auto/steadycos.sci, line: 139
+# File: macros/scicos_auto/steadycos.sci, line: 146
 # File: macros/scicos_auto/lincos.sci, line: 150
+# File: macros/scicos_auto/lincos.sci, line: 160
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
 msgstr ""
@@ -507,17 +509,18 @@ msgstr ""
 msgid "%s: Error: A scifunc block has not been defined."
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 32
+# File: macros/scicos_scicos/genmoc.sci, line: 35
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 245
+# File: macros/scicos_auto/scicos.sci, line: 248
 #, c-format
 msgid "%s: First argument must be a Scicos diagram data structure\n"
 msgstr ""
 #
-# File: macros/scicos_auto/lincos.sci, line: 129
+# File: macros/scicos_auto/steadycos.sci, line: 128
+# File: macros/scicos_auto/lincos.sci, line: 139
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
 msgstr ""
@@ -570,49 +573,103 @@ msgstr ""
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 #
-# File: macros/scicos_auto/lincos.sci, line: 134
+# File: macros/scicos_auto/steadycos.sci, line: 133
+# File: macros/scicos_auto/lincos.sci, line: 144
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos_simulate.sci, line: 192
+# File: macros/scicos_auto/steadycos.sci, line: 120
+# File: macros/scicos_auto/lincos.sci, line: 131
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+#
+# File: macros/scicos_auto/steadycos.sci, line: 123
+# File: macros/scicos_auto/lincos.sci, line: 134
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+#
+# File: macros/scicos_auto/steadycos.sci, line: 82
+# File: macros/scicos_auto/lincos.sci, line: 95
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 109
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 29
+# File: macros/scicos_scicos/xgetcolor.sci, line: 32
+# File: macros/scicos_utils/block_parameter_error.sci, line: 21
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 32
+# File: macros/scicos_auto/steadycos.sci, line: 104
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 46
+# File: macros/scicos_scicos/xgetcolor.sci, line: 49
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 43
+# File: macros/scicos_scicos/xgetcolor.sci, line: 46
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
 #
-# File: macros/scicos_auto/lincos.sci, line: 194
+# File: macros/scicos_auto/lincos.sci, line: 204
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 39
+# File: macros/scicos_auto/scicos_simulate.sci, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+#
+# File: macros/scicos_auto/steadycos.sci, line: 85
+# File: macros/scicos_auto/lincos.sci, line: 98
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 119
+# File: macros/scicos_auto/scicos_simulate.sci, line: 123
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 42
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/xgetcolor.sci, line: 36
+# File: macros/scicos_auto/scicos_simulate.sci, line: 131
+# File: macros/scicos_utils/block_parameter_error.sci, line: 24
+# File: macros/scicos_utils/block_parameter_error.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+#
+# File: macros/scicos_scicos/xgetcolor.sci, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 127
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
 #
 # File: src/c/sciblk4.c, line: 534
@@ -661,33 +718,33 @@ msgstr ""
 msgid "%s: scicosim is not running.\n"
 msgstr ""
 #
-# File: macros/scicos_menus/scicos_menubar.sci, line: 40
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 56
-# File: macros/scicos_scicos/menu_stuff.sci, line: 28
-# File: macros/scicos_scicos/do_palettes.sci, line: 92
+# File: macros/scicos_menus/scicos_menubar.sci, line: 43
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 59
+# File: macros/scicos_scicos/menu_stuff.sci, line: 31
+# File: macros/scicos_scicos/do_palettes.sci, line: 95
 msgid "&?"
 msgstr ""
 #
-# File: macros/scicos_menus/scicos_menubar.sci, line: 38
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
-# File: macros/scicos_scicos/menu_stuff.sci, line: 26
-# File: macros/scicos_scicos/do_palettes.sci, line: 90
+# File: macros/scicos_menus/scicos_menubar.sci, line: 41
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 57
+# File: macros/scicos_scicos/menu_stuff.sci, line: 29
+# File: macros/scicos_scicos/do_palettes.sci, line: 93
 msgid "&Edit"
 msgstr ""
 #
-# File: macros/scicos_menus/scicos_menubar.sci, line: 37
-# File: macros/scicos_scicos/menu_stuff.sci, line: 25
+# File: macros/scicos_menus/scicos_menubar.sci, line: 40
+# File: macros/scicos_scicos/menu_stuff.sci, line: 28
 msgid "&File"
 msgstr ""
 #
-# File: macros/scicos_menus/scicos_menubar.sci, line: 39
-# File: macros/scicos_scicos/do_load_as_palette.sci, line: 55
-# File: macros/scicos_scicos/menu_stuff.sci, line: 27
-# File: macros/scicos_scicos/do_palettes.sci, line: 91
+# File: macros/scicos_menus/scicos_menubar.sci, line: 42
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 58
+# File: macros/scicos_scicos/menu_stuff.sci, line: 30
+# File: macros/scicos_scicos/do_palettes.sci, line: 94
 msgid "&Tools"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 41
+# File: macros/scicos_auto/scicos.sci, line: 44
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
 #
@@ -757,7 +814,7 @@ msgstr ""
 msgid "Activate Scilab Window"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 145
+# File: macros/scicos_scicos/do_options.sci, line: 148
 msgid "Add a new color at the Scicos palette"
 msgstr ""
 #
@@ -773,15 +830,15 @@ msgstr ""
 msgid "Align"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_CreateAtomic.sci, line: 41
+# File: macros/scicos_scicos/do_CreateAtomic.sci, line: 44
 msgid "An Atomic Superblock cannot contain sample clocks"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 288
+# File: macros/scicos_auto/scicos.sci, line: 291
 msgid "An error occur when evaluating context:"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 545
+# File: macros/scicos_auto/scicos.sci, line: 548
 #, c-format
 msgid ""
 "An unexpected  error occurred while executing the menu\n"
@@ -804,7 +861,7 @@ msgstr ""
 msgid "Background color"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 96
+# File: macros/scicos_scicos/do_options.sci, line: 99
 msgid "Background color ? :"
 msgstr ""
 #
@@ -812,11 +869,11 @@ msgstr ""
 msgid "Block Documentation"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 133
+# File: macros/scicos_scicos/do_options.sci, line: 136
 msgid "Block ID font name"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 134
+# File: macros/scicos_scicos/do_options.sci, line: 137
 msgid "Block ID font size"
 msgstr ""
 #
@@ -1054,11 +1111,15 @@ msgstr ""
 msgid "Calc"
 msgstr ""
 #
+# File: macros/scicos_auto/scicos_simulate.sci, line: 209
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+#
 # File: sci_gateway/c/sci_scicosim.c, line: 1958
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 #
-# File: macros/scicos_scicos/choose_export_format.sci, line: 8
+# File: macros/scicos_scicos/choose_export_format.sci, line: 11
 msgid "Choose export format:"
 msgstr ""
 #
@@ -1085,7 +1146,7 @@ msgid "Click on a block to set or get its documentation"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 260
-msgid "Click on a port, click on a port of object to be moved"
+msgid "Click on a port of object to be moved"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 283
@@ -1137,20 +1198,20 @@ msgstr ""
 msgid "Click to open block or make a link"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_duplicate.sci, line: 87
+# File: macros/scicos_scicos/do_duplicate.sci, line: 90
 msgid "Click where you want object to be placed (right-click to cancel)"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 43
-# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 36
+# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 39
 msgid "Close"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_CodeGen.sci, line: 114
+# File: macros/scicos_scicos/do_CodeGen.sci, line: 117
 msgid "Code Generation only works for a Superblock !\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_CodeGen.sci, line: 53
+# File: macros/scicos_scicos/do_CodeGen.sci, line: 56
 msgid "Code generation applies only to Super Blocks."
 msgstr ""
 #
@@ -1186,7 +1247,7 @@ msgstr ""
 msgid "Customize Mask"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 46
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 49
 msgid "Customize block GUI:"
 msgstr ""
 #
@@ -1210,7 +1271,7 @@ msgstr ""
 msgid "Default window parameters"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 36
+# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 39
 msgid "Defined shortcuts"
 msgstr ""
 #
@@ -1227,7 +1288,7 @@ msgid "Demos"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 120
-# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 25
+# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 28
 msgid "Details"
 msgstr ""
 #
@@ -1235,7 +1296,19 @@ msgstr ""
 msgid "Diagram"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_load.sci, line: 147
+# File: macros/scicos_auto/scicos_simulate.sci, line: 290
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 285
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_load.sci, line: 150
 msgid "Done\n"
 msgstr ""
 #
@@ -1260,11 +1333,15 @@ msgstr ""
 msgid "End of activation\n"
 msgstr ""
 #
+# File: macros/scicos_auto/scicos_simulate.sci, line: 367
+msgid "End problem: "
+msgstr ""
+#
 # File: src/c/scicos.c, line: 2488
 msgid "Entering the block \n"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_load.sci, line: 146
+# File: macros/scicos_scicos/do_load.sci, line: 149
 msgid "Error\n"
 msgstr ""
 #
@@ -1272,13 +1349,13 @@ msgstr ""
 msgid "Error in the Debug block \n"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 4809
-# File: src/c/scicos.c, line: 4893
+# File: src/c/scicos.c, line: 4816
+# File: src/c/scicos.c, line: 4900
 #, c-format
 msgid "Error: cannot find '%s'  \n"
 msgstr ""
 #
-# File: src/c/scicos.c, line: 4914
+# File: src/c/scicos.c, line: 4921
 #, c-format
 msgid "Error: cannot write to  '%s'  \n"
 msgstr ""
@@ -1287,7 +1364,7 @@ msgstr ""
 msgid "Eval"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 121
+# File: macros/scicos_scicos/do_options.sci, line: 124
 msgid "Event links color? :"
 msgstr ""
 #
@@ -1309,8 +1386,8 @@ msgstr ""
 msgid "Export All"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_export.sci, line: 168
-# File: macros/scicos_scicos/navigatorexport.sci, line: 136
+# File: macros/scicos_scicos/do_export.sci, line: 171
+# File: macros/scicos_scicos/navigatorexport.sci, line: 139
 #, c-format
 msgid "Export in file %s failed\n"
 msgstr ""
@@ -1327,11 +1404,11 @@ msgstr ""
 msgid "Flip"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 704
+# File: macros/scicos_auto/scicos.sci, line: 713
 msgid "Following palette(s) ignored (associated file(s) no more exist):"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 98
+# File: macros/scicos_scicos/do_options.sci, line: 101
 msgid "Foreground color ? :"
 msgstr ""
 #
@@ -1339,7 +1416,7 @@ msgstr ""
 msgid "Format"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 22
+# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 25
 msgid "Free"
 msgstr ""
 #
@@ -1352,11 +1429,11 @@ msgid "Get Info"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 128
-# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 25
+# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 28
 msgid "Help"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 135
+# File: macros/scicos_scicos/do_options.sci, line: 138
 msgid "ID font definitions"
 msgstr ""
 #
@@ -1625,7 +1702,11 @@ msgstr ""
 msgid "Identification"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_ident.sci, line: 101
+# File: macros/scicos_auto/scicos_simulate.sci, line: 319
+msgid "Initialisation problem:"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_ident.sci, line: 104
 msgid "It is impossible to set ID for this type of object"
 msgstr ""
 #
@@ -1747,15 +1828,15 @@ msgstr ""
 msgid "Link"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 131
+# File: macros/scicos_scicos/do_options.sci, line: 134
 msgid "Link ID font name"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 132
+# File: macros/scicos_scicos/do_options.sci, line: 135
 msgid "Link ID font size"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 86
+# File: macros/scicos_scicos/do_resize.sci, line: 89
 msgid "Link parameters"
 msgstr ""
 #
@@ -1767,8 +1848,8 @@ msgstr ""
 msgid "Mask"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 74
 # File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 77
+# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 80
 msgid "Mask can only be created for Super Blocks."
 msgstr ""
 #
@@ -1776,7 +1857,7 @@ msgstr ""
 msgid "Modelica initialize"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 46
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 49
 msgid "Modify title and menu labels."
 msgstr ""
 #
@@ -1788,11 +1869,11 @@ msgstr ""
 msgid "MoveLink "
 msgstr ""
 #
-# File: macros/scicos_scicos/do_details.sci, line: 29
+# File: macros/scicos_scicos/do_details.sci, line: 32
 msgid "Multiple selection cannot be used here"
 msgstr ""
 #
-# File: macros/scicos_scicos/navigatorexport.sci, line: 73
+# File: macros/scicos_scicos/navigatorexport.sci, line: 76
 msgid "Navigator window"
 msgstr ""
 #
@@ -1800,37 +1881,37 @@ msgstr ""
 msgid "New"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 71
-# File: macros/scicos_scicos/do_options.sci, line: 72
+# File: macros/scicos_scicos/do_options.sci, line: 74
+# File: macros/scicos_scicos/do_options.sci, line: 75
 msgid "No"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 33
-# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 36
-# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 35
-# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 37
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 32
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 29
-# File: macros/scicos_scicos/do_block.sci, line: 37
-# File: macros/scicos_scicos/do_CodeGen.sci, line: 38
+# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 36
+# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 39
+# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 38
+# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 40
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 35
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 32
+# File: macros/scicos_scicos/do_block.sci, line: 40
+# File: macros/scicos_scicos/do_CodeGen.sci, line: 41
 msgid "No selected block in the current Scicos window."
 msgstr ""
 #
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 40
-# File: macros/scicos_scicos/do_block.sci, line: 47
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 43
+# File: macros/scicos_scicos/do_block.sci, line: 50
 msgid "Only  blocks can be selected for this operation."
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 37
-# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 40
-# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 39
-# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 41
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 36
-# File: macros/scicos_scicos/do_resize.sci, line: 42
-# File: macros/scicos_scicos/do_ident.sci, line: 37
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
-# File: macros/scicos_scicos/do_block.sci, line: 42
-# File: macros/scicos_scicos/do_CodeGen.sci, line: 42
+# File: macros/scicos_menus/XcosMenuRemoveMask.sci, line: 40
+# File: macros/scicos_menus/XcosMenuCreateMask.sci, line: 43
+# File: macros/scicos_menus/XcosMenuRemoveAtomic.sci, line: 42
+# File: macros/scicos_menus/XcosMenuCreateAtomic.sci, line: 44
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 39
+# File: macros/scicos_scicos/do_resize.sci, line: 45
+# File: macros/scicos_scicos/do_ident.sci, line: 40
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 37
+# File: macros/scicos_scicos/do_block.sci, line: 45
+# File: macros/scicos_scicos/do_CodeGen.sci, line: 45
 msgid "Only one block can be selected in current window for this operation."
 msgstr ""
 #
@@ -1838,11 +1919,11 @@ msgstr ""
 msgid "Open"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_load.sci, line: 60
+# File: macros/scicos_scicos/do_load.sci, line: 63
 msgid "Open a Scicos demonstration diagram"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_load.sci, line: 64
+# File: macros/scicos_scicos/do_load.sci, line: 67
 msgid "Open a Scicos diagram"
 msgstr ""
 #
@@ -1870,8 +1951,8 @@ msgstr ""
 msgid "Paste"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 25
-# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 26
+# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 28
+# File: macros/scicos_menus/XcosMenuTkPopup.sci, line: 29
 msgid "Place in Diagram"
 msgstr ""
 #
@@ -1883,7 +1964,7 @@ msgstr ""
 msgid "PlaceinDiagram"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 549
+# File: macros/scicos_auto/scicos.sci, line: 552
 msgid "Please report"
 msgstr ""
 #
@@ -1897,11 +1978,11 @@ msgid ""
 "Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 644
+# File: macros/scicos_auto/scicos.sci, line: 647
 msgid "Problem saving a backup; I cannot activate Scilab\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/genmoc.sci, line: 95
+# File: macros/scicos_scicos/genmoc.sci, line: 98
 #, c-format
 msgid "Problem while building library %s\n"
 msgstr ""
@@ -1922,7 +2003,7 @@ msgstr ""
 msgid "Region to Super Block"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 118
+# File: macros/scicos_scicos/do_options.sci, line: 121
 msgid "Regular links color ? :"
 msgstr ""
 #
@@ -1942,7 +2023,7 @@ msgstr ""
 msgid "Replot"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 574
+# File: macros/scicos_auto/scicos.sci, line: 577
 #, c-format
 msgid "Requested action: %s is not available"
 msgstr ""
@@ -1951,7 +2032,7 @@ msgstr ""
 msgid "Resize"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 103
+# File: macros/scicos_scicos/do_resize.sci, line: 106
 msgid "Resize is allowed only for Blocks or Links."
 msgstr ""
 #
@@ -1991,7 +2072,7 @@ msgstr ""
 msgid "Scicos Documentation"
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 89
+# File: macros/scicos_auto/scicos.sci, line: 92
 #, c-format
 msgid "Scicos version %s\n"
 msgstr ""
@@ -2001,11 +2082,11 @@ msgstr ""
 msgid "Scilab Graphics of %s"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 58
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 61
 msgid "Select a block."
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuExportAll.sci, line: 27
+# File: macros/scicos_menus/XcosMenuExportAll.sci, line: 30
 msgid "Select a directory path"
 msgstr ""
 #
@@ -2021,11 +2102,11 @@ msgstr ""
 msgid "SelectRegion"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_ident.sci, line: 61
+# File: macros/scicos_scicos/do_ident.sci, line: 64
 msgid "Set Block identification"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 66
+# File: macros/scicos_scicos/do_resize.sci, line: 69
 msgid "Set Block sizes"
 msgstr ""
 #
@@ -2037,11 +2118,11 @@ msgstr ""
 msgid "Set grid"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_ident.sci, line: 81
+# File: macros/scicos_scicos/do_ident.sci, line: 84
 msgid "Set link Identification"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 22
+# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 25
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 105
 msgid "Set link edition mode"
 msgstr ""
@@ -2062,12 +2143,20 @@ msgstr ""
 msgid "Simulate"
 msgstr ""
 #
+# File: macros/scicos_auto/scicos_simulate.sci, line: 314
+msgid "Simulation parameters not set:"
+msgstr ""
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 336
+msgid "Simulation problem: "
+msgstr ""
+#
 # File: src/c/slider.c, line: 71
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 22
+# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 25
 msgid "Smart"
 msgstr ""
 #
@@ -2075,32 +2164,32 @@ msgstr ""
 msgid "Smart Move"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSmartMove.sci, line: 26
+# File: macros/scicos_menus/XcosMenuSmartMove.sci, line: 29
 msgid "Smart move does not work yet with multiple selection"
 msgstr ""
 #
-# File: macros/scicos_scicos/scicos_block_link.sci, line: 38
+# File: macros/scicos_scicos/scicos_block_link.sci, line: 40
 msgid "Sorry file name not defined in "
 msgstr ""
 #
-# File: macros/scicos_scicos/scicos_block_link.sci, line: 32
+# File: macros/scicos_scicos/scicos_block_link.sci, line: 35
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr ""
 #
-# File: macros/scicos_menus/scicos_menubar.sci, line: 71
+# File: macros/scicos_menus/scicos_menubar.sci, line: 74
 msgid "Stop"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_icon_edit.sci, line: 73
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 76
 msgid "The current icon depends on block parameter\n"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 72
+# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 75
 #, c-format
 msgid "The key %s is already in use for %s"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 75
+# File: macros/scicos_menus/XcosMenuShortcuts.sci, line: 78
 #, c-format
 msgid "The key %s is not a valid letter"
 msgstr ""
@@ -2113,33 +2202,38 @@ msgid ""
 "model. This will be corrected in the next version"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_CreateAtomic.sci, line: 30
+# File: macros/scicos_scicos/do_CreateAtomic.sci, line: 33
 #, c-format
 msgid ""
 "The parameter(s) %s \n"
 "must be defined in the"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 86
+# File: macros/scicos_scicos/script2var.sci, line: 69
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_resize.sci, line: 89
 msgid "Thickness"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 55
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 58
 msgid "This block is not masked."
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSelectRegion.sci, line: 56
-# File: macros/scicos_scicos/do_duplicate.sci, line: 35
-# File: macros/scicos_scicos/do_duplicate.sci, line: 75
+# File: macros/scicos_menus/XcosMenuSelectRegion.sci, line: 59
+# File: macros/scicos_scicos/do_duplicate.sci, line: 38
+# File: macros/scicos_scicos/do_duplicate.sci, line: 78
 msgid "This window is not an active palette"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuPopup.sci, line: 89
-# File: macros/scicos_menus/XcosMenuPopup.sci, line: 102
+# File: macros/scicos_menus/XcosMenuPopup.sci, line: 92
+# File: macros/scicos_menus/XcosMenuPopup.sci, line: 105
 msgid "This window is not an active scicos window"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 47
+# File: macros/scicos_menus/XcosMenuCustomizeMask.sci, line: 50
 msgid "Title of the GUI"
 msgstr ""
 #
@@ -2147,12 +2241,12 @@ msgstr ""
 msgid "TkPopup "
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 708
+# File: macros/scicos_auto/scicos.sci, line: 717
 #, c-format
 msgid "To avoid this message, please update the %s.scicos_pal file."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 660
+# File: macros/scicos_auto/scicos.sci, line: 663
 msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
 msgstr ""
 #
@@ -2164,8 +2258,8 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 22
-# File: macros/scicos_scicos/do_resize.sci, line: 86
+# File: macros/scicos_menus/XcosMenuSetLinkMode.sci, line: 25
+# File: macros/scicos_scicos/do_resize.sci, line: 89
 msgid "Type"
 msgstr ""
 #
@@ -2196,7 +2290,7 @@ msgid ""
 "\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 72
+# File: macros/scicos_scicos/do_options.sci, line: 75
 msgid "Use 3D aspect?"
 msgstr ""
 #
@@ -2204,13 +2298,24 @@ msgstr ""
 msgid "View"
 msgstr ""
 #
-# File: macros/scicos_menus/XcosGetMenuType.sci, line: 31
+# File: macros/scicos_menus/XcosGetMenuType.sci, line: 34
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 71
-# File: macros/scicos_scicos/do_options.sci, line: 72
+# File: macros/scicos_auto/scicos_simulate.sci, line: 250
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+#
+# File: macros/scicos_utils/block_parameter_error.sci, line: 31
+msgid "Xcos block parameter error"
+msgstr ""
+#
+# File: macros/scicos_scicos/do_options.sci, line: 74
+# File: macros/scicos_scicos/do_options.sci, line: 75
 msgid "Yes"
 msgstr ""
 #
@@ -2222,7 +2327,7 @@ msgid ""
 "interface to regenerate the XML file  with new parameters."
 msgstr ""
 #
-# File: macros/scicos_auto/scicos.sci, line: 664
+# File: macros/scicos_auto/scicos.sci, line: 667
 msgid "Your diagram is not saved. Do not quit Scilab or "
 msgstr ""
 #
@@ -2261,7 +2366,7 @@ msgstr ""
 msgid "cannot allocate memory in block=%d"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_options.sci, line: 72
+# File: macros/scicos_scicos/do_options.sci, line: 75
 msgid "current choice is "
 msgstr ""
 #
@@ -2269,7 +2374,7 @@ msgstr ""
 msgid "event conflict"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 66
+# File: macros/scicos_scicos/do_resize.sci, line: 69
 msgid "height"
 msgstr ""
 #
@@ -2334,7 +2439,7 @@ msgstr ""
 msgid "unknown or erroneous block"
 msgstr ""
 #
-# File: macros/scicos_scicos/do_resize.sci, line: 66
+# File: macros/scicos_scicos/do_resize.sci, line: 69
 msgid "width"
 msgstr ""
 #

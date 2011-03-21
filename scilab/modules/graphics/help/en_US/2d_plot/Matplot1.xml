@@ -35,7 +35,9 @@
       <varlistentry>
         <term>rect</term>
         <listitem>
-          <para> <literal>[xmin,ymin,xmax,ymax]</literal></para>
+          <para>
+            <literal>[xmin,ymin,xmax,ymax]</literal>
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -82,10 +84,11 @@ for k=-n:n,
   Matplot1(a,[k1,2,k1+7,9])
   show_pixmap() //send double buffer to screen
 end
+f.pixmap='off';
  ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>

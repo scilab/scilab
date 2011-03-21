@@ -2461,11 +2461,11 @@ public class CallScilabBridge {
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 0);
+                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1);
+                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */
