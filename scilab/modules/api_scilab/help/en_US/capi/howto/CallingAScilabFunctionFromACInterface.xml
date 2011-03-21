@@ -195,11 +195,7 @@ int sci_call_scifunc(char *fname)
 
       <member><link linkend="CheckRhs">CheckRhs</link></member>
 
-      <member><link linkend="stk">stk</link></member>
-
       <member><link linkend="LhsVar">LhsVar</link></member>
-
-      <member><link linkend="GetType">GetType</link></member>
 
       <member><link linkend="Scierror">Scierror</link></member>
 
