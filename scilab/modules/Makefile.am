@@ -146,7 +146,9 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la
+
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -163,7 +165,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
-	$(top_builddir)/modules/commons/libscicommons-disable.la
+	$(top_builddir)/modules/commons/libscicommons-disable.la \
+	$(top_builddir)/modules/helptools/libscihelptools-disable.la
 
 if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
