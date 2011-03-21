@@ -436,6 +436,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\NgonGridDataDecomposer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\NgonGridMatplotData.cpp"
 				>
 			</File>
@@ -518,6 +522,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\NgonGridData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\NgonGridDataDecomposer.hxx"
 				>
 			</File>
 			<File
