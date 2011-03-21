@@ -47,6 +47,7 @@ bool CoreModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"pause", &sci_pause, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"resume", &sci_resume, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"abort", &sci_abort, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"who", &sci_who, MODULE_NAME));
     return true;
 }
 

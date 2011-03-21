@@ -116,6 +116,7 @@ namespace symbol
             ostr << L"  Environment Functions:" << std::endl;
             ostr << L"==========================" << std::endl;
             ostr << EnvFunTable;
+            ostr << std::endl;
             ostr << L"  Environment Variables:" << std::endl;
             ostr << L"==========================" << std::endl;
             ostr << EnvVarTable;

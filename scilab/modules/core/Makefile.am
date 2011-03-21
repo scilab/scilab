@@ -204,7 +204,6 @@ sci_gateway/c/sci_getmemory.c \
 sci_gateway/c/sci_havewindow.c \
 sci_gateway/c/sci_delbpt.c \
 sci_gateway/c/sci_macr2lst.c \
-sci_gateway/c/sci_who.c \
 sci_gateway/c/sci_errclear.c \
 sci_gateway/c/sci_funcprot.c \
 sci_gateway/c/sci_newfun.c \
@@ -269,7 +268,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_error.cpp \
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_resume.cpp \
-	sci_gateway/cpp/sci_abort.cpp
+	sci_gateway/cpp/sci_abort.cpp \
+	sci_gateway/cpp/sci_who.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
