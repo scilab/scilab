@@ -276,10 +276,104 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         System.out.println("How can I draw a fac3d ?");
     }
 
+    /*
+     * To do:
+     * -back faces rendering.
+     * -use polygon offset for wireframe rendering.
+     * -take into account colormap updates.
+     */
     @Override
-    public void visit(Plot3d plot3d) {
-        // TODO
-        System.out.println("How can I draw a plot3d ?");
+    public void visit(final Plot3d plot3d) {
+        if (plot3d.getVisible()) {
+
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    if (plot3d.getColorFlag() == 1) {
+                        return dataManager.getColorBuffer(plot3d.getIdentifier());
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(plot3d.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Geometry wireframe = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(plot3d.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(plot3d.getIdentifier());
+                    return indices;
+                }
+            };
+
+            if (plot3d.getSurfaceMode()) {
+                if (plot3d.getColorMode() != 0) {
+                    Appearance trianglesAppearance = new Appearance();
+
+                    if (plot3d.getColorFlag() == 0) {
+                        trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(plot3d.getColorMode())));
+                    }
+
+                    drawingTools.draw(triangles, trianglesAppearance);
+                }
+
+                if (plot3d.getColorMode() >= 0) {
+                    Appearance wireframeAppearance = new Appearance();
+                    wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                    drawingTools.draw(wireframe, wireframeAppearance);
+                }
+            }
+
+            if (plot3d.getMarkMode()) {
+                Sprite sprite = markManager.getMarkSprite(plot3d, colorMap);
+                ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());  // TODO : getMarkVertexBuffer
+                drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
+            }
+
+        }
+
     }
 
     @Override
