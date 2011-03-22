@@ -42,6 +42,7 @@ Xcos:
   - GENSIM_f - Sine wave generator
   - STEP_FUNCTION - Step Function
   - SAWTOOTH_f - Sawtooth generator
+  - TEXT_f - Free annotation
   - Counter
   - RAMP
 
