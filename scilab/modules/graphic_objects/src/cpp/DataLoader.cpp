@@ -11,18 +11,18 @@
  *
  */
 
-#include <iostream>
-#include <map>
+#include <cstring>
+
 #include "DataLoader.hxx"
 
+#include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
 
 extern "C"
 {
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-
-#include <string.h>
+}
 
 // TODO: switch using the Type
 
@@ -31,7 +31,11 @@ int getDataSize(char* id)
     char* type;
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        return Plot3DDecomposer::getDataSize(id);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         return PolylineDecomposer::getDataSize(id);
     }
@@ -48,7 +52,11 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         PolylineDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
@@ -56,7 +64,14 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 
 void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 {
-  // TODO.
+    char* type;
+
+    getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
+
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+    }
 }
 
 
@@ -66,7 +81,11 @@ int getIndicesSize(char* id)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        return Plot3DDecomposer::getIndicesSize(id);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         return PolylineDecomposer::getIndicesSize(id);
     }
@@ -81,7 +100,11 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        return Plot3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         return PolylineDecomposer::fillIndices(id, buffer, bufferLength, logMask);
     }
@@ -94,7 +117,11 @@ int getWireIndicesSize(char* id)
     char* type;
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        return Plot3DDecomposer::getWireIndicesSize(id);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         return PolylineDecomposer::getWireIndicesSize(id);
     }
@@ -108,7 +135,11 @@ int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_POLYLINE__) == 0)
+    if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        return Plot3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
     {
         return PolylineDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
     }
@@ -126,7 +157,3 @@ int fillMarkIndices(char* id, int* BUFF, int bufferLength)
     // TODO.
     return 0;
 }
-
-} // extern "C"
-
-
