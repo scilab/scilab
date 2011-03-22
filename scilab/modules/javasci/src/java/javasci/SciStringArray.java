@@ -56,8 +56,8 @@ public class SciStringArray extends javasci.SciAbstractArray implements java.io.
 		this.name = name;
     
 		if ((Scilab.TypeVar(name) == 10)
-			& (getNumberOfRowsFromScilab(name) == c) 
-			& (getNumberOfColsFromScilab(name) == r)) {
+			& (getNumberOfRowsFromScilab(name) == r) 
+			& (getNumberOfColsFromScilab(name) == c)) {
 				Get();
 			} else {
 				for (int i = 0; i < (r * c); i++) {

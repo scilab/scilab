@@ -38,6 +38,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
@@ -231,12 +232,12 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
         // Remove last line returned given by Scilab (carriage return)
         try {
-            StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();
-            int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
+            Document doc = ((JEditorPane) this.getConfiguration().getOutputView()).getDocument();
+            int lastEOL = doc.getText(0, doc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
 
             // Condition added to avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
-            if (lastEOL > 1 && (outputStyledDoc.getLength() - lastEOL) == 1) {
-                outputStyledDoc.remove(lastEOL, outputStyledDoc.getLength() - lastEOL);
+            if (lastEOL > 1 && (doc.getLength() - lastEOL) == 1) {
+                doc.remove(lastEOL, doc.getLength() - lastEOL);
             }
         } catch (BadLocationException e) {
             e.printStackTrace();

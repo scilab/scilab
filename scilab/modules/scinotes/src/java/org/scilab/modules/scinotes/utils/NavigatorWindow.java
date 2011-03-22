@@ -731,10 +731,13 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
         int line = 0;
         boolean correct = false;
         TreePath path = functionNavigator.getSelectionPath();
-        DefaultMutableTreeNode node = (DefaultMutableTreeNode) path.getLastPathComponent();
+        DefaultMutableTreeNode node = null;
+        if (path != null) {
+            node = (DefaultMutableTreeNode) path.getLastPathComponent();
+        }
 
         try {
-            line = Integer.decode(lineNumber.getText()).intValue() - 1;
+            line = Integer.decode(lineNumber.getText()).intValue();
             if (isAbsolute) {
                 correct = true;
                 line = correctLineNumber(line);
@@ -748,7 +751,7 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
                     int pos = ((ScilabDocument.ScilabLeafElement) node.getUserObject()).getStart();
                     if (pos != -1) {
                         updatePaneDoc(node);
-                        line += doc.getDefaultRootElement().getElementIndex(pos) + 1;
+                        line += doc.getDefaultRootElement().getElementIndex(pos);
                         correct = true;
                         line = correctLineNumber(line);
                     }
@@ -768,11 +771,13 @@ public final class NavigatorWindow extends SwingScilabTab implements Tab, Docume
      * @param node corresponding to the pane to select
      */
     private static void updatePaneDoc(DefaultMutableTreeNode node) {
-        ScilabEditorPane sep = getPaneInNode(node);
-        if (sep != pane) {
-            pane = sep;
-            doc = (ScilabDocument) pane.getDocument();
-            pane.getEditor().getTabPane().setSelectedComponent(pane.getEditorComponent());
+        if (node != null) {
+            ScilabEditorPane sep = getPaneInNode(node);
+            if (sep != pane) {
+                pane = sep;
+                doc = (ScilabDocument) pane.getDocument();
+                pane.getEditor().getTabPane().setSelectedComponent(pane.getEditorComponent());
+            }
         }
     }
 

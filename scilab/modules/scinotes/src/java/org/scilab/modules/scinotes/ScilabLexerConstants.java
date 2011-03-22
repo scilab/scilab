@@ -282,7 +282,10 @@ public class ScilabLexerConstants {
             || type == CKEYWORD
             || type == OSKEYWORD
             || type == SKEYWORD
-            || type == CONSTANTES;
+            || type == ELSEIF
+            || type == CONSTANTES
+            || type == VARIABLES
+            || type == FIELD;
     }
 
     /**
