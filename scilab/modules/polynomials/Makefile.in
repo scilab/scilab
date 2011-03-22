@@ -129,11 +129,11 @@ libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 = intf_simp.lo intf_poly.lo intf_varn.lo intf_sum.lo \
-	intf_div.lo intf_diag.lo intf_prod.lo polops.lo intf_bezout.lo \
-	intf_triu_tril.lo intf_roots.lo intf_psimp.lo intf_rsimp.lo \
-	intf_coeff.lo intf_degree.lo intf_pclean.lo intf_sfact.lo \
-	intf_simpmd.lo
+am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
+	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
+	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
+	sci_f_psimp.lo sci_f_rsimp.lo sci_f_coeff.lo sci_f_degree.lo \
+	sci_f_pclean.lo sci_f_sfact.lo sci_f_simpmd.lo
 am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_sfact.lo \
 	libscipolynomials_la-sci_cleanp.lo \
@@ -515,24 +515,24 @@ sci_gateway/c/sci_poly.c \
 sci_gateway/c/sci_triu.c \
 sci_gateway/c/sci_degree.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/intf_simp.f \
-sci_gateway/fortran/intf_poly.f \
-sci_gateway/fortran/intf_varn.f \
-sci_gateway/fortran/intf_sum.f \
-sci_gateway/fortran/intf_div.f \
-sci_gateway/fortran/intf_diag.f \
-sci_gateway/fortran/intf_prod.f \
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_simp.f \
+sci_gateway/fortran/sci_f_poly.f \
+sci_gateway/fortran/sci_f_varn.f \
+sci_gateway/fortran/sci_f_sum.f \
+sci_gateway/fortran/sci_f_div.f \
+sci_gateway/fortran/sci_f_diag.f \
+sci_gateway/fortran/sci_f_prod.f \
 sci_gateway/fortran/polops.f \
-sci_gateway/fortran/intf_bezout.f \
-sci_gateway/fortran/intf_triu_tril.f \
-sci_gateway/fortran/intf_roots.f \
-sci_gateway/fortran/intf_psimp.f \
-sci_gateway/fortran/intf_rsimp.f \
-sci_gateway/fortran/intf_coeff.f \
-sci_gateway/fortran/intf_degree.f \
-sci_gateway/fortran/intf_pclean.f \
-sci_gateway/fortran/intf_sfact.f \
-sci_gateway/fortran/intf_simpmd.f
+sci_gateway/fortran/sci_f_bezout.f \
+sci_gateway/fortran/sci_f_triu_tril.f \
+sci_gateway/fortran/sci_f_roots.f \
+sci_gateway/fortran/sci_f_psimp.f \
+sci_gateway/fortran/sci_f_rsimp.f \
+sci_gateway/fortran/sci_f_coeff.f \
+sci_gateway/fortran/sci_f_degree.f \
+sci_gateway/fortran/sci_f_pclean.f \
+sci_gateway/fortran/sci_f_sfact.f \
+sci_gateway/fortran/sci_f_simpmd.f
 
 libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -548,7 +548,7 @@ libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
-libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = polynomials
@@ -1056,59 +1056,59 @@ calcsc.lo: src/fortran/calcsc.f
 writebufsfact.lo: src/fortran/writebufsfact.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o writebufsfact.lo `test -f 'src/fortran/writebufsfact.f' || echo '$(srcdir)/'`src/fortran/writebufsfact.f
 
-intf_simp.lo: sci_gateway/fortran/intf_simp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_simp.lo `test -f 'sci_gateway/fortran/intf_simp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_simp.f
+sci_f_simp.lo: sci_gateway/fortran/sci_f_simp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simp.lo `test -f 'sci_gateway/fortran/sci_f_simp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simp.f
 
-intf_poly.lo: sci_gateway/fortran/intf_poly.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_poly.lo `test -f 'sci_gateway/fortran/intf_poly.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_poly.f
+sci_f_poly.lo: sci_gateway/fortran/sci_f_poly.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_poly.lo `test -f 'sci_gateway/fortran/sci_f_poly.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_poly.f
 
-intf_varn.lo: sci_gateway/fortran/intf_varn.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_varn.lo `test -f 'sci_gateway/fortran/intf_varn.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_varn.f
+sci_f_varn.lo: sci_gateway/fortran/sci_f_varn.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_varn.lo `test -f 'sci_gateway/fortran/sci_f_varn.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_varn.f
 
-intf_sum.lo: sci_gateway/fortran/intf_sum.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_sum.lo `test -f 'sci_gateway/fortran/intf_sum.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_sum.f
+sci_f_sum.lo: sci_gateway/fortran/sci_f_sum.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_sum.lo `test -f 'sci_gateway/fortran/sci_f_sum.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sum.f
 
-intf_div.lo: sci_gateway/fortran/intf_div.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_div.lo `test -f 'sci_gateway/fortran/intf_div.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_div.f
+sci_f_div.lo: sci_gateway/fortran/sci_f_div.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_div.lo `test -f 'sci_gateway/fortran/sci_f_div.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_div.f
 
-intf_diag.lo: sci_gateway/fortran/intf_diag.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_diag.lo `test -f 'sci_gateway/fortran/intf_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_diag.f
+sci_f_diag.lo: sci_gateway/fortran/sci_f_diag.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_diag.lo `test -f 'sci_gateway/fortran/sci_f_diag.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_diag.f
 
-intf_prod.lo: sci_gateway/fortran/intf_prod.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_prod.lo `test -f 'sci_gateway/fortran/intf_prod.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_prod.f
+sci_f_prod.lo: sci_gateway/fortran/sci_f_prod.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_prod.lo `test -f 'sci_gateway/fortran/sci_f_prod.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_prod.f
 
 polops.lo: sci_gateway/fortran/polops.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o polops.lo `test -f 'sci_gateway/fortran/polops.f' || echo '$(srcdir)/'`sci_gateway/fortran/polops.f
 
-intf_bezout.lo: sci_gateway/fortran/intf_bezout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_bezout.lo `test -f 'sci_gateway/fortran/intf_bezout.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_bezout.f
+sci_f_bezout.lo: sci_gateway/fortran/sci_f_bezout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_bezout.lo `test -f 'sci_gateway/fortran/sci_f_bezout.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_bezout.f
 
-intf_triu_tril.lo: sci_gateway/fortran/intf_triu_tril.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_triu_tril.lo `test -f 'sci_gateway/fortran/intf_triu_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_triu_tril.f
+sci_f_triu_tril.lo: sci_gateway/fortran/sci_f_triu_tril.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_triu_tril.lo `test -f 'sci_gateway/fortran/sci_f_triu_tril.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_triu_tril.f
 
-intf_roots.lo: sci_gateway/fortran/intf_roots.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_roots.lo `test -f 'sci_gateway/fortran/intf_roots.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_roots.f
+sci_f_roots.lo: sci_gateway/fortran/sci_f_roots.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_roots.lo `test -f 'sci_gateway/fortran/sci_f_roots.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_roots.f
 
-intf_psimp.lo: sci_gateway/fortran/intf_psimp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_psimp.lo `test -f 'sci_gateway/fortran/intf_psimp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_psimp.f
+sci_f_psimp.lo: sci_gateway/fortran/sci_f_psimp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_psimp.lo `test -f 'sci_gateway/fortran/sci_f_psimp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_psimp.f
 
-intf_rsimp.lo: sci_gateway/fortran/intf_rsimp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_rsimp.lo `test -f 'sci_gateway/fortran/intf_rsimp.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_rsimp.f
+sci_f_rsimp.lo: sci_gateway/fortran/sci_f_rsimp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_rsimp.lo `test -f 'sci_gateway/fortran/sci_f_rsimp.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_rsimp.f
 
-intf_coeff.lo: sci_gateway/fortran/intf_coeff.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_coeff.lo `test -f 'sci_gateway/fortran/intf_coeff.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_coeff.f
+sci_f_coeff.lo: sci_gateway/fortran/sci_f_coeff.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_coeff.lo `test -f 'sci_gateway/fortran/sci_f_coeff.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_coeff.f
 
-intf_degree.lo: sci_gateway/fortran/intf_degree.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_degree.lo `test -f 'sci_gateway/fortran/intf_degree.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_degree.f
+sci_f_degree.lo: sci_gateway/fortran/sci_f_degree.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_degree.lo `test -f 'sci_gateway/fortran/sci_f_degree.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_degree.f
 
-intf_pclean.lo: sci_gateway/fortran/intf_pclean.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_pclean.lo `test -f 'sci_gateway/fortran/intf_pclean.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_pclean.f
+sci_f_pclean.lo: sci_gateway/fortran/sci_f_pclean.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_pclean.lo `test -f 'sci_gateway/fortran/sci_f_pclean.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_pclean.f
 
-intf_sfact.lo: sci_gateway/fortran/intf_sfact.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_sfact.lo `test -f 'sci_gateway/fortran/intf_sfact.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_sfact.f
+sci_f_sfact.lo: sci_gateway/fortran/sci_f_sfact.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_sfact.lo `test -f 'sci_gateway/fortran/sci_f_sfact.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_sfact.f
 
-intf_simpmd.lo: sci_gateway/fortran/intf_simpmd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o intf_simpmd.lo `test -f 'sci_gateway/fortran/intf_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/intf_simpmd.f
+sci_f_simpmd.lo: sci_gateway/fortran/sci_f_simpmd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sci_f_simpmd.lo `test -f 'sci_gateway/fortran/sci_f_simpmd.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_simpmd.f
 
 mostlyclean-libtool:
 	-rm -f *.lo

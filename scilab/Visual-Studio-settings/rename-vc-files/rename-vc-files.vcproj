@@ -151,10 +151,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\etc\jvm_options.xml.vc"
-				>
-			</File>
-			<File
 				RelativePath="..\..\modules\core\includes\machine.h.vc"
 				>
 			</File>
