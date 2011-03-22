@@ -13,9 +13,9 @@ package org.scilab.modules.renderer.JoGLView.mark;
 
 import org.scilab.forge.scirenderer.sprite.Sprite;
 import org.scilab.forge.scirenderer.sprite.SpriteManager;
+import org.scilab.modules.graphic_objects.contouredObject.ContouredObject;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
-import org.scilab.modules.graphic_objects.polyline.Polyline;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -49,17 +49,17 @@ public class MarkSpriteManager {
 
 
     /**
-     * Return the mark sprite for the given polyline.
+     * Return the mark sprite for the given contoured object.
      *
-     * @param polyline the given polyline.
+     * @param contouredObject the given contoured object.
      * @param colorMap the current color map.
-     * @return the mark sprite for the given polyline.
+     * @return the mark sprite for the given contoured object.
      */
-    public Sprite getMarkSprite(Polyline polyline, ColorMap colorMap) {
-        String id = polyline.getIdentifier();
+    public Sprite getMarkSprite(ContouredObject contouredObject, ColorMap colorMap) {
+        String id = contouredObject.getIdentifier();
         Sprite sprite = spriteMap.get(id);
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(spriteManager, polyline.getMark(), colorMap);
+            sprite = MarkSpriteFactory.getMarkSprite(spriteManager, contouredObject.getMark(), colorMap);
             spriteMap.put(id, sprite);
         }
         return sprite;
