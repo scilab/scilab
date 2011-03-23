@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007-2009 - DIGITEO - Sylvestre LEDRU
+ * Copyright (C) 2007-2011 - DIGITEO - Sylvestre LEDRU
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -36,31 +36,16 @@ int sci_mpi_send(char *fname,unsigned long fname_len)
 	CheckRhs(2,2);	
 	CheckLhs(1,1);
 	
-	/*
-	switch (typevar){
-		case sci_matrix:
-			
-		
-	}
-	*/	
-	//	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	//	CheckScalar(1,m1,n1);
-	//	stringToBeSend=cstk(l1);
-
 	mapping=getMPIDataStructure(1);
 	getVarAddressFromPosition(pvApiCtx, 2, &piAddr);
 	getScalarDouble(pvApiCtx, piAddr ,&nodeID);
-	printf("To node %lf\n", nodeID);
-	//	CheckScalar(2,m2,n2);
 
-	printf("try: %5.2f, %d, %d, %d, %d\n", mapping.data[0], mapping.rows*mapping.cols, mapping.MPI, TAG, nodeID);
-	//	printf("data send: %5.2f\n",(double)mapping.data[0]);
-
-	fflush(NULL);
-	printf("mapping.count %d\n", mapping.rows*mapping.cols);
+//	printf("try: %5.2f, %d, %d, %d, %d\n", mapping.data[0], mapping.rows*mapping.cols, mapping.MPI, TAG, nodeID);
 	errorCode = MPI_Send(mapping.data, mapping.rows*mapping.cols, mapping.customMPI, nodeID, TAG, MPI_COMM_WORLD);
-    printf("after MPI_Send. Error code: %d\n",errorCode);fflush(NULL);
-	//	errorCode = MPI_Send(stringToBeSend, strlen(stringToBeSend), MPI_CHAR, nodeID, TAG, MPI_COMM_WORLD);
+    if (errorCode!=MPI_SUCCESS) {
+        // TODO : fix that
+        printf("Failed : after MPI_Send. Error code: %d\n",errorCode);fflush(NULL);
+    }
 	
 	m3=1;
 	n3=1;

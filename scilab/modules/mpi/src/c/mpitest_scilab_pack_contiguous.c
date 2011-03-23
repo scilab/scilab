@@ -9,15 +9,16 @@
 #define BUFSIZE 128
 #define TAG 1
 #define SOURCE 0
-int pre_send_metadata(int size, MPI_Datatype dataType, int dest, int tag)
+int pre_send_metadata(int nbRows, int nbCols, MPI_Datatype dataType, int dest, int tag)
 {
     /* Find out the buffer size */
-    int mpi_buffsize = (1*sizeof(int)) + (1*sizeof(MPI_Datatype));
+    int mpi_buffsize = (2*sizeof(int)) + (1*sizeof(MPI_Datatype));
     char *mpi_buff = (char *) malloc(mpi_buffsize *sizeof(char));
     int position = 0;
     printf("send\n");
     /* Serialize both size and type to send it the slave */
-    MPI_Pack(&size, 1, MPI_INT, mpi_buff, mpi_buffsize, &position, MPI_COMM_WORLD);
+    MPI_Pack(&nbRows, 1, MPI_INT, mpi_buff, mpi_buffsize, &position, MPI_COMM_WORLD);
+    MPI_Pack(&nbCols, 1, MPI_INT, mpi_buff, mpi_buffsize, &position, MPI_COMM_WORLD);
     MPI_Pack(&dataType, 1, MPI_INT, mpi_buff, mpi_buffsize, &position, MPI_COMM_WORLD);
     MPI_Send(mpi_buff, position, MPI_PACKED, dest, tag, MPI_COMM_WORLD);
     /* TODO: check this result */
@@ -25,18 +26,18 @@ int pre_send_metadata(int size, MPI_Datatype dataType, int dest, int tag)
 
 }
 
-int pre_recv_metadata(int source, int tag, int *size, MPI_Datatype *dataType)
+int pre_recv_metadata(int source, int tag, int *nbRows, int *nbCols, MPI_Datatype *dataType)
 {
     int position = 0;
     MPI_Status stat; 
     int mpi_buffsize = (1*sizeof(int)) + (1*sizeof(MPI_Datatype));
     char *mpi_buff = (char *) malloc(mpi_buffsize *sizeof(char));
-    int size_, dataType_;
     printf("recv\n");
     /* DeSerialize both size and type from the master */
     MPI_Recv(mpi_buff, mpi_buffsize, MPI_PACKED, source, tag, MPI_COMM_WORLD, &stat);
 /* TODO: check stat */
-    MPI_Unpack(mpi_buff, mpi_buffsize, &position, size, 1, MPI_INT, MPI_COMM_WORLD);
+    MPI_Unpack(mpi_buff, mpi_buffsize, &position, nbRows, 1, MPI_INT, MPI_COMM_WORLD);
+    MPI_Unpack(mpi_buff, mpi_buffsize, &position, nbCols, 1, MPI_INT, MPI_COMM_WORLD);
     MPI_Unpack(mpi_buff, mpi_buffsize, &position, dataType, 1, MPI_INT, MPI_COMM_WORLD);
 }
 
@@ -89,7 +90,7 @@ int main(int argc, char *argv[])
 
       int size=rowA*colA;
       printf("SENDING===== %d\n",size);
-      pre_send_metadata(size, MPI_DOUBLE, i, TAG);
+      pre_send_metadata(rowA, colA, MPI_DOUBLE, i, TAG);
       
       MPI_Send(&A, 1, matrixOfDouble, i, TAG, MPI_COMM_WORLD);
 
@@ -119,23 +120,24 @@ int main(int argc, char *argv[])
   
 
       int type=MPI_DOUBLE;
-      int size;
-      pre_recv_metadata(SOURCE, TAG, &size, &type);
+      int iRows, iCols;
+      pre_recv_metadata(SOURCE, TAG, &iRows, &iCols, &type);
 
-      printf("size: %d\n",size);
-      printf("type: %d\n",type);
+      printf("iRows: %d\n",iRows);
+      printf("iCols: %d\n",iCols);
+      printf("type: %d\n",type==MPI_DOUBLE);
       if (type==MPI_DOUBLE) {
           printf("MPI_DOUBLE\n");
       }else{
           printf("PAS MPI_DOUBLE\n");
       }
-      double ARecv[size];
+      double ARecv[iRows*iCols];
 
-      MPI_Recv(ARecv, size, type, SOURCE, TAG, MPI_COMM_WORLD, &stat);
+      MPI_Recv(ARecv, 1, matrixOfDouble, SOURCE, TAG, MPI_COMM_WORLD, &stat);
 
 //      MPI_Recv(ARecv, 1, matrixOfDouble, SOURCE, TAG, MPI_COMM_WORLD, &stat);
 //      MPI_Recv(ARecv, count, MPI_DOUBLE, SOURCE, TAG, MPI_COMM_WORLD, &stat);
-      for (j=0; j < size; j++) {
+      for (j=0; j < iRows*iCols; j++) {
           ARecv[j]=ARecv[j]*myid;
           printf("plop: %f\n",ARecv[j]);
       }

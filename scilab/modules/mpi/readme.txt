@@ -1,3 +1,22 @@
+src/c/mappingScilabMPI.c => mettre ‡ jour la gestion des autres types de donnÈes
+
+mpitest_scilab_pack => uses two messages. A first communication to send the meta data (size & type), the second to send / recv the actual data.
+=> 
+
+mpitest_scilab_data => use MPI_Type_contiguous + probe + get_element
+probably the most interesting stuff
+
+
+src/c/mappingScilabMPI.c => la serialisation essaye d'etre generique
+c'est un peu trop ambitieux
+
+probleme de seg fault: verifier que l'on a pas mpich2 qui se mixe avec openmpi
+
+
+lancer un test unitaire:
+mpirun -c 2 ./bin/scilab -nwni -f modules/mpi/tests/unit_tests/mpi_init.tst 
+
+
 Serialisation
 
 1) Donn√©es homogenes

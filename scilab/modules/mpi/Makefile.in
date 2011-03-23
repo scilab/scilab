@@ -83,7 +83,7 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = mpitest$(EXEEXT) mpi_pi$(EXEEXT) \
-	mpi_test_scilab_data$(EXEEXT) mpitest_contiguous$(EXEEXT) \
+	mpitest_scilab_data$(EXEEXT) mpitest_contiguous$(EXEEXT) \
 	mpitest_scilab_pack$(EXEEXT)
 DIST_COMMON = $(libscimpi_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am TODO
@@ -166,12 +166,6 @@ mpi_pi_LDADD = $(LDADD)
 mpi_pi_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(mpi_pi_LDFLAGS) \
 	$(LDFLAGS) -o $@
-am_mpi_test_scilab_data_OBJECTS = mpitest_scilab_data.$(OBJEXT)
-mpi_test_scilab_data_OBJECTS = $(am_mpi_test_scilab_data_OBJECTS)
-mpi_test_scilab_data_LDADD = $(LDADD)
-mpi_test_scilab_data_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(mpi_test_scilab_data_LDFLAGS) $(LDFLAGS) -o $@
 am__objects_4 = mpitest.$(OBJEXT)
 am_mpitest_OBJECTS = $(am__objects_4)
 mpitest_OBJECTS = $(am_mpitest_OBJECTS)
@@ -182,6 +176,12 @@ mpitest_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 am_mpitest_contiguous_OBJECTS = mpitest_contiguous.$(OBJEXT)
 mpitest_contiguous_OBJECTS = $(am_mpitest_contiguous_OBJECTS)
 mpitest_contiguous_LDADD = $(LDADD)
+am_mpitest_scilab_data_OBJECTS = mpitest_scilab_data.$(OBJEXT)
+mpitest_scilab_data_OBJECTS = $(am_mpitest_scilab_data_OBJECTS)
+mpitest_scilab_data_LDADD = $(LDADD)
+mpitest_scilab_data_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
+	$(mpitest_scilab_data_LDFLAGS) $(LDFLAGS) -o $@
 am_mpitest_scilab_pack_OBJECTS = mpitest_scilab_pack.$(OBJEXT)
 mpitest_scilab_pack_OBJECTS = $(am_mpitest_scilab_pack_OBJECTS)
 mpitest_scilab_pack_LDADD = $(LDADD)
@@ -198,12 +198,12 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscimpi_la_SOURCES) $(mpi_pi_SOURCES) \
-	$(mpi_test_scilab_data_SOURCES) $(mpitest_SOURCES) \
-	$(mpitest_contiguous_SOURCES) $(mpitest_scilab_pack_SOURCES)
+SOURCES = $(libscimpi_la_SOURCES) $(mpi_pi_SOURCES) $(mpitest_SOURCES) \
+	$(mpitest_contiguous_SOURCES) $(mpitest_scilab_data_SOURCES) \
+	$(mpitest_scilab_pack_SOURCES)
 DIST_SOURCES = $(libscimpi_la_SOURCES) $(mpi_pi_SOURCES) \
-	$(mpi_test_scilab_data_SOURCES) $(mpitest_SOURCES) \
-	$(mpitest_contiguous_SOURCES) $(mpitest_scilab_pack_SOURCES)
+	$(mpitest_SOURCES) $(mpitest_contiguous_SOURCES) \
+	$(mpitest_scilab_data_SOURCES) $(mpitest_scilab_pack_SOURCES)
 DATA = $(libscimpi_la_etc_DATA) $(libscimpi_la_root_DATA) \
 	$(libscimpi_la_sci_gateway_DATA)
 HEADERS = $(libscimpi_la_include_HEADERS)
@@ -477,14 +477,13 @@ MPI_TEST_EXE_SOURCES = src/c/mpitest.c
 mpitest_SOURCES = $(MPI_TEST_EXE_SOURCES)
 mpitest_LDFLAGS = $(OPENMPI_LIBS)
 mpitest_scilab_pack_SOURCES = src/c/mpitest_scilab_pack.c
-mpi_test_scilab_data_SOURCES = src/c/mpitest_scilab_data.c
-mpi_test_scilab_data_LDFLAGS = $(OPENMPI_LIBS)
+mpitest_scilab_data_SOURCES = src/c/mpitest_scilab_data.c
+mpitest_scilab_data_LDFLAGS = $(OPENMPI_LIBS)
 MPI_PI_SOURCES = src/c/mpi_pi_send.c src/c/dboard.c
 mpi_pi_SOURCES = $(MPI_PI_SOURCES)
 mpi_pi_LDFLAGS = $(OPENMPI_LIBS)
 MPI_C_SOURCES = src/c/mappingScilabMPI.c
 mpitest_contiguous_SOURCES = src/c/mpitest_contiguous.c
-
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_mpi_init.c \
 sci_gateway/c/sci_mpi_finalize.c \
@@ -716,15 +715,15 @@ clean-binPROGRAMS:
 mpi_pi$(EXEEXT): $(mpi_pi_OBJECTS) $(mpi_pi_DEPENDENCIES) 
 	@rm -f mpi_pi$(EXEEXT)
 	$(mpi_pi_LINK) $(mpi_pi_OBJECTS) $(mpi_pi_LDADD) $(LIBS)
-mpi_test_scilab_data$(EXEEXT): $(mpi_test_scilab_data_OBJECTS) $(mpi_test_scilab_data_DEPENDENCIES) 
-	@rm -f mpi_test_scilab_data$(EXEEXT)
-	$(mpi_test_scilab_data_LINK) $(mpi_test_scilab_data_OBJECTS) $(mpi_test_scilab_data_LDADD) $(LIBS)
 mpitest$(EXEEXT): $(mpitest_OBJECTS) $(mpitest_DEPENDENCIES) 
 	@rm -f mpitest$(EXEEXT)
 	$(mpitest_LINK) $(mpitest_OBJECTS) $(mpitest_LDADD) $(LIBS)
 mpitest_contiguous$(EXEEXT): $(mpitest_contiguous_OBJECTS) $(mpitest_contiguous_DEPENDENCIES) 
 	@rm -f mpitest_contiguous$(EXEEXT)
 	$(LINK) $(mpitest_contiguous_OBJECTS) $(mpitest_contiguous_LDADD) $(LIBS)
+mpitest_scilab_data$(EXEEXT): $(mpitest_scilab_data_OBJECTS) $(mpitest_scilab_data_DEPENDENCIES) 
+	@rm -f mpitest_scilab_data$(EXEEXT)
+	$(mpitest_scilab_data_LINK) $(mpitest_scilab_data_OBJECTS) $(mpitest_scilab_data_LDADD) $(LIBS)
 mpitest_scilab_pack$(EXEEXT): $(mpitest_scilab_pack_OBJECTS) $(mpitest_scilab_pack_DEPENDENCIES) 
 	@rm -f mpitest_scilab_pack$(EXEEXT)
 	$(LINK) $(mpitest_scilab_pack_OBJECTS) $(mpitest_scilab_pack_LDADD) $(LIBS)
@@ -903,20 +902,6 @@ dboard.obj: src/c/dboard.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o dboard.obj `if test -f 'src/c/dboard.c'; then $(CYGPATH_W) 'src/c/dboard.c'; else $(CYGPATH_W) '$(srcdir)/src/c/dboard.c'; fi`
 
-mpitest_scilab_data.o: src/c/mpitest_scilab_data.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest_scilab_data.o -MD -MP -MF $(DEPDIR)/mpitest_scilab_data.Tpo -c -o mpitest_scilab_data.o `test -f 'src/c/mpitest_scilab_data.c' || echo '$(srcdir)/'`src/c/mpitest_scilab_data.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/mpitest_scilab_data.Tpo $(DEPDIR)/mpitest_scilab_data.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mpitest_scilab_data.c' object='mpitest_scilab_data.o' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mpitest_scilab_data.o `test -f 'src/c/mpitest_scilab_data.c' || echo '$(srcdir)/'`src/c/mpitest_scilab_data.c
-
-mpitest_scilab_data.obj: src/c/mpitest_scilab_data.c
-@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest_scilab_data.obj -MD -MP -MF $(DEPDIR)/mpitest_scilab_data.Tpo -c -o mpitest_scilab_data.obj `if test -f 'src/c/mpitest_scilab_data.c'; then $(CYGPATH_W) 'src/c/mpitest_scilab_data.c'; else $(CYGPATH_W) '$(srcdir)/src/c/mpitest_scilab_data.c'; fi`
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/mpitest_scilab_data.Tpo $(DEPDIR)/mpitest_scilab_data.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mpitest_scilab_data.c' object='mpitest_scilab_data.obj' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mpitest_scilab_data.obj `if test -f 'src/c/mpitest_scilab_data.c'; then $(CYGPATH_W) 'src/c/mpitest_scilab_data.c'; else $(CYGPATH_W) '$(srcdir)/src/c/mpitest_scilab_data.c'; fi`
-
 mpitest.o: src/c/mpitest.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest.o -MD -MP -MF $(DEPDIR)/mpitest.Tpo -c -o mpitest.o `test -f 'src/c/mpitest.c' || echo '$(srcdir)/'`src/c/mpitest.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/mpitest.Tpo $(DEPDIR)/mpitest.Po
@@ -944,6 +929,20 @@ mpitest_contiguous.obj: src/c/mpitest_contiguous.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mpitest_contiguous.c' object='mpitest_contiguous.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mpitest_contiguous.obj `if test -f 'src/c/mpitest_contiguous.c'; then $(CYGPATH_W) 'src/c/mpitest_contiguous.c'; else $(CYGPATH_W) '$(srcdir)/src/c/mpitest_contiguous.c'; fi`
+
+mpitest_scilab_data.o: src/c/mpitest_scilab_data.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest_scilab_data.o -MD -MP -MF $(DEPDIR)/mpitest_scilab_data.Tpo -c -o mpitest_scilab_data.o `test -f 'src/c/mpitest_scilab_data.c' || echo '$(srcdir)/'`src/c/mpitest_scilab_data.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/mpitest_scilab_data.Tpo $(DEPDIR)/mpitest_scilab_data.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mpitest_scilab_data.c' object='mpitest_scilab_data.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mpitest_scilab_data.o `test -f 'src/c/mpitest_scilab_data.c' || echo '$(srcdir)/'`src/c/mpitest_scilab_data.c
+
+mpitest_scilab_data.obj: src/c/mpitest_scilab_data.c
+@am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest_scilab_data.obj -MD -MP -MF $(DEPDIR)/mpitest_scilab_data.Tpo -c -o mpitest_scilab_data.obj `if test -f 'src/c/mpitest_scilab_data.c'; then $(CYGPATH_W) 'src/c/mpitest_scilab_data.c'; else $(CYGPATH_W) '$(srcdir)/src/c/mpitest_scilab_data.c'; fi`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/mpitest_scilab_data.Tpo $(DEPDIR)/mpitest_scilab_data.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/mpitest_scilab_data.c' object='mpitest_scilab_data.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o mpitest_scilab_data.obj `if test -f 'src/c/mpitest_scilab_data.c'; then $(CYGPATH_W) 'src/c/mpitest_scilab_data.c'; else $(CYGPATH_W) '$(srcdir)/src/c/mpitest_scilab_data.c'; fi`
 
 mpitest_scilab_pack.o: src/c/mpitest_scilab_pack.c
 @am__fastdepCC_TRUE@	$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT mpitest_scilab_pack.o -MD -MP -MF $(DEPDIR)/mpitest_scilab_pack.Tpo -c -o mpitest_scilab_pack.o `test -f 'src/c/mpitest_scilab_pack.c' || echo '$(srcdir)/'`src/c/mpitest_scilab_pack.c
@@ -1266,6 +1265,12 @@ uninstall-am: uninstall-binPROGRAMS uninstall-libscimpi_la_etcDATA \
 	uninstall-libscimpi_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
+
+check-am:
+	mpirun -c 4 mpitest_contiguous
+	mpirun -c 2 mpi_pi
+	mpirun -c 2 mpitest_scilab_data
+	mpirun -c 2 mpitest_scilab_pack
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

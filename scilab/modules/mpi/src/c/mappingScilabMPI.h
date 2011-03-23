@@ -14,6 +14,8 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 
+#define __MPI_DEBUG__
+
 typedef SciErr (*function_loadData)(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, void** _pdblReal);
 
 typedef struct mappinpScilabMPI_struct{

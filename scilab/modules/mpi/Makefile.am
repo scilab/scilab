@@ -29,14 +29,14 @@
 #src/fortran/mpi_init.f
 
 MPI_TEST_EXE_SOURCES = src/c/mpitest.c 
-bin_PROGRAMS = mpitest mpi_pi mpi_test_scilab_data mpitest_contiguous mpitest_scilab_pack
+bin_PROGRAMS = mpitest mpi_pi mpitest_scilab_data mpitest_contiguous mpitest_scilab_pack
 mpitest_SOURCES = $(MPI_TEST_EXE_SOURCES)
 mpitest_LDFLAGS = $(OPENMPI_LIBS)
 
 mpitest_scilab_pack_SOURCES = src/c/mpitest_scilab_pack.c
 
-mpi_test_scilab_data_SOURCES = src/c/mpitest_scilab_data.c
-mpi_test_scilab_data_LDFLAGS = $(OPENMPI_LIBS)
+mpitest_scilab_data_SOURCES = src/c/mpitest_scilab_data.c
+mpitest_scilab_data_LDFLAGS = $(OPENMPI_LIBS)
 
 MPI_PI_SOURCES = src/c/mpi_pi_send.c src/c/dboard.c
 mpi_pi_SOURCES = $(MPI_PI_SOURCES)
@@ -45,8 +45,11 @@ mpi_pi_LDFLAGS = $(OPENMPI_LIBS)
 MPI_C_SOURCES = src/c/mappingScilabMPI.c
 mpitest_contiguous_SOURCES = src/c/mpitest_contiguous.c
 
-
-
+check-am:
+	mpirun -c 4 mpitest_contiguous
+	mpirun -c 2 mpi_pi
+	mpirun -c 2 mpitest_scilab_data
+	mpirun -c 2 mpitest_scilab_pack
 # List of the gateway c files
 GATEWAY_C_SOURCES = sci_gateway/c/sci_mpi_init.c \
 sci_gateway/c/sci_mpi_finalize.c \

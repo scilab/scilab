@@ -15,6 +15,7 @@
 #include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
+#include "localization.h"
 
 /**
  * SCILAB function : mpi_comm_size, fin = 3
@@ -34,30 +35,26 @@ int sci_mpi_comm_size(char *fname,unsigned long fname_len)
 	CheckRhs(0,1); // Check the parameters of the function ... Here 0 or 1
 	CheckLhs(1,1); // The output of the function (1 parameter)
 	if (Rhs==1)
-		{
-			int typevar;
-			getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    {
+        int typevar;
+        getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 			
-			getVarType(pvApiCtx, piAddr, &typevar);
-			if (typevar == sci_matrix)
-				{
-					//					GetRhsVar(1,"d",&m1,&n1,&l1);
-					getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
-					comm=(MPI_Comm)(int) pdblReal;
-
-					//					comm=(MPI_Comm)(int)istk(l1);
-				}else{
-				// TODO: update error message
-					Scierror(999,"The first parameter should be an int");
-				}
-		}
+        getVarType(pvApiCtx, piAddr, &typevar);
+        if (typevar == sci_matrix)
+        {
+            getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &pdblReal);
+            // TODO manage scierr
+            comm=(MPI_Comm)(int) pdblReal;
+        }else{
+            // TODO: update error message
+            Scierror(999,_("%s: Wrong type for input argument #%d: Scalar expected.\n"),fname, 1);
+        }
+    }
 	else
-		{
-			comm=MPI_COMM_WORLD;
-		}
-	printf("comm : %d\n",comm);
+    {
+        comm=MPI_COMM_WORLD;
+    }
 	MPI_Comm_size(comm, &comm_size);
-	printf("comm_size : %d\n",comm_size);
 
     double *pdblReal1 = (double*)malloc(sizeof(double) * iRows2 * iCols2);
 	pdblReal1[0]=(double)comm_size;

@@ -17,3 +17,4 @@ if execstr("MPI_Comm_rank(1);", "errcatch") <> 77 then pause,end
 // if execstr("MPI_Comm_size(1,2);", "errcatch") <> 77 then pause,end
 
 MPI_Finalize();
+exit()

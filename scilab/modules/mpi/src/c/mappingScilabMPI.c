@@ -22,9 +22,8 @@ mappinpScilabMPI getMPIDataStructure(int position){
     SciErr sciErr;
 	mappinpScilabMPI mapping;
 	int iRows, iCols;
-	double *data;
 	int *piAddr                     = NULL;
-	printf("ici 0\n");
+
 	sciErr = getVarAddressFromPosition(pvApiCtx, position, &piAddr);
 	if(sciErr.iErr)
         {
@@ -40,36 +39,35 @@ mappinpScilabMPI getMPIDataStructure(int position){
 
 	switch (typevar){
 		case sci_matrix:
-			(*mapping.f)(pvApiCtx, piAddr, &iRows, &iCols, &data);
-			//			getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &data);
-			// TODO DATA devrait etre void ici
-			printf("data: irows %d, icols %d\n",iRows, iCols);
+        {
+            double *data;
 
-			printf("data: %5.2f\n",(double)data[0]);
-			printf("data: %5.2f\n",(double)data[1]);
-			printf("sizeof(data): %d\n",iRows*iCols*sizeof(double));
+			SciErr sciErr = getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &data);
+            // todo check 
+			//			getMatrixOfDouble(pvApiCtx, piAddr, &iRows, &iCols, &data);
 			mapping.data=NULL;
 			mapping.data=(double*)malloc((iRows * iCols + 2)*sizeof(double)); // Store iRows + iCols + the data
 			
-			double  plop = (double)iRows;
+			double plop = (double)iRows;
 			double plip = (double)iCols;
 
 			memcpy(mapping.data,&plop,sizeof(double));
-			printf("VALUE : %5.2f\n", plop);
-			printf("VALUE 2 : %5.2f\n", plip);
-			printf("============recvValue 1 %5.2f ==========\n", mapping.data[0]);fflush(NULL);
+#ifdef __MPI_DEBUG__
+			printf("iRows : %5.2f\n", plop);
+			printf("iCols : %5.2f\n", plip);
+#endif
 			memcpy(mapping.data+1,&plip,sizeof(double));
-			printf("============recvValue 2 %5.2f ==========\n", mapping.data[1]);fflush(NULL);
-
 			memcpy(mapping.data+2,data,iRows*iCols*sizeof(double));
-			printf("============recvValue 3 %5.2f ==========\n", mapping.data[2]);fflush(NULL);
-			printf("============recvValue %5.2f ==========\n", mapping.data[3]);fflush(NULL);
+#ifdef __MPI_DEBUG__
+			printf("============ data 1 %5.2f ==========\n", mapping.data[2]);fflush(NULL);
+			printf("============ data 2 %5.2f ==========\n", mapping.data[3]);fflush(NULL);
+#endif
 			//printf("mapping data: %5.2f\n",(double)mapping.data[0]);
 			mapping.rows=iRows;
 			mapping.cols=iCols;
-			printf("mapping.count %d\n",mapping.rows*mapping.cols);
 
             mapping.customMPI=setHomogenousScilabType(2+iRows*iCols, mapping.MPI); /* 2 for nb Rows & cols */
+        }
 			break;
 		case sci_strings:
 			
@@ -84,12 +82,11 @@ mappinpScilabMPI getMPIDataStructure(int position){
 
 static mappinpScilabMPI getMPIMapping(sci_types scilabType){
 	mappinpScilabMPI mapping;
-	printf("scilabType getMPIMapping %d\n",scilabType);
-	fflush(NULL);
+
 	switch (scilabType){
 		case sci_matrix:
+			printf("MPI double %d \n",mapping.MPI);//, *data[0]);
 			mapping.MPI=MPI_DOUBLE;
-			printf("MPI plop %d \n",mapping.MPI);//, *data[0]);
 
 			mapping.Scilab=scilabType;
 			mapping.f=getMatrixOfDouble;

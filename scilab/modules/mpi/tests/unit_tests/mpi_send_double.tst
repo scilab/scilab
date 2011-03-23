@@ -30,8 +30,10 @@ if Master
 	for slaveId = 1:sizeNodes-1
 		tag=0
 		disp("MASTER: mpi_recv")
-	    valueBack=MPI_Recv(slaveId, tag);
-		if valueBack(1) <> 43 & valueBack(2) <> 42 then pause, end
+		valueBack=MPI_Recv(slaveId, tag);
+		if valueBack(1) <> 43 & valueBack(2) <> 42 then disp("Failed (expected 42, 43): "+string(valueBack));
+           pause
+         end
 
 	end
 else
@@ -47,3 +49,4 @@ else
 end
 
 MPI_Finalize()
+exit();

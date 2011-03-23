@@ -13,7 +13,6 @@
 
 int main(int argc, char *argv[])
 {
-  char idstr[32];
   char buff[BUFSIZE];
   char buffRecv[BUFSIZE];
 
@@ -81,10 +80,9 @@ int main(int argc, char *argv[])
       MPI_Recv(ARecv, count, MPI_DOUBLE, SOURCE, TAG, MPI_COMM_WORLD, &stat);
       for (j=0; j < count; j++) {
           ARecv[j]=ARecv[j]*myid;
-//          printf("plop: %f\n",ARecv[j]);
+          printf("__plop__: %f\n",ARecv[j]);
       }
-      sprintf(idstr, "Processor %d ", myid);
-      printf("plop: %f\n",ARecv[1]);
+      printf("Processor %d\n", myid);
 
       /* send to rank 0: */
       MPI_Send(&ARecv, 1, matrixOfDouble, 0, TAG, MPI_COMM_WORLD);
