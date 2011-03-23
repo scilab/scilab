@@ -54,7 +54,7 @@ pkglib_LTLIBRARIES = libsciapi_scilab.la
 
 libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)

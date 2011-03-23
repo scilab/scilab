@@ -112,22 +112,33 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscishell_la_rootdir)" \
 	"$(DESTDIR)$(libscishell_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscishell_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscishell_la_DEPENDENCIES = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscishell_algo_la_LIBADD =
+am__objects_1 = libscishell_algo_la-clc.lo \
+	libscishell_algo_la-tohome.lo libscishell_algo_la-more.lo \
+	libscishell_algo_la-scilines.lo \
+	libscishell_algo_la-GetCommandLine.lo \
+	libscishell_algo_la-zzledt.lo libscishell_algo_la-gotoxy_nw.lo \
+	libscishell_algo_la-clrscr_nw.lo \
+	libscishell_algo_la-InitializeShell.lo \
+	libscishell_algo_la-TerminateShell.lo \
+	libscishell_algo_la-prompt.lo \
+	libscishell_algo_la-promptecho.lo
+am_libscishell_algo_la_OBJECTS = $(am__objects_1)
+libscishell_algo_la_OBJECTS = $(am_libscishell_algo_la_OBJECTS)
+libscishell_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscishell_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscishell_la_DEPENDENCIES = libscishell-algo.la \
+	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscishell_la-clc.lo libscishell_la-tohome.lo \
-	libscishell_la-more.lo libscishell_la-scilines.lo \
-	libscishell_la-GetCommandLine.lo libscishell_la-zzledt.lo \
-	libscishell_la-gotoxy_nw.lo libscishell_la-clrscr_nw.lo \
-	libscishell_la-InitializeShell.lo \
-	libscishell_la-TerminateShell.lo libscishell_la-prompt.lo \
-	libscishell_la-promptecho.lo
 am__objects_2 = libscishell_la-gw_shell.lo libscishell_la-sci_clc.lo \
 	libscishell_la-sci_tohome.lo libscishell_la-sci_lines.lo \
 	libscishell_la-sci_prompt.lo \
 	libscishell_la-sci_iswaitingforinput.lo
-am_libscishell_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscishell_la_OBJECTS = $(am__objects_2)
 libscishell_la_OBJECTS = $(am_libscishell_la_OBJECTS)
 libscishell_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscishell_la_CFLAGS) \
@@ -145,8 +156,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscishell_la_SOURCES)
-DIST_SOURCES = $(libscishell_la_SOURCES)
+SOURCES = $(libscishell_algo_la_SOURCES) $(libscishell_la_SOURCES)
+DIST_SOURCES = $(libscishell_algo_la_SOURCES) \
+	$(libscishell_la_SOURCES)
 DATA = $(libscishell_la_etc_DATA) $(libscishell_la_root_DATA) \
 	$(libscishell_la_sci_gateway_DATA)
 HEADERS = $(libscishell_la_include_HEADERS)
@@ -464,17 +476,20 @@ libscishell_la_CFLAGS = $(JAVA_JNI_INCLUDE) -Iincludes/ -Isrc/c/ \
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
+noinst_LTLIBRARIES = libscishell-algo.la
 libscishell_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscishell_algo_la_SOURCES = $(SHELL_C_SOURCES)
+libscishell_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscishell_algo_la_CFLAGS = $(libscishell_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(libscishell_la_SOURCES)
 INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD = $(top_builddir)/modules/history_manager/libscihistory_manager.la \
+libscishell_la_LIBADD = libscishell-algo.la  	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -596,6 +611,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -627,6 +651,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscishell-algo.la: $(libscishell_algo_la_OBJECTS) $(libscishell_algo_la_DEPENDENCIES) 
+	$(libscishell_algo_la_LINK)  $(libscishell_algo_la_OBJECTS) $(libscishell_algo_la_LIBADD) $(LIBS)
 libscishell.la: $(libscishell_la_OBJECTS) $(libscishell_la_DEPENDENCIES) 
 	$(libscishell_la_LINK) -rpath $(pkglibdir) $(libscishell_la_OBJECTS) $(libscishell_la_LIBADD) $(LIBS)
 
@@ -636,24 +662,24 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-GetCommandLine.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-InitializeShell.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-TerminateShell.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-clrscr_nw.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gotoxy_nw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-GetCommandLine.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-InitializeShell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-TerminateShell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-clc.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-clrscr_nw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-gotoxy_nw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-more.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-prompt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-promptecho.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-scilines.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-tohome.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_algo_la-zzledt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-gw_shell.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-more.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-prompt.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-promptecho.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_iswaitingforinput.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_lines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_prompt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-sci_tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-scilines.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-tohome.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscishell_la-zzledt.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -676,89 +702,89 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscishell_la-clc.lo: src/c/clc.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-clc.lo -MD -MP -MF $(DEPDIR)/libscishell_la-clc.Tpo -c -o libscishell_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-clc.Tpo $(DEPDIR)/libscishell_la-clc.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clc.c' object='libscishell_la-clc.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-clc.lo: src/c/clc.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-clc.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-clc.Tpo -c -o libscishell_algo_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-clc.Tpo $(DEPDIR)/libscishell_algo_la-clc.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/clc.c' object='libscishell_algo_la-clc.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-clc.lo `test -f 'src/c/clc.c' || echo '$(srcdir)/'`src/c/clc.c
 
-libscishell_la-tohome.lo: src/c/tohome.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-tohome.lo -MD -MP -MF $(DEPDIR)/libscishell_la-tohome.Tpo -c -o libscishell_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-tohome.Tpo $(DEPDIR)/libscishell_la-tohome.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tohome.c' object='libscishell_la-tohome.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-tohome.lo: src/c/tohome.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-tohome.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-tohome.Tpo -c -o libscishell_algo_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-tohome.Tpo $(DEPDIR)/libscishell_algo_la-tohome.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/tohome.c' object='libscishell_algo_la-tohome.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-tohome.lo `test -f 'src/c/tohome.c' || echo '$(srcdir)/'`src/c/tohome.c
 
-libscishell_la-more.lo: src/c/more.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-more.lo -MD -MP -MF $(DEPDIR)/libscishell_la-more.Tpo -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-more.Tpo $(DEPDIR)/libscishell_la-more.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/more.c' object='libscishell_la-more.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-more.lo: src/c/more.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-more.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-more.Tpo -c -o libscishell_algo_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-more.Tpo $(DEPDIR)/libscishell_algo_la-more.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/more.c' object='libscishell_algo_la-more.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-more.lo `test -f 'src/c/more.c' || echo '$(srcdir)/'`src/c/more.c
 
-libscishell_la-scilines.lo: src/c/scilines.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-scilines.lo -MD -MP -MF $(DEPDIR)/libscishell_la-scilines.Tpo -c -o libscishell_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-scilines.Tpo $(DEPDIR)/libscishell_la-scilines.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scilines.c' object='libscishell_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-scilines.lo: src/c/scilines.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-scilines.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-scilines.Tpo -c -o libscishell_algo_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-scilines.Tpo $(DEPDIR)/libscishell_algo_la-scilines.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/scilines.c' object='libscishell_algo_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
 
-libscishell_la-GetCommandLine.lo: src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-GetCommandLine.lo -MD -MP -MF $(DEPDIR)/libscishell_la-GetCommandLine.Tpo -c -o libscishell_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-GetCommandLine.Tpo $(DEPDIR)/libscishell_la-GetCommandLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCommandLine.c' object='libscishell_la-GetCommandLine.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-GetCommandLine.lo: src/c/GetCommandLine.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-GetCommandLine.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-GetCommandLine.Tpo -c -o libscishell_algo_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-GetCommandLine.Tpo $(DEPDIR)/libscishell_algo_la-GetCommandLine.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetCommandLine.c' object='libscishell_algo_la-GetCommandLine.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
-libscishell_la-zzledt.lo: src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscishell_la-zzledt.Tpo -c -o libscishell_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-zzledt.Tpo $(DEPDIR)/libscishell_la-zzledt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libscishell_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-zzledt.lo: src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-zzledt.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-zzledt.Tpo -c -o libscishell_algo_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-zzledt.Tpo $(DEPDIR)/libscishell_algo_la-zzledt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/zzledt.c' object='libscishell_algo_la-zzledt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-zzledt.lo `test -f 'src/c/others/zzledt.c' || echo '$(srcdir)/'`src/c/others/zzledt.c
 
-libscishell_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gotoxy_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gotoxy_nw.Tpo -c -o libscishell_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-gotoxy_nw.Tpo $(DEPDIR)/libscishell_la-gotoxy_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/gotoxy_nw.c' object='libscishell_la-gotoxy_nw.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-gotoxy_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-gotoxy_nw.Tpo -c -o libscishell_algo_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-gotoxy_nw.Tpo $(DEPDIR)/libscishell_algo_la-gotoxy_nw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/gotoxy_nw.c' object='libscishell_algo_la-gotoxy_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c
 
-libscishell_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-clrscr_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_la-clrscr_nw.Tpo -c -o libscishell_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-clrscr_nw.Tpo $(DEPDIR)/libscishell_la-clrscr_nw.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/clrscr_nw.c' object='libscishell_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-clrscr_nw.lo: src/c/others/clrscr_nw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-clrscr_nw.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-clrscr_nw.Tpo -c -o libscishell_algo_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-clrscr_nw.Tpo $(DEPDIR)/libscishell_algo_la-clrscr_nw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/others/clrscr_nw.c' object='libscishell_algo_la-clrscr_nw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-clrscr_nw.lo `test -f 'src/c/others/clrscr_nw.c' || echo '$(srcdir)/'`src/c/others/clrscr_nw.c
 
-libscishell_la-InitializeShell.lo: src/c/InitializeShell.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-InitializeShell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-InitializeShell.Tpo -c -o libscishell_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-InitializeShell.Tpo $(DEPDIR)/libscishell_la-InitializeShell.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeShell.c' object='libscishell_la-InitializeShell.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-InitializeShell.lo: src/c/InitializeShell.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-InitializeShell.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-InitializeShell.Tpo -c -o libscishell_algo_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-InitializeShell.Tpo $(DEPDIR)/libscishell_algo_la-InitializeShell.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/InitializeShell.c' object='libscishell_algo_la-InitializeShell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-InitializeShell.lo `test -f 'src/c/InitializeShell.c' || echo '$(srcdir)/'`src/c/InitializeShell.c
 
-libscishell_la-TerminateShell.lo: src/c/TerminateShell.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-TerminateShell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-TerminateShell.Tpo -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-TerminateShell.Tpo $(DEPDIR)/libscishell_la-TerminateShell.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-TerminateShell.lo: src/c/TerminateShell.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-TerminateShell.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-TerminateShell.Tpo -c -o libscishell_algo_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-TerminateShell.Tpo $(DEPDIR)/libscishell_algo_la-TerminateShell.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/TerminateShell.c' object='libscishell_algo_la-TerminateShell.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-TerminateShell.lo `test -f 'src/c/TerminateShell.c' || echo '$(srcdir)/'`src/c/TerminateShell.c
 
-libscishell_la-prompt.lo: src/c/prompt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-prompt.lo -MD -MP -MF $(DEPDIR)/libscishell_la-prompt.Tpo -c -o libscishell_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-prompt.Tpo $(DEPDIR)/libscishell_la-prompt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/prompt.c' object='libscishell_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-prompt.lo: src/c/prompt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-prompt.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-prompt.Tpo -c -o libscishell_algo_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-prompt.Tpo $(DEPDIR)/libscishell_algo_la-prompt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/prompt.c' object='libscishell_algo_la-prompt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-prompt.lo `test -f 'src/c/prompt.c' || echo '$(srcdir)/'`src/c/prompt.c
 
-libscishell_la-promptecho.lo: src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-promptecho.lo -MD -MP -MF $(DEPDIR)/libscishell_la-promptecho.Tpo -c -o libscishell_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_la-promptecho.Tpo $(DEPDIR)/libscishell_la-promptecho.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/promptecho.c' object='libscishell_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
+libscishell_algo_la-promptecho.lo: src/c/promptecho.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -MT libscishell_algo_la-promptecho.lo -MD -MP -MF $(DEPDIR)/libscishell_algo_la-promptecho.Tpo -c -o libscishell_algo_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscishell_algo_la-promptecho.Tpo $(DEPDIR)/libscishell_algo_la-promptecho.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/promptecho.c' object='libscishell_algo_la-promptecho.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -c -o libscishell_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscishell_algo_la_CFLAGS) $(CFLAGS) -c -o libscishell_algo_la-promptecho.lo `test -f 'src/c/promptecho.c' || echo '$(srcdir)/'`src/c/promptecho.c
 
 libscishell_la-gw_shell.lo: sci_gateway/c/gw_shell.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscishell_la_CPPFLAGS) $(CPPFLAGS) $(libscishell_la_CFLAGS) $(CFLAGS) -MT libscishell_la-gw_shell.lo -MD -MP -MF $(DEPDIR)/libscishell_la-gw_shell.Tpo -c -o libscishell_la-gw_shell.lo `test -f 'sci_gateway/c/gw_shell.c' || echo '$(srcdir)/'`sci_gateway/c/gw_shell.c
@@ -1006,7 +1032,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1085,14 +1111,14 @@ uninstall-am: uninstall-libscishell_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscishell_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscishell_la_etcDATA \
 	install-libscishell_la_includeHEADERS \
 	install-libscishell_la_rootDATA \
 	install-libscishell_la_sci_gatewayDATA install-man install-pdf \

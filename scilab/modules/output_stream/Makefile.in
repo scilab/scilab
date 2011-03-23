@@ -115,34 +115,39 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_rootdir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscioutput_stream_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscioutput_stream_la_LIBADD =
-am__objects_1 = libscioutput_stream_la-erro.lo \
-	libscioutput_stream_la-cerro.lo \
-	libscioutput_stream_la-Scierror.lo \
-	libscioutput_stream_la-msgstore.lo \
-	libscioutput_stream_la-msgout.lo \
-	libscioutput_stream_la-msgs.lo \
-	libscioutput_stream_la-msgstxt.lo \
-	libscioutput_stream_la-basout.lo \
-	libscioutput_stream_la-sciprint.lo \
-	libscioutput_stream_la-sciprint_full.lo \
-	libscioutput_stream_la-errmds.lo \
-	libscioutput_stream_la-errmsg.lo \
-	libscioutput_stream_la-error.lo \
-	libscioutput_stream_la-error_internal.lo \
-	libscioutput_stream_la-do_xxprintf.lo \
-	libscioutput_stream_la-set_xxprintf.lo
-am__objects_2 = libscioutput_stream_la-Diary.lo \
-	libscioutput_stream_la-yaspio.lo \
-	libscioutput_stream_la-DiaryList.lo \
-	libscioutput_stream_la-diary_manager.lo \
-	libscioutput_stream_la-getDiaryDate.lo \
-	libscioutput_stream_la-getFullFilename.lo \
-	libscioutput_stream_la-scilab_sprintf.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscioutput_stream_algo_la_LIBADD =
+am__objects_1 = libscioutput_stream_algo_la-erro.lo \
+	libscioutput_stream_algo_la-cerro.lo \
+	libscioutput_stream_algo_la-Scierror.lo \
+	libscioutput_stream_algo_la-msgstore.lo \
+	libscioutput_stream_algo_la-msgout.lo \
+	libscioutput_stream_algo_la-msgs.lo \
+	libscioutput_stream_algo_la-msgstxt.lo \
+	libscioutput_stream_algo_la-basout.lo \
+	libscioutput_stream_algo_la-sciprint.lo \
+	libscioutput_stream_algo_la-sciprint_full.lo \
+	libscioutput_stream_algo_la-errmds.lo \
+	libscioutput_stream_algo_la-errmsg.lo \
+	libscioutput_stream_algo_la-error.lo \
+	libscioutput_stream_algo_la-error_internal.lo \
+	libscioutput_stream_algo_la-do_xxprintf.lo \
+	libscioutput_stream_algo_la-set_xxprintf.lo
+am__objects_2 = libscioutput_stream_algo_la-Diary.lo \
+	libscioutput_stream_algo_la-yaspio.lo \
+	libscioutput_stream_algo_la-DiaryList.lo \
+	libscioutput_stream_algo_la-diary_manager.lo \
+	libscioutput_stream_algo_la-getDiaryDate.lo \
+	libscioutput_stream_algo_la-getFullFilename.lo \
+	libscioutput_stream_algo_la-scilab_sprintf.lo
 am__objects_3 = wspdsp.lo wmdsp.lo strdsp.lo prntid.lo print.lo \
 	lspdsp.lo fmttyp.lo fmt.lo dspdsp.lo dmrdsp.lo dmpdsp.lo \
 	dmdspf.lo dmdsp.lo dldsp.lo basouttofile.lo formatnumber.lo
+am_libscioutput_stream_algo_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2) $(am__objects_3)
+libscioutput_stream_algo_la_OBJECTS =  \
+	$(am_libscioutput_stream_algo_la_OBJECTS)
+libscioutput_stream_la_DEPENDENCIES = libscioutput_stream-algo.la
 am__objects_4 = libscioutput_stream_la-gw_output_stream.lo \
 	libscioutput_stream_la-sci_print.lo
 am__objects_5 = libscioutput_stream_la-sci_diary.lo \
@@ -151,8 +156,7 @@ am__objects_5 = libscioutput_stream_la-sci_diary.lo \
 	libscioutput_stream_la-sci_msprintf.lo \
 	libscioutput_stream_la-sci_mprintf.lo
 am__objects_6 = intprint.lo intdisp.lo
-am_libscioutput_stream_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
+am_libscioutput_stream_la_OBJECTS = $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
 libscioutput_stream_la_OBJECTS = $(am_libscioutput_stream_la_OBJECTS)
 libscioutput_stream_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -187,8 +191,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscioutput_stream_la_SOURCES)
-DIST_SOURCES = $(libscioutput_stream_la_SOURCES)
+SOURCES = $(libscioutput_stream_algo_la_SOURCES) \
+	$(libscioutput_stream_la_SOURCES)
+DIST_SOURCES = $(libscioutput_stream_algo_la_SOURCES) \
+	$(libscioutput_stream_la_SOURCES)
 DATA = $(libscioutput_stream_la_etc_DATA) \
 	$(libscioutput_stream_la_root_DATA) \
 	$(libscioutput_stream_la_sci_gateway_DATA)
@@ -542,16 +548,21 @@ libscioutput_stream_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/shell/includes
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
+noinst_LTLIBRARIES = libscioutput_stream-algo.la
 @GUI_TRUE@USEANT = 1
 libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioutput_stream_algo_la_CFLAGS = $(libscioutput_stream_la_CFLAGS)
+libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
-#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
+libscioutput_stream_la_LIBADD = libscioutput_stream-algo.la
+#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename = output_stream
 
@@ -671,6 +682,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -702,6 +722,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscioutput_stream-algo.la: $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_DEPENDENCIES) 
+	$(CXXLINK)  $(libscioutput_stream_algo_la_OBJECTS) $(libscioutput_stream_algo_la_LIBADD) $(LIBS)
 libscioutput_stream.la: $(libscioutput_stream_la_OBJECTS) $(libscioutput_stream_la_DEPENDENCIES) 
 	$(libscioutput_stream_la_LINK) -rpath $(pkglibdir) $(libscioutput_stream_la_OBJECTS) $(libscioutput_stream_la_LIBADD) $(LIBS)
 
@@ -711,36 +733,36 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Diary.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-DiaryList.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-Scierror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-basout.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-cerro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-diary_manager.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-do_xxprintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errmds.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-errmsg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-erro.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-error_internal.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getDiaryDate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-getFullFilename.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-Diary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-Scierror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-basout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-cerro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errmds.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-errmsg.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-erro.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-error_internal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgout.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstore.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_algo_la-yaspio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-gw_output_stream.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgout.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstore.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-msgstxt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-output_stream_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_diary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_disp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_mprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_msprintf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sci_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-scilab_sprintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-sciprint_full.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-set_xxprintf.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscioutput_stream_la-yaspio.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -763,117 +785,117 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscioutput_stream_la-erro.lo: src/c/erro.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-erro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-erro.Tpo -c -o libscioutput_stream_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-erro.Tpo $(DEPDIR)/libscioutput_stream_la-erro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/erro.c' object='libscioutput_stream_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-erro.lo: src/c/erro.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-erro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-erro.Tpo -c -o libscioutput_stream_algo_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-erro.Tpo $(DEPDIR)/libscioutput_stream_algo_la-erro.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/erro.c' object='libscioutput_stream_algo_la-erro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-erro.lo `test -f 'src/c/erro.c' || echo '$(srcdir)/'`src/c/erro.c
 
-libscioutput_stream_la-cerro.lo: src/c/cerro.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-cerro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-cerro.Tpo -c -o libscioutput_stream_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-cerro.Tpo $(DEPDIR)/libscioutput_stream_la-cerro.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cerro.c' object='libscioutput_stream_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-cerro.lo: src/c/cerro.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-cerro.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-cerro.Tpo -c -o libscioutput_stream_algo_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-cerro.Tpo $(DEPDIR)/libscioutput_stream_algo_la-cerro.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/cerro.c' object='libscioutput_stream_algo_la-cerro.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-cerro.lo `test -f 'src/c/cerro.c' || echo '$(srcdir)/'`src/c/cerro.c
 
-libscioutput_stream_la-Scierror.lo: src/c/Scierror.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-Scierror.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-Scierror.Tpo $(DEPDIR)/libscioutput_stream_la-Scierror.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Scierror.c' object='libscioutput_stream_la-Scierror.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-Scierror.lo: src/c/Scierror.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-Scierror.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-Scierror.Tpo -c -o libscioutput_stream_algo_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-Scierror.Tpo $(DEPDIR)/libscioutput_stream_algo_la-Scierror.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/Scierror.c' object='libscioutput_stream_algo_la-Scierror.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-Scierror.lo `test -f 'src/c/Scierror.c' || echo '$(srcdir)/'`src/c/Scierror.c
 
-libscioutput_stream_la-msgstore.lo: src/c/msgstore.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstore.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgstore.Tpo $(DEPDIR)/libscioutput_stream_la-msgstore.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstore.c' object='libscioutput_stream_la-msgstore.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-msgstore.lo: src/c/msgstore.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-msgstore.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-msgstore.Tpo -c -o libscioutput_stream_algo_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-msgstore.Tpo $(DEPDIR)/libscioutput_stream_algo_la-msgstore.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstore.c' object='libscioutput_stream_algo_la-msgstore.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-msgstore.lo `test -f 'src/c/msgstore.c' || echo '$(srcdir)/'`src/c/msgstore.c
 
-libscioutput_stream_la-msgout.lo: src/c/msgout.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgout.Tpo -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgout.Tpo $(DEPDIR)/libscioutput_stream_la-msgout.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgout.c' object='libscioutput_stream_la-msgout.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-msgout.lo: src/c/msgout.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-msgout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-msgout.Tpo -c -o libscioutput_stream_algo_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-msgout.Tpo $(DEPDIR)/libscioutput_stream_algo_la-msgout.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgout.c' object='libscioutput_stream_algo_la-msgout.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-msgout.lo `test -f 'src/c/msgout.c' || echo '$(srcdir)/'`src/c/msgout.c
 
-libscioutput_stream_la-msgs.lo: src/c/msgs.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgs.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgs.Tpo -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgs.Tpo $(DEPDIR)/libscioutput_stream_la-msgs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgs.c' object='libscioutput_stream_la-msgs.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-msgs.lo: src/c/msgs.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-msgs.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-msgs.Tpo -c -o libscioutput_stream_algo_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-msgs.Tpo $(DEPDIR)/libscioutput_stream_algo_la-msgs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgs.c' object='libscioutput_stream_algo_la-msgs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-msgs.lo `test -f 'src/c/msgs.c' || echo '$(srcdir)/'`src/c/msgs.c
 
-libscioutput_stream_la-msgstxt.lo: src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-msgstxt.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-msgstxt.Tpo $(DEPDIR)/libscioutput_stream_la-msgstxt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstxt.c' object='libscioutput_stream_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-msgstxt.lo: src/c/msgstxt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-msgstxt.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Tpo -c -o libscioutput_stream_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Tpo $(DEPDIR)/libscioutput_stream_algo_la-msgstxt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/msgstxt.c' object='libscioutput_stream_algo_la-msgstxt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-msgstxt.lo `test -f 'src/c/msgstxt.c' || echo '$(srcdir)/'`src/c/msgstxt.c
 
-libscioutput_stream_la-basout.lo: src/c/basout.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-basout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-basout.Tpo -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-basout.Tpo $(DEPDIR)/libscioutput_stream_la-basout.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/basout.c' object='libscioutput_stream_la-basout.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-basout.lo: src/c/basout.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-basout.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-basout.Tpo -c -o libscioutput_stream_algo_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-basout.Tpo $(DEPDIR)/libscioutput_stream_algo_la-basout.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/basout.c' object='libscioutput_stream_algo_la-basout.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-basout.lo `test -f 'src/c/basout.c' || echo '$(srcdir)/'`src/c/basout.c
 
-libscioutput_stream_la-sciprint.lo: src/c/sciprint.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint.Tpo -c -o libscioutput_stream_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sciprint.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint.c' object='libscioutput_stream_la-sciprint.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-sciprint.lo: src/c/sciprint.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-sciprint.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-sciprint.Tpo -c -o libscioutput_stream_algo_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-sciprint.Tpo $(DEPDIR)/libscioutput_stream_algo_la-sciprint.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint.c' object='libscioutput_stream_algo_la-sciprint.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-sciprint.lo `test -f 'src/c/sciprint.c' || echo '$(srcdir)/'`src/c/sciprint.c
 
-libscioutput_stream_la-sciprint_full.lo: src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-sciprint_full.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sciprint_full.Tpo -c -o libscioutput_stream_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-sciprint_full.Tpo $(DEPDIR)/libscioutput_stream_la-sciprint_full.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint_full.c' object='libscioutput_stream_la-sciprint_full.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-sciprint_full.lo: src/c/sciprint_full.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-sciprint_full.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Tpo -c -o libscioutput_stream_algo_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Tpo $(DEPDIR)/libscioutput_stream_algo_la-sciprint_full.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/sciprint_full.c' object='libscioutput_stream_algo_la-sciprint_full.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-sciprint_full.lo `test -f 'src/c/sciprint_full.c' || echo '$(srcdir)/'`src/c/sciprint_full.c
 
-libscioutput_stream_la-errmds.lo: src/c/errmds.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-errmds.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-errmds.Tpo -c -o libscioutput_stream_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-errmds.Tpo $(DEPDIR)/libscioutput_stream_la-errmds.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmds.c' object='libscioutput_stream_la-errmds.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-errmds.lo: src/c/errmds.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-errmds.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-errmds.Tpo -c -o libscioutput_stream_algo_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-errmds.Tpo $(DEPDIR)/libscioutput_stream_algo_la-errmds.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmds.c' object='libscioutput_stream_algo_la-errmds.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errmds.lo `test -f 'src/c/errmds.c' || echo '$(srcdir)/'`src/c/errmds.c
 
-libscioutput_stream_la-errmsg.lo: src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-errmsg.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-errmsg.Tpo -c -o libscioutput_stream_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-errmsg.Tpo $(DEPDIR)/libscioutput_stream_la-errmsg.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libscioutput_stream_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-errmsg.lo: src/c/errmsg.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-errmsg.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Tpo -c -o libscioutput_stream_algo_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Tpo $(DEPDIR)/libscioutput_stream_algo_la-errmsg.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/errmsg.c' object='libscioutput_stream_algo_la-errmsg.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-errmsg.lo `test -f 'src/c/errmsg.c' || echo '$(srcdir)/'`src/c/errmsg.c
 
-libscioutput_stream_la-error.lo: src/c/error.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-error.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-error.Tpo -c -o libscioutput_stream_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-error.Tpo $(DEPDIR)/libscioutput_stream_la-error.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error.c' object='libscioutput_stream_la-error.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-error.lo: src/c/error.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-error.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-error.Tpo -c -o libscioutput_stream_algo_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-error.Tpo $(DEPDIR)/libscioutput_stream_algo_la-error.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error.c' object='libscioutput_stream_algo_la-error.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-error.lo `test -f 'src/c/error.c' || echo '$(srcdir)/'`src/c/error.c
 
-libscioutput_stream_la-error_internal.lo: src/c/error_internal.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-error_internal.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-error_internal.Tpo -c -o libscioutput_stream_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-error_internal.Tpo $(DEPDIR)/libscioutput_stream_la-error_internal.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error_internal.c' object='libscioutput_stream_la-error_internal.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-error_internal.lo: src/c/error_internal.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-error_internal.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-error_internal.Tpo -c -o libscioutput_stream_algo_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-error_internal.Tpo $(DEPDIR)/libscioutput_stream_algo_la-error_internal.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/error_internal.c' object='libscioutput_stream_algo_la-error_internal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-error_internal.lo `test -f 'src/c/error_internal.c' || echo '$(srcdir)/'`src/c/error_internal.c
 
-libscioutput_stream_la-do_xxprintf.lo: src/c/do_xxprintf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-do_xxprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-do_xxprintf.Tpo -c -o libscioutput_stream_la-do_xxprintf.lo `test -f 'src/c/do_xxprintf.c' || echo '$(srcdir)/'`src/c/do_xxprintf.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-do_xxprintf.Tpo $(DEPDIR)/libscioutput_stream_la-do_xxprintf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/do_xxprintf.c' object='libscioutput_stream_la-do_xxprintf.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-do_xxprintf.lo: src/c/do_xxprintf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-do_xxprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Tpo -c -o libscioutput_stream_algo_la-do_xxprintf.lo `test -f 'src/c/do_xxprintf.c' || echo '$(srcdir)/'`src/c/do_xxprintf.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Tpo $(DEPDIR)/libscioutput_stream_algo_la-do_xxprintf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/do_xxprintf.c' object='libscioutput_stream_algo_la-do_xxprintf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-do_xxprintf.lo `test -f 'src/c/do_xxprintf.c' || echo '$(srcdir)/'`src/c/do_xxprintf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-do_xxprintf.lo `test -f 'src/c/do_xxprintf.c' || echo '$(srcdir)/'`src/c/do_xxprintf.c
 
-libscioutput_stream_la-set_xxprintf.lo: src/c/set_xxprintf.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-set_xxprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-set_xxprintf.Tpo -c -o libscioutput_stream_la-set_xxprintf.lo `test -f 'src/c/set_xxprintf.c' || echo '$(srcdir)/'`src/c/set_xxprintf.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-set_xxprintf.Tpo $(DEPDIR)/libscioutput_stream_la-set_xxprintf.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/set_xxprintf.c' object='libscioutput_stream_la-set_xxprintf.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-set_xxprintf.lo: src/c/set_xxprintf.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_algo_la-set_xxprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Tpo -c -o libscioutput_stream_algo_la-set_xxprintf.lo `test -f 'src/c/set_xxprintf.c' || echo '$(srcdir)/'`src/c/set_xxprintf.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Tpo $(DEPDIR)/libscioutput_stream_algo_la-set_xxprintf.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/set_xxprintf.c' object='libscioutput_stream_algo_la-set_xxprintf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_la-set_xxprintf.lo `test -f 'src/c/set_xxprintf.c' || echo '$(srcdir)/'`src/c/set_xxprintf.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_algo_la_CFLAGS) $(CFLAGS) -c -o libscioutput_stream_algo_la-set_xxprintf.lo `test -f 'src/c/set_xxprintf.c' || echo '$(srcdir)/'`src/c/set_xxprintf.c
 
 libscioutput_stream_la-gw_output_stream.lo: sci_gateway/c/gw_output_stream.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(libscioutput_stream_la_CFLAGS) $(CFLAGS) -MT libscioutput_stream_la-gw_output_stream.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-gw_output_stream.Tpo -c -o libscioutput_stream_la-gw_output_stream.lo `test -f 'sci_gateway/c/gw_output_stream.c' || echo '$(srcdir)/'`sci_gateway/c/gw_output_stream.c
@@ -910,54 +932,54 @@ libscioutput_stream_la-sci_print.lo: sci_gateway/c/sci_print.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LTCXXCOMPILE) -c -o $@ $<
 
-libscioutput_stream_la-Diary.lo: src/cpp/Diary.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-Diary.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-Diary.Tpo -c -o libscioutput_stream_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-Diary.Tpo $(DEPDIR)/libscioutput_stream_la-Diary.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Diary.cpp' object='libscioutput_stream_la-Diary.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-Diary.lo: src/cpp/Diary.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-Diary.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-Diary.Tpo -c -o libscioutput_stream_algo_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-Diary.Tpo $(DEPDIR)/libscioutput_stream_algo_la-Diary.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/Diary.cpp' object='libscioutput_stream_algo_la-Diary.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-Diary.lo `test -f 'src/cpp/Diary.cpp' || echo '$(srcdir)/'`src/cpp/Diary.cpp
 
-libscioutput_stream_la-yaspio.lo: src/cpp/yaspio.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-yaspio.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-yaspio.Tpo -c -o libscioutput_stream_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-yaspio.Tpo $(DEPDIR)/libscioutput_stream_la-yaspio.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/yaspio.cpp' object='libscioutput_stream_la-yaspio.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-yaspio.lo: src/cpp/yaspio.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-yaspio.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Tpo -c -o libscioutput_stream_algo_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Tpo $(DEPDIR)/libscioutput_stream_algo_la-yaspio.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/yaspio.cpp' object='libscioutput_stream_algo_la-yaspio.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-yaspio.lo `test -f 'src/cpp/yaspio.cpp' || echo '$(srcdir)/'`src/cpp/yaspio.cpp
 
-libscioutput_stream_la-DiaryList.lo: src/cpp/DiaryList.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-DiaryList.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-DiaryList.Tpo -c -o libscioutput_stream_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-DiaryList.Tpo $(DEPDIR)/libscioutput_stream_la-DiaryList.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DiaryList.cpp' object='libscioutput_stream_la-DiaryList.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-DiaryList.lo: src/cpp/DiaryList.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-DiaryList.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Tpo -c -o libscioutput_stream_algo_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Tpo $(DEPDIR)/libscioutput_stream_algo_la-DiaryList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/DiaryList.cpp' object='libscioutput_stream_algo_la-DiaryList.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-DiaryList.lo `test -f 'src/cpp/DiaryList.cpp' || echo '$(srcdir)/'`src/cpp/DiaryList.cpp
 
-libscioutput_stream_la-diary_manager.lo: src/cpp/diary_manager.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-diary_manager.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-diary_manager.Tpo -c -o libscioutput_stream_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-diary_manager.Tpo $(DEPDIR)/libscioutput_stream_la-diary_manager.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/diary_manager.cpp' object='libscioutput_stream_la-diary_manager.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-diary_manager.lo: src/cpp/diary_manager.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-diary_manager.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Tpo -c -o libscioutput_stream_algo_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Tpo $(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/diary_manager.cpp' object='libscioutput_stream_algo_la-diary_manager.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-diary_manager.lo `test -f 'src/cpp/diary_manager.cpp' || echo '$(srcdir)/'`src/cpp/diary_manager.cpp
 
-libscioutput_stream_la-getDiaryDate.lo: src/cpp/getDiaryDate.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-getDiaryDate.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Tpo -c -o libscioutput_stream_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Tpo $(DEPDIR)/libscioutput_stream_la-getDiaryDate.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getDiaryDate.cpp' object='libscioutput_stream_la-getDiaryDate.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-getDiaryDate.lo: src/cpp/getDiaryDate.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-getDiaryDate.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Tpo -c -o libscioutput_stream_algo_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Tpo $(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getDiaryDate.cpp' object='libscioutput_stream_algo_la-getDiaryDate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
 
-libscioutput_stream_la-getFullFilename.lo: src/cpp/getFullFilename.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-getFullFilename.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-getFullFilename.Tpo -c -o libscioutput_stream_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-getFullFilename.Tpo $(DEPDIR)/libscioutput_stream_la-getFullFilename.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getFullFilename.cpp' object='libscioutput_stream_la-getFullFilename.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-getFullFilename.lo: src/cpp/getFullFilename.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-getFullFilename.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Tpo -c -o libscioutput_stream_algo_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Tpo $(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/getFullFilename.cpp' object='libscioutput_stream_algo_la-getFullFilename.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
 
-libscioutput_stream_la-scilab_sprintf.lo: src/cpp/scilab_sprintf.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-scilab_sprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-scilab_sprintf.Tpo -c -o libscioutput_stream_la-scilab_sprintf.lo `test -f 'src/cpp/scilab_sprintf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sprintf.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_la-scilab_sprintf.Tpo $(DEPDIR)/libscioutput_stream_la-scilab_sprintf.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilab_sprintf.cpp' object='libscioutput_stream_la-scilab_sprintf.lo' libtool=yes @AMDEPBACKSLASH@
+libscioutput_stream_algo_la-scilab_sprintf.lo: src/cpp/scilab_sprintf.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_algo_la-scilab_sprintf.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Tpo -c -o libscioutput_stream_algo_la-scilab_sprintf.lo `test -f 'src/cpp/scilab_sprintf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sprintf.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Tpo $(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/scilab_sprintf.cpp' object='libscioutput_stream_algo_la-scilab_sprintf.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_la-scilab_sprintf.lo `test -f 'src/cpp/scilab_sprintf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sprintf.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscioutput_stream_algo_la-scilab_sprintf.lo `test -f 'src/cpp/scilab_sprintf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sprintf.cpp
 
 libscioutput_stream_la-sci_diary.lo: sci_gateway/cpp/sci_diary.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscioutput_stream_la-sci_diary.lo -MD -MP -MF $(DEPDIR)/libscioutput_stream_la-sci_diary.Tpo -c -o libscioutput_stream_la-sci_diary.lo `test -f 'sci_gateway/cpp/sci_diary.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_diary.cpp
@@ -1261,7 +1283,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1341,14 +1363,14 @@ uninstall-am: uninstall-libscioutput_stream_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscioutput_stream_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscioutput_stream_la_etcDATA \
 	install-libscioutput_stream_la_includeHEADERS \
 	install-libscioutput_stream_la_rootDATA \
 	install-libscioutput_stream_la_sci_gatewayDATA install-man \

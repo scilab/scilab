@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="Sources_pal" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+
+  <refnamediv>
+    <refname>Sources_pal</refname>
+
+    <refpurpose>Palette Sources</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLOCK_c" fileref="../../../../images/palettes/CLOCK_c.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CONST_m" fileref="../../../../images/palettes/CONST_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CURV_f" fileref="../../../../images/palettes/CURV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Counter" fileref="../../../../images/palettes/Counter.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="FROMWSB" fileref="../../../../images/palettes/FROMWSB.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GENSIN_f" fileref="../../../../images/palettes/GENSIN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="GENSQR_f" fileref="../../../../images/palettes/GENSQR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Modulo_Count" fileref="../../../../images/palettes/Modulo_Count.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RAMP" fileref="../../../../images/palettes/RAMP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RAND_m" fileref="../../../../images/palettes/RAND_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="READAU_f" fileref="../../../../images/palettes/READAU_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="READC_f" fileref="../../../../images/palettes/READC_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RFILE_f" fileref="../../../../images/palettes/RFILE_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SAWTOOTH_f" fileref="../../../../images/palettes/SAWTOOTH_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="STEP_FUNCTION" fileref="../../../../images/palettes/STEP_FUNCTION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SampleCLK" fileref="../../../../images/palettes/SampleCLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="Sigbuilder" fileref="../../../../images/palettes/Sigbuilder.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TIME_f" fileref="../../../../images/palettes/TIME_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TKSCALE" fileref="../../../../images/palettes/TKSCALE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Sources_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Sources_pal">
+    <title>Description</title>
+
+    <para>
+    La plupart des blocs de la palette Source peuvent être vus comme des générateurs de données.
+    Cette palette contient aussi des blocs pour lire des données à partir de fichiers et des ports
+    d'entrée à utiliser dans les Super blocs.</para>
+
+    <para>Les blocs de cette palette n'ont pas de port d'entrée régulier.</para>
+  </refsection>
+
+  <refsection id="Blocks_Sources_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="CLKINV_f">CLKINV_f - Port d'entrée d'activation</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="CLOCK_c">CLOCK_c - Horloge d'activation</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="CONST_m">CONST_m - Constante</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="Counter">Counter - Compteur</link></para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CURV_f">CURV_f - Générateur de signal (défini par une courbe)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="FROMWSB">FROMWSB - Données de l'espace de travail Scilab vers  Xcos</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="GENSIN_f">GENSIN_f - Générateur sinusoïdal</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="GENSQR_f">GENSQR_f - Générateur d'onde carrée</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="IN_f">IN_f - Port d'entrée régulier</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="INIMPL_f">INIMPL_f - Port d'entrée implicite</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="Modulo_Count">Modulo_Count - Compteur Modulo</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RAMP">RAMP - Fonction Rampe</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RAND_m">RAND_m - Générateur aléatoire</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="READAU_f">READAU_f - Lit un fichier son</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="READC_f">READC_f - Lire des données binaires</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="RFILE_f">RFILE_f - Lire à partir d'un fichier</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="SampleCLK">SampleCLK - Horloge d'échantillonage</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="SAWTOOTH_f">SAWTOOTH_f - Générateur de dents de scie</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="Sigbuilder">Sigbuilder - Créateur/Générateur de signal</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="STEP_FUNCTION">STEP_FUNCTION - Fonction échelon</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="TIME_f">TIME_f - Temps de simulation</link></para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TKSCALE">TKSCALE - Constante réglable par un composant graphique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

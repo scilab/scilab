@@ -105,7 +105,7 @@ function [status, msg]=mkdir(varargin)
       if bAddFirstDirSep then
         currentsubdir = filesep() + currentsubdir;
       end
-      if ~isdir(currentsubdir) & ~isfile(currentsubdir) then
+      if ~isfile(currentsubdir) & ~isdir(currentsubdir) then
         status = createdir(currentsubdir);
         if ~status then break, end
       end

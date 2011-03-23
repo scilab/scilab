@@ -112,8 +112,23 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscifftw_la_etcdir)" \
 	"$(DESTDIR)$(libscifftw_la_rootdir)" \
 	"$(DESTDIR)$(libscifftw_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-@FFTW_TRUE@libscifftw_la_DEPENDENCIES =  \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscifftw_algo_la_LIBADD =
+am__libscifftw_algo_la_SOURCES_DIST = src/nofftw/nofftw.c \
+	src/c/callfftw.c src/c/fftwlibname.c src/c/fftw_utilities.c \
+	src/c/with_fftw.c
+@FFTW_FALSE@am__objects_1 = libscifftw_algo_la-nofftw.lo
+@FFTW_TRUE@am__objects_1 = libscifftw_algo_la-callfftw.lo \
+@FFTW_TRUE@	libscifftw_algo_la-fftwlibname.lo \
+@FFTW_TRUE@	libscifftw_algo_la-fftw_utilities.lo \
+@FFTW_TRUE@	libscifftw_algo_la-with_fftw.lo
+@FFTW_TRUE@am_libscifftw_algo_la_OBJECTS = $(am__objects_1)
+libscifftw_algo_la_OBJECTS = $(am_libscifftw_algo_la_OBJECTS)
+libscifftw_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscifftw_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+@FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 @FFTW_TRUE@	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
@@ -128,12 +143,12 @@ am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 	sci_gateway/c/sci_get_fftw_wisdom.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
 	sci_gateway/c/sci_fftw_forget_wisdom.c
-@FFTW_FALSE@am__objects_1 = libscifftw_la-nofftw.lo
-@FFTW_TRUE@am__objects_1 = libscifftw_la-callfftw.lo \
+@FFTW_FALSE@am__objects_2 = libscifftw_la-nofftw.lo
+@FFTW_TRUE@am__objects_2 = libscifftw_la-callfftw.lo \
 @FFTW_TRUE@	libscifftw_la-fftwlibname.lo \
 @FFTW_TRUE@	libscifftw_la-fftw_utilities.lo \
 @FFTW_TRUE@	libscifftw_la-with_fftw.lo
-@FFTW_TRUE@am__objects_2 = libscifftw_la-gw_fftw.lo \
+@FFTW_TRUE@am__objects_3 = libscifftw_la-gw_fftw.lo \
 @FFTW_TRUE@	libscifftw_la-sci_fftwlibraryisloaded.lo \
 @FFTW_TRUE@	libscifftw_la-sci_disposefftwlibrary.lo \
 @FFTW_TRUE@	libscifftw_la-sci_fftw.lo \
@@ -142,9 +157,8 @@ am__libscifftw_la_SOURCES_DIST = src/nofftw/nofftw.c src/c/callfftw.c \
 @FFTW_TRUE@	libscifftw_la-sci_get_fftw_wisdom.lo \
 @FFTW_TRUE@	libscifftw_la-sci_set_fftw_wisdom.lo \
 @FFTW_TRUE@	libscifftw_la-sci_fftw_forget_wisdom.lo
-@FFTW_FALSE@am_libscifftw_la_OBJECTS = $(am__objects_1)
-@FFTW_TRUE@am_libscifftw_la_OBJECTS = $(am__objects_1) \
-@FFTW_TRUE@	$(am__objects_2)
+@FFTW_FALSE@am_libscifftw_la_OBJECTS = $(am__objects_2)
+@FFTW_TRUE@am_libscifftw_la_OBJECTS = $(am__objects_3)
 libscifftw_la_OBJECTS = $(am_libscifftw_la_OBJECTS)
 libscifftw_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscifftw_la_CFLAGS) \
@@ -162,8 +176,9 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscifftw_la_SOURCES)
-DIST_SOURCES = $(am__libscifftw_la_SOURCES_DIST)
+SOURCES = $(libscifftw_algo_la_SOURCES) $(libscifftw_la_SOURCES)
+DIST_SOURCES = $(am__libscifftw_algo_la_SOURCES_DIST) \
+	$(am__libscifftw_la_SOURCES_DIST)
 DATA = $(libscifftw_la_etc_DATA) $(libscifftw_la_root_DATA) \
 	$(libscifftw_la_sci_gateway_DATA)
 ETAGS = etags
@@ -428,6 +443,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 modulename = fftw
 pkglib_LTLIBRARIES = libscifftw.la
+noinst_LTLIBRARIES = libscifftw-algo.la
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
@@ -459,13 +475,15 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 #### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 @FFTW_TRUE@libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
+@FFTW_TRUE@libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES)
 @FFTW_FALSE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
-@FFTW_TRUE@libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
+@FFTW_TRUE@libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)
+@FFTW_TRUE@libscifftw_algo_la_CFLAGS = $(libscifftw_la_CFLAGS)
 
 # For the code check (splint)
 @FFTW_TRUE@CHECK_SRC = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 @FFTW_TRUE@INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
-@FFTW_TRUE@libscifftw_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+@FFTW_TRUE@libscifftw_la_LIBADD = libscifftw-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 @FFTW_FALSE@libscifftw_la_CFLAGS = -I$(srcdir)/includes/ \
 @FFTW_FALSE@			-I$(srcdir)/src/c/ \
 @FFTW_FALSE@			-I$(top_srcdir)/modules/api_scilab/includes \
@@ -579,6 +597,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -610,6 +637,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscifftw-algo.la: $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_DEPENDENCIES) 
+	$(libscifftw_algo_la_LINK)  $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
 libscifftw.la: $(libscifftw_la_OBJECTS) $(libscifftw_la_DEPENDENCIES) 
 	$(libscifftw_la_LINK) -rpath $(pkglibdir) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
 
@@ -619,6 +648,11 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-callfftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-nofftw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_algo_la-with_fftw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-callfftw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftw_utilities.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscifftw_la-fftwlibname.Plo@am__quote@
@@ -654,6 +688,41 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscifftw_algo_la-nofftw.lo: src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-nofftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-nofftw.Tpo -c -o libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifftw_algo_la-nofftw.Tpo $(DEPDIR)/libscifftw_algo_la-nofftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/nofftw/nofftw.c' object='libscifftw_algo_la-nofftw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
+
+libscifftw_algo_la-callfftw.lo: src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-callfftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-callfftw.Tpo -c -o libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifftw_algo_la-callfftw.Tpo $(DEPDIR)/libscifftw_algo_la-callfftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/callfftw.c' object='libscifftw_algo_la-callfftw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-callfftw.lo `test -f 'src/c/callfftw.c' || echo '$(srcdir)/'`src/c/callfftw.c
+
+libscifftw_algo_la-fftwlibname.lo: src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-fftwlibname.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo -c -o libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifftw_algo_la-fftwlibname.Tpo $(DEPDIR)/libscifftw_algo_la-fftwlibname.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fftwlibname.c' object='libscifftw_algo_la-fftwlibname.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-fftwlibname.lo `test -f 'src/c/fftwlibname.c' || echo '$(srcdir)/'`src/c/fftwlibname.c
+
+libscifftw_algo_la-fftw_utilities.lo: src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-fftw_utilities.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo -c -o libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Tpo $(DEPDIR)/libscifftw_algo_la-fftw_utilities.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/fftw_utilities.c' object='libscifftw_algo_la-fftw_utilities.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-fftw_utilities.lo `test -f 'src/c/fftw_utilities.c' || echo '$(srcdir)/'`src/c/fftw_utilities.c
+
+libscifftw_algo_la-with_fftw.lo: src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -MT libscifftw_algo_la-with_fftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo -c -o libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscifftw_algo_la-with_fftw.Tpo $(DEPDIR)/libscifftw_algo_la-with_fftw.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/with_fftw.c' object='libscifftw_algo_la-with_fftw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscifftw_algo_la_CFLAGS) $(CFLAGS) -c -o libscifftw_algo_la-with_fftw.lo `test -f 'src/c/with_fftw.c' || echo '$(srcdir)/'`src/c/with_fftw.c
 
 libscifftw_la-nofftw.lo: src/nofftw/nofftw.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifftw_la_CPPFLAGS) $(CPPFLAGS) $(libscifftw_la_CFLAGS) $(CFLAGS) -MT libscifftw_la-nofftw.lo -MD -MP -MF $(DEPDIR)/libscifftw_la-nofftw.Tpo -c -o libscifftw_la-nofftw.lo `test -f 'src/nofftw/nofftw.c' || echo '$(srcdir)/'`src/nofftw/nofftw.c
@@ -937,7 +1006,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1014,14 +1083,15 @@ uninstall-am: uninstall-libscifftw_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscifftw_la_etcDATA install-libscifftw_la_rootDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscifftw_la_etcDATA \
+	install-libscifftw_la_rootDATA \
 	install-libscifftw_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \

@@ -381,7 +381,7 @@ int writeStringMatrix(int _iFile, char* _pstDatasetName, int _iRows, int _iCols,
         return -1;
     }
 
-    free(pstDataTemp);
+    FREE(pstDataTemp);
 
     return 0;
 }

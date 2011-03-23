@@ -276,7 +276,7 @@ public class ScilabView extends WrappedPlainView {
             lexer.setRange(start, endL);
         }
 
-        while (start < p1) {
+        while (start < p1 && tok != ScilabLexerConstants.EOF) {
             try {
                 if (!isBroken) {
                     tok = lexer.scan();
@@ -330,7 +330,11 @@ public class ScilabView extends WrappedPlainView {
                     }
                     break;
                 case ScilabLexerConstants.ERROR :
-                    g.setColor(Color.RED);
+                    if (unselected) {
+                        g.setColor(Color.RED);
+                    } else {
+                        g.setColor(Color.WHITE);
+                    }
                     w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                     for (int i = 0; i < w; i +=4) {
                         g.drawLine(x + i, y + 2, x + i + 1, y + 2);

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XcosDiagram background="-1" finalIntegrationTime="1.0" title="test">
+  <mxGraphModel as="model">
+    <root>
+      <mxCell id="40467aff:12e923e9edc:-7fad"/>
+      <mxCell id="40467aff:12e923e9edc:-7fae" parent="40467aff:12e923e9edc:-7fad"/>
+      <BasicBlock dependsOnT="1" id="40467aff:12e923e9edc:-7f5d" ordering="1" parent="40467aff:12e923e9edc:-7fae" simulationFunctionName="gensin" simulationFunctionType="DEFAULT" style="GENSIN_f;xcos_block;flip=false;mirror=false">
+        <ScilabString as="exprs" height="3" width="1">
+          <data column="0" line="0" value="1"/>
+          <data column="0" line="1" value="2*%pi"/>
+          <data column="0" line="2" value="0"/>
+        </ScilabString>
+        <ScilabDouble as="realParameters" height="3" width="1">
+          <data column="0" line="0" realPart="1.0"/>
+          <data column="0" line="1" realPart="6.283185307179586"/>
+          <data column="0" line="2" realPart="0.0"/>
+        </ScilabDouble>
+        <Array as="objectsParameters" scilabClass="ScilabList"/>
+        <ScilabDouble as="nbZerosCrossing" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <ScilabDouble as="nmode" height="1" width="1">
+          <data column="0" line="0" realPart="0.0"/>
+        </ScilabDouble>
+        <Array as="oDState" scilabClass="ScilabList"/>
+        <Array as="equations" scilabClass="ScilabList"/>
+        <mxGeometry as="geometry" height="60.0" width="80.0" x="80.0" y="210.0"/>
+      </BasicBlock>
+      <ExplicitOutputPort connectedLinkId="4" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="40467aff:12e923e9edc:-7f54" ordering="1" parent="40467aff:12e923e9edc:-7f5d" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
+        <mxGeometry as="geometry" height="8.0" width="8.0" x="80.0" y="26.0"/>
+      </ExplicitOutputPort>
+    </root>
+  </mxGraphModel>
+  <mxCell as="defaultParent" id="40467aff:12e923e9edc:-7fae" parent="40467aff:12e923e9edc:-7fad"/>
+</XcosDiagram>

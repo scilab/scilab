@@ -413,14 +413,6 @@ src/fortran/writef.f \
 src/fortran/zcross.f
 
 
-
-#### scicos_blocks : GATEWAY_C_SOURCES ####
-
-#### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
-
-
-
-
 libsciscicos_blocks_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
 			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
@@ -458,9 +450,6 @@ $(SCICOS_BLOCKS_CPP_SOURCES)
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
-
-
-#$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####

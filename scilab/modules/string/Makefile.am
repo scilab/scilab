@@ -65,7 +65,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_convstr.cpp
 
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_string.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_string.f \
 sci_gateway/fortran/strops.f
 
 libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
@@ -95,13 +95,16 @@ libscistring_la_CPPFLAGS= $(PCRE_CFLAGS) \
 	-I$(top_srcdir)/modules/core/includes \
 	-I$(top_srcdir)/modules/types/includes
 
+libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscistring.la
+noinst_LTLIBRARIES = libscistring-algo.la
 
 libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
-libscistring_la_SOURCES = $(STRING_CPP_SOURCES) $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
-
+libscistring_algo_la_SOURCES = $(STRING_C_SOURCES) $(STRING_CPP_SOURCES) $(STRING_FORTRAN_SOURCES)
+libscistring_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscistring_algo_la_CFLAGS = $(libscistring_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(STRING_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -109,7 +112,7 @@ INCLUDE_FLAGS = $(libscistring_la_CFLAGS)
 
 # commented since it is the first module to be processed
 #  $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscistring_la_LIBADD = $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscistring_la_LIBADD = libscistring-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=string
 

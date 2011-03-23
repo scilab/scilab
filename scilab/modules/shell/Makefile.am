@@ -61,11 +61,14 @@ endif
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscishell.la
+noinst_LTLIBRARIES = libscishell-algo.la
 
 libscishell_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TERMCAP_LIB)
 
 # All the sources needed by libscishell.la
-libscishell_la_SOURCES = $(SHELL_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscishell_algo_la_SOURCES = $(SHELL_C_SOURCES)
+libscishell_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscishell_algo_la_CFLAGS = $(libscishell_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscishell_la_SOURCES)
@@ -73,7 +76,7 @@ INCLUDE_FLAGS = $(libscishell_la_CFLAGS)
 
 ## Libraries necessary
 # cyclic dep $(top_builddir)/modules/console/libsciconsole.la
-libscishell_la_LIBADD =   	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
+libscishell_la_LIBADD = libscishell-algo.la  	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 # $(top_builddir)/modules/completion/libscicompletion.la

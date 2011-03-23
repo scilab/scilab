@@ -75,12 +75,17 @@ pkglib_LTLIBRARIES = libsciaction_binding-disable.la
 
 if GUI
 pkglib_LTLIBRARIES += libsciaction_binding.la
+noinst_LTLIBRARIES = libsciaction_binding-algo.la
 endif
 
 libsciaction_binding_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 # All the sources needed by libsciaction_binding.la
-libsciaction_binding_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_CPP_SOURCES) $(CONSOLE_C_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciaction_binding_algo_la_SOURCES = $(ACTION_BINDING_C_SOURCES) $(ACTION_BINDING_CPP_SOURCES) $(CONSOLE_C_JNI_SOURCES)
+libsciaction_binding_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciaction_binding_algo_la_CFLAGS = $(libsciaction_binding_la_CFLAGS)
+libsciaction_binding_algo_la_CPPFLAGS = $(libsciaction_binding_la_CPPFLAGS)
+
 
 # For the code check (splint)
 CHECK_SRC= $(ACTION_BINDING_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -88,7 +93,7 @@ INCLUDE_FLAGS = $(libsciaction_binding_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciaction_binding_la_LIBADD =  	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+libsciaction_binding_la_LIBADD = libsciaction_binding-algo.la 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 									$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 # Cyclic dependancy

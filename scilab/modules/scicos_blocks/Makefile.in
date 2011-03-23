@@ -1371,10 +1371,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/fortran/writef.f \
 @XCOS_TRUE@src/fortran/zcross.f
 
-
-#### scicos_blocks : GATEWAY_C_SOURCES ####
-
-#### scicos_blocks : GATEWAY_FORTRAN_SOURCES ####
 @XCOS_TRUE@libsciscicos_blocks_la_CFLAGS = -I$(srcdir)/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/MALLOC/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/libs/doublylinkedlist/includes/ \
@@ -1412,8 +1408,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 # For the code check (splint)
 @XCOS_TRUE@CHECK_SRC = $(SCICOS_BLOCKS_C_SOURCES) $(NON_BLOCK_C_SOURCES)
 @XCOS_TRUE@INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
-
-#$(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 @XCOS_TRUE@BUILT_SOURCES = includes/blocks.h $(am__append_2)

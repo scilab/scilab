@@ -13,17 +13,20 @@
 
 package org.scilab.modules.graph.actions;
 
+import static org.scilab.modules.commons.OS.MAC;
+
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
-import javax.swing.JComponent;
+import javax.swing.ActionMap;
+import javax.swing.InputMap;
 import javax.swing.KeyStroke;
 
+import org.scilab.modules.commons.OS;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
@@ -40,10 +43,13 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	/** Icon name of the action */
 	public static final String SMALL_ICON = "zoom-out.png";
 	/** Mnemonic key of the action */
-	public static final int MNEMONIC_KEY = KeyEvent.VK_MINUS;
+	public static final int MNEMONIC_KEY = KeyEvent.VK_SUBTRACT;
 	/** Accelerator key for the action */
 	public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
+	/** key used on {@link InputMap} for this action */
+	private static final String ZOOM_OUT = "zoomOut"; 
+	
 	/**
 	 * Implement custom mouse handling for the zoom
 	 */
@@ -63,6 +69,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 		 * @param e the parameters
 		 * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
 		 */
+		@Override
 		public void mouseWheelMoved(MouseWheelEvent e) {
 			if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
 				if (e.getWheelRotation() > 0) {
@@ -82,15 +89,36 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 		MouseWheelListener mouseListener = new CustomMouseWheelListener(scilabGraph);
 		scilabGraph.getAsComponent().getViewport().addMouseWheelListener(mouseListener);
 		
-		// On the KeyPad
-		scilabGraph.getAsComponent().registerKeyboardAction(
-				this, "zoomOut", KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, ACCELERATOR_KEY), 
-				JComponent.WHEN_IN_FOCUSED_WINDOW);
 		
-		// When the MINUS key is accessible with the shift key.
-		scilabGraph.getAsComponent().registerKeyboardAction(
-				this, "zoomOut", KeyStroke.getKeyStroke(KeyEvent.VK_MINUS, ACCELERATOR_KEY | InputEvent.SHIFT_DOWN_MASK), 
-				JComponent.WHEN_IN_FOCUSED_WINDOW);
+		// Multi-shortcut action
+		final ActionMap am = scilabGraph.getAsComponent().getActionMap();
+		final InputMap map = scilabGraph.getAsComponent().getInputMap();
+		
+		// register the action to a unique action keyword
+		am.put(ZOOM_OUT, this);
+		
+		// add custom key stroke for this action
+		final KeyStroke[] keystrokes;
+		if (OS.get() == MAC) {
+			/*
+			 * AZERTY for Mac has a non-supported classic layout
+			 */
+			keystrokes = new KeyStroke[] {
+					KeyStroke.getKeyStroke('=', ACCELERATOR_KEY),
+					KeyStroke.getKeyStroke('=', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+			};
+		} else {
+			keystrokes = new KeyStroke[] {
+					KeyStroke.getKeyStroke('-', ACCELERATOR_KEY),
+					KeyStroke.getKeyStroke('-', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+					KeyStroke.getKeyStroke('_', ACCELERATOR_KEY),
+					KeyStroke.getKeyStroke('_', ACCELERATOR_KEY | KeyEvent.SHIFT_DOWN_MASK),
+			};
+		}
+		
+		for (KeyStroke k : keystrokes) {
+			map.put(k, ZOOM_OUT);
+		}
 	}
 
 	/**
@@ -116,6 +144,7 @@ public class ZoomOutAction extends DefaultAction implements ActionListener {
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		getGraph(e).getAsComponent().zoomOut();
 	}

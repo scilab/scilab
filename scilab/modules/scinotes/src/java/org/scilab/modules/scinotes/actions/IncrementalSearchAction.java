@@ -22,6 +22,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -32,6 +34,7 @@ import java.util.Map;
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
@@ -45,6 +48,7 @@ import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * IncrementalSearchAction Class
@@ -127,6 +131,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         private String text;
         private JTextField field;
         private TopBotButtons[] buttons = new TopBotButtons[2];
+        private boolean exact;
 
         /**
          * Default Constructor
@@ -147,6 +152,14 @@ public final class IncrementalSearchAction extends DefaultAction {
             panelButtons.add(new CloseButton());
             panelButtons.add(new TopBotButtons(true));
             panelButtons.add(new TopBotButtons(false));
+            JCheckBox check = new JCheckBox(SciNotesMessages.EXACT);
+            check.addItemListener(new ItemListener() {
+                    public void itemStateChanged(ItemEvent e) {
+                        exact = e.getStateChange() == ItemEvent.SELECTED;
+                        changeText();
+                    }
+                });
+            panelButtons.add(check);
             add(panelButtons, BorderLayout.WEST);
             add(field, BorderLayout.CENTER);
             setVisible(true);
@@ -163,9 +176,8 @@ public final class IncrementalSearchAction extends DefaultAction {
          * {@inheritDoc}
          */
         public void focusGained(FocusEvent e) {
-            if (text == null && getEditor().getTextPane() != null) {
-                ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-                text = doc.getText().toLowerCase();
+            if (text == null) {
+                changeText();
             }
             field.select(0, field.getText().length());
         }
@@ -210,7 +222,10 @@ public final class IncrementalSearchAction extends DefaultAction {
                 int start;
                 String str = field.getText();
                 if (str != null) {
-                    str = str.toLowerCase();
+                    sep.highlightWords(str, exact);
+                    if (!exact) {
+                        str = str.toLowerCase();
+                    }
                     if (key == KeyEvent.VK_ENTER && ((e.getModifiers() & KeyEvent.SHIFT_MASK) != 0)) {
                         start = text.lastIndexOf(str, pos - 1);
                         e.consume();
@@ -239,6 +254,21 @@ public final class IncrementalSearchAction extends DefaultAction {
          * {@inheritDoc}
          */
         public void keyPressed(KeyEvent e) { }
+
+        /**
+         * Change the text where to search
+         */
+        private void changeText() {
+            if (getEditor().getTextPane() != null) {
+                ScilabEditorPane sep = getEditor().getTextPane();
+                ScilabDocument doc = (ScilabDocument) sep.getDocument();
+                text = doc.getText();
+                if (!exact) {
+                    text = text.toLowerCase();
+                }
+                sep.highlightWords(field.getText(), exact);
+            }
+        }
 
         /**
          * Inner class for the close-buttons
@@ -289,10 +319,15 @@ public final class IncrementalSearchAction extends DefaultAction {
                             String str = field.getText();
 
                             ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
-                            String txt = doc.getText().toLowerCase();
+                            String txt = doc.getText();
+                            if (!exact) {
+                                txt = txt.toLowerCase();
+                            }
 
                             if (str != null) {
-                                str = str.toLowerCase();
+                                if (!exact) {
+                                    str = str.toLowerCase();
+                                }
                                 if (top) {
                                     start = txt.lastIndexOf(str, pos - 1);
                                 } else {

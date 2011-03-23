@@ -95,7 +95,7 @@ GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/sci_inttype.cpp
 
 # List of the cpp files
-INTEGER_CPP_SOURCES = 	
+INTEGER_CPP_SOURCES =
 
 GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_i_matrix.f \
 sci_gateway/fortran/sci_i_mput.f \
@@ -138,24 +138,22 @@ libsciinteger_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/
-				
+
 pkglib_LTLIBRARIES = libsciinteger.la
+noinst_LTLIBRARIES = libsciinteger-algo.la
 
 libsciinteger_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciinteger_la_SOURCES = 	$(INTEGER_C_SOURCES) \
-							$(INTEGER_FORTRAN_SOURCES) \
-							$(GATEWAY_C_SOURCES) \
-							$(GATEWAY_CPP_SOURCES) \
-							$(GATEWAY_FORTRAN_SOURCES) \
-							$(INTEGER_CPP_SOURCES)
+libsciinteger_algo_la_SOURCES = $(INTEGER_C_SOURCES) $(INTEGER_FORTRAN_SOURCES)	$(INTEGER_CPP_SOURCES)
+libsciinteger_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciinteger_algo_la_CFLAGS = $(libsciinteger_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC=  $(INTEGER_C_SOURCES) $(GATEWAY_C_SOURCES) $(INTEGER_CPP_SOURCES)
 INCLUDE_FLAGS = $(libsciinteger_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/polynomials/libscipolynomials.la
-libsciinteger_la_LIBADD =    $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
+libsciinteger_la_LIBADD = libsciinteger-algo.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/libst/libscilibst.la
 
 
 

@@ -27,7 +27,6 @@ libsciui_data_la_etc_DATA = etc/ui_data.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
-
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 					  src/jni/EditVar.cpp
 
@@ -85,16 +84,19 @@ pkglib_LTLIBRARIES = libsciui_data-disable.la
 
 if GUI
 pkglib_LTLIBRARIES += libsciui_data.la
+noinst_LTLIBRARIES = libsciui_data-algo.la
 endif
 
 libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
-
 
 #### SWIG Declaration ####
 SWIG_WRAPPERS =
@@ -104,6 +106,7 @@ BUILT_SOURCES=swig
 endif
 
 libsciui_data_la_LIBADD =  \
+libsciui_data-algo.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la

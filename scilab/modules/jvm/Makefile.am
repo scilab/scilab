@@ -51,6 +51,7 @@ pkglib_LTLIBRARIES = libscijvm-disable.la
 if GUI
 USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
+noinst_LTLIBRARIES = libscijvm-algo.la
 endif
 
 libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
@@ -59,7 +60,7 @@ if IS_MACOSX
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
-libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscijvm_la_LIBADD =  libscijvm-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -122,7 +123,9 @@ libscijvm_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/localization/includes/ \
 			-I$(top_srcdir)/modules/functions_manager/includes/
 
-libscijvm_la_SOURCES = $(JVM_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscijvm_algo_la_SOURCES = $(JVM_C_SOURCES)
+libscijvm_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscijvm_algo_la_CFLAGS = $(libscijvm_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscijvm_la_SOURCES)

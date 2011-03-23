@@ -33,8 +33,11 @@ sci_closeSciNotesFromScilab(char * fname, int *_piKey)
 
     try
     {
-        SciNotes::closeSciNotesFromScilab(
-        getScilabJavaVM());
+        JavaVM * jvm = getScilabJavaVM();
+        if (jvm)
+        {
+            SciNotes::closeSciNotesFromScilab(jvm);
+        }
     }
     catch (GiwsException::JniCallMethodException exception)
     {

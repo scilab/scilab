@@ -107,8 +107,36 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscicacsd_la_etcdir)" \
 	"$(DESTDIR)$(libscicacsd_la_rootdir)" \
 	"$(DESTDIR)$(libscicacsd_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscicacsd_algo_la_LIBADD =
+am__objects_1 = jacl2.lo onface.lo tild.lo degl2.lo qvalz.lo dfrmg.lo \
+	hessl2.lo rtitr.lo watfac.lo sszer.lo mzdivq.lo expan.lo \
+	optml2.lo wdegre.lo phi.lo ricd.lo shrslv.lo qhesz.lo rilac.lo \
+	scaleg.lo arl2.lo wesidu.lo dzdivq.lo arl2a.lo lq.lo outl2.lo \
+	dhetr.lo domout.lo rootgp.lo feq.lo fout.lo deg1l2.lo modul.lo \
+	scapol.lo dlslv.lo giv.lo storl2.lo calsca.lo qitz.lo front.lo
+am__objects_2 = sb04pd.lo ib01ad.lo tb01wd.lo ib01py.lo mb01rx.lo \
+	ib01md.lo sb02ru.lo sb04nw.lo sb10dd.lo mb04id.lo sb04ny.lo \
+	ib01qd.lo sb04px.lo sb04rw.lo sb04ry.lo mb01qd.lo mb01ud.lo \
+	sb02od.lo mb02ud.lo sb10pd.lo sb03od.lo mb03ud.lo sb02sd.lo \
+	ib01oy.lo sb02ms.lo ab13md.lo sb03or.lo mb03oy.lo ma02fd.lo \
+	sb03ot.lo mb04oy.lo sb04mu.lo sb03mw.lo sb02ov.lo sb03ov.lo \
+	sb04mw.lo sb03my.lo sb04my.lo sb04qu.lo ib01pd.lo sb03qy.lo \
+	sb03sx.lo sb04qy.lo mb01pd.lo mb02pd.lo mb01td.lo sb02nd.lo \
+	sb04nd.lo sb02rd.lo sb04rd.lo ib01cd.lo ib01px.lo ma02ad.lo \
+	ab01od.lo mb01ru.lo ma02ed.lo mb04ny.lo mb01ry.lo sb04nv.lo \
+	ib01od.lo sb04nx.lo sb10fd.lo select.lo sb04rv.lo mb04kd.lo \
+	sb04py.lo sb04rx.lo mb03od.lo mb04od.lo mb01sd.lo sb03md.lo \
+	sb04md.lo sb02qd.lo sb10rd.lo sb04qd.lo ib01my.lo ib01bd.lo \
+	mb04iy.lo sb02mr.lo ab01nd.lo sb02mt.lo sb04mr.lo sb03mv.lo \
+	sb02ou.lo mb02qy.lo sb03ou.lo sb04qr.lo sb03mx.lo ib01nd.lo \
+	sb02oy.lo sb03oy.lo sb03qx.lo ib01rd.lo sb03sy.lo mb04nd.lo \
+	mb01rd.lo mb01vd.lo sb10qd.lo ereduc.lo fstair.lo inva.lo \
+	polmc.lo ssxmc.lo ZB03OD.lo riccpack.lo Ex-schur.lo
+am_libscicacsd_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscicacsd_algo_la_OBJECTS = $(am_libscicacsd_algo_la_OBJECTS)
+libscicacsd_la_DEPENDENCIES = libscicacsd-algo.la \
+	$(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/mexlib/libmat.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
@@ -116,79 +144,6 @@ libscicacsd_la_DEPENDENCIES = $(top_builddir)/modules/mexlib/libmx.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscicacsd_la-jacl2.lo libscicacsd_la-onface.lo \
-	libscicacsd_la-tild.lo libscicacsd_la-degl2.lo \
-	libscicacsd_la-qvalz.lo libscicacsd_la-dfrmg.lo \
-	libscicacsd_la-hessl2.lo libscicacsd_la-rtitr.lo \
-	libscicacsd_la-watfac.lo libscicacsd_la-sszer.lo \
-	libscicacsd_la-mzdivq.lo libscicacsd_la-expan.lo \
-	libscicacsd_la-optml2.lo libscicacsd_la-wdegre.lo \
-	libscicacsd_la-phi.lo libscicacsd_la-ricd.lo \
-	libscicacsd_la-shrslv.lo libscicacsd_la-qhesz.lo \
-	libscicacsd_la-rilac.lo libscicacsd_la-scaleg.lo \
-	libscicacsd_la-arl2.lo libscicacsd_la-wesidu.lo \
-	libscicacsd_la-dzdivq.lo libscicacsd_la-arl2a.lo \
-	libscicacsd_la-lq.lo libscicacsd_la-outl2.lo \
-	libscicacsd_la-dhetr.lo libscicacsd_la-domout.lo \
-	libscicacsd_la-rootgp.lo libscicacsd_la-feq.lo \
-	libscicacsd_la-fout.lo libscicacsd_la-deg1l2.lo \
-	libscicacsd_la-modul.lo libscicacsd_la-scapol.lo \
-	libscicacsd_la-dlslv.lo libscicacsd_la-giv.lo \
-	libscicacsd_la-storl2.lo libscicacsd_la-calsca.lo \
-	libscicacsd_la-qitz.lo libscicacsd_la-front.lo
-am__objects_2 = libscicacsd_la-sb04pd.lo libscicacsd_la-ib01ad.lo \
-	libscicacsd_la-tb01wd.lo libscicacsd_la-ib01py.lo \
-	libscicacsd_la-mb01rx.lo libscicacsd_la-ib01md.lo \
-	libscicacsd_la-sb02ru.lo libscicacsd_la-sb04nw.lo \
-	libscicacsd_la-sb10dd.lo libscicacsd_la-mb04id.lo \
-	libscicacsd_la-sb04ny.lo libscicacsd_la-ib01qd.lo \
-	libscicacsd_la-sb04px.lo libscicacsd_la-sb04rw.lo \
-	libscicacsd_la-sb04ry.lo libscicacsd_la-mb01qd.lo \
-	libscicacsd_la-mb01ud.lo libscicacsd_la-sb02od.lo \
-	libscicacsd_la-mb02ud.lo libscicacsd_la-sb10pd.lo \
-	libscicacsd_la-sb03od.lo libscicacsd_la-mb03ud.lo \
-	libscicacsd_la-sb02sd.lo libscicacsd_la-ib01oy.lo \
-	libscicacsd_la-sb02ms.lo libscicacsd_la-ab13md.lo \
-	libscicacsd_la-sb03or.lo libscicacsd_la-mb03oy.lo \
-	libscicacsd_la-ma02fd.lo libscicacsd_la-sb03ot.lo \
-	libscicacsd_la-mb04oy.lo libscicacsd_la-sb04mu.lo \
-	libscicacsd_la-sb03mw.lo libscicacsd_la-sb02ov.lo \
-	libscicacsd_la-sb03ov.lo libscicacsd_la-sb04mw.lo \
-	libscicacsd_la-sb03my.lo libscicacsd_la-sb04my.lo \
-	libscicacsd_la-sb04qu.lo libscicacsd_la-ib01pd.lo \
-	libscicacsd_la-sb03qy.lo libscicacsd_la-sb03sx.lo \
-	libscicacsd_la-sb04qy.lo libscicacsd_la-mb01pd.lo \
-	libscicacsd_la-mb02pd.lo libscicacsd_la-mb01td.lo \
-	libscicacsd_la-sb02nd.lo libscicacsd_la-sb04nd.lo \
-	libscicacsd_la-sb02rd.lo libscicacsd_la-sb04rd.lo \
-	libscicacsd_la-ib01cd.lo libscicacsd_la-ib01px.lo \
-	libscicacsd_la-ma02ad.lo libscicacsd_la-ab01od.lo \
-	libscicacsd_la-mb01ru.lo libscicacsd_la-ma02ed.lo \
-	libscicacsd_la-mb04ny.lo libscicacsd_la-mb01ry.lo \
-	libscicacsd_la-sb04nv.lo libscicacsd_la-ib01od.lo \
-	libscicacsd_la-sb04nx.lo libscicacsd_la-sb10fd.lo \
-	libscicacsd_la-select.lo libscicacsd_la-sb04rv.lo \
-	libscicacsd_la-mb04kd.lo libscicacsd_la-sb04py.lo \
-	libscicacsd_la-sb04rx.lo libscicacsd_la-mb03od.lo \
-	libscicacsd_la-mb04od.lo libscicacsd_la-mb01sd.lo \
-	libscicacsd_la-sb03md.lo libscicacsd_la-sb04md.lo \
-	libscicacsd_la-sb02qd.lo libscicacsd_la-sb10rd.lo \
-	libscicacsd_la-sb04qd.lo libscicacsd_la-ib01my.lo \
-	libscicacsd_la-ib01bd.lo libscicacsd_la-mb04iy.lo \
-	libscicacsd_la-sb02mr.lo libscicacsd_la-ab01nd.lo \
-	libscicacsd_la-sb02mt.lo libscicacsd_la-sb04mr.lo \
-	libscicacsd_la-sb03mv.lo libscicacsd_la-sb02ou.lo \
-	libscicacsd_la-mb02qy.lo libscicacsd_la-sb03ou.lo \
-	libscicacsd_la-sb04qr.lo libscicacsd_la-sb03mx.lo \
-	libscicacsd_la-ib01nd.lo libscicacsd_la-sb02oy.lo \
-	libscicacsd_la-sb03oy.lo libscicacsd_la-sb03qx.lo \
-	libscicacsd_la-ib01rd.lo libscicacsd_la-sb03sy.lo \
-	libscicacsd_la-mb04nd.lo libscicacsd_la-mb01rd.lo \
-	libscicacsd_la-mb01vd.lo libscicacsd_la-sb10qd.lo \
-	libscicacsd_la-ereduc.lo libscicacsd_la-fstair.lo \
-	libscicacsd_la-inva.lo libscicacsd_la-polmc.lo \
-	libscicacsd_la-ssxmc.lo libscicacsd_la-ZB03OD.lo \
-	libscicacsd_la-riccpack.lo libscicacsd_la-Ex-schur.lo
 am__objects_3 = libscicacsd_la-sci_f_hinf.lo \
 	libscicacsd_la-sci_f_zrankqr.lo libscicacsd_la-sci_f_tzer.lo \
 	libscicacsd_la-sci_f_residu.lo libscicacsd_la-sci_f_sylv.lo \
@@ -212,8 +167,7 @@ am__objects_4 = libscicacsd_la-sci_arl2.lo libscicacsd_la-sci_gspec.lo \
 	libscicacsd_la-sci_rankqr.lo libscicacsd_la-sci_ltitr.lo \
 	libscicacsd_la-sci_ldiv.lo libscicacsd_la-gw_cacsd2.lo \
 	libscicacsd_la-gw_cacsd3.lo
-am_libscicacsd_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4)
+am_libscicacsd_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscicacsd_la_OBJECTS = $(am_libscicacsd_la_OBJECTS)
 libscicacsd_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(libscicacsd_la_FFLAGS) \
@@ -238,8 +192,9 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscicacsd_la_SOURCES)
-DIST_SOURCES = $(libscicacsd_la_SOURCES)
+SOURCES = $(libscicacsd_algo_la_SOURCES) $(libscicacsd_la_SOURCES)
+DIST_SOURCES = $(libscicacsd_algo_la_SOURCES) \
+	$(libscicacsd_la_SOURCES)
 DATA = $(libscicacsd_la_etc_DATA) $(libscicacsd_la_root_DATA) \
 	$(libscicacsd_la_sci_gateway_DATA)
 ETAGS = etags
@@ -705,15 +660,18 @@ libscicacsd_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/
 
 pkglib_LTLIBRARIES = libscicacsd.la
+noinst_LTLIBRARIES = libscicacsd-algo.la
 libscicacsd_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)  $(ATLAS_LIBS)
-libscicacsd_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_algo_la_SOURCES = $(CACSD_FORTRAN_SOURCES) $(SLICOT_FORTRAN_SOURCES)
+libscicacsd_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscicacsd_algo_la_CFLAGS = $(libscicacsd_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicacsd_la_CFLAGS)
 
 # cyclic deps $(top_builddir)/modules/polynomials/libscipolynomials.la
-libscicacsd_la_LIBADD = $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscicacsd_la_LIBADD = libscicacsd-algo.la $(top_builddir)/modules/mexlib/libmx.la $(top_builddir)/modules/mexlib/libmat.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/differential_equations/libscidifferential_equations.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/mexlib/libmex.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = cacsd
@@ -826,6 +784,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -857,6 +824,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscicacsd-algo.la: $(libscicacsd_algo_la_OBJECTS) $(libscicacsd_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libscicacsd_algo_la_OBJECTS) $(libscicacsd_algo_la_LIBADD) $(LIBS)
 libscicacsd.la: $(libscicacsd_la_OBJECTS) $(libscicacsd_la_DEPENDENCIES) 
 	$(libscicacsd_la_LINK) -rpath $(pkglibdir) $(libscicacsd_la_OBJECTS) $(libscicacsd_la_LIBADD) $(LIBS)
 
@@ -1049,443 +1018,443 @@ libscicacsd_la-gw_cacsd3.lo: sci_gateway/c/gw_cacsd3.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-libscicacsd_la-jacl2.lo: src/fortran/jacl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-jacl2.lo `test -f 'src/fortran/jacl2.f' || echo '$(srcdir)/'`src/fortran/jacl2.f
+jacl2.lo: src/fortran/jacl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o jacl2.lo `test -f 'src/fortran/jacl2.f' || echo '$(srcdir)/'`src/fortran/jacl2.f
 
-libscicacsd_la-onface.lo: src/fortran/onface.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
+onface.lo: src/fortran/onface.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o onface.lo `test -f 'src/fortran/onface.f' || echo '$(srcdir)/'`src/fortran/onface.f
 
-libscicacsd_la-tild.lo: src/fortran/tild.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
+tild.lo: src/fortran/tild.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tild.lo `test -f 'src/fortran/tild.f' || echo '$(srcdir)/'`src/fortran/tild.f
 
-libscicacsd_la-degl2.lo: src/fortran/degl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
+degl2.lo: src/fortran/degl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o degl2.lo `test -f 'src/fortran/degl2.f' || echo '$(srcdir)/'`src/fortran/degl2.f
 
-libscicacsd_la-qvalz.lo: src/fortran/qvalz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
+qvalz.lo: src/fortran/qvalz.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qvalz.lo `test -f 'src/fortran/qvalz.f' || echo '$(srcdir)/'`src/fortran/qvalz.f
 
-libscicacsd_la-dfrmg.lo: src/fortran/dfrmg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dfrmg.lo `test -f 'src/fortran/dfrmg.f' || echo '$(srcdir)/'`src/fortran/dfrmg.f
+dfrmg.lo: src/fortran/dfrmg.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dfrmg.lo `test -f 'src/fortran/dfrmg.f' || echo '$(srcdir)/'`src/fortran/dfrmg.f
 
-libscicacsd_la-hessl2.lo: src/fortran/hessl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-hessl2.lo `test -f 'src/fortran/hessl2.f' || echo '$(srcdir)/'`src/fortran/hessl2.f
+hessl2.lo: src/fortran/hessl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o hessl2.lo `test -f 'src/fortran/hessl2.f' || echo '$(srcdir)/'`src/fortran/hessl2.f
 
-libscicacsd_la-rtitr.lo: src/fortran/rtitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rtitr.lo `test -f 'src/fortran/rtitr.f' || echo '$(srcdir)/'`src/fortran/rtitr.f
+rtitr.lo: src/fortran/rtitr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rtitr.lo `test -f 'src/fortran/rtitr.f' || echo '$(srcdir)/'`src/fortran/rtitr.f
 
-libscicacsd_la-watfac.lo: src/fortran/watfac.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-watfac.lo `test -f 'src/fortran/watfac.f' || echo '$(srcdir)/'`src/fortran/watfac.f
+watfac.lo: src/fortran/watfac.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o watfac.lo `test -f 'src/fortran/watfac.f' || echo '$(srcdir)/'`src/fortran/watfac.f
 
-libscicacsd_la-sszer.lo: src/fortran/sszer.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sszer.lo `test -f 'src/fortran/sszer.f' || echo '$(srcdir)/'`src/fortran/sszer.f
+sszer.lo: src/fortran/sszer.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sszer.lo `test -f 'src/fortran/sszer.f' || echo '$(srcdir)/'`src/fortran/sszer.f
 
-libscicacsd_la-mzdivq.lo: src/fortran/mzdivq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mzdivq.lo `test -f 'src/fortran/mzdivq.f' || echo '$(srcdir)/'`src/fortran/mzdivq.f
+mzdivq.lo: src/fortran/mzdivq.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mzdivq.lo `test -f 'src/fortran/mzdivq.f' || echo '$(srcdir)/'`src/fortran/mzdivq.f
 
-libscicacsd_la-expan.lo: src/fortran/expan.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-expan.lo `test -f 'src/fortran/expan.f' || echo '$(srcdir)/'`src/fortran/expan.f
+expan.lo: src/fortran/expan.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o expan.lo `test -f 'src/fortran/expan.f' || echo '$(srcdir)/'`src/fortran/expan.f
 
-libscicacsd_la-optml2.lo: src/fortran/optml2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-optml2.lo `test -f 'src/fortran/optml2.f' || echo '$(srcdir)/'`src/fortran/optml2.f
+optml2.lo: src/fortran/optml2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o optml2.lo `test -f 'src/fortran/optml2.f' || echo '$(srcdir)/'`src/fortran/optml2.f
 
-libscicacsd_la-wdegre.lo: src/fortran/wdegre.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wdegre.lo `test -f 'src/fortran/wdegre.f' || echo '$(srcdir)/'`src/fortran/wdegre.f
+wdegre.lo: src/fortran/wdegre.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wdegre.lo `test -f 'src/fortran/wdegre.f' || echo '$(srcdir)/'`src/fortran/wdegre.f
 
-libscicacsd_la-phi.lo: src/fortran/phi.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
+phi.lo: src/fortran/phi.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o phi.lo `test -f 'src/fortran/phi.f' || echo '$(srcdir)/'`src/fortran/phi.f
 
-libscicacsd_la-ricd.lo: src/fortran/ricd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
+ricd.lo: src/fortran/ricd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ricd.lo `test -f 'src/fortran/ricd.f' || echo '$(srcdir)/'`src/fortran/ricd.f
 
-libscicacsd_la-shrslv.lo: src/fortran/shrslv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-shrslv.lo `test -f 'src/fortran/shrslv.f' || echo '$(srcdir)/'`src/fortran/shrslv.f
+shrslv.lo: src/fortran/shrslv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o shrslv.lo `test -f 'src/fortran/shrslv.f' || echo '$(srcdir)/'`src/fortran/shrslv.f
 
-libscicacsd_la-qhesz.lo: src/fortran/qhesz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qhesz.lo `test -f 'src/fortran/qhesz.f' || echo '$(srcdir)/'`src/fortran/qhesz.f
+qhesz.lo: src/fortran/qhesz.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qhesz.lo `test -f 'src/fortran/qhesz.f' || echo '$(srcdir)/'`src/fortran/qhesz.f
 
-libscicacsd_la-rilac.lo: src/fortran/rilac.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
+rilac.lo: src/fortran/rilac.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rilac.lo `test -f 'src/fortran/rilac.f' || echo '$(srcdir)/'`src/fortran/rilac.f
 
-libscicacsd_la-scaleg.lo: src/fortran/scaleg.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
+scaleg.lo: src/fortran/scaleg.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scaleg.lo `test -f 'src/fortran/scaleg.f' || echo '$(srcdir)/'`src/fortran/scaleg.f
 
-libscicacsd_la-arl2.lo: src/fortran/arl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-arl2.lo `test -f 'src/fortran/arl2.f' || echo '$(srcdir)/'`src/fortran/arl2.f
+arl2.lo: src/fortran/arl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arl2.lo `test -f 'src/fortran/arl2.f' || echo '$(srcdir)/'`src/fortran/arl2.f
 
-libscicacsd_la-wesidu.lo: src/fortran/wesidu.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-wesidu.lo `test -f 'src/fortran/wesidu.f' || echo '$(srcdir)/'`src/fortran/wesidu.f
+wesidu.lo: src/fortran/wesidu.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o wesidu.lo `test -f 'src/fortran/wesidu.f' || echo '$(srcdir)/'`src/fortran/wesidu.f
 
-libscicacsd_la-dzdivq.lo: src/fortran/dzdivq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dzdivq.lo `test -f 'src/fortran/dzdivq.f' || echo '$(srcdir)/'`src/fortran/dzdivq.f
+dzdivq.lo: src/fortran/dzdivq.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dzdivq.lo `test -f 'src/fortran/dzdivq.f' || echo '$(srcdir)/'`src/fortran/dzdivq.f
 
-libscicacsd_la-arl2a.lo: src/fortran/arl2a.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
+arl2a.lo: src/fortran/arl2a.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o arl2a.lo `test -f 'src/fortran/arl2a.f' || echo '$(srcdir)/'`src/fortran/arl2a.f
 
-libscicacsd_la-lq.lo: src/fortran/lq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
+lq.lo: src/fortran/lq.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o lq.lo `test -f 'src/fortran/lq.f' || echo '$(srcdir)/'`src/fortran/lq.f
 
-libscicacsd_la-outl2.lo: src/fortran/outl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-outl2.lo `test -f 'src/fortran/outl2.f' || echo '$(srcdir)/'`src/fortran/outl2.f
+outl2.lo: src/fortran/outl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o outl2.lo `test -f 'src/fortran/outl2.f' || echo '$(srcdir)/'`src/fortran/outl2.f
 
-libscicacsd_la-dhetr.lo: src/fortran/dhetr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dhetr.lo `test -f 'src/fortran/dhetr.f' || echo '$(srcdir)/'`src/fortran/dhetr.f
+dhetr.lo: src/fortran/dhetr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dhetr.lo `test -f 'src/fortran/dhetr.f' || echo '$(srcdir)/'`src/fortran/dhetr.f
 
-libscicacsd_la-domout.lo: src/fortran/domout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-domout.lo `test -f 'src/fortran/domout.f' || echo '$(srcdir)/'`src/fortran/domout.f
+domout.lo: src/fortran/domout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o domout.lo `test -f 'src/fortran/domout.f' || echo '$(srcdir)/'`src/fortran/domout.f
 
-libscicacsd_la-rootgp.lo: src/fortran/rootgp.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-rootgp.lo `test -f 'src/fortran/rootgp.f' || echo '$(srcdir)/'`src/fortran/rootgp.f
+rootgp.lo: src/fortran/rootgp.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o rootgp.lo `test -f 'src/fortran/rootgp.f' || echo '$(srcdir)/'`src/fortran/rootgp.f
 
-libscicacsd_la-feq.lo: src/fortran/feq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
+feq.lo: src/fortran/feq.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o feq.lo `test -f 'src/fortran/feq.f' || echo '$(srcdir)/'`src/fortran/feq.f
 
-libscicacsd_la-fout.lo: src/fortran/fout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
+fout.lo: src/fortran/fout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fout.lo `test -f 'src/fortran/fout.f' || echo '$(srcdir)/'`src/fortran/fout.f
 
-libscicacsd_la-deg1l2.lo: src/fortran/deg1l2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-deg1l2.lo `test -f 'src/fortran/deg1l2.f' || echo '$(srcdir)/'`src/fortran/deg1l2.f
+deg1l2.lo: src/fortran/deg1l2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o deg1l2.lo `test -f 'src/fortran/deg1l2.f' || echo '$(srcdir)/'`src/fortran/deg1l2.f
 
-libscicacsd_la-modul.lo: src/fortran/modul.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-modul.lo `test -f 'src/fortran/modul.f' || echo '$(srcdir)/'`src/fortran/modul.f
+modul.lo: src/fortran/modul.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o modul.lo `test -f 'src/fortran/modul.f' || echo '$(srcdir)/'`src/fortran/modul.f
 
-libscicacsd_la-scapol.lo: src/fortran/scapol.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
+scapol.lo: src/fortran/scapol.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o scapol.lo `test -f 'src/fortran/scapol.f' || echo '$(srcdir)/'`src/fortran/scapol.f
 
-libscicacsd_la-dlslv.lo: src/fortran/dlslv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
+dlslv.lo: src/fortran/dlslv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlslv.lo `test -f 'src/fortran/dlslv.f' || echo '$(srcdir)/'`src/fortran/dlslv.f
 
-libscicacsd_la-giv.lo: src/fortran/giv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
+giv.lo: src/fortran/giv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o giv.lo `test -f 'src/fortran/giv.f' || echo '$(srcdir)/'`src/fortran/giv.f
 
-libscicacsd_la-storl2.lo: src/fortran/storl2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
+storl2.lo: src/fortran/storl2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o storl2.lo `test -f 'src/fortran/storl2.f' || echo '$(srcdir)/'`src/fortran/storl2.f
 
-libscicacsd_la-calsca.lo: src/fortran/calsca.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
+calsca.lo: src/fortran/calsca.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o calsca.lo `test -f 'src/fortran/calsca.f' || echo '$(srcdir)/'`src/fortran/calsca.f
 
-libscicacsd_la-qitz.lo: src/fortran/qitz.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-qitz.lo `test -f 'src/fortran/qitz.f' || echo '$(srcdir)/'`src/fortran/qitz.f
+qitz.lo: src/fortran/qitz.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o qitz.lo `test -f 'src/fortran/qitz.f' || echo '$(srcdir)/'`src/fortran/qitz.f
 
-libscicacsd_la-front.lo: src/fortran/front.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
+front.lo: src/fortran/front.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o front.lo `test -f 'src/fortran/front.f' || echo '$(srcdir)/'`src/fortran/front.f
 
-libscicacsd_la-sb04pd.lo: src/slicot/sb04pd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f
+sb04pd.lo: src/slicot/sb04pd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04pd.lo `test -f 'src/slicot/sb04pd.f' || echo '$(srcdir)/'`src/slicot/sb04pd.f
 
-libscicacsd_la-ib01ad.lo: src/slicot/ib01ad.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01ad.lo `test -f 'src/slicot/ib01ad.f' || echo '$(srcdir)/'`src/slicot/ib01ad.f
+ib01ad.lo: src/slicot/ib01ad.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01ad.lo `test -f 'src/slicot/ib01ad.f' || echo '$(srcdir)/'`src/slicot/ib01ad.f
 
-libscicacsd_la-tb01wd.lo: src/slicot/tb01wd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-tb01wd.lo `test -f 'src/slicot/tb01wd.f' || echo '$(srcdir)/'`src/slicot/tb01wd.f
+tb01wd.lo: src/slicot/tb01wd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o tb01wd.lo `test -f 'src/slicot/tb01wd.f' || echo '$(srcdir)/'`src/slicot/tb01wd.f
 
-libscicacsd_la-ib01py.lo: src/slicot/ib01py.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01py.lo `test -f 'src/slicot/ib01py.f' || echo '$(srcdir)/'`src/slicot/ib01py.f
+ib01py.lo: src/slicot/ib01py.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01py.lo `test -f 'src/slicot/ib01py.f' || echo '$(srcdir)/'`src/slicot/ib01py.f
 
-libscicacsd_la-mb01rx.lo: src/slicot/mb01rx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01rx.lo `test -f 'src/slicot/mb01rx.f' || echo '$(srcdir)/'`src/slicot/mb01rx.f
+mb01rx.lo: src/slicot/mb01rx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01rx.lo `test -f 'src/slicot/mb01rx.f' || echo '$(srcdir)/'`src/slicot/mb01rx.f
 
-libscicacsd_la-ib01md.lo: src/slicot/ib01md.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01md.lo `test -f 'src/slicot/ib01md.f' || echo '$(srcdir)/'`src/slicot/ib01md.f
+ib01md.lo: src/slicot/ib01md.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01md.lo `test -f 'src/slicot/ib01md.f' || echo '$(srcdir)/'`src/slicot/ib01md.f
 
-libscicacsd_la-sb02ru.lo: src/slicot/sb02ru.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02ru.lo `test -f 'src/slicot/sb02ru.f' || echo '$(srcdir)/'`src/slicot/sb02ru.f
+sb02ru.lo: src/slicot/sb02ru.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02ru.lo `test -f 'src/slicot/sb02ru.f' || echo '$(srcdir)/'`src/slicot/sb02ru.f
 
-libscicacsd_la-sb04nw.lo: src/slicot/sb04nw.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04nw.lo `test -f 'src/slicot/sb04nw.f' || echo '$(srcdir)/'`src/slicot/sb04nw.f
+sb04nw.lo: src/slicot/sb04nw.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04nw.lo `test -f 'src/slicot/sb04nw.f' || echo '$(srcdir)/'`src/slicot/sb04nw.f
 
-libscicacsd_la-sb10dd.lo: src/slicot/sb10dd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10dd.lo `test -f 'src/slicot/sb10dd.f' || echo '$(srcdir)/'`src/slicot/sb10dd.f
+sb10dd.lo: src/slicot/sb10dd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb10dd.lo `test -f 'src/slicot/sb10dd.f' || echo '$(srcdir)/'`src/slicot/sb10dd.f
 
-libscicacsd_la-mb04id.lo: src/slicot/mb04id.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04id.lo `test -f 'src/slicot/mb04id.f' || echo '$(srcdir)/'`src/slicot/mb04id.f
+mb04id.lo: src/slicot/mb04id.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04id.lo `test -f 'src/slicot/mb04id.f' || echo '$(srcdir)/'`src/slicot/mb04id.f
 
-libscicacsd_la-sb04ny.lo: src/slicot/sb04ny.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04ny.lo `test -f 'src/slicot/sb04ny.f' || echo '$(srcdir)/'`src/slicot/sb04ny.f
+sb04ny.lo: src/slicot/sb04ny.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04ny.lo `test -f 'src/slicot/sb04ny.f' || echo '$(srcdir)/'`src/slicot/sb04ny.f
 
-libscicacsd_la-ib01qd.lo: src/slicot/ib01qd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01qd.lo `test -f 'src/slicot/ib01qd.f' || echo '$(srcdir)/'`src/slicot/ib01qd.f
+ib01qd.lo: src/slicot/ib01qd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01qd.lo `test -f 'src/slicot/ib01qd.f' || echo '$(srcdir)/'`src/slicot/ib01qd.f
 
-libscicacsd_la-sb04px.lo: src/slicot/sb04px.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04px.lo `test -f 'src/slicot/sb04px.f' || echo '$(srcdir)/'`src/slicot/sb04px.f
+sb04px.lo: src/slicot/sb04px.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04px.lo `test -f 'src/slicot/sb04px.f' || echo '$(srcdir)/'`src/slicot/sb04px.f
 
-libscicacsd_la-sb04rw.lo: src/slicot/sb04rw.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04rw.lo `test -f 'src/slicot/sb04rw.f' || echo '$(srcdir)/'`src/slicot/sb04rw.f
+sb04rw.lo: src/slicot/sb04rw.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04rw.lo `test -f 'src/slicot/sb04rw.f' || echo '$(srcdir)/'`src/slicot/sb04rw.f
 
-libscicacsd_la-sb04ry.lo: src/slicot/sb04ry.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04ry.lo `test -f 'src/slicot/sb04ry.f' || echo '$(srcdir)/'`src/slicot/sb04ry.f
+sb04ry.lo: src/slicot/sb04ry.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04ry.lo `test -f 'src/slicot/sb04ry.f' || echo '$(srcdir)/'`src/slicot/sb04ry.f
 
-libscicacsd_la-mb01qd.lo: src/slicot/mb01qd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01qd.lo `test -f 'src/slicot/mb01qd.f' || echo '$(srcdir)/'`src/slicot/mb01qd.f
+mb01qd.lo: src/slicot/mb01qd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01qd.lo `test -f 'src/slicot/mb01qd.f' || echo '$(srcdir)/'`src/slicot/mb01qd.f
 
-libscicacsd_la-mb01ud.lo: src/slicot/mb01ud.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01ud.lo `test -f 'src/slicot/mb01ud.f' || echo '$(srcdir)/'`src/slicot/mb01ud.f
+mb01ud.lo: src/slicot/mb01ud.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01ud.lo `test -f 'src/slicot/mb01ud.f' || echo '$(srcdir)/'`src/slicot/mb01ud.f
 
-libscicacsd_la-sb02od.lo: src/slicot/sb02od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02od.lo `test -f 'src/slicot/sb02od.f' || echo '$(srcdir)/'`src/slicot/sb02od.f
+sb02od.lo: src/slicot/sb02od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02od.lo `test -f 'src/slicot/sb02od.f' || echo '$(srcdir)/'`src/slicot/sb02od.f
 
-libscicacsd_la-mb02ud.lo: src/slicot/mb02ud.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb02ud.lo `test -f 'src/slicot/mb02ud.f' || echo '$(srcdir)/'`src/slicot/mb02ud.f
+mb02ud.lo: src/slicot/mb02ud.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb02ud.lo `test -f 'src/slicot/mb02ud.f' || echo '$(srcdir)/'`src/slicot/mb02ud.f
 
-libscicacsd_la-sb10pd.lo: src/slicot/sb10pd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10pd.lo `test -f 'src/slicot/sb10pd.f' || echo '$(srcdir)/'`src/slicot/sb10pd.f
+sb10pd.lo: src/slicot/sb10pd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb10pd.lo `test -f 'src/slicot/sb10pd.f' || echo '$(srcdir)/'`src/slicot/sb10pd.f
 
-libscicacsd_la-sb03od.lo: src/slicot/sb03od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03od.lo `test -f 'src/slicot/sb03od.f' || echo '$(srcdir)/'`src/slicot/sb03od.f
+sb03od.lo: src/slicot/sb03od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03od.lo `test -f 'src/slicot/sb03od.f' || echo '$(srcdir)/'`src/slicot/sb03od.f
 
-libscicacsd_la-mb03ud.lo: src/slicot/mb03ud.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb03ud.lo `test -f 'src/slicot/mb03ud.f' || echo '$(srcdir)/'`src/slicot/mb03ud.f
+mb03ud.lo: src/slicot/mb03ud.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb03ud.lo `test -f 'src/slicot/mb03ud.f' || echo '$(srcdir)/'`src/slicot/mb03ud.f
 
-libscicacsd_la-sb02sd.lo: src/slicot/sb02sd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02sd.lo `test -f 'src/slicot/sb02sd.f' || echo '$(srcdir)/'`src/slicot/sb02sd.f
+sb02sd.lo: src/slicot/sb02sd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02sd.lo `test -f 'src/slicot/sb02sd.f' || echo '$(srcdir)/'`src/slicot/sb02sd.f
 
-libscicacsd_la-ib01oy.lo: src/slicot/ib01oy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01oy.lo `test -f 'src/slicot/ib01oy.f' || echo '$(srcdir)/'`src/slicot/ib01oy.f
+ib01oy.lo: src/slicot/ib01oy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01oy.lo `test -f 'src/slicot/ib01oy.f' || echo '$(srcdir)/'`src/slicot/ib01oy.f
 
-libscicacsd_la-sb02ms.lo: src/slicot/sb02ms.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02ms.lo `test -f 'src/slicot/sb02ms.f' || echo '$(srcdir)/'`src/slicot/sb02ms.f
+sb02ms.lo: src/slicot/sb02ms.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02ms.lo `test -f 'src/slicot/sb02ms.f' || echo '$(srcdir)/'`src/slicot/sb02ms.f
 
-libscicacsd_la-ab13md.lo: src/slicot/ab13md.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ab13md.lo `test -f 'src/slicot/ab13md.f' || echo '$(srcdir)/'`src/slicot/ab13md.f
+ab13md.lo: src/slicot/ab13md.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ab13md.lo `test -f 'src/slicot/ab13md.f' || echo '$(srcdir)/'`src/slicot/ab13md.f
 
-libscicacsd_la-sb03or.lo: src/slicot/sb03or.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03or.lo `test -f 'src/slicot/sb03or.f' || echo '$(srcdir)/'`src/slicot/sb03or.f
+sb03or.lo: src/slicot/sb03or.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03or.lo `test -f 'src/slicot/sb03or.f' || echo '$(srcdir)/'`src/slicot/sb03or.f
 
-libscicacsd_la-mb03oy.lo: src/slicot/mb03oy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb03oy.lo `test -f 'src/slicot/mb03oy.f' || echo '$(srcdir)/'`src/slicot/mb03oy.f
+mb03oy.lo: src/slicot/mb03oy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb03oy.lo `test -f 'src/slicot/mb03oy.f' || echo '$(srcdir)/'`src/slicot/mb03oy.f
 
-libscicacsd_la-ma02fd.lo: src/slicot/ma02fd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ma02fd.lo `test -f 'src/slicot/ma02fd.f' || echo '$(srcdir)/'`src/slicot/ma02fd.f
+ma02fd.lo: src/slicot/ma02fd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ma02fd.lo `test -f 'src/slicot/ma02fd.f' || echo '$(srcdir)/'`src/slicot/ma02fd.f
 
-libscicacsd_la-sb03ot.lo: src/slicot/sb03ot.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03ot.lo `test -f 'src/slicot/sb03ot.f' || echo '$(srcdir)/'`src/slicot/sb03ot.f
+sb03ot.lo: src/slicot/sb03ot.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03ot.lo `test -f 'src/slicot/sb03ot.f' || echo '$(srcdir)/'`src/slicot/sb03ot.f
 
-libscicacsd_la-mb04oy.lo: src/slicot/mb04oy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04oy.lo `test -f 'src/slicot/mb04oy.f' || echo '$(srcdir)/'`src/slicot/mb04oy.f
+mb04oy.lo: src/slicot/mb04oy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04oy.lo `test -f 'src/slicot/mb04oy.f' || echo '$(srcdir)/'`src/slicot/mb04oy.f
 
-libscicacsd_la-sb04mu.lo: src/slicot/sb04mu.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04mu.lo `test -f 'src/slicot/sb04mu.f' || echo '$(srcdir)/'`src/slicot/sb04mu.f
+sb04mu.lo: src/slicot/sb04mu.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04mu.lo `test -f 'src/slicot/sb04mu.f' || echo '$(srcdir)/'`src/slicot/sb04mu.f
 
-libscicacsd_la-sb03mw.lo: src/slicot/sb03mw.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03mw.lo `test -f 'src/slicot/sb03mw.f' || echo '$(srcdir)/'`src/slicot/sb03mw.f
+sb03mw.lo: src/slicot/sb03mw.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03mw.lo `test -f 'src/slicot/sb03mw.f' || echo '$(srcdir)/'`src/slicot/sb03mw.f
 
-libscicacsd_la-sb02ov.lo: src/slicot/sb02ov.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02ov.lo `test -f 'src/slicot/sb02ov.f' || echo '$(srcdir)/'`src/slicot/sb02ov.f
+sb02ov.lo: src/slicot/sb02ov.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02ov.lo `test -f 'src/slicot/sb02ov.f' || echo '$(srcdir)/'`src/slicot/sb02ov.f
 
-libscicacsd_la-sb03ov.lo: src/slicot/sb03ov.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03ov.lo `test -f 'src/slicot/sb03ov.f' || echo '$(srcdir)/'`src/slicot/sb03ov.f
+sb03ov.lo: src/slicot/sb03ov.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03ov.lo `test -f 'src/slicot/sb03ov.f' || echo '$(srcdir)/'`src/slicot/sb03ov.f
 
-libscicacsd_la-sb04mw.lo: src/slicot/sb04mw.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04mw.lo `test -f 'src/slicot/sb04mw.f' || echo '$(srcdir)/'`src/slicot/sb04mw.f
+sb04mw.lo: src/slicot/sb04mw.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04mw.lo `test -f 'src/slicot/sb04mw.f' || echo '$(srcdir)/'`src/slicot/sb04mw.f
 
-libscicacsd_la-sb03my.lo: src/slicot/sb03my.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03my.lo `test -f 'src/slicot/sb03my.f' || echo '$(srcdir)/'`src/slicot/sb03my.f
+sb03my.lo: src/slicot/sb03my.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03my.lo `test -f 'src/slicot/sb03my.f' || echo '$(srcdir)/'`src/slicot/sb03my.f
 
-libscicacsd_la-sb04my.lo: src/slicot/sb04my.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04my.lo `test -f 'src/slicot/sb04my.f' || echo '$(srcdir)/'`src/slicot/sb04my.f
+sb04my.lo: src/slicot/sb04my.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04my.lo `test -f 'src/slicot/sb04my.f' || echo '$(srcdir)/'`src/slicot/sb04my.f
 
-libscicacsd_la-sb04qu.lo: src/slicot/sb04qu.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04qu.lo `test -f 'src/slicot/sb04qu.f' || echo '$(srcdir)/'`src/slicot/sb04qu.f
+sb04qu.lo: src/slicot/sb04qu.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04qu.lo `test -f 'src/slicot/sb04qu.f' || echo '$(srcdir)/'`src/slicot/sb04qu.f
 
-libscicacsd_la-ib01pd.lo: src/slicot/ib01pd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01pd.lo `test -f 'src/slicot/ib01pd.f' || echo '$(srcdir)/'`src/slicot/ib01pd.f
+ib01pd.lo: src/slicot/ib01pd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01pd.lo `test -f 'src/slicot/ib01pd.f' || echo '$(srcdir)/'`src/slicot/ib01pd.f
 
-libscicacsd_la-sb03qy.lo: src/slicot/sb03qy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03qy.lo `test -f 'src/slicot/sb03qy.f' || echo '$(srcdir)/'`src/slicot/sb03qy.f
+sb03qy.lo: src/slicot/sb03qy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03qy.lo `test -f 'src/slicot/sb03qy.f' || echo '$(srcdir)/'`src/slicot/sb03qy.f
 
-libscicacsd_la-sb03sx.lo: src/slicot/sb03sx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03sx.lo `test -f 'src/slicot/sb03sx.f' || echo '$(srcdir)/'`src/slicot/sb03sx.f
+sb03sx.lo: src/slicot/sb03sx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03sx.lo `test -f 'src/slicot/sb03sx.f' || echo '$(srcdir)/'`src/slicot/sb03sx.f
 
-libscicacsd_la-sb04qy.lo: src/slicot/sb04qy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04qy.lo `test -f 'src/slicot/sb04qy.f' || echo '$(srcdir)/'`src/slicot/sb04qy.f
+sb04qy.lo: src/slicot/sb04qy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04qy.lo `test -f 'src/slicot/sb04qy.f' || echo '$(srcdir)/'`src/slicot/sb04qy.f
 
-libscicacsd_la-mb01pd.lo: src/slicot/mb01pd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01pd.lo `test -f 'src/slicot/mb01pd.f' || echo '$(srcdir)/'`src/slicot/mb01pd.f
+mb01pd.lo: src/slicot/mb01pd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01pd.lo `test -f 'src/slicot/mb01pd.f' || echo '$(srcdir)/'`src/slicot/mb01pd.f
 
-libscicacsd_la-mb02pd.lo: src/slicot/mb02pd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb02pd.lo `test -f 'src/slicot/mb02pd.f' || echo '$(srcdir)/'`src/slicot/mb02pd.f
+mb02pd.lo: src/slicot/mb02pd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb02pd.lo `test -f 'src/slicot/mb02pd.f' || echo '$(srcdir)/'`src/slicot/mb02pd.f
 
-libscicacsd_la-mb01td.lo: src/slicot/mb01td.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01td.lo `test -f 'src/slicot/mb01td.f' || echo '$(srcdir)/'`src/slicot/mb01td.f
+mb01td.lo: src/slicot/mb01td.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01td.lo `test -f 'src/slicot/mb01td.f' || echo '$(srcdir)/'`src/slicot/mb01td.f
 
-libscicacsd_la-sb02nd.lo: src/slicot/sb02nd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02nd.lo `test -f 'src/slicot/sb02nd.f' || echo '$(srcdir)/'`src/slicot/sb02nd.f
+sb02nd.lo: src/slicot/sb02nd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02nd.lo `test -f 'src/slicot/sb02nd.f' || echo '$(srcdir)/'`src/slicot/sb02nd.f
 
-libscicacsd_la-sb04nd.lo: src/slicot/sb04nd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04nd.lo `test -f 'src/slicot/sb04nd.f' || echo '$(srcdir)/'`src/slicot/sb04nd.f
+sb04nd.lo: src/slicot/sb04nd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04nd.lo `test -f 'src/slicot/sb04nd.f' || echo '$(srcdir)/'`src/slicot/sb04nd.f
 
-libscicacsd_la-sb02rd.lo: src/slicot/sb02rd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02rd.lo `test -f 'src/slicot/sb02rd.f' || echo '$(srcdir)/'`src/slicot/sb02rd.f
+sb02rd.lo: src/slicot/sb02rd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02rd.lo `test -f 'src/slicot/sb02rd.f' || echo '$(srcdir)/'`src/slicot/sb02rd.f
 
-libscicacsd_la-sb04rd.lo: src/slicot/sb04rd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04rd.lo `test -f 'src/slicot/sb04rd.f' || echo '$(srcdir)/'`src/slicot/sb04rd.f
+sb04rd.lo: src/slicot/sb04rd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04rd.lo `test -f 'src/slicot/sb04rd.f' || echo '$(srcdir)/'`src/slicot/sb04rd.f
 
-libscicacsd_la-ib01cd.lo: src/slicot/ib01cd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01cd.lo `test -f 'src/slicot/ib01cd.f' || echo '$(srcdir)/'`src/slicot/ib01cd.f
+ib01cd.lo: src/slicot/ib01cd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01cd.lo `test -f 'src/slicot/ib01cd.f' || echo '$(srcdir)/'`src/slicot/ib01cd.f
 
-libscicacsd_la-ib01px.lo: src/slicot/ib01px.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01px.lo `test -f 'src/slicot/ib01px.f' || echo '$(srcdir)/'`src/slicot/ib01px.f
+ib01px.lo: src/slicot/ib01px.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01px.lo `test -f 'src/slicot/ib01px.f' || echo '$(srcdir)/'`src/slicot/ib01px.f
 
-libscicacsd_la-ma02ad.lo: src/slicot/ma02ad.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ma02ad.lo `test -f 'src/slicot/ma02ad.f' || echo '$(srcdir)/'`src/slicot/ma02ad.f
+ma02ad.lo: src/slicot/ma02ad.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ma02ad.lo `test -f 'src/slicot/ma02ad.f' || echo '$(srcdir)/'`src/slicot/ma02ad.f
 
-libscicacsd_la-ab01od.lo: src/slicot/ab01od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ab01od.lo `test -f 'src/slicot/ab01od.f' || echo '$(srcdir)/'`src/slicot/ab01od.f
+ab01od.lo: src/slicot/ab01od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ab01od.lo `test -f 'src/slicot/ab01od.f' || echo '$(srcdir)/'`src/slicot/ab01od.f
 
-libscicacsd_la-mb01ru.lo: src/slicot/mb01ru.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01ru.lo `test -f 'src/slicot/mb01ru.f' || echo '$(srcdir)/'`src/slicot/mb01ru.f
+mb01ru.lo: src/slicot/mb01ru.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01ru.lo `test -f 'src/slicot/mb01ru.f' || echo '$(srcdir)/'`src/slicot/mb01ru.f
 
-libscicacsd_la-ma02ed.lo: src/slicot/ma02ed.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ma02ed.lo `test -f 'src/slicot/ma02ed.f' || echo '$(srcdir)/'`src/slicot/ma02ed.f
+ma02ed.lo: src/slicot/ma02ed.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ma02ed.lo `test -f 'src/slicot/ma02ed.f' || echo '$(srcdir)/'`src/slicot/ma02ed.f
 
-libscicacsd_la-mb04ny.lo: src/slicot/mb04ny.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04ny.lo `test -f 'src/slicot/mb04ny.f' || echo '$(srcdir)/'`src/slicot/mb04ny.f
+mb04ny.lo: src/slicot/mb04ny.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04ny.lo `test -f 'src/slicot/mb04ny.f' || echo '$(srcdir)/'`src/slicot/mb04ny.f
 
-libscicacsd_la-mb01ry.lo: src/slicot/mb01ry.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01ry.lo `test -f 'src/slicot/mb01ry.f' || echo '$(srcdir)/'`src/slicot/mb01ry.f
+mb01ry.lo: src/slicot/mb01ry.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01ry.lo `test -f 'src/slicot/mb01ry.f' || echo '$(srcdir)/'`src/slicot/mb01ry.f
 
-libscicacsd_la-sb04nv.lo: src/slicot/sb04nv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04nv.lo `test -f 'src/slicot/sb04nv.f' || echo '$(srcdir)/'`src/slicot/sb04nv.f
+sb04nv.lo: src/slicot/sb04nv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04nv.lo `test -f 'src/slicot/sb04nv.f' || echo '$(srcdir)/'`src/slicot/sb04nv.f
 
-libscicacsd_la-ib01od.lo: src/slicot/ib01od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01od.lo `test -f 'src/slicot/ib01od.f' || echo '$(srcdir)/'`src/slicot/ib01od.f
+ib01od.lo: src/slicot/ib01od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01od.lo `test -f 'src/slicot/ib01od.f' || echo '$(srcdir)/'`src/slicot/ib01od.f
 
-libscicacsd_la-sb04nx.lo: src/slicot/sb04nx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04nx.lo `test -f 'src/slicot/sb04nx.f' || echo '$(srcdir)/'`src/slicot/sb04nx.f
+sb04nx.lo: src/slicot/sb04nx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04nx.lo `test -f 'src/slicot/sb04nx.f' || echo '$(srcdir)/'`src/slicot/sb04nx.f
 
-libscicacsd_la-sb10fd.lo: src/slicot/sb10fd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10fd.lo `test -f 'src/slicot/sb10fd.f' || echo '$(srcdir)/'`src/slicot/sb10fd.f
+sb10fd.lo: src/slicot/sb10fd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb10fd.lo `test -f 'src/slicot/sb10fd.f' || echo '$(srcdir)/'`src/slicot/sb10fd.f
 
-libscicacsd_la-select.lo: src/slicot/select.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-select.lo `test -f 'src/slicot/select.f' || echo '$(srcdir)/'`src/slicot/select.f
+select.lo: src/slicot/select.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o select.lo `test -f 'src/slicot/select.f' || echo '$(srcdir)/'`src/slicot/select.f
 
-libscicacsd_la-sb04rv.lo: src/slicot/sb04rv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04rv.lo `test -f 'src/slicot/sb04rv.f' || echo '$(srcdir)/'`src/slicot/sb04rv.f
+sb04rv.lo: src/slicot/sb04rv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04rv.lo `test -f 'src/slicot/sb04rv.f' || echo '$(srcdir)/'`src/slicot/sb04rv.f
 
-libscicacsd_la-mb04kd.lo: src/slicot/mb04kd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04kd.lo `test -f 'src/slicot/mb04kd.f' || echo '$(srcdir)/'`src/slicot/mb04kd.f
+mb04kd.lo: src/slicot/mb04kd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04kd.lo `test -f 'src/slicot/mb04kd.f' || echo '$(srcdir)/'`src/slicot/mb04kd.f
 
-libscicacsd_la-sb04py.lo: src/slicot/sb04py.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04py.lo `test -f 'src/slicot/sb04py.f' || echo '$(srcdir)/'`src/slicot/sb04py.f
+sb04py.lo: src/slicot/sb04py.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04py.lo `test -f 'src/slicot/sb04py.f' || echo '$(srcdir)/'`src/slicot/sb04py.f
 
-libscicacsd_la-sb04rx.lo: src/slicot/sb04rx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04rx.lo `test -f 'src/slicot/sb04rx.f' || echo '$(srcdir)/'`src/slicot/sb04rx.f
+sb04rx.lo: src/slicot/sb04rx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04rx.lo `test -f 'src/slicot/sb04rx.f' || echo '$(srcdir)/'`src/slicot/sb04rx.f
 
-libscicacsd_la-mb03od.lo: src/slicot/mb03od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb03od.lo `test -f 'src/slicot/mb03od.f' || echo '$(srcdir)/'`src/slicot/mb03od.f
+mb03od.lo: src/slicot/mb03od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb03od.lo `test -f 'src/slicot/mb03od.f' || echo '$(srcdir)/'`src/slicot/mb03od.f
 
-libscicacsd_la-mb04od.lo: src/slicot/mb04od.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04od.lo `test -f 'src/slicot/mb04od.f' || echo '$(srcdir)/'`src/slicot/mb04od.f
+mb04od.lo: src/slicot/mb04od.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04od.lo `test -f 'src/slicot/mb04od.f' || echo '$(srcdir)/'`src/slicot/mb04od.f
 
-libscicacsd_la-mb01sd.lo: src/slicot/mb01sd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01sd.lo `test -f 'src/slicot/mb01sd.f' || echo '$(srcdir)/'`src/slicot/mb01sd.f
+mb01sd.lo: src/slicot/mb01sd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01sd.lo `test -f 'src/slicot/mb01sd.f' || echo '$(srcdir)/'`src/slicot/mb01sd.f
 
-libscicacsd_la-sb03md.lo: src/slicot/sb03md.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03md.lo `test -f 'src/slicot/sb03md.f' || echo '$(srcdir)/'`src/slicot/sb03md.f
+sb03md.lo: src/slicot/sb03md.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03md.lo `test -f 'src/slicot/sb03md.f' || echo '$(srcdir)/'`src/slicot/sb03md.f
 
-libscicacsd_la-sb04md.lo: src/slicot/sb04md.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04md.lo `test -f 'src/slicot/sb04md.f' || echo '$(srcdir)/'`src/slicot/sb04md.f
+sb04md.lo: src/slicot/sb04md.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04md.lo `test -f 'src/slicot/sb04md.f' || echo '$(srcdir)/'`src/slicot/sb04md.f
 
-libscicacsd_la-sb02qd.lo: src/slicot/sb02qd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02qd.lo `test -f 'src/slicot/sb02qd.f' || echo '$(srcdir)/'`src/slicot/sb02qd.f
+sb02qd.lo: src/slicot/sb02qd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02qd.lo `test -f 'src/slicot/sb02qd.f' || echo '$(srcdir)/'`src/slicot/sb02qd.f
 
-libscicacsd_la-sb10rd.lo: src/slicot/sb10rd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10rd.lo `test -f 'src/slicot/sb10rd.f' || echo '$(srcdir)/'`src/slicot/sb10rd.f
+sb10rd.lo: src/slicot/sb10rd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb10rd.lo `test -f 'src/slicot/sb10rd.f' || echo '$(srcdir)/'`src/slicot/sb10rd.f
 
-libscicacsd_la-sb04qd.lo: src/slicot/sb04qd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04qd.lo `test -f 'src/slicot/sb04qd.f' || echo '$(srcdir)/'`src/slicot/sb04qd.f
+sb04qd.lo: src/slicot/sb04qd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04qd.lo `test -f 'src/slicot/sb04qd.f' || echo '$(srcdir)/'`src/slicot/sb04qd.f
 
-libscicacsd_la-ib01my.lo: src/slicot/ib01my.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01my.lo `test -f 'src/slicot/ib01my.f' || echo '$(srcdir)/'`src/slicot/ib01my.f
+ib01my.lo: src/slicot/ib01my.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01my.lo `test -f 'src/slicot/ib01my.f' || echo '$(srcdir)/'`src/slicot/ib01my.f
 
-libscicacsd_la-ib01bd.lo: src/slicot/ib01bd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01bd.lo `test -f 'src/slicot/ib01bd.f' || echo '$(srcdir)/'`src/slicot/ib01bd.f
+ib01bd.lo: src/slicot/ib01bd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01bd.lo `test -f 'src/slicot/ib01bd.f' || echo '$(srcdir)/'`src/slicot/ib01bd.f
 
-libscicacsd_la-mb04iy.lo: src/slicot/mb04iy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04iy.lo `test -f 'src/slicot/mb04iy.f' || echo '$(srcdir)/'`src/slicot/mb04iy.f
+mb04iy.lo: src/slicot/mb04iy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04iy.lo `test -f 'src/slicot/mb04iy.f' || echo '$(srcdir)/'`src/slicot/mb04iy.f
 
-libscicacsd_la-sb02mr.lo: src/slicot/sb02mr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02mr.lo `test -f 'src/slicot/sb02mr.f' || echo '$(srcdir)/'`src/slicot/sb02mr.f
+sb02mr.lo: src/slicot/sb02mr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02mr.lo `test -f 'src/slicot/sb02mr.f' || echo '$(srcdir)/'`src/slicot/sb02mr.f
 
-libscicacsd_la-ab01nd.lo: src/slicot/ab01nd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ab01nd.lo `test -f 'src/slicot/ab01nd.f' || echo '$(srcdir)/'`src/slicot/ab01nd.f
+ab01nd.lo: src/slicot/ab01nd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ab01nd.lo `test -f 'src/slicot/ab01nd.f' || echo '$(srcdir)/'`src/slicot/ab01nd.f
 
-libscicacsd_la-sb02mt.lo: src/slicot/sb02mt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02mt.lo `test -f 'src/slicot/sb02mt.f' || echo '$(srcdir)/'`src/slicot/sb02mt.f
+sb02mt.lo: src/slicot/sb02mt.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02mt.lo `test -f 'src/slicot/sb02mt.f' || echo '$(srcdir)/'`src/slicot/sb02mt.f
 
-libscicacsd_la-sb04mr.lo: src/slicot/sb04mr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04mr.lo `test -f 'src/slicot/sb04mr.f' || echo '$(srcdir)/'`src/slicot/sb04mr.f
+sb04mr.lo: src/slicot/sb04mr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04mr.lo `test -f 'src/slicot/sb04mr.f' || echo '$(srcdir)/'`src/slicot/sb04mr.f
 
-libscicacsd_la-sb03mv.lo: src/slicot/sb03mv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03mv.lo `test -f 'src/slicot/sb03mv.f' || echo '$(srcdir)/'`src/slicot/sb03mv.f
+sb03mv.lo: src/slicot/sb03mv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03mv.lo `test -f 'src/slicot/sb03mv.f' || echo '$(srcdir)/'`src/slicot/sb03mv.f
 
-libscicacsd_la-sb02ou.lo: src/slicot/sb02ou.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02ou.lo `test -f 'src/slicot/sb02ou.f' || echo '$(srcdir)/'`src/slicot/sb02ou.f
+sb02ou.lo: src/slicot/sb02ou.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02ou.lo `test -f 'src/slicot/sb02ou.f' || echo '$(srcdir)/'`src/slicot/sb02ou.f
 
-libscicacsd_la-mb02qy.lo: src/slicot/mb02qy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb02qy.lo `test -f 'src/slicot/mb02qy.f' || echo '$(srcdir)/'`src/slicot/mb02qy.f
+mb02qy.lo: src/slicot/mb02qy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb02qy.lo `test -f 'src/slicot/mb02qy.f' || echo '$(srcdir)/'`src/slicot/mb02qy.f
 
-libscicacsd_la-sb03ou.lo: src/slicot/sb03ou.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03ou.lo `test -f 'src/slicot/sb03ou.f' || echo '$(srcdir)/'`src/slicot/sb03ou.f
+sb03ou.lo: src/slicot/sb03ou.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03ou.lo `test -f 'src/slicot/sb03ou.f' || echo '$(srcdir)/'`src/slicot/sb03ou.f
 
-libscicacsd_la-sb04qr.lo: src/slicot/sb04qr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb04qr.lo `test -f 'src/slicot/sb04qr.f' || echo '$(srcdir)/'`src/slicot/sb04qr.f
+sb04qr.lo: src/slicot/sb04qr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb04qr.lo `test -f 'src/slicot/sb04qr.f' || echo '$(srcdir)/'`src/slicot/sb04qr.f
 
-libscicacsd_la-sb03mx.lo: src/slicot/sb03mx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03mx.lo `test -f 'src/slicot/sb03mx.f' || echo '$(srcdir)/'`src/slicot/sb03mx.f
+sb03mx.lo: src/slicot/sb03mx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03mx.lo `test -f 'src/slicot/sb03mx.f' || echo '$(srcdir)/'`src/slicot/sb03mx.f
 
-libscicacsd_la-ib01nd.lo: src/slicot/ib01nd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01nd.lo `test -f 'src/slicot/ib01nd.f' || echo '$(srcdir)/'`src/slicot/ib01nd.f
+ib01nd.lo: src/slicot/ib01nd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01nd.lo `test -f 'src/slicot/ib01nd.f' || echo '$(srcdir)/'`src/slicot/ib01nd.f
 
-libscicacsd_la-sb02oy.lo: src/slicot/sb02oy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb02oy.lo `test -f 'src/slicot/sb02oy.f' || echo '$(srcdir)/'`src/slicot/sb02oy.f
+sb02oy.lo: src/slicot/sb02oy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb02oy.lo `test -f 'src/slicot/sb02oy.f' || echo '$(srcdir)/'`src/slicot/sb02oy.f
 
-libscicacsd_la-sb03oy.lo: src/slicot/sb03oy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03oy.lo `test -f 'src/slicot/sb03oy.f' || echo '$(srcdir)/'`src/slicot/sb03oy.f
+sb03oy.lo: src/slicot/sb03oy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03oy.lo `test -f 'src/slicot/sb03oy.f' || echo '$(srcdir)/'`src/slicot/sb03oy.f
 
-libscicacsd_la-sb03qx.lo: src/slicot/sb03qx.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03qx.lo `test -f 'src/slicot/sb03qx.f' || echo '$(srcdir)/'`src/slicot/sb03qx.f
+sb03qx.lo: src/slicot/sb03qx.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03qx.lo `test -f 'src/slicot/sb03qx.f' || echo '$(srcdir)/'`src/slicot/sb03qx.f
 
-libscicacsd_la-ib01rd.lo: src/slicot/ib01rd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ib01rd.lo `test -f 'src/slicot/ib01rd.f' || echo '$(srcdir)/'`src/slicot/ib01rd.f
+ib01rd.lo: src/slicot/ib01rd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ib01rd.lo `test -f 'src/slicot/ib01rd.f' || echo '$(srcdir)/'`src/slicot/ib01rd.f
 
-libscicacsd_la-sb03sy.lo: src/slicot/sb03sy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb03sy.lo `test -f 'src/slicot/sb03sy.f' || echo '$(srcdir)/'`src/slicot/sb03sy.f
+sb03sy.lo: src/slicot/sb03sy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb03sy.lo `test -f 'src/slicot/sb03sy.f' || echo '$(srcdir)/'`src/slicot/sb03sy.f
 
-libscicacsd_la-mb04nd.lo: src/slicot/mb04nd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb04nd.lo `test -f 'src/slicot/mb04nd.f' || echo '$(srcdir)/'`src/slicot/mb04nd.f
+mb04nd.lo: src/slicot/mb04nd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb04nd.lo `test -f 'src/slicot/mb04nd.f' || echo '$(srcdir)/'`src/slicot/mb04nd.f
 
-libscicacsd_la-mb01rd.lo: src/slicot/mb01rd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01rd.lo `test -f 'src/slicot/mb01rd.f' || echo '$(srcdir)/'`src/slicot/mb01rd.f
+mb01rd.lo: src/slicot/mb01rd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01rd.lo `test -f 'src/slicot/mb01rd.f' || echo '$(srcdir)/'`src/slicot/mb01rd.f
 
-libscicacsd_la-mb01vd.lo: src/slicot/mb01vd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-mb01vd.lo `test -f 'src/slicot/mb01vd.f' || echo '$(srcdir)/'`src/slicot/mb01vd.f
+mb01vd.lo: src/slicot/mb01vd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o mb01vd.lo `test -f 'src/slicot/mb01vd.f' || echo '$(srcdir)/'`src/slicot/mb01vd.f
 
-libscicacsd_la-sb10qd.lo: src/slicot/sb10qd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sb10qd.lo `test -f 'src/slicot/sb10qd.f' || echo '$(srcdir)/'`src/slicot/sb10qd.f
+sb10qd.lo: src/slicot/sb10qd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o sb10qd.lo `test -f 'src/slicot/sb10qd.f' || echo '$(srcdir)/'`src/slicot/sb10qd.f
 
-libscicacsd_la-ereduc.lo: src/slicot/ereduc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ereduc.lo `test -f 'src/slicot/ereduc.f' || echo '$(srcdir)/'`src/slicot/ereduc.f
+ereduc.lo: src/slicot/ereduc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ereduc.lo `test -f 'src/slicot/ereduc.f' || echo '$(srcdir)/'`src/slicot/ereduc.f
 
-libscicacsd_la-fstair.lo: src/slicot/fstair.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-fstair.lo `test -f 'src/slicot/fstair.f' || echo '$(srcdir)/'`src/slicot/fstair.f
+fstair.lo: src/slicot/fstair.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fstair.lo `test -f 'src/slicot/fstair.f' || echo '$(srcdir)/'`src/slicot/fstair.f
 
-libscicacsd_la-inva.lo: src/slicot/inva.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-inva.lo `test -f 'src/slicot/inva.f' || echo '$(srcdir)/'`src/slicot/inva.f
+inva.lo: src/slicot/inva.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o inva.lo `test -f 'src/slicot/inva.f' || echo '$(srcdir)/'`src/slicot/inva.f
 
-libscicacsd_la-polmc.lo: src/slicot/polmc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-polmc.lo `test -f 'src/slicot/polmc.f' || echo '$(srcdir)/'`src/slicot/polmc.f
+polmc.lo: src/slicot/polmc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o polmc.lo `test -f 'src/slicot/polmc.f' || echo '$(srcdir)/'`src/slicot/polmc.f
 
-libscicacsd_la-ssxmc.lo: src/slicot/ssxmc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ssxmc.lo `test -f 'src/slicot/ssxmc.f' || echo '$(srcdir)/'`src/slicot/ssxmc.f
+ssxmc.lo: src/slicot/ssxmc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ssxmc.lo `test -f 'src/slicot/ssxmc.f' || echo '$(srcdir)/'`src/slicot/ssxmc.f
 
-libscicacsd_la-ZB03OD.lo: src/slicot/ZB03OD.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-ZB03OD.lo `test -f 'src/slicot/ZB03OD.f' || echo '$(srcdir)/'`src/slicot/ZB03OD.f
+ZB03OD.lo: src/slicot/ZB03OD.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ZB03OD.lo `test -f 'src/slicot/ZB03OD.f' || echo '$(srcdir)/'`src/slicot/ZB03OD.f
 
-libscicacsd_la-riccpack.lo: src/slicot/riccpack.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-riccpack.lo `test -f 'src/slicot/riccpack.f' || echo '$(srcdir)/'`src/slicot/riccpack.f
+riccpack.lo: src/slicot/riccpack.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o riccpack.lo `test -f 'src/slicot/riccpack.f' || echo '$(srcdir)/'`src/slicot/riccpack.f
 
-libscicacsd_la-Ex-schur.lo: src/slicot/Ex-schur.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
+Ex-schur.lo: src/slicot/Ex-schur.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o Ex-schur.lo `test -f 'src/slicot/Ex-schur.f' || echo '$(srcdir)/'`src/slicot/Ex-schur.f
 
 libscicacsd_la-sci_f_hinf.lo: sci_gateway/fortran/sci_f_hinf.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libscicacsd_la_FFLAGS) $(FFLAGS) -c -o libscicacsd_la-sci_f_hinf.lo `test -f 'sci_gateway/fortran/sci_f_hinf.f' || echo '$(srcdir)/'`sci_gateway/fortran/sci_f_hinf.f
@@ -1746,7 +1715,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1823,14 +1792,15 @@ uninstall-am: uninstall-libscicacsd_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscicacsd_la_etcDATA install-libscicacsd_la_rootDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscicacsd_la_etcDATA \
+	install-libscicacsd_la_rootDATA \
 	install-libscicacsd_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \

@@ -45,6 +45,13 @@ Performance:
 * SSE is now enabled by default under GNU/Linux with 32 bit CPU (it is already
   the case under 64 bit CPU). 
   Pentium III class (or equivalent) with SSE instructions is required.
-=======
+
 * bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
 
+
+Compilation:
+============
+
+* Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
+  as a static library (only available in the source tree).
+  This will avoid an important dependency tree for unitary testing.

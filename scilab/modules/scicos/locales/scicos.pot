@@ -1146,7 +1146,7 @@ msgid "Click on a block to set or get its documentation"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 260
-msgid "Click on a port, click on a port of object to be moved"
+msgid "Click on a port of object to be moved"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 283

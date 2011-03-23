@@ -135,12 +135,10 @@ am__libscihistory_browser_la_SOURCES_DIST =  \
 @GUI_FALSE@am__objects_2 = libscihistory_browser_la-CommandHistory_Wrap_Fake.lo
 @GUI_TRUE@am__objects_3 = libscihistory_browser_la-CommandHistory.lo \
 @GUI_TRUE@	libscihistory_browser_la-GiwsException.lo
-am__objects_4 =
-@GUI_TRUE@am__objects_5 =  \
+@GUI_TRUE@am__objects_4 =  \
 @GUI_TRUE@	libscihistory_browser_la-CommandHistory_Wrap.lo
 am_libscihistory_browser_la_OBJECTS = $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_4) \
-	$(am__objects_5)
+	$(am__objects_3) $(am__objects_4)
 libscihistory_browser_la_OBJECTS =  \
 	$(am_libscihistory_browser_la_OBJECTS)
 libscihistory_browser_la_LINK = $(LIBTOOL) --tag=CXX \
@@ -524,8 +522,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @GUI_TRUE@HISTORY_BROWSER_C_SOURCES = 
 @GIWS_TRUE@@GUI_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
-GATEWAY_C_SOURCES = 
-GATEWAY_CPP_SOURCES = 
 libscihistory_browser_la_CFLAGS = 
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
@@ -541,10 +537,10 @@ libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERS
 libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscihistory_browser-disable.la $(am__append_2)
 libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
-libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES)
+libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC = $(HISTORY_BROWSER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(HISTORY_BROWSER_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
 #### SWIG Declaration ####

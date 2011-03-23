@@ -25,6 +25,9 @@ function libn = ilib_compile(lib_name, ..
     return
   end
 
+  // The name of the library starts by "lib", strip it
+  lib_name_orig = strsubst(lib_name,"/^lib/","","r");
+
   libn=""; //** init variable
 
   if ~haveacompiler() then
@@ -128,7 +131,8 @@ function libn = ilib_compile(lib_name, ..
     oldPath = pwd();
 
     // Switch back to the TMPDIR where the mandatory files are
-    chdir(TMPDIR);
+
+    chdir(TMPDIR+"/"+lib_name_orig);
     cmd = "make "
 
     cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc, "build")
@@ -163,10 +167,15 @@ function libn = ilib_compile(lib_name, ..
       return ;
     end
 
+    generatedLibrary=".libs/" + lib_name;
     // Copy the produce lib to the working path
-    copyfile(".libs/" + lib_name, oldPath);
+    if ~isfile(generatedLibrary) then
+      error(msprintf(gettext("%s: Could not find the built library ''%s''.\n"),"ilib_compile",generatedLibrary));
+    end
+    copyfile(generatedLibrary, oldPath);
+    
   end
-
+  
   libn = path + lib_name_make ;
   chdir(oldpath);
 

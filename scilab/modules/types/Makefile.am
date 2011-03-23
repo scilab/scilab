@@ -93,7 +93,6 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 
 libscitypes_la_CFLAGS=
 
-
 libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes \
 				-I$(top_srcdir)/modules/operations/includes \
@@ -106,11 +105,26 @@ libscitypes_la_CPPFLAGS = 	-Iincludes/ \
 				-I$(top_srcdir)/modules/string/includes \
 				-I src/cpp
 
-pkglib_LTLIBRARIES = libscitypes.la
+libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
+
+# Without the types module
+libscitypes_disable_la_CFLAGS =
+
+TYPES_DISABLE_C_SOURCES =
+libscitypes_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
+
+pkglib_LTLIBRARIES = libscitypes-disable.la
+
+if GUI
+pkglib_LTLIBRARIES += libscitypes.la
+noinst_LTLIBRARIES = libscitypes-algo.la
+endif
 
 libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(TYPES_CPP_SOURCES)
+libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
+libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -126,6 +140,7 @@ BUILT_SOURCES=swig
 endif
 
 libscitypes_la_LIBADD =  \
+libscitypes-algo.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -151,6 +166,6 @@ TESTS			= testTypes
 
 testTypes_SOURCES 	= src/cpp/test-types.cpp
 testTypes_CPPFLAGS 	= $(check_INCLUDES)
-testTypes_LDADD	= 	$(top_builddir)/modules/types/libscitypes.la \
+testTypes_LDADD	= 	$(top_builddir)/modules/types/libscitypes-algo.la \
 					$(top_builddir)/modules/abstractSyntaxTree/libsciabstractSyntaxTree.la
 

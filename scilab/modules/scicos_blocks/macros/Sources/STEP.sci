@@ -1,6 +1,7 @@
-//  Scicos
+// Xcos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,18 +37,20 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,temps,in,fi,exprs]=scicos_getvalue('Set Saturation parameters',..
-	['Step time';'Initial value';'Final value'],list('vec',1,'vec',-1,'vec',-1),exprs)
+      [ok,temps,in,fi,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "STEP_FUNCTION");" "; ..
+          gettext("Step Function");" "], ..
+          [gettext("Step Time"); gettext("Initial Value"); gettext("Final Value")], ..
+          list("vec",1,"vec",-1,"vec",-1), exprs);
     if ~ok then break,end
     in=in(:);fi=fi(:);
     if size(in,'*')<>size(fi,'*')  then
-      if size(in,'*')==1 then 
+      if size(in,'*')==1 then
 	in=in*ones(fi)
-      elseif size(fi,'*')==1 then 
+      elseif size(fi,'*')==1 then
 	fi=fi*ones(in)
       else
-	message('Incompatible initial and final values')
-	ok=%f
+          block_parameter_error(msprintf(gettext("''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."), size(in,"*"), size(fi,"*")), gettext("Same sizes expected."));
+          ok=%f
       end
     end
     if ok then
@@ -77,7 +80,7 @@ case 'define' then
   model.rpar=rpar
   model.blocktype='c'
   model.dep_ut=[%f %f]
-  
+
   exprs=[string(1);string(rpar)]
   gr_i=['txt=[''Step''];';
         'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');']

@@ -99,6 +99,7 @@ libscioutput_stream_la_CPPFLAGS=  \
 
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
+noinst_LTLIBRARIES = libscioutput_stream-algo.la
 
 if GUI
 USEANT=1
@@ -106,14 +107,18 @@ endif
 
 libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_algo_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(JNI_SOURCES)
+libscioutput_stream_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioutput_stream_algo_la_CFLAGS = $(libscioutput_stream_la_CFLAGS)
+libscioutput_stream_algo_la_CPPFLAGS = $(libscioutput_stream_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS) $(libscioutput_stream_la_CPPFLAGS)
 
 # Many stuff depends on this one ... commented
-#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
+libscioutput_stream_la_LIBADD =  libscioutput_stream-algo.la
+#$(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename=output_stream
 

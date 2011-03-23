@@ -61,16 +61,20 @@ libscifunctions_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/elementary_functions/includes/
 
 pkglib_LTLIBRARIES = libscifunctions.la
+noinst_LTLIBRARIES = libscifunctions-algo.la
 
 libscifunctions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifunctions_algo_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES)
+libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifunctions_algo_la_CFLAGS = $(libscifunctions_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifunctions_la_CFLAGS) $(libscifunctions_la_CPPFLAGS)
 
 libscifunctions_la_LIBADD =   \
+	libscifunctions-algo.la \
 $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la \
 $(top_builddir)/modules/api_scilab/libsciapi_scilab.la \

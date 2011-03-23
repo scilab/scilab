@@ -107,43 +107,29 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_etcdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_rootdir)" \
 	"$(DESTDIR)$(libsciarnoldi_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libsciarnoldi_la_DEPENDENCIES =
-am__objects_1 = libsciarnoldi_la-dsconv.lo libsciarnoldi_la-dsortc.lo \
-	libsciarnoldi_la-dsaup2.lo libsciarnoldi_la-dneigh.lo \
-	libsciarnoldi_la-znaupd.lo libsciarnoldi_la-dsesrt.lo \
-	libsciarnoldi_la-zneupd.lo libsciarnoldi_la-smout.lo \
-	libsciarnoldi_la-znaitr.lo libsciarnoldi_la-zngets.lo \
-	libsciarnoldi_la-second.lo libsciarnoldi_la-znapps.lo \
-	libsciarnoldi_la-zlarnv.lo libsciarnoldi_la-dsortr.lo \
-	libsciarnoldi_la-zmout.lo libsciarnoldi_la-dseigt.lo \
-	libsciarnoldi_la-zgetv0.lo libsciarnoldi_la-znaup2.lo \
-	libsciarnoldi_la-icnteq.lo libsciarnoldi_la-icopy.lo \
-	libsciarnoldi_la-zneigh.lo libsciarnoldi_la-zsortc.lo \
-	libsciarnoldi_la-dstatn.lo libsciarnoldi_la-dlaruv.lo \
-	libsciarnoldi_la-dstqrb.lo libsciarnoldi_la-cvout.lo \
-	libsciarnoldi_la-dvout.lo libsciarnoldi_la-dstats.lo \
-	libsciarnoldi_la-dlaqrb.lo libsciarnoldi_la-ivout.lo \
-	libsciarnoldi_la-dnaupd.lo libsciarnoldi_la-dneupd.lo \
-	libsciarnoldi_la-dsaupd.lo libsciarnoldi_la-svout.lo \
-	libsciarnoldi_la-dnaitr.lo libsciarnoldi_la-iswap.lo \
-	libsciarnoldi_la-zstatn.lo libsciarnoldi_la-dseupd.lo \
-	libsciarnoldi_la-dngets.lo libsciarnoldi_la-dnapps.lo \
-	libsciarnoldi_la-dsaitr.lo libsciarnoldi_la-dlarnv.lo \
-	libsciarnoldi_la-cmout.lo libsciarnoldi_la-dnconv.lo \
-	libsciarnoldi_la-zvout.lo libsciarnoldi_la-dmout.lo \
-	libsciarnoldi_la-dsgets.lo libsciarnoldi_la-dgetv0.lo \
-	libsciarnoldi_la-dnaup2.lo libsciarnoldi_la-dsapps.lo
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libsciarnoldi_algo_la_LIBADD =
+am__objects_1 = dsconv.lo dsortc.lo dsaup2.lo dneigh.lo znaupd.lo \
+	dsesrt.lo zneupd.lo smout.lo znaitr.lo zngets.lo second.lo \
+	znapps.lo zlarnv.lo dsortr.lo zmout.lo dseigt.lo zgetv0.lo \
+	znaup2.lo icnteq.lo icopy.lo zneigh.lo zsortc.lo dstatn.lo \
+	dlaruv.lo dstqrb.lo cvout.lo dvout.lo dstats.lo dlaqrb.lo \
+	ivout.lo dnaupd.lo dneupd.lo dsaupd.lo svout.lo dnaitr.lo \
+	iswap.lo zstatn.lo dseupd.lo dngets.lo dnapps.lo dsaitr.lo \
+	dlarnv.lo cmout.lo dnconv.lo zvout.lo dmout.lo dsgets.lo \
+	dgetv0.lo dnaup2.lo dsapps.lo
+am_libsciarnoldi_algo_la_OBJECTS = $(am__objects_1)
+libsciarnoldi_algo_la_OBJECTS = $(am_libsciarnoldi_algo_la_OBJECTS)
+libsciarnoldi_la_DEPENDENCIES = libsciarnoldi-algo.la
 am__objects_2 = libsciarnoldi_la-sci_dseupd.lo \
 	libsciarnoldi_la-sci_zneupd.lo libsciarnoldi_la-gw_arnoldi.lo \
 	libsciarnoldi_la-sci_dnaupd.lo libsciarnoldi_la-sci_dneupd.lo \
 	libsciarnoldi_la-sci_dsaupd.lo libsciarnoldi_la-sci_znaupd.lo
-am_libsciarnoldi_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libsciarnoldi_la_OBJECTS = $(am__objects_2)
 libsciarnoldi_la_OBJECTS = $(am_libsciarnoldi_la_OBJECTS)
-libsciarnoldi_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) \
-	$(libsciarnoldi_la_FFLAGS) $(FFLAGS) \
-	$(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
+libsciarnoldi_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libsciarnoldi_la_CFLAGS) \
+	$(CFLAGS) $(libsciarnoldi_la_LDFLAGS) $(LDFLAGS) -o $@
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -164,8 +150,9 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libsciarnoldi_la_SOURCES)
-DIST_SOURCES = $(libsciarnoldi_la_SOURCES)
+SOURCES = $(libsciarnoldi_algo_la_SOURCES) $(libsciarnoldi_la_SOURCES)
+DIST_SOURCES = $(libsciarnoldi_algo_la_SOURCES) \
+	$(libsciarnoldi_la_SOURCES)
 DATA = $(libsciarnoldi_la_etc_DATA) $(libsciarnoldi_la_root_DATA) \
 	$(libsciarnoldi_la_sci_gateway_DATA)
 ETAGS = etags
@@ -496,13 +483,16 @@ libsciarnoldi_la_CFLAGS = -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 libsciarnoldi_la_FFLAGS = -I$(srcdir)/src/arpack/
 pkglib_LTLIBRARIES = libsciarnoldi.la
+noinst_LTLIBRARIES = libsciarnoldi-algo.la
 libsciarnoldi_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LAPACK_LIBS)
-libsciarnoldi_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libsciarnoldi_algo_la_SOURCES = $(ARNOLDI_FORTRAN_SOURCES)
+libsciarnoldi_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciarnoldi_algo_la_CFLAGS = $(libsciarnoldi_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciarnoldi_la_CFLAGS)
-libsciarnoldi_la_LIBADD = #
+libsciarnoldi_la_LIBADD = libsciarnoldi-algo.la
 
 #### Target ######
 modulename = arnoldi
@@ -615,6 +605,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -646,6 +645,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libsciarnoldi-algo.la: $(libsciarnoldi_algo_la_OBJECTS) $(libsciarnoldi_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libsciarnoldi_algo_la_OBJECTS) $(libsciarnoldi_algo_la_LIBADD) $(LIBS)
 libsciarnoldi.la: $(libsciarnoldi_la_OBJECTS) $(libsciarnoldi_la_DEPENDENCIES) 
 	$(libsciarnoldi_la_LINK) -rpath $(pkglibdir) $(libsciarnoldi_la_OBJECTS) $(libsciarnoldi_la_LIBADD) $(LIBS)
 
@@ -742,155 +743,155 @@ libsciarnoldi_la-sci_znaupd.lo: sci_gateway/c/sci_znaupd.c
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
 
-libsciarnoldi_la-dsconv.lo: src/arpack/dsconv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsconv.lo `test -f 'src/arpack/dsconv.f' || echo '$(srcdir)/'`src/arpack/dsconv.f
+dsconv.lo: src/arpack/dsconv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsconv.lo `test -f 'src/arpack/dsconv.f' || echo '$(srcdir)/'`src/arpack/dsconv.f
 
-libsciarnoldi_la-dsortc.lo: src/arpack/dsortc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsortc.lo `test -f 'src/arpack/dsortc.f' || echo '$(srcdir)/'`src/arpack/dsortc.f
+dsortc.lo: src/arpack/dsortc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsortc.lo `test -f 'src/arpack/dsortc.f' || echo '$(srcdir)/'`src/arpack/dsortc.f
 
-libsciarnoldi_la-dsaup2.lo: src/arpack/dsaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaup2.lo `test -f 'src/arpack/dsaup2.f' || echo '$(srcdir)/'`src/arpack/dsaup2.f
+dsaup2.lo: src/arpack/dsaup2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsaup2.lo `test -f 'src/arpack/dsaup2.f' || echo '$(srcdir)/'`src/arpack/dsaup2.f
 
-libsciarnoldi_la-dneigh.lo: src/arpack/dneigh.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dneigh.lo `test -f 'src/arpack/dneigh.f' || echo '$(srcdir)/'`src/arpack/dneigh.f
+dneigh.lo: src/arpack/dneigh.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dneigh.lo `test -f 'src/arpack/dneigh.f' || echo '$(srcdir)/'`src/arpack/dneigh.f
 
-libsciarnoldi_la-znaupd.lo: src/arpack/znaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaupd.lo `test -f 'src/arpack/znaupd.f' || echo '$(srcdir)/'`src/arpack/znaupd.f
+znaupd.lo: src/arpack/znaupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o znaupd.lo `test -f 'src/arpack/znaupd.f' || echo '$(srcdir)/'`src/arpack/znaupd.f
 
-libsciarnoldi_la-dsesrt.lo: src/arpack/dsesrt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsesrt.lo `test -f 'src/arpack/dsesrt.f' || echo '$(srcdir)/'`src/arpack/dsesrt.f
+dsesrt.lo: src/arpack/dsesrt.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsesrt.lo `test -f 'src/arpack/dsesrt.f' || echo '$(srcdir)/'`src/arpack/dsesrt.f
 
-libsciarnoldi_la-zneupd.lo: src/arpack/zneupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zneupd.lo `test -f 'src/arpack/zneupd.f' || echo '$(srcdir)/'`src/arpack/zneupd.f
+zneupd.lo: src/arpack/zneupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zneupd.lo `test -f 'src/arpack/zneupd.f' || echo '$(srcdir)/'`src/arpack/zneupd.f
 
-libsciarnoldi_la-smout.lo: src/arpack/smout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-smout.lo `test -f 'src/arpack/smout.f' || echo '$(srcdir)/'`src/arpack/smout.f
+smout.lo: src/arpack/smout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o smout.lo `test -f 'src/arpack/smout.f' || echo '$(srcdir)/'`src/arpack/smout.f
 
-libsciarnoldi_la-znaitr.lo: src/arpack/znaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaitr.lo `test -f 'src/arpack/znaitr.f' || echo '$(srcdir)/'`src/arpack/znaitr.f
+znaitr.lo: src/arpack/znaitr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o znaitr.lo `test -f 'src/arpack/znaitr.f' || echo '$(srcdir)/'`src/arpack/znaitr.f
 
-libsciarnoldi_la-zngets.lo: src/arpack/zngets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zngets.lo `test -f 'src/arpack/zngets.f' || echo '$(srcdir)/'`src/arpack/zngets.f
+zngets.lo: src/arpack/zngets.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zngets.lo `test -f 'src/arpack/zngets.f' || echo '$(srcdir)/'`src/arpack/zngets.f
 
-libsciarnoldi_la-second.lo: src/arpack/second.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-second.lo `test -f 'src/arpack/second.f' || echo '$(srcdir)/'`src/arpack/second.f
+second.lo: src/arpack/second.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o second.lo `test -f 'src/arpack/second.f' || echo '$(srcdir)/'`src/arpack/second.f
 
-libsciarnoldi_la-znapps.lo: src/arpack/znapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znapps.lo `test -f 'src/arpack/znapps.f' || echo '$(srcdir)/'`src/arpack/znapps.f
+znapps.lo: src/arpack/znapps.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o znapps.lo `test -f 'src/arpack/znapps.f' || echo '$(srcdir)/'`src/arpack/znapps.f
 
-libsciarnoldi_la-zlarnv.lo: src/arpack/zlarnv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zlarnv.lo `test -f 'src/arpack/zlarnv.f' || echo '$(srcdir)/'`src/arpack/zlarnv.f
+zlarnv.lo: src/arpack/zlarnv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zlarnv.lo `test -f 'src/arpack/zlarnv.f' || echo '$(srcdir)/'`src/arpack/zlarnv.f
 
-libsciarnoldi_la-dsortr.lo: src/arpack/dsortr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsortr.lo `test -f 'src/arpack/dsortr.f' || echo '$(srcdir)/'`src/arpack/dsortr.f
+dsortr.lo: src/arpack/dsortr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsortr.lo `test -f 'src/arpack/dsortr.f' || echo '$(srcdir)/'`src/arpack/dsortr.f
 
-libsciarnoldi_la-zmout.lo: src/arpack/zmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zmout.lo `test -f 'src/arpack/zmout.f' || echo '$(srcdir)/'`src/arpack/zmout.f
+zmout.lo: src/arpack/zmout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zmout.lo `test -f 'src/arpack/zmout.f' || echo '$(srcdir)/'`src/arpack/zmout.f
 
-libsciarnoldi_la-dseigt.lo: src/arpack/dseigt.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dseigt.lo `test -f 'src/arpack/dseigt.f' || echo '$(srcdir)/'`src/arpack/dseigt.f
+dseigt.lo: src/arpack/dseigt.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dseigt.lo `test -f 'src/arpack/dseigt.f' || echo '$(srcdir)/'`src/arpack/dseigt.f
 
-libsciarnoldi_la-zgetv0.lo: src/arpack/zgetv0.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zgetv0.lo `test -f 'src/arpack/zgetv0.f' || echo '$(srcdir)/'`src/arpack/zgetv0.f
+zgetv0.lo: src/arpack/zgetv0.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zgetv0.lo `test -f 'src/arpack/zgetv0.f' || echo '$(srcdir)/'`src/arpack/zgetv0.f
 
-libsciarnoldi_la-znaup2.lo: src/arpack/znaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-znaup2.lo `test -f 'src/arpack/znaup2.f' || echo '$(srcdir)/'`src/arpack/znaup2.f
+znaup2.lo: src/arpack/znaup2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o znaup2.lo `test -f 'src/arpack/znaup2.f' || echo '$(srcdir)/'`src/arpack/znaup2.f
 
-libsciarnoldi_la-icnteq.lo: src/arpack/icnteq.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-icnteq.lo `test -f 'src/arpack/icnteq.f' || echo '$(srcdir)/'`src/arpack/icnteq.f
+icnteq.lo: src/arpack/icnteq.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icnteq.lo `test -f 'src/arpack/icnteq.f' || echo '$(srcdir)/'`src/arpack/icnteq.f
 
-libsciarnoldi_la-icopy.lo: src/arpack/icopy.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-icopy.lo `test -f 'src/arpack/icopy.f' || echo '$(srcdir)/'`src/arpack/icopy.f
+icopy.lo: src/arpack/icopy.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o icopy.lo `test -f 'src/arpack/icopy.f' || echo '$(srcdir)/'`src/arpack/icopy.f
 
-libsciarnoldi_la-zneigh.lo: src/arpack/zneigh.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zneigh.lo `test -f 'src/arpack/zneigh.f' || echo '$(srcdir)/'`src/arpack/zneigh.f
+zneigh.lo: src/arpack/zneigh.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zneigh.lo `test -f 'src/arpack/zneigh.f' || echo '$(srcdir)/'`src/arpack/zneigh.f
 
-libsciarnoldi_la-zsortc.lo: src/arpack/zsortc.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zsortc.lo `test -f 'src/arpack/zsortc.f' || echo '$(srcdir)/'`src/arpack/zsortc.f
+zsortc.lo: src/arpack/zsortc.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zsortc.lo `test -f 'src/arpack/zsortc.f' || echo '$(srcdir)/'`src/arpack/zsortc.f
 
-libsciarnoldi_la-dstatn.lo: src/arpack/dstatn.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstatn.lo `test -f 'src/arpack/dstatn.f' || echo '$(srcdir)/'`src/arpack/dstatn.f
+dstatn.lo: src/arpack/dstatn.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstatn.lo `test -f 'src/arpack/dstatn.f' || echo '$(srcdir)/'`src/arpack/dstatn.f
 
-libsciarnoldi_la-dlaruv.lo: src/arpack/dlaruv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlaruv.lo `test -f 'src/arpack/dlaruv.f' || echo '$(srcdir)/'`src/arpack/dlaruv.f
+dlaruv.lo: src/arpack/dlaruv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlaruv.lo `test -f 'src/arpack/dlaruv.f' || echo '$(srcdir)/'`src/arpack/dlaruv.f
 
-libsciarnoldi_la-dstqrb.lo: src/arpack/dstqrb.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstqrb.lo `test -f 'src/arpack/dstqrb.f' || echo '$(srcdir)/'`src/arpack/dstqrb.f
+dstqrb.lo: src/arpack/dstqrb.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstqrb.lo `test -f 'src/arpack/dstqrb.f' || echo '$(srcdir)/'`src/arpack/dstqrb.f
 
-libsciarnoldi_la-cvout.lo: src/arpack/cvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-cvout.lo `test -f 'src/arpack/cvout.f' || echo '$(srcdir)/'`src/arpack/cvout.f
+cvout.lo: src/arpack/cvout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cvout.lo `test -f 'src/arpack/cvout.f' || echo '$(srcdir)/'`src/arpack/cvout.f
 
-libsciarnoldi_la-dvout.lo: src/arpack/dvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dvout.lo `test -f 'src/arpack/dvout.f' || echo '$(srcdir)/'`src/arpack/dvout.f
+dvout.lo: src/arpack/dvout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dvout.lo `test -f 'src/arpack/dvout.f' || echo '$(srcdir)/'`src/arpack/dvout.f
 
-libsciarnoldi_la-dstats.lo: src/arpack/dstats.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dstats.lo `test -f 'src/arpack/dstats.f' || echo '$(srcdir)/'`src/arpack/dstats.f
+dstats.lo: src/arpack/dstats.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dstats.lo `test -f 'src/arpack/dstats.f' || echo '$(srcdir)/'`src/arpack/dstats.f
 
-libsciarnoldi_la-dlaqrb.lo: src/arpack/dlaqrb.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlaqrb.lo `test -f 'src/arpack/dlaqrb.f' || echo '$(srcdir)/'`src/arpack/dlaqrb.f
+dlaqrb.lo: src/arpack/dlaqrb.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlaqrb.lo `test -f 'src/arpack/dlaqrb.f' || echo '$(srcdir)/'`src/arpack/dlaqrb.f
 
-libsciarnoldi_la-ivout.lo: src/arpack/ivout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-ivout.lo `test -f 'src/arpack/ivout.f' || echo '$(srcdir)/'`src/arpack/ivout.f
+ivout.lo: src/arpack/ivout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o ivout.lo `test -f 'src/arpack/ivout.f' || echo '$(srcdir)/'`src/arpack/ivout.f
 
-libsciarnoldi_la-dnaupd.lo: src/arpack/dnaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaupd.lo `test -f 'src/arpack/dnaupd.f' || echo '$(srcdir)/'`src/arpack/dnaupd.f
+dnaupd.lo: src/arpack/dnaupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dnaupd.lo `test -f 'src/arpack/dnaupd.f' || echo '$(srcdir)/'`src/arpack/dnaupd.f
 
-libsciarnoldi_la-dneupd.lo: src/arpack/dneupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dneupd.lo `test -f 'src/arpack/dneupd.f' || echo '$(srcdir)/'`src/arpack/dneupd.f
+dneupd.lo: src/arpack/dneupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dneupd.lo `test -f 'src/arpack/dneupd.f' || echo '$(srcdir)/'`src/arpack/dneupd.f
 
-libsciarnoldi_la-dsaupd.lo: src/arpack/dsaupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaupd.lo `test -f 'src/arpack/dsaupd.f' || echo '$(srcdir)/'`src/arpack/dsaupd.f
+dsaupd.lo: src/arpack/dsaupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsaupd.lo `test -f 'src/arpack/dsaupd.f' || echo '$(srcdir)/'`src/arpack/dsaupd.f
 
-libsciarnoldi_la-svout.lo: src/arpack/svout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-svout.lo `test -f 'src/arpack/svout.f' || echo '$(srcdir)/'`src/arpack/svout.f
+svout.lo: src/arpack/svout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o svout.lo `test -f 'src/arpack/svout.f' || echo '$(srcdir)/'`src/arpack/svout.f
 
-libsciarnoldi_la-dnaitr.lo: src/arpack/dnaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaitr.lo `test -f 'src/arpack/dnaitr.f' || echo '$(srcdir)/'`src/arpack/dnaitr.f
+dnaitr.lo: src/arpack/dnaitr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dnaitr.lo `test -f 'src/arpack/dnaitr.f' || echo '$(srcdir)/'`src/arpack/dnaitr.f
 
-libsciarnoldi_la-iswap.lo: src/arpack/iswap.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-iswap.lo `test -f 'src/arpack/iswap.f' || echo '$(srcdir)/'`src/arpack/iswap.f
+iswap.lo: src/arpack/iswap.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o iswap.lo `test -f 'src/arpack/iswap.f' || echo '$(srcdir)/'`src/arpack/iswap.f
 
-libsciarnoldi_la-zstatn.lo: src/arpack/zstatn.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zstatn.lo `test -f 'src/arpack/zstatn.f' || echo '$(srcdir)/'`src/arpack/zstatn.f
+zstatn.lo: src/arpack/zstatn.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zstatn.lo `test -f 'src/arpack/zstatn.f' || echo '$(srcdir)/'`src/arpack/zstatn.f
 
-libsciarnoldi_la-dseupd.lo: src/arpack/dseupd.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dseupd.lo `test -f 'src/arpack/dseupd.f' || echo '$(srcdir)/'`src/arpack/dseupd.f
+dseupd.lo: src/arpack/dseupd.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dseupd.lo `test -f 'src/arpack/dseupd.f' || echo '$(srcdir)/'`src/arpack/dseupd.f
 
-libsciarnoldi_la-dngets.lo: src/arpack/dngets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dngets.lo `test -f 'src/arpack/dngets.f' || echo '$(srcdir)/'`src/arpack/dngets.f
+dngets.lo: src/arpack/dngets.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dngets.lo `test -f 'src/arpack/dngets.f' || echo '$(srcdir)/'`src/arpack/dngets.f
 
-libsciarnoldi_la-dnapps.lo: src/arpack/dnapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnapps.lo `test -f 'src/arpack/dnapps.f' || echo '$(srcdir)/'`src/arpack/dnapps.f
+dnapps.lo: src/arpack/dnapps.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dnapps.lo `test -f 'src/arpack/dnapps.f' || echo '$(srcdir)/'`src/arpack/dnapps.f
 
-libsciarnoldi_la-dsaitr.lo: src/arpack/dsaitr.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsaitr.lo `test -f 'src/arpack/dsaitr.f' || echo '$(srcdir)/'`src/arpack/dsaitr.f
+dsaitr.lo: src/arpack/dsaitr.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsaitr.lo `test -f 'src/arpack/dsaitr.f' || echo '$(srcdir)/'`src/arpack/dsaitr.f
 
-libsciarnoldi_la-dlarnv.lo: src/arpack/dlarnv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dlarnv.lo `test -f 'src/arpack/dlarnv.f' || echo '$(srcdir)/'`src/arpack/dlarnv.f
+dlarnv.lo: src/arpack/dlarnv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dlarnv.lo `test -f 'src/arpack/dlarnv.f' || echo '$(srcdir)/'`src/arpack/dlarnv.f
 
-libsciarnoldi_la-cmout.lo: src/arpack/cmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-cmout.lo `test -f 'src/arpack/cmout.f' || echo '$(srcdir)/'`src/arpack/cmout.f
+cmout.lo: src/arpack/cmout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o cmout.lo `test -f 'src/arpack/cmout.f' || echo '$(srcdir)/'`src/arpack/cmout.f
 
-libsciarnoldi_la-dnconv.lo: src/arpack/dnconv.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnconv.lo `test -f 'src/arpack/dnconv.f' || echo '$(srcdir)/'`src/arpack/dnconv.f
+dnconv.lo: src/arpack/dnconv.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dnconv.lo `test -f 'src/arpack/dnconv.f' || echo '$(srcdir)/'`src/arpack/dnconv.f
 
-libsciarnoldi_la-zvout.lo: src/arpack/zvout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-zvout.lo `test -f 'src/arpack/zvout.f' || echo '$(srcdir)/'`src/arpack/zvout.f
+zvout.lo: src/arpack/zvout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o zvout.lo `test -f 'src/arpack/zvout.f' || echo '$(srcdir)/'`src/arpack/zvout.f
 
-libsciarnoldi_la-dmout.lo: src/arpack/dmout.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dmout.lo `test -f 'src/arpack/dmout.f' || echo '$(srcdir)/'`src/arpack/dmout.f
+dmout.lo: src/arpack/dmout.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dmout.lo `test -f 'src/arpack/dmout.f' || echo '$(srcdir)/'`src/arpack/dmout.f
 
-libsciarnoldi_la-dsgets.lo: src/arpack/dsgets.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsgets.lo `test -f 'src/arpack/dsgets.f' || echo '$(srcdir)/'`src/arpack/dsgets.f
+dsgets.lo: src/arpack/dsgets.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsgets.lo `test -f 'src/arpack/dsgets.f' || echo '$(srcdir)/'`src/arpack/dsgets.f
 
-libsciarnoldi_la-dgetv0.lo: src/arpack/dgetv0.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dgetv0.lo `test -f 'src/arpack/dgetv0.f' || echo '$(srcdir)/'`src/arpack/dgetv0.f
+dgetv0.lo: src/arpack/dgetv0.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dgetv0.lo `test -f 'src/arpack/dgetv0.f' || echo '$(srcdir)/'`src/arpack/dgetv0.f
 
-libsciarnoldi_la-dnaup2.lo: src/arpack/dnaup2.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dnaup2.lo `test -f 'src/arpack/dnaup2.f' || echo '$(srcdir)/'`src/arpack/dnaup2.f
+dnaup2.lo: src/arpack/dnaup2.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dnaup2.lo `test -f 'src/arpack/dnaup2.f' || echo '$(srcdir)/'`src/arpack/dnaup2.f
 
-libsciarnoldi_la-dsapps.lo: src/arpack/dsapps.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(libsciarnoldi_la_FFLAGS) $(FFLAGS) -c -o libsciarnoldi_la-dsapps.lo `test -f 'src/arpack/dsapps.f' || echo '$(srcdir)/'`src/arpack/dsapps.f
+dsapps.lo: src/arpack/dsapps.f
+	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o dsapps.lo `test -f 'src/arpack/dsapps.f' || echo '$(srcdir)/'`src/arpack/dsapps.f
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1076,7 +1077,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1153,14 +1154,14 @@ uninstall-am: uninstall-libsciarnoldi_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libsciarnoldi_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libsciarnoldi_la_etcDATA \
 	install-libsciarnoldi_la_rootDATA \
 	install-libsciarnoldi_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \

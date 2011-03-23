@@ -46,6 +46,23 @@ public class testScilabDouble {
     }
 
     @Test
+    public void testScalarHDF5() throws NullPointerException, HDF5Exception {
+        double a=42.;
+        ScilabDouble scilabScalar = new ScilabDouble(a);
+        String fileName = tempDir + "/scalarFromJava.h5";
+        int fileId = H5Write.createFile(fileName);
+        H5Write.writeInDataSet(fileId, "EmptyDouble", scilabScalar);
+        H5Write.closeFile(fileId);
+
+        ScilabDouble data = new ScilabDouble();
+        fileId = H5Read.openFile(fileName);
+        Assert.assertEquals(H5Read.getRootType(fileId), H5ScilabConstant.SCILAB_CLASS_DOUBLE);
+        H5Read.readDataFromFile(fileId, data);
+        Assert.assertEquals(data, scilabScalar);
+        new File(fileName).delete();
+    }
+
+    @Test
     public void testRealMatrix() throws NullPointerException, HDF5Exception {
         double [][]realPart = new double[ROWS][COLS];
         String fileName = tempDir + "/realDoubleFromJava.h5";

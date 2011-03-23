@@ -11,6 +11,7 @@
 modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
+noinst_LTLIBRARIES = libscifftw-algo.la
 
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
@@ -46,13 +47,15 @@ libscifftw_la_root_DATA =  license.txt version.xml
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
-libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES)
+libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscifftw_algo_la_CFLAGS = $(libscifftw_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
 
-libscifftw_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscifftw_la_LIBADD = libscifftw-algo.la $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \

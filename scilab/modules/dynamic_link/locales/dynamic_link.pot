@@ -388,7 +388,7 @@ msgstr ""
 # File: macros/ilib_mex_build.sci, line: 26
 # File: macros/ilib_for_link.sci, line: 32
 #, c-format
-msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_ilib_verbose.c, line: 49

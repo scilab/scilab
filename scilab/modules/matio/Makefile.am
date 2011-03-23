@@ -63,8 +63,11 @@ libscimatio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/
 
 pkglib_LTLIBRARIES = libscimatio.la
+noinst_LTLIBRARIES = libscimatio-algo.la
 
-libscimatio_la_SOURCES = $(MATIO_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscimatio_algo_la_SOURCES = $(MATIO_C_SOURCES)
+libscimatio_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscimatio_algo_la_CFLAGS = $(libscimatio_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscimatio_la_SOURCES)
@@ -84,3 +87,5 @@ libscimatio_la_etc_DATA = etc/matio.quit etc/matio.start
 #### matio : gateway declaration ####
 libscimatio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimatio_la_sci_gateway_DATA = sci_gateway/matio_gateway.xml
+
+libscimatio_la_LIBADD = libscimatio-algo.la

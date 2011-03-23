@@ -952,11 +952,10 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
-CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/graphics/libscigraphics.la
@@ -3696,10 +3695,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-#### renderer : gateway declaration ####
-#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.
