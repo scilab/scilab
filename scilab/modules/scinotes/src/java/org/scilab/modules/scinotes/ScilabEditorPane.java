@@ -1298,8 +1298,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     public void highlightWords(String word, boolean exact) {
+        removeHighlightedWords();
         if (word != null && word.length() != 0) {
-            removeHighlightedWords();
             String text = getText();
             if (!exact) {
                 text = text.toLowerCase();
