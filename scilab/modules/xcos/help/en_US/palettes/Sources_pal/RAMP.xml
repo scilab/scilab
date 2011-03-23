@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +22,21 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="RAMP">
+<refentry
+  version="5.0-subset Scilab" xml:id="RAMP" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>RAMP</refname>
     <refpurpose>Ramp</refpurpose>
   </refnamediv>
   <refsection>
+
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -36,6 +46,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_RAMP">
     <title>Contents</title>
     <itemizedlist>
@@ -58,12 +69,22 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Datatype_RAMP">Data types</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Dialogbox_RAMP">Dialog box</xref>
             </para>
           </listitem>
           <listitem>
             <para>
               <xref linkend="Defaultproperties_RAMP">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_RAMP">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -78,6 +99,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_RAMP">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_RAMP">Authors</xref>
             </para>
           </listitem>
@@ -85,6 +111,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_RAMP">
     <title>Palette</title>
     <itemizedlist>
@@ -95,53 +122,69 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_RAMP">
     <title>Description</title>
     <para>
-The Ramp block generates a signal that starts at a specified time and
-value and changes by a specified rate. The block's <emphasis role="bold">Slope , Start
-  time</emphasis> and <emphasis role="bold">Initial output</emphasis> parameters determine the
-characteristics of the output signal. All must have the consistent
-dimensions after scalar expansion.    
-
-</para>
+      The Ramp block generates a signal that starts at a specified <emphasis role="bold">Start Time</emphasis> and <emphasis role="bold">Initial Value</emphasis> and increases by a specified rate (<emphasis role="bold">Slope</emphasis> parameter).
+      The output signal is defined by the following equation:
+    </para>
+    <para />
+    <para>
+      <latex><![CDATA[s\left(t\right)=\begin{cases}s_{0} & \textrm{ for }t<t_{0}\\s_{0}+k.t & \textrm{ for }t>t_{0}\end{cases}
+      ]]></latex>
+    </para>
+    <para>
+      where <emphasis><literal>t<subscript>0</subscript></literal></emphasis> is the <emphasis role="bold">Start Time</emphasis>, <emphasis><literal>s<subscript>0</subscript></literal></emphasis> the <emphasis role="bold">Initial Value</emphasis> and <emphasis><literal>k</literal></emphasis> the <emphasis role="bold">Slope</emphasis>.
+    </para>
   </refsection>
+
+  <refsection id="Datatype_RAMP">
+    <title>Data types</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Output: scalar double.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Dialogbox_RAMP">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/RAMP_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/sources_pal/en_US/RAMP_gui.png" align="center" />
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-
-</para>
+    <para />
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Slope</emphasis>
         </para>
-        <para> The rate of change of the generated signal.</para>
+        <para> Scalar. The rate of change of the generated signal.</para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Start time</emphasis>
+          <emphasis role="bold">Start Time</emphasis>
         </para>
-        <para> The time at which the signal begins to be generated.</para>
+        <para> Scalar. The time at which the signal begins to increase.</para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Initial output</emphasis>
+          <emphasis role="bold">Initial Value</emphasis>
         </para>
-        <para> The initial value of the signal.</para>
+        <para> Scalar. The initial value of the signal.</para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Defaultproperties_RAMP">
     <title>Default properties</title>
     <itemizedlist>
@@ -188,14 +231,31 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Example_RAMP">
+    <title>Example</title>
+    <para>
+      This diagram shows the use of RAMP block to obtain the response to a ramp signal of a first order's system defined by a transfer function.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/ramp_en_US.xcos">
+        Open this example in Xcos
+      </link>.
+    </para>
+    <para>
+      <inlinemediaobject><imageobject>
+        <imagedata fileref="../../../examples/sources_pal/en_US/ramp_diagram_en_US.png" align="center" />
+      </imageobject></inlinemediaobject>
+    </para>
+  </refsection>
+
   <refsection id="Interfacingfunction_RAMP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/RAMP.sci">SCI/modules/scicos_blocks/macros/Sources/RAMP.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Computationalfunction_RAMP">
     <title>Computational function</title>
     <itemizedlist>
@@ -204,6 +264,23 @@ dimensions after scalar expansion.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Seealso_RAMP">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <link linkend="STEP_FUNCTION">STEP_FUNCTION</link>
+      </listitem>
+      <listitem>
+        <link linkend="CURV_f">CURV_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="Sigbuilder">Sigbuilder</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Authors_RAMP">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

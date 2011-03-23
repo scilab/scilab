@@ -20,6 +20,9 @@
 //
 
 function [x,y]=getorigin(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //execstr('[x,y]='+o(5)+'(''getorigin'',o)')
 execstr('[x,y]='+o.gui+'(''getorigin'',o)')
 endfunction

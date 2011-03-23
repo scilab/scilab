@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="psmall">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>psmall</refname>
+    <refpurpose>スペクトル投影</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Q,M]=psmall(A,thres,flag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数の正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thres</term>
+        <listitem>
+          <para>実数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>文字列 (<literal>'c'</literal> または <literal>'d'</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M</term>
+        <listitem>
+          <para>実数行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	実部 &lt; <literal>thres</literal> (<literal>flag='c'</literal>)
+	または絶対値 &lt; <literal>thres</literal>(<literal>flag='d'</literal>)
+	となる固有値-部分空間への投影.
+	</para>
+    <para>
+	この投影は<literal>Q*M</literal>により定義されます.
+	ここで,
+	<literal>Q</literal>は列フルランク,<literal>M</literal>は行フルランク,
+	そして<literal>M*Q=eye</literal>です.</para>
+    <para>
+    <literal>flag='c'</literal>の場合, 
+    <literal>M*A*Q</literal>の固有値 = 
+	実部&lt; <literal>thres</literal>の<literal>A</literal>の固有値.</para>
+    <para>
+    <literal>flag='d'</literal>の場合, 
+    <literal>M*A*Q</literal>の固有値 = 
+	大きさ &lt; <literal>thres</literal>の<literal>A</literal>の固有値.</para>
+    <para>
+    <literal>flag='c'</literal>の場合, 
+	<literal>[Q1,M1]</literal> = <literal>eye()-Q*M</literal>の
+	フルランク分解(<literal>fullrf</literal>)の場合,
+	<literal>M1*A*Q1</literal>の固有値 =実部&gt;=
+    <literal>thres</literal>の
+    <literal>A</literal>の固有値となります.</para>
+    <para>
+    <literal>flag='d'</literal>の場合,
+	 <literal>[Q1,M1]</literal> =<literal>eye()-Q*M</literal>
+	のフルランク分解(<literal>fullrf</literal>)の場合,
+	<literal>M1*A*Q1</literal>の固有値 =
+	大きさ&gt;=<literal>thres</literal>の
+   	<literal>A</literal>の固有値.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=diag([1,2,3]);X=rand(A);A=inv(X)*A*X;
+[Q,M]=psmall(A,2.5,'d');
+spec(M*A*Q)
+[Q1,M1]=fullrf(eye()-Q*M);
+spec(M1*A*Q1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="pbig">pbig</link>
+      </member>
+      <member>
+        <link linkend="proj">proj</link>
+      </member>
+      <member>
+        <link linkend="projspec">projspec</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. Delebecque INRIA. (1988);   </para>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para>
+	この関数はソートされた Schur形式(scilab
+   関数 <literal>schur</literal>)に基づいています.</para>
+  </refsection>
+</refentry>

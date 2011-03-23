@@ -20,6 +20,9 @@
 //
 
 function ok = set_cmap(cmap)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // appends new colors to the colormap
 
   if cmap==[] then

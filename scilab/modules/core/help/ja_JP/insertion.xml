@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="insertion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>insertion</refname>
+    <refpurpose>変数への部分的な代入または修正</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="assignation">
+    <refname>assignation</refname>
+    <refpurpose>変数への部分的な代入</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>x(i,j)=a
+x(i)=a
+l(i)=a
+l(k1)...(kn)(i)=a または l(list(k1,...,kn,i))=a
+l(k1)...(kn)(i,j)=a または l(list(k1,...,kn,list(i,j))=a</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>任意の型の行列 (定数, 疎行列, 多項式,...)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>l</term>
+        <listitem>
+          <para>リスト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i,j</term>
+        <listitem>
+          <para>添え字</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k1,...kn</term>
+        <listitem>
+          <para>整数値の添え字</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>新しいエントリの値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明n</title>
+    <variablelist>
+      <varlistentry>
+        <term>行列の場合</term>
+        <listitem>
+          <para><literal>x</literal> が行列の場合,
+	添え字 <literal>i</literal> および <literal>j</literal>, は次のようになります:</para>
+          <variablelist>
+            <varlistentry>
+              <term>実数のスカラーまたはベクトルまたは行列</term>
+              <listitem>
+                <para>この場合,添え字として指定される値は正である必要があり,
+		その整数部のみが使用されます.</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>a</literal> が次元
+			<literal>(size(i,'*'),size(j,'*'))</literal>の行列の場合,
+            <literal>x(i,j)=a</literal> は,
+		<literal>l</literal>を1から <literal>size(i,'*')</literal>,
+		<literal>k</literal>を1から <literal>size(j,'*')</literal>として
+		<literal>x(int(i(l)),int(j(k)))=a(l,k) </literal>となるような
+		新たな行列 <literal>x</literal>を返します.
+		<literal>x</literal>のその他の初期エントリは変更されません.</para>
+                  </listitem>
+                  <listitem>
+                    <para> <literal>a</literal> がスカラーの場合,
+           <literal>x(i,j)=a</literal> は,
+	 <literal>l</literal>を1から<literal>size(i,'*')</literal>,
+	<literal>k</literal>を1から<literal>size(j,'*')</literal>として,
+	<literal>x(int(i(l)),int(j(k)))=a</literal>となるような
+	新しい行列 <literal>x</literal> を返します.
+	<literal>x</literal>のその他の初期エントリは変更されません.</para>
+                  </listitem>
+                  <listitem>
+                    <para> <literal>i</literal> または <literal>j</literal>
+		の最大値が対応する行列 <literal>x</literal>の次元の最大値を
+	超える場合,配列 <literal>x</literal>は,必要な次元まで事前に拡張されます.
+	この際，標準の行列の場合は0,文字列行列の場合は長さ0の文字列,
+	論理値行列の場合は 値false,をエントリとして拡張されます.
+         </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(i,j)=[]</literal> は,
+	<literal>j</literal>が<literal>x</literal>の全ての列にマッチする
+	場合,<literal>i</literal>で指定した行を削除します.
+	また,<literal>i</literal>が<literal>x</literal>の全ての行にマッチする
+	場合,<literal>j</literal>で指定した列を削除します.
+	その他の場合,<literal>x(i,j)=[]</literal>はエラーを発生します. </para>
+                  </listitem>
+                  <listitem>
+                    <para>
+	あるベクトル<literal>a</literal>を指定した<literal>x(i)=a</literal>は,
+	<literal>l</literal>を1から<literal>size(i,'*')</literal>として,
+	<literal>x(int(i(l)))=a(l)</literal>となるような新しい行列<literal>x</literal>
+	を返します.
+	<literal>x</literal>のその他の初期エントリは変更されません.
+	</para>
+                  </listitem>
+                  <listitem>
+                    <para>
+	あるスカラー<literal>a</literal>を指定した<literal>x(i)=a</literal>は,
+	<literal>l</literal>を1から<literal>size(i,'*')</literal>として,
+	<literal>x(int(i(l)))=a</literal>となるような新しい行列<literal>x</literal>
+	を返します.
+	<literal>x</literal>のその他の初期エントリは変更されません.</para>
+                    <para>
+	<literal>i</literal>の最大値が<literal>size(x,1)</literal>より大きくなる場合,
+	配列 <literal>x</literal>は,必要な次元まで事前に拡張されます.
+	この際，標準の行列の場合は0,文字列行列の場合は長さ0の文字列,
+	論理値行列の場合は 値false,をエントリとして拡張されます.
+          </para>
+                    <variablelist>
+                      <varlistentry>
+                        <term></term>
+                        <listitem>
+                          <para><literal>x</literal> が 1x1行列 の場合,</para>
+                          <para>
+              <literal>a</literal> は,次元
+		<literal>size(i,'*')</literal>を有する
+		行 (各要素が1列) ベクトルとなります.
+		結果として,行列<literal>x</literal>は行ベクトル
+		(各要素が1列)となります.
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term></term>
+                        <listitem>
+                          <para><literal>x</literal> が行ベクトルの場合,</para>
+                          <para>
+               <literal>a</literal> は次元<literal>size(i,'*')</literal>
+		を有する行ベクトルである必要があります.
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term></term>
+                        <listitem>
+                          <para><literal>x</literal> が列ベクトルの場合,</para>
+                          <para>
+               <literal>a</literal> は次元<literal>size(i,'*')</literal>
+		を有する列ベクトルである必要があります.
+            </para>
+                        </listitem>
+                      </varlistentry>
+                      <varlistentry>
+                        <term></term>
+                        <listitem>
+                          <para><literal>x</literal> が一般の行列の場合,</para>
+                          <para>
+		<literal>a</literal> は次元が<literal>size(i,'*')</literal>の
+		行または列ベクトルである必要があります.
+		また,<literal>i</literal>の最大値は<literal>size(x,'*')</literal>
+		を超えることはできません.
+            </para>
+                        </listitem>
+                      </varlistentry>
+                    </variablelist>
+                  </listitem>
+                  <listitem>
+                    <para>
+			<literal>x(i)=[]</literal>は,
+			<literal>i</literal>で指定したエントリを削除します.
+         </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>: 記号</term>
+              <listitem>
+                <para><literal>:</literal>記号は"全ての要素"を意味します.</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>x(i,:)=a</literal>は,
+             <literal>x(i,1:size(x,2))=a</literal>と解釈されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(:,j)=a</literal>は,
+            <literal>x(1:size(x,1),j)=a</literal>と解釈されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>x(:)=a</literal> は,
+			行列<literal>a</literal>をxの次元に変形した
+			<literal>x</literal>を返します.
+		<literal>size(x,'*')</literal> は,
+		<literal>size(a,'*')</literal>に等しい必要があります.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>論理値のベクトル</term>
+              <listitem>
+                <para>添え字 (<literal>i</literal> または <literal>j</literal> )が
+		論理値のベクトルの場合,それぞれ<literal>find(i)</literal>または
+		<literal>find(j)</literal>として解釈されます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>多項式</term>
+              <listitem>
+                <para>添え字 (<literal>i</literal> または <literal>j</literal> )が
+		多項式のベクトルまたは暗黙の多項式ベクトルの場合,
+		それぞれ <literal>horner(i,m)</literal>または<literal>horner(j,n)</literal>
+		と解釈されます.
+		ただし,<literal>m</literal> および<literal>n</literal>は
+		<literal>x</literal>の次元です.
+		この機能は全ての多項式で動作しますが,
+		可読性の維持のため,<literal>$</literal>の中で多項式を使用することを
+		推奨します.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>listまたはtlistの場合</term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para>
+		指定された場合,
+		<literal>ki</literal>は<literal>l</literal>データ構造
+		のサブリストのエントリへのパスを指定します.
+		これにより,中間的なコピーをすることなく再帰的な挿入が
+		可能になります.
+		命令<literal>l(k1)...(kn)(i)=a</literal>および
+		<literal>l(list(k1,...,kn,i)=a)</literal>は
+		以下のように解釈されます:</para>
+              <para>
+                <literal>lk1 = l(k1)</literal>
+                <literal> ..  = ..  </literal>
+              </para>
+              <para>
+                <literal>lkn = lkn-1(kn)</literal>
+                <literal> lkn(i) = a</literal>
+              </para>
+              <para>
+                <literal>lkn-1(kn) = lkn</literal>
+                <literal> ..  = ..  </literal>
+                <literal>l(k1) = lk1</literal>
+              </para>
+              <para>
+        命令<literal>l(k1)...(kn)(i,j)=a</literal> および  <literal>l(list(k1,...,kn,list(i,j))=a</literal> 
+        は以下のように解釈されます:</para>
+              <para>
+                <literal>lk1 = l(k1)</literal>
+                <literal> ..  = ..  </literal>
+              </para>
+              <para>
+                <literal>lkn = lkn-1(kn)</literal>
+                <literal>lkn(i,j) = a</literal>
+              </para>
+              <para>
+                <literal>lkn-1(kn) = lkn</literal>
+                <literal> ..  = ..  </literal>
+                <literal>l(k1)= lk1</literal>
+              </para>
+            </listitem>
+            <listitem>
+              <para><literal>i</literal> は以下のようになります :</para>
+              <itemizedlist>
+                <listitem>
+                  <para> 
+	実数の非負のスカラー.
+	<literal>l(0)=a</literal>はリストの"左"にエントリを追加します.
+	<literal>l(i)=a</literal>はリストの<literal>i</literal>番目の
+	エントリに<literal>a</literal>を設定します.
+	<literal>i&gt;size(l)</literal>の場合,
+	<literal>l</literal>は長さ0のエントリ(未定義)で事前に拡張されます.
+           <literal>l(i)=null()</literal> は, <literal>i</literal>番目の
+		リストのエントリを削除します.</para>
+                </listitem>
+                <listitem>
+                  <para> 多項式.  <literal>i</literal> が多項式の場合,
+	<literal>horner(i,m)</literal>として解釈されます.
+	ただし, <literal>m=size(l)</literal>です.
+	この機能は全ての多項式で動作しますが,
+	可読性の維持のため,<literal>$</literal>の中で多項式を使用することを
+	推奨します.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para><literal>k1,..kn</literal> は次のようになります :</para>
+              <itemizedlist>
+                <listitem>
+                  <para> 
+            実数の正のスカラー.</para>
+                </listitem>
+                <listitem>
+                  <para> 多項式,<literal>horner(ki,m)</literal>として解釈されます.
+		ただし,<literal>m</literal>は対応するサブリストの大きさです.</para>
+                </listitem>
+                <listitem>
+                  <para> サブリストのエントリ名を指す文字列.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>
+	有理関数や状態空間線形システムのようにソフトウエアで作成される行列の型の場合,
+	リストの要素の展開と区別できないため,
+	<literal>x(i)</literal> 構文をベクトル要素の挿入には使用できない可能性が
+	あります.
+	この場合,
+	<literal>x(1,j)</literal> または <literal>x(i,1)</literal>構文を使用する必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// MATRIX CASE
+a=[1 2 3;4 5 6]
+a(1,2)=10
+a([1 1],2)=[-1;-2]
+a(:,1)=[8;5]
+a(1,3:-1:1)=[77 44 99]
+a(1)=%s
+a(6)=%s+1
+a(:)=1:6
+a([%t %f],1)=33
+a(1:2,$-1)=[2;4]
+a($:-1:1,1)=[8;7]
+a($)=123
+//
+x='test'
+x([4 5])=['4','5']
+//
+b=[1/%s,(%s+1)/(%s-1)]
+b(1,1)=0
+b(1,$)=b(1,$)+1
+b(2)=[1 2] // the numerator
+// LIST OR TLIST CASE
+l=list(1,'qwerw',%s)
+l(1)='Changed'
+l(0)='Added'
+l(6)=['one more';'added']
+//
+//
+dts=list(1,tlist(['x';'a';'b'],10,[2 3]));
+dts(2).a=33
+dts(2)('b')(1,2)=-100
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="parents">parents</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

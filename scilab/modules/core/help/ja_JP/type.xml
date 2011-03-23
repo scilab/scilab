@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="type">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>type</refname>
+    <refpurpose>変数の型を返す</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[i]=type(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>Scilab オブジェクト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>i</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>type(x)</literal>  は,以下のように
+	<literal>x</literal>の型の種類を整数で返します :</para>
+    <para>
+     1 
+    :  実数または複素数の定数行列.</para>
+    <para>
+     2 
+    :  多項式行列.</para>
+    <para>
+     4 
+    :  論理値行列.</para>
+    <para>
+     5
+    :  疎行列.</para>
+    <para>
+     6
+    :  論理値疎行列.</para>
+    <para>
+     7
+    :  Matlab 疎行列.</para>
+    <para>
+     8
+    :  1 2 または 4 バイトに保存される整数行列.</para>
+    <para>
+     9
+    :  グラフィックハンドルの行列.</para>
+    <para>
+     10 
+    :  文字列の行列.</para>
+    <para>
+     11 
+    :  コンパイル前の関数 (Scilab コード).</para>
+    <para>
+     13 
+    :  コンパイル済みの関数 (Scilab コード).</para>
+    <para>
+     14 
+    :  関数ライブラリ.</para>
+    <para>
+     15 
+    :  リスト.</para>
+    <para>
+     16 
+    :  型付リスト (tlist).</para>
+    <para>
+     17
+    :  行列の型付リスト (mlist).</para>
+    <para>
+     128
+    : ポインタ (<link linkend="lufact">lufact</link>参照).</para>
+    <para>
+     129
+    : 添字に使用される暗黙の大きさの多項式.</para>
+    <para>
+     130
+    : Scilab 内部コード (C または Fortran コード).</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

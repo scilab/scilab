@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function myint8=SetString(str)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //function to convert scilab string in char
 //AL
 //Copyright INRIA

@@ -1066,7 +1066,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
         int_str=NULL;
     }
 
-    else if(!strncmp(type,"code23",5))
+    else if(!strncmp(type,"code23",6))
     {
         strlgth=nlgh;
         /* Memory allocation */

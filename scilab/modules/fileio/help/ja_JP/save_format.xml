@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="save_format" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-05-22 22:27:23 +0200 (jeu, 22 mai 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>save_format</refname>
+
+    <refpurpose>"save"で作成されるファイルの形式</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>変数は, <link
+    linkend="save">save</link>関数により以下の形式でScilabにより
+	保存されます:</para>
+
+    <para>各変数のレコードはファイルに連続して追記されます.
+	long 整数 6で始まる変数レコードが
+	エンコード形式の中で変数名を保持します
+	(以下の注記の節を参照ください).</para>
+
+    <para>
+	この後,変数の型(long整数)が続き,
+	この型に依存して以下が続きます:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>浮動小数点数の行列 (1型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>real/complex フラグ ({0,1}のlong整数),</para>
+
+          <para>data (n*m*(it+1) doubles)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>多項式 (2型) および暗黙の大きさの添字 (129型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>real/complex フラグ {0,1}のlong整数),</para>
+
+          <para>正式な変数名 (16バイト),</para>
+
+          <para>index_table (m*n+1 long 整数);</para>
+
+          <para>data ((N-1)*(it+1) doubles) , ただし N は
+	index_tableの最後のエントリの値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>論理値 (4型)</term>
+
+        <listitem>
+          <para>row_size m (long 整数),</para>
+
+          <para>column_size n (long 整数);</para>
+
+          <para>data (n*m long 整数)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>浮動小数点数の疎行列 (5型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>real/complex_flag ({0,1}のlong整数),</para>
+
+          <para>total_number_of_non_zero_elements nel (long整数),</para>
+
+          <para>number_of_non_zero_elements_per_row (m long整数),</para>
+
+          <para>column_index_non_zero_elements (nel long 整数),</para>
+
+          <para>non_zero_values (nel*(it+1) double)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>論理値の疎行列  (type 6型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>unused it (long整数),</para>
+
+          <para>total_number_of_non_zero_elements nel (long整数),</para>
+
+          <para>number_of_non_zero_elements_per_row (long整数),</para>
+
+          <para>column_index_non_zero_elements (nel long整数)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>Matlab疎行列 (7型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>real/complex_flag it ({0,1}のlong整数),</para>
+
+          <para>total_number_of_non_zero_elements nel (long整数),</para>
+
+          <para>number_of_non_zero_elements_per_column (n long
+          整数),</para>
+
+          <para>row_index_non_zero_elements (nel long整数),</para>
+
+          <para>non_zero_values (nel*(it+1) double)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>整数行列 (8型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>integer_type (long整数): 
+	signed および unsigned の 1,2,4バイトの整数について
+	それぞれ
+	1,2,4, または 11,12,14s;</para>
+
+          <para>data (integer_typeが 1 または 11の場合n*mバイト,
+		integer_typeが 2 または 12の場合 n*m 個のshort integer,
+		integer_typeが4または14の場合 n*m 個の long integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>ハンドル (9型)</term>
+
+        <listitem>
+          <para>version (4バイト)</para>
+
+          <para>row_size m (1バイト),</para>
+
+          <para>column_size n (1バイト),</para>
+
+          <para>data (m*n serialization_records)</para>
+
+          <para>serialization_record は,グラフィックオブジェクトを指す
+	C言語のデータ構造体のフラットな表記です.
+	各グラフィックオブジェクトはプロパティの(再帰的な)集合で定義されます
+	(<link linkend="get">get</link>関数参照).</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>グラフィックオブジェクトの保存された 
+		serialization_recordは以下のような構造となります</term>
+
+              <listitem>
+                <para>type_length n (1バイト)</para>
+
+                <para>type (n バイト, 型名アスキーコード)</para>
+
+                <para>property_values record (変数の長さ)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>文字列 (10型)</term>
+
+        <listitem>
+          <para>row_size m (long整数),</para>
+
+          <para>column_size n (long整数),</para>
+
+          <para>index_table (n*m+1 個のlong整数);</para>
+
+          <para>data (N 個のlong整数, Scilabでの文字のエンコーディング
+          (see <link linkend="code2str">code2str</link>), ただし N は
+	index_tableの最後のエントリの値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>未コンパイルの関数 (11型)</term>
+
+        <listitem>
+          <para>nout (long整数),</para>
+
+          <para>lhs_names (6*nout個の long整数, 以下の注記の節を参照
+          ),</para>
+
+          <para>nin (long整数),</para>
+
+          <para>rhs_names (6*nin 個のlong 整数, 以下の注記の節を参照
+          );</para>
+
+          <para>code_length N (long整数),</para>
+
+          <para>code (N 個のlong整数)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>コンパイル済みの関数 (13型)</term>
+
+        <listitem>
+          <para>nout (long整数),</para>
+
+          <para>lhs_names (6*nout 個のlong整数, 以下の注記の節を参照
+          ),</para>
+
+          <para>nin (long 整数),</para>
+
+          <para>rhs_names (6*nin 個のlong 整数, 以下の注記の節を参照
+          ),</para>
+
+          <para>pseudo_code_length N (long整数),</para>
+
+          <para>pseudo_code (N 個のlong整数)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>ライブラリ (14型)</term>
+
+        <listitem>
+          <para>path_length np (long整数),</para>
+
+          <para>path_name (np 個のlong整数: パス文字のコードシーケンス
+	, (<link linkend="code2str">code2str</link>参照)),</para>
+
+          <para>名前の数 nn (long 整数),</para>
+
+          <para>names (6*nn 個のlong整数, 以下の注記の節を参照
+          );</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>list (15型), tlists (16型), mlists (17型)</term>
+
+        <listitem>
+          <para>フィールド数 n (long整数),</para>
+
+          <para>添字 (n+1 個のlong整数);</para>
+
+          <para>variables_sequence (n 個の変数, 各々のフォーマットに基づき書き込み)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>ポインタ (128型)</term>
+
+        <listitem>
+          <para>処理されません</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>関数ポインタ (130型)</term>
+
+        <listitem>
+          <para>function_ptr (long 整数,(<link
+          linkend="funptr">funptr</link>参照))</para>
+
+          <para>function_name_code (6 個のlong 整数,以下の注記の節を参照
+          );</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>注記</title>
+
+    <para>数値 (long interger, short integers, double) はリトルインディアン
+	形式で保存されます.</para>
+
+    <para>変数名は特定のエンコーディングの一連の6個のlong整数として保存されます.
+	詳細は cvname.f ファイルを参照ください.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="load">load</link></member>
+
+      <member><link linkend="listvarinfile">listvarinfile</link></member>
+
+      <member><link linkend="type">type</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>compiled by Enrico Segre</member>
+    </simplelist>
+  </refsection>
+</refentry>

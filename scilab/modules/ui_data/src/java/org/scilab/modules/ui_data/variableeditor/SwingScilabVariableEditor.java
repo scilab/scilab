@@ -20,7 +20,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -72,7 +71,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     private static final long serialVersionUID = 1L;
 
     private SwingEditvarTableModel dataModel;
-    private JTabbedPane tabPane;
+    private ScilabTabbedPane tabPane;
     private JScrollPane scrollPane;
     private PushButton refreshButton;
     private PushButton undoButton;
@@ -95,7 +94,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    String name = tabPane.getTitleAt(tabPane.getSelectedIndex());
+                    String name = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
                     if (name.length() != 0) {
                         name = name.substring(PREFIX.length());
                         String tooltip = "";
@@ -154,7 +153,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * @return the TabbedPane used in this window
      */
-    public JTabbedPane getTabPane() {
+    public ScilabTabbedPane getTabPane() {
         return tabPane;
     }
 

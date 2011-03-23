@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="dispbpt" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dispbpt</refname>
+
+    <refpurpose>ブレークポイントを表示</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>dispbpt()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>dispbpt()</literal> は関数に現在挿入されている
+	アクティブなブレークポイントを全て表示します.</para>
+
+    <para>
+	<literal>dispbpt</literal>により表示される行番号は,
+	対象とする関数内での<emphasis>物理的な</emphasis>行番号です.
+	5.0より前のバージョンのScilabでは<emphasis>論理的な</emphasis>
+	行番号が表示されることに注意してください.
+	物理的な行番号と論理的な行番号の差は,
+	<emphasis>継続行</emphasis>(<link linkend="dot">dot</link>参照)の数です.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="setbpt">setbpt</link></member>
+
+      <member><link linkend="delbpt">delbpt</link></member>
+
+      <member><link linkend="pause">pause</link></member>
+
+      <member><link linkend="resume">resume</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

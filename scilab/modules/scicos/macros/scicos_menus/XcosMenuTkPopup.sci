@@ -20,6 +20,9 @@
 //
 
 function XcosMenuTkPopup()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Select=[]
 
   Cmenu = mpopup(list(_("Place in Diagram"),_("Help"),_("Details"))) 

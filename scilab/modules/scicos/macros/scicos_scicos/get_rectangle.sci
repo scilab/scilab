@@ -20,6 +20,9 @@
 //
 
 function [ox,oy,w,h,ok] = get_rectangle(xc,yc)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5:
 //**               the rubberduck solution :)

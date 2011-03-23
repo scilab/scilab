@@ -20,6 +20,9 @@
 //
 
 function [scicos_palnew]=do_edit_pal(scicos_pal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 scicos_palnew=[];
 txt=scicos_pal(:,2);
 txtnew=txt

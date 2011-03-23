@@ -20,6 +20,9 @@
 //
 
 function [txt,rpar,ipar]=create_modelica1( blklst,cmat,name)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   txt=[];tab=ascii(9)
   rpar=[];//will contain all parameters associated with the all modelica blocs
   ipar=[];//will contain the "adress" of each block in rpar

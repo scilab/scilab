@@ -1,4 +1,7 @@
 function exp_format=choose_export_format()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Ask for graphic export format
   if getos()=='Windows' then emf='emf',else emf=[],end
   available_formats = ["bmp"; emf;"eps";"fig";"gif";"jpg";"pdf";

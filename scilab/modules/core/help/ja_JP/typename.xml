@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="typename">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>typename</refname>
+    <refpurpose> 変数の型に名前を付ける</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[types [ [,names]]=typename()
+typename(name,type)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>types</term>
+        <listitem>
+          <para>整数列ベクトル: 各定義済みのデータ型の型コード.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>文字列の列ベクトル: 型コードを指す名前.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>type</term>
+        <listitem>
+          <para>整数: 新しいデータ型の型コード.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>文字列: 型コードを指す名前</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	関数および演算子のオーバーロードにおいて,
+	データ型に関連付けられた汎用名を
+	オーバーロード関数の名前を作成する際に指定できる
+	できるようになります(オーバーローディング参照). 
+	<literal>typename</literal> は,
+	ハードコードされたデータ型に関して
+	この汎用名を処理する際に使用できます
+	(<literal>tlist</literal> または <literal>mlist</literal>にコード化されたデータ型の
+	場合,汎用名は他の方法で定義されます, <literal>overloading</literal>を参照ください).</para>
+    <para>
+	右辺の引数を指定せずにコールされた場合, <literal>typename</literal> は
+	定義済みのデータ型に関する情報を返します.</para>
+    <para>
+	右辺の引数を指定してコールされると, <literal>typename</literal> は名前を
+	データ型コードに関連付けます.</para>
+    <para>
+	<literal>typename('',type)</literal> は,
+	コード <literal>type</literal> で指定されるデータ型を
+	データ型のテーブルから削除します.</para>
+    
+    <para>定義済みの型の最大数は 50です.</para>
+    
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="type">type</link>
+      </member>
+      <member>
+        <link linkend="typeof">typeof</link>
+      </member>
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="mlist">mlist</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

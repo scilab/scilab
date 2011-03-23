@@ -20,6 +20,9 @@
 //
 
 function r=is_split(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // check if object o is a regular or event split
 //if o(1)<>'Block' then r=%f,return,end
 if typeof(o)<>'Block' then r=%f,return,end

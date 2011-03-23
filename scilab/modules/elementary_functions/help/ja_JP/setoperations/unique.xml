@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unique" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unique</refname>
+
+    <refpurpose>ベクトルまたは行列のユニークなな要素を展開</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>
+      [N [,k]]=unique(M)
+      [N [,k]]=unique(M ,orient)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>数値または文字列のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orient</term>
+
+        <listitem>
+          <para>フラグで以下の値のどれかとなる : 1 または "r", 2 または "c"</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>N</term>
+
+        <listitem>
+          <para>数値または文字列のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>整数のベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>unique(M)</literal> は
+	<literal>M</literal>のユニークなエントリを昇順に
+	したものを保持するベクトルを返します.</para>
+
+    <para><literal>unique(M,"r")</literal> または
+    <literal>unique(M,1)</literal>は,
+	<literal>M</literal>のユニークな行を
+	辞書式の昇順にして返します.</para>
+
+    <para><literal>unique(M,"c")</literal> または
+    <literal>unique(M,2)</literal>は
+	<literal>M</literal>のユニークな列を
+	辞書式の昇順にして返します.</para>
+
+    <para>出力引数<literal>k</literal>が指定された場合,
+	ユニークなエントリが最初に現れた最初の位置が	
+	代入されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+M=round(2*rand(20,1));
+
+unique(M)
+[N,k]=unique(M)
+
+unique(string(M))
+[N,k]=unique(string(M))
+
+A = [0,0,1,1;
+     0,1,1,1;
+     2,0,1,1;
+     0,2,2,2;
+     2,0,1,1;
+     0,0,1,1];
+T='x'+string(A);
+
+//ユニークな行
+
+[m,k]=unique(A,'r')
+unique(T,'r')
+
+//ユニークな列
+[m,k]=unique(T,'c')
+unique(A,'c')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="union">union</link></member>
+
+      <member><link linkend="intersect">intersect</link></member>
+
+      <member><link linkend="gsort">gsort</link></member>
+
+      <member><link linkend="lex_sort">lex_sort</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

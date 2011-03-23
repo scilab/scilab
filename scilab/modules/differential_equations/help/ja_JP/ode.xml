@@ -1,0 +1,495 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ode" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ode</refname>
+
+    <refpurpose>常微分方程式ソルバ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=ode(y0,t0,t,f)
+[y,w,iw]=ode([type],y0,t0,t [,rtol [,atol]],f [,jac] [,w,iw])
+[y,rd,w,iw]=ode("root",y0,t0,t [,rtol [,atol]],f [,jac],ng,g [,w,iw])
+y=ode("discrete",y0,k0,kvect,f)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列 (初期条件).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>実数スカラー (初期時間).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数ベクトル (解を計算する時間).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>外部 (関数または文字列またはリスト).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>以下の文字列のどれか: <literal>"adams"
+          "stiff" "rk" "rkf" "fix" "discrete" "roots"</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rtol,atol</term>
+
+        <listitem>
+          <para>実数定数または<literal>y</literal>と同じ大きさの実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>外部 (関数または文字列またはリスト).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w,iw</term>
+
+        <listitem>
+          <para>実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ng</term>
+
+        <listitem>
+          <para>整数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>g</term>
+
+        <listitem>
+          <para>外部 (関数または文字列またはリスト).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k0</term>
+
+        <listitem>
+          <para>整数 (初期時間).</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+	<term>kvect</term>
+	
+	<listitem>
+	  <para>整数ベクトル.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>ode</literal> は,dy/dt=f(t,y) , y(t0)=y0で定義された
+	明示的なODEシステムを解くための標準関数です.
+	この関数は,種々のソルバ,特に ODEPACKへのインターフェイスです.
+	解く問題の型と使用される手法は最初のオプション引数<literal>type</literal>
+	の値に依存します.
+	<literal>type</literal>は,以下の文字列のどれかになります:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>&lt;not given&gt;:</term>
+
+        <listitem>
+          <para>パッケージODEPACKの<literal>lsoda</literal> ソルバが
+	デフォルトでコールされます.
+	このソルバは非スティッフな問題用の予測子/修正子 Adams 法とスティッフな問題用の
+	後退差分法(BDF)を自動的に選択します.
+	まず非スティッフな手法が使用され,使用する手法を
+	決定するためにデータを動的にモニタします.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"adams":</term>
+
+        <listitem>
+          <para>これは非スティッフな問題用です. ODEPACKパッケージの
+	<literal>lsode</literal> ソルバがコールされ, この関数は
+	Adams法を使用します.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"stiff":</term>
+
+        <listitem>
+          <para>これはスティッフな問題用です. ODEPACKパッケージの
+	<literal>lsode</literal> ソルバがコールされ, BDF法が使用されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"rk":</term>
+
+        <listitem>
+          <para>4次の適応型 Runge-Kutta (RK4) 法.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"rkf":</term>
+
+        <listitem>
+          <para>
+	Fehlbergの4次と5次の Runge-Kutta法に基づくShampine および Wattsのプログラム
+	(RKF45) が使用されます.
+	この方法は非スティッフおよびややスティッフな問題用で,
+	微係数の評価コストが低い場合に適しています.
+	この手法は一般にユーザが高い精度を望む場合には使用するべきではありません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"fix":</term>
+
+        <listitem>
+          <para>"rkf"と同じソルバですがユーザインターフェイスが非常にシンプルで,
+	<literal>rtol</literal> および <literal>atol</literal>パラメータのみを
+	ソルバに指定することが可能です.
+	この手法は使用できる中で最も簡単な手法です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"root":</term>
+
+        <listitem>
+          <para>解を得る機能を有するODE ソルバ. ODEPACKパッケージの
+          <literal>lsodar</literal> ソルバが使用されます. 
+	使用されているのは<literal>lsoda</literal> ソルバを改変したもので,
+	指定したベクトル関数の根を見つけることができます.
+	詳細は ode_root のヘルプを参照してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"discrete":</term>
+
+        <listitem>
+          <para>離散時間シミュレーション. 詳細は ode_discrete のヘルプを参照してください.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>このヘルプでは,標準的な陽のODEシステムに関する<literal>ode</literal>
+	の使用法のみについて記述します.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>ode</literal>の最も簡単なコールは次のようになります:
+        <literal>y=ode(y0,t0,t,f)</literal> ただし <literal>y0</literal> は
+	初期条件のベクトル,<literal>t0</literal> は初期時間, 
+	<literal>t</literal> は解<literal>y</literal>を計算する時間のベクトル,
+	<literal>y</literal>は解ベクトルの行列<literal>y=[y(t(1)),y(t(2)),...]</literal>
+	です.</para>
+
+        <para>入力引数 <literal>f</literal> は1次微分方程式
+	dy/dt=f(t,y)のRHSを定義します.
+	これは外部,すなわち指定した構文の関数または指定したコール手続きを
+	有するFortranサブルーチンまたはC関数の名前(文字列),またはリストです:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><literal>f</literal> が Scilab 関数の場合, 
+	その構文は <literal>ydot = f(t,y)</literal>となります.
+	ただし,<literal>t</literal>は実数スカラー(時間),
+            <literal>y</literal> は実数ベクトル (状態量), 
+            <literal>ydot</literal>は実数ベクトル (dy/dt)です.</para>
+          </listitem>
+
+          <listitem>
+            <para><literal>f</literal> が文字列の場合, 
+		FortranサブルーチンまたはC関数の名前が参照されます.
+	すなわち,<literal>ode(y0,t0,t,"fex")</literal>がコマンドの
+	場合,サブルーチン<literal>fex</literal>がコールされます.</para>
+
+            <para>Fortranルーチンは以下の呼び出し手順とする
+	必要があります: <literal>fex(n,t,y,ydot)</literal>, 
+	ただし n は整数, t は倍精度実数, y と ydot は倍精度ベクトルです.</para>
+
+            <para>C 関数は以下のプロトタイプとする必要があります:
+            <literal>fex(int *n,double *t,double *y,double
+            *ydot)</literal></para>
+
+            <para><literal>t</literal> は時間, <literal>y</literal> は
+		状態量, <literal>ydot</literal>は状態量の微分
+            (dy/dt)です.</para>
+
+            <para>This external can be build in a OS independant way using
+            <link linkend="ilib_for_link">ilib_for_link</link> and dynamically
+            linked to Scilab by the <link linkend="link">link</link>
+            function.</para>
+          </listitem>
+
+          <listitem>
+            <para>引数<literal>f</literal> は以下の構造を有するリストと
+	することもできます:
+            <literal>lst=list(realf,u1,u2,...un)</literal> ただし,
+            <literal>realf</literal> は次の構文を有するScilab関数です:
+            <literal>ydot = f(t,y,u1,u2,...,un)</literal></para>
+
+            <para>この構文により
+            <literal>realf</literal>の引数にパラメータを使用することができます.</para>
+          </listitem>
+        </itemizedlist>
+
+        <para>関数 <literal>f</literal> はベクトルではなく <literal>p x
+        q</literal> の行列を返すことができます. この行列表記により,
+	<literal>n=p+q</literal> 次のODEシステム<literal>dY/dt=F(t,Y)</literal>
+	を解きます.
+	ただし, <literal>Y</literal>は <literal>p x q</literal>の行列です.
+	初期条件 <literal>Y0</literal>も<literal>p x q</literal>の行列
+	である必要があり, <literal>ode</literal>の結果は <literal>p x
+        q(T+1)</literal>の行列 <literal>[Y(t_0),Y(t_1),...,Y(t_T)]</literal>
+	となります.</para>
+      </listitem>
+
+      <listitem>
+        <para>オプションの入力パラメータとして次の
+	解の誤差を指定できます: 
+	相対および絶対推定誤差の閾値である
+	<literal>rtol</literal> および <literal>atol</literal>.
+	<literal>y(i)</literal>の指定誤差は次のようになります:
+        <literal>rtol(i)*abs(y(i))+atol(i)</literal></para>
+
+        <para>そして,状態量の全ての要素に関してこの誤差が小さい場合,
+	積分が行われます.
+	<literal>rtol</literal> または
+        <literal>atol</literal> が一つの定数の場合, <literal>rtol(i)</literal>
+        および <literal>atol(i)</literal> はこの定数の値に設定されます.
+        <literal>rtol</literal> および <literal>atol</literal>のデフォルト値は
+	多くのソルバではそれぞれ<literal>rtol=1.d-5</literal> および
+        <literal>atol=1.d-7</literal>,
+	<literal>"rfk"</literal> および <literal>"fix"</literal>では
+	<literal>rtol=1.d-3</literal> および <literal>atol=1.d-4</literal>です.</para>
+      </listitem>
+
+      <listitem>
+        <para>スティッフな問題の場合, RHS関数のヤコビアンを
+	オプションの引数<literal>jac</literal>として
+	指定する方が良いでしょう.
+	これは,外部,すなわち,指定された構文を有する関数,
+	または指定した呼び出し手順を有するFortranサブルーチンまたは
+	C関数の名前(文字列),またはリストです.
+	</para>
+
+        <para><literal>jac</literal> が関数の場合,
+	構文は 
+        <literal>J=jac(t,y)</literal>とする必要があります.</para>
+
+        <para>ただし, <literal>t</literal> は実数スカラー (時間)および
+        <literal>y</literal> 実数ベクトル (状態量). 結果の行列
+        <literal>J</literal> は df/dx を評価する必要があります.
+	ただし, <literal>J(k,i) =dfk/dxi</literal> で <literal>fk</literal> は
+	fのk番目の要素です.</para>
+
+        <para><literal>jac</literal> は文字列で,
+	FortranサブルーチンまたはC関数の名前を指し,
+	以下の呼び出し手順となります:</para>
+
+        <para>Fortranの場合:</para>
+
+        <programlisting role = ""><![CDATA[ 
+subroutine fex(n,t,y,ml,mu,J,nrpd) 
+integer n,ml,mu,nrpd
+double precision t,y(*),J(*)
+ ]]></programlisting>
+
+        <para>Cの場合:</para>
+
+        <programlisting role = ""><![CDATA[ 
+void fex(int *n,double *t,double *y,int *ml,int *mu,double *J,int *nrpd,)
+ ]]></programlisting>
+
+        <para><literal>jac(n,t,y,ml,mu,J,nrpd)</literal>. 多くの場合,
+	<literal>ml</literal>,<literal>mu</literal>および
+        <literal>nrpd</literal>を参照するべきではありません.</para>
+
+        <para><literal>jac</literal> がリストの場合,
+	<literal>f</literal>と同じ同じ構文が適用されます.</para>
+      </listitem>
+
+      <listitem>
+        <para>オプションの引数 <literal>w</literal> および
+        <literal>iw</literal> は積分ルーチンにより返される情報を
+	保存するベクトルです(詳細は<link
+        linkend="ode_optional_output">ode_optional_output</link> 参照).
+	 これらのベクトルが<literal>ode</literal>のRHSで提供される場合,
+	積分は前回の停止時と同じパラメータで再開されます.</para>
+      </listitem>
+
+      <listitem>
+        <para>より多くのオプションを<literal>%ODEOPTIONS</literal>変数
+	によりODEPACKソルバに指定することができます.
+	<link
+        linkend="odeoptions">odeoptions</link>を参照ください.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// ---------- Simple one dimension ODE (Scilab function external)
+// dy/dt=y^2-y sin(t)+cos(t), y(0)=0
+function ydot=f(t,y),ydot=y^2-y*sin(t)+cos(t),endfunction
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,f)
+plot(t,y)
+
+// ---------- Simple one dimension ODE (C coded external)
+ccode=['#include <math.h>'
+       'void myode(int *n,double *t,double *y,double *ydot)'
+       '{'
+       '  ydot[0]=y[0]*y[0]-y[0]*sin(*t)+cos(*t);'
+       '}']
+mputl(ccode,TMPDIR+'/myode.c') //create the C file
+ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');//compile
+exec(TMPDIR+'/loader.sce') //incremental linking
+y0=0;t0=0;t=0:0.1:%pi;
+y=ode(y0,t0,t,'myode');
+
+// ---------- Simulation of dx/dt = A x(t) + B u(t) with u(t)=sin(omega*t),
+// x0=[1;0]
+// solution x(t) desired at t=0.1, 0.2, 0.5 ,1.
+// A and u function are passed to RHS function in a list. 
+// B and omega are passed as global variables
+function xdot=linear(t,x,A,u),xdot=A*x+B*u(t),endfunction
+function ut=u(t),ut=sin(omega*t),endfunction
+A=[1 1;0 2];B=[1;1];omega=5;
+ode([1;0],0,[0.1,0.2,0.5,1],list(linear,A,u))
+
+// ---------- Matrix notation Integration of the Riccati differential equation
+// Xdot=A'*X + X*A - X'*B*X + C , X(0)=Identity
+// Solution at t=[1,2] 
+function Xdot=ric(t,X),Xdot=A'*X+X*A-X'*B*X+C,endfunction  
+A=[1,1;0,2]; B=[1,0;0,1]; C=[1,0;0,1];
+t0=0;t=0:0.1:%pi;
+X=ode(eye(A),0,t,ric)
+
+// ---------- Matrix notation, Computation of exp(A)
+A=[1,1;0,2];
+function xdot=f(t,x),xdot=A*x;,endfunction 
+ode(eye(A),0,1,f)
+ode("adams",eye(A),0,1,f)
+
+// ---------- Matrix notation, Computation of exp(A) with stiff matrix, Jacobian given
+A=[10,0;0,-1];
+function xdot=f(t,x),xdot=A*x,endfunction 
+function J=Jacobian(t,y),J=A,endfunction 
+ode("stiff",[0;1],0,1,f,Jacobian)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode_discrete">ode_discrete</link></member>
+
+      <member><link linkend="ode_root">ode_root</link></member>
+
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="impl">impl</link></member>
+
+      <member><link linkend="odedc">odedc</link></member>
+
+      <member><link linkend="odeoptions">odeoptions</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="ltitr">ltitr</link></member>
+
+      <member><link linkend="rtitr">rtitr</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Alan C. Hindmarsh</term>
+
+        <listitem>
+          <para>, mathematics and statistics division, l-316 livermore, ca
+          94550.19</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>Alan C. Hindmarsh, lsode and lsodi, two new initial value ordinary
+    differential equation solvers, acm-signum newsletter, vol. 15, no. 4
+    (1980), pp. 10-11.</para>
+  </refsection>
+
+  <refsection>
+    <title>使用される関数</title>
+
+    <para>関連する関数は SCI/modules/differential_equations/src/fortran directory
+    :</para>
+
+    <para>lsode.f lsoda.f lsodar.f です.</para>
+  </refsection>
+</refentry>

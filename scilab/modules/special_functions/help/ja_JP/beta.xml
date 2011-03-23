@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="beta" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>beta</refname>
+
+    <refpurpose>ベータ関数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>z = beta(x,y)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x, y</term>
+
+        <listitem>
+          <para>
+	正の実数または同じ大きさの正の実数の行列(ベクトル).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>
+	実数または
+	<literal>z(i,j) = beta(x(i,j),y(i,j))</literal>となる
+	<literal>x</literal>と同じ大きさの行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>完全ベータ関数を計算します :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/beta_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para><literal>x</literal> および<literal>y</literal>が小さい場合,
+	このアルゴリズムは,関数内でガンマ関数の式を使用します.
+	そうでない場合はDCDFLIBにより提供される
+	<literal>betaln</literal>関数の結果に指数関数を適用します: 
+	DCDFLIBは累積密度関数,逆,およびその他のパラメータに関する
+	Fortranルーチンのライブラリです
+	(DCDFLIBに関する詳細については <link linkend="cdfbet">cdfbet</link> を参照
+    ).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例 1 :
+beta(5,2) - beta(2,5)   // 対称性 (0になります)
+beta(0.5,0.5)           // 値はpiになります
+
+// 例 2 : 関係  B(1,x) = 1/xに基づく誤差解析
+// (1/x の計算は eps_mの相対誤差のみを発生するため,
+// B(1,x)の誤差を評価する際の基準として使用できます)  
+x = logspace(-8,8,20000)';
+e = beta(ones(x),x) - (1)./x;
+er = abs(e) .* x;
+ind = find(er ~= 0);
+eps = ones(x(ind))*number_properties("eps");
+clf()
+plot2d(x(ind),[er(ind) eps 2*eps],style=[1 2 3],logflag="ll",leg="er@eps_m@2 eps_m")
+xtitle("approximate relative error in computing beta(1,x)")
+show_window()
+
+// 例 3 : ベータ関数をプロット
+t = linspace(0.2,10,60);
+X = t'*ones(t); Y = ones(t')*t;
+Z = beta(X,Y);
+clf()
+plot3d(t, t, Z, flag=[2 4 4], leg="x@y@z", alpha=75, theta=30)
+xtitle("The beta function on [0.2,10]x[0.2,10]")
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gamma">gamma</link></member>
+
+      <member><link linkend="cdfbet">cdfbet</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -20,6 +20,9 @@
 //
 
 function [scs_m, fct] = do_addnew(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**   
 //**
 //** "fct" is a flag control variable used by the calling function Addnewblock
@@ -365,6 +368,9 @@ endfunction
 //**---------------------------------------------------------------------------------------------------
 
 function objsi = up_to_date(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   if size(o(2)) > 8 then
     if type(o(2)(9))==15 then 
       gr_io=o(2)(9)(1);

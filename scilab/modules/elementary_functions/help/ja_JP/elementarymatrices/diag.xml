@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="diag" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>diag</refname>
+
+    <refpurpose>対角行列の構築または展開</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[y]=diag(vm, [k])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>vm</term>
+
+        <listitem>
+          <para>ベクトルまたは行列 (完全または疎行列)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>整数 (デフォルト値 0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>n次(行または列) ベクトル<literal>vm</literal> に関して,
+    <literal>diag(vm)</literal> は<literal>vm</literal>のエントリを
+	主対角項とする対角行列を返します.</para>
+
+    <para><literal>diag(vm,k)</literal> は,<literal>vm</literal>の
+	エントリを k番目の対角項とする
+    <literal>(n+abs(k))x(n+abs(k))</literal>行列を返します.
+	<literal>k=0</literal>は主対角,
+	<literal>k&gt;0</literal> は上方対角,
+	<literal>k&lt;0</literal> は下方対角です.</para>
+
+    <para> <literal>vm</literal>が行列の場合, <literal>diag(vm,k)</literal> は
+	<literal>vm</literal>の k番目の対角項のエントリからなる
+	列ベクトルとなります.
+	<literal>diag(vm)</literal> は<literal>vm</literal>の主対角項です.
+	<literal>diag(diag(x))</literal> は対角行列です.</para>
+
+    <para><literal>vm</literal> が疎行列の場合,
+    <literal>diag(vm,k)</literal> は疎行列を返します.</para>
+
+    <para>対角線形システムを構築するには,
+    <literal>sysdiag</literal>を使用してください.</para>
+
+    <para><literal>eye(A).*A</literal> は
+	<literal>A</literal>の対角エントリからなる対角行列を
+	返すことに注意してください.
+	これは，任意の行列(定数,多項式,有理数,状態空間線形システム,...)
+	で有効です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+diag([1,2])
+
+A=[1,2;3,4];
+diag(A)  // main diagonal
+diag(A,1) 
+
+diag(sparse(1:10))  // sparse diagonal matrix
+
+// form a tridiagonal matrix of size 2*m+1
+m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sysdiag">sysdiag</link></member>
+
+      <member><link linkend="sparse">sparse</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

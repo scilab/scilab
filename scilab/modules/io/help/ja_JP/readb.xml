@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="readb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>readb</refname>
+    <refpurpose> fortranファイルバイナリの読み込み</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>x=readb(file-name,m,n [,rec])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>文字列または整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m, n</term>
+        <listitem>
+          <para>整数 (行列 xの次元). 行数が不明の場合は m=-1 を指定してください.
+		この場合,ファイル全体が読み込まれます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rec</term>
+        <listitem>
+	<para>正の整数のベクトル.
+	直接アクセス用に選択されたレコード.
+	このベクトルの大きさは指定する<literal>x</literal>の行の数に等しい必要があります.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	ファイル<literal>file-name</literal>から行列<literal>x</literal>を
+	バイナリ形式で読み込みます.
+	行列のエントリは8バイトワードで保存されていると仮定されます.</para>
+    <para>
+	直接レコードアクセスの場合,record_lengthを設定するために
+	ファイルは<literal>file</literal>関数によりオープンされている
+	必要があります.
+	<literal>file-name</literal> は<literal>file</literal> 
+	関数の結果である必要があります.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="writb">writb</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="read4b">read4b</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

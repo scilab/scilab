@@ -20,6 +20,9 @@
 //
 
 function do_details(x)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 26/06/2009, Serge Steer: multiple selection detection
   if type(x)==1 then
     Select = x ;

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xstring">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xstring</refname>
+    <refpurpose>文字列を描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xstring(x,y,str,[angle,box])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>実数のベクトルまたはスカラー, 文字列の左下の点の座標.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>文字列の行列.</para>
+         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeXまたはMathML式</link>を記述することが可能です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>angle</term>
+        <listitem>
+          <para>実数のベクトルまたはスカラー, 時計回りの角度(単位:度); デフォルトは 0.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>box</term>
+        <listitem>
+          <para>整数のベクトルまたはスカラー, デフォルトは 0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>x</literal> が実数スカラーの場合, 
+	<literal>y</literal>の大きさのベクトルの要素を
+	<literal>x</literal>に設定するとみなされます.</para>
+    <para><literal>y</literal> が実数スカラーの場合,<literal>x</literal>の大きさのベクトルの要素を
+	<literal>y</literal>に設定するとみなされます.</para>
+    <para><literal>xstring</literal> は文字列をカレントのグラフィックスケールの
+	位置<literal>(x[i], y[i])</literal>に描画します.
+	</para>
+    <para><literal>str</literal> がn個の要素を有する場合,これらのn個の要素は
+	n個の文字列として描画されます.</para>
+    <para>そうでない場合,行列の各行がテキストの行を意味し,
+	行の要素は空白で区切られた単語を意味します.</para>
+    <para><literal>angle</literal> が実数スカラーの場合, 
+	要素<literal>angle</literal>に設定される
+	大きさnのベクトルとみなされます.</para>
+    <para><literal>angle(i)</literal> は位置<literal>(x[i], y[i])</literal>
+	に文字列を描画する際に使用される傾き(単位:度)を指定します.</para>
+    <para><literal>box</literal> が整数スカラーの場合, 
+	要素が<literal>box</literal>に設定される大きさnのベクトルとみなされます.</para>
+    <para><literal>box(i)</literal> が 1で, <literal>angle(i)</literal>が 0の場合, 
+	位置<literal>(x[i], y[i])</literal>の文字列の周囲にボックスが描画されます.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d([0;1],[0;1],0)
+xstring(0.5,0.5,["$\overbrace{Scilab}$" "n''est ";"pas" "$\underbrace{Matlab}$"])
+// LaTeX レンダリング (>= Scilab 5.2)
+
+//Other example
+alphabet=["a" "b" "c" "d" "e" "f" "g" ..
+          "h" "i" "j" "k" "l" "m" "n" ..
+          "o" "p" "q" "r" "s" "t" "u" ..
+          "v" "w" "x" "y" "z"];
+clf()
+plot2d([0;1],[0;2],0)
+xstring(0.1,1.8,alphabet)     // アルファベット
+xstring(0.1,1.6,alphabet,0,1) // ボックス内にアルファベット
+xstring(0.1,1.4,alphabet,20)  // 角度
+xset("font",1,1)              // symbolフォントを使用
+xstring(0.1,0.1,alphabet)
+xset("font",1,3)              // フォントの大きさを変更
+xstring(0.1,0.3,alphabet)
+xset("font",1,24); xstring(0.1,0.6,"a") //大きなアルファ
+xset("default")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="titlepage">titlepage</link>
+      </member>
+      <member>
+        <link linkend="xnumb">xnumb</link>
+      </member>
+      <member>
+        <link linkend="xstringb">xstringb</link>
+      </member>
+      <member>
+        <link linkend="xstringl">xstringl</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="simp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp</refname>
+    <refpurpose> 有理数の簡単化</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[N1,D1]=simp(N,D)
+H1=simp(H)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>N,D</term>
+        <listitem>
+          <para>実数多項式または実数行列多項式</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>有理行列 (すなわち,
+	エントリ <literal>n/d</literal>を有する行列 ,実数多項式	
+	<literal>n</literal>および <literal>d</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[n1,d1]=simp(n,d)</literal> は,<literal>n1/d1 = n/d</literal>
+	となるような多項式
+	<literal>n1</literal> および <literal>d1</literal>を計算します.
+    </para>
+    <para>
+    <literal>N</literal> および <literal>D</literal> が多項式行列の場合,
+	計算が要素毎に行われます.</para>
+    <para><literal>H1=simp(H)</literal> も有効です (<literal>H</literal>の各エントリは
+    <literal>H1</literal>で簡単化されます).</para>
+    <para>
+    注意:</para>
+    <para>
+    -閾値は指定されません. すなわち,<literal>simp</literal> は強制的に簡単かを
+	行うことはできません.</para>
+    <para>
+    -積分器を含む線形動的システムの場合,簡単化により定常ゲイン
+   (連続系の場合は<literal>H(0)</literal>,離散系の場合は <literal>H(1)</literal>)
+	が変化します.</para>
+    <para>
+    -複素数のデータの場合, <literal>simp</literal> はその入力を返します.</para>
+    <para>
+    -有理数の簡単化は,有理数に関するほぼ毎回の処理の後にコールされます.
+	<literal>simp_mode</literal>関数によりこの簡単化のオン/オフを切り替える
+	ことができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+[n,d]=simp((s+1)*(s+2),(s+1)*(s-2))
+
+simp_mode(%F);hns=s/s
+simp_mode(%T);hns=s/s
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="trfmod">trfmod</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="clean">clean</link>
+      </member>
+      <member>
+        <link linkend="simp_mode">simp_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

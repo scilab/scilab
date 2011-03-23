@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="interp" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interp</refname>
+
+    <refpurpose>3次スプライン評価関数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[yp [,yp1 [,yp2 [,yp3]]]]=interp(xp, x, y, d [, out_mode])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x,y,d</term>
+
+        <listitem>
+          <para>同じ大きさの実数ベクトルで,
+	3次スプラインまたはサブスプライン関数を定義します
+	(以下では<literal>s</literal>と呼ばれます)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>
+	範囲 [x1,xn] の外側で<literal>s</literal>の評価値を定義する
+	(オプションの) 文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>yp</term>
+
+        <listitem>
+          <para><literal>xp</literal>と同じ大きさのベクトルまたは行列で,
+	(<literal>xp</literal> (yp(i)=s(xp(i) または yp(i,j)=s(xp(i,j)において)
+	 <literal>s</literal>を要素毎に評価したもの)
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>yp1, yp2, yp3</term>
+
+        <listitem>
+          <para><literal>xp</literal>と同じ大きさのベクトル(または行列)で,
+	<literal>xp</literal>上における<literal>s</literal>の逐次微分の
+	要素毎の評価</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>yi=s(xi), di = s'(xi)</literal>の時,
+	スプラインまたはサブスプライン関数(<link linkend="splin">splin</link>参照)
+	を定義する3つのベクトル <literal>(x,y,d)</literal>を指定すると,
+	この関数は,<literal>xp(i)</literal>において
+	<literal>s</literal> (および要すれば<literal>s', s'', s'''</literal>)
+	を評価します:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/interp_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para><literal>out_mode</literal>パラメータは
+	補外,すなわち,<literal>xp(i)</literal>が[x1,xn]の範囲にない場合
+	の評価規則を設定します :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>0による補外が行われます</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>Nanによる補外</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>以下のように定義される補外 :</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center"
+                           fileref="../mml/interp_equation2.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"natural"</term>
+
+        <listitem>
+          <para>以下のように定義される補外
+          (<emphasis>p_i</emphasis> は[x_i,x_{i+1}]
+	において<literal>s</literal>を定義する
+	多項式です) :</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center"
+                           fileref="../mml/interp_equation3.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"linear"</term>
+
+        <listitem>
+          <para>補外は以下のように低意義されます :</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center"
+                           fileref="../mml/interp_equation4.mml" />
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para> <literal>s</literal> は周期性により拡張されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// splin および lsq_splinの例を参照
+
+// スプラインおよびサブスプラインの C2およびC1連続性を示す例
+a = -8; b = 8;
+x = linspace(a,b,20)';
+y = sinc(x);
+dk = splin(x,y);  // not_a_knot
+df = splin(x,y, "fast");
+xx = linspace(a,b,800)';
+[yyk, yy1k, yy2k] = interp(xx, x, y, dk); 
+[yyf, yy1f, yy2f] = interp(xx, x, y, df); 
+clf()
+subplot(3,1,1)
+plot2d(xx, [yyk yyf])
+plot2d(x, y, style=-9)
+legends(["not_a_knot spline","fast sub-spline","interpolation points"],...
+        [1 2 -9], "ur",%f)
+xtitle("spline interpolation")
+subplot(3,1,2)
+plot2d(xx, [yy1k yy1f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "ur",%f)
+xtitle("spline interpolation (derivatives)")
+subplot(3,1,3)
+plot2d(xx, [yy2k yy2f])
+legends(["not_a_knot spline","fast sub-spline"], [1 2], "lr",%f)
+xtitle("spline interpolation (second derivatives)")
+
+// 異なる補外の方法を示す例
+x = linspace(0,1,11)';
+y = cosh(x-0.5);
+d = splin(x,y);
+xx = linspace(-0.5,1.5,401)';
+yy0 = interp(xx,x,y,d,"C0");
+yy1 = interp(xx,x,y,d,"linear");
+yy2 = interp(xx,x,y,d,"natural");
+yy3 = interp(xx,x,y,d,"periodic");  
+clf()
+plot2d(xx,[yy0 yy1 yy2 yy3],style=2:5,frameflag=2,leg="C0@linear@natural@periodic")
+xtitle(" different way to evaluate a spline outside its domain")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin">splin</link></member>
+
+      <member><link linkend="lsq_splin">lsq_splin</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

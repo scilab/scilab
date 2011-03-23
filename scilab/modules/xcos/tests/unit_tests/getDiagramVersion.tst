@@ -8,7 +8,7 @@
 // <-- Short Description -->
 // White-box test for the getDiagramVersion macro.
 
-loadScicosLibs();
+loadXcosLibs();
 
 // empty call check
 try

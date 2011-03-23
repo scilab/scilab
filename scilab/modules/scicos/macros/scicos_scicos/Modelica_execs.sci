@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [ok,modelicac,translator,xml2modelica] = Modelica_execs()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   ok = %f;
 

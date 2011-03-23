@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="errbar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>errbar</refname>
+    <refpurpose>2次元プロットに垂直誤差バーを追加</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>errbar(x,y,em,ep)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,em,ep</term>
+        <listitem>
+          <para>同じ大きさの行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>errbar</literal> は二次元プロットに垂直誤差バーを追加します.
+    <literal>x</literal>および <literal>y</literal> の意味は<literal>plot2d</literal>
+	におけるものと同じです.
+    <literal>em(i,j)</literal> と <literal>ep(i,j)</literal> は
+	値<literal>y(i,j)</literal>の誤差間隔を意味します:
+	 <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.</para>
+    <para>
+    デモを参照するには, コマンド <literal>errbar()</literal> を入力してください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]';
+y=[sin(t) cos(t)]; x=[t t];
+plot2d(x,y)
+errbar(x,y,0.05*ones(x),0.03*ones(x))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

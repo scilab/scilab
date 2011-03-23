@@ -22,6 +22,9 @@
 //
 
 function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Edition of a link from an output block to an input  block
 
 //** 28/11/08: Preparation of the "SL" operation

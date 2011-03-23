@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matrix">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matrix</refname>
+    <refpurpose> ベクトルまたは行列を異なる大きさの行列に成形する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>y=matrix(v,n,m)
+y=matrix(v,[sizes])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>ベクトル, 行列またはハイパー行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n,m</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sizes</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>ベクトル, 行列またはハイパー行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>n</literal> x <literal>m</literal>個のエントリを有する
+	ベクトルまたは行列の場合,
+	コマンド <literal>y=matrix(v,n,m)</literal> または同様な
+	<literal>y=matrix(v,[n,m])</literal> は
+	<literal>v</literal> ベクトル(または行列)を,
+	<literal>v</literal>のエントリを列方向でスタックすることにより
+	<literal>nxm</literal> の行列に変換します.</para>
+    <para>
+	m または nの次元の一つが -1 に等しい場合,もう一つの次元で
+	size(v,'*')を割った数が自動的に代入されます.</para>
+    <para>
+    <literal>prod(size(v))==prod(sizes)</literal>のようなハイパー行列の場合, 
+	コマンド <literal>y=matrix(v,sizes)</literal> (または
+    等価な <literal>y=matrix(v,n1,n2,...nm)</literal>) は,
+	<literal>v</literal>のエントリを
+    "列方向"(つまり,最初の次元が最初に変わる)にスタックする
+	ことにより<literal>v</literal> を行列またはハイパー行列に変換します.
+	<literal>y=matrix(v,sizes)</literal>
+    は,sizes がスカラーまたは2要素のベクトルの場合,通常の行列となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=[1 2 3;4 5 6]
+matrix(a,1,6)
+matrix(a,1,-1)
+matrix(a,3,2)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matrices">matrices</link>
+      </member>
+      <member>
+        <link linkend="hypermatrices">hypermatrices</link>
+      </member>
+      <member>
+        <link linkend="ones">ones</link>
+      </member>
+      <member>
+        <link linkend="zeros">zeros</link>
+      </member>
+      <member>
+        <link linkend="rand">rand</link>
+      </member>
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="perl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>perl</refname>
+    <refpurpose>適当なオペレーティングシステムの実行ファイルによりPerl スクリプトをコール</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>perl('perlfile')
+perl('perlfile',arg1,arg2,...)
+result = perl(...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>perl('perlfile') は,
+	適当なオペレーティングシステムの実行ファイルを使用して
+	Perlスクリプト perlfileをコールします.</para>
+    <para>perl('perlfile',arg1,arg2,...) は Perlスクリプト perlfileを
+	適当なオペレーティングシステムの実行ファイルを使用してコールし,
+	引数として arg1, arg2, ... を渡します.</para>
+    <para>result = perl(...) は実行したPerlコールの結果を result に返します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>A.C</member>
+    </simplelist>
+  </refsection>
+</refentry>

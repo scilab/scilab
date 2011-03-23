@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2eps</refname>
 
-    <refpurpose>send graphics to an EPS file.</refpurpose>
+    <refpurpose>Export graphics to EPS.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

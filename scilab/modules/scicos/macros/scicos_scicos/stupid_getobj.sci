@@ -20,6 +20,9 @@
 //
 
 function [k,wh,scs_m] = stupid_getobj(scs_m,Select,pt)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** Now works only for a selected link
   

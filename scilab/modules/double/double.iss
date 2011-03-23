@@ -22,9 +22,7 @@ Source: bin\{#DOUBLE}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#DOUBLE}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\VERSION.xml; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\readme.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\license.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
-Source: modules\{#DOUBLE}\changelog.txt; DestDir: {app}\modules\{#DOUBLE}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.quit; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#DOUBLE}\etc\{#DOUBLE}.start; DestDir: {app}\modules\{#DOUBLE}\etc; Components: {#COMPN_SCILAB}

@@ -12,6 +12,12 @@
 
 package org.scilab.modules.gui.helpbrowser;
 
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.KeyEventDispatcher;
+import java.awt.KeyboardFocusManager;
+import java.awt.event.KeyEvent;
+import java.awt.Toolkit;
 import java.io.File;
 
 import javax.swing.SwingUtilities;
@@ -45,6 +51,7 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String MENUBARXMLFILE = SCI + "/modules/gui/etc/helpbrowser_menubar.xml";
+    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
 
     private static HelpBrowser instance;
 
@@ -94,6 +101,31 @@ public class ScilabHelpBrowser extends ScilabDockable implements HelpBrowser {
 
             Window helpWindow = ScilabWindow.createWindow();
             helpWindow.addTab(helpTab);
+
+            KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+            manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+                    // This is a workaround for Mac OS X where e.getKeyCode() sometimes returns a bad value
+                    public boolean dispatchKeyEvent(KeyEvent e) {
+                        if (e.getID() == KeyEvent.KEY_PRESSED) {
+                            Container c = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (SwingScilabTab) helpTab.getAsSimpleTab());
+                            if (e.getSource() instanceof Component) {
+                                Container cs = SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, (Component) e.getSource());
+                                char chr = e.getKeyChar();
+
+                                if (cs == c && ((chr == '-' || chr == '_' || chr == '=' || chr == '+')
+                                                && (e.getModifiers() & Toolkit.getDefaultToolkit().getMenuShortcutKeyMask()) != 0)) {
+                                    if (chr == '-' || chr == '_') {
+                                        ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).decreaseFont();
+                                    } else {
+                                        ((SwingScilabHelpBrowser) ((ScilabHelpBrowser) instance).component).increaseFont();
+                                    }
+                                    return true;
+                                }
+                            }
+                        }
+                        return false;
+                    }
+                });
 
             /* Set the dimension / position of the help window */
             helpWindow.setPosition(ConfigManager.getHelpWindowPosition());

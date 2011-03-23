@@ -193,7 +193,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	}
 	else
 	{
-		sciprint(_("This Scope (block number : %d) has same number than another. It has been desactivated !\n"),block_number);
+		sciprint(_("This Scope (block number : %d) has same number than another. It has been deactivated!\n"),block_number);
 	}
 }
 /*--------------------------------------------------------------------------*/ 

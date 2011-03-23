@@ -58,7 +58,7 @@ int callSciNotesW(wchar_t **_wcfilenames, int _nbfiles)
         return 0;
 }
 
-int callSciNotesWWithLineNumber(wchar_t **_wcfilenames, double* pdblLineNumber, int _nbfiles)
+int callSciNotesWWithLineNumberAndFunction(wchar_t **_wcfilenames, double* pdblLineNumber, char *functionName, int _nbfiles)
 {
         if ( (_wcfilenames) && (_nbfiles > 0) )
         {
@@ -73,7 +73,7 @@ int callSciNotesWWithLineNumber(wchar_t **_wcfilenames, double* pdblLineNumber, 
                                         char *fullFilename = wide_string_to_UTF8(wcFullFilename);
                                         if (fullFilename)
                                         {
-                                                SciNotes::scinotes(getScilabJavaVM(), fullFilename, (int)pdblLineNumber[i]);
+                                                SciNotes::scinotes(getScilabJavaVM(), fullFilename, (int)pdblLineNumber[i], functionName);
                                                 FREE(fullFilename);
                                                 fullFilename = NULL;
                                         }

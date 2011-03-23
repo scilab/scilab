@@ -20,7 +20,6 @@ import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
 
-
 /**
  * ExitAction class
  * @author Bruno JOFRET

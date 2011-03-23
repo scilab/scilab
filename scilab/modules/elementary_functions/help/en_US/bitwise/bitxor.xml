@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitxor" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>bitxor</refname>
+    <refpurpose>bitwise XOR</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      z = bitxor(x,y)
+
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Given x, y two positive integers, this function returns the decimal 
+      number whose the binary form is the XOR of the binary representations
+      of x and y.
+    </para>
+    <para>
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
+// Compute the bitwise XOR of two matrices of doubles.
+x = [0 1 0 1];
+y = [0 0 1 1];
+z = bitxor(x, y)
+expected = [0 1 1 1];
+
+// Compute the bitwise XOR of two matrices of integers.
+x = uint8([0 1 0 1]);
+y = uint8([0 0 1 1]);
+z = bitxor(x, y)
+
+// The types of x and y cannot be mixed (error).
+x = [0 1 0 1];
+y = uint8([0 0 1 1]);
+z = bitxor(x, y)
+
+//  13 is (01101)_2
+//  27 is (11011)_2
+// XOR is (10110)_2 which is 22.
+bitxor(uint8(13), uint8(27))
+bitxor(13, 27)
+
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

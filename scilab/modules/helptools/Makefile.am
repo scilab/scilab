@@ -20,7 +20,8 @@ GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp \
 GIWS_WRAPPERS = src/jni/BuildDocObject.giws.xml \
 	src/jni/BuildDocObjectv2.giws.xml
 
-libscihelptools_la_LIBADD = $(top_builddir)/modules/jvm/libscijvm.la
+libscihelptools_la_LIBADD = libscihelptools-algo.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 
 if GIWS
 BUILT_SOURCES=giws
@@ -35,6 +36,7 @@ GATEWAY_C_SOURCES = sci_gateway/nogui/nogui.c
 endif
 
 pkglib_LTLIBRARIES = libscihelptools.la
+noinst_LTLIBRARIES = libscihelptools-algo.la
 
 libscihelptools_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
@@ -49,9 +51,13 @@ libscihelptools_la_CPPFLAGS= $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
-libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
+libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihelptools_algo_la_CFLAGS = $(libscihelptools_la_CFLAGS)
+libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
+
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
@@ -63,17 +69,17 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihelptools_la_root_DATA =  license.txt version.xml
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
 bin/man2sci \
-bin/manrev2sci 
+bin/manrev2sci
 
 #### helptools : gateway declaration ####
 libscihelptools_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -88,6 +94,8 @@ libscihelptools_la_data_templatedir = $(mydatadir)/data/template
 libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
+data/css/c_code.css \
+data/css/xml_code.css \
 data/css/style.css
 
 #### helptools : xsl files ####
@@ -104,6 +112,14 @@ libscihelptools_la_xsl_fo_DATA = xsl/fo/docbook.xsl
 libscihelptools_la_schemadir = $(mydatadir)/schema
 libscihelptools_la_schema_DATA = schema/scilab.rnc \
 schema/extendedStyle.xsl
+
+#### helptools : pages files ####
+libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
+libscihelptools_la_data_pages_DATA = data/pages/error.html \
+data/pages/homepage-en_US.html \
+data/pages/homepage-fr_FR.html \
+data/pages/ban-en_US.png \
+data/pages/ban-fr_FR.png
 
 include $(top_srcdir)/Makefile.incl.am
 

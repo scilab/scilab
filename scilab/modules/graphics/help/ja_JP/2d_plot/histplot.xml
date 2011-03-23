@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="histplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>histplot</refname>
+    <refpurpose>ヒストグラムをプロットする</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>histplot(n, data, &lt;opt_args&gt;)
+histplot(x, data, &lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem><para>正の整数 (クラスの数)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>クラスを定義する増加方向のベクトル (<literal>x</literal>は2個以上の要素を有します)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data</term>
+        <listitem>
+          <para>ベクトル (解析するデータ)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1,key2=value2</literal>
+          ,... を表します.ただし,<literal>key1</literal>,
+          <literal>key2,...</literal> は任意の<link linkend="plot2d">plot2d</link> の
+	オプションのパラメータ (<literal>style,strf,leg,
+          rect,nax, logflag,frameflag, axesflag</literal>) またはnormalizationとすることができます.
+	この最後のパラメータの場合,対応する値は論理値スカラー(デフォルト値: %t)とする必要があります.
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para> この関数は,クラス<literal>x</literal>を用いて<literal>data</literal>ベクトル
+	のヒストグラム(柱状グラフ)をプロットします.
+	<literal>x</literal>のかわりにクラスの数<literal>n</literal>が指令された場合,
+	クラスは等間隔で<emphasis>dx = (x(n+1)-x(1))/n</emphasis>として
+	<emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
+	となるように選択されます.
+    </para>
+    <para> クラスはC1 = [x(1), x(2)]およびi &gt;= 2の時にCi = ( x(i), x(i+1)]
+	により定義されます.
+	<literal>data</literal>の総数 Nmax  (Nmax = length(data))となり,
+	Ciに含まれる<literal>data</literal>要素の数 Niは
+	<literal>normalization</literal>が true (デフォルト)の場合には
+	<emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis>となります.
+	そうでない場合, <emphasis>Ni</emphasis> となります.
+　	正規化が行われる場合,このヒストグラムは以下を制約を満たします:
+    </para>
+    <programlisting role = ""><![CDATA[ 
+ x(n+1)
+/  
+|   h(x) dx = 1,  when x(1)<=min(data) and max(data) <= x(n+1)) 
+/
+x(1)
+     
+    ]]></programlisting>
+    <para>任意の <link linkend="plot2d">plot2d</link> (オプション) パラメータを指定できます; 
+	例えば,色番号2　（標準カラーマップを使用する場合には青）のヒストグラムをプロットする場合や,
+	矩形 [-3,3]x[0,0.5] の内側へのプロットを制限する場合,
+	<literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>
+	を使用することができます.
+    </para>
+    <para>デモを参照するには <literal>histplot()</literal>コマンドを入力してください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 例 #1: ガウス乱数標本の種々のヒストグラム
+d=rand(1,10000,'normal');  // ガウス乱数標本
+clf();histplot(20,d)
+clf();histplot(20,d,normalization=%f)
+clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=5)
+clf();histplot(20,d,leg='rand(1,10000,''normal'')',style=16, rect=[-3,0,3,0.5]); 
+
+// 例 #2: 二項分布 (B(6,0.5)) 乱数標本のヒストグラム
+d = grand(1000,1,"bin", 6, 0.5);
+c = linspace(-0.5,6.5,8);
+clf()
+subplot(2,1,1)
+  histplot(c, d, style=2)
+  xtitle("normalized histogram")
+subplot(2,1,2)
+  histplot(c, d, normalization=%f, style=5)
+  xtitle("non normalized histogram")
+
+// 例 #3: 指数乱数標本のヒストグラム
+lambda = 2;
+X = grand(100000,1,"exp", 1/lambda);
+Xmax = max(X);
+clf()
+histplot(40, X, style=2)
+x = linspace(0,max(Xmax),100)';
+plot2d(x,lambda*exp(-lambda*x),strf="000",style=5)
+legend(["exponential random sample histogram" "exact density curve"]);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hist3d">hist3d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="dsearch">dsearch</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

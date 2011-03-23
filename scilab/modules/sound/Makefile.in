@@ -208,10 +208,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -295,7 +295,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -322,6 +321,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -402,7 +402,7 @@ libscisound_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/fileio/includes
 
 pkglib_LTLIBRARIES = libscisound.la
-libscisound_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisound_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscisound_la_SOURCES = $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
@@ -415,7 +415,7 @@ modulename = sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
-libscisound_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisound_la_root_DATA = license.txt version.xml
 
 ####�sound : init scripts ####
 libscisound_la_etcdir = $(mydatadir)/etc

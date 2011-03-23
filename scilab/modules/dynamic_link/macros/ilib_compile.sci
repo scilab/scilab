@@ -2,7 +2,7 @@
 // Copyright (C) INRIA
 // Copyright (C) ENPC
 // Copyright (C) DIGITEO - 2009
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -25,6 +25,9 @@ function libn = ilib_compile(lib_name, ..
     return
   end
 
+  // The name of the library starts by "lib", strip it
+  lib_name_orig = strsubst(lib_name,"/^lib/","","r");
+
   libn=""; //** init variable
 
   if ~haveacompiler() then
@@ -38,10 +41,9 @@ function libn = ilib_compile(lib_name, ..
     files = [];
   else
     if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-      warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
+      error(999, msprintf(_("%s: A managed file extension for input argument #%d expected."), "ilib_compile", 3));
     end
   end
-
 
   if typeof(lib_name)<>"string" then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
@@ -50,16 +52,6 @@ function libn = ilib_compile(lib_name, ..
 
   oldpath = pwd();
   files = files(:)';
-
-  managed_ext = [".obj",".o"];
-  for i=1:size(files,"*") // compatibility scilab 4.x
-    [path_f, file_f, ext_f] = fileparts(files(i));
-    if or(managed_ext == ext_f) then
-      files1(i) = path_f + file_f;
-    else
-      files1(i) = path_f + file_f + ext_f;
-    end
-  end
 
   [make_command, lib_name_make, lib_name, path, makename, files]= ...
       ilib_compile_get_names(lib_name, makename, files);
@@ -75,7 +67,7 @@ function libn = ilib_compile(lib_name, ..
 
     for i=1:nf
       if ( ilib_verbose() <> 0 ) then
-        mprintf(_("   Compilation of ") + string(files1(i)) +"\n");
+        mprintf(_("   Compilation of ") + string(files(i)) +"\n");
       end
     end
 
@@ -139,7 +131,8 @@ function libn = ilib_compile(lib_name, ..
     oldPath = pwd();
 
     // Switch back to the TMPDIR where the mandatory files are
-    chdir(TMPDIR);
+
+    chdir(TMPDIR+"/"+lib_name_orig);
     cmd = "make "
 
     cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc, "build")
@@ -174,10 +167,15 @@ function libn = ilib_compile(lib_name, ..
       return ;
     end
 
+    generatedLibrary=".libs/" + lib_name;
     // Copy the produce lib to the working path
-    copyfile(".libs/" + lib_name, oldPath);
+    if ~isfile(generatedLibrary) then
+      error(msprintf(gettext("%s: Could not find the built library ''%s''.\n"),"ilib_compile",generatedLibrary));
+    end
+    copyfile(generatedLibrary, oldPath);
+    
   end
-
+  
   libn = path + lib_name_make ;
   chdir(oldpath);
 
@@ -189,15 +187,6 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ..
              ilib_compile_get_names(lib_name, makename, files)
 
   if getos() <> "Windows" then
-    managed_ext = ".o";
-    for i=1:size(files,"*") // compatibility scilab 4.x
-      [path_f, file_f, ext_f] = fileparts(files(i));
-      if or(managed_ext == ext_f) then
-        files(i) = path_f + file_f;
-      else
-        files(i) = path_f + file_f + ext_f;
-      end
-    end
 
     k = strindex(makename,["/","\"]);
 

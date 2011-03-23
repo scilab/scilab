@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scicos">
+
+  <refnamediv>
+    <refname>scicos</refname>
+
+    <refpurpose>OBSOLETE - see xcos</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>scs_m = scicos([toto])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection id="Module_scicos">
+    <title>モジュール</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="SeeAlso_scicos">
+    <title>参照</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

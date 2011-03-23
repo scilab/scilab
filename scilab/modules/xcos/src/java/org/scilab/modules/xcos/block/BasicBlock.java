@@ -872,12 +872,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     
     /**
      * Add a port on the block.
+     * 
+     * This call should only be used when a port reordering operation must be performed.
+     * 
      * @param port The port to be added to the block
      */
     public void addPort(BasicPort port) {
     	insert(port);
-    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
+    	BlockPositioning.updateBlockView(this);
     }
 
 	/**
@@ -959,6 +962,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the modified instance
 	 */
 	private void updateFields(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
 		setDependsOnT(modifiedBlock.isDependsOnT());
 		setDependsOnU(modifiedBlock.isDependsOnU());
 		setExprs(modifiedBlock.getExprs());
@@ -980,6 +987,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
 		XcosDiagram graph = getParentDiagram();
 		if (graph == null) {
 			setParentDiagram(Xcos.findParent(this));

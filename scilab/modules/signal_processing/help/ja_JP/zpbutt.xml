@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="zpbutt">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>zpbutt</refname>
+    <refpurpose>バターワースアナログフィルタ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[pols,gain]=zpbutt(n,omegac)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数 (フィルタ次数)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegac</term>
+        <listitem>
+          <para>実数 (カットオフ周波数(Hz))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pols</term>
+        <listitem>
+          <para>フィルタの極</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gain</term>
+        <listitem>
+          <para>フィルタのゲイン</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	次数<literal>n</literal>,カットオフ周波数 omegacの
+	バターワースアナログフィルタを計算します.
+	伝達関数 H(s) は <literal>H(s)=gain/real(poly(pols,'s'))</literal>により
+	計算されます.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

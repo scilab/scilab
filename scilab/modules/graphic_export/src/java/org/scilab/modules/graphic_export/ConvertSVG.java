@@ -39,7 +39,7 @@ public class ConvertSVG {
  * @param fileType The type (can be PDF_EXPORT, PS_EXPORT or EPS_EXPORT)
  */
     public static void SVGTo(String in, String out, int fileType) {
-	if (GL2PSRenderer.checkWritePermission(new File(out)) == ExportRenderer.SUCCESS) {
+	if (Utils.checkWritePermission(new File(out)) == ExportRenderer.SUCCESS) {
 	    AbstractFOPTranscoder trans = null;
 	    switch (fileType) {
 			case ExportRenderer.PDF_EXPORT :

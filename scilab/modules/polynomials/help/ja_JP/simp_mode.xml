@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="simp_mode">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>simp_mode</refname>
+    <refpurpose>有理数の簡単化のオン/オフを切り替える</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>mod=simp_mode()
+simp_mode(mod)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>mod</term>
+        <listitem>
+          <para>a boolean</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	有理数に関する処理の後にほぼ毎回,有理数の簡単化が行われます.
+	<literal>simp_mode</literal> によりこの簡単化のオン/オフを切り替えることが
+	できます.</para>
+    <para><literal>simp_mod(%t)</literal> は,有理数の簡単化をオンにします.</para>
+    <para><literal>simp_mod(%f)</literal> は,有理数の簡単化をオフにします.</para>
+    <para><literal>mod=simp_mod()</literal> は,カレントの
+	有理数の簡単化モードをmodに返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+mod=simp_mode()
+simp_mode(%f);hns=s/s
+simp_mode(%t);hns=s/s
+simp_mode(mod);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

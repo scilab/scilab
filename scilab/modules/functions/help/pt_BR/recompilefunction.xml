@@ -116,6 +116,6 @@ showprofile(asinh)
   <refsection>
     <title>Bibliografia</title>
 
-    <para>http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</para>
+    <para><ulink url="http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation">http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</ulink></para>
   </refsection>
 </refentry>

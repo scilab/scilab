@@ -8,6 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function idxColor = xgetcolor(titleString, idxColor)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 // XGETCOLOR is a wrapper around UIGETCOLOR and mimics the behavior of TK_GETCOLOR
 //

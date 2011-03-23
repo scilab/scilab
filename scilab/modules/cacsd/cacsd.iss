@@ -23,9 +23,7 @@ Source: bin\{#CACSD}_f.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
 Source: bin\{#CACSD}.dll; DestDir: {app}\bin; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\VERSION.xml; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
-Source: modules\{#CACSD}\readme.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 Source: modules\{#CACSD}\license.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
-Source: modules\{#CACSD}\changelog.txt; DestDir: {app}\modules\{#CACSD}; Components: {#COMPN_CACSD}
 ;
 Source: modules\{#CACSD}\sci_gateway\{#CACSD}_gateway.xml; DestDir: {app}\modules\{#CACSD}\sci_gateway; Components: {#COMPN_CACSD}
 ;

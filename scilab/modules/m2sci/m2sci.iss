@@ -19,9 +19,7 @@
 #define M2SCI "m2sci"
 ;
 Source: modules\{#M2SCI}\VERSION.xml; DestDir: {app}\modules\{#M2SCI}; Components: {#COMPN_M2SCI}
-Source: modules\{#M2SCI}\readme.txt; DestDir: {app}\modules\{#M2SCI}; Components: {#COMPN_M2SCI}
 Source: modules\{#M2SCI}\license.txt; DestDir: {app}\modules\{#M2SCI}; Components: {#COMPN_M2SCI}
-Source: modules\{#M2SCI}\changelog.txt; DestDir: {app}\modules\{#M2SCI}; Components: {#COMPN_M2SCI}
 ;
 Source: modules\{#M2SCI}\etc\{#M2SCI}.quit; DestDir: {app}\modules\{#M2SCI}\etc; Components: {#COMPN_M2SCI}
 Source: modules\{#M2SCI}\etc\{#M2SCI}.start; DestDir: {app}\modules\{#M2SCI}\etc; Components: {#COMPN_M2SCI}

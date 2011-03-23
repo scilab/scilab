@@ -20,6 +20,9 @@
 //
 
 function param_name=get_param_name(mo_param,Pars)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Copyright INRIA
 //## return an unique name for a modelica parameter
 //## for the compiled modelica structure

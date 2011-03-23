@@ -20,6 +20,9 @@
 //
 
 function reg = get_multiple_selection(Select)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Select contains the selected items in the window where the Copy menu
 //has been executed
     

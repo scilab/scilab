@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="pause">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>pause</refname>
+    <refpurpose>中断モード, キーボード入力を待つ</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>pause</literal> モードに切り替えます;
+    関数のコードに挿入すると,<literal>pause</literal> は関数の実行を中断し,
+    <literal>pause</literal>のレベル (例: <literal>-1-&gt;</literal>)を
+	示すプロンプト記号が表示がされます.
+	この時,ユーザは新しいワークスペースにおり，
+	より低いレベルの変数(特にその関数内の全ての変数)が全て利用可能となっています.
+	コールしたワークスペースに戻るには<literal>"return"</literal>を入力します</para>
+    <para>
+    このモードでは, <literal>[...]=return(...) </literal>は
+	引数の変数 <literal>(...)</literal> をコールしたワークスペースに
+	<literal> [...]</literal>という名前の出力として返します. 
+	一方, より低いレベルの変数は保護され, 修正することはできません.</para>
+    <para>
+    <literal>pause</literal> はデバッグの際に非常に有用です.</para>
+    <para>
+    このモードはコマンド <literal>"abort"</literal>により破棄することができます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="halt">halt</link>
+      </member>
+      <member>
+        <link linkend="return">return</link>
+      </member>
+      <member>
+        <link linkend="abort">abort</link>
+      </member>
+      <member>
+        <link linkend="quit">quit</link>
+      </member>
+      <member>
+        <link linkend="whereami">whereami</link>
+      </member>
+      <member>
+        <link linkend="where">where</link>
+      </member>
+      <member>
+        <link linkend="sleep">sleep</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legend_properties" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legend_properties</refname>
+
+    <refpurpose>Legend エンティティプロパティの説明.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>Legend エンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは<literal>plot2dx</literal>グラフのもとで
+	描画されるか
+	<link linkend="captions">captions</link>関数により作成される
+	凡例のパラメータを定義します.
+	指定された線について,凡例には線種,マーカ記号および色のサンプルが
+	表示されます.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+          <para>このプロパティには親のハンドルが含まれます.
+	legend エンティティの親は<literal>"Compound"</literal>型と
+	なります.
+	この Compound エンティティにはその他のグラフのエンティティ
+	も含まれています.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+          <para>このプロパティはハンドルの<literal>children</literal>
+	のベクトルが含まれます.
+	しかし,<literal>legend</literal>ハンドルには現在
+	<literal>children</literal>が存在しません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+          <para>
+	このプロパティはエンティティの <literal>visible</literal>プロパティを
+	有し, <literal>"on" </literal> または
+          <literal>"off"</literal>となります . <literal>"on"</literal>の場合は
+	凡例が描画され,<literal>"off"</literal> の場合には凡例が画面に表示されません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>text:</term>
+
+        <listitem>
+          <para>このフィールドは注釈をつける対称の各オブジェクトの凡例を含む文字列ベクトルです.
+	</para>
+         <para>Scilab 5.2以降,<link linkend="math_rendering_features_in_graphic">LaTeX または MathML 式</link>
+	を指定することができます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_size:</term>
+        <listitem>
+          <para>スカラー値で,表示される文字の大きさを指定します.
+	<literal>fractional_font</literal>プロパティが <literal>"off"</literal>の場合,
+	値の整数部のみが使用されます.
+	詳細は <link linkend="graphics_fonts">graphics_fonts</link>を参照ください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_style:</term>
+
+        <listitem>
+          <para>凡例のラベルを表示する際に使用されるフォントを指定します.
+	この値は正の整数でロード済みのフォントの一つを参照します.
+	この値には,最初のフォントを指す 0 から最後のフォントを指すロード済みの
+	フォントの数から1を引いた数までの数値を指定します.
+	詳細は <link linkend="graphics_fonts">graphics_fonts</link>を参照ください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font_color</term>
+
+        <listitem>
+          <para>色のインデックスで, このプロパティはテキストの色を定義します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fractional_font:</term>
+
+        <listitem>
+          <para>このプロパティはテキストを分数のフォントサイズにより表示するかどうかを
+	指定します.この値には,<literal>"on"</literal> または <literal>"off"</literal>を指定します. 
+	<literal>"on"</literal> の場合,<literal>font_size</literal>の浮動小数点の値が
+	表示の際に使用され,フォントはアンチエイリアス処理されます.
+	<literal>"off"</literal> の場合,整数部のみが使用され,フォントは平滑化されません.
+		  </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>links:</term>
+
+        <listitem>
+          <para>ハンドルの行配列. 関連するポリラインを参照します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>legend_location</term>
+
+        <listitem>
+          <para>文字列で,凡例の位置を指定します.</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>: 凡例は軸ボックスの
+	右上に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: 
+		凡例は軸ボックスの左上に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>:
+              凡例は軸ボックスの右下に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: 
+		凡例は軸ボックスの左下に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: 
+	凡例は軸ボックスの右上隅の右に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: 
+		凡例は軸ボックスの左上隅の左に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: 
+		凡例は軸ボックスの右下隅の右に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: 
+		凡例は軸ボックスの左下隅の左に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: 
+		凡例は軸ボックスの左上隅の上に表示されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: 
+		凡例は軸ボックスの左下隅の下に表示されます.このオプションは
+		<link
+              linkend="plot2d">plot2d</link>の<literal>leg</literal>引数に対応します</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: 
+	凡例ボックスの左上隅の座標を付属するデータ構造体の"position"
+	フィールドで指定します.
+	位置 <literal>x</literal> および <literal>y</literal> は
+              <literal>axes_bounds</literal>に対する比で指定されます</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>position</term>
+
+        <listitem>
+          <para>凡例の左上隅の座標.
+	位置
+          <literal>x</literal> および <literal>y</literal> は<literal>axes_bounds</literal>
+	の大きさに対する比で指定されます.
+	このフィールドは<literal>legend_location=="by_coordinates"</literal>の場合に
+	設定でき,
+	その他の<literal>legend_location</literal>の設定では取得が可能です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode</term>
+
+        <listitem>
+          <para>このフィールドは凡例の周囲に矩形を描画するかどうかを指定します.
+		値には<literal>"on"</literal> または
+          <literal>"off"</literal>を指定します. <literal>"on"</literal>の場合,
+	以下のプリパティを用いて矩形が描画されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness</term>
+
+        <listitem>
+          <para>このプロパティは正の実数で,矩形の線の幅をピクセル単位で指定します.
+	実際に表示される幅は指定された幅を整数に丸めることにより定義されます.
+	唯一の例外はベクトルのエキスポートの場合で,<literal>thickness</literal>
+	の値が全体の幅とみなされます.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground</term>
+
+        <listitem>
+          <para>このフィールドは矩形の輪郭を描画する際に使用される線の色インデックスを
+	指定します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode</term>
+
+        <listitem>
+          <para>このフィールドは凡例の背景を塗りつぶすかどうかを指定します.
+	値には <literal>"on"</literal> または
+          <literal>"off"</literal>を指定します. <literal>"on"</literal>の場合,
+	背景が<literal>background</literal>フィーづろで設定された色インデックスを
+	用いて描画されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background</term>
+
+        <listitem>
+          <para>このフィールドは矩形領域を塗る際に使用される線の色インデックスを
+	指定します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+        <listitem>
+          <para>このフィールドは全てのオブジェクトのデフォルトの
+	<literal>clip_state</literal>プロパティの値を有します.
+	値は以下となります :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> 
+		以降に作成される全てのオブジェクトはクリップされません (デフォルト値).</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> 
+		以降に作成される全てのオブジェクトはAxes境界でクリップされます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> 
+		以降に作成される全てのオブジェクトはclip_boxプロパティで指定された
+		矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+          <para>
+		このフィールドは全てのオブジェクトのデフォルトの
+	<literal>clip_box</literal>プロパティを有します.
+	この値はclip_state が<literal>"off"</literal>の場合,空の行列となります.
+	その他の場合,ベクトル<literal>[x,y,w,h]</literal> (左上の点,幅,高さ)により
+	クリップ領域が指定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+          <para>このフィールドは任意のScilab変数をtextデータ構造体に保存し,
+	復元する際に使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// x initialisation 
+x=[0:0.1:2*%pi]';
+plot2d(x,[sin(x) sin(2*x) sin(3*x)],..
+  [1,2,3],leg="L1@L2@L3")
+a=get("current_axes");
+l=a.children(2);
+l.links
+l.text=["sin(x)";"sin(2*x)";"sin(3*x)"];
+l.visible="off"; // invisible
+l.font_size = 2;
+l.font_style = 5;
+l.visible='on';
+// Starting from Scilab 5.2, Latex:
+l.text=["$\sin(x)$";"$\sin(2*x)$";"$\sin(3*x)$"];
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+
+    <para></para>
+  </refsection>
+</refentry>

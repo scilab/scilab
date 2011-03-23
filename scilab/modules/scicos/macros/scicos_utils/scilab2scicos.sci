@@ -20,6 +20,9 @@
 //
 
 function scilab2scicos(win,x,y,ibut)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //utility function for the return to scicos by event handler
   if ibut==-1000|ibut==-1 then return,end
   ierr=execstr('load(TMPDIR+''/AllWindows'')','errcatch')

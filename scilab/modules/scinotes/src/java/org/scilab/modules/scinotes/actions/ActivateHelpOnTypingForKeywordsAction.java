@@ -54,6 +54,7 @@ public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAct
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForKeywordsAction(label, editor), key);
+        cb.setChecked(HelpOnTypingManager.isKeywordsActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     cb.setChecked(HelpOnTypingManager.isKeywordsActive());

@@ -7,6 +7,7 @@
         <method name="scinotes" returnType="void" modifier="static">
             <parameter name="fileName" type="String"/>
             <parameter name="lineNumber" type="int"/>
+	    <parameter name="functionName" type="String"/>
         </method>
         <method name="scinotes" returnType="void" modifier="static">
             <parameter name="fileName" type="String"/>

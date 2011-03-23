@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clf</refname>
+    <refpurpose>カレントの図をクリアし,デフォルト値にリセットする</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>clf(&lt;opt_job_arg&gt;)
+clf(h,&lt;opt_job_arg&gt;)
+clf(num,&lt;opt_job_arg&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>図ハンドル (ハンドル型)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>figure_id (数値型)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_job_arg&gt;</term>
+        <listitem>
+          <para>文字列 ( <literal>'clear' </literal>または <literal>'reset'</literal> )で,
+	<literal>clf</literal>の処理を指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>clf</literal> コマンドは図をクリアし,デフォルト値にリセットすると共に
+	全ての子を削除します.
+	</para>
+    <para>
+	<literal>opt_job_arg</literal> 文字列の値が <literal>'clear'</literal> の場合,
+	指定された図の全ての子が削除されます.</para>
+    <para><literal>opt_job_arg</literal> 文字列の値が <literal>'reset'</literal> の場合,
+	指定された図の全ての子が削除されるだけではなく, 図のプロパティがデフォルト値
+	(<link linkend="gdf">gdf</link>参照)にリセットされます.
+	唯一の例外は<literal>axes_size</literal>および<literal>figure_size</literal>プロパティ
+	で,これらは図が他の要素に結合されている時にはリセットされません.</para>
+	
+    <para><literal>clf(num)</literal> は<literal>figure_id==num</literal>の図をクリア/リセットします.</para>
+	<para><literal>clf(h)</literal> はハンドル<literal>h</literal>が指す
+	図をクリア/リセットします.</para>
+    <para><literal>clf()</literal> はカレントの図をクリア/リセットします.</para>
+	<para>
+	  <literal>clf</literal> 関数は,ユーザにより追加されたメニューやuicontrolsを含む
+	指定したウインドウの全ての子を削除します.
+	メニューやuicontrolsを削除しないようにするには,替わりに
+	<literal>delete(gca())</literal>を使用してください.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+f4=scf(4);  //creates figure with id==4 and make it the current one
+f4.color_map = jetcolormap(64);
+f4.figure_size = [400, 200];
+plot2d()
+clf(f4,'reset')
+   
+f0=scf(0); //creates figure with id==0 and make it the current one
+f0.color_map=hotcolormap(128); // change color map
+t=-%pi:0.3:%pi;
+plot3d1(t,t,sin(t)'*cos(t));
+
+clf() // equivalent to clf(gcf(),'clear')
+plot3d1(t,t,sin(t)'*cos(t));  // color_map unchanged
+   
+clf(gcf(),'reset')
+plot3d1(t,t,sin(t)'*cos(t));  // color_map changed (back to the default one with 32 colors)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S. Steer &amp; F.Leray INRIA</para>
+  </refsection>
+</refentry>

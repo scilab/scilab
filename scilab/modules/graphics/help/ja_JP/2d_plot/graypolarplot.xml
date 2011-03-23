@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="graypolarplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graypolarplot</refname>
+    <refpurpose>曲面の極座標2次元カラープロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>graypolarplot(theta,rho,z,[strf,rect])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>theta</term>
+        <listitem><para>大きさ n1のベクトル, 角度増分(単位:rad).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rho</term>
+        <listitem>
+          <para>大きさ n2のベクトル, 半径増分</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>大きさ (n1,n2)の実数行列. <literal>z(i,j)</literal> は
+          点 (theta(i),rho(j))における曲面の値です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf</term>
+        <listitem>
+          <para>長さ 3 <literal>"xy0"</literal>の文字列です.</para>
+          <variablelist>
+            <varlistentry>
+              <term>default</term>
+              <listitem>
+                <para>デフォルトは <literal>"030"</literal>です.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x</term>
+              <listitem>
+                <para>キャプションの表示を制御します.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+                    <listitem>
+                      <para>キャプションなし.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>x=1</term>
+                    <listitem><para>キャプションが表示されます.
+			これらはオプションの引数<literal>leg</literal>により
+			指定されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y</term>
+              <listitem>
+                <para>枠の計算を制御します.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+                    <listitem>
+                      <para>(他の高レベルプロット関数を前にコールした際に設定された)
+			カレントの境界が使用されます.
+			複数のプロットを重ね描きする際に有用です.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=1</term>
+                    <listitem>
+                      <para>プロットの境界を指定するために
+		オプションの引数 <literal>rect</literal> が使用されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=2</term>
+                    <listitem>
+                      <para>
+                      <literal>x</literal> および<literal>y</literal>の最小値および最大値を用いて
+			プロットの境界が計算されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=3</term>
+                    <listitem>
+                      <para><literal>y=1</literal>と同様ですが,等軸目盛となります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=4</term>
+                    <listitem>
+                      <para><literal>y=2</literal>と同様ですが,等軸目盛となります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=5</term>
+                    <listitem>
+                      <para><literal>y=1</literal>と同様ですが,<literal>plot2d</literal>は
+			見栄えの良いグラデーションを作成するためにプロットの境界と軸の目盛を
+			変更できます.
+			ズームボタンをアクティブにした場合,このモードが使用されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=6</term>
+                    <listitem>
+                      <para><literal>y=2</literal>と同様ですが,<literal>plot2d</literal>は
+			見栄えの良いグラデーションを作成するためにプロットの境界と軸の目盛を
+			変更できます.
+			ズームボタンをアクティブにした場合,このモードが使用されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=7</term>
+                    <listitem>
+                      <para><literal>y=5</literal>と同様ですが,新規プロットのスケールが
+			カレントのスケールに統合されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=8</term>
+                    <listitem>
+                      <para><literal>y=6</literal>と同様ですが,新規プロットのスケールが
+			カレントのスケールに統合されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>leg</term>
+        <listitem>
+          <para>文字列. 引数<literal>strf</literal>の最初の文字 x が 1の場合に使用されます.
+	<literal>leg</literal>は <literal>"leg1@leg2@...."</literal>という形式で,
+		<literal>leg1</literal>, <literal>leg2</literal>,... はそれぞれ
+		最初の曲線のキャプション,2番目の曲線のキャプション,... です.
+		デフォルトは <literal>""</literal>です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>この引数は引数<literal>strf</literal>の2番目の文字 y が 1, 3 または 5の場合に
+		使用されます.
+		これは大きさ4の行ベクトルで,フレームの次元を指定します:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>rho</literal> および <literal>theta</literal>で定義される
+	極座標グリッドにおいて<literal>z</literal>で指定される曲面の二次元プロットを
+	行ないます.
+	各グリッド領域は,白黒またはカラーの濃淡で塗りつぶされる場合,
+	グリッドの隅の<literal>z</literal>の平均値に依存します.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+rho=1:0.1:4;theta=(0:0.02:1)*2*%pi;
+z=30+round(theta'*(1+rho^2));
+f=gcf();
+f.color_map= hotcolormap(128);
+clf();graypolarplot(theta,rho,z)
+ ]]></programlisting>
+  </refsection>
+</refentry>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="secd" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>secd</refname>
+
+    <refpurpose>要素毎の割線(引数の単位:度)</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y = secd(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>実数配列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>y</literal> のエントリは度単位で指定された
+	<literal>x</literal>の割線<literal>1/cos</literal>のエントリ
+	となります.
+	結果は実数,範囲は<literal>]-%inf -1] U [1 %inf[</literal>となります.
+	エントリが<literal>n*180</literal>に等しい場合(<literal>n</literal>:整数),
+	結果は厳密に <literal>-1</literal>または<literal>+1</literal>となります.
+	エントリが<literal>n*90</literal>に等しい場合(<literal>n</literal>は奇数の
+	整数),結果は無限大(または<link linkend="ieee">ieee</link>モードの
+	設定によてはエラー)となります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+secd(90)
+sec(%pi/2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cosd">cosd</link></member>
+
+      <member><link linkend="sec">sec</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

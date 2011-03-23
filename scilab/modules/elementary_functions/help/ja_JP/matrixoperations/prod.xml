@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="prod" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>prod</refname>
+
+    <refpurpose>積</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=prod(x)
+y=prod(x,'r') or y=prod(x,1)
+y=prod(x,'c') or y=prod(x,2)
+y=prod(x,'m')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>x</literal>がベクトルまたは行列の場合,
+    <literal>y=prod(x)</literal> はスカラー <literal>y</literal>に
+	<literal>x</literal>の全エントリの積を返します. 例えば,
+    <literal>prod(1:n)</literal> は n!となります.</para>
+
+    <para><literal>y=prod(x,'r')</literal> (または等価な,
+    <literal>y=prod(x,1)</literal>)は<literal>x</literal>の
+	行方向の積を計算します.
+	<literal>y</literal> は次のような行ベクトルとなります:
+    <literal>y(1,j)=prod(x(:,j))</literal>.</para>
+
+    <para><literal>y=prod(x,'c')</literal> (または等価な,
+    <literal>y=prod(x,2)</literal>)は<literal>x</literal>の
+	列方向の積を計算します.
+	<literal>y</literal> は次のような列ベクトルとなります:
+    <literal>y(i,1)=prod(x(i,:))</literal>.</para>
+
+    <para><literal>y=prod(x,'m')</literal> は<literal>x</literal>の
+	最初の1でない次元方向の積となります
+	(Matlabとの互換用).</para>
+
+    <para><literal>prod</literal> は疎行列には実装されていません.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[  
+A=[1,2;0,100];
+prod(A)
+prod(A,'c')
+prod(A,'r')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sum">sum</link></member>
+
+      <member><link linkend="cumprod">cumprod</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

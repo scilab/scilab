@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fchamp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fchamp</refname>
+    <refpurpose>2次元1階常微分方程式(ODE)のフィールド方向</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>fchamp(f,t,xr,yr,[arfact,rect,strf])
+fchamp(f,t,xr,yr,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>外部ルーチン (関数または文字列) または ODE を記述するリスト.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para>関数名 <literal>f</literal>とすることができ,
+		この際, <literal>f</literal> は<literal>y=f(t,xy [p1,..pn])</literal>
+		という型の関数と仮定されます.
+		<literal>f</literal> は大きさ 2 の列ベクトルを返し,
+		そのベクトルは点 <literal>xy=[x,y]</literal>の時刻<literal>t</literal>
+		における方向フィールド<literal>f</literal>の値を指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para>
+		リスト型のオブジェクト<literal>list(f,P1,..Pn)</literal>とすることも可能で,
+		この場合,<literal>f</literal>は<literal>y=f(t,xy,p1,..pn)</literal>
+		という型の関数, <literal>Pi</literal> はパラメータ<literal>pi</literal>
+		の値を指定します.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>選択された時間.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xr,yr</term>
+        <listitem>
+          <para>大きさn1およびn2の行ベクトルで,
+	方向フィールドが計算されるグリッドを定義します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1,key2=value2</literal> ... を表します.
+	ただし, <literal>key1</literal>,
+          <literal>key2,...</literal> は以下のどれかとします: arfact, rect,
+          strf (以下参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arfact,rect,strf</term>
+        <listitem>
+          <para>オプションの引数, <literal>champ</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>fchamp</literal> は,外部関数<literal>f</literal>で定義された
+	2次元1階常微分方程式(ODE)のフィールド方向を描画する際に使用されます.
+	ODEが自律的な場合, 引数 <literal>t</literal>は不要ですが,
+	指定する必要があることに注意してください.</para>
+    <para>コマンド <literal>fchamp()</literal> を入力するとデモを参照できます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
+fchamp(derpol,0,xf,yf)
+clf()
+fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="champ">champ</link>
+      </member>
+      <member>
+        <link linkend="champ1">champ1</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

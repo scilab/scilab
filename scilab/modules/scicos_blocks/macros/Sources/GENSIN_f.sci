@@ -1,6 +1,7 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+// Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -35,16 +36,19 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,M,F,P,exprs]=scicos_getvalue(['Set Gen_SIN Block'],..
-	    ['Magnitude';'Frequency (rad/s)';'phase'],..
-	    list('vec',1,'vec',1,'vec',1),exprs)
+      [ok, M, F, P, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "GENSIN_f");" "; ..
+        gettext("Sine wave generator");" "], ..
+        [gettext("Magnitude"); gettext("Frequency (rad/s)"); gettext("Phase (rad)")], ..
+        list("vec",1,"vec",1,"vec",1), exprs);
     if ~ok then break,end
-    if F<0 then
-      message('Frequency must be positive')
-      ok=%f
+    if F < 0 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Frequency'' parameter: %e."), F), ..
+            gettext("Strictly positive integer expected."));
+        ok = %f
     end
-    [model,graphics,ok]=check_io(model,graphics,[],1,[],[])
+    
     if ok then
+     [model,graphics,ok]=check_io(model,graphics,[],1,[],[])
       model.rpar=[M;F;P]
       graphics.exprs=exprs;
       x.graphics=graphics;x.model=model

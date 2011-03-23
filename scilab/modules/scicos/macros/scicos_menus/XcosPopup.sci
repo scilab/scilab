@@ -1,4 +1,7 @@
 function Cmenu=XcosPopup(ptree)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   main = uicontextmenu();
   for Id=ptree
     if type(Id)==10 then //a leaf
@@ -17,6 +20,9 @@ function Cmenu=XcosPopup(ptree)
 endfunction
 
 function XcosSubPopup(h,tree)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Id=tree(1)
   Label=XcosGetMenuLabel(Id,%scicos_menu)
   if type(Label)<>10 then pause,end

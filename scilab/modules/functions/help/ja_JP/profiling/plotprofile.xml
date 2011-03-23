@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plotprofile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plotprofile</refname>
+    <refpurpose> Scilab関数のプロファイルを展開,表示する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>plotprofile(fun)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>コンパイル済みのScilab 関数, または関数名 (文字列), または関数名の配列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>plotprofile</literal>を使用する場合, Scilab 関数は
+	プロファイル用の準備を実施済みである必要があります (exec 参照).</para>
+    <para>
+	このような関数が実行された時, システムは
+	各行の実行回数と
+	各行の実行に要したCPU時間を計測します.
+	このデータは関数データ構造体の中に保存されます.
+	対話的コマンドで
+	関数 <literal>plotprofile</literal>が実行された場合,
+	この結果はグラフィックウインドウに表示されます.
+	ある行がクリックされると,
+	関数のソースが表示され,選択された行がハイライト表示されます.</para>
+    <para>
+    注意: "plotprofile"を終了するにはグラフィックウインドウの
+	"Exit"項目をクリックする必要があります.</para>
+    <para>
+	関数コードは<literal>fun2string</literal>により再生成され,
+	テンポラリファイルにダンプされます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//関数を定義し,プロファイル用に設定
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+//関数をコール
+foo(30)
+
+//実行プロファイルを取得
+plotprofile(foo) // 終了するには Exit をクリック
+  ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+      <member>
+        <link linkend="showprofile">showprofile</link>
+      </member>
+      <member>
+        <link linkend="fun2string">fun2string</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

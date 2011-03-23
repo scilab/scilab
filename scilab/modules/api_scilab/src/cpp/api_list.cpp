@@ -136,8 +136,15 @@ SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _p
 
 	//get offset of item array
 	piOffset				=	 _piAddress + 2;
-	piItemAddress	= piOffset + iItem  + 1 + !(iItem % 2);
-	*_piItemAddress	= piItemAddress + (piOffset[_iItemNum - 1] - 1) * (sizeof(double) / sizeof(int));
+    if(piOffset[_iItemNum] == piOffset[_iItemNum - 1])
+    {
+        *_piItemAddress = NULL;
+    }
+    else
+    {
+	    piItemAddress	= piOffset + iItem  + 1 + !(iItem % 2);
+	    *_piItemAddress	= piItemAddress + (piOffset[_iItemNum - 1] - 1) * (sizeof(double) / sizeof(int));
+    }
 	return sciErr;
 }
 
@@ -506,6 +513,127 @@ SciErr	allocCommonItemInList(void* _pvCtx, int* _piParent, int _iItemPos, int** 
 	}
 
 	return sciErr;
+}
+
+/******************************
+ * Void and defined functions *
+ ******************************/
+SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos)
+{
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    int iVarID[nsiz];
+    int iNbItem         = 0;
+    int iSaveRhs        = Rhs;
+    int iSaveTop        = Top;
+    int* piEnd          = NULL;
+    int* piChildAddr    = NULL;
+	int* piOffset       = NULL;
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
+
+	//Does item can be added in the list
+	sciErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
+	if(sciErr.iErr)
+	{
+        addErrorMessage(&sciErr, API_ERROR_CREATE_VOID_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "createVoidInNamedList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
+		return sciErr;
+	}
+
+	if(iNbItem < _iItemPos)
+	{
+		addErrorMessage(&sciErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createVoidInNamedList", _iItemPos + 1);
+		return sciErr;
+	}
+
+	sciErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "createVoidInNamedList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
+		return sciErr;
+	}
+
+    //set type, rows, cols complex at 0
+    piChildAddr[0]		= 0;
+    piChildAddr[1]		= 0;
+    piChildAddr[2]		= 0;
+    piChildAddr[3]		= 0;
+
+	piOffset            = _piParent + 2;
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1] + 2;
+
+    piEnd = piChildAddr + 4;
+    closeList(Top, piEnd);
+
+    if(_iItemPos == _piParent[1])
+    {
+        updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
+        createNamedVariable(iVarID);
+    }
+
+    Top = iSaveTop;
+    Rhs = iSaveRhs;
+
+    return sciErr;
+}
+
+SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* _piParent, int _iItemPos)
+{
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    int iVarID[nsiz];
+    int iNbItem         = 0;
+    int iSaveRhs        = Rhs;
+    int iSaveTop        = Top;
+    int* piEnd          = NULL;
+    int* piChildAddr    = NULL;
+	int* piOffset       = NULL;
+
+    C2F(str2name)(_pstName, iVarID, (unsigned long)strlen(_pstName));
+    Top = Top + Nbvars + 1;
+
+	//Does item can be added in the list
+	sciErr = getListItemNumber(_pvCtx, _piParent, &iNbItem);
+	if(sciErr.iErr)
+	{
+        addErrorMessage(&sciErr, API_ERROR_CREATE_VOID_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "createVoidInNamedList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
+		return sciErr;
+	}
+
+	if(iNbItem < _iItemPos)
+	{
+		addErrorMessage(&sciErr, API_ERROR_ITEM_LIST_NUMBER, _("%s: Unable to create list item #%d in Scilab memory"), "createVoidInNamedList", _iItemPos + 1);
+		return sciErr;
+	}
+
+	sciErr = allocCommonItemInList(_pvCtx, _piParent, _iItemPos, &piChildAddr);
+	if(sciErr.iErr)
+	{
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_DOUBLE_IN_LIST, _("%s: Unable to get address of item #%d in argument #%d"), "createVoidInNamedList", _iItemPos + 1, getRhsFromAddress(_pvCtx, _piParent));
+		return sciErr;
+	}
+
+    //set type, rows, cols complex at 0
+    piChildAddr[0]		= 0;
+    piChildAddr[1]		= 0;
+    piChildAddr[2]		= 0;
+    piChildAddr[3]		= 0;
+
+	piOffset            = _piParent + 2;
+	piOffset[_iItemPos] = piOffset[_iItemPos - 1];
+
+    piEnd = piChildAddr + 4;
+    closeList(Top, piEnd);
+
+    if(_iItemPos == _piParent[1])
+    {
+        updateNamedListOffset(_pvCtx, Top, _piParent, _iItemPos, piEnd);
+        createNamedVariable(iVarID);
+    }
+
+    Top = iSaveTop;
+    Rhs = iSaveRhs;
+
+    return sciErr;
 }
 
 /*********************
@@ -2579,6 +2707,11 @@ static int getParentList(void* _pvCtx, int* _piStart, int* _piToFind, int* _piDe
 			int *piChild = NULL;
 			int iRet = 0;
 			getListItemAddress(_pvCtx, _piStart, iIndex + 1, &piChild);
+            if(piChild == NULL)
+            {
+                continue;
+            }
+
 			if(piChild == _piToFind)
 			{
 				if(_piParent != NULL)

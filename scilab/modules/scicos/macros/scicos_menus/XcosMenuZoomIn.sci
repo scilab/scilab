@@ -24,6 +24,9 @@
 //
 
 function XcosMenuZoomIn()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 12 Feb. 2006:  new graphic (Simone), grid insertion (Alan)
 //**                geometrical correction (Ramine)
     Cmenu = [];

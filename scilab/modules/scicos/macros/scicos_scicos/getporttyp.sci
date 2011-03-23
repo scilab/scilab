@@ -20,6 +20,9 @@
 //
 
 function sztyp=getporttyp(o,prt_number,typ)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   sztyp=[]
   typs=['in','out']
   k=find(typ==typs)

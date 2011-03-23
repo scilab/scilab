@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="expm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>expm</refname>
+    <refpurpose> 正方行列の指数関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>expm(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素数のエントリを有する正方行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>X</literal> が正方行列の時,
+	 <literal>expm(X)</literal> は以下の行列となります</para>
+    <para>
+      <literal>expm(X) = I + X + X^2 /2 + ...</literal>
+    </para>
+    <para>
+	計算はまず<literal>X</literal>をブロック対角化した後,
+	各ブロックにパデ近似を適用します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+X=[1 2;3 4]
+expm(X)
+logm(expm(X))    
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="logm">logm</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="coff">coff</link>
+      </member>
+      <member>
+        <link linkend="log">log</link>
+      </member>
+      <member>
+        <link linkend="exp">exp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

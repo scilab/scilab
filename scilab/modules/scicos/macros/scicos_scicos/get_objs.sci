@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function k=get_objs(gr_k,l)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
   //** 21/11/08 : Alan
   //** semi empirical equation :)

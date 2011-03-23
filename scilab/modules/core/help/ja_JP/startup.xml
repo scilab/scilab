@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="startup" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>January 2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>startup</refname>
+
+    <refpurpose>スタートアップファイル</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>スタートアップファイル <literal>SCIHOME/.scilab</literal> および
+    <literal>SCIHOME/scilab.ini</literal> は,
+	(もし存在する場合,) Scilabの起動時に自動的に実行されます.
+	Scilab directory (SCI) にあるファイル<literal>scilab.star</literal>
+	も同様です.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>
+	スタートアップファイルの最終行は, 有効とするために
+	改行で終わる必要があります.
+	</para>
+
+    <para>SCIHOME の定義 : Windowsの場合 : C:/Documents および
+    Settings/&lt;User&gt;/Scilab/&lt;Scilab-Version&gt; </para>
+
+    <para>Vistaの場合 :
+    C:/&lt;User&gt;/AppData/Roaming/Scilab/&lt;Scilab-Version&gt; </para>
+
+    <para>Linux/Unixの場合 :
+    /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="scilab">scilab</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

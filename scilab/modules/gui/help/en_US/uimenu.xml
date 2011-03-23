@@ -106,10 +106,16 @@ h=uimenu(parent,[prop1, val1] [,prop2, val2] ...)</synopsis>
         <term>Checked</term>
 
         <listitem>
-          <para>{on} | off</para>
+          <para>on | {off}</para>
 
-          <para>Menu check indicator. Setting this property to "on" (respectively "off") places (respectively removes) a check mark next to the corresponding menu item. This option can be used to create menus that indicate the state of a particular option. </para>
-          <para>This property is ignored for parent menus.</para>
+          <para>Item check indicator. Setting this property to "on" the first time displays a checkbox in head of the item's label, and then checks it. Setting "off" keeps the checkbox and unchecks it. This property can be used to display items indicating the state of particular options.</para>
+          <para>Remarks:
+            <itemizedlist>
+              <listitem>There is no way to remove the checkbox after its creation, but deleting the item.</listitem>
+              <listitem>By default, no interactive checking or unchecking is possible. Such interactions can be implemented through the Callback property.</listitem>
+              <listitem>This property is ignored for parent menus.</listitem>
+            </itemizedlist>
+          </para>
 
         </listitem>
       </varlistentry>

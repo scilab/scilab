@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="cshep2d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cshep2d</refname>
+
+    <refpurpose>2次元3次シェパード(散布)補間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>tl_coef = cshep2d(xyz)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xyz</term>
+
+        <listitem>
+          <para>
+	(グリッド状ではない)補間点 (i番目の行は(x,y)座標,および
+	i番目の補間点の高度zを指定します)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl_coef</term>
+
+        <listitem>
+          <para>(cshep2d型の) tlist scilab構造体</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,
+	補間点がグリッド上にない時に
+	2次元補間関数を定義する際に有用です
+	(この場合もこの関数を使用できますが,
+	<link linkend="splin2d">splin2d</link>の方がこの目的にはより
+	適しています).
+	この補間式は,3次シェパード補間でC2 (2階微分可能な連続関数)であり,
+	任意の<emphasis>i=1,..,n</emphasis>について
+	<emphasis>s(xi,yi)=zi</emphasis>となるような
+	 2変数関数<emphasis>s(x,y)</emphasis>です
+	(<emphasis>(xi,yi,zi)</emphasis>は<literal>xyz</literal>
+	のi番目のとなります).</para>
+
+    <para>
+	何らかの点における<emphasis>s</emphasis>の評価は,
+	<link linkend="eval_cshep2d">eval_cshep2d</link>関数により行う
+	必要があります.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>この関数は<emphasis role="bold">n &gt;= 10</emphasis>で,
+	ノードが同一線上になく (すなわち,補間点の座標
+	<emphasis>(x,y)</emphasis>座標が同じ直線上にない),
+	冗長なノードが存在しない(すなわち,同じ<emphasis>(x,y)</emphasis>に
+	ついて複数の補間点が存在しない)場合に
+	動作します. これらの条件は満たされない場合,
+	エラーが発生します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// ランダムに選択された補間点について cos(x)cos(y)を補間します
+n = 150; // nb 個の補間点
+xy = grand(n,2,"unf",0,2*%pi);
+z = cos(xy(:,1)).*cos(xy(:,2));
+xyz = [xy z];
+tl_coef = cshep2d(xyz);
+
+// グリッドにおける評価
+m = 30;
+xx = linspace(0,2*%pi,m);
+[X,Y] = ndgrid(xx,xx);
+Z = eval_cshep2d(X,Y, tl_coef);
+clf()
+plot3d(xx,xx,Z,flag=[2 6 4])
+param3d1(xy(:,1),xy(:,2),list(z,-9), flag=[0 0])
+xtitle("Cubic Shepard Interpolation of cos(x)cos(y) with randomly choosen interpolation points")
+legends("interpolation points",-9,1)
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin2d">splin2d</link></member>
+
+      <member><link linkend="eval_cshep2d">eval_cshep2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Robert J. Renka</member>
+
+      <member>B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

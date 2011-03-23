@@ -31,7 +31,7 @@ function bOK = detectmsifort64tools()
      else
        show = displayWarningmsifort();
        if show then
-         TXT = gettext("Intel Fortran Comiler 9, 10, 11 or 12 Compiler not found.");
+         TXT = gettext("Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found.");
          warning(TXT);
          clear TXT;
          disableWarningmsifort();

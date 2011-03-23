@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="champ1">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>champ1</refname>
+    <refpurpose>色付の矢印を有する2次元ベクトルフィールドのプロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>champ1(x,y,fx,fy,[arfact,rect,strf])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>グリッドを定義するベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fx</term>
+        <listitem>
+          <para>ベクトルフィールドのx要素を記述する行列.
+          <literal>fx(i,j)</literal> は点<literal>(x(i),y(j))</literal>における
+	ベクトルフィールドのx要素です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fy</term>
+        <listitem>
+          <para>ベクトルフィールドのy要素を記述する行列.
+          <literal>fy(i,j)</literal> は点<literal>(x(i),y(j))</literal>における
+	ベクトルフィールドのy要素です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arfact</term>
+        <listitem>
+          <para>
+		実数型のオプションの引数で,
+		プロット時の矢じりの表示用のスケールファクタを指定します.
+		(デフォルト値は 1.0).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+         <para>使用するグラフィックフレームの境界を指定する
+	ベクトル<literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frameflag</term>
+        <listitem>
+          <para>
+	指定された値に関する最小限の範囲に基づく実際の座標系の範囲の計算を
+	制御します.
+	値として 0 から 8 の範囲の整数を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>axesflag</term>
+        <listitem>
+          <para>軸の描画方法を指定します.
+	0から5の範囲の整数を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf</term>
+        <listitem>
+          <para>長さ3の文字列 "xyz" で,<literal>plot2d</literal>の
+	<literal>strf</literal>パラメータと意味は同じです.
+	最初の文字xは<literal>champ1</literal>では意味がありません.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>champ1</literal> は色付の矢印を有する2次元ベクトルフィールドを描画します.
+	矢印の色はフィールドのインテンシティに依存します.</para>
+    <para>矢印の長さをフィールドのインテンシティに比例させたい場合,
+    <literal>champ</literal>を使用してください.</para>
+    <para>コマンド <literal>champ1()</literal>を入力するとデモが表示されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="champ">champ</link>
+      </member>
+      <member>
+        <link linkend="fchamp">fchamp</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

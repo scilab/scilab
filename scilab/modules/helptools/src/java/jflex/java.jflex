@@ -1,12 +1,12 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.java;
+package org.scilab.modules.helptools.java;
 
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.IOException;
 
-import org.scilab.forge.scidoc.c.AbstractCCodeHandler;
+import org.scilab.modules.helptools.c.AbstractCCodeHandler;
 
 %%
 

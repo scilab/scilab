@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="grayplot_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grayplot_properties</refname>
+    <refpurpose>grayplotエンティティのプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Grayplotエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは曲面のカラー2次元プロットと画像を表します
+	(<literal>grayplot</literal>, <literal>Sgrayplot</literal>, <literal>fgrayplot</literal> および
+    <literal>Sfgrayplot</literal>参照).</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このプロパティは親のハンドルを有します.
+	grayplotエンティティの親は<literal>"Axes"</literal>型である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティはハンドルの<literal>children</literal>の
+	ベクトルを有します.しかし,<literal>grayplot</literal> は現在
+	<literal>children</literal>を有しません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはエンティティに関する<literal>visible</literal>プロパティ
+	を有します.この値は <literal>"on" </literal> または <literal>"off"</literal>となります.
+        デフォルトでプロットは可視で, このプロパティの値は
+        <literal>"on"</literal>となります. <literal>"off"</literal>の場合,
+	プロットは画面に描画されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>このフィールドは各要素の行及び列添字から構成される
+	<literal>"grayplotdata"</literal>型の<literal>tlist</literal>データ構造体
+	を定義します:
+	グリッドのx および y 座標はそれぞれ 
+        <literal>data.x</literal> および <literal>data.y</literal>に含まれます. 
+	<literal>data.z</literal>という名前のオプションフィールドは
+	点<literal>(x(i),y(j))</literal>における曲面の値における曲面の値です
+	(スケール付きモード)または2つの連続する
+	<literal>x(i)</literal> および
+        <literal>y(j)</literal>の間で定義された曲面の中心値です(直接モード).
+	<literal>data_mapping</literal> (以下参照)
+	が<literal>"scaled"</literal>に設定された場合, 
+	zデータ全体が色の補間を実行するために使用されます.一方,
+	<literal>data_mapping</literal>の値が
+        v<literal>"direct"</literal>の場合, 
+	zデータインデックスの最後の行と列は
+	部分行列
+	<literal>data.z(1:$-1,1:$-1)</literal>のインデックスにより
+	カラーマップで直接定義されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data_mapping: </term>
+        <listitem>
+          <para>デフォルトでこのプロパティの値は<literal>"scaled"</literal>です:
+	色のインデックスは<literal>z</literal>座標の値に比例します.
+	その他の場合,このプロパティの値は<literal>"direct"</literal>となり,
+	プロットはグレープロット,使用される色のインデックスは
+	データにより指定されます (上記参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドにはグレープロットに関する<literal>clip_state</literal>
+	 プロパティの値が含まれます. この値は以下となります :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> :グレープロットはクリップされません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> :グレープロットはAxesボックスの外側で
+		クリップされます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> :グレープロットはclip_boxで
+		指定される矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>このフィールドは<literal>clip_box</literal>ぷるパティを定義します.
+	デフォルトでは,clip_state が "off" の場合,この値は 空行列となります.
+	その他の場合,ベクトル <literal>[x,y,w,h]</literal> (左上の点,幅,高さ)
+	は表示するグレープロットの部分を定義しますが,
+	<literal>clip_state</literal>プロパティの値は変更されます.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドはgrayplotデータ構造体にScilab変数を保存し,
+	復元するために使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+m=5;n=5;
+M=round(32*rand(m,n));
+grayplot(1:m,1:n,M)
+
+a=get("current_axes");
+a.data_bounds=  [-1,-1;7,7]
+h=a.children
+
+h.data_mapping="direct";
+   
+// 行列をカラー二次元プロットする
+clf()
+a=get("current_axes");
+a.data_bounds=  [0,0;4,4];
+  
+b=5*ones(11,11); b(2:10,2:10)=4; b(5:7,5:7)=2;
+Matplot1(b,[1,1,3,3])  ;
+  
+h=a.children
+for i=1:7
+  xclick(); // Matplotデータを設定するためにマウスをクリック
+  h.data=h.data+4;
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot">Matplot</link>
+      </member>
+      <member>
+        <link linkend="Matplot1">Matplot1</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="Matplot_properties">Matplot_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE &amp; F.Leray</para>
+  </refsection>
+</refentry>

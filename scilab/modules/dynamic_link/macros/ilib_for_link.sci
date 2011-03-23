@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -38,9 +38,13 @@ function libn = ilib_for_link(names, ..
   if rhs <= 8 then cflags  = ""; end
   if rhs <= 9 then fflags  = ""; end
   if rhs <= 10 then cc  = ""; end
+  
+  if isempty(files) | ~and(isfile(files)) then
+     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_for_link", 2));
+  end  
 
   if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
-    warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 2), "5.4.0");
+    error(999, msprintf(_("%s: A managed file extension for input argument #%d expected.\n"), "ilib_for_link", 2));
   end
 
   if getos() == "Windows" then

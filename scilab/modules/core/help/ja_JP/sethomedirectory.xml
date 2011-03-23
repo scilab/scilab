@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sethomedirectory">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sethomedirectory</refname>
+    <refpurpose>Scilabホームディレクトリを設定</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[home,scilabhome] = sethomedirectory()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>古い関数 : scilab 変数 "SCIHOME" および "home" を使用する必要があります.</para>
+    <para>Scilab ホームのパスを設定 : "SCIHOME" 変数.</para>
+    <para>OWindows 2k および XPの場合 , C:\Documents and
+    Settings\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+    <para>Windows Vistaの場合 ,
+    C:\Users\&lt;User&gt;\Scilab\&lt;Scilab-Version&gt;</para>
+    <para>Unixの場合, /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

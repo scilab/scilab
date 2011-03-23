@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sskf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sskf</refname>
+    <refpurpose> 定常カルマンフィルタ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[xe,pe]=sskf(y,f,h,q,r,x0)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para> <literal>[y0,y1,...,yn]</literal>, <literal>yk</literal>からのデータ,
+	列ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>システム行列の次元(NxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>観測行列の次元(MxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>q</term>
+        <listitem>
+          <para>ダイナミクスノイズ行列の次元(NxN)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>観測ノイズ行列の次元(MxM)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x0</term>
+        <listitem>
+          <para>初期状態量の推定値</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xe</term>
+        <listitem>
+          <para>状態量の推定値</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pe</term>
+        <listitem>
+          <para>誤差共分散の定常値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    定常カルマンフィルタ</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>C. B.  </para>
+  </refsection>
+</refentry>

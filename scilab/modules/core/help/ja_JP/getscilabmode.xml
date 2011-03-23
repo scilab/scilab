@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getscilabmode">
+  <info>
+    <pubdate>$LastChangedDate: 2007-04-02 14:33:52 +0200 (Mon, 02 Apr 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getscilabmode</refname>
+    <refpurpose>Scilabモードを取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>mode = getscilabmode()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>Scilabモードを返します. 以下の4 種類のモードがあります : STD , API , NW , NWNI .</para>
+    <para><literal>API</literal>Scilab はAPIとして起動されますi.</para>
+    <para><literal>STD</literal>標準的なT Scilab (gui, plot ...) </para>
+    <para><literal>NW</literal>コマンドライン版 Scilab (プロット機能付き).</para>
+    <para><literal>NWNI</literal>コマンドライン版Scilab (グラフィックなし).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+getscilabmode()
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scilab">scilab</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

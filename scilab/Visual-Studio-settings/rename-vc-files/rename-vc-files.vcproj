@@ -151,10 +151,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\etc\jvm_options.xml.vc"
-				>
-			</File>
-			<File
 				RelativePath="..\..\modules\core\includes\machine.h.vc"
 				>
 			</File>
@@ -172,6 +168,10 @@
 			</File>
 			<File
 				RelativePath="..\..\modules\core\includes\stack.h.vc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\modules\core\includes\version.h.vc"
 				>
 			</File>
 			<File

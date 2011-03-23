@@ -372,22 +372,21 @@ while %t then //=================================================
   select Cmenu
    case 'Data Bounds' then
       rectx=findrect(a);
-      [mok,xmn1,xmx1,ymn1,ymx1]=scicos_getvalue('Enter new bounds',['xmin';'xmax'; ...
-		    'ymin';'ymax'],list('vec',1,'vec',1,'vec',1,'vec',1), ...
-				     string(rectx))
+      [mok, xmn1, xmx1, ymn1, ymx1] = scicos_getvalue('Enter new bounds',['xmin';'xmax'; 'ymin';'ymax'], ..
+          list('vec', 1,'vec', 1,'vec', 1,'vec', 1), string(rectx(:)))
       //drawlater();
-      if mok then 
-	if (xmn1>xmx1|ymn1>ymx1) then
-	  xinfo('Incorrect bounds')
-	  mok=%f;
-	end
-	if xmn1<0 then
-	  xinfo('X should be positive')
-	  mok=%f;
-	end
-	if mok then 
-	  a.data_bounds=[xmn1,ymn1;xmx1,ymx1];
-	end
+      if mok then
+        if (xmn1 > xmx1 | ymn1 > ymx1) then
+          xinfo('Incorrect bounds')
+          mok=%f;
+        end
+        if xmn1<0 then
+          xinfo('X should be positive')
+          mok=%f;
+        end
+        if mok then
+          a.data_bounds=[xmn1, ymn1; xmx1, ymx1];
+        end
       end
       //drawnow();//show_pixmap(); 
     //-------------------------------------------------------------------  

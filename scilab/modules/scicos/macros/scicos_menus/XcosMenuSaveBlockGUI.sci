@@ -20,6 +20,9 @@
 //
 
 function XcosMenuSaveBlockGUI()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 25/06/2009 : Serge Steer, 
 //   -fix a bug un case there are selected objects in other windows  
   K=find(Select(:,2)==curwin)

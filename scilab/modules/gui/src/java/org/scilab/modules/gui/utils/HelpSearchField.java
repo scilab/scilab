@@ -109,6 +109,20 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
     }
 
     /**
+     * Get the text in the text component to search in
+     */
+    private void getText() {
+        if (text == null) {
+            Document doc = textcomp.getDocument();
+            try {
+                text = doc.getText(0, doc.getLength()).toLowerCase();
+            } catch (BadLocationException ex) {
+                System.err.println(ex);
+            }
+        }
+    }
+
+    /**
      * {@inheritDoc}
      */
     public void requestFocus() {
@@ -119,14 +133,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
      * {@inheritDoc}
      */
     public void focusGained(FocusEvent e) {
-        if (text == null) {
-            Document doc = textcomp.getDocument();
-            try {
-                text = doc.getText(0, doc.getLength()).toLowerCase();
-            } catch (BadLocationException ex) {
-                System.err.println(e);
-            }
-        }
+        getText();
         field.select(0, field.getText().length());
     }
 
@@ -168,8 +175,8 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             parent.add(this, BorderLayout.PAGE_END);
             setVisible(true);
             parent.revalidate();
-            requestFocus();
         }
+        requestFocus();
     }
 
     /**
@@ -221,6 +228,7 @@ public class HelpSearchField extends JPanel implements FocusListener, KeyListene
             if (str != null) {
                 int start;
                 str = str.toLowerCase();
+                getText();
                 if ((key == KeyEvent.VK_ENTER || key == KeyEvent.VK_F3) && ((e.getModifiers() & KeyEvent.SHIFT_MASK) != 0)) {
                     currentPos = Math.max(0, currentPos - 1);
                     start = text.lastIndexOf(str, currentPos);

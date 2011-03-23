@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="edit_curv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>edit_curv</refname>
+    <refpurpose>グラフィック曲線エディタへのインターフェイス</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[x,y,ok,gc] = edit_curv(y)
+[x,y,ok,gc] = edit_curv(x,y)
+[x,y,ok,gc] = edit_curv(x,y,job)
+[x,y,ok,gc] = edit_curv(x,y,job,tit)
+[x,y,ok,gc] = edit_curv(x,y,job,tit,gc)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>x座標ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>y座標ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>job</term>
+        <listitem>
+          <para>'a','x','y' の1～3文字からなる文字列</para>
+          <variablelist>
+            <varlistentry>
+              <term>'a'</term>
+              <listitem>
+                <para>編集対象の曲線に点を追加</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'x' </term>
+              <listitem>
+                <para>編集対象の曲線の点のx座標を修正</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'y'  </term>
+              <listitem>
+                <para>編集対象の曲線の点のy座標を修正</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tit</term>
+        <listitem>
+          <para>曲線の凡例を指定する3文字の文字列ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gc</term>
+        <listitem>
+          <para>グラフィックウインドウパラメータのリスト: <literal>gc=list(rect,nax)</literal></para>
+          <variablelist>
+            <varlistentry>
+              <term>rect</term>
+              <listitem>
+                <para>グラフィックの境界 (詳細は plot2d参照)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nax</term>
+              <listitem>
+                <para>グラデーションパラメータ (詳細は plot2d 参照)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ok</term>
+        <listitem>
+          <para>
+	ok==%t の場合,はユーザがメニュー'ok' を指定して返したこと,
+	そうでない場合はユーザが 'abort'メニューを指定して返したことを示します
+	: list (<literal>edit_curv</literal>の元で作成されたグラフィックオブジェクト)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>edit_curv</literal> は対話的なグラフィック曲線エディタです.
+	新しい点を追加するには,好きな位置をクリックします.
+	追加された点はもっと近い端点に接続されます.
+	点を移動するには,その点をクリックし,マウスで新しい位置までドラッグし,
+	クリックすることで新しい位置に設定されます.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Serge Steer ; ; ; ; ;   </para>
+  </refsection>
+</refentry>

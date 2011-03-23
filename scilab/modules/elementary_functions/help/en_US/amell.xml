@@ -60,10 +60,10 @@
         <link linkend="delip">delip</link>
       </member>
       <member>
-        <link linkend="sn">%sn</link>
+        <link linkend="percentsn">%sn</link>
       </member>
       <member>
-        <link linkend="asn">%asn</link>
+        <link linkend="percentasn">%asn</link>
       </member>
     </simplelist>
   </refsection>

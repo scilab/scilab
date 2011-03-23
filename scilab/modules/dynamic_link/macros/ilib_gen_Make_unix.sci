@@ -62,7 +62,8 @@ function ilib_gen_Make_unix(names,   ..
 
 
     originPath  = pwd();
-    linkBuildDir    = TMPDIR;
+    linkBuildDir    = TMPDIR+"/"+libname;
+    mkdir(linkBuildDir);
     commandpath = SCI+"/modules/dynamic_link/src/scripts";
     [fd,ierr] = mopen(commandpath+"/write.test","w+");
 
@@ -106,7 +107,7 @@ function ilib_gen_Make_unix(names,   ..
     // Copy files to the working tmpdir
     for x = mandatoryFiles(:)' ;
       fullPath=commandpath+"/"+x;
-      if (fileinfo(fullPath)<>[]) then
+      if (isfile(fullPath)) then
         [status,msg]=copyfile(fullPath,linkBuildDir);
         if (status <> 1)
           error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));

@@ -188,20 +188,29 @@
             <submenu label="Scilab &amp;Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
             </submenu>
+            <separator/>
             <submenu label="Scilab &amp;Online Help">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelpSite' type="3"/>
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelp' type="3"/>
             </submenu>
+            <submenu label="Scilab &amp;Wiki">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openWiki' type="3"/>
+            </submenu>
+            <separator/>
             <submenu label="Scilab &amp;ATOMS Web Site">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilabWebSite' type="3"/>
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilab' type="3"/>
             </submenu>
-            <submenu label="&amp;Contributions">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
-            </submenu>
-            <submenu label="&amp;Bugs And Requests">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
+            <submenu label="&amp;File Exchange">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openFileExchange' type="3"/>
             </submenu>
             <submenu label="&amp;Mailing lists">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListWebSite' type="3"/>
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingList' type="3"/>
+            </submenu>
+            <separator/>
+            <submenu label="&amp;Forge">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openForge' type="3"/>
+            </submenu>
+            <submenu label="&amp;Bugs And Requests">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla' type="3"/>
             </submenu>
         </submenu>
         <separator/>

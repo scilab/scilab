@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,14 +10,15 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="Portaction_pal"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook"
-	  xml:lang="fr">
+<refentry
+  version="5.0-subset Scilab" xml:id="Portaction_pal" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>Portaction_pal</refname>
 
@@ -30,37 +31,37 @@
     <para>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="CLKINV_f" fileref="../../../../../../modules/xcos/images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="CLKINV_f" fileref="../../../../images/palettes/CLKINV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="CLKOUTV_f" fileref="../../../../../../modules/xcos/images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="CLKOUTV_f" fileref="../../../../images/palettes/CLKOUTV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="IN_f" fileref="../../../../../../modules/xcos/images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="IN_f" fileref="../../../../images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="INIMPL_f" fileref="../../../../../../modules/xcos/images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="INIMPL_f" fileref="../../../../images/palettes/INIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="OUTIMPL_f" fileref="../../../../../../modules/xcos/images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="OUTIMPL_f" fileref="../../../../images/palettes/OUTIMPL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="OUT_f" fileref="../../../../../../modules/xcos/images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="OUT_f" fileref="../../../../images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="SUPER_f" fileref="../../../../../../modules/xcos/images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        <imagedata linkend="SUPER_f" fileref="../../../../images/palettes/SUPER_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
     </para>
@@ -85,7 +86,7 @@
   </refsection>
 
   <refsection id="Blocks_Portaction_pal">
-    <title>Blocks</title>
+    <title>Blocs</title>
 
     <itemizedlist>
       <listitem>
@@ -94,25 +95,25 @@
         </para>
       </listitem>
 
-     <listitem>
+      <listitem>
         <para>
-          <link linkend="CLKOUTV_f">CLKOUTV_f — Port d'activation de sortie.  Sélection d'événement.</link>
+          <link linkend="CLKOUTV_f">CLKOUTV_f — Port d'activation de sortie. Sélection d'événement.</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="IN_f">IN_f - Port d'entrée</link>
+          <link linkend="IN_f">IN_f - Port d'entrée régulier</link>
         </para>
       </listitem>
 
-	  <listitem>
+      <listitem>
         <para>
           <link linkend="INIMPL_f">INIMPL_f — Port d'entrée implicite.</link>
         </para>
       </listitem>
 
-	  <listitem>
+      <listitem>
         <para>
           <link linkend="OUTIMPL_f">OUTIMPL_f — Port de sortie implicite</link>
         </para>
@@ -120,11 +121,11 @@
 
       <listitem>
         <para>
-          <link linkend="OUT_f">OUT_f - Port de sortie</link>
+          <link linkend="OUT_f">OUT_f - Port de sortie régulier</link>
         </para>
       </listitem>
 
-	  <listitem>
+      <listitem>
         <para>
           <link linkend="SUPER_f">SUPER_f — Super bloc</link>
         </para>

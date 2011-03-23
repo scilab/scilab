@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="addcolor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>addcolor</refname>
+    <refpurpose> カレントのカラーマップに新色を追加する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>new=addcolor(c)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>new</term>
+        <listitem>
+          <para>新しい色テーブルで c で定義された色のID.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>3列の行列, RGBカラー定義.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>addcolor</literal> は引数<literal>c</literal>で指定された新色を
+	カレントのカラーマップに追加します.
+	<literal>c</literal>は3つの列<literal>[R G B]</literal>
+	(<literal>R</literal> は赤要素, <literal>G</literal> は緑要素,
+    <literal>B</literal> は青要素)
+	を有する行列である必要があります.
+	<literal>c</literal>の各エントリは1以下の非負の数です.</para>
+    <para>
+	新色のIDが<literal>new</literal>に返されます.</para>
+    <para>
+    <literal>c</literal>で定義した色が既にカレントの色マップに存在する場合,
+	その色は追加されません.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+plot3d();
+h = gcf();
+h.color_map = jetcolormap(16);
+addcolor(name2rgb('grey')/255);
+ ]]>
+ </programlisting>
+ </refsection>
+    <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="colormap">colormap</link></member>
+      <member><link linkend="name2rgb">name2rgb</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -21,6 +21,9 @@
 //
 
 function XcosMenuFitToFigure()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Alan-21/12/06 : Fit diagram to figure (Based on new graphics)
 //compute the zoom factor, to fit the diagram with the current viewport size
    Cmenu = [];

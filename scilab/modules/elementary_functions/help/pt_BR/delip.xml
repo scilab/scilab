@@ -121,9 +121,9 @@ intg(0,1,f)    //OK, desde que a solução seja real!
     <simplelist type="inline">
       <member><link linkend="amell">amell</link></member>
 
-      <member><link linkend="asn">%asn</link></member>
+      <member><link linkend="percentasn">%asn</link></member>
 
-      <member><link linkend="sn">%sn</link></member>
+      <member><link linkend="percentsn">%sn</link></member>
     </simplelist>
   </refsection>
 </refentry>

@@ -20,6 +20,9 @@
 //
 
 function wdm=do_view(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   wpar=scs_m.props;wdm=wpar.wpar
   if size(wdm,'*')<6 then wdm(3)=0;wdm(4)=0;wdm(5)=wdm(1);wdm(6)=wdm(2);end
   Xshift=wdm(3)

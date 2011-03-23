@@ -20,6 +20,9 @@
 //
 
 function drawtitle(wpar)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // draw window title
 //**
 //** 26 Feb 2008 : Update for Scilab 5 by Simone Mannori    

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="read_csv" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>read_csv</refname>
+
+    <refpurpose>カンマ区切り形式のファイルを読み込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>M = read_csv(fname [,sep])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fname</term>
+
+        <listitem>
+          <para>文字列. ファイルのパス.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sep</term>
+
+        <listitem>
+          <para>文字列. 使用するフィールドセパレータ, デフォルト値は
+          ","</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>文字列の行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	例えば表計算ソフトウエアで"テキストおよびカンマ"形式で
+	作成した,フィールドのデリミタを有するアスキーファイルを
+	指定すると,read_csv(fname) は対応する
+	Scilabの文字列行列を返します.
+	セパレータを変更するには, read_csv(fname,sep) としてください.</para>
+
+    <para>注意: 
+	文字列変数を数値変数に変換するために
+	関数 evstrによりMの全体あるいは一部を評価することができます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example">// タブ区切りのデータを有するファイルを作成
+A = 1:50;
+mputl(strcat(string(A),ascii(9)), TMPDIR + '/foo.csv');
+
+// csvファイルを読み込む
+B = read_csv(TMPDIR + '/foo.csv');
+
+// eval B
+C = evstr(B);
+
+// もとのデータと結果を比較
+and(A == C)</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="write_csv">write_csv</link></member>
+
+      <member><link linkend="evstr">evstr</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Allan CORNET</term>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

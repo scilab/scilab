@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2007 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fftw_flags" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>October 2006</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fftw_flags</refname>
+
+    <refpurpose>fftw関数の高速フーリエ変換の計算手法を設定する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[a,[S]]=fftw_flags([x1;x2;...])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>[x1;x2;...]</term>
+
+        <listitem>
+          <para>文字列および整数の行列.
+          fftwのfft計算の手法を切替えるエントリ.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a</term>
+
+        <listitem>
+          <para>整数. fftw関数のフラグのカレントの値を指定します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>S</term>
+
+        <listitem>
+          <para>文字列行列. fftwフラグの文字列の値を指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,
+	<link linkend="fftw">fftw</link>関数で使用される
+	<literal>fftw_plan_guru_split_dft</literal>関数の
+	<literal>unsigned flags</literal>パラメータを変更します. </para>
+
+    <para>デフォルト値はFFTW_ESTIMATEです</para>
+
+    <para>以下のエントリが使用可能です :</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>FFTW_MEASURE または 0</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_DESTROY_INPUT または 1</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_UNALIGNED または 2</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_CONSERVE_MEMORY または 4</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_EXHAUSTIVE または 8</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_PRESERVE_INPUT または 16</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_PATIENT または 32</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_ESTIMATE または 64</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_ESTIMATE_PATIENT または 128</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_BELIEVE_PCOST または 256</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_DFT_R2HC または512</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_NONTHREADED または 1024</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_BUFFERING または 2048</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_INDIRECT_OP または 4096</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_ALLOW_LARGE_GENERIC または 8192</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_RANK_SPLITS または 16384</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_VRANK_SPLITS または 32768</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_VRECURSE または 65536</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_SIMD または 131072</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_SLOW または 262144</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_NO_FIXED_RADIX_LARGE_N または 524288</para>
+      </listitem>
+
+      <listitem>
+        <para>FFTW_ALLOW_PRUNING または 1048576</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>注意 :  FFTW_MEASURE/FFTW_PATIENT/FFTW_EXHAUSTIVE を使用した場合,
+	fftwを2回コールする必要があります.
+	(最初のコールは初期化のため, 二回目以降は計算のためです)</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//return the integer value of the flag
+fftw_flags()
+
+//change flags
+fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
+
+//change flags and display current value of fftw flags (both integer and strings)
+[a,S]=fftw_flags("FFTW_PATIENT")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fftw">fftw</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

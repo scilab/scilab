@@ -46,7 +46,6 @@
 s=poly(0,"s");
 [1 2 s]^4
 [s 1;1  s]^(-1)
-</para>
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -28,7 +28,7 @@
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice creuse réelle ou complexe
+          <para>matrice creuse réelle symétrique et définie positive.
 </para>
         </listitem>
       </varlistentry>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="trans">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>trans</refname>
+    <refpurpose>ローパルから他のフィルタに変換する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+    hzt=trans(hz,tr_type,frq)
+    hzt=trans(pd,zd,gd,tr_type,frq)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータs</title>
+    <variablelist>
+      <varlistentry>
+        <term>hz</term>
+        <listitem>
+          <para>
+	1入力1出力離散伝達関数,ローパスフィルタ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pd</term>
+        <listitem>
+          <para>指定するフィルタの極のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zd</term>
+        <listitem>
+		<para>指定するフィルタのゼロのベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gd</term>
+        <listitem>
+          <para>スカラー: 指定するフィルタのゲイン</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tr_type</term>
+        <listitem>
+          <para>文字列, 変換の種類, 使用可能な値については説明を参照ください </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frq</term>
+        <listitem>
+          <para>離散カットオフ周波数の2要素のベクトル
+          (すなわち,<literal>0&lt;frq&lt;.5</literal>).詳細は説明を参照. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hzt</term>
+        <listitem>
+          <para>変換後のフィルタ伝達関数.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	極/ゼロ/ゲイン表現で指定した
+	標準ローパスフィルタを以下のフィルタのどれかに変換する関数:</para>
+    <variablelist>
+      <varlistentry>
+	<term>tr_type='lp'</term>
+	<listitem>
+	  <para>ローパスフィルタ, カットオフ周波数は
+	  <literal>frq</literal>の最初のエントリで指定されます, 
+	2番目のエントリは無視されます.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='hp'</term>
+	<listitem>
+	  <para>ハイパスフィルタ, カットオフ周波数は
+	  <literal>frq</literal>の最初のエントリで指定されます, 
+	2番目のエントリは無視されます.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='bp'</term>
+	<listitem>
+	  <para>バンドパスフィルタ, 周波数範囲は <literal>frq(1)</literal> および
+	 <literal>frq(2)</literal>で指定されます.</para>
+	</listitem>
+      </varlistentry>
+      <varlistentry>
+	<term>tr_type='sb'</term>
+	<listitem>
+	  <para>バンドストップフィルタ,周波数範囲は <literal>frq(1)</literal> および
+	 <literal>frq(2)</literal>で指定されます.</para>
+	</listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+ 
+  <title>使用される関数</title>
+  <para><link linkend="bilt">bilt</link></para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+Hbp=trans(Hlp,'bp',[0.01 0.1]);
+Hsb=trans(Hlp,'sb',[0.01 0.1])
+
+clf();gainplot([Hlp;Hbp;Hsb],1d-3,0.48);
+l=legend(['original low pass';'band pass';'stop band']);
+l.legend_location="in_lower_left";
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Carey Bunks ;   </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="iir">iir</link></member>
+       <member><link linkend="bilt">bilt</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -14,7 +14,7 @@ and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -
       <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.showSearchFieldInHelp' type="-3"/>
     </submenu>
     <separator/>
-    <submenu label="In&amp;crease font size" accelerator="OSSCKEY EQUALS">
+    <submenu label="In&amp;crease font size" accelerator="OSSCKEY PLUS">
       <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.increaseFontInHelpViewer' type="-3"/>
     </submenu>
     <submenu label="&amp;Decrease font size" accelerator="OSSCKEY MINUS">

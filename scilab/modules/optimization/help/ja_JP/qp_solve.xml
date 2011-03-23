@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="qp_solve" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>March 2008</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>qp_solve</refname>
+
+    <refpurpose>組み込みの線形二次計画ソルバー</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[x [,iact [,iter [,f]]]]=qp_solve(Q,p1,C1,b,me)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Q</term>
+
+        <listitem>
+          <para>実数正定対称行列 (次元 <literal>n
+          x n</literal>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>実数 (列) ベクトル (次元 <literal> n</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>実数行列 (次元 <literal> (me + md) x n</literal>).
+          この行列は通常行列または疎行列とすることができます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>b</term>
+
+        <listitem>
+          <para>RHS 列ベクトル (次元 <literal> m=(me +
+          md)</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>me</term>
+
+        <listitem>
+          <para>等式拘束の数 (すなわち <literal>x'*C(:,1:me) =
+          b(1:me)'</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>見つかった最適解.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iact</term>
+
+        <listitem>
+          <para>ベクトル, アクティブな拘束のインジケータ. 最初の
+	非ゼロのエントリは
+	アクティブの拘束のインデックスを出力します</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iter</term>
+
+
+        <listitem>
+          <para>2x1ベクトル, 最初の要素には
+	"main" 反復の数を出力します.
+	2番目の要素には,アクティブになった後に削除された拘束の数を出力します.</para>
+        </listitem>
+
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/qp_solve_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>この関数は,<literal>Q</literal>が対称正定であることを必要とします.
+	この仮定が満たされない場合には, <emphasis role="bold">quaproツールボックス</emphasis>で
+	指定されたquapro 関数を使用することができます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 以下のような x ( R^6)を探す:
+// x'*C1 = b1 (3 個の等式拘束 すなわち me=3)
+C1= [ 1,-1, 2;
+     -1, 0, 5;
+      1,-3, 3;
+      0,-4, 0;
+      3, 5, 1;
+      1, 6, 0];
+b1=[1;2;3];
+
+// x'*C2 >= b2 (2 個の不等式拘束)
+C2= [ 0 ,1;
+     -1, 0;
+      0,-2;
+     -1,-1;
+     -2,-1;
+      1, 0];
+b2=[ 1;-2.5];
+
+// 以下の条件のもとで 0.5*x'*Q*x + p'*x を最小化
+p=[-1;-2;-3;-4;-5;-6]; Q=eye(6,6);
+
+me=3;
+[x,iact,iter,f]=qp_solve(Q,p,[C1 C2],[b1;b2],me)
+// 線形拘束 (1 から 4) のみアクティブ
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="optim">optim</link></member>
+
+      <member><link linkend="qld">qld</link></member>
+
+      <member><link linkend="qpsolve">qpsolve</link></member>
+    </simplelist>
+
+    <para>
+	ツールボックス "quapro" も特に<literal>Q</literal>が
+	特異な場合には有用かもしれません.</para>
+  </refsection>
+
+  <refsection>
+    <title>所要メモリ</title>
+
+    <para>rを以下とすると</para>
+
+    <programlisting> 
+r=min(m,n)
+ </programlisting>
+
+    <para>計算時にqp_solveに必要とされるメモリは,以下となります</para>
+
+    <programlisting> 
+2*n+r*(r+5)/2 + 2*m +1
+ </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>S. Steer</term>
+
+        <listitem>
+          <para>INRIA (Scilab interface)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Berwin A. Turlach</term>
+
+        <listitem>
+          <para>School of Mathematics and Statistics (M019), The University of
+          Western Australia, Crawley, AUSTRALIA (solver code)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1982). "Dual and Primal-Dual
+        Methods for Solving Strictly Convex Quadratic Programs", in J.P.
+        Hennart (ed.), Numerical Analysis, Proceedings, Cocoyoc, Mexico 1981,
+        Vol. 909 of Lecture Notes in Mathematics, Springer-Verlag, Berlin, pp.
+        226-239.</para>
+      </listitem>
+
+      <listitem>
+        <para>Goldfarb, D. and Idnani, A. (1983). "A numerically stable dual
+        method for solving strictly convex quadratic programs", Mathematical
+        Programming 27: 1-33.</para>
+      </listitem>
+
+      <listitem>
+        <para>QuadProg (Quadratic Programming Routines), Berwin A
+        Turlach,<ulink
+        url="http://www.maths.uwa.edu.au/~berwin/software/quadprog.html">http://www.maths.uwa.edu.au/~berwin/software/quadprog.html</ulink></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+   <title>使用される関数</title>
+
+    <para>
+    Goldfarb/Idnani アルゴリズムに基づきBerwin A. Turlach
+	により開発されたqpgen2.f and &gt;qpgen1.f (または QP.solve.f)</para>
+  </refsection>
+</refentry>

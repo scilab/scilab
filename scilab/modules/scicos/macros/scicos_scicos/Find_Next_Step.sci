@@ -20,6 +20,9 @@
 //
 
 function [Cmenu,Select]=Find_Next_Step(path_objective,path)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 i=length(path_objective)
 j=length(path)
 m=min(i,j)

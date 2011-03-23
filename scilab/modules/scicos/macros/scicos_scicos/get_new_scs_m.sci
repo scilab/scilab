@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function scs_m=get_new_scs_m()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   scs_m = scicos_diagram(version=get_scicos_version());
 

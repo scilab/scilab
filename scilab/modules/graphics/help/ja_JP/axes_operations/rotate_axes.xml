@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rotate_axes">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-09 10:14:07 +0200 (mer., 09 avr. 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rotate_axes</refname>
+    <refpurpose>Axesハンドルを対話的に回転.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>rotate_axes()
+rotate_axes(h)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>Figure または Axes のハンドルe. 回転を行う Axes を指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>rotate_axes</literal> 関数はAxesオブジェクトの
+	回転を対話的に行う際に使用されます.この関数がコールされた時,
+	ユーザはグラフィックウインドウを2回クリックすることを求められます.
+	最初のクリックの初期化,2回目は回転の終了を指定します.
+    </para>
+    <para>
+      Axesハンドルが入力引数として指定された場合,この軸に回転が適用されます.
+	figureハンドルが指定された場合,最初のクリックにより回転するAxesオブジェクトを
+	定義します.
+	引数を指定せずに関数がコールされた場合,
+	カレントのfigureに回転が適用されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf();
+// 図に2つの軸を作成
+subplot(2, 1, 1);
+plot2d;
+subplot(2, 1, 2);
+plot3d;
+
+// 2番目の軸のみを回転
+axes2 = gca();
+rotate_axes(axes2);
+
+// 選択した軸を回転
+rotate_axes();
+// or
+rotate_axes(gcf());
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zoom_rect">zoom_rect</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Jean-Baptiste Silvy INRIA </para>
+  </refsection>
+</refentry>
+

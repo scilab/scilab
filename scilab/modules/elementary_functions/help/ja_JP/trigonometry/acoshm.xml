@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="acoshm" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>acoshm</refname>
+
+    <refpurpose>行列双曲線逆余弦</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>t=acoshm(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,t</term>
+
+        <listitem>
+          <para>実数または複素数の正方行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>acoshm は行列 x の行列双曲線逆余弦となる. 
+    式<literal>t=logm(x+(x+eye())*sqrtm((x-eye())/(x+eye())))</literal> を使用する.
+	非対称行列の場合,結果は不正確となる可能性がある.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+coshm(acoshm(A))
+A(1,1)=A(1,1)+%i;
+coshm(acoshm(A))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <simplelist type="inline">
+      <member><link linkend="acosh">acosh</link></member>
+
+      <member><link linkend="logm">logm</link></member>
+
+      <member><link linkend="sqrtm">sqrtm</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rref">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rref</refname>
+    <refpurpose> LU分解により行echelon形式の行列を計算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>R=rref(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para> スカラーのエントリを有するm x n 行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>R</term>
+        <listitem>
+          <para> Aの行echelon形式のm x n行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>rref</literal> は左LU分解により指定した行列
+	の行echelon形式を計算します.
+	<literal>X=rref([A,eye(m,m)])</literal>をコールする際に使用した
+	変換が必要な場合,行echelon形式は<literal>X(:,1:n)</literal>となり,
+	左分解<literal>L</literal>は<literal>L*A=R</literal>となるような
+	<literal>X(:,n+1:n+m)</literal> により指定されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=[1 2;3 4;5 6];
+X=rref([A,eye(3,3)]);
+R=X(:,1:2)
+L=X(:,3:5);L*A
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lu">lu</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

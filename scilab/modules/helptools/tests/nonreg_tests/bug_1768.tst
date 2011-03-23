@@ -6,7 +6,6 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 
 // <-- Non-regression test for bug 1768 -->

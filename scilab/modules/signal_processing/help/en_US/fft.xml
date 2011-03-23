@@ -24,27 +24,27 @@ x=fft(a,1,dim,incr)</synopsis>
       <varlistentry>
         <term>x</term>
         <listitem>
-          <para>real or complex vector. Real or complex matrix (2-dim
+          <para>real or complex vector or real or complex matrix (2-dim
           fft)</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>a</term>
         <listitem>
-          <para>real or complex vector, matrix or multidimensionnal
-          array.</para>
+          <para>real or complex vector or real or complex matrix (2-dim
+          fft).</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>dim</term>
         <listitem>
-          <para>integer</para>
+          <para>positive integer</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>incr</term>
         <listitem>
-          <para>integer</para>
+          <para>positive integer</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,27 +59,31 @@ x=fft(a,1,dim,incr)</synopsis>
             <varlistentry>
               <term>direct</term>
               <listitem>
-                <para><literal>x=fft(a,-1)</literal> or <literal>x=fft(a)</literal> gives a
-            direct transform.</para>
+                <para><literal>x=fft(a,-1)</literal> or
+                <literal>x=fft(a)</literal> gives a direct
+                transform.</para>
                 <variablelist>
                   <varlistentry>
                     <term>single variate</term>
                     <listitem>
                       <para>If <literal>a</literal> is a vector a single variate direct FFT
                 is computed that is:</para>
-                      <para>x(k)=sum over m from 1 to n of
-                a(m)*exp(-2i*pi*(m-1)*(k-1)/n)</para>
-                      <para>for k varying from 1 to n (n=size of vector
-                <literal>a</literal>).</para>
-                      <para>(the <literal>-1</literal> argument refers to the sign of the
+                <para>      
+                  <latex>
+                    $x(k) = \sum_{m=1}^n {a(m)*e^{-\frac{2i*\pi}{n} (m-1) (k-1)}$
+                  </latex>
+                </para>
+                      
+                <para>(the <literal>-1</literal> argument refers to the sign of the
                 exponent..., NOT to "inverse"),</para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
                     <term>multivariate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a matrix or or a multidimensionnal
-                array a multivariate direct FFT is performed.</para>
+                      <para>If <literal>a</literal> is a matrix or or
+                      a multidimensionnal array a multivariate direct
+                      FFT is performed.</para>
                     </listitem>
                   </varlistentry>
                 </variablelist>
@@ -88,14 +92,20 @@ x=fft(a,1,dim,incr)</synopsis>
             <varlistentry>
               <term>inverse</term>
               <listitem>
-                <para><literal>a=fft(x,1)</literal> or <literal>a=ifft(x)</literal>performs the
-            inverse transform normalized by <literal>1/n</literal>.</para>
+                <para><literal>a=fft(x,1)</literal> or
+                <literal>a=ifft(x)</literal>performs the inverse
+                transform normalized by <literal>1/n</literal>.</para>
                 <variablelist>
                   <varlistentry>
                     <term>single variate</term>
                     <listitem>
-                      <para>If <literal>a</literal> is a vector a single variate inverse FFT
-                is computed</para>
+                      <para>If <literal>a</literal> is a vector a
+                      single variate inverse FFT is computed</para>
+                      <para>      
+                        <latex>
+                          $x(k) = \sum_{m=1}^n {a(m)*e^{+\frac{2i*\pi}{n} (m-1) (k-1)}$
+                        </latex>
+                      </para>
                     </listitem>
                   </varlistentry>
                   <varlistentry>
@@ -122,7 +132,8 @@ x=fft(a,1,dim,incr)</synopsis>
         <literal>1:dim(2),...</literal> one gets a p-variate FFT by calling p times
         <literal>fft</literal> as follows</para>
           <programlisting role  = ""><![CDATA[ 
-incrk=1; x=a;
+incrk=1; 
+x=a;
 for k=1:p 
   x=fft(x ,-1,dim(k),incrk)
   incrk=incrk*dim(k) 
@@ -134,21 +145,26 @@ end
         <literal>a</literal>.</para>
           <para>In particular,if <literal>a</literal> is an mxn matrix,
         <literal>x=fft(a,-1)</literal> is equivalent to the two instructions:</para>
-          <para><literal>a1=fft(a,-1,m,1)</literal> and
-        <literal>x=fft(a1,-1,n,m)</literal>.</para>
+            <programlisting role ="">
+              <![CDATA[ 
+a1=fft(a,-1,m,1);
+x=fft(a1,-1,n,m);
+              ]]></programlisting> 
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
+   <title>Algorithms</title>
+<para>If the <literal>fftw</literal> module has been loaded into
+Scilab this function uses that library (http://www.fftw.org/). On the
+other case the fft function is based on the Fortran routines fft842.f
+(Cooley-Tukey algorithm for vectors of size n=2^m) and dfftbi.f (for
+other sizes) .</para>
+  </refsection>
+  <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-//Comparison with explicit formula
-//----------------------------------
-a=[1;2;3];n=size(a,'*');
-norm(1/n*exp(2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,1))
-norm(exp(-2*%i*%pi*(0:n-1)'.*.(0:n-1)/n)*a -fft(a,-1)) 
- 
 //Frequency components of a signal
 //----------------------------------
 // build a noides signal sampled at 1000hz  containing to pure frequencies 
@@ -163,14 +179,42 @@ y=fft(s);
 f=sample_rate*(0:(N/2))/N; //associated frequency vector
 n=size(f,'*')
 clf()
-plot2d(f,abs(y(1:n)))
- ]]></programlisting>
+plot(f,abs(y(1:n)))
+     ]]></programlisting>
+
+    <programlisting role="example"><![CDATA[ 
+//Using explicit formula for  discrete Fourier transform
+//------------------------------------------------
+function xf=DFT(x,flag);
+  n=size(x,'*');
+  //Compute the n by n Fourier matrix
+  if flag==1 then,//backward transformation
+    am=exp(2*%pi*%i*(0:n-1)'*(0:n-1)/n);
+  else //forward transformation
+    am=exp(-2*%pi*%i*(0:n-1)'*(0:n-1)/n);
+  end
+  xf=am*matrix(x,n,1);//dft
+  xf=matrix(xf,size(x));//reshape
+  if flag==1 then,xf=xf/n;end
+endfunction
+
+//Comparison with the fast Fourier algorithm
+a=rand(1,1000);
+norm(DFT(a,1) - fft(a,1))
+norm(DFT(a,-1) - fft(a,-1)) 
+
+timer();DFT(a,-1);timer()
+timer();fft(a,-1);timer()
+     ]]></programlisting>
   </refsection>
   <refsection role="see also">
 <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="corr">corr</link>
+      </member>
+      <member>
+        <link linkend="fftw">fftw</link>
       </member>
     </simplelist>
   </refsection>

@@ -683,6 +683,7 @@
     <xs:choice maxOccurs="unbounded" minOccurs="0">
       <xs:element type="mxGeometryType" name="mxGeometry"/>
       <xs:element type="mxCellType" name="mxCell"/>
+      <xs:element type="BasicBlockType" name="BasicBlock"/>
       <xs:element type="CommandPortType" name="CommandPort"/>
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="ImplicitOutputPortType" name="ImplicitOutputPort"/>
@@ -1163,6 +1164,7 @@
       <xs:element type="dataType" name="data" maxOccurs="unbounded" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute type="xs:byte" name="height" use="optional"/>
+    <xs:attribute type="xs:string" name="intPrecision" use="optional"/>
     <xs:attribute type="xs:byte" name="width" use="optional"/>
   </xs:complexType>
   <xs:complexType name="ProductType">

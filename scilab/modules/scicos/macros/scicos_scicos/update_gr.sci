@@ -20,6 +20,9 @@
 //
 
 function update_gr(gr_k, o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  //** 20/02/2008 : This nice function, initially written by Alan Layec, has been
  //**              changed - just a bit - by Simone Mannori for Scilab 5 integration
  //**              Enjoy :)    

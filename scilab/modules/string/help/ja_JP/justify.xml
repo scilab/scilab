@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="justify">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>justify</refname>
+    <refpurpose>文字配列を整列.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>Tj=justify(T,opt)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>T</term>
+        <listitem>
+          <para>文字列の行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Tj</term>
+        <listitem>
+          <para>文字列の行列. 揃えられた結果</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>指定可能な値を有する文字オプション</para>
+          <variablelist>
+            <varlistentry>
+              <term>'r'  </term>
+              <listitem>
+                <para>右揃えの場合は'right'</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'l'  </term>
+              <listitem>
+                <para>左揃えの場合は'left'</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'c'  </term>
+              <listitem>
+                <para>中央揃えの場合は'center'</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>justify</literal>は指定したオプションに基づき
+	文字列の行列の列を整列します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=['1234','x','adfdfgdfghfgj'
+   '1','354556','dgf'
+   'sdfgd','','sdfsf'];
+
+justify(t,'l')
+justify(t,'c')
+justify(t,'r')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="part">part</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="horner">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>horner</refname>
+    <refpurpose>多項式/有理数の評価</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>horner(P,x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>多項式または有理数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>数値または多項式または有理数の配列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	多項式の変数<literal>s</literal>が<literal>x</literal>で
+	置換される時,
+	多項式または有理数行列<literal>P = P(s)</literal>を評価します:</para>
+    <para><literal>horner(P,x)</literal>=<literal>P(x)</literal></para>
+    <para>
+    例 (双一次変換): <literal>P = P(s)</literal> が有理行列と仮定すると,
+	有理行列<literal>P((1+s)/(1-s))</literal>は
+	<literal>horner(P,(1+s)/(1-s))</literal>により得られます.</para>
+    <para>
+	指定した周波数で有理行列を評価する場合は,
+	<literal>freq</literal>プリミティブを使用する方が良いでしょう.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//数値ベクトルに関する多項式の評価
+P=poly(1:3,'x')
+horner(P,[1 2 5])
+horner(P,[1 2 5]+%i)
+
+//有理数の評価
+s=poly(0,'s');M=[s,1/s];
+horner(M,1)
+horner(M,%i)
+horner(M,1/s)
+
+//数値行列に関する多項式の評価
+X= [1 2;3 4]
+p=poly(1:3,'x','c')
+m=horner(p, X)
+1*X.^0+2*X.^1+3*X.^2
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="freq">freq</link>
+      </member>
+      <member>
+        <link linkend="repfreq">repfreq</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

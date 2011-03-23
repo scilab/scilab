@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Bruno Pincon
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="dsearch" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dsearch</refname>
+
+    <refpurpose>
+      search in ordered sets
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>
+      [ind, occ, info] = dsearch(X, s )
+      [ind, occ, info] = dsearch(X, s , ch )
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>
+            a mx-by-nx matrix of doubles, the entries to locate.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>s</term>
+
+        <listitem>
+          <para>
+            a n-by-1 or 1-by-n matrix of doubles, the 
+            intervals (if ch="c") or the set (if ch="d"). 
+            The values in s must be in strictly increasing order:
+            s(1) &lt; s(2) &lt; ... &lt; s(n)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ch</term>
+
+        <listitem>
+          <para>
+            a 1-by-1 matrix of strings, the type of search (default ch="c").
+            Available values are ch="c" or ch="d".
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>
+            a mx-by-nx matrix of doubles. 
+            The location of the X values in the intervals or the set defined by s.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ</term>
+
+        <listitem>
+          <para>
+            If ch="c", a (n-1)-by-1 or 1-by-(n-1) of doubles. 
+            If ch="d", a n-by-1 or 1-by-n of doubles. The number of entries 
+            from X in the intervals s.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>
+            a 1-by-1 matrix of doubles. The number of X entries which are not in val.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      This function locates the indices of the entries in X in the intervals or the set defined by s.
+    </para>
+
+    <para>
+      If <literal>ch="c"</literal> (default), we consider the
+      intervals <literal>I1 = [s(1), s(2)]</literal> 
+      and <literal>Ik = (s(k), s(k+1)]</literal> for <literal>k=2,...,n-1</literal>. 
+      Notice that the bounds of <literal>I1</literal> are closed, 
+      while the left bounds of <literal>I2</literal>, ..., <literal>In</literal> are 
+      opened.
+      For each entry <literal>X(i)</literal>, 
+      we search the interval <literal>Ik</literal> which contains X(i), i.e. we search k such 
+      that <literal>s(k)&lt;X(i)&lt;=s(k+1)</literal>.
+    </para>
+
+    <para>
+      More precisely,
+    </para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>
+            is k such that <literal>Ik</literal> contains X(i) or 
+            0 if X(i) is not in any interval <literal>Ik</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>
+            is the number of components of <literal>X</literal> which are in <literal>Ik</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>
+            is the number of components of <literal>X</literal> which are not in
+            any interval <literal>Ik</literal>.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+      If <literal>ch="d"</literal>, we consider the set {s(1),s(2),...,s(n)}.
+      For each X(i), search k such that X(i)=s(k).
+    </para>
+
+    <para>
+      More precisely, 
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>ind(i)</term>
+
+        <listitem>
+          <para>
+            is k if X(i)=s(k) or 0 if X(i) is not in s.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>occ(k)</term>
+
+        <listitem>
+          <para>
+            is the number of entries in X equal to s(k)
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>
+            is the number of entries in X which are not in the set
+            {s(1),...,s(n)}.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    
+    <para>
+      The ch="c" option can be used to compute the empirical histogram of a function given a dataset.
+      The ch="d" option can be used to compute the entries in X which are present in the set s.
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>
+      In the following example, we consider 3 intervals <literal>I1=[5,11]</literal>, 
+      <literal>I2=(11,15]</literal> and <literal>I3=(15,20]</literal>.
+      We are looking for the location of the entries of <literal>X=[11 13 1 7 5 2 9]</literal> 
+      in these intervals.
+    </para>
+    <programlisting role="example">
+      <![CDATA[ 
+[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
+    ]]>
+</programlisting>
+
+    <para>
+      The previous example produces the following output.
+    </para>
+
+    <screen>
+      <![CDATA[ 
+-->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20])
+ info  =
+    2.
+ occ  =
+    4.    1.    0.
+ ind  =
+    1.    2.    0.    1.    1.    0.    1.
+    ]]>
+    </screen>
+
+    <para>
+      We now explain these results.
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>X(1)=11 is in the interval I1, hence ind(1)=1.</para>
+      </listitem>
+      <listitem>
+        <para> X(2)=13 is in the interval I2, hence ind(2)=2.</para>
+      </listitem>
+      <listitem>
+        <para> X(3)=1 is not in any interval, hence ind(3)=0.</para>
+      </listitem>
+      <listitem>
+        <para> X(4)=7 is in the interval I1, hence ind(4)=1.</para>
+      </listitem>
+      <listitem>
+        <para> X(5)=5 is in the interval I1, hence ind(5)=1.</para>
+      </listitem>
+      <listitem>
+        <para> X(6)=2 is not in any interval, hence ind(6)=0.</para>
+      </listitem>
+      <listitem>
+        <para> X(7)=9 is in the interval I1, hence ind(7)=1.</para>
+      </listitem>
+      <listitem>
+        <para> There are four X entries (5, 7, 9 and 11) in I1, hence occ(1)=4.</para>
+      </listitem>
+      <listitem>
+        <para> There is one X entry (i.e. 13) in I2, hence occ(2)=1.</para>
+      </listitem>
+      <listitem>
+        <para> There is no X entry in I3, hence occ(3)=0.</para>
+      </listitem>
+      <listitem>
+        <para> There are two X entries (i.e. 1, 2) which are not in any interval, hence info=2.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      In the following example, we consider the set [5 11 15 20] and 
+      are searching the location of the X entries in this set.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
+    ]]>
+  </programlisting>
+
+  <para>
+    The previous example produces the following output.
+  </para>
+
+  <screen>
+    <![CDATA[ 
+-->[ind, occ, info] = dsearch([11 13 1 7 5 2 9], [5 11 15 20],"d" )
+ info  =
+    5.
+ occ  =
+    1.    1.    0.    0.
+ ind  =
+    2.    0.    0.    0.    1.    0.    0.
+    ]]>
+    </screen>
+
+    <para>
+      The following is a detailed explanation for the previous results.
+    </para>
+
+    <itemizedlist>
+      <listitem>
+        <para>X(1)=11 is in the set val at position #2, hence ind(1)=2.</para>
+      </listitem>
+      <listitem>
+        <para>X(2)=13 is not in the set, hence ind(2)=0.</para>
+      </listitem>
+      <listitem>
+        <para>
+          X(3)=1 is not in the set, hence ind(3)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          X(4)=7 is not in the set, hence ind(4)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          X(5)=5 is in the set val at position #1, hence ind(5)=1.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          X(6)=2 is not in the set, hence ind(6)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          X(7)=9 is not in the set, hence ind(7)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There is one entry X (i.e. 5) equal to 5, hence occ(1)=1.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There is one entry X (i.e. 11) equal to 1, hence occ(2)=1.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There are no entries matching val(3), hence occ(3)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There are no entries matching val(4), hence occ(4)=0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          There are five X entries (i.e. 13, 1, 7, 2, 9) which are not in the set, hence info=5.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+    <para>
+      The values in <literal>s</literal> must be in increasing order, whatever the 
+      value of the <literal>ch</literal> option. 
+      If this is not true, an error is generated, as in the following session.
+    </para>
+
+    <screen>
+      <![CDATA[ 
+-->dsearch([11 13 1 7 5 2 9], [2 1])
+!--error 999
+dsearch   : the array val (arg 2) is not well ordered
+-->dsearch([11 13 1 7 5 2 9], [2 1],"d")
+!--error 999
+dsearch   : the array val (arg 2) is not well ordered
+    ]]>
+  </screen>
+
+  </refsection>
+
+  <refsection>
+      <title>Advanced Examples</title>
+
+      <para>
+      In the following example, we compare the empirical histogram of uniform
+      random numbers in [0,1) with the uniform distribution function.
+      To perform this comparison, we use the default search algorithm based on 
+      intervals (ch="c").
+      We generate X as a collection of m=50 000 uniform random numbers in
+      the range [0,1).
+      We consider the n=10 values equally equally spaced values in the [0,1] range and
+      consider the associated intervals.
+      Then we count the number of entries in X which fall in the intervals:
+      this is the empirical histogram of the uniform distribution function.
+      The expectation for occ/m is equal to 1/(n-1).
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+m = 50000 ; 
+n = 10;
+X = grand(m,1,"def");
+s = linspace(0,1,n)';
+[ind, occ] = dsearch(X, s);
+e = 1/(n-1)*ones(1,n-1);
+scf() ; 
+plot(s(1:n-1), occ/m,"bo");
+plot(s(1:n-1), e,"r-");
+legend(["Experiment","Expectation"]);
+xtitle("Uniform random numbers","X","P(X)");
+ ]]>
+</programlisting>
+
+    <para>
+      In the following example, we compare the histogram of binomially distributed
+      random numbers with the binomial probability distribution function B(N,p),
+      with N=8 and p=0.5.
+      To perform this comparison, we use the discrete search algorithm based on
+      a set (ch="d").
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+N = 8 ; 
+p = 0.5; 
+m = 50000;
+X = grand(m,1,"bin",N,p); 
+s = (0:N)';
+[ind, occ] = dsearch(X, s, "d");
+Pexp = occ/m; 
+Pexa = binomial(p,N);
+scf() ; 
+plot(s,Pexp,"bo");
+plot(s,Pexa',"r-");
+xtitle("Binomial distribution B(8,0.5)","X","P(X)");
+legend(["Experiment","Expectation"]);
+]]>
+      </programlisting>
+
+    <para>
+      In the following example, we use piecewise Hermite polynomials to 
+      interpolate a dataset.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+
+      // define Hermite base functions
+      function y=Ll(t,k,x)
+        // Lagrange left on Ik
+        y=(t-x(k+1))./(x(k)-x(k+1))
+      endfunction
+      function y=Lr(t,k,x)
+        // Lagrange right on Ik
+        y=(t-x(k))./(x(k+1)-x(k))
+      endfunction
+      function y=Hl(t,k,x)
+        y=(1-2*(t-x(k))./(x(k)-x(k+1))).*Ll(t,k,x).^2
+      endfunction
+      function y=Hr(t,k,x)
+        y=(1-2*(t-x(k+1))./(x(k+1)-x(k))).*Lr(t,k,x).^2
+      endfunction
+      function y=Kl(t,k,x)
+        y=(t-x(k)).*Ll(t,k,x).^2
+      endfunction
+      function y=Kr(t,k,x)
+        y=(t-x(k+1)).*Lr(t,k,x).^2
+      endfunction
+
+      x = [0 ; 0.2 ; 0.35 ; 0.5 ; 0.65 ; 0.8 ;  1];
+      y = [0 ; 0.1 ;-0.1  ; 0   ; 0.4  ;-0.1 ;  0];
+      d = [1 ; 0   ; 0    ; 1   ; 0    ; 0   ; -1];
+      X = linspace(0, 1, 200)';
+      ind = dsearch(X, x);
+
+      // plot the curve
+      Y = y(ind).*Hl(X,ind) + y(ind+1).*Hr(X,ind) + d(ind).*Kl(X,ind) + d(ind+1).*Kr(X,ind);
+      scf();
+      plot(X,Y,"k-");
+      plot(x,y,"bo")
+      xtitle("Hermite piecewise polynomial");
+      legend(["Polynomial","Data"]);
+      // NOTE : you can verify by adding these ones :
+      // YY = interp(X,x,y,d); plot2d(X,YY,3,"000")
+      ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="find">find</link>
+      </member>
+
+      <member>
+        <link linkend="tabul">tabul</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>B.P.</para>
+    <para>Michael Baudin</para>
+  </refsection>
+</refentry>

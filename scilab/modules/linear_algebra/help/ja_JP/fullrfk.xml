@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fullrfk">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fullrfk</refname>
+    <refpurpose>A^kのフルランク分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Bk,Ck]=fullrfk(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Bk,Ck</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,<literal>A^k</literal>のフルランク分解,
+	すなわち, <literal>Bk*Ck=A^k</literal> を計算します.
+	ただし, <literal>Bk</literal> は列フルランク,
+	<literal>Ck</literal>は行フルランクです.
+	range(<literal>Bk</literal>)=range(<literal>A^k</literal>) 
+	および ker(<literal>Ck</literal>)=ker(<literal>A^k</literal>)となります.</para>
+    <para>
+    <literal>k=1</literal>の場合, <literal>fullrfk</literal> は
+	 <literal>fullrf</literal>と等価になります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,2)*rand(2,5);[Bk,Ck]=fullrfk(A,3);
+norm(Bk*Ck-A^3,1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="range">range</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.D (1990);   </para>
+  </refsection>
+</refentry>

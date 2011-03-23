@@ -20,6 +20,9 @@
 //
 
 function palettes = add_palette(palettes,path,kpal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   path = stripblanks(path)
   
   for k=size(palettes)+1:kpal

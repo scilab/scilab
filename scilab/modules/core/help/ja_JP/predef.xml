@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="predef">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>predef</refname>
+    <refpurpose> 変数の保護</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>n=predef()
+oldnew=predef(n)
+oldnew=predef('all')
+oldnew=predef('clear')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	"oldest"変数を"protected"として定義するために使用されるユーティリティ関数.
+	保護されている変数は削除できません.
+	これらの変数は<literal>'save'</literal>コマンドで保存されません.
+	"oldest" は<literal>who('get')</literal>で最後に現れます.</para>
+    <para><literal>predef()</literal> は保護される変数の数を取得します.</para>
+    <para><literal>predef('a[ll]')</literal> は
+	全ての変数を保護し,保護される変数の数の古い値と新しい値も返します.</para>
+    <para><literal>predef('c[lear]')</literal> は最後の7変数以外の
+	保護を外し,
+	保護される変数の数の古い値と新しい値も返します.</para>
+    <para><literal>predef(n)</literal> は,
+	<literal>max(n,7)</literal>個の最後に定義された変数を保護し,
+	保護される変数の数の古い値と新しい値も返します.</para>
+  </refsection>
+  <refsection>
+    <title>注意:</title>
+    <para>変数 <literal>ans</literal> 
+	は,式が代入されない場合に自動的に定義され,
+	<literal>predef('all')</literal>により保護されません.</para>
+    <para>
+	保護される変数の数は,スタートアップファイル
+	<literal>SCI/etc/scilab.start</literal>で設定されます.
+	ユーザは独自の定義済みの変数を
+	ユーザのスタートアップファイル 
+	<literal>SCIHOME/.scilab</literal> および <literal>SCIHOME/scilab.ini</literal>
+	により設定することができます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="clear">clear</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="ans">ans</link>
+      </member>
+      <member>
+        <link linkend="startup">startup</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

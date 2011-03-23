@@ -122,9 +122,9 @@ routh_t(P2)
   <refsection>
     <title>Bibliography</title>
 
-    <para>http://controls.engin.umich.edu/wiki/index.php/RouthStability</para>
+    <para><ulink url="http://controls.engin.umich.edu/wiki/index.php/RouthStability">http://controls.engin.umich.edu/wiki/index.php/RouthStability</ulink></para>
 
-    <para>http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</para>
+    <para><ulink url="http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf">http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</ulink></para>
 
     <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
     Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133</para>

@@ -20,6 +20,9 @@
 //
 
 function [d,pt,ind]=dist2polyline(xp,yp,pt)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // computes minimum distance from a point to a polyline
 //d    minimum distance to polyline
 //pt   coordinate of the polyline closest point

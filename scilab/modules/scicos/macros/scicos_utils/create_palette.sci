@@ -20,6 +20,9 @@
 //
 
 function [routines,IntFunc]=create_palette(Path)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // This function generates a palette if Path is a string indicating
 // the directoy in which the interfacing functions of the blocks are
 // to be found. 
@@ -259,6 +262,9 @@ endfunction
 
 //## Get_IntFunc recusively return interfacing function name in list
 function IntFunc=Get_IntFunc(IntFunc,lisf)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  if type(lisf)==15 then
    for k=1:lstsize(lisf)
      IntFunc=Get_IntFunc(IntFunc,lisf(k))
@@ -270,6 +276,9 @@ endfunction
 
 //## build_palette : create a cof file anf return list of gui
 function [routines]=build_palette(lisf,path,fname,gr_i,id)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //## init variables
   X=0
   Y=0
@@ -332,6 +341,9 @@ endfunction
 
 //## get_flatpal : return a flat diagram of a palette
 function [routines,scs_m]=get_flatpal(lisf,path,fname,gr_i,id)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //## init variables
   X=0
   Y=0

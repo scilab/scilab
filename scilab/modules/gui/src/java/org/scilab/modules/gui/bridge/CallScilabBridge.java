@@ -2164,38 +2164,52 @@ public class CallScilabBridge {
     }
 
     /**
+     * Open a Browser on Wiki Web Site
+     */
+    public static void openWiki() {
+        WebBrowser.openUrl("http://wiki.scilab.org/");
+    }
+
+    /**
      * Open a Browser on ATOMS Web Site
      */
-    public static void openAtomsScilabWebSite() {
+    public static void openAtomsScilab() {
         WebBrowser.openUrl("http://atoms.scilab.org/");
     }
 
     /**
-     * Open a Browser on Contributions Web Site
+     * Open a Browser on File Exchange Web Site
      */
-    public static void openContributionsWebSite() {
-        WebBrowser.openUrl("http://www.scilab.org/contrib/index_contrib.php?page=howto.html");
+    public static void openFileExchange() {
+        WebBrowser.openUrl("http://fileexchange.scilab.org/");
     }
 
     /**
      * Open a Browser on Bugzilla Web Site
      */
-    public static void openBugzillaWebSite() {
+    public static void openBugzilla() {
         WebBrowser.openUrl("http://bugzilla.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on Forge Web Site
+     */
+    public static void openForge() {
+        WebBrowser.openUrl("http://forge.scilab.org/");
     }
 
     /**
      * Open a Browser on Scilab Online Help
      */
-    public static void openOnlineHelpSite() {
+    public static void openOnlineHelp() {
         WebBrowser.openUrl("http://help.scilab.org/");
     }
 
     /**
      * Open a Browser on Mailing List Archives
      */
-    public static void openMailingListWebSite() {
-        WebBrowser.openUrl("http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists");
+    public static void openMailingList() {
+        WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
     }
 
     /***************************/
@@ -2447,11 +2461,11 @@ public class CallScilabBridge {
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 0);
+                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1);
+                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatips">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatips</refname>
+    <refpurpose>プロットされた曲線に情報(tips)を配置,編集するためのツール.</refpurpose>
+  </refnamediv>
+ 
+  <refsection>
+  <title>説明</title>
+    <para>
+	このツールにより,曲線(ポリライン)上に情報を配置,移動,修正することが
+	できます.これはプログラムまたは対話的に行うことができます.
+	通常使用されるモードは対話モードです:
+    </para>
+    <para>
+     datatipsモードは <link linkend="datatipToggle"
+     >datatipToggle()</link> または
+     <literal>Edit/Start datatip manager</literal> または指定するグラフィックウインドウの
+	ツールバーアイコンの
+<inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../../../gui/images/icons/datatips.png"/>
+	</imageobject>
+      </inlinemediaobject>をクリックすることにより有効にすることができます.
+    </para>
+     <para>一度有効になると,曲線を左クリックするだけで,
+	情報(カレントの点に関する情報を有する小さな箱)が曲線の最も近いdatapointに
+	追加されます.
+	デフォルトで各曲線は1つの情報を有することができますが,
+	右クリックコンテキストメニューにより複数のdatatipsを使用することが
+	可能です.
+    </para>
+    <para>
+	情報を移動するには,曲線の小さな正方形の記号の上で左ボタンを押し,
+	少し待ってから好きな位置にドラッグします.
+    </para>
+  
+    <para>
+	情報記号の上で右クリックするとコンテキストダイアログがオープンします.
+	このダイアログにより関連する曲線の全ての datatips に表示される専用の情報を
+	カスタマイズすることができます.
+    </para>
+
+   <para>
+	情報記号の上で真ん中のボタンをクリックすると,
+	選択された情報の向きを管理することができるコンテキスト依存のダイアログが
+	オープンされます.
+    </para>
+
+
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    // この例はプログラムで情報を管理する手法を示します
+    x1=linspace(0,1,100)';
+    y1=x1.^3;
+    clf();
+    plot(x1,y1,x1,sinc(10*x1));
+    e=gce();
+    p1=e.children(1);//sinc(10*x1)
+    p2=e.children(2); //x1^3
+    t=datatipCreate(p1,50);
+    datatipSetOrientation(t,"lower right")
+    t=datatipCreate(p1,[0.8 0.5]);
+    t=datatipCreate(p2,[0.1,0]);
+    t=datatipCreate(p2,[0.8 0.4]);
+    datatipSetOrientation(t,"upper left")
+  
+    function str=myfmt(curve,pt,index)
+      str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+    endfunction
+    datatipSetDisplay(p1,myfmt) //エディタで関数を修正し,ok
+    
+     ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+    <programlisting role="example"><![CDATA[
+    // 3D 曲線の場合
+    x1=linspace(0,1.5,100)';
+    y1=x1.^3;
+    clf();
+    param3d(x1.*cos(10*x1),x1.*sin(10*x1),x1);
+    ax=gca();ax.box='off';
+    ax.rotation_angles=[76 31];
+    p=gce();
+    t=datatipCreate(p,50);
+    datatipSetOrientation(t,"lower right")
+    datatipCreate(p,[0,-1.1,1.1]);
+    
+     ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips4.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipToggle" >datatipToggle</link>
+      </member>
+      <member>
+        <link linkend="datatipInitStruct">datatipInitStruct</link>
+      </member>
+      <member>
+        <link linkend="datatipCreate">datatipCreate</link>
+      </member>
+     <member>
+        <link linkend="datatipMove">datatipMove</link>
+      </member>
+      <member>
+        <link linkend="datatipSetDisplay">datatipSetDisplay</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

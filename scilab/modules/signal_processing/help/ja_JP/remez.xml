@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="remez" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>remez</refname>
+
+    <refpurpose>
+	余弦の合計を行う連続関数の重み付きチェビシェフ近似に関する
+	remez交換アルゴリズム.
+	</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>an=remez(guess,mag,fgrid,weight)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>guess</term>
+
+        <listitem>
+          <para>
+		大きさ<literal>n+2</literal>の実数配列の初期推定値</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fgrid</term>
+
+        <listitem>
+          <para>大きさ <literal>ng</literal>の実数配列: 
+	[0,.5[ の範囲にある正規化された周波数点のグリッド</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mag</term>
+
+        <listitem>
+          <para>大きさ <literal>ng</literal>の実数配列: 
+	グリッド<literal>fg</literal>における指定された振幅</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>weight</term>
+
+        <listitem>
+          <para>大きさ<literal>ng</literal>の実数配列: 
+          グリッド<literal>fg</literal>における誤差の重み関数</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>an</term>
+
+        <listitem>
+          <para>大きさ<literal>n</literal>の実数配列: 余弦係数
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	周波数領域振幅応答のミニマックス近似.
+	近似は次の形式となります</para>
+
+    <programlisting role = ""><![CDATA[ 
+h = sum[a(i)*cos(weight)], i=1:n
+ ]]></programlisting>
+
+    <para>FIR, 線形位相フィルタは以下のコマンドにより得られた
+	<literal>remez</literal>の出力から得ることができます:</para>
+
+    <programlisting role = ""><![CDATA[ 
+hn(1:nc-1)=an(nc:-1:2)/2;
+hn(nc)=an(1);
+hn(nc+1:2*nc-1)=an(2:nc)/2;
+ ]]></programlisting>
+
+    <para>この関数は主に<link linkend="remezb">remezb関数</link>によりコールされることを
+	意図しています.</para>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>E.W. Cheney, Introduction to Approximation Theory, McGraw-Hill,
+    1966</para>
+
+    <para>http://en.wikipedia.org/wiki/Remez_algorithm</para>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>この関数は以下の文献で書かれたFortranコード<literal>remez.f</literal>
+	に基づいています:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>James H. Mcclellan, department of electrical engineering and
+        computer science, Massachusetts Institute of Technology, Cambridge,
+        Massachussets. 02139</para>
+      </listitem>
+
+      <listitem>
+        <para>Thomas W. Parks, department of electrical engineering, Rice
+        university, Houston, Texas 77001</para>
+      </listitem>
+
+      <listitem>
+        <para>Thomas W. Parks, department of electrical engineering, Rice
+        university, Houston, Texas 77001</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+nc=21;
+ngrid=nc*250;
+fgrid=.5*(0:(ngrid-1))/(ngrid-1);
+mag(1:ngrid/2)=ones(1:ngrid/2);
+mag(ngrid/2+1:ngrid)=0*ones(1:ngrid/2);
+weight=ones(fgrid);
+guess=round(1:ngrid/nc:ngrid);
+guess(nc+1)=ngrid;
+guess(nc+2)=ngrid;
+an=remez(guess,mag,fgrid,weight);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="remezb">remezb</link></member>
+
+      <member><link linkend="eqfir">eqfir</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

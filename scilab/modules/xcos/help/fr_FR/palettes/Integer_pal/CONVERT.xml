@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="CONVERT" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>CONVERT</refname>
+
+    <refpurpose>Conversion de type de données</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_CONVERT">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CONVERT">Conversion de type de données</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_CONVERT">Palettes</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_CONVERT">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_CONVERT">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_CONVERT">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_CONVERT">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Example_CONVERT">Exemple</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_CONVERT">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_CONVERT">Fonction de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_CONVERT">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_CONVERT">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_CONVERT">
+    <title>Palettes</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Commonlyusedblocks_pal">Palette Blocs couramment utiisés</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_CONVERT">
+    <title>Description</title>
+
+    <para>
+      Ce bloc convertit une entrée de type entier ou réel double vers un autre type réel double ou
+      entier. Ce bloc est particulièrement utile pour connecter un bloc qui accepte ou produit seulement
+      le type de données entier avec un autre bloc qui produit ou accepte seulement le type de données
+      double.
+    </para>
+    <para>
+      Il peut également être utilisé pour prendre la demi-partie inférieure de l'entrée par une
+      conversion dégradante telle que int16 vers int8. Pour ce type d'utilisation et si vous ne voulez
+      pas de conversion de type, vous pouvez également utiliser le bloc
+      <link linkend="EXTRACTBITS">EXTRACTBITS</link> avec le paramètre <literal>Bits to extract</literal>
+      placé à <literal>Lower half</literal>.
+    </para>
+    <para>
+      Pour une conversion vers le haut d'un entier signé vers un autre entier signé, le signe
+      est propagé.
+    </para>
+    <para>
+      Quand la sortie est un entier et qu'un dépassement de capacité se produit, le bloc donne trois formes de résultats :
+    </para>
+    <orderedlist>
+      <listitem>
+      <para>
+         Un résultat normal non saturé. Par exemple, si le type est int8 et le résultat 128, la valeur de sortie
+        du bloc sera -128.
+      </para>
+      </listitem>
+      <listitem>
+        <para>
+          Un résultat saturé. Pour l'exemple précédent la valeur de sortie du bloc sera 127
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Un message d'erreur prévenant l'utilisateur du dépassement de capacité.
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>
+      L'utilisateur peut sélectionner l'une de ces trois formes en mettant le champ
+      <emphasis role="bold">Do on Overflow</emphasis> à 0,1 ou 2.
+    </para>
+  </refsection>
+
+  <refsection id="Data_Type_CONVERT">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Entrée : types entiers et type réel double de Scilab
+          (paramètre <emphasis role="bold">Input Type</emphasis>).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Sortie : types entiers et type réel double de Scilab
+          (paramètre <emphasis role="bold">Output Type</emphasis>).
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Dialogbox_CONVERT">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/CONVERT_gui.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Input Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+
+        <para>
+          Indique le type de donnée en entrée qui peut être double ou entier. Entre 1 et 8.
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Output Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+
+        <para>
+          Indique le type de donnée en sortie qui peut être double ou entier : entre 1 et 8.
+        </para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Do on Overflow (0:Nothing 1:Saturate, 2:Error)</emphasis>
+        </para>
+        <para>
+          Entre 0 et 2. Lors d'un dépassement de capacité, si le paramètre est égal à :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">0</emphasis> : le résultat est non saturé.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">1</emphasis> : le résultat saturé.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">2</emphasis> : la simulation affiche un message d'erreur.</para>
+          </listitem>
+        </itemizedlist>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_CONVERT">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">convert</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_CONVERT">
+    <title>Exemple</title>
+    <para>
+      Cet exemple montre la propagation du bit de signe pendant une conversion d'int8 à int16.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/CONVERT_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <para />
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/convert_diagram_fr_FR.png" />
+        </imageobject>
+      </inlinemediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_CONVERT">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/CONVERT.sci">SCI/modules/scicos_blocks/macros/IntegerOp/CONVERT.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_CONVERT">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/convert.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_CONVERT">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <link linkend="EXTRACTBITS">EXTRACTBITS</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_CONVERT">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

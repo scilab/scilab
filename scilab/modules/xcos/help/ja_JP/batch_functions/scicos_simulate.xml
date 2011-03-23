@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="scicos_simulate"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+	<refname>scicos_simulate</refname>
+	<refpurpose>シミュレーションをバッチモードで実行する関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv><title>呼び出し手順</title>
+    <synopsis>Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_scicos_simulate">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_scicos_simulate">
+    <title>説明</title>
+    <para>
+	この関数はバッチモードで xcos ダイアグラムをシミュレートする際に使用されます.
+	この関数は,.cosファイルをScilabにロードする(例: load mydiagram.cos)ことにより得られる
+	  scs_m 構造体を必要とします .  
+</para>
+    <para>
+	関数とは逆に,保存前にダイアグラムをコンパイルしておく必要はありません.
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_scicos_simulate">
+    <title>パラメータ</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">scs_m :</emphasis>("load file.cos"により得られた)
+	xcos ダイアグラム. 
+	file.cos のバージョンがカレントのバージョンと同じである必要があることに
+	注意してください.
+	そうでない場合, xcos にロードし,保存してください.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Info :</emphasis> リスト.
+	最初のコールでは list() を指定し,
+	次のコールのためのInfo入力としてInfo出力を使用します.
+	Infoにはコンパイルおよびシミュレーション関連情報が含まれ,
+	不要な再コンパイルを避けるために使用されます.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">%scicos_context :</emphasis> 
+	コンテキストおよびxcosブロックで使用される変数の値を有するScilab 構造体.
+	これは,しばしば,ダイアグラムコンテキストでパラメータを変更する際に使用されます.
+	このような場合,ダイアグラムコンテキストにおいてこの
+	変数が定義され,変更可能であることに注意してください.
+	例えば,ある"a"がコンテキストで値が1と定義され,後でバッチモードでこの"a"の値を変更したいと
+	しましょう.この場合,ダイアグラム空間のコンテキストで以下が実行されます:
+	if exists('a') then a=1,end 
+	この後, a=2 として,バッチモードでシミュレーションを実行したい場合,
+	set: %scicos_context.a=2</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">flag :</emphasis> 文字列.  
+	'nw' (no window)の場合, グラフィックウインドウを使用するブロックは実行されません.
+	このようなブロックの一覧は新規ブロックが追加される時に更新されることに注意してください.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Info :</emphasis> 
+	コンパイルおよびシミュレーション関連の情報を有し,
+	不必要な再コンパイルを避けるために使用されます.
+	通常,修正は不要です.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_scicos_simulate">
+    <title>ファイルの内容</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_auto/scicos_simulate.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_scicos_simulate">
+    <title>参照</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicosim">scicosim - Scicos (バッチ) シミュレーション関数 (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos - ブロックダイアグラムエディタおよびハイブリッドシミュレータのGUI (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="steadycos">steadycos - xcosダイアグラムで記述された一般の動的システムの状態変数の
+	定常値を見つける (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="lincos">lincos - 
+	xcosダイアグラムで記述された一般の動的システムから線形化により線形状態空間モデルを構築する (Scilab 関数)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_scicos_simulate">
+    <title>作者</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

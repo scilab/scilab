@@ -31,10 +31,15 @@ Scilab a better software.
     - LaTeX and MathML rendering capabilities in the Scilab Graphic
     - Improved graphic exports
     - SciNotes (Scilab editors)
-    - Many contributions
+    - Many key contributions
 
 * Markus Dittrich 
     - Misc patches for Gentoo
+
+* Bernard Dujardin
+    - Improvements of the Xcos documentation
+    - French translation of the Xcos documentation
+    - Many user oriented improvements in the Xcos code (feedbacks, checks, etc)
 
 * Rob Farmer
     - Misc patches for FreeBSD
@@ -68,6 +73,9 @@ Scilab a better software.
 
 * Gerard Henry
     - Misc patches for Solaris/Opensolaris
+
+* Rui Hirokawa 
+    - Translation of the help into Japanese
 
 * Sébastien Jourdain from Artenum ( http://www.artenum.com )
     - Scilab Console ( Jrosetta )

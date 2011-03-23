@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="comma">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>comma</refname>
+    <refpurpose> (,) 列, 命令, 引数セパレータ</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    カンマは関数内でパラメータを区切るため,または
+	行ベクトルのエントリを分割するために使用されます.</para>
+    <para>
+    行ベクトルの中でエントリを分割するために空白を使用することも
+	できますが, カンマを推奨します.</para>
+    <para>
+    Scilab 命令を分割する際にも使用できます
+    (結果を画面に表示しないようにするには<literal>;</literal> を使用してください).
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=[1,2,3;4,5,6];
+a=1,b=1;c=2
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="semicolon">semicolon</link>
+      </member>
+      <member>
+        <link linkend="brackets">brackets</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

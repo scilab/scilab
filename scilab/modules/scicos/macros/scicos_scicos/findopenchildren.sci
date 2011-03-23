@@ -20,6 +20,9 @@
 //
 
 function supers=findopenchildren(scs_m,super_path,supers)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //find paths to all open (inactive) sub-diagrams
 
   if argn(2)<3 then supers=list(),end

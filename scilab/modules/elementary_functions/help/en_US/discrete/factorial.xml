@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="factorial" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>factorial</refname>
+    <refpurpose>The factorial function</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      f = factorial ( n )
+
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>n :</term>
+        <listitem>
+          <para> a matrix of doubles. Must contain positive integers.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f :</term>
+        <listitem>
+          <para> a matrix of doubles.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Returns the factorial of n, that is, the product of all
+      integers 1 * 2 * ... * n.
+    </para>
+    <para>
+      This function overflows as soon as n>170.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
+// Make a table of factorial
+n = (0:30)';
+[n factorial(n)]
+
+// See the limits of factorial: f(171)=%inf
+factorial(170) // 7.257415615307998967e306
+factorial(171) // %inf
+
+// Plot the function on all its range.
+scf();
+plot ( 1:170 , factorial , "b-o" )
+h = gcf();
+h.children.log_flags="nln";
+
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Bibliography</title>
+    <para>"Introduction to discrete probabilities", Michael Baudin, 2010</para>
+  </refsection>
+</refentry>

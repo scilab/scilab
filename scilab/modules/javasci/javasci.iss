@@ -19,9 +19,7 @@
 #define JAVASCI "javasci"
 ;
 Source: modules\{#JAVASCI}\license.txt; DestDir: {app}\modules\{#JAVASCI}; Components: {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\readme.txt; DestDir: {app}\modules\{#JAVASCI}; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\VERSION.xml; DestDir: {app}\modules\{#JAVASCI}; Components: {#COMPN_JAVASCI}
-Source: modules\{#JAVASCI}\changelog.txt; DestDir: {app}\modules\{#JAVASCI}; Components: {#COMPN_JAVASCI}
 ;
 Source: bin\{#JAVASCI}.dll; DestDir: {app}\bin; Components: {#COMPN_JAVASCI}
 Source: modules\{#JAVASCI}\jar\{#JAVASCI}.jar;DestDir: {app}\modules\{#JAVASCI}\jar; Components: {#COMPN_JAVASCI}

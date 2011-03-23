@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="yulewalk">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>yulewalk</refname>
+    <refpurpose>最小二乗フィルタを設計</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>Hz = yulewalk(N,frq,mag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>N</term>
+        <listitem>
+          <para>整数 (指定するフィルタの次数)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>frq</term>
+        <listitem>
+          <para>実数行ベクトル (非降順), 周波数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mag</term>
+        <listitem>
+          <para>非負の実数行ベクトル (frqと同じ大きさ), 指定する振幅.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Hz</term>
+        <listitem>
+          <para>フィルタ <literal>B(z)/A(z)</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    Hz = yulewalk(N,frq,mag) は N次IIRフィルタを見つけます.</para>
+    <programlisting role = ""><![CDATA[ 
+                  n-1         n-2            
+      B(z)   b(1)z     + b(2)z    + .... + b(n)
+H(z)= ---- = ---------------------------------
+                n-1       n-2
+      A(z)    z   + a(2)z    + .... + a(n)
+ ]]></programlisting>
+    <para>
+	は,ベクトルfrqおよびmagで指定された周波数応答に振幅が
+	一致します.
+	周波数frqは 0.0および1.0の間とする必要があり,
+	1.0はサンプルレートの半分に対応します.
+	これらは昇順で, 0.0 から始まり, 1.0で終わる筆王が
+	あります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+f=[0,0.4,0.4,0.6,0.6,1];H=[0,0,1,1,0,0];Hz=yulewalk(8,f,H);
+fs=1000;fhz = f*fs/2;  
+clf(0);xset('window',0);plot2d(fhz',H');
+xtitle('Desired Frequency Response (Magnitude)')
+[frq,repf]=repfreq(Hz,0:0.001:0.5);
+clf(1);xset('window',1);plot2d(fs*frq',abs(repf'));
+xtitle('Obtained Frequency Response (Magnitude)')
+ ]]></programlisting>
+  </refsection>
+</refentry>

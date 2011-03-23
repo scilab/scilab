@@ -22,6 +22,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -635,7 +636,7 @@ public final class ConfigManager {
         private static void writeDocument() {
                 Transformer transformer = null;
                 try {
-                        transformer = TransformerFactory.newInstance().newTransformer();
+                        transformer = ScilabTransformerFactory.newInstance().newTransformer();
                 } catch (TransformerConfigurationException e1) {
                         System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
                 } catch (TransformerFactoryConfigurationError e1) {

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hsv2rgb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hsv2rgb</refname>
+    <refpurpose>HSV カラーを RGBに変換する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[r,g,b] = hsv2rgb(h,s,v)
+rgb = hsv2rgb(h,s,v)
+[r,g,b] = hsv2rgb(hsv)
+rgb = hsv2rgb(hsv)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>大きさnのベクトル. "hue" の値.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>大きさnのベクトル. "saturation" の値.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v</term>
+        <listitem>
+          <para>大きさnのベクトル. "value" の値
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hsv</term>
+        <listitem>
+          <para> n x 3行列. 各行には [hue saturation value] の組が含まれます.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>大きさ nの列ベクトル. 対応する"red" の値.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>大きさ nの列ベクトル. 対応する"green" の値.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>大きさ nの列ベクトル. 対応する"blue" の値.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para> n x 3 行列. 各行には [red green blue] の組が含まれます.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>関数 hsv2rgb はRGBおよびHSV色空間の間でカラーマップを変換します.
+	hue値が 0 から 1.0 まで変化する時,
+	対応する色は赤から黄色,緑,シアン,青,マゼンタ,そして赤に戻ります.
+	実際に赤の値は 0 および 1.0の両方に存在します.
+	saturationが 0 から 1.0 まで変化する時,
+	対応する色 (hues) は飽和していない色(灰色の影)から(白色要素が存在しない)
+	完全に飽和した色まで変化します.
+	valueまたはbrightnessが 0 から 1.0 まで変化する時,
+	対応する色の輝度は増加します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t'); 
+plot3d1(t,t,z) 
+f=gcf();f.pixmap='on';
+for h=0:0.1:1
+  hsv=[h*ones(32,1) linspace(0,1,32)' 0.7*ones(32,1)];
+  f.color_map=hsv2rgb(hsv);
+  show_pixmap()
+  xpause(10000)
+end
+for v=0:0.1:1
+  hsv=[ones(32,1) linspace(0,1,32)' v*ones(32,1)];
+  f.color_map=hsv2rgb(hsv);
+  show_pixmap()
+  xpause(10000)
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

@@ -30,9 +30,7 @@ Source: thirdparty\looks-2.1.1.jar; DestDir: {app}\thirdparty; Components: {#COM
 Source: thirdparty\skinlf.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\VERSION.xml; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#GUI}\readme.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#GUI}\license.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#GUI}\changelog.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\sci_gateway\{#GUI}_gateway.xml; DestDir: {app}\modules\{#GUI}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

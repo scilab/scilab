@@ -19,6 +19,7 @@
 //#include <winbase.h>
 #endif
 
+#include <string.h>
 #include <hdf5.h>
 #include <stdlib.h>
 #include "MALLOC.h"
@@ -41,9 +42,9 @@ being examined.
 ************************************************************/
 static herr_t op_func (hid_t loc_id, const char *name, void *operator_data)
 {
-    herr_t status = 0;
     H5G_stat_t statbuf;
-    int    *pDataSetId = operator_data;
+    herr_t status   = 0;
+    int *pDataSetId = operator_data;
 
     /*
     * Get type of the object and return only datasetId
@@ -73,33 +74,29 @@ static herr_t op_func (hid_t loc_id, const char *name, void *operator_data)
 
 static int readIntAttribute(int _iDatasetId, const char *_pstName)
 {
-    hid_t        iAttributeId;
-    herr_t    status;
-    int            iVal = 0;
+    hid_t iAttributeId;
+    herr_t status;
+    int iVal = 0;
 
-    //if(H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstName))
+    iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
+    if(iAttributeId < 0)
     {
-        iAttributeId = H5Aopen_name(_iDatasetId, _pstName);
-        if(iAttributeId < 0)
-        {
-            return 0;
-        }
-
-        status = H5Aread(iAttributeId, H5T_NATIVE_INT, &iVal);
-        if(status < 0)
-        {
-            return 0;
-        }
-
-        status = H5Aclose(iAttributeId);
-        if(status < 0)
-        {
-            return 0;
-        }
-
-        return iVal;
+        return 0;
     }
-    return 0;
+
+    status = H5Aread(iAttributeId, H5T_NATIVE_INT, &iVal);
+    if(status < 0)
+    {
+        return 0;
+    }
+
+    status = H5Aclose(iAttributeId);
+    if(status < 0)
+    {
+        return 0;
+    }
+
+    return iVal;
 }
 
 /*
@@ -107,13 +104,13 @@ static int readIntAttribute(int _iDatasetId, const char *_pstName)
 */
 static char *readAttribute(int _iDatasetId, const char *_pstName)
 {
-    hid_t        iAttributeId;
-    hid_t        iFileType, memtype, iSpace;
-    herr_t    status;
-    hsize_t    dims[1];
-    size_t    iDim;
+    hid_t iAttributeId;
+    hid_t iFileType, memtype, iSpace;
+    herr_t status;
+    hsize_t dims[1];
+    size_t iDim;
 
-    char        *pstValue            = NULL;
+    char *pstValue  = NULL;
 
     if(H5Aiterate(_iDatasetId, NULL, find_attr_by_name, (void*)_pstName))
     {
@@ -200,7 +197,7 @@ static char *readAttribute(int _iDatasetId, const char *_pstName)
 
 static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
 {
-    int iRet                            = 0;
+    int iRet                = 0;
     char *pstScilabClass    = NULL;
 
     //status = H5Giterate (_iFile, "/", NULL, op_func, &iDatasetId);
@@ -218,8 +215,8 @@ static int checkAttribute(int _iDatasetId, char* _pstAttribute, char* _pstValue)
 
 int getDatasetDimension(int _iDatasetId, int* _piRows, int * _piCols)
 {
-    int iRet                            = 0;
-    int iDummy                        = 0;
+    int iRet                = 0;
+    int iDummy              = 0;
     char *pstScilabClass    = NULL;
 
     *_piRows = readIntAttribute(_iDatasetId, g_SCILAB_CLASS_ROWS);
@@ -230,8 +227,8 @@ int getDatasetDimension(int _iDatasetId, int* _piRows, int * _piCols)
 
 int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem)
 {
-    int iRet                            = 0;
-    int iDummy                        = 0;
+    int iRet                = 0;
+    int iDummy              = 0;
     char *pstScilabClass    = NULL;
 
     //get number of item in the sparse matrix
@@ -253,8 +250,9 @@ int isComplexData(int _iDatasetId)
 
 int getDatasetPrecision(int _iDatasetId, int* _piPrec)
 {
-    int iRet                            = 0;
+    int iRet                = 0;
     char* pstScilabClass    = readAttribute(_iDatasetId, g_SCILAB_CLASS_PREC);
+
     if(pstScilabClass == NULL)
     {
         return -1;
@@ -302,10 +300,10 @@ int getDatasetPrecision(int _iDatasetId, int* _piPrec)
 
 int getVariableNames(int _iFile, char **pstNameList)
 {
-    hsize_t i                        = 0;
-    hsize_t iCount            = 0;
-    herr_t status                = 0;
-    int iNbItem                    = 0;
+    hsize_t i           = 0;
+    hsize_t iCount      = 0;
+    herr_t status       = 0;
+    int iNbItem         = 0;
 
     status = H5Gget_num_objs(_iFile, &iCount);
     if(status != 0)
@@ -337,8 +335,8 @@ int getDataSetIdFromName(int _iFile, char *_pstName)
 
 int getDataSetId(int  _iFile)
 {
-    herr_t status                = 0;
-    int iDatasetId            = 0;
+    herr_t status   = 0;
+    int iDatasetId  = 0;
 
     /*
     * Begin iteration.
@@ -390,7 +388,7 @@ int getDatasetDims(int _iDatasetId, int *_piRows, int *_piCols)
 
 int readDouble(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 {
-    herr_t      status;
+    herr_t status;
 
     /*
     * Read the data.
@@ -412,12 +410,12 @@ int readDouble(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 
 int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 {
-    herr_t    status;
+    herr_t status;
 
     if(_iRows != 0 && _iCols != 0)
     {
-        hid_t        obj;
-        hobj_ref_t    *pRef = (hobj_ref_t *) MALLOC (1 * sizeof (hobj_ref_t));
+        hid_t obj;
+        hobj_ref_t *pRef = (hobj_ref_t *) MALLOC (1 * sizeof (hobj_ref_t));
 
         //Read the data.
         status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
@@ -439,9 +437,9 @@ int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData)
 
 int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg)
 {
-    hid_t        obj;
-    hobj_ref_t    *pRef = (hobj_ref_t *) MALLOC (2 * sizeof (hobj_ref_t));
-    herr_t    status;
+    hid_t obj;
+    herr_t status;
+    hobj_ref_t *pRef = (hobj_ref_t *) MALLOC (2 * sizeof (hobj_ref_t));
 
     //Read the data.
     status = H5Dread (_iDatasetId, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, pRef);
@@ -472,7 +470,7 @@ int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pd
 
 int readEmptyMatrix(int _iDatasetId)
 {//close dataset
-    herr_t    status;
+    herr_t status;
     status = H5Dclose(_iDatasetId);
     if(status < 0)
     {
@@ -506,10 +504,10 @@ int readBooleanMatrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 
 static int readString(int _iDatasetId, char **_pstData)
 {
-    hid_t        iFileType, memtype, iSpace;
-    herr_t    status;
-    hsize_t    dims[1];
-    size_t    iDim;
+    hid_t iFileType, memtype, iSpace;
+    herr_t status;
+    hsize_t dims[1];
+    size_t iDim;
 
     /*
     * Get the datatype and its size.
@@ -588,13 +586,13 @@ static int readString(int _iDatasetId, char **_pstData)
 
 int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
 {
-    int                    i;
-    herr_t            status;
-    hsize_t            dims[1];
-    hsize_t     subdims[1] = {1};
-    hid_t                space, memspace, filetype, memtype;
-    size_t            iDim;
-    size_t            iAllocSize = 0;
+    int i;
+    herr_t status;
+    hsize_t dims[1];
+    hsize_t subdims[1]  = {1};
+    hid_t space, memspace, filetype, memtype;
+    size_t iDim;
+    size_t iAllocSize   = 0;
 
 #ifdef TIME_DEBUG
     LARGE_INTEGER *piStart;
@@ -604,7 +602,7 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
     QueryPerformanceFrequency(&iFreq);
 
     piStart = (LARGE_INTEGER*)MALLOC(sizeof(LARGE_INTEGER) * (_iRows * _iCols + 1));
-    piEnd =        (LARGE_INTEGER*)MALLOC(sizeof(LARGE_INTEGER) * (_iRows * _iCols + 1));
+    piEnd   = (LARGE_INTEGER*)MALLOC(sizeof(LARGE_INTEGER) * (_iRows * _iCols + 1));
 
     QueryPerformanceCounter(&piStart[0]);
 #endif
@@ -662,8 +660,8 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
     */
     for (i = 0 ; i < _iRows * _iCols; i++)
     {
-        hssize_t        start[1]={i};
-        hsize_t            count[1]={1};
+        hssize_t start[1]={i};
+        hsize_t count[1]={1};
 #ifdef TIME_DEBUG
         QueryPerformanceCounter(&piStart[i+1]);
 #endif
@@ -727,16 +725,16 @@ int readStringMatrix(int _iDatasetId, int _iRows, int _iCols, char **_pstData)
 
 static int readComplexPoly(int _iDatasetId, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    int iRows                = 0;
-    int iCols                = 0;
+    int iRows   = 0;
+    int iCols   = 0;
 
     //Get the datatype and its size.
     getDatasetDims(_iDatasetId, &iRows, &iCols);
 
     //Allocate space for string data.
-    *_piNbCoef            = iRows * iCols;
-    *_pdblReal            = (double*)MALLOC(*_piNbCoef * sizeof(double));
-    *_pdblImg                = (double*)MALLOC(*_piNbCoef * sizeof(double));
+    *_piNbCoef  = iRows * iCols;
+    *_pdblReal  = (double*)MALLOC(*_piNbCoef * sizeof(double));
+    *_pdblImg   = (double*)MALLOC(*_piNbCoef * sizeof(double));
 
     //Read the data and return result.
     return readDoubleComplexMatrix(_iDatasetId, 1, *_piNbCoef, *_pdblReal, *_pdblImg);
@@ -744,14 +742,14 @@ static int readComplexPoly(int _iDatasetId, int* _piNbCoef, double** _pdblReal, 
 
 static int readPoly(int _iDatasetId, int* _piNbCoef, double** _pdblData)
 {
-    int iRows                            = 0;
-    int iCols                            = 0;
+    int iRows   = 0;
+    int iCols   = 0;
 
     //Get the datatype and its size.
     getDatasetDims(_iDatasetId, &iRows, &iCols);
 
-    *_piNbCoef = iRows * iCols;
-    *_pdblData = (double*)MALLOC(*_piNbCoef * sizeof(double));
+    *_piNbCoef  = iRows * iCols;
+    *_pdblData  = (double*)MALLOC(*_piNbCoef * sizeof(double));
 
     //Read the data and return result.
     return readDoubleMatrix(_iDatasetId, 1, *_piNbCoef, *_pdblData);
@@ -759,10 +757,10 @@ static int readPoly(int _iDatasetId, int* _piNbCoef, double** _pdblData)
 
 int readCommonPolyMatrix(int _iDatasetId, char* _pstVarname, int _iComplex, int _iRows, int _iCols, int* _piNbCoef, double **_pdblReal, double **_pdblImg)
 {
-    int    i                                = 0;
-    hid_t obj                        = 0;
-    char* pstVarName        = 0;
-    hobj_ref_t *pData        = (hobj_ref_t *)MALLOC(_iRows * _iCols * sizeof (hobj_ref_t));
+    int    i            = 0;
+    hid_t obj           = 0;
+    char* pstVarName    = 0;
+    hobj_ref_t *pData   = (hobj_ref_t *)MALLOC(_iRows * _iCols * sizeof (hobj_ref_t));
     herr_t status;
 
     /*
@@ -821,7 +819,7 @@ int readPolyComplexMatrix(int _iDatasetId, char* _pstVarname, int _iRows, int _i
 
 int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
 {
-    herr_t status            = 0;
+    herr_t status = 0;
     /*
     * Read the data.
     */
@@ -842,7 +840,7 @@ int readInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, char* _pcData)
 
 int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData)
 {
-    herr_t status                = 0;
+    herr_t status = 0;
     /*
     * Read the data.
     */
@@ -863,7 +861,7 @@ int readInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, short* _psData
 
 int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 {
-    herr_t status                = 0;
+    herr_t status = 0;
     /*
     * Read the data.
     */
@@ -884,7 +882,7 @@ int readInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, int* _piData)
 
 int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pllData)
 {
-    herr_t status                            = 0;
+    herr_t status = 0;
     /*
     * Read the data.
     */
@@ -905,7 +903,7 @@ int readInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, long long* _pl
 
 int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned char* _pucData)
 {
-    herr_t status                                = 0;
+    herr_t status = 0;
     /*
     * Read the data.
     */
@@ -926,7 +924,7 @@ int readUnsignedInterger8Matrix(int _iDatasetId, int _iRows, int _iCols, unsigne
 
 int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned short* _pusData)
 {
-    herr_t status                                    = 0;
+    herr_t status = 0;
 
     /*
     * Read the data.
@@ -948,7 +946,7 @@ int readUnsignedInterger16Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
 
 int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned int* _puiData)
 {
-    herr_t status                                = 0;
+    herr_t status = 0;
 
     /*
     * Read the data.
@@ -970,7 +968,7 @@ int readUnsignedInterger32Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
 
 int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsigned long long* _pullData)
 {
-    herr_t status                                                = 0;
+    herr_t status = 0;
 
     /*
     * Read the data.
@@ -992,10 +990,10 @@ int readUnsignedInterger64Matrix(int _iDatasetId, int _iRows, int _iCols, unsign
 
 int readCommonSparseComplexMatrix(int _iDatasetId, int _iComplex, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,    int* _piColPos, double *_pdblReal, double *_pdblImg)
 {
-    int    i                                = 0;
-    int j                                = 0;
-    hid_t obj                        = 0;
-    hobj_ref_t *pRef        = (hobj_ref_t *)MALLOC(3 * sizeof (hobj_ref_t));
+    int i               = 0;
+    int j               = 0;
+    hid_t obj           = 0;
+    hobj_ref_t *pRef    = (hobj_ref_t *)MALLOC(3 * sizeof (hobj_ref_t));
     herr_t status;
 
     /*
@@ -1057,10 +1055,10 @@ int readSparseComplexMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
 int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbItem, int* _piNbItemRow,    int* _piColPos)
 {
-    int    i                                = 0;
-    int j                                = 0;
-    hid_t obj                        = 0;
-    hobj_ref_t *pRef        = (hobj_ref_t *)MALLOC(2 * sizeof (hobj_ref_t));
+    int i               = 0;
+    int j               = 0;
+    hid_t obj           = 0;
+    hobj_ref_t *pRef    = (hobj_ref_t *)MALLOC(2 * sizeof (hobj_ref_t));
     herr_t status;
 
     /*
@@ -1095,12 +1093,12 @@ int readBooleanSparseMatrix(int _iDatasetId, int _iRows, int _iCols, int _iNbIte
 
 int getScilabTypeFromDataSet(int _iDatasetId)
 {
-    int iVarType                    = 0;
+    int iVarType            = 0;
     char *pstScilabClass    = readAttribute(_iDatasetId, g_SCILAB_CLASS);
 
     if(pstScilabClass == NULL)
     {
-        return -1;
+        return unknow_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
     if(strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
@@ -1147,6 +1145,14 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     {
         iVarType = sci_mlist;
     }
+    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
+    {
+        iVarType = sci_void;
+    }
+    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
+    {
+        iVarType = sci_undefined;
+    }
 
     if(iVarType == 0)
     {
@@ -1159,8 +1165,8 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 
 int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef)
 {
-    int iItem                    = 0;
-    herr_t status            = 0;
+    int iItem       = 0;
+    herr_t status   = 0;
 
     getListDims(_iDatasetId, &iItem);
 
@@ -1177,8 +1183,8 @@ int getListItemReferences(int _iDatasetId, hobj_ref_t** _piItemRef)
 
 int getListItemDataset(int _iDatasetId, void* _piItemRef, int _iItemPos, int* _piItemDataset)
 {
-    hobj_ref_t poRef        = ((hobj_ref_t*)_piItemRef)[_iItemPos];
-    *_piItemDataset = H5Rdereference (_iDatasetId, H5R_OBJECT, &poRef);
+    hobj_ref_t poRef    = ((hobj_ref_t*)_piItemRef)[_iItemPos];
+    *_piItemDataset     = H5Rdereference (_iDatasetId, H5R_OBJECT, &poRef);
 
     if(*_piItemDataset == 0)
     {

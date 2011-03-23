@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -13,6 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include <wchar.h>
 #include <wctype.h>
 #include "isletter.h"
 #include "MALLOC.h"

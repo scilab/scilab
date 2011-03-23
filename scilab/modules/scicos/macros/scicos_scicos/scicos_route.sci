@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function lk=scicos_route(lk,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 From=lk.from(1);To=lk.to(1)
 delF=scs_m.objs(From).graphics.sz/2
@@ -37,6 +40,9 @@ end
 endfunction
 
 function [x,y]=routage(x,y,forig,torig,delF,delT)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   xold=[];yold=[]
   while ~(isequal(x,xold)&isequal(y,yold))
     del=3+6*rand()

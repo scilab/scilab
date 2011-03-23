@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="profile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>profile</refname>
+    <refpurpose>Scilab関数の実行プロファイルを展開</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>c=profile(fun)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>Scilab関数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>実行プロファイルを含むnx3 行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    	<literal>profile</literal>を使用するには,
+	 Scilab 関数はプロファイル用に設定されている必要があります
+     (exec参照).</para>
+    <para>
+	このような関数の場合,実行時に
+	各行の実行回数および各行の実行に要したCPU時間がシステムにより
+	計測されます.
+	これらのデータは関数データ構造の内部に保存されます.
+	profile関数によりこれらのデータを展開し,
+	<literal>c</literal>の最初の2列に返すことができます.
+	<literal>c</literal> の第3列には
+	対応する行の1回の実行に要したインプリタの負荷の計測値が
+	出力されます.
+	<literal>c</literal>の I行目は,
+	関数の I行目(先頭行を含む)に対応します.</para>
+    <para>
+	プロセッサクロックの精度(通常はマイクロ秒)により,
+	いくつかの実行された行のCPU時間が,
+	実際には実行に要したCPU時間の合計が大きい場合でも
+	 0 と表示される可能性があることに
+	注意してください.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//関数を定義し,プロファイル用に設定
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+
+//関数をコール
+foo(10)
+
+//実行プロファイルを取得
+profile(foo)
+
+//関数をコール
+foo(20)
+profile(foo) //実行プロファイルは蓄積されます
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="plotprofile">plotprofile</link>
+      </member>
+      <member>
+        <link linkend="showprofile">showprofile</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

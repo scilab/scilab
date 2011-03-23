@@ -20,6 +20,9 @@
 //
 
 function inactive_windows=close_inactive_windows(inactive_windows,path)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //close all inactive windows assciated with children of Super Block path
   DELL=[]  // inactive windows to kill
   if size(inactive_windows(2),'*')>0 then

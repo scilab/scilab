@@ -122,7 +122,7 @@ BOOL startJVM(char *SCI_PATH)
 			fprintf(stderr,_("If you are using a self-built version of Scilab, update the script bin/scilab to provide the path to the JVM.\n"));
 
 			fprintf(stderr,_("The problem might be related to SELinux. Try to deactivate it.\n"));
-
+			fprintf(stderr,_("Please also check that you are not trying to run Scilab 64 bits on a 32 bits system (or vice versa).\n"));
 			return FALSE;
 		}
 		else

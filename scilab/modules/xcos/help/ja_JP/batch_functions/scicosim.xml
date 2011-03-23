@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="scicosim"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>scicosim</refname>
+    <refpurpose>xcos (バッチ) シミュレーション関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[state,t] = scicosim(state,tcur,tf,sim,str,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_scicosim">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_scicosim">
+    <title>説明</title>
+    <para>
+コンパイル済みのxcosダイアグラム用のシミュレータ.
+</para>
+    <para>
+通常,scicosimはダイアグラムのシミュレーションを実行する際にxcosによりコールされます.
+</para>
+    <para>
+しかし,scicosimはxcosの外でもコールすることができます.
+このような使用法の典型的な例は,以下のようになります :  
+</para>
+    <para>
+</para>
+    <para>
+上級ユーザは,パラメータまたは状態変数を"手動で"変更することができます.
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+[state,t] = scicosim(state,tcur,tf,sim,str,tol)
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_scicosim">
+    <title>パラメータ</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">state :</emphasis> 状態変数の初期値を含む Scilab tlist.
+	通常, xcosコンパイルにより生成されます.
+	コンパイル済みの.cosファイルがロードされた後は,%cpr.state から参照できます.
+	</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">tcur :</emphasis> 
+	シミュレーションの開始時間.
+	開始時にはゼロにします.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">tf :</emphasis> シミュレーションの終了時間.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">sim :</emphasis> コンパイル結果を有するScilab tlist. 
+	通常は, xcos Compile により生成されます.
+	コンパイル済みの.cosファイルがロードされた後は,%cpr.sim から参照できます.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">str :</emphasis> 'start' , 'run' または 'finish'. 
+	関数はまず 'start' を指定してコールされた後,
+	1回または複数回 'run' を指定してコールされ,最後に 'finish' を指定してコールされます.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">tol :</emphasis> 
+	ベクトル [atol,rtol,ttol,deltat,realtimescale,solver,hmax] ,
+	ただし, atol, rtol はそれぞれ ODEおよび DAEソルバの絶対および相対許容誤差で,
+	ttol はイベントの精度(非常に小さな数値とします),
+	deltat はODEソルバの各コールにおける最大積分間隔(ソルバのコールを強制的に再開することが
+	必要となる場合があります),
+	realtimescale はシミュレーション時間と実時間の間の対応度
+	(0は低速にしないことを意味します), solver は選択するソルバ
+	(0: lsodar, 100: daskr), hmax: ソルバにより使用される最大ステップの大きさです.
+	デフォルト: [0.0001,1.000E-06,1.000E-10,100001,0,0]</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">state :</emphasis> シミュレーション後の状態変数</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">t :</emphasis> 最終的に到達した時間.
+	通常は tf ですが, 常にそうなるわけではありません.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_scicosim">
+    <title>参照</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="scicos_simulate">scicos_simulate - 
+	xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos - 
+	ハイブリッドシミュレータ用のブロックダイアグラムエディタおよびGUI (Scilab関数)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_scicosim">
+    <title>作者</title>
+    <para>
+      <emphasis role="bold"/>
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Ramine Nikoukhah</emphasis> INRIA</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Alan Layec</emphasis> INRIA</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

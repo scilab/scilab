@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="harmean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>harmean</refname>
+    <refpurpose>調和平均</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>hm=harmean(x)
+hm=harmean(x,'r')(or, equivalently, hm=harmean(x,1))
+hm=harmean(x,'c')(or, equivalently, hm=harmean(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,ベクトルまたは行列<literal>x</literal>の
+	調和平均を計算します.
+	あるベクトルまたは行列<literal>x</literal>について,
+	<literal>hm=harmean(x)</literal>はスカラー<literal>hm</literal>に
+	<literal>x</literal>の全エントリの調和平均を返します.</para>
+    <para><literal>hm=harmean(x,'r')</literal>   (または等価な   
+    <literal> hm=harmean(x,1)</literal>) は,
+	行ベクトル<literal>hm</literal>の各要素に
+	<literal>x</literal>の各列の調和平均を返します.</para>
+    <para><literal>hm=harmean(x,'c')</literal>   (または等価な
+    <literal>hm=harmean(x,2)</literal> ) は,
+	列ベクトル<literal>hm</literal>の各エントリに
+	<literal>x</literal>の各行の調和平均を返します.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

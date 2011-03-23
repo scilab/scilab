@@ -55,6 +55,7 @@ typedef enum
 int exportToFile(sciPointObj * pFigure,
                  const char * fileName,
                  ExportFileType fileType,
+		 const float jpegCompressionQuality,
                  ExportOrientation orientation);
 
 #ifdef __cplusplus

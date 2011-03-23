@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xarcs">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xarcs</refname>
+    <refpurpose>楕円の集合の一部を描画する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xarcs(arcs,[style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>arcs</term>
+        <listitem>
+          <para>楕円を記述する大きさ (6,n) の行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>使用するスタイルを指定する大きさnの行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xarcs</literal> は,
+	<literal>arcs</literal>により記述された楕円の集合の一部を描画します:
+    <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> 
+	ただし, 各楕円は6個のパラメータ
+	 <literal>(x,y,w,h,a1,a2)</literal> (<literal>xarc</literal>参照)で
+	定義されます.</para>
+    <para><literal>x, y, w, h</literal>パラメータはユーザ座標で指定されます.</para>
+    <para><literal>style(i)</literal> は<literal>i</literal>番の楕円を描画する
+	際に使用される色を指定します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+arcs=[-1.0 0.0 0.5; // 左上 x
+       1.0 0.0 0.5; // 左上 y
+       0.5 1.0 0.5; // 幅
+       0.5 0.5 1.0; // 高さ
+       0.0 0.0 0.0; // 角度 1
+       180*64 360*64 90*64]; // 角度 2
+xarcs(arcs,[1,2,3])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xarc">xarc</link>
+      </member>
+      <member>
+        <link linkend="xfarc">xfarc</link>
+      </member>
+      <member>
+        <link linkend="xfarcs">xfarcs</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.;   </para>
+  </refsection>
+</refentry>

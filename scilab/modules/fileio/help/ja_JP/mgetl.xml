@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mgetl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mgetl</refname>
+    <refpurpose>アスキーファイルから行を読み込む</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>txt=mgetl(file_desc [,m])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_desc</term>
+        <listitem>
+          <para>ファイル名を指定する文字列またはmopenにより返された論理ユニット
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>整数スカラー. 読み込む行の数. デフォルト値は -1です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>文字列の列ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>mgetl</literal> 関数はアスキーファイルから行を読み込みます.
+	 </para>
+    <para>
+    <literal>m</literal> が省略されるか <literal>-1</literal> の場合,
+	ファイルの終わりまで全ての行が読み込まれます.</para>
+    <para>
+	<literal>m</literal> が指定された場合,
+	<literal>mgetl</literal> は正しく m　行を読み込もうとします.
+	このオプションはファイルの一部を連続的に読み込む場合に有用です.
+	この際, <literal>m</literal>行が読み込まれる前にファイル終端(EOF)に
+	到達した場合,読み込まれた行が返されます
+	(meof関数によりEOFに達したかどうかを調べることができます).</para>
+    <para><literal>mgetl</literal> は, Unix, Windows, または Mac
+    オペレーティングシステムからファイルを読み込むことができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+mgetl('SCI/etc/scilab.start',5)
+
+mgetl SCI/modules/elementary_functions/macros/erf.sci
+
+fd=mopen('SCI/etc/scilab.start','r')
+mgetl(fd,10)
+mclose(fd)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mputl">mputl</link>
+      </member>
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="read">read</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S. Steer</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sysdiag" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sysdiag</refname>
+
+    <refpurpose>ブロック対角システム接続</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>r=sysdiag(a1,a2,...,an)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	主対角項にサブシステムを配置したブロック対角システムを返します.
+	</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ai</term>
+
+        <listitem>
+          <para>サブシステム (すなわち,ゲインまたは状態空間表現または
+	伝達関数表現の線形システム)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>特にシステムの相互接続で使用されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>引数の数は最大17個に制限されています.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s')
+sysdiag(rand(2,2),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+sysdiag(tf2ss(1/s),1/(s+1),[1/(s-1);1/((s-2)*(s-3))])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>最小</title>
+
+    <simplelist type="inline">
+      <member><link linkend="brackets">brackets</link></member>
+
+      <member><link linkend="insertion">insertion</link></member>
+
+      <member><link linkend="feedback">feedback</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

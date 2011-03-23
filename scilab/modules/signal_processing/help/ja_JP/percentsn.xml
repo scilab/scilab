@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="percentsn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>%sn</refname>
+    <refpurpose>ヤコビ楕円関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[y]=%sn(x,m)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+	楕円積分により定義される基本矩形の中の点;
+	 <literal>x</literal> は複素数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>楕円積分のパラメータ (<literal>0&lt;m&lt;1</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>結果</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	パラメータ<literal>m</literal>を指定した
+	ヤコビの楕円関数:
+	パラメータ<literal>m</literal>の楕円積分の逆.</para>
+    <para>
+	ゲインamはFortran形式で計算され,
+	楕円関数用の加算式が適用されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+m=0.36;
+K=%k(m);
+P=4*K; //実周期
+real_val=0:(P/50):P;
+plot(real_val,real(%sn(real_val,m)))
+clf();
+KK=%k(1-m);
+Ip=2*KK;
+ima_val1=0:(Ip/50):KK-0.001;
+ima_val2=(KK+0.05):(Ip/25):(Ip+KK);
+z1=%sn(%i*ima_val1,m);z2=%sn(%i*ima_val2,m);
+plot2d([ima_val1',ima_val2'],[imag(z1)',imag(z2)']);
+xgrid(3)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="percentasn">%asn</link>
+      </member>
+      <member>
+        <link linkend="percentk">%k</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.  </para>
+  </refsection>
+</refentry>

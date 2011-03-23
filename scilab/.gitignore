@@ -137,6 +137,7 @@ mainsci.o
 autom4te.cache
 .deps
 /locale
+scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc
@@ -163,3 +164,7 @@ modules/types/src/java/org/scilab/modules/types/types.java
 modules/types/src/java/org/scilab/modules/types/typesJNI.java
 modules/types/src/jni/sci_types_wrap.c
 
+# Code coverage generated files
+*.gcov
+*.gcno
+*.gcda

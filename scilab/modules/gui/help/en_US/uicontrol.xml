@@ -185,7 +185,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>HorizontAlalignment</term>
+        <term>HorizontalAlignment</term>
 
         <listitem>
           <para>left | {center} | right</para>

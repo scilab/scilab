@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="read">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>read</refname>
+    <refpurpose>行列を読み込む </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[x]=read(file-desc,m,n,[format])
+[x]=read(file-desc,m,n,k,format)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-desc</term>
+        <listitem>
+          <para>ファイル名を指定する文字列または論理ユニットを
+	指定する整数値(file参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m, n</term>
+        <listitem>
+          <para>整数 (行列 xの次元). 
+	行の数が未知の場合には m=-1を設定します.
+	この場合,ファイル全体が読み込まれます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format : 文字列,"Fortran" 形式で指定します. </term>
+        <listitem>
+          <para>この文字列は右括弧で始まり,
+	左括弧で終わる必要があります. format では
+	浮動小数点数または文字列編集モードを混用することができません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>整数または整数のベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	ファイル<literal>file-desc</literal> (文字列または整数)から
+	<literal>mxn</literal> 行列 <literal>x</literal>
+	(文字連鎖の場合,<literal>n=1</literal>)を行毎に読み込みます.
+	行列<literal>x</literal>の各行は,
+	<literal>file-desc</literal>ファイルの新しい行で
+	始まります.
+	<literal>format</literal>に基づき,
+	<literal>x</literal>行列の指定した行は
+	<literal>file-desc</literal>ファイルの複数の行から読み込む
+	ことができます.
+	</para>
+    <para>
+	結果の型は指定されたformatに依存します.
+	formatが<literal>(d,e,f,g)</literal>記述子のみを有する場合,
+	この関数は数値データを読み込みます(結果は実数の行列です).
+	</para>
+    <para>
+	format が <literal>a</literal>記述子のみを含む場合,
+	この関数は文字列を読み込みます
+	(結果は文字列列ベクトルです).
+	この場合, n は1である必要があります.
+	警告: 文字列の長さが 4093 よりも長い場合,丸められます.</para>
+    <para>
+    <literal>format</literal>の例:</para>
+    <programlisting role = ""><![CDATA[ 
+(1x,e10.3,5x,3(f3.0))
+(10x,a20) 
+ ]]></programlisting>
+    <para>
+    formatが省略された場合,データが数値フリー形式で読み込まれます:
+	空白,カンマおよびスラッシュをデータセパレータとして
+	使用でき, 
+	値 v が n 回現れることを指定するためにn*v を使用できます.</para>
+    <para>
+	読み込むレコード数のベクトル(行毎に1レコード)である
+	パラメータ<literal>k</literal>を使用する場合,
+	ファイルの直接アクセスを使用できます.
+	この場合,<literal>m</literal> は
+	 <literal>m=prod(size(k))</literal>となります.</para>
+    <para>
+	キーボードから読み込むには,
+	<literal>read(%io(1),...)</literal>を使用してください.</para>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>
+	データファイルの最後の行は,
+	認識されるために,改行で終わる必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+if getos() == 'Windows' then unix('del foo');
+else unix('rm -f foo'); end
+A=rand(3,5); write('foo',A);
+B=read('foo',3,5)
+B=read('foo',-1,5)
+read(%io(1),1,1,'(a)')  // ユーザ入力を待つ
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="write">load</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="readb">readb</link>
+      </member>
+      <member>
+        <link linkend="x_dialog">x_dialog</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="msscanf">msscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

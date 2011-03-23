@@ -1,14 +1,20 @@
-                      Scilab 5.3.0 beta 5 Release_Notes
-                      =================================
+                      Scilab 5.3.1 Release_Notes
+                      ==========================
+
 
 - New Nvidia drivers 260.xx can crash scilab (bug #7575)
   Workaround: You need to create a 3D graphic profile for wscilex.exe.
-  start Nvidia control panel --> 3d settings --> Manage 3D settings --> Add and 
+  start Nvidia control panel --> 3d settings --> Manage 3D settings --> Add and
   select  wscilex.exe" for Scilab and you disable ("off") for "Threaded 
   optimization".
   A warning on Scilab startup should be displayed.
+  The lastest release of the Nvidia drivers fixes this issue.
 
-- All portability issues of Scilab under Mac OS X (both 10.5 and 10.6) should be
+- Most of the graphic issues (buggy OpenGL drivers) have been fixed with this 
+  release. If you encounter any problem, please report a bug on
+  http://bugzilla.scilab.org/.
+
+- All portability issues of Scilab under Mac OS X (10.6) should be
   fixed. 
   However, if any problems is encounter, please:
   * Test the workaround described here:
@@ -22,14 +28,7 @@
   Uninstall / disable Audio Hijack should fix this problem.
 
 - Support of Mac OS X 10.5 can be partial. This should be fixed with version
-  5.3.1.
-
-- The dependencies on the GLIBC 2.7 have been removed. However, on old system,
-  the function parallel_run will not work since it needs a recent version
-  of the OpenMP runtime.
-
-- The accuracy of inversion of most distribution functions is increased: see
-  bug #7569 for details.
+  5.3.2.
 
 Besides these points, do not hesitate to report bugs on:
 http://bugzilla.scilab.org/

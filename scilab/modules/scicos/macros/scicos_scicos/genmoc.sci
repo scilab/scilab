@@ -20,6 +20,9 @@
 //
 
 function genmoc(path,force,verbose)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // make moc files in the specified directory
 
   [lhs,rhs] = argn(0)

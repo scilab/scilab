@@ -20,6 +20,9 @@
 //
 
 function pwindow_set_size(gh_window)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //  Set the physical figure size according to a given diagram
 //  The "figure_size" controls ONLY the dimension of the physical window:
 //        the dimension of the graphics canvas  is the "axes_size"

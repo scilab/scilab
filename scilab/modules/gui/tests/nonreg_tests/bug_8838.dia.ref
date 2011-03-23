@@ -7,7 +7,7 @@
 //
 // <-- Non-regression test for bug 8838 -->
 //
-// <-- JAVA MANDATORY -->
+// <-- TEST WITH GRAPHIC -->
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=8838

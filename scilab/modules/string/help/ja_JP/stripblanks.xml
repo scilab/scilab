@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="stripblanks">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>stripblanks</refname>
+    <refpurpose>
+	文字列の先頭または末尾の空白(およびタブ)を取り除く</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>文字列または文字列の行列 s</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tabs</term>
+        <listitem>
+          <para>TRUEの場合,タブも削除されます (デフォルト値は FALSE)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    stripblanks は文字列の先頭または末尾の空白(およびタブ)を取り除
+	きます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a='  123   ';
+'!'+a+'!'
+'!'+stripblanks(a)+'!'
+a=['  123   ',' xyz']
+strcat(stripblanks(a))
+ ]]></programlisting>
+  </refsection>
+</refentry>

@@ -35,6 +35,7 @@ import java.util.regex.Pattern;
 
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
@@ -47,6 +48,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -58,7 +60,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.Tab;
-import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
@@ -81,6 +82,7 @@ import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.PortCheck;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -519,15 +521,14 @@ public class XcosDiagram extends ScilabGraph {
 
 	/* Labels use HTML if not equal to interface function name */
 	setHtmlLabels(true);
-	/**
+	/*
 	 * by default every label is movable, see
 	 * XcosDiagram##isLabelMovable(java.lang.Object) for restrictions
 	 */
 	setVertexLabelsMovable(true);
 	setEdgeLabelsMovable(true);
 	
-	//
-	//setCloneInvalidEdges(false);
+	// 
 	setCloneInvalidEdges(true);
 
 	// Override isCellEditable to filter what the user can edit
@@ -1021,10 +1022,14 @@ public class XcosDiagram extends ScilabGraph {
 				final mxICell out1Link = splitBlock.getOut1().getEdgeAt(0);
 				final mxICell out2Link = splitBlock.getOut2().getEdgeAt(0);
 				
+				final boolean inRemoved = removedCells.contains(inLink);
+				final boolean out1Removed = removedCells.contains(out1Link);
+				final boolean out2Removed = removedCells.contains(out2Link);
+				
 				/*
 				 * Explicit case, if the in link is deleted; all the out links also should.
 				 */
-				if (inLink instanceof ExplicitLink && removedCells.contains(inLink)) {
+				if (inLink instanceof ExplicitLink && inRemoved) {
 					if (removedCells.add(out1Link)) {
 						loopCells.add(out1Link);
 					}
@@ -1037,21 +1042,25 @@ public class XcosDiagram extends ScilabGraph {
 				/*
 				 * Global case reconnect if not removed
 				 */
-				BasicPort[] connection = null;
+				final BasicPort[] connection;
 				List<mxPoint> points = null;
-				if (!removedCells.contains(inLink) && !removedCells.contains(out1Link)) {
-					connection = new BasicPort[] {(BasicPort) inLink.getTerminal(true), (BasicPort) out1Link.getTerminal(false)};
+				if (!inRemoved && !out1Removed && out2Removed) {
+					connection = findTerminals(inLink, out1Link, removedCells);
 					points = getDirectPoints(splitBlock, inLink, out1Link);
-				} else if (!removedCells.contains(inLink) && !removedCells.contains(out2Link)) {
-					connection = new BasicPort[] {(BasicPort) inLink.getTerminal(true), (BasicPort) out2Link.getTerminal(false)};
+				} else if (!inRemoved && out1Removed && !out2Removed) {
+					connection = findTerminals(inLink, out2Link, removedCells);
 					points = getDirectPoints(splitBlock, inLink, out2Link);
-				} else if (!removedCells.contains(out1Link) && !removedCells.contains(out2Link)) {
+				} else if (inRemoved && !out1Removed && !out2Removed) {
 					// only implicit case, log otherwise
-					if (out1Link instanceof ImplicitLink || out2Link instanceof ImplicitLink) {
+					if (out1Link instanceof ExplicitLink || out2Link instanceof ExplicitLink) {
 						LOG.error("Reconnection failed for explicit links");
+						connection = null;
+					} else {
+						connection = findTerminals(out1Link, out2Link, removedCells);
+						points = getDirectPoints(splitBlock, out1Link, out2Link);
 					}
-					connection = new BasicPort[] {(BasicPort) out1Link.getTerminal(false), (BasicPort) out2Link.getTerminal(false)};
-					points = getDirectPoints(splitBlock, out1Link, out2Link);
+				} else {
+					connection = null;
 				}
 				
 				if (connection != null) {
@@ -1103,6 +1112,32 @@ public class XcosDiagram extends ScilabGraph {
 		}
 	}
 	
+	/**
+	 * Find the terminals when relinking the 2 links
+	 * 
+	 * This method ensure that {source, target} are not child of removed blocks.
+	 * 
+	 * @param linkSource the normal source link
+	 * @param linkTerminal the normal target link
+	 * @param removedCells the set of removed objects
+	 * @return the {source, target} connection
+	 */
+	private BasicPort[] findTerminals(final mxICell linkSource, final mxICell linkTerminal, final HashSet<Object> removedCells) {
+		BasicPort src = (BasicPort) linkSource.getTerminal(true);
+		BasicPort tgt = (BasicPort) linkTerminal.getTerminal(false);
+		if (linkSource instanceof ImplicitLink) {
+			if (removedCells.contains(src.getParent())) {
+				src = (BasicPort) linkSource.getTerminal(false);
+			}
+			if (removedCells.contains(tgt.getParent())) {
+				tgt = (BasicPort) linkTerminal.getTerminal(true);
+			}
+		}
+		
+		return new BasicPort[] {src, tgt};
+	}
+
+
 	/**
 	 * Get the direct points from inLink.getSource() to outLink.getTarget().
 	 * 
@@ -1297,6 +1332,25 @@ public class XcosDiagram extends ScilabGraph {
     	return status;
     }
 
+	/**
+	 * {@inheritDoc}
+	 * Do not extends if the port position is north or south.
+	 */
+	@Override
+	public boolean isExtendParent(Object cell) {
+		final boolean extendsParents;
+		
+		if (cell instanceof BasicPort) {
+			final BasicPort p = (BasicPort) cell;
+			extendsParents = !(p.getOrientation() == Orientation.NORTH || p
+					.getOrientation() == Orientation.SOUTH)
+					&& super.isExtendParent(p);
+		} else {
+			extendsParents = super.isExtendParent(cell);
+		}
+		return extendsParents;
+	}
+	
     /**
      * @param fileName HDF5 filename
      */
@@ -1528,7 +1582,7 @@ public class XcosDiagram extends ScilabGraph {
 			close();
 		}
 		
-		return true;
+		return wantToClose;
 	}
 
 	/**
@@ -1577,25 +1631,35 @@ public class XcosDiagram extends ScilabGraph {
 	    final SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 	    fc.setTitle(XcosMessages.SAVE_AS);
 	    fc.setUiDialogType(JFileChooser.SAVE_DIALOG);
+	    
+	    // Xcos files or anything are supported
+	    {
+			final XcosFileType defaultFileType = XcosFileType.getDefault();
+			final FileNameExtensionFilter xcosFilter = new FileNameExtensionFilter(
+					defaultFileType.getDescription(),
+					defaultFileType.getExtension());
+			fc.addChoosableFileFilter(xcosFilter);
+			fc.setAcceptAllFileFilterUsed(true);
+			fc.setFileFilter(xcosFilter);
+	    }
+	    
 	    fc.setMultipleSelection(false);
 	    if (getSavedFile() != null) {
 	    	fc.setSelectedFile(getSavedFile());
+	    } else {
+	    	final String title = getTitle();
+	    	if (title != null) {
+	    		fc.setSelectedFile(new File(title + XcosFileType.XCOS.getDottedExtension()));
+	    	}
 	    }
 
-	    final SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
-	    final SciFileFilter allFilter = new SciFileFilter("*.*", null, 1);
-	    fc.addChoosableFileFilter(xcosFilter);
-	    fc.addChoosableFileFilter(allFilter);
-	    fc.setFileFilter(xcosFilter);
-
-	    fc.setAcceptAllFileFilterUsed(false);
-	    fc.displayAndWait();
-
-	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-		info(XcosMessages.EMPTY_INFO);
-		return isSuccess;
+	    int status = fc.showSaveDialog(this.getAsComponent());
+	    if (status != JFileChooser.APPROVE_OPTION) {
+	    	info(XcosMessages.EMPTY_INFO);
+	    	return isSuccess;
 	    }
-	    writeFile = new File(fc.getSelection()[0]);
+	    
+	    writeFile = fc.getSelectedFile();
 	}
 	
 	/* Extension checks */
@@ -1632,7 +1696,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void save(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
-		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
 		
 		final DOMSource src = new DOMSource(codec.encode(this));
@@ -1648,7 +1712,7 @@ public class XcosDiagram extends ScilabGraph {
 	 */
 	private void load(final File file) throws TransformerException {
 		final XcosCodec codec = new XcosCodec();
-		final TransformerFactory tranFactory = TransformerFactory.newInstance();
+		final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
 		final Transformer aTransformer = tranFactory.newTransformer();
 		
 		final StreamSource src = new StreamSource(file);
@@ -1786,41 +1850,46 @@ public class XcosDiagram extends ScilabGraph {
 
     /**
      * Read a diagram from an HDF5 file (ask for creation if the file does not exist) 
-     * @param diagramFileName file to open
+     * @param diagram file to open
+     * @return the diagram instance or null on error 
      */
-    public void openDiagramFromFile(final File diagramFileName) {
-	    info(XcosMessages.LOADING_DIAGRAM);
+	public XcosDiagram openDiagramFromFile(final File diagram) {
+		info(XcosMessages.LOADING_DIAGRAM);
 
-	    if (diagramFileName.exists()) {
-	    	transformAndLoadFile(diagramFileName, false);
-	    } else {
-		AnswerOption answer;
-		try {
-			answer = ScilabModalDialog.show(getParentTab(), String.format(
-				XcosMessages.FILE_DOESNT_EXIST, diagramFileName.getCanonicalFile()),
-				XcosMessages.XCOS, IconType.QUESTION_ICON,
-				ButtonType.YES_NO);
-		} catch (final IOException e) {
-			LOG.error(e);
-			answer = AnswerOption.YES_OPTION;
-		}
+		if (diagram.exists()) {
+			transformAndLoadFile(diagram, false);
+		} else {
+			AnswerOption answer;
+			try {
+				answer = ScilabModalDialog.show(getParentTab(), String.format(
+						XcosMessages.FILE_DOESNT_EXIST,
+						diagram.getCanonicalFile()), XcosMessages.XCOS,
+						IconType.QUESTION_ICON, ButtonType.YES_NO);
+			} catch (final IOException e) {
+				LOG.error(e);
+				answer = AnswerOption.YES_OPTION;
+			}
 
-		if (answer == AnswerOption.YES_OPTION) {
-		    try {
-			final FileWriter writer = new FileWriter(diagramFileName);
-			writer.write("");
-			writer.flush();
-			writer.close();
-			setSavedFile(diagramFileName);
-		    } catch (final IOException ioexc) {
-		    	LOG.error(ioexc);
-		    	JOptionPane.showMessageDialog(getAsComponent(), ioexc);
-		    }
+			if (answer == AnswerOption.YES_OPTION) {
+				try {
+					final FileWriter writer = new FileWriter(diagram);
+					writer.write("");
+					writer.flush();
+					writer.close();
+					setSavedFile(diagram);
+				} catch (final IOException ioexc) {
+					LOG.error(ioexc);
+					JOptionPane.showMessageDialog(getAsComponent(), ioexc);
+				}
+			} else {
+				return null;
+			}
 		}
-	    }
-	    info(XcosMessages.EMPTY_INFO);
-	    getUndoManager().clear();
-    }
+		info(XcosMessages.EMPTY_INFO);
+		getUndoManager().clear();
+
+		return this;
+	}
     
 
     /**

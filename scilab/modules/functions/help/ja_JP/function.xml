@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="function">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>function</refname>
+    <refpurpose>関数定義をオープンする</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="endfunction">
+    <refname>endfunction</refname>
+    <refpurpose>関数定義を閉じる</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <programlisting><![CDATA[ 
+function <lhs_arguments>=<function_name><rhs_arguments>
+  <statements>
+endfunction
+ ]]></programlisting>
+    <para>
+    ただし,
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>&lt;function_name&gt;</term>
+        <listitem>
+          <para>は関数の名前を意味します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;rhs_arguments&gt;</term>
+        <listitem>
+          <para>は入力引数のリストを意味します.</para>
+          <itemizedlist>
+            <listitem>
+              <para>これは,<literal>(x1,...,xm)</literal>のように括弧で括った
+		カンマ区切りの変数名の一覧となります.
+		最後の変数名はキーワード<literal>varargin</literal>とすることも可能です
+	(varargin 参照)</para>
+            </listitem>
+            <listitem>
+              <para>関数に入力引数がない場合, <literal>()</literal> または何も付けません.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;lhs_arguments&gt;</term>
+        <listitem>
+          <para>は出力引数のリストを意味します.</para>
+          <itemizedlist>
+            <listitem>
+              <para>これは,<literal>[y1,...,yn]</literal>のように角括弧で括ったカンマ区切りの
+		変数名の一覧となります.
+		最後の変数名はキーワード <literal>varargout</literal> ( varargout 参照)とすること
+		が可能です.</para>
+            </listitem>
+            <listitem>
+              <para>関数が出力引数を持たない場合,<literal>[]</literal> を指定します.
+		この場合,構文を以下のようにすることも可能です:
+		 <literal>function &lt;function_name&gt;&lt;rhs_arguments&gt;</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;statements&gt;</term>
+        <listitem>
+          <para>Scilab命令(ステートメント)の集合を意味します.
+	この構文は,インラインまたはスクリプトファイル(exec 参照)の中で
+	関数を定義する (functions 参照)ために使用できます.
+	古いバージョンのScilabとの互換性のため,
+	function 定義のみを含むスクリプトファイルで定義された関数は,
+	<literal>exec</literal>関数によりScilabに"ロードする"ことができます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    <literal>function &lt;lhs_arguments&gt;=&lt;function_name&gt;&lt;rhs_arguments&gt;</literal>
+	のシーケンスは複数の行に分割することができません.
+	このシーケンスはカンマまたはセミコロンを終端に付けることにより,
+	同じ行に命令を続けることができます.
+	</para>
+    <para>
+    function の定義はネストすることが可能です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//inline definition (see function)
+function [x,y]=myfct(a,b)
+x=a+b
+y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//行内での関数定義
+function y=sq(x),y=x^2,endfunction
+
+sq(3)
+
+//関数定義のネスト
+function y=foo(x)
+a=sin(x)
+function y=sq(x), y=x^2,endfunction
+y=sq(a)+1
+endfunction
+
+foo(%pi/3)
+
+// スクリプトファイル内での定義 (exec参照)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="functions">functions</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

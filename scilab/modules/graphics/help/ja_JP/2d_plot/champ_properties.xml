@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="champ_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>champ_properties</refname>
+    <refpurpose>2次元ベクトルフィールドエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Champエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは2次元ベクトルフィールドのパラメータを定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このプロパティにはエンティティの<literal>visible</literal>
+	プロパティの値が含まれます.この値には,
+	<literal>"on" </literal> または <literal>"off"</literal>を指定します.
+	<literal>"on" </literal>の場合,ベクトルフィールドが描画され,
+	<literal>"off"</literal>の場合,ベクトルフィールドは画面上に
+	表示されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>このフィールドは,
+	各要素の行および列のインデックスからなる<literal>"champdata"</literal>
+	型の<literal>tlist</literal>データ構造体を定義します: 
+	x および y グリッド座標はそれぞれ
+	<literal>data.x </literal>および <literal>data.y</literal>に
+	含まれます.
+	<literal>data.fx</literal> および <literal>data.fy</literal>という名前の
+	相補フィールドは,それぞれ,点<literal>(x(i),y(j))</literal>における
+	ベクトルフィールドの<literal>x</literal> および <literal>y</literal>要素
+	を定義する行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドはchampデータ構造体に任意のScilab変数を
+	保存し,再度取得するために使用することができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_style: </term>
+        <listitem>
+          <para><literal>line_style</literal> プロパティの値は
+		[0 8]の範囲の整数とする必要があります.
+		0および1は実線,その他の値は破線の選択を意味します
+		(<link linkend="axes_properties">getlinestyle</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thickness: </term>
+        <listitem>
+          <para>このプロパティは矢印の幅を指定する正の実数です.
+	表示される幅は,指定された幅を最も近い整数に丸めることにより定義されます.
+	唯一の例外はベクトルのエキスポートで,この場合
+	全体の<literal>thickness</literal>の値が考慮されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>colored: </term>
+        <listitem>
+          <para>このプロパティの値が<literal>"on"</literal>の場合, フィールドの
+	ベクトルがフィールドのインテンシティに比例した色により描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドには champ の<literal>clip_state</literal>
+		プロパティの値が含まれます.
+		値は以下となります:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> 
+		この場合,ベクトルフィールドはクリップされません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal>
+		この場合,ベクトルフィールドはaxesボックスの外でクリップされます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> 
+		この場合,ベクトルフィールドはclip_boxプロパティで指定された矩形の外で
+		クリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>このプロパティには <literal>clip_box</literal> プロパティが含まれます. 
+	この値はclip_state が "off"の場合には空の行列となります.
+	その他の場合,ベクトル <literal>[x,y,w,h]</literal>(左上の点 幅 高さ)
+	は表示するベクトルフィールドの領域を定義しますが,
+        <literal>clip_state</literal>プロパティの値は変更されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このプロパティには親(parent)のハンドルが含まれます.
+	2次元ベクトルフィールドエンティティの親は
+	<literal>"Axes"</literal> または
+        <literal>"Compound"</literal>型のどちらかです.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//新規に作成された軸のハンドルを取得
+a.data_bounds=[-10,-10;10,10];
+champ(-5:5,-5:5,rand(11,11),rand(11,11))
+
+c=a.children
+
+c.colored="on";
+c.thickness=2;
+c.data // scichampdata"型のtlistを表示
+a.data_bounds=[-5,-5;5,5];
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="champ">champ</link>
+      </member>
+      <member>
+        <link linkend="champ1">champ1</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

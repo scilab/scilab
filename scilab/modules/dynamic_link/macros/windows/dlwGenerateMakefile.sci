@@ -1,4 +1,4 @@
-// Copyright (C) DIGITEO - 2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -33,15 +33,6 @@ function Makename = dlwGenerateMakefile(name, ..
 
   if ~isdef('makename') then
     makename = '';
-  end
-
-  for i=1:size(files,'*') // compatibility scilab 4.x
-    [path_f, file_f, ext_f] = fileparts(files(i));
-    if or(ext_f == ['.o','.obj']) then
-      files(i) = path_f + file_f;
-    else
-      files(i) = path_f + file_f + ext_f;
-    end
   end
 
   // change table if necessary
@@ -94,7 +85,6 @@ function ilib_gen_Make_win32(name, ..
                              fflags)
 
   managed_ext = ['.cxx', '.cpp', '.c', '.f90', '.f'];
-  obj_ext = ['.o', '.obj', ''];
 
   SCIDIR = SCI;
   SCIDIR1 = pathconvert(SCI,%f,%f,'w');
@@ -123,20 +113,15 @@ function ilib_gen_Make_win32(name, ..
 
   for i=1:size(files,'*')
     [path_f, file_f, ext_f] = fileparts(files(i));
-
-    if or(obj_ext == ext_f) then
-      FILENAME = [];
-      FILE_FOUNDED = %f;
-      for y = managed_ext(:)'
-        if (FILE_FOUNDED == %f) then
-          if (fileinfo(path_f + file_f + y) <> []) | (fileinfo(path_Make + file_f + y) <> []) then
-            FILENAME = path_f + file_f + y;
-            FILE_FOUNDED = %t;
-          end
+    FILENAME = [];
+    FILE_FOUNDED = %f;
+    for y = managed_ext(:)'
+      if (FILE_FOUNDED == %f) then
+        if (fileinfo(path_f + file_f + y) <> []) | (fileinfo(path_Make + file_f + y) <> []) then
+          FILENAME = path_f + file_f + y;
+          FILE_FOUNDED = %t;
         end
       end
-    else
-      FILENAME = files(i);
     end
     FILES_SRC_MATRIX = [FILES_SRC_MATRIX , FILENAME];
   end
@@ -176,12 +161,11 @@ function ilib_gen_Make_win32(name, ..
     end
   end
 
-  if ~and(isfile(FILES_SRC_MATRIX)) then
-     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
-  end  
+  if isempty(FILES_SRC_MATRIX) | ~and(isfile(FILES_SRC_MATRIX)) then
+    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
+  end
 
   FILES_SRC = strcat(FILES_SRC_MATRIX,' ');
-
 
   OBJ_DEST_PATH = '';
   if (getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "NO") then

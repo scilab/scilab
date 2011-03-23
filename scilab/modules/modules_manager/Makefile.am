@@ -10,7 +10,7 @@ modulename=modules_manager
 
 #### modules_manager : Conf files ####
 libmodules_manager_la_rootdir = $(mydatadir)
-libmodules_manager_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libmodules_manager_la_root_DATA =  license.txt version.xml
 #### modules_manager : init scripts #### 
 libmodules_manager_la_etcdir = $(mydatadir)/etc
 libmodules_manager_la_etc_DATA = etc/modules_manager.quit etc/modules_manager.start

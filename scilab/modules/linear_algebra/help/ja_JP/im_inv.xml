@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="im_inv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>im_inv</refname>
+    <refpurpose>原像</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X,dim]=im_inv(A,B [,tol])
+[X,dim,Y]=im_inv(A,B, [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>同じ列の数を有する実数または複素数行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>次数が<literal>A</literal>の列の数に等しい直交またはユニタリ正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>整数 (サブスペースの次元)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y</term>
+        <listitem>
+          <para>
+	次数が<literal>A</literal>および<literal>B</literal>の行の数に等しい直交行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[X,dim]=im_inv(A,B)</literal> は <literal>(A^-1)(B)</literal>,
+	すなわち, <literal>A</literal>への像が range(<literal>B</literal>) に
+	あるベクトルを計算します.</para>
+    <para>
+	<literal>X</literal>の最初の列 <literal>dim</literal> は
+    <literal>(A^-1)(B)</literal>に広がっています.</para>
+    <para><literal>tol</literal> はサブ空間の取り込みを確認するために
+	閾値が使用されており,
+	そのデフォルト値は <literal>tol = 100*%eps</literal> です.
+    <literal>Y</literal> が返される時,
+	<literal>[Y*A*X,Y*B]</literal> は以下のように分割されます:
+  <literal>[A11,A12;0,A22]</literal>,<literal>[B1;0]</literal></para>
+    <para>
+    ただし, <literal>B1</literal>は行フルランク  (
+    <literal>rank(B)</literal>に等しい) そして <literal>A22</literal> は
+	列フルランクで <literal>dim</literal> 列となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=[rand(2,5);[zeros(3,4),rand(3,1)]];B=[[1,1;1,1];zeros(3,2)];
+W=rand(5,5);A=W*A;B=W*B;
+[X,dim]=im_inv(A,B)
+svd([A*X(:,1:dim),B])   //vectors A*X(:,1:dim) belong to range(B)
+[X,dim,Y]=im_inv(A,B);[Y*A*X,Y*B]
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="spaninter">spaninter</link>
+      </member>
+      <member>
+        <link linkend="spanplus">spanplus</link>
+      </member>
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

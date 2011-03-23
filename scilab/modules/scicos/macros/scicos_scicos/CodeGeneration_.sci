@@ -25,6 +25,9 @@
 //
 
 function CodeGeneration_()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Input editor function of Scicos code generator
 //
 //@l@n, 14/10/07

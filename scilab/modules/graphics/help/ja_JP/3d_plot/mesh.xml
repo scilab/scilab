@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Farid Belahcene
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mesh">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mesh</refname>
+    <refpurpose>3次元メッシュプロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>mesh(Z)
+mesh(X,Y,Z)
+mesh(...,&lt;GlobalProperty&gt;)
+mesh(...,&lt;color&gt;,&lt;GlobalProperty&gt;)
+mesh(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+        <listitem>
+          <para>曲面の高さを定義する実数行列. このパラメータは省略できません.
+	Z データは<literal> m</literal>x<literal>n</literal> 行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X,Y</term>
+        <listitem>
+          <para>実数行列 : 対で設定し,
+	これらのデータは新しい標準グリッドを定義します.
+	このグリッドの <literal>X</literal> および <literal>Y</literal>要素は
+	<literal>Z</literal>の次元と一致している必要があります
+	(以下の説明を参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>color</term>
+        <listitem>
+          <para>オプションの実数行列でグリッドの各点<literal>(X(j),Y(i))</literal>
+		の色を定義します
+	(以下の説明を参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+        <listitem>
+          <para>このオプション引数は一連の命令
+		<literal>{PropertyName,PropertyValue}</literal>を表し,
+		このプロットで作成させる曲線のグローバルオブジェクトのプロパティを定義します.
+	利用可能なプロパティの一覧については,<link linkend="GlobalProperty">GlobalProperty</link>
+	を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+        <listitem>
+          <para>
+	このオプションの引数はカレントの軸ではなく,
+	<literal>axes_handle</literal>で指定された軸の
+	内側にプロットが現れるようにします
+	 (<link linkend="gca">gca</link>参照).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>mesh</literal> は
+	<literal>X</literal> および <literal>Y</literal>座標で定義された矩形グリッド
+	によりパラメータで定義される曲面を描画します.
+	(<literal>{X,Y}</literal>が指令されない場合,このグリッドは
+	<literal>Z</literal>行列の次元により定義されます);
+	このグリッドの各点において,
+	Z座標は<literal>Z</literal>行列により指定されます.
+	<literal>mesh</literal> は,
+	デフォルトのオプション <literal>color_mode</literal> = 
+	（カレントのカラーマップ内の)白のインデックスおよび
+	<literal>color_flag</literal> = 0
+	を指定した<literal>surf</literal>コマンドに基づいています.</para>
+    <para>データエントリに関する規定 :</para>
+    <para>このパラグラフでは,より明確にするために
+	<literal>GlobalProperty</literal>オプション引数については言及しません.
+	これは,これらが
+	(<literal>"Xdata"</literal>, <literal>"Ydata"</literal>および
+    <literal>"Zdata"</literal> プロパティを除く, 
+	<link linkend="GlobalProperty">GlobalProperty</link>参照)
+	エントリデータと干渉しないためです.
+	これらのオプションの引数は全て使用可能と仮定することができます.</para>
+    <para><literal>Z</literal> のみが指定された場合,
+	(Z) は,<literal>1:size(Z,2)</literal>をX軸,<literal>1:size(Z,1)</literal>
+	をY軸として定義されるグリッドに対して行列<literal>Z</literal>をプロットします.
+	</para>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>透過モードを有効にするには,
+	<literal>color_mode
+    </literal>オプションを 0に設定する必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+[X,Y]=meshgrid(-1:.1:1,-1:.1:1);
+Z=X.^2-Y.^2;
+xtitle('z=x2-y ^2');
+mesh(X,Y,Z);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+      <member>
+        <link linkend="meshgrid">meshgrid</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="LineSpec">LineSpec</link>
+      </member>
+      <member>
+        <link linkend="GlobalProperty">GlobalProperty</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Belahcene</para>
+  </refsection>
+</refentry>

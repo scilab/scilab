@@ -117,7 +117,7 @@ flist(profilable)
   <refsection>
     <title>Bibliography</title>
     <para>
-   http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
+   <ulink url="http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation">http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</ulink>
     </para>
   </refsection>
 </refentry>

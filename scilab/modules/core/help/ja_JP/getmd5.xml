@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getmd5">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getmd5</refname>
+    <refpurpose>md5 チェックサムを取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>res=getmd5(filename)
+res=getmd5(ParamString,'string')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>md5 結果 (文字列)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para>ファイル名 (文字列または文字列の行列)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ParamString</term>
+        <listitem>
+          <para>文字列または文字列の行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>getmd5(...)</literal> はファイルまたは文字列の md5 チェックサムを取得します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+getmd5('hello world','string')
+getmd5(['hello' 'world'],'string')
+getmd5(['hello' ; 'world'],'string')
+
+getmd5( SCI+'/modules/core/etc/core.start' )
+getmd5( SCI+'/modules/core/etc/'+['core.start' 'core.quit'])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

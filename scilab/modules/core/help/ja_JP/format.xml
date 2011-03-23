@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="format" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>format</refname>
+
+    <refpurpose>数値の印字および表示形式</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>format([type],[long])
+v = format()
+format(m)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>long</term>
+
+        <listitem>
+          <para>整数 ( 10進数表下の最大値 (デフォルト 10))</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>
+	カレントのフォーマット. v(1) は型形式 : 'e' の場合は 0,
+	'v' の場合は 1.
+	v(2) は桁数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>新しい形式を設定するためのベクトル</para>
+
+          <para>m(1) 桁数</para>
+
+          <para>m(2) 型形式 : 'e' の場合は 0, 'v' の場合は 1</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	カレントの出力形式を<literal>type</literal>
+	で指定したものに設定します.
+	この指定は以下のどれかとなります :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"v"</term>
+
+        <listitem>
+          <para>変数形式の場合 (デフォルト)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"e"</term>
+
+        <listitem>
+          <para>e-形式の場合.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>long</literal>は桁数の最大値(デフォルト:10)を
+	定義します.
+	<literal>format()</literal> はカレントの形式のベクトルを
+	返します: 
+	最初の要素は format の型
+	(<literal>v</literal> の場合は 1; <literal>e</literal>の場合は 0);
+	2番目の要素は桁数です.</para>
+
+    <para>
+	古いバージョンのScilabでは,
+	"変数形式"モードにおいて,
+	%eps にそのエントリの絶対値の最大値を乗じたものより
+	小さいベクトルのエントリは "0" と表示されていました．
+	現在のバージョンではそのようなことはなく,
+	無視できるエントリをゼロにするには clear 関数が使用されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=rand(1,5);
+format('v',10);x
+format(20);x
+format('e',10);x
+format(20);x
+
+x=[100 %eps];
+format('e',10);x
+format('v',10);x
+
+format("v")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="write">write</link></member>
+
+      <member><link linkend="disp">disp</link></member>
+
+      <member><link linkend="print">print</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

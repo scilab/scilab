@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="scanf_conversion">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>scanf_conversion</refname>
+    <refpurpose> scanf, sscanf, fscanf 変換指定子</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	formatパラメータの各変換指定子には以下の要素が含まれます:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>% 文字(パーセント記号)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>代入禁止文字 * (オプション)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>数値の最大フィールド幅 (オプション)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>変換コード</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    変換指定子は以下のような構文となります:
+  </para>
+    <para><literal>[*][width][size]convcode</literal>.
+  </para>
+    <para>
+	変換の結果は,代入禁止を * (アスタリスク)で指定しない限り,
+	 v_i 引数に代入されます.
+	代入禁止により入力フィールドをスキップできるようになります.
+	入力フィールドは非空白文字の文字列です.
+	次の不適切な文字まで,またはフィールド幅が指定された場合には
+	これがあふれた場合に拡張されます.
+  </para>
+    <para>
+	変換コードは入力フィールドの解釈の方法を指定します.
+	代入禁止されたフィールドの v_i パラメータを指定する
+	必要はありません.
+	以下の変換コードを使用することが可能です:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>%</term>
+        <listitem>
+          <para>
+	ここまでは1個の% (パーセント記号)入力; 代入は行われません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d, i</term>
+        <listitem>
+          <para>10進整数を入力;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>u</term>
+        <listitem>
+          <para>符号なしの10進整数を入力;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>o</term>
+        <listitem>
+          <para>8進整数を入力;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>16進整数を入力;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>e,f,g</term>
+        <listitem>
+          <para>
+	浮動小数点数を入力.
+	次のフィールドは同時に変換され,
+	対応するパラメータは保存されます.これは,
+	float へのポインタである必要があります.
+	浮動小数点数の入力形式は数値の文字列で,以下のオプションの文字を
+	指定できます:</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>符号付きの値とすることができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>
+	小数点の後に指数フィールドが続く,
+	指数の値とすることができます.
+	指数フィールドは E または e の後に整数(オプションで符号付き)
+	が続く形式となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>+</term>
+        <listitem>
+          <para>特殊な値INF, NaN,のどれかを指定できます</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>文字列を入力.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>文字を入力. 空白文字のスキップ処理は禁止されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>%lg</term>
+        <listitem>
+          <para>doubleとして値を取得.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scanf">scanf</link>
+      </member>
+      <member>
+        <link linkend="scanf">scanf</link>
+      </member>
+      <member>
+        <link linkend="fscanf">fscanf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -65,8 +65,8 @@
 <module name="spreadsheet" activate="yes"/>
 <module name="call_scilab" activate="yes"/>
 <!-- comments -->
-<module name="scicos" activate="@SCICOS_ENABLE@"/>
-<module name="scicos_blocks" activate="@SCICOS_ENABLE@"/>
+<module name="scicos" activate="@XCOS_ENABLE@"/>
+<module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
 <!-- comments -->
 <module name="pvm" activate="@PVM_ENABLE@"/>
 <module name="fftw" activate="@FFTW_ENABLE@"/>

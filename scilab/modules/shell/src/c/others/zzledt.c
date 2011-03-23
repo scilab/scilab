@@ -700,11 +700,11 @@ static void displayPrompt(char *wk_buf)
     char msg[WK_BUF_SIZE]="";
     if (tmpPrompt!=NULL)
     {
-        sprintf(msg,"%s\r\n%s%s",msg,tmpPrompt,wk_buf);
+        sprintf(msg,"\r\n%s%s",tmpPrompt,wk_buf);
     }
     else
     {
-        sprintf(msg,"%s\r\n%s%s",msg,Sci_Prompt,wk_buf);
+        sprintf(msg,"\r\n%s%s",Sci_Prompt,wk_buf);
     }
     display_string(msg);
 }

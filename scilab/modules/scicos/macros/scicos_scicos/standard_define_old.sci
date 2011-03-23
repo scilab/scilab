@@ -20,6 +20,9 @@
 //
 
 function o = standard_define_old(sz, model, label, gr_i)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //initialize graphic part of the block data structure
 //**    
 [lhs,rhs]=argn(0)

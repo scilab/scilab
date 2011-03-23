@@ -11,7 +11,7 @@
 modulename=scicos
 DISABLE_HELP_CLEAN=yes
 
-libsciscicos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
+libsciscicos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB)
 
 
 include $(top_srcdir)/Makefile.incl.am
@@ -20,10 +20,11 @@ include $(top_srcdir)/Makefile.incl.am
 include $(srcdir)/Makefile.modelica.am
 
 
-if SCICOS
+if XCOS
 # Code not factorized with the one on the bottom since sundials must be
 # compiled first
 pkglib_LTLIBRARIES = libscisundials.la libsciscicos.la
+noinst_LTLIBRARIES = libsciscicos-algo.la
 
 SCICOS_C_SOURCES = src/c/tree.c \
 src/c/scicos_malloc.c \
@@ -93,16 +94,16 @@ sci_gateway/c/sci_var2vec.c \
 sci_gateway/c/sci_vec2var.c
 
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_ctree.f \
-sci_gateway/fortran/sci_curblock.f \
-sci_gateway/fortran/sci_debug_count.f \
-sci_gateway/fortran/sci_getblocklabel.f \
-sci_gateway/fortran/sci_scicos_debug.f \
-sci_gateway/fortran/sci_tree2.f \
-sci_gateway/fortran/sci_tree3.f \
-sci_gateway/fortran/sci_tree4.f \
-sci_gateway/fortran/sci_var2vec.f \
-sci_gateway/fortran/sci_vec2var.f
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
+sci_gateway/fortran/sci_f_curblock.f \
+sci_gateway/fortran/sci_f_debug_count.f \
+sci_gateway/fortran/sci_f_getblocklabel.f \
+sci_gateway/fortran/sci_f_scicos_debug.f \
+sci_gateway/fortran/sci_f_tree2.f \
+sci_gateway/fortran/sci_f_tree3.f \
+sci_gateway/fortran/sci_f_tree4.f \
+sci_gateway/fortran/sci_f_var2vec.f \
+sci_gateway/fortran/sci_f_vec2var.f
 
 #CLEANFILES=includes/blocks.h build/Cblocknames build/Fblocknames
 
@@ -125,13 +126,15 @@ libsciscicos_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/scicos/src/scicos_sundials/src/ida
 
 
-libsciscicos_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_SOURCES = $(SCICOS_C_SOURCES) $(SCICOS_FORTRAN_SOURCES)
+libsciscicos_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciscicos_algo_la_CFLAGS = $(libsciscicos_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCICOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscicos_la_CFLAGS) 
 
-libsciscicos_la_LIBADD =  $(top_builddir)/modules/string/libscistring.la \
+libsciscicos_la_LIBADD = libsciscicos-algo.la $(top_builddir)/modules/string/libscistring.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/intersci/libsciintersci.la \
@@ -149,7 +152,7 @@ $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciscicos_la_root_DATA =  license.txt version.xml
 
 
 #### scicos : init scripts ####

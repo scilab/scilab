@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="list2vec" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 22-07-2009 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>list2vec</refname>
+
+    <refpurpose>リストのエントリを行列に連結する.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[bigVector,varsizes] = list2vec(li)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>li</term>
+
+        <listitem>
+          <para>n個のエントリを有するリスト.
+	このリストのエントリは互換性がある型の2次元行列とする
+	必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bigVector</term>
+
+        <listitem>
+          <para>列ベクトル. 
+	リストのエントリに対応する要素により構成されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>varsizes</term>
+
+        <listitem>
+          <para>n行3列の行列.各行には,
+	リストのエントリに対応する次元を含みます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	リストのエントリを列ベクトルに連結します.
+	リストのエントリは連結先と互換な型の行列であると
+	仮定されます.</para>
+<para>この関数は,<link
+    linkend="lmisolver">lmisolver</link>の補助関数です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+list2vec(list(1,2,3))
+list2vec(list([1 2 3],[4;5],[%s %s+1]))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="vec2list">vec2list</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>F.D. INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

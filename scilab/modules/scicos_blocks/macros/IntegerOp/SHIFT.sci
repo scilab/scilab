@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,13 +40,17 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,Datatype,nb,np,exprs]=scicos_getvalue('Set SHIFT block parameters',..
-                ['Datatype (3=int32  4=int16 5=int8 ...)';..
-                             'Number of bits to shift left (use negative number to shift right)';..
-                             'Shifttype (0=Arithmetic 1=Circular)'],..
-                             list('vec',1,'vec',1,'vec',1),exprs)
+    [ok,Datatype,nb,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "SHIFT");" "; gettext("Shift/Rotates bits")], ..
+        [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)"); gettext("Number of Bits to Shift Left (Negative number to shift right)"); ..
+        gettext("Shift Type (0:Arithmetic, 1:Circular)")], ..
+        list('vec',1,'vec',1,'vec',1), exprs);
+
     if ~ok then break,end
-    if (np~=0 & np~=1) then message ("Shifttype is not supported");ok=%f;end
+      if (np ~= 0 & np ~= 1) then
+          block_parameter_error(msprintf( gettext("Wrong value for ''Shift Type'' parameter: %d"), np), ..
+            msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
+          ok=%f;
+    end
     it=Datatype;
     ot=Datatype;
 //    model.sim=list('shift_ia',4)
@@ -57,7 +62,7 @@ case 'set' then
        end
     elseif nb<0
        select np
-        case 0 then 
+        case 0 then
             select Datatype
                 case 3 model.sim=list('shift_32_RA',4)
                 case 6 model.sim=list('shift_u32_RA',4)
@@ -73,7 +78,7 @@ case 'set' then
        end
     elseif nb<0
        select np
-        case 0 then 
+        case 0 then
             select Datatype
                 case 4 model.sim=list('shift_16_RA',4)
                 case 7 model.sim=list('shift_u16_RA',4)
@@ -89,7 +94,7 @@ case 'set' then
        end
     elseif nb<0
        select np
-        case 0 then 
+        case 0 then
             select Datatype
                 case 5 model.sim=list('shift_8_RA',4)
                 case 8 model.sim=list('shift_u8_RA',4)
@@ -97,7 +102,10 @@ case 'set' then
         case 1 then model.sim=list('shift_8_RC',4)
        end
     end
-    else message("Datatype is not supported");ok=%f;
+    else
+        block_parameter_error(msprintf( gettext( "Wrong value for ''Data Type'' parameter: %d."), Datatype), ..
+          msprintf(gettext( "Must be in the interval %s."), "[3, 8]" ));
+        ok=%f;
     end
     if ok then
       [model,graphics,ok]=set_io(model,graphics,...

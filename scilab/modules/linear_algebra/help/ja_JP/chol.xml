@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="chol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>chol</refname>
+    <refpurpose> コレスキー分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[R]=chol(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素数の正定対称行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>X</literal> が正定の場合, <literal>R = chol(X)</literal> は,
+	<literal>R'*R = X</literal>となるような
+	上三角行列<literal>R</literal>を出力します.</para>
+    <para><literal>chol(X)</literal> は<literal>X</literal>の対角項
+	と上三角部のみを使用します.
+    下三角部は上三角部の転置(複素共役)とみなされます.</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+	コレスキー分解はLapackルーチン DPOTRF (実数行列の場合)および ZPOTRF (複素行列の場合)
+	に基づきます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+W=rand(5,5)+%i*rand(5,5);
+X=W*W';
+R=chol(X);
+norm(R'*R-X)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spchol">spchol</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="bdiag">bdiag</link>
+      </member>
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function tk_message_modeless(strings)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
 //** tk_message_modeless : overlad function for x_message_modeless
 //**                  inside scicos
@@ -51,6 +54,9 @@ endfunction
 //**
 //** Alan, 02/04/08 : initial rev
 function display_message_box(str_in)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //** check lhs/rhs arg
   [lhs,rhs]=argn(0)
 

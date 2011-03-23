@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="strange">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strange</refname>
+    <refpurpose>レンジ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[r]=strange(x)
+[r]=strange(x,'r') (または等価な, [r]=strange(x,1))
+[r]=strange(x,'c') (または等価な, [r]=strange(x,2))</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	range  は最大値と最小値の距離で,  [r]=strange(x) は
+	ベクトルまたは行列 x のレンジを計算します.</para>
+    <para>
+    [r]=strange(x,'r')  (または等価な, [r]=strange(x,1))
+    は各列のレンジを有する行ベクトルを出力します.</para>
+    <para>
+    [r]=strange(x,'c') (または等価な,   [r]=strange(x,2))
+    は各行のレンジを有する列ベクトルを出力します.</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+     Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Carlos klimann</para>
+  </refsection>
+</refentry>

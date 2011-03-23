@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="size" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>size</refname>
+
+    <refpurpose>オブジェクトの大きさ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=size(x [,sel])
+[nr,nc]=size(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>行列 (伝達関数を含む) またはリストまたは線形システム
+          (<literal>syslin</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para> <literal> 1x2</literal> 整数ベクトル または整数値</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sel</term>
+
+        <listitem>
+          <para>スカラーまたは文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nr,nc</term>
+
+        <listitem>
+          <para>2つの整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>用法 :</term>
+
+        <listitem>
+          <para>
+	左辺引数が
+	行列 (定数, 多項式, 文字列, 論理値, 有理数)
+          <literal>x</literal>のみの場合, 
+	<literal>size</literal>は<literal>1</literal>x<literal>2</literal>ベクトル
+	[行数,列数]を返します.
+	左辺引数の数=2でコールされた場合,
+          <literal>nr,nc</literal> = [行数, 列数]となります.
+          <literal>sel</literal> は以下のように取得する次元を指定するために使用されます:</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>1または'r'</term>
+
+        <listitem>
+          <para>行の数を取得</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>2 or 'c'</term>
+
+        <listitem>
+          <para>列の数を取得</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>'*'</term>
+
+        <listitem>
+          <para>列と行の数の積を取得</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>用法:</term>
+
+        <listitem>
+          <para>リストの場合, 要素の数が返されます. この場合,
+          <literal>y=size(x)</literal> 構文のみが使用可能です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>用法:</term>
+
+        <listitem>
+          <para>線形システムの場合, <literal>y=size(x)</literal> は,
+	 (行)ベクトル <literal>y</literal> [出力の数,入力の数]
+	すなわち,伝達関数に対応する次元,となります.
+	構文 <literal>[nr,nc]=size(x)</literal> も有効です
+	(<literal>(nr,nc)=(y(1),y(2)</literal>となります).
+	<literal>x</literal> が状態空間形式の線形システムの場合,
+	<literal>[nr,nc,nx]=size(x)</literal> は<literal>x</literal>の
+	<literal>A</literal> 行列の次元 <literal>nx</literal>も返します.</para>
+
+          <para>ハイパー行列の場合, <literal> y=size(x)
+          </literal> はハイパー行列の次元を返します. <literal>
+          [n1,n2,...nn]=size(x) </literal> はハイパー行列の次元を返します.
+          <literal> ni=size(x,i) </literal> はi番目の次元, 
+          <literal>size(x,'*') </literal> は次元の積を返します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+[n,m]=size(rand(3,2))
+[n,m]=size(['a','b';'c','d'])
+x=ssrand(3,2,4);[ny,nu]=size(x)
+[ny,nu]=size(ss2tf(x))
+[ny,nu,nx]=size(x)
+
+// Returns the number of rows
+n=size(rand(3,2),"r")
+// Returns the number of columns
+m=size(rand(3,2),"c")
+// Returns the product of the dimensions
+nm=size(rand(3,2),"*")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="length">length</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

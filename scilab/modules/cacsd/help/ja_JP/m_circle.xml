@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="m_circle">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>m_circle</refname>
+    <refpurpose>y/(1+y) の等ゲイン等高線を複素平面にプロットする</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>m_circle()
+m_circle(gain)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>gain</term>
+        <listitem>
+          <para>ゲインベクトル (単位:DB). デフォルト値は</para>
+          <variablelist>
+            <varlistentry>
+              <term>gain</term>
+              <listitem>
+                <para>=[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>m_circle</literal> は,複素平面(Re,Im)に
+	<literal>gain</literal>引数で指定した
+	等ゲイン等高線を描画します.</para>
+    <para><literal>gain</literal>のデフォルト値は:</para>
+    <para>
+    <literal>[-12 -8 -6 -5 -4 -3 -2 -1.4 -1 -.5 0.25 0.5 0.7 1 1.4 2 2.3 3 4 5 6 8 12]</literal>
+    </para>
+    <para><literal>m_circle</literal> は <literal>nyquist</literal>と共に使用されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//例 1 :
+s=poly(0,'s')
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01))
+nyquist(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)')
+m_circle();
+//例 2:
+clf();
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+nyquist([h1;h],0.01,100,['h1';'h'])
+m_circle([-8 -6 -4]);
+]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="nyquist">nyquist</link>
+      </member>
+      <member>
+        <link linkend="chart">chart</link>
+      </member>
+      <member>
+        <link linkend="black">black</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S.Steer.;   </para>
+  </refsection>
+</refentry>

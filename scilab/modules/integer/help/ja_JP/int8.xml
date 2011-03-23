@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="int8">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>int8</refname>
+    <refpurpose>1バイト整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="int16">
+    <refname>int16</refname>
+    <refpurpose>2バイト整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="int32">
+    <refname>int32</refname>
+    <refpurpose>4バイト整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="uint8">
+    <refname>uint8</refname>
+    <refpurpose>1バイト符号なし整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="uint16">
+    <refname>uint16</refname>
+    <refpurpose>2バイト符号なし整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="uint32">
+    <refname>uint32</refname>
+    <refpurpose>4バイト符号なし整数形式に変換する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>y=int8(X)
+y=int16(X)
+y=int32(X)
+y=uint8(X)
+y=uint16(X)
+y=uint32(X)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>浮動小数点数または整数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>1, 2 または 4バイトにコード化された整数の行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	1,2または4バイト整数に変換,保存します.
+	これらのデータ型は画像,長い信号,...など大きなオブジェクトを
+	保存する際に特に有用です.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>y=int8(X)</term>
+        <listitem>
+          <para>[-128,127]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y=uint8(X)</term>
+        <listitem>
+          <para>[0,255]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y=int16(X)</term>
+        <listitem>
+          <para>[-32768,32767]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y=uint16(X)</term>
+        <listitem>
+          <para>[0, 65535]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y=int32(X)</term>
+        <listitem>
+          <para>[-2147483648,2147483647]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y=uint32(X)</term>
+        <listitem>
+          <para>[0, 4294967295]の範囲の数を返します</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+int8([1 -120 127 312])
+uint8([1 -120 127 312])
+
+x=int32(-200:100:400)
+int8(x)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参照o</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="double">double</link>
+      </member>
+      <member>
+        <link linkend="inttype">inttype</link>
+      </member>
+      <member>
+        <link linkend="iconvert">iconvert</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

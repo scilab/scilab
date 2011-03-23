@@ -17,7 +17,7 @@
   </info>
   <refnamediv>
     <refname>pathconvert</refname>
-    <refpurpose> pathnames convertion between posix and windows.  </refpurpose>
+    <refpurpose> pathnames convertion between POSIX and windows.  </refpurpose>
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
@@ -56,7 +56,7 @@
     <title>Description</title>
     <para><literal>pathconvert</literal> can be used to convert a set of pathnames
     (given by a string matrix <literal>paths</literal>) from windows native 
-    filename to posix-style pathnames and back. The target style 
+    filename to POSIX-style pathnames and back. The target style 
     is given by the optional string <literal>type</literal> which can be 
     <literal>'u'</literal> for Unix or <literal>'w'</literal> for Windows. The default 
     style is set according to the value of <literal>getos() == 'Windows'</literal>. 

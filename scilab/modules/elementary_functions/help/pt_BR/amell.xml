@@ -79,9 +79,9 @@
     <simplelist type="inline">
       <member><link linkend="delip">delip</link></member>
 
-      <member><link linkend="sn">%sn</link></member>
+      <member><link linkend="percentsn">%sn</link></member>
 
-      <member><link linkend="asn">%asn</link></member>
+      <member><link linkend="percentasn">%asn</link></member>
     </simplelist>
   </refsection>
 </refentry>

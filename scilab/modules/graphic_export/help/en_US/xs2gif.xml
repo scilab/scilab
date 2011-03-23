@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2gif</refname>
 
-    <refpurpose>send graphics to a GIF file.</refpurpose>
+    <refpurpose>Export graphics to GIF.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

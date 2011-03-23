@@ -28,6 +28,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.regex.Matcher;
 
 import javax.help.DefaultHelpHistoryModel;
 import javax.help.JHelpContentViewer;
@@ -48,6 +49,7 @@ import javax.swing.text.EditorKit;
 import javax.swing.text.Element;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
@@ -79,10 +81,12 @@ import org.scilab.modules.localization.Messages;
 public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implements MouseWheelListener {
 
     private static final String SCILAB_PROTO = "scilab://";
-    private static final String SCI = ScilabConstants.SCI.getPath();
+    private static final String FILE_PROTO = "file://";
+    private static final String SCI = ScilabConstants.SCI.getPath().replaceAll("\\\\", "/");;
     private static final String SHIFTEQ = "shiftEquals";
     private static final long serialVersionUID = -2593697956426596790L;
     private static final int[] fontSizes = new int[]{8, 10, 12, 14, 18, 24, 36};
+    private static final boolean isMac = System.getProperty("os.name").toLowerCase().indexOf("mac") != -1;
 
     private static int currentFontSize = ConfigManager.getHelpFontSize();
 
@@ -126,9 +130,9 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                 if (url != null) {
                     super.hyperlinkUpdate(new HyperlinkEvent(event.getSource(), event.getEventType(), url, ""));
                 }
-            } else if (event.getDescription().startsWith("file://")) {
+            } else if (event.getDescription().startsWith(FILE_PROTO)) {
                 String url = event.getDescription();
-                url = url.replaceFirst("SCI", SCI);
+                url = url.replaceFirst("SCI", Matcher.quoteReplacement(SCI));
                 WebBrowser.openUrl(url);
             } else {
                 super.hyperlinkUpdate(event);
@@ -240,11 +244,11 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             } else {
                 return getURLFromID(mainLocation, path);
             }
-        } else if (subLocation.equals("exec")) {
+        } else if (subLocation.equals("xcos") || subLocation.equals("scinotes")) {
             if (!mainLocation.equals("scilab")) {
-                exec(getToolboxPath() + "/" + path);
+                exec(subLocation, getToolboxPath() + "/" + path);
             } else {
-                exec(SCI + "/modules/" + path);
+                exec(subLocation, SCI + "/modules/" + path);
             }
         } else if (subLocation.equals("demos")) {
             if (!mainLocation.equals("scilab")) {
@@ -256,6 +260,12 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
             execExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
         } else if (subLocation.equals("editexample")) {
             editExample(event.getSourceElement().getParentElement().getParentElement().getParentElement().getElement(0).getElement(0));
+        } else if (subLocation.equals("exec")) {
+            if (!mainLocation.equals("scilab")) {
+                exec(getToolboxPath() + "/" + path);
+            } else {
+                exec(SCI + "/modules/" + path);
+            }
         }
 
         return null;
@@ -363,6 +373,20 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     }
 
     /**
+     * Execute with the command and a file given by its path
+     * @param command the command to execute
+     * @param the file path
+     */
+    public void exec(String command, String path) {
+        String cmd = command + "('" + path + "')";
+        try {
+            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, false, false);
+        } catch (NoClassDefFoundError e) {
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
+        }
+    }
+
+    /**
      * Create the UI interface
      * @see javax.help.plaf.basic.BasicContentViewerUI#installUI(javax.swing.JComponent)
      * @param c The component
@@ -402,11 +426,16 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                         if (evt.getPropertyName().equals("page")) {
                             if (!accessibleHtml.isVisible()) {
                                 modifyFont(0);
-                                accessibleHtml.setVisible(true);
+                                SwingUtilities.invokeLater(new Runnable() {
+                                        public void run() {
+                                            accessibleHtml.setVisible(true);
+                                        }
+                                    });
                             }
                         }
                     }
                 });
+
             accessibleHtml.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(ScilabKeyStroke.getKeyStroke("OSSCKEY shift EQUALS"), SHIFTEQ);
             accessibleHtml.getActionMap().put(SHIFTEQ, new AbstractAction() {
                     public void actionPerformed(ActionEvent e) {
@@ -540,7 +569,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                 if (keyword == null) {
                     helpMenuItem.setText(Messages.gettext("Help about a selected text"));
                 } else {
-                    int nbOfDisplayedOnlyXChar=10;
+                    int nbOfDisplayedOnlyXChar = 10;
                     if (keyword.length() > nbOfDisplayedOnlyXChar) {
                         keyword = keyword.substring(0, nbOfDisplayedOnlyXChar) + "...";
                     }
@@ -560,7 +589,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * {@inheritedDoc}
      */
     public void mouseWheelMoved(MouseWheelEvent e) {
-        if (e.isControlDown()) {
+        if ((isMac && e.isMetaDown()) || e.isControlDown()) {
             int n = e.getWheelRotation();
             if (currentFontSize != Math.min(Math.max(0, currentFontSize + n), 6)) {
                 modifyFont(n);
@@ -574,14 +603,21 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * Modify the current base font size
      * @param s the size to add to the current size
      */
-    public void modifyFont(int s) {
-        EditorKit kit = accessibleHtml.getEditorKit();
-        MutableAttributeSet attrs = ((HTMLEditorKit) kit).getInputAttributes();
-        attrs.removeAttribute(HTML.Tag.A);// If we opened a foo.html#anchor, then there is an attribute "a"
-        currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
-        StyleConstants.setFontSize(attrs, fontSizes[currentFontSize]);
-        HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
-        doc.setCharacterAttributes(0, doc.getLength() + 1, attrs, false);
+    public void modifyFont(final int s) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        HTMLDocument doc = (HTMLDocument) accessibleHtml.getDocument();
+                        StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
+                        MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
+                        currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
+                        StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
+                        style.setResolveParent(attr);
+                    } catch (NullPointerException e) {
+                        // Can occur if the user is changing quickly the document
+                    }
+                }
+            });
     }
 
     /**

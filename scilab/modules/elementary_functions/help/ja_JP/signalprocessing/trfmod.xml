@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="trfmod">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>trfmod</refname>
+    <refpurpose>極/ゼロ表示</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[hm]=trfmod(h [,job])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	SISO伝達関数<literal>h</literal>の極/ゼロ構造を可視化します.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>job='p'</term>
+        <listitem>
+          <para>多項式の可視化 (デフォルト)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>job='f'</term>
+        <listitem>
+          <para>固有周波数およびダンピングの可視化</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    <literal>h</literal>の対話的な簡単化. <literal>trfmod</literal> は
+	ダイアログウインドウを開きます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tlist">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tlist</refname>
+    <refpurpose> Scilab オブジェクトおよび型付のリスト定義.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>tlist(typ,a1,....an )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>typ</term>
+        <listitem>
+          <para>文字列または文字列のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ai</term>
+        <listitem>
+          <para>Scilabオブジェクト (<literal>行列, リスト,文字列...</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	要素<literal>ai</literal>を有する
+    <literal>型付のリスト</literal> を作成します. 
+	<literal>typ</literal>引数はリストの型を指定する引数です.
+	この <literal>型付のリスト</literal> により
+	ユーザはScilab関数によりこれらのオブジェクトで動作する
+	新しい処理を定義できるようになります.
+	<literal>型付のリスト</literal> と <literal>リスト</literal>
+	の唯一の差は型の値(15ではなく16)です.</para>
+    <para><literal>typ(1)</literal> はリストの型を指定します
+ (ソフトコードされた処理を定義するために使用される文字列)</para>
+    <para>
+    <literal>typ(i)</literal> が指定された場合,
+	<literal>i+1</literal>番目の形式要素の名前を指定します.</para>
+    <para>
+	<literal>リスト</literal>における標準処理は
+	<literal>型付リスト</literal>でも類似性があります:</para>
+    <para>
+     展開
+    : <literal>[x,y,z...]=l(v)</literal> ただし <literal>v</literal> は添え字のベクトルです;
+    <literal>[x,y,z]=l(:)</literal> は全ての要素を展開します.</para>
+    <para>
+      挿入
+    : <literal>l(i)=a</literal></para>
+    <para>
+     削除
+    : <literal>l(i)=null()</literal> は<literal>tlist l</literal>の i番目の要素を削除します.</para>
+    <para>
+     表示</para>
+    <para>
+    更に<literal>typ(2:n+1)</literal> が指定された場合,
+	ユーザは名前で要素を指定することができます</para>
+    <para>
+    以下に tlist の使用例を示します.</para>
+    <para>
+    線形システムは,特定の<literal>型付リスト</literal>で表されます.
+	例えば,線形システム <literal>[A,B,C,D]</literal>は
+	tlist <literal>Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],A,B,C,D,x0,'c')</literal> で表されこの特別のリストは関数<literal>syslin</literal>により
+	作成することが可能です.</para>
+    <para>
+    Sys(2), Sys('A') または Sys.A は状態行列で, Sys('dt') または Sys.dt は
+時間領域です</para>
+    <para>
+    有理行列 <literal>H</literal> は<literal>型付リスト</literal>
+	<literal>H=tlist(['r';'num';'den';'dt'],Num,Den,[])</literal>
+	により表されます.
+	ただし,<literal>Num</literal> および <literal>Den</literal>
+	は多項式行列です.
+	伝達関数行列 <literal>H</literal> を有する(連続時間)線形システムは
+	<literal>syslin('c',H)</literal>で作成できます.</para>
+    <para>
+    H(2), H('num') または H.num は伝達関数行列の分子です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// tlist creation
+t = tlist(["listtype","field1","field2"], [], []);
+t.field1(1) = 10;
+t.field1(2) = 20;
+t.field2(1) = "Scilab";
+t.field2(2) = "tlist";
+t.field2(3) = "example";
+
+// Fields contents display
+disp(t.field1)
+disp(t.field2)
+
+// Generic tlist display
+disp(t)
+
+// Overloading display for this type of tlist
+function %listtype_p(mytlist)
+  f = fieldnames(mytlist);
+
+  // typeof(mytlist) <=> f(1)
+  mprintf("Displaying a tlist of type: %s\n", typeof(mytlist));
+
+  mprintf("\n");
+
+  mprintf("-- Field ''%s'' --\n", f(1));
+  mprintf("Contents: %s\n", sci2exp(mytlist(f(1))));
+
+  mprintf("\n");
+
+  mprintf("-- Field ''%s'' --\n", f(2));
+  mprintf("Contents: %s\n", sci2exp(mytlist(f(2))));
+endfunction
+
+// Display using overloading function
+disp(t)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="percent">percent</link>
+      </member>
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+      <member>
+        <link linkend="list">list</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

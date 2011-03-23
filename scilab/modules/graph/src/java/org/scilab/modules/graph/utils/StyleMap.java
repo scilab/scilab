@@ -15,8 +15,6 @@ package org.scilab.modules.graph.utils;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Perform useful conversions between a style string and key/value based map.
@@ -29,7 +27,15 @@ public final class StyleMap extends LinkedHashMap<String, String> {
 	 */
 	public StyleMap(String style) {
 		super();
-		
+		putAll(style);
+	}
+	
+	/**
+	 * Put all the style attributes to the current map
+	 * @param style The string which contains key=value list
+	 * @return the current map
+	 */
+	public StyleMap putAll(String style) {
 		if (style != null && style.length() > 0) {
 			final String[] pairs = style.split(";");
 			
@@ -43,7 +49,7 @@ public final class StyleMap extends LinkedHashMap<String, String> {
 				}
 			}
 		}
-		
+		return this;
 	}
 	
 	/**

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) DIGITEO - 2008 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xlfont" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xlfont</refname>
+
+    <refpurpose>グラフィックコンテキストにフォントをロードする
+	またはロード済みのフォントを検索する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>xlfont(font-name)
+xlfont(font-filename)
+xlfont('reset')
+xlfont(font-name,font-id)
+xlfont(font-filename,font-id)
+xlfont(font-name,font-id,bold)
+xlfont(font-name,font-id,bold,italic)
+fonts=xlfont('AVAILABLE_FONTS')
+fonts=xlfont()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>font-name</term>
+
+        <listitem>
+          <para>文字列, フォントファミリの名前.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-filename</term>
+
+        <listitem>
+          <para>文字列,true typeフォントのファイル名.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>font-id</term>
+
+        <listitem>
+          <para>整数 &gt;= 0 .</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fonts</term>
+
+        <listitem>
+          <para>フォント名の列ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>bold</term>
+
+        <listitem>
+          <para>ボールド体の場合,論理値 %t</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>italic</term>
+
+        <listitem>
+          <para>イタリック体の場合,論理値 %t</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>引数を指定しない場合, <literal>xlfont()</literal> は
+	ロード済みのフォントの一覧を返します.</para>
+
+    <para>xlfont('AVAILABLE_FONTS') はシステムで利用可能なフォントの一覧を返します.</para>
+
+    <para>xlfont('reset') はフォントの一覧の初期インデックスをリセットします.</para>
+
+    <para>引数を指定する時, <literal>xlfont</literal>は新規のフォントを異なる大きさでグラフィック
+	コンテキストにロードする際に使用されます.</para>
+
+    <para>デフォルトのファミリのフォントは "Monospaced" (0), "Symbol" (1), "Serif"
+    (2), "Serif Italic" (3), "Serif Bold" (4), "Serif Bold Italic" (5),
+    "SansSerif" (6), "SansSerif Italic" (7), "SansSerif Bold" (8), "SansSerif
+    Bold Italic" (9) です. これらのデフォルトのフォントは必要に応じて自動的にロードされます.
+	このため,<literal>xlfont</literal> はこれらのフォントには必要ありません.
+	実際, <literal>xlfont</literal> は新しいフォントをロードする際には特に有用です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+xlfont('reset');
+xlfont()
+
+// 注意 : この例はMonospacedフォントを有さないシステムでは動作しない可能性があります.
+xlfont("Monospaced",10,%t,%t);
+xstring(1,0,'A title');
+figure_entity = gcf();
+axes_entity = figure_entity.children;
+title_entity = axes_entity.children;
+title_entity.font_style = 10;
+
+xlfont('reset');
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getfont">getfont</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

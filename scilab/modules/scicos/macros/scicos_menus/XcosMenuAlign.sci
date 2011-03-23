@@ -20,6 +20,9 @@
 //
 
 function XcosMenuAlign()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Align unconnected blocks 
 //** 24/06/2009: Serge Steer  not to take care of selected blocs  
 

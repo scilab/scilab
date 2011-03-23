@@ -40,17 +40,29 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,it,ot,np,exprs]=scicos_getvalue('Set CONVERT block parameters',..
-                ['Input type (1= double 3=int32  4=int16 5=int8 ...)';..
-                 'Output type (1= double 3=int32  4=int16 5=int8 ...)';..
-                             'Do on Overflow (0=Nothing 1=Saturate 2=Error)'],..
-                             list('vec',1,'vec',1,'vec',1),exprs)
+    [ok,it,ot,np,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CONVERT");" "; gettext("Type conversion");" "], ..
+      [gettext("Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"); gettext("Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"); ..
+       gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")], ..
+      list('vec',1,'vec',1,'vec',1), exprs);
     if ~ok then break,end
-    if (np~=0 & np~=1 & np~=2) then message ("Do on overflow type is not supported");ok=%f;end
+
     if it==2 then it =1;end
     if ot==2 then ot=1;end
-    if (it>8|it<1) then message ("Input type is not supported");ok=%f;end
-    if (ot>8|ot<1) then message ("Output type is not supported");ok=%f;end
+
+    if (np ~= 0 & np ~= 1 & np ~= 2) then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Do on Overflow'' parameter: %d."), np), ..
+          msprintf(gettext("Must be in the interval %s."), "[0, 2]"));
+        ok=%f;
+    elseif (it > 8 | it < 1) then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Input Type'' parameter: %d."), it), ..
+        msprintf(gettext("Must be in the interval %s."), "[1, 8]"));
+      ok=%f;
+    elseif (ot > 8 | ot < 1) then
+        block_parameter_error(msprintf(gettext("Wrong value for ''Output Type'' parameter: %d."), ot), ..
+        msprintf(gettext("Must be in the interval %s."), "[1, 8]"));
+      ok=%f;
+    end
+
     model.sim=list('convert',4)
     if (it==ot) then
     model.ipar=1;

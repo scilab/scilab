@@ -20,6 +20,9 @@
 //
 
 function XcosMenuContext()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   Cmenu   = 'XcosMenuReplot' ; //** is it really necessary ?
   context = scs_m.props.context

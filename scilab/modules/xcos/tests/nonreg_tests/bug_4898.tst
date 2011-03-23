@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // Block scifunc_block_m stored some list in model.ipar instead of model.opar.
 
-loadScicosLibs;
+loadXcosLibs;
 
 // Check for a new block instantiation
 scs_m = scifunc_block_m("define", [], []);

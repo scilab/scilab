@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="arc_properties" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-05-16 10:56:07 +0200 (ven, 16 mai 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>arc_properties</refname>
+
+    <refpurpose>arc (弧)エンティティプロパティの説明</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>Arc (弧)エンティティはグラフィックエンティティの階層の一部です.
+	このエンティティは楕円,楕円の一部および
+	塗りつぶした楕円のパラメータを定義します.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>parent:</term>
+
+        <listitem>
+	<para>このフィールドは親のハンドルを含みます.
+	arcエンティティの親は <literal>"Axes"</literal>
+	または <literal>"Compound"</literal> 型である
+	必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>children:</term>
+
+        <listitem>
+	 <para>
+	このプロパティは,ハンドルの<literal>children</literal>
+	を有するベクトルを含みます.
+	しかし,<literal>arc</literal>ハンドルは現在
+	<literal>children</literal>を有していません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>thickness:</term>
+
+        <listitem>
+         <para>このプロパティはピクセル単位で線幅を指定する
+	正の実数です.
+	表示される幅は指定された幅を最も近い整数に丸めることにより
+	定義されます.
+	唯一の例外は,整数の<literal>thickness</literal>の値が指定された
+	ベクトルのエキスポートです.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_style: </term>
+        <listitem>
+         <para>
+	<literal>line_style</literal> プロパティの値は [0 8]の整数である
+	必要があります. 0 および 1 は実線, その他の値は
+	破線の選択を意味します(<link linkend="axes_properties">getlinestyle</link>参照).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>line_mode:</term>
+
+        <listitem>
+         <para>このプロパティにより弧を表現する線の
+	表示の有無を指定できます.
+	値は, <literal>"on"</literal> または
+          <literal>"off"</literal>とする必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fill_mode:</term>
+
+        <listitem>
+          <para><literal>fill_mode</literal> プロパティの値が
+          <literal>"on" </literal>の場合, 弧は
+	<literal>background</literal>色で塗りつぶされます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>foreground:</term>
+
+        <listitem>
+         <para>このフィールドは, arc の外側の描画に使用される
+	デフォルトの<literal>foreground</literal>
+	プロパティの値を含みます.
+	(カレントの色マップに関連する)色の添字である必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>background:</term>
+
+        <listitem>
+          <para>このフィールドは
+	弧を塗りつぶす際に使用される色を含みます.
+	(カレントの色マップに関連する)色の添字である必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>data:</term>
+
+        <listitem>
+         <para>このプロパティは,包含する長方形の左上の座標,
+	そして幅と高さを扇形の境界角と共に返すためのものです.
+	これは,ユーザ座標
+	<literal>[xleft,yup,[zup],width,height,a1,a2]</literal>の
+	行列です.
+	ただし, <literal>a1</literal> および <literal>a2</literal>は
+	扇形の境界角(単位:度)です.</para>
+
+          <para><emphasis role="bold">警告:</emphasis> 
+	バージョン 4.1.2 までのScilabでは,
+	<literal>a1</literal> および <literal>a2</literal>は
+	度/64で指定されていました.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>visible:</term>
+
+        <listitem>
+         <para>このフィールドには,エンティティのプロパティ値
+	<literal>visible</literal>が含まれます.
+	<literal>"on" </literal> または
+          <literal>"off"</literal>のどちらかである必要があります.
+	<literal>"on"</literal>の場合その弧が描画され,
+	<literal>"off"</literal> の場合,弧は画面に表示されません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arc_drawing_method:</term>
+
+        <listitem>
+          <para>このフィールドは arc を描画する際に使用される離散化
+	の種類を制御します.
+	値は, <literal>"nurbs"</literal> または
+          <literal>"lines"</literal>のどちらかとする必要があります.
+	<literal>"nurbs"</literal>が選択された場合,
+	弧は nurbs (Non-Uniform Rational B-Spline) 曲線/曲面により
+	描画されます.
+	この結果,視点によらず完全な楕円が表示されます.
+	<literal>"lines"</literal>が選択された場合,
+	弧は一定の数の直線で近似されます.
+	これにより描画時間は減少しますが,
+	拡大すると鋭角的なエッジが現れる可能性があります.
+	<literal>"lines"</literal>の使用は推奨されておらず,
+	<literal>"nurbs"</literal>を使用した際にフレームレートが
+	失われる場合のみ使用するべきです.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_state:</term>
+
+       <listitem>
+          <para>このフィールドには弧の <literal>clip_state</literal> プロパティ
+	が含まれます. clip_state の値は次のようになります :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> :
+		弧がクリップされないことを意味します.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> :
+		axesボックスの外側にある弧クリップされることを意味します.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> :
+		適当なclip_box により指定された弧の外側の弧が
+		クリップされることを意味します.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>clip_box:</term>
+
+        <listitem>
+        <para>
+	このフィールドは<literal>clip_box</literal>プロパティを定義します.
+	clip_state が"off"の場合,デフォルトでこの値は空の行列となっています.
+	その他の場合,ベクトル <literal>[x,y,w,h]</literal> (左上の点,幅,高さ)
+	は,弧を表示する範囲を定義します.
+	しかし,<literal>clip_state</literal>プロパティの値は
+	変更されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>user_data:</term>
+
+        <listitem>
+         <para>
+	弧のデータ構造に任意のScilab変数を保存し,再度取得する
+	ためにこのフィールドを使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//新規に作成した軸のハンドルを取得
+a.data_bounds=[-2,-2;2,2];
+
+xarc(-1.5,1.5,3,3,0,360*64)
+
+arc=get("hdl"); //カレントのエンティティのハンドルを取得 (ここではarcエンティティ)
+arc.fill_mode="on";
+arc.foreground=5;
+arc.data(:,[3 6])=[2 270*64];  
+xfarc(-.5,1,.4,.6,0,360*64);
+arc.visible="off";
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="set">set</link></member>
+
+      <member><link linkend="get">get</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="xarc">xarc</link></member>
+
+      <member><link linkend="xarcs">xarcs</link></member>
+
+      <member><link linkend="xfarc">xfarc</link></member>
+
+      <member><link linkend="xfarcs">xfarcs</link></member>
+
+      <member><link
+      linkend="graphics_entities">graphics_entities</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Djalel ABDEMOUCHE</para>
+
+    <para>Jean-Baptiste SILVY</para>
+  </refsection>
+</refentry>

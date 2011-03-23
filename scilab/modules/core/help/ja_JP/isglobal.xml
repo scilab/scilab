@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="isglobal">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>isglobal</refname>
+    <refpurpose> 変数がグローバルかどうかを確認</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>t=isglobal(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>任意の変数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>論理値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>isglobal(x)</literal> は, x がグローバル変数として
+	宣言されている場合に true，それ以外の場合に false を返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+isglobal(1)
+global a
+isglobal(a)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="global">global</link>
+      </member>
+      <member>
+        <link linkend="clearglobal">clearglobal</link>
+      </member>
+      <member>
+        <link linkend="who">who</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

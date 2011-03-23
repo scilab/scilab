@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="genfac3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>genfac3d</refname>
+    <refpurpose>3次元曲面の小平面を計算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>xx,yy,zz</term>
+        <listitem>
+          <para>大きさ (4,n-1xm-1)の行列. <literal>xx(:,i)</literal> ,<literal>yy(:,i)</literal> および
+	 <literal>zz(:,i)</literal>はそれぞれ i番目の4角形の4点の x軸, y軸および z軸座標です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>大きさmのx軸座標ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>大きさnのy軸座標ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>大きさ (m,n)の行列. <literal>z(i,j)</literal>は点(x(i),y(j))における
+	曲面の値です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mask</term>
+        <listitem>
+          <para> <literal>z</literal>と同じ大きさのオプションの論理値行列で,
+	小平面により表わす際の <literal>z</literal> のエントリを選択するために
+	使用されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>x</literal>, <literal>y</literal> および <literal>z</literal>
+	で定義された 
+	<literal>genfac3d</literal>は3次元曲面を表す4角形を計算します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d(xx,yy,zz)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eval3dp">eval3dp</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

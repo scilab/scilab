@@ -1,4 +1,4 @@
-<package name="org.scilab.forge.scidoc">
+<package name="org.scilab.modules.helptools">
   <object name="SciDocMain">
 
     <method name="buildDocumentation" returnType="void">

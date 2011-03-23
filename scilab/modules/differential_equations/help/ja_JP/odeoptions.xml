@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="odeoptions" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>odeoptions</refname>
+
+    <refpurpose>ODEソルバのオプションを設定する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>odeoptions()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数はODEソルバに様々なオプションを設定する
+	コマンドを対話的に表示します.
+	グローバル変数
+    <literal>%ODEOPTIONS</literal> はオプションを設定します.</para>
+
+    <para>注意: <literal>ode</literal> 関数は,
+	この変数が存在するかどうかを調べ,存在する場合には
+	これを使用します.
+	デフォルト値を使用するには,この変数を消去してください.
+	<literal>odeoptions</literal> はこの変数を作成しないことに
+	注意してください.
+	この変数を作成するには, 
+    <literal>odeoptions</literal>で表示されたコマンドライン
+	を実行する必要があります.</para>
+
+    <para>変数 <literal>%ODEOPTIONS</literal> は以下の要素を
+	有するベクトルです:</para>
+
+    <programlisting role = ""><![CDATA[ 
+[itask,tcrit,h0,hmax,hmin,jactyp,mxstep,maxordn,maxords,ixpr,ml,mu]
+ ]]></programlisting>
+
+    <para>デフォルト値は以下となります:</para>
+
+    <programlisting role = ""><![CDATA[ 
+[1,0,0,%inf,0,2,500,12,5,0,-1,-1]
+ ]]></programlisting>
+
+    <para>要素の意味を以下に示します.</para>
+
+    <para>
+	<literal>itask</literal> 
+    1 : 
+	指定した時間で通常の計算を行います
+    2 : (<literal>ode</literal>の出力の最初行で指定した) メッシュ点で計算
+    3 : 1内部メッシュ点で1ステップ進め,戻る
+    4 : オーバーシュート<literal>tcrit</literal>なしに通常の計算を行う  
+    5 : <literal>tcrit</literal>を渡すことなく,1ステップ進め,戻る
+    </para>
+
+    <para><literal>tcrit</literal> は, 上記のように
+	<literal>itask</literal> が 4
+    または 5であると仮定します</para>
+
+    <para><literal>h0</literal> 最初に試すステップ</para>
+
+    <para><literal>hmax</literal> ステップの最大値</para>
+
+    <para><literal>hmin</literal> ステップの最小値</para>
+
+    <para>
+	<literal>jactype</literal> 
+    0 : 関数反復, ヤコビアンを用いない
+	 (<literal>"adams"</literal> または <literal>"stiff"</literal> のみ) 
+    1 :
+    ユーザ提供の完全なヤコビアン
+    2 : 内部的に生成した完全なヤコビアン
+    3 :
+    内部的に生成した対角ヤコビアン (<literal>"adams"</literal> または
+    <literal>"stiff"</literal> のみ) 
+    4 : ユーザが提供したバンド行列のヤコビアン (以下の
+    <literal>ml</literal> および <literal>mu</literal> 参照) 
+    5 : 内部生成されたバンド行列のヤコビアン 
+     (以下の
+    <literal>ml</literal> および <literal>mu</literal> 参照)
+    </para>
+
+    <para><literal>maxordn</literal> は非スティッフの最大次数で, 最大
+    12です.</para>
+
+    <para><literal>maxords</literal> はスティッフの最大次数で, 最大5です.</para>
+
+    <para><literal>ixpr</literal> は出力レベルで, 0 または 1です.</para>
+
+    <para><literal>ml</literal>,<literal>mu</literal> 
+    <literal>jactype</literal> が 4 または 5の場合, <literal>ml</literal> および
+    <literal>mu</literal> はバンド行列のヤコビアンの
+	上部および下部の半分のバンド幅です: 
+	バンドはi-ml &lt;= j &lt;= ny-1となる i,jです.
+    <literal>jactype</literal> が 4に等しい場合,ヤコビアン関数は
+	ml+mu+1 x ny 次(ただしは ny=yの次元 , ydot=f(t,y))の行列 J を返す必要があります.
+	Jの1列目は mu 個のゼロの後に df1/dy1, df2/dy1,
+    	df3/dy1, ... (1+ml個のゼロでないエントリ)が続きます.
+	2列目は, mu-1個のゼロの後にdf1/dx2, df2/dx2, などが続きます.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

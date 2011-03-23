@@ -20,6 +20,9 @@
 //
 
 function window_set_size(gh_window, viewport)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //  Set the canvas  size according to a given diagram, also set the
 //  viewport position (visible part of the canvas)
 

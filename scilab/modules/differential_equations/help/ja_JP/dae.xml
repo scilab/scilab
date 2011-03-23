@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dae" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dae</refname>
+
+    <refpurpose>微分代数方程式ソルバ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis> y=dae(initial,t0,t,res) 
+[y [,hd]]=dae(initial,t0,t [,rtol, [atol]],res [,jac] [,hd])
+[y,rd]=dae("root",initial,t0,t,res,ng,surface)
+[y ,rd [,hd]]=dae("root",initial,t0,t [,rtol, [atol]],res [,jac], ng, surface [,hd])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>initial</term>
+
+        <listitem>
+          <para>列ベクトル. <literal>x0 </literal>または
+          <literal>[x0;xdot0]</literal> に等しくなります.
+	ただし, <literal>x0</literal>は初期時刻<literal>t0</literal>における状態量の値,
+	<literal>ydot0</literal>は状態量の微分の初期値またはその推定値(下記参照)です.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>実数, 初期時刻.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数のスカラーまたはベクトル. 解を計算する時刻を指定します.
+	<literal><link
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>と設定することにより
+		DAEの各ステップで解が得られることに注意してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rtol</term>
+
+        <listitem>
+          <para>実数のスカラーまたは<literal>x0</literal>と同じ大きさの
+	列ベクトル. 解の相対許容誤差.
+	<literal>rtol</literal>がベクトルの場合,
+	状態量の各要素毎に許容誤差が指定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol</term>
+
+        <listitem>
+          <para>実数のスカラーまたは<literal>x0</literal>と同じ大きさの
+	列ベクトル. 解の絶対許容誤差.
+	<literal>rtol</literal>がベクトルの場合,
+	状態量の各要素毎に許容誤差が指定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res</term>
+
+        <listitem>
+          <para>
+	<link linkend="external" role="" version="">外部ルーチン</link>. 
+          <literal>g(t,y,ydot)</literal>の値を計算します. 以下のようになります</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Scilab関数</term>
+
+              <listitem>
+                <para>この場合, その呼出し手順を
+                <literal>[r,ires]=res(t,x,xdot)</literal> とする
+		必要があり,<literal>res</literal> は
+                残差<literal>r=g(t,x,xdot)</literal> とエラーフラグ
+		 <literal>ires</literal>を返す必要があります. 
+		<literal>res</literal>が<literal>r</literal>の計算に
+		成功した場合には<literal>ires = 0</literal>,
+		<literal>(t,x,xdot)</literal>のローカルな残差が定義されない
+		場合には <literal>=-1</literal>,
+		パラメータが許容範囲外の場合は <literal>=-2</literal> となります.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>リスト</term>
+
+              <listitem>
+                <para>外部ルーチンのこの形式は
+		関数にパラメータを指定する際に使用されます.
+		以下のような形式とします:</para>
+
+                <programlisting role = ""><![CDATA[ 
+list(res,p1,p2,...)
+ ]]></programlisting>
+
+                <para>ただし,ここで関数<literal>res</literal>の呼び出し手順は以下のようになります</para>
+
+                <programlisting role = ""><![CDATA[ 
+r=res(t,y,ydot,p1,p2,...)
+ ]]></programlisting>
+
+                <para>この場合も<literal>res</literal> は
+		<literal>(t,x,xdot,x1,x2,...)</literal>の関数として残差の値を返し,
+		p1,p2,... は関数のパラメータです.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>文字列</term>
+
+              <listitem>
+                <para>CまたはFortranルーチンの名前を指します.
+                 &lt;r_name&gt; が指定した名前であると仮定します.</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>Fortranの呼出し手順は以下のようにします</para>
+
+                    <para><literal>&lt;r_name&gt;(t,x,xdot,res,ires,rpar,ipar)</literal></para>
+
+                    <para><literal>double precision
+                    t,x(*),xdot(*),res(*),rpar(*)</literal></para>
+
+                    <para><literal>integer ires,ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Cの呼出し手順は以下のようにします</para>
+
+                    <para>C2F(&lt;r_name&gt;)(double *t, double *x, double
+                    *xdot, double *res, integer *ires, double *rpar, integer
+                    *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>ただし,</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>t</literal> はカレントの時刻</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>x</literal>は状態量の配列</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>xdot</literal> は状態量の微分の配列
+                    </para>
+                  </listitem>
+
+                  <listitem>
+                    <para>res は残差の配列</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>ires</literal>は実行インジケータ</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>rpar</literal> は浮動小数点数の
+			パラメータ値の配列で, 必要ですが <literal>dae</literal> 関数により
+			設定できないもの</para>
+                  </listitem>
+
+                  <listitem>
+                    <para><literal>ipar</literal> は整数の
+			パラメータ値の配列で, 必要ですが <literal>dae</literal> 関数により
+			設定できないもの</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>
+	<link linkend="external" role="" version="">外部ルーチン</link>. 
+		指定したパラメータの値 <literal>cj</literal>を用いて
+          <literal>dg/dx+cj*dg/dxdot</literal>の値を計算します. 以下のようになります</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Scilab関数</term>
+
+              <listitem>
+              <para>呼出し手順を
+                <literal>r=jac(t,x,xdot,cj)</literal> とする
+		必要があり,
+		<literal>jac</literal>関数は
+		<literal>r=dg(t,x,xdot)/dy+cj*dg(t,x,xdot)/dxdot</literal>
+		を返す必要があります.
+		ただし,<literal>cj</literal>は実数スカラーです.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>リスト</term>
+
+              <listitem>
+		<para>外部ルーチンのこの形式は
+		関数にパラメータを指定する際に使用されます.
+		以下のような形式とします:</para>
+
+                <programlisting role = ""><![CDATA[  
+list(jac,p1,p2,...)               
+ ]]></programlisting>
+
+                <para>ただしこの場合の関数<literal>jac</literal>の呼び出し手順は
+		以下となります</para>
+
+                <programlisting role = ""><![CDATA[ 
+r=jac(t,x,xdot,p1,p2,...)      
+ ]]></programlisting>
+
+                <para>この場合でも<literal>jac</literal> は,
+		<literal>(t,x,xdot,cj,p1,p2,...)</literal>の関数として
+                <literal>dg/dx+cj*dg/dxdot</literal>を返します.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>文字列</term>
+
+              <listitem>
+               <para>CまたはFortranルーチンの名前を指します.
+                 &lt;j_name&gt; が指定した名前であると仮定します.</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>Fortranの呼出し手順は以下のようにします</para>
+
+                    <para><literal>&lt;j_name&gt;(t, x, xdot, r, cj, ires,
+                    rpar, ipar)</literal></para>
+
+                    <para><literal>double precision t, x(*), xdot(*), r(*),
+                    ci, rpar(*)</literal></para>
+
+                    <para><literal>integer ires, ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Cの呼出し手順は以下のようにします</para>
+
+                    <para>C2F(&lt;j_name&gt;)(double *t, double *x, double
+                    *xdot, double *r, double *cj,</para>
+
+                    <para>integer *ires, double *rpar, integer *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>ただし <literal>t</literal>, x, xdot, ires, rpar, ipar
+                は上記と似た定義を有し, r は配列の結果です.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>surface</term>
+
+        <listitem>
+	<para><link linkend="external" role="" version="">外部ルーチン</link>. 
+		<literal>ng</literal>個の要素を有する列ベクトル
+          <literal>surface(t,x)</literal>の値を計算します. 
+	各要素は面(surface)を定義します.
+	</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>Scilab関数</term>
+
+              <listitem>
+                <para>その呼び出し手順は<literal>r=surface(t,x)</literal>とする
+		必要があり,この関数は <literal>ng</literal>個の要素を有する
+		ベクトルを返す必要があります.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>リスト</term>
+
+              <listitem>
+                <para>外部ルーチンのこの形式は
+		関数にパラメータを指定する際に使用されます.
+		以下のような形式とします:</para>
+
+                <programlisting role = ""><![CDATA[  
+list(surface,p1,p2,...)
+ ]]></programlisting>
+
+                <para>ただしこの場合の関数<literal>surface</literal>の呼び出し手順は
+		以下となります</para>
+
+                <programlisting role = ""><![CDATA[ 
+r=surface(t,x,p1,p2,...)
+ ]]></programlisting>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>文字列</term>
+
+              <listitem>
+                <para>CまたはFortranルーチンの名前を指します.
+                 &lt;s_name&gt; が指定した名前であると仮定します,</para>
+
+                <itemizedlist>
+                  <listitem>
+                    <para>Fortranの呼出し手順は以下のようにします</para>
+
+                    <para><literal>&lt;r_name&gt;(nx, t, x, ng, r, rpar,
+                    ipar)</literal></para>
+
+                    <para><literal>double precision t, x(*), r(*),
+                    rpar(*)</literal></para>
+
+                    <para><literal>integer nx, ng,ipar(*)</literal></para>
+                  </listitem>
+
+                  <listitem>
+                    <para>Cの呼出し手順は以下のようにします</para>
+
+                    <para>C2F(&lt;r_name&gt;)(double *t, double *x, double
+                    *xdot, double *r, double *cj,</para>
+
+                    <para>integer *ires, double *rpar, integer *ipar)</para>
+                  </listitem>
+                </itemizedlist>
+
+                <para>ただし,<literal>t</literal>, x, rpar, ipar は
+		上記と同じ定義を有し,<literal>ng </literal> は
+                surfacesの数, <literal>nx</literal> は状態量の次元, 
+                r は結果の配列です.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rd</term>
+
+        <listitem>
+          <para>2個のエントリ <literal>[times num]</literal>を有するベクトル.
+          <literal>times</literal> は面が交差した時刻の値,
+	<literal>num</literal> は交差した面の数です</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hd</term>
+
+        <listitem>
+          <para>実数のベクトル, 
+          <literal>dae</literal> コンテキストを保持する出力.
+	(ホットスタートで)積分を再開するための入力引数として使用可能です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>実数の行列. <literal><link
+          linkend="daeoptions">%DAEOPTIONS</link>(2)=1</literal>の場合, 各列
+          はベクトル <literal>[t;x(t);xdot(t)]</literal> です.
+	ただし, <literal>t</literal> は解が計算された時刻です.
+	それ以外の場合, <literal>y</literal> はベクトル
+          <literal>[x(t);xdot(t)]</literal>です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>dae</literal> 関数は,
+	陰的な微分方程式積分用に設計された
+    <link linkend="dassl">dassl</link> および <link linkend="dasrt">dasrt</link>
+    関数の上位に構築されたゲートウエイです.</para>
+
+    <programlisting role = ""><![CDATA[ 
+g(t,x,xdot)=0
+x(t0)=x0  and   xdot(t0)=xdot0
+ ]]></programlisting>
+
+    <para>
+	引数<literal>initial</literal>に<literal>xdot0</literal> が指定されない場合,
+	dae関数は g(t,x0,xdot0)=0 を解くことによりこれを計算しようとします.
+	</para>
+
+    <para><literal>xdot0</literal> が <literal>initial</literal> 引数で指定された場合,
+	g(t,x0,xdot0)=0　を満たす互換性がある微係数または近似値の
+	どちらかとなります.
+	後者の場合,<literal><link linkend="daeoptions">%DAEOPTIONS</link>(7)</literal>を
+	 1 に設定する必要があります.</para>
+
+    <para>Scilab および C でコーディングされた外部ルーチンを使用する詳細な例については,
+    <literal>modules/differential_equations/tests/unit_tests/dassldasrt.tst</literal>
+	で提供されています.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// Scilabコードを使用する例
+function [r,ires]=chemres(t,y,yd)
+    r(1) = -0.04*y(1) + 1d4*y(2)*y(3) - yd(1);
+    r(2) =  0.04*y(1) - 1d4*y(2)*y(3) - 3d7*y(2)*y(2) - yd(2);
+    r(3) =       y(1) +     y(2)      + y(3)-1;
+    ires =  0;
+endfunction
+function pd=chemjac(x,y,yd,cj)
+    pd=[-0.04-cj , 1d4*y(3)               , 1d4*y(2);
+         0.04    ,-1d4*y(3)-2*3d7*y(2)-cj ,-1d4*y(2);
+         1       , 1                      , 1       ]
+endfunction
+
+x0=[1; 0; 0];
+xd0=[-0.04; 0.04; 0];
+t=[1.d-5:0.02:.4, 0.41:.1:4, 40, 400, 4000, 40000, 4d5, 4d6, 4d7, 4d8, 4d9, 4d10];
+
+y=dae([x0,xd0],0,t,chemres);// 指定した観測時刻での点を返す
+
+%DAEOPTIONS=list([],1,[],[],[],0,0); // dae メッシュ点を返すかどうかを確認
+y=dae([x0,xd0],0,4d10,chemres); // ヤコビアン指定なし
+y=dae([x0,xd0],0,4d10,chemres,chemjac); // ヤコビアン指定あり
+
+// C コードの例 (Cコンパイラが必要) --------------------------------------------------
+//-1- Cコードを TMPDIR に作成 - Vanderpol 方程式, 陰形式
+code=['#include <math.h>'
+      'void res22(double *t,double *y,double *yd,double *res,int *ires,double *rpar,int *ipar)'
+      '{res[0] = yd[0] - y[1];'
+      ' res[1] = yd[1] - (100.0*(1.0 - y[0]*y[0])*y[1] - y[0]);}'
+      ' '
+      'void jac22(double *t,double *y,double *yd,double *pd,double *cj,double *rpar,int *ipar)'
+      '{pd[0]=*cj - 0.0;'
+      ' pd[1]=    - (-200.0*y[0]*y[1] - 1.0);'
+      ' pd[2]=    - 1.0;'
+      ' pd[3]=*cj - (100.0*(1.0 - y[0]*y[0]));}'
+      ' '
+      'void gr22(int *neq, double *t, double *y, int *ng, double *groot, double *rpar, int *ipar)'
+      '{ groot[0] = y[0];}']
+mputl(code,TMPDIR+'/t22.c') 
+//-2- コンパイルの後,ロード
+ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/t22loader.sce');
+exec(TMPDIR+'/t22loader.sce')
+//-3- 実行
+rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
+t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
+//簡単なシミュレーション
+t=0:0.003:300;
+yy=dae([y0,y0d],t0,t,atol,rtol,'res22','jac22');
+clf();plot(yy(1,:),yy(2,:))
+//find first point where yy(1)=0
+[yy,nn,hotd]=dae("root",[y0,y0d],t0,300,atol,rtol,'res22','jac22',ng,'gr22');
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+
+//次の点までホットリスタート
+t01=nn(1);[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
+[yy,nn,hotd]=dae("root",[y01,y0d1],t01,300,atol,rtol,'res22','jac22',ng,'gr22',hotd);
+plot(yy(1,1),yy(2,1),'r+')
+xstring(yy(1,1)+0.1,yy(2,1),string(nn(1)))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="daeoptions">daeoptions</link></member>
+
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="impl">impl</link></member>
+
+      <member><link linkend="fort">fort</link></member>
+
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

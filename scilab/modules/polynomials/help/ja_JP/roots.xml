@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="roots" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-07-11 10:31:18 +0200 (ven., 11 juil. 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>roots</refname>
+
+    <refpurpose>多項式の根</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[x]=roots(p)
+[x]=roots(p,'e')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>実数または複素係数の多項式
+	    または
+	    降順の多項式係数のベクトル(MATLAB互換用).
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>x=roots(p)</literal> は
+      多項式<literal>p</literal>の<literal>x</literal>である
+      複素ベクトルを返す.
+      100次以下の実数多項式の場合,高速な(Jenkins-Traub法に基づく)
+      RPOLYアルゴリズムが使用される.
+      その他の場合, その根はコンパニオン行列の固有値として計算される.
+      どのような場合でもこのアルゴリズムを強制的に使用したい
+      場合,<literal>x=roots(p,'e')</literal>を使用されたい.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+p=poly([0,10,1+%i,1-%i],'x');
+roots(p)
+A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
+spec(A)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <simplelist type="inline">
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="spec">spec</link></member>
+
+      <member><link linkend="companion">companion</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer (INRIA)</member>
+    </simplelist>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <para>RPOLYアルゴリズムは以下の文献に記述されている.
+      "Algorithm 493: Zeros of a Real
+      Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189
+    </para>
+    <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for 
+      Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970), 545-566.</para>
+    <para>Jenkins, M. A. and Traub, J. F. (1970), Principles for Testing Polynomial Zerofinding Programs.
+      ACM TOMS 1, 1 (March 1975), pp. 26-34</para>
+  </refsection>
+
+  <refsection>
+    <title>使用される関数</title>
+
+    <para>ソースコードrpoly.f はScilabの配布ソースのディレクトリ
+	    SCI/modules/polynomials/src/fortran にある.
+      コンパニオン行列が使用される場合,固有値計算は
+      LapackコードであるDGEEVおよびZGEEVにより行われる.</para>
+  </refsection>
+</refentry>

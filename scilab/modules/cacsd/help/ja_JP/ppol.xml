@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ppol">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ppol</refname>
+    <refpurpose> 極配置</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出しの手順</title>
+    <synopsis>[K]=ppol(A,B,poles)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A,B</term>
+        <listitem>
+          <para>次元 <literal>nxn</literal> および <literal>nxm</literal>の実数行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>poles</term>
+        <listitem>
+          <para><literal>n</literal>次の実数または虚数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>K</term>
+        <listitem>
+          <para>実数行列 (負方向のフィードバックゲイン)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>K=ppol(A,B,poles)</literal> は,
+      <literal>A-B*K</literal>の固有値が<literal>poles</literal>となるような
+       mxn 次のゲイン行列 <literal>K</literal> を返す.
+      <literal>(A,B)</literal> は可制御である必要がある.
+      <literal>poles</literal>が複素数の場合,共役の組で指定する必要がある.</para>
+    <para>
+      <literal>(A,C)</literal>の出力ゲイン <literal>F</literal> は
+      以下のように得られる:</para>
+    <para>
+      <literal>Ft=ppol(A',C',poles);  F=Ft'</literal>
+    </para>
+    <para>
+      本アルゴリズムは P.H. Petkovによるものである.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(3,3);B=rand(3,2);
+F=ppol(A,B,[-1,-2,-3]);
+spec(A-B*F)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="canon">canon</link>
+      </member>
+      <member>
+        <link linkend="stabil">stabil</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

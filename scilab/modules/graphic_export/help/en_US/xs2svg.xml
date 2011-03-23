@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2svg</refname>
 
-    <refpurpose>save graphics to a SVG file.</refpurpose>
+    <refpurpose>Export graphics to SVG.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

@@ -181,10 +181,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -268,7 +268,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -295,6 +294,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -432,7 +432,7 @@ modulename = compatibility_functions
 
 #### compatibility_functions : Conf files ####
 libscicompatibility_functions_la_rootdir = $(mydatadir)
-libscicompatibility_functions_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicompatibility_functions_la_root_DATA = license.txt version.xml
 
 #### compatibility_functions : init scripts #### 
 libscicompatibility_functions_la_etcdir = $(mydatadir)/etc

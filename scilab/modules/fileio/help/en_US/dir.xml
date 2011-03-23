@@ -38,7 +38,7 @@ S=dir([path])</synopsis>
         <term>S</term>
         <listitem>
           <para>a <literal>tlist</literal> of type <literal>dir</literal> with fields :
-	    <literal>name</literal>, <literal>date</literal> and <literal>isdir</literal></para>
+	    <literal>name</literal>, <literal>date</literal>, <literal>bytes</literal> and <literal>isdir</literal></para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -59,7 +59,11 @@ S=dir([path])</synopsis>
     </para>
     <para>
       The <literal>date</literal> field of the returned variable is the column vector
-      of integers containing a last modification date coded in second from 1 Jan 1970).
+      of integers containing a last modification date coded in second from 1 Jan 1970.
+    </para>
+    <para>
+      The <literal>bytes</literal> field of the returned variable is the column vector
+      of integers containing the size of the files in bytes.
     </para>
     <para>
       The <literal>isdir</literal> field of the returned variable is the column vector

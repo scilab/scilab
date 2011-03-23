@@ -20,6 +20,9 @@
 //
 
 function connected=connected_links(scs_m,k)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //given a link number returns all links connected with him through split
 
   if typeof(scs_m.objs(k))<>'Link' then

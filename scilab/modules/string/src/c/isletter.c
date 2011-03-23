@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <ctype.h>
+#include <wchar.h>
 #include <wctype.h> /* iswalpha */
 #include "isletter.h"
 #include "MALLOC.h"

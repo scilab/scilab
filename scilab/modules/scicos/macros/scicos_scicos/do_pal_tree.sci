@@ -21,6 +21,9 @@
 
 
 function scs_m = do_pal_tree(scicos_pal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   scs_m = scicos_diagram(version=get_scicos_version());
   scs_m.props.title(1) = 'Palettes';
@@ -48,6 +51,9 @@ endfunction
 //**-----------------------------------------------------------------------
 
 function scs_m = charge(pal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 [ok,scs_m,cpr,edited]=do_load(pal(2),'palette')
 if ok & size(scs_m.objs)>0 then
@@ -65,6 +71,9 @@ endfunction
 //** ""sync"" ""seq""
 
 function java = pal_TreeView(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //--
 //-- tt=[ "set BWpath [file dirname '"$env(SCIPATH)/modules/tclsci/tcl/BWidget-1.8.0'"] "
 //--      "if {[lsearch $auto_path $BWpath]==-1} {"
@@ -119,6 +128,9 @@ endfunction
 //**================================================================
 
 function java = crlist(scs_m, Path, java)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   for i=1:size(scs_m.objs)
 

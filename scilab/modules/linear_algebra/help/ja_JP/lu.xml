@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2009 - Digiteo - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lu">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lu</refname>
+    <refpurpose> ピボット選択付きのLU 分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[L,U]= lu(A)
+[L,U,E]= lu(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列 (m x n).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>L</term>
+        <listitem>
+          <para> 実数または複素数の行列  (m x min(m,n)).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>実数または複素数の行列  (min(m,n) x n ).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E</term>
+        <listitem>
+          <para>a (n x n) 置換行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>[L,U]= lu(A)</literal> は,
+		<literal>U</literal>を上三角行列,
+	<literal>L</literal>を何らかの特別な構造を持たない一般的な行列として,
+		<literal>A = L*U</literal> となるような
+	2つの行列 <literal>L</literal> および
+      <literal>U</literal> を出力します.
+	実際は,行列<literal>A</literal>は<literal>E*A=B*U</literal>
+	のように分解されます.
+	ただし, 行列<literal>B</literal>は下三角行列,
+	行列<literal>L</literal>は<literal>L=E'*B</literal>から計算されます.
+    </para>
+    <para>
+      <literal>A</literal> がランク <literal>k</literal>を有している場合, 
+	<literal>U</literal>の行 <literal>k+1</literal> から
+      <literal>n</literal> までは 0　となります.
+    </para>
+    <para>
+      <literal>[L,U,E]= lu(A)</literal> は,
+	上三角行列<literal>U</literal>および
+	置換行列を <literal>E</literal>とした下三角行列 <literal>E*L</literal>,
+	により<literal>E*A = L*U</literal>となるような
+	3つの行列 <literal>L</literal>, <literal>U</literal> および
+	<literal>E</literal>を出力します.
+    </para>
+    <para>
+      <literal>A</literal> が実数行列の場合, 
+	関数<literal>lufact</literal> および  <literal>luget</literal>を
+	用いることにより,
+	置換行列を得ることができます.
+	<literal>A</literal>がフルランクでない場合,行列 <literal>L</literal>
+	の列圧縮も得ることができる.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例 #1</title>
+    <para>
+	以下の例では,大きさ4のヒルバート行列を作成し,
+	A=LU と分解します.
+	行列 L は下三角行列ではないことに注意してください.
+	下三角行列Lを取得するには,
+	出力引数 E を Scilab に指定する必要があります.
+    </para>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u]=lu(a)
+norm(l*u-a)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>例 #2</title>
+    <para>
+	以下の例では,大きさ4のヒルバート行列を作成し,
+	EA=LU と分解します.
+	行列 L は下三角行列であることに注意してください.
+    </para>
+    <programlisting role="example"><![CDATA[ 
+a = testmatrix("hilb",4);
+[l,u,e]=lu(a)
+norm(l*u-e*a)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>例 #3</title>
+    <para>
+	以下の例では, lufact および luget 関数を使用する
+	方法を示しています.
+    </para>
+    <programlisting role="example"><![CDATA[ 
+a=rand(4,4);
+[l,u]=lu(a)
+norm(l*u-a)
+
+[h,rk]=lufact(sparse(a))
+[P,L,U,Q]=luget(h);
+ludel(h)
+P=full(P);
+L=full(L);
+U=full(U);
+Q=full(Q);
+norm(P*L*U*Q-a)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lufact">lufact</link>
+      </member>
+      <member>
+        <link linkend="luget">luget</link>
+      </member>
+      <member>
+        <link linkend="lusolve">lusolve</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>使用する関数</title>
+    <para>
+   lu 分解 Lapack ルーチン DGETRF (実数行列の場合)
+	および ZGETRF (複素数の場合) に基づいています.</para>
+  </refsection>
+</refentry>

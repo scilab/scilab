@@ -20,6 +20,9 @@
 //
 
 function %zoom = restore(gh_curwin,scicos_menus,isMainDiagram)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
   gh_current_window = gh_curwin ;
   gh_curwin.pixmap = "off"

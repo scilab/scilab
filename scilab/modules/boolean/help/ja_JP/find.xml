@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="find">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>find</refname>
+    <refpurpose>論理値ベクトルまたは行列のtrue要素の添え字を見つける</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[ii]=find(x [,nmax])
+[i1,i2,..]=find(x [,nmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>は論理値ベクトル,論理値行列,論理値ハイパー行列, 
+	"標準"行列またはハイパー行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nmax</term>
+        <listitem>
+          <para>返される添え字の最大数を指定する整数.
+	デフォルト値は"全て"を意味する -1 です.
+	このオプションは,全ての添え字の探索を避け,処理効率を改善するために	
+	使用できます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ii, i1, i2, ..  </term>
+        <listitem>
+          <para>整数ベクトルの添字または空行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>x</literal> が論理値の場合,</para>
+    <para><literal>ii=find(x)</literal> は<literal>x(i)</literal>が
+	"true"の添字<literal>i</literal>のベクトルを返します.
+	trueとなる要素がみつからない場合,空行列が返されます.</para>
+    <para><literal>[i1,i2,..]=find(x)</literal> は,
+	<literal>x(i1(n),i2(n),..)</literal>が "true" の
+	添字<literal>i1</literal> (行の場合) および
+	 <literal>i2</literal> (列の場合),..のベクトルを返します.
+	trueとなる要素がみつからない場合,
+	<literal>i1</literal>,<literal>i2</literal>, ...の空行列を返します.</para>
+    <para>
+    <literal>x</literal> が標準行列またはハイパー行列の場合,
+	<literal>find(x)</literal>は<literal>find(x&lt;&gt;0)</literal>
+	と解釈されます.</para>
+    <para><literal>find([])</literal> は <literal>[]</literal>を返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+beers=["Desperados", "Leffe", "Kronenbourg", "Heineken"];
+find(beers=="Leffe") // OK
+find(beers=="1664") // KO
+find(beers=="Foster") // KO
+beers=[beers, "Foster"]
+find(beers=="Foster") // OK
+
+A=rand(1,20);
+w=find(A<0.4)
+A(w)
+w=find(A>100) 
+
+B=rand(1,20);
+w=find(B<0.4,2) //最大2個の値を返す
+
+H=rand(4,3,5); //ハイパー行列
+[i,j,k]=find(H>0.9)  
+
+H(i(1),j(1),k(1))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="vectorfind">vectorfind</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

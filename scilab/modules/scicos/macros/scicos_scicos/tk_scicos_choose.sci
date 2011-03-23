@@ -20,6 +20,9 @@
 //
 
 function result = tk_scicos_choose(mat,lab,but);
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 17 April 2007: name changed from "tk_choose" to "tk_scicos_choose"
   result = 0
   

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getcolor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getcolor</refname>
+    <refpurpose>カレントのカラーマップの色を示すダイアログをオープンする</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>c=getcolor(title,[cini])
+c=getcolor()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>title</term>
+        <listitem>
+          <para>文字列, ダイアログのタイトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cini</term>
+        <listitem>
+          <para>選択された初期値の色ID.デフォルト値はs 1.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>選択された色IDまたは
+	選択がキャンセルされた場合に [].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>getcolor</literal> はカレントのカラーマップのパレットを表示する
+	ウインドウをオープンします.
+	ユーザはそのIDとRGB値を表示するために色をクリックすることができます.
+	<literal>getcolor</literal> は選択された色のID,または
+	"Cancel"ボタンがクリックされたかウインドウがクローズされた場合に []を返します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="getmark">getmark</link>
+      </member>
+      <member>
+        <link linkend="getfont">getfont</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

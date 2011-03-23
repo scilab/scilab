@@ -20,6 +20,9 @@
 //
 
 function [%pt,scs_m] = do_select2block(%pt,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** This function is called if some object are already selected before
 //** 'Region to SuperBlock' call 
 //** Alan, 15/10/7 : patch for rotated blocks

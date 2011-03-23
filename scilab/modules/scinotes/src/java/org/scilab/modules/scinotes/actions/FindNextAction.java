@@ -44,10 +44,11 @@ public final class FindNextAction extends DefaultAction {
      */
     public void doAction() {
         try {
+            ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
             int startPos = getEditor().getTextPane().getSelectionStart();
             int endPos = getEditor().getTextPane().getSelectionEnd();
-            int startLine = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(startPos);
-            int endLine = ((ScilabDocument) getEditor().getTextPane().getDocument()).getDefaultRootElement().getElementIndex(endPos);
+            int startLine = doc.getDefaultRootElement().getElementIndex(startPos);
+            int endLine = doc.getDefaultRootElement().getElementIndex(endPos);
 
             //don't manage multiple lines quick find
             if (startLine != endLine) {
@@ -63,13 +64,11 @@ public final class FindNextAction extends DefaultAction {
                     exp = FindAction.getPreviousSearch();
                 }
             } else {
-                exp = getEditor().getTextPane().getDocument().getText(startPos, endPos - startPos);
+                exp = doc.getText(startPos, endPos - startPos);
             }
 
-            ScilabDocument scilabStyle = (ScilabDocument) getEditor().getTextPane().getDocument();
-
             //search from current position to end document
-            List<Integer[]> offsets = SearchManager.findWord(scilabStyle, exp, 0, scilabStyle.getLength(), false, false, false);
+            List<Integer[]> offsets = SearchManager.findWord(doc, exp, 0, doc.getLength(), true, false, false);
             if (offsets.size() != 0) {
                 int index = -1;
                 for (int i = 0; i < offsets.size(); i++) {

@@ -1,6 +1,6 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.c;
+package org.scilab.modules.helptools.c;
 
 import java.io.Reader;
 import java.io.StringReader;
