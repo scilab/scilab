@@ -43,10 +43,10 @@ MFILECONTENTS=[
 "if a==0 || b==2 || c==3 || d==4";
 "  m=2";
 "end"
-]
+];
 
-MFILE=TMPDIR+"/bug1812.m"
-SCIFILE=TMPDIR+"/bug1812.sci"
+MFILE=TMPDIR+"/bug1812.m";
+SCIFILE=TMPDIR+"/bug1812.sci";
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
@@ -94,6 +94,6 @@ SCIFILECONTENTSREF=["";
 "if %v12 | d==4 then";
 "  m = 2";
 "end;";
-]
+];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

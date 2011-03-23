@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class containing drivers independent routines for a subwin object
  * 
  * This file must be used under the terms of the CeCILL.
@@ -129,6 +130,12 @@ public:
   void getZTicksPos(double ticksPositions[], char ** ticksLabels);
 
   /**
+   * Get the initial number of subticks (with no reduction) that will be drawn per
+   * major tick graduation.
+   */
+  virtual void getNbSubticksPerGrad(double nbsubtics[3]);
+
+  /**
    * Compute bounds of X axis and direction of ticks
    */
   virtual bool getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3]);
@@ -208,11 +215,6 @@ protected:
    * Display all the stored text objects
    */
   void displayTexts(void);
-
-  /**
-   * Sort the text objects from back to front relatively to view point.
-   */
-  void sortDisplayedTexts(void);
 
   /**
    * Set the distance to use between axis and labels.

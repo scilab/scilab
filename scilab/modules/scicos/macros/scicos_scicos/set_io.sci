@@ -142,7 +142,7 @@ function [model,...
  clkin=int(clkin(:))
   nclkin=size(clkin,1)
  if nclkin>0 then
-   if mini(clkin)<1 then
+   if min(clkin)<1 then
      messagebox('set_io : ' + 'Event input ports sizes must be positive','modal')
       ok=%f
        return, end
@@ -150,7 +150,7 @@ function [model,...
  clkout=int(clkout(:))
   nclkout=size(clkout,1)
  if nclkout>0 then
-   if mini(clkout)<1 then
+   if min(clkout)<1 then
      messagebox('set_io : '+ 'Event output ports sizes must be positive','modal')
       ok=%f
        return, end

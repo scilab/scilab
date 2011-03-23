@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="dec2bin" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>dec2bin</refname>
+
+    <refpurpose>binary representation</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[str]=dec2bin(x[,n])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>scalar/vector/matrix of positives integers</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>a positive integer</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>a string or a vector of string</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Given <literal>x</literal>, a positive (or a vector/matix of
+    integers) integer, this function returns a string (or a column vector of
+    strings) which is the binary representation of <literal>x. </literal>If
+    dimension of <literal>x</literal> is superior than 1 then each component
+    of the colums vector <literal>str</literal> is the binary representation
+    of the <literal>x</literal> components (i.e <literal>str(i)</literal> is
+    the binary representation of <literal>x(i)</literal>). If the components
+    length of <literal>str</literal> is less than <literal>n</literal> ( i.e
+    length str(i) &lt; n ), then add to <literal>str</literal> components the
+    characters '0' on the left in order to have componants length equal to
+    <literal>n.</literal></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 :
+x=86;
+str=dec2bin(x)
+
+// example 2 :
+// the binary representation of 86 is: '1010110'
+// its length is 7(less than n), so we add to str, 8 times the character '0'  (on the left)
+x=86;n=15;
+str=dec2bin(x,n)
+
+// example 3 :
+x=[12;45;135]
+z=dec2bin(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="base2dec">base2dec</link></member>
+
+      <member><link linkend="bin2dec">bin2dec</link></member>
+
+      <member><link linkend="oct2dec">oct2dec</link></member>
+
+      <member><link linkend="hex2dec">hex2dec</link></member>
+
+      <member><link linkend="dec2oct">dec2oct</link></member>
+
+      <member><link linkend="dec2hex">dec2hex</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

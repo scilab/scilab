@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 OPTIMIZATION_C_SOURCES = src/c/sp.c \
 src/c/fsolvetable.c \
@@ -128,11 +128,11 @@ libscioptimization_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscioptimization.la
 
-libscioptimization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscioptimization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioptimization_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(MINPACK_SOURCES)
 
-libscioptimization_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscioptimization_la_LIBADD =  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 
 #### Target ######
@@ -141,7 +141,7 @@ modulename=optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscioptimization_la_root_DATA =  license.txt version.xml
 
 #### m2sci : Macros ####
 MACROSDIRSEXT =  macros/neldermead \

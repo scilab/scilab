@@ -57,8 +57,8 @@ n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire';'pour la boite d
 n=x_choose(['item1';'item2';'item3'],['ceci est un commentaire'],'Terminer')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_choices">x_choices</link>

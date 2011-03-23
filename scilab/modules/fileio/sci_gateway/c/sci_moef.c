@@ -42,13 +42,13 @@ int sci_meof(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,1);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,1);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,1);
 			return 0;
 		}
 	}

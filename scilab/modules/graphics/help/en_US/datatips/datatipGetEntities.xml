@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="datatipGetEntities">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipGetEntities</refname>
+    <refpurpose>Get all the entities compatible with datatips in the given axes. </refpurpose>
+  </refnamediv>
+ 
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      curve_handles=datatipGetEntities(ax)
+      curve_handles=datatipGetEntities()
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+	<term>ax</term>
+        <listitem>
+          <para>
+            A handle on an axes entity. The default value is <literal>gca()</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+ </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handles</term>
+        <listitem>
+          <para>
+            An array of handle on entities compatible with datatips. 
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+   
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+        Get all the entities compatible with datatips in the given
+        axes. In the current version only polyline entities are
+        handled.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+    clf();plot2d();
+    xarrows([3;2.72],[1.6;0.96],3,2);
+    xstring(3,1.6,'sin(t)')
+    curve_handles=datatipGetEntities()
+    curve_handles.visible='off';
+    curve_handles.visible='on';
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="datatips" >datatips</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+ 
+</refentry>

@@ -1,0 +1,103 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-09-17 13:12+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+
+#
+# File: sci_gateway/c/sci_bdiag.c, line: 97
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: QR反復が収束しません。\n"
+
+#, c-format
+msgid "%s: SVD and QR not implemented in sparse.\n"
+msgstr "%s: 疎行列用のSVDとQRは実装されていません.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: この機能は実装されていません.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Symmetric expected"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません:対称行列を指定してください."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型に誤りがあります: 実数行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型に誤りがあります: 実数または複素数の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 半正定値ではありません"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Requested rank is greater than "
+"matrix dimension."
+msgstr "%s: 入力引数 #%d の値が正しくありません: 指定された階数は行列の次元を超えています."
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負のスカラーを指定してください.\n"

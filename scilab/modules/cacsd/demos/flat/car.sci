@@ -22,7 +22,7 @@ function state=car_solve(initial,final)
   bigL = 1 ;// car length (m) 
 
   // computation of  intermediate configuration 
-  x0 = maxi(initial(1),final(2))   ....
+  x0 = max(initial(1),final(2))   ....
        + bigL*abs(tan(initial(3))) ...
        + bigL*abs(tan(final(3))) ...
        + bigL*(abs(initial(2)-final(2))/bigL)^(1/2) ;
@@ -74,12 +74,12 @@ endfunction
 
 function display_car_trajectory(state)
   bigL=1
-  set figure_style new;clf();xselect()
+  set figure_style new;clf();show_window()
   a=gca()
   drawlater()
   a.isoview="on"
-  a.data_bounds=[mini(state(:,1))-0.5*bigL, mini(state(:,2))-1.5*bigL
-		 maxi(state(:,1))+1.5*bigL, maxi(state(:,2))+1.5*bigL]
+  a.data_bounds=[min(state(:,1))-0.5*bigL, min(state(:,2))-1.5*bigL
+		 max(state(:,1))+1.5*bigL, max(state(:,2))+1.5*bigL]
   rect=matrix(a.data_bounds',-1,1)
   xpoly(rect([1 3 3 1]),rect([2,2,4,4]),'lines',1)
   C=build_car()
@@ -134,27 +134,29 @@ function C=build_car()
 endfunction
 
 function draw_car(C,pos)
-  drawlater()
-  [x,y,theta,phi]=(pos(1),pos(2),pos(3),pos(4))
-  bigL=1
-  Rc=[cos(theta) sin(theta);-sin(theta) cos(theta)]
-  // the car
-  xy = [-2,-2;7,-2;8,-1;8,1;7,2;-2,2;-2,-2]/6
-  C(1).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  // rear wheels
-  xy=[[-1 1]/8; [1 1]/6]'
-  C(2).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  xy=[[-1 1]/8; -[1 1]/6]'
-  C(3).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  // front wheels
-  xy=[(1-cos(phi)/8) (1/6-sin(phi)/8)
+  if is_handle_valid(C) then
+    drawlater()
+    [x,y,theta,phi]=(pos(1),pos(2),pos(3),pos(4))
+    bigL=1
+    Rc=[cos(theta) sin(theta);-sin(theta) cos(theta)]
+    // the car
+    xy = [-2,-2;7,-2;8,-1;8,1;7,2;-2,2;-2,-2]/6
+    C(1).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    // rear wheels
+    xy=[[-1 1]/8; [1 1]/6]'
+    C(2).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    xy=[[-1 1]/8; -[1 1]/6]'
+    C(3).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    // front wheels
+    xy=[(1-cos(phi)/8) (1/6-sin(phi)/8)
       (1+cos(phi)/8) (1/6+sin(phi)/8)]
-  C(4).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
+    C(4).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    xy=[(1-cos(phi)/8) (-1/6-sin(phi)/8)
       (1+cos(phi)/8) (-1/6+sin(phi)/8)]
-  C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
-  drawnow()
-  show_pixmap();
+    C(5).data=ones(xy)*diag([x;y])+bigL*xy*Rc
+    drawnow()
+    show_pixmap();
+  end
 endfunction
 
 function h=polyline(xy)

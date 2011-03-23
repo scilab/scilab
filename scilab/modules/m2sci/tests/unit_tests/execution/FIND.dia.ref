@@ -1,0 +1,53 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: FIND
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("FIND") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/FIND.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******
+ 
+ res324: Double <> Boolean   
+ 
+ res321: Double <> Boolean   
+ 
+ res318: Double <> Boolean   
+ 
+ res315: Double <> Boolean   
+ 
+ res312: Double <> Boolean   
+ 
+ res309: Double <> Boolean   
+ 
+ res306: Double <> Boolean   
+ 
+ res303: Double <> Boolean   
+ 
+ res300: Double <> Boolean   
+ 
+ res297: Double <> Boolean   
+ 
+ res294: Double <> Boolean   
+ 
+ res291: Double <> Boolean   

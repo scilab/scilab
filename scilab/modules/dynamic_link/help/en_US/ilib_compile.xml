@@ -23,7 +23,7 @@
     <synopsis>libn=ilib_compile(lib_name,makename [,files,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>
@@ -70,8 +70,8 @@
     <literal>addinter</literal> Scilab function for incremental/dynamic link.</para>
 	<para><emphasis role="bold">Note that a compiler must be available on the system to use this function.</emphasis></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

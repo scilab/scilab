@@ -232,10 +232,10 @@ end
 if lentrees==[] then
   error(msprintf(gettext("%s: No input found.\n"),"bloc2ss")),
 end
-if mini(lsorties)==0 then
+if min(lsorties)==0 then
   error(msprintf(gettext("%s: Some output(s) are undefined.\n"),"bloc2ss")),
 end
-if mini(lentrees)==0 then
+if min(lentrees)==0 then
   error(msprintf(gettext("%s: Some input(s) are undefined.\n"),"bloc2ss")),
 end
 endfunction

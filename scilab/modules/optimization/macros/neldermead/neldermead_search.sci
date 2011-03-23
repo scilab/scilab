@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -236,7 +237,7 @@ function this = neldermead_variable ( this )
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : %s",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:n+1
         this = neldermead_log (this,str(i));
       end
@@ -482,7 +483,7 @@ function this = neldermead_fixed (this)
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : %s",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:n+1
         this = neldermead_log (this,str(i));
       end
@@ -1244,7 +1245,7 @@ function this = neldermead_box ( this )
       this = neldermead_log (this,sprintf("DeltaFv : %e",deltafv));
       this = neldermead_log (this,sprintf("Center : [%s]",_strvec(currentcenter)));
       this = neldermead_log (this,sprintf("Size : %e",ssize));
-      str = optimsimplex_tostring ( simplex )
+      str = string ( simplex )
       for i = 1:nbve
         this = neldermead_log (this,str(i));
       end

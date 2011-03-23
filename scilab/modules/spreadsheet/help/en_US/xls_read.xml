@@ -24,7 +24,7 @@
     <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
@@ -83,8 +83,8 @@
 mclose(fd)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xls_open">xls_open</link>

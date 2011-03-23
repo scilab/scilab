@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/INVBLK.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/INVBLK.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -71,6 +71,11 @@
               <xref linkend="Computationalfunction_INVBLK">Computational function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_INVBLK">See also</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -88,11 +93,9 @@
   <refsection id="Description_INVBLK">
     <title>Description</title>
     <para>
-This block computes 
-.
-The input (output) size is determined by the context.
-
-</para>
+      This block computes the output vector y with y[i]=1/u[i] where u is the input vector.The input and output sizes are
+      determined by the context.
+    </para>
   </refsection>
   <refsection id="Defaultproperties_INVBLK">
     <title>Default properties</title>
@@ -161,6 +164,27 @@ The input (output) size is determined by the context.
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/invblk4.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_INVBLK">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f- Gain (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="PROD_f">PROD_f - Element-wise Product (Xcos block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT - Element-wise vectors Multiplication/Division (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

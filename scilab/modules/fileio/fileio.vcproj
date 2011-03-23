@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -21,8 +21,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -52,7 +52,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -70,7 +69,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib scilab_windows.lib scilocalization.lib io.lib"
-				OutputFile="../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile=""
@@ -78,6 +77,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -105,8 +105,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			>
@@ -136,7 +136,6 @@
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -154,7 +153,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib scilab_windows.lib scilocalization.lib io.lib"
-				OutputFile="../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile=""
@@ -162,6 +161,7 @@
 				SubSystem="2"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -189,8 +189,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -223,7 +223,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -241,7 +240,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib scilab_windows.lib scilocalization.lib io.lib"
-				OutputFile="../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile=""
@@ -252,7 +251,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="1"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -280,8 +279,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="2"
 			CharacterSet="2"
 			WholeProgramOptimization="0"
@@ -314,7 +313,6 @@
 				EnableEnhancedInstructionSet="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 				CompileAs="0"
 			/>
@@ -332,7 +330,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="libscilab.lib scilab_windows.lib scilocalization.lib io.lib"
-				OutputFile="../../bin/$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
 				ModuleDefinitionFile=""
@@ -343,7 +341,7 @@
 				LinkTimeCodeGeneration="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
-				ImportLibrary="../../bin/$(ProjectName).lib"
+				ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib"
 				TargetMachine="17"
 				CLRUnmanagedCodeCheck="true"
 			/>
@@ -439,6 +437,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fprintfMat.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fullpath.c"
 				>
 			</File>
@@ -511,6 +517,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\mgetl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mgetstr.c"
 				>
 			</File>
@@ -528,6 +538,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.c"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputl.c"
 				>
 			</File>
 			<File
@@ -667,6 +681,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_gateway\c\sci_mgetl.c"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_gateway\c\sci_mgetstr.c"
 				>
 			</File>
@@ -684,6 +702,10 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mput.c"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_gateway\c\sci_mputl.c"
 				>
 			</File>
 			<File
@@ -805,6 +827,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\fprintfMat.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\fscanfMat.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\fullpath.h"
 				>
 			</File>
@@ -873,6 +903,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\c\mgetl.h"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\mgetstr.h"
 				>
 			</File>
@@ -890,6 +924,10 @@
 			</File>
 			<File
 				RelativePath=".\src\c\mputi.h"
+				>
+			</File>
+			<File
+				RelativePath=".\src\c\mputl.h"
 				>
 			</File>
 			<File

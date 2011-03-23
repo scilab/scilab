@@ -12,7 +12,7 @@ function [tree]=sci_any(tree)
 // M2SCI function
 // Conversion function for Matlab any()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_any()
 
 tree.name="or"

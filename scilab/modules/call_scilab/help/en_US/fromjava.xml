@@ -12,7 +12,7 @@
     <synopsis>r = fromjava()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -27,10 +27,18 @@
     <para>Returns <literal>%t</literal> if Scilab is called from javasci or <literal>%f</literal> if not.</para>
   </refsection>
 
-   <refsection>
-    <title>See Also</title>
+   <refsection role="see also">
+<title>See Also</title>
      <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,<link linkend="fromc">fromc</link></member>
+      <member>
+	<link linkend="call_scilab">Call_Scilab</link>
+      </member>
+      <member>
+	<link linkend="api_scilab">api Scilab</link>
+      </member>
+      <member>
+	<link linkend="fromc">fromc</link>
+      </member>
     </simplelist>
   </refsection>
   

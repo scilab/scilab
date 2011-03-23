@@ -1,0 +1,100 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: FFTSHIFT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("FFTSHIFT") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/FFTSHIFT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 
+ res150: [2,1] <> [2,12]   
+ 
+ res149: [3,1] <> [3,4]   
+ 
+ res148: [1,1] <> [1,12]   
+ 
+ res147: [1,1] <> [1,4]   
+ 
+ res145: [2,1] <> [2,12]   
+ 
+ res144: [3,1] <> [3,4]   
+ 
+ res143: [1,1] <> [1,12]   
+ 
+ res142: [1,1] <> [1,4]   
+ 
+ res140: [2,1] <> [2,12]   
+ 
+ res139: [3,1] <> [3,4]   
+ 
+ res138: [1,1] <> [1,12]   
+ 
+ res137: [1,1] <> [1,4]   
+ 
+ res96: [2,1] <> [2,12]   
+ 
+ res95: [3,1] <> [3,4]   
+ 
+ res94: [1,1] <> [1,12]   
+ 
+ res93: [1,1] <> [1,4]   
+ 
+ res91: [2,1] <> [2,12]   
+ 
+ res90: [3,1] <> [3,4]   
+ 
+ res89: [1,1] <> [1,12]   
+ 
+ res88: [1,1] <> [1,4]   
+ 
+ res86: [2,1] <> [2,12]   
+ 
+ res85: [3,1] <> [3,4]   
+ 
+ res84: [1,1] <> [1,12]   
+ 
+ res83: [1,1] <> [1,4]   
+ 
+ res42: [2,1] <> [2,12]   
+ 
+ res41: [3,1] <> [3,4]   
+ 
+ res40: [1,1] <> [1,12]   
+ 
+ res39: [1,1] <> [1,4]   
+ 
+ res37: [2,1] <> [2,12]   
+ 
+ res36: [3,1] <> [3,4]   
+ 
+ res35: [1,1] <> [1,12]   
+ 
+ res34: [1,1] <> [1,4]   
+ 
+ res32: [2,1] <> [2,12]   
+ 
+ res31: [3,1] <> [3,4]   
+ 
+ res30: [1,1] <> [1,12]   
+ 
+ res29: [1,1] <> [1,4]   

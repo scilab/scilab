@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>stripblanks</refname>
-    <refpurpose> strips leading and trailing
+    <refpurpose>Strips / trims leading and trailing
   blanks (and tabs) of strings</refpurpose>
   </refnamediv>
   <refsynopsisdiv>
@@ -24,7 +24,7 @@
     <synopsis>txt=stripblanks(txt[,tabs])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>txt</term>
@@ -43,7 +43,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    stripblanks strips leading and trailing blanks (and tabs) of strings</para>
+    stripblanks strips / trims leading and trailing blanks (and tabs) of strings</para>
   </refsection>
   <refsection>
     <title>Examples</title>

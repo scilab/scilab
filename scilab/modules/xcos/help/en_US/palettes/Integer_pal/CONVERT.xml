@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -39,7 +40,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/CONVERT.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/CONVERT.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -51,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="CONVERT">CONVERT Data Type Conversion</link>
+          <link linkend="CONVERT">Data Type Conversion</link>
         </para>
       </listitem>
 
@@ -71,28 +72,43 @@
 
           <listitem>
             <para>
+              <xref linkend="Data_Type_CONVERT">Data types</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
               <xref linkend="Dialogbox_CONVERT">Dialog box</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_CONVERT">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_CONVERT">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_CONVERT">Interfacing
-              function</xref>
+              <xref linkend="Example_CONVERT">Example</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_CONVERT">Computational
-              function</xref>
+              <xref linkend="Interfacingfunction_CONVERT">Interfacing function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_CONVERT">Computational function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_CONVERT">See also</xref>
             </para>
           </listitem>
 
@@ -114,6 +130,12 @@
         <para>
           <link linkend="Integer_pal">Integer palette</link>
         </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Commonlyusedblocks_pal">Commonly used blocks palette</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -121,21 +143,72 @@
   <refsection id="Description_CONVERT">
     <title>Description</title>
 
-    <para>This block converts an input signal of any data type to a specified
-    data type. The input can be real, complex or integer. When the output is
-    an integer and when overflow occurs the block three different forms of
-    results :</para>
+    <para>
+      This block converts an input signal of real double or integer data type to an integer
+      or real double data type. This block is particularly useful to connect a block which
+      accepts or produces only integer data type with another block which produces or
+      accepts only double data type.
+    </para>
+    <para>
+      It can be also use to get the least significant half of the input by a downgrade
+      conversion like int16 to int8. For this use case and if you do not want a type
+      conversion, you can also use the <link linkend="EXTRACTBITS">EXTRACTBITS</link> block
+      with the <literal>Bits to extract</literal> parameter set to
+      <literal>Lower half</literal>.
+    </para>
+    <para>
+      For an upgrade conversion of a signed integer to another signed integer, the sign
+      bit is propagated.
+    </para>
+    <para>
+      When the output is an integer and when overflow occurs the block gives three different
+      forms of results :
+    </para>
+    <orderedlist>
+      <listitem>
+      <para>
+         A normal non saturated result. By example, if type is int8 and the result is 128,
+         the block output value will be -128.
+      </para>
+      </listitem>
+      <listitem>
+        <para>
+          A saturated result. For the previous example the block output value will be 127
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          An error message warning the user about the overflow.
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>
+      The user can select one of these three forms by setting the
+      <emphasis role="bold">Do on Overflow</emphasis>
+      field to 0,1 or 2.
+    </para>
+  </refsection>
 
-    <para>1- A normal non saturated result.</para>
+  <refsection id="Data_Type_CONVERT">
+    <title>Data types</title>
 
-    <para>2- A saturated result.</para>
-
-    <para>3- An error message warning the user about the overflow..</para>
-
-    <para>The user can select one of these three forms by setting the "DO ON
-    OVERFLOW" field to 0,1 or 2.</para>
-
-    <para />
+    <para>
+      The block supports the following types :
+    </para>
+      <itemizedlist>
+      <listitem>
+        <para>
+          Input : Scilab's integer and real double data types
+          (<emphasis role="bold">Input Type</emphasis> parameter).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Output : Scilab's integer and real double data types
+          (<emphasis role="bold">Output Type</emphasis> parameter).
+          </para>
+        </listitem>
+      </itemizedlist>
   </refsection>
 
   <refsection id="Dialogbox_CONVERT">
@@ -144,7 +217,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/gui/CONVERT_gui.gif"
+          <imagedata align="center" fileref="../../../gui/integer_pal/en_US/CONVERT_gui.png"
                      valign="middle" />
         </imageobject>
       </inlinemediaobject>
@@ -155,39 +228,46 @@
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">input type (1= double 3=int32 4=int16 5=int8
-          ...)</emphasis>
+          <emphasis role="bold">Input Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
         </para>
 
-        <para>It indicates the input data type, it can be a double or an
-        integer.</para>
+        <para>
+          It indicates the input data type that it can be a double or an integer: Between 1 and 8.
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
 
       <listitem>
         <para>
-          <emphasis role="bold">output type (1= double 3=int32 4=int16 5=int8
-          ...)</emphasis>
+          <emphasis role="bold">Output Type (1: double, 3:int32, 4:int16, 5:int8, ...)</emphasis>
         </para>
 
-        <para>It indicates the output data type, it can be a double or an
-        integer.</para>
+        <para>
+          It indicates the output data type that can be a double or an integer: Between 1 and 8.
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
 
       <listitem>
         <para>
-          <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate
-          2=Error)</emphasis>
+          <emphasis role="bold">Do on Overflow (0:Nothing, 1:Saturate, 2:Error)</emphasis>
         </para>
-
-        <para>When this parameter is set to zero the result is similar to a
-        normal multiplication of two integer matrix. When it is set to 1, on
-        overflow the block saturate the result. When it is set to 2, on
-        overflow an error message box appears.</para>
-
+        <para>
+          Between 0 and 2. When there are an overflowing, if parameter is equal to :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">0</emphasis> : the result is non saturated.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">1</emphasis> : the result is saturated.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">2</emphasis> : the simulation displays en error message.</para>
+          </listitem>
+        </itemizedlist>
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
@@ -234,18 +314,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -253,8 +330,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -267,12 +343,28 @@
     </itemizedlist>
   </refsection>
 
+  <refsection id="Example_CONVERT">
+    <title>Example</title>
+    <para>
+      This example shows the sign bit's propagation during a conversion from int8 to int16.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/en_US/CONVERT_en_US.xcos">
+        Open this example in Xcos
+      </link>
+    </para>
+    <para />
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/integer_pal/en_US/convert_diagram_en_US.png" />
+        </imageobject>
+      </inlinemediaobject>
+  </refsection>
+
   <refsection id="Interfacingfunction_CONVERT">
     <title>Interfacing function</title>
 
     <itemizedlist>
       <listitem>
-        <para>SCI/modules/scicos_blocks/macros/IntegerOp/CONVERT.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/CONVERT.sci">SCI/modules/scicos_blocks/macros/IntegerOp/CONVERT.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -283,6 +375,16 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/convert.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_CONVERT">
+    <title>See also</title>
+
+    <itemizedlist>
+      <listitem>
+        <link linkend="EXTRACTBITS">EXTRACTBITS</link>
       </listitem>
     </itemizedlist>
   </refsection>

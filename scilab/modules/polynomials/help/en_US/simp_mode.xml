@@ -24,7 +24,7 @@
 simp_mode(mod)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>mod</term>
@@ -55,8 +55,8 @@ simp_mode(%t);hns=s/s
 simp_mode(mod);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="simp">simp</link>

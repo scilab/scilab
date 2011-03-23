@@ -22,6 +22,9 @@
 //
 
 function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Edition of a link from an output block to an input  block
 
 //** 28/11/08: Preparation of the "SL" operation
@@ -68,7 +71,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
     //** get split type
     [xout,yout,typout] = getoutputports(scs_m.objs(from(1))); 
     clr = ct(1); 
-    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2); 
+    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2); 
     k = kp1 ; 
     typo = ct(2) ; 
 
@@ -135,7 +138,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
     xout= xxx(1,:);
     yout= xxx(2,:);
 
-    [m,kp1] = mini((yc1-yout)^2+(xc1-xout)^2) ; 
+    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2) ; 
     k = kp1 ; 
     xo = xout(k); yo = yout(k); 
     typo = typout(k) ; 
@@ -322,7 +325,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
                    theta*%pi/180,...
                    [orig(1)+sz(1)/2;orig(2)+sz(2)/2]);
       xin = xxx(1,:); yin = xxx(2,:);
-      [m,kp2] = mini((ye-yin)^2+(xe-xin)^2);
+      [m,kp2] = min((ye-yin)^2+(xe-xin)^2);
       k = kp2 ;
       xc2 = xin(k); yc2 = yin(k); 
       typi = typin(k);
@@ -374,7 +377,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
         
         //** further check for warning message about "size" 
         need_warning = %f ; //** flag initialization 
-        if (szin(1)<>szout(1)) & mini([szin(1) szout(1)])>0 then
+        if (szin(1)<>szout(1)) & min([szin(1) szout(1)])>0 then
           need_warning = %t ; 
         end
 
@@ -392,7 +395,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
            szin2 = szin(2);
         end
 
-        if (szin2<>szout2) & mini([szin2 szout2])>0 then
+        if (szin2<>szout2) & min([szin2 szout2])>0 then
           need_warning = %t
         end
 
@@ -445,7 +448,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
         typpto='in'
         szin = getportsiz(o2,port_number,'in')
 
-        if szin<>szout & mini([szin szout])>0 then
+        if szin<>szout & min([szin szout])>0 then
           messagebox(["Warning :';
                    "Selected ports don''t have the same size";
                    "The port at the origin of the link has size "+string(szout);
@@ -476,7 +479,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
         typpto='out'
         szin=getportsiz(o2,port_number,'out')
 
-        if szin<>szout & mini([szin szout])>0 then
+        if szin<>szout & min([szin szout])>0 then
           messagebox(["Warning :";
                    "Selected ports don''t have the same  size";
                    "The port at the origin of the link has size " + string(szout);
@@ -509,7 +512,7 @@ function [scs_m, needcompile] = getlink(%pt, scs_m, needcompile,smart)
 
         typpto = 'evtin'; 
         szin = getportsiz(o2,port_number,'evtin'); 
-        if szin<>szout & mini([szin szout])>0 then
+        if szin<>szout & min([szin szout])>0 then
           messagebox(["Warning :";
                    "Selected ports don''t have the same  size"
                    "The port at the origin of the link has size " + string(szout);

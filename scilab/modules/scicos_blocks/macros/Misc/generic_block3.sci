@@ -70,7 +70,7 @@ case 'set' then
     funtyp=funtyp
     if funtyp<0 then message('function type cannot be negative');ok=%f;end
     if [ci;co]<>[] then
-      if maxi([ci;co])>1 then message('vector event links not supported');ok=%f;end
+      if max([ci;co])>1 then message('vector event links not supported');ok=%f;end
     end
     if type(opar)<>15 then message('object parameter must be a list');ok=%f;end
     if type(oz)<>15 then message('discrete object state must be a list');ok=%f;end

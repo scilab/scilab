@@ -24,7 +24,7 @@ addmenu(gwin,button [,submenus] [,action])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -219,8 +219,8 @@ addmenu(0,'foo',['a','b','c'],list(1,'foo'));
  </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="setmenu">setmenu</link></member>

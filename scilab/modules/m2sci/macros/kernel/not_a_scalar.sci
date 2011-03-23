@@ -15,7 +15,7 @@ function r=not_a_scalar(A)
 
 nb=0
 for k=1:size(A.dims)
-  if A.dims(k)>1 then
+  if A.dims(k)>1 | A.dims(k)==SupToOne then
     nb=nb+1
   end
 end

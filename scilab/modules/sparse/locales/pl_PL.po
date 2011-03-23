@@ -1,0 +1,335 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-07-26 17:12+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+"\n"
+"Gęstość = %2.2lf%%.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Największy element na przekątnej = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest element in matrix = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Największy element w macierzy = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest pivot element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Największy element wybrany (pivot) = %-1.4lg.\n"
+
+#, c-format
+msgid "     Absolute Threshold = %e\n"
+msgstr "     Próg bezwzględny = %e\n"
+
+#, c-format
+msgid "     Average number of elements per row = %lf\n"
+msgstr "     Średnia liczba elementów w każdym wierszu = %lf\n"
+
+#, c-format
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr "     Średnia liczba wypełnień w każdym wierszu = %lf%%\n"
+
+#, c-format
+msgid "     Density = %lf%%\n"
+msgstr "     Gęstość = %lf%%\n"
+
+#, c-format
+msgid "     Fill-ins = %d\n"
+msgstr "     Wypełnienia = %d\n"
+
+#, c-format
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr "     Początkowa średnia liczba elementów w każdym wierszu = %lf\n"
+
+#, c-format
+msgid "     Initial number of elements = %d\n"
+msgstr "     Początkowa liczba elementów = %d\n"
+
+#, c-format
+msgid "     Largest Element = %e\n"
+msgstr "     Największy element = %e\n"
+
+#, c-format
+msgid "     Relative Threshold = %e\n"
+msgstr "     Próg względny = %e\n"
+
+#, c-format
+msgid ""
+"     Smallest Element = %e\n"
+"\n"
+"\n"
+msgstr ""
+"     Najmniejszy element = %e\n"
+"\n"
+"\n"
+
+#, c-format
+msgid "     Total number of elements = %d\n"
+msgstr "     Całkowita liczba elementów = %d\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  Błąd obliczeniowy (residual) dla Iteracji nr %s/%s : %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr ""
+"  Nowy błąd obliczeniowy (residual) = %s < tol = %s => koniec obliczeń\n"
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  Type of preconditionning #1 : %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  Type of preconditionning #2 : %d\n"
+
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr "%s: Napotkano zero na przekątnej macierzy.\n"
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: Błąd zbieżności.\n"
+
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: Nie zbiegają się.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: Oczekiwano przynajmniej "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: Niepoprawny rozmiar parametru wejściowego nr %d: Oczekiwano wektor "
+"kolumnowy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany taki sam "
+"rozmiar jak u argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano skalara.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano macierzy "
+"kwadratowej.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest wektor "
+"kolumnowy.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany skalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano macierzy "
+"kwadratowej.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano transponowanie "
+"funkcji %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwany wektor "
+"kolumnowy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwana funkcja "
+"transponowana %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwany wektor.\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "Brak powodzenia algorytmu\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "Powodzenie algorytmu\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "Argumenty:\n"
+
+#, c-format
+msgid "Columns %1d to %1d.\n"
+msgstr "Kolumny od %1d to %1d.\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "Końcowy błąd obliczeń (residual) = %s > tol =%s\n"
+
+#, c-format
+msgid ""
+"MATRIX SUMMARY\n"
+"\n"
+msgstr ""
+"Podsumowanie dla macierzy\n"
+"\n"
+
+#, c-format
+msgid "Matrix after factorization:\n"
+msgstr "Macierz po rozkładzie na czynniki:\n"
+
+#, c-format
+msgid "Matrix before factorization:\n"
+msgstr "Macierz przed rozkładem na czynniki:\n"
+
+#, c-format
+msgid "Matrix has been reordered.\n"
+msgstr "Kolejność elementów macierzy została zmieniona.\n"
+
+#, c-format
+msgid "Matrix has not been factored.\n"
+msgstr "Macierz nie została rozłożona na czynniki.\n"
+
+#, c-format
+msgid "Matrix is complex.\n"
+msgstr "Macierz z liczb zespolonych.\n"
+
+#, c-format
+msgid "Matrix is real.\n"
+msgstr "Macierz jest typu real.\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr "Norma prawej strony :%s\n"
+
+#, c-format
+msgid "Number of fill-ins = %1d.\n"
+msgstr "Liczba wypełnień = %1d\n"
+
+#, c-format
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr "Ilość operacji dla pętli wewnętrznej rozkładu na czynniki = %d.\n"
+
+#, c-format
+msgid "Pivot found at %1d,%1d using "
+msgstr "W pozycji %1d,%1d znaleziono element główny (pivot), używając "
+
+#, c-format
+msgid "Reordering,  Step = %1d\n"
+msgstr "Zmiana numeracji elementów. Krok = %1d\n"
+
+#, c-format
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr "Rozmiar macierzy = %1u x %1u.\n"
+
+#, c-format
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr "Najmniejszy element diagonalny = %-1.4lg.\n"
+
+#, c-format
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr "Najmniejszy element w macierzy = %-1.4lg.\n"
+
+#, c-format
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr "Najmniejszy element główny (piwot) = %-1.4lg.\n"
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr "Specjalny proces dla przypadku gdy prawa strona jest zerowa.\n"
+
+#, c-format
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr ""
+"Ostrzeżenie : Następująca macierz jest sprowadzona do postaci iloczynu LU.\n"
+
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr "Moduł macierze rzadkie (sparse): błąd w pliku `%s' w linii %d.\n"
+
+#, c-format
+msgid "|||  Starting new matrix  |||\n"
+msgstr "|||  Rozpoczęto nową macierz  |||\n"

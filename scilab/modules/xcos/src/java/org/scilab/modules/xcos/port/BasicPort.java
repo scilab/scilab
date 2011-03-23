@@ -13,9 +13,15 @@
 package org.scilab.modules.xcos.port;
 
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
+import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxConstants;
 
 /**
  * Common implementation of any Port.
@@ -169,7 +175,7 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      * @param portOrdering a unique order number per type
      */
     public void setOrdering(int portOrdering) {
-	this.ordering = portOrdering;
+	ordering = portOrdering;
     }
 
     /**
@@ -204,18 +210,31 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 	 *            The default orientation of this port
 	 */
 	public final void setOrientation(Orientation defaultOrientation) {
-		this.orientation = defaultOrientation;
+		if (orientation != defaultOrientation) {
+			orientation = defaultOrientation;
+			setLabelPosition(orientation);
+		}
 	}
     
 	/**
 	 * @return An html formatted documentation string
 	 */
     public String getToolTipText() {
-	StringBuffer result = new StringBuffer();
-	result.append(XcosConstants.HTML_BEGIN);
-	result.append("Port number : " + getOrdering() + XcosConstants.HTML_NEWLINE);
-	result.append("Style : " + getStyle() + XcosConstants.HTML_NEWLINE);
-	result.append(XcosConstants.HTML_END);
+	StringBuilder result = new StringBuilder();
+	result.append(ScilabGraphConstants.HTML_BEGIN);
+	result.append("Port number : " + getOrdering() + ScilabGraphConstants.HTML_NEWLINE);
+	
+	final int length = getStyle().length();
+	result.append("Style : ");
+	if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
+		result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
+		result.append(XcosMessages.DOTS);
+	} else {
+		result.append(getStyle());
+	}
+	result.append(ScilabGraphConstants.HTML_NEWLINE);
+	
+	result.append(ScilabGraphConstants.HTML_END);
 	return result.toString();
     }
 
@@ -240,5 +259,87 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
 		setDataLines(DEFAULT_DATALINES);
 		setDataColumns(DEFAULT_DATACOLUMNS);
 		setDataType(DataType.UNKNOW_TYPE);
+		
+		setLabelPosition(getOrientation());
 	}
+
+	/**
+	 * Set the label position of the current port according to the orientation.
+	 * 
+	 * @param current the port orientation, if null, does nothing.
+	 */
+	public void setLabelPosition(final Orientation current) {
+		if (current != null) {
+			StyleMap style = new StyleMap(getStyle());
+			
+			// clean up any previously set spacing values
+			style.remove(mxConstants.STYLE_LABEL_POSITION);
+			style.remove(mxConstants.STYLE_VERTICAL_LABEL_POSITION);
+			style.remove(mxConstants.STYLE_SPACING_BOTTOM);
+			style.remove(mxConstants.STYLE_SPACING_LEFT);
+			style.remove(mxConstants.STYLE_SPACING_RIGHT);
+			style.remove(mxConstants.STYLE_SPACING_TOP);
+
+			// set up the port position
+			style.put(mxConstants.STYLE_ALIGN, current.getLabelPosition());
+			style.put(mxConstants.STYLE_VERTICAL_ALIGN, current.getVerticalLabelPosition());
+			style.put(mxConstants.STYLE_SPACING, Integer.toString(BasicPort.DEFAULT_PORTSIZE + 2));
+			
+			setStyle(style.toString());
+		}
+	}
+	
+	/**
+	 * Hook to update the port label from the associated block expression.
+	 * 
+	 * The current port index may be found in the ordering data.
+	 * @param exprs the associated block expression.
+	 */
+	public void updateLabel(ScilabType exprs) { }
+	
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return true if not already connected
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	final int edges = getEdgeCount();
+    	return edges == 0 || getEdgeAt(0).getTerminal(false) == null;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+    	final StringBuilder str = new StringBuilder();
+    	
+    	final mxICell parent = getParent();
+    	if (parent != null) {
+    		str.append(parent.getClass().getSimpleName()).append('.');
+    	}
+    	
+		if (getChildCount() > 0)  {
+			// append the label
+			str.append(getChildAt(0).getValue());
+		} else {
+			str.append(getClass().getSimpleName());
+		}
+		if (parent != null) {
+			str.append('[').append(getParent().getIndex(this)).append(']');
+		}
+    	if (getEdgeCount() == 1) {
+    		str.append(" (connected)"); 
+    	} else if (getEdgeCount() > 1){
+    		str.append(" - multiple links (");
+    		str.append(getEdgeCount());
+    		str.append(')');
+    	}
+    	
+    	return str.toString();
+    }
 }

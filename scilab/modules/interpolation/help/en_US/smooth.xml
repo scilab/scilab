@@ -23,7 +23,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -60,7 +60,7 @@
     <literal>(ptd(1,i),ptd(2,i))</literal>. The components
     <literal>ptd(1,:)</literal> must be in ascending order. The default value
     for the step is
-    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal></para>
+    <literal>abs(max(ptd(1,:))-min(ptd(1,:)))/100</literal></para>
   </refsection>
 
   <refsection>
@@ -75,8 +75,8 @@ plot2d(yi(1,:)',yi(2,:)',[1],"000");
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="splin">splin</link></member>

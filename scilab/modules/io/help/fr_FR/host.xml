@@ -57,7 +57,7 @@
     <programlisting role="example"><![CDATA[ 
 //creation d'un fontion pour recuperer la path courant
 function wd=getdir()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');
@@ -68,8 +68,8 @@ endfunction
 wd=getdir()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

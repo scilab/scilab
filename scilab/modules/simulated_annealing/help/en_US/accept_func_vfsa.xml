@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="accept_func_vfsa" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>accept_func_vfsa</refname>
+
+    <refpurpose>The Very Fast Simulated Annealing acceptation function.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>Level = accept_func_vfsa(F_current, F_neigh, T)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>F_current</term>
+
+        <listitem>
+          <para>the current function value</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>F_neigh</term>
+
+        <listitem>
+          <para>the function value of the neighbour</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>T</term>
+
+        <listitem>
+          <para>the current temperature</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Level </term>
+
+        <listitem>
+          <para>the level of acceptation, in the interval [0,1].</para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      The <literal>accept_func_vfsa</literal> provides the Very Fast Simulated Annealing acceptation function.
+    </para>
+
+    <para>
+	  If the level computed by the acceptation function is higher 
+	  than the generated uniform random number in the interval [0,1], then the neighbour is accepted.
+	</para>
+
+        <para>
+	The formula used in the implementation is the following.
+	</para>
+	
+    <programlisting role="example"><![CDATA[ 
+Level = 1 / (1 + exp(-(F_current - F_neigh)/max(T,%eps)));
+ ]]></programlisting>
+	
+  </refsection>
+
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="accept_func_default">
+        accept_func_default
+      </link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <para>Yann Collette - 2008 - ycollet@freesurf.fr</para>
+    <para>Michael Baudin - Digiteo - 2010</para>
+  </refsection>
+
+</refentry>

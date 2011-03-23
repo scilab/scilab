@@ -1,10 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Vincent COUVERT
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 function add_color_in_list()
 listbox_handle = findobj("Tag","colors_listbox");
@@ -80,7 +78,6 @@ endfunction
 f = figure("figure_name", gettext("Uicontrols demo"),...
     "Position",[50 50 300 195],...
     "BackgroundColor",[0.9 0.9 0.9],...
-    "Units", "pixels",..
     "Tag", "uicontrols_demo_figure");
 
 // Remove Scilab 'standard' menus

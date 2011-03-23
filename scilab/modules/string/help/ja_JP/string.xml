@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="ja" 
+	  xml:id="string">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>string</refname>
+    <refpurpose>文字列に変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>string(x)
+[out,in,text]=string(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>論理値, 複素数, 実数, 整数, 多項式行列,または関数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	行列を文字列の行列に変換します.</para>
+    <para>
+    <literal>x</literal>が関数の場合,<literal>[out,in,text]=string(x)</literal>は
+	3つの文字列ベクトルを返します:
+	<literal>out</literal> は出力変数のベクトル,
+    <literal>in</literal> は入力変数のベクトル, そして <literal>text</literal> は
+	関数のソースコードの(列)ベクトルです.</para>
+    <para>
+    <literal>x</literal>が <literal>lib</literal>変数の場合, text は
+	文字列の列ベクトルとなります.
+	最初の要素には,ライブラリファイルのパス,
+	その他の要素にはライブラリで定義される関数の名前となります.</para>
+    <para>
+	文字列は<literal>'string'</literal> (引用符で括る)または
+	<literal>"string"</literal> (二重引用符で括る)で定義されます;
+	文字列の行列は通常の定数行列として定義されます.</para>
+    <para>
+	文字列の結合は<literal>+</literal>操作により行われます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+string(rand(2,2))
+deff('y=mymacro(x)','y=x+1')
+[out,in,text]=string(mymacro)
+x=123.356; 
+disp('Result is '+string(x))
+
+disp('/'+string(~%t)+'/')
+disp('/'+string(%i+1)+'/')
+disp('/'+string(int16(-123))+'/')
+disp('/'+string(1+%s+%s^3)+'/')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="part">part</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+      <member>
+        <link linkend="quote">quote</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="strsubst">strsubst</link>
+      </member>
+      <member>
+        <link linkend="strcat">strcat</link>
+      </member>
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+      <member>
+        <link linkend="sci2exp">sci2exp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

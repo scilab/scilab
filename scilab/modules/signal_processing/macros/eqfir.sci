@@ -49,7 +49,7 @@ function [hn]=eqfir(nf,bedge,des,wate)
 //adjust values of ds and wt if filter is of even length
  
    if flag==1 then,
-      fgs=maxi(size(fg));
+      fgs=max(size(fg));
       if fg(fgs)>.5-%eps then,
          fg=fg(1:fgs-1);
          ds=ds(1:fgs-1);

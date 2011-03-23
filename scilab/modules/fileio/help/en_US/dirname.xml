@@ -24,7 +24,7 @@
     <synopsis>dirs= dirname(files[,flag [,flagexpand]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>files</term>
@@ -51,14 +51,14 @@
     <para><literal>dirname</literal> return the dirname of the file entries given in files.</para>
     <para>
     If <literal>flag</literal> is true the files are first converted to the target 
-    type given by the <literal>MSDOS</literal> variable. 
+    type given by the <literal>getos() == 'Windows'</literal> variable. 
     Moreover, if <literal>flagexpand</literal> is true leading strings like
     <literal>HOME</literal>, <literal>SCI</literal> or <literal>~</literal> are expanded using environment
     variables.</para>
     <para>
     Note that <literal>dirname(files,%f)</literal> can give erroneous results if 
     pathnames given in files do not follow the convention 
-    given by the <literal>MSDOS</literal> variable.</para>
+    given by the <literal>getos() == 'Windows'</literal> variable.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -68,8 +68,8 @@ files=dirname('SCI/modules\fileio/macros/poo.sci')
 files=dirname('SCI/modules\fileio/macros/poo.sci.k')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="basename">basename</link>

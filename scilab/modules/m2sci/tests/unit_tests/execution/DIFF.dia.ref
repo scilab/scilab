@@ -1,0 +1,190 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: DIFF
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("DIFF") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/DIFF.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 
+ res272: [0,0] <> [3,0]   
+ 
+ res270: [0,0] <> [1,0]   
+ 
+ res268: [0,0] <> [3,0]   
+ 
+ res266: [0,0] <> [1,0]   
+ 
+ res264: [0,0] <> [3,0]   
+ 
+ res262: [0,0] <> [1,0]   
+ 
+ res260: [0,0] <> [3,0]   
+ 
+ res258: [0,0] <> [1,0]   
+ 
+ res256: [0,0] <> [3,0]   
+ 
+ res254: [0,0] <> [1,0]   
+ 
+ res252: [0,0] <> [3,0]   
+ 
+ res250: [0,0] <> [1,0]   
+ 
+ res248: [0,0] <> [3,0]   
+ 
+ res246: [0,0] <> [1,0]   
+ 
+ res244: [0,0] <> [3,0]   
+ 
+ res242: [0,0] <> [1,0]   
+ 
+ res240: [0,0] <> [3,0]   
+ 
+ res238: [0,0] <> [1,0]   
+ 
+ res233: [0,0] <> [3,0]   
+ 
+ res231: [0,0] <> [1,0]   
+ 
+ res229: [0,0] <> [3,0]   
+ 
+ res227: [0,0] <> [1,0]   
+ 
+ res225: [0,0] <> [3,0]   
+ 
+ res223: [0,0] <> [1,0]   
+ 
+ res221: [0,0] <> [3,0]   
+ 
+ res219: [0,0] <> [1,0]   
+ 
+ res217: [0,0] <> [3,0]   
+ 
+ res215: [0,0] <> [1,0]   
+ 
+ res213: [0,0] <> [3,0]   
+ 
+ res211: [0,0] <> [1,0]   
+ 
+ res209: [0,0] <> [3,0]   
+ 
+ res207: [0,0] <> [1,0]   
+ 
+ res205: [0,0] <> [3,0]   
+ 
+ res203: [0,0] <> [1,0]   
+ 
+ res201: [0,0] <> [3,0]   
+ 
+ res199: [0,0] <> [1,0]   
+ 
+ res195: [0,0] <> [0,3]   
+ 
+ res193: [0,0] <> [0,3]   
+ 
+ res192: [0,0] <> [0,1]   
+ 
+ res191: [0,0] <> [0,3]   
+ 
+ res189: [0,0] <> [0,3]   
+ 
+ res188: [0,0] <> [0,1]   
+ 
+ res187: [0,0] <> [0,3]   
+ 
+ res185: [0,0] <> [0,3]   
+ 
+ res184: [0,0] <> [0,1]   
+ 
+ res183: [0,0] <> [0,3]   
+ 
+ res181: [0,0] <> [0,3]   
+ 
+ res180: [0,0] <> [0,1]   
+ 
+ res179: [0,0] <> [0,3]   
+ 
+ res177: [0,0] <> [0,3]   
+ 
+ res176: [0,0] <> [0,1]   
+ 
+ res175: [0,0] <> [0,3]   
+ 
+ res173: [0,0] <> [0,3]   
+ 
+ res172: [0,0] <> [0,1]   
+ 
+ res171: [0,0] <> [0,3]   
+ 
+ res169: [0,0] <> [0,3]   
+ 
+ res168: [0,0] <> [0,1]   
+ 
+ res167: [0,0] <> [0,3]   
+ 
+ res165: [0,0] <> [0,3]   
+ 
+ res164: [0,0] <> [0,1]   
+ 
+ res163: [0,0] <> [0,3]   
+ 
+ res161: [0,0] <> [0,3]   
+ 
+ res160: [0,0] <> [0,1]   
+ 
+ res154: [0,0] <> [0,3]   
+ 
+ res153: [0,0] <> [0,1]   
+ 
+ res150: [0,0] <> [0,3]   
+ 
+ res149: [0,0] <> [0,1]   
+ 
+ res146: [0,0] <> [0,3]   
+ 
+ res145: [0,0] <> [0,1]   
+ 
+ res142: [0,0] <> [0,3]   
+ 
+ res141: [0,0] <> [0,1]   
+ 
+ res138: [0,0] <> [0,3]   
+ 
+ res137: [0,0] <> [0,1]   
+ 
+ res134: [0,0] <> [0,3]   
+ 
+ res133: [0,0] <> [0,1]   
+ 
+ res130: [0,0] <> [0,3]   
+ 
+ res129: [0,0] <> [0,1]   
+ 
+ res126: [0,0] <> [0,3]   
+ 
+ res125: [0,0] <> [0,1]   
+ 
+ res122: [0,0] <> [0,3]   
+ 
+ res121: [0,0] <> [0,1]   

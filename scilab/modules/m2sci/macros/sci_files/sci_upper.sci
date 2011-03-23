@@ -11,7 +11,7 @@ function [tree]=sci_upper(tree)
 // M2SCI function
 // Conversion function for Matlab upper()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_upper()
 
 opt=part("upper",1)

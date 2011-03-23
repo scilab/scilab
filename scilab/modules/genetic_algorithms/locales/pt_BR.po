@@ -1,0 +1,55 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-06-02 10:00+0100\n"
+"PO-Revision-Date: 2010-04-24 16:03+0000\n"
+"Last-Translator: Eduardo Ferreira Araujo <Unknown>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid " - min / max value found = %f / %f\n"
+msgstr " - valor mínimo / máximo encontrado = %f / %f\n"
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr "%s: o parâmetro F_in é obrigatório"
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr "%s: iniciação da população\n"
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr "%s: O parâmetro ga_f é obrigatório"
+
+#, c-format
+msgid "%s: iteration %d / %d"
+msgstr "%s: iteração %d / %d"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr "%s: iteração %d / %d\n"
+
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr "%s: iniciando otimização, por favor, aguarde ...\n"
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s: direção errada"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr "optim_moga: O parâmetro ga_f é obrigatório"
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr "optim_nsga2: O parâmetro ga_f é obrigatório"

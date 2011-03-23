@@ -26,7 +26,7 @@ status = printfigure(figid)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>figid</term>
@@ -53,8 +53,8 @@ plot2d();
 printfigure(get(gcf(), "figure_id"));
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toprint">toprint</link>

@@ -19,7 +19,7 @@ function [slm]=arhnk(a,ordre,tol)
   end;
   
   [a,b,c,d,x0,dom]=a(2:7);
-  if(maxi(real(spec(a)))) > 0 then
+  if(max(real(spec(a)))) > 0 then
     error(msprintf(_("%s: Wrong values for input argument #%d: Stable system expected.\n"),"arhnk",1));
   end
   domaine='c'
@@ -41,7 +41,7 @@ function [slm]=arhnk(a,ordre,tol)
   end;
   sigma=wc(ordre+1,ordre+1)
   
-  r=maxi(n1-ordre-1,1)
+  r=max(n1-ordre-1,1)
   
   n=n1
   sel=[1:ordre ordre+r+1:n];seleq=ordre+1:ordre+r

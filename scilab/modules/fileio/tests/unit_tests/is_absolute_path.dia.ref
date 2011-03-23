@@ -11,7 +11,7 @@
 if is_absolute_path("test_1")                then bugmes();quit;end
 if is_absolute_path("test_2       ")         then bugmes();quit;end
 if is_absolute_path("	test_3		")       then bugmes();quit;end
-if MSDOS then
+if getos() == 'Windows' then
 	
 	if is_absolute_path("/")                 then bugmes();quit;end
 	if is_absolute_path("3:")                then bugmes();quit;end

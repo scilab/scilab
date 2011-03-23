@@ -56,6 +56,7 @@ c
       sadr(l)=(l/2)+1
 c
       il=ilt
+      if(istk(il).lt.0) il=iadr(istk(il+1))
       if(nind.le.0) goto 30
 c
       do 20 k=1,nind
@@ -64,6 +65,6 @@ c     .  m : sub-list size
 c     .  il pointer to ind(k) sub-list entry
          il=iadr(sadr(il+3+m)+istk(il+1+ind(k))-1)
  20   continue
- 30     subptr=il
+ 30   subptr=il
       end
 

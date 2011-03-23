@@ -23,7 +23,7 @@
     <synopsis>[X,dims,J,Y,k,Z]=cainv(Sl,alfa,beta,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -148,8 +148,8 @@ X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
 // H*W = [0 | *]  (with at least as many aero columns as above).
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="abinv">abinv</link>

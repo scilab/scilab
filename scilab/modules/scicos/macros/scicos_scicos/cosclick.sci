@@ -20,6 +20,9 @@
 //
 
 function [btn, %pt, win, Cmenu ] = cosclick(flag)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**    
 //** btn : button / event id (numeric code)
 //** %pt : mouse position[x,y] of the event
@@ -78,7 +81,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
   // If the event is a TCL event then win=[]
   global inactive_windows
   if win<>[] & find(win==inactive_windows(2))<>[] then
-    //the event occured into an inactive window
+    //the event occurred into an inactive window
     global Scicos_commands
     pathh = inactive_windows(1)(find(win==inactive_windows(2)))
  
@@ -116,7 +119,7 @@ function [btn, %pt, win, Cmenu ] = cosclick(flag)
     //**----------------------------------------------------------------------------
 
     Scicos_commands = ['%diagram_path_objective='+sci2exp(pathh)+';%scicos_navig=1';
-		       cmd+';%win=curwin;%pt='+sci2exp(%pt)+';xselect();%scicos_navig=[]';
+		       cmd+';%win=curwin;%pt='+sci2exp(%pt)+';show_window();%scicos_navig=[]';
 		      ]
     return ; //** EXIT POINT for the indirect command (to be explored)
   

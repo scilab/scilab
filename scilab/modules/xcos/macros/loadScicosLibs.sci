@@ -10,6 +10,7 @@
 //
 //
 function loadScicosLibs()
+  warnobsolete("loadXcosLibs", "5.4.0");
 
   if ~isdef('scicos_menuslib') then
     load('SCI/modules/scicos/macros/scicos_menus/lib')
@@ -39,6 +40,11 @@ function loadScicosLibs()
     end
   end
   clear theLib;
+
+  if isfile('SCI/modules/scicos/macros/scicos_menus/lib') then
+    load('SCI/modules/scicos/macros/scicos_menus/lib');
+    listlibsname = [listlibsname, 'scicos_menus'];
+  end
 
   if isfile('SCI/modules/scicos/macros/scicos_scicos/lib') then
     load('SCI/modules/scicos/macros/scicos_scicos/lib');

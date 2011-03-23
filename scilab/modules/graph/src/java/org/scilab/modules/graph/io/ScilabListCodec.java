@@ -1,6 +1,6 @@
 /*
  * Scilab (http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Allan SIMON
+ * Copyright (C) 2009-2009 - DIGITEO - Allan SIMON
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,9 +15,9 @@ package org.scilab.modules.graph.io;
 
 import java.util.Map;
 
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabTList;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabTList;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
@@ -27,7 +27,6 @@ import com.mxgraph.io.mxCodec;
  */
 public class ScilabListCodec  extends ScilabObjectCodec {
 
-    
     private static final String SCILAB_CLASS = "scilabClass";
 
     /**
@@ -97,4 +96,32 @@ public class ScilabListCodec  extends ScilabObjectCodec {
 		return obj;
 	}
 	
+	/**
+	 * Workaround for a jgraphx bug on deserialization with a possible abstract
+	 * array and default value.
+	 * 
+	 * @param dec
+	 *            the current decoder instance
+	 * @param node
+	 *            the current node
+	 * @param into
+	 *            the object decode into (may be a wrongly typed instance)
+	 * @return a valid (right typed) instance
+	 * @see com.mxgraph.io.mxObjectCodec#decode(com.mxgraph.io.mxCodec,
+	 *      org.w3c.dom.Node, java.lang.Object)
+	 * @see http://www.jgraph.org/bugzilla/show_bug.cgi?id=55
+	 * @see http://bugzilla.scilab.org/show_bug.cgi?id=8141
+	 */
+	@Override
+	public Object decode(mxCodec dec, Node node, Object into) {
+		// Workaround case selection :
+		// - node is an "Array"
+		// - into (the default template) is not.
+		if (node.getNodeName().equals("Array") && into != null
+				&& !into.getClass().isArray()) {
+			return super.decode(dec, node, null);
+		} else {
+			return super.decode(dec, node, into);
+		}
+	}
 }

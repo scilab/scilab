@@ -18,7 +18,7 @@
 #include "MALLOC.h"
 #include "version.h"
 #include "wmcopydata.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;

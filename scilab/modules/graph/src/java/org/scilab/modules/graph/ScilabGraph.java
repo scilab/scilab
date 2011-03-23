@@ -13,14 +13,17 @@
 
 package org.scilab.modules.graph;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
 import java.util.List;
 
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
+import org.scilab.modules.graph.view.ScilabGraphView;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.ScilabWindow;
-import org.scilab.modules.graph.utils.ScilabConstants;
-import org.scilab.modules.graph.view.ScilabGraphView;
 
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
@@ -48,7 +51,7 @@ public class ScilabGraph extends mxGraph {
 	private final mxUndoManager undoManager = new mxUndoManager();
 
 	private String title = ScilabGraphMessages.UNTITLED;
-	private String savedFile;
+	private File savedFile;
 	private boolean modified;
 	private Tab parentTab;
 	private boolean opened;
@@ -60,6 +63,7 @@ public class ScilabGraph extends mxGraph {
 	 * Manage the modification state on change
 	 */
 	private mxIEventListener changeTracker = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			setModified(true);
 		}
@@ -69,9 +73,10 @@ public class ScilabGraph extends mxGraph {
 	 * Manage the undo/redo on change
 	 */
 	private final mxIEventListener undoHandler = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
 			undoManager.undoableEditHappened((mxUndoableEdit) evt
-						.getProperty(ScilabConstants.EVENT_CHANGE_EDIT));
+						.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT));
 		}
 	};
 
@@ -94,11 +99,26 @@ public class ScilabGraph extends mxGraph {
 	 * Update the selection on undo/redo
 	 */
 	private mxIEventListener selectionHandler = new mxIEventListener() {
+		@Override
 		public void invoke(Object source, mxEventObject evt) {
-			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabConstants.EVENT_CHANGE_EDIT)).getChanges();
+			List<mxUndoableChange> changes = ((mxUndoableEdit) evt.getProperty(ScilabGraphConstants.EVENT_CHANGE_EDIT)).getChanges();
 			getSelectionModel().setCells(getSelectionCellsForChanges(changes));
 		}
 	};
+	
+	/**
+	 * Update the component when the graph is locked
+	 */
+	private PropertyChangeListener cellLockBackgroundUpdater = new PropertyChangeListener() {
+		@Override
+		public void propertyChange(PropertyChangeEvent evt) {
+			if (evt.getPropertyName().equals("cellsLocked")) {
+				getAsComponent().getGraphControl().repaint();
+			}
+		}
+	};
+	
+	/**
 	
 	/**
 	 * Default constructor: - disable unused actions - install listeners -
@@ -120,6 +140,9 @@ public class ScilabGraph extends mxGraph {
 		undoManager.addListener(mxEvent.REDO, selectionHandler);
 
 		setComponent(new ScilabComponent(this));
+		
+		// graph locked change support
+		changeSupport.addPropertyChangeListener(cellLockBackgroundUpdater);
 
 		// Modified property change
 		getModel().addListener(mxEvent.CHANGE, changeTracker);
@@ -128,7 +151,7 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @return The previously saved file or null.
 	 */
-	public String getSavedFile() {
+	public File getSavedFile() {
 		return savedFile;
 	}
 
@@ -136,8 +159,11 @@ public class ScilabGraph extends mxGraph {
 	 * @param savedFile
 	 *            The new saved file
 	 */
-	public void setSavedFile(String savedFile) {
+	public void setSavedFile(File savedFile) {
 		this.savedFile = savedFile;
+		
+		// register the saved dir as the image base path (for relative images location).
+		getAsComponent().getCanvas().setImageBasePath(savedFile.getParentFile().toURI().toASCIIString());
 	}
 
 	/**
@@ -158,7 +184,9 @@ public class ScilabGraph extends mxGraph {
 		boolean oldValue = this.modified;
 		this.modified = modified;
 
-		getAsComponent().firePropertyChange("modified", oldValue, modified);
+		if (getAsComponent() != null) {
+			getAsComponent().firePropertyChange("modified", oldValue, modified);
+		}
 	}
 
 	/**
@@ -186,11 +214,15 @@ public class ScilabGraph extends mxGraph {
 	/**
 	 * @param component The graphical component associated with this graph
 	 */
-	protected void setComponent(ScilabComponent component) {
+	public void setComponent(ScilabComponent component) {
 		this.component = component;
 		
-		// Adds rubberband selection
-		rubberBand = new mxRubberband(component);
+		if (component != null) {
+			// Adds rubberband selection
+			rubberBand = new mxRubberband(component);
+		} else {
+			rubberBand = null;
+		}
 	}
 
 	/**

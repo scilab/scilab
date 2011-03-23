@@ -12,7 +12,8 @@
 
 function xcosShowBlockWarning(k, win)
   for i = k'
-    if typeof(scs_m.objs(i)) == "Block"
+    if typeof(scs_m.objs(i)) == "Block" ..
+        & size(scs_m.objs(i).doc) >= 1
       warnBlockByUID(scs_m.objs(i).doc(1), "ERROR");
     end
   end 

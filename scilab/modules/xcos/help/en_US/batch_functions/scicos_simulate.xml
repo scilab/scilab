@@ -4,6 +4,7 @@
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) INRIA - Serge Steer - (format standardized, context argument explained, example added)
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +29,35 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])</synopsis>
+    <synopsis>Info=scicos_simulate(scs_m)</synopsis>
+    <synopsis>Info=scicos_simulate(scs_m,Info)</synopsis>
+    <synopsis>Info=scicos_simulate(scs_m,context)</synopsis>
+    <synopsis>Info=scicos_simulate(scs_m,flag)</synopsis>
+    <synopsis>Info=scicos_simulate(scs_m ,Info [, context] [,flag])</synopsis>
   </refsynopsisdiv>
+  <refsection id="Parameters_scicos_simulate">
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry><term>scs_m</term>: A diagram data structure (see <link linkend="scicos_diagram">scs_m structure</link>).
+        <para/></varlistentry>
+      <varlistentry><term>Info</term>: A list. It must be set to <literal>list()</literal> at
+        the first call, then use output <literal>Info</literal> as
+        input <literal>Info </literal>for the next
+        calls. <literal>Info</literal> contains compilation and
+        simulation information and is used to avoid recompilation when
+        not needed.
+        <para/>
+      </varlistentry>
+      <varlistentry><term>ContextValues</term>: A Scilab struct containing values of symbolic variables
+        used in the context and xcos blocks.
+        <para/></varlistentry>
+      <varlistentry><term>flag</term>: A string. If it equals 'nw' (no window),
+        then blocks using graphical windows are not executed. Note
+        that the list of such blocks must be updated as new blocks are
+        added.
+      </varlistentry>
+    </variablelist>
+  </refsection>
   <refsection id="Module_scicos_simulate">
     <title>Module</title>
     <itemizedlist>
@@ -40,40 +68,33 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Description_scicos_simulate">
-    <title>Description</title>
-    <para>
-This function is used to simulate xcos diagrams in batch mode. It requires the scs_m structure which can be obtained by loading in Scilab the .cos file (e.g. load mydiagram.cos).  
-</para>
-    <para>
-Contrary to the function , the diagram need not be compiled before being saved.  
-</para>
-    <para>
-</para>
-    <programlisting role="example"><![CDATA[ 
-Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
- ]]></programlisting>
-  </refsection>
-  <refsection id="Parameters_scicos_simulate">
-    <title>Parameters</title>
-    <itemizedlist>
-      <listitem>
-        <para><emphasis role="bold">scs_m :</emphasis> xcos diagram (obtained by "load file.cos"). Note that the version of file.cos must be the current version. If not, load into xcos and save.</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Info :</emphasis> a list. It must be list() at the first call, then use output Info as input Info for the next calls. Info contains compilation and simulation information and is used to avoid recompilation when not needed.</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">%scicos_context :</emphasis> a Scilab struct containing values of symbolic variables used in the context and xcos blocks. This is often used to change a parameter in the diagram context. In that case, make sure that in the diagram context the variable is defined such that it can be modified. Say a variable "a" is to be defined in the context having value 1, and later in batch mode, we want to change the value of "a". In that case, in the context of the diagram place: if exists('a') then a=1,end If you want then to run the simulation in batch mode using the value a=2, set: %scicos_context.a=2</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">flag :</emphasis> string. If it equals 'nw' (no window), then blocks using graphical windows are not executed. Note that the list of such blocks must be updated as new blocks are added.</para>
-      </listitem>
-      <listitem>
-        <para><emphasis role="bold">Info :</emphasis> contains compilation and simulation information and is used to avoid recompilation when not needed. Normally it should not be modified.</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
+  <refsection id="Description_scicos_simulate"><title>Description</title>
+      This function is used to simulate xcos diagrams in batch
+      mode. It requires the <link linkend="scicos_diagram">scs_m
+      structure</link>which can be obtained by loading in Scilab the
+      <literal>.xcos</literal> file (see <link linkend="importXcosDiagram">
+      importXcosDiagram</link>).
+
+    <para> The <literal>ContextValues</literal> may be used to change
+    the main parameters value set in the main diagram
+    context. example: if the variable <literal>A</literal> is set to 1
+    in the main context of the diagram. One can change the
+    <literal>A</literal> value for a <literal>scicos_simulate</literal> simulation by setting
+    <programlisting role="example"><![CDATA[
+    ContextValues.A=2 
+    ]]></programlisting></para>
+    <para> It is also possible to use variables defined inside Scilab
+    directly without using the <literal>ContextValues</literal>
+    argument, but for such a use the context definition must allow
+    this: example, if one wants to allow simulation use the
+    <literal>A</literal> Scilab variable value for the parameter
+    <literal>A</literal> the diagram context definition should contain
+    <programlisting role="example"><![CDATA[
+    if ~exists('A') then  A=1,end
+    ]]></programlisting> Note that this second solution is
+    fragile because it rely on the current value of
+    <literal>A</literal> in Scilab.</para>
+ </refsection>
   <refsection id="Filecontent_scicos_simulate">
     <title>File content</title>
     <itemizedlist>
@@ -82,33 +103,60 @@ Info=scicos_simulate(scs_m,Info[,%scicos_context][,flag])
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Examples_scicos_simulate"><title>Examples</title>
+    The xcos diagram in <literal>SCI/modules/xcos/demos/batch_simulation.xcos</literal>
+    <mediaobject><imageobject><imagedata align="center" fileref="../../images/batch_simulation.png"/></imageobject></mediaobject>
+    <programlisting role="example"><![CDATA[ 
+importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.xcos")
+
+typeof(scs_m) //The diagram data structure
+
+//This diagram uses 3 context variables : 
+//  Amplitude : the sin function amplitude
+//  Pulsation : the sin function pulsation
+//  Tf        : the final simulation time
+scs_m.props.context; //the embedded definition
+
+//first batch simulation with the parameters embedded in the diagram 
+scicos_simulate(scs_m);
+// Change the final time value
+Context.Tf=10;
+scicos_simulate(scs_m,Context);
+// without display
+Context.Tf=10;
+Context.Pulsation=9;
+scicos_simulate(scs_m,list(),Context,'nw');
+//get the variable created by the "from workspace block"
+counter 
+
+    ]]></programlisting>
+  </refsection>
   <refsection id="SeeAlso_scicos_simulate">
     <title>See Also</title>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <link linkend="scicosim">scicosim - Scicos (batch) simulation function (Scilab Function)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="xcos">xcos - Block diagram editor and GUI for the hybrid simulator (Scilab Function)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="steadycos">steadycos - Finds an equilibrium state of a general dynamical system described by a xcos diagram (Scilab Function)</link>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <link linkend="lincos">lincos - Constructs by linearization a linear state-space model from a general dynamical system described by a xcos diagram (Scilab Function)</link>
-        </para>
-      </listitem>
-    </itemizedlist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="scicos_diagram">scs_m structure</link>
+      </member>
+      <member>
+        <link linkend="importXcosDiagram"> importXcosDiagram</link>
+      </member>
+      <member>
+        <link linkend="scicosim">scicosim: xcos batch simulation function</link>
+      </member>
+      <member>
+        <link linkend="xcos">xcos: Block diagram editor and GUI for the hybrid simulator</link>
+      </member>
+      <member>
+        <link linkend="steadycos">steadycos: Finds an equilibrium state of an xcos diagram</link>
+      </member>
+      <member>
+        <link linkend="lincos">lincos: Constructs by linearization a linear state-space model from an xcos diagram</link>
+      </member>
+    </simplelist>
   </refsection>
   <refsection id="Authors_scicos_simulate">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Serge Steer</emphasis> - INRIA</para>
   </refsection>
 </refentry>

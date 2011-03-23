@@ -90,7 +90,7 @@ static void setAppName(const char * name) {
  * @param param The structure containing the missing argument mandatory for realmain
  * @return the result of the operation (0 if OK ...)
  */
-static int *launchMacOSXEnv(thread_parm_t *param){
+static int launchMacOSXEnv(thread_parm_t *param){
   thread_parm_t *p = (thread_parm_t *)param;
   int ret=-1;
   {
@@ -167,7 +167,9 @@ static int *launchMacOSXEnv(thread_parm_t *param){
 
   if (ret==0) {
     /* Call the actual startup script of Scilab */
-    ret=realmain(p->no_startup_flag_l, p->initial_script, p->initial_script_type, p->memory);
+    ret = realmain(p->no_startup_flag_l, p->initial_script, p->initial_script_type, p->memory);
+	free(p);
+	exit(ret);  
   }
     free(p);
   return ret;

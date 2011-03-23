@@ -5,7 +5,9 @@
 //                      - Ramine Nikoukhah <ramine.nikoukhah@inria.fr>
 //                      - Rachid Djenidi
 //
-//                      - Scilab 5 update by Simone Mannori 
+//                      - Scilab 5 update by Simone Mannori
+//
+//  Copyright (C) DIGITEO - 2010 - Allan CORNET
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -607,7 +609,7 @@ function [CCode,FCode]=gen_blocks()
                          //200X : C blocks
 
   if (size(kdyn,'*') >1)
-    kfuns=[]; 
+    kfuns=[];
     //get the block data structure in the initial scs_m structure
     if size(corinv(kdyn(1)),'*')==1 then
       O=scs_m.objs(corinv(kdyn(1)));
@@ -726,7 +728,7 @@ function ok=gen_ccode42();
         '     double *t;'
         '     void *u;'
         '{'
-        '  int k,l;'
+        '  int k = 0,l = 0;'
         '}'
         '/*---------------------------------------- Sensor */'
         'void '+rdnom+'_sensor(flag,nport,nevprt,t,y,ny1,ny2,yt,flag1)'
@@ -735,7 +737,7 @@ function ok=gen_ccode42();
         '     double *t;'
         '     void *y;'
         '{'
-        '  int k,l;'
+        '  int k = 0,l = 0;'
         '}']
 
   ierr=execstr('mputl(Code,rpat+''/''+rdnom+''_void_io.c'')','errcatch')
@@ -756,7 +758,7 @@ function ok=gen_ccode42();
   end
 
 //** This copy is indispensable only for stand alone code generation
-//** not supported in Scilab 5 
+//** not supported in Scilab 5
 
   //** copy source code of machine.h/scicos_block4.h
   //   in target path
@@ -767,7 +769,7 @@ function ok=gen_ccode42();
 //     ok=%f
 //     return
 //   end
-// 
+//
 //   txt=mgetl(SCI+'/modules/scicos_blocks/includes/scicos_block4.h');
 //   ierr=execstr('mputl(txt,rpat+''/scicos_block4.h'')','errcatch')
 //   if ierr<>0 then
@@ -783,7 +785,7 @@ function ok=gen_ccode42();
         '#include <string.h>'
         'extern void **'+rdnom+'_block_outtbptr;'
         'extern char input[50],output[50];'
-        'FILE *fprr,*fprw;'
+        'FILE *fprr = NULL, *fprw = NULL;'
         make_outevents()
         make_actuator(%t)
         make_sensor(%t)]
@@ -832,6 +834,7 @@ function ok=gen_gui42();
   //outtb($+1) = zeros(nblk,1);
   Code=['function [x,y,typ]='+rdnom+'_c(job,arg1,arg2)';
         '// Copyright INRIA';
+        '// Copyright DIGITEO - 2010';
         ' x=[];y=[];typ=[];';
         ' select job';
         ' case ''plot'' then';
@@ -926,7 +929,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   for i=1:size(scs_m.objs)
     if typeof(scs_m.objs(i))=='Block' then
       if scs_m.objs(i).gui=='CLKOUT_f' then
-        ok=%f;%cpr=list()
+        ok=%f;%cpr=list();
         message('Superblock should not have any activation output port.')
         return
       elseif scs_m.objs(i).gui=='IN_f' then
@@ -1034,6 +1037,13 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   ///**********************************
   for i=1:size(bllst)
+    // check for a scilab function block
+    if type(bllst(3).sim(1)) == 13 then
+      ok=%f;%cpr=list();
+      message(_('Superblock should not contains any Scilab function block.'))
+      return
+    end
+
     for j=1:size(bllst)
       if (bllst(i).sim(1)=='actionneur'+string(j)) then
         if tt<>i then
@@ -1160,7 +1170,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
 
   Code_gene_run=[];
 
-  //** OLD GRAPHICS 
+  //** OLD GRAPHICS
   //** %windo=xget('window')
 
   cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv)
@@ -1186,7 +1196,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   //** retrieve all open Scilab windows with winsid()
   //**
 
-  BeforeCG_WinList = winsid(); 
+  BeforeCG_WinList = winsid();
 
   ierr=execstr('[state,t]=scicosim(cpr.state,0,0,cpr.sim,'+..
                '''start'',scs_m.props.tol)','errcatch')
@@ -1203,17 +1213,17 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   //**
   //** retrieve all open Scilab windows with winsid
   //** and close the additional windows open since first
-  //** 
- 
-  //** This code does not cover 100% of the possible situations because the user can 
+  //**
+
+  //** This code does not cover 100% of the possible situations because the user can
   //** destroy one or more Scicos wins manually during this intermediate phase
   //** This code is 100% functional if the the user does not close manually any win.
   //** TO BE updated in Scilab 5.0
 
   AfterCG_WinList = winsid();
-  
+
   AfterCG_size = size(AfterCG_WinList); //** matrix
-  AfterCG_size = AfterCG_size(2) ; //** vector lenght 
+  AfterCG_size = AfterCG_size(2) ; //** vector lenght
 
   BeforeCG_size = size(BeforeCG_WinList); //** matrix
   BeforeCG_size = BeforeCG_size(2) ; //** vector lenght
@@ -1222,20 +1232,20 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
      //** means that a scope or other scicos object has created some
      //** output window
 
-     DiffCG_Winlist = AfterCG_WinList<>BeforeCG_WinList ; //** T/F mismatch 
-     DiffCG_Index = find(DiffCG_Winlist); //** recover the mismatched indexes only 
+     DiffCG_Winlist = AfterCG_WinList<>BeforeCG_WinList ; //** T/F mismatch
+     DiffCG_Index = find(DiffCG_Winlist); //** recover the mismatched indexes only
 
      for win_idx = DiffCG_Index
-         delete( scf( AfterCG_WinList(win_idx) ) ) ; //** clear the spurious windows   
-     end 
-     
-  end  
+         delete( scf( AfterCG_WinList(win_idx) ) ) ; //** clear the spurious windows
+     end
+
+  end
   //**------------- end of windows cleaning ----------------------------------------
 
   cpr.sim.funs=funs_save;
   cpr.sim.funtyp=funtyp_save;
 
-  //** OLD GRAPHICS 
+  //** OLD GRAPHICS
   //** xset('window',%windo)
 
   ///////////////////
@@ -1361,7 +1371,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
     if dirinfo==[] then
       [pathrp,fnamerp,extensionrp]=fileparts(rpat)
       ok=mkdir(pathrp,fnamerp+extensionrp)
-      if ~ok then 
+      if ~ok then
         messagebox('Directory '+rpat+' cannot be created',"modal","info");
       end
     elseif filetype(dirinfo(2))<>'Directory' then
@@ -1369,7 +1379,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
       messagebox(rpat+' is not a directory',"modal","error");
     end
 
-    if stripblanks(rdnom)==emptystr() then 
+    if stripblanks(rdnom)==emptystr() then
       ok=%f;
       messagebox('sorry C file name not defined',"modal","error");
     end
@@ -1460,7 +1470,7 @@ function  [ok,XX,alreadyran,flgcdgen,szclkINTemp,freof] = do_compile_superblock4
   // Scilab and C files generation
   //***********************************
 
-  //** generate scilab interfacing funtion 
+  //** generate scilab interfacing funtion
   //   of the generated scicos block
   ok=gen_gui42();
 
@@ -1929,20 +1939,24 @@ function Code=make_computational42()
 
   Code=['/* SCILAB Computational function  */'
         '/*     Copyright INRIA */'
-        '/*     Generated by Code_Generation toolbox of Scicos with '+ ..
+        '/*     Copyright DIGITEO - 2010 */'
+        '/*     Generated by Code_Generation toolbox of Xcos with '+ ..
         getversion()+' */';
         '/*     date : '+date()+' */'
         ''
         '/* ---- Headers ---- */'
         '#include <stdio.h>'
+        '#include <stdlib.h>'
         '#include <memory.h>'
         '#include <string.h>'
         '#include ""machine.h"" '
-        '#include ""dynamic_link.h"" '
         '#include ""scicos.h"" '
+        '#include ""scicos_malloc.h"" '
+        '#include ""scicos_free.h"" '
         '']
 
-  if MSDOS then
+  if getos() == 'Windows' then
+
    Code=[Code;
          ' '
          '#define max(a,b) ((a) >= (b) ? (a) : (b))'
@@ -2027,9 +2041,9 @@ function Code=make_computational42()
         '  double t     = get_scicos_time();'
         '  int    phase = get_phase_simulation();'
         ''
-        '  int kf;'
-        '  int i;'
-        '  int* reentryflag;'
+        '  int kf = 0;'
+        '  int i = 0;'
+        '  int* reentryflag = NULL;'
         ''
         '  double *args[100];'
         '  int local_flag;'
@@ -2553,7 +2567,7 @@ function Code=make_computational42()
       if (ipptr(kf+1)-ipptr(kf)>0) then
         Code=[Code;
               '    block_'+rdnom+'['+string(kf-1)+...
-              '].ipar      = &(ipar['+string(ipptr(kf)-1)+']);'] 
+              '].ipar      = &(ipar['+string(ipptr(kf)-1)+']);']
       end
       //** opar
       if (opptr(kf+1)-opptr(kf)>0) then
@@ -2699,7 +2713,7 @@ function Code=make_computational42()
        if (ipptr(kf+1)-ipptr(kf)>0) then
          Code=[Code;
                '    block_'+rdnom+'['+string(kf-1)+...
-                '].ipar=&(ipar['+string(ipptr(kf)-1)+']);'] 
+                '].ipar=&(ipar['+string(ipptr(kf)-1)+']);']
        end
        //** opar **//
        if (opptr(kf+1)-opptr(kf)>0) then
@@ -3044,7 +3058,7 @@ function Code=make_sensor(standalone)
   if size(typ,1) <> 1 then
     typ(2:$) = bl+typ(2:$);
   end
-  //Code1=['      fscanf( fprr, '"'+typ+' \n'",&temps'] 
+  //Code1=['      fscanf( fprr, '"'+typ+' \n'",&temps']
   Code1=[typ;bl+'&temps'];
   for i=1:size(capt,1)
     ni=capt(i,3)*capt(i,4); // dimension of ith input
@@ -3194,8 +3208,8 @@ function Code=make_standalone42()
         'int '+rdnom+'_sim(double, double, double, int);'
         Protostalone
         '']
-  
-  if MSDOS then
+
+  if getos() == 'Windows' then
    Code=[Code;
          ' '
          '#define max(a,b) ((a) >= (b) ? (a) : (b))'
@@ -3203,7 +3217,7 @@ function Code=make_standalone42()
          ' '
         ]
   end
-  
+
 
   if x<>[] then
     Code=[Code
@@ -4420,16 +4434,16 @@ function t1=cformatline(t ,l)
     if kw(1)==1 then // there is leading blanks
       k1=find(kw(2:$)-kw(1:$-1)<>1)
       if k1==[] then // there is a single blank
-	nw=1
+    nw=1
       else
-	nw=kw(k1(1))
+    nw=kw(k1(1))
       end
     end
   end
   t=part(t,nw+1:length(t));
   bl=part(' ',ones(1,nw))
   l1=l-nw;first=%t
-  while %t 
+  while %t
     if length(t)<=l then t1=[t1;bl+t],return,end
     k=strindex(t,sep);
     if k==[] then t1=[t1;bl+t],return,end
@@ -5542,7 +5556,7 @@ function [txt]=write_code_zdoit()
     pt=zord(j,2);
     //** blk
     if funtyp(bk)>-1 then
-        if or(bk==act) | or(bk==cap) then 
+        if or(bk==act) | or(bk==cap) then
           if stalone then
             txt=[txt;
                  '    '+call_block42(bk,pt,9)

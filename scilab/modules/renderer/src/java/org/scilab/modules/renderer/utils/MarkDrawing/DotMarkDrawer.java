@@ -22,7 +22,7 @@ import javax.media.opengl.GL;
  * Class specialized in drawing dot marks 
  * @author Jean-Baptiste Silvy
  */
-public class DotMarkDrawer extends MarkDrawingStrategy  {
+public class DotMarkDrawer extends JOGLMarkDrawingStrategy  {
 
 	
 	private static final int NB_SLICES = 64;

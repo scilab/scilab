@@ -59,7 +59,7 @@ function hz=iir(n,ftype,fdesign,frq,delta)
     error(msprintf(gettext("%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"),'iir',5))
   end
 
-  if maxi(abs(frq))>0.5 then 
+  if max(abs(frq))>0.5 then 
     error(msprintf(gettext("%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"),'iir',4,"0","0.5"));
   end
   if delta(1)<0|delta(2)>1 then 

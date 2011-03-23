@@ -40,7 +40,7 @@ case 'set' then
   model=arg1.model;
   while %t do
     [ok,V,ph,frq,offset,start,exprs]=scicos_getvalue('Set voltage source parameter',..
-    			   ['Amplitude (Volt)','phase (rad)','Frequency (Hz)','Voltageoffset (V)','Timeoffset (s)'],..
+    			   ['Amplitude (Volt)';'phase (rad)';'Frequency (Hz)';'Voltageoffset (V)';'Timeoffset (s)'],..
 			      list('vec',1,'vec',1,'vec',1,'vec',1,'vec',1),exprs)
     if ~ok then break,end
     model.rpar=[V;ph;frq;offset;start]

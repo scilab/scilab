@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA - Serge STEER
+ * Copyright (C) 1984-2010 - INRIA - Serge STEER
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,7 +17,6 @@
 #include <string.h>
 #include <stdio.h>
 #include "stack-c.h"
-#include "dynamic_menus.h"
 /*--------------------------------------------------------------------------*/
 #include "parse.h"
 #include "basout.h"
@@ -27,8 +26,12 @@
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "prompt.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
+#include "msgs.h"
+#include "eqid.h"
+#include "parserConstant.h"
 /*--------------------------------------------------------------------------*/
 #undef Lstk
 #undef Infstk
@@ -38,25 +41,6 @@
 
 static int c__1 = 1;
 static int c__0 = 0;
-#define comma  52
-#define lparen  41
-#define rparen  42
-#define left  54
-#define right  55
-#define less  59
-#define great  60
-#define dot  51
-#define name  1
-#define num  0
-#define cmt  2
-#define insert  2
-#define extrac  3
-#define blank  40
-#define semi  43
-#define slash  48
-
-#define equal  50
-#define eol  99
 
 #define Pt (C2F(recu).pt)
 /*--------------------------------------------------------------------------*/
@@ -68,10 +52,7 @@ extern int C2F(stackp)(int *,int *);
 extern int C2F(macro)(void);
 extern int C2F(getsym)(void);
 
-extern int C2F(eqid)(int *,int *);
-
 extern int C2F(bexec)(char *,int *,int *);
-
 
 extern int C2F(findequal)(int *);
 extern int C2F(print)(int *,int *,int *);
@@ -90,11 +71,6 @@ extern int C2F(ptover)(int *,int *); /* see src/fortran/ptover.f */
 extern int C2F(eptover)(int *,int *);/* see src/fortran/eptover.f */
 /*--------------------------------------------------------------------------*/
 void handle_onprompt(int *n);
-/*--------------------------------------------------------------------------*/
-void Msgs(int n,int ierr)
-{
-   C2F(msgs)(&n,&ierr);
-}
 /*--------------------------------------------------------------------------*/
 static int Compil(int code,int * val1,int val2,int val3,int val4)
 {
@@ -117,9 +93,9 @@ int C2F(parse)(void)
 {
   /* Initialized data */
   static int ans[6] = { 672929546,673720360,673720360,673720360,
-			    673720360,673720360 };
+                        673720360,673720360 };
   static int varargout[6] = { 169544223,504893467,673720349,673720360,
-				  673720360,673720360 };
+                              673720360,673720360 };
   /* static int catch[6] = {203229708,673720337,673720360,673720360, 673720360,673720360 };*/
 
   static int *Ids     = C2F(recu).ids - nsiz - 1;
@@ -129,7 +105,6 @@ int C2F(parse)(void)
   static int *Lin     = C2F(iop).lin - 1;
   static int *Lct     = C2F(iop).lct - 1;
   static int *Lpt     = C2F(iop).lpt - 1;
-  
 
   /* System generated locals */
   int i__2, i__3;
@@ -167,7 +142,7 @@ int C2F(parse)(void)
   }
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," TOP    pt:%d rstk(pt):%d icall: %d niv: %d err:%d",
-	    Pt,Rstk[Pt], C2F(recu).icall, C2F(recu).niv,Err);
+            Pt,Rstk[Pt], C2F(recu).icall, C2F(recu).niv,Err);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
@@ -216,7 +191,7 @@ int C2F(parse)(void)
   /* ------------------- */
  L12:
   if (Lct[4] <= -10) {
-	Lct[4] = -Lct[4] - 11;
+    Lct[4] = -Lct[4] - 11;
   } else {
     if (Lct[4] / 2 % 2 == 1) {
       i__2 = Lct[4] / 4;
@@ -232,22 +207,22 @@ int C2F(parse)(void)
           returnFromCallbackExec = FALSE;
         }
       if (iesc == 1) {
-	/* interrupted line acquisition (mode=7) */
-	iret = 3;
-	goto L96;
+        /* interrupted line acquisition (mode=7) */
+        iret = 3;
+        goto L96;
       }
       Lct[1] = 0;
       if (C2F(recu).paus == 0 &&
-	  C2F(iop).rio == C2F(iop).rte &&
-	  C2F(recu).macr ==  0) {
-	if (Pt != 0) {
-	  Msgs(30,0);
-	  Pt = 0;
-	}
-	if (Top != 0) {
-	  Msgs(31,0);
-	  Top = 0;
-	}
+          C2F(iop).rio == C2F(iop).rte &&
+          C2F(recu).macr ==  0) {
+        if (Pt != 0) {
+          Msgs(30,0);
+          Pt = 0;
+        }
+        if (Top != 0) {
+          Msgs(31,0);
+          Top = 0;
+        }
       }
     }
   }
@@ -298,7 +273,7 @@ int C2F(parse)(void)
   }
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," parse  pt:%d rstk(pt):%d top: %d niv: %d err:%d",
-	    Pt,r,Top, C2F(recu).niv,Err);
+            Pt,r,Top, C2F(recu).niv,Err);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
 
@@ -319,7 +294,7 @@ int C2F(parse)(void)
   Fin = 2;
   if (Lct[4] <= -10) {
     Fin = -1;
-	Lct[4] = -Lct[4] - 11;
+    Lct[4] = -Lct[4] - 11;
   }
   /*     *call* macro */
   goto L88;
@@ -358,7 +333,7 @@ int C2F(parse)(void)
     /*         endif */
     if (Lpt[4] >= 2) {
       if (Lin[Lpt[4] - 2] == blank) {
-	goto L20;
+        goto L20;
       }
     }
     if (C2F(com).char1 == dot) {
@@ -541,15 +516,15 @@ int C2F(parse)(void)
     if (C2F(com).sym != name) {
       SciError(21);
       if (Err > 0) {
-	return 0;
+        return 0;
       }
     }
 
     if (C2F(com).comp[0] != 0) {
       if (Compil(23, C2F(com).syn, 0, 0, 0)) {
-	if (Err > 0) {
-	  return 0;
-	}
+        if (Err > 0) {
+          return 0;
+        }
       }
     } else {
       C2F(name2var)(C2F(com).syn);
@@ -604,17 +579,17 @@ int C2F(parse)(void)
     if (excnt > 1) {
       /* previously analysed syntax is (i,j,..)( */
       if (C2F(com).comp[0] == 0) {
-	/* form  list with individual indexes i,j,.. */
-	C2F(mkindx)(&c__0, &excnt);
-	if (Err > 0) {
-	  return 0;
-	}
+        /* form  list with individual indexes i,j,.. */
+        C2F(mkindx)(&c__0, &excnt);
+        if (Err > 0) {
+          return 0;
+        }
       } else {
-	if (Compil(19, &c__0, excnt, 0, 0)) {
-	  if (Err > 0) {
-	    return 0;
-	  }
-	}
+        if (Compil(19, &c__0, excnt, 0, 0)) {
+          if (Err > 0) {
+            return 0;
+          }
+        }
       }
       excnt = 1;
     }
@@ -629,13 +604,13 @@ int C2F(parse)(void)
     if (C2F(com).comp[0] == 0) {
       C2F(mkindx)(&icount, &excnt);
       if (Err > 0) {
-	return 0;
+        return 0;
       }
     } else {
       if (Compil(19, &icount, excnt, 0, 0)) {
-	if (Err > 0) {
-	  return 0;
-	}
+        if (Err > 0) {
+          return 0;
+        }
       }
     }
     excnt = 1;
@@ -777,7 +752,7 @@ int C2F(parse)(void)
     if (C2F(com).sym == rparen || C2F(com).sym == comma) {
       C2F(mrknmd)();
       if (Err > 0) {
-	goto L98;
+        goto L98;
       }
       goto L83;
     } else {
@@ -909,7 +884,7 @@ int C2F(parse)(void)
     goto L76;
   }
   if (! ((C2F(com).sym != semi && Lct[3] == 0) || (C2F(com).sym == semi &&
-	 Lct[3] == 1))) {
+                                                   Lct[3] == 1))) {
     goto L76;
   }
  L74:
@@ -958,7 +933,7 @@ int C2F(parse)(void)
   if (Pt > 0) r = Rstk[Pt];
   if (C2F(iop).ddt == 4) {
     sprintf(tmp," finish  pt:%d rstk(pt):%d  pstk(pt):%d lpt(1): %d niv: %d macr:%d, paus:%d",
-	    Pt,r,p, Lpt[1],C2F(recu).niv,C2F(recu).macr,C2F(recu).paus);
+            Pt,r,p, Lpt[1],C2F(recu).niv,C2F(recu).macr,C2F(recu).paus);
     C2F(basout)(&io, &C2F(iop).wte,tmp, (long)strlen(tmp));
   }
   if (C2F(errgst).err1 != 0) {
@@ -969,14 +944,14 @@ int C2F(parse)(void)
     } else if (Ids[1 + (Pt - 1) * nsiz] != 0) {
       /* execution is explicitly required to be stopped */
       if (r == 502 && Rstk[Pt - 1] == 903) {
-	/* in an execstr(...,'errcatch') instruction */
-	goto L88;
+        /* in an execstr(...,'errcatch') instruction */
+        goto L88;
       } else if (r == 502 && Rstk[Pt - 1] == 909) {
-	/* in an exec(function,'errcatch') instruction */
-	goto L88;
+        /* in an exec(function,'errcatch') instruction */
+        goto L88;
       } else if (r == 503 && Rstk[Pt - 1] == 902) {
-	/* in an exec(file,'errcatch') instruction */
-	goto L88;
+        /* in an exec(file,'errcatch') instruction */
+        goto L88;
       }
     }
     if (C2F(errgst).err2 == 0) {
@@ -1008,25 +983,28 @@ int C2F(parse)(void)
     int kfin=C2F(dbg).wmac-1; /*the stack index of the current function*/
     /*  first test if the function has breakpoints   */
     int kmac;
+    int curline;
     for (kmac=0;kmac<C2F(dbg).nmacs;kmac++) { /* loop on table of functions containing breakpoints */
       /* does the name of the current funtion fit the registered name*/
       if (C2F(eqid)(&(C2F(vstk).idstk[kfin * nsiz]), &(C2F(dbg).macnms[kmac * nsiz]))) {/* yes */
-	/* test if there is a registered breakpoint at the current line*/
-	i__2 = Lpt[2] - 1;
-	C2F(whatln)(&Lpt[1], &i__2, &Lpt[6], &nlc, &l1, &ifin);
-	i__2 = C2F(dbg).lgptrs[kmac+1] - 1;
-	for (ibpt = C2F(dbg).lgptrs[kmac]; ibpt <= i__2; ++ibpt) {
-	  if (Lct[8] - nlc == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
-	    /* display a message */
-	    C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, nlgh);
-	    sprintf(C2F(cha1).buf,"%s %5d",tmp, Lct[8] - nlc);
-	    Msgs(32, 0);
-	    /* raise the interruption flag */
-	    C2F(basbrk).iflag = TRUE;
-	    goto L79;
-	  }
-	}
-	break;
+        /* test if there is a registered breakpoint at the current line*/
+        i__2 = Lpt[2] - 1;
+        C2F(whatln)(&Lpt[1], &i__2, &Lpt[6], &nlc, &l1, &ifin);
+        i__2 = C2F(dbg).lgptrs[kmac+1] - 1;
+        curline = Lct[8] - nlc - 1;
+        for (ibpt = C2F(dbg).lgptrs[kmac]; ibpt <= i__2; ++ibpt) {
+          //sciprint("la Lct[8]-nlc =%d, bptlg=%d\n",Lct[8] - nlc,C2F(dbg).bptlg[ibpt - 1]);
+          if (curline == C2F(dbg).bptlg[ibpt - 1]) { /* yes */
+            /* display a message */
+            C2F(cvname)(&C2F(dbg).macnms[kmac * nsiz], tmp, &c__1, nlgh);
+            sprintf(C2F(cha1).buf,"%s %5d",tmp, curline);
+            Msgs(32, 0);
+            /* raise the interruption flag */
+            C2F(basbrk).iflag = TRUE;
+            goto L79;
+          }
+        }
+        break;
       }
     }
   }
@@ -1196,11 +1174,11 @@ int C2F(parse)(void)
   if (C2F(errgst).err1 != 0) {
     if (Rstk[Pt] / 100 == 9) {
       if (Rstk[Pt] >= 901 && Rstk[Pt] <= 909) {
-	/*              *call* matfns */
-	return 0;
+        /*              *call* matfns */
+        return 0;
       } else {
-	--Pt;
-	goto L86;
+        --Pt;
+        goto L86;
       }
     } else {
       goto L86;
@@ -1479,7 +1457,7 @@ int C2F(parse)(void)
     {
       C2F(com).comp[0] = 0;
       goto L5;
-  }
+    }
 
  L99:
   SciError(22);
@@ -1488,12 +1466,12 @@ int C2F(parse)(void)
 }
 /*--------------------------------------------------------------------------*/
 /**
-* checks if an implicit execution is required on the prompt
-* @param where_ returned indicator
-* where_ = 0 : no implicit execution is required
-* where_ = 1 : implicit execution is a primitive
-* where_ = 2 : implicit execution is a Scilab function
-*/
+ * checks if an implicit execution is required on the prompt
+ * @param where_ returned indicator
+ * where_ = 0 : no implicit execution is required
+ * where_ = 1 : implicit execution is a primitive
+ * where_ = 2 : implicit execution is a Scilab function
+ */
 void handle_onprompt(int *where_)
 {
   /* Initialized data */
@@ -1506,43 +1484,43 @@ void handle_onprompt(int *where_)
 
   *where_ = 0;
   if (Pt > 0)
-  {
-    /* back from %onprompt */
-    C2F(errgst).errct = Pstk[Pt];
-    --Pt;
-    C2F(errgst).err2 = 0;
-    Top = 0;
-    Fin = 0;
-    C2F(com).fun = 0;
-  }
+    {
+      /* back from %onprompt */
+      C2F(errgst).errct = Pstk[Pt];
+      --Pt;
+      C2F(errgst).err2 = 0;
+      Top = 0;
+      Fin = 0;
+      C2F(com).fun = 0;
+    }
   else
-  {
-    /* on prompt implicit execution */
-    C2F(com).fun = 0;
-    C2F(funs)(onprompt);
-    if (Err > 0) return;
-    if (C2F(com).fun <= 0 && Fin == 0) return;
-    /* %onprompt function exists */
-    Rhs = 0;
-    Lhs = 1;
-    ++Pt;
-    Pstk[Pt] = C2F(errgst).errct;
-    Rstk[Pt] = 710;
-    /* set error catch with mode continue */
-    C2F(errgst).errct = -100001;
-    C2F(errgst).errpt = 1;
-    if (C2F(com).fun > 0)
-	{
-      /* %onprompt is a primitive *call* matfns */
-      *where_ = 1;
+    {
+      /* on prompt implicit execution */
+      C2F(com).fun = 0;
+      C2F(funs)(onprompt);
+      if (Err > 0) return;
+      if (C2F(com).fun <= 0 && Fin == 0) return;
+      /* %onprompt function exists */
+      Rhs = 0;
+      Lhs = 1;
+      ++Pt;
+      Pstk[Pt] = C2F(errgst).errct;
+      Rstk[Pt] = 710;
+      /* set error catch with mode continue */
+      C2F(errgst).errct = -100001;
+      C2F(errgst).errpt = 1;
+      if (C2F(com).fun > 0)
+        {
+          /* %onprompt is a primitive *call* matfns */
+          *where_ = 1;
+        }
+      else
+        {
+          /* %onprompt is a Scilab function *call*  macro */
+          C2F(com).fin = Lstk[Fin];
+          *where_ = 2;
+        }
     }
-	else
-	{
-      /* %onprompt is a Scilab function *call*  macro */
-      C2F(com).fin = Lstk[Fin];
-      *where_ = 2;
-    }
-  }
 }
 /*--------------------------------------------------------------------------*/
 void C2F(parsecomment)(void)
@@ -1563,24 +1541,24 @@ void C2F(parsecomment)(void)
   while (Lin[l]!=eol) l++;
   ll = l - l0;
   if (Comp[1] == 0)
-  {
-    /* ignore all characters up to the end */
-  }
-  else
-  {
-    /* compilation [30 number-of-char chars-vector] */
-    lkp = C2F(com).comp[0];
-    Err = (lkp + 2 + ll) / 2 + 1 - Lstk[Bot];
-    if (Err > 0)
-	{
-      SciError(17);
-      return ;
+    {
+      /* ignore all characters up to the end */
     }
-    *istk(lkp) = 31;
-    *istk(lkp+1) = ll;
-    C2F(icopy)(&ll, &(Lin[l0]), &c1, istk(lkp+2), &c1);
-    Comp[1] = lkp + 2 + ll;
-  }
+  else
+    {
+      /* compilation [30 number-of-char chars-vector] */
+      lkp = C2F(com).comp[0];
+      Err = (lkp + 2 + ll) / 2 + 1 - Lstk[Bot];
+      if (Err > 0)
+        {
+          SciError(17);
+          return ;
+        }
+      *istk(lkp) = 31;
+      *istk(lkp+1) = ll;
+      C2F(icopy)(&ll, &(Lin[l0]), &c1, istk(lkp+2), &c1);
+      Comp[1] = lkp + 2 + ll;
+    }
   Lpt[4] = l;
   C2F(com).char1 = eol;
   C2F(com).sym = eol;

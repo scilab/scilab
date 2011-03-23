@@ -1,0 +1,227 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2010-06-27 21:34+0000\n"
+"Last-Translator: Piotr_Seroka <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
+msgstr "%s: Argumenty nr %d i nr %d muszą mieć takie same rozmiary.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
+"less than argument #%d.\n"
+msgstr ""
+"%s: Sprzeczne argumenty wejściowe nr %d i nr %d: Oczekiwany argument nr %d "
+"powinien być niższy niż argument nr %d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
+msgstr ""
+"%s: Sprzeczne argumenty wejściowe nr %d i nr %d: Oczekiwany taki sam "
+"stopień.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Niekompatybilny argument wejściowy nr %d oraz nr %d: Oczekiwana at sama "
+"liczba elementów.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Niezgodne argumenty wejściowe nr %d oraz nr %d: Oczekiwany taki sam "
+"rozmiar.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: Parametr wejściowy nr %d musi być wartością rzeczywistą.\n"
+
+#, c-format
+msgid "%s: Too abrupt change near end of frequency range.\n"
+msgstr "%s: Zbyt gwałtowna zmiana w pobliżu końca zakresu częstotliwości.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwane elementy "
+"tablicy %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano "
+"wielomiany.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
+"skalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Zły rozmiar parametru wejściowego nr %d: pojedyncze wejście, system "
+"oczekuje pojedynczego wyjścia.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+"%s: Zły rozmiar parametru wejściowego nr %d: Oczekiwano wysokiej macierzy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  Linear dynamical system or row "
+"vector of floats expected.\n"
+msgstr ""
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano liniowego układu "
+"dynamicznego lub wektora typu float.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwana tablica liczb "
+"zmiennoprzecinkowych.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: Zły typ parametru wejściowego nr %d: Oczekiwano tablicy części "
+"rzeczywistych.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być w przedziale "
+"[%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Musi być ze zbioru "
+"{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Distance between Max and Min "
+"elements must be greater than %g.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Odległość elementów "
+"pomiędzy max i min musi być większa niż %g.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być w "
+"porządku rosnącym.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być w "
+"przedziale [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być "
+"dodatnie.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: oczekiwano "
+"nieujemnych wartości całkowitych.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Nie próbowano "
+"wystarczająco wysoko.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: The first element must be %s and "
+"the last %s.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Pierwszy element "
+"musi być %s i ostatni %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Stopień musi być w "
+"zestawie {%s}.\n"
+
+msgid "Arma identification"
+msgstr "identyfikacja Arma"
+
+msgid "Signal Processing"
+msgstr "Przetwarzanie sygnałów"
+
+msgid "Spectral power"
+msgstr "Moc widma"
+
+msgid "Theoretical value"
+msgstr "Wartość teoretyczna"
+
+msgid "Using macro mese"
+msgstr "Korzystanie z makro mese"
+
+msgid "estimates xf"
+msgstr "szacowanie xf"
+
+msgid "estimates xs"
+msgstr "szacowanie xs"
+
+msgid "frequency"
+msgstr "Częstotliwość"
+
+msgid "real state"
+msgstr "Rzeczywisty stan"
+
+msgid "spectral estimate"
+msgstr "szacowanie widma"

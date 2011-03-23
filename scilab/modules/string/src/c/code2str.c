@@ -30,7 +30,7 @@ void code2str(char **Output_Matrix, int *Input_Matrix,int Dim_Input_Matrix)
 	}
 }
 /*--------------------------------------------------------------------------*/
-void str2code(int *Output_Matrix, char **Input_String)
+void str2code(int *Output_Matrix, const char * const * Input_String)
 {
 	int i = 0;
 	int nbOutput_Matrix = (int)strlen(Input_String[0]);

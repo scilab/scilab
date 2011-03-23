@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="captions" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>captions</refname>
+
+    <refpurpose>draw graph captions</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>hl=captions(h, strings [,location])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>vector of handles on polyline entities.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>n vector of strings, strings(i) is the caption of the ith
+          polyline</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>a handle of type "<literal>Legend</literal>", points to the
+          structure containing all the captions information (see <link
+          linkend="legend_properties">legend_properties</link>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>location</term>
+
+        <listitem>
+          <para>a character string with possible values:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>: captions are drawn
+              in the upper right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: captions are drawn in
+              the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>: captions are drawn in
+              the lower right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: captions are drawn in
+              the lower left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: captions are drawn
+              at the right of the upper right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: captions are drawn at
+              the left of the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: captions are drawn
+              at the right of the lower right corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: captions are drawn at
+              the left of the lower left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: captions are drawn
+              above the upper left corner of the axes box.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: captions are drawn
+              below the lower left corner of the axes box. This option
+              correspond to the <literal>leg</literal> argument of <link
+              linkend="plot2d">plot2d</link></para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: the upper left corner
+              of the captions box is given by the "position" field of the
+              associated data structure. The <literal>x</literal> and
+              <literal>y</literal> positions are given as fractions of the
+              <literal>axes_bounds sizes.</literal></para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Puts captions on the current plot at the in the bottom left corner
+    of the graphic window using the specified strings as labels.
+    <literal>captions</literal> prepends labels by a recall of the
+    corresponding polylines. The type and properties are recovered from the
+    given handles:</para>
+
+    <para>The <literal>captions</literal> function creates a <link
+    linkend="legend_properties">Legend</link> data structure.</para>
+
+    <para>There is at most one <literal>Legend</literal> associated with each
+    axes. If the caption function is recalled while a
+    <literal>Legend</literal> still exist the old one is replaced.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+t=0:0.1:2*%pi;
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+a.margins(4)=0.2;
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[1,2 3]);  
+e=gce();
+e.children(1).thickness=3;
+e.children(2).line_style=4;
+
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)'],'in_upper_right');
+
+hl.legend_location='in_upper_right'
+hl.fill_mode='on';
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="legend">legend</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+
+      <member><link
+      linkend="legend_properties">legend_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

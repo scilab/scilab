@@ -23,7 +23,7 @@
     <synopsis>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>e1,e2,...,  </term>
@@ -94,8 +94,8 @@ deff('[x]=myplus(y,z)','x=y+z')
 deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="comp">comp</link>

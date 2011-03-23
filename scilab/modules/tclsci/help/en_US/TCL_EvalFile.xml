@@ -24,7 +24,7 @@
     <synopsis>TCL_EvalFile(filename [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -85,6 +85,7 @@
     exist, some variables defined by scilab tcl/tk scripts could collide your
     code. Running your scripts in a slave interpreter may help in such a
     case.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -92,8 +93,8 @@
 TCL_EvalFile(SCI+"/modules/tclsci/demos/tk/puzzle");
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

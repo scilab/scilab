@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>MATBKSL</refname>
 
-    <refpurpose>left matrix division</refpurpose>
+    <refpurpose>Left matrix division</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATBKSL.jpg"
+                     fileref="../../../../images/palettes/MATBKSL.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATBKSL">left matrix division</link>
+          <link linkend="MATBKSL">Left matrix division</link>
         </para>
       </listitem>
 
@@ -84,22 +84,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATBKSL">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATBKSL">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATBKSL">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATBKSL">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATBKSL">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATBKSL">Computational function</xref>
             </para>
           </listitem>
 
@@ -134,13 +131,14 @@
   <refsection id="Description_MATBKSL">
     <title>Description</title>
 
-    <para>The MATBKSL block outputs the left matrix division. It is a solution
-    to A*x=B. The higher input is the A matrix, the lower one is the B matrix,
-    and the output is x. If A is an M-by-N1 matrix, B must be a M-by-N2 where
-    N1 and N2 can be different or equal. The output x is a N1-by-N2
-    matrix.</para>
+    <para>
+      The MATBKSL block outputs the left matrix division. It is a solution to A*x=B. The higher input is the A matrix,
+      the lower one is the B matrix, and the output is x.
+      If A is an MxN1 matrix, B must be a MxN2 matrix where N1 and N2 can be different or equal. The output x
+      is a N1xN2 matrix.
+    </para>
 
-    <para>The equivalent of BACKSLASH is "ïn Scilab.</para>
+    <para>The equivalent of MATBKSL is <link linkend="backslash">backslash (\)</link> ïn Scilab.</para>
 
     <para />
   </refsection>
@@ -166,10 +164,10 @@
           <emphasis role="bold">Datatype (1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -179,7 +177,7 @@
   <refsection id="Example_MATBKSL">
     <title>Example</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 A=[1 7 3;23 32 29]
 B=[21 18;13 10]
 then the result of the A*x=B equation is (A\B):
@@ -232,18 +230,15 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -251,8 +246,7 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -295,15 +289,13 @@ x=[-4.504 -3.922;3.643 3.132;0.000 0.000]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATDIV">MATDIV - MATDIV Matrix division (xcos
-          Block)</link>
+          <link linkend="MATDIV">MATDIV - Matrix division (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication (xcos
-          Block)</link>
+          <link linkend="MATMUL">MATMUL - Matrix Multiplication (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

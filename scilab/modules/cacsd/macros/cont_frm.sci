@@ -32,7 +32,7 @@ for l=1:ns,
    num(l,k)=nl,d(l,k)=dl,
  end,
 end
-if maxi(degree(d))==0 then d=coeff(d),end
+if max(degree(d))==0 then d=coeff(d),end
 //matrices a b and c
 if nd<>0 then
  den=coeff(den);c=coeff(num,0:nd-1)

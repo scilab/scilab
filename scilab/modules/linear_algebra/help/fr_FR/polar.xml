@@ -57,8 +57,8 @@ A=rand(5,5);
 norm(A-Ro*expm(%i*Theta),1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="expm">expm</link>

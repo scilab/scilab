@@ -25,7 +25,7 @@
 mclose('all')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
@@ -47,8 +47,8 @@ mclose('all')</synopsis>
     is omitted <literal>mclose</literal> closes the last opend file.</para>
     <para><literal>mclose('all')</literal> closes all files opened by <literal>file('open',..)</literal> or <literal>mopen</literal>. Be careful with this use of <literal>mclose</literal> because when it is used inside a Scilab script file, it also closes the script and Scilab will not execute commands written after <literal>mclose('all')</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="meof">meof</link>

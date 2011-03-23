@@ -23,7 +23,7 @@
 #include "ripole.h"
 #include "expandPathVariable.h"
 #include "MALLOC.h"
-#include "../../../fileio/includes/mopen.h"
+#include "mopen.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "tmpdir.h"

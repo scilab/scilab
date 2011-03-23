@@ -13,7 +13,6 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <ctype.h>
-#include "stack-def.h"
 #include "TermConsole.h"
 #include "MALLOC.h"
 #include "TermCommand.h"
@@ -23,7 +22,7 @@
 #include "TermLine.h"
 #include "scilines.h"
 #include "HistoryManager.h"
-#include "dynamic_menus.h" /* ismenu */
+#include "storeCommand.h" /* ismenu */
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef CR_1

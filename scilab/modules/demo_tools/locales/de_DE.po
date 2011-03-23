@@ -1,0 +1,41 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-12-04 16:29+0100\n"
+"PO-Revision-Date: 2008-11-11 13:55+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid " -- View Code -- "
+msgstr " - Code anzeigen - "
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "Editieren"
+
+msgid "&File"
+msgstr "Datei"
+
+msgid "&Tools"
+msgstr "Zusatzprogramme"
+
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Demos"
+msgstr "Demos"
+
+msgid "File"
+msgstr "Datei"

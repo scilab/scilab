@@ -1,0 +1,20 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+ExceptionMessage
+callFunctionFromGateway
+com_
+sci_gateway
+fortran_mex_gateway
+intersci_
+errorinfo_
+createvar_
+stack_
+getrhsvar_
+checklhs_
+checkrhs_
+GetData

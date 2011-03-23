@@ -1,0 +1,69 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: FORMAT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("FORMAT"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/FORMAT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.6: Unknown variable format is a M-file.
+  L.7: Unknown variable format is a M-file.
+  L.8: Unknown variable format is a M-file.
+  L.9: Unknown variable format is a M-file.
+  L.10: Unknown variable format is a M-file.
+  L.11: Unknown variable format is a M-file.
+  L.12: Unknown variable format is a M-file.
+  L.13: Unknown variable format is a M-file.
+  L.14: Unknown variable format is a M-file.
+  L.15: Unknown variable format is a M-file.
+  L.16: Unknown variable format is a M-file.
+  L.17: Unknown variable format is a M-file.
+  L.18: Unknown variable format is a M-file.
+  L.19: Unknown variable format is a M-file.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function format()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+format("v",6)
+mtlb_format("+")
+mtlb_format("+")
+mtlb_format("bank")
+mtlb_format("compact")
+mtlb_format("hex")
+mtlb_format("long")
+mtlb_format("long","e")
+mtlb_format("long","g")
+mtlb_format("loose")
+mtlb_format("rat")
+mtlb_format("short")
+mtlb_format("short","e")
+mtlb_format("short","g")

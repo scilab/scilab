@@ -66,13 +66,12 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
 	if (m1 * n1 != 1) {
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,1);
 		return 0;
-	} 
+	}
 
 	/* get lengths */
 	sciErr = getMatrixOfString(pvApiCtx, piAddressVarOne, &m1, &n1, &lenStVarOne, NULL);
 	if(sciErr.iErr)
 	{
-		if (lenStVarOne) { FREE(lenStVarOne); lenStVarOne = NULL;}
 		printError(&sciErr, 0);
 		return 0;
 	}
@@ -107,13 +106,12 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
 	if (m1 * n1 != 1) {
 		Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
 		return 0;
-	} 
+	}
 
 	/* get lengths */
 	sciErr = getMatrixOfString(pvApiCtx, piAddressVarTwo, &m1, &n1, &lenStVarTwo, NULL);
 	if(sciErr.iErr)
 	{
-		FREE(lenStVarTwo);
 		printError(&sciErr, 0);
 		return 0;
 	}

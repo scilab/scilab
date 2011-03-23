@@ -22,7 +22,7 @@ function [A,U,rk]=htrianr(A)
   A=clean(A);
   [m,n]=size(A);U=eye(n,n);
   l1=n+1;
-  for l=m:-1:maxi((m-n),1)
+  for l=m:-1:max((m-n),1)
     l1=l1-1;
     if l1<>0 then
       Al=A(l,1:l1);
@@ -43,7 +43,7 @@ function [A,U,rk]=htrianr(A)
   k0=0;k1=0;tol=norm(coeff(A),1);
   v=[];w=[];
   for k=1:n
-    if maxi(abs(coeff(A(:,k)))) <= sqrt(%eps)*tol then
+    if max(abs(coeff(A(:,k)))) <= sqrt(%eps)*tol then
       k0=k0+1;v=[v,k];                           
     else
       k1=k1+1,w=[w,k];

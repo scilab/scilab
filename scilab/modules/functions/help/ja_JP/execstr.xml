@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="execstr">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>execstr</refname>
+    <refpurpose> 文字列中のScilabコードを実行</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>execstr(instr)
+ierr=execstr(instr,'errcatch' [,msg])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>instr</term>
+        <listitem>
+          <para>文字列のベクトル, 実行するScilab命令.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ierr</term>
+        <listitem>
+          <para>整数, 0 ばたはエラー番号.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msg</term>
+        <listitem>
+          <para>
+	値<literal>'m'</literal> または<literal>'n'</literal>
+	を有する文字列.
+	デフォルト値は<literal>'n'</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	引数<literal>instr</literal>で指定したScilab命令を実行します.</para>
+    <para>
+	instr の中では継続記号 (..) を使用する必要は
+	ないことに注意してください.</para>
+    <para> </para>
+    <para>
+	'errcatch'フラグが指定されない場合,
+	エラー処理は通常と同様に行われます.</para>
+    <para>
+	'errcatch'フラグが指定された場合,
+	<literal>instr</literal>で定義された命令を実行す際に
+	発生したエラーはエラーメッセージを発生せず,
+	<literal>instr</literal> 命令の実行を
+	(エラーが発生した場所で)破棄し,
+	エラー番号に等しい<literal>ierr</literal>を返して
+	復帰します.
+	この場合,エラーメッセージの出力は
+	<literal>msg</literal>オプションにより次のように
+	制御されます:</para>
+    <variablelist>
+      <varlistentry>
+        <term>"m"</term>
+        <listitem>
+          <para>エラーメッセージは表示され,記録されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"n"</term>
+        <listitem>
+          <para>
+	エラーメッセージは表示されませんが,
+	記録されます ( <literal>lasterror</literal>参照).  
+	これがデフォルトです.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para> ierr=execstr(instr,'errcatch') は構文エラーも
+	処理することができます.
+	この特徴は,ユーザへの問い合わせにより得られた命令を
+	評価する際に有用です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+execstr('a=1') // sets a=1.
+execstr('1+1') // does nothing (while evstr('1+1') returns 2)
+
+execstr(['if %t then';
+         '  a=1';
+         '  b=a+1';
+         'else'
+         ' b=0'
+         'end'])
+
+execstr('a=zzzzzzz','errcatch')
+execstr('a=zzzzzzz','errcatch','m')
+
+//syntax errors
+execstr('a=1?02','errcatch')
+lasterror(%t)
+
+execstr('a=[1 2 3)','errcatch')
+lasterror(%t)
+
+// variable1 does not exist
+if execstr('variable1;','errcatch')<>0 then disp("Trigger an error"),end
+
+// variable2 exists ... no error is triggered by execstr
+variable2=[2,3]; 
+if execstr('variable2;','errcatch')<>0 then 
+   disp("Trigger an error");
+else
+   disp("execstr is happy");
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+      <member>
+        <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="try">try</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

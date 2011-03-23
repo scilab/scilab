@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2pdf</refname>
 
-    <refpurpose>save graphics to a PDF file.</refpurpose>
+    <refpurpose>Export graphics to PDF.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,7 +35,7 @@ xs2pdf(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -92,8 +92,8 @@ xs2pdf(gcf(),filename);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="figure_properties">figure_size property</link></member>

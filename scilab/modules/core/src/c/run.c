@@ -28,14 +28,16 @@
 #include "stack-c.h"
 #include "run.h"
 #include "basout.h"
-#include "dynamic_menus.h"
 #include "parse.h"
 #include "localization.h"
 #include "core_math.h"
 #include "scilabmode.h"
 #include "stack-def.h" /* C2F(basbrk) */
-#include "dynamic_menus.h"
+#include "storeCommand.h"
+#include "do_error_number.h"
 #include "Scierror.h"
+#include "msgs.h"
+#include "parserConstant.h"
 #undef Lstk
 #undef Infstk
 
@@ -45,11 +47,6 @@
 static int c__1 = 1;
 static int c__0 = 0;
 
-#define insert  2
-#define extrac  3
-#define semi  43
-#define equal  50
-#define iselect 3
 #define Pt (C2F(recu).pt)
 extern int C2F(stackp)(int *,int *);
 extern int C2F(eqid)(int *,int *);
@@ -300,13 +297,22 @@ int C2F(run)(void)
   if (C2F(com).fun != -2) {
     C2F(putid)(&Ids[1 +(Pt + 1) * nsiz ], istk(1 + lc));
     if (C2F(com).fun == 0) {
-      /* the search variable is neither a regular variable nor a library one */
-      /*     Top--; why ???*/
-      SciError(4);
+      /* the search variable is neither a regular variable nor a function in a librar */
+      /* it may be a simple variable in a lib */
+
+      C2F(stackg)(istk(lname));
       if (Err > 0||C2F(errgst).err1 > 0) {
 	lc += 9;
 	goto L10;
       }
+      if (Fin==0) {
+        SciError(4);
+        if (Err > 0||C2F(errgst).err1 > 0) {
+          lc += 9;
+          goto L10;
+        }
+      }
+
     } else {
       /* referenced name was function at compile time it is now a
        * primitive. Modify the code for further use */
@@ -1048,7 +1054,7 @@ int C2F(run)(void)
  L150:
   ++lc;
   if (C2F(recu).niv > 0) {
-    C2F(sciquit)();
+    sciquit();
     exit(0); /* stop */
   }
   C2F(com).fun = 99;

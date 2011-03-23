@@ -17,7 +17,7 @@
 
 // test only for windows
 
-if MSDOS then
+if getos() == 'Windows' then
   ilib_verbose(0);
   exec SCI/modules/dynamic_link/tests/unit_tests/addinter.tst;
   r = dllinfo(TMPDIR + '/addinter/libintertest.dll','imports');

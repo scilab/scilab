@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hat">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hat</refname>
+    <refpurpose> (^) 累乗</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>A^b</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    定数ベクトルによる行列またはベクトルの累乗.</para>
+    <para>
+    <literal>A</literal> がベクトルまたは矩形行列の場合,累乗は要素毎に行われます.</para>
+    <para>
+     <literal>A</literal> が正方行列の場合, 累乗は行列に関して行われます.</para>
+    <para>
+    論理値,多項式および有理行列の場合, 指数は整数である必要があります.</para>
+    <refsection>
+      <title>注意</title>
+      <para><literal>123.^b</literal> は <literal>(123).^b</literal>と解釈されます. 
+	この場合,ドット(.)は数値ではなく演算子の一部となります.</para>
+      <para>
+      実数または複素数の <literal>x1</literal> と <literal>x2</literal>に関して,
+	<literal>x1^x2</literal> の値は,
+	<literal>x1^x2 = exp(x2*log(x1))</literal> により定義される
+	"主値"となります.
+    </para>
+    </refsection>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+2^4
+(-0.5)^(1/3)
+[1 2;2 4]^(1+%i)
+s=poly(0,"s");
+[1 2 s]^4
+[s 1;1  s]^(-1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exp">exp</link>
+      </member>
+      <member>
+        <link linkend="inv">inv</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

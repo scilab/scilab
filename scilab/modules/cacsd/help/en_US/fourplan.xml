@@ -23,7 +23,7 @@
     <synopsis>[P11,P12,P21,P22]=fourplan(P,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -57,8 +57,8 @@ P=[ P11 P12;
     <para>
     with <literal>size(P22)=r</literal> this function returns the four linear systems <literal>P11,P12,P21,P22</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqg">lqg</link>

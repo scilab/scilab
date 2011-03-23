@@ -13,7 +13,6 @@
  */
 
 #include <math.h>
-#include "stack-c.h"
 #include "someinterp.h"
 #include "isanan.h"
 #include "returnanan.h"

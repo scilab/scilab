@@ -6,10 +6,6 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-04-24 18:08:41 +0200 (jeu, 24 avr 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>uicontrol</refname>
@@ -42,11 +38,7 @@
     are set with the corresponding values. It is equivalent to create the
     uicontrol, and then set its properties with the <literal>set()</literal>
     command. Nevertheless, it generally more efficient to set the properties
-    in the call to <literal>uicontrol()</literal>. This is particularly true
-    concerning the "Style" property. Indeed, the default value for this
-    property is "Pushbutton". So if you do not set it at creation time, a
-    button will be created, and will be transformed to another uicontrol when
-    you call the <literal>set(h, "Style", ... )</literal> instruction. Scilab
+    in the call to <literal>uicontrol()</literal>. Scilab
     and all the graphic objects communicate through the property mechanism.
     Thus, to create adapted uicontrol, one has to know the use of the property
     fields.</para>
@@ -94,6 +86,22 @@
           <para>Instruction evaluated by the Scilab interpreter when an
           uicontrol is activated. (for example when you click on a
           button).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Callback_Type</term>
+
+        <listitem>
+          <para>Integer</para>
+
+          <para>The type of callback transmitted to the uicontrol.</para>
+          <itemizedlist>
+            <listitem><para><literal>-1</literal> none (callback desactivated)</para></listitem>
+            <listitem><para><literal>0</literal> a Scilab instruction</para></listitem>
+            <listitem><para><literal>1</literal> a C or a Fortran function</para></listitem>
+            <listitem><para><literal>2</literal> a Scilab function</para></listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
 
@@ -177,7 +185,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>HorizontAlalignment</term>
+        <term>HorizontalAlignment</term>
 
         <listitem>
           <para>left | {center} | right</para>
@@ -339,6 +347,9 @@
           (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
           the value can be a vector of string or a string where the items are
           separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.</para>
+	  <para>For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
+	  considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
+	  as a MathML one.</para>
         </listitem>
       </varlistentry>
 
@@ -349,7 +360,7 @@
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
           frame | listbox | popupmenu</para>
 
-          <para>Style of the uicontrol. Here is a short description of each
+          <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
           one:</para>
 
           <itemizedlist>
@@ -502,10 +513,41 @@ set(h, 'value', [1 3]);
 close(f);
 // close the figure
  ]]></programlisting>
+
+    <para>uicontrol function can be overloaded</para>
+    <programlisting role="example"><![CDATA[ 
+// create a mlist
+mymlist = mlist(['objid','A','B'],[],[]);
+
+// overload set / get for objid
+function result = %objid_uicontrol(varargin)
+  // res = uicontrol(mymlist,'A');
+  obj_tmp   = varargin(1);
+  field_tmp = varargin(2);
+  printf('uicontrol on an object of type %s, field = %s\n', typeof(obj_tmp), field_tmp);
+  result = %t;
+endfunction
+
+res = uicontrol(mymlist,'property');
+ ]]></programlisting>
+
+    <para>Pushbuttons or Text can have LaTeX or MathML label</para>
+    <programlisting role="example"><![CDATA[ 
+// LaTeX
+f=figure();
+h=uicontrol(f,"style","pushbutton","string","$x^2$");
+// MathML
+hh=uicontrol(f,"style","pushbutton","string","<msup><mi>x</mi><mn>2</mn></msup>");
+hh.Position = h.Position + [50, 0, 0, 0];
+// Text
+h=uicontrol(f,"Style","text","string","$\Gamma(s)=\int_0^\infty t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$");
+// If it is too little
+h.fontsize=20
+ ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="figure">figure</link></member>
@@ -515,6 +557,8 @@ close(f);
       <member><link linkend="get">get</link></member>
 
       <member><link linkend="uimenu">uimenu</link></member>
+
+      <member><link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link></member>
     </simplelist>
   </refsection>
 
@@ -524,5 +568,7 @@ close(f);
     <para>Bertrand Guiheneuf</para>
 
     <para>Vincent Couvert</para>
+
+    <para>Yann Collette</para>
   </refsection>
 </refentry>

@@ -24,7 +24,7 @@
 loadhistory(f)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>f</term>
@@ -45,8 +45,8 @@ loadhistory(f)</synopsis>
 loadhistory(SCI+'/session.scilab') 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>

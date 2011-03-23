@@ -1,0 +1,23 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+vstk_
+com_
+iop_
+errgst_
+stack_
+recu_
+cha1_
+adre_
+intersci_
+getrmat_
+gettype_
+putfunnam_
+indxg_
+isany_
+indxgc_
+setref_

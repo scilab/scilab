@@ -1,7 +1,7 @@
-##########
-### Allan CORNET
-### INRIA - Scilab 2007 
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 DOUBLYLINKEDLIST_C_SOURCES = src/DoublyLinkedList.c
 
@@ -13,7 +13,7 @@ libscidoublylinkedlist_la_CFLAGS= -I$(srcdir)/src/ -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidoublylinkedlist.la
 
-libscidoublylinkedlist_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidoublylinkedlist_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscidoublylinkedlist_la_SOURCES = $(DOUBLYLINKEDLIST_C_SOURCES)
 

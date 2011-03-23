@@ -1,0 +1,150 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: ACOTH
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("ACOTH") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/ACOTH.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  !! L.5: If [] is outside [-1,1]
+  !!    complex part of output of acoth([]) will be the opposite of Matlab one.
+  !! L.7: If mtlb_double(m2sciUnknownType([])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([])) will be the opposite of Matlab one.
+  !! L.9: If m2sciUnknownDims([]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([])) will be the opposite of Matlab one.
+  !! L.11: If 1 is outside [-1,1]
+  !!    complex part of output of acoth(1) will be the opposite of Matlab one.
+  !! L.13: If [1,2,3] is outside [-1,1]
+  !!    complex part of output of acoth([1,2,3]) will be the opposite of Matlab one.
+  !! L.15: If [1;2;3] is outside [-1,1]
+  !!    complex part of output of acoth([1;2;3]) will be the opposite of Matlab one.
+  !! L.17: If [1,2,3;4,5,6] is outside [-1,1]
+  !!    complex part of output of acoth([1,2,3;4,5,6]) will be the opposite of Matlab one.
+  !! L.19: If mtlb_double(m2sciUnknownType(1)) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType(1)) will be the opposite of Matlab one.
+  !! L.21: If mtlb_double(m2sciUnknownType([1,2,3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1,2,3])) will be the opposite of Matlab one.
+  !! L.23: If mtlb_double(m2sciUnknownType([1;2;3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1;2;3])) will be the opposite of Matlab one.
+  !! L.25: If mtlb_double(m2sciUnknownType([1,2,3;4,5,6])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1,2,3;4,5,6])) will be the opposite of Matlab one.
+  !! L.27: If m2sciUnknownDims(1) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims(1)) will be the opposite of Matlab one.
+  !! L.29: If m2sciUnknownDims([1,2,3]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1,2,3])) will be the opposite of Matlab one.
+  !! L.31: If m2sciUnknownDims([1;2;3]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1;2;3])) will be the opposite of Matlab one.
+  !! L.33: If m2sciUnknownDims([1,2,3;4,5,6]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1,2,3;4,5,6])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.35: If %%i is outside [-1,1]
+  !!    complex part of output of acoth(%%i) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.37: If [%%i,2*%%i,3*%%i] is outside [-1,1]
+  !!    complex part of output of acoth([%%i,2*%%i,3*%%i]) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.39: If [%%i;2*%%i;3*%%i] is outside [-1,1]
+  !!    complex part of output of acoth([%%i;2*%%i;3*%%i]) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.41: If [%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i] is outside [-1,1]
+  !!    complex part of output of acoth([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.43: If mtlb_double(m2sciUnknownType(%%i)) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType(%%i)) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.45: If mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([%%i,2*%%i,3*%%i])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.47: If mtlb_double(m2sciUnknownType([%%i;2*%%i;3*%%i])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([%%i;2*%%i;3*%%i])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.49: If mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.51: If m2sciUnknownDims(%%i) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims(%%i)) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.53: If m2sciUnknownDims([%%i,2*%%i,3*%%i]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.55: If m2sciUnknownDims([%%i;2*%%i;3*%%i]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([%%i;2*%%i;3*%%i])) will be the opposite of Matlab one.
+  Variable i supposed to be the Imaginary unit.
+  !! L.57: If m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) will be the opposite of Matlab one.
+  !! L.59: If asciimat("s") is outside [-1,1]
+  !!    complex part of output of acoth("s") will be the opposite of Matlab one.
+  !! L.61: If asciimat("str1") is outside [-1,1]
+  !!    complex part of output of acoth("str1") will be the opposite of Matlab one.
+  !! L.63: If asciimat("str1"+"str2"+"str3") is outside [-1,1]
+  !!    complex part of output of acoth("str1"+"str2"+"str3") will be the opposite of Matlab one.
+  !! L.65: If asciimat(["str1";"str2";"str3"]) is outside [-1,1]
+  !!    complex part of output of acoth(["str1";"str2";"str3"]) will be the opposite of Matlab one.
+  !! L.67: If asciimat(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]) is outside [-1,1]
+  !!    complex part of output of acoth(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]) will be the opposite of Matlab one.
+  !! L.69: If mtlb_double(m2sciUnknownType("s")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType("s")) will be the opposite of Matlab one.
+  !! L.71: If mtlb_double(m2sciUnknownType("str1")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType("str1")) will be the opposite of Matlab one.
+  !! L.73: If mtlb_double(m2sciUnknownType("str1"+"str2"+"str3")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType("str1"+"str2"+"str3")) will be the opposite of Matlab one.
+  !! L.75: If mtlb_double(m2sciUnknownType(["str1";"str2";"str3"])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType(["str1";"str2";"str3"])) will be the opposite of Matlab one.
+  !! L.77: If mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) will be the opposite of Matlab one.
+  !! L.79: If asciimat(m2sciUnknownDims("s")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims("s")) will be the opposite of Matlab one.
+  !! L.81: If asciimat(m2sciUnknownDims("str1")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims("str1")) will be the opposite of Matlab one.
+  !! L.83: If asciimat(m2sciUnknownDims("str1"+"str2"+"str3")) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims("str1"+"str2"+"str3")) will be the opposite of Matlab one.
+  !! L.85: If asciimat(m2sciUnknownDims(["str1";"str2";"str3"])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims(["str1";"str2";"str3"])) will be the opposite of Matlab one.
+  !! L.87: If asciimat(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) will be the opposite of Matlab one.
+  !! L.89: If bool2s(1==1) is outside [-1,1]
+  !!    complex part of output of acoth(1==1) will be the opposite of Matlab one.
+  !! L.91: If bool2s([1,2,3]==[1,0,3]) is outside [-1,1]
+  !!    complex part of output of acoth([1,2,3]==[1,0,3]) will be the opposite of Matlab one.
+  !! L.93: If bool2s([1;2;3]==[1;0;3]) is outside [-1,1]
+  !!    complex part of output of acoth([1;2;3]==[1;0;3]) will be the opposite of Matlab one.
+  !! L.95: If bool2s([1,2,3;4,5,6]==[1,0,3;4,5,0]) is outside [-1,1]
+  !!    complex part of output of acoth([1,2,3;4,5,6]==[1,0,3;4,5,0]) will be the opposite of Matlab one.
+  !! L.97: If mtlb_double(m2sciUnknownType(1==1)) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType(1==1)) will be the opposite of Matlab one.
+  !! L.99: If mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1,2,3]==[1,0,3])) will be the opposite of Matlab one.
+  !! L.101: If mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1;2;3]==[1;0;3])) will be the opposite of Matlab one.
+  !! L.103: If mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) will be the opposite of Matlab one.
+  !! L.105: If bool2s(m2sciUnknownDims(1==1)) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims(1==1)) will be the opposite of Matlab one.
+  !! L.107: If bool2s(m2sciUnknownDims([1,2,3]==[1,0,3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1,2,3]==[1,0,3])) will be the opposite of Matlab one.
+  !! L.109: If bool2s(m2sciUnknownDims([1;2;3]==[1;0;3])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1;2;3]==[1;0;3])) will be the opposite of Matlab one.
+  !! L.111: If bool2s(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0])) is outside [-1,1]
+  !!    complex part of output of acoth(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0])) will be the opposite of Matlab one.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******

@@ -1,8 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
- * desc : Compute ticks from ticks given by the user 
- * 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
+ * desc : Compute ticks from ticks given by the user
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -40,6 +42,7 @@ public:
   /**
    * Fill positions parameters
    * with the ticks abscissas, ordinate, ...
+   * Pass NULL to labels and labelsExponents to only determine the ticks position.
    */
   virtual void getTicksPosition(double positions[], char * labels[], char * labelsExponents[]);
 
@@ -55,23 +58,26 @@ public:
   virtual bool needTicksDecimation(void) {return false;}
 
   /**
-  * To know if we need to get ticks exposants or not.
+   * To compute the maximum number of ticks decimation iterations
+   */
+  virtual int computeMaxNumberOfDecimationIterations();
+
+  /**
+  * To know if we need to get ticks exponents or not.
   */
   virtual bool isDisplayingLabelsExponents(void) {return false;}
 
   /**
    * Set the parameter for drawing user ticks.
-   * @param nbSubticks number of subticks between each ticks.
    */
   void setUserTicks(double * userTicksPos, char ** userLabels,
-                    int nbUserTicks, int nbSubticks);
+                    int nbUserTicks);
 
 protected:
 
   double * m_aUserTicksPositions;
   char ** m_aUserTicksLabels;
   int m_iNbUserTicks;
-  int m_iNbSubticks;
 
 };
 

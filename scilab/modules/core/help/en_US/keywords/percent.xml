@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="percent">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>percent</refname>
+    <refpurpose> (%) special character</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Some predefined variables names begin with <literal>%</literal>, such as
+    <literal>%i</literal> (for <literal>sqrt(-1)</literal>), <literal>%inf</literal> (for <literal>Infinity</literal>), <literal>%pi</literal> (for <literal>3.14...</literal>),
+    <literal>%T</literal> (for the boolean constant <literal>"true"</literal>),...</para>
+    <para>
+    In addition, functions whose names begin with <literal>%</literal> are special : 
+    they are used for primitives and operators overloading (see <literal>overloading</literal>).</para>
+    <para>
+    For example the function <literal>%rmr</literal> performs the multiplication (<literal>m</literal>)
+    operation <literal>x*y</literal> for <literal>x</literal> and <literal>y</literal> rational matrices (<literal>r</literal>).
+    The coding conventions are given by the readme file in 
+    directory <literal>SCI/modules/overloading/macros</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+x1=tlist('x',1,2);
+x2=tlist('x',2,3);
+deff('x=%xmx(x1,x2)','x=list(''x'',x1(2)*x2(2),x2(3)*x2(3))');
+x1*x2
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,6 @@
+LIBRARY    LibScilab.dll
+
+
+EXPORTS
+;
+getScilabMode 

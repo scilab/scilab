@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="fgrayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fgrayplot</refname>
+    <refpurpose> représentation 2D en pseudo-couleurs d'une surface définie par une fonction  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
+fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y  </term>
+        <listitem>
+          <para>vecteurs lignes de taille n1 et n2.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f  </term>
+        <listitem>
+          <para>fonction externe du type z=f(x,y)
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;  </term>
+        <listitem>
+          <para>une séquence d'affectations <literal>key1=value1, key2=value2</literal>,... o <literal>key1</literal>, <literal>key2,...</literal> peuvent prendre les valeurs : rect, nax, strf, axesflag ou frameflag (voir <literal>plot2d</literal>).
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax  </term>
+        <listitem>
+          <para>voir <literal>plot2d</literal>.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>fgrayplot</literal> dessine une représentation 2D en pseudo-couleurs d'une surface définie par <literal>z=f(x,y)</literal> sur une grille définie par <literal>x</literal> et <literal>y</literal>.
+    Chaque rectangle sur la grille est rempli avec une couleur dépendant de la moyenne des 
+    valeurs de <literal>z</literal> aux coins du rectangle.
+  </para>
+    <para>
+    Taper <literal>fgrayplot()</literal> pour voir une démonstration de la fonction.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+t=-1:0.1:1;
+deff("[z]=my_surface(x,y)","z=x**2+y**2")
+fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

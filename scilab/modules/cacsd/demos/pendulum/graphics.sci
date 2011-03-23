@@ -36,31 +36,31 @@ function [P]=dpnd()
   teta=.25;
   r=2.5;
   P=build_pendulum([xg,y1],[lc,hc,lb,teta,r])
- 
+
   //the floor
   xarrows([10 90],[y1-5 y1-5],0);
   xstring(90,y1,'x')
-  
+
   // the force
-  yg=y1+hc/2, 
+  yg=y1+hc/2,
   x2=xg+lc/2;
   xarrows([x2 x2+10],[yg yg],2);
   xstring(x2+20,yg,'u (force)',0,0);
-  
+
   // the vertical
   y2=y1+hc;
   xsegs([xg xg],[y2 y2+lb]);e=gce();e.line_style=2;e.segs_color=-1;
-  
+
   // the angle teta
   xstring(xg+lb*sin(teta)/2,y2+lb*cos(teta),'a',0,0);
   e=gce();e.font_size=3;
-  
+
   //the differential equations
   xstring(5,-9,['a'''' = (-sin(a)*cos(a)*(m/(m+M))*a''^2 + 2/(mb*l)*(sin(a)*m*g - qm*cos(a)*u))/d'
-		'x'''' =  (u+m*(l/2)*(sin(a)a''^2-cos(a)*a''''))/(m+M);'
-		'm: weight of the pendulum'
-		'M: weight of the cart'
-		'l: length of the pendulum'])
+        'x'''' =  (u+m*(l/2)*(sin(a)a''^2-cos(a)*a''''))/(m+M);'
+        'm: weight of the pendulum'
+        'M: weight of the cart'
+        'l: length of the pendulum'])
   drawnow()
 endfunction
 
@@ -75,7 +75,7 @@ function P=build_pendulum(o,params)
   y2=y1+hc;
   x2=xg+lc/2;
   x1=xg-lc/2;
-  
+
   //cart
   xrect([xg-lc/2,y1+hc,lc,hc]);e1=gce();
   xfarcs([x1+lc/10-r;y1;2*r;2*r;0;360*64],1);e2=gce();
@@ -87,7 +87,7 @@ function P=build_pendulum(o,params)
   P=glue([e4 e3 e2 e1])
   P.user_data=[xg,lb]
 endfunction
- 
+
 function P=set_pendulum(P,x,theta)
   p=P.user_data
   xg=p(1);lb=p(2);
@@ -97,7 +97,7 @@ function P=set_pendulum(P,x,theta)
   e=P.children(2).children;e.data(1)=e.data(1)+x-xg;
   e=P.children(3).children;e.data(1)=e.data(1)+x-xg;
   e=P.children(4);e.data(:,1)=e.data(:,1)+x-xg;
-  
+
    //change the pendulum angle
   e.data(2,:)=e.data(1,:)+[lb*sin(theta) lb*cos(theta)];
   P.user_data(1)=x
@@ -107,7 +107,7 @@ endfunction
 
 
 function draw1()
-  f=gcf();f.figure_position=[10 10];xselect()
+  f=gcf();f.figure_position=[10 10];show_window()
   clf();
   drawlater();//f.pixmap='on';
   f.background=color('gray');
@@ -158,7 +158,7 @@ function draw1()
 endfunction
 
 function draw2()
-  f=gcf();f.figure_position=[10 10];xselect()
+  f=gcf();f.figure_position=[10 10];show_window()
   clf();
   //f.pixmap='on';
   drawlater()
@@ -169,7 +169,7 @@ function draw2()
   theta = yd(3,:) //angle
   thetaE= yd(7,:) // estimated angle
   x = yd(1,:)
-  
+
   a1=gca();sca(a1);
   a1.axes_bounds=[0 0 0.5 0.5];
   a1.data_bounds=[min(t1),min(c);t1(n) max(c)];
@@ -213,5 +213,5 @@ function draw2()
     P=set_pendulum(P,xx,tt);
   end
   //f.pixmap='off'
-  
+
 endfunction

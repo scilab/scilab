@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- Non-regression test for bug 4495 -->
 //
 // <-- Bugzilla URL -->
@@ -16,15 +17,24 @@ function mytestfunc()
   disp('mytestfunc: called ok');
 endfunction
 // =============================================================================
+exec(mytestfunc);
  
  mytestfunc: called ok   
 // =============================================================================
 mputl('a=1;b=2;',TMPDIR+'/myscript');
+ierr = execstr("exec(TMPDIR+''/myscript'',''toto'',''tata'');","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
+exec(TMPDIR+'/myscript');
 // =============================================================================
+exec(TMPDIR+'/myscript','errcatch');
+exec(TMPDIR+'/myscript',-1);
+exec(TMPDIR+'/myscript','errcatch',-1);
+exec(TMPDIR+'/myscript',-1,'errcatch');
 // =============================================================================
+ierr = execstr("exec(TMPDIR+''/myscript'',0,''blabla'');","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
+ierr = execstr("exec(TMPDIR+''/myscript'',''blabla'',0);","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================

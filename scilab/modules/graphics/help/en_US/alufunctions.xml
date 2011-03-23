@@ -16,7 +16,7 @@
   </info>
   <refnamediv>
     <refname>alufunctions</refname>
-    <refpurpose>pixel drawing functions</refpurpose>
+    <refpurpose>pixel drawing functions. <emphasis role="bold">This function is obsolete.</emphasis></refpurpose>
   </refnamediv>
   <refsection>
     <title>Description</title>

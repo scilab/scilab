@@ -10,8 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 /***********************************
 * impl   (  fres, fadda, fj2 )
 ***********************************/
@@ -28,16 +29,18 @@ typedef void (*fj2f)(ARGS_fj2);
 
 /**************** fres ***************/
 extern void C2F(resid)(ARGS_fres);
-void C2F(fres)(ARGS_fres);
-void C2F(setfres)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fres)(ARGS_fres);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfres)(char *name, int *rep);
 
 FTAB FTab_fres[] ={
 	{"resid", (voidf)  C2F(resid)},
 	{(char *) 0, (voidf) 0}};
 /**************** fadda ***************/
 extern void C2F(aplusp)(ARGS_fadda);
-void C2F(fadda)(ARGS_fadda);
-void C2F(setfadda)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fadda)(ARGS_fadda);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfadda)(char *name, int *rep);
 
 FTAB FTab_fadda[] ={
 {"aplusp", (voidf)  C2F(aplusp)},
@@ -45,8 +48,9 @@ FTAB FTab_fadda[] ={
 
 /**************** fj2 ***************/
 extern void C2F(dgbydy)(ARGS_fj2);
-void C2F(fj2)(ARGS_fj2);
-void C2F(setfj2)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fj2)(ARGS_fj2);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfj2)(char *name, int *rep);
 
 FTAB FTab_fj2[] ={
 	{"dgbydy", (voidf)  C2F(dgbydy)},
@@ -71,7 +75,7 @@ void C2F(fres)(int *ny, double *t, double *y, double *s, double *r, int *ires)
 
 void C2F(setfres)(char *name, int *rep)
 {
-	fresfonc = (fresf) AddFunctionInTable(name,rep,FTab_fres);
+	fresfonc = (fresf) GetFunctionByName(name,rep,FTab_fres);
 }
 
 
@@ -88,7 +92,7 @@ void C2F(fadda)(int *ny, double *t, double *y, int *ml, int *mu, double *p, int 
 
 void C2F(setfadda)(char *name, int *rep)
 {
-	faddafonc = (faddaf) AddFunctionInTable(name,rep,FTab_fadda);
+	faddafonc = (faddaf) GetFunctionByName(name,rep,FTab_fadda);
 }
 
 
@@ -107,5 +111,5 @@ void C2F(fj2)(int *ny, double *t, double *y, double *s, int *ml, int *mu, double
 
 void C2F(setfj2)(char *name, int *rep)
 {
-	fj2fonc = (fj2f) AddFunctionInTable(name,rep,FTab_fj2);
+	fj2fonc = (fj2f) GetFunctionByName(name,rep,FTab_fj2);
 }

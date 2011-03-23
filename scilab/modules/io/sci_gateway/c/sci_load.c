@@ -12,7 +12,9 @@
 
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_load)(char *fname,unsigned long fname_len)
+extern int C2F(intload)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_load(char *fname,unsigned long fname_len)
 {
 	int Val=40;
 	int k1=0;

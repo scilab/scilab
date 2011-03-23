@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * This help file was generated from xcosPalAdd.sci using help_from_sci().
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosPalAdd" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 02-Sept-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xcosPalAdd</refname>
+    <refpurpose>Add a palette to the Scilab/Xcos palette manager. Optional property can be added to set the category of the palette.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+   xcosPalAdd(pal);
+   xcosPalAdd(pal, category);
+   status = xcosPalAdd(pal);
+   status = xcosPalAdd(pal, category);
+   [status, msg] = xcosPalAdd(pal);
+   [status, msg] = xcosPalAdd(pal, category);
+   
+   </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>pal:</term>
+        <listitem>
+          <para> palette tlist or path string; the palette to add</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>category:</term>
+        <listitem>
+          <para> string array; the optional category path to use</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status:</term>
+        <listitem>
+          <para> boolean; the status of the operation</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msg:</term>
+        <listitem>
+          <para> string; the error message</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+After setting the blocks into the palette, the user add this function to add a Scilab palette to the Xcos palette manager.
+   </para>
+    <para>
+The optional category argument can be used to add the palette to a customized category path. If not specified, the root category is used.
+   </para>
+    <para>
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+loadXcosLibs();
+pal = xcosPal();
+pal = xcosPalAddBlock(pal, "SUM_f");
+pal = xcosPalAddBlock(pal, "BIGSOM_f");
+
+xcosPalAdd(pal, "my Summation blocks")
+
+   ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xcosPal">xcosPal</link>
+      </member>
+      <member>
+        <link linkend="xcosPalAddBlock">xcosPalAddBlock</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Clément DAVID</member>
+    </simplelist>
+  </refsection>
+</refentry>

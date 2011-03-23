@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATMUL.jpg"
+                     fileref="../../../../images/palettes/MATMUL.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -84,22 +84,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATMUL">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATMUL">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATMUL">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATMUL">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATMUL">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATMUL">Computational function</xref>
             </para>
           </listitem>
 
@@ -134,11 +131,50 @@
   <refsection id="Description_MATMUL">
     <title>Description</title>
 
-    <para>The MATMUL block computes the matrix multiplication of two inputs
-    matrices.The number of rows of the second matrix must be equal to the
-    number of columns of the first matrix. The output is a matrix where the
-    number of rows is equal to that of the first input matrix and the number
-    of columns is equal to that of the second input matrix.</para>
+    <para>
+      The MATMUL block computes the multiplication of an the first input matrix by the second input matrix/scalar.
+      When the <emphasis role="bold">Multiplication rule</emphasis> parameter is set to:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis>, the block computes the matrix product. The number of rows of
+          the first matrix must be equal to the number of columns of the second matrix. The output is a matrix where the
+          number of rows is equal to that of the first input matrix and the number of columns is equal to
+          that of the second input matrix.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis>, the block computes the matrix element-wise product. The matrices must be of the same sizes. The output is a matrix of the same size that the input matrices.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">3</emphasis>, the block computes the matrix-scalar product. The output is a matrix of the same size
+          that input matrix.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      For integer inputs, when overflow occurs the block three different forms of results :
+    </para>
+
+    <para>
+      1- A normal non saturated result. By example, if type is int8 and the result 128, the block output
+      value will be -128.
+    </para>
+
+    <para>2- A saturated result. For the previous example the block output value will be 127.</para>
+
+    <para>3- An error message warning the user about the overflow.</para>
+
+    <para>
+      The user can select one of these three forms by setting the
+      <emphasis role="bold">Do on Overflow</emphasis> field to 0,1 or 2.
+    </para>
 
     <para />
   </refsection>
@@ -164,20 +200,36 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
 
       <listitem>
         <para>
-          <emphasis role="bold">Multiplication rule (1= * 2= .* )</emphasis>
+          <emphasis role="bold">Multiplication rule (1= * 2= .* 3=scalar)</emphasis>
         </para>
 
-        <para>?</para>
+        <para>Select multiplication rule. See description for more information.</para>
+
+        <para>Properties : Type 'vec' of size 1.</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Do on Overflow(0=Nothing 1=Saturate 2=Error)</emphasis>
+        </para>
+
+        <para>
+          When this parameter is set to zero the result is similar to a normal multiplication of two
+          integer matrix. When it is set to 1, on overflow the block saturate the result. When it
+          is set to 2, on overflow an error message box appears.
+          </para>
+          <para>
+          For double or complex inputs this parameter is ignored.
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -187,7 +239,7 @@
   <refsection id="Example_MATMUL">
     <title>Example</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 A=[1 2 3;4 5 6]
 B=[9 8 7 6;5 4 3 2;9 7 5 3]
 y=[46 37 28 19;115 94 73 52]
@@ -239,18 +291,15 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -258,8 +307,7 @@ y=[46 37 28 19;115 94 73 52]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -310,36 +358,31 @@ y=[46 37 28 19;115 94 73 52]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="INTMUL">INTMUL - INTMUL integer matrix multiplication
-          (xcos Block)</link>
+          <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATDIV">MATDIV - MATDIV Matrix division (Scicos
-          Block)</link>
+          <link linkend="MATDIV">MATDIV - Matrix Division (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATBKSL">MATBKSL - MATBKSL:left matrix division
-          (xcos Block)</link>
+          <link linkend="MATBKSL">MATBKSL - Left Matrix Division (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATEXPM">MATEXPM - MATEXPM Matrix Exponential (xcos
-          Block)</link>
+          <link linkend="MATEXPM">MATEXPM - Matrix Exponential (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="SUMMATION">SUMMATION - SUMMATION Matrix Summation
-          (xcos Block)</link>
+          <link linkend="SUMMATION">SUMMATION - Matrix Summation (xcos Block)</link>
         </para>
       </listitem>
     </itemizedlist>

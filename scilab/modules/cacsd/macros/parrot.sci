@@ -27,6 +27,6 @@ D12=D(l1,k2);
 D21=D(l2,k1);
 D22=D(l2,k2);
 D1=[D11,D12];D2=[D11;D21];
-gamaopt=maxi( maxi(svd(D1)),maxi(svd(D2)) );
+gamaopt=max( max(svd(D1)),max(svd(D2)) );
 Kopt=-D22-D21*inv(gamaopt*gamaopt*eye()-D11'*D11)*D11'*D12;
 endfunction

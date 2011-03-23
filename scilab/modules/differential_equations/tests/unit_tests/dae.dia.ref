@@ -176,6 +176,7 @@ code=['#include <math.h>'
       '{ groot[0] = y[0];}'];
 mputl(code,'t22.c') ;
 ilib_for_link(['res22' 'jac22' 'gr22'],'t22.c','','c');
+exec('loader.sce');
 rtol=[1.d-6;1.d-6];atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 %DAEOPTIONS =list([],0,[],[],[],0,0);
@@ -294,6 +295,7 @@ ccode=['#include <math.h>'
        '}'];
 mputl(ccode,'band.c'); //create the C file of myjac
 ilib_for_link(['myres','myjac'],'band.c','','c');//compile
+exec('loader.sce');
 y0=ones(n,1);yd0=0*y0;
 yb=dae([y0,yd0],0,0:0.1:10,'myres','myjac');
 a = norm(y-yb);

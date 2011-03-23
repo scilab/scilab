@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // removed a wrong dependendy on Wininet.dll 
-if MSDOS then
+if getos() == 'Windows' then
   r = dllinfo(SCI+'/bin/windows_tools.dll','imports');
   for i = 1 : size(r)
     if grep(r(i)(1),'/WININET.DLL/i','r') <> [] then pause,end

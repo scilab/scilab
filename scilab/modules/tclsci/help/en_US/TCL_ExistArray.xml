@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistArray(arrayname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>arrayname</term>
@@ -53,6 +53,7 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to test if a tcl array exists.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -64,8 +65,8 @@ TCL_ExistVar("A")
 TCL_ExistArray("A")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

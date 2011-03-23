@@ -19,6 +19,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import javax.swing.JEditorPane;
 
+import org.scilab.modules.localization.Messages;
+import org.scilab.modules.gui.messagebox.MessageBox;
+import org.scilab.modules.gui.messagebox.ScilabMessageBox;
+
 /**
  * 
  * @author Allan CORNET - DIGITEO
@@ -46,7 +50,11 @@ public class PrinterHelper {
 		try {
 			printTask.print();
 		} catch (PrinterException e) {
-			e.printStackTrace();
+			MessageBox messageBox = ScilabMessageBox.createMessageBox();
+			messageBox.setMessage(Messages.gettext("An error occured: ")+e.getLocalizedMessage());
+			messageBox.setModal(true);
+			messageBox.setIcon("error");
+			messageBox.displayAndWait();
 			return false;
 		}
 		return true;	
@@ -64,6 +72,7 @@ public static boolean printFile(String fileName) {
 	try {
 		url = new URL("file:///" + fileName); 
 		pageToPrint.setEditable(false);
+		pageToPrint.setContentType("text/plain;charset=UTF-8");
 		try { 
 			pageToPrint.setPage(url); 
 		  } catch (IOException e) { 

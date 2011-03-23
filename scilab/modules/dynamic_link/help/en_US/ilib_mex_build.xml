@@ -23,7 +23,7 @@
     <synopsis>ilib_mex_build(lib_name,table,files,libs [,makename,ldflags,cflags,fflags,cc])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib_name</term>
@@ -53,6 +53,8 @@
         <term>makename</term>
         <listitem>
           <para>character string. The path of the Makefile file without extension.</para>
+          <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
+          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -90,8 +92,8 @@ exec(TMPDIR+'/loader.sce');
 mexf16(rand(2,3,2));
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

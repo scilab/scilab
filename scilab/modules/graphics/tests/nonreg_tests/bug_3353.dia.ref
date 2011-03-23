@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // some colors are not present on pie chart
 // should draw a white rectangle (draw a yellow one in Scilab 4).
-plot2d(0,0,[0],'032','leg',[-1.5,-1.5 ,1.5,1.5]);
+plot2d(0,0,[0],strf='032',leg='leg',rect=[-1.5,-1.5 ,1.5,1.5]);
 a=gca(); t=a.title;
 t.text="pie chart"; t.font_size=3;
 a.clip_state = 'clipgrf';

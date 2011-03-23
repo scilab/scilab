@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_halt()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>info</term>
@@ -65,8 +65,8 @@
     <para>
     Error -14 means: pvm_halt(): Can't contact local daemon</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_start">pvm_start</link>

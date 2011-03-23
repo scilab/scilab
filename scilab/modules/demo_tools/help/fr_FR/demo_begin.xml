@@ -32,8 +32,8 @@
 		Elle doit être utilisée avec la function demo_end.
 		</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="demo_end">demo_end</link>

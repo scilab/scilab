@@ -131,10 +131,10 @@ for k=2:nsyst
   end;
   end,end
 end;
-if mini(lsorties)==0 then
+if min(lsorties)==0 then
   error(msprintf(gettext("%s: Some output(s) are undefined.\n"),"bloc2exp")),
 end
-if mini(lentrees)==0 then
+if min(lentrees)==0 then
   error(msprintf(gettext("%s: Some input(s) are undefined.\n"),"bloc2exp")),
 end
 

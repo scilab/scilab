@@ -73,7 +73,7 @@ function clean_help(dirs)
 		end
 		
 		chdir(dirs(k));
-		if MSDOS then
+		if getos() == 'Windows' then
 			dirs(k) = getlongpathname(pwd());
 		else
 			dirs(k) = pwd();
@@ -87,7 +87,7 @@ function clean_help(dirs)
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_m(k)));
 			end
 			chdir(dirs_m(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_m(k) = getlongpathname(pwd());
 			else
 				dirs_m(k) = pwd();
@@ -100,7 +100,7 @@ function clean_help(dirs)
 				error(msprintf(gettext("%s: Directory %s does not exist or read access denied."),"xmltoformat",dirs_c(k)));
 			end
 			chdir(dirs_c(k));
-			if MSDOS then
+			if getos() == 'Windows' then
 				dirs_c(k) = getlongpathname(pwd());
 			else
 				dirs_c(k) = pwd();
@@ -116,7 +116,7 @@ function clean_help(dirs)
 		// Clean up helptools dir
 		// ---------------------------------------------------------------------
 		
-		if fileinfo(SCI+pathconvert("/modules/helptools/master_"+getlanguage()+"_help.xml",%f,%f)) <> [] then
+		if isfile(SCI+pathconvert("/modules/helptools/master_"+getlanguage()+"_help.xml",%f,%f)) then
 			mprintf(".");
 			mdelete(SCI+pathconvert("/modules/helptools/master_"+getlanguage()+"_help.xml",%f,%f));
 		end
@@ -168,7 +168,7 @@ function clean_help(dirs)
 			]);
 			
 			for i=1:size(files_to_delete,'*')
-				if fileinfo(pathconvert(files_to_delete(i),%f,%f)) <> [] then
+				if isfile(pathconvert(files_to_delete(i),%f,%f)) then
 					mprintf(".");
 					mdelete(files_to_delete(i));
 				end
@@ -187,7 +187,7 @@ function clean_help(dirs)
 			]);
 			
 			for i=1:size(files_to_delete,'*')
-				if fileinfo(pathconvert(files_to_delete(i),%f,%f)) <> [] then
+				if isfile(pathconvert(files_to_delete(i),%f,%f)) then
 					mprintf(".");
 					mdelete(files_to_delete(i));
 				end
@@ -209,7 +209,7 @@ function clean_help(dirs)
 				help_file_to_rm = pathconvert(dirs_c(k)+"/../../"+format_to_test(i)+"/scilab_"+getlanguage()+"_help."+format_to_test(i),%f,%f);
 				log_file_to_rm  = pathconvert(dirs_c(k)+"/scilab_"+getlanguage()+"_help."+format_to_test(i)+".log",%f,%f);
 				
-				if fileinfo(file_to_rm)<>[] then
+				if isfile(file_to_rm) then
 					mprintf(".");
 					mdelete(file_to_rm);
 					mdelete(log_file_to_rm);
@@ -240,7 +240,7 @@ function clean_help(dirs)
 			]);
 			
 			for i=1:size(files_to_delete,'*')
-				if fileinfo(pathconvert(files_to_delete(i),%f,%f)) <> [] then
+				if isfile(pathconvert(files_to_delete(i),%f,%f)) then
 					mprintf(".");
 					mdelete(files_to_delete(i));
 				end
@@ -263,7 +263,7 @@ function clean_help(dirs)
 				help_file_to_rm = pathconvert(dirs(k)+"/../../"+format_to_test(i)+"/scilab_"+dir_language+"_help."+format_to_test(i),%f,%f);
 				log_file_to_rm  = pathconvert(dirs(k)+"/scilab_"+dir_language+"_help."+format_to_test(i)+".log",%f,%f);
 				
-				if fileinfo(help_file_to_rm)<>[] then
+				if isfile(help_file_to_rm) then
 					mprintf(".");
 					mdelete(help_file_to_rm);
 					mdelete(log_file_to_rm);

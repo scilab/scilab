@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="trimmean" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>trimmean</refname>
+
+    <refpurpose>ベクトルまたは行列のトリム平均</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>m=trimmean(x[,discard [,flag [,verbose]]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>discard</term>
+
+        <listitem>
+          <para>オプションの0と100の間実数値で,
+	破棄するデータの部分を表します.
+	discardが[0,100]の範囲でない場合,
+	エラーが発生します.デフォルト値は discard=50 です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>オプションの文字列または実数パラメータで,
+	xが行列の場合の動作を制御します.
+	flagには以下の値を指定可能です : "all", 1, 2, r または c
+	(デフォルトは flag="all") です.
+	flag=r と flag=1 は等価です.
+	flag=c と flag=2 も等価です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>verbose</term>
+
+        <listitem>
+          <para>オプションの整数. 1に設定された場合, 冗長な
+	ログが有効になります.デフォルトは0です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	トリム平均は,最小スコアと最高スコアの一定の割合を破棄した後,
+	残るスコアの平均を求めることにより計算されます.
+	例えば,50%トリムはスコアの下位および上位25%を破棄し,
+	残るスコアの平均を求めることにより計算されます.</para>
+
+    <para>
+	中央値は100%トリム平均,算術平均は0%トリム平均です.</para>
+
+    <para>
+	トリム平均は,算術平均よりも極端なスコアの影響を明らかに
+	より受けにくいです.
+	このため,極端に歪んだ分布の場合に平均よりも標本化の変動への
+	影響を受けにくいです.
+	統計の効率は,統計が標本間で安定である度合です.
+	これは,ある統計量の標本化の変動に対する感度が低い程,より効率的であると
+	いうことです.
+	統計量の効率は,他の統計量の効率に対して相対的に観測され,
+	このためしばしば相対効率と呼ばれます.
+	統計量Aが統計量Bよりも標準誤差が小さいとすると,
+	統計量Aは統計量Bよりも効率的ということになります.
+	2つの統計量の相対効率は内部分布に依存する可能性があります.
+	例えば,
+	正規分布では平均は中央値よりも効率的ですが,
+	いくつかの極端に歪んだ分布ではそうではありません.
+	統計量の効率は推定の精度とみなすこともできます:
+	統計量がより効率的になると,パラメータの推定器としての
+	より精度が高くなります.
+	正規分布の場合,トリム平均は平均よりも効率的ではありません.</para>
+
+    <para>あるベクトルまたは行列 <literal>x</literal>について,
+    <literal>t=trimmean(x,discard)</literal> は,
+	<literal>discard/2</literal>個の最大値と
+	<literal>discard/2</literal>個の最小値を破棄した後,
+	スカラー<literal>t</literal>に,
+	<literal>x</literal>の全エントリの平均を返します.</para>
+
+    <para><literal>t=trimmean(x,discard,'r')</literal> (または等価な,
+    <literal>t=trimmean(x,discard,1)</literal>) は行ベクトル<literal>t</literal>
+	の各エントリに
+	<literal>x</literal>の各列のトリム平均を返します.</para>
+
+    <para><literal>t=trimmean(x,discard,'c')</literal> (または等価な,
+    <literal>t=trimmean(x,discard,2)</literal>) は列ベクトル<literal>t</literal>
+	の各エントリに
+	<literal>x</literal>の各行のトリム平均を返します.</para>
+
+    <para>この関数はベクトルまたは行列<literal>x</literal>の
+	トリム平均を計算します.</para>
+
+    <para>あるベクトルまたは行列 <literal>x</literal>について,
+	<literal>m=trimmean(x,discard)</literal> は,
+	スカラーr<literal> m</literal>に<literal>x</literal>の
+	全エントリのトリム平均を返します.</para>
+
+    <para><literal>m=trimmean(x,'r')</literal> (または等価な,<literal>
+    m=trimmean(x,1) </literal>) は,
+	行ベクトル<literal>m</literal>の各エントリに
+	<literal>x</literal>の各列のトリム平均を返します.</para>
+
+    <para><literal>m=trimmean(x,'c')</literal> (または等価な,<literal>
+    m=trimmean(x,2)</literal>) は,
+	列ベクトル<literal>m</literal>の各エントリに
+	<literal>x</literal>の各行のトリム平均を返します.</para>
+  </refsection>
+
+  <refsection>
+    <title>x がベクトルの時の例</title>
+
+    <para>
+	以下の例では,データベクトルのトリム平均が計算され,
+	デフォルトでdiscardの値は50となり,冗長なログが行われます.
+	データは9個のエントリから構成されます.
+	アルゴリズムはこのベクトルをソートし,
+	インデックス3から7のみを保持し,インデックス1,2,8および9を飛ばします.
+	他の値よりも著しく大きい値4000は採用されません.
+	このため,トリム平均の計算値は50となります.</para>
+
+    <programlisting role="example"><![CDATA[ 
+data = [10, 20, 30, 40, 50, 60, 70, 80, 4000];
+computed = trimmean(data,verbose=1);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>x が行列の時の例</title>
+
+    <para>以下の例では,データ行列のトリム平均が計算されます.
+	選択されたdiscardの値は50です.
+	orientationは"r"でデータが行毎にソートされることを意味します.
+	行列の各列について,トリム平均が計算されます.
+	トリム平均は行ベクトル [25 25 25 25]となります.</para>
+
+    <programlisting role="example"><![CDATA[ 
+data = [10 10 10 10
+        20 20 20 20
+        30 30 30 30
+        4000 4000 4000 4000];
+computed = trimmean(data,50,orien="r");
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>Luis Angel Garcia-Escudero and Alfonso Gordaliza, Robustness
+    Properties of Means and Trimmed Means, JASA, Volume 94, Number 447, Sept
+    1999, pp956-969</para>
+
+    <para>Trimmed Mean, <ulink
+    url="http://davidmlane.com/hyperstat/A11971.html">http://davidmlane.com/hyperstat/A11971.html</ulink></para>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Carlos Klimann</para>
+  </refsection>
+</refentry>

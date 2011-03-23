@@ -108,7 +108,10 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
 			}
 		}
 		if ((menuItemPosition <= parentMenu.getItemCount()) & (menuItemPosition >= 1)) {
-			parentMenu.getItem(menuItemPosition - 1).setEnabled(status); /* Java index begins at 0 and Scilab index begins at 1 */
+			/* Java index begins at 0 and Scilab index begins at 1 */
+			if (parentMenu.getItem(menuItemPosition - 1) != null) {
+				parentMenu.getItem(menuItemPosition - 1).setEnabled(status);
+			}
 		}
 	}
 	

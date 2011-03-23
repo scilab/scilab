@@ -12,7 +12,7 @@
     <synopsis>umf_ludel(LU_ptr) or umf_ludel()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>LU_ptr  </term>
@@ -36,8 +36,8 @@
     see the example section of <link linkend='umf_lufact'>umf_lufact</link>
   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="umfpack">umfpack</link>

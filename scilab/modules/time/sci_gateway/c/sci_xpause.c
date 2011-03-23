@@ -14,6 +14,7 @@
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
+#include "machine.h"
 #ifdef HAVE_USLEEP
 #include <unistd.h>
 #endif

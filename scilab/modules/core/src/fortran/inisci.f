@@ -189,27 +189,25 @@ c     get default global stackize from c
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     16 is the number of predefined variables 
-c     17 - 1 blank not include
-      bot=isiz-16
-      bbot=bot
-      bot0=bot
+c     13 is the number of predefined variables 
+c     14 - 1 blank not include
+      bot = isiz - 13
+      bbot = bot
+      bot0 = bot
 c     memory requested for predefined variables 
 c     mxn bmat -> size : sadr(2+m*n+2)
 c     $        -> size : sadr(10-1) + 2 
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
-c     4 strings
-c     6 booleans
-      call getcomp(bufcomp,nbcomp)
+c     3 strings
+c     4 booleans
       call getsci(bufsci,nbsci)
       call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
       lpvar = (sadr(10-1) + 2) 
-     $     + 6*sadr(5) 
-     $     + 4*(sadr(3)+1)
+     $     + 4*sadr(5) 
+     $     + 3*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
-     $     + 1*(sadr(6+nbcomp)+1)
      $     + 1*(sadr(6+nbsci)+1)
      $     + 1*(sadr(6+nbscihome)+1)
      $     + 1*(sadr(6+nbtmpdir)+1)
@@ -217,12 +215,6 @@ c     6 booleans
       l=vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
-C     . COMPILER
-      vname = ' '
-      vname(1:8) =  "COMPILER"
-      call cvname(idloc,vname,0)
-      call cresmatvar(idloc,k,bufcomp,nbcomp)
-      k=k+1
 c     . SCI
       vname = ' '
       vname(1:3) =  "SCI"
@@ -241,24 +233,10 @@ c     . TMPDIR
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,buftmp,nbtmpdir)
       k=k+1
-c     . MSDOS
-      vname = ' '
-      vname(1:5) = "MSDOS"
-      call withmsdos(irep)
-      call cvname(idloc,vname,0)
-      call crebmatvar(idloc,k,1,1,irep)
-      k=k+1 
 c     . %gui
       vname = ' '
       vname(1:4) = "%gui"
       call withgui(irep)
-      call cvname(idloc,vname,0)
-      call crebmatvar(idloc,k,1,1,irep)
-      k=k+1
-c     . %tk
-      vname = ' ' 
-      vname(1:3) = "%tk"
-      call withtk(irep)
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1

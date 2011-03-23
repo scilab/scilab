@@ -196,4 +196,10 @@ expected = "neldermead_configure: The restarteps option is expected to be positi
 assert_equal ( computed , expected );
 nm = neldermead_destroy(nm);
 
+//
+// Check the display system
+//
+nm = neldermead_new ();
+nm
+nm = neldermead_destroy(nm);
 

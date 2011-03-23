@@ -1,0 +1,44 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-01-16 18:19+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr ""
+"Наведіть вказівник миші на вісь і клацніть лівою кнопкою, щоб почати "
+"обертання. Клацання правою або натискання Esc зупиняє обертання."
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "Клацніть або натисніть клавішу Esc, щоб зупинити обертання."
+
+msgid "Unable to render polyline, memory full.\n"
+msgstr "Не вдалося відтворити ламану, недостатньо пам’яті.\n"
+
+#, c-format
+msgid ""
+"Warning !!!\n"
+"Scilab has found a critical error (%s).\n"
+"Save your data and restart Scilab.\n"
+msgstr ""
+"Попередження!\n"
+"У Scilab сталася критична помилка (%s).\n"
+"Збережіть ваші дані і перезапустіть Scilab.\n"

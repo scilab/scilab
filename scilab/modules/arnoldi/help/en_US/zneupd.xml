@@ -27,7 +27,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -514,8 +514,8 @@ printf('The convergence criterion is %d\n', tol);
       </programlisting>
     </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="dnaupd">znaupd</link></member>

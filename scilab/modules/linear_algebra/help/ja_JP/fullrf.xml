@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fullrf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fullrf</refname>
+    <refpurpose>フルランク分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Q,M,rk]=fullrf(A,[tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数 (ランク定義時の閾値)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q,M</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数 (<literal>A</literal>のランク)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    フルランク分解 : <literal>fullrf</literal> は,
+	<literal>A = Q*M</literal>となるような
+	 <literal>Q</literal> および <literal>M</literal>を返します.
+	ただし,
+	range(<literal>Q</literal>)=range(<literal>A</literal>) および
+	 ker(<literal>M</literal>)=ker(<literal>A</literal>),
+    <literal>Q</literal> フル列ランク , <literal>M</literal> フル行ランク,
+    <literal>rk = rank(A) = #columns(Q) = #rows(M)</literal>です.</para>
+    <para><literal>tol</literal> はオプションの実数パラメータです
+	(デフォルト値は <literal>sqrt(%eps)</literal>です).
+	<literal>A</literal>のランク<literal>rk</literal>は
+	<literal>norm(A)*tol</literal>より大きな
+	特異値の数として定義されます.</para>
+    <para>
+	Aが対称の場合,
+	<literal>fullrf</literal> は <literal>M=Q'</literal>を返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,2)*rand(2,5);
+[Q,M]=fullrf(A);
+norm(Q*M-A,1)
+[X,d]=rowcomp(A);Y=X';
+svd([A,Y(:,1:d),Q])        //span(Q) = span(A) = span(Y(:,1:2))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="svd">svd</link>
+      </member>
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.D.;   </para>
+  </refsection>
+</refentry>

@@ -54,7 +54,7 @@
 
 
 #include "stack-c.h"
-#include "../../elementary_functions/includes/elementary_functions.h"
+#include "elementary_functions.h"
 
 #include "mex.h"
 
@@ -1508,18 +1508,31 @@ bool mxIsStruct(const mxArray *ptr)
 
 int IsstOrce(mxArray *ptr)
 {
-  int *header1; int l; int nfplus2;
-  int *header = Header(ptr);
-  if (header[0]==MLIST) {
-    header1 = (int *) listentry(header,1);
-    nfplus2 = header1[1]*header1[2];
-    l = 5 + nfplus2;
-    if (header1[0]==STRINGMATRIX)
-	if (header1[l]==12 && header1[l+1]==14) return 1;  /*  "ce"  */
-	if (header1[l]==28 && header1[l+1]==29) return 1;  /*  "st"  */
-    else return 0;
-      }
-  else return 0;
+    int *header1; int l; int nfplus2;
+    int *header = Header(ptr);
+    if (header[0]==MLIST)
+    {
+        header1 = (int *) listentry(header,1);
+        nfplus2 = header1[1]*header1[2];
+        l = 5 + nfplus2;
+        if (header1[0]==STRINGMATRIX)
+        {
+            if (header1[l]==12 && header1[l+1]==14)
+            {
+                return 1;  /*  "ce"  */
+            }
+        }
+        if (header1[l]==28 && header1[l+1]==29)
+        {
+            return 1;  /*  "st"  */
+        } else {
+            return 0;
+        }
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 /***************************************************************
@@ -1757,7 +1770,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     newsize += 3;   /* taking account begining of list */
     newbot=*Lstk(number+offset)+newsize+1;
     if( (newbot - *Lstk(Bot)) > 0)
-      {Error(17); return 0;}
+      {SciError(17); return 0;}
     *Lstk(number+offset+1)=newbot;
     for (list=0; list<nb; list++) {
       headerlist= listentry(header, list+3);
@@ -1815,7 +1828,7 @@ mxArray *UnrefStruct(mxArray *ptr)
     newsize +=3;
     newbot = *Lstk(number+offset)+newsize+1;
     if ( (newbot - *Lstk(Bot)) > 0)
-      {Error(17); return 0;}
+      {SciError(17); return 0;}
     *Lstk(number+offset+1)=newbot;
     for (obj=0; obj<nb; obj++)
       {

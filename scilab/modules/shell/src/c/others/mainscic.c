@@ -27,6 +27,7 @@
 #include "core_math.h"
 #include "setgetlanguage.h"
 #include "LaunchScilabSignal.h"
+#include "setenvc.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -106,7 +107,7 @@ fpsetmask(0);
       {
       	setScilabMode(SCILAB_NW);
       }
-      else if ( strcmp(argv[i],"-nwni") == 0)
+      else if ( strcmp(argv[i],"-nwni") == 0 || strcmp(argv[i],"-nogui") == 0)
       {
       	setScilabMode(SCILAB_NWNI);
       }
@@ -146,11 +147,10 @@ fpsetmask(0);
       	setScilabMode(SCILAB_NW);
       	settexmacs();
       }
-      else if ( strcmp(argv[i],"-nogui") == 0)
-      {
-      	setScilabMode(SCILAB_NWNI);
-      }
-      else if ( strcmp(argv[i],"-version") == 0) {disp_scilab_version();exit(1);}
+      else if ( strcmp(argv[i],"-version") == 0) {
+		  disp_scilab_version();
+		  exit(1);
+	  }
     }
 
 
@@ -180,7 +180,7 @@ fpsetmask(0);
 #ifndef WITH_GUI
   if(getScilabMode() != SCILAB_NWNI)
   {
-    fprintf(stderr, "Scilab was compiled without its GUI. Run scilab with the -nwni option.\n");
+    fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab with the -nwni option.\n");
     exit(1);
   }
 #endif

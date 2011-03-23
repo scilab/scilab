@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -13,11 +14,7 @@
 // Arguments
 //
 function this = nmplot_display ( this )
-  mprintf("Nelder-Mead Plot Object\n");
-  this.nmbase = neldermead_display ( this.nmbase )
-  mprintf("Simplex data file : %s\n", this.simplexfn);
-  mprintf("Fbar data file : %s\n", this.fbarfn);
-  mprintf("Fopt data file : %s\n", this.foptfn);
-  mprintf("Sigma data file : %s\n", this.sigmafn);
+  warnobsolete("disp", "nmplot_display")
+  disp(this)
 endfunction
 

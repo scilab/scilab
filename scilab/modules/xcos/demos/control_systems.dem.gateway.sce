@@ -1,25 +1,18 @@
-//
-// Scilab ( http://www.scilab.org/ ) 
-// This file is part of Scilab
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("control_systems.dem.gateway.sce");
-
-subdemolist = ["Basic controller"                     , "basic_controller.dem.sce"  ;..
-               "Water tank"                           , "demo_watertank.dem.sce"      ; ..
-               "Discrete Controller"                  , "discrete_controller.dem.sce" ;..
-               "Kalman Filter"                        , "kalman.dem.sce"            ; ..
-               "Discrete Kalman Filter"               , "discrete_kalman.dem.sce"   ; ..
-               "Cont.Plant-Hybrid Observer"           , "cont_sys_disc_cont.dem.sce" ; ..
-               "Temperature Controller"               , "temp_controller.dem.sce"    ; ..
-               "Inverted Pendulum"                    , "inverted_pendulum.dem.sce"  ; ..
-               "Lorentz butterfly"                    , "lorentz.dem.sce"            ; .. 
+subdemolist = [_("Basic controller")                     , "basic_controller.dem.sce"  ;..
+               _("Water tank")                           , "demo_watertank.dem.sce"      ; ..
+               _("Discrete Controller")                  , "discrete_controller.dem.sce" ;..
+               _("Kalman Filter")                        , "kalman.dem.sce"            ; ..
+               _("Discrete Kalman Filter")               , "discrete_kalman.dem.sce"   ; ..
+               _("Cont.Plant-Hybrid Observer")           , "cont_sys_disc_cont.dem.sce" ; ..
+               _("Temperature Controller")               , "temp_controller.dem.sce"    ; ..
+               _("Inverted Pendulum")                    , "inverted_pendulum.dem.sce"  ; ..
+               _("Lorentz butterfly")                    , "lorentz.dem.sce"            ; ..
               ];
 
-//               "Animated Inv.Pendulum"                , "inv_pend_anim.dem.sce"  ; ..
-
-subdemolist(:,2) = demopath + subdemolist(:,2);
+subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);

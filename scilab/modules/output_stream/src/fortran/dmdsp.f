@@ -37,11 +37,10 @@ c!
       double precision x(*),a,a1,a2,fact,eps,dlamch
       integer iw(*),maxc,mode,fl,s,typ
       character cw*(*),sgn*1,dl*1
-      character*10 form(2)
+      character temp*10
 c
       eps=dlamch('p')
       cw=' '
-      write(form(1),130) maxc,maxc-7
       dl=' '
       m=abs(mm)
       n=abs(nn)
@@ -121,8 +120,7 @@ c
 c     determination de la longueur de la representation du monome,
 c          cette longueur est a priori fl+2 (' '//sgn//rep(a)).
 c           mais peut etre reduite si la representation est entiere
-   13 lgh=fl+3
-c      if(n2.eq.0) lgh=lgh-1
+      lgh=fl+3
       ldef=ldef+1
 c
       iw(k)=max(iw(k),lgh)
@@ -139,8 +137,18 @@ c
 c
       l1=1
       if(fact.ne.1.0d+0) then
-         write(cw(l1:l1+11),'(1x,1pd9.1,'' *'')')  1.0d+0/fact
-         l1=l1+12
+         write(temp,'(i4)'),imax
+         k1=0
+ 22      k1=k1+1
+         if(temp(k1:k1).eq.' ') goto 22
+         if(imax.lt.0) then
+            cw(l1:l1+12-k1)=' 10^('//temp(k1:4)//') *'
+            l1=l1+13-k1
+         else
+            cw(l1:l1+10-k1)=' 10^'//temp(k1:4)//' *'
+            l1=l1+11-k1
+         endif
+
       endif
       if(mm.lt.0) then
          write(cw(l1:l1+4),'(''eye *'')') 
@@ -199,6 +207,4 @@ c      if(n2.eq.0) l1=l1-1
 c
    99 return
 c
-  120 format('(f',i2,'.',i2,')')
-  130 format('(1pd',i2,'.',i2,')')
       end

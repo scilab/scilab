@@ -9,7 +9,7 @@ function [rep,stat] = java(java_filename)
 	
 	my_saved_path = pwd();
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		setenv('PATH',SCI+'\bin;' + getenv('PATH') + pathsep());
 	end
 	
@@ -17,18 +17,18 @@ function [rep,stat] = java(java_filename)
 	
 	cd(path);
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		commandline = jre_path() + "\bin\java -cp " ..
 			+ SCI + "\modules\javasci\jar\javasci.jar" ..
 			+ pathsep() + ". " + fname;
 	else
-		if fileinfo(SCI+"/modules/javasci/.libs/libjavasci.so") <> [] then
+		if isfile(SCI+"/modules/javasci/.libs/libjavasci" + getdynlibext()) then
 			commandline = jre_path() +  "/bin/java -cp " ..
 				+ SCI + "/modules/javasci/jar/javasci.jar" ..
 				+ ":. -Djava.library.path=" ..
 				+ SCI + "/modules/javasci/.libs/ " + fname ;
 		
-		elseif fileinfo(SCI+"/../../lib/scilab/libjavasci.so") <> [] then
+		elseif isfile(SCI+"/../../lib/scilab/libjavasci" + getdynlibext()) then
 			commandline = jre_path() +  "/bin/java -cp " ..
 				+ SCI + "/modules/javasci/jar/javasci.jar" ..
 				+ ":. -Djava.library.path=" ..

@@ -27,7 +27,7 @@ f=findfiles(path)
 f=findfiles(path,filespec)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -61,8 +61,8 @@ f=findfiles(SCI)
 f=findfiles(SCI+'/modules/core/macros','*.sci') 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="listfiles">listfiles</link>

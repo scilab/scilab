@@ -12,7 +12,7 @@ function whereami()
 //!
 [linn,mac]=where()
 nn=prod(size(linn))
-lm=maxi(length(mac))
+lm=max(length(mac))
 txt=[]    
 for k=2:nn
   if mac(k)=='exec' then

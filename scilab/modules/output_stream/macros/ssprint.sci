@@ -31,7 +31,7 @@ else
 end
 deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     'if m*n==0 then ta='' '',return,end';
-                    'frmt=format();frmt=10**frmt(2)/maxi([1,norm(coeff(x))]);';
+                    'frmt=format();frmt=10**frmt(2)/max([1,norm(coeff(x))]);';
                     'x=round(frmt*x)/frmt;';
                     't=[];for k=1:m,t=[t;''|''],end;';
                     'ta=t;for k=1:n,';
@@ -41,7 +41,7 @@ deff('[ta]=%cv(x)',['[m,n]=size(x);';
                     '               aa(l)='' ''+aa(l),';
                     '           end,';
                     '        end,';
-                    '        n=maxi(length(aa)),';
+                    '        n=max(length(aa)),';
                     '        aa=part(aa+blank,1:n),';
                     '        ta=ta+aa+part(blank,1),';
                     'end;ta=ta+t;'])
@@ -76,9 +76,9 @@ if na>0 then
       t(na/2+1)=t(na/2+1)+'u   '
     end
   end
-  n1=maxi(length(t))+1
+  n1=max(length(t))+1
   //
-  n2=maxi(length(t))
+  n2=max(length(t))
   if n2<ll then
     write(out,t)
   else
@@ -110,7 +110,7 @@ if na==0 then
     t=blank+td
     t(nc/2+1)=t(nc/2+1)+'u   '
   end
-  n1=maxi(length(t))+1
+  n1=max(length(t))+1
 else
   tc=%cv(c);td=%cv(d)
   blank=part(blank,1:4);
@@ -130,7 +130,7 @@ else
       t=t+blank+td
       t(nc/2+1)=t(nc/2+1)+'u   '
     end
-    n1=maxi(length(t))+1
+    n1=max(length(t))+1
   else
     if nc==1 then 
       t=t+'x   '
@@ -139,7 +139,7 @@ else
     end  
   end;
 end
-n2=maxi(length(t))
+n2=max(length(t))
 if n2<ll then
   write(out,t)
 else

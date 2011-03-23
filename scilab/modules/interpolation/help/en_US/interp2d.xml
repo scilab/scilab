@@ -23,7 +23,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -190,12 +190,12 @@ xtitle("extrapolation with the periodic outmode")
 subplot(2,2,4)
 plot3d(xx, yy, zz4, flag=[2 6 4])
 xtitle("extrapolation with the natural outmode")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="splin2d">splin2d</link></member>

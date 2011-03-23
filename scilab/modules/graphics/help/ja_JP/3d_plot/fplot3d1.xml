@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fplot3d1">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fplot3d1</refname>
+    <refpurpose>関数により定義された曲面の3次元グレーまたは
+	カラーレベルプロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>fplot3d1(xr,yr,f,[theta,alpha,leg,flag,ebox])
+fplot3d1(xr,yr,f,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>xr</term>
+        <listitem>
+          <para>大きさn1の行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>yr</term>
+        <listitem>
+          <para>大きさn2の行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>z=f(x,y)型の外部ルーチン.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta,alpha,leg,flag,ebox</term>
+        <listitem>
+          <para><literal>plot3d1</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para><literal>plot3d</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>fplot3d1</literal> は外部関数<literal>f</literal>
+	により<literal>xr</literal> および <literal>yr</literal>
+	で定義されるグリッド上で定義される曲面の3次元グレーまたは
+	カラーレベルプロットをプロットします.</para>
+    <para>コマンド <literal>fplot3d1()</literal>を入力すると,デモが表示されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+deff('z=f(x,y)','z=x^4-y^4')
+x=-3:0.2:3 ;y=x ;
+clf() ;fplot3d1(x,y,f,alpha=5,theta=31)  
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot3d1">plot3d1</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

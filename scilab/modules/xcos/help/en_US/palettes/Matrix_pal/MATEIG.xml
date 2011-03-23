@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATEIG.jpg"
+                     fileref="../../../../images/palettes/MATEIG.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -78,28 +78,25 @@
 
           <listitem>
             <para>
-              <link linkend="MATEIG">Example</link>
+              <xref linkend="Example_MATEIG">Example</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATEIG">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATEIG">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATEIG">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATEIG">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATEIG">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATEIG">Computational function</xref>
             </para>
           </listitem>
 
@@ -134,20 +131,27 @@
   <refsection id="Description_MATEIG">
     <title>Description</title>
 
-    <para>The MATEIG calculate the eigenvalues and the eigenvectors of a
-    square input matrix U.</para>
-
-    <para>When the "Decomposition type" is set to 1, the block outputs the
-    eigenvalues in a vector form, if the input is a M-by-M matrix the output
-    is a M-by-1 vector.</para>
-
-    <para>When the "Decomposition type" is set to 2, the block outputs two
-    matrices. for an M-by-M input matrix,the first output is a M-by-M diagonal
-    matrix composed by the eigenvalues, and the second is a M-by-M matrices
-    composed by the eigenvectors; the eigenvectors are represented by the
-    columns of the matrix.</para>
-
-    <para>The equivalent of the MATEIG block in Scilab is "spec(A)"</para>
+   <para>
+      The MATEIG block computes the eigenvalues and the eigenvectors of a square input matrix U.
+      When the <emphasis role="bold">decomposition type</emphasis> is set to:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis>, the block outputs the eigenvalues in a vector form,
+          if the input is a MxM matrix the output is a Mx1 vector.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis>, the block outputs two matrices. For an MxM input matrix,
+          the first output is a MxM diagonal matrix composed by the eigenvalues, and the second is a
+          MxM matrix where columns are the eigenvectors.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>The equivalent of the MATEIG block in Scilab is <link linkend="spec">spec</link></para>
 
     <para />
   </refsection>
@@ -197,7 +201,7 @@
   <refsection id="Example_MATEIG">
     <title>Example</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 A=[1 12 32;21 35 46;70 8 19]
 When the "Decomposition type" is set to one the output is y=[-35.649;14.279;76.369]
 When the "Decomposition type" is set to two the outputs are:
@@ -247,18 +251,15 @@ y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -266,8 +267,7 @@ y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -318,8 +318,12 @@ y2=[0.557 0.080 0.349;0.330 -0.922 0.770;-0.762 0.379 0.533]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATSING">MATSING - MATSING SVD decomposition (xcos
-          Block)</link>
+          <link linkend="MATSING">MATSING - SVD Decomposition (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="spec">spec (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

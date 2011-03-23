@@ -16,9 +16,9 @@
 #include <stdlib.h>
 #include "dropFiles.h"
 #include "MALLOC.h"
-#include "../../../action_binding/includes/dynamic_menus.h" /* storecommand */
-#include "../../../fileio/includes/FindFileExtension.h"
-#include "../../../fileio/includes/URIFileToFilename.h"
+#include "storeCommand.h" /* storecommand */
+#include "FindFileExtension.h"
+#include "URIFileToFilename.h"
 #include "../../../string/includes/stricmp.h"
 #include "../../../core/src/c/with_module.h"
 #if _MSC_VER
@@ -40,7 +40,7 @@
 #define FORMAT_COS_COSF_XCOS_EXTENSION_FILES "xcos('%s');"
 #define FORMAT_SCI_EXTENSION_FILES "exec('%s');"
 #define FORMAT_SCE_TST_EXTENSION_FILES "exec('%s');"
-#define FORMAT_SCG_EXTENSION_FILES "xload('%s');"
+#define FORMAT_SCG_EXTENSION_FILES "load('%s');"
 #define FORMAT_UNKNOW_EXTENSION_FILES "disp(gettext('Unknown file type : %s'));"
 #define XCOS_NOT_INSTALLED "disp(gettext('Please install xcos module.'))"
 /*--------------------------------------------------------------------------*/

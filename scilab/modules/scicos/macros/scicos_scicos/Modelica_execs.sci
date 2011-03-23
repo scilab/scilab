@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [ok,modelicac,translator,xml2modelica] = Modelica_execs()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   ok = %f;
 
@@ -26,7 +29,7 @@ function [ok,modelicac,translator,xml2modelica] = Modelica_execs()
   TRANSLATOR_FILENAME = 'modelicat';
   XML2MODELICA_FILENAME = 'XML2Modelica';
 
-  if MSDOS then
+  if getos() == 'Windows' then
     MODELICAC_FILENAME = MODELICAC_FILENAME + '.exe';
     TRANSLATOR_FILENAME = TRANSLATOR_FILENAME + '.exe';
     XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + '.exe';

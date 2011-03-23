@@ -1,14 +1,15 @@
+// =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Vincent COUVERT 
-// Generic unitary tests for Scilab Java uicontrols
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// Copyright (C) 2008 - INRIA - Vincent COUVERT
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT 
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+function ierr = uicontrol_generic_test(uicontrol_style)
 
-function uicontrol_generic_test(uicontrol_style)
+// Default error status
+ierr = 0;
+
 // Default uicontrol of style 'uicontrol_style'
 h = uicontrol("style", uicontrol_style);
 set(h, "string", "Default "+uicontrol_style);
@@ -80,159 +81,159 @@ h = uicontrol("parent", f, "style", uicontrol_style);
 // Vector of 'integer' values
 set(h, "backgroundcolor", [1 0 0]);
 if ~and(get(h, "backgroundcolor") == [1 0 0]) then
-  pause
+  ierr = 1;
 end
 // Vector of 'real' values
 set(h, "backgroundcolor", [0.3 0.4 0.5]);
 if ~and(get(h, "backgroundcolor") == [0.3 0.4 0.5]) then
-  pause
+  ierr = 1;
 end
 // String of 'integer' values
 set(h, "backgroundcolor", "1|1|0");
 if ~and(get(h, "backgroundcolor") == [1 1 0]) then
-  pause
+  ierr = 1;
 end
 // String of 'real' values
 set(h, "backgroundcolor", "0.2|0.3|0.4");
 if ~and(get(h, "backgroundcolor") == [0.2 0.3 0.4]) then
-  pause
+  ierr = 1;
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
 // --- Callback tests ---
 // Default values
 if get(h, "callback") <> "" then
-  pause
+  ierr = 1;
 end
 if get(h, "callback_type") <> -1 then
-  pause
+  ierr = 1;
 end
 // Set a callback and do not precise type
 set(h, "callback", "disp(0);");
 if get(h, "callback") <> "disp(0);" then
-  pause
+  ierr = 1;
 end
 if get(h, "callback_type") <> 0 then
-  pause
+  ierr = 1;
 end
 set(h, "callback", "disp(1);");
 set(h, "callback_type", 0);
 if get(h, "callback") <> "disp(1);" then
-  pause
+  ierr = 1;
 end
 if get(h, "callback_type") <> 0 then
-  pause
+  ierr = 1;
 end
 // Remove callback --> callbackType must switch automatically to -1
 set(h, "callback", "");
 if get(h, "callback") <> "" then
-  pause
+  ierr = 1;
 end
 if get(h, "callback_type") <> -1 then
-  pause
+  ierr = 1;
 end
 // TODO tests with wrong callbackType ??
 
 // --- Enable ---
 // Default value
 if get(h, "enable") <> "on" then
-  pause
+  ierr = 1;
 end
 set(h, "enable", "off");
 if get(h, "enable") <> "off" then
-  pause
+  ierr = 1;
 end
 set(h, "enable", "on");
 if get(h, "enable") <> "on" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- FontAngle ---
 // Default value
 if get(h, "fontangle") <> "normal" then
-  pause
+  ierr = 1;
 end
 set(h, "fontangle", "italic");
 if get(h, "fontangle") <> "italic" then
-  pause
+  ierr = 1;
 end
 set(h, "fontangle", "oblique");
 if get(h, "fontangle") <> "oblique" then
-  pause
+  ierr = 1;
 end
 set(h, "fontangle", "normal");
 if get(h, "fontangle") <> "normal" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- FontSize ---
 // Default value
 if get(h, "fontsize") <> 10 then
-  pause
+  ierr = 1;
 end
 set(h, "fontsize", 12);
 if get(h, "fontsize") <> 12 then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- FontUnits ---
 // Default value
 if get(h, "fontunits") <> "points" then
-  pause
+  ierr = 1;
 end
 set(h, "fontunits", "pixels");
 if get(h, "fontunits") <> "pixels" then
-  pause
+  ierr = 1;
 end
 set(h, "fontunits", "normalized");
 if get(h, "fontunits") <> "normalized" then
-  pause
+  ierr = 1;
 end
 set(h, "fontunits", "points");
 if get(h, "fontunits") <> "points" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- FontWeight ---
 // Default value
 if get(h, "fontweight") <> "normal" then
-  pause
+  ierr = 1;
 end
 set(h, "fontweight", "light");
 if get(h, "fontweight") <> "light" then
-  pause
+  ierr = 1;
 end
 set(h, "fontweight", "demi");
 if get(h, "fontweight") <> "demi" then
-  pause
+  ierr = 1;
 end
 set(h, "fontweight", "bold");
 if get(h, "fontweight") <> "bold" then
-  pause
+  ierr = 1;
 end
 set(h, "fontweight", "normal");
 if get(h, "fontweight") <> "normal" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- Fontname tests ---
 if get(h, "fontname") <> "helvetica" then
-  pause
+  ierr = 1;
 end
 // Try to set an existing font
 set(h, "fontname", "courier new");
 if get(h, "fontname") <> "courier new" then
-  pause
+  ierr = 1;
 end
 // Try to set a not-existing font
 set(h, "fontname", "an invented font");
 if get(h, "fontname") <> "an invented font" then
-  pause
+  ierr = 1;
 end
 
 // --- ForegroundColor --- 
@@ -240,40 +241,40 @@ end
 // Vector of 'integer' values
 set(h, "foregroundcolor", [1 0 1]);
 if ~and(get(h, "foregroundcolor") == [1 0 1]) then
-  pause
+  ierr = 1;
 end
 // Vector of 'real' values
 set(h, "foregroundcolor", [0.6 0.5 0.4]);
 if ~and(get(h, "foregroundcolor") == [0.6 0.5 0.4]) then
-  pause
+  ierr = 1;
 end
 // String of 'integer' values
 set(h, "foregroundcolor", "1|1|1");
 if ~and(get(h, "foregroundcolor") == [1 1 1]) then
-  pause
+  ierr = 1;
 end
 // String of 'real' values
 set(h, "foregroundcolor", "0.5|0.6|0.7");
 if ~and(get(h, "foregroundcolor") == [0.5 0.6 0.7]) then
-  pause
+  ierr = 1;
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
 // --- HorizontalAlignment --- 
 if get(h, "horizontalalignment") <> "center" then
-  pause
+  ierr = 1;
 end
 set(h, "horizontalalignment", "left");
 if get(h, "horizontalalignment") <> "left" then
-  pause
+  ierr = 1;
 end
 set(h, "horizontalalignment", "right");
 if get(h, "horizontalalignment") <> "right" then
-  pause
+  ierr = 1;
 end
 set(h, "horizontalalignment", "center");
 if get(h, "horizontalalignment") <> "center" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
@@ -282,15 +283,15 @@ end
 // --- Max ---
 // Default value
 if get(h, "max") <> 1 then
-  pause
+  ierr = 1;
 end
 set(h, "max", 10);
 if get(h, "max") <> 10 then
-  pause
+  ierr = 1;
 end
 set(h, "max", 1); // Back to default value needed by SliderStep test
 if get(h, "max") <> 1 then
-  pause
+  ierr = 1;
 end
 
 // TODO test with min > max
@@ -299,15 +300,15 @@ end
 // --- Min ---
 // Default value
 if get(h, "min") <> 0 then
-  pause
+  ierr = 1;
 end
 set(h, "min", 1);
 if get(h, "min") <> 1 then
-  pause
+  ierr = 1;
 end
 set(h, "min", 0); // Back to default value needed by SliderStep test
 if get(h, "min") <> 0 then
-  pause
+  ierr = 1;
 end
 // TODO test with min > max
 // TODO test with wrong values
@@ -317,17 +318,17 @@ end
 // --- Position ---
 // Default value
 if ~and(get(h, "position") == [20 40 40 20]) then
-  pause
+  ierr = 1;
 end
 // Vector of 'integer' values
 set(h, "position", [0 10 100 200])
 if ~and(get(h, "position") == [0 10 100 200]) then
-  pause
+  ierr = 1;
 end
 // String of 'integer' values
 set(h, "position", "10|20|50|100");
 if ~and(get(h, "position") == [10 20 50 100]) then
-  pause
+  ierr = 1;
 end
 // TODO Test with wrong format values: "aze", "", [], ...
 
@@ -335,57 +336,57 @@ end
 // Default value is tested in separate files because is different according the style
 set(h, "relief", "groove");
 if get(h, "relief") <> "groove" then
-  pause
+  ierr = 1;
 end
 set(h, "relief", "raised");
 if get(h, "relief") <> "raised" then
-  pause
+  ierr = 1;
 end
 set(h, "relief", "ridge");
 if get(h, "relief") <> "ridge" then
-  pause
+  ierr = 1;
 end
 set(h, "relief", "solid");
 if get(h, "relief") <> "solid" then
-  pause
+  ierr = 1;
 end
 set(h, "relief", "sunken");
 if get(h, "relief") <> "sunken" then
-  pause
+  ierr = 1;
 end
 set(h, "relief", "flat");
 if get(h, "relief") <> "flat" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- SliderStep ---
 // Default value
 if ~and(get(h, "sliderstep") == [0.01 0.1]) then
-  pause
+  ierr = 1;
 end
 set(h, "sliderstep", [0.2 0.5]);
 if ~and(get(h, "sliderstep") == [0.2 0.5]) then
-  pause
+  ierr = 1;
 end
 set(h, "sliderstep", [0.01 0.1]);
 if ~and(get(h, "sliderstep") == [0.01 0.1]) then
-  pause
+  ierr = 1;
 end
 // TODO test for value1 > value2
 // TODO test with wrong values
 
 // --- String ---
 if get(h, "string") <> "" then
-  pause
+  ierr = 1;
 end
 set(h, "string", ["test for string"]);
 if get(h, "string") <> "test for string" then
-  pause
+  ierr = 1;
 end
 set(h, "string", "");
 if get(h, "string") <> "" then
-  pause
+  ierr = 1;
 end
 
 // TODO test with wrong values
@@ -393,56 +394,56 @@ end
 // --- Style ---
 // Default value
 if get(h, "style") <>  uicontrol_style then
-  pause
+  ierr = 1;
 end
 // TODO style changes tests (when implemented)
 
 // --- Tag ---
 // Default value
 if get(h, "tag") <> "" then
-  pause
+  ierr = 1;
 end
 set(h, "tag", "test for tag");
 if get(h, "tag") <> "test for tag" then
-  pause
+  ierr = 1;
 end
 set(h, "tag", "");
 if get(h, "tag") <> "" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- Units ---
 // Default value
 if get(h, "units") <> "pixels" then
-  pause
+  ierr = 1;
 end
 set(h, "units", "points");
 if get(h, "units") <> "points" then
-  pause
+  ierr = 1;
 end
 set(h, "units", "normalized");
 if get(h, "units") <> "normalized" then
-  pause
+  ierr = 1;
 end
 set(h, "units", "pixels");
 if get(h, "units") <> "pixels" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 
 // --- UserData ---
 // Default value
 if ~isempty(get(h, "user_data")) then
-  pause
+  ierr = 1;
 end
 set(h, "user_data", [1 2 3]);
 if ~and(get(h, "user_data") == [1 2 3]) then
-  pause
+  ierr = 1;
 end
 set(h, "user_data", []);
 if ~isempty(get(h, "user_data")) then
-  pause
+  ierr = 1;
 end
 
 // --- Value tests ---
@@ -451,19 +452,19 @@ end
 
 // --- VerticalalAlignment --- 
 if get(h, "verticalalignment") <> "middle" then
-  pause
+  ierr = 1;
 end
 set(h, "verticalalignment", "top");
 if get(h, "verticalalignment") <> "top" then
-  pause
+  ierr = 1;
 end
 set(h, "verticalalignment", "bottom");
 if get(h, "verticalalignment") <> "bottom" then
-  pause
+  ierr = 1;
 end
 set(h, "verticalalignment", "middle");
 if get(h, "verticalalignment") <> "middle" then
-  pause
+  ierr = 1;
 end
 // TODO test with wrong values
 

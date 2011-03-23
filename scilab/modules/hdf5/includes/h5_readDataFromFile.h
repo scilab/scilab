@@ -16,6 +16,11 @@
 #include <hdf5.h>
 #include "dynlib_hdf5_scilab.h"
 
+
+#define unknow_type     -2
+#define sci_undefined   -1
+#define sci_void        0
+
 HDF5_SCILAB_IMPEXP int isComplexData(int _iDatasetId);
 
 HDF5_SCILAB_IMPEXP int getVariableNames(int _iFile, char **pstNameList);
@@ -32,6 +37,8 @@ HDF5_SCILAB_IMPEXP int getScilabTypeFromDataSet(int _iDatasetId);
 HDF5_SCILAB_IMPEXP int getDatasetPrecision(int _iDatasetId, int* _piPrec);
 
 HDF5_SCILAB_IMPEXP int getSparseDimension(int _iDatasetId, int* _piRows, int * _piCols, int* _piNbItem);
+
+HDF5_SCILAB_IMPEXP int readEmptyMatrix(int _iDatasetId);
 
 HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblData);
 HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, int _iRows, int _iCols, double *_pdblReal, double *_pdblImg);

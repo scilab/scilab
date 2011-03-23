@@ -1,0 +1,62 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: REALMIN
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("REALMIN"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/REALMIN.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.6: Unknown variable realmin is a M-file.
+  L.7: Unknown variable realmin is a M-file.
+  L.8: Unknown variable realmin is a M-file.
+  !! L.8: No Scilab equivalent for: realmin("single")
+  L.10: Unknown variable realmin is a M-file.
+  L.12: Unknown variable realmin is a M-file.
+  L.13: Unknown variable realmin is a M-file.
+  L.14: Unknown variable realmin is a M-file.
+  !! L.14: No Scilab equivalent for: realmin("single")
+  L.15: Unknown variable realmin is a M-file.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function realmin()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+number_properties("tiny");
+number_properties("tiny");
+realmin("single");
+typ = "double";
+mtlb_realmin(typ);
+
+val = number_properties("tiny");
+val = number_properties("tiny");
+val = realmin("single");
+val = mtlb_realmin(typ);

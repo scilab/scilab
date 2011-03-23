@@ -12,16 +12,16 @@ c     WARNING : argument of this interface may be passed by reference
       INCLUDE 'stack.h'
       integer id(nsiz)
       logical ref
-      integer sel,tops
+      integer sel,tops,type
       integer iadr,sadr
       double precision dsum
       integer mtlbsel
-      
+     
 c     
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
-      if(rhs.gt.2) then
+      if(rhs.gt.3) then
          call error(42)
          return
       endif
@@ -30,6 +30,7 @@ c
          return
       endif
 c
+
       tops=top
       sel=0
 c     
@@ -37,20 +38,16 @@ c
       ilr=il0
       if(istk(il0).lt.0) il0=iadr(istk(il0+1))
       ref=ilr.ne.il0
-c
+
+
       if(istk(il0).eq.1) then
 c     standard matrix case
+         call  orientandtype(sel,type)
+         if (err.gt.0.or.err1.gt.0) return
+         if (sel.gt.2) return
+         if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
          m=istk(il0+1)
          n=istk(il0+2)
-         if(rhs.eq.2) then
-            call  getorient(top,sel)
-            if(err.gt.0) return
-            top=top-1
-            if(sel.eq.-1) sel=mtlbsel(istk(il0+1),2)
-
-         endif
-         
-            
          it=istk(il0+3)
          mn=m*n
          l1=sadr(ilr+4)
@@ -128,18 +125,10 @@ c     matrix of polynomial case
 c     .  *call* polelm
          return
       elseif(istk(il0).eq.5) then
-         if(rhs.eq.2) then
-            call  getorient(top,sel)
-            if(err.gt.0) return
-            top=top-1
-         endif
-         if(sel.ne.0) then
-            top=tops
-            call funnam(ids(1,pt+1),'sum',il0)
-            fun=-1
-            return
-         endif
-c     sparse matrix case
+c     .  sparse matrix case
+         call  orientandtype(sel,type)
+         if (err.gt.0.or.err1.gt.0) return
+         if(sel.ne.0) goto 100
          it=istk(il0+3)
          m=istk(il0+1)
          mn=istk(il0+4)
@@ -158,10 +147,14 @@ c     sparse matrix case
          lstk(top+1)=l1+(it+1)
       else
 c     other cases
-         top=tops
-         call funnam(ids(1,pt+1),'sum',il0)
-         fun=-1
+         goto 100
       endif
+      return
+ 100  continue
+C     overloaded cases
+      top=tops
+      call funnam(ids(1,pt+1),'sum',il0)
+      fun=-1
       return
       end
 c     -------------------------------

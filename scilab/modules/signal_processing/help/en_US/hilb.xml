@@ -6,7 +6,7 @@
 </refnamediv>
   
   <refsynopsisdiv><title>Calling Sequence</title><synopsis>xh=hilb(n [,wtype [,par]])</synopsis></refsynopsisdiv>
-  <refsection><title>Parameters</title>
+  <refsection><title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -58,8 +58,8 @@
     </para>
  
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="window">window</link>

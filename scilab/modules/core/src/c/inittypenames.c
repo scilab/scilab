@@ -13,6 +13,7 @@
 #include "inittypenames.h"
 #include "typename.h"
 #include "Scierror.h"
+#include "do_error_number.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 extern TYPE_struct C2F(typnams);
@@ -96,10 +97,10 @@ int callError(int ierr)
 	switch (ierr)
 	{
 	case 1: case 3:
-		Error(224);
+		SciError(224);
 		break;
 	case 2:
-		Error(225);
+		SciError(225);
 		break;
 	default:
 		/* never here */

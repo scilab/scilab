@@ -1,14 +1,15 @@
-# ==============================================================================
-# Pierre MARECHAL <pierre.marechal@inria.fr>
-# Copyright INRIA 2007
-# ==============================================================================
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007 - INRIA - Pierre MARECHAL
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 #### Target ######
 modulename=demo_tools
 
 #### demo_tools : Conf files ####
 libdemo_tools_la_rootdir = $(mydatadir)
-libdemo_tools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libdemo_tools_la_root_DATA =  license.txt version.xml
 
 #### demo_tools : init scripts ####
 libdemo_tools_la_etcdir = $(mydatadir)/etc

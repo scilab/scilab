@@ -30,10 +30,10 @@
         <para>Input argument profile:</para>
         <synopsis>SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr readNamedBooleanSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
+        <synopsis>SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
             <varlistentry>
                 <term>_pvCtx</term>
@@ -88,6 +88,7 @@
                 <listitem>
                     <para>
                         Return number of item in each rows (size: _iRows).
+                        For "Named" function, _piNbItemRow must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,6 +97,7 @@
                 <listitem>
                     <para>
                         Return column position for each item (size: _iNbItem).
+                        For "Named" function, _piColPos must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

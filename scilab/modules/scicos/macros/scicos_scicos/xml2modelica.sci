@@ -28,7 +28,7 @@ function  ok=xml2modelica(xmlfile,Flati)
 //Scilab interface  with external tool xml2modelica
 
   XML2MODELICA_FILENAME = 'XML2Modelica';
-  if MSDOS then
+  if getos() == 'Windows' then
     XML2MODELICA_FILENAME = XML2MODELICA_FILENAME + '.exe'; 
   end
 
@@ -43,7 +43,7 @@ function  ok=xml2modelica(xmlfile,Flati)
   Errfile = ' > ""' + tmpdir + 'ixml2modelica.err""';
   instr = strcat([exe in option out Errfile], ' ');
 
-  if MSDOS then, 
+  if getos() == 'Windows' then, 
     mputl(instr, tmpdir + 'igenx.bat');
     instr = tmpdir + 'igenx.bat';
   end
@@ -55,9 +55,6 @@ function  ok=xml2modelica(xmlfile,Flati)
     messagebox([_('-------XML to Modelica error:-------');
 		mgetl(Errfile);], 'error', 'modal');	    
     ok = %f;
-    if %tk then 
-      TCL_EvalStr("Compile_finished nok "+ %_winId);
-    end
     return
   end
 endfunction

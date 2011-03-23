@@ -25,7 +25,7 @@ x=getdate("s")
 dt=getdate(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dt</term>
@@ -137,8 +137,8 @@ x=getdate("s")
 getdate(x)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="date">date</link>

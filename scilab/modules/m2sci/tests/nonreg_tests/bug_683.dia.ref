@@ -50,7 +50,7 @@ mfile2sci(MFILE1,TMPDIR);
   File to convert: TMPDIR/test_cell1.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formated code: NO
   M-file reading...
@@ -67,7 +67,7 @@ mfile2sci(MFILE2,TMPDIR);
   File to convert: TMPDIR/test_cell2.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formated code: NO
   M-file reading...
@@ -82,6 +82,8 @@ mfile2sci(MFILE2,TMPDIR);
 // Load functions into Scilab
 SCIFILE1=TMPDIR+"/test_cell1.sci";
 SCIFILE2=TMPDIR+"/test_cell2.sci";
+exec(SCIFILE1);
+exec(SCIFILE2);
 // Exec functions
 [ce1,ce2] = test_cell1(23);
 [ce3,ce4] = test_cell1([1 2]);

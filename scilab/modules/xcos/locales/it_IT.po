@@ -1,0 +1,1035 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-10-11 15:00+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s non è un nome valido,cambiare il titolo del diagramma."
+
+#, c-format
+msgid "%s: All paths defined by %s variable must exist.\n"
+msgstr "%s: Tutti i percorsi definiti dalla variabile %s devono esistere.\n"
+
+#, c-format
+msgid "%s: File ''%s'' does not exist.\n"
+msgstr "%s: Il file ''%s'' non esiste.\n"
+
+#, c-format
+msgid "%s: File ''%s'' is not a valid palette file.\n"
+msgstr "%s: Il file ''%s'' non è un file di tavolozza valido.\n"
+
+#, c-format
+msgid "%s: Found ''%s'' instead of a block.\n"
+msgstr "%s: Trovato ''%s'' invece di un blocco.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: La directory %s non può essere creata, controllare i permessi di accesso "
+"in scrittura alla directory.\n"
+
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr "%s: È impossibile esportare %s a %s.\n"
+
+#, c-format
+msgid "%s: Unable to export ''XX'' to %s"
+msgstr "%s: Impossibile esportare ''XX'' a %s"
+
+#, c-format
+msgid "%s: Unable to export the palette to hdf5.\n"
+msgstr "%s: È impossibile esportare la tavolozza ad hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to generate the image %s.\n"
+msgstr "%s: È impossibile generare l'immagine %s.\n"
+
+#, c-format
+msgid "%s: Unable to generate the palette icon : %s already exists.\n"
+msgstr ""
+"%s: È impossibile generaree l'icona della tavolozza: %s già esiste.\n"
+
+#, c-format
+msgid "%s: Unable to import data from %s"
+msgstr "%s: Impossibile importare dati da %s"
+
+#, c-format
+msgid "%s: Unable to import xcos file %s.\n"
+msgstr "%s: È impossibile importare il file xcos %s.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
+msgstr ""
+"%s: È impossibile caricare un blocco da %s: era atteso un file hdf5.\n"
+
+#, c-format
+msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
+msgstr ""
+"%s: È impossibile caricare un blocco da %s: nessuna variabile ''scs_m'' "
+"trovata.\n"
+
+#, c-format
+msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso svg o gif.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso da %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: era atteso da  %d  a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"valore booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s variable: A string array expected.\n"
+msgstr ""
+"%s: La variabile %s è di tipo sbagliato: era atteso un array di stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String or diagram structure expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: diagram structure expected"
+msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una struttura "
+"di diagramma"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"di stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: Block type expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un blocco.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: File not found.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: file non trovato.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: boolean expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un "
+"diagramma.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
+"di percorso di directory.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: full path string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
+"di percorso completo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: function as string or Block type or "
+"full path string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: handle type expected.\n"
+msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso un gestore.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: palette type expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una tavolozza.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una tavolozza o un "
+"persorso.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: path string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa di "
+"percorso.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa o una "
+"struct.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string type expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %s: string vector expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s è sbagliato: era atteso un vettore di "
+"stringhe.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso %s ha un valore sbagliato: era atteso un file "
+"esistente.\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "A SuperBlock must be selected to generate code"
+msgstr "Occorre selezionare un SuperBlock per generare del codice"
+
+msgid "About Xcos"
+msgstr "Informazioni su Xcos"
+
+msgid "Add to"
+msgstr "Aggiungi a"
+
+msgid "Add to a new category"
+msgstr "Aggiungi ad una nuova categoria"
+
+msgid "Add to new diagram"
+msgstr "Aggiungi a un nuovo diagramma"
+
+msgid "Align Blocks"
+msgstr "Allinea i blocchi"
+
+msgid "Annotations"
+msgstr "Annotazioni"
+
+msgid "Based on Scicos"
+msgstr "Basato su Scicos"
+
+msgid "Block Help"
+msgstr "Aiuto del blocco"
+
+msgid "Block Parameters"
+msgstr "Parametri del blocco"
+
+msgid "Bold"
+msgstr "Grassetto"
+
+msgid "Border Color"
+msgstr "Colore del bordo"
+
+msgid "Bottom"
+msgstr "In basso"
+
+msgid "CVODE"
+msgstr "CVODE"
+
+msgid "Cancel"
+msgstr "Annulla"
+
+msgid "Category"
+msgstr "Categoria"
+
+msgid "Center"
+msgstr "Al centro"
+
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
+msgstr ""
+"Fare un clic sul diagramma per aggiungere un punto di collegamento o su un "
+"obbiettivo compatibile per terminare"
+
+msgid "Close"
+msgstr "Chiudi"
+
+msgid "Code generation"
+msgstr "Generazione del codice"
+
+msgid "Command port must be connected to control port"
+msgstr "La porta di comando deve essere connessa alla porta di controllo"
+
+msgid "Commonly Used Blocks"
+msgstr "Blocchi di uso comune"
+
+msgid ""
+"Compilation in progress, results will be stored in the 'scicos_cpr' variable"
+msgstr ""
+"Compilazione in corso, i risultati saranno depositati nella variabile "
+"'scicos_cpr'"
+
+msgid "Compile"
+msgstr "Compila"
+
+msgid "Compiling"
+msgstr "Compilazione in corso"
+
+msgid "Computing"
+msgstr "Calcolo in corso"
+
+msgid "Continuous time systems"
+msgstr "Sistemi di tempo continuo"
+
+msgid "Copyright (c) 1989-2009 (INRIA)"
+msgstr "Diritto d'autore (c) 1989-2009 (INRIA)"
+
+msgid "Could not save diagram."
+msgstr "Impossibile salvare il diagramma"
+
+msgid "Create"
+msgstr "Crea"
+
+msgid "Create a category"
+msgstr "Crea una categoria"
+
+msgid "Customize"
+msgstr "Personalizza"
+
+msgid "Debug block calls without trace"
+msgstr ""
+
+msgid "Default"
+msgstr "Predefinito"
+
+msgid "Default values"
+msgstr "Valori predefiniti"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Demonstrations Blocks"
+msgstr "Blocchi dimostrativi"
+
+msgid "Details"
+msgstr "Dettagli"
+
+msgid "Diagram background"
+msgstr "Sfondo del diagramma"
+
+msgid "Diagram browser"
+msgstr "Selettore del diagramma"
+
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgstr ""
+"Il diagramma è stato modificato dall'ultimo salvataggio.<br/> Salvarlo "
+"adesso?"
+
+msgid "Diff. States"
+msgstr ""
+
+msgid "Discontinuities"
+msgstr "Discontinuità"
+
+msgid "Discrete"
+msgstr "Discreto"
+
+msgid "Discrete time systems"
+msgstr "Sistemi di tempo discreto"
+
+msgid "Do you want a transparent background image?"
+msgstr "Inserire un'immagine trasparente per lo sfondo?"
+
+msgid "Do you want to overwrite existing file?"
+msgstr "Sovrascrivere i file esistenti?"
+
+msgid "Dump"
+msgstr "Lascia"
+
+msgid "Edit"
+msgstr "Modifica"
+
+msgid "Editable"
+msgstr "Modificabile"
+
+msgid "Electrical"
+msgstr "Elettrico"
+
+msgid "Enable"
+msgstr "Abilita"
+
+msgid "Equations"
+msgstr "Equazioni"
+
+msgid "Error"
+msgstr "Errore"
+
+msgid "Event handling"
+msgstr "Gestione dell'evento"
+
+msgid "Execution trace and Debug"
+msgstr ""
+
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Una esplicita porta di ingresso dei dati deve essere connessa ad una "
+"esplicita porta di uscita dei dati"
+
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"Una esplicita porta di uscita dei dati deve essere connessa ad una esplicita "
+"porta di ingresso dei dati"
+
+msgid "Export"
+msgstr "Esporta"
+
+msgid "Export in progress"
+msgstr "Esportazione in corso"
+
+msgid "Export to XML"
+msgstr "Esporta in XML"
+
+msgid "Extended"
+msgstr "Esteso"
+
+msgid "Failed to load Diagram"
+msgstr "Fallito il caricamento del diagramma"
+
+msgid "File"
+msgstr "File"
+
+msgid "Fill Color"
+msgstr "Colore di riempimento"
+
+msgid "Final integration time"
+msgstr "Tempo di integrazione finale"
+
+msgid "Fit diagram to view"
+msgstr "Riempi il diagramma da visualizzare"
+
+msgid "Fix derivatives"
+msgstr ""
+
+msgid "Fix states"
+msgstr "Stati fissi"
+
+msgid "Fixed parameters"
+msgstr "Parametri fissi"
+
+msgid "Fixed variables"
+msgstr "Variabili fisse"
+
+msgid "Flip"
+msgstr "Ribalta"
+
+msgid "Font name"
+msgstr "Nome del tipo di carattere"
+
+msgid "Font size"
+msgstr "Dimensione del tipo di carattere"
+
+msgid "Font style"
+msgstr "Stile del tipo di carattere"
+
+msgid "Format"
+msgstr "Formatta"
+
+msgid "From %s"
+msgstr "Da %s"
+
+msgid "Generate Jacobian"
+msgstr "Genera lo Jacobiano"
+
+msgid "Generate SuperBlock, please wait ..."
+msgstr "Generazione di SuperBlock in corso..."
+
+msgid "Generating C Code for SuperBlock"
+msgstr "Generazione di codice C per SuperBlock"
+
+msgid "Get infos"
+msgstr "Ottieni informazioni"
+
+msgid "Global"
+msgstr "GLobale"
+
+msgid "Goto %s"
+msgstr "Vai a %s"
+
+msgid "Grid"
+msgstr "_Griglia"
+
+msgid "Horizontal"
+msgstr "Orizzontale"
+
+msgid "IDA"
+msgstr "IDA"
+
+msgid "Image contains no data."
+msgstr "L'immagine non contiene dati"
+
+msgid "Implicit"
+msgstr "Implicito"
+
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
+msgstr ""
+"Una implicita porta di ingresso dei dati deve essere connessa ad una "
+"implicita porta di uscita dei dati"
+
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
+msgstr ""
+"Una implicita porta di uscita dei dati deve essere connessa ad una implicita "
+"porta di ingresso dei dati"
+
+msgid "Import from XML"
+msgstr "Importa da XML"
+
+msgid "Initial computing method"
+msgstr "Metodo di calcolo iniziale"
+
+msgid "Input"
+msgstr "Ingresso"
+
+msgid "Insert"
+msgstr "Inserisci"
+
+msgid "Integer"
+msgstr "Intero"
+
+msgid "Integrator absolute tolerance"
+msgstr "Tolleranza assoluta dell'integratore"
+
+msgid "Integrator relative tolerance"
+msgstr "Tolleranza relativa dell'integratore"
+
+msgid "Italic"
+msgstr "Corsivo"
+
+msgid "Left"
+msgstr "A sinistra"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+
+msgid "Link Style"
+msgstr "Stile del collegamento"
+
+msgid "Load as palette"
+msgstr "Carica come pannello"
+
+msgid "Loading diagram"
+msgstr "Caricamento del diagramma"
+
+msgid "Loading palettes"
+msgstr "Caricamento dei pannelli in corso"
+
+msgid "Loading the block"
+msgstr "Caricamento del blocco in corso"
+
+msgid "Loading user defined palettes"
+msgstr "Caricamento in corso dei pannelli definiti dall'utente"
+
+msgid "Lookup Tables"
+msgstr "Tabelle di controllo"
+
+msgid "Masked SuperBlock editor"
+msgstr ""
+
+msgid "Mathematical Operations"
+msgstr "Operazioni matematiche"
+
+msgid "Matrix"
+msgstr "Matrici"
+
+msgid "Max integration time interval"
+msgstr "Intervallo di tempo di integraione massima"
+
+msgid "Middle"
+msgstr "Al centro"
+
+msgid "Mirror"
+msgstr ""
+
+msgid "Modelica initialize"
+msgstr "Inizializza modelica"
+
+msgid "Modelica settings"
+msgstr "Impostazioni di Modelica"
+
+msgid "Move Down"
+msgstr "Sposta in basso"
+
+msgid "Move Up"
+msgstr "Sposta su"
+
+msgid "New"
+msgstr "_Nuovo"
+
+msgid "New diagram"
+msgstr "_New diagram"
+
+msgid "New palette"
+msgstr "Nuova tavolozza"
+
+msgid "No block selected"
+msgstr "Nessun blocco selezionato"
+
+msgid "No trace nor debug printing"
+msgstr ""
+
+msgid "Normal 100%"
+msgstr "Normale 100%"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Open"
+msgstr "_Apri"
+
+msgid "Palette browser"
+msgstr "Selettore del pannello"
+
+msgid "Palette name"
+msgstr "Nome della tavolozza"
+
+msgid "Palettes"
+msgstr "Pannelli"
+
+msgid "Parameter embedding"
+msgstr ""
+
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+msgid "Please take a look into the Scilab console"
+msgstr "Controllare la console di Scilab"
+
+msgid "Port & Subsystem"
+msgstr ""
+
+msgid ""
+"Port is already connected, please select an unconnected port or a valid link."
+msgstr ""
+"La porta è già connessa,selezionare una porta non connessa o un collegamento "
+"valido."
+
+msgid "Print"
+msgstr "Stam_pa"
+
+msgid "Quit Xcos"
+msgstr "Uscire da Xcos"
+
+msgid "Real time scaling"
+msgstr "Riduzione in tempo reale"
+
+msgid "Recent Files"
+msgstr "File _recenti"
+
+msgid "Reduced"
+msgstr "Ridotto"
+
+msgid "Region to superblock"
+msgstr ""
+
+msgid "Relaxed parameters"
+msgstr "Parametri rilassati"
+
+msgid "Relaxed variables"
+msgstr "Variabili rilassate"
+
+msgid "Remove"
+msgstr "Rimuovi"
+
+msgid "Resize"
+msgstr "Ridimensiona"
+
+msgid "Right"
+msgstr "A destra"
+
+msgid "Rotate"
+msgstr "_Ruota"
+
+msgid "Rows"
+msgstr "Righe"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "Save as"
+msgstr "Sal_va come"
+
+msgid "Save as interface function"
+msgstr "Salva come funzione di interfaccia"
+
+msgid "Save block GUI"
+msgstr "Salva la GUI del blocco"
+
+msgid "Saving diagram"
+msgstr "Salvataggio del diagramma"
+
+msgid "Scicos file"
+msgstr "Un file di Scicos"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Il modulo '%s' di Scilab non è installato.\n"
+
+msgid "Scilab file"
+msgstr "Un file di Scilab"
+
+msgid "Set Context"
+msgstr "Imposta il _contesto"
+
+msgid "Set Parameters"
+msgstr "Imposta i _parametri"
+
+msgid "Set block parameters"
+msgstr "Impostare i parametri del blocco"
+
+msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
+msgstr ""
+
+msgid "Setting up Modelica Compiler."
+msgstr ""
+
+msgid "Setup"
+msgstr "Con_figurazione"
+
+msgid "Show parent diagram"
+msgstr "Mostra il diagramma padre"
+
+msgid "Show/Hide shadow"
+msgstr "Mostra/Nascondi l'ombra"
+
+msgid "Signal Processing"
+msgstr "Elaborazione dei segnali"
+
+msgid "Signal Routing"
+msgstr "Instradamento del segnale"
+
+msgid "Simulation"
+msgstr "_Simulazione"
+
+msgid "Simulation in progress"
+msgstr "Simulazione in corso"
+
+msgid "Sinks"
+msgstr "Stabilizzatori"
+
+msgid "Solve"
+msgstr ""
+
+msgid "Solver"
+msgstr "Risolutore"
+
+msgid "Solver 0 (CVODE) - 100 (IDA)"
+msgstr "Risolutore 0 (CVODE) - 100 (IDA)"
+
+msgid "Sources"
+msgstr "Fonti"
+
+msgid "Start"
+msgstr "_Inizia"
+
+msgid "Stop"
+msgstr "_Ferma"
+
+msgid "Straight"
+msgstr "Diritto"
+
+msgid "Superblock mask"
+msgstr "Maschera del superblocco"
+
+msgid "Text Color"
+msgstr "Colore del testo"
+
+msgid "Text settings"
+msgstr "Impostazioni del testo"
+
+msgid "The Scicos libraries are not loaded"
+msgstr "Le librerie di Scicos non sono caricate"
+
+msgid "The Scilab Consortium (DIGITEO)"
+msgstr "Il Consorzio Scilab (DIGITEO)"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"Il file %s non esiste\n"
+" Si vuole crearlo?"
+
+msgid ""
+"The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
+"default one."
+msgstr ""
+"Il file di configurazione dell'utente (xcos.xml) non è valido.<BR> Passaggio "
+"a quello predefinito in corso."
+
+msgid ""
+"The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
+"to the default one."
+msgstr ""
+"Il file di configurazione della tavolozza dell'utente (xcos.xml) non è "
+"valido.<BR> Passaggio a quello predefinito in corso."
+
+msgid "Thermo-Hydraulics"
+msgstr "Termo-Idraulica"
+
+msgid "Tolerance on time"
+msgstr ""
+
+msgid "Tools"
+msgstr "_Strumenti"
+
+msgid "Top"
+msgstr "In alto"
+
+msgid "Unable to delete "
+msgstr "Impossibile eliminare "
+
+msgid "Unable to import %s .\n"
+msgstr "Impossibile importare %s .\n"
+
+msgid "Unable to load block from %s ."
+msgstr "Impossibile caricare un blocco da %s."
+
+msgid ""
+"Unable to load the Batik library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Impossibile caricare la libreria Batik. \n"
+"Versione attesa %s ; versione ottenuta %s."
+
+msgid ""
+"Unable to load the hdf5-java (jhdf5) library. \n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Impossibile caricare la libreria hdf5-java (jhdf5). \n"
+"Versione attesa %s ; versione ottenuta %s."
+
+msgid ""
+"Unable to load the jgraphx library.\n"
+"Expecting version %s ; Getting version %s ."
+msgstr ""
+"Impossibile caricare la libreria jgraphx. \n"
+"Versione attesa %s ; versione ottenuta %s."
+
+msgid "Unable to load the native HDF5 library."
+msgstr "Impossibile caricare la libreria nativa HDF5"
+
+#, c-format
+msgid "Unable to open %s"
+msgstr "Impossibile aprire %s"
+
+#, c-format
+msgid "Unable to simulate %s"
+msgstr "Impossibile simulare %s"
+
+msgid "Unknown Diagram Version : "
+msgstr "Versione di diagramma sconosciuta : "
+
+msgid "Unknowns"
+msgstr "Sconosciuti"
+
+msgid "Unknowns not equals to Equations"
+msgstr "Sconosciuti non sono uguali ad Equazioni"
+
+msgid "Untitled"
+msgstr "Senza titolo"
+
+msgid "User-Defined"
+msgstr "Definito dall'utente"
+
+msgid "User-Defined Functions"
+msgstr "Funzioni definite dall'utente"
+
+msgid "Values"
+msgstr "Valori"
+
+msgid "Variable descriptions"
+msgstr "Descrizioni di variabile"
+
+msgid "Variable names"
+msgstr "Nomi di variabile"
+
+msgid "Variable settings"
+msgstr "Impostazioni di variabile"
+
+msgid "Vertical"
+msgstr "Verticale"
+
+msgid "View"
+msgstr "_Visualizza"
+
+msgid "View in Scicos"
+msgstr "Visualizza in Scicos"
+
+msgid "Viewport"
+msgstr "Area visibile"
+
+msgid "Will try to continue..."
+msgstr "Si tenterà di proseguire..."
+
+msgid "WinTitle"
+msgstr ""
+
+msgid "Window title"
+msgstr "Titolo della finestra"
+
+msgid ""
+"Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
+msgstr ""
+"L'argomento in ingresso \"%s\" è sbagliato: nodo non valido, usare "
+"'xcosPalDisable' invece.\n"
+
+msgid "Wrong input argument \"%s\": invalid tree path.\n"
+msgstr ""
+"L'argomento in ingresso \"%s\" è sbagliato: percorso dell'albero non "
+"valido.\n"
+
+msgid "Xcos"
+msgstr "Xcos"
+
+msgid "Xcos Demos"
+msgstr "_Demo di Xcos"
+
+msgid "Xcos Help"
+msgstr "A_iuto di Xcos"
+
+msgid "Xcos error"
+msgstr "Errore di Xcos"
+
+msgid "Xcos file"
+msgstr "Un file di Xcos"
+
+msgid ""
+"You may enter here scilab instructions to define symbolic parameters used in "
+"block definitions using Scilab instructions.<br/>These instructions are "
+"evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
+"diagram is loaded.)"
+msgstr ""
+
+msgid "Zero crossing detection"
+msgstr ""
+
+msgid "comment"
+msgstr ""
+
+msgid "control port must be connected to command port"
+msgstr "una porta di controllo deve essere connessa a una porta di comando"
+
+msgid "fixed"
+msgstr ""
+
+msgid "id"
+msgstr ""
+
+msgid "initial"
+msgstr "iniziale"
+
+msgid "kind"
+msgstr "tipo"
+
+msgid ""
+"lets the user change the parameters and call the solver without regenerating "
+"code."
+msgstr ""
+"permette all'utente di cambiare i parametri e chiamare il risolutore senza "
+"rigenerare il codice."
+
+msgid "max"
+msgstr "massimo"
+
+msgid "maximum step size (0 means no limit)"
+msgstr "dimensione massima del passo (0 significa nessun limite)"
+
+msgid "min"
+msgstr "minimo"
+
+msgid "model is not valid"
+msgstr "il modello non è valido"
+
+msgid "name"
+msgstr ""
+
+msgid "nominal"
+msgstr "nominale"
+
+msgid "selected"
+msgstr "selezionato"
+
+msgid "weight"
+msgstr "peso"

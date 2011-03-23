@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1992 - INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graduate">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graduate</refname>
+    <refpurpose> pretty axis graduations</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xi,xa,np]=graduate( xmi, xma,n1,n2)
+[xi,xa,np]=graduate( xmi, xma)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>xmi,xma</term>
+        <listitem>
+          <para>real scalars</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n1, n2</term>
+        <listitem>
+          <para>integers with default values 3,10</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xi, xa</term>
+        <listitem>
+          <para>real scalars</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>np</term>
+        <listitem>
+          <para>integer</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    graduate looks for the minimum interval <literal>[xi,xa]</literal> and a number of tics 
+    <literal>np</literal> such that:</para>
+    <para>
+      <literal>xi &lt;= xmi &lt;= xma &lt;= xa</literal>
+    </para>
+    <para><literal>xa - xi / np  =  k(10^n)</literal>,<literal>k</literal> in <literal>[1 3 5]</literal>  for an integer <literal>n</literal></para>
+    <para>
+      <literal>n1 &lt; np &lt; n2</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+y=(0:0.33:145.78)';
+clf();plot2d1('enn',0,y)
+[ymn,ymx,np]=graduate(min(y),max(y))
+rect=[1,ymn,prod(size(y)),ymx];
+clf();plot2d1('enn',0,y,1,'011',' ',rect,[10,3,10,np])
+]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xsetech">xsetech</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer 1992;   </para>
+  </refsection>
+</refentry>

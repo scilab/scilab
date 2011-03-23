@@ -12,8 +12,15 @@
 // =============================================================================
 if (getscilabmode() <> 'NWNI') then
 	load(SCI+"/modules/graphics/macros/lib");
+	load(SCI+"/modules/graphics/macros/datatips/lib");
 end
 
+// check bug 7575 on Windows
+// =============================================================================
+if getos() == "Windows" then
+  exec(SCI+"/modules/graphics/etc/nvidia_bug_7575.sce", -1);
+  exec(SCI+"/modules/graphics/etc/intel_bug_7526.sce", -1);
+end
 
 // Add demo
 // =============================================================================

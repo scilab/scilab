@@ -20,7 +20,7 @@ public class GuiManagement {
    * Constructor
    */
  protected GuiManagement() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**
@@ -30,15 +30,6 @@ public class GuiManagement {
    */
  static void setScilabLines(int nbRows, int nbCols) {
     GuiManagementJNI.setScilabLines(nbRows, nbCols);
-  }
-
-  
- /**
-   * Get SCIHOME variable from Scilab
-   * @return SCIHOME value
-   */
-public static String getSCIHOME() {
-    return GuiManagementJNI.getSCIHOME();
   }
 
 }

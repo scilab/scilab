@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 1988 - INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sd2sci" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sd2sci</refname>
+
+    <refpurpose>estrutura gr_menu para conversor de instrução
+    Scilab</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>txt=sd2sci(sd [,sz [,orig]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sd</term>
+
+        <listitem>
+          <para>estrutura de dados construída por gr_menu. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sz</term>
+
+        <listitem>
+          <para>vetor de números ou strings com dois componentes, fornece os
+          fatores de zoom x e y </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orig</term>
+
+        <listitem>
+          <para>vetor de números ou strings, fornece o vetor translação da
+          origem</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dada uma estrutura de dados <literal>sd</literal> gerada por
+    <literal>gr_menu</literal> <literal>sd2sci</literal> forma um vetor de
+    instruções do Scilab correspondente ao gráfico editado por
+    <literal>gr_menu</literal>.</para>
+
+    <para>Os parâmetros opcionais <literal>sz</literal> e
+    <literal>orig</literal> permitem ampliar e deslocar o gráfico
+    inicial.</para>
+
+    <para>Se <literal>sz</literal> ou <literal>orig</literal> são fornecidos
+    por strings, as instruções geradas são relativas a expressões
+    formais.</para>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="execstr">execstr</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Serge Steer INRIA 1988</para>
+  </refsection>
+</refentry>

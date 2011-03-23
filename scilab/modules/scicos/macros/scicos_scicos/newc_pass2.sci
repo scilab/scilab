@@ -20,6 +20,9 @@
 //
 
 function cpr=newc_pass2(bllst,connectmat,clkconnect,cor,corinv)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // cor    ; correspondance table with initial block ordering
 //
 // bllst: list with nblk elts where nblk denotes number of blocks.

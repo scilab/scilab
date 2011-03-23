@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_isa">
+  <refnamediv>
+    <refname>isa (Matlab function)</refname>
+    <refpurpose>Detect an object of a given type</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <para>There is no equivalent function for Matlab <emphasis role="strong">isa</emphasis>
+    function in Scilab but it can be replaced by equivalent syntaxes as shown is examples.</para>
+    
+    <table>
+      <caption/>
+      <tbody>
+        <tr>
+          <td>
+            <para><emphasis role="strong">Equivalence table</emphasis></para>
+          </td>
+        </tr>
+        <tr>
+          <td><para> Matlab </para></td>
+          <td><para> Scilab </para></td>
+        </tr>
+        <tr>
+          <td><para> a = isa(x,"logical") </para></td>
+          <td><para>a = type(x)==4; </para></td>
+        </tr>
+        <tr>
+          <td><para> b = isa(x,"char") </para></td>
+          <td><para>b = type(x)==10; </para></td>
+        </tr>
+        <tr>
+          <td><para> c = isa(x,"numeric") </para></td>
+          <td><para>c = or(type(x)==[1,5,8]); </para></td>
+        </tr>
+        <tr>
+          <td><para> d = isa(x,"int8") </para></td>
+          <td><para>d = typeof(x)=='int8'; </para></td>
+        </tr>
+        <tr>
+          <td><para> e = isa(x,"uint8") </para></td>
+          <td><para>e = typeof(x)=='uint8'; </para></td>
+        </tr>
+        <tr>
+          <td><para> f = isa(x,"int16") </para></td>
+          <td><para>f = typeof(x)=="int16"; </para></td>
+        </tr>
+        <tr>
+          <td><para> g = isa(x,"uint16") </para></td>
+          <td><para>g = typeof(x)=="uint16"; </para></td>
+        </tr>
+        <tr>
+          <td><para> h = isa(x,"int32") </para></td>
+          <td><para>h = typeof(x)=="int32"; </para></td>
+        </tr>
+        <tr>
+          <td><para> k = isa(x,"uint32") </para></td>
+          <td><para>k = typeof(x)=="uint32"; </para></td>
+        </tr>
+        <tr>
+          <td><para> l = isa(x,"single") </para></td>
+          <td><para>l = type(x)==1; </para></td>
+        </tr>
+        <tr>
+          <td><para> m = isa(x,"double") </para></td>
+          <td><para>m = type(x)==1; </para></td>
+        </tr>
+        <tr>
+          <td><para> n = isa(x,"cell") </para></td>
+          <td><para>n = typeof(x)=="ce"; </para></td>
+        </tr>
+        <tr>
+          <td><para> o = isa(x,"struct") </para></td>
+          <td><para>o = typeof(x)=="st"; </para></td>
+        </tr>
+        <tr>
+          <td><para> p = isa(x,"function_handle") </para></td>
+          <td><para>p = type(x)==13; </para></td>
+        </tr>
+        <tr>
+          <td><para> q = isa(x,"sparse") </para></td>
+          <td><para>q = type(x)==5; </para></td>
+        </tr>
+        <tr>
+          <td><para> r = isa(x,"lti") </para></td>
+          <td><para>r = typeof(x)=="state-space"; </para></td>
+        </tr>
+      </tbody>
+    </table>
+  </refsection>
+</refentry>

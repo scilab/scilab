@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class specialized in drawing ticks  
  * 
  * This file must be used under the terms of the CeCILL.
@@ -67,6 +68,12 @@ public:
    * Get the initial number of ticks (with no reduction) that will be drawn
    */
   int getInitNbTicks(void);
+
+  /**
+   * Get the initial number of subticks (with no reduction) that will be drawn per
+   * major tick graduation. The sub_tics property for axes is found by querying this function.
+   */
+  int getInitNbSubticksPerGrad(void);
 
   /**
    * Get the initial ticks positions and labels (with no reduction) that will be drawn.

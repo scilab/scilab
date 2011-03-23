@@ -20,6 +20,9 @@
 //
 
 function XcosMenuOpen()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 //
 //** Open a saved diagram
@@ -50,7 +53,7 @@ function XcosMenuOpen()
 
   inactive_windows = close_inactive_windows(inactive_windows, super_path);
 
-  xselect();
+  show_window();
 
   [ok, scs_m, %cpr, edited] = do_load(); //** this is the function that really load the diagram
 

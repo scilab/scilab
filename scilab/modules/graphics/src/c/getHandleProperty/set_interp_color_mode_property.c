@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,14 +32,23 @@
 int set_interp_color_mode_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 	int b =  (int)FALSE;
-	if( sciGetEntityType(pobj) != SCI_POLYLINE )
+	if (sciGetEntityType(pobj) != SCI_POLYLINE)
 	{
 		Scierror(999, _("'%s' property does not exist for this handle.\n"),"interp_color_mode");
 		return SET_PROPERTY_ERROR ;
 	}
 
 	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "interp_color_mode");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+	if (b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+
+	if (b == TRUE)
+	{
+		if (sciGetInterpVector(pobj) == NULL)
+		{
+			Scierror(999, _("You must first specify an %s for this object.\n"), "interp_color_vector");
+			return SET_PROPERTY_ERROR;
+		}
+	}
 
 	pPOLYLINE_FEATURE (pobj)->isinterpshaded = b;
 	return SET_PROPERTY_SUCCEED;

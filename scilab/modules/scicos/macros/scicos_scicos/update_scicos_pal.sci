@@ -20,6 +20,9 @@
 //
 
 function scicos_pal=update_scicos_pal(path,name,fname)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   scicos_pal;
 
   inde=find(scicos_pal(:,1)==name);
@@ -34,7 +37,7 @@ function scicos_pal=update_scicos_pal(path,name,fname)
       return;
     else
       scicos_pal(inde,2)=fname
-      if MSDOS then 
+      if getos() == 'Windows' then 
 	instr='del '+TMPDIR+'\'+name+'.pal'
       else
 	instr='\rm -f '+TMPDIR+'/'+name+'.pal'

@@ -14,7 +14,7 @@ function [N,B,C]=pol2des(Ds)
 // Ds = C (sN-Eye)^-1 B
 //!
 if type(Ds)==1 then Ds=Ds+0*poly(0,'s')*Ds;end
-dg=maxi(degree(Ds))+1;
+dg=max(degree(Ds))+1;
 [nout,nin]=size(Ds);
 [Sl]=markp2ss(coeff(Ds),dg,nout,nin);
 N=Sl(2);B=-Sl(3);C=Sl(4)

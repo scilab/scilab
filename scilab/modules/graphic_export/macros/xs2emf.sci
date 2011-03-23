@@ -43,7 +43,7 @@ function xs2emf(figureNumber, fileName, orientation)
 		orientation = "portrait";
 	end
 	
-	if ~MSDOS then
+	if getos() <> 'Windows' then
     // os is a unix one
 	  error(msprintf(gettext("%s: EMF format only available under Microsoft Windows OS.\n"), "xs2emf"));
 	  return;

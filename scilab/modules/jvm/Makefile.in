@@ -76,10 +76,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
@@ -117,6 +118,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscijvm_la_etcdir)" \
 	"$(DESTDIR)$(libscijvm_la_rootdir)" \
 	"$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" \
+	"$(DESTDIR)$(libscijvm_la_xmldir)" \
 	"$(DESTDIR)$(libscijvm_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscijvm_disable_la_LIBADD =
@@ -129,7 +131,6 @@ libscijvm_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 libscijvm_la_DEPENDENCIES =  \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/fileio/libscifileio.la \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_1 = libscijvm_la-InitializeJVM.lo \
@@ -173,7 +174,7 @@ LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 SOURCES = $(libscijvm_disable_la_SOURCES) $(libscijvm_la_SOURCES)
 DIST_SOURCES = $(libscijvm_disable_la_SOURCES) $(libscijvm_la_SOURCES)
 DATA = $(libscijvm_la_etc_DATA) $(libscijvm_la_root_DATA) \
-	$(libscijvm_la_sci_gateway_DATA)
+	$(libscijvm_la_sci_gateway_DATA) $(libscijvm_la_xml_DATA)
 HEADERS = $(libscijvm_la_include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -225,6 +226,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -247,9 +249,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -267,6 +270,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -304,6 +308,10 @@ OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_FLAGS = @OPENMPI_FLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -332,8 +340,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -354,6 +365,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -428,7 +440,7 @@ modulename = jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscijvm_la_root_DATA = license.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
@@ -448,13 +460,17 @@ libscijvm_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscijvm-disable.la $(am__append_1)
 @GUI_TRUE@USEANT = 1
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) \
+libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
 	-lpthread $(XML_LIBS) $(am__append_2)
-libscijvm_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscijvm_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
+
+#### jvm :  dtd files ####
+libscijvm_la_xmldir = $(mydatadir)/xml
+libscijvm_la_xml_DATA = xml/classpath.dtd  xml/librarypath.dtd
 
 #### jvm : include files ####
 libscijvm_la_includedir = $(pkgincludedir)
@@ -550,7 +566,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -928,6 +944,26 @@ uninstall-libscijvm_la_sci_gatewayDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscijvm_la_sci_gatewaydir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" && rm -f $$files
+install-libscijvm_la_xmlDATA: $(libscijvm_la_xml_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscijvm_la_xmldir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_xmldir)"
+	@list='$(libscijvm_la_xml_DATA)'; test -n "$(libscijvm_la_xmldir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscijvm_la_xmldir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscijvm_la_xmldir)" || exit $$?; \
+	done
+
+uninstall-libscijvm_la_xmlDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscijvm_la_xml_DATA)'; test -n "$(libscijvm_la_xmldir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscijvm_la_xmldir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscijvm_la_xmldir)" && rm -f $$files
 install-libscijvm_la_includeHEADERS: $(libscijvm_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscijvm_la_includedir)" || $(MKDIR_P) "$(DESTDIR)$(libscijvm_la_includedir)"
@@ -1036,7 +1072,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscijvm_la_etcdir)" "$(DESTDIR)$(libscijvm_la_rootdir)" "$(DESTDIR)$(libscijvm_la_sci_gatewaydir)" "$(DESTDIR)$(libscijvm_la_xmldir)" "$(DESTDIR)$(libscijvm_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1090,7 +1126,8 @@ info-am:
 install-data-am: install-data-local install-libscijvm_la_etcDATA \
 	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA \
-	install-libscijvm_la_sci_gatewayDATA
+	install-libscijvm_la_sci_gatewayDATA \
+	install-libscijvm_la_xmlDATA
 
 install-dvi: install-dvi-am
 
@@ -1140,7 +1177,7 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-libscijvm_la_includeHEADERS \
 	uninstall-libscijvm_la_rootDATA \
 	uninstall-libscijvm_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscijvm_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 .MAKE: check-am install-am install-strip
 
@@ -1156,7 +1193,8 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	install-libscijvm_la_etcDATA \
 	install-libscijvm_la_includeHEADERS \
 	install-libscijvm_la_rootDATA \
-	install-libscijvm_la_sci_gatewayDATA install-man install-pdf \
+	install-libscijvm_la_sci_gatewayDATA \
+	install-libscijvm_la_xmlDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
 	installdirs maintainer-clean maintainer-clean-generic \
@@ -1166,11 +1204,11 @@ uninstall-am: uninstall-libscijvm_la_etcDATA \
 	uninstall-libscijvm_la_includeHEADERS \
 	uninstall-libscijvm_la_rootDATA \
 	uninstall-libscijvm_la_sci_gatewayDATA \
-	uninstall-pkglibLTLIBRARIES
+	uninstall-libscijvm_la_xmlDATA uninstall-pkglibLTLIBRARIES
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1218,7 +1256,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1237,6 +1275,13 @@ clean-macros:
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
+
 all-local: $(TARGETS_ALL)
 
 .sci.bin:
@@ -1248,6 +1293,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1322,6 +1373,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \
@@ -1344,9 +1396,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

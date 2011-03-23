@@ -66,8 +66,10 @@ c     .     every thing can be inserted in a list
       elseif(fin.eq.3) then
 c     .  extraction
          if(icall.ne.4) then
-            if(rhs.eq.1) then
+            if(rhs.le.1) then
 c     .     a() -->a
+               if (rhs.eq.0) rhs=rhs+1
+               call ref2val
                goto 81
             endif
             nt=1

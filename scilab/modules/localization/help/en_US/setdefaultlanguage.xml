@@ -17,10 +17,6 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-08-02 13:09:22 +0200 (sam., 02 aoÃ»t 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>setdefaultlanguage</refname>
@@ -35,7 +31,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -80,8 +76,8 @@ setdefaultlanguage('')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="getlanguage">getlanguage</link></member>

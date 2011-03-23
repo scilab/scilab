@@ -12,7 +12,7 @@
     <synopsis>[x] = taucs_chsolve(C_ptr, b [, A])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C_ptr  </term>
@@ -61,8 +61,8 @@
     see the example section of <link linkend="taucs_chfact">taucs_chfact</link>
   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chfact">taucs_chfact</link>

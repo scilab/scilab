@@ -23,7 +23,7 @@
     <synopsis>[P,L,U,Q]=luget(hand)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hand</term>
@@ -81,8 +81,8 @@ clean(P*L*U*Q-A)
 ludel(hand)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

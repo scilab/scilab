@@ -16,7 +16,7 @@ modulename=graphic_export
 
 #### graphic_export : Conf files ####
 libscigraphic_export_la_rootdir = $(mydatadir)
-libscigraphic_export_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphic_export_la_root_DATA =  license.txt version.xml
 
 #### graphic_export : init scripts ####
 libscigraphic_export_la_etcdir = $(mydatadir)/etc
@@ -75,7 +75,7 @@ INCLUDE_FLAGS = $(libscigraphic_export_la_CPPFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscigraphic_export_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigraphic_export_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 GIWS_WRAPPERS= src/jni/FileExporter.giws.xml \
 src/jni/GL2PSToJOGL.giws.xml \
@@ -111,7 +111,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscigraphic_export.la 
 endif
 
-libscigraphic_export_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscigraphic_export_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### graphic_export : gateway declaration ####
 libscigraphic_export_la_sci_gatewaydir = $(mydatadir)/sci_gateway

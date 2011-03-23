@@ -26,7 +26,7 @@ s=variance(x,'c') or m=variance(x,2)
 </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -86,8 +86,8 @@ s=variance(x,'r')
 s=variance(x,'c')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mtlb_var">mtlb_var</link>

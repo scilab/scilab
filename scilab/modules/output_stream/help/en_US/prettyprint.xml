@@ -35,7 +35,7 @@
   </refsynopsisdiv>
   
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
 	<term>a:</term>
@@ -117,14 +117,15 @@ xstring(0.2,0.2,prettyprint(G*s-1)); // Show a polynom through a LaTeX represent
  ]]></programlisting>
   </refsection>
   
-  <refsection>
-    <title>See also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="math_rendering_features_in_graphic">math_rendering_features_in_graphic</link></member>
       <member><link linkend="xtitle">xtitle</link></member>
       <member><link linkend="axes_properties">axes_properties</link></member>
       <member><link linkend="label_properties">label_properties</link></member>
       <member><link linkend="legend_properties">legend_properties</link></member>
+      <member><link linkend="sci2exp">sci2exp</link></member>
       <member><link linkend="text_properties">text_properties</link></member>
       <member><link linkend="xstringb">xstringb</link></member>
       <member><link linkend="xstringl">xstringl</link></member>

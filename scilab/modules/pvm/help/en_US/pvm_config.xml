@@ -23,7 +23,7 @@
     <synopsis>res = pvm_config()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>res</term>
@@ -99,8 +99,8 @@ if pvm_start()==0 then
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_start">pvm_start</link>

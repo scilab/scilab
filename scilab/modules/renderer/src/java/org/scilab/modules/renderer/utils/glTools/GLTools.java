@@ -49,7 +49,9 @@ public final class GLTools {
 		 (short) 0x0F0F, // 4 blanks, 4 solids, 4 blanks, 4 solidS
 		 (short) 0x1FC2, // 3 blanks, 3 solids, 3 blnaks, 7 solids
 		 (short) 0x3FC9, // 2 blanks, 8 solids, 2 blanks, 1 solid, 2 blanks, 1 solid
-		 (short) 0x3FC6  // 3 blanks, 8 solids, 3 blanks, 2 solids
+		 (short) 0x3FC6, // 3 blanks, 8 solids, 3 blanks, 2 solids
+		 (short) 0x5555, // (1 blanks, 1 solids) x 8
+		 (short) 0x3333, // (2 blanks, 2 solids) x 4
 		};
 	
 	private static final int VIEWPORT_LENGTH = 4;

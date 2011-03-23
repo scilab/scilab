@@ -1,0 +1,87 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-11-18 12:44+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr "%s: Non è sviluppata in questa modalità.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr ""
+"%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Questa caratteristica non è stata sviluppata.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"matrice.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
+
+msgid "File or Directory"
+msgstr "File o Directory"
+
+msgid "Graphics handle field"
+msgstr "Campo del gestore della grafica"
+
+msgid "Scilab Command"
+msgstr "Comando di Scilab"
+
+msgid "Scilab Function"
+msgstr "Funzione di Scilab"
+
+msgid "Scilab Macro"
+msgstr "Macro di Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variabile di Scilab"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Digitare '%s' o '%s' per tornare al prompt di livello standard.\n"
+"\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
+"continuare]"

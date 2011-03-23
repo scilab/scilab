@@ -12,10 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <stdio.h>
-#include "ExceptionMessage.h"
-#endif
 /*--------------------------------------------------------------------------*/
 #include "gw_differential_equations6.h"
 #include "callFunctionFromGateway.h"

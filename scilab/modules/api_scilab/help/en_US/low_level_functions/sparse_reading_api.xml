@@ -31,11 +31,11 @@
 		<synopsis>SciErr getSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal)</synopsis>
 		<synopsis>SciErr getComplexSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)</synopsis>
 		<para>Named variable profile:</para>
-		<synopsis>SciErr readNamedSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
-		<synopsis>SciErr readNamedComplexSparseMatrix(void* _pvCtx, char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
+		<synopsis>SciErr readNamedSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal)</synopsis>
+		<synopsis>SciErr readNamedComplexSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos, double* _pdblReal, double* _pdblImg)</synopsis>
 	</refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
 		<variablelist>
             <varlistentry>
                 <term>_pvCtx</term>
@@ -106,6 +106,7 @@
                 <listitem>
                     <para>
                         Return address of real data array (size: _iCols * _iRows)
+                        For "Named" function, _pdblReal must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -114,6 +115,7 @@
                 <listitem>
                     <para>
                         Return address of imaginary data array (size: _iCols * _iRows)
+                        For "Named" function, _pdblImg must be allocated before calling function.
                     </para>
                 </listitem>
             </varlistentry>

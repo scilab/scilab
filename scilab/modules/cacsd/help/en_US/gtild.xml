@@ -24,7 +24,7 @@
 Gt=gtild(G,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -103,8 +103,8 @@ Gt=gtild(Gss);    //..in state-space
 Gt2=clean(ss2tf(Gt));clean(Gt1-Gt2)  //Check
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

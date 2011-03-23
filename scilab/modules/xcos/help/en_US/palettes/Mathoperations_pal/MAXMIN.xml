@@ -24,14 +24,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MAXMIN">
   <refnamediv>
     <refname>MAXMIN</refname>
-    <refpurpose>Max and Min</refpurpose>
+    <refpurpose>Maximum or minimum value of vectors's elements</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/MAXMIN.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/MAXMIN.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MAXMIN">Max and Min</link>
+          <link linkend="MAXMIN">Maximum or minimum value of vectors's elements</link>
         </para>
       </listitem>
       <listitem>
@@ -78,6 +78,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_MAXMIN">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_MAXMIN">Authors</xref>
             </para>
           </listitem>
@@ -98,11 +103,37 @@
   <refsection id="Description_MAXMIN">
     <title>Description</title>
     <para>
-The MinMax block outputs either the minimum or the maximum element or
-elements of the inputs. You can choose the function to apply by
-selecting one of the choices from the Function parameter list.  
-
-</para>
+      This block finds the minimum/maximum values (parameter <emphasis role="bold">Min or Max</emphasis>) and accepts one or two inputs depending on the parameter <emphasis role="bold">Number of input vectors</emphasis> :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left"><emphasis role="bold">Number of input vectors</emphasis></td>
+        <td align="left"><emphasis role="bold">Input</emphasis></td>
+        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">Vector</td>
+        <td align="left">
+          The input must be a vector and the bloc output is the minimum/maximum value of the elements of its input vector.
+        </td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Scalar</td>
+        <td align="left">The block output is the minimal or maximal scalar.</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Vector</td>
+        <td align="left">
+          The input vectors must have the same size. The block output is a vector with the same size as
+          inputs.The elements of the output vector are the minimum/maximum elements of the corresponding
+          elements of the inputs.
+        </td>
+      </tr>
+    </informaltable>
   </refsection>
   <refsection id="Dialogbox_MAXMIN">
     <title>Dialog box</title>
@@ -207,6 +238,21 @@ selecting one of the choices from the Function parameter list.
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/minmax.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_MAXMIN">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f - Minimum value of vector's element (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="MAX_f">MAX_f - Maximum value of vector's elements (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

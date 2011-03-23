@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function scs_m = do_icon_edit(%pt,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   
   K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
   if K==[] then
@@ -53,7 +56,7 @@ function scs_m = do_icon_edit(%pt,scs_m)
 
   //Create the edition window  
   win=max(winsid())+1;
-  fig=scf(win);xselect();
+  fig=scf(win);show_window();
   fig.axes_size=fig.axes_size*sz(1)/sz(2);
   fig.auto_resize='off';
   ax=gca();
@@ -76,7 +79,7 @@ function scs_m = do_icon_edit(%pt,scs_m)
   end
   clearfun('xstringb3')
   ///remove unused default menus
-  if ~MSDOS then
+  if getos() <> 'Windows' then
     emen='Edit'
   else
     global LANGUAGE

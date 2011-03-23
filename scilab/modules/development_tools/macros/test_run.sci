@@ -1089,7 +1089,7 @@ function st = st_run(st)
     ]
 
     if st.xcos then
-        head = [ head ; "loadScicosLibs();"];
+        head = [ head ; "loadXcosLibs();"];
     end
 
     if st.try_catch then
@@ -1220,22 +1220,24 @@ function st = st_run(st)
 
     if (st.error_output == "check") & (testsuite.error_output == "check") then
 
-	if getos() == "macosx" then
-	    tmp_errfile_info = fileinfo(st.tmp_err);
-	    msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Frameworks/JavaVM.framework/Versions/1.6.0/Home"" instead."
+        if getos() == "Darwin" then
+            tmp_errfile_info = fileinfo(st.tmp_err);
+            msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"" instead."
 
-	    if tmp_file_info<>[] then
-		txt = mgetl(st.tmp_err);
-		txt(txt==msg) = [];
-		mputl(txt, st.tmp_err);
-	    end
-	end
+            if ~isempty(tmp_errfile_info) then
+                txt = mgetl(st.tmp_err);
+                txt(txt==msg) = [];
+                if isempty(txt) then
+                    deletefile(st.tmp_err);
+                end
+            end
+        end
 
         tmp_errfile_info = fileinfo(st.tmp_err);
 
         if ( (tmp_errfile_info <> []) & (tmp_errfile_info(1)<>0) ) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : error_output not empty");
+            st.status = status_set_message(st.status,"failed  : error_output not empty\n     Use ''no_check_error_output'' option to disable this check.");
             st.status = status_set_details(st.status,st_checkthefile(st.tmp_err));
             return;
         end
@@ -1301,7 +1303,7 @@ function st = st_run(st)
     if (st.reference=="check") & (testsuite.reference=="check")  then
         if isempty(fileinfo(st.path_dia_ref)) then
             st.status = status_set_id(st.status,5);
-            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist");
+            st.status = status_set_message(st.status,"failed  : the ref file doesn''t exist\n     Use ''no_check_ref'' option to disable this check.");
             st.status = status_set_details(st.status,st_createthefile(st.path_dia_ref));
             return;
         end
@@ -1415,6 +1417,58 @@ function st = st_run(st)
 
 endfunction
 
+
+// st_checkthefile
+// -----------------------------------------------------------------------------
+
+function msg = st_checkthefile ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Check the following file :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst
+  // Workaround for bug #4827
+  msg(1) = "     Check the following file :"
+  msg(2) = "     - "+filename
+endfunction
+
+
+
+// st_launchthecommand
+// -----------------------------------------------------------------------------
+
+function msg = st_launchthecommand ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Or launch the following command :
+  //     - exec("C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.tst")
+  // Workaround for bug #4827
+  msg(1) = "     Or launch the following command :"
+  msg(2) = "     - exec(""" + filename + """);"
+endfunction
+
+// st_comparethefiles
+// -----------------------------------------------------------------------------
+
+function msg = st_comparethefiles ( filename1 , filename2 )
+  // Returns a 3-by-1 matrix of strings, containing a message such as:
+  //     Compare the following files :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
+  // Workaround for bug #4827
+  msg(1) = "     Compare the following files :"
+  msg(2) = "     - "+filename1
+  msg(3) = "     - "+filename2
+endfunction
+
+// st_createthefile
+// -----------------------------------------------------------------------------
+
+function msg = st_createthefile ( filename )
+  // Returns a 2-by-1 matrix of strings, containing a message such as:
+  //     Add or create the following file :
+  //     - C:\path\scilab\modules\optimization\tests\unit_testseldermeadeldermead_configure.dia.ref
+  // Workaround for bug #4827
+  msg(1) = "     Add or create the following file : "
+  msg(2) = "     - "+filename
+endfunction
 
 // st_checkthefile
 // -----------------------------------------------------------------------------
@@ -1703,7 +1757,11 @@ function testsuite_run(testsuite)
 
         test = st_run(test);
 
-        printf("%s \n",test.status.message);
+        msg = sprintf(test.status.message);
+        printf("%s \n", msg(1));
+        for kline = 2:size(msg, "*")
+          printf(part(" ", 1:62) + "%s \n", msg(2));
+        end
 
         // Recencement des tests
 

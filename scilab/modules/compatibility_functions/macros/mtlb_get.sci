@@ -11,7 +11,7 @@ function v=mtlb_get(H,property)
 
 [lhs,rhs]=argn()
 win=xget('window')
-xset('window',h)
+xset('window',H)
 if rhs==1 then
 else
   v=[]

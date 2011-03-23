@@ -23,12 +23,12 @@ r = wavread("SCI/modules/sound/demos/chimes.wav","size");
 if r <> [2 13921] then pause,end
 
 [yref,FsRef,bitsRef]= wavread("SCI/modules/sound/demos/chimes.wav");
-wavwrite(yref,FsRef,TMPDIR+'chimes.wav');
+wavwrite(yref,FsRef,TMPDIR+'/chimes.wav');
 
-r = wavread(TMPDIR+'chimes.wav',"size");
+r = wavread(TMPDIR+'/chimes.wav',"size");
 if r <> [2 13921] then pause,end
 
-[y,Fs,bits]= wavread(TMPDIR+'chimes.wav');
+[y,Fs,bits]= wavread(TMPDIR+'/chimes.wav');
 if yref <> y then pause,end;
 if FsRef <> Fs then pause,end;
 if bitsRef <> bits then pause,end;
@@ -37,12 +37,12 @@ r = wavread("SCI/modules/sound/tests/nonreg_tests/bug_1926.wav","size");
 if r <> [2 11026] then pause,end
 
 [yref,FsRef,bitsRef]= wavread("SCI/modules/sound/tests/nonreg_tests/bug_1926.wav");
-wavwrite(yref,FsRef,TMPDIR+'bug_1926.wav');
+wavwrite(yref,FsRef,TMPDIR+'/bug_1926.wav');
 
-r = wavread(TMPDIR+'bug_1926.wav',"size");
+r = wavread(TMPDIR+'/bug_1926.wav',"size");
 if r <> [2 11026] then pause,end
 
-[y,Fs,bits]= wavread(TMPDIR+'bug_1926.wav');
+[y,Fs,bits]= wavread(TMPDIR+'/bug_1926.wav');
 if yref <> y then pause,end;
 if FsRef <> Fs then pause,end;
 if bitsRef <> bits then pause,end;

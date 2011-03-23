@@ -20,6 +20,9 @@
 //
 
 function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** default call inside Export_.sci
 //**
 //**   do_export(scs_m);
@@ -106,7 +109,7 @@ function [wa, ha] = do_export(scs_m, fname, titleflag, exp_format)
   cmap = options.Cmap
   d    = gh_winc.color_map
   for k = 1:size(cmap,1)
-    [mc,kk] = mini(abs(d-ones(size(d,1),1)*cmap(k,:))*[1;1;1])
+    [mc,kk] = min(abs(d-ones(size(d,1),1)*cmap(k,:))*[1;1;1])
     if mc > .0001 then
       d = [d ; cmap(k,:)]
     end

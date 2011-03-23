@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scippol)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ppol)(char *fname,unsigned long fname_len)
+int sci_ppol(char *fname,unsigned long fname_len)
 {
 	C2F(scippol)(fname,fname_len);
 	return 0;

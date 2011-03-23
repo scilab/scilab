@@ -45,6 +45,18 @@ public abstract class ActionConstraint implements mxIEventListener {
 		 */
 		setEnabled(false);
 		
+		/*
+		 * Disable actions when cells are locked
+		 */
+		scilabGraph.addPropertyChangeListener(new PropertyChangeListener() {
+			public void propertyChange(PropertyChangeEvent evt) {
+				if (evt.getPropertyName().equals("cellsLocked")) {
+					boolean locked = (Boolean) evt.getNewValue();
+					action.setEnabled(!locked);
+				}
+			}
+		});
+		
 		// If the current constraint is not valid : force setEnable(false).
 		// This will force the current constraint. 
 		action.addPropertyChangeListener(new PropertyChangeListener() {

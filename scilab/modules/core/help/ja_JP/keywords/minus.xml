@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="minus" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>minus</refname>
+
+    <refpurpose>(-) 減算演算子, 符号変更</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>X-Y
+-Y</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>引数</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>数値,多項式または有理数のスカラーまたはベクトルまたは行列. <literal>syslin</literal>リストを指定することも可能です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Y</term>
+
+        <listitem>
+          <para>数値,多項式または有理数のスカラーまたはベクトルまたは行列.
+          <literal>syslin</literal>リストを指定することも可能です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>減算</para>
+
+    <para>
+	数値オペランドの場合,一般的な意味と同じく減算を意味します.
+	オペランドの一つが行列でもう一つがスカラーの場合,
+	演算子は要素毎に適用されます.
+	<literal>Y==[]</literal>の場合, <literal>X</literal>が返され,
+	<literal>X==[]</literal>の場合, <literal>-Y</literal>が返されます.</para>
+
+    <para>
+	減算は,"ソフトコードされた"演算により他のデータ型についても
+	定義できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="addf">addf</link></member>
+
+      <member><link linkend="mtlb_mode">mtlb_mode</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

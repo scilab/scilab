@@ -1,7 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 FILEIO_SOURCES = src/c/FileExist.c \
 src/c/scanf_functions.c \
@@ -19,6 +20,7 @@ src/c/mclose.c \
 src/c/meof.c \
 src/c/merror.c \
 src/c/mget.c \
+src/c/mgetl.c \
 src/c/mgeti.c \
 src/c/mgetstr.c \
 src/c/mopen.c \
@@ -49,7 +51,11 @@ src/c/expandPathVariable.c \
 src/c/basename.c \
 src/c/pathconvert.c \
 src/c/copyfile_others.c \
-src/c/getFullFilename.c
+src/c/getFullFilename.c \
+src/c/mputl.c \
+src/c/fscanfMat.c \
+src/c/fprintfMat.c
+
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -78,6 +84,7 @@ sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_mclose.c \
 sci_gateway/c/sci_merror.c \
 sci_gateway/c/sci_mget.c \
+sci_gateway/c/sci_mgetl.c \
 sci_gateway/c/sci_mgetstr.c \
 sci_gateway/c/sci_moef.c \
 sci_gateway/c/sci_mopen.c \
@@ -94,10 +101,11 @@ sci_gateway/c/sci_fileparts.c \
 sci_gateway/c/sci_movefile.c \
 sci_gateway/c/sci_basename.c \
 sci_gateway/c/sci_pathconvert.c \
-sci_gateway/c/sci_isfile.c
+sci_gateway/c/sci_isfile.c \
+sci_gateway/c/sci_mputl.c
 
 
-libscifileio_la_CXXFLAGS=	-I$(srcdir)/includes/ \
+libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
@@ -114,7 +122,7 @@ libscifileio_la_CFLAGS=		-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifileio.la
 
-libscifileio_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifileio_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscifileio_la_SOURCES = $(FILEIO_SOURCES) $(GATEWAY_SOURCES) $(GATEWAY_CPP_SOURCES)
 
@@ -123,7 +131,7 @@ CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)
 INCLUDE_FLAGS = $(libscifileio_la_CFLAGS)
 
 # pb of order $(top_builddir)/modules/shell/libscishell.la
-libscifileio_la_LIBADD =  	$(top_builddir)/modules/core/libscicore.la \
+libscifileio_la_LIBADD = \
 				$(top_builddir)/modules/string/libscistring.la \
 				$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
@@ -135,7 +143,7 @@ modulename=fileio
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscifileio_la_root_DATA =  license.txt version.xml
 
 
 #### fileio : init scripts ####
@@ -145,5 +153,10 @@ libscifileio_la_etc_DATA = etc/fileio.quit etc/fileio.start
 #### fileio : gateway declaration ####
 libscifileio_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifileio_la_sci_gateway_DATA = sci_gateway/fileio_gateway.xml
+
+#### fileio : include files ####
+libscifileio_la_includedir=$(pkgincludedir)
+libscifileio_la_include_HEADERS = includes/getFullFilename.h \
+includes/dynlib_fileio.h
 
 include $(top_srcdir)/Makefile.incl.am

@@ -13,9 +13,6 @@ function [tree]=sci_filesep(tree)
 // Input: tree = Matlab funcall tree
 // Ouput: tree = Scilab equivalent for tree
 
-tree.name="pathconvert"
-tree.rhs(1)=Cste("/")
-
 tree.lhs(1).dims=list(1,1)
 tree.lhs(1).type=Type(String,Real)
 endfunction

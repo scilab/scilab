@@ -31,7 +31,7 @@ public class FlipAction extends VertexSelectionDependantAction {
 	/** Name of the action */
 	public static final String NAME = XcosMessages.FLIP;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "transform-flip.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = KeyEvent.VK_F;
 	/** Accelerator key for the action */

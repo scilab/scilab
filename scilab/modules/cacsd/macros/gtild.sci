@@ -92,7 +92,7 @@ function mpt=dp_tilde(mp)
 // mpt(i,j)= z^n*conj(mp(j,i))(1/z)
   [m,n]=size(mp),z=varn(mp)
   //max degree
-  nmax=maxi(degree(mp));
+  nmax=max(degree(mp));
   for i=1:m
     for j=1:n
       mpt(j,i)=poly(coeff(conj(mp(i,j)),nmax:-1:0),z,'c')

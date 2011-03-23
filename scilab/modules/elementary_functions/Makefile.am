@@ -1,7 +1,8 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
+
 
 ELEMENTARIES_FUNCTIONS_C_SOURCES = src/c/sci_tools.c \
 src/c/finite.c \
@@ -261,6 +262,7 @@ src/fortran/bdiag.f \
 src/fortran/wvmul.f \
 src/fortran/dmmul.f \
 src/fortran/wsqrt.f \
+src/fortran/israt.f \
 src/fortran/rat.f \
 src/fortran/ribesl.f \
 src/fortran/rjbesl.f \
@@ -293,6 +295,7 @@ sci_gateway/c/sci_asin.c \
 sci_gateway/c/sci_sign.c \
 sci_gateway/c/sci_zeros.c \
 sci_gateway/c/sci_ones.c \
+sci_gateway/c/sci_rat.c \
 sci_gateway/c/gw_elementary_functions.c \
 sci_gateway/c/sci_number_properties.c \
 sci_gateway/c/sci_diag.c \
@@ -327,6 +330,7 @@ sci_gateway/fortran/sci_f_expm.f \
 sci_gateway/fortran/sci_f_size.f \
 sci_gateway/fortran/sci_f_tril.f \
 sci_gateway/fortran/sci_f_ceil.f \
+sci_gateway/fortran/sci_f_rat.f \
 sci_gateway/fortran/sci_f_imag.f \
 sci_gateway/fortran/sci_f_log.f \
 sci_gateway/fortran/sci_f_log1p.f \
@@ -399,12 +403,13 @@ libscielementary_functions_la_CPPFLAGS = 	-I$(srcdir)/includes/ \
 libscielementary_functions_la_CFLAGS= 	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/core/src/c/ \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscielementary_functions.la
 
-libscielementary_functions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscielementary_functions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscielementary_functions_la_SOURCES = $(SLATEC_SOURCES) $(LINPACK_SOURCES)  $(EISPACK_SOURCES) $(ELEMENTARIES_FUNCTIONS_C_SOURCES) $(ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(ELEMENTARIES_FUNCTIONS_CPP_SOURCES)
 
@@ -414,7 +419,7 @@ INCLUDE_FLAGS = $(libscielementary_functions_la_CFLAGS)
 
 libscielementary_functions_la_LIBADD = libdummy-elementary_functions.la
 # Commented because it is one of the first module to be compiled
-#libdummy-elementary_functions.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
+#libdummy-elementary_functions.la   $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/libs/blas/libsciblas.la $(top_builddir)/modules/sparse/libscisparse.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/libs/lapack/libscilapack.la $(top_builddir)/modules/integer/libsciinteger.la  $(top_builddir)/modules/cacsd/libscicacsd.la
 
 libdummy_elementary_functions_la-hqror2.lo: src/fortran/eispack/hqror2.f
 	$(LIBTOOL) --tag=F77 --mode=compile $(F77) $(libdummy_elementary_functions_la_FFLAGS) -c -o libdummy_elementary_functions_la-hqror2.lo `test -f 'src/fortran/eispack/hqror2.f' || echo '$(srcdir)/'`src/fortran/eispack/hqror2.f
@@ -440,7 +445,7 @@ modulename=elementary_functions
 
 #### elementary_functions : Conf files ####
 libscielementary_functions_la_rootdir = $(mydatadir)
-libscielementary_functions_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscielementary_functions_la_root_DATA =  license.txt version.xml
 
 
 

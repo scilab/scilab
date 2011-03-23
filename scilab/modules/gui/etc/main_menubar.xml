@@ -2,10 +2,12 @@
 <menubar>
 
    <!-- All "main" menus are disabled when created and then enabled in scilab.start file after all macros are loaded -->
-
+   <!-- The accelerator can be "control shift A" or "control A" or "meta A" or "OSSCKEY A" where oskey means "OS ShortCut key"
+	and is replaced by the good key (control for Unix/Windows OS and meta for Mac) -->
+ 
    <!-- File menu -->
    <menu label="&amp;File" enabled="false">
-        <submenu label="&amp;Execute...">
+        <submenu label="&amp;Execute..." accelerator="OSSCKEY E">
             <callback
             instruction='
               %fileToExec = uigetfile("*.sc*", "", gettext("Select a file to execute"));
@@ -17,17 +19,17 @@
             type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Open a file...">
+        <submenu label="&amp;Open a file..." accelerator="OSSCKEY O">
             <callback
             instruction='
-              %fileToOpen = uigetfile("*.sc*", "", gettext("Select a file to open with Scilab text editor"));
+              %fileToOpen = uigetfile("*.sc*", "", gettext("Select a file to open with SciNotes"));
               if ~(%fileToOpen == "") then
                 editor(%fileToOpen);
               end
               clear("%fileToOpen");'
             type="0"/>
         </submenu>
-        <submenu label="&amp;Load environment...">
+        <submenu label="&amp;Load environment..." accelerator="OSSCKEY L">
             <callback
             instruction='
               %fileToLoad = uigetfile("*.sav", "", gettext("Select a file to load"));
@@ -38,7 +40,7 @@
               clear("%fileToLoad");'
             type="0"/>
         </submenu>
-        <submenu label="&amp;Save environment...">
+        <submenu label="&amp;Save environment..." accelerator="OSSCKEY S">
             <callback
             instruction='
               %fileToSave = uiputfile("*.sav", "", gettext("Select a file to write"));
@@ -70,24 +72,24 @@
         <submenu label="P&amp;age setup...">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pageSetup' type="3"/>
         </submenu>
-        <submenu label="&amp;Print...">
+        <submenu label="&amp;Print..." accelerator="OSSCKEY P">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.printConsoleContents' type="3"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Quit">
+        <submenu label="&amp;Quit" accelerator="OSSCKEY Q">
             <callback instruction='exit();' type="0"/>
         </submenu>
     </menu>
 
     <!-- Edit menu -->
     <menu label="&amp;Edit" enabled="false">
-        <submenu label="C&amp;ut">
+        <submenu label="C&amp;ut" accelerator="OSSCKEY X">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.cutConsoleSelection' type="3"/>
         </submenu>
-        <submenu label="&amp;Copy">
+        <submenu label="&amp;Copy" accelerator="OSSCKEY C">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.copyConsoleSelection' type="3"/>
         </submenu>
-        <submenu label="&amp;Paste">
+        <submenu label="&amp;Paste" accelerator="OSSCKEY V">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.pasteClipboardIntoConsole' type="3"/>
         </submenu>
         <separator/>
@@ -95,7 +97,7 @@
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.emptyClipboard' type="3"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Select all">
+        <submenu label="&amp;Select all" accelerator="OSSCKEY A">
             <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.selectAllConsoleContents' type="3"/>
         </submenu>
     </menu>
@@ -147,7 +149,7 @@
 
     <!-- Applications menu -->
     <menu label="&amp;Applications" enabled="false">
-        <submenu label="&amp;Editor">
+        <submenu label="&amp;SciNotes">
             <callback instruction='editor();' type="0"/>
         </submenu>
         <separator/>
@@ -160,13 +162,21 @@
         </submenu>
         <separator/>
         <submenu label="M&amp;odule manager - ATOMS">
-            <callback instruction='atomsGui();' type="0"/>
+            <callback instruction='if with_module("atoms") then atomsGui(); else disp(gettext("Please install atoms module.")); end' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Variable Browser">
+            <callback instruction='browsevar()' type="0"/>
+        </submenu>
+        <separator/>
+        <submenu label="&amp;Command History">
+            <callback instruction='org.scilab.modules.history_browser.CommandHistory.toggleVisibility' type="3"/>
         </submenu>
     </menu>
 
     <!-- Help menu -->
     <menu label="&amp;?" enabled="false">
-        <submenu label="Scilab &amp;Help">
+        <submenu label="Scilab &amp;Help" accelerator="F1">
             <callback instruction='help();' type="0"/>
         </submenu>
         <separator/>
@@ -174,25 +184,37 @@
              <callback instruction='demo_gui();' type="0"/>
         </submenu>
         <separator/>
-        <submenu label="&amp;Web links">
+        <submenu label="&amp;Links">
             <submenu label="Scilab &amp;Web Site">
                 <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openScilabWebSite' type="3"/>
             </submenu>
+            <separator/>
+            <submenu label="Scilab &amp;Online Help">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openOnlineHelp' type="3"/>
+            </submenu>
+            <submenu label="Scilab &amp;Wiki">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openWiki' type="3"/>
+            </submenu>
+            <separator/>
             <submenu label="Scilab &amp;ATOMS Web Site">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilabWebSite' type="3"/>
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openAtomsScilab' type="3"/>
             </submenu>
-            <submenu label="&amp;Contributions">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openContributionsWebSite' type="3"/>
-            </submenu>
-            <submenu label="&amp;Bug And Request database">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzillaWebSite' type="3"/>
+            <submenu label="&amp;File Exchange">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openFileExchange' type="3"/>
             </submenu>
             <submenu label="&amp;Mailing lists">
-                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingListWebSite' type="3"/>
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openMailingList' type="3"/>
+            </submenu>
+            <separator/>
+            <submenu label="&amp;Forge">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openForge' type="3"/>
+            </submenu>
+            <submenu label="&amp;Bugs And Requests">
+                <callback instruction='org.scilab.modules.gui.bridge.CallScilabBridge.openBugzilla' type="3"/>
             </submenu>
         </submenu>
         <separator/>
-        <submenu label="&amp;About Scilab...">
+        <submenu label="&amp;About Scilab..." accelerator="shift F1">
               <callback instruction='about()' type="0"/>
         </submenu>
     </menu>

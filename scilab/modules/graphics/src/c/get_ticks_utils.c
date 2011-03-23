@@ -19,6 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
+#include <string.h>
 #include "get_ticks_utils.h"
 #include "returnPropertyList.h"
 #include "MALLOC.h"

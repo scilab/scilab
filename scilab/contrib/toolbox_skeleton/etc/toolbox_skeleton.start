@@ -1,7 +1,7 @@
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
 
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mprintf("Start Toolbox skeleton\n");
 
@@ -24,8 +24,11 @@ clear pathmacros;
 // load gateways
 // =============================================================================
 mprintf("\tLoad gateways\n");
+verboseMode = ilib_verbose();
 ilib_verbose(0);
 exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
+ilib_verbose(verboseMode);
+clear verboseMode;
 
 // Load and add help chapter
 // =============================================================================

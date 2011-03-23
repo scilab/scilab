@@ -249,9 +249,12 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_history_1manager_HistoryMana
   }
   {
     int i;
-    for (i=0; i<size1-1; i++)
-    FREE(arg1[i]);
+    for (i=0; i<size1-1; i++) {
+      FREE(arg1[i]);
+      arg1[i] = NULL;
+    }
     FREE(arg1);
+    arg1 = NULL;
   }
   return jresult;
 }

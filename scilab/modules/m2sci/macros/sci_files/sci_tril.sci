@@ -12,7 +12,7 @@ function [tree]=sci_tril(tree)
 // M2SCI function
 // Conversion function for Matlab tril()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_tril()
 
 // L = tril(X,k)
@@ -20,14 +20,6 @@ if rhs==2 then
   [X,k] = getrhs(tree)
   // Convert k to double
   k=convert2double(k)
-  // Imaginary part ok k is ignored in Matlab
-  if is_complex(k) then
-    k = Funcall("real",1,list(k),list(Variable("",k.infer)))
-  elseif ~is_real(k) then
-    newk = Funcall("real",1,list(k),list(Variable("",k.infer)))
-    repl_poss(newk,k,k,gettext("is Real."));
-    k=newk
-  end
   tree.rhs=Rhs_tlist(X,k)
 // L = tril(X)
 else

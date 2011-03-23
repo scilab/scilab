@@ -13,6 +13,8 @@
 
 /* JavaDoc for FigureScilabCallJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
   * Call from the JoGL display thread to figure drawing code using JNI 
   * @author Jean-Baptiste Silvy
@@ -26,7 +28,7 @@ public class%}
    * Constructor. Should not be called
    */
   protected FigureScilabCallJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 /* static load of library */
@@ -35,11 +37,13 @@ public class%}
     try {
         System.loadLibrary("scirenderer");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scirenderer does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library scirenderer does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -59,7 +63,7 @@ public class";
   * Constructor. Should not be called.
   */
  protected FigureScilabCall() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }";
 
 /* JavaDoc */

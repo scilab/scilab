@@ -59,7 +59,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 	int nblklst = 40;
 
 	/* variable for callf */
-	int flag = 0;
+	scicos_flag flag = 0;
 	double t = 0.;
 	scicos_block Block;
 
@@ -90,7 +90,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 	{
 		if ((str=(char *) MALLOC((len_str+1)*sizeof(char)))==NULL) 
 		{
-			Scierror(888,_("%s : Memory allocation error.\n"),fname);
+			Scierror(888,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 		str[len_str] = '\0';
@@ -115,7 +115,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 	/* error table */
 	switch (ierr)
 	{
-	case -39 : Scierror(888,_("%s : Memory allocation error.\n"),fname);
+	case -39 : Scierror(888,_("%s: Memory allocation error.\n"),fname);
 		break;
 
 	case 98  : Scierror(888,_("%s : First argument must be a valid scicos_block typed list.\n"),fname);
@@ -165,7 +165,7 @@ int sci_callblk(char *fname,unsigned long fname_len)
 		Scierror(888,_("%s : Second argument must be scalar.\n"),fname);
 		return 0;
 	}
-	flag=(int) *((double *)(&il2[4]));
+	flag=(scicos_flag) *((double *)(&il2[4]));
 
 	/* check rhs 3 (time) */
 	il3 = (int *) GetData(3);

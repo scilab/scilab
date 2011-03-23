@@ -20,17 +20,17 @@ function [tree]=%x2sci(tree)
 [A,B]=getoperands(tree)
 
 // Dot multiplication does not work with Strings in Scilab
-//if or(A.vtype==[String,Unknown]) then
-  //A=convert2double(A)
-//end
-//if or(B.vtype==[String,Unknown]) then
-  //B=convert2double(B)
-//end
+if or(A.vtype==[String,Unknown]) then
+  A=convert2double(A)
+end
+if or(B.vtype==[String,Unknown]) then
+  B=convert2double(B)
+end
 
 // %b_x_b is not defined in Scilab$
-//if A.vtype==Boolean & B.vtype==Boolean then
-  //A = convert2double(A)
-//end
+if A.vtype==Boolean & B.vtype==Boolean then
+  A = convert2double(A)
+end
 
 tree.operands=list(A,B)
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="star" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>star</refname>
+
+    <refpurpose>(*) operador de multiplicação</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Multiplicação no sentido usual. Válido para matrizes de contrantes,
+    valores booleanos, polinômios ou razões de polinômios e para listas
+    <literal>syslin</literal> (o significado é de conexão de série).</para>
+
+    <para>A multiplicação elemento a elemento é denotada por
+    <literal>x.*y</literal>. Se <literal>x</literal> ou <literal>y</literal> é
+    escalar (matriz 1x1) <literal> .* </literal> é o mesmo que
+    <literal>*</literal>.</para>
+
+    <para>O produto de Kronecker é denotado por
+    <literal>x.*.y</literal></para>
+
+    <para><literal>A*.B</literal> é um operador sem significado predefinido.
+    Pode ser usado para definir um novo operador (ver <link linkend="overloading">overloading</link>) com a
+    mesma precedência que * ou /.</para>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="slash">slash</link></member>
+
+      <member><link linkend="backslash">backslash</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

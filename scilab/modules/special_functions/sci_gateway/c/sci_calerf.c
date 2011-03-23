@@ -10,13 +10,13 @@
  *
  */
 
-#include "gw_special_functions1.h"
-#include "stack-c.h"
 #include <string.h>
+#include "gw_special_functions.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(intscalerf)(char *id,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_calerf)(char *fname,unsigned long fname_len)
+int sci_calerf(char *fname,unsigned long fname_len)
 {
 	C2F(intscalerf)(fname,fname_len);
 	return 0;

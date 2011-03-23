@@ -20,7 +20,7 @@ public class FigureScilabCall {
   * Constructor. Should not be called.
   */
  protected FigureScilabCall() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**

@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 //
 // <-- Non-regression test for bug 1469 -->
@@ -262,6 +263,7 @@ t=['function foo,//ZZZZ'
 'endfunction'];
 mputl(t,TMPDIR+'/foo.sci');
 warning('off');
+exec(TMPDIR+'/foo.sci')
  
 function foo,//ZZZZ
   a=1
@@ -281,6 +283,7 @@ t=['function foo'
 '  a=1'
 'endfunction'];
 mputl(t,TMPDIR+'/foo.sci');
+exec(TMPDIR+'/foo.sci')
  
 function foo
 //ZZZZ

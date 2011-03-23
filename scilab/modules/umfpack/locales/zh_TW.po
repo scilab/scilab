@@ -1,0 +1,424 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2008-05-27 18:59+0100\n"
+"PO-Revision-Date: 2010-06-19 13:57+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-05-27 18:59+0100\n"
+
+#
+# File: macros/cond2sp.sci, line: 75
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" 以迭代之 power 法近似 (lM,vM) \n"
+
+#
+# File: macros/cond2sp.sci, line: 107
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" 以反迭代 power 法近似  (lm,vm) \n"
+
+#
+# File: macros/scisptdemo.sci, line: 39
+# File: macros/scisptdemo.sci, line: 41
+# File: macros/scisptdemo.sci, line: 43
+msgid "                                                     "
+msgstr "                                                     "
+
+#
+# File: src/c/taucs_scilab.c, line: 545
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        第 %d 列有非正之 pivot\n"
+
+#
+# File: macros/scisptdemo.sci, line: 44
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               點擊滑鼠以繼續                    "
+
+#
+# File: macros/scisptdemo.sci, line: 40
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#
+# File: macros/cond2sp.sci, line: 95
+# File: macros/cond2sp.sci, line: 126
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           無法在 %d 次迭代後達到 (只得到 %e) \n"
+
+#
+# File: macros/scisptdemo.sci, line: 42
+msgid "           then re enter scisptdemo()                "
+msgstr "           然後重新輸入 scisptdemo()                "
+
+#
+# File: src/c/taucs_scilab.c, line: 544
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    CC^T 因子分解: 不是正定矩陣.\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 78
+msgid "   then click on OK   "
+msgstr "   然後點擊 OK   "
+
+#
+# File: macros/cond2sp.sci, line: 76
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+#
+# File: macros/cond2sp.sci, line: 108
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " 在這個示範裏目前的堆疊大小不夠 "
+
+#
+# File: macros/cond2sp.sci, line: 94
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " 警告 :  對 rtol = %e 之 lM 收斂 \n"
+
+#
+# File: macros/cond2sp.sci, line: 125
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " 警告 :  對 rtol = %e 之 lm  收斂 \n"
+
+#
+# File: macros/scisptdemo.sci, line: 38
+msgid " enter the following at the scilab prompt :          "
+msgstr " 在 Scilab 提示符號後輸入以下指令 :          "
+
+#
+# File: macros/cond2sp.sci, line: 84
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " 迭代 %3d 次: lM = %e  \n"
+
+#
+# File: macros/cond2sp.sci, line: 116
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " 迭代 %3d 次: lm = %e  \n"
+
+#
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 產生一錯誤: %s\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 105
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 110
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: 產生錯誤: %s.\n"
+
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+# File: sci_gateway/c/sci_umfpack.c, line: 192
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: 產生一錯誤: %s: %s\n"
+
+#
+# File: macros/condestsp.sci, line: 107
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s: 第二參數之型態,大小或數值不正確.\n"
+
+#
+# File: src/c/taucs_scilab.c, line: 267
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s: 記憶體耗盡 (n=%d, nnz=%d).\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 107
+# File: sci_gateway/c/sci_umf_luget.c, line: 218
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s: 記憶體耗盡 : 增加 stacksize , 須要額外之 %d words.\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 86
+# File: sci_gateway/c/sci_umf_luget.c, line: 210
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 98
+# File: src/c/taucs_scilab.c, line: 256
+# File: src/c/taucs_scilab.c, line: 2079
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 148
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s: 此矩陣未輸入數值 (只有非零樣式) : 填上一些 1."
+
+#
+# File: macros/ReadHBSparse.sci, line: 110
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: 檔案內含一  rhs 但不會被讀入  1"
+
+#
+# File: macros/condestsp.sci, line: 103
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: 矩陣及 LU 因子之維度不相等!\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 146
+# File: sci_gateway/c/sci_umfpack.c, line: 109
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 輸入參數錯誤: 應為 '%s' 或 '%s'.\n"
+
+#
+# File: macros/PlotSparse.sci, line: 74
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 輸入參數之數目錯誤(s).\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 84
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 118
+# File: sci_gateway/c/sci_umfpack.c, line: 116
+# File: sci_gateway/c/sci_umfpack.c, line: 123
+# File: sci_gateway/c/sci_umf_lufact.c, line: 89
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 99
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 155
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一方陣.\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 111
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 與 Cholesky 分解因子不相容.\n"
+
+#
+# File: sci_gateway/c/sci_res_with_prec.c, line: 63
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr "%s: 輸入參數長度錯誤: 應為相同大小.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一方陣.\n"
+
+#
+# File: macros/PlotSparse.sci, line: 88
+# File: macros/ReadHBSparse.sci, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#
+# File: macros/PlotSparse.sci, line: 81
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一方陣.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 93
+# File: sci_gateway/c/sci_umf_luget.c, line: 95
+# File: sci_gateway/c/sci_umf_ludel.c, line: 100
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須有效參考到 (umf) LU 因子.\n"
+
+#
+# File: sci_gateway/c/sci_taucs_chget.c, line: 79
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須有效參考到 Cholesky 分解因子"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr "%s: 輸入參數值有錯#%d: 必須是對稱的正值有限矩陣."
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 87
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 不是一 Cholesky 分解因子之有效參考."
+
+#
+# File: sci_gateway/c/sci_taucs_chdel.c, line: 98
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 不是一 Cholesky 分解因子之有效參考.\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 120
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s: 目前尚無法讀入已解開 (unassembled,elemental) 之稀疏矩陣"
+
+#
+# File: sci_gateway/c/sci_taucs_chsolve.c, line: 135
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#
+# File: macros/ReadHBSparse.sci, line: 77
+msgid "Choose a sparse matrix"
+msgstr "選一稀疏矩陣"
+
+#
+# File: macros/scisptdemo.sci, line: 61
+msgid "Click to choose a demo"
+msgstr "點選一範例"
+
+#
+# File: src/c/taucs_scilab.c, line: 128
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "GENMMD 排序只對對稱矩陣有效.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 155
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "矩陣與給定之 LU 因子不相容"
+
+#
+# File: src/noumfpack/noumfpack.c, line: 18
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "未安裝 Scilab UMFPACK 模組.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "The (square) matrix appears to be singular."
+msgstr "此方陣似乎為奇異."
+
+#
+# File: src/c/taucs_scilab.c, line: 136
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "矩陣之下半部須表示出來.\n"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 110
+msgid "This is a factorisation of a singular matrix"
+msgstr "這不是一奇異矩陣之因式分解"
+
+#
+# File: sci_gateway/c/sci_umf_lusolve.c, line: 105
+msgid "This is not a factorisation of a square matrix"
+msgstr "這不是一方陣之因式分解"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 128
+msgid "Warning"
+msgstr "警告"
+
+#
+# File: macros/scisptdemo.sci, line: 58
+msgid "display a speed comparison test"
+msgstr "顯示一速度比較測試"
+
+#
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 115
+msgid "factorization"
+msgstr "因子分解"
+
+#
+# File: macros/scisptdemo.sci, line: 57
+msgid "how to use this stuff"
+msgstr "如何使用這些東西"
+
+#
+# File: src/c/common_umfpack.c, line: 203
+msgid "internal error"
+msgstr "內部錯誤"
+
+#
+# File: src/c/common_umfpack.c, line: 204
+msgid "invalid matrix"
+msgstr "無效之矩陣"
+
+#
+# File: sci_gateway/c/sci_umf_lufact.c, line: 146
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "已無位置配置 ListNumeric 所需之 LU 指標(pointer)"
+
+#
+# File: src/c/common_umfpack.c, line: 202
+msgid "not enough memory"
+msgstr "記憶體耗盡"
+
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 192
+msgid "numeric factorization"
+msgstr "數值分解"
+
+#
+# File: src/c/common_umfpack.c, line: 201
+msgid "singular matrix"
+msgstr "奇異矩陣"
+
+#
+# File: macros/scisptdemo.sci, line: 59
+msgid "small tests for condestsp"
+msgstr "condestsp 之小型測試"
+
+#
+# File: sci_gateway/c/sci_umfpack.c, line: 160
+# File: sci_gateway/c/sci_umf_lufact.c, line: 103
+# File: sci_gateway/c/sci_umf_lufact.c, line: 120
+msgid "symbolic factorization"
+msgstr "符號運算分解"

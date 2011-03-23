@@ -1,6 +1,13 @@
-#!/bin/bash
-# Copyright INRIA/Scilab 2007/2008
-# Author : Sylvestre Ledru <sylvestre.ledru@inria.fr>
+#!/bin/sh
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+#
 # This script goes into a module and updates the localization file by checking
 # the _( and gettext( calls in the code
 
@@ -38,8 +45,7 @@ MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
 EXTENSIONS=( c h cpp hxx java sci sce start quit )
 TARGETDIR=locales/
-LANGS=( fr_FR )
-HEADER_TEMPLATE=$SCI/modules/localization/locales/en_US/header.pot
+HEADER_TEMPLATE=$SCI/modules/localization/locales/header.pot
 GUI_FILES="etc/*.xml"
 FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
@@ -103,7 +109,7 @@ for MODULE in $MODULES; do
 
 	echo "..... Parsing all sources in $PATHTOPROCESS"
 # Parse all the sources and get the string which should be localized
-	LOCALIZATION_FILE_US=$TARGETDIR/en_US/$MODULE_NAME.pot
+	LOCALIZATION_FILE_US=$TARGETDIR/$MODULE_NAME.pot
 
 	if test -f $LOCALIZATION_FILE_US; then
 		# Localization file already existing. Retrieve POT-Creation-Date
@@ -111,7 +117,7 @@ for MODULE in $MODULES; do
 	fi
 
 	echo "........ Generate the english localization file by parsing the code"
-	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/en_US/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
+	$XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
 	if test  -z "$CreationDate"; then
 		# File not existing before ... Set the current date a POT-Creation-Date
 		sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
@@ -120,26 +126,7 @@ for MODULE in $MODULES; do
 	fi
 	cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
 	rm $LOCALIZATION_FILE_US.tmp
-	if test -z "$NOSTRING"; then
-# merge/create the other locales
-		for l in $LANGS; do
-			DIR_LANG=$TARGETDIR/$l/
-			LOCALIZATION_FILE_LANG=$DIR_LANG/$MODULE_NAME.po
-			if test -f $LOCALIZATION_FILE_LANG; then
-				echo "........ Merging new locales for $l"
-				$MSGMERGE $LOCALIZATION_FILE_LANG $LOCALIZATION_FILE_US --sort-output --output-file $LOCALIZATION_FILE_LANG > /dev/null
-			else
-				echo "........ Localization file for $l in this module not existing"
-				echo "........ Creating it ..."
-				if test ! -d $DIR_LANG; then
-					# Locale dir doesn't exist
-					mkdir $DIR_LANG
-				fi
-				# Copy the current english localization as default
-				cp $LOCALIZATION_FILE_US $LOCALIZATION_FILE_LANG
-			fi
-		done #Browse langs
-	fi
+
 	# Remove fake file used to extract string from XML
 	rm $FAKE_C_FILE
 	cd $SCI/

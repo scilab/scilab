@@ -20,19 +20,22 @@
 //
 
 function [ok,new_info]=do_set_info(info)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // This function may be redefined by the user to handle definition 
-// of the informations associated with the current diagram
+// of the information associated with the current diagram
 
 if prod(size(info))==0 then
   info = list(' ')
 end
 
-//new_info = x_dialog('Set Diagram informations',info(1))
+//new_info = x_dialog('Set Diagram information',info(1))
 
 //## set param of scstxtedit
 ptxtedit=scicos_txtedit(clos = 0,...
           typ  = "scsminfo",...
-          head = ['Set Diagram informations']);
+          head = ['Set Diagram information']);
 
 while 1==1
 

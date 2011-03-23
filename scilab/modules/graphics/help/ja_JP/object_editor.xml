@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="object_editor">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>object_editor </refname>
+    <refpurpose>グラフィックオブジェクトエディタの機能に関する説明</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="graphic">
+    <refname>graphic </refname>
+    <refpurpose>グラフィックオブジェクトエディタの機能に関する説明</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="menus">
+    <refname>menus</refname>
+    <refpurpose>グラフィックオブジェクトエディタの機能に関する説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Scilab graphics allow the
+    user to have interaction with graphics before and after having them
+    drawn. Each graphics window and the
+    drawing it contains are represented by hierchical entities. The hierachy
+    top level is the Figure. Each Figure defines at least one child of type
+    Axes. Each Axes entity contains a set of leaf entities which are the basic
+    graphics objects like Polylines, Rectangles, Arcs, Segs,... It can also
+    contain a Compound type which are recursive sets of entities.</para>
+    <para>The main interest of the graphic mode is to make property changes
+    easier. This graphics'mode provides a set of high-level graphing
+    routines (see <link linkend="set">set</link>, <link linkend="get">get</link>) used to control objects'
+    properties such as data, coordinates and scaling, color and appearences
+    without requiring to replay the initial graphics commands.</para>
+    <para>Graphics entities are associated to Scilab variables of type
+    <literal>handle</literal>. The handle is a unique identifier which is associated
+    to each instance of a created graphical entity. Using this handle, it will
+    be possible to reach entities' properties through "set" and "get"
+    routines. The handles are also used to manipulate graphics objects, to
+    move them, to make copies or delete them.</para>
+    <para>To complete and use the graphics handle capacity at its maximum, a
+    graphic object editor has been created too. It is a set of Tcl/Tk
+    interfaces available for each kind of graphics objects (see
+    <link linkend="graphics_entities">graphics_entities</link> for more details) that can be enabled for
+    each graphic window. To make it work, select the <literal>Edit</literal> menu in
+    the graphic window. Seven graphics editing operations are available :</para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Select figure as current: </term>
+        <listitem>
+          <para>Let this</para>
+          <para>figure be the current one.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Redraw figure: </term>
+        <listitem>
+          <para>Redraw the content of the graphics window.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Erase figure: </term>
+        <listitem>
+          <para>Erase the content of the graphics window. Its action corresponds
+        to <literal>clf</literal> routine.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Copy object: </term>
+        <listitem>
+          <para>Using the mouse, it allows the user to select a 2D object (like a
+        curve, a rectangle...) and put it in the clipboard. Thus, by a next
+        call to <literal>Paste object</literal>, the object is copied in the
+        selected current axes.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Paste object: </term>
+        <listitem>
+          <para>Allow the user to paste a previous object put into in the
+        clipboard inside the selected current axes.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Move object: </term>
+        <listitem>
+          <para>Using the mouse, it allows the user to move a 2D object (like a
+        curve, a rectangle...) inside the selected current axes.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Delete object: </term>
+        <listitem>
+          <para>Using the mouse, it allows the user to pick up a 2D object (like a
+        curve, a rectangle...) inside the selected current axes and to delete
+        it instantly.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Figure Properties: </term>
+        <listitem>
+          <para>Launch the Tcl/Tk interface for the Figure object applied to the
+        figure handle of the graphics window.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Current Axes Properties: </term>
+        <listitem>
+          <para>Launch the Tcl/Tk interface for the Axes object applied to the
+        current axes handle of the graphics window.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Start Entity Picker: </term>
+        <listitem>
+          <para>Start an event handler on the graphics window to catch the mouse
+        clicks on graphics objects and launch the corresponding Tcl/Tk
+        interface. The left mouse-click allows object edition and the right
+        click performs a move of the selected object. Note that, for now, this
+        feature is applied to 2D objects only.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Stop Entity Picker: </term>
+        <listitem>
+          <para>Stop the action of the Entity Picker by terminating the event
+        handler on the graphics window.</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>Once the graphic interface is enabled (using the <literal>Figure
+    Properties</literal> or <literal>Current Axes Properties</literal> options), two
+    main areas appear :</para>
+    <para/>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>A tree selector: </term>
+        <listitem>
+          <para>Placed on the left side of the graphical editor, a hierarchical
+        tree selector specifies which object is currently edited. It can be
+        used to switch from a graphic object to another provided that they are
+        in the same graphic window.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/tree.gif"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>A notebook: </term>
+        <listitem>
+          <para>The second area represents a notebook composed with different
+        properties pages (like <literal>Style</literal>, <literal>Data</literal>,
+        <literal>Clipping</literal>...) depending on the selected graphic object.
+        Using this editor, man can edit more easily the whole properties set
+        of each graphic object (like through the <literal>"set"</literal> and
+        <literal>"get"</literal> commands). Here is an example of the axes' notebook
+        displaying axes properties:</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../images/notebook.gif"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para/>
+    <para>Furthermore, you can legend/annotate your figure using sample
+    primitives given inside the <literal>Insert</literal> menu in the graphic
+    window. Using the mouse and following the instruction in the message
+    subwindow, you can add a:</para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Line: </term>
+        <listitem>
+          <para>Draw a line between 2 left mouse clicks. The line lives in the
+        axes where the first point was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Polyline: </term>
+        <listitem>
+          <para>Draw a polyline by clicking on the left button to define the line
+        path and right click at last to complete the drawing. The polyline
+        lives in the axes where the first point was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Arrow: </term>
+        <listitem>
+          <para>Draw an arrow between 2 left mouse clicks. The arrow lives in the
+        axes where the first point was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Double arrow: </term>
+        <listitem>
+          <para>Draw a double-sided arrow between 2 left mouse clicks. The double
+        arrow lives in the axes where the first point was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Text: </term>
+        <listitem>
+          <para>Open a dialog box to enter the text, then click on the figure
+        window to place it. The text lives in the axes where the point was
+        selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Rectangle: </term>
+        <listitem>
+          <para>Draw a rectangle : 2 left mouse clicks define respectively the
+        upper left corner and the lower-right corner of the rectangle. The
+        rectangle lives in the axes where the first point was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Circle: </term>
+        <listitem>
+          <para>Draw a circle : 2 left mouse clicks define respectively the upper
+        left corner and the lower-right corner of the bounding-box where the
+        circle lives. The rectangle lives in the axes where the first point
+        was selected.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>参照o</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Leray INRIA</para>
+  </refsection>
+</refentry>

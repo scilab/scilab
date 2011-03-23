@@ -20,9 +20,9 @@
 #include "sciprint.h"
 #include "returnanan.h"
 #include "xls.h"
-#include "../../../fileio/includes/mseek.h"
-#include "../../../fileio/includes/mtell.h"
-#include "../../../fileio/includes/mget.h"
+#include "mseek.h"
+#include "mtell.h"
+#include "mget.h"
 /*------------------------------------------------------------------*/
 #define  typ_short "s"
 #define  typ_ushort "us"
@@ -438,8 +438,6 @@ static void getSST(int *fd,short Len,int BIFF,int *ns,char ***sst,int *err)
   int nm;/*Number of following strings*/
   short count=0;
 
-  char *transfert;  /*temp*/
-  transfert=(char *)NULL;
   *ns=0;
   *sst=NULL;
 

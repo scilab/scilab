@@ -13,7 +13,7 @@
 [nams,typs,dims,vols]=listvarinfile(filename)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -76,8 +76,8 @@ save("vals.dat",a,b,c)
 listvarinfile("vals.dat")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

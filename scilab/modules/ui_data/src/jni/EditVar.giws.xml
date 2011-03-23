@@ -1,0 +1,56 @@
+<package name="org.scilab.modules.ui_data">
+    <object name="EditVar">
+        <method name="openVariableEditorDouble" returnType="void" modifier="static">
+          <parameter type="double[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorComplex" returnType="void" modifier="static">
+          <parameter type="double[][]" name="realData"/>
+          <parameter type="double[][]" name="imgData"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorString" returnType="void" modifier="static">
+          <parameter type="String[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorBoolean" returnType="void" modifier="static">
+          <parameter type="int[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorInteger8" returnType="void" modifier="static">
+          <parameter type="byte[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorUInteger8" returnType="void" modifier="static">
+          <parameter type="short[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorInteger16" returnType="void" modifier="static">
+          <parameter type="short[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+        
+        <method name="openVariableEditorUInteger16" returnType="void" modifier="static">
+          <parameter type="int[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="openVariableEditorInteger32" returnType="void" modifier="static">
+          <parameter type="int[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+        
+        <method name="openVariableEditorUInteger32" returnType="void" modifier="static">
+          <parameter type="long[][]" name="data"/>
+          <parameter type="String" name="variableName"/>
+        </method>
+
+        <method name="closeVariableEditor" returnType="void" modifier="static"/>
+    </object>
+</package>

@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.link.implicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 
 /**
  * An implicit link connect an {@link ImplicitOutputPort} to an
@@ -32,6 +34,7 @@ public class ImplicitLink extends BasicLink {
     }
     
     /** @return A red colored implicit link identifier */
+	@Override
     public double[][] getColorAndType() {
 	return COLOR_AND_TYPE;
     }

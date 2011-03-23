@@ -20,6 +20,9 @@
 //
 
 function XcosMenuUpToMain()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   Cmenu=[]
   if super_block then
     //each line of Scicos_commands are directive to be executed by scicos
@@ -27,7 +30,7 @@ function XcosMenuUpToMain()
     //%diagram_path_objective=[] stands for up to main
       Scicos_commands=['%diagram_path_objective=[];%scicos_navig=1';
 		       'Cmenu=[];%scicos_navig=[]';
-		       'xselect()'
+		       'show_window()'
 		      ]
   else
       messagebox('This is already the main diagram;','modal')

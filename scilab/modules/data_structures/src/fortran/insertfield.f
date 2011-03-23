@@ -25,7 +25,7 @@ c
       integer volfrom,voltos,volto,dvol,ind(*)
       integer typfrom,typto
 
-      Integer subptr
+      integer subptr
       external subptr
 
       integer iadr,sadr

@@ -1,7 +1,7 @@
-##########
-### Allan CORNET
-### DIGITEO - Scilab 2009
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2009 - Digiteo - Allan CORNET
+#
+# This file is distributed under the same license as the Scilab package.
 
 ### SOURCES ###
 
@@ -40,7 +40,7 @@ libsciapi_scilab_la_CPPFLAGS=-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciapi_scilab.la
 
-libsciapi_scilab_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciapi_scilab_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -48,7 +48,8 @@ libsciapi_scilab_la_SOURCES = $(API_SCILAB_C_SOURCES) $(API_SCILAB_CPP_SOURCES) 
 CHECK_SRC= $(libsciapi_scilab_la_SOURCES)
 INCLUDE_FLAGS = $(libsciapi_scilab_la_CFLAGS) 
 
-libsciapi_scilab_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la
+libsciapi_scilab_la_LIBADD =  
+#
 
 
 #### Target ######
@@ -57,7 +58,7 @@ modulename=api_scilab
 
 #### api_scilab : Conf files ####
 libsciapi_scilab_la_rootdir = $(mydatadir)
-libsciapi_scilab_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciapi_scilab_la_root_DATA =  license.txt version.xml
 
 
 #### api_scilab : init scripts ####

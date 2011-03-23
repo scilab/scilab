@@ -12,7 +12,7 @@
     <synopsis>[Stmp,Ws]=rowregul(Sl,alfa,beta)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl,Stmp</term>
@@ -53,8 +53,8 @@ Stmp('D')     // D matrix of Stmp
 clean(ss2tf(Stmp))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="invsyslin">invsyslin</link>

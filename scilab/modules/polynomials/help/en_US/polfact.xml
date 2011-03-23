@@ -23,7 +23,7 @@
     <synopsis>[f]=polfact(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>
@@ -58,8 +58,8 @@
     <para><literal>f=polfact(p)</literal> returns the minimal factors of p i.e. <literal>f=[f0 f1 ... fn]</literal> such
     that <literal>p=prod(f)</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lcm">lcm</link>

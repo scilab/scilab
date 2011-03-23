@@ -24,6 +24,8 @@
 
 /* JavaDoc for InterpreterManagementJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /**
    * All Scilab interpreter management used in Java console
    * @author Vincent COUVERT
@@ -37,7 +39,7 @@ class%}
     * Constructor
     */
   protected InterpreterManagementJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 /* static load of library */
@@ -46,11 +48,13 @@ class%}
     try {
         System.loadLibrary("sciaction_binding");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library sciaction_binding does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library sciaction_binding does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -70,7 +74,7 @@ public class";
    * Constructor
    */
  protected InterpreterManagement() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }";
 
 /* JavaDoc */

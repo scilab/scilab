@@ -14,7 +14,7 @@ if rhs==1 then k=0,end
 [m,n]=size(a)
 if m>1&n>1 then
   if k<=0 then
-    mn=mini(m+k,n)
+    mn=min(m+k,n)
     i0=-k+1
   else
     mn=min(m,n-k)

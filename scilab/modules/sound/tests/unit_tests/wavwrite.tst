@@ -8,4 +8,4 @@
   A = matrix(1:6,2,3);
   wavwrite(A/6,TMPDIR+'/foo.wav');
   B = wavread(TMPDIR+'/foo.wav');
-  if maxi(abs(A- round(B*6))) <> 0 then pause,end
+  if max(abs(A- round(B*6))) <> 0 then pause,end

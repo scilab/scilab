@@ -20,9 +20,9 @@ btn = messagebox(msprintf(gettext("Scilab 5.0 and future versions are released u
     gettext("http://www.scilab.org/"), a, b($-1)), gettext("About Scilab..."), "scilab", [gettext("Acknowledgements"), gettext("Ok")], "modal");
 
 if btn==1 then
-  if ~isempty(fileinfo("SCI/ACKNOWLEDGEMENTS")) then // Windows and Linux source version
+  if isfile("SCI/ACKNOWLEDGEMENTS") then // Windows and Linux source version
     txt = mgetl("SCI/ACKNOWLEDGEMENTS");
-  elseif ~isempty(fileinfo("SCI/../../ACKNOWLEDGEMENTS")) then // Linux binary version
+  elseif isfile("SCI/../../ACKNOWLEDGEMENTS") then // Linux binary version
     txt = mgetl("SCI/../../ACKNOWLEDGEMENTS");
   else
     return

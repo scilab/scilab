@@ -64,7 +64,7 @@ function check_help(dirs)
 	
 	for k=1:size(dirs,'*');
 		chdir(dirs(k));
-		if MSDOS then
+		if getos() == 'Windows' then
 			dirs(k) = getlongpathname(pwd());
 		else
 			dirs(k) = pwd();
@@ -103,7 +103,7 @@ function check_help(dirs)
 			// Check if we must verify this directory
 			//------------------------------------------------------------------
 			
-			if fileinfo(".last_successful_check") == [] then
+			if ~isfile(".last_successful_check") then
 				need_to_be_checked = %T;
 			else
 				exec(".last_successful_check",-1);

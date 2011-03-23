@@ -2,7 +2,7 @@
 
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-0.5.1.jar
+flexdock.jar=${thirdparty.dir}/flexdock-0.5.2.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.8.9.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.8.9.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -37,6 +37,9 @@ avalon-framework.jar=${thirdparty.dir}/avalon-framework.jar
 
 library.jvm.dir=${modules.dir}/jvm/${build.jar.dir}/
 library.jvm.name=org.scilab.modules.jvm.jar
+
+library.commons.dir=${modules.dir}/commons/${build.jar.dir}/
+library.commons.name=org.scilab.modules.commons.jar
 
 library.shell.dir=${modules.dir}/shell/${build.jar.dir}/
 library.shell.name=org.scilab.modules.shell.jar
@@ -62,14 +65,21 @@ library.history_manager.name=org.scilab.modules.history_manager.jar
 library.renderer.dir=${modules.dir}/renderer/${build.jar.dir}/
 library.renderer.name=org.scilab.modules.renderer.jar
 
-library.graphic_export.dir=${modules.dir}/renderer/${build.jar.dir}/
+library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
+library.core.dir=${modules.dir}/core/${build.jar.dir}/
+library.core.name=org.scilab.modules.core.jar
+
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
-library.javasci.name=javasci.jar
+library.javasci-v1.name=javasci.jar
+library.javasci.name=org.scilab.modules.javasci.jar
 
 library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
+
+library.types.dir=${modules.dir}/types/${build.jar.dir}/
+library.types.name=org.scilab.modules.types.jar
 
 library.hdf5.dir=${modules.dir}/hdf5/${build.jar.dir}/
 library.hdf5.name=org.scilab.modules.hdf5.jar
@@ -77,9 +87,17 @@ library.hdf5.name=org.scilab.modules.hdf5.jar
 library.xcos.dir=${modules.dir}/xcos/${build.jar.dir}/
 library.xcos.name=org.scilab.modules.xcos.jar
 
-library.xpad.dir=${modules.dir}/xpad/${build.jar.dir}/
-library.xpad.name=org.scilab.modules.xpad.jar
+library.scinotes.dir=${modules.dir}/scinotes/${build.jar.dir}/
+library.scinotes.name=org.scilab.modules.scinotes.jar
+
+library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
+library.ui_data.name=org.scilab.modules.ui_data.jar
 
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar
 
+library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
+library.history_browser.name=org.scilab.modules.history_browser.jar
+
+library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
+library.output_stream.name=org.scilab.modules.output_stream.jar

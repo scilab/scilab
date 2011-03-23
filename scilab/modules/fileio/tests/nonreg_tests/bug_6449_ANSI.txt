@@ -1,0 +1,5 @@
+Just a text to test mgetl with ANSI/ASCII encoding file.
+Caractéres accentués encodés en ANSI/ASCII
+ùàéçµ¤
+&é"'(-è_çà)=
+!:;,§/.?

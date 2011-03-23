@@ -12,8 +12,9 @@
 //
 // <-- Short Description -->
 // It is not possible to set a font_style greater than 10 even if one has added a new font using xlfont.
-//
-xlfont('Arial Black',15);
+// 
+font_list = xlfont();
+xlfont(font_list(1),15);
 a = gca();
 // should not complain about the fact that font_style is greater than 10.
 a.font_style = 15;

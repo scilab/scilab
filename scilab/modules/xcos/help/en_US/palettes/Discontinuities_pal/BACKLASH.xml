@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/BACKLASH.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/BACKLASH.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -98,13 +98,15 @@
   <refsection id="Description_BACKLASH">
     <title>Description</title>
     <para>
-The Backlash block implements a system in which a change in input
-causes an equal change in output. However, when the input changes
-direction, an initial change in input has no effect on the output.
-The amount of side-to-side play in the system is referred to as the
-.
-
-</para>
+      The block Backlash allows the representation of a system presenting a mechanical play like system of gearings.
+      When the input increases (decreases), changes of the input of the block Backlash
+      give equal changes of its output. When the input changes direction, the system
+      is disengaged during a short moment (the play is called <emphasis role="bold">
+      deadband</emphasis> or <emphasis role="bold">gap</emphasis>).
+      Therefor, at the initial moment of the change, the input has no effect and the output
+      remains constant. Then, changes of the input give equal changes on the output up to
+      the next change of direction of the input.
+    </para>
   </refsection>
   <refsection id="Dialogbox_BACKLASH">
     <title>Dialog box</title>

@@ -16,15 +16,12 @@
 		/>
 	</Platforms>
 	<ToolFiles>
-		<ToolFile
-			RelativePath="..\..\Visual-Studio-settings\rename-vc-files.rules"
-		/>
 	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -38,15 +35,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="5"
@@ -68,7 +59,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -88,7 +78,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				OutputFile="../../bin/Dumpexts.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -130,8 +120,8 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -144,13 +134,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -171,7 +155,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -187,7 +170,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Dumpexts.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"
@@ -223,8 +206,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -238,15 +221,9 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
-				ExecutionBucket="4"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
 			/>
+
 			<Tool
 				Name="VCMIDLTool"
 				ExecutionBucket="5"
@@ -272,7 +249,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -291,7 +267,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				ExecutionBucket="10"
-				OutputFile="../../bin/Dumpexts.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
@@ -332,8 +308,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|x64"
-			OutputDirectory="$(SolutionDir)$(ConfigurationName)"
-			IntermediateDirectory="$(ConfigurationName)"
+			OutputDirectory="$(SolutionDir)bin\"
+			IntermediateDirectory="$(ProjectDir)$(ConfigurationName)"
 			ConfigurationType="1"
 			UseOfMFC="0"
 			ATLMinimizesCRunTimeLibraryUsage="false"
@@ -346,13 +322,7 @@
 				Name="VCCustomBuildTool"
 			/>
 			<Tool
-				Name="rename .vc files"
-			/>
-			<Tool
 				Name="VCXMLDataGeneratorTool"
-			/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"
 			/>
 			<Tool
 				Name="VCMIDLTool"
@@ -377,7 +347,6 @@
 				ProgramDataBaseFileName="$(ConfigurationName)/"
 				WarningLevel="3"
 				SuppressStartupBanner="true"
-				Detect64BitPortabilityProblems="false"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -392,7 +361,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				OutputFile="../../bin/Dumpexts.exe"
+				OutputFile="$(SolutionDir)bin\$(ProjectName).exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile="$(ConfigurationName)/Dumpexts.pdb"
@@ -485,46 +454,6 @@
 			Name="Resource Files"
 			Filter="ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"
 			>
-		</Filter>
-		<Filter
-			Name="Rename Header Files"
-			>
-			<File
-				RelativePath="..\..\modules\scicos_blocks\includes\blocks.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\classpath.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\jvm_options.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\core\includes\machine.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\etc\modules.xml.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\scilab-lib-doc.properties.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\scilab-lib.properties.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\core\includes\stack.h.vc"
-				>
-			</File>
-			<File
-				RelativePath="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc"
-				>
-			</File>
 		</Filter>
 	</Files>
 	<Globals>

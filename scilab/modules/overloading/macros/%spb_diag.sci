@@ -17,7 +17,7 @@ m=sz(1);n=sz(2)
 if m>1&n>1 then
   l=find(ij(:,1)==(ij(:,2)-k))
   if k<=0 then
-    mn=mini(m,n-k)
+    mn=min(m,n-k)
   else
     mn=min(m+k,n)
   end

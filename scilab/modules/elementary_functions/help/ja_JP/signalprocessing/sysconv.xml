@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sysconv" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sysconv</refname>
+
+    <refpurpose>システム変換</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[s1,s2]=sysconv(s1,s2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>s1,s2</term>
+
+        <listitem>
+          <para>リスト (線形システム <literal>syslin</literal> )</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>s1</literal> および <literal>s2</literal> を
+	システムの相互接続処理を行うために共通の表現に変換します.
+	変換規則は以下の表で指定されています.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"c"</term>
+
+        <listitem>
+          <para>連続時間システム</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"d"</term>
+
+        <listitem>
+          <para>離散時間システム</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>サンプル周期nのサンプル化システム</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>[]</term>
+
+        <listitem>
+          <para>未定義の時間領域を有するシステム.
+	混合システムの場合,
+          <literal>s1</literal> および <literal>s2</literal> は
+          状態空間表現に変換されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <programlisting role = ""><![CDATA[ 
+ s1\s2 |    "c"     |     "d"     |      n2        |     []     |
+ ---------------------------------------------------------------
+ "c"   | nothing    |uncompatible | c2e(s1,n2)     |  c(s2)     |
+ ---------------------------------------------------------------
+ "d"   |uncompatible| nothing     | e(s1,n2)       |  d(s2)     |
+ ---------------------------------------------------------------
+ n1    | c2e(s2,n1) | e(s2,n1)    | n1<>n2 uncomp  |  e(s2,n1)  |
+       |            |             | n1=n2  nothing |            |
+ ---------------------------------------------------------------
+ []    | c(s1)      | d(s1)       | e(s1,n2)       |  nothing   |
+ ---------------------------------------------------------------
+  ]]></programlisting>
+
+    <para>以下のような意味があります:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>n1,n2</term>
+
+        <listitem>
+          <para>サンプル周期</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c2e(s,n)</term>
+
+        <listitem>
+          <para>the continuous-time system s is transformed into a sampled
+          system with sampling period n.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>c(s)</term>
+
+        <listitem>
+          <para>連続システムに変換 (時間領域は
+          <literal>"c"</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d(s)</term>
+
+        <listitem>
+          <para>離散システムに変換 (時間領域は
+          <literal>"d"</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>e(s,n)</term>
+
+        <listitem>
+          <para>周期<literal>n</literal>のサンプル化システムに変換
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+s1=ssrand(1,1,2);
+s2=ss2tf(s1);
+[s1,s2]=sysconv(s1,s2);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="ss2tf">ss2tf</link></member>
+
+      <member><link linkend="tf2ss">tf2ss</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

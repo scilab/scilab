@@ -187,6 +187,15 @@ public final class GeomAlgos {
 	}
 	
 	/**
+	 * Check if the 3 component of a 3D vector are not NaN.
+	 * @param v of the vector
+	 * @return true if the vector doesn't content any NaN value, false otherwise
+	 */
+	public static boolean isVector3DRepresentable(Vector3D v) {
+		return isVector3DRepresentable (v.getX(), v.getY(), v.getZ());
+	}
+	
+	/**
 	 * Transform a double value to a representable OpenGl value
 	 * Because,
 	 * The maximum representable magnitude of a floating-point number

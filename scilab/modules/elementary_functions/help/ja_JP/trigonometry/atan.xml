@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="atan" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>atan</refname>
+
+    <refpurpose>2象限および 4象限逆正接</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>phi=atan(x)
+phi=atan(y,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>実数または複素数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x, y</term>
+
+        <listitem>
+          <para>同じサイズの実数(スカラー,ベクトルまたは行列)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>実数(スカラー,ベクトルまたは行列)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+      最初の形式は2象限逆正接を計算します.
+      これは,<literal>tan(phi)</literal>の逆関数です．
+      <literal>x</literal>が実数の場合,
+      <literal>phi</literal>は (-pi/2, pi/2) の範囲となります.
+      <literal>x</literal>が複素数の場合,
+       <literal>atan</literal>は二つの特異な分岐点
+       <literal>+%i</literal>,<literal>-%i</literal>を有し,
+       選択した分枝切断(branch cuts)は, 虚数の2つの半直線
+       [i, i*oo) and (-i*oo,-i] となります.</para>
+
+    <para>2番目の形式は4象限逆正接を計算します(Fortranの atan2).
+      この場合,この関数は,複素数 <literal>x+i*y</literal> の偏角(角度)を
+      返します.
+       <literal>atan(y,x)</literal>の範囲は, (-pi, pi] です.</para>
+
+    <para>引数が実数の場合,<literal>x&gt;0</literal>には
+      両形式とも同じ値となります.</para>
+
+    <para>引数がベクトルまたは行列の場合,
+      要素毎に評価が行われ,<literal>phi</literal>は
+      同じ大きさのベクトルまたは行列となります.
+      この際, <literal>phi(i,j)=atan(x(i,j))</literal> または
+      <literal>phi(i,j)=tan(y(i,j),x(i,j))</literal>となります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 二番目の形式の例
+x=[1,%i,-1,%i]
+phasex=atan(imag(x),real(x))
+atan(0,-1)
+atan(-%eps,-1)
+
+// 分岐切断(branch cut)
+atan(-%eps + 2*%i)
+atan(+%eps + 2*%i)
+atan(-%eps - 2*%i)
+atan(+%eps - 2*%i)
+
+// 分岐点における値
+ieee(2)
+atan(%i)
+atan(-%i)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tan">tan</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>B.P.</member>
+
+      <member>L.V.D. (authors of the complex atan function).</member>
+    </simplelist>
+  </refsection>
+</refentry>

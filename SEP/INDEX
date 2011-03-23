@@ -36,3 +36,16 @@ SEP #36 : Pretty Print
 SEP #37 : Scilab Syntax
 SEP #38 : Editvar & Browsevar
 SEP #39 : MSDOS variable replaced by getos()
+SEP #40 : Cell Arrays
+SEP #41 : Select statement
+SEP #42 : JavaSci V2
+SEP #43 : CACSD frequency tools
+SEP #44 : History Browser
+SEP #45 : Xcos palette management
+SEP #46 : sum/cumsum/prod/cumprod revision
+SEP #47 : Scilab Desktop
+SEP #48 : Scilab Preferences
+SEP #49 : repmat function
+SEP #50 : Xcos Help Folders
+SEP #51 : Linear Programming
+SEP #54 : Quality argument added to xs2jpg

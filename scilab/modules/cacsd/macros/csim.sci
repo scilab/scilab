@@ -148,7 +148,7 @@ function [y,x]=csim(u,dt,sl,x0,tol)
     kk=k:k+n-1
     ak=a(kk,kk)
     bk=b(kk,:)
-    nrmu=maxi([norm(bk*ut,1),norm(x0(kk))])
+    nrmu=max([norm(bk*ut,1),norm(x0(kk))])
     if nrmu > 0 then
       if rhs<5 then
 	atol=1.d-12*nrmu;rtol=atol/100

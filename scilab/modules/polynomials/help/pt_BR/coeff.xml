@@ -72,7 +72,7 @@
     <literal>Mp</literal> . <literal>C</literal> é particionada como
     <literal>C=[C0,C1,...,Ck]</literal> onde os <literal>Ci</literal> estão
     dispostos em ordem crescente, <literal>k =
-    maxi(degree(Mp))</literal></para>
+    max(degree(Mp))</literal></para>
 
     <para><literal>C=coeff(Mp,v)</literal> retorna a matriz de coeficientes
     com graus em <literal>v</literal> . (<literal>v</literal> é um vetor linha

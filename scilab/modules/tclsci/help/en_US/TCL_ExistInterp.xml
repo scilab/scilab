@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistInterp(interp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>interp</term>
@@ -44,6 +44,7 @@
   <refsection>
     <title>Description</title>
     <para>This routine allows to test if TCL interpreter exists.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -54,8 +55,8 @@ TCL_ExistInterp('SlaveInterp')
 TCL_DeleteInterp('SlaveInterp')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="TCL_CreateSlave">TCL_CreateSlave</link>

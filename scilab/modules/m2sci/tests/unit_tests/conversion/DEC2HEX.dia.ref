@@ -1,0 +1,58 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: DEC2HEX
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("DEC2HEX") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/DEC2HEX.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  ! L.7: real(mtlb_double(m2sciUnknownType([]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([])) if mtlb_double(m2sciUnknownType([])) is Real.
+  ! L.19: real(mtlb_double(m2sciUnknownType(1))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType(1)) if mtlb_double(m2sciUnknownType(1)) is Real.
+  ! L.21: real(mtlb_double(m2sciUnknownType([1,2,3]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1,2,3])) if mtlb_double(m2sciUnknownType([1,2,3])) is Real.
+  ! L.23: real(mtlb_double(m2sciUnknownType([1;2;3]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1;2;3])) if mtlb_double(m2sciUnknownType([1;2;3])) is Real.
+  ! L.25: real(mtlb_double(m2sciUnknownType([1,2,3;4,5,6]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1,2,3;4,5,6])) if mtlb_double(m2sciUnknownType([1,2,3;4,5,6])) is Real.
+  ! L.43: real(mtlb_double(m2sciUnknownType(1==1))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType(1==1)) if mtlb_double(m2sciUnknownType(1==1)) is Real.
+  ! L.45: real(mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3])) if mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3])) is Real.
+  ! L.47: real(mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3])) if mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3])) is Real.
+  ! L.49: real(mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) if mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0])) is Real.
+  ! L.69: real(mtlb_double(m2sciUnknownType("s"))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType("s")) if mtlb_double(m2sciUnknownType("s")) is Real.
+  ! L.71: real(mtlb_double(m2sciUnknownType("str1"))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType("str1")) if mtlb_double(m2sciUnknownType("str1")) is Real.
+  ! L.73: real(mtlb_double(m2sciUnknownType("str1"+"str2"+"str3"))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType("str1"+"str2"+"str3")) if mtlb_double(m2sciUnknownType("str1"+"str2"+"str3")) is Real.
+  ! L.75: real(mtlb_double(m2sciUnknownType(["str1";"str2";"str3"]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType(["str1";"str2";"str3"])) if mtlb_double(m2sciUnknownType(["str1";"str2";"str3"])) is Real.
+  ! L.77: real(mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))) may be replaced by:
+  !     mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) if mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])) is Real.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******

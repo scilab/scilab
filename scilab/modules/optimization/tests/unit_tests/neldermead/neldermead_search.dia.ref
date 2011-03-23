@@ -6,6 +6,8 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -89,7 +91,7 @@ nm = neldermead_configure(nm,"-boundsmax",[-10.0 10.0 10.0 10.0]);
 cmd = "nm = neldermead_search(nm)";
 execstr(cmd,"errcatch");
 computed = lasterror();
-if MSDOS then
+if getos() == 'Windows' then
 expected = "neldermead_startup: The max bound -1.000000e+001 for variable #1 is lower than the min bound 1.000000e+001.";
 else
 expected = "neldermead_startup: The max bound -1.000000e+01 for variable #1 is lower than the min bound 1.000000e+01.";

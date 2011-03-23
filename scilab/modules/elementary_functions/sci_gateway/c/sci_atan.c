@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intatan)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_atan)(char *fname,unsigned long fname_len)
+int sci_atan(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intatan)(id);

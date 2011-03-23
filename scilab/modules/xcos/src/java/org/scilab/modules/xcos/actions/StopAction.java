@@ -16,10 +16,10 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.actions.base.GraphActionManager;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -43,7 +43,7 @@ public class StopAction extends DefaultAction {
 	 */
 	public StopAction(ScilabGraph scilabGraph) {
 		super(scilabGraph);
-		setEnabled(!GraphActionManager.getEnable(StartAction.class));
+		setEnabled(false);
 	}
 
 	/**
@@ -67,12 +67,15 @@ public class StopAction extends DefaultAction {
 	 * @param e source event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
+		if (!GraphActionManager.getEnable(StartAction.class)) {
 		ScilabInterpreterManagement.requestScilabExec("haltscicos");
 		
 		((XcosDiagram) getGraph(null)).info(XcosMessages.EMPTY_INFO);
 		GraphActionManager.setEnable(StartAction.class, true);
 		GraphActionManager.setEnable(StopAction.class, false);
 		((XcosDiagram) getGraph(null)).setReadOnly(false);
+		}
 	}
 }

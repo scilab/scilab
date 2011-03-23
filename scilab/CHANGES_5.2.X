@@ -2,25 +2,141 @@
                 Changes between Versions 5.2.1 and 5.2.2 of Scilab
                 ==================================================
 
+Performance:
+============
+
+* Regression which was slowing down loops in some cases, fixed.
+  Performances can be improved up to 50 %.
+  Note that other performance improvements will also be available in Scilab 5.3.0.
+
+Help Browser:
+============
+
+* Increase of the default size of the help browser window.
+
+* Help browser window position and size are now stored and restored for
+  next usage. See bug #6482.
+
 Scilab:
 =======
 
-* Arguments -h / --help added for GNU/Linux, Unix & Mac OS X to get help about
-the startup script. 
+* Title of the main Scilab window changed from 'Console' to 'Scilab Console'.
+  See bug #5023.
+
+For GNU/Linux, Unix & Mac OS X:
+
+* Arguments -h / --help added to get help about the startup script.
 
 * Clear separation in the help between users and developers arguments in
-the Scilab startup script
+  Scilab startup script.
 
-* Bug 6633 fixed - Unknown arguments are now accepted with option -a. This 
-allows user to access to them throught the Scilab function sciargs:
-scilab -nwni -a 2 3
+* Documentation updated to explain that -nwni and -nogui are the same
+  options.
+
+* Bug 6633 fixed - Unknown arguments are now accepted with option -args to
+  allow user to access them throught sciargs Scilab function:
+  scilab -nwni -args 2 3
+
+Dynamic Link:
+=============
+
+* Bug 4787 fixed -  Under Linux/Unix/Mac OS X, when a library is not available, 
+  process does not stop during the compiler detection but stop at build time.
+  The error message is now much more explicit.
+
+* In some cases, when a library is not available, we try to find it into the
+  .libs of the module (it is the case in the development source tree). 
+  However, in the binary, for any reason, the library failed to load correctly
+  (missing symbol, bad format of library, etc), the error message was not
+  displayed.
+  
+* Bug 4575 fixed - 'makename' argument in 'ilib_mex_build', 'ilib_gen_cleaner',
+  'ilib_gen_Make', 'ilib_for_link', 'tbx_build_src' and 'tbx_build_gateway' was
+  useless.
+  A warning will be displayed in next major release for any use of a wrong value.
+
+call_scilab:
+============
+
+* Examples added to show how to manage returned error.
+
+Graphics:
+=========
+
+* Adding two new line styles: "dot" and "double dot". See bug 6840.
+
+* Temporary files in the ps export were stored at a wrong place.
+
+* bug 6472 fixed - Resizing the graphics window after having plotted several 2D
+                   curves and a legend caused the disappearance of some of them.
+
+* bug 6531 fixed - Adding a new color to the current colormap caused the Legend
+                   entity's default background color to change.
+
+* bug 6557 fixed - The legend order of the "plzr" function was incorrect.
+
+* bug 6648 fixed - The description of the "format_n" property was missing from
+                   the "axis_properties" online help page.
+
+* bug 6660 fixed - In some cases, printing under GNU/Linux and Mac OS X was
+                   failing.
+
+* bug 6664 fixed - Setting the axes property "tight_limits" to "on" caused the 
+                   axes and their attached entities to disappear when data min
+                   and max bounds were equal (for any of the X,Y or Z axes).
+
+* bug 6687 fixed - The "Matplot" function did not set the clip_state property of 
+                   the entities it created.
+
+* bug 6712 fixed - The "title" function forced displaying axes.
+
+* bug 6718 fixed - A text in a graphic containing a "<" symbol could not be
+                   exported in eps.
+
+* bug 6720 fixed - "caption" function did not handle properly polylines
+                   handles.
+
+* bug 6721 fixed - Loading a saved Axis graphics entity did not correctly 
+                   restore its tics_direction property.
+
+* bug 6735 fixed - The "landscape" option in the print dialog as well as in
+                   xs2eps did not work as expected.
+
+* bug 6738 fixed - The horizontal line of the square root symbol was not
+                   drawn when exported.
+
+* bug 6817 fixed - The "xstring" function shifted the start position of the 
+                   string relative to the string length.
+
+* bug 6834 fixed - The rotation formula in the rotate help page was incorrect.
+
+* bug 6850 fixed - "PlotSparse" function did not use the ticks provided by the
+                   axis but drew his own.
+
+* bug 6870 fixed - Arrowed polylines with infinite value were not plotted even
+                   if it was possible.
 
 Compilation:
 ============
 
-* Fix a build problem on exp10 (mainly under Gentoo)
+* Build problem on exp10 (mainly under Gentoo) fixed.
 
-* Support of GNU/Linux sparc64 and sh4
+* GNU/Linux sparc64 and sh4 supported.
+
+* Detection of JOGL/Gluegen under Suse/Opensuse improved. 
+  Thanks to Michal Vyskocil.
+
+* "make clean" continues even if errors are found.
+
+* Add a new option to the configure for Mac OS X --with-fink-prefix
+  This is done to prepare Scilab 5.3 and the mandatory dependency on 
+  Java 1.6 (64 bits only).
+  This option will set the LDFLAGS & source the fink init script.
+
+* Some macros were duplicated during the installation process.
+
+* CFLAGS -msse2 added under Mac OS X for Scilab module shell.
+  See bug #6839.
 
 Xcos:
 =====
@@ -29,46 +145,136 @@ Xcos:
 
 * bug 5297 fixed - The algnement sub-menu was not intuitive without icons.
 
+* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
+                   rotation.
+
+* bug 5700 fixed - Compilation under RHE4 was failing on term.h and termcap.h
+                   inclusion. Thanks to Nicolas Vergnes for providing the fix.
+
 * bug 6415 fixed - The SAWTOOTH_f block was not working properly.
 
 * bug 6501 fixed - The border color and fill default color was not set 
-  when changing it.
+                   when changing it.
 
-* bug 5541 fixed - The Cut/Copy-n-Paste operation did not preserve the block
-  rotation.
-
-* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
-  Ctrl+Wheel was not working for zooming.
+* bug 6575 fixed - The graph mask was not removed at the end of the simulation.
 
 * bug 6576 fixed - Specifying the debug level was not working when two diagrams 
-  were openned.
+                   were opened.
+
+* bug 6621 fixed - The Zoom shortcuts was not working as expected. The 
+                   Ctrl+Wheel was not working for zooming.
 
 * bug 6657 fixed - The importXcosDiagram call with specific parameters was 
-  crashing scilab.
+                   crashing Scilab.
 
-* bug 6671 fixed - The style was not saved in superBlockDiagram
+* bug 6671 fixed - The style was not saved in superBlockDiagram.
 
-* bug 6694 fixed - The grid was always enabled when openning a diagram.
+* bug 6694 fixed - The grid was always enabled when opening a diagram.
+
+* bug 6697 fixed - The multi-point link did not align its edges on the grid.
+
+* bug 6780 fixed - The region to superblock action did not work when an 
+                   outgoing link was selected.
+
+* bug 6797 fixed - The importXcosDiagram macros was Scicos libraries dependant.
+
+* bug 6799 fixed - The TOWS_c block had wrong default values.
+
+* bug 6808 fixed - The GOTO/FROM blocks did not display their parameters.
+
+* bug 6699 fixed - The Capacitor block had wrong default label settings.
+
+Tests:
+======
+
+* The internal tag "<-- LONG TIME EXECUTION -->" has been added. It allows to
+  disable tests that need long-time duration. These tests are enabled if
+  test_run() is called with the "enable_lt" optional argument.
+
+On-line Help Building System:
+=============================
+
+* Compilation of the on-line help failed if two XML files had the same name.
+  This constraint has been removed.
 
 Obsolete Functions:
 ===================
 
-* 'tk_choose' obsolete see 'x_choose'.
+* 'tk_choose' obsolete. Please use 'x_choose' instead.
+
+* 'readc_' obsolete. Please use 'input' instead.
 
 Bug Fixes:
 ==========
 
-* bug 4599 fixed - It was possible create many different variables with the same name in the same scope.
+* bug 2395 fixed - mfile2sci could failed with "undefined variable: mfile_path"
+                   error message for some functions conversion.
 
-* bug 6531 fixed - Adding a new color to the current colormap caused the Legend entity's default background color
-                   to change.
+* bug 4599 fixed - It was possible to create many different variables with the 
+                   same name in the same scope.
+                   
+* bug 5140 fixed - Lines to be executed were not printed in the console.
+                   A message box added to advice to use ""Execute into Scilab",
+                   if file is very long (more 100 lines).
 
-* bug 6557 fixed - The legend order of the plzr function was incorrect.
+* bug 5466 fixed - "savematfile" no more append variables in file by default, 
+                   file is now reinitialized at each "savematfile" call.
 
-* bug 6664 fixed - Setting the Axes property tight_limits to "on" caused the Axes and their attached entities
-                   to disappear when data min and max bounds were equal (for any of the X,Y or Z axes).
+* bug 6675 fixed - x_mdialog crashed Scilab with some incorrect input 
+                   arguments.
 
-* bug 6675 fixed - x_mdialog crashed scilab with some incorrect input arguments.
+* bug 6698 fixed - isreal did not work on hypermatrix.
+
+* bug 6730 fixed - Problem with function calls when seen as member of an 
+                   mlist fixed.
+
+* bug 6734 fixed - read_csv function contained erroneous error messages.
+
+* bug 6739 fixed - If a Scilab coded library function was redefined in a new 
+                   library, completion on its name made Scilab crashed.
+
+* bug 6719 fixed - Error fixed in example of root_properties help page
+                   (French version only).
+
+* bug 6720 fixed - "lib" function did not print the same thing when it was 
+                   entered several times.
+
+* bug 6792 fixed - Wrong interpretation of macro arguments when the macro call
+                   appeared in an list extraction.
+
+* bug 6796 fixed - test_run() crashed if SCI directory was read-only.
+
+* bug 6798 fixed - About Matlab to Scilab tools help page updated.
+
+* bug 6816 fixed - Incoherent extraction when there was no index: M()
+ 
+* bug 6829 fixed - kpure failed to compute  when applied to an high degree 
+                   system.
+
+* bug 6841 fixed - fun2string failed on simple examples containing variable
+                   extraction.
+
+* bug 6787 fixed - toprint(filename) required only absolute path to filename.
+
+* bug 6788 fixed - toprint(filename) UTF8 chars in a file were mis-printed.
+
+* bug 6790 fixed - toprint(nFigure): %F was returned while the figure was
+                   actually printed.
+
+* bug 6821 fixed - In text editor, labels of contextual menu called
+                   "Execute selection into Scilab" and menu called 
+                   "Evaluate selection" were not homogenized.
+
+* bug 6864 partially fixed - ATOMS: Error messages were not homogenized.
+
+* bug 6879 fixed - Error messages in "sci_champ.c" were not homogenized.
+
+* bug 6897 fixed - On Windows, umfpack had some wrong dependencies.
+
+* bug 6905 fixed - Error messages in "Gray.c" & "Plo2dn.c" were not homogenized.
+
+* bug 6906 fixed - Error messages in "SetProperty.c" were not homogenized.
+
 
 
                 Changes between Versions 5.2.0 and 5.2.1 of Scilab
@@ -2185,4 +2391,5 @@ Bug fixes:
 
 * bug 6632 fixed - nm_contour failed with respect to vector orientation.
 
+* bug 6883 fixed - black failed to plot integrators.
 

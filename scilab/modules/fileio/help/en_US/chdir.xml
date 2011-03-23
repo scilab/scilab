@@ -18,7 +18,7 @@ realpath=cd(path)
 cd path</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>b</term>
@@ -57,8 +57,8 @@ cd
 cd SCI
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pwd">pwd</link>

@@ -32,7 +32,7 @@
     <title>Seqüência de Chamamento</title>
 
     <synopsis>txt=strcat(vector_of_strings [,string_added])
-txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
+txt=strcat(vector_of_strings [,string_added, ["flag"]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -68,8 +68,8 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
         <term>"flag"</term>
 
         <listitem>
-          <para>string ( "r" para retornar uma matriz coluna, "c" para
-          retornar uma matriz linha)</para>
+          <para>string ( "r" para retornar uma matriz linha, "c" para
+          retornar uma matriz coluna)</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -88,11 +88,11 @@ txt=strcat(vector_of_strings [,string_added],["flag"])</synopsis>
     <para>O símbolo de mais faz o mesmo: <literal>"a"+"b"</literal> é o mesmo
     que <literal>strcat(["a","b"]).</literal></para>
 
-    <para><literal>Se o tamanho de vector_of_strings for um, retorna
-    txt=vector_of_strings(1); </literal></para>
+    <para>Se o tamanho de vector_of_strings for um, retorna
+    <literal>txt=vector_of_strings(1); </literal></para>
 
-    <para><literal>strcat('A','B') retorna 'A' , não 'AB' como
-    strcat(['A','B'])</literal></para>
+    <para><literal>strcat('A','B')</literal> retorna 'A' , não 'AB' como
+    <literal>strcat(['A','B'])</literal></para>
   </refsection>
 
   <refsection>
@@ -106,6 +106,12 @@ strcat('A')
 strcat('A','B')
 strcat(['A','B'])
 strcat(['A','B'],'')
+
+m =["a" "b" ; "c" "d"];
+strcat(m, "r")
+strcat(m, "", "r")
+strcat(m, "", "c")
+
  ]]></programlisting>
   </refsection>
 

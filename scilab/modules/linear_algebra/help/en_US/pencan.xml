@@ -24,7 +24,7 @@
 [Q,M,i1]=pencan(E,A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Fs</term>
@@ -82,8 +82,8 @@ roots(det(W(1:i1,1:i1)))
 det(W($-2:$,$-2:$))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>

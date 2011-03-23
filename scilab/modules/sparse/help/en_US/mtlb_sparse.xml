@@ -23,7 +23,7 @@
     <synopsis>Y=mtlb_sparse(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -52,7 +52,7 @@
      Other operations and functions using this format
     can be overloaded with Scilab functions using the prefix "%msp". 
     For instance the function 
-    <literal>%msp_p(x)</literal> (see SCIDIR/macros/percent directory) is used to
+    <literal>%msp_p(x)</literal> (see SCI/modules/overloading/macros directory) is used to
     display such "type 7" objects.</para>
   </refsection>
   <refsection>
@@ -62,8 +62,8 @@ X=sparse(rand(2,2)); Y=mtlb_sparse(X);
 Y, full(Y), [ij,v,mn]=spget(Y)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="full">full</link>

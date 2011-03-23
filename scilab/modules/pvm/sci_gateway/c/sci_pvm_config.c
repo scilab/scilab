@@ -15,9 +15,9 @@
 /*--------------------------------------------------------------------------*/
 /* PVM functions interfaces */
 /*--------------------------------------------------------------------------*/ 
+#include "sci_pvm.h"
 #include "gw_pvm.h"
 #include "MALLOC.h"
-#include "sci_pvm.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"

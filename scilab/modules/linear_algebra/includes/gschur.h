@@ -15,7 +15,7 @@
 #define __GSCHUR_H__
 
 #include "dynlib_linear_algebra.h"
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "linear_FTables.h"
 
 

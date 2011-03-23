@@ -33,7 +33,7 @@ function files= listfiles(paths,flag,flagexpand)
   end
   
   // list files of the root directory
-  if ~ MSDOS then
+  if getos() <> 'Windows' then
     paths(find(paths=="")) = "/";
   end
   
@@ -51,7 +51,7 @@ function files= listfiles(paths,flag,flagexpand)
     else
       // It is a file 
       if path == '' then path='./',end;
-      if MSDOS // Don't want this case under Linux/Unix 
+      if getos() == 'Windows' // Don't want this case under Linux/Unix 
         // Windows will return the file toto even if you provided toto.*
         if extension == '' then extension='.*',end;
       end

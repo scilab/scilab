@@ -14,7 +14,7 @@ function tree=sci_angle(tree)
 // Ouput: tree = Scilab equivalent for tree
 
 A=getrhs(tree)
-//A=convert2double(A)
+A=convert2double(A)
 
 if typeof(A)=="variable" then
   n=A

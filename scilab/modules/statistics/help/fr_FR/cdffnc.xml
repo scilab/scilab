@@ -96,42 +96,22 @@
     Cette fonction suppose qu'elle est monotone et renvoie arbitrairement une des deux valeurs.
   </para>
     <para>
-    Tiré de la librairie DCDFLIB: Library of Fortran Routines for Cumulative Distribution
+    Tiré de la bibliothèque DCDFLIB: Library of Fortran Routines for Cumulative Distribution
     Functions, Inverses, and Other Parameters (February, 1994)
     Barry W. Brown, James Lovato and Kathy Russell. The University of
     Texas.
   </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
-    <para>
-  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+
+f        = [1:2];
+dfn      = [1:2];
+dfd      = 2*dfn;
+pn       = [0,1];
+
+[P,Q]    = cdffnc("PQ",f,dfn,dfd,pn)
+ ]]></programlisting>
   </refsection>
 </refentry>

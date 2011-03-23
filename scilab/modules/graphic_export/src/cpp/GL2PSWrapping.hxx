@@ -50,6 +50,8 @@ int sci_gl2psDisable(int mode);
 
 int sci_gl2psPointSize(float value);
 
+int sci_gl2psLineStipple(int factor, int pattern);
+
 int sci_gl2psLineWidth(float value);
 
 int sci_gl2psBlendFunc(int sfactor, int dfactor);

@@ -1,0 +1,66 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: FGETL
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("FGETL"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/FGETL.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  ! L.12: At least one operand is an empty matrix for operator: mtlb_double(%v02)==(-1), result set to [].
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function fgetl()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+fid = 1;
+
+// Example 1
+%v0 = mgetl(fid,1);
+if meof()~=0 then
+  %v0 = -1;
+end;
+%v0;
+
+// Example 2
+%v02 = mgetl(fid,1);
+if meof()~=0 then
+  %v02 = -1;
+end;
+if [] then
+  disp("eof");
+end;
+
+// Example 3
+l = mgetl(fid,1);
+if meof()~=0 then
+  l = -1;
+end;

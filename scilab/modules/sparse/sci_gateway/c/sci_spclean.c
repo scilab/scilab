@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspclean)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spclean)(char *fname,unsigned long fname_len)
+int sci_spclean(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intspclean)(id);

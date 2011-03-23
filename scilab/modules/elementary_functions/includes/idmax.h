@@ -14,6 +14,7 @@
 #define __IDMAX_H__
 
 #include "machine.h" /* C2F */
+#include "dynlib_elementary_functions.h"
 
 /**
 * finds the index of the first element having maximum value 
@@ -25,7 +26,7 @@
  * @param incr indice
  * @return 0
 */
-int C2F(idmax)(int *n, double *x, int *incx);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(idmax)(int *n, double *x, int *incx);
 
 #endif /* __IDMAX_H__ */
 /*--------------------------------------------------------------------------*/ 

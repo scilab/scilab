@@ -23,7 +23,7 @@
     <synopsis>[n,d]=cmndred(num,den)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>num, den</term>
@@ -44,8 +44,8 @@
     <para>
     The rational matrix defined by <literal>num./den</literal> is <literal>n/d</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="simp">simp</link>

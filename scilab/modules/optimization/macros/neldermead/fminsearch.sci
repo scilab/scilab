@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -19,7 +20,6 @@
 //        Initial guess for optimization algorithm.
 //  options : an optional struct, as provided by optimset
 //
-// TODO : implement Implement the following fminsearch features : Display, OutputFcn, PlotFcns
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then

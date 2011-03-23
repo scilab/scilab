@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="return" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>return</refname>
+
+    <refpurpose>retorna ou pára a execução de uma função e copia algumas de
+    suas variáveis locais</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento </title>
+
+    <synopsis>return
+[x1,..,xn]=return(a1,..,an)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>...</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Em uma função, <literal>return</literal> pára a execução da mesma,
+    <literal>[..]=return(..)</literal> pára a execução de uma função e põe as
+    variáveis locais <literal>ai</literal> no ambiente de chamamento sob os
+    nomes de <literal>xi</literal>.</para>
+
+    <para>No modo <literal>pause</literal> , permite retornar a um nível
+    inferior <literal>[..]=return(..)</literal> retorna ao nível inferior e
+    põe as variáveis locais <literal>ai</literal> no ambiente de chamamento
+    sob os nomes de <literal>xi</literal>.</para>
+
+    <para>Em um <literal>execstr</literal> chamado por uma função,
+    <literal>[..]=return(..)</literal> pára a execução da função e põe as
+    variáveis locais <literal>ai</literal> no ambiente de chamamento sob os
+    nomes de <literal>xi</literal>.</para>
+
+    <para><literal>resume</literal> é equivalente a
+    <literal>return</literal>.</para>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="abort">abort</link></member>
+
+      <member><link linkend="break">break</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -23,7 +23,7 @@
     <synopsis>xnumb(x,y,nums,[box,angle])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y,nums</term>
@@ -60,8 +60,8 @@ x=0:100:200;
 xnumb(x,500*ones(x),[10,20,35],1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xstring">xstring</link>

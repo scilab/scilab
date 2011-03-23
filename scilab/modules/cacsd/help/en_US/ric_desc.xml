@@ -24,7 +24,7 @@
 [X1,X2,zero]=ric_desc(H [,E])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>H,E</term>
@@ -90,8 +90,8 @@ E=[eye(n,n),G;               H=[A, 0*ones(n,n);
     The solution <literal>X</literal> is also given by <literal>X=riccati(A,G,C,'d')</literal>  
     with <literal>G=B/R*B'</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="riccati">riccati</link>

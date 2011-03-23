@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATPINV.jpg"
+                     fileref="../../../../images/palettes/MATPINV.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -78,22 +78,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATPINV">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATPINV">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATPINV">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATPINV">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATPINV">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATPINV">Computational function</xref>
             </para>
           </listitem>
 
@@ -128,22 +125,28 @@
   <refsection id="Description_MATPINV">
     <title>Description</title>
 
-    <para>The MATPINV Block outputs the inverse of a non square input matrix
-    using the SVD theory.if the SVD decomposition of A is equal to:</para>
+    <para>
+      The MATPINV Block outputs the inverse of a non square input matrix using the SVD theory.
+      if the SVD decomposition of A is equal to:
+    </para>
 
     <para>A=USV'</para>
 
-    <para>The pseudoinverse x of A is given by:</para>
+    <para>The pseudoinverse X of A is given by:</para>
 
-    <para>X=VS"U' where S"(i,j)=1/S(i,j) (if S(i,j) =0), U' and V are
-    respectively the transpose of U and V'.</para>
-
-    <para>and we have A*X*A=A and X*A*X=X. Both A*X and X*A are Hermitian . A
-    warning message is printed if the input is badly scaled or nearly
-    singular.</para>
-
-    <para>When the input is a M-by-N matrix the output is a N-by-M matrix. The
-    equivalent function of this block in Scilab is "pinv".</para>
+    <para>
+      X=VS"U' where S"(i,j)=1/S(i,j) (if S(i,j) =0), U' and V are respectively the transpose of U and V'.
+    </para>
+    <para>
+      and we have A*X*A=A and X*A*X=X. Both A*X and X*A are Hermitian. A warning message is printed if
+      the input is badly scaled or nearly singular.
+    </para>
+    <para>
+      When the input is a MxN matrix the output is a NxM matrix.
+    </para>
+    <para>
+      The equivalent function of this block in Scilab is <link linkend="pinv">pinv</link>.
+    </para>
 
     <para />
   </refsection>
@@ -169,10 +172,9 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -220,18 +222,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -239,8 +238,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -283,15 +281,17 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATINV">MATINV - MATINV Matrix Inverse (xcos
-          Block)</link>
+          <link linkend="MATINV">MATINV - Matrix Inverse (xcos Block)</link>
         </para>
       </listitem>
-
       <listitem>
         <para>
-          <link linkend="MATSING">MATSING - MATSING SVD decomposition (xcos
-          Block)</link>
+          <link linkend="MATSING">MATSING - SVD Decomposition (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="pinv">pinv (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

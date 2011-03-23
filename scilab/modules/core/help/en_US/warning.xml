@@ -31,13 +31,21 @@ warning('off')
 warning('this is a warning')
 warning('query')
 warning('on')
+// Example with a localized message
+warning(msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"),"myFunction",2));
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="error">error</link>
+      </member>
+      <member>
+        <link linkend="gettext">gettext</link>
+      </member>
+      <member>
+        <link linkend="msprintf">msprintf</link>
       </member>
     </simplelist>
   </refsection>

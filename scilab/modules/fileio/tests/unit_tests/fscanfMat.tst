@@ -23,32 +23,32 @@ for i=1:n ,
 end
 mclose(fd);
 a1=fscanfMat(TMPDIR+'/Mat');
-if maxi(a1-a) > 1.e-1 then pause,end 
+if max(a1-a) > 1.e-1 then pause,end 
 
 [a1,txt]=fscanfMat(TMPDIR+'/Mat');
 if ~and(txt==texte) then pause,end 
-if maxi(a1-a) > 1.e-1 then pause,end 
+if max(a1-a) > 1.e-1 then pause,end 
 
 // ---- test with fprintfMat 
 n=50;
 a=rand(n,n,'u');
 fprintfMat(TMPDIR+'/Mat',a,'%5.2f');
 a1=fscanfMat(TMPDIR+'/Mat');
-if maxi(a1-a) > 1.e-1 then pause,end 
+if max(a1-a) > 1.e-1 then pause,end 
 
 // ---- test with fprintfMat 
 n=50;
 a=rand(n,n,'u');
 fprintfMat(TMPDIR+'/Mat',a,'%5.2f',txt);
 [a1,txt1]=fscanfMat(TMPDIR+'/Mat');
-if maxi(a1-a) > 1.e-1 then pause,end 
+if max(a1-a) > 1.e-1 then pause,end 
 if ~and(txt==txt1) then pause,end 
 
 n=100;
 a=rand(n,n,'u');
 fprintfMat(TMPDIR+'/Mat',a)
 [a1]=fscanfMat(TMPDIR+'/Mat');
-if maxi(a1-a) > 1.e-1 then pause,end 
+if max(a1-a) > 1.e-1 then pause,end 
 [a1,S]=fscanfMat(TMPDIR+'/Mat');
 if S<>emptystr() then pause,end 
 

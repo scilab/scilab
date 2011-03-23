@@ -61,7 +61,7 @@
 #include "import.h"
 #include "blocks.h"
 #include "core_math.h"
-#include "dynamic_menus.h"
+#include "storeCommand.h"
 #include "syncexec.h"
 #include "realtime.h"
 #include "math_graphics.h"
@@ -234,7 +234,7 @@ static int simblkdaskr(realtype tres, N_Vector yy, N_Vector yp, N_Vector resval,
 static int Jacobians(long int Neq, realtype tt, N_Vector yy, N_Vector yp,
 					 N_Vector resvec, realtype cj, void *jdata, DenseMat Jacque,
 					 N_Vector tempv1, N_Vector tempv2, N_Vector tempv3);
-static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk);
+static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi, int deb_blk);
 static int synchro_nev(ScicosImport *scs_imp,int kf,int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
@@ -835,7 +835,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
 /*--------------------------------------------------------------------------*/
 static void cosini(double *told)
 {
-	static int flag__ = 0;
+	static scicos_flag flag__ = 0;
 	static int i = 0;
 
 	static int kfune = 0;
@@ -1146,7 +1146,7 @@ static void cossim(double *told)
 	static int one = 1;
 
 	/* Local variables */
-	static int flag__ = 0;
+	static scicos_flag flag__ = 0;
 	static int ierr1 = 0;
 	static int j = 0, k = 0;
 	static double t = 0.;
@@ -1427,7 +1427,7 @@ L30:
 					cnt = 0;
 				} else if ( flag==CV_TOO_MUCH_WORK ||  flag == CV_CONV_FAILURE || flag==CV_ERR_FAILURE) {  
 					if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
-						sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\r\n"),*told);	  
+						sciprint(_("****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and ATOL)\n"),*told);	  
 					hot = 0;
 					cnt++;
 					if (cnt>5) {
@@ -1597,7 +1597,7 @@ static void cossimdaskr(double *told)
 	static int one = 1;
 
 	/* Local variables */
-	static int flag__ = 0;
+	static scicos_flag flag__ = 0;
 	static int ierr1 = 0;
 	static int j = 0, k = 0;
 	static double t = 0.;
@@ -2118,7 +2118,7 @@ L30:
 						if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
 						{
 							if (flagr>=0) {
-								sciprint(_("**** SUNDIALS.IDA succesfully initialized *****\n") );
+								sciprint(_("**** SUNDIALS.IDA successfully initialized *****\n") );
 							}
 							else{
 								sciprint(_("**** SUNDIALS.IDA failed to initialize ->try again *****\n") );
@@ -2407,7 +2407,7 @@ L30:
 static void cosend(double *told)
 {
 	/* Local variables */
-	static int flag__ = 0;
+	static scicos_flag flag__ = 0;
 
 	static int kfune = 0;
 
@@ -2437,7 +2437,7 @@ static void cosend(double *told)
 } /* cosend_ */
 /*--------------------------------------------------------------------------*/
 /* callf */
-void callf(double *t, scicos_block *block, int *flag)
+void callf(double *t, scicos_block *block, scicos_flag *flag)
 {
 	double* args[SZ_SIZE];
 	int sz[SZ_SIZE];
@@ -2464,14 +2464,14 @@ void callf(double *t, scicos_block *block, int *flag)
 	int cosd   = C2F(cosdebug).cosd;
 	/*int kf     = C2F(curblk).kfun;*/
 	scicos_time     = *t;
-	block_error     = flag;
+	block_error     = (int*) flag;
 
 	/* debug block is never called */
 	/*if (kf==(debug_block+1)) return;*/
 	if (block->type==99) return;
 
 	/* flag 7 implicit initialization */
-	flagi = *flag;
+	flagi = (int) *flag;
 	/* change flag to zero if flagi==7 for explicit block */
 	if(flagi==7 && block->type<10000) {
 		*flag=0;
@@ -2844,7 +2844,7 @@ void callf(double *t, scicos_block *block, int *flag)
 } /* callf */
 /*--------------------------------------------------------------------------*/
 /* call_debug_scicos */
-static void call_debug_scicos(scicos_block *block, int *flag, int flagi, int deb_blk)
+static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi, int deb_blk)
 {
 	voidf loc ;
 	int solver=C2F(cmsolver).solver, k = 0;
@@ -3057,7 +3057,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
 				}
 				evtspt[i]=evtspt[*evtnb]; /* remove old evtnb from chain */
 				if (TCritWarning==0){
-					sciprint(_("\n Warning:an event is reprogrammed at t=%g by removing another"),t );
+					sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"),t );
 					sciprint(_("\n         (already programmed) event. There may be an error in"));
 					sciprint(_("\n         your model. Please check your model\n"));
 					TCritWarning=1;
@@ -3129,7 +3129,7 @@ static void idoit(double *told)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0;
+	scicos_flag flag = 0;
 	int i = 0,j = 0;
 	int ierr1 = 0;
 
@@ -3184,7 +3184,8 @@ static void doit(double *told)
 	/*     Copyright INRIA */
 
 	int i = 0,i2 = 0;
-	int flag = 0, nord = 0;
+	scicos_flag flag = 0;
+	int nord = 0;
 	int ierr1 = 0;
 	int ii = 0, kever = 0;
 
@@ -3250,7 +3251,7 @@ static void cdoit(double *told)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0;
+	scicos_flag flag = 0;
 	int ierr1 = 0;
 	int i = 0,j = 0;
 
@@ -3308,7 +3309,8 @@ static void ddoit(double *told)
 	/*     Copyright INRIA */
 
 	int i2 = 0,j = 0;
-	int flag = 0, kiwa = 0;
+	scicos_flag flag = 0;
+	int kiwa = 0;
 	int i = 0,i3 = 0,ierr1 = 0;
 	int ii = 0, keve = 0;
 
@@ -3412,7 +3414,7 @@ static void edoit(double *told, int *kiwa)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0;
+	scicos_flag flag = 0;
 	int ierr1 = 0, i = 0;
 	int kever = 0, ii = 0;
 
@@ -3485,7 +3487,8 @@ static void odoit(double *told, double *xt, double *xtd, double *residual)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0, keve = 0, kiwa = 0;
+	scicos_flag flag = 0;
+	int keve = 0, kiwa = 0;
 	int ierr1 = 0, i = 0;
 	int ii = 0, jj = 0;
 
@@ -3602,7 +3605,8 @@ static void reinitdoit(double *told)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0, keve = 0, kiwa = 0;
+	scicos_flag flag = 0;
+	int keve = 0, kiwa = 0;
 	int ierr1 = 0, i = 0;
 	int ii = 0, jj = 0;
 
@@ -3703,7 +3707,8 @@ static void ozdoit(double *told, double *xt, double *xtd, int *kiwa)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0, nord = 0;
+	scicos_flag flag = 0;
+	int nord = 0;
 	int ierr1 = 0, i = 0;
 	int ii = 0, kever = 0;
 
@@ -3773,7 +3778,8 @@ static void zdoit(double *told, double *xt, double *xtd, double *g)
 { /* update blocks zcross of continuous time block  */
 	/*     Copyright INRIA */
 	int i2 = 0;
-	int flag = 0, keve = 0, kiwa = 0;
+	scicos_flag flag = 0;
+	int keve = 0, kiwa = 0;
 	int ierr1 = 0, i = 0,j = 0;
 	int ii = 0, jj = 0;
 
@@ -3917,7 +3923,8 @@ void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job)
 	/*     Copyright INRIA */
 
 	int i2 = 0;
-	int flag = 0, keve = 0, kiwa = 0;
+	scicos_flag flag = 0;
+	int keve = 0, kiwa = 0;
 	int ierr1 = 0, i = 0;
 	int ii = 0, jj = 0;
 

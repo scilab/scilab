@@ -32,6 +32,16 @@ if rhs==1 then
     tree.lhs(1).dims=X.dims
     if dim==0 then
       tree.rhs=Rhs_tlist(X)
+      if is_a_scalar(X) then // Special case for scalar input, output is []
+	 tree.lhs(1).dims = list(0,0);
+      end
+      if is_a_vector(X) then // Special case for vector input (all dimensions known and one is greater than 1)
+	for n=1:size(X.dims)
+	  if tree.lhs(1).dims(n)<>1 then
+	    tree.lhs(1).dims(n)=tree.lhs(1).dims(n)-1;
+	  end
+	end
+      end
     else
       tree.rhs=Rhs_tlist(X,1,dim)
       tree.lhs(1).dims(dim)=max(X.dims(dim)-1,-1)

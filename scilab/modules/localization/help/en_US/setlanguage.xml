@@ -25,7 +25,7 @@
     <synopsis>setlanguage(language)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>language</term>
@@ -52,8 +52,8 @@ setlanguage('fr_FR')
 getlanguage()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getlanguage">getlanguage</link>

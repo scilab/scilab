@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="zoom_rect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>zoom_rect</refname>
+    <refpurpose>カレントのグラフィック図の選択した部分をズーム</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>zoom_rect()
+zoom_rect(rect)
+zoom_rect(h)
+zoom_rect(h,rect)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>大きさ 4のベクトル <literal>[xmin,ymin,xmax,ymax]</literal> で,
+		ズームする矩形を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+		<para>Figure または Axes型のグラフィックハンドル. ズームを適用するAxesを指定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>zoom_rect</literal> 関数はAxesオブジェクトの中をズームする際に使用されます.
+    </para>
+    <para>
+      入力引数<literal>h</literal>はズームを適用するAxesを指定します.
+      <literal>h</literal>が Figureハンドルの場合, ズームはその子のAxesに適用されます.
+	<literal>h</literal> がAxesハンドルの場合,このハンドルのみにズームが適用されます.
+	<literal>h</literal> が指定されない場合,カレントのFigureにズームが適用されます.
+    </para>
+    <para>
+      入力引数<literal>rect</literal> が指定された場合,ズームされるAxesの
+	プロパティ<literal>zoom_box</literal>はこの引数により修正されます
+	(<link linkend="axes_properties">axes_properties</link>参照).
+	XおよびY軸の境界は<literal>rect</literal>で置換されます.
+      <literal>rect</literal>が指定されない場合,zoom_rectは対話的なズームとなります.
+	ユーザはマウスで矩形を選択する必要があります.
+	ズームされた軸の新しい<literal>zoom_box</literal> プロパティは
+	矩形の交点を見つけることにより計算されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+x=0:0.01:6*%pi;
+plot2d(x,sin(x^2))
+zoom_rect([16,-1,18,1])
+//もっとズーム
+zoom_rect([16,0,16.2,1])
+//元に戻す
+unzoom()
+// axes_propertiesによりズーム
+a=gca();
+a.zoom_box=[16,0,16.2,1];
+a.zoom_box=[];
+
+//サブプロットを適当にズーム
+clf()
+x=0:0.01:6*%pi;
+subplot(211)
+plot2d(x,cos(x))
+subplot(212)
+plot2d(x,cos(2*x))
+rect=[3 -2 7 10]; //カレントの軸(直近の軸)で指定された矩形座標
+zoom_rect(rect) 
+unzoom()
+//グローバルな軸をカレントの軸に設定
+f=gcf();set('current_axes',f.children($)) 
+rect=[0.4 0 0.6 1] //ウインドウの大きさの比で指定した矩形
+zoom_rect(rect) 
+rect=[0.4 0.2 0.6 0.8]; //ウインドウの大きさの比で指定した矩形
+zoom_rect(rect)
+
+// カレントの図を対話的にズーム
+zoom_rect();
+// or
+zoom_rect(gcf());
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unzoom">unzoom</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Serge Steer INRIA </para>
+    <para>Jean-Baptiste Silvy INRIA </para>
+  </refsection>
+</refentry>

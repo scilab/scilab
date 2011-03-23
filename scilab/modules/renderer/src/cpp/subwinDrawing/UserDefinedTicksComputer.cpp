@@ -1,8 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * desc : Compute ticks from ticks given by the user 
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
+ * desc : Compute ticks from ticks given by the user
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -24,7 +26,6 @@ UserDefinedTicksComputer::UserDefinedTicksComputer(DrawableSubwin * subwin)
   m_aUserTicksPositions = NULL;
   m_aUserTicksLabels = NULL;
   m_iNbUserTicks = 0;
-  m_iNbSubticks = 0;
 }
 /*------------------------------------------------------------------------------------------*/
 UserDefinedTicksComputer::~UserDefinedTicksComputer(void)
@@ -32,7 +33,6 @@ UserDefinedTicksComputer::~UserDefinedTicksComputer(void)
   m_aUserTicksPositions = NULL;
   m_aUserTicksLabels = NULL;
   m_iNbUserTicks = 0;
-  m_iNbSubticks = 0;
 }
 /*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::reinit(void)
@@ -51,7 +51,12 @@ void UserDefinedTicksComputer::getTicksPosition(double positions[], char * label
   {
     positions[i] = m_aUserTicksPositions[i];
   }
-  BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
+
+  /* Copy the tick labels if the labels arguement is not null.  (labelsExponents is unused.) */
+  if( labels != NULL )
+  {
+    BasicAlgos::stringArrayCopy(labels, m_aUserTicksLabels, m_iNbUserTicks);
+  }
 }
 /*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::reduceTicksNumber(void)
@@ -60,13 +65,20 @@ void UserDefinedTicksComputer::reduceTicksNumber(void)
   // Actually, this function should not be called.
 }
 /*------------------------------------------------------------------------------------------*/
+int UserDefinedTicksComputer::computeMaxNumberOfDecimationIterations()
+{
+  // return 0 since this is user defined ticks and
+  // decimation is not performed at all.
+  // Actually, this function should not be called.
+  return 0;
+}
+/*------------------------------------------------------------------------------------------*/
 void UserDefinedTicksComputer::setUserTicks(double * userTicks, char ** userLabels,
-                                            int nbUserTicks, int nbSubticks)
+                                            int nbUserTicks)
 {
   m_aUserTicksPositions = userTicks;
   m_aUserTicksLabels = userLabels;
   m_iNbUserTicks = nbUserTicks;
-  m_iNbSubticks = nbSubticks;
 }
 /*------------------------------------------------------------------------------------------*/
 }

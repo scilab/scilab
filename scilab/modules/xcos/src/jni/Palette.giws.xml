@@ -1,0 +1,30 @@
+<package name="org.scilab.modules.xcos.palette">
+    <object name="Palette">
+        <method name="loadPal" returnType="void" modifier="static">
+            <parameter name="path" type="String"/>
+            <parameter name="category" type="String[]"/>
+        </method>
+        <method name="loadPal" returnType="void" modifier="static">
+            <parameter name="path" type="String"/>
+        </method>
+        <method name="addCategory" returnType="void" modifier="static">
+            <parameter name="name" type="String[]"/>
+            <parameter name="visible" type="boolean"/>
+        </method>
+        <method name="remove" returnType="void" modifier="static">
+            <parameter name="name" type="String[]"/>
+        </method>
+        <method name="enable" returnType="void" modifier="static">
+            <parameter name="name" type="String[]"/>
+            <parameter name="status" type="boolean"/>
+        </method>
+        <method name="move" returnType="void" modifier="static">
+            <parameter name="source" type="String[]"/>
+            <parameter name="target" type="String[]"/>
+        </method>
+        <method name="generatePaletteIcon" returnType="void" modifier="static">
+            <parameter name="blockPath" type="String"/>
+            <parameter name="iconPath" type="String"/>
+        </method>
+    </object>
+</package>

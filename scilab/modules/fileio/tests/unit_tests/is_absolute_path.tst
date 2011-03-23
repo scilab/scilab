@@ -15,7 +15,7 @@ if is_absolute_path("test_1")                then pause,end
 if is_absolute_path("test_2       ")         then pause,end
 if is_absolute_path("	test_3		")       then pause,end
 
-if MSDOS then
+if getos() == 'Windows' then
 	
 	if is_absolute_path("/")                 then pause,end
 	if is_absolute_path("3:")                then pause,end

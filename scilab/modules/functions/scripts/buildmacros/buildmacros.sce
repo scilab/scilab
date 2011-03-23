@@ -39,7 +39,7 @@ Dim=size(Directories);
 
 for i=1:Dim(1) do 
   chdir(Directories(i));
-  if (fileinfo('buildmacros.sce')<>[]) then
+  if isfile('buildmacros.sce') then
     exec('buildmacros.sce');
   end
   chdir(CurrentDirectory);

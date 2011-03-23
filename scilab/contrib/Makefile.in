@@ -15,10 +15,10 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### DIGITEO - Scilab 2008
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2008 - DIGITEO - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # Install the contrib_skeleton directory (the template)
 VPATH = @srcdir@
@@ -48,10 +48,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
@@ -114,6 +115,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -136,9 +138,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -156,6 +159,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -193,6 +197,10 @@ OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_FLAGS = @OPENMPI_FLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -221,8 +229,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -243,6 +254,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -311,51 +323,62 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-SKELETON_FILES = toolbox_skeleton/builder.sce \
-toolbox_skeleton/changelog.txt \
-toolbox_skeleton/demos/c_sum.dem.sce \
-toolbox_skeleton/demos/fortran_sum.dem.sce \
-toolbox_skeleton/demos/scilab_sum.dem.sce \
-toolbox_skeleton/demos/cpp_find.dem.sce \
-toolbox_skeleton/demos/toolbox_skeleton.dem.gateway.sce \
+SKELETON_FILES = toolbox_skeleton/src/fortran/builder_fortran.sce \
+toolbox_skeleton/src/fortran/fsum.f \
+toolbox_skeleton/src/c/csum.c \
+toolbox_skeleton/src/c/builder_c.sce \
+toolbox_skeleton/src/c/multiplybypi.c \
+toolbox_skeleton/src/c/csub.c \
+toolbox_skeleton/src/c/multiplybypi.h \
+toolbox_skeleton/src/c/csub.h \
+toolbox_skeleton/src/c/csum.h \
+toolbox_skeleton/src/cleaner_src.sce \
+toolbox_skeleton/src/builder_src.sce \
 toolbox_skeleton/etc/toolbox_skeleton.quit \
 toolbox_skeleton/etc/toolbox_skeleton.start \
-toolbox_skeleton/help/builder_help.sce \
-toolbox_skeleton/help/en_US/build_help.sce \
-toolbox_skeleton/help/en_US/c_sub.xml \
-toolbox_skeleton/help/en_US/c_sum.xml \
-toolbox_skeleton/help/en_US/fortran_sum.xml \
-toolbox_skeleton/help/en_US/scilab_sum.xml \
-toolbox_skeleton/help/en_US/cpp_find.xml \
-toolbox_skeleton/help/fr_FR/build_help.sce \
-toolbox_skeleton/help/fr_FR/c_sub.xml \
-toolbox_skeleton/help/fr_FR/c_sum.xml \
-toolbox_skeleton/help/fr_FR/fortran_sum.xml \
-toolbox_skeleton/help/fr_FR/scilab_sum.xml \
 toolbox_skeleton/license.txt \
-toolbox_skeleton/macros/buildmacros.sce \
-toolbox_skeleton/macros/scilab_sum.sci \
+toolbox_skeleton/DESCRIPTION \
+toolbox_skeleton/changelog.txt \
+toolbox_skeleton/DESCRIPTION-FUNCTIONS \
+toolbox_skeleton/help/builder_help.sce \
+toolbox_skeleton/help/fr_FR/scilab_sum.xml \
+toolbox_skeleton/help/fr_FR/c_sub.xml \
+toolbox_skeleton/help/fr_FR/fortran_sum.xml \
+toolbox_skeleton/help/fr_FR/c_sum.xml \
+toolbox_skeleton/help/fr_FR/build_help.sce \
+toolbox_skeleton/help/en_US/scilab_sum.xml \
+toolbox_skeleton/help/en_US/c_sub.xml \
+toolbox_skeleton/help/en_US/fortran_sum.xml \
+toolbox_skeleton/help/en_US/c_sum.xml \
+toolbox_skeleton/help/en_US/build_help.sce \
+toolbox_skeleton/help/en_US/c_multiplybypi.xml \
+toolbox_skeleton/demos/c_sum.dem.sce \
+toolbox_skeleton/demos/toolbox_skeleton.dem.gateway.sce \
+toolbox_skeleton/demos/cpp_find.dem.sce \
+toolbox_skeleton/demos/scilab_sum.dem.sce \
+toolbox_skeleton/demos/fortran_sum.dem.sce \
 toolbox_skeleton/readme.txt \
-toolbox_skeleton/sci_gateway/builder_gateway.sce \
-toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
-toolbox_skeleton/sci_gateway/c/sci_csub.c \
-toolbox_skeleton/sci_gateway/c/sci_csum.c \
-toolbox_skeleton/sci_gateway/fortran/builder_gateway_fortran.sce \
-toolbox_skeleton/sci_gateway/fortran/sci_fsum.c \
-toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
-toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx \
-toolbox_skeleton/src/builder_src.sce \
-toolbox_skeleton/src/c/builder_c.sce \
-toolbox_skeleton/src/c/csub.c \
-toolbox_skeleton/src/c/csum.c \
-toolbox_skeleton/src/fortran/builder_fortran.sce \
-toolbox_skeleton/src/fortran/fsum.f \
 toolbox_skeleton/tests/unit_tests/c_sum.tst \
 toolbox_skeleton/tests/unit_tests/fortran_sum.tst \
+toolbox_skeleton/tests/unit_tests/scilab_sum.dia.ref \
+toolbox_skeleton/tests/unit_tests/fortran_sum.dia.ref \
+toolbox_skeleton/tests/unit_tests/c_sum.dia.ref \
 toolbox_skeleton/tests/unit_tests/scilab_sum.tst \
-toolbox_skeleton/toolbox_skeleton.iss \
+toolbox_skeleton/sci_gateway/fortran/builder_gateway_fortran.sce \
+toolbox_skeleton/sci_gateway/fortran/sci_fsum.c \
+toolbox_skeleton/sci_gateway/c/sci_csub.c \
+toolbox_skeleton/sci_gateway/c/sci_multiplybypi.c \
+toolbox_skeleton/sci_gateway/c/sci_csum.c \
+toolbox_skeleton/sci_gateway/c/builder_gateway_c.sce \
+toolbox_skeleton/sci_gateway/cpp/builder_gateway_cpp.sce \
+toolbox_skeleton/sci_gateway/cpp/sci_cpp_find.cxx \
+toolbox_skeleton/sci_gateway/builder_gateway.sce \
+toolbox_skeleton/builder.sce \
+toolbox_skeleton/macros/scilab_sum.sci \
+toolbox_skeleton/macros/buildmacros.sce \
+toolbox_skeleton/macros/cleanmacros.sce \
 toolbox_skeleton/toolbox_skeleton_redist.iss \
-loader.sce
+toolbox_skeleton/toolbox_skeleton.iss
 
 all: all-am
 

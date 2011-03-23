@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48" width="48" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <metadata id="metadata24">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+   </cc:Work>
+  </rdf:RDF>
+ </metadata>
+ <title id="title3289">base scilan</title>
+ <defs id="defs3">
+  <linearGradient id="linearGradient2894" x1="11.492" gradientUnits="userSpaceOnUse" y1="1.6538" gradientTransform="matrix(0.67122955,0,0,0.66402459,133.88177,40.710976)" x2="17.199" y2="26.729">
+   <stop id="stop2669" stop-color="#FFF" offset="0"/>
+   <stop id="stop2671" stop-color="#fcfcff" stop-opacity="0" offset="1"/>
+  </linearGradient>
+ </defs>
+ <g id="layer1">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="g9570" transform="translate(0.34662852,-1.7289484)">
+     <g id="g28489" transform="translate(2.3098495,0.12996954)">
+      <g id="g5362">
+       <g id="layer1-8" transform="matrix(0,-1.4676275,1.4676275,0,-37.823485,137.74736)">
+        <g id="g5857" transform="translate(-0.49999954,-9.6375814e-8)">
+         <g id="g2887" transform="translate(-11.166083,6.0340061e-7)">
+          <rect id="rect6240" stroke-linejoin="miter" style="stroke-dasharray:none;" height="21.668" width="21.668" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" y="30.666" x="79.832" stroke-width="1" fill="#73d216"/>
+          <text id="text10145" font-size="23.03343391px" font-family="Bitstream Vera Sans" xml:space="preserve" font-style="normal" stroke="#2e3436" y="49.5" x="84.5" font-weight="normal" fill="#2e3436"><tspan id="tspan10147" y="49.5" x="84.5">P</tspan></text>
+          <g id="layer1-01" transform="translate(-57.109827,-13.041713)">
+           <path id="path2443" opacity="0.53142856" fill-rule="evenodd" fill="url(#linearGradient2894)" d="m138.61,44.542c-0.28414,0-0.8546,0.14094-0.8546,0.76031l0.0641,12.24c9.5958-0.71392,7.6698-6.1182,19.456-8.8254l-0.034-3.2176c-0.0425-0.83376-0.29284-0.91292-0.8743-0.90802l-17.757-0.04897z"/>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+ <path id="path2834" stroke-linejoin="miter" d="M0.015767,24h12.512" stroke="#000" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+ <path id="path2836" transform="translate(35.89844,34.102605)" fill="#000" d="m-22.504-10.103-4.4277,2.5563,0-5.1126,4.4277,2.5563z"/>
+</svg>

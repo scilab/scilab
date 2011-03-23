@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48" width="80" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <title id="title3289">base scilan</title>
+ <defs id="defs3">
+  <linearGradient id="linearGradient10197" y2="44.441" gradientUnits="userSpaceOnUse" x2="32.368" y1="22.083" x1="32.159">
+   <stop id="stop2310" stop-color="#73d216" offset="0"/>
+   <stop id="stop2312" stop-color="#4e9a06" offset="1"/>
+  </linearGradient>
+ </defs>
+ <metadata id="metadata4">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Mathieu Drouet / Take a sip</dc:title>
+     </cc:Agent>
+    </dc:creator>
+    <dc:source>http://www.takeasip.net/</dc:source>
+    <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+    <dc:title>base scilan</dc:title>
+   </cc:Work>
+   <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+   </cc:License>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="g9570" transform="translate(0.34662852,-1.7289484)">
+     <g id="g28489" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" transform="translate(2.3098495,0.12996954)">
+      <rect id="rect9409" ry="5.6691" style="stroke-dasharray:none;" rx="0" transform="matrix(0,-1,1,0,0,0)" height="25.501" width="95.105" stroke="#000" y="9.3328" x="-44.059" stroke-width="1.4676" fill="url(#linearGradient10197)"/>
+      <rect id="rect10224" opacity="0.7" ry="0" style="stroke-dasharray:none;" transform="matrix(0,-1.4676275,1.4676275,0,-12.140004,57.027843)" height="15.116" width="62.943" stroke="#eeeeec" y="15.761" x="9.8016" stroke-width="1" fill="none"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

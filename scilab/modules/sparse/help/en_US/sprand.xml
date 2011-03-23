@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sprand" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sprand</refname>
+
+    <refpurpose>sparse random matrix</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>sp=sprand(nrows,ncols,density [,typ])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>nrows</term>
+
+        <listitem>
+          <para>integer (number of rows)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ncols</term>
+
+        <listitem>
+          <para>integer (number of columns)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>density</term>
+
+        <listitem>
+          <para>filling coefficient (density)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>typ</term>
+
+        <listitem>
+          <para>
+            character string, <literal>"uniform"</literal> (default) or
+            <literal>"normal"</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sp</term>
+
+        <listitem>
+          <para>sparse matrix</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      <literal>sp=sprand(nrows,ncols,density)</literal> returns a sparse
+      matrix <literal>sp</literal> with <literal>nrows</literal> rows,
+      <literal>ncols</literal> columns and approximately
+      <literal>density*nrows*ncols</literal> non-zero entries.
+    </para>
+
+    <para>
+      The <literal>density</literal> parameter is expected to be in the 
+      <literal>[0,1]</literal> interval. If not, it is automatically 
+      projected into this interval. Therefore, using a density which is 
+      lower than 0 or greater than 1 will generate neither an error, 
+      nor a warning: the formula <literal>density=max(min(density,1),0)</literal>
+      is used.
+    </para>
+
+    <para>
+      If <literal>typ="uniform"</literal> uniformly distributed values on
+      [0,1] are generated. If <literal>typ="normal"</literal> normally
+      distributed values are generated (mean=0 and standard deviation=1).
+    </para>
+
+    <para>
+      The entries of the output matrix are computed from the given 
+      distribution function <literal>typ</literal>.
+      The indices of the non-zeros entries are computed 
+      randomly, so that the average number of nonzeros is equal to 
+      <literal>density</literal>.
+      The actual indices values are computed from the exponential distribution
+      function, where the parameter of the distribution function is 
+      computed accordingly.
+    </para>
+
+    <para>
+      As a side effect, the states of the random number generators <literal>rand</literal>
+      and <literal>grand</literal> are modified by this
+      function. 
+      The indices of the nonzeros entries are computed from an
+      exponential distribution function and the grand function. The values of
+      the matrix are computed from the distribution function given by the user
+      (i.e. uniform or normal) and the rand function.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <para>
+      In the following example, we generate a 100x1000 sparse matrix with
+      approximate density 0.001, i.e. with approximately
+      100*1000*0.001=100 nonzero entries.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[  
+// The entries of the matrix are uniform.
+W=sprand(100,1000,0.001);
+// The entries of the matrix are normal.
+W=sprand(100,1000,0.001,"normal");
+ ]]>
+    </programlisting>
+
+    <para>
+      In the following script, we check that the entries of the matrix
+      have the expected distribution.
+      We use the spget function in order to get the nonzero entries.
+      Then we compute the min, mean and max of the entries and compare
+      them with the limit values.
+    </para>
+    <programlisting role="example">
+      <![CDATA[  
+typ = "normal"; 
+// typ = "uniform";
+nrows = 1000;
+ncols = 2000;
+density = 1/100;
+s=sprand(nrows,ncols,density,typ);
+nnzs=nnz(s);
+[ij,v]=spget(s);
+[%inf -%inf 0 %inf 1] // Limit values for "normal"
+[nnzs min(v) mean(v) max(v) variance(v)]
+[%inf 0 0.5 1 1/12] // Limit values for "uniform"
+ ]]>
+    </programlisting>
+
+    <para>
+      In the following script, we check that the entry indices, which
+      are also chosen at random, have the correct distribution.
+      We generate <literal>kmax</literal> sparse random matrices with
+      uniform distribution.
+      For each matrix, we consider the indices of the nonzero
+      entries which were generated, i.e. we see if the event
+      <literal>Aij = {the entry (i,j) is nonzero}</literal> occured for
+      each <literal>i</literal> and <literal>j</literal>, for <literal>i=1,2,...,nrows</literal>
+      and <literal>j=1,2,...,ncols</literal>.
+    The matrix <literal>C(i,j)</literal> stores the number of times that the event <literal>Aij</literal>
+      occured.
+      The matrix <literal>R(k)</literal> stores the actual density of the try number <literal>k</literal>,
+      where <literal>k=1,2,...,kmax</literal>.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[
+    kmax = 1000;
+    ncols=10;
+    nrows=15;
+    density=0.01;
+    typ="uniform";
+    C=zeros(nrows,ncols);
+    R=[];
+    for k=1:kmax
+      M=sprand(nrows,ncols,density,typ);
+      NZ=find(M<>0);
+      NZratio = size(NZ,"*")/(nrows*ncols);
+      R=[R NZratio];
+      C(NZ)=C(NZ)+1;
+    end
+ ]]>
+  </programlisting>
+    <para>
+      Now that this algorithm has been performed (which may require some time),
+      we can compute elementary statistics to check that the algorithm performed
+      well.
+    </para>
+    <programlisting role="example">
+      <![CDATA[
+  // The expectation of A_ij is
+  density * kmax
+  // Compare this with the actual events :
+  C
+  // The average number should be close to the expectation.
+  [density*kmax mean(C)]
+  // The density should be close to expected density
+  [density mean(R)]
+  ]]>
+  </programlisting>
+
+</refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+
+      <member>
+        <link linkend="full">full</link>
+      </member>
+
+      <member>
+        <link linkend="rand">rand</link>
+      </member>
+
+      <member>
+        <link linkend="speye">speye</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

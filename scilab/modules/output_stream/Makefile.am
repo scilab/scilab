@@ -1,14 +1,12 @@
-##
-##  -*- makefile -*-
-##
-## Makefile.am
-## Made by  Bruno JOFRET <bruno.jofret@inria.fr>
-##
-## Started on  Fri Oct 26 13:48:04 2007 Bruno
-## Last update Fri, 23 Nov 2007 15:00:33 +0100 Sylvestre
-##
-## Copyright INRIA 2007
-##
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007 - INRIA - Bruno JOFRET
+# Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+#
+# This file must be used under the terms of the CeCILL.
+# This source file is licensed as described in the file COPYING, which
+# you should have received as part of this distribution.  The terms
+# are also available at
+# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 OUTPUT_STREAM_CPP_SOURCES = src/cpp/Diary.cpp \
 	src/cpp/DiaryList.cpp \
@@ -33,7 +31,8 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
-				src/c/set_xxprintf.c
+				src/c/set_xxprintf.c \
+				src/c/lasterror.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
@@ -67,6 +66,7 @@ libscioutput_stream_la_CFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/core/includes \
 -I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/shell/includes \
 -I$(top_srcdir)/modules/api_scilab/includes \
 -I$(top_srcdir)/modules/string/includes
 
@@ -81,7 +81,11 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 
-libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+if GUI
+USEANT=1
+endif
+
+libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
@@ -90,13 +94,13 @@ CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
 
 # Many stuff depends on this one ... commented
-#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la
+#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscioutput_stream_la_root_DATA =  license.txt version.xml
 
 
 #### output_stream : init scripts ####
@@ -111,6 +115,7 @@ libscioutput_stream_la_sci_gateway_DATA = sci_gateway/output_stream_gateway.xml
 libscioutput_stream_la_includedir=$(pkgincludedir)
 libscioutput_stream_la_include_HEADERS = includes/do_error_number.h \
 includes/sciprint.h \
+includes/cerro.h \
 includes/Scierror.h
 
 include $(top_srcdir)/Makefile.incl.am

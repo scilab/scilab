@@ -12,8 +12,12 @@
 
 package org.scilab.tests.modules.xcos;
 
+import java.awt.EventQueue;
+import java.lang.reflect.InvocationTargetException;
+
+import javax.swing.SwingUtilities;
+
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.testng.annotations.Test;
 
@@ -32,16 +36,27 @@ public class XcosTest {
 	}
 	
 	@Test
-	public void launchWithoutFilename() {
+	public void launchWithoutFilename() throws InterruptedException, InvocationTargetException {
 		Xcos.xcos();
 		
-		assert PaletteManager.isVisible();
-		assert XcosTab.getAllDiagrams().size() == 1;
+		// perform assert on the EDT Thread and after all events
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				assert PaletteManager.isVisible();
+				assert Xcos.getInstance().getDiagrams().size() == 1;
+			}
+		});
 		
-		Xcos.closeSession();
+		Xcos.closeXcosFromScilab();
 		
-		assert !PaletteManager.isVisible();
-		assert XcosTab.getAllDiagrams().size() == 0;
+		// perform assert on the EDT Thread and after all events
+		SwingUtilities.invokeAndWait(new Runnable() {
+			@Override
+			public void run() {
+				assert !PaletteManager.isVisible();
+				assert Xcos.getInstance().getDiagrams().size() == 0;
+			}
+		});
 	}
-	
 }

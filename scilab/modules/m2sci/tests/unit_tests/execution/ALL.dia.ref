@@ -1,0 +1,59 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: ALL
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("ALL") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/ALL.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******
+ 
+ res165: Double <> Boolean   
+ 
+ res164: Double <> Boolean   
+ 
+ res163: Double <> Boolean   
+ 
+ res111: [0,0] <> [0,1]   
+ 
+ res111: Double <> Boolean   
+ 
+ res110: [0,0] <> [0,1]   
+ 
+ res110: Double <> Boolean   
+ 
+ res109: [0,0] <> [0,1]   
+ 
+ res109: Double <> Boolean   
+ 
+ res57: [0,0] <> [1,0]   
+ 
+ res57: Double <> Boolean   
+ 
+ res56: [0,0] <> [1,0]   
+ 
+ res56: Double <> Boolean   
+ 
+ res55: [0,0] <> [1,0]   
+ 
+ res55: Double <> Boolean   

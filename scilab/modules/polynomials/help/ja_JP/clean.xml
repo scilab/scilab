@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="clean">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>clean</refname>
+    <refpurpose>行列を消去 (小さなエントリをゼロに丸める)    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>数値行列(スカラー, 多項式, 疎行列...)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>epsa,epsr</term>
+        <listitem>
+          <para>実数. 消去の際の閾値 (デフォルト値はそれぞれ 1.d-10および 1.d-10)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,
+	多項式(もしくは多項式行列または有理行列)において
+	絶対値&lt; <literal>epsa</literal>または
+	相対値&lt; <literal>epsr</literal>の係数を全て消去(ゼロに設定)します.
+    (相対とは係数の1次ノルムに関する相対値を意味します)</para>
+    <para>
+    デフォルト値は <literal>epsa=1.d-10</literal> および
+	 <literal>epsr=1.d-10;</literal>です.</para>
+    <para>
+	(多項式でない)定数行列の場合,<literal>clean(A,epsa)</literal>は
+	<literal>epsa</literal>より小さな<literal>A</literal>のエントリを
+	全てゼロに設定します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=poly(0,'x');
+w=[x,1,2+x;3+x,2-x,x^2;1,2,3+x]/3;
+w*inv(w)
+clean(w*inv(w))
+ ]]></programlisting>
+  </refsection>
+</refentry>

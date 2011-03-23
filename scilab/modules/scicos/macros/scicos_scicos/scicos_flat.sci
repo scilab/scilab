@@ -76,7 +76,7 @@ end
 scs_m=delete_unconnected(scs_m);
 
 //list of blocks with are not retained in the final block list
-blocks_to_remove=['CLKSPLIT_f' 'SPLIT_f' 'IMPSPLIT_f' 'CLKSOM_f' 'CLKSOMV_f' 'NRMSOM_f' 'PAL_f']
+blocks_to_remove=['CLKSPLIT_f' 'SPLIT_f' 'IMPSPLIT_f' 'CLKSOM_f' 'CLKSOMV_f' 'NRMSOM_f' 'PAL_f' 'xcos_block']
 port_blocks=['IN_f','INIMPL_f','OUT_f','OUTIMPL_f','CLKIN_f','CLKINV_f','CLKOUT_f','CLKOUTV_f']
 block_goto=['GOTO','CLKGOTO','GOTOMO']
 block_from=['FROM','CLKFROM','FROMMO']
@@ -114,7 +114,7 @@ for k=1:n //loop on all objects
 	    hilite_path([path,k],"There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''",%t);
 	  else
 	    gh_wins = gcf();
-	    mxwin=maxi(winsid());
+	    mxwin=max(winsid());
 	    scs_show(scs_m,mxwin+1);
 	    hilite_obj(k);
 	    messagebox("There is another local GOTO in this diagram with the same tag ''"+loc_mat($,3)+"''","modal");

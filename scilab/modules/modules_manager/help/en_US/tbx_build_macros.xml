@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_build_macros" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2008-08-20 13:35:13 +0200 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tbx_build_macros</refname>
+    <refpurpose>Compile macros (toolbox compilation process)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+	  tbx_build_macros(toolbox_name)
+	  tbx_build_macros(toolbox_name, macros_path)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>toolbox_name</term>
+        <listitem>
+          <para>Toolbox short name ; that is, the prefix of the .start file of the toolbox (which shall be in the etc subdirectory).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>macros_path</term>
+        <listitem>
+          <para>Directory where the macros files can be found and where the compiled macros will be placed into ; in a normal toolbox it should be the directory containing the buildmacros.sce script (which should be the script calling this function). Default is current directory.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+// Recommended usage
+tbx_build_macros("toolbox_example", get_absolute_file_path('buildmacros.sce'))
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>SL</member>
+    </simplelist>
+  </refsection>
+</refentry>

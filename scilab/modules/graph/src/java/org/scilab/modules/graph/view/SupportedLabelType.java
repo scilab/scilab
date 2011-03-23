@@ -89,23 +89,24 @@ public enum SupportedLabelType {
 	public static SupportedLabelType getFromHTML(String html) {
 		if (html.length() > 0 && html.charAt(0) == '<') {
 
-			StringBuilder content;
-			content = new StringBuilder(mxUtils.getBodyMarkup(html, false));
-			
+			final StringBuilder content = new StringBuilder(mxUtils
+					.getBodyMarkup(html, false));
+
 			ScilabGraphUtils.removeBlanks(content);
-			
-			if ((content.charAt(0) == LATEX_TAG) && (
-					content.charAt(content.length() - 1) == LATEX_TAG)) {
-	    		return Latex;
-	    	} else if ((content.charAt(0) == MATHML_TAG) && (
-					content.charAt(content.length() - 1) == MATHML_TAG)) {
-	    		LoadClassPath.loadOnUse(CLASSPATH_MATHML_NAME);
-	    		return MathML;
-	    	}
+
+			if ((content.length() > 0) && (content.charAt(0) == LATEX_TAG)
+					&& (content.charAt(content.length() - 1) == LATEX_TAG)) {
+				return Latex;
+			} else if ((content.length() > 0)
+					&& (content.charAt(0) == MATHML_TAG)
+					&& (content.charAt(content.length() - 1) == MATHML_TAG)) {
+				LoadClassPath.loadOnUse(CLASSPATH_MATHML_NAME);
+				return MathML;
+			}
 		} else {
 			return getFromText(html);
 		}
-		
+
 		return HTML;
 	}
 	

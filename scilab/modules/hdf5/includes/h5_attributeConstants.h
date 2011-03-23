@@ -20,26 +20,28 @@
 //#define SCILAB_CLASS_TLIST		"tlist"
 //#define SCILAB_CLASS_MLIST		"mlist"
 
-static const char g_SCILAB_CLASS[]					=	"SCILAB_Class";
-static const char g_SCILAB_CLASS_EMPTY[]		=	"SCILAB_empty";
-static const char g_SCILAB_CLASS_VARNAME[]	=	"SCILAB_varname";
-static const char g_SCILAB_CLASS_COMPLEX[]	=	"SCILAB_complex";
-static const char g_SCILAB_CLASS_PREC[]			=	"SCILAB_precision";
-static const char g_SCILAB_CLASS_ROWS[]			=	"SCILAB_rows";
-static const char g_SCILAB_CLASS_COLS[]			=	"SCILAB_cols";
-static const char g_SCILAB_CLASS_ITEMS[]		=	"SCILAB_items";
+static const char g_SCILAB_CLASS[]              =	"SCILAB_Class";
+static const char g_SCILAB_CLASS_EMPTY[]        =	"SCILAB_empty";
+static const char g_SCILAB_CLASS_VARNAME[]      =	"SCILAB_varname";
+static const char g_SCILAB_CLASS_COMPLEX[]      =	"SCILAB_complex";
+static const char g_SCILAB_CLASS_PREC[]         =	"SCILAB_precision";
+static const char g_SCILAB_CLASS_ROWS[]         =	"SCILAB_rows";
+static const char g_SCILAB_CLASS_COLS[]         =	"SCILAB_cols";
+static const char g_SCILAB_CLASS_ITEMS[]        =	"SCILAB_items";
 
 
-static const char g_SCILAB_CLASS_DOUBLE[]		=	"double";
-static const char g_SCILAB_CLASS_STRING[]		=	"string";
-static const char g_SCILAB_CLASS_BOOLEAN[]	=	"boolean";
-static const char g_SCILAB_CLASS_INT[]			=	"integer";
-static const char g_SCILAB_CLASS_POLY[]			=	"polynomial";
-static const char g_SCILAB_CLASS_SPARSE[]		=	"sparse";
-static const char g_SCILAB_CLASS_BSPARSE[]	=	"boolean sparse";
-static const char g_SCILAB_CLASS_LIST[]			=	"list";
-static const char g_SCILAB_CLASS_TLIST[]		=	"tlist";
-static const char g_SCILAB_CLASS_MLIST[]		=	"mlist";
+static const char g_SCILAB_CLASS_DOUBLE[]       =	"double";
+static const char g_SCILAB_CLASS_STRING[]       =	"string";
+static const char g_SCILAB_CLASS_BOOLEAN[]      =	"boolean";
+static const char g_SCILAB_CLASS_INT[]          =	"integer";
+static const char g_SCILAB_CLASS_POLY[]         =	"polynomial";
+static const char g_SCILAB_CLASS_SPARSE[]       =	"sparse";
+static const char g_SCILAB_CLASS_BSPARSE[]      =	"boolean sparse";
+static const char g_SCILAB_CLASS_LIST[]         =	"list";
+static const char g_SCILAB_CLASS_TLIST[]        =	"tlist";
+static const char g_SCILAB_CLASS_MLIST[]        =	"mlist";
+static const char g_SCILAB_CLASS_VOID[]         =	"void";
+static const char g_SCILAB_CLASS_UNDEFINED[]    =	"undefined";
 
 //interger precision
 #define SCI_INT8		1

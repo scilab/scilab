@@ -40,23 +40,23 @@
 mode(-1);
 clear;
 
-MFILECONTENTS=["for i=1:5";"end"]
+MFILECONTENTS=["for i=1:5";"end"];
 
-MFILE=TMPDIR+"/bug1004.m"
-SCIFILE=TMPDIR+"/bug1004.sci"
+MFILE=TMPDIR+"/bug1004.m";
+SCIFILE=TMPDIR+"/bug1004.sci";
 
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"for i = 1:5";
-		"end;"]
+        "// Display mode";
+        "mode(0);";
+        "";
+        "// Display warning for floating point exception";
+        "ieee(1);";
+        "";
+        "for i = 1:5";
+        "end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

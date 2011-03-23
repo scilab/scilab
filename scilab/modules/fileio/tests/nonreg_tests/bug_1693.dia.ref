@@ -15,7 +15,7 @@
 // ...
 // ================== Test 1 ==================
 cd('\');
-if MSDOS 
+if getos() == 'Windows' 
 	if ~or(getdrives() == pwd()) then bugmes();quit;end
 else
 	if pwd() <> '/' then bugmes();quit;end
@@ -24,7 +24,7 @@ end
 cd home;
 if pwd() <> home then bugmes();quit;end
 // ================== Test 3 ==================
-if MSDOS then
+if getos() == 'Windows' then
 	cd WSCI;
 	if pwd() <> WSCI then bugmes();quit;end
 end

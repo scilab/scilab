@@ -19,7 +19,8 @@ c
 c     
       common/ierode/iero
       logical allowptr
-c     
+c      
+      character tmpbuf * (bsiz) 
       double precision t, y(*),ydot(*),res(*),rpar(*)
       integer ires,ipar(*)
       integer vol,tops,nordre
@@ -30,8 +31,8 @@ c
 c     
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bresd  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' bresd  top:'//tmpbuf(1:4))
       endif
 c     nordre est le numero d'ordre de cet external dans la structure
 c     de donnee,

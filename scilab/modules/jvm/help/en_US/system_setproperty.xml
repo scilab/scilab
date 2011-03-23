@@ -24,7 +24,7 @@
     <synopsis>prev = system_setproperty(key,value)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>prev</term>

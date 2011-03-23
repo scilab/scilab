@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="polyline_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>polyline_properties</refname>
+    <refpurpose>description of the Polyline
+  entity properties</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The Polyline entity is a leaf of the graphics entities hierarchy. This
+    entity defines the parameters for polylines.</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>This field contains the handle of the parent. The parent of the
+        polyline entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, polyline handles currently do not have any
+        <literal>children</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
+        By default, the polyline is visible, the value's property is
+        <literal>"on" </literal>. If <literal>"off"</literal> the polyline is not drawn on
+        the screen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>This field contains the values for the x and y coordinates.
+        Component Z is to be added in the case of three-dimensional axes. It
+        is a two (three) column matrix <literal>[x,y,[z]]</literal> of points.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>closed: </term>
+        <listitem>
+          <para>This field determines wether the polyline is closed or not: its
+        value can be <literal>"on"</literal> or <literal>"off"</literal> (no default
+        value, it depends on the primitive used to create the polyline).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_mode: </term>
+        <listitem>
+          <para>This field contains the default <literal>line_mode</literal> property
+        value for the polyline. Its value should be <literal>"on" </literal>(line
+        drawn) or <literal>"off"</literal> (no line drawn).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill_mode: </term>
+        <listitem>
+          <para>If the <literal>polyline_style</literal> field is different of 5, fill
+        the background of the curve with color defined by the
+        <literal>background</literal> property.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_style: </term>
+        <listitem>
+          <para>The <literal>line_style</literal> property value should be an integer in
+        [0 8]. 0 and 1 stands for solid, the other value stands for a selection of
+        dashes (see <link linkend="axes_properties">getlinestyle</link>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thickness: </term>
+        <listitem>
+          <para>This property is a positive real specifying the line width
+			in pixels. The displayed width is actually determined by rounding the supplied width
+            to the nearest integer. The only exception is vectorial export where the whole <literal>thickness</literal>
+			value is considered.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arrow_size_factor: </term>
+        <listitem>
+          <para>This integer allows to set the size of arrows drawn on the
+        polyline. The actual size of arrows is the product of the
+        <literal>thickness</literal> and the the size factor.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>polyline_style: </term>
+        <listitem>
+          <para>This property sets several polyline drawing mode:</para>
+          <itemizedlist>
+            <listitem>
+              <para>If the value is 0 or 1 lines are drawn between two
+            consecutives points.</para>
+            </listitem>
+            <listitem>
+              <para>If the value is 2 the polyline produces a staircase plot. Two
+            consecutives points are linked by an horizontal line followed by a
+            vertical line.</para>
+            </listitem>
+            <listitem>
+              <para>If the value is 3 the polyline produces a bar plot. For each
+            given point (x,y) a vertical line is drawn from (x,y) to
+            (x,0).</para>
+            </listitem>
+            <listitem>
+              <para>If the value is 4 arrows are drawn between two consecutives
+            points.</para>
+            </listitem>
+            <listitem>
+              <para>If the value is 5 the polyline is filled (patch).</para>
+            </listitem>
+            <listitem>
+              <para>If the value is 6 the polyline is a Matlab-like bar object.
+            The properties <literal>bar_shift</literal> and <literal>bar_width</literal>
+            command its appearance.</para>
+            </listitem>
+          </itemizedlist>
+	  <para>
+	  <inlinemediaobject>
+	    <imageobject>
+	      <imagedata fileref="../../images/polyline_style.svg"/>
+	    </imageobject>
+	  </inlinemediaobject>
+	</para>
+
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>foreground: </term>
+        <listitem>
+          <para>This field contains the default <literal>foreground</literal> property
+        used to draw the polyline. Its value should be a color index (relative
+        to the current colormap).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>background: </term>
+        <listitem>
+          <para>This field contains the color used to fill the background of the
+        polyline. Its value should be a color index (relative to the current
+        colormap).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interp_color_vector: </term>
+        <listitem>
+          <para>This field contains the vector of color indices used to fill in
+        the polyline when the <literal>interp_color_mode</literal> property is set
+        to <literal>"on"</literal>. It defines the intervals of colormap indices
+        used to fill each segment. For instance, the first segment will be
+        filled by every colors whose index is between the first two elements
+        of the vecor. It is only applicable if the polyline is defined by 3 or
+        4 points. Therefore, the size of the vector must match this
+        dimension.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>interp_color_mode: </term>
+        <listitem>
+          <para>This field determines if we are using the interpolated shading
+        mode to fill the polyline : its value can be <literal>"on"</literal> or
+        <literal>"off"</literal>. Note that an <literal>interp_color_vector</literal> must
+        be defined before switching to "on" value (see above).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_mode: </term>
+        <listitem>
+          <para>This field contains the default <literal>mark_mode</literal> property
+        value for the polyline. Its value should be <literal>"on"</literal> (marks
+        drawn) or <literal>"off"</literal> (no marks drawn).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_style: </term>
+        <listitem>
+          <para>The <literal>mark_style</literal> property value is used to select the
+        type of mark to use when <literal>mark_mode</literal> property is
+        <literal>"on"</literal>. The value should be an integer in [0 14] which
+        stands for: dot, plus, cross, star, filled diamond, diamond, triangle
+        up, triangle down, diamond plus, circle, asterisk, square, triangle
+        right, triangle left and pentagram. The figure below shows the aspects of the marks depending on the <literal>mark_style</literal> and the <literal>mark_foreground</literal> and <literal>mark_background</literal> properties.</para>
+	<para>
+	  <inlinemediaobject>
+	    <imageobject>
+	      <imagedata fileref="../../images/marks.svg"/>
+	    </imageobject>
+	  </inlinemediaobject>
+	</para>
+
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size_unit: </term>
+        <listitem>
+          <para>This field contains the default <literal>mark_size_unit</literal>
+        property value. If <literal>mark_size_unit</literal> is set to
+        <literal>"point"</literal>, then the <literal>mark_size</literal> value is
+        directly given in points. When <literal>mark_size_unit</literal> is set to
+        <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
+        to the font size array: therefore, its value should be an integer in
+        [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+        <link linkend="plot2d">plot2d</link> and pure scilab functions use
+        <literal>tabulated</literal> mode as default ; when using <link linkend="plot">plot</link>
+        function, the <literal>point</literal> mode is automatically enabled.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size: </term>
+        <listitem>
+          <para>The <literal>mark_size</literal> property is used to select the type of
+        size of the marks when <literal>mark_mode</literal> property is
+        <literal>"on"</literal>. Its value should be an integer between 0 and 5
+        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_foreground: </term>
+        <listitem>
+          <para>This field contains the <literal>mark_foreground</literal> property
+        value which is the marks' edge color. Its value should be a color
+        index (relative to the current color_map) or 0 for transparant edge.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_background: </term>
+        <listitem>
+          <para>This field contains the <literal>mark_background</literal> property
+        value which is the marks' face color. Its value should be a color
+        index (relative to the current color_map) or 0 for transparant face.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x_shift: </term>
+        <listitem>
+          <para>This field contains the offset computed by a call to the
+        <link linkend="bar">bar</link> function (or re-computed by a call to
+        <link linkend="barhomogenize">barhomogenize</link>) and is used to perform a nice vertical bar
+        representation. Note that this offset is also taken into account for
+        all the other <literal>polyline_style</literal>. The unit is expressed in
+        user coordinates.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y_shift: </term>
+        <listitem>
+          <para>This field contains the offset computed by a call to the
+        <link linkend="bar">bar</link> function (or re-computed by a call to
+        <link linkend="barhomogenize">barhomogenize</link>) and is used to perform a nice horizontal
+        bar representation. Note that this offset is also taken into account
+        for all the other <literal>polyline_style</literal>. The unit is expressed
+        in user coordinates.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z_shift: </term>
+        <listitem>
+          <para>This field contains the offset the user may specify. Note that
+        this offset is taken into account for all the
+        <literal>polyline_style</literal>. The unit is expressed in user
+        coordinates.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bar_width: </term>
+        <listitem>
+          <para>This field determines the width of the selected polyline when its
+        <literal>polyline_style</literal> is set to bar mode (case 6) : the unit is
+        expressed in user coordinates.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>This field contains the <literal>clip_state</literal> property value for
+        the polyline. It should be :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that the polyline is not
+            clipped.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that the polyline is clipped
+            outside the Axes box.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> this means that the polyline is clipped
+            outside the rectangle given by property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>This field is to determinate the <literal>clip_box</literal> property.
+        By Default its value should be an empty matrix if clip_state is "off".
+        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
+        height) defines the portions of the polyline to display, however
+        <literal>clip_state</literal> property value will be changed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>This field can be use to store any scilab variable in the polyline
+        data structure, and to retrieve it.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes")//get the handle of the newly created axes
+a.data_bounds=[-2,-2;2,2];
+
+xpoly(sin(2*%pi*(0:5)/5),cos(2*%pi*(0:5)/5),"lines",0)
+p=get("hdl"); //get handle on current entity (here the polyline entity)
+p.foreground=2;
+p.thickness=3;
+p.mark_style=9;
+d=p.data;d(1,:)=[0 0];p.data=d;
+a.rotation_angles=[0 45];
+   
+p.data=[(-2:0.1:2)' sin((-2:0.1:2)*%pi)']
+p.mark_mode="off";
+p.polyline_style=3;
+p.line_style=4;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="xpoly">xpoly</link>
+      </member>
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+      <member>
+        <link linkend="xfpolys">xfpolys</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -47,15 +47,15 @@
   <refsection>
     <title>Exemples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then 
+if getos() == 'Windows' then 
   unix_w("dir "+'""'+WSCI+"\modules"+'""');
 else
   unix_w("ls $SCI/modules");
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

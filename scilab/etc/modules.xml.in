@@ -37,6 +37,7 @@
 <module name="output_stream" activate="yes"/>
 <module name="intersci" activate="yes"/>
 <module name="jvm" activate="@JAVA_ENABLE@"/>
+<module name="commons" activate="yes"/>
 <module name="linear_algebra" activate="yes"/>
 <module name="localization" activate="yes"/>
 <module name="optimization" activate="yes"/>
@@ -64,11 +65,10 @@
 <module name="spreadsheet" activate="yes"/>
 <module name="call_scilab" activate="yes"/>
 <!-- comments -->
-<module name="scicos" activate="@SCICOS_ENABLE@"/>
-<module name="scicos_blocks" activate="@SCICOS_ENABLE@"/>
+<module name="scicos" activate="@XCOS_ENABLE@"/>
+<module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
 <!-- comments -->
 <module name="pvm" activate="@PVM_ENABLE@"/>
-<module name="sci2c" activate="no"/>
 <module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>
@@ -78,12 +78,17 @@
 <module name="parameters" activate="yes"/>
 <module name="atoms" activate="yes"/>
 <module name="matio" activate="@MATIO_ENABLE@"/>
+<module name="types" activate="@JAVA_ENABLE@"/>
 <module name="hdf5" activate="yes"/>
 <module name="xcos" activate="@GUI_ENABLE@"/>
-<module name="xpad" activate="@GUI_ENABLE@"/>
 <module name="mpi" activate="@MPI_ENABLE@"/>
+<module name="scinotes" activate="@GUI_ENABLE@"/>
+<module name="ui_data" activate="@GUI_ENABLE@"/>
 <module name="api_scilab" activate="yes"/>
 <module name="helptools" activate="@HELP_ENABLE@"/>
 <module name="graph" activate="@JAVA_ENABLE@"/>
+<module name="parallel" activate="yes"/>
+<module name="modules_manager" activate="yes"/>
+<module name="history_browser" activate="@JAVA_ENABLE@"/>
 </modules>
 

@@ -1,9 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
-##########
-
-
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 #### Target ######
 modulename=texmacs
@@ -11,7 +9,7 @@ modulename=texmacs
 
 #### texmacs : Conf files ####
 libscitexmacs_la_rootdir = $(mydatadir)
-libscitexmacs_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitexmacs_la_root_DATA =  license.txt version.xml
 
 #### texmacs : Macros ####
 MACROSDIRSEXT =  macros/overloading

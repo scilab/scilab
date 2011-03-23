@@ -24,7 +24,7 @@
 [Obs,U,m]=observer(Sys [,flag,alfa])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sys</term>
@@ -157,8 +157,8 @@ Obs = observer(Plant,L);
 spec(Obs.A)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="dt_ility">dt_ility</link>

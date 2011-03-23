@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>BIGSOM_f</refname>
 
-    <refpurpose>Sum</refpurpose>
+    <refpurpose>Scalar or vector Addition/Soustraction</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -39,7 +39,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/BIGSOM_f.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/BIGSOM_f.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -95,6 +95,12 @@
               function</xref>
             </para>
           </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_BIGSOM_f">See also</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -115,8 +121,35 @@
   <refsection id="Description_BIGSOM_f">
     <title>Description</title>
 
-    <para>The Sum block performs addition on its inputs. This block can add
-    scalar or vector inputs.</para>
+    <para>
+      This block performs addition or soustraction on its scalar or vector inputs.The user can adjust
+      the gain for each input with the parameter <emphasis role="bold">Inputs ports signs/gain</emphasis>.
+      The behavior of the block is summarized in the following table :
+    </para>
+    <para/>
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left" width="18%"><emphasis role="bold">Number of inputs</emphasis></td>
+        <td align="left" width="22%"><emphasis role="bold">Operation</emphasis></td>
+        <td align="left"><emphasis role="bold">Remarks</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left">One</td>
+        <td align="left">y = k*u</td>
+        <td align="left">
+          k is the scalar value in <emphasis role="bold">Inputs ports signs/gain</emphasis> parameter.
+          The block has the behavior of a gain.
+        </td>
+      </tr>
+      <tr>
+        <td align="left">Two or more</td>
+        <td align="left">y = k[1]*u1+k[2]*u2+...+k[n]*uN</td>
+        <td align="left">
+          k is the vector value write in <emphasis role="bold">Inputs ports signs/gain</emphasis> parameter.
+          To subtract an input <emphasis>ui</emphasis>, set a negative value in k[i].
+        </td>
+      </tr>
+    </informaltable>
   </refsection>
 
   <refsection id="Dialogbox_BIGSOM_f">
@@ -240,6 +273,21 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/sum.c (Type 2)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_BIGSOM_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION - Matrix Addition/Subtraction (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="SUM_f">SUM_f - Summation (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

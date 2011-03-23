@@ -23,7 +23,7 @@
     <synopsis>[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -141,8 +141,8 @@
     <para><literal>Q,Z</literal> are the unitary matrices used to compute the pencil where E
     is in column echelon form (see ereduc)</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="quaskro">quaskro</link>

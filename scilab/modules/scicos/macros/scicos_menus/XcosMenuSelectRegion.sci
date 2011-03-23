@@ -21,6 +21,9 @@
 //
 
 function XcosMenuSelectRegion()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 10 July 2006: find a
 //** xx/01/07 : Alan - review (introduce rubberbox here)
 //**            Objects must be totally included in
@@ -29,7 +32,7 @@ function XcosMenuSelectRegion()
 //** 18 Mar 2008 : update to "scicos_rubberbox()" for Scilab 5
 
 
-  if with_gtk()|MSDOS then  // first click under windows treated as
+  if getos() == 'Windows' then  // first click under windows treated as
                             // press move (always the case under gtk)
     Cmenu =[]; Select=[] ;
   else

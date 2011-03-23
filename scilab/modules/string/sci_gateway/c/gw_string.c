@@ -40,7 +40,7 @@ static gw_generic_table Tab[] =
 	{sci_isascii,"isascii"},
 	{sci_strcspn,"strcspn"},
 	{sci_strncpy,"strncpy"},
-	{sci_strrchr,"strrchr"},
+	{sci_strchr,"strrchr"},
 	{sci_strchr,"strchr"},
 	{sci_strstr,"strstr"},
 	{sci_strrev,"strrev"},
@@ -54,7 +54,7 @@ int gw_string(void)
 {  
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

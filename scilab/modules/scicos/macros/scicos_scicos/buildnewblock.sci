@@ -49,41 +49,41 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
   [lhs,rhs] = argn(0);
  
   if rhs <= 1 then files    = blknam, end
-  if rhs <= 2 then filestan = '', end
-  if rhs <= 3 then filesint = '', end
-  if rhs <= 4 then libs     = '', end
+  if rhs <= 2 then filestan = "", end
+  if rhs <= 3 then filesint = "", end
+  if rhs <= 4 then libs     = "", end
   if rhs <= 5 then rpat     = TMPDIR, end
-  if rhs <= 6 then ldflags  = '', end
-  if rhs <= 7 then cflags   = '', end
+  if rhs <= 6 then ldflags  = "", end
+  if rhs <= 7 then cflags   = "", end
   
   // Add .c extension if it is not already added
   exts_files = fileext(files);
   exts_filestan = fileext(filestan);
   exts_filesint = fileext(filesint);
   
-  for i = 1:size(files,'*')
-    if exts_files(i) == '' & files(i) <> '' then
-      files(i) = files(i) + '.c';
+  for i = 1:size(files, "*")
+    if exts_files(i) == "" & files(i) <> "" then
+      files(i) = files(i) + ".c";
     end
   end
 
-  for i = 1:size(filestan,'*')
-    if exts_filestan(i) == '' & filestan(i) <> '' then
-      filestan(i) = filestan(i) + '.c';
+  for i = 1:size(filestan, "*")
+    if exts_filestan(i) == "" & filestan(i) <> "" then
+      filestan(i) = filestan(i) + ".c";
     end
   end
   
-  for i = 1:size(filesint,'*')
-    if exts_filesint(i) == '' & ~isdir(filesint(i)) & filesint(i) <> '' then
-      filesint(i) = filesint(i) + '.c';
+  for i = 1:size(filesint, "*")
+    if exts_filesint(i) == "" & ~isdir(filesint(i)) & filesint(i) <> "" then
+      filesint(i) = filesint(i) + ".c";
     end
   end
 
   // add a external file if it exists
   // added for compatibility with 4.x
   // By RN ...
-  if isfile(rpat+'/'+blknam+'f.f') then
-    files=[files, blknam + 'f.f'];
+  if isfile(rpat + "/" + blknam + "f.f") then
+    files=[files, blknam + "f.f"];
   end
 
   //** adjust path and name of object files
@@ -96,7 +96,7 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
   [ok, libs, for_link] = link_olibs(libs, rpat);
   if ~ok then
     ok = %f;
-    message(['sorry compiling problem'; lasterror()]);
+    message(["sorry compiling problem"; lasterror()]);
     return;
   end
 
@@ -110,7 +110,7 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
   //** save path in case of error in ilib_compile
   oldpath = pwd();
   
-  if getos() <> 'Windows'
+  if getos() <> "Windows" then
     if isdir(SCI+"/../../include/scilab/scicos_blocks/") then
       //** Binary version
       cflags = cflags + " -I" + SCI + "/../../include/scilab/scicos/";
@@ -123,39 +123,39 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
       cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/"; 
     end
   else
-    cflags = cflags + " -I" + SCI + "/modules/scicos/includes/"; 
-    cflags = cflags + " -I" + SCI + "/modules/scicos_blocks/includes/"; 
-    cflags = cflags + " -I" + SCI + "/modules/dynamic_link/includes/"; 
+    cflags = cflags + " -I""" + SCI + "/modules/scicos/includes/"""; 
+    cflags = cflags + " -I""" + SCI + "/modules/scicos_blocks/includes/"""; 
+    cflags = cflags + " -I""" + SCI + "/modules/dynamic_link/includes/"""; 
     
     // ldflags for Visual studio
-    if findmsvccompiler() <> 'unknown' & haveacompiler() then
-      ldflags = ldflags + ' ""' + SCI + '/bin/scicos.lib""';
-      ldflags = ldflags + ' ""' + SCI + '/bin/scicos_f.lib""';
-      ldflags = ldflags + ' ""' + SCI + '/bin/scicos_blocks.lib""';
-      ldflags = ldflags + ' ""' + SCI + '/bin/scicos_blocks_f.lib""';
+    if findmsvccompiler() <> "unknown" & haveacompiler() then
+      ldflags = ldflags + " """ + SCI + "/bin/scicos.lib""";
+      ldflags = ldflags + " """ + SCI + "/bin/scicos_f.lib""";
+      ldflags = ldflags + " """ + SCI + "/bin/scicos_blocks.lib""";
+      ldflags = ldflags + " """ + SCI + "/bin/scicos_blocks_f.lib""";
     end
   end
  
-  if (rpat == '' | rpat == []) & isdir(filesint) then
-    // Prepare Block 'Code Generation' from Menu
+  if (rpat == "" | rpat == []) & isdir(filesint) then
+    // Prepare Block "Code Generation" from Menu
     chdir(filesint);
   else
     // generate Block in TMPDIR (default)
     chdir(TMPDIR);
   end
   
-  ierr = execstr('libn =ilib_for_link(blknam,files,'''',''c'','''',''loader.sce'','''',ldflags,cflags)','errcatch');
+  ierr = execstr("libn =ilib_for_link(blknam,files,"""",""c"","""",""loader.sce"","""",ldflags,cflags)","errcatch");
   if ierr <> 0 then
     ok = %f;
     chdir(oldpath);
-    disp(['sorry compiling problem'; lasterror()]);
+    disp(["sorry compiling problem"; lasterror()]);
     return;
   end
   
-  if (rpat == '' | rpat == []) & isdir(filesint) then
-    NAME_BLOCK_C_SCI = filesint + filesep() + blknam + '_c.sci';
+  if (rpat == "" | rpat == []) & isdir(filesint) then
+    NAME_BLOCK_C_SCI = filesint + filesep() + blknam + "_c.sci";
     if isfile(NAME_BLOCK_C_SCI) then
-      ierr = exec(NAME_BLOCK_C_SCI, 'errcatch');
+      ierr = exec(NAME_BLOCK_C_SCI, "errcatch");
       if ierr <> 0 then
         ok = %f;
         chdir(oldpath);
@@ -164,7 +164,7 @@ function [ok]=buildnewblock(blknam, files, filestan, filesint, libs, rpat, ldfla
     end
   end
   
-  ierr = exec('loader.sce', 'errcatch');
+  ierr = exec("loader.sce", "errcatch");
   if ierr <> 0 then
     ok = %f;
   else

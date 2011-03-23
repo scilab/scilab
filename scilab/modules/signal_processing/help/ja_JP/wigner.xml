@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="wigner">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>wigner</refname>
+    <refpurpose> '時間-周波数' ウイナースペクトラム</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[tab]=wigner(x,h,deltat,zp)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>tab</term>
+        <listitem>
+          <para>ウイナースペクトラム (時間変数と同じ行数)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>解析後の信号</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>データウインドウ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>deltat</term>
+        <listitem>
+          <para>解析用の時間ステップ (単位:サンプル)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zp</term>
+        <listitem>
+          <para>FFTの長さ. <literal>%pi/zp</literal> は周波数増分となります.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    信号の '時間-周波数' ウイナースペクトラムを計算する関数です.</para>
+  </refsection>
+</refentry>

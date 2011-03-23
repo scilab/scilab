@@ -25,13 +25,13 @@ int c_intfun(char *fname)
   if (!(m1==1)|!(n1==1)) 
   { 
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    Error(999);
+    SciError(999);
     return 0;
    }
   if (!(m2==1)|!(n2==1)) 
   {
     sciprint("%s: Wrong inputs \r\n", "c_fun");
-    Error(999);
+    SciError(999);
     return 0;
   }
 

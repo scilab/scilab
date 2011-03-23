@@ -23,7 +23,7 @@
     <synopsis>s = samwr(sizam,numsamp,X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sizam</term>
@@ -66,8 +66,8 @@ a=[0.33 1.24 2.1 1.03]
 s=samwr(4,12,a)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sample">sample</link>

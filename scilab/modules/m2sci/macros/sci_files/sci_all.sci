@@ -12,7 +12,7 @@ function [tree]=sci_all(tree)
 // M2SCI function
 // Conversion function for Matlab all()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_all()
 
 tree.name="and"

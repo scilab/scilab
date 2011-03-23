@@ -23,7 +23,7 @@
     <synopsis>[T [,siz]]=equil1(P,Q [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, Q</term>
@@ -75,8 +75,8 @@ P1=clean(T*P*T')
 Q1=clean(inv(T)'*Q*inv(T))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="balreal">balreal</link>

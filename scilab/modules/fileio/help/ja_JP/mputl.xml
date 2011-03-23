@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mputl" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mputl</refname>
+
+    <refpurpose>アスキーファイルに文字列を書き込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>r = mputl(txt ,file_desc)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>
+	関数がファイルに正しく書き込んだかどうかをチェックするために
+	%t または %f を返します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file_desc</term>
+
+        <listitem>
+          <para>
+	ファイル名を指定する文字列または mopenにより返された
+	論理ユニット.</para>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>txt</term>
+
+        <listitem>
+          <para>文字列のベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>mputl</literal> 関数により
+	一連の行を文字列のベクトルとしてアスキーファイルに
+	書き込むことができます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR+'/text_mputl.txt','wt');
+mputl('Hello World',fd);
+mclose(fd);
+
+fd = mopen(TMPDIR+'/text_mputl.txt','rt');
+disp(mgetl(fd));
+mclose(fd);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetl">mgetl</link></member>
+
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="write">write</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>S. Steer</para>
+     <para>Allan CORNET</para>
+  </refsection>
+</refentry>

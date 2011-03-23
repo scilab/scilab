@@ -16,7 +16,7 @@ function r=not_empty(A)
 n=size(A.dims)
 nb=0
 for k=1:n
-  if A.dims(k)>0 | A.dims(k)==SupToOne then
+  if A.dims(k)>0 | A.dims(k)==SupToOne | A.dims(k)==NotNull then
     nb=nb+1
   end
 end

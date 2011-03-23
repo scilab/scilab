@@ -24,7 +24,7 @@
     <synopsis>mput(x [,type,fd])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -108,8 +108,8 @@ if   98<>mget(1,'cb') then pause,end
 mclose();
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

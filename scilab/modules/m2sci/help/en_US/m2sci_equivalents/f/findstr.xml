@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_findstr">
+  <refnamediv>
+    <refname>findstr (Matlab function)</refname>
+    <refpurpose>Find one string within another</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+findstr
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+No equivalent
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+There is no equivalent for <emphasis role="bold">findstr</emphasis> in Scilab, but an emulation function has been written: <emphasis role="bold">mtlb_findstr</emphasis>. Scilab <emphasis role="bold">strindex</emphasis> function is very similar to <emphasis role="bold">findstr</emphasis> but do not consider the size of the strings passed as parameters. <emphasis role="bold">strindex</emphasis> can replace <emphasis role="bold">findstr</emphasis> only if <emphasis role="bold">findstr</emphasis> can be replaced by <emphasis role="bold">strfind</emphasis> in Matlab.
+</para>
+  </refsection>
+</refentry>

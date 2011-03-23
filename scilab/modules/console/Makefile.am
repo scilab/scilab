@@ -18,7 +18,7 @@ modulename=console
 
 #### console : Conf files ####
 libsciconsole_la_rootdir = $(mydatadir)
-libsciconsole_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciconsole_la_root_DATA =  license.txt version.xml
 
 #### console : init scripts ####
 libsciconsole_la_etcdir = $(mydatadir)/etc
@@ -74,6 +74,7 @@ libsciconsole_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 # Name of the library
@@ -83,7 +84,7 @@ if GUI
 pkglib_LTLIBRARIES += libsciconsole.la 
 endif
 
-libsciconsole_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciconsole_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciconsole.la
 libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES)
@@ -94,7 +95,9 @@ INCLUDE_FLAGS = $(libsciconsole_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libsciconsole_la_LIBADD =  $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la 
+libsciconsole_la_LIBADD =  	$(top_builddir)/modules/shell/libscishell.la \
+							$(top_builddir)/modules/fileio/libscifileio.la \
+							$(top_builddir)/libs/MALLOC/libscimalloc.la 
 # java code is needed $(top_builddir)/modules/jvm/libscijvm.la
 
 

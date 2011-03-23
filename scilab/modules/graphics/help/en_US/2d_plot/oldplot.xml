@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="oldplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>oldplot</refname>
+    <refpurpose>simple plot (old
+  version)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>oldplot(x,y,[xcap,ycap,caption])
+oldplot(y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two vectors with same sizes</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xcap,ycap,caption</term>
+        <listitem>
+          <para>character strings or string matrices</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Plot <literal>y</literal> as function of <literal>x</literal>. <literal>xcap</literal>
+    and <literal>ycap</literal> are captions for x-axis and y-axis respectively and
+    <literal>caption</literal> is the caption of the plot.</para>
+    <para>Invoked with only one argument, <literal>oldplot(y)</literal> plots the
+    <literal>y</literal> vector or, if <literal>y</literal> is a matrix, it plots all its
+    row vectors on the same plot. This plot is done with respect to the vector
+    1:&lt;number of columns of <literal>y</literal>&gt;.</para>
+    <para><literal>oldplot</literal> is obsolete. Use <literal>plot2d</literal> or
+    <literal>plot</literal> instead.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+x=0:0.1:2*%pi;
+// simple plot
+oldplot(sin(x))
+// using captions
+clf()
+oldplot(x,sin(x),"sin","time","plot of sinus")
+// plot 2 functions
+clf()
+oldplot([sin(x);cos(x)])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

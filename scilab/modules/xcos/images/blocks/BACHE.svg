@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns="http://www.w3.org/2000/svg" height="41.089" width="41.091" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title id="title3289">base scilan</title>
+ <defs id="defs3">
+  <clipPath id="clipPath5612">
+   <rect id="rect5614" rx="11.749" ry="11.749" height="39.342" width="80.071" y="17.807" x="-186.1" fill="#00000a"/>
+  </clipPath>
+  <radialGradient id="radialGradient31624" gradientUnits="userSpaceOnUse" cy="35.878" cx="24.446" gradientTransform="matrix(2.928002,0,0,2.928002,-99.971948,-61.975014)" r="20.531">
+   <stop id="stop11522" stop-color="#FFF" offset="0"/>
+   <stop id="stop11524" stop-color="#dcdcdc" offset="1"/>
+  </radialGradient>
+ </defs>
+ <g id="layer1" transform="translate(1.2072443e-8,-6.910638)">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="g31613" transform="translate(5.4543789,7.7672827)">
+     <g id="g5646" stroke-linejoin="bevel" stroke-dashoffset="0" transform="translate(0.34662852,-10.907711)" stroke-linecap="butt" stroke-miterlimit="10">
+      <rect id="rect11518" style="color:#000000;stroke-dasharray:none;" transform="matrix(0,-1,1,0,0,0)" fill-rule="evenodd" rx="8.0056" ry="8.0056" height="58.796" width="58.796" stroke="#2e3436" y="-4.4085" x="-57.793" stroke-width="1.4676" fill="url(#radialGradient31624)"/>
+      <rect id="rect11518-2" style="color:#000000;stroke-dasharray:none;" transform="matrix(0,-0.9977293,1.1929217,0,-2.2970371,-117.17148)" clip-path="url(#clipPath5612)" fill-rule="evenodd" rx="8.0056" ry="8.0056" height="58.796" width="58.796" stroke="#4e9a06" y="-11.301" x="-175.34" stroke-width="1.4676" fill="#73d216"/>
+      <rect id="rect11528" style="color:#000000;stroke-dasharray:none;" transform="matrix(0,-1,1,0,0,0)" rx="6.2266" ry="6.2266" height="55.325" width="55.325" stroke="#FFF" y="-3.0194" x="-56.057" stroke-width="1.4676" fill="none"/>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

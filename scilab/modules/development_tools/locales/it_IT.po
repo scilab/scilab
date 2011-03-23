@@ -1,0 +1,74 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 15:01+0100\n"
+"PO-Revision-Date: 2009-10-20 21:09+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s non è un modulo installato"
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s non è un modulo o un toolbox installato"
+
+#, c-format
+msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
+msgstr "%s: Il test ''%s'' non esiste o non è possibile leggerlo.\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr ""
+"%s: Il primo argomento in ingresso è sbagliato: era atteso un file con "
+"estensione .dia."
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: La grandezza dell'argomento in ingresso è sbagliata."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
+
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "Nessuna variabile %s_ref è presente nel file di riferimento"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "Il test è fallito. Vedere: diff -wu %s"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "Il test è fallito. Vedere: fc /L /N %s"
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "Il test è fallito, RISCONTRATO UN ERRORE mentre si eseguiva %s"
+
+msgid "Test passed"
+msgstr "Il test è stato superato"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "Il file di rif. (%s) non esiste"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Il test %s non è disponibile dal modulo %s"
+
+msgid "error : Input argument sizes are not valid"
+msgstr "errore: le dimensioni dell'argomento in ingresso non sono valide"

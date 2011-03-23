@@ -23,7 +23,7 @@
     <synopsis>kdf=tokenpos(str [,delimiter])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str</term>
@@ -60,8 +60,8 @@ kdf=tokenpos(str)
 first=part(str,kdf(1,1):kdf(1,2))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strindex">strindex</link>

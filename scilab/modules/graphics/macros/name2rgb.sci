@@ -8,12 +8,17 @@
 
 function r=name2rgb(name)
 [lhs,rhs]=argn(0)
-if rhs==1 then
-  if (type(name)<>10 | size(name, "*")<>1) then
-    error("name2rgb: argument must be a string")
-  end
-else
-  error("function ""name2rgb"" must have one argument")
+
+if rhs<>1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "name2rgb", 1));
+end
+
+if (type(name)<>10) then
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n")), "name2rgb", 1);
+end
+
+if size(name,'*')<>1 then
+  error(msprintf(gettext("%s: Wrong size for input argument #%d: A single string expected.\n"),"name2rgb",1));
 end
 
 names=[

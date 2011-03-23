@@ -1,0 +1,244 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: MAX
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("MAX") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/MAX.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 
+ res701: Double <> Boolean   
+ 
+ res699: Double <> Boolean   
+ 
+ res697: Double <> Boolean   
+ 
+ res695: Double <> Boolean   
+ 
+ res693: Double <> Boolean   
+ 
+ res691: Double <> Boolean   
+ 
+ res689: Double <> Boolean   
+ 
+ res687: Double <> Boolean   
+ 
+ res685: Double <> Boolean   
+ 
+ res683: Double <> Boolean   
+ 
+ res681: Double <> Boolean   
+ 
+ res679: Double <> Boolean   
+ 
+ res593: Double <> Boolean   
+ 
+ res591: Double <> Boolean   
+ 
+ res589: Double <> Boolean   
+ 
+ res587: Double <> Boolean   
+ 
+ res585: Double <> Boolean   
+ 
+ res583: Double <> Boolean   
+ 
+ res581: Double <> Boolean   
+ 
+ res579: Double <> Boolean   
+ 
+ res577: Double <> Boolean   
+ 
+ res575: Double <> Boolean   
+ 
+ res573: Double <> Boolean   
+ 
+ res571: Double <> Boolean   
+ 
+ res485: Double <> Boolean   
+ 
+ res483: Double <> Boolean   
+ 
+ res481: Double <> Boolean   
+ 
+ res479: Double <> Boolean   
+ 
+ res477: Double <> Boolean   
+ 
+ res475: Double <> Boolean   
+ 
+ res473: Double <> Boolean   
+ 
+ res471: Double <> Boolean   
+ 
+ res469: Double <> Boolean   
+ 
+ res467: Double <> Boolean   
+ 
+ res465: Double <> Boolean   
+ 
+ res463: Double <> Boolean   
+ 
+ res378: Double <> Boolean   
+ 
+ res377: Double <> Boolean   
+ 
+ res376: Double <> Boolean   
+ 
+ res375: Double <> Boolean   
+ 
+ res374: Double <> Boolean   
+ 
+ res373: Double <> Boolean   
+ 
+ res372: Double <> Boolean   
+ 
+ res371: Double <> Boolean   
+ 
+ res370: Double <> Boolean   
+ 
+ res369: Double <> Boolean   
+ 
+ res368: Double <> Boolean   
+ 
+ res367: Double <> Boolean   
+ 
+ res324: Double <> Boolean   
+ 
+ res323: Double <> Boolean   
+ 
+ res322: Double <> Boolean   
+ 
+ res321: Double <> Boolean   
+ 
+ res320: Double <> Boolean   
+ 
+ res319: Double <> Boolean   
+ 
+ res318: Double <> Boolean   
+ 
+ res317: Double <> Boolean   
+ 
+ res316: Double <> Boolean   
+ 
+ res315: Double <> Boolean   
+ 
+ res314: Double <> Boolean   
+ 
+ res313: Double <> Boolean   
+ 
+ res270: Double <> Boolean   
+ 
+ res269: Double <> Boolean   
+ 
+ res268: Double <> Boolean   
+ 
+ res267: Double <> Boolean   
+ 
+ res266: Double <> Boolean   
+ 
+ res265: Double <> Boolean   
+ 
+ res264: Double <> Boolean   
+ 
+ res263: Double <> Boolean   
+ 
+ res262: Double <> Boolean   
+ 
+ res261: Double <> Boolean   
+ 
+ res260: Double <> Boolean   
+ 
+ res259: Double <> Boolean   
+ 
+ res216: Double <> Boolean   
+ 
+ res215: Double <> Boolean   
+ 
+ res214: Double <> Boolean   
+ 
+ res213: Double <> Boolean   
+ 
+ res212: Double <> Boolean   
+ 
+ res211: Double <> Boolean   
+ 
+ res210: Double <> Boolean   
+ 
+ res209: Double <> Boolean   
+ 
+ res208: Double <> Boolean   
+ 
+ res207: Double <> Boolean   
+ 
+ res206: Double <> Boolean   
+ 
+ res205: Double <> Boolean   
+ 
+ res161: Double <> Boolean   
+ 
+ res159: Double <> Boolean   
+ 
+ res157: Double <> Boolean   
+ 
+ res155: Double <> Boolean   
+ 
+ res153: Double <> Boolean   
+ 
+ res151: Double <> Boolean   
+ 
+ res149: Double <> Boolean   
+ 
+ res147: Double <> Boolean   
+ 
+ res145: Double <> Boolean   
+ 
+ res143: Double <> Boolean   
+ 
+ res141: Double <> Boolean   
+ 
+ res139: Double <> Boolean   
+ 
+ res54: Double <> Boolean   
+ 
+ res53: Double <> Boolean   
+ 
+ res52: Double <> Boolean   
+ 
+ res51: Double <> Boolean   
+ 
+ res50: Double <> Boolean   
+ 
+ res49: Double <> Boolean   
+ 
+ res48: Double <> Boolean   
+ 
+ res47: Double <> Boolean   
+ 
+ res46: Double <> Boolean   
+ 
+ res45: Double <> Boolean   
+ 
+ res44: Double <> Boolean   
+ 
+ res43: Double <> Boolean   

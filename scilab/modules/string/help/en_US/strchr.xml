@@ -24,7 +24,7 @@
     <synopsis>res = strchr(haystack,char)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>haystack</term>
@@ -60,8 +60,8 @@ strchr(['This is a sample string','in scilab'],'s')
 strchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strrchr">strrchr</link>

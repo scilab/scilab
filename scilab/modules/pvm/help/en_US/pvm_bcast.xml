@@ -23,7 +23,7 @@
     <synopsis>[info] = pvm_bcast(group, buff, msgtag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>
@@ -82,8 +82,8 @@
     pvm_bcast may not be an efficient communication method on
     some multiprocessors.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_joingroup">pvm_joingroup</link>

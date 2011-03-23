@@ -1,0 +1,90 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"PO-Revision-Date: 2010-01-15 19:58+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr "%s: функція mxSetPi перезаписано призначення на %i байтів.\n"
+
+#, c-format
+msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr "%s: функція mxSetPr перезаписано призначення на %i байтів.\n"
+
+msgid "Column length of string matrix must agree!"
+msgstr "Довжина стовпчиків матриці з рядків має бути однаковою!"
+
+msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
+msgstr ""
+"Функція mexPutArray вважається застарілою, використовуйте mexPutVariable!\n"
+
+msgid "GetElementSize error."
+msgstr "Помилка GetElementSize."
+
+msgid "Invalid input"
+msgstr "Некоректні дані"
+
+msgid "Invalid string matrix (at most one column!)"
+msgstr "Некоректна матриця з рядків (не більше одного стовпчика!)"
+
+msgid "Last warning"
+msgstr "Останнє попередження"
+
+msgid "No more memory"
+msgstr "Доступну пам’ять вичерпано"
+
+msgid "No more memory available: increase stacksize"
+msgstr "Доступну пам’ять вичерпано: збільшіть розмір стека."
+
+msgid "No more memory available: increase stacksize."
+msgstr "Доступну пам’ять вичерпано: збільшіть розмір стека."
+
+msgid "Routine mxGetName not implemented.\n"
+msgstr "Підпрограму mxGetName не реалізовано.\n"
+
+msgid "Routine mxIsSingle not implemented.\n"
+msgstr "Підпрограму mxIsSingle не реалізовано.\n"
+
+msgid "Routine mxSetData not implemented.\n"
+msgstr "Підпрограму mxSetData не реалізовано.\n"
+
+msgid "Routine mxSetDimensions not implemented.\n"
+msgstr "Підпрограму mxSetDimensions не реалізовано.\n"
+
+msgid "Routine mxSetName not implemented !\n"
+msgstr "Підпрограму mxSetName не реалізовано!\n"
+
+msgid "Use mtlb_sparse(sparse( ))!"
+msgstr "Скористайтеся mtlb_sparse(sparse( ))!"
+
+msgid "Variable is not logical."
+msgstr "Змінна не належить до логічних."
+
+msgid "Warning"
+msgstr "Попередження"
+
+msgid "Warning: "
+msgstr "Попередження: "
+
+msgid "mexCallSCILAB: evaluation failed. "
+msgstr "mexCallSCILAB: спроба обчислення була невдалою. "
+
+msgid "mexCallSCILAB: invalid pointer passed to called function."
+msgstr "mexCallSCILAB: викликаній функції передано некоректний вказівник."
+
+msgid "mexPutFull failed\n"
+msgstr "Помилка mexPutFull\n"

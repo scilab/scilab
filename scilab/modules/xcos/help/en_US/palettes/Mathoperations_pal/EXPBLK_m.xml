@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>EXPBLK_m</refname>
 
-    <refpurpose>Exponential</refpurpose>
+    <refpurpose>Exponential of a scalar</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -39,7 +39,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/EXPBLK_m.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/EXPBLK_m.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -51,7 +51,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="EXPBLK_m">Exponential</link>
+          <link linkend="EXPBLK_m">Exponential of a scalar</link>
         </para>
       </listitem>
 
@@ -95,6 +95,12 @@
               function</xref>
             </para>
           </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_EXPBLK_m">See also</xref>
+            </para>
+          </listitem>
         </itemizedlist>
       </listitem>
     </itemizedlist>
@@ -115,8 +121,10 @@
   <refsection id="Description_EXPBLK_m">
     <title>Description</title>
 
-    <para>This block realizes . The input and output port sizes are determined
-    by the compiler.</para>
+    <para>
+      The output of this block is a vector y with y[i]=a^u[i], where the parameter <emphasis role="bold">a</emphasis>
+      is a positive scalar and u the input vector. The input and output port sizes are determined by the compiler.
+    </para>
   </refsection>
 
   <refsection id="Dialogbox_EXPBLK_m">
@@ -236,6 +244,26 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/src/c/expblk_m.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_EXPBLK_m">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="POWBLK_f">POWBLK_f - Array power (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="LOGBLK_f">LOGBLK_f - Logarithm (Bloc Xcos)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="SQRT">SQRT - Square root (Bloc Xcos)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

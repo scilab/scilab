@@ -1,0 +1,197 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: SIZE
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("SIZE") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/SIZE.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  L.329: M2SCI found: 3 > size(size([]),2),
+  So result is set to 1.
+  L.331: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([]))),2),
+  So result is set to 1.
+  L.333: M2SCI found: 3 > size(size(m2sciUnknownDims([])),2),
+  So result is set to 1.
+  L.335: M2SCI found: 3 > size(size(1),2),
+  So result is set to 1.
+  L.337: M2SCI found: 3 > size(size([1,2,3]),2),
+  So result is set to 1.
+  L.339: M2SCI found: 3 > size(size([1;2;3]),2),
+  So result is set to 1.
+  L.341: M2SCI found: 3 > size(size([1,2,3;4,5,6]),2),
+  So result is set to 1.
+  L.343: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType(1))),2),
+  So result is set to 1.
+  L.345: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1,2,3]))),2),
+  So result is set to 1.
+  L.347: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1;2;3]))),2),
+  So result is set to 1.
+  L.349: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1,2,3;4,5,6]))),2),
+  So result is set to 1.
+  L.351: M2SCI found: 3 > size(size(m2sciUnknownDims(1)),2),
+  So result is set to 1.
+  L.353: M2SCI found: 3 > size(size(m2sciUnknownDims([1,2,3])),2),
+  So result is set to 1.
+  L.355: M2SCI found: 3 > size(size(m2sciUnknownDims([1;2;3])),2),
+  So result is set to 1.
+  L.357: M2SCI found: 3 > size(size(m2sciUnknownDims([1,2,3;4,5,6])),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.359: M2SCI found: 3 > size(size(%%i),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.361: M2SCI found: 3 > size(size([%%i,2*%%i,3*%%i]),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.363: M2SCI found: 3 > size(size([%%i;2*%%i;3*%%i]),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.365: M2SCI found: 3 > size(size([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.367: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType(%%i))),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.369: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i]))),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.371: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([%%i;2*%%i;3*%%i]))),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.373: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]))),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.375: M2SCI found: 3 > size(size(m2sciUnknownDims(%%i)),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.377: M2SCI found: 3 > size(size(m2sciUnknownDims([%%i,2*%%i,3*%%i])),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.379: M2SCI found: 3 > size(size(m2sciUnknownDims([%%i;2*%%i;3*%%i])),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  L.381: M2SCI found: 3 > size(size(m2sciUnknownDims([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])),2),
+  So result is set to 1.
+  L.383: M2SCI found: 3 > size(size(asciimat("s")),2),
+  So result is set to 1.
+  L.385: M2SCI found: 3 > size(size(asciimat("str1")),2),
+  So result is set to 1.
+  L.387: M2SCI found: 3 > size(size(asciimat("str1"+"str2"+"str3")),2),
+  So result is set to 1.
+  L.389: M2SCI found: 3 > size(size(asciimat(["str1";"str2";"str3"])),2),
+  So result is set to 1.
+  L.391: M2SCI found: 3 > size(size(asciimat(["str1"+"str2"+"str3";"str4"+"str5"+"str6"])),2),
+  So result is set to 1.
+  L.393: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType("s"))),2),
+  So result is set to 1.
+  L.395: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType("str1"))),2),
+  So result is set to 1.
+  L.397: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType("str1"+"str2"+"str3"))),2),
+  So result is set to 1.
+  L.399: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType(["str1";"str2";"str3"]))),2),
+  So result is set to 1.
+  L.401: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))),2),
+  So result is set to 1.
+  L.403: M2SCI found: 3 > size(size(asciimat(m2sciUnknownDims("s"))),2),
+  So result is set to 1.
+  L.405: M2SCI found: 3 > size(size(asciimat(m2sciUnknownDims("str1"))),2),
+  So result is set to 1.
+  L.407: M2SCI found: 3 > size(size(asciimat(m2sciUnknownDims("str1"+"str2"+"str3"))),2),
+  So result is set to 1.
+  L.409: M2SCI found: 3 > size(size(asciimat(m2sciUnknownDims(["str1";"str2";"str3"]))),2),
+  So result is set to 1.
+  L.411: M2SCI found: 3 > size(size(asciimat(m2sciUnknownDims(["str1"+"str2"+"str3";"str4"+"str5"+"str6"]))),2),
+  So result is set to 1.
+  L.413: M2SCI found: 3 > size(size(1==1),2),
+  So result is set to 1.
+  L.415: M2SCI found: 3 > size(size([1,2,3]==[1,0,3]),2),
+  So result is set to 1.
+  L.417: M2SCI found: 3 > size(size([1;2;3]==[1;0;3]),2),
+  So result is set to 1.
+  L.419: M2SCI found: 3 > size(size([1,2,3;4,5,6]==[1,0,3;4,5,0]),2),
+  So result is set to 1.
+  L.421: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType(1==1))),2),
+  So result is set to 1.
+  L.423: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1,2,3]==[1,0,3]))),2),
+  So result is set to 1.
+  L.425: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1;2;3]==[1;0;3]))),2),
+  So result is set to 1.
+  L.427: M2SCI found: 3 > size(size(mtlb_double(m2sciUnknownType([1,2,3;4,5,6]==[1,0,3;4,5,0]))),2),
+  So result is set to 1.
+  L.429: M2SCI found: 3 > size(size(m2sciUnknownDims(1==1)),2),
+  So result is set to 1.
+  L.431: M2SCI found: 3 > size(size(m2sciUnknownDims([1,2,3]==[1,0,3])),2),
+  So result is set to 1.
+  L.433: M2SCI found: 3 > size(size(m2sciUnknownDims([1;2;3]==[1;0;3])),2),
+  So result is set to 1.
+  L.435: M2SCI found: 3 > size(size(m2sciUnknownDims([1,2,3;4,5,6]==[1,0,3;4,5,0])),2),
+  So result is set to 1.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******

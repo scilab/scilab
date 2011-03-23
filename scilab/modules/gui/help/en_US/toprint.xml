@@ -32,7 +32,7 @@ status = toprint(figid,output)
 </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -87,8 +87,8 @@ toprint(4);
 toprint(4,"pos");
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="printfigure">printfigure</link>

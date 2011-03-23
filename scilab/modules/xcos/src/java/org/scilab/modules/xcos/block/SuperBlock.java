@@ -12,40 +12,49 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.actions.CodeGenerationAction;
+import org.scilab.modules.xcos.block.actions.CodeGenerationAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCreateAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskCustomizeAction;
 import org.scilab.modules.xcos.block.actions.SuperblockMaskRemoveAction;
+import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
 import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ContextUpdate.IOBlocks;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
-import org.scilab.modules.xcos.io.BlockReader;
-import org.scilab.modules.xcos.io.BlockWriter;
+import org.scilab.modules.xcos.graph.swing.GraphComponent;
+import org.scilab.modules.xcos.io.XcosCodec;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosEvent;
 import org.scilab.modules.xcos.utils.XcosMessages;
+import org.w3c.dom.Node;
 
-import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 
 /**
@@ -147,6 +156,11 @@ public final class SuperBlock extends BasicBlock {
 	@Override
 	public void openBlockSettings(String[] context) {
 		
+		//prevent to open twice
+		if (isLocked()) {
+			return;
+		}
+		
 		/*
 		 * Do nothing when something happen on the Palette
 		 */
@@ -183,23 +197,31 @@ public final class SuperBlock extends BasicBlock {
 		 * In this case child was null and we need to reconstruct child diagram
 		 * from scs_m.
 		 */
-		if (getChild() == null) {
+		if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
+			child = null;
 			createChildDiagram();
+		} else {
+			// reassociate (useful on clone and load operation)
+			getChild().setContainer(this);
+			getChild().setComponent(new GraphComponent(getChild()));
+			
+			getChild().initComponent();
+			getChild().installStylesheet();
+			
+			getChild().installListeners();
+			getChild().installSuperBlockListeners();
 		}
 		
 		/*
 		 * Construct the view or set it visible.
 		 */
-		if (!getChild().isOpened()) {
+		if (!getChild().isVisible()) {
 			updateAllBlocksColor();
 			getChild().setModifiedNonRecursively(false);
-			XcosTab.createTabFromDiagram(getChild());
-			XcosTab.showTabFromDiagram(getChild());
-			getChild().setOpened(true);
-			getChild().setVisible(true);
 			
-		} else {
-			getChild().setVisible(true);
+			new XcosTab(getChild()).setVisible(true);
+			getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
+			getChild().getView().invalidate();
 		}
 		
 		/*
@@ -207,7 +229,9 @@ public final class SuperBlock extends BasicBlock {
 		 */
 		getChild().updateCellsContext();
 		
-		XcosTab.getAllDiagrams().add(getChild());
+		Xcos.getInstance().getDiagrams().add(getChild());
+		
+		setLocked(false);
 	}
 
 	/**
@@ -221,7 +245,7 @@ public final class SuperBlock extends BasicBlock {
 		 * valid.
 		 */
 		if (getChild().isModified()) {
-			setRealParameters(BlockWriter.convertDiagramToMList(getChild()));
+			setRealParameters(new DiagramElement().encode(getChild()));
 			getChild().setModified(true);
 			getChild().setModifiedNonRecursively(false);
 		}
@@ -229,14 +253,23 @@ public final class SuperBlock extends BasicBlock {
 		/*
 		 * Hide the current child window
 		 */
-		getChild().setVisible(false);
-		setLocked(false);
-		XcosTab.getAllDiagrams().remove(getChild());
+		if (getChild().getParentTab() != null) {
+			getChild().getParentTab().close();
+			getChild().setParentTab(null);
+			
+			getChild().setComponent(null);
+		}
+		
+		/* Remove only when the instance cannot be modified anymore */
+		if (getChild().canClose()) {
+			Xcos.getInstance().close(getChild(), false);
+		}
 	}
 
 	/**
 	 * @param graph parent diagram
 	 */
+	@Override
 	public void openContextMenu(ScilabGraph graph) {
 		ContextMenu menu = null;
 
@@ -279,11 +312,20 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			child = new SuperBlockDiagram(this);
 			child.installListeners();
-			child.loadDiagram(BlockReader.convertMListToDiagram(
-					(ScilabMList) getRealParameters(), false));
+			
+			final DiagramElement element = new DiagramElement();
+			if (!element.canDecode(getRealParameters())) {
+				return false;
+			}
+			
+			try {
+				element.decode(getRealParameters(), child, false);
+			} catch (ScicosFormatException e) {
+				LogFactory.getLog(SuperBlock.class).error(e);
+				return false;
+			}
 			
 			child.installSuperBlockListeners();
-			child.setChildrenParentDiagram();
 			updateAllBlocksColor();
 			// only for loading and generate sub block UID
 			if (generatedUID) {
@@ -308,16 +350,6 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public void setChild(SuperBlockDiagram child) {
 		this.child = child;
-	}
-
-	/**
-	 * @return block as mlist structure
-	 */
-	public ScilabMList getAsScilabObj() {
-		if (child != null) {
-			setRealParameters(BlockWriter.convertDiagramToMList(child));
-		}
-		return BasicBlockInfo.getAsScilabObj(this);
 	}
 
 	/**
@@ -413,7 +445,9 @@ public final class SuperBlock extends BasicBlock {
 
 		// populate
 		for (int i = 0; i < array.length; i++) {
-			int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+			final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+			final int index = (int) data.getRealPart()[0][0];
+			
 			if (index <= array.length) {
 				array[index - 1] = 1;
 			}
@@ -454,12 +488,11 @@ public final class SuperBlock extends BasicBlock {
 			boolean[] isDone = new boolean[countUnique];
 
 			// Initialize
-			for (int i = 0; i < countUnique; i++) {
-				isDone[i] = false;
-			}
+			Arrays.fill(isDone, false);
 
 			for (int i = 0; i < blocks.size(); i++) {
-				int index = (Integer) ((BasicBlock) blocks.get(i)).getValue();
+				final ScilabDouble data = (ScilabDouble) ((BasicBlock) blocks.get(i)).getIntegerParameters();
+				final int index = (int) data.getRealPart()[0][0];
 				if (index > countUnique || isDone[index - 1]) {
 					child.getAsComponent().setCellWarning(blocks.get(i),
 							"Wrong port number");
@@ -480,42 +513,37 @@ public final class SuperBlock extends BasicBlock {
 		if (child == null) {
 			return;
 		}
+		if (getParentDiagram() == null) {
+			setParentDiagram(Xcos.findParent(this));
+		}
 
+		final Map<IOBlocks, List<mxICell>> blocksMap = IOBlocks.getAllBlocks(this);
+		final Map<IOBlocks, List<mxICell>> portsMap = IOBlocks.getAllPorts(this);
 		for (IOBlocks block : IOBlocks.values()) {
-			updateExportedTypedPort(block);
+			final int blockCount = blocksMap.get(block).size();
+			int portCount = portsMap.get(block).size();
+			
+			// add ports if required
+			while (blockCount > portCount) {
+				try {
+					BasicPort port;
+					port = block.getReferencedPortClass().newInstance();
+					addPort(port);
+				} catch (InstantiationException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				} catch (IllegalAccessException e) {
+					LogFactory.getLog(SuperBlock.class).error(e);
+				}
+				portCount++;
+			}
+			
+			// remove ports if required
+			while (portCount > blockCount) {
+				removePort((BasicPort) portsMap.get(block).get(portCount - 1));
+				portCount--;
+			}
 		}
 		getParentDiagram().fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED, XcosConstants.EVENT_BLOCK_UPDATED, this));
-	}
-
-	/**
-	 * Update the superblock IO ports according to the values of its child.
-	 * @param block The blocks to work on
-	 */
-	private void updateExportedTypedPort(IOBlocks block) {
-		int blockCount = getBlocksConsecutiveUniqueValueCount(getAllTypedBlock(block.getReferencedClass()));
-		List< ? extends BasicPort> ports = BasicBlockInfo
-				.getAllTypedPorts(this, false, block.getReferencedPortClass());
-
-		int portCount = ports.size();
-
-		try {
-			while (blockCount > portCount) { // add if required
-				BasicPort port;
-					port = block.getReferencedPortClass().newInstance();
-					port.setDefaultValues();
-					addPort(port);
-					portCount++;
-			}
-		} catch (InstantiationException e) {
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			e.printStackTrace();
-		}
-
-		while (portCount > blockCount) { // remove if required
-			removePort(ports.get(portCount - 1));
-			portCount--;
-		}
 	}
 
 	/**
@@ -524,6 +552,7 @@ public final class SuperBlock extends BasicBlock {
 	public void mask() {
 		setInterfaceFunctionName(MASKED_INTERFUNCTION_NAME);
 		setSimulationFunctionName(MASKED_SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble(1));
 	}
 
 	/**
@@ -532,6 +561,7 @@ public final class SuperBlock extends BasicBlock {
 	public void unmask() {
 		setInterfaceFunctionName(INTERFUNCTION_NAME);
 		setSimulationFunctionName(SIMULATION_NAME);
+		setIntegerParameters(new ScilabDouble());
 	}
 
 	/**
@@ -539,5 +569,69 @@ public final class SuperBlock extends BasicBlock {
 	 */
 	public boolean isMasked() {
 		return getInterfaceFunctionName().compareTo(INTERFUNCTION_NAME) != 0;
+	}
+	
+	/**
+	 * Customize the parent diagram on name change
+	 * @param value the new name
+	 * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
+	 */
+	@Override
+	public void setValue(Object value) {
+		super.setValue(value);
+		
+		if (value == null) {
+			return;
+		}
+		
+		if (getChild() != null) {
+			getChild().setTitle(FileUtils.toValidCIdentifier(value.toString()));
+			setRealParameters(new DiagramElement().encode(getChild()));
+		}
+	}
+
+	/**
+	 * Clone the child safely.
+	 * 
+	 * @return a new clone instance
+	 * @throws CloneNotSupportedException never
+	 * @see org.scilab.modules.xcos.block.BasicBlock#clone()
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		SuperBlock clone = (SuperBlock) super.clone();
+		
+		// clone the diagram
+		if (child != null) {
+			clone.child = (SuperBlockDiagram) child.clone();
+			clone.child.setContainer(clone);
+		}
+		
+		return clone;
+		
+	}
+	
+	/*
+	 * Serializable custom implementation need to handle any copy / DnD case.
+	 */
+	
+	private void writeObject(java.io.ObjectOutputStream out) throws IOException {
+		out.writeObject(new XcosCodec().encode(this));
+	}
+
+	private void readObject(java.io.ObjectInputStream in) throws IOException,
+			ClassNotFoundException {
+		new XcosCodec().decode((Node) in.readObject(), this);
+		
+		/*
+		 * Specific post serialization things
+		 */
+		if (this.child == null) {
+			this.child = new SuperBlockDiagram(this);
+			this.child.installListeners();
+		} else {
+			this.child.setContainer(this);
+		}
+		this.child.installSuperBlockListeners();
 	}
 }

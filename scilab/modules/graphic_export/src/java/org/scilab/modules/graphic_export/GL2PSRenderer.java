@@ -103,7 +103,7 @@ public class GL2PSRenderer extends ExportRenderer {
 				
 		//Check if we have the permission to export
 		File filePermission = new File(ExportRenderer.getFileName());
-		if (checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
+		if (Utils.checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
 			
 			DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 			
@@ -118,7 +118,12 @@ public class GL2PSRenderer extends ExportRenderer {
 			}						
 			
 			GL gl = gLDrawable.getGL();
-			int sort = is2D ? GL2PS.GL2PS_NO_SORT : GL2PS.GL2PS_SIMPLE_SORT; 
+			int sort;
+			if (is2D) {
+			    sort = GL2PS.GL2PS_NO_SORT;
+			} else {
+			    sort = GL2PS.GL2PS_SIMPLE_SORT;
+			}
 			int gl2psBeginPageStatut = gl2ps.gl2psBeginPage(exportedFigure.getTitle(), "Scilab", null, format, 
 					sort, GL2PS.GL2PS_USE_CURRENT_VIEWPORT | GL2PS.GL2PS_BEST_ROOT
 					| GL2PS.GL2PS_SIMPLE_LINE_OFFSET | GL2PS.GL2PS_DRAW_BACKGROUND | exportOrientation,
@@ -134,7 +139,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			GL2PSGL newGL = new GL2PSGL(gl, gl2ps);
 			gLDrawable.setGL(newGL);
 
-			
+			exportedFigure.setMarkDrawingStrategy(new GL2PSMarkDrawingStrategy());
 			exportedFigure.setTextRendererFactory(new PSTextRendererFactory());
 			exportedFigure.setArcRendererFactory(new FastArcRendererFactory());
 			exportedFigure.setShadeFacetDrawer(new GL2PSShadeFacetDrawer());
@@ -148,6 +153,7 @@ public class GL2PSRenderer extends ExportRenderer {
 			int gl2psEndPageStatut = gl2ps.gl2psEndPage();
 			
 			gLDrawable.setGL(gl);
+			exportedFigure.setDefaultMarkDrawingStrategy();
 			exportedFigure.setDefaultArcRendererFactory();
 			exportedFigure.setDefaultTextRenderer();
 			exportedFigure.setDefaultShadeFacetDrawer();
@@ -217,25 +223,4 @@ public class GL2PSRenderer extends ExportRenderer {
 			setErrorNumber(GL2PS_ERROR);			
 		}
 	}
-	
-	/**
-	 * Check if we have the permission to export on this file
-	 * @param file exported file
-	 * @return permission status
-	 */
-        /* Calixte added a static */
-	public static int checkWritePermission(File file) {
-		try {
-			file.createNewFile();			
-			if (!file.canWrite()) {
-				return ExportRenderer.INVALID_FILE;
-			}
-			return ExportRenderer.SUCCESS;
-		} catch (IOException e1) {
-			return ExportRenderer.IOEXCEPTION_ERROR;
-		} catch (SecurityException e2) {
-			return ExportRenderer.INVALID_FILE;
-		}
-	}
-	
 }

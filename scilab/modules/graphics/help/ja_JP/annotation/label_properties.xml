@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="label_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>label_properties</refname>
+    <refpurpose>Labelエンティティプロパティの説明
+  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Labelエンティティは<literal>Axes</literal>エンティティの子です.
+	Axesエンティティが構築された時,
+	TitleおよびLabelsのハンドルはAxesプロパティの一部として組み込まれます.
+	このため、これらのサブオブジェクトのプロパティはAxesハンドル経由で編集可能です
+	(<literal>gca</literal> および <literal>gda</literal>参照).
+	Labelエンティティを直接削除することはできないことにも注意してください.
+	このエンティティは描画するラベルに関する以下のパラメータを定義します:</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このエンティティは親のハンドルを有します.
+	labelエンティティの親は<literal>"Axes"</literal>型です.</para>
+          <para>現時点でLabelエンティティは
+        <literal>title</literal>, <literal>x_label</literal>, <literal>y_label</literal> および
+        <literal>z_label</literal> を構築する際に排他的に使用されていることに
+	注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはエンティティの<literal>visible</literal>プロパティを有します.
+		この値は<literal>"on" </literal> または <literal>"off"</literal>です.
+		デフォルトでラベルは可視であり,このプロパティの値は<literal>"on"</literal>です.
+		<literal>"off"</literal>の場合,ラベルは画面に表示されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text: </term>
+        <listitem>
+          <para>オブジェクトの文字列を有する行列.行列の行は水平に表示され,列は垂直に表示されます.
+		</para>
+         <para> Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeX または MathML 式</link>を書くことが可能です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_foreground: </term>
+        <listitem>
+          <para>このフィールドはラベル<literal>text</literal>を表示する際に使用される色を
+		有します.色のインデックスは(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>foreground: </term>
+        <listitem>
+          <para>このフィールドはボックスの周りに線を表示する際に使用される色を
+	有します.この値は(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>background: </term>
+        <listitem>
+          <para>このフィールドはボックスを塗る際に使用される色を
+	有します.この値は(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill_mode: </term>
+        <listitem>
+          <para>このフィールドは<literal>"on"</literal>または
+        <literal>"off"</literal>を値とします.
+	<literal>"on"</literal> の場合, テキストの周囲に縁に線があるボックスと
+	背景が描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_style: </term>
+        <listitem>
+          <para>
+		ラベルの表示に使用されるフォントを指定します.
+		これはロード済みのフォントの一つを指す正の整数です.
+		その値は最初のフォントを指す 0 から最後のフォントを指すロード済みの
+		フォントの数から1を引いた数までとします.
+		詳細については<link linkend="graphics_fonts">graphics_fonts</link>を参照ください.
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_size: </term>
+        <listitem>
+          <para>
+		表示される文字の大きさを指定するスカラー値です.
+		<literal>fractional_font</literal>プロファイルが <literal>"off"</literal>の場合,
+		値の整数部のみが使用されます.
+		詳細については<link linkend="graphics_fonts">graphics_fonts</link>を参照ください.
+		</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+          <para>このプロパティはテキストを分数のフォントサイズにより表示するかどうかを
+	指定します.この値には,<literal>"on"</literal> または <literal>"off"</literal>を指定します. 
+	<literal>"on"</literal> の場合,<literal>font_size</literal>の浮動小数点の値が
+	表示の際に使用され,フォントはアンチエイリアス処理されます.
+	<literal>"off"</literal> の場合,整数部のみが使用され,フォントは平滑化されません.
+		  </para>
+              </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_angle: </term>
+        <listitem>
+          <para>このスカラー値によりラベルを回転させることができます.
+	フォントは度を単位として指定した角度で時計回りに回転されます.
+	<literal>font_angle</literal>を変更すると
+	<literal>auto_rotation</literal>プロパティが自動的に無効となる
+	ことに注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>auto_rotation: </term>
+        <listitem>
+          <para><literal>"on"</literal>の場合, Scilab は表示の際に
+	最良のラベル回転角を自動的に計算します.
+	<literal>"off"</literal>の場合, ラベルは<literal>font_angle</literal> プロパティにより
+	マニュアルで回転できます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>position: </term>
+        <listitem>
+          <para>この2次元ベクトルにより画面上にラベルをマニュアルで配置できます.
+	位置は軸のデータユニットに保存されます.
+	<literal>font_angle</literal>を変更すると
+	<literal>auto_position</literal>プロパティが自動的に無効となる
+	ことに注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>auto_position: </term>
+        <listitem>
+          <para><literal>"on"</literal>の場合, Scilab は
+	表示の際にグラフィックウインドウにおける最良の位置を自動的に計算します.
+	<literal>"off"</literal>の場合,<literal>position</literal>プロパティにより
+	マニュアルで配置可能です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");
+a.title
+type(a.title)
+plot3d()
+a.x_label
+a.y_label
+a.z_label
+xtitle("My title","my x axis label", "Volume","Month") 
+
+t=a.title;
+t.foreground=9;
+t.font_size=4;
+t.font_style=5;
+t.text="SCILAB";
+
+x_label=a.x_label;
+x_label.text=" Weight"
+x_label.font_style= 5;
+a.y_label.foreground = 12;
+   
+// Scilab 5.2以降, LaTeX または MathML式を書くことができます:
+t.text="$\sqrt{SCILAB}$";
+x_label.font_size= 5;
+x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
+<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow><mi>c</mi></mrow><mrow><mi>d</mi></mrow>..
+</mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+      <member>
+        <link linkend="text_properties">text_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

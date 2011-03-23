@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" 
+          xml:id="sp2adj" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sp2adj</refname>
+
+    <refpurpose>converts sparse matrix into adjacency form</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      [xadj,iadj,v]=sp2adj(A)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>m-by-n real or complex sparse matrix (with nz non-zero entries)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xadj</term>
+
+        <listitem>
+          <para>
+            a (n+1)-by-1 matrix of floating point integers, pointers to the starting 
+            index in iadj and v for each column.
+            For <literal>j=1:n</literal>, the floating point integer 
+            <literal>xadj(j+1)-xadj(j)</literal> is the number of non zero entries in
+            column j. 
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iadj</term>
+
+        <listitem>
+          <para>
+            a nz-by-1 matrix of floating point integers, the row indices for the
+            nonzeros. 
+            For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer 
+            <literal>i = iadj(k)</literal> is the row index of the nonzero entry #k.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>
+            a nz-by-1 matrix of floating point integers, the non-zero entries of A. 
+            For <literal>j=1:n</literal>, for <literal>k = xadj(j):xadj(j+1)-1</literal>, the floating point integer 
+            <literal>Aij = v(k)</literal> is the value of the nonzero entry #k.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>
+      sp2adj converts a sparse matrix into its adjacency format. 
+      The values in the adjacency format are stored colum-by-column. 
+      This is why this format is sometimes called "Compressed sparse column" or CSC. 
+    </para>
+
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    
+    <para>
+    In the following example, we create a full matrix, which entries 
+    goes from 1 to 10.
+    Then we convert it into a sparse matrix, which removes the zeros.
+    Finally, we compute the adjacency represention of this matrix. 
+    The matrix v contains only the nonzero entries of A. 
+    </para>
+    
+    <programlisting role="example">
+      <![CDATA[ 
+A = [
+0 0 4 0 9
+0 0 5 0 0
+1 3 0 7 0
+0 0 6 0 10
+2 0 0 8 0
+];
+B=sparse(A);
+[xadj,iadj,v]=sp2adj(B)
+expected_xadj = [1 3 4 7 9 11]';
+expected_adjncy = [3 5 3 1 2 4 3 5 1 4]';
+expected_anz = [1 2 3 4 5 6 7 8 9 10]';
+and(expected_xadj == xadj) // Should be %t
+and(expected_adjncy == iadj) // Should be %t
+and(expected_anz == v) // Should be %t
+// j is the column index
+for j = 1 : size(xadj,"*")-1
+  irows = iadj(xadj(j):xadj(j+1)-1);
+  vcolj = v(xadj(j):xadj(j+1)-1);
+  mprintf("Column #%d:\n",j)
+  mprintf("  Rows  = %s:\n",sci2exp(irows))
+  mprintf("  Values= %s:\n",sci2exp(vcolj))
+end
+ ]]>
+    </programlisting>
+
+    <para>
+    The previous script produces the following output.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+Column #1:
+  Rows  = [3;5]:
+  Values= [1;2]:
+Column #2:
+  Rows  = 3:
+  Values= 3:
+Column #3:
+  Rows  = [1;2;4]:
+  Values= [4;5;6]:
+Column #4:
+  Rows  = [3;5]:
+  Values= [7;8]:
+Column #5:
+  Rows  = [1;4]:
+  Values= [9;10]:
+ ]]>
+    </programlisting>
+
+    <para>
+    Let us consider the column #1. 
+    The equality xadj(2)-xadj(1)=2 indicates that there are two 
+    nonzeros in the column #1. 
+    The row indices are stored in iadj, which tells us that the
+    nonzero entries in column #1 are at rows #3 and #5. 
+    The v matrix tells us the actual entries are equal to 1 and 2.
+    </para>
+
+    <para>
+    In the following example, we browse the nonzero entries of 
+    a sparse matrix by looping on the adjacency structure. 
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+A = [
+0 0 0 0 0 6 0 0 0 0
+3 0 5 0 0 0 0 5 0 0
+0 0 0 3 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0
+0 7 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 3
+0 0 0 0 0 0 0 0 2 0
+];
+B=sparse(A);
+[xadj,iadj,v]=sp2adj(B)
+expected_xadj = [1 2 3 4 5 5 6 6 7 8 9]';
+expected_adjncy = [2 5 2 3 1 2 7 6]';
+expected_anz = [3 7 5 3 6 5 2 3]';
+and(expected_xadj == xadj) // Should be %t
+and(expected_adjncy == iadj) // Should be %t
+and(expected_anz == v) // Should be %t
+ ]]>
+    </programlisting>
+
+    <para>
+    In the following example, we check that the sp2adj and adj2sp functions 
+    are inverse.
+    </para>
+
+    <programlisting role="example">
+      <![CDATA[ 
+A = sprand(100,50,.05);
+[xadj,iadj,v]= sp2adj(A);
+[n,m]=size(A);
+p = adj2sp(xadj,iadj,v,[n,m]);
+A-p
+ ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="adj2sp">adj2sp</link>
+      </member>
+
+      <member>
+        <link linkend="sparse">sparse</link>
+      </member>
+
+      <member>
+        <link linkend="spcompack">spcompack</link>
+      </member>
+
+      <member>
+        <link linkend="spget">spget</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <para>
+    "Implementation of Lipsol in Scilab", Hector E. Rubio Scola, INRIA, Decembre 1997, Rapport Technique No 0215
+    </para>
+    <para>
+    "Solving Large Linear Optimization Problems with Scilab : Application to Multicommodity Problems", Hector E. Rubio Scola, Janvier 1999, Rapport Technique No 0227
+    </para>
+    <para>
+    "Toolbox Scilab : Detection signal design for failure detection and isolation for linear dynamic systems User's Guide", Hector E. Rubio Scola, 2000, Rapport Technique No 0241
+    </para>
+    <para>
+    "Computer Solution of Large Sparse Positive Definite Systems", A. George, Prentice-Hall, Inc. Englewood Cliffs, New Jersey, 1981.
+    </para>
+  </refsection>
+</refentry>

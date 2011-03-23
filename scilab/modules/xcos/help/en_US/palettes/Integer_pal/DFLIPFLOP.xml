@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +22,32 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="DFLIPFLOP">
+
+<refentry
+  version="5.0-subset Scilab"  xml:id="DFLIPFLOP"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmln.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>DFLIPFLOP</refname>
     <refpurpose>D flip-flop</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/DFLIPFLOP.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/DFLIPFLOP.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_DFLIPFLOP">
     <title>Contents</title>
     <itemizedlist>
@@ -58,17 +70,24 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Data_Type_DFLIPFLOP">Data types</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Defaultproperties_DFLIPFLOP">Default properties</xref>
             </para>
           </listitem>
+<!--      TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
+          <listitem>
+            <para>
+              <xref linkend="Example_DFLIPFLOP">Example</xref>
+            </para>
+          </listitem>
+-->
           <listitem>
             <para>
               <xref linkend="Interfacingfunction_DFLIPFLOP">Interfacing function</xref>
-            </para>
-          </listitem>
-          <listitem>
-            <para>
-              <link linkend="DFLIPFLOP">Compiled Super Block content</link>
             </para>
           </listitem>
           <listitem>
@@ -85,6 +104,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_DFLIPFLOP">
     <title>Palette</title>
     <itemizedlist>
@@ -95,51 +115,110 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_DFLIPFLOP">
     <title>Description</title>
+
     <para>
-The DFLIPFLOP block outputs the input state when the enable is
-set and on the rising edge of the clock. The input is D the
-enable is en and the clock is clk. Q and !Q are the outputs of
-this block. This block is almostly used with digital number, 
-the input data type is int8.
-</para>
+      That block outputs on <emphasis role="bold">Q</emphasis> its input state (<emphasis role="bold">D</emphasis>) when the enable input (<emphasis role="bold">en</emphasis>) is set
+      and on the rising edge of the clock input (<emphasis role="bold">clk</emphasis>).
+      The <emphasis role="bold">!Q</emphasis> output is the logical negation of <emphasis role="bold">Q</emphasis>.
+      This flip-flop is also known as a delay flip-flop because the state of the input is modified
+      only at the next rising edge of the clock.
+    </para>
     <para>
-The truth table of this block is
-</para>
+      The D flip-flop is used as a basic cell of shift-registers.
+    </para>
+    <para>
+      The truth table of this block is the following:
+    </para>
+    <para />
     <informaltable border="1" cellpadding="3">
       <tr>
-        <td align="center">en</td>
-        <td align="center">D</td>
-        <td align="center">Q</td>
-        <td align="center">!Q</td>
+        <td align="left"><latex><![CDATA[\boldsymbol{clk}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{en}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{D}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{Q_n}]]></latex></td>
+        <td align="left"><latex><![CDATA[\boldsymbol{!Q_n}]]></latex></td>
       </tr>
       <tr>
-        <td align="center">0</td>
-        <td align="center">0</td>
-        <td align="center">0</td>
-        <td align="center">1</td>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
+        <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
       </tr>
       <tr>
-        <td align="center">0</td>
-        <td align="center">1</td>
-        <td align="center">0</td>
-        <td align="center">1</td>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
       </tr>
       <tr>
-        <td align="center">1</td>
-        <td align="center">0</td>
-        <td align="center">0</td>
-        <td align="center">1</td>
+        <td align="left"><latex><![CDATA[\uparrow]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[1]]></latex></td>
+        <td align="left"><latex><![CDATA[0]]></latex></td>
       </tr>
       <tr>
-        <td align="center">1</td>
-        <td align="center">1</td>
-        <td align="center">1</td>
-        <td align="center">0</td>
+        <td align="left">Non-Rising</td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[X]]></latex></td>
+        <td align="left"><latex><![CDATA[Q_{n-1}]]></latex></td>
+        <td align="left"><latex><![CDATA[!Q_{n-1}]]></latex></td>
       </tr>
     </informaltable>
+
+    <para>
+      where <emphasis><literal>X</literal></emphasis> stands for "indifferent" and
+      <emphasis><literal>Q<subscript>n-1</subscript></literal></emphasis>
+      is the previous output state of <emphasis><literal>Q<subscript>n</subscript></literal></emphasis>.
+    </para>
   </refsection>
+
+  <refsection id="Data_Type_DFLIPFLOP">
+    <title>Data types</title>
+
+    <para>
+      The block supports the following types :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Inputs:
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <emphasis role="bold">D</emphasis>: scalar. Scilab's int8 data type only.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">en</emphasis>: scalar. Scilab's real double.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">clk</emphasis>: scalar. Scilab's real double.
+            </para>
+          </listitem>
+        </itemizedlist>
+        <para>
+          A positive input is considered as logical 1, a negative or a null input as logical 0.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Outputs : scalar. Scilab's int8 data type.
+        </para>
+      </listitem>
+    </itemizedlist>
+
+  </refsection>
+
   <refsection id="Defaultproperties_DFLIPFLOP">
     <title>Default properties</title>
     <itemizedlist>
@@ -203,44 +282,44 @@ The truth table of this block is
       </listitem>
     </itemizedlist>
   </refsection>
+
+<!-- TODO wait for the bug 8900 resolution http://bugzilla.scilab.org/show_bug.cgi?id=8900
+  <refsection id="Example_DFLIPFLOP">
+    <title>Example</title>
+    <para>
+    </para>
+    <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/integer_pal/en_US/dflipflop_diagram_en_US.png" align="center" />
+        </imageobject>
+    </mediaobject>
+  </refsection>
+-->
+
   <refsection id="Interfacingfunction_DFLIPFLOP">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/IntegerOp/DFLIPFLOP.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/DFLIPFLOP.sci">SCI/modules/scicos_blocks/macros/IntegerOp/DFLIPFLOP.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="CompiledSuperBlockcontent_DFLIPFLOP">
-    <title>Compiled Super Block content</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../images/DFLIPFLOP_img2_eng.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Seealso_DFLIPFLOP">
+
+  <refsection role="see also" id="Seealso_DFLIPFLOP">
     <title>See also</title>
     <itemizedlist>
       <listitem>
-        <para>
-          <link linkend="DLATCH">DLATCH - D latch flip-flop</link>
-        </para>
+          <link linkend="DLATCH">DLATCH</link>
       </listitem>
       <listitem>
-        <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop</link>
-        </para>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
       </listitem>
       <listitem>
-        <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop</link>
-        </para>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP</link>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Authors_DFLIPFLOP">
     <title>Authors</title>
     <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>

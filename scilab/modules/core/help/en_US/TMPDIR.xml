@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab" xml:lang="en" xml:id="TMPDIR">
+  <refnamediv>
+    <refname>TMPDIR</refname>
+    <refpurpose>temporary directory path</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      The <literal>TMPDIR</literal> constant holds the temporary
+      directory absolute path of a Scilab process. Each Scilab process
+      has its own temporary directory, created and referenced to
+      <literal>TMPDIR</literal> during Scilab startup. The
+      temporary directory is deleted when Scilab stops.
+    </para>
+    <para>
+      The temporary directories are created as subdirectories of the
+      system temporary directory and named SCI_TMP_&lt;unique&gt;
+      where &lt;unique&gt; is some number generated at Scilab startup
+      for the name to be unique. Under GNU/Linux, UNIX and Mac OS X,
+      directory access rights are limited to the Scilab user.
+    </para>
+    <para>
+      The <literal>TMPDIR</literal> constant cannot be altered during
+      Scilab execution. However, under GNU/Linux, UNIX and Mac OS X,
+      the system temporary directory (usually <literal>/tmp</literal>)
+      can be selected by altering the <literal>TMPDIR</literal> system
+      variable.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Vincent Liard</para>
+  </refsection>
+</refentry>

@@ -8,7 +8,7 @@
     <refpurpose> close a figure</refpurpose>
   </refnamediv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -46,8 +46,8 @@ close(h);
 // close figure 1
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="figure">figure</link>

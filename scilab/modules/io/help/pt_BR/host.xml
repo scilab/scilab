@@ -72,7 +72,7 @@
     <programlisting role="example"><![CDATA[ 
 //criando uma função getdir baseda no host
 function wd=getdir()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');
@@ -84,8 +84,8 @@ wd=getdir()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="edit">edit</link></member>

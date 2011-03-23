@@ -1,0 +1,104 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: QR
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("QR") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/QR.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  L.167: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.169: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.171: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.173: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.175: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.177: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.179: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.181: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.183: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.185: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.187: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.189: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.191: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.193: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  L.195: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.197: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.199: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.201: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.203: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.205: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.207: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.209: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.211: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.213: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.215: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.217: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Variable i supposed to be the Imaginary unit.
+  L.219: Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is used.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******

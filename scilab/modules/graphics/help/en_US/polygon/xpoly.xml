@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xpoly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xpoly</refname>
+    <refpurpose>draw a polyline or a
+  polygon</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>xv,yv</term>
+        <listitem>
+          <para>matrices of the same size (points of the polyline).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dtype</term>
+        <listitem>
+          <para>string (drawing style). default value is "lines".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>close</term>
+        <listitem>
+          <para>integer. If close=1, the polyline is closed; default value is
+          0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xpoly</literal> draws a single polyline described by the vectors of
+    coordinates <literal>xv</literal> and <literal>yv</literal>. If <literal>xv</literal> and
+    <literal>yv</literal> are matrices they are considered as vectors by
+    concatenating their columns. <literal>dtype</literal> can be
+    <literal>"lines"</literal> for using the current line style or
+    <literal>"marks"</literal> for using the current mark to draw the polyline.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+x=sin(2*%pi*(0:4)/5);
+y=cos(2*%pi*(0:4)/5);
+
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("color",5)
+xpoly(x,y,"lines",1) // by default closed
+
+// News graphics only
+e=gce(); // get the current entity (the last created: here the polyline)
+e.closed = 'off' // the polyline is now open
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xfpolys">xfpolys</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

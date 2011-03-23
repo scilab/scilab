@@ -15,6 +15,8 @@ c     the result is real or complex according to itype value
 c     ==========================================================
 c
       include 'stack.h'
+c
+      character tmpbuf * (bsiz) 
       integer sadr,iadr
       character*6 ename
       double precision x1,x2,xres(2)
@@ -28,8 +30,8 @@ c
       sadr(l)=(l/2)+1
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') top,r,sym
-         call basout(io,wte,' bydot  top:'//buf(1:4))
+         write(tmpbuf(1:12),'(3i4)') top,r,sym
+         call basout(io,wte,' bydot  top:'//tmpbuf(1:4))
       endif
 c
       mrhs=nn

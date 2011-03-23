@@ -26,7 +26,7 @@ y=auread(aufile,ext)
 [y,Fs,bits]=auread(aufile,ext)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>aufile</term>
@@ -82,11 +82,11 @@ y=wavread('SCI/modules/sound/demos/chimes.wav');
 // default is 8-bits mu-law
 auwrite(y,TMPDIR+'/tmp.au');
 y1=auread(TMPDIR+'/tmp.au');
-maxi(abs(y-y1))
+max(abs(y-y1))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="savewave">savewave</link>

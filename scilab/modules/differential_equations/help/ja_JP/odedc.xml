@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="odedc" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>odedc</refname>
+
+    <refpurpose>離散/連続 ODE ソルバ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>yt=odedc(y0,nd,stdel,t0,t,f)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0</term>
+
+        <listitem>
+          <para>実数列ベクトル (初期条件),
+          <literal>y0=[y0c;y0d]</literal> ただし <literal>y0d</literal> は
+          <literal>nd</literal> 個の要素を有します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nd</term>
+
+        <listitem>
+          <para>整数, <literal>y0d</literal>の次元</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stdel</term>
+
+        <listitem>
+          <para>1個または2個の要素を有する実数ベクトル, <literal>stdel=[h,
+          delta]</literal> (デフォルト値は <literal>delta=0</literal> ).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>実数のスカラー (初期時間).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数 (行) ベクトル, <literal>yt</literal> が計算される時間</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>外部,すなわち 関数または文字列または
+	呼び出し手順を指定するリスト: <literal>yp=f(t,yc,yd,flag)</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>y=odedc([y0c;y0d],nd,[h,delta],t0,t,f)</literal> は,
+	離散/連続混合系の解を計算します.
+	離散系の状態量 <literal>yd_k</literal> は以下のように
+	区間内は定数となる時間関数<literal>yd(t)</literal>として
+	組み込まれます:</para>
+
+    <programlisting role = ""><![CDATA[ 
+以下の t について yd(t) = yd_k
+[t_k=delay+k*h,t_(k+1)=delay+(k+1)*h[ (ただし delay=h*delta).
+ ]]></programlisting>
+
+    <para>シミュレーションされる方程式は以下のようになります:</para>
+
+    <programlisting role = ""><![CDATA[ 
+dyc/dt = f(t,yc(t),yd(t),0),  for t in [t_k,t_(k+1)[
+yc(t0) = y0c
+ ]]></programlisting>
+
+    <para>そして, 時刻 <literal>t_k</literal> において
+	離散変数 <literal>yd</literal> が以下のように更新されます:</para>
+
+    <programlisting role = ""><![CDATA[ 
+yd(t_k+) = f(yc(t_k-),yd(t_k-),1)
+ ]]></programlisting>
+
+    <para>
+	<literal>yd(t)</literal>の定義に基づき,
+	最後の式から以下が導かれることに注意してください</para>
+
+    <programlisting role = ""><![CDATA[ 
+yd_k = f (t_k,yc(t_k-),yd(t_(k-1)),1)  (yc は時間連続: yc(t_k-)=yc(tk))
+ ]]></programlisting>
+
+    <para>
+	<literal>f</literal>をコールする際のパラメータは以下のように固定されています:
+	<literal>ycd=f(t,yc,yd,flag)</literal>;
+	この関数は, <literal>flag=0</literal> の場合に
+	微係数ベクトル <literal>yc</literal>,
+	<literal>flag=1</literal> の場合に
+	<literal>yd</literal> の更新値を返す必要があります.
+	</para>
+
+    <para>
+	<literal>ycd=dot(yc)</literal> は,
+	<literal>flag=0</literal>の場合には<literal>yc</literal>と同じ次元の
+	ベクトルである必要があり,
+	<literal>flag=1</literal>の場合には<literal>yd</literal>と同じ次元の
+	ベクトルである必要があります.</para>
+
+    <para><literal>t</literal> は解<literal>y</literal>が計算される時刻を
+	表すベクトルです.</para>
+
+    <para><literal>y</literal> は
+	ベクトル<literal>y=[y(t(1)),y(t(2)),...]</literal>です.
+	この関数は <literal>ode</literal> 関数と同じオプションパラメータを指定して
+	コールすることができます
+	   (<literal>nd</literal> および <literal>stdel</literal> 
+	はコール時に2番目および3番目のパラメータとして指定されます). 
+	特に積分フラグ,許容誤差を設定することができます.
+	オプションのパラメータは <literal>odeoptions</literal> 関数により
+	設定できます.</para>
+
+    <para>外部ルーチンをコールする例が
+	<literal>SCIDIR/default/fydot2.f</literal>に提供されています.
+    </para>
+
+    <para>外部ルーチンは動的にリンクすることが可能です (<literal>link</literal>参照).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//切替入力を有する線形システム
+deff('xdu=phis(t,x,u,flag)','if flag==0 then xdu=A*x+B*u; else xdu=1-u;end');
+x0=[1;1];A=[-1,2;-2,-1];B=[1;2];u=0;nu=1;stdel=[1,0];u0=0;t=0:0.05:10;
+xu=odedc([x0;u0],nu,stdel,0,t,phis);x=xu(1:2,:);u=xu(3,:);
+nx=2;
+plot2d1('onn',t',x',[1:nx],'161');
+plot2d2('onn',t',u',[nx+1:nx+nu],'000');
+//Fortran外部関数( fydot2.f参照): 
+norm(xu-odedc([x0;u0],nu,stdel,0,t,'phis'),1)
+
+//サンプル値フィードバック 
+//
+//        |         xcdot=fc(t,xc,u)
+//  (システム)      |
+//        |          y=hc(t,xc)
+//
+//
+//        |          xd+=fd(xd,y)
+//  (フィードバック) |
+//        |          u=hd(t,xd)
+//
+deff('xcd=f(t,xc,xd,iflag)',...
+  ['if iflag==0 then '
+   '  xcd=fc(t,xc,e(t)-hd(t,xd));'
+   'else '
+   '  xcd=fd(xd,hc(t,xc));'
+   'end']);
+A=[-10,2,3;4,-10,6;7,8,-10];B=[1;1;1];C=[1,1,1];
+Ad=[1/2,1;0,1/20];Bd=[1;1];Cd=[1,1];
+deff('st=e(t)','st=sin(3*t)')
+deff('xdot=fc(t,x,u)','xdot=A*x+B*u')
+deff('y=hc(t,x)','y=C*x')
+deff('xp=fd(x,y)','xp=Ad*x + Bd*y')
+deff('u=hd(t,x)','u=Cd*x')
+h=0.1;t0=0;t=0:0.1:2;
+x0c=[0;0;0];x0d=[0;0];nd=2;
+xcd=odedc([x0c;x0d],nd,h,t0,t,f);
+norm(xcd-odedc([x0c;x0d],nd,h,t0,t,'fcd1')) // 計算高速化 (fydot2.f参照)
+plot2d([t',t',t'],xcd(1:3,:)');
+xset("window",2);plot2d2("gnn",[t',t'],xcd(4:5,:)');
+xset("window",0);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="odeoptions">odeoptions</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

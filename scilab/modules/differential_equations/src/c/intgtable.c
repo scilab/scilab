@@ -10,14 +10,16 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 #define ARGS_fintg double *
 
 /**************** fintg ***************/
 extern void C2F(intgex)(ARGS_fintg);
-double *C2F(fintg)(ARGS_fintg);
-void C2F(setfintg)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP double *C2F(fintg)(ARGS_fintg);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfintg)(char *name, int *rep);
 
 FTAB FTab_fintg[] ={
 	{"intgex", (voidf)  C2F(intgex)},
@@ -49,5 +51,5 @@ double *C2F(fintg)(double *x)
 
 void C2F(setfintg)(char *name, int *rep)
 {
-	fintgfonc = (fintgf) AddFunctionInTable(name,rep,FTab_fintg);
+	fintgfonc = (fintgf) GetFunctionByName(name,rep,FTab_fintg);
 }

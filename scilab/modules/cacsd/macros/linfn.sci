@@ -107,7 +107,7 @@ scale=nobc/noa; a=a/noa; b=b/nob; c=c/noc; d=d/scale; nd=norm(d);
  
 s=real(spec(a));
  
-if mini(abs(s)) < RELTOL then
+if min(abs(s)) < RELTOL then
    write(%io(2),msprintf(gettext("%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"),"linfn"));
 end
  
@@ -120,14 +120,14 @@ end
 // and the variables LOW and UPP keep record of these initial values so that
 // the window can be extended if necessary.
  
-if maxi(s)*mini(s) > 0 then
+if max(s)*min(s) > 0 then
 // A is stable or antistable: use associated Lyapunov equations
 // to derive lower and upper bounds.
    p=lyap(a',-b*b','c');
    q=lyap(a,-c'*c,'c');
    s=sqrt(abs(spec(p*q)));
  
-   lower=maxi(nd,maxi(s)); LOW=0;
+   lower=max(nd,max(s)); LOW=0;
    upper=nd+2*sum(diag(s));   UPP=100*upper;
  
 else
@@ -144,7 +144,7 @@ end
 //***********************************************************
 [na,na]=size(a); twona=2*na;
 [p,m]=size(d);
-nf=twona+mini(m,p); //size of e and f
+nf=twona+min(m,p); //size of e and f
  
 // to ensure that D'*D is of size min(m,p), replace (a,b,c,d) by
 // (a',c',b',d') if m>p
@@ -327,7 +327,7 @@ for i=1:nf,
   else                 evals=[evals,a(i)/bi]; end
 end
  
-if nai>nz then dist=0; else dist=mini(abs(real(evals)))/maxi(abs(evals)); end
+if nai>nz then dist=0; else dist=min(abs(real(evals)))/max(abs(evals)); end
  
  
 else   //option = 'freq'
@@ -338,11 +338,11 @@ else   //option = 'freq'
 // Here gamma is appx equal to ||G||. Distinguish two cases:
 // ||D|| < ||G|| and ||D|| = ||G||.
  
-if mini(svd(f(nf-nz+1:nf,nf-nz+1:nf))) < TOL then
+if min(svd(f(nf-nz+1:nf,nf-nz+1:nf))) < TOL then
 //-----------------------------------------------
 // f(nf-nz+1:nf,nf-nz+1:nf)= I - (D'*D)/||G||**2 -> case ||D||=||G||
  
-   noa=maxi(abs(a));  na=0;     //na -> # pairs (0,0)
+   noa=max(abs(a));  na=0;     //na -> # pairs (0,0)
    frequ=[-1];  //||G|| is always attained for s=infinity in this case
    for i=1:nf,
       bi=b(i);
@@ -357,8 +357,8 @@ if mini(svd(f(nf-nz+1:nf,nf-nz+1:nf))) < TOL then
       frequ=[-2];
       if na>=nz, write(%io(2),'G is all-pass'); end
    else if evals<>[] then
-      maxabs=maxi(abs(evals));
-      for i=1:maxi(size(evals)),
+      maxabs=max(abs(evals));
+      for i=1:max(size(evals)),
          if abs(real(evals(i))) <= TOL*maxabs,
                          frequ=[frequ,abs(imag(evals(i)))]; end
       end,
@@ -373,8 +373,8 @@ else // case ||D|| < ||G||
       if abs(bi) > 100*TOL, evals=[evals,a(i)/bi]; end
    end
  
-   maxabs=maxi(abs(evals));
-   for i=1:maxi(size(evals)),
+   maxabs=max(abs(evals));
+   for i=1:max(size(evals)),
       if abs(real(evals(i))) <= TOL*maxabs,
                      frequ=[frequ,abs(imag(evals(i)))]; end
    end
@@ -401,9 +401,9 @@ function [c]=cond_test(e,f,frequ,TOL);
 [nf,nf]=size(f);
 c=1;
  
-for i=1:maxi(size(frequ)),
+for i=1:max(size(frequ)),
    s=svd(f-%i*frequ(i)*e);
-   c=mini(c,s(nf)/s(1));
+   c=min(c,s(nf)/s(1));
    if c < TOL then return; end
 end
 
@@ -414,7 +414,7 @@ function [l]=list_set(l,TOL);
 //  eliminates redundant elements in a list. Two entries are considered
 //  identical when their difference is smaller then TOL (in relative terms)
 //! 
-nl=maxi(size(l));
+nl=max(size(l));
 i=1;
  
 while i < nl,

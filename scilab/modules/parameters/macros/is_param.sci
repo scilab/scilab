@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
+// Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -17,8 +17,7 @@ else
   if nargout==2 then 
     err = %T;
   else
-    warning(sprintf(gettext("%s: not a plist"),"get_param"));
+    error(sprintf(gettext("%s: Wrong type for input argument #%d: %s expected.\n"), "is_param", 1, "plist"));
   end
 end
 endfunction
-

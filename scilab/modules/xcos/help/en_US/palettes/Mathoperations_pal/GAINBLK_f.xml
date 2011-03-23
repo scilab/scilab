@@ -39,7 +39,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/GAINBLK_f.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/GAINBLK_f.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -77,15 +77,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_GAINBLK_f">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_GAINBLK_f">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_GAINBLK_f">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_GAINBLK_f">Interfacing function</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_GAINBLK_f">See also</xref>
             </para>
           </listitem>
 
@@ -114,9 +118,11 @@
   <refsection id="Description_GAINBLK_f">
     <title>Description</title>
 
-    <para>The GAINBLK computes the product of a square matrix A by the input
-    matrix U, where the number of rows/cols of A is equal to the number of
-    rows of U.</para>
+    <para>
+      That bloc computes the product of a square matrix A by the input vector U, where the number of rows/cols
+      of A is equal to the number of rows of U. The A matrix is set with the <emphasis role="bold">Gain</emphasis>
+      parameter.
+    </para>
   </refsection>
 
   <refsection id="Dialogbox_GAINBLK_f">
@@ -187,18 +193,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -206,8 +209,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -226,6 +228,27 @@
     <itemizedlist>
       <listitem>
         <para>SCI/modules/scicos_blocks/macros/Linear/GAINBLK_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_GAINBLK_f">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="PROD_f">PROD_f - Element-wise product (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="INVBLK">INVBLK - Inversion (Xcos block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT - Multiplication/Division de vecteurs élément par élément (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

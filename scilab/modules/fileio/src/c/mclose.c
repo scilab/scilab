@@ -30,11 +30,12 @@ void C2F(mclose) (int *fd, double *res)
 		/* closing all opened files */
 		for ( fd1=0; fd1< GetMaximumFileOpenedInScilab(); fd1++) 
 		{
-			if ( GetFileOpenedInScilab(fd1) )
+			FILE* stream=GetFileOpenedInScilab(fd1) ;
+			if ( stream )
 			{
 				int res1 = 1;
-				fclose( GetFileOpenedInScilab(fd1) );
-				res1 = ferror( GetFileOpenedInScilab(fd1));
+				res1=fclose( stream );
+				// this function previously called ferror on a just before fclosed FILE* that could lead to crash at exit, depending on libc implementation.
 				if (res1 != 0) *res =1;
 				C2F(delfile)(&fd1);
 				/* bug 3897 */

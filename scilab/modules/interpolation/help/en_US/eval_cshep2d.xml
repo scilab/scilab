@@ -24,7 +24,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -133,12 +133,12 @@ color(ind)=3;
 clf();
 plot3d(xf,yf,list(zf,color), flag=[2 6 4])
 legends(["extrapolation region","interpolation region"],[2 3],1)
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="cshep2d">cshep2d</link></member>

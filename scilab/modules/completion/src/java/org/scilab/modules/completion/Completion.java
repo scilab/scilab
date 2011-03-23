@@ -19,7 +19,7 @@ public class Completion {
    * Constructor
    */
  protected Completion() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
 /**
@@ -79,6 +79,17 @@ public static String[] searchVariablesDictionary(String somechars) {
 */
 public static String[] searchFilesDictionary(String somechars) {
     return CompletionJNI.searchFilesDictionary(somechars);
+  }
+
+  
+/**
+* completion function on files for scilab
+* @param[in] the line before the caret
+* @param[in] the part
+* @return a array of chars 
+*/
+public static String[] searchFieldsDictionary(String lineBeforeCaret, String pattern) {
+    return CompletionJNI.searchFieldsDictionary(lineBeforeCaret, pattern);
   }
 
   

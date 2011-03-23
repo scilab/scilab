@@ -40,8 +40,8 @@
     y</literal> são strings. (rotina de baixo-nível).</para>
   </refsection>
 
-  <refsection>
-    <title>Ver também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="mulf">mulf</link></member>

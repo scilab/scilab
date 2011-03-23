@@ -9,6 +9,8 @@
 package org.scilab.modules.graphic_export;
 
 
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
   * Call from the JoGL display thread to figure drawing code using JNI 
   * @author Jean-Baptiste Silvy
@@ -20,18 +22,20 @@ public class GL2PSWrappingJNI {
    * Constructor. Should not be called
    */
   protected GL2PSWrappingJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }
 
   static {
     try {
         System.loadLibrary("scigraphic_export");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scigraphic_export does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library scigraphic_export does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 
@@ -46,6 +50,7 @@ public class GL2PSWrappingJNI {
   public final static native int sci_gl2psEnable(int jarg1);
   public final static native int sci_gl2psDisable(int jarg1);
   public final static native int sci_gl2psPointSize(float jarg1);
+  public final static native int sci_gl2psLineStipple(int jarg1, int jarg2);
   public final static native int sci_gl2psLineWidth(float jarg1);
   public final static native int sci_gl2psBlendFunc(int jarg1, int jarg2);
   public final static native int sci_gl2psDrawImageMap(int jarg1, int jarg2, float[] jarg3, String jarg4);

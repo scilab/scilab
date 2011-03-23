@@ -12,7 +12,7 @@
     <synopsis>[h2]=cheb2mag(n,omegar,A,sample)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -62,7 +62,7 @@ h2=cheb2mag(n,omegar,A,sample);
 plot(sample,log(h2)/log(10),'frequencies','magnitude in dB')
 
 //Plotting of frequency edges
-minval=(-maxi(-log(h2)))/log(10);
+minval=(-max(-log(h2)))/log(10);
 plot2d([omegar;omegar],[minval;0],[2],"000");
 
 //Computation of the attenuation in dB at the stopband edge
@@ -70,8 +70,8 @@ attenuation=-log(A*A)/log(10);
 plot2d(sample',attenuation*ones(sample)',[5],"000")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cheb1mag">cheb1mag</link>

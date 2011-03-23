@@ -30,16 +30,21 @@ function [m,x]=secto3d(seclist,npas)
 
 
 [lhs,rhs]=argn(0)
+
+if and(argn(2)<>[1 2]) then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"), "secto3d", 1, 2));
+end
+
 n=size(seclist)
 //
 if rhs<2 then npas=n,end
 if prod(size(npas))==1 then
   sec=seclist(1);sec=sec(1,:)
-  xmax=maxi(sec);xmin=mini(sec)
+  xmax=max(sec);xmin=min(sec)
   for k=2:n
     sec=seclist(k);sec=sec(1,:)
-    xmax=maxi(xmax,maxi(sec))
-    xmin=mini(xmin,mini(sec))
+    xmax=max(xmax,max(sec))
+    xmin=min(xmin,min(sec))
   end
   pas=(xmax-xmin)/npas
   x=[xmin-pas xmin:pas:xmax xmax+pas]

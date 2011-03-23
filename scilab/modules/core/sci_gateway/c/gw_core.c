@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -60,7 +60,7 @@ static gw_generic_table Tab[]=
 {C2F(sci_gstacksize),"gstacksize"},
 {C2F(sci_intppty),"intppty"},
 {C2F(sci_lasterror),"lasterror"},
-{C2F(sci_getversion),"getversion"},
+{sci_getversion,"getversion"},
 {C2F(sci_macr2tree),"macr2tree"},
 {C2F(sci_getos),"getos"},
 {C2F(sci_banner),"banner"},
@@ -74,7 +74,7 @@ static gw_generic_table Tab[]=
 };
 /*--------------------------------------------------------------------------*/
 int gw_core(void)
-{  
+{
 	Rhs = Max(0, Rhs);
 
 	/* recursion */
@@ -88,10 +88,10 @@ int gw_core(void)
 			Fin = 6;
 		}
 	}
-	
+
 	if(pvApiCtx == NULL)
 	{
-		pvApiCtx = (StrCtx*)MALLOC(sizeof(SciErr));
+		pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
 	}
 
 	pvApiCtx->pstName = (char*)Tab[Fin-1].name;

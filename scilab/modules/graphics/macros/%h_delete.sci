@@ -8,12 +8,6 @@
 
 
 function %h_delete(varargin)
-
-  if (length(varargin) == 1)
-    hdl = varargin(1)
-    for i=1:size(hdl,'*')
-      delete(hdl(i))
-    end,
-  end,
-
+// No operation overloading function
+// We allow the user to overload the %h_delete function
 endfunction

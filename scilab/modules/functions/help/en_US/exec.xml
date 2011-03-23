@@ -15,7 +15,7 @@ ierr=exec(path,'errcatch' [,mode])
 ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -83,8 +83,10 @@ ierr=exec(fun,'errcatch' [,mode])</synopsis>
     works.</para>
   </refsection>
   <refsection>
-    <title>Remark</title>
+    <title>Remarks</title>
     <para><literal>exec</literal> files may now be used to define functions using the inline function definition syntax (see function).</para>
+    <para><literal>exec</literal> supports files encoded as ANSI/ASCII and UTF-8 (NO-BOM).</para>
+    <para>length of each line in a file is limited to 4096 characters.</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -112,8 +114,8 @@ exec(foo)
 whos -name "a "
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="execstr">execstr</link>

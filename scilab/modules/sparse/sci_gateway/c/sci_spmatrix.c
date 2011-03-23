@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intspmatrix)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_spmatrix)(char *fname,unsigned long fname_len)
+int sci_spmatrix(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intspmatrix)(id);

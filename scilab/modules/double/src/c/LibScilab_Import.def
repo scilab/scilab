@@ -1,0 +1,10 @@
+	LIBRARY    Libscilab.dll
+
+
+EXPORTS
+;
+;core
+;
+callFunctionFromGateway
+com_
+iop_

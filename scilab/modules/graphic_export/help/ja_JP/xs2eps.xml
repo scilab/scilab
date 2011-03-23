@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xs2eps" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xs2eps</refname>
+
+    <refpurpose>グラフィックスをEPS ファイルに出力.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>xs2eps(win_num, file_name [,orientation])
+xs2eps(fig, file_name [,orientation])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>整数, エキスポートする図のid.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>エキスポートする図のハンドル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file_name</term>
+
+        <listitem>
+          <para>文字列, エキスポートするファイルの名前.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>orientation</term>
+
+        <listitem>
+          <para>オプションの文字列, 指定可能な値は 'portrait' または
+          'landscape'. デフォルト値は 'portrait'です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>xs2eps</literal> は,グラフィックウインドウの
+	出力を完全なEncapsulated PostScriptファイルにエキスポートします.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+scf(0)
+plot2d()
+//EPS export
+xs2eps(0,'foo.eps')
+xs2eps(gcf(),'foo.eps')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member>figure_size property</member>
+
+      <member><link linkend="toprint">toprint</link></member>
+
+      <member><link linkend="printfigure">printfigure</link></member>
+
+      <member><link linkend="xs2bmp">xs2bmp</link></member>
+
+      <member><link linkend="xs2gif">xs2gif</link></member>
+
+      <member><link linkend="xs2jpg">xs2jpg</link></member>
+
+      <member><link linkend="xs2png">xs2png</link></member>
+
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
+      <member><link linkend="xs2pdf">xs2pdf</link></member>
+
+      <member><link linkend="xs2svg">xs2svg</link></member>
+
+      <member><link linkend="xs2ps">xs2ps</link></member>
+
+      <member><link linkend="xs2fig">xs2fig</link></member>
+
+      <member><link linkend="xs2emf">xs2emf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -12,10 +12,11 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_differential_equations1.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(feval)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_feval)(char *fname,unsigned long fname_len)
+int sci_feval(char *fname,unsigned long fname_len)
 {
 	C2F(feval)(fname,fname_len);
 	return 0;

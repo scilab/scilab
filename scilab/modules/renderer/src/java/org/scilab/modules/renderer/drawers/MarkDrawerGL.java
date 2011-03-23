@@ -22,6 +22,7 @@ import org.scilab.modules.renderer.utils.CoordinateTransformation;
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawer;
 import org.scilab.modules.renderer.utils.MarkDrawing.MarkDrawingStrategy;
 import org.scilab.modules.renderer.utils.geom3D.Vector3D;
+import org.scilab.modules.renderer.utils.geom3D.GeomAlgos;
 import org.scilab.modules.renderer.utils.glTools.GLTools;
 
 /**
@@ -36,7 +37,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	private Vector3D[] markPos;
 	
 	private int nbMarks;
-	
+
 	/**
 	 * Default Constructor
 	 */
@@ -63,6 +64,7 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 	public void initializeDrawing(int parentFigureIndex) {
 		super.initializeDrawing(parentFigureIndex);
 		drawer.initializeDrawing(parentFigureIndex);
+		drawer.setMarkDrawingStrategy(getParentFigureGL().getMarkDrawingStrategy());
 	}
 	
 	/**
@@ -180,8 +182,10 @@ public abstract class MarkDrawerGL extends DrawableObjectGL {
 		// marks are drawn with a line width of 1.
 		gl.glLineWidth(1.0f);
 		for (int i = 0; i < nbMarks; i++) {
-			// switch back to the new frame
-			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
+      // Test if mark is drawable before perform drawing.
+      if (GeomAlgos.isVector3DRepresentable(markPos[i])) {
+  			getDrawer().drawMark(pixCoords[i].getX(), pixCoords[i].getY(), pixCoords[i].getZ());
+  	  }
 		}
 		endRecordDL();
 		// we recreate the dl each time

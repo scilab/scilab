@@ -1,0 +1,91 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:03+0100\n"
+"PO-Revision-Date: 2009-10-11 15:12+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
+msgstr "%s: mxSetPi sta sovrascrivendo la destinazione di %i byte.\n"
+
+#, c-format
+msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
+msgstr "%s: mxSetPr sta sovrascrivendo la destinazione di %i byte.\n"
+
+msgid "Column length of string matrix must agree!"
+msgstr ""
+"La lunghezza delle colonne della matrice di stringhe deve concordare!"
+
+msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
+msgstr "La funzione mexPutArray è obsoleta, usare mexPutVariable!\n"
+
+msgid "GetElementSize error."
+msgstr "Errore di GetElementSize."
+
+msgid "Invalid input"
+msgstr "Input non valido"
+
+msgid "Invalid string matrix (at most one column!)"
+msgstr "Matrice di stringhe non valida (serve almeno una colonna!)"
+
+msgid "Last warning"
+msgstr "Ultimo avviso"
+
+msgid "No more memory"
+msgstr "Memoria esaurita"
+
+msgid "No more memory available: increase stacksize"
+msgstr "Non c'è più memoria disponibile: incrementare stacksize"
+
+msgid "No more memory available: increase stacksize."
+msgstr "Non c'è più memoria disponibile: incrementare stacksize"
+
+msgid "Routine mxGetName not implemented.\n"
+msgstr "La routine mxGetName non è sviluppata.\n"
+
+msgid "Routine mxIsSingle not implemented.\n"
+msgstr "La routine mxlsSingle non è sviluppata.\n"
+
+msgid "Routine mxSetData not implemented.\n"
+msgstr "La routine mxSetData non è sviluppata.\n"
+
+msgid "Routine mxSetDimensions not implemented.\n"
+msgstr "La routine mxSetDimensions non è sviluppata.\n"
+
+msgid "Routine mxSetName not implemented !\n"
+msgstr "La routine mxSetName non è sviluppata !\n"
+
+msgid "Use mtlb_sparse(sparse( ))!"
+msgstr "Usare mtlb_sparse(sparse( ))!"
+
+msgid "Variable is not logical."
+msgstr "La variabile non è logica."
+
+msgid "Warning"
+msgstr "Attenzione"
+
+msgid "Warning: "
+msgstr "Attenzione: "
+
+msgid "mexCallSCILAB: evaluation failed. "
+msgstr "mexCallSCILAB: valutazione fallita. "
+
+msgid "mexCallSCILAB: invalid pointer passed to called function."
+msgstr ""
+"mexCallSCILAB: è stato passato un puntatore non valido alla funzione "
+"chiamata."
+
+msgid "mexPutFull failed\n"
+msgstr "mexPutFull fallito\n"

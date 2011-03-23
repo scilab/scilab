@@ -15,7 +15,7 @@ function xf=dft(x,flag);
 // xf   :output vector
 //!
 
-n=maxi(size(x));
+n=max(size(x));
 arg=(0:n-1);
 am=-2*%pi*%i*arg'*arg/n;
 if flag==1 then,

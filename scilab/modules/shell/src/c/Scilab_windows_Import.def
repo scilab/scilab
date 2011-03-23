@@ -1,7 +1,8 @@
 	LIBRARY    scilab_windows.dll
 
 EXPORTS 
-  getYConsoleScreenSize
-  getXConsoleScreenSize
-  strdup_windows
-  setFocusOnConsole
+getYConsoleScreenSize
+getXConsoleScreenSize
+strdup_windows
+setFocusOnConsole
+mmap

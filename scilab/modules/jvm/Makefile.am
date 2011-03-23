@@ -16,7 +16,7 @@ modulename=jvm
 
 #### jvm : Conf files ####
 libscijvm_la_rootdir = $(mydatadir)
-libscijvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscijvm_la_root_DATA =  license.txt version.xml
 
 #### jvm : init scripts ####
 libscijvm_la_etcdir = $(mydatadir)/etc
@@ -45,17 +45,21 @@ USEANT=1
 pkglib_LTLIBRARIES += libscijvm.la
 endif
 
-libscijvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
+libscijvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) -lpthread $(XML_LIBS)
 
 if IS_MACOSX 
 libscijvm_la_LDFLAGS += -framework JavaVM
 endif
 
-libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscijvm_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### jvm : gateway declaration ####
 libscijvm_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscijvm_la_sci_gateway_DATA = sci_gateway/jvm_gateway.xml
+
+#### jvm :  dtd files ####
+libscijvm_la_xmldir = $(mydatadir)/xml
+libscijvm_la_xml_DATA = xml/classpath.dtd  xml/librarypath.dtd
 
 #### jvm : include files ####
 libscijvm_la_includedir=$(pkgincludedir)

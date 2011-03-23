@@ -22,8 +22,8 @@ function [x1,p1]=srkf(y,x0,p0,f,h,q,r)
 //        :at t=1 based on data up to t=0
 //!
 
-   n=maxi(size(x0));
-   p=maxi(size(y));
+   n=max(size(x0));
+   p=max(size(y));
  
    j=[chol(r)',0*r];
    g=[0*q,chol(q)'];

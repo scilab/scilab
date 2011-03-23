@@ -23,7 +23,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -262,12 +262,12 @@ plot2d(xx, [yf ym yk], style=[5 2 3], strf="121", ...
        leg="fast@monotone@not a knot spline")
 plot2d(x,y,-9, strf="000")  // to show interpolation points
 xtitle("Various spline and sub-splines on random datas")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="interp">interp</link></member>

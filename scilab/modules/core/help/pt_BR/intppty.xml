@@ -94,8 +94,8 @@ foo(A,1+2)
     (ver addinter).</para>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="funptr">funptr</link></member>

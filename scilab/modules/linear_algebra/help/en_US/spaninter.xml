@@ -23,7 +23,7 @@
     <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A, B</term>
@@ -70,8 +70,8 @@ svd(A),svd([X1,A])   // X1 in span(A)
 svd(B),svd([B,X1])   // X1 in span(B)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="spanplus">spanplus</link>

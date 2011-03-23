@@ -23,7 +23,7 @@
     <synopsis>stat=host(command-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>command-name</term>
@@ -51,7 +51,7 @@
     <programlisting role="example"><![CDATA[ 
 //create a getdir function based on host
 function wd=getdir()
-  if MSDOS then 
+  if getos() == 'Windows' then 
     host('cd>'+TMPDIR+'\path');
   else
     host('pwd>'+TMPDIR+'/path');
@@ -62,8 +62,8 @@ endfunction
 wd=getdir()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

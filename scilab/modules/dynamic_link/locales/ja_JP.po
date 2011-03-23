@@ -1,0 +1,423 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-08-13 14:56+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: コマンド: %s\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 102
+# File: macros/ilib_gen_Make_unix.sci, line: 116
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: TMPDIRに %s をコピーしました\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 58
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr "   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr "   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) です.\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 123
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: ファイル %s を無視しました。\n"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 157
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: TMPDIRのMakefileを修正しました。\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: コンパイラー検出を行う必要があります(configure)。\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: 実際のファイルでリファレンスを置き換えてください.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: 前に検出したコンパイラを使用してください.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configure:  Makefileを生成.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   共有ライブラリを構築中 (お待ちください)\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   コマンド: %s\n"
+
+#
+# File: macros/ilib_compile.sci, line: 57
+msgid "   Compilation of "
+msgstr "   コンパイル "
+
+#
+# File: macros/ilib_build.sci, line: 54
+# File: macros/ilib_for_link.sci, line: 38
+msgid "   Generate a Makefile\n"
+msgstr "   Makefileの生成\n"
+
+#
+# File: macros/ilib_build.sci, line: 52
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Makefileの生成: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 41
+# File: macros/ilib_for_link.sci, line: 34
+msgid "   Generate a cleaner file\n"
+msgstr "   クリーナ・ファイルの生成\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   ゲートウェイファイルを生成\n"
+
+#
+# File: macros/ilib_build.sci, line: 41
+# File: macros/ilib_for_link.sci, line: 34
+msgid "   Generate a loader file\n"
+msgstr "   ローダファイルの生成\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   出力: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Makefile を実行中\n"
+
+msgid "   Running the makefile\n"
+msgstr "   Makefile を実行中\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   標準エラー: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 80
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s: 入力引数 #%d で不正な型: %s\n"
+
+#
+# File: sci_gateway/c/sci_link.c, line: 63
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s: 引数 #%d で不正な値: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr "%s: 第2引数には, 共有ライブラリのユニークなIDを指定してください.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s はエントリポイントではありません.\n"
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Fortran または Cコンパイラが必要です.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: ライブラリ %s はロード済みです.\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: コンパイル中にエラーが発生しました:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr "%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照ください.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが発生しました: %s\n"
+
+#
+# File: macros/ilib_compile.sci, line: 120
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: 構築コマンド: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません.\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d に達しました.\n"
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: 基準 Makefile を修正中にエラーが発生しました:\n"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: この機能は, Microsoft Windows では使用できません.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: 共有ライブラリ %s が存在しません.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: コマンド:\n"
+
+#
+# File: macros/dllinfo.sci, line: 110
+# File: src/c/dynamic_link.c, line: 104
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: 共有アーカイブがロードされていません: %s\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: この機能は Windows に実装済みです.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr "%s: この機能には, Microsoft Visual Studio の C コンパイラが必要です.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr "%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空ではありません.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでした. "
+"http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr "%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 文字列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '''' または ''[]'' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: エントリ点の一つに問題があります.\n"
+
+#
+# File: macros/ilib_compile.sci, line: 20
+msgid "A Fortran or C compiler is required."
+msgstr "Fortran または C コンパイラが必要です。"
+
+#
+# File: src/c/dynamic_link.c, line: 110
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "エラーが起きました: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr "最大エントリ数 %d に達したため, 共有ファイルをオープンできません.\n"
+
+# File: etc/dynamic_link.start, line: 43
+msgid "Dynamic link"
+msgstr "ダイナミックリンク"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "エントリ名 %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "共有ライブラリ %2$d のエントリ点 %1$s.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "エラー: 有効な内部 ルーチン番号 %d ではありません.\n"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F２Cはfortran 90を構築できません"
+
+#
+# File: src/c/addinter.c, line: 237
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "インターフェース %s はリンクされていません。\n"
+
+#
+# File: src/c/dynamic_link.c, line: 119
+msgid "Link done.\n"
+msgstr "リンク完了\n"
+
+#
+# File: src/c/dynamic_link.c, line: 109
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "ダイナミックライブラリ '%s' のリンクが失敗しました。\n"
+
+#
+# File: src/c/dynamic_link.c, line: 396
+#, c-format
+msgid "Linking %s.\n"
+msgstr "%s をリンクします。\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"エントリ点の数 %d.\n"
+"共有ライブラリ:\n"
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "出力: %s\n"
+
+#
+# File: src/c/dynamic_link.c, line: 118
+msgid "Shared archive loaded.\n"
+msgstr "共有アーカイブをロードしました。\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "ユニークなダイナミックライブラリ名を指定してください."
+
+msgid "Unique id of a shared library expected."
+msgstr "共有ライブラリのユニークなIDを"
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d ライブラリ。\n"
+
+#
+# File: src/c/dynamic_link.c, line: 288
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : %d ライブラリ。\n"
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "標準エラー: %s\n"

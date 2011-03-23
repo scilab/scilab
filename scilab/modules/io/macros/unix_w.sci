@@ -38,7 +38,7 @@ function unix_w(cmd)
 		error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_w",1));
 	end
 	
-  if MSDOS then 
+  if getos() == 'Windows' then 
     [rep,stat]=dos(cmd,'-echo');
     if (~stat) then
       error(msprintf(gettext("%s: error during ""%s"" execution"),"unix_w",cmd));

@@ -27,12 +27,12 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <para>Input argument profile:</para>
-        <synopsis>SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr)</synopsis>
+        <synopsis>SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)</synopsis>
         <para>Named variable profile:</para>
-        <synopsis>SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)</synopsis>
+        <synopsis>SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>Arguments</title>
         <variablelist>
 			<varlistentry>
 				<term>_pvCtx</term>

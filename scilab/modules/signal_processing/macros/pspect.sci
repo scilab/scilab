@@ -39,7 +39,7 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
   end
   if and(wtype<>['re','tr','hm','hn','kr','ch']) then
     error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-		   "pspect",3,"''re'',''tr'',''hm'',''hn'',''kr'',''ch''"));
+                   "pspect",3,"''re'',''tr'',''hm'',''hn'',''kr'',''ch''"));
   end
   
   //Analyze calling sequence and construct window
@@ -80,8 +80,8 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
   sm=0*w;
   if size(x,'*')==1 then  //Batch processing of x and y data 
     
-    //get number of sections to be used			     
-    nsecs=int((x-sec_leng)/sec_step);//x  contains the number of points of the signals 
+    //get number of sections to be used                 
+    nsecs=int((x-sec_leng+sec_step)/sec_step);//x  contains the number of points of the signals 
     ovrlp=sec_leng-sec_step;
     xd=[0*ones(1,sec_step) getx(ovrlp,1)];
     if cross then
@@ -93,18 +93,18 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
       xw=w.*(xd-(sum(xd)/sec_leng));
       fx=fft(xw,-1);
       if cross then
-	yd(1:ovrlp)=yd(sec_step+1:sec_leng);
-	yd(ovrlp+1:sec_leng)=gety(sec_step,sec_leng+(k-1)*sec_step+1);
-	yw=w.*(yd-(sum(yd)/sec_leng));
-	sm=sm+fx.*conj(fft(yw,-1));
+        yd(1:ovrlp)=yd(sec_step+1:sec_leng);
+        yd(ovrlp+1:sec_leng)=gety(sec_step,sec_leng+(k-1)*sec_step+1);
+        yw=w.*(yd-(sum(yd)/sec_leng));
+        sm=sm+fx.*conj(fft(yw,-1));
       else
-	sm=sm+real(fx.*conj(fx));
+        sm=sm+real(fx.*conj(fx));
       end
     end
   else // Signal data given in x and y if cross-correlation
- 
+    
     //get number of sections to be used
-    nsecs=int((size(x,'*')-sec_leng)/sec_step);
+    nsecs=int((size(x,'*')-sec_leng+sec_step)/sec_step);
     ind=(1:sec_leng);
     for k=1:nsecs
       indd=ind+(k-1)*sec_step*ones(1:sec_leng);
@@ -112,11 +112,11 @@ function [sm,cwp]=pspect(sec_step,sec_leng,wtype,x,y,wpar)
       xe=w.*(xd-(sum(xd)/sec_leng));
       fx=fft(xe,-1);
       if cross then
-	yd=y(indd);
-	ye=w.*(yd-(sum(yd)/sec_leng));
-	sm=sm+fx.*conj(fft(ye,-1));
+        yd=y(indd);
+        ye=w.*(yd-(sum(yd)/sec_leng));
+        sm=sm+fx.*conj(fft(ye,-1));
       else
-	sm=sm+real(fx.*conj(fx));
+        sm=sm+real(fx.*conj(fx));
       end
     end
   end

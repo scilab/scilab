@@ -1,0 +1,103 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: AXIS
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("AXIS"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/AXIS.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  !! L.11: No Scilab equivalent for: axis([xmin,xmax,ymin,ymax,zmin,zmax,cmin,cmax])
+  L.12: Unknown variable axis is a M-file.
+  L.14: Unknown variable axis is a M-file.
+  L.15: Unknown variable axis is a M-file.
+  L.16: Unknown variable axis is a M-file.
+  L.17: Unknown variable axis is a M-file.
+  !! L.17: No Scilab equivalent for: axis("fill")
+  L.19: Unknown variable axis is a M-file.
+  L.20: Unknown variable axis is a M-file.
+  L.22: Unknown variable axis is a M-file.
+  L.23: Unknown variable axis is a M-file.
+  !! L.23: No Scilab equivalent for: axis("image")
+  L.24: Unknown variable axis is a M-file.
+  !! L.24: cube_scaling only used in 3d mode.
+  L.25: Unknown variable axis is a M-file.
+  L.26: Unknown variable axis is a M-file.
+  !! L.26: No Scilab equivalent for: axis("normal")
+  L.28: Unknown variable axis is a M-file.
+  L.29: Unknown variable axis is a M-file.
+  L.34: Unknown variable axis is a M-file.
+  !! L.34: No Scilab equivalent for: axis([h1,h2],"auto")
+  L.35: Unknown variable axis is a M-file.
+  L.37: Unknown variable axis is a M-file.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function axis()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+xmin = 1;
+ymin = 1;
+zmin = 1;
+cmin = 1;
+xmax = 10;
+ymax = 10;
+zmax = 10;
+cmax = 10;
+
+set(gca(),"data_bounds",matrix([xmin,xmax,ymin,ymax],2,-1))
+set(gca(),"data_bounds",matrix([xmin,xmax,ymin,ymax,zmin,zmax],2,-1))
+axis([xmin,xmax,ymin,ymax,zmin,zmax,cmin,cmax])
+v = set(gca(),"data_bounds")
+
+set(gca(),"auto_scale","on")
+set(gca(),"auto_scale","off")
+set(gca(),"tight_limits","on")
+axis("fill")
+
+set(gca(),"rotation_angles",[180;270])
+set(gca(),"rotation_angles",[0;270])
+
+set(gca(),"isoview","on")
+axis("image")
+set(gca(),"cube_scaling","on")
+set(gca(),"view","3d")
+axis("normal")
+
+set(gca(),"axes_visible","off")
+set(gca(),"axes_visible","on")
+
+
+
+
+set(gca(),"auto_scale","on")
+[mode,visibility,direction] = mtlb_axis("state")
+
+set(gca(),"axes_visible","on")

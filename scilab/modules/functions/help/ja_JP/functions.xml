@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" 
+	  xmlns:xlink="http://www.w3.org/1999/xlink" 
+	  xmlns:svg="http://www.w3.org/2000/svg" 
+	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+	  xmlns:db="http://docbook.org/ns/docbook" 
+	  version="5.0-subset Scilab" 
+	  xml:lang="ja" xml:id="functions">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>functions</refname>
+    <refpurpose> Scilab プロシージャおよび  Scilab オブジェクト</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>functions は Scilab プロシージャ ("macro", "function" および "procedure"
+    have the save meaning)です.</para>
+  </refsection>
+  <refsection>
+    <title>関数定義</title>
+    <para>
+	通常,これらはエディタによりファイルで定義され,
+	<link linkend="exec">exec</link>関数またはライブラリ
+	(<link linkend="lib">lib</link> または <link linkend="genlib">genlib</link>参照)
+	によりScilabにロードされます.
+	しかし,オンライン定義
+	(<link linkend="deff">deff</link> または <link linkend="function">function</link>参照)
+	することも可能です.
+	関数は以下の2つの要素により定義されます:: </para>
+    <itemizedlist>
+      <listitem>
+        <para>以下のような "構文定義" 部:</para>
+        <programlisting><![CDATA[ 
+function [y1,...,yn]=foo(x1,...,xm)
+function [y1,...,yn,varargout]=foo(x1,...,xm,varargin)
+ ]]></programlisting>
+      </listitem>
+      <listitem>
+        <para>一連のScilab命令.</para>
+      </listitem>
+    </itemizedlist>
+    <para>"構文定義" 行はこの関数の"完全な"呼び出し手順を指定します.
+	<literal>yi</literal> は,入力変数<literal>xi</literal>と
+	その関数が実行された際にScilabに存在する変数の関数として
+	計算される出力変数です.
+	</para>
+  </refsection>
+  <refsection>
+    <title>呼び出し手順</title>
+    <itemizedlist>
+      <listitem>
+	<para>
+	通常,関数の呼び出し手順は
+	<literal>[y1,...,yn]=foo(x1,...,xm)</literal>となります.
+	入力または出力引数の一覧を定義より短くすることができます.
+	このような場合,
+	左辺の先頭のいくつかの変数のみが使用され設定されます.
+	</para> 
+	<para>呼び出し時の引数の実際の数は,
+	<link linkend="argn">argn</link> により取得することができます.</para>
+      </listitem>
+      <listitem>
+	<para>It is possible to define function with indeterminate
+	number of input or output maximum number of arguments. This
+	can be done using the <link linkend="varargin">varargin</link>
+	and <link linkend="varargout">varargout</link>
+	keywords. See the given links for details.</para>
+	</listitem>
+      <listitem>
+	<para>It is also possible to use "named argument" to specify input
+	arguments: suppose function <literal>fun1</literal> defined as
+	<literal>function y1=fun1(x1,x2,x3)</literal> then it can be
+	called with a syntax like <literal>y=fun1(x1=33,x3=[1 2
+	3])</literal> within <literal>fun1</literal> x2 will be
+	undefined,</para>  
+	<para> it can also be called with a syntax like
+	<literal>y=fun1(x1=33,y='foo')</literal>. In such a case the
+	<literal>y</literal> variable will be available in the context
+	of the function <literal>fun1</literal>. Note that the maximum
+	number of argument must be less or equal to the number of
+	formal input argument used in the function syntax part.</para>
+	<para> It is possible to check for defined variables with the
+	<link linkend="exists">exists</link> function.</para>
+      </listitem>
+      <listitem>
+	<para>When a function has no left hand side argument and is called only
+	with character string arguments, the calling syntax may be
+	simplified:</para>
+	  <programlisting><![CDATA[ 
+fun('a','toto','a string') 
+ ]]></programlisting>
+	  <para>is equivalent to: </para>
+	  <programlisting><![CDATA[ 
+fun a toto 'a string'
+ ]]></programlisting>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+
+    <title>Miscellaneous</title>
+    <para>
+    Functions are Scilab objects (with type numbers 13 or 11). They
+    and can be manipulated (built, saved, loaded, passed as
+    arguments,..) as other variable types.</para>
+    <para>Collections of functions can be collected in libraries.  Functions
+    which begin with <literal>%</literal> sign
+    (e.g. <literal>%foo</literal>) are often used to overload (see <link linkend="overloading">overloading</link>
+    ) operations or functions for new data type.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//インライン定義 (function参照)
+function [x,y]=myfct(a,b)
+  x=a+b
+  y=a-b
+endfunction
+
+[x,y]=myfct(3,2)
+
+//インライン定義 (deff参照)
+deff('[x,y]=myfct(a,b)',['x=a+b';
+                         'y=a-b'])
+// アスキーファイルで定義 (exec参照)
+exec SCI/modules/elementary_functions/macros/asinh.sci;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member> <link linkend="function">function</link> </member>
+      <member> <link linkend="deff">deff</link> </member>
+      <member> <link linkend="exec">exec</link> </member>
+      <member> <link linkend="comp">comp</link> </member>
+      <member> <link linkend="lib">lib</link> </member>
+      <member> <link linkend="getd">getd</link> </member>
+      <member> <link linkend="genlib">genlib</link> </member>
+      <member> <link linkend="exists">exists</link> </member>
+      <member> <link linkend="varargin">varargin</link> </member>
+      <member> <link linkend="varargout">varargout</link> </member>
+    </simplelist>
+  </refsection>
+</refentry>

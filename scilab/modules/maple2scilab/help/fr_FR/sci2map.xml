@@ -50,7 +50,7 @@
     <para>
 			Génère le code Maple nécessaire pour envoyer la variable Scilab 
 			<literal>a</literal> vers Maple : le nom de la variable dans Maple est <literal>Map-name</literal>.
-			Une procédure Maple <literal>maple2scilab</literal> se trouve dans le dossier <literal>SCIDIR/maple</literal>.
+			Une procédure Maple <literal>maple2scilab</literal> se trouve dans le fichier <literal>SCI/modules/maple2scilab/src/maple/maple2scilab.mpl</literal>.
 		</para>
   </refsection>
   <refsection>

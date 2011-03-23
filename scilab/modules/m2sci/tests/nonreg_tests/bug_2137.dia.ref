@@ -4,6 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 2137 -->
 //
 // <-- Bugzilla URL -->
@@ -28,18 +30,9 @@
 //    Francois
 MFILECONTENTS=[
 "R = randn;";
-]
- MFILECONTENTS  =
- 
- R = randn;   
-MFILE=TMPDIR+"/bug2137.m"
- MFILE  =
- 
- TMPDIR/bug2137.m   
-SCIFILE=TMPDIR+"/bug2137.sci"
- SCIFILE  =
- 
- TMPDIR/bug2137.sci   
+];
+MFILE=TMPDIR+"/bug2137.m";
+SCIFILE=TMPDIR+"/bug2137.sci";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
@@ -48,7 +41,7 @@ mfile2sci(MFILE,TMPDIR);
   File to convert: TMPDIR/bug2137.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formated code: NO
   M-file reading...
@@ -71,26 +64,6 @@ SCIFILECONTENTSREF=["";
 "ieee(1);";
 "";
 "R = rand(1,1,""normal"");";
-]
- SCIFILECONTENTSREF  =
- 
-!                                                 !
-!                                                 !
-!// Display mode                                  !
-!                                                 !
-!mode(0);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!// Display warning for floating point exception  !
-!                                                 !
-!ieee(1);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!R = rand(1,1,"normal");                          !
-correct=%T
- correct  =
- 
-  T  
+];
+correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

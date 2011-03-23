@@ -21,7 +21,7 @@ if with_module('pvm') then
 		clear pathdemos
 	end
 	
-	if MSDOS then
+	if getos() == 'Windows' then
 		configure_pvm()
 		clear configure_pvm
 	end

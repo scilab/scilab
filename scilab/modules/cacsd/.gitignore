@@ -2,6 +2,7 @@
 #generated .def files (windows)
 #
 src/slicot/slicot_f/slicot_f.def
+src/fortran/cacsd_f.def
 
 #
 # F2C conversion

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2010 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="supported_compilers" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006)
+    $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Supported and compatible compilers</refname>
+  </refnamediv>
+  <refsection>
+    <title>Scilab supported and compatible compilers</title>
+    <para>Some features of Scilab require that you have a third-party compiler
+    installed on your system.</para>
+  </refsection>
+  <refsection>
+    <title>Windows</title>
+    <para>-- Visual studio C++ 2005, 2008, 2010 Professionnal 32 and 64
+    bits</para>
+    <para>-- Visual studio C++ 2008, 2010 Express Edition (available at no
+    charge)</para>
+    <para>On 64-bit Windows, Visual Studio C++ 2008/2010 Express Edition
+    requires you to install some optional component. See <ulink url="http://wiki.scilab.org/How_can_I_set_up_Microsoft_Visual_Studio_2008/2010_Express_Edition_for_use_with_Scilab_x64_on_64-bit_Windows%3F">"How
+    can I set up Microsoft Visual Studio 2008/2010 C++ Express Edition for use
+    with Scilab x64 on 64-bit Windows ?"</ulink> on scilab wiki.</para>
+    <para>-- Intel Fortran 9, 10, 11, XE 2011</para>
+    <para>-- LCC-Win32 requires to install a ATOMS module:<programlisting role="exec">atomsInstall('lcc_windows'); atomsLoad('lcc_windows');</programlisting></para>
+    <para>-- MinGW requires to install a ATOMS module:<programlisting role="exec">atomsInstall('mingw'); atomsLoad('mingw');</programlisting></para>
+  </refsection>
+  <refsection>
+    <title>GNU/Linux</title>
+    <para>On GNU/Linux, GNU compilers (gcc, g++ and gfortran) are packaged in all distributions.</para>
+  </refsection>
+  <refsection>
+    <title>Mac OS X</title>
+    <para>Apple's development environment for OS X, <ulink url="http://developer.apple.com/technologies/tools/xcode.html">Xcode</ulink>, is available from
+    Apple at no charge.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="haveacompiler">haveacompiler</link>
+      </member>
+      <member>
+        <link linkend="atomsInstall">atomsInstall</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

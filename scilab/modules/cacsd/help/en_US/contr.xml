@@ -25,7 +25,7 @@
 [n,U,ind,V,Ac,Bc]=contr(A,B,[,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A, B</term>
@@ -118,8 +118,8 @@ spec(A1(n+1:$,n+1:$))  //uncontrollable modes
 spec(A+B*rand(3,5))    
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="canon">canon</link>

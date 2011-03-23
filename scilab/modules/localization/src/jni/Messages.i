@@ -21,8 +21,12 @@
 #include "localizationJava.h"
 %}
 
+
 /* JavaDoc for MessagesJNI class */
 %pragma(java) jniclassclassmodifiers=%{
+
+/* It is generated code. Disable checkstyle */
+//CHECKSTYLE:OFF
  /** 
    * @author Sylvestre LEDRU
    * @copyright DIGITEO 2009
@@ -35,20 +39,27 @@ public class%}
     * Constructor
     */
   protected MessagesJNI() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
   }";
 
 /* static load of library */
 %pragma(java) jniclasscode=%{
   static {
     try {
+        if (System.getProperty("os.name").toLowerCase().contains("windows") != true) {
+            if (System.getProperty("testngTests")!=null) {
+                System.loadLibrary("scilab");
+            }
+        }
         System.loadLibrary("scilocalization");
     } catch (SecurityException e) {
-		System.err.println("A security manager exists and does not allow the loading of the specified dynamic library :");
-		e.printStackTrace(System.err);
-	} catch (UnsatisfiedLinkError e)	{
-		System.err.println("The native library scilocalization does not exist or cannot be found.");
-		e.printStackTrace(System.err);
+        System.err.println("A security manager exists and does not allow the loading of the specified dynamic library.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
+    } catch (UnsatisfiedLinkError e)    {
+        System.err.println("The native library scilocalization does not exist or cannot be found.");
+        System.err.println(e.getLocalizedMessage());
+        e.printStackTrace(System.err);
     }
   }
 %}
@@ -67,7 +78,7 @@ public class";
    * Constructor
    */
  protected Messages() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }";
 
 /* JavaDoc */

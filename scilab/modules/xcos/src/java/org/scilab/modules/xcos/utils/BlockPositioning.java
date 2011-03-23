@@ -17,14 +17,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxUtils;
 
 /**
@@ -68,14 +68,23 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getWidth();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
+			
+			port.setLabelPosition(Orientation.WEST);
 		}
 		endUpdate(block);
 	}
@@ -111,33 +120,6 @@ public final class BlockPositioning {
 		
 		return alignedPosition;
 	}
-	
-	/**
-	 * Align the point on the grid (assuming the grid is rectangular).
-	 * 
-	 * @param p the point
-	 * @param gridSize the gridSize
-	 * @param increment the increment to apply on x and y (typically block size / 2).
-	 */
-	public static void alignPoint(mxPoint p, final double gridSize, final double increment) {
-		double x = p.getX();
-		double y = p.getY();
-		
-		/*
-		 * Align the base point
-		 */
-		x = x - Math.IEEEremainder(x, gridSize);
-		y = y - Math.IEEEremainder(y, gridSize);
-		
-		/*
-		 * Translate from increment
-		 */
-		x = x - increment;
-		y = y - increment;
-		
-		p.setX(x);
-		p.setY(y);
-	}
 
     /**
      * Dispatch ports on Block's _NORTH_ side.
@@ -160,14 +142,23 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = -portGeom.getHeight();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
+			
+			port.setLabelPosition(Orientation.NORTH);
 		}
 		endUpdate(block);
     }
@@ -193,14 +184,23 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getWidth();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(nonVariantPosition);
 			portGeom.setY(alignedPosition);
+			
+			port.setLabelPosition(Orientation.EAST);
 		}
 		endUpdate(block);
     }
@@ -226,14 +226,23 @@ public final class BlockPositioning {
 
 		beginUpdate(block);
 		for (int i = 0; i < portsSize; ++i) {
-			mxGeometry portGeom = ((BasicPort) ports.get(i)).getGeometry();
+			final BasicPort port = (ports.get(i));
+			final mxGeometry portGeom = port.getGeometry();
 			
 			double nonVariantPosition = blockGeom.getHeight();
+			final int order;
+			if (port.getOrdering() <= portsSize) {
+				order = port.getOrdering() - 1;
+			} else {
+				order = i;
+			}
 			double alignedPosition = calculateAlignedPosition(gridSize,
-					segLength, i);
+					segLength, order);
 			
 			portGeom.setX(alignedPosition);
 			portGeom.setY(nonVariantPosition);
+			
+			port.setLabelPosition(Orientation.SOUTH);
 		}
 		endUpdate(block);
     }
@@ -316,13 +325,13 @@ public final class BlockPositioning {
 		Orientation rotated = iter;
 		
 		/* Flip & Mirror management */
-		if (flipped) {
+		if (mirrored) {
 			if (rotated == Orientation.EAST || rotated == Orientation.WEST) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];
 			}
 		}
-		if (mirrored) {
+		if (flipped) {
 			if (rotated == Orientation.NORTH || rotated == Orientation.SOUTH) {
 				rotated = Orientation.values()[(rotated.ordinal() + 2)
 						% nbOfOrientations];
@@ -351,7 +360,7 @@ public final class BlockPositioning {
 		int rotationIndex = angle / ROTATION_STEP;
 		rotated = Orientation.values()[(rotated.ordinal() + rotationIndex)
 		           					% nbOfOrientations];
-
+		
 		/* Call the associated function */
 		switch (rotated) {
 		case NORTH:
@@ -383,19 +392,26 @@ public final class BlockPositioning {
 
 		final int childrenCount = block.getChildCount();
 		for (int i = 0; i < childrenCount; ++i) {
-			final BasicPort port = (BasicPort) block.getChildAt(i);
-			final Orientation orientation = port.getOrientation();
-
-			beginUpdate(block);
-
-			/* Apply angle */
-			if (block.getParentDiagram() != null) {
-				final mxIGraphModel model = block.getParentDiagram().getModel();
-				mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, Integer.toString(orientation.getAngle(
-						angle, flipped, mirrored)));
+			if (block.getChildAt(i) instanceof BasicPort) {
+				final BasicPort port = (BasicPort) block.getChildAt(i);
+				final Orientation orientation = port.getOrientation();
+	
+				beginUpdate(block);
+	
+				/* Apply angle */
+				if (block.getParentDiagram() != null) {
+					final mxIGraphModel model = block.getParentDiagram().getModel();
+					final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+					mxUtils.setCellStyles(model, new Object[] {port}, XcosConstants.STYLE_ROTATION, rot);
+				} else {
+					final StyleMap m = new StyleMap(port.getStyle());
+					final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
+					m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
+					port.setStyle(m.toString());
+				}
+	
+				endUpdate(block);
 			}
-
-			endUpdate(block);
 		}
 	}
 
@@ -408,6 +424,14 @@ public final class BlockPositioning {
 			updatePortsPosition(block);
 			rotateAllPorts(block);
 		endUpdate(block);
+		
+		/*
+		 * FIXME: #6705; This placement trick doesn't work on the first block
+		 * Dnd as the view is not revalidated.
+		 * 
+		 * On block loading, parentDiagram is null thus placement is not
+		 * performed.
+		 */
 	}
 
     /**

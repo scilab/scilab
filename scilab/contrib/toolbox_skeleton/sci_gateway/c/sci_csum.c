@@ -2,9 +2,9 @@
 /* Allan CORNET */
 /* DIGITEO 2009 */
 /* Template toolbox_skeleton */
-/* This file is released into the public domain */
+/* This file is released under the 3-clause BSD license. See COPYING-BSD. */
 /* ==================================================================== */
-#include "stack-c.h" 
+#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
@@ -23,8 +23,8 @@ int sci_csum(char *fname)
   double dOut = 0.0;
 
   /* --> result = csum(3,8)
-  /* check that we have only 2 parameters input */
-  /* check that we have only 1 parameters output */
+  /* check that we have only 2 input arguments */
+  /* check that we have only 1 output argument */
   CheckRhs(2,2) ;
   CheckLhs(1,1) ;   
   

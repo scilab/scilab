@@ -10,7 +10,7 @@
 //
 //
 
-function xcos_simulate(scs_m)
+function %cpr = xcos_simulate(scs_m, needcompile)
 
 //-- BJ : Alias Warning Function
   prot = funcprot();
@@ -75,29 +75,9 @@ end
   //-- end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  curdir = pwd() ;
-  chdir(TMPDIR)     ;
-  mkdir("Workspace");
-  chdir("Workspace");
-  %a = who("get")   ;
-  %a = %a(1:$-predef()+1);  //** exclude protected variables
+   xcos_workspace_init()
 
-  for %ij=1:size(%a,1)
-    var = %a(%ij)
-    if var<>'ans' & typeof(evstr(var))=='st' then
-      ierr = execstr('x='+var+'.values','errcatch')
-      if ierr==0 then
-        ierr = execstr('t='+var+'.time','errcatch')
-      end
-      if ierr==0 then
-        execstr('save('"'+var+''",x,t)')
-      end
-    end
-  end
-
-  chdir(curdir)
-  //**----- end of /prepare from and to workspace stuff
-
+ 
 //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
@@ -108,12 +88,18 @@ end
   ////////////////////////////////////////////////////////////////
   // Add global environment variable so that scicos is not lost //
   ////////////////////////////////////////////////////////////////
-  %state0     = list();
-  needcompile = 4;
-  curwin      = 1000;
-  %cpr        = struct();
-  %tcur       = 0;
-  %cpr.state  = %state0;
+  if needcompile == 4 then
+    %state0     = list();
+    needcompile = 4;
+    curwin      = 1000;
+    %cpr        = struct();
+    %tcur       = 0;
+    %cpr.state  = %state0;
+  else
+    %state0 = %cpr.state;
+    alreadyran = %f;
+  end
+  
   tf          = scs_m.props.tf;
   %zoom       = 1.4;
   Select      = [];
@@ -304,7 +290,9 @@ end
       if kfun<>0 then  //** block error
         path=corinv(kfun)
         //** get error cmd for the block
+        disp(str_err);
         get_errorcmd(path,'Initialisation problem.',str_err);
+        
 
       else //** simulator error
         message(['Initialisation problem:';str_err])

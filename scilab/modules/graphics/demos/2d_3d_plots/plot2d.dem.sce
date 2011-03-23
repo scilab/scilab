@@ -1,22 +1,28 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-my_handle             = scf(100001);
-clf(my_handle,"reset");
-demo_viewCode("plot2d.dem.sce");
+function demo_plot2d()
 
-// DEMO START
+  my_handle             = scf(100001);
+  clf(my_handle,"reset");
+  demo_viewCode("plot2d.dem.sce");
 
-my_plot_desc          = "plot2d and xgrid";
-my_handle.figure_name = my_plot_desc;
+  // DEMO START
 
-t=(0:0.1:6*%pi);
-plot2d(t',sin(t)');
-xtitle(my_plot_desc,"t","sin(t)");
-xgrid();
+  my_plot_desc          = "plot2d and xgrid";
+  my_handle.figure_name = my_plot_desc;
 
-// DEMO END
+  t=(0:0.1:6*%pi);
+  plot2d(t',sin(t)');
+  xtitle(my_plot_desc,"t","sin(t)");
+  xgrid();
+
+  // DEMO END
+
+endfunction
+
+demo_plot2d();
+clear demo_plot2d;

@@ -1,0 +1,628 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO Bernard HUGUENEY
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="parallel_run" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+  </info>
+
+  <refnamediv>
+    <refname>parallel_run</refname>
+
+    <refpurpose>parallel calls to a function</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[R1[,…,Rm]]=parallel_run(A1[,…,Ak], f[,types][,dims], p)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Ai</term>
+
+        <listitem>
+          <para>Argument matrix of scalars (real) for function f. The Ai
+          matrices do not need to have the same number of columns. Let n be
+          the largest number of columns for the Ai : f will be called <literal>n</literal> times
+          with arguments Ai(:,k) for k=1…n. For Ai with less than n
+          columns, the columns are 'recycled' and the kth call is passed
+          Ai(:,(modulo(k-1,n)+1).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>A scilab macro or a string containing the name of the function to call.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>types</term>
+
+        <listitem>
+          <para>strings containing the type name (as per <link
+          linkend="typeof">typeof</link>) of results of the function <emphasis
+          role="bold">f</emphasis>. Currently, only &quot;constant&quot; for reals
+          (scalar or matrix) is supported. Defaults to &quot;constant&quot;.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dims</term>
+
+        <listitem>
+          <para>matrix with 1 or 2 columns containing the dimensions of the
+          results of the function <emphasis role="bold">f</emphasis>. Defaults
+          to 1 (i.e. scalar results).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>parameters list (as created with <link
+          linkend="init_param">init_param</link>) used for tuning the
+          parallelization strategy. See  <emphasis role="bold">&#167;Tuning the Parallelization with Configuration Parameters</emphasis> for the various parameters that can be set.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Ri</term>
+
+        <listitem>
+          <para>vectors of n (see above) columns containing the results of the
+          function called. The number of rows are given by the corresponding
+          size argument if any (1 otherwise).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para>parallel_run makes parallel calls (on a multicore system) to the
+    provided function on the supplied vectors of arguments. The function can
+    be the name of either a compiled foreign function (see <link
+    linkend="ilib_for_link">ilib_for_link</link>) or a Scilab macro. In the
+    latter case, the macro should not rely on side effects because some of them
+    will be lost (those performed in other processes than the main scilab
+    process).  The number of
+    calls (and dimension of the result vectors) is given by the length of the
+    longest vector of arguments.</para>
+    
+    <para>Except for side effects, [R1[,…,Rm]]=parallel_run(A1[,…,Ak],
+    'f'[,types][,dims][,C]) is equivalent to the Scilab pseudo code:</para>
+
+    <programlisting role="example"><![CDATA[for i = 1:max(size(A1,'c'),…,size(Ak,'c'))
+  [R1(:,i),…,Rm(:,i)]= f(A1(:(modulo(i-1,size(A1,'c'))+1),…,Ak(:(modulo(i-1,size(Ak,'c'))+1));
+end; ]]></programlisting>
+
+    <para>Note that the equivalent code does not need <literal>types</literal>, <literal>dims</literal> or <literal>p</literal>.
+    <literal>parallel_run</literal> needs them for performance reasons : <literal>types</literal> and <literal>dims</literal> are used
+    to pre-allocate the result variables and  <literal>p</literal> is used to fine tune the
+    parallelization strategy.</para>
+
+  </refsection>
+ <refsection>
+    <title>Limitations</title>
+
+    <para>In this current version of Scilab, <literal>parallel_run</literal> uses only one core on Windows platforms.</para>
+
+    <para>In order to provide the most efficient implementation possible, the least that parallel_run can do is to avoid imposing an overhead over an explicit loop. Unfortunately, this can only be achieved on some data structures.
+For matrices of scalar, extracting a single column to pass as argument to the function can be done very efficiently.
+Not so for matrices of strings or sparse matrices (not to mention lists !).
+For now, parallel_run only handles arguments and results of scalar  matrices of real values and the <emphasis role="bold">types</emphasis> argument is not used.
+</para>
+    <para>Furthermore, no locking primitives are available in Scilab to handle concurrent accesses to shared variables.
+For this reason, the concurrent execution of Scilab macros cannot be safe in a shared memory environment and each parallel execution must be done in a separate memory space. As a result, one should not rely on side effects such as modifying variables from outer scope : only the data stored into the result  variables will be copied back into the calling environment.
+</para>
+    <para>As it is not possible to synchronize the access to Java Virtual Machine accross separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
+</para>
+    <para>A last limitation imposed by the aim to minimize data shuffling info memory is that no stack resizing (via <link linkend="gstacksize">gstacksize()</link> or via <link linkend="stacksize">stacksize()</link>) should take place during a call to <literal>parallel_run</literal> (neither by the function f nor by the prologue or epilogue cf. infra.). Attempts to do do will result in a warning and leave the stack untouched.
+</para>
+  </refsection>
+ <refsection>
+    <title>Advanced usage</title>
+<para>
+To achieve maximum performance and void any unwarranted copy and heavy context switching, it is possible to use parallel_run on compiled foreign functions. Such and advanced usage of parallel_run is detailed bellow in <emphasis role="bold">&#167;&#160;Advanced Usage : Compiled Foreign Functions</emphasis>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples </title>
+<refsection>
+<title>First steps </title>
+    <para>First we rewrite the most trivial loop with parallel_run:</para>
+
+    <programlisting role="example"><![CDATA[for i=1:10
+  res(i)= i*i;
+end;
+// for parallel_run, we need to have a function performing the computation
+function a= g(arg1)
+  a=arg1*arg1
+endfunction
+
+res=parallel_run(1:10, g); // res = [1., 4., 9., 16., 25., 36., 49., 64., 81., 100.]; ]]></programlisting>
+The matrix res was filled with res(i)= g(i), with concurrent calls to g(). To see that the calls to <literal>g</literal> are not sequential, we can add some output to the function :
+ <programlisting role="example"><![CDATA[function a= g(arg1)
+disp("called on "+string(arg1));
+  a=arg1*arg1;
+disp("computed "+string(a));
+endfunction
+
+res=parallel_run(1:6, g); // the actual output depends on the architecture (i.e. 4 cores) and current load
+ called on 3
+
+ computed 9
+
+ called on 2
+
+ called on 5
+
+ computed 25
+
+
+ computed 4
+
+ called on 1
+ called on 6
+
+ computed 36
+
+ computed 1
+
+ called on 4
+
+ computed 16]]></programlisting>
+As we can see, not only were the the calls to <literal>g</literal> 'out of order', but they where also interleaved.
+<para>
+<emphasis role="bold">Note :</emphasis> This example is for illustrative purposes only ! When the operations performed by the function are available in vector form, it is much more efficient to use these operators than to call parallel_run. For instance, the most efficient way to perform g() on a vector of values would be to rewrite it as <emphasis role="italic"> a= arg1 .* arg1</emphasis> an call it directly on the matrix of arguments (i.e res= g(1:10);). parallel_run is intended for more involved functions.
+</para>
+To illustrate the running time gain, we instrument the next example with calls to <link linkend="getdate">getdate()</link>. However, the next examples will focus only on the illustrative purpose irrespectively of any actual gain. Running the simplest Scilab function with a relevant signature on datasets small enough to be printed is unlikely to benefit from multicore parallel scheduling ! Each example will perform a computation with an explicit loop, and then the same computation with parallel_run.
+<title>Wallclock gain</title>
+<programlisting role="example"
+><![CDATA[function r=f(n)
+   if(n == 0)
+     r= 1;
+   else
+     r= n-m(f(n-1));
+   end;
+endfunction
+
+function r=m(n)
+   if(n == 0)
+     r= 0;
+   else
+     r= n - f(m(n-1));
+   end;
+endfunction;
+
+n_max=40;
+
+t0=getdate();
+for i=1:n_max
+   r(i)= m(i);
+end;
+etime(getdate(), t0) // output the wallclock time for the explicit loop computation
+
+t0=getdate();
+r= parallel_run(1:n_max,"m");
+// output the wallclock time for the parallel_run computation,
+// it should be lower that the previous on multicore architectures.
+etime(getdate(), t0)]]></programlisting>
+<title>Plurality of arguments and returned values</title>
+ It is of course possible to have more than one argument and more than one returned value :
+    <programlisting role="example"
+><![CDATA[function [r_min, r_med, r_max]= min_med_max(a, b, c)
+  r_min=min(a,b,c); r_med=median([a,b,c]); r_max=max(a,b,c);
+endfunction
+
+N=10;
+A=rand(1:N);B=rand(1:N);C=rand(1:N);
+
+Min=zeros(N); Med=Min; Max=Min;
+for i =1:N
+  [Min(i), Med(i), Max(i)]= min_med_max(A(i), B(i), C(i));
+end;
+
+[Min,Med,Max]=parallel_run(A,B,C,"min_med_max");// equivalent to the previous loop.]]></programlisting>
+
+
+As we have seen in the Note of &#167;First steps, the best performance is achieved by making use of vector (1xn matrices) operations. With parallel_run, it is also possible to take advantage of those operations by taking vector arguments and returning vector results. When returning a vector, one must use the  <literal>dims</literal> so that  <literal>parallel_run</literal> knows beforehand the number of returned values to expect.
+<title>Vector arguments and results</title>
+ <programlisting role="example"
+><![CDATA[function r= quantiles(data, ranks)
+  tmp=gsort(data,'g','i');
+  r=tmp(ranks);
+endfunction
+
+N=100;
+data=matrix(rand(1:N*10), N, 10);
+
+R4_6_7=matrix(zeros(1:3*10),3,10);
+for i =1:10
+  R4_6_7(:,i)= quantiles(data(:,i),[4;6;7]);
+end;
+// note the last argument to inform that quantiles returns 3 scalars.
+R4_6_7=parallel_run(data,[4;6;7],"quantiles", 3);]]></programlisting>
+While it is only possible to pass vectors (1&#160;x&#160;n) as columns of argument and/or result matrices, it is easy to reshape any matrix into such vector to circumvent this restriction. The previous example was passing arguments with different numbers of columns. In fact, the second argument to pass to <literal>quantiles</literal> only has one columns, because all the calls to the function must be made with the same ranks. This column is recycled as if the second argument had as much columns as the first, all with the same values.
+<para>
+<emphasis role="bold">Note :</emphasis> In the previous example, the shape of the second argument is of utmost importance for parallel_run ! While it was possible to write <emphasis role="italic">R4_6_7(:,i)= quantiles(data(:,i),[4<emphasis role="bold">,</emphasis>6<emphasis role="bold">,</emphasis>7]);</emphasis> (note the comma) in the explicit loop, calling <emphasis role="italic">parallel_run(data,[4;6;7],"quantiles", 3)</emphasis> would have computed a very different result :
+ <programlisting role="example"
+><![CDATA[// with previous definitions
+-->parallel_run(data,[4;6;7],"quantiles", 3)
+ans  =
+
+0.0000426  0.0000512  0.0000387  0.0000271  0.0000175  0.0000462  0.0000243  0.0000302  0.0000483  0.0000099
+0.0000799  0.0000681  0.0000516  0.0000435  0.0000576  0.0000645  0.0000700  0.0000478  0.0000604  0.0000252
+0.0000963  0.0000953  0.0000649  0.0000452  0.0000650  0.0000805  0.0000793  0.0000615  0.0000666  0.0000335
+-->parallel_run(data,[4,6,7],"quantiles", 3)
+  ans  =
+
+0.0000426  0.0000681  0.0000649  0.0000271  0.0000576  0.0000805  0.0000243  0.0000478  0.0000666  0.0000099
+0.         0.         0.         0.         0.         0.         0.         0.         0.         0.
+0.         0.         0.         0.         0.         0.         0.         0.         0.         0.]]></programlisting>
+The second call to <literal>parallel_run</literal> has a second argument of 3 columns and 1 row, so each call to <literal>quantiles</literal> only gets 1 scalar as second argument. The first call to  <literal>quantiles</literal> gets '4' and returns the 4th value of the first columns of data. This is confirmed by the fact that the returned value (0.0000426) is the same as the first returned by the previous call to  <literal>parallel_run</literal> (which returned the 4th, 6th and 7th values). For the second call to  <literal>parallel_run</literal>, the two other values of the first result column (here 0. ) are undefined because we stated that <literal>quantiles</literal> would return 3 values (the last argument to  <literal>parallel_run</literal> ) while in fact <literal>quantiles</literal> only returned one (because it only got one rank as second argument). The second call to <literal>quantiles</literal> gets '6' and returns the 6th value of the second columns of data. This is confirmed by the fact that the returned value (0.0000681) is the same as the first returned by the previous call to  <literal>parallel_run</literal> (which returned the 4th, 6th and 7th values). For the second call to  <literal>parallel_run</literal>, the two other values of the second result column (here 0. ) are undefined for the reason we have just seen. The third call to <literal>quantiles</literal> gets '7' and computes the 7th rank. For the next calls, the argument matrix with only three columns has its columns recycled so that  <literal>quantiles</literal> gets '4' and then '6' and then '7' and then '4' etc.
+
+</para>
+<title>Handling other data types</title>
+
+  <refsection>
+<title>Handling other argument types</title>
+While it is not possible to pass or return most Scilab types with functions called by  <literal>parallel_run</literal>, this does not mean that one cannot interact with any data structure. The easiest is to read from any kind of data type: as the global environment is shared amongst the parallel execution context, one can just pass column numbers instead of columns for instance, and let the macro access the data.
+
+ <refsection>
+<title>Handling a sparse matrix argument</title>
+ The following code sample shows how to access to elements of a sparse matrix, to compute quantiles of those elements.
+
+ <programlisting role="example"
+><![CDATA[N=5; // size of a block
+L=10; // number of blocks
+
+
+data=spzeros(N*L,N*L);
+for k=1:L // init diagonal blocks of sparse matrix with random numbers
+  kk=(k-1)*N+1:k*N;
+  data(kk,kk)=matrix(rand(1:N*N),N,N);
+end
+// function to compute quantiles in blocks from a the data sparse matrix
+function r= quantiles_sparse(indices_i, indices_j, ranks)
+  tmp=gsort(full(data(indices_i, indices_j)),'g','i');
+  r=tmp(ranks);
+endfunction
+// compute quantiles of diagonal blocks
+// with explicit loop
+R3_6_9=matrix(zeros(1:3*L),3,L);
+for k=1:L
+  kk=(k-1)*N+1:k*N;
+  R3_6_9(:,k)=quantiles_sparse(kk,kk, [3,6,9]);
+end;
+// compute quantiles of diagonal blocks
+// with parallel_run
+idx=matrix(1:(L*N), N,L);
+R3_6_9=parallel_run(idx,idx,[3;6;9],"quantiles_sparse",3);]]></programlisting>
+</refsection>
+ <refsection>
+<title>Handling a matrix of strings argument</title>
+ The following code sample shows how to access to elements of a matrix of strings, to compute the number of digits in those strings..
+
+ <programlisting role="example"
+><![CDATA[a=["a1";"b2b";"1cc2c";"4d555"]
+
+function result=count_digits(str)
+  result=sum(isdigit(str));
+endfunction
+
+for i=1:size(a,'r')
+  nb_digits(:,i)=count_digits(a(i));
+end;
+
+function result=count_digits_i(index) // we must define another function taking an index argument
+  result=sum(isdigit(a(index))); // and accessing the string from the variable in outer scope
+endfunction
+
+nb_digits= parallel_run(1:size(a,'r'),"count_digits_i");]]></programlisting>
+</refsection>
+</refsection>
+
+  </refsection>
+  <refsection>
+<title>Handling other result types</title>
+Other result types are much harder to handle and should be avoid if at all possible. It would be useless to write to variables from outer scope because each execution environment has its own copy of the memory space. The only solution is to find a mapping to a vector of scalars and channel the result data through it.
+
+ <refsection>
+<title>Handling a sparse matrix argument and result type</title>
+ The following code sample shows how to access to elements of a sparse matrix, to compute the invert of a block diagonal sparse matrix, and return the result in a sparse matrix.
+
+ <programlisting role="example"
+><![CDATA[N=5; // size of a block
+L=10; // number of blocks
+
+
+data=spzeros(N*L,N*L);
+for k=1:L// init sparse matrix with random diagonal blocks
+  kk=(k-1)*N+1:k*N;
+  data(kk,kk)=matrix(rand(1:N*N),N,N);
+end
+
+// invert the diagonal blocks of the sparse matrix
+// with explicit loop
+r=data;
+for k=1:L
+  kk=(k-1)*N+1:k*N;
+  r(kk,kk)=inv(data(kk,kk));
+end;
+
+// function to compute the invert of a block from the sparse matrix
+// it cannot take a sparse matrix argument so it must take the block number (k)
+// a retrieve the block from the variable data in outer scope
+// it also cannot put the result directly in a sparse matrix result
+// so we return the full matrix of the inverted block
+function r= invert_one_block(block_size,k)
+  kk=(k-1)*block_size+1:k*block_size;
+  r=full(inv(data(kk,kk)));// data from global scope
+endfunction;
+
+// function to make a sparse matrix and fill it with the full results
+// from parallel_run
+function r=to_sparse(full_diag,block_size) // full_diag is L * block_size^2
+s=size(full_diag);
+nb_blocks=s(2);
+r=data;//data from global scope
+for k=1:s(2)
+  kk=(k-1)*block_size+1:k*block_size;
+  r(kk,kk)= matrix(full_diag(1:s(1),k),block_size,block_size);
+end
+endfunction
+
+// call parallel_run() to operate on blocks of the sparse matrix
+// and to_sparse() to build the sparse result
+r=to_sparse(parallel_run(N,1:L,"invert_one_block",[N,N]),N);]]></programlisting>
+</refsection>
+ <refsection>
+<title>Handling matrices of strings as argument and result type</title>
+ The following uses the workaround seen in <emphasis role="bold">&#167;Handling a matrix of strings argument</emphasis> to access a string matrix argument, and shows how to return strings by using their numeric representation with ascii(), to flip odd characters in strings.
+
+ <programlisting role="example"
+><![CDATA[a=["one a";"b";"c and a word"];
+
+// only works for ASCII
+function p=censor_odds(str)
+odds=(0:((length(str)-1)/2))*2+1;
+p=ascii(str);
+p(odds)= ascii('#');
+p=ascii(p);
+endfunction
+
+
+for i=1:size(a,'r')
+  res(i)=censor_odds(a(i));
+end;
+
+
+function p=censor_odds_i(i,max_len) // pass an index and the max length
+strlen=length(a(i));
+odds=(0:((strlen-1)/2))*2+1;
+p=ascii(a(i)+blanks(max_len-strlen));
+p(odds)= ascii('#');
+endfunction
+
+function v=censor_v(codes)
+for i=1:size(codes,'r')
+  v(i)=ascii(codes(i,:));
+end;
+endfunction
+
+len=max(length(a));
+res=censor_v(parallel_run(1:size(a,'r'), len, "censor_odds_i",len)');]]></programlisting>
+</refsection>
+</refsection>
+
+  </refsection>
+<refsection>
+    <title>Advanced Usage : Compiled Foreign Functions</title>
+When aiming at maximum performance, it sometimes makes sense to rewrite a few lines of Scilab code in a compiled language such as C++, C or Fortran.
+ <link    linkend="ilib_for_link">ilib_for_link</link> allows to do it easily from Scilab, and <literal>parallel_run</literal> allows you to run your compiled code on your multicore architecture. Moreover, as it is possible to make compiled code thread-safe, it is also possible to launch compiled foreign function in lightweight (with less scheduling overhead) shared memory workers (threads), as will be seen in REF Parameters.
+
+<refsection>
+    <title>Compiled Foreign Functions API</title>
+The restrictions imposed on the data types handled by <literal>parallel_run</literal>() allows to use a simpler API :
+ <programlisting role="example"><![CDATA[void f(void const* const* args, void *const* res)]]></programlisting>
+Both arguments refer to data of opaque type <literal>(void*)</literal> and the implementation has to know which kind of data it receives and cast the pointers accordingly.
+(Note that current implementation only supports double data, but integer types will soon be available.)
+
+<para>  <emphasis role="bold">void const* const* args </emphasis> is a pointer to an array of the data of each argument Ai. If there is only one argument, then only args[0] is valid and contains the pointer to its data. Each argument  i can be a vector (it is a column of the Scilab matrix argument) and args[i-1] contains the pointer to its data. If argument i is a scalar (Scilab matrix Ai has only one row), only args[i][0] is valid and contains the value. Note : the data referenced by **args is declared const because it refers to arguments of the function. However, the data is currently copied from from underlying Scilab variables before being passed to the function, so it can safely be overwritten by casting away the constness(but conversely cannot be used as in/out parameters). If k arguments are provided to parallel_run, the args[0]...args[k-1] will always be valid for each call, even if some arguments had less columns than others : parallel_run will handle the "recycling" shown in <emphasis role="bold">&#167;Description</emphasis>.
+</para>
+<para>  <emphasis role="bold">void *const* res</emphasis> is a pointer to an array of the data of each  result Ri. If there is only one argument, then only res[0] is valid and contains the pointer to its data. Each result  i (counted from 0) can be a vector as specified by the dims argument and res[i] contains the pointer to its data. If res i is a scalar (default when no dims argument is used), only res[i][0] is valid and available to store the value.
+</para>
+</refsection>
+
+<refsection>
+    <title>Examples</title>
+The following examples are the compiled foreign function rewrite of those from the previous section. However, we will not handle other data types because accessing those data structures from compiled code would be outside the scope of this document. Furthermore, when speed is of essence (as usual when one goes to the length of rewriting some Scilab code into a compiled language) one should strive to stick to dense matrices.
+<refsection>
+
+<title>First steps </title>
+    <para>The most simple application of parallel_run is to</para>
+
+    <programlisting role="example"><![CDATA[function make_compiled_function(name, ext, code)
+  filename=name+ext;
+  mputl(code, filename);
+  ilib_for_link(fun_name,filename,[],"c");
+  exec loader.sce;
+  mdelete(filename);
+endfunction
+
+fun_name='test_fun';
+c_prog=['#include  <math.h>'
+'void '+fun_name+'(void const* const* args, void *const* res) {'
+'*((double*)*res)= (((double*)args[0])[0])*(((double*)args[0])[0]);'
+'}'];
+make_compiled_function(fun_name, '.c',c_prog);
+
+res=parallel_run(1:10, fun_name);// res = [1., 4., 9., 16., 25., 36., 49., 64., 81., 100.]; ]]></programlisting>
+<title>Wallclock gain</title>
+In order to illustrate the parallelization gains, the next example includes an explicit loop calling a foreign c function with call.
+The remaining examples will only include the parallel_run version, as their purpose was already illustrated in the previous section.
+<programlisting role="example"
+><![CDATA[function make_compiled_function(name, ext, code)
+  filename=name+ext;
+  mputl(code, filename);
+  ilib_for_link(name,filename,[],"c");
+  exec loader.sce;
+  mdelete(filename);
+endfunction
+
+fun_name='male';
+c_prog=['static int m(int);'
+'static int f(int n) { return n ? (n-m(f(n-1))) : 1 ; }'
+'static int m(int n) { return n ? (n-f(m(n-1))) : 0 ; }'
+'void '+fun_name+'(double* res, double* n) '
+'{ *res= (double)m((int)*n);}'];
+
+make_compiled_function(fun_name, '.c',c_prog);
+
+t0=getdate();for i=1:200
+  res_c(i)=call(fun_name, i,2,"d","out", [1,1],1,"d");
+end;etime(getdate(), t0) // note that we ran the computation until m(200) !
+
+fun_name='male_p';
+// same implementation, only change is the API
+c_prog(4:5)=['void '+fun_name+'(void const* const* args, void *const* res) '
+'{ *((double*)*res)= (double)m((int)((double*)args[0])[0]); }'];
+make_compiled_function(fun_name, '.c',c_prog);
+t0=getdate();res=parallel_run(1:200, fun_name);etime(getdate(), t0)// execution time is shorter on multicore]]></programlisting>
+<title>Plurality of arguments and returned values</title>
+ It is of course possible to have more than one argument, and more than one returned value :
+    <programlisting role="example"
+><![CDATA[N=10;
+A=rand(1:N);B=rand(1:N);C=rand(1:N);
+
+
+f1=['#include <algorithm>',
+'extern ""C""{',
+'  void min_med_max_cxx(void const*const* args, void*const* res){',
+'    double a(((double const*const*)args)[0][0])',
+'    ,b(((double const*const*)args)[1][0]),c(((double const*const*)args)[2][0]);',
+'    if(b<a){ std::swap(a,b);}',
+'    if(c<a){ std::swap(a,c);}',
+'    if(c<b){ std::swap(b,c);}',
+'    ((double*const*)res)[0][0]=a; ((double*const*)res)[1][0]=b; ((double*const*)res)[2][0]= c;',
+'    return;',
+'  }',
+'}'];
+
+mputl(f1,'min_med_max_cxx.cxx');
+ilib_for_link('min_med_max_cxx','min_med_max_cxx.cxx',[],"c")
+exec loader.sce
+
+
+[Min,Med,Max]=parallel_run(A,B,C, "min_med_max_cxx")]]></programlisting>
+
+
+<title>Vector arguments and results</title>
+ <programlisting role="example"
+><![CDATA[f1=['#include<algorithm>',
+'extern ""C""{',
+' void quantiles_cxx(void const*const* args, void*const* res){',
+'   double * data(((double *const*)args)[0]);',
+'   int data_size(static_cast<int>(((double const*const*)args)[1][0]));',
+'   double const* ranks(((double *const*)args)[2]);',
+'   int ranks_size(static_cast<int>(((double *const*)args)[3][0]));',
+'   std::sort(data,data+data_size);',
+'   for(int i(0); i != ranks_size; ++i)',
+'     { ((double*const*)res)[0][i]= data[static_cast<int>(ranks[i])-1]; }',
+'   return;',
+' }',
+'}'];
+mputl(f1,'quantiles_cxx.cxx');
+ilib_for_link('quantiles_cxx','quantiles_cxx.cxx',[],"c")
+exec loader.sce
+N=10;
+data=matrix(rand(1:N*N),N,N);
+// note the last argument to inform that quantiles returns 3 scalars.
+R4_6_7=parallel_run(data',N,[4;6;7],3,"quantiles_cxx", 3);]]></programlisting>
+
+
+  </refsection>
+
+ </refsection>
+ </refsection>
+
+
+<refsection>
+<title>Tuning the Parallelization with Configuration Parameters</title>
+
+As we have seen in the calling sequence, it is possible to add a configuration parameter as a last argument to parallel_run. This argument is handled by the <literal>params</literal> module and created with<link linkend="init_param">init_param</link>() (further informations on how to handle parameters can be found in the help pages of <link linkend="add_param">add_param</link>, <link linkend="set_param">set_param</link> and <link linkend="remove_param">remove_param</link>).
+
+<refsection>
+<title>Number of workers </title>
+The number of computing resources used in parallel can be set by the parameter <literal>nb_workers</literal>. The default value (0) uses as many workers as there are cores available.
+</refsection>
+<refsection>
+<title>Shared (threads) or separate (process) memory </title>
+While threads are the most efficient (lightweight) parallelization model, current Scilab implementation does not allow threadsafe code, so threads can only be used for foreign function (which must be threadsafe!) and processes are used for Scilab macros. The behavior is controlled par the <literal>shared_memory</literal> parameter which is a numeric value used as a boolean : threads are used if  <literal>shared_memory</literal> is not 0 and  <literal>f</literal> is a foreign function. This default value (0) implies separate memory (processes).
+</refsection>
+<refsection>
+<title>Dynamic scheduling </title>
+The number of function calls assigned to each worker can either be static (each worker gets the same number of function calls to do) or dynamic. In the latter case, function calls are assigned to workers when they are available.  The behavior is controlled par the  <literal>dynamic_scheduling</literal> parameter which is a numeric value used as a boolean : dynamic scheduling is used if  <literal>dynamic_scheduling</literal> is not 0. This default value (1) implies dynamic scheduling. Static scheduling is more efficient when there are many calls to the function <literal>f</literal> and they will all take the same amount of time, while dynamic scheduling should be preferred when the amount a time for each call can varies a lot.
+</refsection>
+<refsection>
+<title>Chunk size </title>
+In order to reduce dynamic scheduling overhead, the n function calls are dispatched in chunks. The chunk size can be set by the parameter <literal>chunk_size</literal>. The default value (0) uses chunks of size 1. For static scheduling, there is virtually no scheduling overhead and the difference between the minimum and maximum number of function calls performed by the workers is at most 1.
+</refsection>
+<refsection>
+<title>Prologue and Epilogue </title>
+When using separate memory, it is not uncommon to perform process-specific initialization and finalization. For example, when making Monte Carlo simulations, one must insure that each process uses different random number generator initial state, otherwise all the processes would perform the same pseudo-random sequences in parallel ! The  <literal>prologue</literal> (resp. <literal>epilogue</literal>) parameter is a string value either empty ("" default) or containing the name of a macro taking one scalar argument to be run upon starting (resp. ending) a new process (separate memory worker, see above). Each process is given a unique scalar passed as argument to both prologue and epilogue macros.
+<programlisting role="example"><![CDATA[function init_rand(n)
+  rand('seed',n);
+endfunction;
+
+function res= rand_macro(nb)
+  res= rand(1, nb);
+endfunction
+nb= 5;
+// We use a configuration parameter to force nb_workers = 2 even on monocore
+// without seeding the 2 workers have the same rng state.
+res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2));
+// when setting the seed, they should have different random numbers.
+res= parallel_run([nb,nb],'rand_macro',nb,init_param('nb_workers', 2,'prologue','init_rand')); ]]></programlisting>
+</refsection>
+
+
+</refsection>
+
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="typeof">typeof</link></member>
+
+      <member><link linkend="ilib_for_link">ilib_for_link</link></member>
+      <member><link linkend="init_param">init_param</link></member>
+      <member><link linkend="call">call</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

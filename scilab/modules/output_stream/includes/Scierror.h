@@ -29,7 +29,7 @@ extern "C" {
 * @param fmt
 * @param ...
 */
-int  Scierror(int iv,char *fmt,...);
+int  Scierror(int iv,const char *fmt,...);
 
 #ifdef __cplusplus
 }

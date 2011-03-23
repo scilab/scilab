@@ -20,6 +20,9 @@
 //
 
 function [palettes,windows] = do_palettes(palettes, windows)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 
   global ClipboardPal
@@ -92,7 +95,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   delmenu(curwin,_("&?"))
   
   toolbar(curwin, "off"); //** by Vincent C.
-  xselect(); //** rise the current graphics window 
+  show_window(); //** rise the current graphics window 
  
   //**-------------------------------------------------------
 
@@ -122,7 +125,7 @@ function [palettes,windows] = do_palettes(palettes, windows)
   h = %zoom*%wsiz(2)
   w = %zoom*%wsiz(1)
 
-  if ~MSDOS then
+  if getos() <> 'Windows' then
     h1 = h + 50 ; //** Linux 
   else
     h1 = h ;  //** Windows 

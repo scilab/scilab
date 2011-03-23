@@ -23,7 +23,7 @@
     <synopsis>[lambda,facpr,comprinc] = pca(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -84,7 +84,7 @@
     projection onto the k dimensional subspace must be maximal.
     </para>
     <para>Warning, the graphical part of the old version of
-    <literal>pca</literal> as been removed. It can now be performed
+    <literal>pca</literal> has been removed. It can now be performed
     using the <link linkend="show_pca">show_pca</link>
     function.</para>
   </refsection>
@@ -96,8 +96,8 @@ a=rand(100,10,'n');
 show_pca(lambda,facpr)
  ]]></programlisting>
   </refsection>
- <refsection>
-    <title>See Also</title>
+ <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="show_pca">show_pca</link>

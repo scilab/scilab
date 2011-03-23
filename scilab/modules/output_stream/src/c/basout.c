@@ -20,8 +20,8 @@
 #include "diary.h"
 #include "sciprint.h"
 #include "charEncoding.h"
-#include "../../../shell/includes/more.h"
-#include "../../../shell/includes/scilines.h"
+#include "more.h"
+#include "scilines.h"
 /*--------------------------------------------------------------------------*/ 
 extern int C2F(basouttofile)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/ 

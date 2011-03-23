@@ -1,9 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 funcprot(0);
 

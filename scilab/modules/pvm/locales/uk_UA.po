@@ -1,0 +1,205 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-06-29 12:39+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: під час створення процесів сталася помилка: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: немає такого файла або каталогу.\n"
+
+#, c-format
+msgid "%s: Unknown or not yet implemented type.\n"
+msgstr "%s: невідомий або ще не реалізований тип.\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилковий перший параметр: слід використовувати «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: workspace (stacksize) is too small.\n"
+msgstr "%s: робочий простір (розмір стеку) занадто малий.\n"
+
+msgid "(group,instance) already exists"
+msgstr "Група або екземпляр вже існує"
+
+msgid "Already doing operation"
+msgstr "Операція вже виконується"
+
+msgid "Already in group"
+msgstr "Вже у групі"
+
+msgid "Bad message id"
+msgstr "Помилковий ідентифікатор повідомлення"
+
+msgid "Bad parameter"
+msgstr "Помилковий параметр"
+
+msgid "Barrier count mismatch"
+msgstr "Не збігається кількість викликів barrier"
+
+msgid "Can not decode received msg"
+msgstr "Не вдалося декодувати отримане повідомлення"
+
+msgid "Can not get memory"
+msgstr "Не вдалося отримати пам’ять"
+
+msgid "Daemon pvmd is not responding"
+msgstr "Фонова служба pvmd не відповідає на запити"
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Помилка MALLOC у pvm_error\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "Помилка: отримано сигнал pvm_halt\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Помилка pvm_reduce: нескалярний тип\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "Помилка pvm_reduce: невідома операція спрощення — %s\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr "Не вдалося виконати новий допоміжний pvmd"
+
+msgid "Function not implemented"
+msgstr "Функцію не реалізовано"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "Вузол вже налаштовано (дублювання запису)"
+
+msgid "Host failed"
+msgstr "Помилка вузла"
+
+msgid "No current buffer"
+msgstr "Немає поточного буфера"
+
+msgid "No group with that name"
+msgstr "Групи з такою назвою не існує"
+
+msgid "No parent task"
+msgstr "Немає батьківського завдання"
+
+msgid "No such (group,instance)"
+msgstr "Немає такої групи або екземпляра"
+
+msgid "No such executable"
+msgstr "Немає такого виконуваного файла"
+
+msgid "No such host"
+msgstr "Немає такого вузла"
+
+msgid "No such instance in group"
+msgstr "У групі немає такого екземпляра"
+
+msgid "No such task"
+msgstr "Немає завдання з такою назвою"
+
+msgid "Not in group"
+msgstr "Не належить до групи"
+
+msgid "Null group name is illegal"
+msgstr "Порожні назви груп неприпустимі"
+
+msgid "OK"
+msgstr "Гаразд"
+
+msgid "Out of resources"
+msgstr "Вичерпано ресурси"
+
+msgid "PVM exists"
+msgstr "PVM існує"
+
+msgid "PVM not found"
+msgstr "PVM не знайдено"
+
+msgid "PVM parallel Toolbox"
+msgstr "Набір інструментів PVM"
+
+msgid "Pvmd system error"
+msgstr "Системна помилка pvmd"
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Розбіжність у протоколі pvmd-pvmd"
+
+msgid "Read past end of buffer"
+msgstr "Читання даних поза межами буфера"
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "Модуль PVM Scilab не встановлено.\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "Використано файл налаштування %s.\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"Буде використано стандартний файл налаштування $SCI%s.\n"
+"З SCI=%s\n"
+"Щоб мати змогу викликати Scilab з віддалених вузлів\n"
+"слід встановити змінну середовища SCI\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+"Для нормальної роботи стандартного файла налаштування $SCI%s%s слід "
+"визначити змінні середовища %s, %s, %s. У поточному стані PVM неможливо "
+"запустити.\n"
+
+msgid "Unknown Error"
+msgstr "Невідома помилка"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Попередження: не встановлено PVM_ROOT.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Попередження: PVM_ROOT встановлено у значення %s\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"Попередження: не знайдено стандартний файл налаштування $SCI%s.\n"
+"Припускалося, що у вашій мережі PVM і Scilab встановлено за стандартними "
+"адресами\n"
+" (див. man pvmd3)\n"
+
+msgid "but there exists no configuration file:\n"
+msgstr "але файла налаштування не знайдено за адресою:\n"

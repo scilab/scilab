@@ -1,8 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Compute axes ticks
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -75,34 +77,37 @@ void AxesTicksComputer::getTicksPosition(double positions[], char * labels[], ch
   }
   destroyGraphicPointer(tempPos);
 
-  // get labels
-  if (ppAxes->str == NULL)
+  /* Build the tick labels if the labels arguement is not null. */
+  if( labels != NULL )
   {
-    // we need to rebuild it
-		StringMatrix * defaultLabels = computeDefaultTicsLabels(pAxes);
-
-    for (int i = 0; i < nbTicks; i++)
+    // get labels
+    if (ppAxes->str == NULL)
     {
-			// it is a row matrix
-			char * curLabel = getStrMatElement(defaultLabels, 0, i);
-      labels[i] = new char[strlen(curLabel) + 1];
-      strcpy(labels[i], curLabel);
+      // we need to rebuild it
+      StringMatrix * defaultLabels = computeDefaultTicsLabels(pAxes);
+
+      for (int i = 0; i < nbTicks; i++)
+      {
+        // it is a row matrix
+        char * curLabel = getStrMatElement(defaultLabels, 0, i);
+
+        labels[i] = new char[strlen(curLabel) + 1];
+        strcpy(labels[i], curLabel);
+      }
+
+      // delete the labels
+      deleteMatrix(defaultLabels);
     }
-
-		// delete the labels
-    deleteMatrix(defaultLabels);
-
-  }
-  else
-  {
-    // copy str into labels
-    for (int i = 0; i < nbTicks; i++)
+    else
     {
-      labels[i] = new char[strlen(ppAxes->str[i]) + 1];
-      strcpy(labels[i], ppAxes->str[i]);
+      // copy str into labels
+      for (int i = 0; i < nbTicks; i++)
+      {
+        labels[i] = new char[strlen(ppAxes->str[i]) + 1];
+        strcpy(labels[i], ppAxes->str[i]);
+      }
     }
-  }
-
+  } /* Close of if( labels != NULL ) */
 }
 /*---------------------------------------------------------------------------------*/
 void AxesTicksComputer::reduceTicksNumber(void)
@@ -111,5 +116,11 @@ void AxesTicksComputer::reduceTicksNumber(void)
   // the ticks number can not change
 }
 /*---------------------------------------------------------------------------------*/
-
+int AxesTicksComputer::computeMaxNumberOfDecimationIterations(void)
+{
+  // return 0 since the number of ticks cannot change as
+  // decimation is not performed at all
+  return 0;
+}
+/*------------------------------------------------------------------------------------------*/
 }

@@ -25,7 +25,7 @@ function [nh]=h2norm(g,tol)
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
     end;
     sp=spec(g(2)),
-    if maxi(real(sp))>=-tol then
+    if max(real(sp))>=-tol then
       error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
     end,
     w=obs_gram(g(2),g(4),'c'),
@@ -44,7 +44,7 @@ function [nh]=h2norm(g,tol)
 	    error(msprintf(gettext("%s: Wrong value for input argument #%d: Proper system expected.\n"),"h2norm",1)),
 	  end
 	  pol=roots(d),
-	  if maxi(real(pol))>-tol then
+	  if max(real(pol))>-tol then
 	     error(msprintf(gettext("%s: Wrong value for input argument #%d: Stable system expected.\n"),"h2norm",1)),
 	  end,
 	  nt=horner(n,-s),dt=horner(d,-s),

@@ -1,0 +1,82 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: FOPEN
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("FOPEN"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/FOPEN.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  !! L.20: No Scilab equivalent for: W and A permission parameters.
+  !! L.22: No Scilab equivalent for: W and A permission parameters.
+  !! L.33: No Scilab equivalent for: fopen(filename,permission,machineformat)
+  !! L.35: No Scilab equivalent for: fopen(filename,permission,machineformat)
+  !! L.37: No Scilab equivalent for: fopen('all') has no translation.
+  !! L.39: No Scilab equivalent for: fopen(fid) (See fileinfo() function).
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function fopen()
+// Copyright INRIA
+// Matlab version: 6.5.0.180913a (R13)
+// V.C.
+
+filename = "todelete1.tst";
+
+fid = mtlb_fopen(filename,"w");
+
+fid = mtlb_fopen(filename,"r");
+
+fid = mtlb_fopen(filename,"a");
+
+fid = mtlb_fopen(filename,"r+");
+
+fid = mtlb_fopen(filename,"w+");
+
+fid = mtlb_fopen(filename,"a+");
+
+fid = fopen(filename,"A");
+
+fid = fopen(filename,"W");
+
+fid = mtlb_fopen(filename);
+
+[fid,mess] = mtlb_fopen(filename);
+
+permission = "r";
+machineformat = "ieee-le";
+
+[fid,mess] = mtlb_fopen(filename,permission);
+
+fid = fopen(filename,permission,machineformat);
+
+[fid,mess] = fopen(filename,permission,machineformat);
+
+fids = fopen("all");
+
+[file_name,permission,machineformat] = fopen(fid);

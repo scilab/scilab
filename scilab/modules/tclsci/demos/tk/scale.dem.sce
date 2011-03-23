@@ -1,23 +1,29 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-tkpath = get_absolute_file_path("scale.dem.sce");
-exec(tkpath+"/demredraw.sci");
+function demo_tclsci_scale()
 
+  tkpath = SCI + "/modules/tclsci/demos/tk/";
+  exec(tkpath + "/demredraw.sci");
+  my_handle = scf(100001);
+  clf(my_handle,"reset");
+  plot3d();
+  handle_demo_scale = gcf();
 
-my_handle = scf(100001);
-clf(my_handle,"reset");
-plot3d();
+  done = %t;
+  TCL_EvalFile(tkpath+"/vscale");
+  while %t //wait for toplevel to disapear
+    TCL_EvalStr("set h [winfo exists .vscale]");
+    if TCL_GetVar("h")=="0" | ~is_handle_valid(handle_demo_scale) then 
+      break;
+    end
+    sleep(1)
+  end
+  
+endfunction
 
-done=%t;
-TCL_EvalFile(tkpath+"/vscale");
-
-while %t //wait for toplevel to disapear
-  TCL_EvalStr("set h [winfo exists .vscale]");
-  if TCL_GetVar("h")=="0" then break,end
-  sleep(1)
-end
+demo_tclsci_scale();
+clear demo_tclsci_scale;

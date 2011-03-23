@@ -18,7 +18,7 @@
 
 ilib_verbose(0);
 
-if MSDOS then
+if getos() == 'Windows' then
 
 currentpath = pwd();
 cd TMPDIR;

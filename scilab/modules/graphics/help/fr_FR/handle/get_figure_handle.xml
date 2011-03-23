@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="get_figure_handle">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>get_figure_handle</refname>
+    <refpurpose>Retrouve une figure graphique à partir de son identifiant.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>f = get_figure_handle(figure_id)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>figure_id</term>
+        <listitem>
+          <para>Entier, identifiant de la figure à retrouver.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>Handle de la figure correspondante.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para> La function <literal>get_figure_handle</literal> permet de retrouver le handle
+    d'une figure graphique à partir de son identifiant. Si une figure avec l'identifiant
+    spécifié en argument existe, alors elle est renvoyée par la fonction. Sinon,
+    la fonction renvoie une matrice vide.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+// Création de quelques figures.
+scf(0);
+scf(5);
+scf(12);
+
+// Recherche de la figure dont l'identifiant est 5.
+f5 = get_figure_handle(5);
+// La figure courante est toujours celle d'identifiant 12.
+gcf()
+// Essaie de retrouver une figure qui n'existe pas.
+f42 = get_figure_handle(42);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>
+
+

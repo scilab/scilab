@@ -26,16 +26,16 @@ lang="fr_FR"; setlanguage(lang); domain="fake_domain"; msg="Localization does no
 
 
 // Check if it is working with a good domain & good msgid
-lang="fr_FR"; setlanguage(lang); domain="scilab"; msg="Startup execution:"; if dgettext(domain,msg) <> "Initialisation:" then pause, end
+lang="fr_FR"; setlanguage(lang); domain="scilab"; msg="Startup execution:"; if dgettext(domain,msg) <> "Initialisation :" then pause, end
 
 // Check if it is working with a bad domain & good msgid
-lang="fr_FR"; setlanguage(lang); domain="fake_domain"; msg="Startup execution:"; if dgettext(domain,msg) == "Initialisation:" then pause, end
+lang="fr_FR"; setlanguage(lang); domain="fake_domain"; msg="Startup execution:"; if dgettext(domain,msg) == "Initialisation :" then pause, end
 
 // Check if it is working with a good domain & good msgid and alias
-lang="fr"; setlanguage(lang); domain="scilab"; msg="Startup execution:"; if dgettext(domain,msg) <> "Initialisation:" then pause, end
+lang="fr"; setlanguage(lang); domain="scilab"; msg="Startup execution:"; if dgettext(domain,msg) <> "Initialisation :" then pause, end
 
 // Check if it is working with a bad domain & good msgid and alias
-lang="fr"; setlanguage(lang); domain="fake_domain"; msg="Startup execution:"; if dgettext(domain,msg) == "Initialisation:" then pause, end
+lang="fr"; setlanguage(lang); domain="fake_domain"; msg="Startup execution:"; if dgettext(domain,msg) == "Initialisation :" then pause, end
 
 
 // Check if it is working with a good domain & good msgid

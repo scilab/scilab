@@ -24,7 +24,7 @@
     <synopsis>value=TCL_GetVar(Varname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>
@@ -56,6 +56,7 @@
     <title>Description</title>
     <para>When tcl/tk support is enabled in Scilab, this routine can be used to
     retreive the value of a tcl/tk variable.</para>
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -126,8 +127,8 @@ ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'SlaveInterp3')
 TCL_DeleteInterp('SlaveInterp3')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

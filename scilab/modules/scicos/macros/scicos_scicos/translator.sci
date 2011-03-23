@@ -29,7 +29,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
 
   // TO DO : rename filename too generic
   TRANSLATOR_FILENAME = 'modelicat';
-  if MSDOS then
+  if getos() == 'Windows' then
     TRANSLATOR_FILENAME = TRANSLATOR_FILENAME + '.exe';
   end
 
@@ -39,21 +39,23 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   
   name = basename(filemo);
   namef = name + 'f';
-
+  
+  [modelica_libs,modelica_directory] = getModelicaPath();
+  
   molibs = [];
-  mlibsM = pathconvert(TMPDIR+'/Modelica/',%f,%t);
+  
   for k = 1:size(Mblocks,'r')
     funam = stripblanks(Mblocks(k));
     [dirF, nameF, extF] = fileparts(funam);
     if (extF == '.mo') then
       molibs = [molibs; """" + funam + """"];
     else
-      molibs = [molibs; """" + mlibsM + funam + '.mo' + """"]
+      molibs = [molibs; """" + modelica_directory + funam + '.mo' + """"]
     end
   end
 
   // directories for translator libraries
-  for k = 1:(size(mlibs,'*')-1)
+  for k = 1:size(mlibs,'*')
     modelica_directories = mlibs(k); 
     if modelica_directories<> [] then 
       molibs = [molibs; """" + modelica_directories + """"];
@@ -63,7 +65,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   translator_libs = strcat(' -lib '+ molibs);
   
   // build the sequence of -lib arguments for translator
-  if MSDOS then, Limit=1000;else, Limit=3500;end
+  if getos() == 'Windows' then, Limit=1000;else, Limit=3500;end
   if (length(translator_libs)>Limit) then 
     // OS limitation may restrict the length of shell command line
     // arguments. If there are to many .mo file we catenate them into a
@@ -95,7 +97,7 @@ function [ok]=translator(filemo,Mblocks,_Modelica_libs,Flat)
   // with the with-init option 
   instr = exe + translator_libs + out + ' -with-init -command ""' + name + ' ' + namef + ';"" >""' + Errfile
   
- if MSDOS then
+ if getos() == 'Windows' then
    mputl(instr,outpath+'/gent.bat')
    instr = outpath + '/gent.bat';
  end

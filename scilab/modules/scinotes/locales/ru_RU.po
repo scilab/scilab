@@ -1,0 +1,663 @@
+# Russian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"PO-Revision-Date: 2010-09-18 23:40+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr " был изменён. Cохранить изменения?"
+
+msgid "%s is a directory."
+msgstr "«%s» является каталогом."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Неверный размер входных параметров №%d и №%d: ожидались одинаковые "
+"размерности.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица действительных чисел или "
+"«readonly».\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+
+msgid "... file with echo"
+msgstr "... файла с отображением команд"
+
+msgid "... file with no echo"
+msgstr "... файла без отображения команд"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+"... выделенного с отображением команд;... до курсора с отображением команд"
+
+msgid "?"
+msgstr "Справка"
+
+msgid "About"
+msgstr "О программе"
+
+msgid "Absolute"
+msgstr "Абсолютная"
+
+msgid "All"
+msgstr "Весь документ"
+
+msgid "Alphabetic order"
+msgstr "Алфавитный порядок"
+
+msgid "Anchor's name: "
+msgstr "Имя метки: "
+
+msgid "Anchor: "
+msgstr "Метка: "
+
+msgid "Anchors"
+msgstr "Метки"
+
+msgid "Are you sure that you want to close SciNotes ?"
+msgstr "Закрыть SciNotes?"
+
+msgid "Auto (Default)"
+msgstr "Автоматический (По умолчанию)"
+
+msgid "Auto-completion on (,&quot;,..."
+msgstr "Автоматическое завершение для (,&quot;,..."
+
+msgid "Auto-completion on if,function,..."
+msgstr "Автоматическое завершение для if,function,..."
+
+msgid "Background Color"
+msgstr "Цвет фона"
+
+msgid "Backward"
+msgstr "Назад"
+
+msgid "Binary file: read-only mode"
+msgstr "Бинарный файл: режим только для чтения"
+
+msgid "Bold"
+msgstr "Полужирный"
+
+msgid "Cancel"
+msgstr "Отменить"
+
+msgid "Cannot load \"scinotesConfiguration.xml\""
+msgstr "Не удалось загрузить «scinotesConfiguration.xml»"
+
+msgid "Case sensitive"
+msgstr "Учитывать регистр"
+
+msgid "Change Color"
+msgstr "Изменить"
+
+msgid "Change Colors"
+msgstr "Настройка цветов"
+
+msgid "Circular search"
+msgstr "Круговой поиск"
+
+msgid "Clone and close tab in a new window"
+msgstr "Отделить вкладку в новое окно"
+
+msgid "Clone tab in a new window"
+msgstr "Скопировать вкладку в новое окно"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Close All"
+msgstr "Закрыть все"
+
+msgid "Close All But This"
+msgstr "Закрыть другие"
+
+msgid "Code Navigator"
+msgstr "Обозреватель кода"
+
+msgid "Color"
+msgstr "Цвет"
+
+msgid "Colorization canceled"
+msgstr "Подсветка синтаксиса отключена"
+
+msgid "Colorize"
+msgstr "Подсветка синтаксиса"
+
+msgid "Comment Selection"
+msgstr "Добавить комментарии"
+
+msgid "Complete"
+msgstr "Завершить"
+
+msgid "Continue ?"
+msgstr "Продолжить?"
+
+msgid "Copy"
+msgstr "Копировать"
+
+msgid "Copy selection in a new tab"
+msgstr "Скопировать выделенное в новую вкладку"
+
+msgid "Copy tab in new window"
+msgstr "Скопировать вкладку в новое окне"
+
+msgid "Copyright (c)"
+msgstr "Авторское право (c)"
+
+msgid "Correct Indentation"
+msgstr "Исправить отступы"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Не удалось найти командное окно или InterpreterManagement."
+
+msgid "Could not find the temporary file."
+msgstr "Не удалось найти временный файл."
+
+msgid "Cursor Color"
+msgstr "Цвет курсора"
+
+msgid "Cut"
+msgstr "Вырезать"
+
+msgid "Default"
+msgstr "По умолчанию"
+
+msgid "Delete"
+msgstr "Удалить"
+
+msgid "Detach tab in new window"
+msgstr "Отделить вкладку в новое окно"
+
+msgid "Direction"
+msgstr "Направление"
+
+msgid "Document"
+msgstr "Документ"
+
+msgid "Edit"
+msgstr "Правка"
+
+msgid "Enable Auto Reformat"
+msgstr "Автоматический отступ"
+
+msgid "Encoding"
+msgstr "Кодировка"
+
+msgid "Enter line number"
+msgstr "Введите номер строки"
+
+msgid "Error while reading the String"
+msgstr "Ошибка при чтении строки"
+
+msgid "Evaluate Selection"
+msgstr "Вычислить выделенное"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr ""
+"Вычислить выделенное с отображение команд;Вычислить до курсора с "
+"отображением команд"
+
+msgid "Evaluate from beginning..."
+msgstr "Вычислить до текущей позиции"
+
+msgid "Execute"
+msgstr "Выполнение"
+
+msgid "Execute File Into Scilab"
+msgstr "Выполнить файл в Scilab"
+
+msgid "Exit"
+msgstr "Выход"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "File already exists"
+msgstr "Файл уже существует"
+
+msgid "Find"
+msgstr "Найти"
+
+msgid "Find Next"
+msgstr "Найти следующее"
+
+msgid "Find Previous"
+msgstr "Найти предыдущее"
+
+msgid "Find/Replace"
+msgstr "Найти/заменить"
+
+msgid "Find:"
+msgstr "Найти:"
+
+msgid "Forward"
+msgstr "Вперёд"
+
+msgid "Functions"
+msgstr "Функции"
+
+msgid "Generate comments for help_from_sci"
+msgstr "Сформировать комментарии для help_from_sci"
+
+msgid "Generate help from function"
+msgstr "Generate help from function"
+
+msgid "Go to line: "
+msgstr "Перейти к строке: "
+
+msgid "Go to next anchor"
+msgstr "Перейти к следующей метке"
+
+msgid "Go to previous anchor"
+msgstr "Перейти к предыдущей метке"
+
+msgid "Goto line"
+msgstr "Перейти к строке"
+
+msgid "Help about '"
+msgstr "Справка по '"
+
+msgid "Help on ;Help on selection"
+msgstr "Справка по ;Справка по выделенному"
+
+msgid "Help on selected text or keyword"
+msgstr "Справка по выделенному тексту или команде"
+
+msgid "Help on the current keyword"
+msgstr "Справка по выделенной команде"
+
+msgid "Help on the selected text"
+msgstr "Справка по выделенному тексту"
+
+msgid "Help on typing"
+msgstr "Помощь при наборе"
+
+msgid "Highlight current line"
+msgstr "Подсвечивать текущую строку"
+
+msgid "Ignore"
+msgstr "Пропускать"
+
+msgid "Invalid regular expression : %s"
+msgstr "Недопустимое регулярное выражение: %s"
+
+msgid "Italic"
+msgstr "Курсив"
+
+msgid "Line Endings"
+msgstr "Конец строки"
+
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr "Нумерация строк;Нет;Абсолютная;Относительная"
+
+msgid "Load Into Scilab"
+msgstr "Загрузить в Scilab"
+
+msgid "Loading"
+msgstr "Идёт загрузка"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classic (CR)"
+
+msgid "Mail to "
+msgstr "Пишите на адрес "
+
+msgid "Natural order"
+msgstr "Естественный порядок"
+
+msgid "New"
+msgstr "Создать"
+
+msgid "Next tab"
+msgstr "Следующая вкладка"
+
+msgid "No Line Numbering"
+msgstr "Без нумерации строк"
+
+msgid "No split"
+msgstr "Без разделения"
+
+msgid "No text selected."
+msgstr "Нет выделенного текста."
+
+msgid "No text to execute."
+msgstr "Нет текста для выполнения."
+
+msgid "Normal Line Numbering"
+msgstr "Общая нумерация строк"
+
+msgid "Numerotation"
+msgstr "Нумерация"
+
+msgid "Ok"
+msgstr "ОК"
+
+msgid "Open"
+msgstr "Открыть"
+
+msgid "Open URL"
+msgstr "Открыть URL"
+
+msgid "Open file in ...;Add a directory;Remove last directory"
+msgstr "Открыть файл в ...;Добавить каталог;Удалить последний каталог"
+
+msgid "Open function source file"
+msgstr "Открыть исходный текст функции"
+
+msgid "Open in the navigator the URL "
+msgstr "Открыть URL "
+
+msgid "Open source"
+msgstr "Открыть исходный текст"
+
+msgid "Open source file of the function:"
+msgstr "Открыть исходный текст функции:"
+
+msgid "Open the source of the macro "
+msgstr "Открыть исходный текст макроса "
+
+msgid "Options"
+msgstr "Настройки"
+
+msgid "Order"
+msgstr "Порядок"
+
+msgid "Overwrite"
+msgstr "Перезаписать"
+
+msgid "Page Setup"
+msgstr "Параметры страницы"
+
+msgid "Paste"
+msgstr "Вставить"
+
+msgid "Preferences"
+msgstr "Настройки"
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr ""
+"Нажмите левую кнопку мыши при зажатой клавише CTRL для перехода по ссылке"
+
+msgid "Preview"
+msgstr "Предпросмотр"
+
+msgid "Previous tab"
+msgstr "Предыдущая вкладка"
+
+msgid "Print"
+msgstr "Печать"
+
+msgid "Print Preview"
+msgstr "Предварительный просмотр"
+
+msgid "Read-only mode"
+msgstr "Режим только для чтения"
+
+msgid "Recent Files"
+msgstr "Недавние файлы"
+
+msgid "Redo"
+msgstr "Повторить"
+
+msgid "Regular expressions"
+msgstr "Регулярные выражения"
+
+msgid "Relative"
+msgstr "Относительный"
+
+msgid "Reload"
+msgstr "Перезагрузить"
+
+msgid "Remove anchor"
+msgstr "Удалить метку"
+
+msgid "Remove trailing spaces"
+msgstr "Удалить пробелы в конце строки"
+
+msgid "Remove trailing whitespaces"
+msgstr "Удалить конечные пробелы"
+
+msgid "Replace"
+msgstr "Заменить"
+
+msgid "Replace All"
+msgstr "Заменить всё"
+
+msgid "Replace File?"
+msgstr "Заменить файл?"
+
+msgid "Replace With :"
+msgstr "Заменить на:"
+
+msgid "Replace/Find"
+msgstr "Заменить/найти"
+
+msgid "Reset default font"
+msgstr "Установить шрифт по умолчанию"
+
+msgid "Restart the search from the beginning"
+msgstr "Поиск возобновлен с начала"
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr "Восстановить файлы из предыдущей сессии SciNotes?"
+
+msgid "Restore opened files on start-up"
+msgstr "Восстанавливать открытые файлы при запуске"
+
+msgid "Restore the last sessions"
+msgstr "Восстановить последнюю сессию"
+
+msgid "Save"
+msgstr "Сохранить"
+
+msgid "Save All"
+msgstr "Сохранить все"
+
+msgid "Save as"
+msgstr "Сохранить как"
+
+msgid "SciNotes"
+msgstr "SciNotes"
+
+msgid "SciNotes error"
+msgstr "Ошибка SciNotes"
+
+msgid "SciNotes help"
+msgstr "Справка по SciNotes"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» не установлен.\n"
+
+msgid "Scope"
+msgstr "Область поиска"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Select All"
+msgstr "Выделить всё"
+
+msgid "Select current block"
+msgstr "Выделить текущий блок"
+
+msgid "Selected lines"
+msgstr "Выделенные строки"
+
+msgid "Set Colors"
+msgstr "Цвета"
+
+msgid "Set Font"
+msgstr "Шрифт"
+
+msgid "Set an anchor"
+msgstr "Установить метку"
+
+msgid "Set anchor"
+msgstr "Установить метку"
+
+msgid "Settings"
+msgstr "Параметры"
+
+msgid "Shift Left"
+msgstr "Убрать отступ"
+
+msgid "Shift Right"
+msgstr "Сделать отступ"
+
+msgid "Show the definition of the macro "
+msgstr "Показать определение макроса "
+
+msgid "Show/Hide ToolBar"
+msgstr "Показать/скрыть панель инструментов"
+
+msgid "Source of '"
+msgstr "Исходный текст для '"
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr "Разделение окна;Нет;Горизонтальное;Вертикальное"
+
+msgid "Split horizontally"
+msgstr "Горизонтальное разделение"
+
+msgid "Split vertically"
+msgstr "Вертикальное разделение"
+
+msgid "Strike Through"
+msgstr "Зачёркнутый"
+
+msgid "String %s not found"
+msgstr "Фраза %s не найдена"
+
+msgid "Syntax Type"
+msgstr "Режим подсветки синтаксиса"
+
+msgid ""
+"The file %s doesn't exist\n"
+" Do you want to create it?"
+msgstr ""
+"Файл %s не существует.\n"
+"Создать файл?"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"Файл %s был изменён другой программой!\n"
+"Перезаписать файл?"
+
+msgid "The file could not be converted."
+msgstr "Не удалось преобразовать файл."
+
+msgid "The file could not be saved."
+msgstr "Не удалось сохранить файл."
+
+msgid "This file"
+msgstr "Этот файл"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr "Данный файл является бинарным, при сохранении он будет испорчен."
+
+msgid ""
+"This file is very long. \"Execute File Into Scilab\" could be better.\n"
+"Are you sure to continue ?"
+msgstr "Данный файл очень длинный. Продолжить?"
+
+msgid "Tools"
+msgstr "Инструменты"
+
+msgid "Uncomment Selection"
+msgstr "Удалить комментарии"
+
+msgid "Underline"
+msgstr "Подчёркнутый"
+
+msgid "Undo"
+msgstr "Отменить"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "Безымянный документ "
+
+msgid "View"
+msgstr "Вид"
+
+msgid "Warning: the file has been modified by another program !"
+msgstr "Внимание: файл был изменён другой программой!"
+
+msgid "Whereami Line Numbering"
+msgstr "Вложенная нумерация строк"
+
+msgid "Whole word"
+msgstr "Только полные слова"
+
+msgid "Window"
+msgstr "Окно"
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "Автоматический переход на новую строку"
+
+msgid "You have passed the beginning of the document"
+msgstr "Пройдено начало документа"
+
+msgid "You have passed the end of the document"
+msgstr "Пройден конец документа"
+
+msgid "You have reached the beginning of the document"
+msgstr "Достигнуто начало документа"
+
+msgid "You have reached the end of the document"
+msgstr "Достигнут конец документа"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+"Необходимо сохранить изменения перед выполнением данного файла в Scilab."
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "Изменения будут потеряны, всё равно изменить кодировку?"
+
+msgid "close this tab"
+msgstr "Закрыть эту вкладку"

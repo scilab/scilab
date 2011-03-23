@@ -24,7 +24,7 @@ function [gm,fr]=g_margin(h)
   if h.dt=='c' then  //continuous time case
     // get s such as h(s)=h(-s) and s=iw 
      s=%i*poly(0,"w");
-     w=roots(imag(horner(h.num,s)*conj(horner(h.den,s))) )
+     w=roots(imag(horner(h.num,s)*conj(horner(h.den,s))),"e")
      ws=real(w(abs(imag(w))<eps&real(w)<=0)) //points where phase is -180°
      ws(abs(horner(h.den,%i*ws))==0)=[];
      if ws==[] then gm=%inf,fr=[],return,end
@@ -36,10 +36,10 @@ function [gm,fr]=g_margin(h)
     z=poly(0,varn(h.den));
     sm=simp_mode();simp_mode(%f);hh=h-horner(h,1/z);simp_mode(sm)
     //find the numerator roots
-    z=roots(hh.num);
+    z=roots(hh.num,"e");
     z(abs(abs(z)-1)>eps)=[]// retain only roots with modulus equal to 1
     w=log(z)/(%i*dt)
-    ws=real(w(abs(imag(w))<eps&real(w)<=0)) //points where phase is -180°
+    ws=real(w(abs(imag(w))<eps)) //points where phase is -180°
     if ws==[] then gm=%inf,fr=[],return,end
     mingain=real(horner(h,exp(%i*ws*dt)))
   end
@@ -47,8 +47,9 @@ function [gm,fr]=g_margin(h)
   if k==[] then gm=%inf,fr=[],return,end
   mingain=abs(mingain(k));
   ws=abs(ws(k))// select positive frequency
-  //disp([ws,1/mingain])
+
   gm=-20*log(mingain)/log(10) //tranform into Db
-  [gm,k]=min(gm);ws=ws(k)//select the minimum
-  fr=ws/(2*%pi) 
+  [gm,k]=min(gm);ws=ws(k);//select the minimum
+
+  fr=ws/(2*%pi) //transform in Hz
 endfunction

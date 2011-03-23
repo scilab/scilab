@@ -12,6 +12,10 @@
 #ifndef STACK1_H 
 #define STACK1_H 
 
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack1.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack1.h API will be removed after Scilab 6.0.")
+#endif
+
 #include "machine.h"
 #include "scisparse.h" /* SciSparse */
 

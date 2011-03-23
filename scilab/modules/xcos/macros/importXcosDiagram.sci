@@ -31,17 +31,16 @@ function result = importXcosDiagram(xcosFile)
 			return;
 		end
 		// construct a full path string
-		xcosFile = get_absolute_file_path(xcosFile) + xcosFile;
+		fullPathName = get_absolute_file_path(fname + extension) + fname + extension;
 		mclose(a);
 	else
 		error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "importXcosDiagram", 1));
 		return;
 	end
 	
-	// getting the full path of the file
-	xcosFile = fullpath(xcosFile);
+	// import the real file
+	convertStatus = xcosDiagramToHDF5(fullPathName, h5File, %t);
 
-	convertStatus = xcosDiagramToHDF5(xcosFile, h5File, %t);
 	if(convertStatus <> 0) then
 		error(msprintf(gettext("%s: Unable to import xcos file ""%s"".\n"), "importXcosDiagram", xcosFile));
 	end

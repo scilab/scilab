@@ -15,9 +15,9 @@ package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -32,7 +32,7 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
 	/** Name of the action */
 	public static final String NAME = XcosMessages.BLOCK_DOCUMENTATION;
 	/** Icon name of the action */
-	public static final String SMALL_ICON = "";
+	public static final String SMALL_ICON = "help-browser.png";
 	/** Mnemonic key of the action */
 	public static final int MNEMONIC_KEY = 0;
 	/** Accelerator key for the action */
@@ -69,6 +69,7 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
 	 * @param e the event
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		BasicBlock selectedBlock = ((BasicBlock) getGraph(e).getSelectionCell());
 		if (selectedBlock != null) {

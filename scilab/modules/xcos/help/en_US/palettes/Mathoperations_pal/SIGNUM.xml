@@ -24,14 +24,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SIGNUM">
   <refnamediv>
     <refname>SIGNUM</refname>
-    <refpurpose>Signum</refpurpose>
+    <refpurpose>Sign</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/SIGNUM.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/SIGNUM.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="SIGNUM">Signum</link>
+          <link linkend="SIGNUM">Sign</link>
         </para>
       </listitem>
       <listitem>
@@ -97,21 +97,23 @@
   </refsection>
   <refsection id="Description_SIGNUM">
     <title>Description</title>
-    <para>
-The Sign block indicates the sign of the input: 
 
-</para>
+    <para>
+      The block output is a vector of the signs of the elements of the input vector.
+      For each input vector's element, the output vector's element is:
+    </para>
     <itemizedlist>
       <listitem>
-        <para> The output is 1 when the input is greater than zero.</para>
+        <para> 1 when the element is greater than zero.</para>
       </listitem>
       <listitem>
-        <para> The output is 0 when the input is equal to zero.</para>
+        <para> 0 when the element is equal to zero.</para>
       </listitem>
       <listitem>
-        <para> The output is -1 when the input is less than zero.</para>
+        <para> -1 when the element is less than zero.</para>
       </listitem>
     </itemizedlist>
+
   </refsection>
   <refsection id="Dialogbox_SIGNUM">
     <title>Dialog box</title>

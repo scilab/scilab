@@ -124,8 +124,7 @@ int C2F(matlog)(void)
 
 		if (mn1 != mn2) 
 		{
-			static int code_error = 60;
-			Error(code_error);
+			SciError(60);
 			return 0;
 		}
 

@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>MATZCONJ</refname>
 
-    <refpurpose>Matrix Conjugate</refpurpose>
+    <refpurpose>Conjugate of Matrix's Elements</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATZCONJ.jpg"
+                     fileref="../../../../images/palettes/MATZCONJ.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATZCONJ">Matrix Conjugate</link>
+          <link linkend="MATZCONJ">Conjugate of Matrix's Elements</link>
         </para>
       </listitem>
 
@@ -69,25 +69,26 @@
               <xref linkend="Description_MATZCONJ">Description</xref>
             </para>
           </listitem>
-
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATZCONJ">Default
-              properties</xref>
+              <link linkend="MATZCONJ">Example</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_MATZCONJ">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATZCONJ">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATZCONJ">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATZCONJ">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATZCONJ">Computational function</xref>
             </para>
           </listitem>
 
@@ -122,9 +123,21 @@
   <refsection id="Description_MATZCONJ">
     <title>Description</title>
 
-    <para>This blocks computes the conjugate of a complex input matrix.</para>
-
+    <para>
+      This blocks computes a matrix containing the conjugate of the elements of a complex input matrix.
+    </para>
+    <para>The equivalent function of this block in Scilab is <link linkend="conj">conj</link>.</para>
     <para />
+  </refsection>
+
+  <refsection id="Example_MATZCONJ">
+    <title>Example</title>
+    <programlisting role="example"><![CDATA[
+--                  --                  --                  --
+| 1+i   2+3i    3+2i |   Conjugate     | 1-i   2-3i    3-2i |
+| 4+i   5-8i    6-2i |   ----------->   | 4-i   5+8i    6+2i |
+--                  --                  --                  --
+ ]]></programlisting>
   </refsection>
 
   <refsection id="Defaultproperties_MATZCONJ">
@@ -168,18 +181,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -187,8 +197,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -227,8 +236,12 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Matrix_pal">Matrix_pal - Matrix operation palette
-          (xcos Palette)</link>
+          <link linkend="MATTRAN">MATTRAN - Matrix Transpose (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="conj">conj (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

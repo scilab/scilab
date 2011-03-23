@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="acoth" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>acoth</refname>
+
+    <refpurpose>cotangente hyperbolique inverse des éléments de
+    l'argument.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>y = acoth(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>Tableau réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>Tableau réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Calcule la cotangente hyperbolique inverse des éléments de
+    l'argument.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+acoth(1)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="atanh">atanh</link></member>
+
+      <member><link linkend="coth">coth</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Auteurs</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Fonctions Utilisées</title>
+
+    <para>Cette fonction est basée sur la fonction
+    <literal>atanh</literal>.</para>
+  </refsection>
+</refentry>

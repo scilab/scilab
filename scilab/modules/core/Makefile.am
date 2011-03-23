@@ -83,9 +83,15 @@ src/c/typename.c \
 src/c/inittypenames.c \
 src/c/funcprot.c \
 src/c/eqid.c \
-src/c/dynamic_tclsci.c
+src/c/exitCodeValue.c \
+src/c/getversion.c \
+src/c/dynamic_tclsci.c \
+src/c/dynamic_parallel.c \
+src/c/storeCommand.c
 
-CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp
+CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
+src/cpp/namstr.cpp \
+src/cpp/search_functions.cpp
 
 if USE_DYNAMIC_STACK
 CORE_C_SOURCES += src/c/scimem64.c
@@ -129,7 +135,6 @@ src/fortran/getsym.f \
 src/fortran/findequal.f \
 src/fortran/stackg.f \
 src/fortran/find.f \
-src/fortran/israt.f \
 src/fortran/setlnb.f \
 src/fortran/mrknmd.f \
 src/fortran/stackgl.f \
@@ -137,7 +142,6 @@ src/fortran/allops.f \
 src/fortran/mname.f \
 src/fortran/command.f \
 src/fortran/ref2val.f \
-src/fortran/namstr.f \
 src/fortran/stack.f \
 src/fortran/isbrk.f \
 src/fortran/majmin.f \
@@ -244,15 +248,13 @@ sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
-sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -284,6 +286,7 @@ libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/action_binding/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/tclsci/includes \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/pvm/includes \
@@ -297,7 +300,7 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_srcdir)/libs/MALLOC/includes/ 
+	-I$(top_srcdir)/libs/MALLOC/includes/
 
 # Used by sci_getdebuginfo:
 if TCLTK
@@ -307,7 +310,7 @@ endif
 
 pkglib_LTLIBRARIES = libscicore.la
 
-libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -323,7 +326,7 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicore_la_root_DATA =  license.txt version.xml
 
 
 #### core : init scripts ####
@@ -358,6 +361,7 @@ includes/scisparse.h \
 includes/sciquit.h \
 includes/setgetSCIpath.h \
 includes/stack-c.h \
+includes/sci_types.h \
 includes/stack-def.h \
 includes/stack.h \
 includes/stack1.h \
@@ -366,6 +370,13 @@ includes/stack3.h \
 includes/stackinfo.h \
 includes/stackTypeVariable.h \
 includes/version.h \
-includes/warningmode.h
+includes/getversion.h \
+includes/warningmode.h \
+includes/Thread_Wrapper.h
+
+if GUI
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

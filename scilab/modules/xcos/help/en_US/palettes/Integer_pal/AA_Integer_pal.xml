@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -37,13 +38,63 @@
   <refsection>
     <title>Block Screenshot</title>
 
-    <para><inlinemediaobject>
+    <para>
+      <inlinemediaobject>
         <imageobject>
-          <imagedata align="center"
-                     fileref="../../../../images/palettes/Integer_pal.jpg"
-                     valign="middle"></imagedata>
+          <imagedata linkend="BITCLEAR" fileref="../../../../images/palettes/BITCLEAR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
         </imageobject>
-      </inlinemediaobject></para>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="BITSET" fileref="../../../../images/palettes/BITSET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="CONVERT" fileref="../../../../images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="DFLIPFLOP" fileref="../../../../images/palettes/DFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="DLATCH" fileref="../../../../images/palettes/DLATCH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="EXTRACTBITS" fileref="../../../../images/palettes/EXTRACTBITS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="INTMUL" fileref="../../../../images/palettes/INTMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="JKFLIPFLOP" fileref="../../../../images/palettes/JKFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="LOGIC" fileref="../../../../images/palettes/LOGIC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="SHIFT" fileref="../../../../images/palettes/SHIFT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata linkend="SRFLIPFLOP" fileref="../../../../images/palettes/SRFLIPFLOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
   </refsection>
 
   <refsection id="Module_Integer_pal">
@@ -61,9 +112,11 @@
   <refsection id="Description_Integer_pal">
     <title>Description</title>
 
-    <para>That palette is dedicated to handle integer numbers. Various basic
-    operators for the management of bit fields and for logic are implemented
-    as well as common gates encountered in digital circuits.</para>
+    <para>
+      That palette is dedicated to handle integer numbers. Various basic
+      operators for the management of bit fields and for logic are implemented
+      as well as common gates encountered in digital circuits.
+    </para>
   </refsection>
 
   <refsection id="Blocks_Integer_pal">
@@ -72,69 +125,67 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="BITCLEAR">BITCLEAR - BITCLEAR Clear a Bit</link>
+          <link linkend="BITCLEAR">BITCLEAR - Clear a Bit</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="BITSET">BITSET - BITSET Set a Bit</link>
+          <link linkend="BITSET">BITSET - Set a Bit</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="CONVERT">CONVERT - CONVERT Data Type
-          Conversion</link>
+          <link linkend="CONVERT">CONVERT - Data Type Conversion</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DFLIPFLOP">DFLIPFLOP - D flip-flop</link>
+          <link linkend="DFLIPFLOP">DFLIPFLOP - D Flip-Flop</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="DLATCH">DLATCH - D latch flip-flop</link>
+          <link linkend="DLATCH">DLATCH - Transparent D Latch Flip-Flop</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="EXTRACTBITS">EXTRACTBITS - EXTRACTBITS</link>
+          <link linkend="EXTRACTBITS">EXTRACTBITS - Bits Extraction</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="INTMUL">INTMUL - INTMUL integer matrix
-          multiplication</link>
+          <link linkend="INTMUL">INTMUL - Integer Matrix Multiplication</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK flip-flop</link>
+          <link linkend="JKFLIPFLOP">JKFLIPFLOP - JK Flip-Flop</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="LOGIC">LOGIC - Combinational Logic</link>
+          <link linkend="LOGIC">LOGIC - Combinatorial Logic</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="SHIFT">SHIFT - SHIFT Shift Bits</link>
+          <link linkend="SHIFT">SHIFT - Shift/Rotates Bits</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR flip-flop</link>
+          <link linkend="SRFLIPFLOP">SRFLIPFLOP - SR Flip-Flop</link>
         </para>
       </listitem>
     </itemizedlist>

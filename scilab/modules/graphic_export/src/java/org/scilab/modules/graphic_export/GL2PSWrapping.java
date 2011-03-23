@@ -20,7 +20,7 @@ public class GL2PSWrapping {
   * Constructor. Should not be called.
   */
  protected GL2PSWrapping() {
-	throw new UnsupportedOperationException();
+    throw new UnsupportedOperationException();
  }
   
  /**
@@ -151,6 +151,10 @@ public static int sci_gl2psDisable(int mode) {
   */
 public static int sci_gl2psPointSize(float value) {
     return GL2PSWrappingJNI.sci_gl2psPointSize(value);
+  }
+
+  public static int sci_gl2psLineStipple(int arg0, int arg1) {
+    return GL2PSWrappingJNI.sci_gl2psLineStipple(arg0, arg1);
   }
 
   

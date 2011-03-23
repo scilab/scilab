@@ -15,11 +15,11 @@ function add_module_help_chapter(modulename)
 	
 	path_addchapter = SCI+"/modules/"+modulename+"/help/"+getlanguage()+"/addchapter.sce";
 	
-	if ( fileinfo(path_addchapter) == [] ) then
+	if ~isfile(path_addchapter) then
 		path_addchapter = SCI+"/modules/"+modulename+"/help/"+getdefaultlanguage()+"/addchapter.sce";
 	end
 	
-	if ( fileinfo(path_addchapter) <> [] ) then
+	if isfile(path_addchapter) then
 	  exec(path_addchapter);
 	end
 	

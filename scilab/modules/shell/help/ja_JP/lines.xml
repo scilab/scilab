@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2002 - INRIA
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lines">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lines</refname>
+    <refpurpose>表示に使用される行および列</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>lines([nl [,nc]])
+ncl=lines()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>nl : 整数, 垂直方向のページ切替制御の行数. </term>
+        <listitem>
+          <para>0の場合,垂直方向のページ切替制御は行われません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nc</term>
+        <listitem>
+          <para>整数, 出力の列の数. 整形出力で使用されます</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ncl</term>
+        <listitem>
+          <para>1x2 ベクトル [nc,nl]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>lines</literal> はScilab表示ページ制御を処理します.</para>
+    <para><literal>lines()</literal> は結果の表示用にScilabにより現在使用されている
+	ベクトル <literal>[# columns, # rows]</literal>を返します.</para>
+    <para><literal>lines(nl)</literal> は,(moreとユーザに聞くまでの)表示行の数を
+	<literal>nl</literal>に設定します.</para>
+    <para><literal>lines(0)</literal> は垂直ページ制御を無効にします</para>
+    <para><literal>lines(nl,nc)</literal> は
+	出力の大きさを<literal>nc</literal>列にも変更します.</para>
+    <para>
+    Scilabが-nwオプションを指定せずに起動された場合,
+	<literal>lines</literal>パラメータは出力ウインドウの大きさに
+	基づき自動的に設定されます.
+	これらのパラメータはウインドウの大きさが変更された場合にも
+	自動的に修正されます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="disp">disp</link>
+      </member>
+      <member>
+        <link linkend="print">print</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

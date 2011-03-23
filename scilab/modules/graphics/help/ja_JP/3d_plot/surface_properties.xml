@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="surface_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>surface_properties</refname>
+    <refpurpose>3次元エンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Surfaceエンティティはグラフィックエンティティ階層の葉です.
+	この型のエンティティの元には,
+	プロットを行う関数またはデータの入力手段により
+	2つのクラス：<literal>Plot3d</literal> および
+    	<literal>Fac3d</literal> が現れます.
+	<literal>Fac3d</literal> および <literal>Plo3d</literal> エンティティは
+	似ていますが,<literal>Fac3d</literal>はより完全で,
+	<literal>Plot3d</literal>よりも多くのオプションを指定できます.
+	<literal>Fac3d</literal>エンティティを常に有するようにするには, 
+	<literal>plot3d</literal>を使用する前に
+	<literal>genfac3d</literal>により行列を事前に構築するか,
+	<literal>surf</literal>コマンドを使用します.</para>
+    <para>以下にsurfaceエンティティに含まれるプロパティを示します:</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このフィールドには親のハンドルが含まれます.
+	polylineエンティティの親は<literal>"Axes"</literal> 型または
+        <literal>"Compound"</literal>型です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティにはこのハンドルの<literal>children</literal>
+	のベクトルが含まれます.
+	しかし,現在,surfaceハンドルには<literal>children</literal>がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはこのエンティティの<literal>visible</literal>
+	プロパティの値を有します.
+	値は<literal>"on" </literal> または <literal>"off"</literal>となります.
+        デフォルトで polyline は可視であり,プロパティの値は 
+        <literal>"on" </literal>となります. <literal>"off"</literal> の場合,
+	この3次元グラフィックは画面に描画されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>surface_mode: </term>
+        <listitem>
+          <para>このフィールドは <literal>surface_mode</literal> プロパティのデフォルト値を有します.
+	その値は <literal>"on" </literal>(曲面を描画
+        ) または <literal>"off"</literal> (曲面を描画しない)とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>foreground: </term>
+        <listitem>
+          <para><literal>color_mode &gt;= 0</literal>の場合,
+	このフィールドは縁を描画する際に色インデックスを有します.
+	そうでない場合,foregroundは全く使用されません.
+	foregounrdの値には(カレントのカラーマップに基づく)整数の色インデックスを指定します.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thickness: </term>
+        <listitem>
+          <para>このプロパティは正の実数で,小平面の輪郭の幅をピクセル単位で指定します.
+	実際の表示幅は指定した幅を最も近い整数に丸めることにより定義されます.
+	唯一の例外はベクトル単位のエキスポートで,全体の
+	<literal>thickness</literal>の値が考慮されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_mode: </term>
+        <listitem>
+          <para>このフィールドはsurfaceの<literal>mark_mode</literal>
+	プロパティのデフォルト値を有します.
+	この値は<literal>"on"</literal> (マーカを描画
+        drawn) または <literal>"off"</literal> (マーカを描画しない)となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_style: </term>
+        <listitem>
+         <para><literal>mark_style</literal>プロパティの値は
+	<literal>mark_mode</literal>プロパティが<literal>"on"</literal>の場合に,
+	使用するマーカの種類を選択するために使用されます.
+	この値は[0 14]の範囲の整数で,それぞれ以下の意味があります :
+	ドット,プラス,十字,星,塗りつぶした菱形,
+	上向き三角形, 下向き三角形, 菱形プラス,円,アスタリスク,
+	正方形,右向き三角形,左向き三角形およびペンタグラム.
+	以下の図は,マーカのアスペクトが<literal>mark_style</literal>,
+          <literal>mark_foreground</literal> および
+          <literal>mark_background</literal>プロパティに依存する
+	ことを示します.</para>
+	<para>
+	  <inlinemediaobject>
+	    <imageobject>
+	      <imagedata fileref="../../images/marks.svg"/>
+	    </imageobject>
+	  </inlinemediaobject>
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size_unit: </term>
+        <listitem>
+          <para>このフィールは<literal>mark_size_unit</literal>プロパティのデフォルト値
+		を有します.<literal>mark_size_unit</literal>が<literal>"point"</literal>
+		に設定された場合,<literal>mark_size</literal>の値はポイント単位で直接
+		指定されます.
+		<literal>mark_size_unit</literal> に<literal>"tabulated"</literal>が
+		指定された場合,<literal>mark_size</literal>はfont size配列に相対的に
+		計算されます: この場合,この値は,
+		8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味する
+		[0 5]の範囲の整数とします.
+		 <link linkend="xrect">xrect</link>および Scilabのネーティブ関数は
+		<literal>tabulated</literal>モードをデフォルトとします;
+		<link linkend="plot">plot</link>関数を使用する場合,
+		<literal>point</literal> モードが自動的に有効となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size: </term>
+        <listitem>
+          <para><literal>mark_size</literal>プロパティは,
+	<literal>mark_mode</literal>プロパティが<literal>"on"</literal>の時,
+	マーカの大きさを選択するために使用されます.
+	この値は, 8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味する
+	 [0 5]の範囲の整数です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_foreground: </term>
+        <listitem>
+          <para>このフィールドは,マーカの縁の色である<literal>mark_foreground</literal>
+	プロパティの値を有します.この値は(カレントのcolor_mapに関連する)色インデックス
+	または透過エッジを意味する 0 とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_background: </term>
+        <listitem>
+          <para>このフィールドは,マーカの縁の色である<literal>mark_foreground</literal>
+	プロパティの値を有します.この値は(カレントのcolor_mapに関連する)色インデックス
+	または透過エッジを意味する 0 とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>
+	このフィールドは,"3次元"型の<literal>tlist</literal>データ構造体
+	を定義します.
+	この構造体は,
+	x, yおよびz座標をそれぞれ
+	<literal>data.x</literal>,<literal>data.y</literal> および <literal>data.z</literal>
+	に含む各要素の行および列インデックスから構成されます.
+	実際のcolorベクトルまたは行列が指定された場合,
+	<literal>data.color</literal>という名前の相補フィールドが利用可能です.
+	指定されない場合,<literal>data.color</literal>は利用できません.
+	曲面は<literal>color_mode </literal>および<literal>color_flag</literal>
+	プロパティに基づき塗りつぶされます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>color_mode: </term>
+        <listitem>
+          <para>
+	<literal>[-size(colormap) ; size(colormap)]</literal>の範囲の整数で,
+	<literal>color_flag</literal>の値が<literal>0</literal>の時,
+	小平面の色を定義します.
+	前記のように, <literal> color_mode &gt; 0</literal> の時,
+	<literal>foreground</literal>色により,縁が描画されます.
+	<literal>color_mode</literal> が <literal>0</literal>に設定された場合,
+	曲面のメッシュが描画されます: 表面には色がありません.
+	最後に,<literal>color_mode &lt; 0</literal>の時,
+	表面は色<literal>-color_mode</literal>で塗られますが,
+	縁は表示されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>color_flag: </term>
+        <listitem>
+          <para>このフィールドは小平面の色を設定するために使用される
+	アルゴリズムを指定する際に使用されます.</para>
+          <para>
+		<literal>color_mode</literal>,
+	<literal>foreground</literal> および <literal>hiddencolor</literal>に
+	関する規則はこの場合にも適用されます.</para>
+          <itemizedlist>
+            <listitem>
+              <para>
+                <literal>color_flag == 0</literal>
+              </para>
+              <itemizedlist>
+                <listitem>
+                  <para>全ての小平面はcolorインデックスおよび
+		<literal>color_mode</literal>で定義された手法により
+		塗りつぶされます(上記参照).</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>color_flag == 1</literal>
+              </para>
+              <itemizedlist>
+                <listitem>
+                  <para>全ての小平面は
+		<literal>z</literal>に比例する小平面毎に1つのインデックスを
+		用いて塗りつぶされます.
+		<literal>z</literal>の最小値はインデックス1の色で塗られ,
+		<literal>z</literal>の最大値は最も大きなインデックスの色で塗られます.
+		加えて,小平面の縁も<literal>color_mode</literal>の値に基づき
+		塗られます(上記参照).
+		</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>
+		残る3つのケース(<literal>color_flag</literal><literal>== 2,3 または
+            4</literal>)は,<literal>Fac3d</literal>エンティティを指定した場合のみ
+		利用可能です.
+		次に,<literal>data.color</literal>の値は(存在する場合,)小平面の色を
+		(カレントのカラーマップのインデックスで)
+		設定するために使用されます
+		そうでない場合, 小平面を塗りつぶす際に
+		カレントの<literal>color_mode</literal>が使用されます.</para>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>color_flag == 2 ('フラット' シェーディング)</literal>
+              </para>
+              <itemizedlist>
+                <listitem>
+                  <para>
+		全ての小平面は<literal>data.color</literal>プロパティで
+		指定した色インデックスにより塗りつぶされます
+		(小平面毎に1つの色が必要):</para>
+                </listitem>
+                <listitem>
+                  <para><literal>data.color</literal> は <literal>color</literal>ベクトルを
+		有します: <literal>color(i)</literal> が正の場合,
+		小平面<literal>i</literal>の色を指定します.
+		小平面の境界はカレントの線種と色で描画されます.
+                <literal>color(i)</literal> が負の場合,色id
+                <literal>-color(i)</literal> が使用され,小平面の境界は描画されません.</para>
+                  <para><literal>data.color</literal> は大きさ(nf,n)のcolor行列を
+		有します.ただし,<literal>n</literal> は小平面の数,
+		<literal>nf</literal>はポリゴン小平面を定義する点の数を意味します.
+		<literal>nf</literal>個の頂点が各小平面を定義する場合,
+		アルゴリズムは(colorインデックス行列の)各色インデックスの
+		<literal>平均値</literal>を計算します:
+                同じ小平面の<literal>nf</literal>個の頂点は同じ色インデックスの値を有します.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>color_flag == 3 ('補間' シェーディング)</literal>
+              </para>
+              <itemizedlist>
+                <listitem>
+                  <para>小平面は頂点の色を補間した結果に基づき塗りつぶされます.
+		頂点の色のインデックスは<literal>data.color</literal>プロパティで
+		指定されます (各頂点毎に1つの色が必要).
+		以下の2種類のケースがありえます:</para>
+                </listitem>
+                <listitem>
+                  <para><literal>data.color</literal> が <literal>colors</literal>
+                ベクトルを有する場合 : この場合,
+		補間シェーディングモードを完成するにはデータが少なすぎます.
+		この処理を行うには,大きさ (nf,n) のcolor行列が必要です
+		(ただし, <literal>n</literal> は小平面の数,
+		<literal>nf</literal>はポリゴン小平面を定義する点の数を意味します).
+		各小平面について,このアルゴリズムは,
+		単一の小平面のcolorインデックスの値を,小平面の境界を定義する
+		<literal>nf</literal>個の頂点の色インデックスにコピーします.</para>
+                  <para><literal>data.color</literal> が大きさ(nf,n)の色行列を有する場合
+		(前記の <literal>nf</literal> および <literal>n</literal>の定義参照),
+		補間シェーディングモードはこれらの色インデックスにより完了することが
+		できます.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+            <listitem>
+              <para>
+                <literal>color_flag == 4 (Matlabライクな 'フラット' シェーディング)</literal>
+              </para>
+              <itemizedlist>
+                <listitem>
+                  <para><literal>color_flag==2</literal>と同じですが,
+		<literal>data.color</literal>が行列の場合,わずかな違いがあります.
+		全ての小平面は<literal>data.color</literal>プロパティで
+		指定された色インデックスにより塗りつぶされます
+		(各小平面について1つの色が必要).
+		以下の2つのケースがありえます:</para>
+                </listitem>
+                <listitem>
+                  <para><literal>data.color</literal> が <literal>colors</literal>
+                ベクトルを有する場合 : 
+		<literal>color(i)</literal>が正の場合,
+		この値は小平面<literal>i</literal>の色を指定し,
+		小平面の境界はカレントの線種と色で描画されます.
+		<literal>color(i)</literal>が負の場合,
+		色ID <literal>-color(i)</literal> が使用され,小平面の境界は
+		描画されません.</para>
+		<para><literal>data.color</literal> は大きさ(nf,n)の色行列を有します.
+		ただし, <literal>n</literal> は小平面の数,
+		<literal>nf</literal>はポリゴン小平面を定義する点の数を意味します.
+		<literal>nf</literal> 個の頂点が各小平面を定義する場合,
+		アルゴリズムはパッチ(小平面)を定義する最初の頂点の色を使用します.</para>
+                </listitem>
+              </itemizedlist>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cdata_mapping: </term>
+        <listitem>
+          <para><literal>Fac3dハンドルの仕様</literal>. 
+        <literal>'scaled'</literal> または <literal>'direct'</literal>を値とする文字列. 
+        <literal>data.color</literal> が設定されている場合, 
+	各インデックス色データは各頂点に単一の値を指定します.
+	<literal>cdata_mapping</literal> は,
+	これらのインデックスをカレントのカラーマップに線形にマップするようにスケーリングするか
+	(<literal>'scaled'</literal> モード),
+	このカラーマップを直接参照するか(<literal>'direct</literal>' モード)のどちらかを
+	選択します.
+	このプロパティは<literal>color_flag</literal>が <literal>2</literal>,<literal>3</literal>
+	 または
+        <literal>4</literal>に等しい時に有用です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>hiddencolor: </term>
+        <listitem>
+          <para>このフィールドは曲面の小平面の背景を描画する際に使用される
+	色インデックスを有します.
+	この値は正の整数(カレントのカラーマップの色インデックス)とします.
+	この値が負の場合,"visible"平面以外に同じ色が背面側に適用されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドはsurfaceの<literal>clip_state</literal>プロパティの
+		値を有します. 値は以下となります: </para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> surfaceはクリップされません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> surfaceはAxesボックスの外側でクリップ
+		されます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal>surfaceはclip_boxプロパティで
+		指定された矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>このフィールドは<literal>clip_box</literal>プロパティを定義します.
+	clip_state が "off" の場合, デフォルトで,この値は空の行列です.
+	その他の場合, ベクトル　<literal>[x,y,w,h]</literal> (左上の点 幅 高さ) 
+	は表示する曲面の部分を定義しますが,
+	<literal>clip_state</literal>プロパティの値が変更されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドはsurfaceデータ構造体に任意のScilab変数を
+	保存し,再度取得する際に使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//図を作成
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z); 
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
+h=get("hdl") //カレントのエンティティ(ここではsurface)のハンドルを取得
+a=gca(); //get current axes
+a.rotation_angles=[40,70]; 
+a.grid=[1 1 1]; 
+//グリッドを作成
+a.data_bounds=[-6,0,-1;6,6,5];
+a.axes_visible="off"; 
+//軸は隠されている a.axes_bounds=[.2 0 1 1]; 
+f=get("current_figure");
+//親の図のハンドルを取得
+f.color_map=hotcolormap(64); 
+//図のカラーマップを変更
+h.color_flag=1; 
+//z に基づく色
+h.color_mode=-2; 
+//小平面境界を削除
+h.color_flag=2; 
+//指定色に基づく色
+h.data.color=[1+modulo(1:400,64),1+modulo(1:400,64)];
+//影付き
+h.color_flag=3; 
+
+scf(2); // 2番目のウインドウを作成し,surfコマンドを使用
+subplot(211)
+surf(z,'cdata_mapping','direct','facecol','interp')
+
+subplot(212)
+surf(t,t,z,'edgeco','b','marker','d','markersiz',9,'markeredg','red','markerfac','k')
+e=gce();
+e.color_flag=1 // 高度 (z座標)に比例する色インデックス
+e.color_flag=2; // デフォルトモードに戻す
+e.color_flag= 3; // 補間影モード (data.colorフィールドが指定されていないため,デフォルトの青色に基づく)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+      <member>
+        <link linkend="plot3d1">plot3d1</link>
+      </member>
+      <member>
+        <link linkend="plot3d2">plot3d2</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE &amp; F.Leray</para>
+  </refsection>
+</refentry>

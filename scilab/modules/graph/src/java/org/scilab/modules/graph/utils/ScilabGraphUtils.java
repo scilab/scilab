@@ -12,8 +12,11 @@
 
 package org.scilab.modules.graph.utils;
 
-import java.io.File;
+import java.awt.geom.Dimension2D;
 import java.io.IOException;
+import java.lang.ref.WeakReference;
+import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -27,6 +30,8 @@ import org.apache.batik.bridge.UserAgentAdapter;
 import org.apache.batik.dom.svg.SAXSVGDocumentFactory;
 import org.apache.batik.gvt.GraphicsNode;
 import org.apache.batik.util.XMLResourceDescriptor;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -41,9 +46,18 @@ import com.mxgraph.util.mxUtils;
  */
 public final class ScilabGraphUtils extends mxUtils {
 	/**
+	 * Logger for this class
+	 */
+	private static final Log LOG = LogFactory.getLog(ScilabGraphUtils.class);
+	
+	/**
 	 * Cache for the generated SVG components
 	 */
-	private static Map<File, GraphicsNode> generatedSVGComponents = new WeakHashMap<File, GraphicsNode>();
+	private static Map<URL, WeakReference<GraphicsNode>> generatedSVGComponents = new HashMap<URL, WeakReference<GraphicsNode>>();
+	/**
+	 * Cache for the generated SVG document sizes
+	 */
+	private static Map<URL, Dimension2D> generatedSVGSizes = new HashMap<URL, Dimension2D>();
 	
 	/**
 	 * Cache for the generated latex icons
@@ -59,41 +73,41 @@ public final class ScilabGraphUtils extends mxUtils {
 	      {"&gt;"     , ">" },
 	      {"&amp;"    , "&" },
 	      {"&quot;"   , "\"" },
-	      {"&agrave;" , "à" },
-	      {"&Agrave;" , "À" },
-	      {"&acirc;"  , "â" },
-	      {"&auml;"   , "ä" },
-	      {"&Auml;"   , "Ä" },
-	      {"&Acirc;"  , "Â" },
-	      {"&aring;"  , "å" },
-	      {"&Aring;"  , "Å" },
-	      {"&aelig;"  , "æ" },
-	      {"&AElig;"  , "Æ" },
-	      {"&ccedil;" , "ç" },
-	      {"&Ccedil;" , "Ç" },
-	      {"&eacute;" , "é" },
-	      {"&Eacute;" , "É" },
-	      {"&egrave;" , "è" },
-	      {"&Egrave;" , "È" },
-	      {"&ecirc;"  , "ê" },
-	      {"&Ecirc;"  , "Ê" },
-	      {"&euml;"   , "ë" },
-	      {"&Euml;"   , "Ë" },
-	      {"&iuml;"   , "ï" },
-	      {"&Iuml;"   , "Ï" },
-	      {"&ocirc;"  , "ô" },
-	      {"&Ocirc;"  , "Ô" },
-	      {"&ouml;"   , "ö" },
-	      {"&Ouml;"   , "Ö" },
-	      {"&oslash;" , "ø" },
-	      {"&Oslash;" , "Ø" },
-	      {"&szlig;"  , "ß" },
-	      {"&ugrave;" , "ù" },
-	      {"&Ugrave;" , "Ù" },
-	      {"&ucirc;"  , "û" },
-	      {"&Ucirc;"  , "Û" }, 
-	      {"&uuml;"   , "ü" },
-	      {"&Uuml;"   , "Ü" },
+	      {"&agrave;" , "\u00e0" },
+	      {"&Agrave;" , "\u00c0" },
+	      {"&acirc;"  , "\u00e2" },
+	      {"&auml;"   , "\u00e4" },
+	      {"&Auml;"   , "\u00c4" },
+	      {"&Acirc;"  , "\u00c2" },
+	      {"&aring;"  , "\u00e5" },
+	      {"&Aring;"  , "\u00c5" },
+	      {"&aelig;"  , "\u00e6" },
+	      {"&AElig;"  , "\u00c6" },
+	      {"&ccedil;" , "\u00e7" },
+	      {"&Ccedil;" , "\u00c7" },
+	      {"&eacute;" , "\u00e9" },
+	      {"&Eacute;" , "\u00c9" },
+	      {"&egrave;" , "\u00e8" },
+	      {"&Egrave;" , "\u00c8" },
+	      {"&ecirc;"  , "\u00ea" },
+	      {"&Ecirc;"  , "\u00ca" },
+	      {"&euml;"   , "\u00eb" },
+	      {"&Euml;"   , "\u00cb" },
+	      {"&iuml;"   , "\u00ef" },
+	      {"&Iuml;"   , "\u00cf" },
+	      {"&ocirc;"  , "\u00f4" },
+	      {"&Ocirc;"  , "\u00d4" },
+	      {"&ouml;"   , "\u00f6" },
+	      {"&Ouml;"   , "\u00d6" },
+	      {"&oslash;" , "\u00f8" },
+	      {"&Oslash;" , "\u00d8" },
+	      {"&szlig;"  , "\u00df" },
+	      {"&ugrave;" , "\u00f9" },
+	      {"&Ugrave;" , "\u00d9" },
+	      {"&ucirc;"  , "\u00fb" },
+	      {"&Ucirc;"  , "\u00db" }, 
+	      {"&uuml;"   , "\u00fc" },
+	      {"&Uuml;"   , "\u00dc" },
 	      {"&nbsp;"   , " " },
 	      {"&reg;"    , "\u00a9" },
 	      {"&copy;"   , "\u00ae" },
@@ -107,28 +121,57 @@ public final class ScilabGraphUtils extends mxUtils {
 	 * @param filename the file to parse
 	 * @return the corresponding graphic node
 	 */
-	public static GraphicsNode getSVGComponent(File filename) {
+	public static GraphicsNode getSVGComponent(URL filename) {
+		WeakReference<GraphicsNode> nodeRef;
 		GraphicsNode node;
 		
-		node = generatedSVGComponents.get(filename);
+		nodeRef = generatedSVGComponents.get(filename);
+		if (nodeRef != null) {
+			node = nodeRef.get();
+		} else {
+			node = null;
+		}
+		
 		if (node == null) {
 			try {
 				String xmlParser = XMLResourceDescriptor.getXMLParserClassName();
 				SAXSVGDocumentFactory df = new SAXSVGDocumentFactory(xmlParser);
-				Document doc = df.createDocument(filename.getPath());
+				Document doc = df.createDocument(filename.toString());
 				UserAgent userAgent = new UserAgentAdapter();
 				DocumentLoader loader = new DocumentLoader(userAgent);
 				BridgeContext ctx = new BridgeContext(userAgent, loader);
-				ctx.setDynamicState(BridgeContext.DYNAMIC);
+				ctx.setDynamicState(BridgeContext.STATIC);
 				GVTBuilder builder = new GVTBuilder();
 				
 				node = builder.build(ctx, doc);
-				generatedSVGComponents.put(filename, node);
+				
+				generatedSVGComponents.put(filename, node.getWeakReference());
+				generatedSVGSizes.put(filename, ctx.getDocumentSize());
 			} catch (IOException e) {
-				e.printStackTrace();
+				LOG.error(e.getLocalizedMessage());
 			}
 		}
 		return node;
+	}
+
+	/**
+	 * Get the document size for a given URL.
+	 * 
+	 * This method use the Document size cache to get the svg element dimension
+	 * and not the real size of the graphical tree.
+	 * 
+	 * @param filename the file
+	 * @return the dimension of the file
+	 */
+	public static Dimension2D getSVGDocumentSizes(URL filename) {
+		Dimension2D ret = generatedSVGSizes.get(filename);
+		
+		// Generate the GraphicsNode if not available
+		if (ret == null) {
+			getSVGComponent(filename);
+			ret = generatedSVGSizes.get(filename);
+		}
+		return ret;
 	}
 	
 	/**

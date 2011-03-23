@@ -1,28 +1,29 @@
-c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) 1985-2008 - Carlos KLIMANN
+c     Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+c     Copyright (C) 1985-2008 - Carlos KLIMANN
 c
-c This file must be used under the terms of the CeCILL.
-c This source file is licensed as described in the file COPYING, which
-c you should have received as part of this distribution.  The terms
-c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     This file must be used under the terms of the CeCILL.
+c     This source file is licensed as described in the file COPYING,
+c     which
+c     you should have received as part of this distribution.  The terms
+c     are also available at
+c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       subroutine mpinsp(dep1,lig1,col1,v1,d1,v2,d2,dep2,
-     & lig2,col2,depr,ligr,colr,ierr)
-c!but
+     &     lig2,col2,depr,ligr,colr,defsz,iwork,ierr)
+c     !but
 c
 c     Cette subroutine pretraite l'insertion  d'une
 c     matrice de polynomes mat2 dans une autre mat1 d'apres deux
 c     vecteurs.Pour calculer le  volume qu'occupera le resultat
 c
-c!parametres d'appel
+c     !parametres d'appel
 c
 c     call mpinsp(dep1,lig1,col1,v1,d1,v2,d2,dep2,lig2,col2
-c    & ,depr,ligr,colr)
+c     & ,depr,ligr,colr,defsz,iwork,ierr)
 c
 c     ou
 c
 c     dep1: matrice entiere qui donne les deplacements relatifs des
-c           elements de mat1
+c     elements de mat1
 c
 c     lig1, col1: entiers, dimensions de mat1
 c
@@ -35,17 +36,18 @@ c
 c     dep2, lig2, col2: analogues aux correspondents 1
 c
 c     depr: contient les information issues du pretraitement:
-c           depr(1) contient le volume des coeff de la matrice resultat
-c           depr(1+i) contient un pointeur vers dep1 si positif
-c                                          vers dep2 si negatif
-c                                          vers 0 si nul
+c     depr(1) contient le volume des coeff de la matrice resultat
+c     depr(1+i) contient un pointeur vers dep1 si positif
+c     vers dep2 si negatif
+c     vers 0 si nul
 c
 c     ligr, colr: entiers dimensions de la matrice de sortie
-c                 depr. S'ils ne sont pas connus au prealable
-c                 peuvent etre calcules par la subroutine dimin.
-c
+c     depr. S'ils ne sont pas connus au prealable
+c     peuvent etre calcules par la subroutine dimin.
+c     defsz: entier: taille de l'element par default
+c     iwork: tableau entier de taille colr+ligr
 c     ierr: si 0 terminaison correcte,
-c           sinon les dimensions de mat2 ne sont pas compatibles
+c     sinon les dimensions de mat2 ne sont pas compatibles
 c
 c
 c     attention!: aucune de matrices dep1, dep2 ou depr ne
@@ -55,9 +57,9 @@ c
 
 c
 c
-c!
-      integer dep1(*),v1(*),v2(*),dep2(*),depr(*)
-      integer lig1,col1,d1,d2,lig2,col2,ligr,colr,ierr
+c     !
+      integer dep1(*),v1(*),v2(*),dep2(*),depr(*),iwork(*)
+      integer lig1,col1,d1,d2,lig2,col2,ligr,colr,ierr,defsz
 c
       integer volr
 c
@@ -90,7 +92,7 @@ c
       volr=dep2(ir)-dep2(1)
       goto 999
 c
-   10 if(d1.lt.0) then
+ 10   if(d1.lt.0) then
 c     cas (:,.)
          inc2=1
          if(max(1,lig1).ne.lig2) then
@@ -106,12 +108,14 @@ c     toutes les lignes pour un choix de colonnes
 c
          kr=1
          volr=0
+c     trouver les colonnes qui sont modifiées
+         call iset(colr,0,iwork,1)
+         do i=1,d2
+            iwork(v2(i))=i
+         enddo
          do 19 jr=1,colr
 c     la colonne jr est elle a modifier ?
-            id2=0
-            do 11 i=1,d2
-               if(v2(i).eq.jr) id2=i
- 11         continue
+            id2=iwork(jr)
             if(id2.eq.0) goto 14
 c     oui
             if(inc2.eq.1) then
@@ -145,7 +149,7 @@ c     si non, inserer un string vide
                kr=kr+1
                depr(kr)=0
  18         continue
-            volr=volr+ligr
+            volr=volr+ligr*defsz
  19      continue
          goto 999
       endif
@@ -164,13 +168,15 @@ c     cas (.,:)
 c
 c     toutes les colonnes pour un choix de lignes
 c
+         call iset(ligr,0,iwork,1)
+         do i=1,d1
+            iwork(v1(i))=i
+         enddo
+
          do 29 ir=1,ligr
             kr=ir+1-ligr
 c     la ligne ir est elle a modifier ?
-            id1=0
-            do 21 i=1,d1
-               if(v1(i).eq.ir) id1=i
- 21         continue
+            id1=iwork(ir)
             if(id1.eq.0) goto 24
 c     oui
             if(inc2.eq.1) then
@@ -206,7 +212,7 @@ c     si non, inserer des zeros
                kr=kr+ligr
                depr(kr)=0
  28         continue
-            volr=volr+colr
+            volr=volr+colr*defsz
  29      continue
          goto 999
       endif
@@ -216,22 +222,24 @@ c
       kr=2
       inc2=1
       if(lig2.eq.1.and.col2.eq.1) inc2=0
+
+      call iset(colr+ligr,0,iwork,1)
+      do i=1,d2
+         iwork(v2(i))=i
+      enddo
+
+      do i=1,d1
+         iwork(colr+v1(i))=i
+      enddo
+
       do 40 jr=1,colr
 c     la colonne jr est elle a modifier ?
-         id2=0
-         do 30 i=1,d2
-            if(v2(i).eq.jr) id2=i
- 30      continue
-c
+         id2=iwork(jr)
          if(id2.eq.0) goto 35
 c
          do 34 ir=1,ligr
 c     la ligne ir est-elle a modifier
-            id1=0
-            do 31 i=1,d1
-               if(v1(i).eq.ir) id1=i
- 31         continue
-c
+            id1=iwork(colr+ir)
             if(id1.eq.0) goto 32
 c
             if(inc2.eq.1) then
@@ -254,7 +262,7 @@ c
 c
  33         depr(kr)=0
             kr=kr+1
-            volr=volr+1
+            volr=volr+defsz
  34      continue
          goto 40
 c     non
@@ -271,13 +279,13 @@ c     toutes les lignes de la colonne designee
             depr(kr)=0
             kr=kr+1
  37      continue
-         volr=volr+ligr-lig1
+         volr=volr+(ligr-lig1)*defsz
          goto 40
  38      do 39 ir=1,ligr
             depr(kr)=0
             kr=kr+1
  39      continue
-         volr=volr+ligr
+         volr=volr+ligr*defsz
  40   continue
 c
  999  depr(1)=volr

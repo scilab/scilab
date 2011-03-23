@@ -22,7 +22,7 @@
 /*--------------------------------------------------------------------------*/ 
 /* Scilab Error at C level */
 /*--------------------------------------------------------------------------*/ 
-int  Scierror(int iv,char *fmt,...) 
+int  Scierror(int iv,const char *fmt,...)
 {
 	int retval = 0;
 	int lstr = 0;

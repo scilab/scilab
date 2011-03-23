@@ -1,7 +1,7 @@
-;##############################################################################################################
-; Script d'installation Inno Setup (5.2.1) pour scilab
+;
 ; Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 ; Copyright (C) INRIA - Allan CORNET
+; Copyright (C) DIGITEO - 2010 - Allan CORNET
 ;
 ; This file must be used under the terms of the CeCILL.
 ; This source file is licensed as described in the file COPYING, which
@@ -9,8 +9,9 @@
 ; are also available at
 ; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 ;
-;##############################################################################################################
-
+;--------------------------------------------------------------------------------------------------------------
+; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
+;
 ;--------------------------------------------------------------------------------------------------------------
 ; overloading module
 ;--------------------------------------------------------------------------------------------------------------
@@ -18,9 +19,7 @@
 #define OVERLOADING "overloading"
 ;
 Source: modules\{#OVERLOADING}\VERSION.xml; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\readme.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\license.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
-Source: modules\{#OVERLOADING}\changelog.txt; DestDir: {app}\modules\{#OVERLOADING}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.quit; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#OVERLOADING}\etc\{#OVERLOADING}.start; DestDir: {app}\modules\{#OVERLOADING}\etc; Components: {#COMPN_SCILAB}

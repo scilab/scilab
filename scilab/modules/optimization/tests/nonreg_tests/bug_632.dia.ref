@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 632 -->
 //
@@ -12,7 +13,7 @@
 //
 // <-- Short Description -->
 //    The function "lsqrsolve" makes the the whole Scilab crash.
-//    It even does it with the example cited in the Scilab
+//    It even does it with the example cited in the Scilab 
 //    documentation:
 //
 //    // Data fitting problem
@@ -31,6 +32,7 @@
 //    norm(v)
 // Data fitting problem
 // 1 build the data
+//exec("632.sce");
 // this test will fail if scilab crashes
 a = 34;
 b = 12;

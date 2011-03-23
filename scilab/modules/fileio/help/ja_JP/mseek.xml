@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mseek">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mseek</refname>
+    <refpurpose>バイナリファイルの中でカレントの位置を設定する.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>mseek(n [,fd, flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>正のスカラー: 原点からのオフセット(単位:バイト数).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+         <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>文字列. 原点を指定. デフォルト値: <literal>'set'</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    関数 <literal>mseek()</literal> は,ストリーム<literal>fd</literal>上での
+	次の入力または出力処理の位置を設定します.
+	新たな位置は,
+	<literal>flag</literal> の値,
+	つまり,
+	<literal>'set'</literal>, <literal>'cur'</literal> または <literal>'end'</literal>
+	に基づき,先頭位置からまたは	
+	現在位置からまたはファイル終端からの符号付きの位置を表す
+	バイト数<literal>n</literal>で指定した位置となります.</para>
+    <para><literal>mseek()</literal> により
+	ファイルの既存のデータの終端より後の部分にファイル位置インジケータを
+	設定することができるようになります.
+	データがこのような場所に書き込まれた時,
+	隙間にあるデータが読み込まれた場合に,
+	隙間に実際に書き込まれたデータに達するまでは
+	 0 が返されます.
+	<literal>mseek()</literal>, はそれ自体では,
+	ファイルの大きさを拡張しません.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+file3='test3.bin'
+fd1= mopen(file3,'wb');
+for i=1:10, mput(i,'d'); end 
+mseek(0);
+mput(678,'d');
+mseek(0,fd1,'end');
+mput(932,'d');
+mclose(fd1)
+fd1= mopen(file3,'rb');
+res=mget(11,'d')
+res1=[1:11]; res1(1)=678;res1($)=932;
+if res1<>res ;write(%io(2),'Bug');end;
+mseek(0,fd1,'set');
+
+// 保存されたデータより多くのデータを読み込もうとする 
+res1=mget(100,'d',fd1);
+if res1<>res ;write(%io(2),'Bug');end;
+meof(fd1)
+mclearerr(fd1)
+mclose(fd1);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

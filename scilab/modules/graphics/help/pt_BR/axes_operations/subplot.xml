@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="subplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>subplot</refname>
+
+    <refpurpose>divide uma janela de gráficos em uma matriz de
+    sub-janelas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>subplot(m,n,p)
+subplot(mnp)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>m,n,p</term>
+
+        <listitem>
+          <para>inteiros positivos </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mnp</term>
+
+        <listitem>
+          <para>um inteiro com notação decimal <literal>mnp</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>subplot(m,n,p) ou subplot(mnp) parte a janela de gráficos em uma
+    matriz m-por-n de sub-janelas e seleciona a p-ésima sub-janela para
+    esboçar o gráfico corrente. O número uma sub-janela nas matrizes é contado
+    linha por linha, i.e. a sub-janela correspondente ao elemento (i,j) da
+    matriz tem número (i-1)*n + j.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+subplot(221)
+plot2d()
+subplot(222)
+plot3d()
+subplot(2,2,3)
+param3d()
+subplot(2,2,4)
+hist3d()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="plot3d">plot3d</link></member>
+
+      <member><link linkend="xstring">xstring</link></member>
+
+      <member><link linkend="xtitle">xtitle</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

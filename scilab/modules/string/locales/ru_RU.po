@@ -1,0 +1,410 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-29 14:56+0100\n"
+"PO-Revision-Date: 2010-08-18 19:44+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного параметра №%d.\n"
+
+#, c-format
+msgid "%s : Wrong size for input argument(s).\n"
+msgstr "%s: Неверный размер входных параметров.\n"
+
+#, c-format
+msgid "%s: Can not compile pattern.\n"
+msgstr "%s: Не удалось откомпилировать шаблон.\n"
+
+#, c-format
+msgid "%s: Capturing subpatterns error.\n"
+msgstr "%s: Поймана ошибка под-шаблонов (subpatterns error).\n"
+
+#, c-format
+msgid "%s: Contains explicit CR or LF match.\n"
+msgstr "%s: Содержит совпадение оконечных CR или LF.\n"
+
+#, c-format
+msgid "%s: Current PCRE library does not support UTF-8.\n"
+msgstr "%s: Текущая библиотека PCRE не поддерживает UTF-8.\n"
+
+#, c-format
+msgid "%s: Delimiter must not be alphameric.\n"
+msgstr "%s: Разделитель не может быть буквой или цифрой.\n"
+
+#, c-format
+msgid "%s: Duplicate name status changes.\n"
+msgstr "%s: Состояние повторяющего имени изменяется.\n"
+
+#, c-format
+msgid "%s: Elements of %dth argument must be in increasing order.\n"
+msgstr ""
+"%s: Элементы %d-го параметра должны располагаться в порядке возрастания.\n"
+
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: Данное выражение не имеет значения.\n"
+
+#, c-format
+msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
+msgstr ""
+"%s: Предел совпадений не учитывается при DFA-сравнении (на конечных "
+"автоматах): проигнорирован.\n"
+
+#, c-format
+msgid "%s: Matched text exceeds buffer limit.\n"
+msgstr "%s: Совпавший текст превосходит ограничение буфера.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Не осталось доступной памяти.\n"
+
+#, c-format
+msgid "%s: Partial matching not supported.\n"
+msgstr "%s: Частичное сопоставление не поддерживается.\n"
+
+#, c-format
+msgid "%s: Returned count is too big for offset size.\n"
+msgstr ""
+"%s: Возвращённый счётчик слишком велик чтобы быть величиной смещения.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: Следующая функциональность не реализована: %s.\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr ""
+"%s: Следующая функциональность ещё не реализована: преобразование переменной "
+"типа %s.\n"
+
+#, c-format
+msgid "%s: Unknown error.\n"
+msgstr "%s: Неизвестная ошибка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался символ.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался символ или вектор "
+"символов.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась символьная строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась непустая матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась непустая матрица "
+"строк.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась не пустая строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s).\n"
+msgstr "%s: Неверны размеры входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица строк или целых "
+"чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип входного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался символ.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A character or a vector of single "
+"characters expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался символ или вектор "
+"символов.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался массив строковых "
+"переменных.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Character expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался символ.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица целых чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица строк или пустая "
+"матрица.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
+"matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица строк или пустая "
+"матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
+"чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась матрица вещественных "
+"чисел или строк.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра 3%d: ожидалась матрица вещественных или "
+"комплексных чисел, матрица символьных строк или список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Row vector of strings or column "
+"vector of strings expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался вектор-строка строк или "
+"вектор-столбец строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s: Неверный тип входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось %s, %s или %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «s» или «r».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
+"expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «u» (Upper) или «l» "
+"(Lower).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
+"Encoding problem).\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась допустимая строка "
+"(проблема кодировки UTF-8).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось значение > 0.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть между %d и %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a string expected, not a regexp "
+"pattern.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалась строка, а не шаблон "
+"регулярного выражения.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось неотрицательное "
+"целое число.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть >= 1.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgstr ""
+"%s: Неверные значения входного параметра №%d: ожидались непустые строки.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: ошибка.\n"
+
+#, c-format
+msgid "%s: impossible to get dimensions of this matrix.\n"
+msgstr "%s: не удалось получить размерность этой матрицы.\n"
+
+msgid "WARNING : \n"
+msgstr "ВНИМАНИЕ: \n"

@@ -20,6 +20,9 @@
 //
 
 function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Copyright INRIA
 
 // scicos - block diagram graphic editor
@@ -134,15 +137,6 @@ return
     Main_Scicos_window = 1000 ; //** set default value of the main scicos window
     %zoom    = 1.4      ; //** original value by Ramine
     pal_mode = %f       ;  // Palette edition mode
-
-
-
-
-
-
-
-    TCL_EvalFile(SCI+"/modules/scicos/macros/scicos_scicos/MIHM.tcl")
-
 
 
     //**---- Scilab 5 patch for font handling. This patch fix the "Symbol" font issue
@@ -353,7 +347,7 @@ return
        enable_undo = gh_current_window.user_data(3) ;
        scs_m_save  = gh_current_window.user_data(4) ;
        nc_save     = gh_current_window.user_data(5) ;
-       xselect();
+       show_window();
      end
 
   else //** diagram is NOT open
@@ -551,7 +545,7 @@ return
 
 	  if ierr > 0 then
 	    messagebox([
-		msprintf(_("An unexpected  error occured while executing the menu\n""%s"":\n"),CmenuLabel)
+		msprintf(_("An unexpected  error occurred while executing the menu\n""%s"":\n"),CmenuLabel)
 		''
 		lasterror()
 		''
@@ -692,6 +686,9 @@ endfunction //** scicos(); end here :) : you had a good day
 //** ----------------------------------------------------------------------------------------------------------------
 
 function uni = gunique(m1,m2)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Used to eliminate duplicate palette item(s)
   uni = [m1;m2] ; //** merge the two matrix
   [j,ind] = unique(uni(:,1) + uni(:,2)) ; //** remove the duplicate palette name
@@ -702,6 +699,9 @@ endfunction
 //**---------------------------------------------------------------------------------------------------------------------
 
 function scicos_pal = check_palettes_paths(scicos_pal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   toremove=[]
   for k=1:size(scicos_pal,1)
     if fileinfo(scicos_pal(k,2))==[] then toremove=[toremove k],end

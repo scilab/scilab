@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -49,7 +48,7 @@ int sci_string(char *fname,unsigned long fname_len)
 				}
 				else C2F(intstring)();
 			}
-			else Error(39);
+			else SciError(39);
 		}
 		break;
 
@@ -72,7 +71,7 @@ int sci_string(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Error(39);
+				SciError(39);
 			}
 		}
 		break;
@@ -85,7 +84,7 @@ int sci_string(char *fname,unsigned long fname_len)
 			{
 				C2F(intstring)();
 			}
-			else Error(41);
+			else SciError(41);
 		}
 		break;
 		case sci_lib:
@@ -94,7 +93,7 @@ int sci_string(char *fname,unsigned long fname_len)
 			{
 				C2F(intstring)();
 			}
-			else Error(39);
+			else SciError(39);
 		}
 		break;
 

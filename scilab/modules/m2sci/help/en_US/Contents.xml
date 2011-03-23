@@ -23,7 +23,7 @@
     <synopsis>contents=Contents(list_of_index,list_of_infer)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>list_of_index</term>
@@ -56,8 +56,8 @@
     <literal>list_of_index</literal>, you also insert an entry in <literal>list_of_infer</literal>.
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get_contents_infer">get_contents_infer</link>

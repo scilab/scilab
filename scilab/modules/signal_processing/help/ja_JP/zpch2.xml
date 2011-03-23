@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="zpch2">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>zpch2</refname>
+    <refpurpose>チェビシェフアナログフィルタ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[zeros,poles,gain]=zpch2(n,A,omegar)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数 : フィルタ次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数 : 阻止域の減衰 (<literal>A&gt;1</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegar</term>
+        <listitem>
+          <para>実数 : カットオフ周波数(Hz) </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zeros</term>
+        <listitem>
+          <para>結果のフィルタのゼロ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>poles</term>
+        <listitem>
+          <para>結果のフィルタの極</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>gain</term>
+        <listitem>
+          <para>結果のフィルタのゲイン</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	2形チェビシェフアナログフィルタの極およびゼロ.
+	gainはフィルタのゲインです.</para>
+    <programlisting role = ""><![CDATA[ 
+H(s)=gain*poly(zeros,'s')/poly(poles,'s')
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.D.  </para>
+  </refsection>
+</refentry>

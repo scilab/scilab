@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fgrayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fgrayplot</refname>
+    <refpurpose> 2D plot of a surface defined by a function using colors</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>fgrayplot(x,y,f,[strf,rect,nax])
+fgrayplot(x,y,f,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>real row vectors.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>external of type <literal>y=f(x,y)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;  </term>
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1, key2=value2</literal>,... where <literal>key1</literal>, <literal>key2,...</literal> can be one of the following: rect, nax, strf or axesflag and frameflag (see <literal>plot2d</literal>).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para>see <literal>plot2d</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>fgrayplot</literal> makes a 2D plot of the surface given by <literal>z=f(x,y)</literal> on a 
+    grid defined by <literal>x</literal> and <literal>y</literal>.
+    Each rectangle on the grid is filled with a gray or color level depending 
+    on the average value of <literal>z</literal> on the corners of the rectangle.</para>
+    <para>
+    Enter the command <literal>fgrayplot()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+t=-1:0.1:1;
+deff("[z]=my_surface(x,y)","z=x**2+y**2")
+fgrayplot(t,t,my_surface,rect=[-2,-2,2,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

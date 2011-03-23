@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="SciStringArray">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-03 16:16:36 +0200 (jeu., 03 août 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>javasci.SciStringArray (deprecated)</refname>
+    <refpurpose>Classe to use String matrix in
+  Scilab. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../images/SciStringArrayClass.gif"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>Method Summary :</para>
+    <para>
+      <literal>public SciDoubleArray(String name,SciDoubleArray Obj)</literal>
+    </para>
+    <para>
+      <literal>public SciStringArray(String name,int r,int c)</literal>
+    </para>
+    <para><literal>public SciStringArray(String name,int r,int c,String [] x
+    )</literal>Constructor</para>
+    <para><literal>public int getNumbersOfRows()</literal>Get number of rows</para>
+    <para><literal>public int getNumbersOfCols() </literal>Get number of colons</para>
+    <para><literal>public String getName()</literal>Get Name of scilab object</para>
+    <para><literal>public String[] getData()</literal>Get Value of scilab object</para>
+    <para><literal>public void Get() </literal>Get in java object , value of scilab
+    object</para>
+    <para><literal>public void Send() </literal>Send to scilab object , value of
+    java object</para>
+    <para><literal>public void disp() </literal>disp object</para>
+    <para><literal>public boolean Job(String job)</literal>(deprecated see Scilab.Exec) Execute a job in
+    scilab</para>
+    <para><literal>public String GetElement(int indr, int indc)</literal>Get a
+    specific element of scilab object</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+// See SCI/modules/Javasci/examples directory
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+       </member>
+      <member>
+        <link linkend="javasci.Scilab">javasci.Scilab</link>
+      </member>
+      <member><link linkend="compile_and_run_javasci_v1">Compile and run with Javasci v1</link></member>
+      <member>
+        <link linkend="SciDouble">SciDouble</link>
+      </member>
+      <member>
+        <link linkend="SciDoubleArray">SciDoubleArray</link>
+      </member>
+      <member>
+        <link linkend="SciString">SciString</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>A.C</para>
+  </refsection>
+</refentry>

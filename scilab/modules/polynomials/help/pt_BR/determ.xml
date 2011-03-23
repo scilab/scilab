@@ -68,7 +68,7 @@
     <literal>W</literal>.</para>
 
     <para>O valor padrão de <literal>k</literal> é a menor potência de 2 que é
-    maior que <literal>n*maxi(degree(W))</literal>.</para>
+    maior que <literal>n*max(degree(W))</literal>.</para>
 
     <para>Método (apenas se o tamanho de W for maior que 2*2) : avalia o
     determinante de W para as freqüências de Fourier e aplica a TRF inversa

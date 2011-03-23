@@ -1,0 +1,305 @@
+body {
+    color:#000000;
+    background-color:#ffffff;
+    font-family:sans-serif;
+    font-size:100%;
+    margin:5px;
+    padding:0;
+    background          : url("/img/body.png");
+    background-repeat   : repeat-x;
+}
+
+.para {
+    padding-left: 10px;
+}
+
+.refname {
+    color: #ff6c0a;
+}
+.refpurpose {
+    font-size: 110%;
+}
+
+.synopsis {
+    border: 1px solid black;
+    width:80%;
+    padding: 0.5em;
+}
+
+.editbar {
+    text-align: right;
+}
+
+.term {
+    color:#800000;
+    font-size:100%;
+}
+
+h3 {
+    color: #000063;
+    font-weight: bold;
+    font-size:130%;
+    margin-bottom: 10px;
+}
+
+.programlisting {
+    font-family: monospace;
+    font-size: 100%;
+    background-color:#EEEEFF;
+    border-color:#CCCCCC ;
+    border-style:solid;
+    border-width:2px medium;
+    width:80%;
+    color:#333333;
+    line-height:120%;
+    padding:10px;
+}
+
+.literal {
+    font-size: 100%;
+}
+
+a {
+    color: blue;
+    text-decoration:none;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+.itemizedlist {
+    list-style-type: disk;
+}
+
+.inline-list li {
+    display: inline;
+    list-style-type: disk;
+}
+
+.vert-list {
+    list-style-type: disk;
+}
+
+pre {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+.leftpart {
+    position:absolute;
+    float:left;
+    width: 186px;
+    padding: 5px;
+    font-size: smaller;
+}
+
+.content {
+    margin-top: 100px;
+    margin-left: 196px
+}
+
+.container {
+    margin: 0 auto;
+    width:1024px;
+}
+
+ul.toc li.list-active {
+    list-style-type:disc;
+    font-weight:bold
+}
+
+ul.toc li.parent {
+    font-size: 115%;
+    padding: 5px 0px 5px 11px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 5px
+}
+
+ul.toc li.root {
+    font-size: 135%;
+    padding: 5px 0px 5px 11px;
+    border-bottom: 1px solid #cccccc;
+    margin-bottom: 5px
+}
+
+ul.toc li {
+    font-size: 85%;
+    margin: 1px 0 1px 1px;
+    padding: 1px 0 1px 11px;
+    background-repeat: no-repeat;
+    background-position: center left;
+    list-style-type: circle
+}
+
+.next {
+    float:right
+    text-align: right;
+}
+
+.center {
+    text-align: center;
+}
+
+.screen {
+    font-family: monospace;
+    font-size: 100%;
+    background-color:#FFFFFF;
+    border-color:#CCCCCC ;
+    border-style:solid;
+    border-width:2px medium;
+    width:80%;
+    color:#333333;
+    line-height:120%;
+    padding:10px;
+}
+
+/* Top and bottom navigation controls on manual pages --------------------- */
+div.manualnavbar {
+    background-color: #E0E0E0;
+        color: inherit;
+        padding: 4px;
+        margin-bottom: 10px;
+}
+div.manualnavbar .prev {
+        padding-right: 4px;
+}
+div.manualnavbar .next {
+    text-align: right;
+        padding-left: 4px;
+}
+
+div.manualnavbar .top {
+        text-align: center;
+            display: block;
+}
+
+div.manualnavbar hr {
+        color: #cccccc;
+        background-color: #cccccc;
+}
+
+/* Footer navigation area ------------------------------------------------- */
+
+#pagefooter {
+        position: relative;
+        font-size: 75%;
+        color: inherit;
+        background-color: #e5e5e5;
+        width: 100%;
+}
+
+#pagefooterleft {
+        top: 0px;
+        left: 0px;
+        padding: 6px;
+        margin-right: 30%;
+}
+
+#pagefooterright {
+        text-align: right;
+        margin-left: 50%;
+        padding: 6px;
+}
+#footnav {
+        color: inherit;
+        background-color: #9999cc;
+        border-width: 1px 0px;
+        border-color: #333366;
+        border-style: solid;
+        text-align: right;
+        padding-right: 6px;
+}
+
+
+
+
+                #global{
+/*                      width: 90%; */
+                        max-width: 90em;
+/*                      min-width: 850px; */
+                        margin-left: auto;
+                        margin-right: auto;
+                }
+
+                #myHeader{
+                        background-color:#000000;
+                        color:white;
+                        margin-bottom : 10px;
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("http://atoms.scilab.org/images/homepage/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+
+                }
+
+                #myFooter{
+                        background-color:#E5E5E5;
+                        font-color:black;
+/*                      width: 90%;*/
+                        max-width: 90em;
+/*                      min-width: 850px;
+                        margin-left: 5%;
+                        margin-right: 5%;*/
+                        margin-top:10px;
+                        padding:10px;
+                }
+
+                #mainArea{
+                        width: 100%;
+                        overflow: hidden;
+                }
+
+                #myLeftArea{
+                        color:white;
+                        float: left;
+                        width: 180px;
+                        padding:5px;
+                }
+
+                #myMiddleArea{
+                        color:black;
+                        margin-left: 200px;
+                        padding: 10px 20px;
+                }
+
+                #myRightArea{
+                        color:white;
+                        float: right;
+                        width: 200px;
+                        padding: 12px 20px;
+                }
+
+
+div#cadre_head
+{
+    position            : relative;
+    text-align: center;
+/*    width               : 1024px;*/
+    height              : 100px;
+    padding-left        : 20px;
+    background          : url("/img/cadre_head.png");
+    background-repeat   : no-repeat;
+    background-position : 0px 0px;
+}
+
+
+div#slogan{
+    position: absolute;
+    top : 50px;
+    left:251px;
+    color:#0000AA;
+    font: 120%, Georgia,Serif;
+}
+div#cadre_help
+{
+    position: absolute;
+    top:45px;
+    right:0px;
+    font-size:0.8em;
+    color:#0000AA;
+}

@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 SPARSE_C_SOURCES = \
 src/c/spUtils.c \
@@ -159,11 +159,12 @@ sci_gateway/fortran/sci_ta2lpd.f
 
 libscisparse_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/elementary_functions/includes \
 				-I$(top_srcdir)/modules/output_stream/includes
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisparse.la
 
-libscisparse_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisparse_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -171,7 +172,7 @@ libscisparse_la_SOURCES = $(SPARSE_C_SOURCES) $(SPARSE_FORTRAN_SOURCES) $(GATEWA
 CHECK_SRC = $(SPARSE_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisparse_la_CFLAGS)
 
-libscisparse_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la $(top_builddir)/modules/core/libscicore.la  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscisparse_la_LIBADD =  $(top_builddir)/modules/io/libsciio.la   $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 
 #### Target ######
@@ -180,7 +181,7 @@ modulename=sparse
 
 #### sparse : Conf files ####
 libscisparse_la_rootdir = $(mydatadir)
-libscisparse_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisparse_la_root_DATA =  license.txt version.xml
 
 
 #### sparse : init scripts ####

@@ -24,7 +24,7 @@
     <synopsis>extension = fileext(fullpath)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fullpath</term>
@@ -51,8 +51,8 @@ extension = fileext('SCI/etc/scilab.start')
 extension = fileext(['SCI/etc/scilab.start';'SCI/etc/scilab.quit'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fileparts">fileparts</link>

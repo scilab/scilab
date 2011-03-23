@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="comparison">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>comparison</refname>
+    <refpurpose>比較, 関係演算子</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>a==b
+a~=b or a&lt;&gt;b
+a&lt;b
+a&lt;=b
+a&gt;b
+a&gt;=b</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para> 
+	等値比較<literal>a==b</literal>, <literal>a~=b</literal> 
+	    <literal>a&lt;&gt;b</literal>の場合は任意の変数の型とすることができ,
+	順序が関連する比較<literal>a&lt;b</literal>,
+	<literal>a&lt;=b</literal>, <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>
+	に関しては,浮動小数点の実数および整数の配列に制限されます.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para>等値比較 <literal>a==b</literal>, <literal>a~=b</literal> 
+	    <literal>a&lt; &gt; b</literal> の場合は任意の変数の型とすることができ,
+	順序が関連する比較
+	<literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
+	    <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>
+	に関しては,浮動小数点の実数および整数の配列に制限されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>2つの暮らすの演算士は区別する必要があります:</para>
+    <variablelist>
+      <varlistentry>
+        <term>等値および不等式比較: </term>
+        <listitem>
+          <para><literal>a==b</literal>, <literal>a~=b</literal> (または等価な <literal>a&lt;&gt;b</literal>).
+	  これらの演算子は任意のオペランドの型に適用できます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>順序が関連する比較: </term>
+        <listitem>
+          <para><literal>a&lt;b</literal>, <literal>a&lt;=b</literal>,
+	    <literal>a&gt;b</literal>,<literal>a&gt;=b</literal>. これらの演算子は
+	浮動小数点の実数および整数の配列にのみ適用されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>比較演算子のセマンティクスもオペランドの型に依存します:</para>
+    <variablelist>
+      <varlistentry>
+        <term>配列変数の場合 </term>
+        <listitem>
+          <para>浮動小数点の実数および整数配列, 論理値配列,
+	文字列配列,多項式または有理配列,ハンドル配列,リスト...
+	のような配列変数の場合,以下の規則が適用されます:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal> a</literal>および <literal> b</literal> を
+	同じ型，同じ次元の配列として評価する場合,
+	要素毎の比較が行われ,
+	結果は同じ次元の論理値の配列となります.</para>
+            </listitem>
+            <listitem>
+              <para>If <literal> a</literal> および <literal> b</literal> が
+		型は同じだが
+		<literal> a</literal>または<literal> b</literal>が1行1列の配列の場合,
+		このスカラーが別の配列の各要素と比較されます.
+		この結果はスカラーでないオペランドの大きさの論理値の配列となります.</para>
+            </listitem>
+            <listitem>
+              <para>その他の場合,
+		結果は論理値 <literal> %f</literal> となります.</para>
+            </listitem>
+            <listitem>
+              <para>オペランドのデータ型が異なるが浮動小数点と整数のように
+		互換性がある場合,比較の前に型変換が行われます.
+		</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>その他の型のオペランドの場合 </term>
+        <listitem>
+          <para> <literal>function</literal>や
+	<literal>libraries</literal>のようなその他のオペランドの場合, 
+	結果はオブジェクトが同じ場合に<literal>%t</literal>,
+	それ以外の場合に <literal>%f</literal> となります.</para>
+          <para>互換性がないデータ型の間の等値比較は
+	<literal>%f</literal>を返します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//用途毎の比較
+(1:5)==3
+(1:5)<=4 
+(1:5)<=[1 4 2 3 0]
+1<[]
+list(1,2,3)~=list(1,3,3)
+
+//オブジェクト毎の比較
+(1:10)==[4,3]
+'foo'==3
+1==[]
+list(1,2,3)==1
+
+isequal(list(1,2,3),1)
+isequal(1:10,1)
+
+//型変換を伴う比較
+int32(1)==1
+int32(1)<1.5
+int32(1:5)<int8(3)
+p=poly(0,'s','c')
+p==0
+p/poly(1,'s','c')==0
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="less">less</link>
+      </member>
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="isequal">isequal</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

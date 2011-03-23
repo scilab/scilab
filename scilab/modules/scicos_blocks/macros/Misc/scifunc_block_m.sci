@@ -43,28 +43,6 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
 // job=='define'     : corresponding block data structure initialisation
 //                    arg1: name of block parameters acquisition macro
 //                    x   : block data structure
-//%Block data-structure definition
-// bl=list('Block',graphics,model,init,'standard_block')
-//  graphics=list([xo,yo],[l,h],orient,label)
-//          xo          - x coordinate of block origin
-//          yo          - y coordinate of block origin
-//          l           - block width
-//          h           - block height
-//          orient      - boolean, specifies if block is tilded
-//          label       - string block label
-//  model=list(eqns,#input,#output,#clk_input,#clk_output,state,..
-//             rpar,ipar,typ [,firing])
-//          eqns        - function name (in string form if fortran routine)
-//          #input      - vector of input port sizes
-//          #output     - vector of ouput port sizes
-//          #clk_input  - vector  of clock inputs port sizes
-//          #clk_output - vector  of clock output port sizes
-//          state       - vector (column) of initial condition
-//          rpar        - vector (column) of real parameters
-//          ipar        - vector (column) of integer parameters
-//          typ         - string: 'c' if block is continuous, 'd' if discrete
-//                        'z' if zero-crossing.
-//          firing      - vector of initial ouput event firing times
 //
 x=[];y=[];typ=[];
 select job
@@ -120,8 +98,12 @@ case 'set' then
       model.state=xx
       model.dstate=z
       model.rpar=rpar
-      if or(model.ipar<>tt) then needcompile=4,end
-      model.ipar=tt
+      if model.ipar <> 0 then
+        model.opar=model.ipar;
+        model.ipar=0;
+      end
+      if or(model.opar<>tt) then needcompile=4,end
+      model.opar=tt
       model.firing=auto
       model.dep_ut=dep_ut
       x.model=model
@@ -156,7 +138,8 @@ case 'define' then
   model.state=x0
   model.dstate=z0
   model.rpar=rpar
-  model.ipar=0
+  model.ipar=0;
+  model.opar=list();
   model.blocktype=typ
   model.firing=auto
   model.dep_ut=[%t %f]

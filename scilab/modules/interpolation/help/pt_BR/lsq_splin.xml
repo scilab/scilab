@@ -150,12 +150,12 @@ clf()
 plot2d(xd,[ye yd ys],style=[2 -2 3], ...
        leg="função exata@medidas experimentais (perturbação gaussiana)@spline ajustado")
 xtitle("Um spline de mínimos quadrados")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="interp">interp</link></member>

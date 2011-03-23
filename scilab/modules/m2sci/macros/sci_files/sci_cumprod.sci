@@ -12,7 +12,7 @@ function [tree]=sci_cumprod(tree)
 // M2SCI function
 // Conversion function for Matlab cumprod()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_cumprod()
 
 // B = cumprod(A)

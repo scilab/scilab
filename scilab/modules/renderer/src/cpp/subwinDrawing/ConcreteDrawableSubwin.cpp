@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class containing drivers independent routines for a subwin object
  * 
  * This file must be used under the terms of the CeCILL.
@@ -357,6 +358,24 @@ void ConcreteDrawableSubwin::getZTicksPos(double ticksPositions[], char ** ticks
   }
 }
 /*------------------------------------------------------------------------------------------*/
+void ConcreteDrawableSubwin::getNbSubticksPerGrad(double nbsubtics[3])
+{
+  // to be sure that the inner structure is up to date.
+  update();
+
+  // Initialize all elements to -1.
+  nbsubtics[0] = nbsubtics[1] = nbsubtics[2] = -1;
+
+  if (m_pXTicksDrawer != NULL)
+    nbsubtics[0] =  m_pXTicksDrawer->getInitNbSubticksPerGrad();
+
+  if (m_pYTicksDrawer != NULL)
+    nbsubtics[1] =  m_pYTicksDrawer->getInitNbSubticksPerGrad();
+
+  if (m_pZTicksDrawer != NULL)
+    nbsubtics[2] =  m_pZTicksDrawer->getInitNbSubticksPerGrad();
+}
+/*------------------------------------------------------------------------------------------*/
 bool ConcreteDrawableSubwin::getXAxisPosition(double axisStart[3], double axisEnd[3], double ticksDirection[3])
 {
 
@@ -414,7 +433,7 @@ void ConcreteDrawableSubwin::displayChildren(void)
   // draw the children as usual
   DrawableObject::displayChildren();
 
-  // draw the text after
+  // because of transparency, the text is drawn after.
   displayTexts();
 
 }
@@ -446,7 +465,7 @@ void ConcreteDrawableSubwin::drawTicks(void)
   double distToYaxis = 0.0;
   double distToZaxis = 0.0;
   
-  // Z ticks are deeper qo draw them before
+  // Z ticks are deeper so draw them before
   if (m_pZTicksDrawer != NULL)
   {
     distToZaxis = m_pZTicksDrawer->draw();
@@ -510,17 +529,17 @@ void ConcreteDrawableSubwin::displayLabels(void)
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::displayTexts(void)
 {
- 
+  list<sciPointObj *> displayedTexts = m_oDisplayedTexts;
   // sortDisplayed text if needed
   if (m_bNeedDraw || m_bNeedRedraw || m_bTextListChanged)
   {
-    sortDisplayedTexts();
+    displayedTexts.sort(getTextOrder);
   }
 
   // display all the text registered in the list
   // The list should be sorted
-	list<sciPointObj *>::iterator it = m_oDisplayedTexts.begin();
-  for ( ; it != m_oDisplayedTexts.end(); it++)
+  list<sciPointObj *>::iterator it = displayedTexts.begin();
+  for ( ; it != displayedTexts.end(); it++)
   {
     // HACK here. This patch is to force disepearance
     // of text objects if one of there parents is not visible.
@@ -529,15 +548,6 @@ void ConcreteDrawableSubwin::displayTexts(void)
       getHandleDrawer(*it)->display();
     }
   }
-}
-/*------------------------------------------------------------------------------------------*/
-void ConcreteDrawableSubwin::sortDisplayedTexts(void)
-{
-	// sort the text from back to front
-	m_oDisplayedTexts.sort(getTextOrder);
-
-  // text has been sorted successfully
-  m_bTextListChanged = false;
 }
 /*------------------------------------------------------------------------------------------*/
 void ConcreteDrawableSubwin::setLabelsDistanceToAxis(double xLabelDist, double yLabelDist,
@@ -616,7 +626,7 @@ double ConcreteDrawableSubwin::getEyeDistance(Camera * cam, sciPointObj * pText)
 bool ConcreteDrawableSubwin::getTextOrder(sciPointObj * pText1, sciPointObj * pText2)
 {
 	Camera * cam = getSubwinDrawer(sciGetParentSubwin(pText1))->getCamera();
-	// find the deepest one
+	// find the deepest witch is the first drawn.
 	return (getEyeDistance(cam, pText1) > getEyeDistance(cam, pText2));
 }
 /*---------------------------------------------------------------------------------*/

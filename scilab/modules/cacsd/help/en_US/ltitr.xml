@@ -24,7 +24,7 @@
 [xf,X]=ltitr(A,B,U,[x0])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,B</term>
@@ -77,8 +77,8 @@ x2=A*x1+B*u(2)
 x3=A*x2+B*u(3) //....
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rtitr">rtitr</link>

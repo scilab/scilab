@@ -1,0 +1,30 @@
+<package name="org.scilab.modules.helptools">
+  <object name="SciDocMain">
+
+    <method name="buildDocumentation" returnType="void">
+      <param type="String" name="type" />
+    </method>
+
+    <method name="setOutputDirectory" returnType="boolean">
+      <param type="String" name="directory" />
+    </method>
+
+    <method name="setWorkingLanguage" returnType="void">
+      <param type="String" name="language" />
+    </method>
+
+    <method name="setExportFormat" returnType="void">
+      <param type="String" name="format" />
+    </method>
+
+    <method name="setIsToolbox" returnType="void">
+      <param type="boolean" name="isToolbox" />
+    </method>
+
+    <method name="process" returnType="String">
+      <param type="String" name="sourceDoc" />
+      <param type="String" name="styleSheet" />
+    </method>
+
+  </object>
+</package>

@@ -14,13 +14,15 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -62,29 +64,39 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 		SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e))
 				.getSelectionCell();
-		/*
-		 * FIXME: this action doesn't handle variable settings
-		 */
-		block.mask();
 
-		/* Set default values */
-		ScilabList exprs = new ScilabList() {
-			{
-				add(new ScilabDouble());
-				add(new ScilabList() {
-					{
-						add(new ScilabDouble());
-						add(new ScilabString(
-								XcosMessages.MASK_DEFAULTWINDOWNAME));
-						add(new ScilabList() {
-							{
-								add(new ScilabDouble());
-							}
-						});
-					}
-				});
-			}
-		};
-		block.setExprs(exprs);
+		block.mask();
+		
+		/*
+		 * Create a valid DSUPER exprs field if not already present.
+		 */
+		if (!(block.getExprs() instanceof ScilabList)) {
+			
+			/* Set default values */
+			ScilabList exprs = new ScilabList(
+				Arrays.asList(
+					new ScilabDouble(),
+					new ScilabList(
+						Arrays.asList(
+							new ScilabDouble(),
+							new ScilabString(XcosMessages.MASK_DEFAULTWINDOWNAME),
+							new ScilabList(
+								Arrays.asList(
+									new ScilabDouble()
+								)
+							)
+						)
+					)
+				)
+			);
+			
+			block.setExprs(exprs);
+			
+			/*
+			 * Open the customization UI on a new mask creation
+			 */
+			GraphActionManager.getInstance(getGraph(e),
+					SuperblockMaskCustomizeAction.class).actionPerformed(e);
+		}
 	}
 }

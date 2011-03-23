@@ -24,7 +24,7 @@
 S=tf2des(G,flag)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -68,8 +68,8 @@ S1=tf2des(G);des2tf(S1)
 S2=tf2des(G,"withD");des2tf(S2)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pol2des">pol2des</link>

@@ -1,0 +1,18 @@
+<package name="org.scilab.modules.scinotes">
+    <object name="SciNotes">
+        <method name="scinotes" returnType="void" modifier="static"/>
+        <method name="scinotes" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+        </method>
+        <method name="scinotes" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+            <parameter name="lineNumber" type="int"/>
+	    <parameter name="functionName" type="String"/>
+        </method>
+        <method name="scinotes" returnType="void" modifier="static">
+            <parameter name="fileName" type="String"/>
+            <parameter name="option" type="String"/>
+        </method>
+        <method name="closeSciNotesFromScilab" returnType="void" modifier="static"/>
+    </object>
+</package>

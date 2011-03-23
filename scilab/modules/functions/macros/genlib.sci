@@ -52,7 +52,7 @@ function [success,funcs,success_files,failed_files] = genlib(nam,path,force,verb
     updatelib = %t;
   end
   
-  // convert path according to MSDOS flag
+  // convert path according to getos() == 'Windows' flag
   // without env variable substitution
   
   path1 = pathconvert(path,%t,%f);

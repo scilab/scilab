@@ -1,0 +1,391 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-07-10 21:15+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: Команда: %s\n"
+
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: Копирование %s в TMPDIR\n"
+
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr ""
+"   %s: Копирование файлов компиляции (Makefile*, libtool...) в TMPDIR\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: %s не копировалось: одинаковые исходный каталог и каталог назначения "
+"(%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: Пропущен файл %s.\n"
+
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: Изменение Makefile в TMPDIR.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr ""
+"   %s: Необходимо запустить программу определения параметров компилятора "
+"(configure).\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: Замещается ссылка обычным файлом.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: Используется ранее определенные параметры компилятора.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: configure : Генерируется Makefile.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   Создание разделяемой библиотеки (будьте терпеливы)\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   Команда: %s\n"
+
+msgid "   Compilation of "
+msgstr "   Компиляция "
+
+msgid "   Generate a Makefile\n"
+msgstr "   Формирутеся Makefile\n"
+
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Формирется Makefile: %s\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   Формируется файл очистки\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   Формируется файл шлюза\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   Формируется файл загрузки\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   Вывод: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   Выполняется Makefile\n"
+
+msgid "   Running the makefile\n"
+msgstr "   Выполняется Makefile\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   Ошибки: %s\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : Неверный тип входного параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : Неверное значение параметра №%d: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : второй параметр должен быть уникальным идентификатором разделяемой "
+"библиотеки.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s не является точкой входа.\n"
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Требуется компилятор Fortran или C.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Уже загружена из библиотеки %s\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: Произошла ошибка во время компиляции:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: Ошибка при обнаружении компилятора. Введите ilib_verbose(2) для "
+"получения дополнительной информации.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: Команда сборки: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr "%s: Не удалось открыть разделяемые файлы. Достигнут предел %d.\n"
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: Ошибка при изменении эталонного Makefile:\n"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr "%s: Функциональный модуль не работает в Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: Разделяемая библиотека %s не существует.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: Была команда:\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Файл %s не существует.\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: Разделяемый архив не был загружен: %s\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: Функциональный модуль был реализован для Windows.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+"%s: Функциональный модуль требует наличие компилятора Microsoft visual "
+"studio C.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: Внимание: Компиляция не возвратила кода ошибки, но вывод сообщений об "
+"ошибках не пуст:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: Внимание: не удалось найти исходный код Scilab. Сообщите об ошибке на "
+"http://bugzilla.scilab.org/\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось %d,%d или %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась матрица строк < 999.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидался вектор строк < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидались строки.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидался вектор строк.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr "%s: Неверный тип входных параметров: ожидались строки.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось '''' или «[]».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть из множества "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: проблема с одной из точек входа.\n"
+
+msgid "A Fortran or C compiler is required."
+msgstr "Требуется компилятор Fortran или C."
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Произошла ошибка: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"Не удалось открыть разделяемые файлы, достигнут предел в %d входов.\n"
+
+msgid "Dynamic link"
+msgstr "Динамическая компоновка"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Имя входа %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Точка входа %s в разделяемой библиотеке %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Ошибка: неверный номер внутренней программы %d.\n"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C не удалось собрать fortran 90"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "Интерфейс %s не скомпонован.\n"
+
+msgid "Link done.\n"
+msgstr "Компоновка завершена.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "Не удалось скомпоновать динамическую библиотеку «%s».\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "Компоновка %s.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Количество точек входа %d.\n"
+"Разделяемые библиотеки :\n"
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "Вывод: %s\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "Разделяемый архив загружен.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Ожидалось уникальное имя динамической библиотеки."
+
+msgid "Unique id of a shared library expected."
+msgstr "Ожидался уникальный идентификатор разделяемой библиотеки."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d библиотек.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : библиотека %d.\n"
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "Ошибки: %s\n"

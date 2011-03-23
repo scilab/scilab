@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(scildiv)(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ldiv)(char *fname,unsigned long fname_len)
+int sci_ldiv(char *fname,unsigned long fname_len)
 {
 	C2F(scildiv)(fname,fname_len);
 	return 0;

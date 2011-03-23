@@ -12,7 +12,9 @@
 
 #include "gw_io.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_read4b)(char *fname,unsigned long fname_len)
+extern int C2F(intread4b)(); /* fortran subroutine */
+/*--------------------------------------------------------------------------*/
+int sci_read4b(char *fname,unsigned long fname_len)
 {
 	C2F(intread4b)();
 	return 0;

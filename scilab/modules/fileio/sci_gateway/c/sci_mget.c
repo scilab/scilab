@@ -48,13 +48,13 @@ int sci_mget(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,1);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,1);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,1);
 			return 0;
 		}
 	}
@@ -88,13 +88,13 @@ int sci_mget(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,3);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,3);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,3);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,3);
 			return 0;
 		}
 	}
@@ -106,7 +106,7 @@ int sci_mget(char *fname,unsigned long fname_len)
 
 	if (err >  0)
 	{
-		Error(10000);
+		SciError(10000);
 		return 0;
 	}
 	else if ( err < 0)

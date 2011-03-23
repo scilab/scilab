@@ -222,7 +222,7 @@ combobox $w.frame.style \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ] -font $gedFont
-eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
+eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]
 pack $w.frame.stylelabel -in $w.frame.linest   -side left
 pack $w.frame.style   -in $w.frame.linest   -expand 1 -fill x -pady 0 -padx $mediumPad
 

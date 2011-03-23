@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="flipdim" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>flipdim</refname>
+
+    <refpurpose>flip x components along a given dimension</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>y=flipdim(x,dim)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>a scalar, a vector or an array of reals</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dim</term>
+
+        <listitem>
+          <para>a positive integer</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>a scalar, a vector or an array of reals</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Given <literal>x</literal>, a scalar/vector/array of reals and
+    <literal>dim</literal> a positive integer, this function flips the x
+    components along the dimension number <literal>dim</literal> of
+    <literal>x</literal> (<literal>x</literal> and <literal>y</literal> have
+    the same size)</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1: flip x components along the first dimension
+x=[1 2 3 4; 5 6 7 8];
+dim=1;
+y=flipdim(x,dim)
+
+// example 2: flip x components along the second dimension
+dim=2;
+y=flipdim(x,dim)
+
+// example 3: flip x components along the third dimension
+x=matrix(1:48,[3 2,4,2]);
+dim=3;
+y=flipdim(x,dim)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>F.Belahcene</para>
+  </refsection>
+</refentry>

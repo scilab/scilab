@@ -12,18 +12,15 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include <stdio.h>
-#endif
 #include "gw_differential_equations4.h"
 #include "callFunctionFromGateway.h"
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] =
 {
-	{C2F(sci_intg),"intg"},
-	{C2F(sci_int2d),"int2d"},
-	{C2F(sci_int3d),"int3d"},
-	{C2F(sci_feval),"feval"}
+	{sci_intg,"intg"},
+	{sci_int2d,"int2d"},
+	{sci_int3d,"int3d"},
+	{sci_feval,"feval"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_differential_equations4(void)

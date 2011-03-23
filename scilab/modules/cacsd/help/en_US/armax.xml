@@ -23,7 +23,7 @@
     <synopsis>[arc,la,lb,sig,resid]=armax(r,s,y,u,[b0f,prf])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -105,7 +105,7 @@ B(z) = b0+b1*z+...+b_s z^s ( s=-1 => B(z)=0)
     we can write 
     <literal>y(t)= coef* z(t) + sig*e(t) </literal> and the algorithm minimises 
     <literal>sum_{t=1}^N ( [y(t)- coef'z(t)]^2)</literal>
-    where t0=maxi(maxi(r,s)+1,1))).</para>
+    where t0=max(max(r,s)+1,1))).</para>
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -137,8 +137,8 @@ Arma1est=armax(2,-1,y,[]);
 [A,B,D]=arma2p(Arma1est)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>

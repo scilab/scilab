@@ -1,17 +1,20 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 MEXLIB_C_SOURCES = src/c/mexlib.c \
 src/c/sci_gateway.c
 
-MEXLIB_FLAGS = -I$(srcdir)/includes/ -I$(top_srcdir)/modules/output_stream/includes/ -I$(top_srcdir)/modules/call_scilab/includes/
+MEXLIB_FLAGS = -I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/elementary_functions/includes/ \
+-I$(top_srcdir)/modules/call_scilab/includes/
 
 MEXLIB_FLAGS += -I$(top_srcdir)/modules/string/includes
 
 
-MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
+MEXLIB_DEP =  \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
@@ -25,7 +28,7 @@ libmex_la_LIBADD = $(MEXLIB_DEP)
 
 libmex_la_CFLAGS=  $(MEXLIB_FLAGS)
 
-libmex_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
 
@@ -33,7 +36,7 @@ libmat_la_LIBADD = $(MEXLIB_DEP)
 
 libmat_la_CFLAGS=  $(MEXLIB_FLAGS)
 
-libmat_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
 
@@ -41,7 +44,7 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 
 libmx_la_CFLAGS=  $(MEXLIB_FLAGS)
 
-libmx_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename=mexlib
@@ -52,7 +55,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
-libmex_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libmex_la_root_DATA =  license.txt version.xml
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc

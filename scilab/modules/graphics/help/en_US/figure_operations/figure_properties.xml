@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="figure_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>figure_properties</refname>
+    <refpurpose>description of the graphics
+  figure entity properties</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The figure entity is the top level of the graphics entities hierarchy.
+    This entity contain a number of properties designed to control many
+    aspects of displaying Scilab graphics objects. These properties fall into
+    two categories. Properties that contain information about figure itself
+    and others related to set default values for the children creation.</para>
+    <variablelist>
+      <varlistentry>
+        <term>Figure properties: </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>children: </term>
+              <listitem>
+                <para>This handles represent the vector of the figure's children .
+		  Note that all figure children are of type <literal>"Axes"</literal>.
+		  Also keep in mind that, when creating a figure entity (using
+		  <link linkend="scf">scf</link> command), an <literal>Axes</literal> entity is
+		  simultaneously built too.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_style: </term>
+              <listitem>
+                <para>The value of this field defines the figure style.
+		  Scince Scilab 5.0, old graphic mode has been disable.
+		  This property is kept for compatibility but can not be modified.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_position: </term>
+              <listitem>
+                <para>This field contains the position in pixel of the graphic
+		  window on the screen. This is a vector <literal>[x,y]</literal>
+		  defining the position of the upper-left corner of the window.
+		  The position <literal>[0,0]</literal> is the upper-left corner of the
+		  screen.</para>
+		<para>The initial position of graphic windows is taken from the default figure entity (see
+		  <link linkend="gdf">gdf</link>). The only exception is when default figure <literal>figure_position</literal>
+		  value is <literal>[-1,-1]</literal>. In this case, the initial position of graphic windows is automatically set
+		  by the windowing system.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_size: </term>
+              <listitem>
+                <para>This property controls the size in pixel of the screen's
+		  graphics window. The size is the vector
+		  <literal>[width,height]</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axes_size: </term>
+              <listitem>
+                <para>Used to Specifies the size in pixel of the virtual graphics
+		  window. The size is the vector <literal>[width,height] </literal>. The
+		  virtual graphic window should be bigger than the part really
+		  visible on the screen. This property could not be modified if the figure is docked
+		  with other elements.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>auto_resize: </term>
+              <listitem>
+                <para>This property determines if graphics window is resized. If the
+		  value is <literal>"on"</literal> then the <literal>axes_size</literal>
+		  property is equaled to the <literal>figure_size</literal> and the axes
+		  children are zoomed accordingly. If the value is
+		  <literal>"off"</literal> that indicate that <literal>axes_size</literal>
+		  cannot be resized when <literal>figure_size</literal> is changed.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>viewport: </term>
+              <listitem>
+                <para>Postion of the visible part of graphics in the
+		  panner.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_name: </term>
+              <listitem>
+                <para>This field contains the name of the figure. This name is a
+		  character string displayed at the top of the graphics_window. The
+		  name can contain a single substring <literal>%d</literal> which will be
+		  replaced by the <literal>figure_id</literal>. No other instance of the
+		  <literal>%</literal> character is allowed inside the name.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_id: </term>
+              <listitem>
+                <para>This field contains the identifier of the figure. This is an
+		  integer number which is set at figure creation and cannot be
+		  changed after.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info_message: </term>
+              <listitem>
+                <para>This character string set the text displayed in the info bar of the
+		  graphic window.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>color_map: </term>
+              <listitem>
+                <para>Property which defines the colormap used by this figure. The
+		  colormap is a <literal>m</literal> by <literal>3</literal> matrix.
+		  <literal>m</literal> is the number of colors. Color number i is given as
+		  a 3-uple <literal>R</literal>, <literal>G</literal>, <literal>B</literal>
+		  corresponding respectively to red, green and blue intensity
+		  between 0 and 1.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>pixmap: </term>
+              <listitem>
+                <para>This property controls the pixmap status of a Graphic Window.
+		  If this property value is <literal>"off"</literal> the graphics are
+		  directly displayed on the screen. If it is <literal>"on"</literal> the
+		  graphics are done on a pixmap and are sent to the graphics window
+		  with the command <literal>show_pixmap()</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>pixel_drawing_mode: </term>
+              <listitem>
+                <para>This field specifies the bitwise operation used for pixel rendering.
+                      The default mode is <literal>copy</literal>.
+                      For more details see the <link linkend="pixel_drawing_mode">pixel drawing mode reference page</link>.
+                </para>
+              </listitem>
+            </varlistentry>
+	    <varlistentry>
+              <term>anti_aliasing: </term>
+              <listitem>
+                <para>This property controls the anti-aliasing level used to improve graphic quality.
+		  If the property is set to "off", anti-aliasing is disable. To enable anti-aliasing
+		  the property must set to either "2x", "4x", "8x" or "16x". In this case, it stands for the anti-aliasing level.
+		  For example, "16x" is a higher quality level than "2x".
+		  Specifying a higher anti-aliasing level improves image quality but also decreases graphic performances. 
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>immediate_drawing: </term>
+              <listitem>
+                <para>This property controls the figure display. Its value can be
+		  <literal>"on"</literal> (default mode) or <literal>"off"</literal>. It is used
+		  to delay a huge succession of graphics commands (implying several
+		  drawings or redrawings). Note that, when using
+		  <literal>drawlater</literal> or <literal>drawnow</literal> commands, it
+		  affects the property value of the current figure (which is
+		  respectively turned to <literal>'off'</literal> or
+		  <literal>'on'</literal>).</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>background: </term>
+              <listitem>
+                <para>This property controls the figure window background color. It
+		  takes as value an index relative to the current colormap.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>event_handler</term>
+              <listitem>
+                <para>A character string. The name of the Scilab function which is intended
+		  to handle the events. Not that setting an empty string will disable
+		  the event handler. For more information about event handler functions see the
+		  <link linkend="eventhandlerfunctions">event handler functions</link> help.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>event_handler_enable</term>
+              <listitem>
+                <para>Enable or disable the event handler. Its value must be either
+		  "on" or "off".</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>user_data: </term>
+              <listitem>
+                <para>This field can be use to store any scilab variable in the
+		  figure data structure, and to retreive it.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tag: </term>
+              <listitem>
+                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjontion with findobj().</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>Children's default values: </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>visible: </term>
+              <listitem>
+                <para>This field ules if the contents of the figure as to be
+		  redrawn. Its value should be <literal>"on"</literal> or
+		  <literal>"off"</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rotation_style: </term>
+              <listitem>
+                <para>This field is related to the "3D Rot" button. It takes
+		  <literal>unary</literal> as value (default) in the aim to rotate only
+		  selected 3D plot. In the other case its value can be
+		  <literal>multiple</literal> : all 3D plots are rotated.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Note on default values :</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para>All these listed properties and fields inherit from default
+		  values stored in a figure model. These default values can be seen
+		  and changed. To do so, use the <literal>get("default_figure")</literal>
+		  command : it returns a graphic handle on the figure model. Note
+		  that no graphic window is created by this command. The next
+		  created figures will inherit from this model (see example 2
+		  below).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+lines(0) // disables vertical paging 
+
+//Example 1
+f=get("current_figure") //get the handle of the current figure : 
+                        //if none exists, create a figure and return the corresponding handle
+f.figure_position
+f.figure_size=[200,200]
+f.background=2
+f.children  // man can see that an Axes entity already exists
+delete(f);
+f=gcf(); // macro shortcut <=> f=get("current_figure")
+f.pixmap = "on" // set pixmap status to on
+plot2d() // nothing happens on the screen...
+show_pixmap() // ...display the pixmap on screen
+
+//Example 2 : default_figure settings
+df=get("default_figure") // get the default values (shortcut is gdf() )
+// Let's change the defaults...
+df.color_map=hotcolormap(128)
+df.background= 110 // set background toa kind of yellow (Note that we
+                   // are using a color index inside the color_map previously redefined)
+scf(122); // creates new figure number 122 with the new default
+plot2d()
+scf(214);
+t=-%pi:0.3:%pi;
+plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lines">lines</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+      <member>
+        <link linkend="show_pixmap">show_pixmap</link>
+      </member>
+      <member>
+        <link linkend="clear_pixmap">clear_pixmap</link>
+      </member>
+      <member/>
+      <member>
+        <link linkend="hotcolormap">hotcolormap</link>
+      </member>
+      <member>
+        <link linkend="eventhandlerfunctions">event handler functions</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

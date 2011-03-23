@@ -20,7 +20,9 @@ function plot3d2(x,y,z,vect,theta,alpha,leg,flag,ebox)
 // if vect==-1 means that vect is useless
 //---------------------------------------------------------
 [lhs,rhs]=argn(0);
-if rhs<3, error(' I need at least 3 arguments'),end;
+if rhs<3 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "plot3d2", 3))
+end
 isvect=1
 if exists('vect','local')==0 then isvect=1 ;vect=-1,end
 if vect<>-1 then
@@ -39,13 +41,25 @@ else
 end
 
 opts=[]
-if exists('theta','local')==1 then opts=[opts,'theta=theta'],end
-if exists('alpha','local')==1 then opts=[opts,'alpha=alpha'],end
-if exists('leg'  ,'local')==1 then opts=[opts,'leg=leg']    ,end
-if exists('flag' ,'local')==1 then opts=[opts,'flag=flag']  ,end
-if exists('ebox' ,'local')==1 then opts=[opts,'ebox=ebox']  ,end
-if size(opts,2)+isvect+3 <rhs then  error('invalid named arguments'),end
-
+if exists('theta','local')==1 then
+  opts=[opts,'theta=theta']
+end
+if exists('alpha','local')==1 then
+  opts=[opts,'alpha=alpha']
+end
+if exists('leg'  ,'local')==1 then
+  opts=[opts,'leg=leg']
+end
+if exists('flag' ,'local')==1 then
+  opts=[opts,'flag=flag']
+end
+if exists('ebox' ,'local')==1 then
+  opts=[opts,'ebox=ebox']
+end
+  
+if size(opts,2)+isvect+3 <rhs then
+  error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"plot3d2","theta","alpha","leg","flag","ebox"));
+end
 
 execstr('plot3d(xx,yy,zz,'+strcat(opts,',')+')')
 endfunction

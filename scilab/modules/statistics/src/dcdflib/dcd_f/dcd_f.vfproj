@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectType="typeDynamicLibrary" ProjectCreator="Intel Fortran" Keyword="Dll" Version="11.0" ProjectIdGuid="{18F043DA-1DB5-464F-B67D-CF1C23BE7EA0}">
+	<Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../../core/includes" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="dcd.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="output_stream.lib statistics.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Statistics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)statistics.lib&quot; 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul" Description="Build dcd.def file"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../../core/includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" BackslashAsNormalCharacter="false" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="dcd.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="output_stream.lib statistics.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Statistics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)statistics.lib&quot; 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul" Description="Build dcd.def file"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../../core/includes" F77RuntimeCompatibility="true" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="dcd.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="output_stream.lib statistics.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Statistics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)statistics.lib&quot; 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul" Description="Build dcd.def file"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" AdditionalIncludeDirectories="../../../../core/includes" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" BackslashAsNormalCharacter="false" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="dcd.def" SubSystem="subSystemWindows" SupportUnloadOfDelayLoadedDLL="true" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="output_stream.lib statistics.lib"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="lib /DEF:&quot;$(InputDir)Output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
+lib /DEF:&quot;$(InputDir)Statistics_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)statistics.lib&quot; 1&gt;NUL 2&gt;NUL
+cd $(IntDir) &gt;nul
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n dcd.dll %%f &gt;nul
+copy *.def dcdtmp.def &gt;nul
+copy ..\dcd_header.def+dcdtmp.def  ..\dcd.def &gt;nul
+del *.def &gt;nul
+cd .. &gt;nul" Description="Build dcd.def file"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd"/>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\dcd_f.rc"/></Filter>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<File RelativePath="..\algdiv.f"/>
+		<File RelativePath="..\alngam.f"/>
+		<File RelativePath="..\alnrel.f"/>
+		<File RelativePath="..\apser.f"/>
+		<File RelativePath="..\basym.f"/>
+		<File RelativePath="..\bcorr.f"/>
+		<File RelativePath="..\betaln.f"/>
+		<File RelativePath="..\bfrac.f"/>
+		<File RelativePath="..\bgrat.f"/>
+		<File RelativePath="..\bpser.f"/>
+		<File RelativePath="..\bratio.f"/>
+		<File RelativePath="..\brcmp1.f"/>
+		<File RelativePath="..\brcomp.f"/>
+		<File RelativePath="..\bup.f"/>
+		<File RelativePath="..\cdfbet.f"/>
+		<File RelativePath="..\cdfbin.f"/>
+		<File RelativePath="..\cdfchi.f"/>
+		<File RelativePath="..\cdfchn.f"/>
+		<File RelativePath="..\cdff.f"/>
+		<File RelativePath="..\cdffnc.f"/>
+		<File RelativePath="..\cdfgam.f"/>
+		<File RelativePath="..\cdfnbn.f"/>
+		<File RelativePath="..\cdfnor.f"/>
+		<File RelativePath="..\cdfpoi.f"/>
+		<File RelativePath="..\cdft.f"/>
+		<File RelativePath="..\cumbet.f"/>
+		<File RelativePath="..\cumbin.f"/>
+		<File RelativePath="..\cumchi.f"/>
+		<File RelativePath="..\cumchn.f"/>
+		<File RelativePath="..\cumf.f"/>
+		<File RelativePath="..\cumfnc.f"/>
+		<File RelativePath="..\cumgam.f"/>
+		<File RelativePath="..\cumnbn.f"/>
+		<File RelativePath="..\cumnor.f"/>
+		<File RelativePath="..\cumpoi.f"/>
+		<File RelativePath="..\cumt.f"/>
+		<File RelativePath="..\devlpl.f"/>
+		<File RelativePath="..\dexpm1.f"/>
+		<File RelativePath="..\dinvnr.f"/>
+		<File RelativePath="..\dinvr.f"/>
+		<File RelativePath="..\dt1.f"/>
+		<File RelativePath="..\dzror.f"/>
+		<File RelativePath="..\erf.f"/>
+		<File RelativePath="..\erfc1.f"/>
+		<File RelativePath="..\esum.f"/>
+		<File RelativePath="..\exparg.f"/>
+		<File RelativePath="..\fpser.f"/>
+		<File RelativePath="..\gam1.f"/>
+		<File RelativePath="..\gaminv.f"/>
+		<File RelativePath="..\gamln.f"/>
+		<File RelativePath="..\gamln1.f"/>
+		<File RelativePath="..\gamma.f"/>
+		<File RelativePath="..\grat1.f"/>
+		<File RelativePath="..\gratio.f"/>
+		<File RelativePath="..\gsumln.f"/>
+		<File RelativePath="..\ipmpar.f"/>
+		<File RelativePath="..\psi.f"/>
+		<File RelativePath="..\rcomp.f"/>
+		<File RelativePath="..\rexp.f"/>
+		<File RelativePath="..\rlog.f"/>
+		<File RelativePath="..\rlog1.f"/>
+		<File RelativePath="..\spmpar.f"/>
+		<File RelativePath="..\stvaln.f"/></Filter>
+		<File RelativePath="..\..\..\..\..\bin\blasplus.lib"/>
+		<File RelativePath="..\..\..\..\..\bin\lapack.lib"/></Files>
+	<Globals/></VisualStudioProject>

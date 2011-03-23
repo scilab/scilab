@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="genfac3d" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>genfac3d</refname>
+
+    <refpurpose>computa facetas de uma superfície 3d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[xx,yy,zz]=genfac3d(x,y,z,[mask])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xx,yy,zz</term>
+
+        <listitem>
+          <para>matrizes de tamanho (4,n-1xm-1). <literal>xx(:,i)</literal>
+          ,<literal>yy(:,i)</literal> e <literal>zz(:,i)</literal> são
+          respectivamente as coordenadas nos eixos x, y e z dos 4 pontos da
+          i-ésima faceta de quatro lados </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>vetor de coordenadas no eixo y de tamanho n </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>vetor de coordenadas no eixo y de tamanho n </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>matriz de tamanho (m,n). <literal>z(i,j)</literal> é o valor
+          da superfície no ponto (x(i),y(j)). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mask</term>
+
+        <listitem>
+          <para>matriz de valores booleanos opcional de mesmo tamanho que
+          <literal>z</literal> utilizada para selecionar entradas de
+          <literal>z</literal> a serem representadas por facetas</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>genfac3d</literal> computa uma faceta de quatro lados de
+    uma superfície 3d <literal>z=f(x,y)</literal> definida por
+    <literal>x</literal>, <literal>y</literal> e <literal>z</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d(xx,yy,zz)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="eval3dp">eval3dp</link></member>
+
+      <member><link linkend="plot3d">plot3d</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

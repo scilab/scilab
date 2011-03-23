@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="subplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>subplot</refname>
+    <refpurpose> グラフィックウインドウをサブウインドウの行列に分割する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>subplot(m,n,p)
+subplot(mnp)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>m,n,p</term>
+        <listitem>
+          <para>正の整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mnp</term>
+        <listitem>
+          <para>10進表記の整数 <literal>mnp</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    subplot(m,n,p) または subplot(mnp) はグラフィックウインドウを
+	m行n列のサブウインドウの行列に分割し,
+	p番目のサブウインドウを描画先として選択します.
+	サブウインドウの番号は,行優先でカウント,つまり,
+	行列の要素(i,j)に対応するサブウインドウは(i-1)*n + j番となります.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+subplot(221)
+plot2d()
+subplot(222)
+plot3d()
+subplot(2,2,3)
+param3d()
+subplot(2,2,4)
+hist3d()
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+      <member>
+        <link linkend="xstring">xstring</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

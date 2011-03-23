@@ -18,12 +18,13 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement;
-import org.scilab.modules.graph.utils.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -63,16 +64,14 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		try {
-			File temp = File.createTempFile("xcos", ".h5");
+			File temp = FileUtils.createTempFile();
 			temp.deleteOnExit();
-			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp
-					.getAbsolutePath());
+			((XcosDiagram) getGraph(null)).dumpToHdf5File(temp);
 			try {
-				ScilabInterpreterManagement
-						.synchronousScilabExec("import_from_hdf5(\""
-								+ temp.getAbsolutePath() + "\");"
-								+ "tree_show(scs_m);" + "deletefile(\""
-								+ temp.getAbsolutePath() + "\");");
+				String cmd = ScilabInterpreterManagement.buildCall("import_from_hdf5", temp.getAbsolutePath());
+				cmd += "tree_show(scs_m); ";
+				cmd += ScilabInterpreterManagement.buildCall("deletefile", temp.getAbsolutePath());
+				ScilabInterpreterManagement.synchronousScilabExec(cmd);
 			} catch (InterpreterException e2) {
 				e2.printStackTrace();
 			}

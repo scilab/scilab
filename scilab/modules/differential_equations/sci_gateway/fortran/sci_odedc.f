@@ -35,6 +35,7 @@ c
       common/odecd/nd,iflag
 c
 c
+      character tmpbuf * (bsiz)  
       double precision atol,rtol,t0,tleft,tright,tf,hf
       double precision h0,hmax,hmin,tcrit,tmax,hstep,delta
       integer meth,jactyp
@@ -52,8 +53,8 @@ c
 c     
 c
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' matodc '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' matodc '//tmpbuf(1:4))
       endif
 
 c
@@ -772,14 +773,14 @@ c   lsode
       niter=nn
 c     
       if(ixpr.eq.1.and.iopt.eq.1) then
-         write(buf,'(''itask = '',i3,'' meth = '',i3,'' jactyp = '','//
+      write(tmpbuf, '(''itask = '',i3,'' meth = '',i3,'' jactyp = '','//
      $        'i3,'' ml = '',i3,'' mu = '',i3)') itask,meth,jactyp,ml
      $        ,mu
-         call basout(io,wte,buf(1:80))
-      write(buf,'(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
+         call basout(io,wte,tmpbuf(1:80))
+      write(tmpbuf, '(''tcrit= '',e9.4,'' h0= '',e9.4, '' hmax= '','//
      $       'e9.4,'' hmin = '',e9.4)')
      $    tcrit,stk(lc+4),stk(lc+5),stk(lc+6)
-         call basout(io,wte,buf(1:80)) 
+         call basout(io,wte,tmpbuf(1:80)) 
       endif
 
       tleft=t0
@@ -799,10 +800,11 @@ c     set continuuous integration time
          if(abs(tleft-hf).le.1.d-12) goto 52
          istore=1
          if(ixpr.eq.1.and.iopt.eq.1) then
-            write(buf
+            write(tmpbuf
      $           ,'(''integ. from tleft='',e10.3,'' to tf= '','//
      $           'e10.3)') tleft,tright 
-            call basout(io,wte,buf(1:50))
+            buf = tmpbuf
+            call basout(io,wte,tmpbuf(1:50))
          endif
          tright=hf
          tcrit=hf
@@ -829,7 +831,8 @@ c     integrate continuous part
      $           ,stk(lr),stk(la),itask,istate,iopt,stk(lc),lrw
      $           ,istk(ilc),liw,bjac,meth)
             if(iero.eq.-1) then
-               write(buf,'(e10.3)') tright
+               write(tmpbuf,'(e10.3)') tright
+               buf = tmpbuf
                call msgs(70,0)
             endif
          elseif(meth.eq.6) then
@@ -881,8 +884,9 @@ c     update discrete part if necessary
  52      continue
          iflag=1
          if(ixpr.eq.1.and.iopt.eq.1) then
-            write(buf,'(''update at t = '',e10.3)') tright
-            call basout(io,wte,buf(1:20))
+            write(tmpbuf,'(''update at t = '',e10.3)') tright
+            buf = tmpbuf
+            call basout(io,wte,tmpbuf(1:20))
          endif
          call bydot2(ny,tright,stk(ly),stk(ly+ny))
          if(err.gt.0.or.err1.gt.0) return
@@ -906,8 +910,9 @@ c     store intermediate result
  59         tf=stk(lt1+k-1)
             hf=t0+nhpass*hstep+delta*hstep
             if(ixpr.eq.1.and.iopt.eq.1) then
-               write(buf,'(''tf-hf = '',e10.3)') tf-hf
-               call basout(io,wte,buf(1:20))
+               write(tmpbuf,'(''tf-hf = '',e10.3)') tf-hf
+               buf = tmpbuf
+               call basout(io,wte,tmpbuf(1:20))
             endif
 c     set continuous integration time
             if(abs(tf-hf).le.1.d-12) then
@@ -915,19 +920,20 @@ c     set continuous integration time
                nhpass=nhpass+1
                istore=1
                if(ixpr.eq.1.and.iopt.eq.1) then
-                  write(buf,'(''integ. from tleft='',e10.3,'//
+                  write(tmpbuf,'(''integ. from tleft='',e10.3,'//
      $                 ''' to hf=tf= '',e10.3)') tleft,tright 
-                  call basout(io,wte,buf(1:50))
+                  call basout(io,wte,tmpbuf(1:50))
                endif
                update=.true.
             elseif(tf.lt.hf) then
                tright=tf
                istore=1
                if(ixpr.eq.1.and.iopt.eq.1) then
-                  write(buf
+                  write(tmpbuf
      $                 ,'(''integ. from tleft='',e10.3,'' to tf= '','//
      $                 'e10.3)') tleft,tright 
-                  call basout(io,wte,buf(1:50))
+                  buf = tmpbuf
+                  call basout(io,wte,tmpbuf(1:50))
                endif
                update=.false.
             elseif(tf.gt.hf) then
@@ -935,10 +941,11 @@ c     set continuous integration time
                nhpass=nhpass+1
                istore=0
                if(ixpr.eq.1.and.iopt.eq.1) then
-                  write(buf
+                  write(tmpbuf
      $                 ,'(''integ. from tleft='',e10.3,'' to hf= '','//
      $                 'e10.3)') tleft,tright 
-                  call basout(io,wte,buf(1:50))
+                  buf = tmpbuf
+                  call basout(io,wte,tmpbuf(1:50))
                endif
                update=.true.
             endif
@@ -966,7 +973,8 @@ c     integrate continuuous part
      $              ,stk(lr),stk(la),itask,istate,iopt,stk(lc),lrw
      $              ,istk(ilc),liw,bjac,meth)
                if(iero.eq.-1) then
-                  write(buf,'(e10.3)') tright
+                  write(tmpbuf,'(e10.3)') tright
+                  buf = tmpbuf
                   call msgs(70,0)
                endif
             elseif(meth.eq.6) then
@@ -1001,8 +1009,9 @@ c     update discrete part if necessary
             if(update) then
                iflag=1
                if(ixpr.eq.1.and.iopt.eq.1) then
-                  write(buf,'(''update at t = '',e10.3)') tright
-                  call basout(io,wte,buf(1:20))
+                  write(tmpbuf,'(''update at t = '',e10.3)') tright
+                  buf = tmpbuf
+                  call basout(io,wte,tmpbuf(1:20))
                endif
                call bydot2(ny,tright,stk(ly),stk(ly+ny))
                if(err.gt.0.or.err1.gt.0) return

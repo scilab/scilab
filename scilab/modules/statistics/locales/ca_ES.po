@@ -1,0 +1,447 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-02-17 10:08+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid " Std must not be zero\n"
+msgstr " El Std no pot ser zero\n"
+
+#, c-format
+msgid "%s and %s must have same size.\n"
+msgstr "%s i %s han de tenir la mateixa mida.\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s: El gràfic demanat està fora dels límits.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada té un número incorrecte: Ha de ser com a mínim %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada amb l'opció '%s' és incorrecte: Han de "
+"ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr ""
+"%s: Ambdóns arguments d'entrada tenen una mida incorrecta: Han de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
+"tenir la mateixa mida.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: El segon argument ha de "
+"tenir el mateix nombre de columnes.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: El segon argument ha de "
+"tenir el mateix nombre de files.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir una mida de "
+"%s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
+"tenir les mateixes dimensions.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser booleà."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser numèric.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"real o una matriu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
+"o un vector.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector o "
+"una matriu de nombres o de cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr ""
+"%s: Els arguments d'entrdara #%d són d'un tipus incorrecte: Han de ser "
+"numèrics.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser numèrics.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %d té una mida incorrecta: Ha de ser ''%s'', "
+"''%s'', %d o %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s', "
+"'%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s', "
+"'%s', '%s' o '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
+"''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"''%s'', %d o %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"''%s'', ''%s'', %d o %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"''%s'',''%s'' o un nombre positiu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"''%s'',''%s'', %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entada #%d té un valor incorrecte: Ha de ser un nombre real "
+"entre %d i %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de tenir el mateix "
+"número de columna que el primer argument.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de tenir el mateix "
+"número de línia que el primer argument.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada té un valor incorrecte: Ha de ser ''%s'', ''%s'', "
+"%d o %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser menor o igual "
+"que la longitud de l'últim argument.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgstr "%s: El valor de w és incorrecte : Ha de ser %d; 0 o 1.\n"
+
+msgid "A,B,P and Q"
+msgstr "A,B,P i Q"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %f\n"
+msgstr "La resposta són major que el límit superior de la cerca %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
+msgid "Answer appears to be lower than lowest search bound %f\n"
+msgstr "La resposta és menor que el límit inferior de la cerca %f\n"
+
+msgid "B,P,Q,X and Y"
+msgstr "B,P,Q,X i Y"
+
+msgid "Correlations Circle"
+msgstr "Cercle de correlacions"
+
+msgid "Df, P and Q"
+msgstr "Df, P i Q"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df,Pnonc,P i Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd,P,Q i F"
+
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr "Dfd,Pnonc,P,Q i F"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn,Dfd,P i Q"
+
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr "Dfn,Dfd,Pnonc,P i Q"
+
+msgid "Eigenvalues (in percent)"
+msgstr "Valors propis (en percentatge)"
+
+msgid "F,Dfn and Dfd"
+msgstr "F,Dfn i Dfd"
+
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr "F,Dfn,Dfd i Pnonc"
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr "Es mantenen %i valors des de %i fins a %i ordenats\n"
+
+msgid "Mean,Std,P and Q"
+msgstr "Mean,Std,P i Q"
+
+msgid "P,Q and S"
+msgstr "P,Q i S"
+
+msgid "P,Q and T"
+msgstr "P,Q i T"
+
+msgid "P,Q and X"
+msgstr "P,Q i X"
+
+msgid "P,Q,F and Dfn"
+msgstr "P,Q,F i Dfn"
+
+msgid "P,Q,F,Dfn and Dfd"
+msgstr "P,Q,F,Dfn i Dfd"
+
+msgid "P,Q,S  and Xn"
+msgstr "P,Q,S  i Xn"
+
+msgid "P,Q,S and Xn"
+msgstr "P,Q,S i Xn"
+
+msgid "P,Q,X and Df"
+msgstr "P,Q,X i Df"
+
+msgid "P,Q,X and Mean"
+msgstr "P,Q,X i Mean"
+
+msgid "P,Q,X and Shape"
+msgstr "P,Q,X i Forma"
+
+msgid "P,Q,X,Y and A"
+msgstr "P,Q,X,Y i A"
+
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR,OMPR,P,Q i S"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc,P,Q i X"
+
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr "Pnonc,P,Q,F i Dfn"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr,OMPr,P,Q i S"
+
+msgid "S and Xlam"
+msgstr "S i Xlam"
+
+msgid "S,XN,PR and OMPR"
+msgstr "S,XN,PR i OMPR"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S,Xn,Pr i Ompr"
+
+msgid "Scale,P,Q and X"
+msgstr "Scale,P,Q i X"
+
+msgid "Shape,Scale,P and Q"
+msgstr "Shape,Scale,P i Q"
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr "La mida de x és zero : es retorna NaN.\n"
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr "Mida de x:%i\n"
+
+msgid "Std,P,Q and X"
+msgstr "Std,P,Q i X"
+
+msgid "T and Df"
+msgstr "T i Df"
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr "Valor inesperat per a orien : %s\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr "El valor de l'argument d'entrada orien és incorrecte: %s.\n"
+
+msgid "X and Df"
+msgstr "X i Df"
+
+msgid "X,Df and Pnonc"
+msgstr "X,Df i Pnonc"
+
+msgid "X,Mean and Std"
+msgstr "X,Mean i Std"
+
+msgid "X,Shape and Scale"
+msgstr "X,Forma i Escala"
+
+msgid "X,Y,A and B"
+msgstr "X,Y,A i B"
+
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN,PR,OMPR,P i Q"
+
+msgid "Xlam,P and Q"
+msgstr "Xlam,P i Q"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn,Pr,Ompr,P i Q"
+
+msgid "cdfchi: Error in cumgam\n"
+msgstr "cdfchi: Error al cumgam\n"
+
+#, c-format
+msgid "discard=%s\n"
+msgstr "discard=%s\n"
+
+#, c-format
+msgid "orien=%s\n"
+msgstr "orien=%s\n"

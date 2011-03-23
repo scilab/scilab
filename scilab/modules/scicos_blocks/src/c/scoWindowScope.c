@@ -193,7 +193,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	}
 	else
 	{
-		sciprint(_("This Scope (block number : %d) has same number than another. It has been desactivated !\n"),block_number);
+		sciprint(_("This Scope (block number : %d) has same number than another. It has been deactivated!\n"),block_number);
 	}
 }
 /*--------------------------------------------------------------------------*/ 
@@ -358,14 +358,14 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 	scoGraphicalObject *pShortDrawTable = NULL;
 
 	double d_current_real_time = 0. ; //** the current real time as  double (52 bit) data structure
-	double last_update_time = 0. , delta_time = 0., refresh_time = 0.;
+	double last_update_time = 0. , delta_time = 0.;
 	int force_update[256]; //** ... for some headroom :)
 	//** ------ Real Time section -------------------------------------------------------------  
 	//** current real time as double [second] 
 	d_current_real_time = scoGetRealTime();  
 	last_update_time = pScopeMemory->d_last_scope_update_time; //** recover the last update time 
 	delta_time = d_current_real_time - last_update_time ; 
-	refresh_time = 0.040 ; //** 40ms -> 25 fps min  
+	//refresh_time = 0.040 ; //** 40ms -> 25 fps min  
 	//** ------ End of Real Time section ------------------------------------------------------
 
 	ShortDrawTableIndex = 0; 
@@ -961,7 +961,7 @@ void scoAddTitlesScope(ScopeMemory * pScopeMemory, char * label, char * x, char 
 	/* Code for naming the window*/
 	if (label != NULL)
 	{
-		nxname = strlen(label);
+		nxname = (int)strlen(label);
 		if (nxname > 39) 
 		{
 			nxname = 39;

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="paramfplot2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>paramfplot2d</refname>
+    <refpurpose>関数で定義された曲線の2次元アニメーションプロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>paramfplot2d(f,x,theta)
+paramfplot2d(f,x,theta,flag)
+paramfplot2d(f,x,theta,flagrect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>関数 <literal>y=f(x,t)</literal> . f は
+		Scilab関数または(文字列で参照される)動的にリンクされるルーチンです.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta</term>
+        <listitem>
+          <para>実数ベクトル (パラメータの集合).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>文字列 <literal>'no'</literal> または <literal>'yes'</literal>: "yes" の場合,
+	2回の連続するプロットの画面の間で画面がクリアされます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>"矩形" [xmin, xmax, ymin, ymax] (1 x 4 実数ベクトル),</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	関数 x--&gt;f(x,t) のt=theta(1),theta(2),等に関するアニメーションプロット.
+    f は Scilab関数またはy=f(x,t) が y=feval(x(:),t,f)のように評価される
+	動的にリンクされるルーチンのどちらかとすることができます.
+	fevalを参照ください.
+    f:  x,t を f(x,t)にマッピングします.
+	x=<literal>R^N</literal>次のベクトル,t=実数として,
+	f(x,t) = <literal>R^N</literal> 個の値を有する関数です.
+	x　は x値のベクトルで,thetaの各tについて
+	f(x,t)=y値のN次ベクトルとなります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+deff('y=f(x,t)','y=t*sin(x)')
+x=linspace(0,2*%pi,50);theta=0:0.05:1;
+paramfplot2d(f,x,theta);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="feval">feval</link>
+      </member>
+      <member>
+        <link linkend="fplot2d">fplot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

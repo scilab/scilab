@@ -1,0 +1,149 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: DEC2HEX
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("DEC2HEX") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/DEC2HEX.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******
+ 
+ res84: [24,1] <> [24,10]   
+ 
+ res83: [12,1] <> [12,10]   
+ 
+ res82: [12,1] <> [12,10]   
+ 
+ res81: [4,1] <> [4,10]   
+ 
+ res80: [1,1] <> [1,10]   
+ 
+ res79: [24,1] <> [24,10]   
+ 
+ res78: [12,1] <> [12,10]   
+ 
+ res77: [12,1] <> [12,10]   
+ 
+ res76: [4,1] <> [4,10]   
+ 
+ res75: [1,1] <> [1,10]   
+ 
+ res74: [24,1] <> [24,10]   
+ 
+ res73: [12,1] <> [12,10]   
+ 
+ res72: [12,1] <> [12,10]   
+ 
+ res71: [4,1] <> [4,10]   
+ 
+ res70: [1,1] <> [1,10]   
+ 
+ res69: [6,1] <> [6,10]   
+ 
+ res68: [3,1] <> [3,10]   
+ 
+ res67: [3,1] <> [3,10]   
+ 
+ res66: [1,1] <> [1,10]   
+ 
+ res65: [6,1] <> [6,10]   
+ 
+ res64: [3,1] <> [3,10]   
+ 
+ res63: [3,1] <> [3,10]   
+ 
+ res62: [1,1] <> [1,10]   
+ 
+ res61: [6,1] <> [6,10]   
+ 
+ res60: [3,1] <> [3,10]   
+ 
+ res59: [3,1] <> [3,10]   
+ 
+ res58: [1,1] <> [1,10]   
+ 
+ res57: [6,1] <> [6,10]   
+ 
+ res56: [3,1] <> [3,10]   
+ 
+ res55: [3,1] <> [3,10]   
+ 
+ res54: [1,1] <> [1,10]   
+ 
+ res53: [6,1] <> [6,10]   
+ 
+ res52: [3,1] <> [3,10]   
+ 
+ res51: [3,1] <> [3,10]   
+ 
+ res50: [1,1] <> [1,10]   
+ 
+ res49: [6,1] <> [6,10]   
+ 
+ res48: [3,1] <> [3,10]   
+ 
+ res47: [3,1] <> [3,10]   
+ 
+ res46: [1,1] <> [1,10]   
+ 
+ res45: [1,1] <> [0,0]   
+ 
+ res44: [1,1] <> [0,0]   
+ 
+ res43: [1,1] <> [0,0]   
+ 
+ res42: [24,1] <> [24,2]   
+ 
+ res41: [12,1] <> [12,2]   
+ 
+ res40: [12,1] <> [12,2]   
+ 
+ res39: [4,1] <> [4,2]   
+ 
+ res38: [1,1] <> [1,2]   
+ 
+ res37: [24,1] <> [24,2]   
+ 
+ res36: [12,1] <> [12,2]   
+ 
+ res35: [12,1] <> [12,2]   
+ 
+ res34: [4,1] <> [4,2]   
+ 
+ res33: [1,1] <> [1,2]   
+ 
+ res32: [24,1] <> [24,2]   
+ 
+ res31: [12,1] <> [12,2]   
+ 
+ res30: [12,1] <> [12,2]   
+ 
+ res29: [4,1] <> [4,2]   
+ 
+ res28: [1,1] <> [1,2]   
+ 
+ res3: [1,1] <> [0,0]   
+ 
+ res2: [1,1] <> [0,0]   
+ 
+ res1: [1,1] <> [0,0]   

@@ -11,10 +11,12 @@
 LOCALIZATION_C_SOURCES = \
 src/c/InitializeLocalization.c \
 src/c/setgetlanguage.c \
+src/c/getLcidString.c \
 src/c/charEncoding.c
 
 if NEED_JAVA
-LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c
+LOCALIZATION_C_SOURCES+=src/jni/Messages_wrap.c \
+src/jni/LocaleToLCID_wrap.c
 endif
 
 if IS_MACOSX
@@ -41,7 +43,7 @@ libscilocalization_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 
 pkglib_LTLIBRARIES = libscilocalization.la
 
-libscilocalization_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscilocalization_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 if IS_MACOSX
 libscilocalization_la_LDFLAGS += -lintl -framework Cocoa
@@ -54,14 +56,16 @@ libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
 
-libscilocalization_la_LIBADD =   $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscilocalization_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######
 modulename=localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(mydatadir)
-libscilocalization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscilocalization_la_root_DATA =  license.txt version.xml
 
 
 ####localization : init scripts ####
@@ -84,7 +88,8 @@ USEANT=1
 endif
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Messages.i 
+SWIG_WRAPPERS = src/jni/Messages.i \
+src/jni/LocaleToLCID.i
 
 if SWIG
 BUILT_SOURCES=swig

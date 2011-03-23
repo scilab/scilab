@@ -116,8 +116,8 @@ function [new_snd]=read_sndata(fid,snd,ext)
 	// Skip over leading samples:
 	if ext(1)>1 then
 		// Skip over leading samples, if specified:
-		status = mseek(BytesPerSample*(ext(1)-1)*snd('chans'),fid,'cur');
-		if status==(-1) then
+		mseek(BytesPerSample*(ext(1)-1)*snd('chans'),fid,'cur');
+		if (merror(fid) <> 0) then
 		  error(msprintf(gettext("%s: An error occurred: %s\n"),'read_sndata',gettext('Error in file format.')));
 		end
 	end

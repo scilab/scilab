@@ -23,7 +23,7 @@
     <synopsis>Rfiles=G_make(files,dllname)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>files</term>
@@ -59,7 +59,7 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then
+if getos() == 'Windows' then
   txt = ['ex1c.dll:',
          '  @echo ------------------------------------------',
          '  @echo From Makefile.mak',
@@ -75,8 +75,8 @@ if MSDOS then
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

@@ -23,7 +23,7 @@
     <synopsis>[tids, numt] = pvm_spawn_independent(task, ntask, [where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task:  </term>
@@ -97,8 +97,8 @@ setenv PVM_EXPORT DISPLAY:MYSTERYVAR
     <literal>pvm_spawn_independent</literal> will start all
     copies on this single machine using the vendor's underlying routines.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm">pvm</link>

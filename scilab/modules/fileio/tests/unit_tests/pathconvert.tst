@@ -13,7 +13,7 @@ ref = 'SCI\modules\fileio\macros\foo.sci';
 r = pathconvert('SCI/modules/fileio\macros/foo.sci',%f,%f,'w');
 if r <> ref then pause, end
 
-if MSDOS then
+if getos() == 'Windows' then
   ref = WSCI + '\modules\fileio\macros\cd.sci';
 else
   ref = SCI + '\modules\fileio\macros\cd.sci';
@@ -23,7 +23,7 @@ r = pathconvert('SCI/modules/fileio/macros/cd.sci',%f,%t,'w');
 if r <> ref then pause, end
 
 ref = home + '\modules\fileio\macros\foo.sci';
-if ~MSDOS then
+if getos() <> 'Windows' then
  ref = strsubst(ref,filesep(),'\');
 end
 r = pathconvert('HOME/modules/fileio/macros/foo.sci',%f,%t,'w');

@@ -37,7 +37,7 @@ c
       double precision xr(*),xi(*),a,a1,a2,fact
       integer iw(*),maxc,mode,fl,s,typ
       character cw*(*),sgn*1,dl*1,var*4
-      character*10 form(2)
+      character*10 temp
 c
       var='i'
       lvar=1
@@ -46,7 +46,6 @@ c
       n=abs(nn)
 
       cw=' '
-      write(form(1),130) maxc,maxc-7
       dl=' '
       if(m*n.gt.1) dl=' '
 c
@@ -122,7 +121,7 @@ c
 c     determination de la longueur de la representation du coefficient,
 c          cette longueur est a priori fl+2 (' '//sgn//rep(a)).
 c           mais peut etre reduite si la representation est entiere
-   05 lgh=fl+2+lgh
+      lgh=fl+2+lgh
 c      if(n2.eq.0) lgh=lgh-1
    10 ldef=ldef+1
 c
@@ -142,8 +141,17 @@ c
    21 continue
       l1=1
       if(fact.ne.1.0d+0) then
-         write(cw(l1:l1+11),'(1x,1pd9.1,'' *'')')  1.0d+0/fact
-         l1=l1+12
+         write(temp,'(i4)'),imax
+         k1=0
+ 22      k1=k1+1
+         if(temp(k1:k1).eq.' ') goto 22
+         if(imax.lt.0) then
+            cw(l1:l1+12-k1)=' 10^('//temp(k1:4)//') *'
+            l1=l1+13-k1
+         else
+            cw(l1:l1+10-k1)=' 10^'//temp(k1:4)//' *'
+            l1=l1+11-k1
+         endif
       endif
       if(mm.lt.0) then
          write(cw(l1:l1+4),'(''eye *'')') 
@@ -220,8 +228,5 @@ c
    70 continue
 c
    99 return
-c
-  120 format('(f',i2,'.',i2,')')
-  130 format('(1pd',i2,'.',i2,')')
 c
       end

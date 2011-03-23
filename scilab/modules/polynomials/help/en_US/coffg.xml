@@ -23,7 +23,7 @@
     <synopsis>[Ns,d]=coffg(Fs)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Fs</term>
@@ -51,8 +51,8 @@ a=[ s, s^2+1; s  s^2-1];
 (a1/d)-inv(a)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="determ">determ</link>

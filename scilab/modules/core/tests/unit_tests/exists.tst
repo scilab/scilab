@@ -1,13 +1,41 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
+// Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 //exists
 
-a=1
+a=1;
 if exists('a')<>1 then pause,end
-clear a
+clear a;
 if exists('a')<>0 then pause,end
+
+function __check_exists__(x, scope)
+  if exists("a", scope) ~= 1 then pause,end
+endfunction
+
+function __check_not_exists__(x, scope)
+  if exists("a", scope) ~= 0 then pause,end
+endfunction
+
+// Define a ONLY in calling scope
+a = 42;
+__check_exists__([], "all");
+__check_exists__([], "nolocal");
+__check_not_exists__([], "local");
+clear a;
+
+// Define a ONLY in function local scope
+__check_exists__(a = 42, "all");
+__check_exists__(a = 42, "local");
+__check_not_exists__(a = 42, "nolocal");
+
+// Define a BOTH in calling and local scope
+a = 42;
+__check_exists__(a = 51, "all");
+__check_exists__(a = 51, "local");
+__check_exists__(a = 51, "nolocal");
+clear a;

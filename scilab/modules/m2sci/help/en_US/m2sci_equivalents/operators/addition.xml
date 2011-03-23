@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_addition">
+  <refnamediv>
+    <refname>+ (Matlab operator)</refname>
+    <refpurpose>Plus</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
++
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
++
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <variablelist>
+      <varlistentry>
+        <term>Character strings addition:</term>
+        <listitem>
+          <para>
+In Scilab, string addition is the same as string concatenation, what is done in Matlab by <emphasis role="bold">strcat</emphasis> function. In Matlab, string addition is the equivalent of the addition of corresponding ASCII codes.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Empty matrix and addition:</term>
+        <listitem>
+          <para>
+In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar. Note that when you add a scalar and an empty matrix, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Unary plus:</term>
+        <listitem>
+          <para>
+In Matlab, unary plus exists, but in Scilab it is automatically deleted when compiling so we can consider that Scilab unary plus does not exist.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+str = 'str1'+'str2'
+str = [230,232,228,99]
+str = strcat('str1','str2')
+str = 'str1str2'
+A = 1 + []
+A = []    
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+str = 'str1'+'str2'
+str = 'str1str2'
+str = strcat(['str1','str2'])
+str = 'str1str2'
+A = 1 + []
+A = 1    
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

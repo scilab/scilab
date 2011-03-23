@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>MATMAGPHI</refname>
 
-    <refpurpose>Complex to Magnitude and Angle Conversion</refpurpose>
+    <refpurpose>Complex from/to Magnitude and Angle Conversion</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -39,7 +39,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/MATMAGPHI.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/MATMAGPHI.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -51,8 +51,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATMAGPHI">Complex to Magnitude and Angle
-          Conversion</link>
+          <link linkend="MATMAGPHI">Complex from/to Magnitude and Angle Conversion</link>
         </para>
       </listitem>
 
@@ -128,17 +127,39 @@
   <refsection id="Description_MATMAGPHI">
     <title>Description</title>
 
-    <para>MATMAGPHI Block has two types of decomposotions.</para>
-
-    <para>When the type is set to one, the block converts a complex number to
-    the magnitude and the radian angle, in this case the input is complex and
-    the outputs are real double. If the input is real double, the angle will
-    be zero or PI and the magnitude will be equal to the absolute of the input
-    number.</para>
-
-    <para>When the type is set to two, the block outputs a complex number
-    given the magnitude and the radian angle. In this case the inputs are real
-    double and the output is complex.</para>
+    <para>
+      This block computes the magnitude and the angle of a matrix of complex numbers or composes a matrix of complex numbers from
+      a matrix of magnitudes and a matrix of angles with respect to the value of <emphasis role="bold">decomposition type</emphasis> parameter.
+      The following table summarize the bloc behaviour :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left" width="18%"><emphasis role="bold">Decomposition type</emphasis></td>
+        <td align="left" width="20%"><emphasis role="bold">Inputs</emphasis></td>
+        <td align="left" width="20%"><emphasis role="bold">Outputs</emphasis></td>
+        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">One (complex or double)</td>
+        <td align="left">Two (double)</td>
+        <td align="left">
+          Conversion complex to magnitude (first output) and radian angle (second output).
+          If the input is double, the angle will be zero or PI and the magnitude will be equal to the
+          absolute of the input number.
+        </td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Two (double)</td>
+        <td align="left">One (complex)</td>
+        <td align="left">
+          The block outputs a matrix of complex numbers built with the magnitude and the radian angle inputs
+          coming respectively from the first and from the second inputs.
+        </td>
+      </tr>
+    </informaltable>
 
     <para />
   </refsection>
@@ -160,8 +181,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">decomposition type (1=Complex2MAG&amp;amp;PHI
-          2=MAG&amp;amp;PHI2Complex)</emphasis>
+          <emphasis role="bold">decomposition type (1=Complex2MAG&amp;amp;PHI 2=MAG&amp;amp;PHI2Complex)</emphasis>
         </para>
 
         <para>It indicates the rule of the conversion.</para>
@@ -216,18 +236,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -235,8 +252,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>

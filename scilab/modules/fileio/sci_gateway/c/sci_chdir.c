@@ -9,7 +9,7 @@
  * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
-/*--------------------------------------------------------------------------*/
+ */
 #include "gw_fileio.h"
 #include "stack-c.h"
 #include "Scierror.h"
@@ -68,7 +68,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 		}
 
 		// get value of lenStVarOne
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne,&pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne,&m1,&n1,&lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			printError(&sciErr, 0);
@@ -84,7 +84,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 		pStVarOne = (wchar_t*)MALLOC(sizeof(wchar_t)*(lenStVarOne + 1));
 		if (pStVarOne == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 
@@ -204,7 +204,7 @@ int sci_chdir(char *fname,unsigned long fname_len)
 	}
 	else
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 	}
 
 	return 0;

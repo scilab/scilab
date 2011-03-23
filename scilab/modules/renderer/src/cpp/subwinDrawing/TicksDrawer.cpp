@@ -1,8 +1,10 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class specialized in drawing ticks
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -146,6 +148,37 @@ int TicksDrawer::getInitNbTicks(void)
   return m_pTicksComputer->getNbTicks();
 }
 /*------------------------------------------------------------------------------------------*/
+int TicksDrawer::getInitNbSubticksPerGrad(void)
+{
+  /* Determine the initial number of subticks per major graduation. Possibly fewer subticks
+   * are displayed when the figure is forced to a small size. */
+  int nbsubtics = 0;
+
+  m_pTicksComputer->reinit();
+
+  /* allocate positions and ticks */
+  int initNbTicks = m_pTicksComputer->getNbTicks();
+  double * ticksPos = new double[initNbTicks];
+
+  /* Compute just ticksPos (not labels). */
+  m_pTicksComputer->getTicksPosition(ticksPos, NULL, NULL);
+
+  /* Ticks are computed. We can then return subticks. */
+  if( initNbTicks > 1) {
+    /* getNbSubticks returns the total number of subticks,
+       so we divide by the number of graduations. */
+    nbsubtics =  m_pSubticksComputer->getNbSubticks(ticksPos, initNbTicks) / (initNbTicks-1);
+  }
+  else {
+    nbsubtics = 0;
+  }
+
+  delete[] ticksPos;
+
+  return nbsubtics;
+}
+
+/*------------------------------------------------------------------------------------------*/
 void TicksDrawer::getInitTicksPos(double ticksPositions[], char ** ticksLabels)
 {
   m_pTicksComputer->reinit();
@@ -244,7 +277,16 @@ double TicksDrawer::drawTicks(void)
 
     if (m_pTicksComputer->needTicksDecimation())
     {
-      while(dist < 0.0)
+      int itCount = 0;
+
+      // Since decimation cannot decrease the number of ticks to a value lower than 1,
+      // an upper bound to the number of iterations can be computed
+      int maxNbIterations = m_pTicksComputer->computeMaxNumberOfDecimationIterations();
+
+      // The iteration count is used as an additional exit condition in order to avoid infinite
+      // looping, which might occur if only the distance-to-axis condition is used (see bug 6835),
+      // though it never should.
+      while(dist < 0.0 && itCount < maxNbIterations)
       {
         m_pTicksComputer->reduceTicksNumber();
         // there is less ticks and positions, no need to reallocate smaller arrays
@@ -255,7 +297,7 @@ double TicksDrawer::drawTicks(void)
 
         nbSubticks = m_pSubticksComputer->getNbSubticks(ticksPos, nbTicks);
         // unfortunately subticks numbers may increase
-        // so somtime we need to reallocate subticks
+        // so sometime we need to reallocate subticks
         if (nbSubticks > initNbSubticks)
         {
           delete[] subticksPos;
@@ -271,7 +313,7 @@ double TicksDrawer::drawTicks(void)
         dist = m_pTicksDrawer->drawTicks(ticksPos, labels, labelsExponents, nbTicks,
                                          subticksPos, nbSubticks,
                                          axisSegmentStart, axisSegmentEnd, ticksDirection);
-
+        itCount++;
       }
     }
   }

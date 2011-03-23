@@ -23,7 +23,7 @@
     <synopsis>e = etime(t2,t1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>t2</term>
@@ -77,8 +77,8 @@ t2=[2004 06 24 162 5 10 17 01 13 965]
 E2=etime(t2,t1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tic">tic</link>

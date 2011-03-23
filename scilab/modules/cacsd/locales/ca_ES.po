@@ -1,0 +1,892 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-07-29 09:42+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : No feasible ro in bounds [%g  %g]\n"
+msgstr "%s : ro no factible als límits [%g  %g]\n"
+
+#, c-format
+msgid "%s:   %s is not detectable.\n"
+msgstr "%s: %s no es pot detectar.\n"
+
+#, c-format
+msgid "%s:  %s is not stabilizable.\n"
+msgstr "%s: %s no es pot estabilitzar.\n"
+
+#, c-format
+msgid "%s: %s has a zero on/close the imaginary axis.\n"
+msgstr "%s: %s té un zero a/prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: %s has pure imaginary eigenvalue(s).\n"
+msgstr "%s: %s té valor(s) propi(s) imaginari(s) pur(s).\n"
+
+#, c-format
+msgid "%s: %s has zero(s) near the imaginary axis.\n"
+msgstr "%s: %s té zero(s) prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: %s is detectable.\n"
+msgstr "%s: %s es pot detectar.\n"
+
+#, c-format
+msgid "%s: %s is indefinite.\n"
+msgstr "%s: %s no s'ha definit.\n"
+
+#, c-format
+msgid "%s: %s is nearly unstabilizable.\n"
+msgstr "%s: %s és gairebé inestabilitzable.\n"
+
+#, c-format
+msgid "%s: %s is not full rank at the machine precision.\n"
+msgstr "%s: %s no té el rang complet a la precisió de la màquina.\n"
+
+#, c-format
+msgid "%s: %s is not zero! (set to zero)"
+msgstr "%s: %s no és zero! (s'ha posat a zero)"
+
+#, c-format
+msgid "%s: %s is numerically singular.\n"
+msgstr "%s: %s és numèricament singular.\n"
+
+#, c-format
+msgid "%s: %s is stabilizable.\n"
+msgstr "%s: %s es pot estabilitzar.\n"
+
+#, c-format
+msgid "%s: %s must be of dimension (%s, %s).\n"
+msgstr "%s: %s ha de tenir dimensió (%s, %s).\n"
+
+#, c-format
+msgid "%s: %s non symmetric.\n"
+msgstr "%s: %s no és simètric.\n"
+
+#, c-format
+msgid "%s: %s not full rank.\n"
+msgstr "%s: %s no és rang complet.\n"
+
+#, c-format
+msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
+msgstr ""
+"%s: Tots els modes %s són gairebé no-mínims, de manera que %s és gairebé "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgstr ""
+"%s: Tots els modes d'A són gairebé no-mínims, de manera que || G || és "
+"gairebé 0.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
+msgstr "%s: Un valor propi de %s (controlador) és prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
+msgstr "%s: Un valor propi de %s (observador) és prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: At least %s past values needed.\n"
+msgstr "%s: Com a mínim hi ha d'haver %s valors anteriors.\n"
+
+#, c-format
+msgid "%s: Bad conditioning.\n"
+msgstr "%s: Condició incorrecta.\n"
+
+#, c-format
+msgid "%s: Bad conditionning.\n"
+msgstr "%s: Condició incorrecta.\n"
+
+#, c-format
+msgid "%s: Cannot find the state dimension.\n"
+msgstr "%s: No es pot trobar la dimensió d'estat.\n"
+
+#, c-format
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr ""
+"%s: Modes controlables i observables de %s prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
+msgstr ""
+"%s: Els modes controlable i observable d'A són prop de l'eix imaginari"
+
+#, c-format
+msgid "%s: Curve truncated to the first %d discretization points.\n"
+msgstr "%s: S'ha truncat la corba als primers %d punts discrets.\n"
+
+#, c-format
+msgid "%s: Dimensions of %s are inadequate.\n"
+msgstr "%s: Les dimensions de %s no són adequades.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to its zero degree coefficient.\n"
+msgstr ""
+"%s: S'ha establit la realimentació directa al seu coeficient de grau zero.\n"
+
+#, c-format
+msgid "%s: Direct feedthrough set to zero.\n"
+msgstr "%s: S'ha establit la realimentació directa a zero.\n"
+
+#, c-format
+msgid "%s: Francis equations not satisfied.\n"
+msgstr "%s: No satisfà les equacions de Francis.\n"
+
+#, c-format
+msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
+msgstr "%s: S'ignoren les freqüències més enllà de la de Nyquist .\n"
+
+#, c-format
+msgid "%s: Hybrid system not implemented.\n"
+msgstr "%s: No s'ha implementat el sistema híbrid.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: "
+msgstr "%s: Els arguments d'entrada #%d i #%d són incompatibles: "
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa dimensió de columna.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
+"expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Els seus noms han "
+"de tenir la mateixa variable formal.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of elements "
+"expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix nombre d'elements.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix nombre d'elements.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles. Han de tenir la "
+"mateixa dimensió.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Incorrect answer.\n"
+msgstr "%s: Resposta incorrecta.\n"
+
+#, c-format
+msgid "%s: Incorrect link: %s"
+msgstr "%s: L'enllaç és incorrecte: %s"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: L'argument d'entrada #%d ha de ser un nombre real.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be strictly positive.\n"
+msgstr "%s: L'argument d'entrada #%d ha de ser estrictament positiu.\n"
+
+#, c-format
+msgid "%s: Input argument %d is assumed continuous time.\n"
+msgstr "%s: S'assumeix que l'argument d'entrada %d és en temps continu.\n"
+
+#, c-format
+msgid "%s: Invalid sizes found during the process.\n"
+msgstr "%s: S'ha trobat mides invàlides durant el procés.\n"
+
+#, c-format
+msgid "%s: Iteration %s, error=%s.\n"
+msgstr "%s: iteració %s, error=%s.\n"
+
+#, c-format
+msgid "%s: More than %d iterations.\n"
+msgstr "%s: Més de %d iteracions.\n"
+
+#, c-format
+msgid "%s: Multi rate discrete system not implemented.\n"
+msgstr "%s: No s'ha implementat el sistema discret de taxes múltiples.\n"
+
+#, c-format
+msgid "%s: Needs %s => Use default value %s=%d.\n"
+msgstr "%s: Necessita %s => Utilitzeu el valor predeterminat %s=%d.\n"
+
+#, c-format
+msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
+msgstr "%s: S'ignoren les freqüències negatives per sota de la de Nyquist.\n"
+
+#, c-format
+msgid "%s: No input found.\n"
+msgstr "%s: No s'ha trobat cap entrada.\n"
+
+#, c-format
+msgid "%s: No output found.\n"
+msgstr "%s: No s'ha trobat cap sortida.\n"
+
+#, c-format
+msgid "%s: Number of rows of %s are incompatible with %s object.\n"
+msgstr "%s: El nombre de files de %s és incompatible amb l'objecte %s.\n"
+
+#, c-format
+msgid "%s: Residual norm = %g\n"
+msgstr "%s: norm residual = %g\n"
+
+#, c-format
+msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
+msgstr "%s: La sólució de Riccati és poc exacta: error de l'equació = %g.\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: No s'ha definit alguna de les entrades.\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: No s'ha definit alguna sortida.\n"
+
+#, c-format
+msgid "%s: Square but singular system.\n"
+msgstr "%s: Sistema quadràtic, però singular.\n"
+
+#, c-format
+msgid "%s: Stable subspace is too small.\n"
+msgstr "%s: El subespai estable és massa petit.\n"
+
+#, c-format
+msgid "%s: Standard deviation of the estimator %s:\n"
+msgstr "%s: Desviació estàndar de l'estimador %s:\n"
+
+#, c-format
+msgid "%s: Stationary Riccati solver failed.\n"
+msgstr "%s: Ha fallat la solució estacionària de Riccati.\n"
+
+#, c-format
+msgid "%s: System is not stable.\n"
+msgstr "%s: El sistema no és estable.\n"
+
+#, c-format
+msgid ""
+"%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
+"part.\n"
+msgstr ""
+"%s: El sistema no és estabilitzable (o detectable) => S'està estabilitzant "
+"la part estabilitzable.\n"
+
+#, c-format
+msgid "%s: The computed value of || G || may be inaccurate.\n"
+msgstr "%s: El valor calculat de || G || pot ser poc precís.\n"
+
+#, c-format
+msgid "%s: The given system has no poles and no zeros.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Undefined type ''%s''.\n"
+msgstr "%s: No s'ha definit el tipus ''%s''.\n"
+
+#, c-format
+msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
+msgstr "%s: AVÍS: La matriu A té valors propis prop de l'eix imaginari.\n"
+
+#, c-format
+msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
+msgstr ""
+"%s: El subespai estable té una dimensió incorrecta (%d): Ha de ser%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected.\n"
+msgstr "%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments de sortida és incorrecte: Han de ser %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments de sortida és incorrecte: Han de ser entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: At least %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments de sortida és incorrecte: Han de ser com a mínim "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A row vector with length>%d "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"longitud %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"buida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecte: Ha de ser un sistema "
+"d'entrada simple i sortida simple.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"quadrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un sistema "
+"quadràtic.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: La dimensió de la fila "
+"ha de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for link from block %s.\n"
+msgstr "%s: La mida de l'enllaç és incorrecta des del bloc %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+"with %s.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: El nombre de columnes "
+"és incompatible amb %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"estructura de dades %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A linear dynamical system or a "
+"polynomial expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"dinàmic lineal o un polinomi.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+"llista.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de decimals amb coma flotant.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Continuous-time linear system "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"lineal de temps continu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"lineal dinàmic.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"dinàmic lineal.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
+"of floats expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"lineal dinàmic o un vector de nombres decimals.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
+"d'estat lineal.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space or a transfer "
+"function expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
+"d'estat lineal o una funció de transferència.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un espai "
+"lineal d'estat.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de polinomis.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser una forma "
+"d'estat espacial.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"lineal d'estat espacial.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text, un escalar o una matriu buida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de fraccions racionals.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un sistema "
+"dinàmic lineal.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type of input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un vector "
+"de nombres decimals amb coma flotant.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sistema "
+"temporal.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un sistema "
+"detectable.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
+msgstr ""
+"%s: L'arguments d'entrada #%d té un valor incorrecte: Ha de ser un "
+"d'aquests: [%d %d].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"d'aquests {%s}.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sistema "
+"adequat.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: No poden ser pols "
+"imaginaris purs.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser sistema "
+"d'entrada simple i sortida simple.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un sistema "
+"estabilitzable.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un sistema "
+"estable.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: El domini temporal ha "
+"de ser ''c'' o ''d''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són d'un tipus incorrecte: Han de ser "
+"%s < %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgstr ""
+"%s: Valor incorrecte dels arguments d'entrada: Si %s i %s, no es pot "
+"identificar res.\n"
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: Proper system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada %d té un valor incorrecte: Ha de ser un sistema "
+"adequat.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes:  %s no està dins el "
+"rang.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Ha de ser un sistema de "
+"temps discret.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té uns valors incorrectes: Ha de tenir una "
+"funció de transferència adequada.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"estable.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: La matriu d'estat - eye "
+"és singular.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: La matriu d'estat és "
+"singular.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té uns valors incorrectes: Han de tenir els "
+"elements adequats.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Heu d'escollir rk<nout.\n"
+
+#, c-format
+msgid "%s: Wrong values for input arguments #%d and #%d.\n"
+msgstr "%s: Els arguments d'entrada #%d i #%d tenen valors incorrectes.\n"
+
+#, c-format
+msgid "%s: gamma too small.\n"
+msgstr "%s: la gamma és massa petita.\n"
+
+#, c-format
+msgid ""
+"%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
+"Hinfnorm is probably exactly max sv(D)\n"
+"The system might be all-pass"
+msgstr ""
+"%s: norm no es pot calcular. La precisió relativa és menor que 1e-3\n"
+"Hinfnorm probablement és exactament max sv(D)\n"
+"El sistema segurament és all-pass"
+
+#, c-format
+msgid "%s: time domains are not compatible.\n"
+msgstr "%s: els dominis temporals no són compatibles.\n"
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "amplitud i fase de y/(1+y)"
+
+msgid "Autocorrelation Function"
+msgstr "Funció d'autocorrelació"
+
+msgid "CACSD"
+msgstr "CACSD"
+
+msgid "Denominator :"
+msgstr "Denominador:"
+
+msgid "Evans root locus"
+msgstr "Lloc d'arrel d'Evans"
+
+msgid "Frequency (Hz)"
+msgstr "Freqüència (Hz)"
+
+msgid "Gain :"
+msgstr "Guany:"
+
+msgid "Hall chart"
+msgstr "Hall chart"
+
+msgid "Hz"
+msgstr "Hz"
+
+msgid "Im"
+msgstr "Im"
+
+msgid "Im(h(2if))"
+msgstr "Im(h(2if))"
+
+msgid "Im(h(exp(2if*dt)))"
+msgstr "Im(h(exp(2if*dt)))"
+
+msgid "Imaginary Axis"
+msgstr ""
+
+msgid "Imaginary axis"
+msgstr "Eix imaginari"
+
+msgid "Irreducible Factors of transfer function (click below)"
+msgstr ""
+"Factors irreductibles de la funció de transferència (feu clic a sota)"
+
+msgid ""
+"Irreducible Factors of transfer function natural frequency and damping "
+"factor (click below)"
+msgstr ""
+"Factors irreductibles de la freqüència natural de la funció de transferència "
+"i factor d'esmortiment (feu clic a sota)"
+
+msgid "Magnitude (dB)"
+msgstr "Magnitut (dB)"
+
+msgid "Numerator :"
+msgstr "Numerador:"
+
+msgid "Nyquist plot"
+msgstr "diagrama de Nyquist"
+
+msgid "Phase (deg)"
+msgstr "Fase (graus)"
+
+msgid "Phase (degree)"
+msgstr "Fase (graus)"
+
+msgid "Poles"
+msgstr "Pols"
+
+msgid "Re"
+msgstr "Re"
+
+msgid "Re(h(2if))"
+msgstr "Re(h(2if))"
+
+msgid "Re(h(exp(2if*dt)))"
+msgstr "Re(h(exp(2if*dt)))"
+
+msgid "Real Axis"
+msgstr ""
+
+msgid "Real axis"
+msgstr "Eix real"
+
+msgid "Transmission zeros and poles"
+msgstr "Zeros i pols de transmissió"
+
+msgid "Unfeasible (Hx hamiltonian)"
+msgstr "No factible (Hx hamiltoniana)"
+
+msgid "Unfeasible (Hy hamiltonian)"
+msgstr "No factible (Hy hamiltoniana)"
+
+msgid "Unfeasible (spectral radius)"
+msgstr "No factible (radi espectral)"
+
+msgid "Zeros"
+msgstr "Zeros"
+
+msgid "asymptotic directions"
+msgstr "direccions assimptòtiques"
+
+msgid "dB"
+msgstr "dB"
+
+msgid ""
+"loci with constant damping and constant natural frequency\n"
+"in discrete plane"
+msgstr ""
+
+msgid "magnitude(y) (Db)"
+msgstr "magnitud(y) (Db)"
+
+msgid "magnitude(y) (dB)"
+msgstr "magnitude(y) (dB)"
+
+msgid "open loop poles"
+msgstr "pols d'enllaç obert"
+
+msgid "open loop zeroes"
+msgstr "zeros d'enllaç obert"
+
+msgid "phase(y) (degree)"
+msgstr "fase(y) (graus)"
+
+msgid "rad/sec"
+msgstr ""

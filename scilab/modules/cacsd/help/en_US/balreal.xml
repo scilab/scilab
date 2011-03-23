@@ -23,7 +23,7 @@
     <synopsis>[slb [,U] ] = balreal(sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl,slb</term>
@@ -56,8 +56,8 @@ Wc=clean(ctr_gram(slb))
 W0=clean(obs_gram(slb))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

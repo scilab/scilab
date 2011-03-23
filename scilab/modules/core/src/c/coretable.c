@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "machine.h"
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 
 
 /***********************************
@@ -63,7 +63,7 @@ void C2F(interf1)(char *name, long int size)
 
 void C2F(setinterf)(char *name, int *rep)
 {
-	interffonc = (interff) AddFunctionInTable(name,rep,FTab_interf);
+	interffonc = (interff) GetFunctionByName(name,rep,FTab_interf);
 }
 
 /** function call **/

@@ -1,3 +1,9 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 //Checks syntactical aspects  related to functions
 funcprot(0)
 //
@@ -55,7 +61,7 @@ function y=foo(x)
   endfunction
   y=foo1(z)
 endfunction
-if foo(2)<>5  then bugmes();quit;end
+if foo(2)<>5  then bugmes();quit;end 
 //
 //               Combined with deff
 //               -------------------
@@ -64,16 +70,16 @@ function y=foo(x)
   deff('y=foo1(x)','y=x+1')
   y=foo1(z)
 endfunction
-if foo(2)<>5  then bugmes();quit;end
-//
+if foo(2)<>5  then bugmes();quit;end 
+//  
 deff('y=foo(x)',[
     'z=x^2'
     'function y=foo1(x)'
     'y=x+1'
     'endfunction'
     'y=foo1(z)'])
-if foo(2)<>5  then bugmes();quit;end
-		
+if foo(2)<>5  then bugmes();quit;end 
+		 
 function y=foo(x),y=x+1
 endfunction;if foo(2)<>3  then bugmes();quit;end
 //
@@ -86,7 +92,8 @@ function foo
   endfunction
   y=foo1(z);
 endfunction
-//
+exec(foo); if y<>10  then bugmes();quit;end 
+//  
 //               Combined with control instructions
 //               ----------------------------------
 if %t then
@@ -178,7 +185,7 @@ for n= 1:10;
 end
 if size(O,'*')<>10 then bugmes();quit;end
 // test line count in compiled macros
-//
+// 
 function a=foo(),a=1,endfunction
 L=macr2lst(foo);
 if L(4)(1)<>'6' then bugmes();quit;end

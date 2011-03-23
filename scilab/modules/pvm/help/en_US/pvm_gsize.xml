@@ -23,7 +23,7 @@
     <synopsis>[nb] = pvm_gsize(group)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>group</term>
@@ -52,8 +52,8 @@
     this routine can only guarantee to return the instantaneous
     size of a given group.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_joingroup">pvm_joingroup</link>

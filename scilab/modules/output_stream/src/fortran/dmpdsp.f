@@ -50,13 +50,12 @@ c!
       integer sl,sk
       logical first
       character var*(*),cw*(*),sgn*1,dl*1
-      character*10 form(2),fexp,expo
+      character*10 fexp,expo
 c
       m=abs(mm)
       n=abs(nn)
 
       cw=' '
-      write(form(1),130) maxc,maxc-7
       dl=' '
       if(m*n.gt.1) dl=' '
 c
@@ -286,7 +285,5 @@ c
  99   return
 c
  110  format('(i',i2,')')
- 120  format('(f',i2,'.',i2,')')
- 130  format('(1pd',i2,'.',i2,')')
 c
       end

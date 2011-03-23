@@ -12,7 +12,7 @@
     <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>pl</term>
@@ -91,8 +91,8 @@ horner(Hlp,num/den)
     <title>Authors</title>
     <para>Carey Bunks ;   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="iir">iir</link></member>
       <member><link linkend="trans">trans</link></member>

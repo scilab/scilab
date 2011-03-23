@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="minus">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>minus (-)</refname>
+    <refpurpose> opérateur de soustraction, changement de signe  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>X-Y
+-Y</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>X  </term>
+        <listitem>
+          <para>scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y  </term>
+        <listitem>
+          <para>scalaire, vecteur ou matrice de nombres, polynômes ou fractions rationnelles, ou liste de type <literal>syslin</literal>.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Soustraction
+  </para>
+    <para>
+    Pour les opérandes numériques la signification est celle de la soustraction habituelle. Si l'un des opérandes est une matrice (ou un vecteur) et l'autre un scalaire l'opération est effectuée pour chaque élément de la matrice. Si <literal>Y==[]</literal> le résultat est <literal>X</literal>. Si <literal>X==[]</literal> le résultat est <literal>-Y</literal>.
+  </para>
+    <para>
+    La soustraction peut être aussi définie pour d'autres types de données via 
+    la surcharge d'opérateurs (voir overloading).
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[
+[1,2]-1
+[]-2
+
+%s-2
+1/%s-2
+"cat"+"enate"
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="overloading">overloading</link>
+      </member>
+      <member>
+        <link linkend="addf">addf</link>
+      </member>
+      <member>
+        <link linkend="mtlb_mode">mtlb_mode</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

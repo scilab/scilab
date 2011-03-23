@@ -20,6 +20,7 @@
 #include "completion_generic.h"
 #include "getfulldictionary.h"
 #include "getfilesdictionary.h"
+#include "getfieldsdictionary.h"
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
@@ -182,7 +183,6 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 	char **dictionaryVariables = NULL;
 	int sizedictionaryVariables = 0;
 
-
 	dictionaryVariables = completionOnVariables(somechars,&sizedictionaryVariables);
 
 	if (sizedictionaryVariables)
@@ -191,14 +191,14 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 		int sizedictionaryMacros = 0;
 
 		dictionaryMacros = getmacrosdictionary(&sizedictionaryMacros);
-		dictionaryMacros = SortDictionary(dictionaryMacros,sizedictionaryMacros);	
+		dictionaryMacros = SortDictionary(dictionaryMacros, sizedictionaryMacros);	
 
 		/* Search if we have more than one definition */
 		for ( i = 0; i < sizedictionaryVariables; i++)
 		{
 			for ( j = 0; j < sizedictionaryMacros; j++)
 			{
-				if ( strcmp(dictionaryVariables[i],dictionaryMacros[j]) == 0 )
+				if ( strcmp(dictionaryVariables[i], dictionaryMacros[j]) == 0 )
 				{
 					nbWordsAlreadyInMacros++;
 				}
@@ -208,9 +208,9 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 		if (nbWordsAlreadyInMacros)
 		{
 			sizeListWords = sizedictionaryVariables - nbWordsAlreadyInMacros;
-			if (sizeListWords)
+			if (sizeListWords > 0)
 			{
-				char **ListWordsTmp = (char**)MALLOC(sizeof(char*)*sizedictionaryVariables);
+				char **ListWordsTmp = (char**)MALLOC(sizeof(char*) * sizedictionaryVariables);
 				if (ListWordsTmp)
 				{
 					int k = 0;
@@ -273,7 +273,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
 			*sizeArrayReturned = sizedictionaryVariables;
 		}
 
-		freePointerDictionary(dictionaryMacros,sizedictionaryMacros);
+		freePointerDictionary(dictionaryMacros, sizedictionaryMacros);
 	}
 	else
 	{
@@ -291,6 +291,26 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	int sizedictionary = 0;
 
 	dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
+
+	if (dictionary)
+	{
+		ListWords = dictionary;
+		*sizeArrayReturned = sizedictionary;
+	}
+	else
+	{
+		*sizeArrayReturned = 0;
+	}
+	return ListWords;
+}
+/*--------------------------------------------------------------------------*/
+char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned)
+{
+	char **ListWords = NULL;
+	char **dictionary = NULL;
+	int sizedictionary = 0;
+
+	dictionary = getfieldsdictionary(lineBeforeCaret, pattern, &sizedictionary);
 
 	if (dictionary)
 	{

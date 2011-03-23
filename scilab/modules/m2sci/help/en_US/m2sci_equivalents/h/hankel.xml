@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_hankel">
+  <refnamediv>
+    <refname>hankel (Matlab function)</refname>
+    <refpurpose>Hankel matrix</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+hankel
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+hank
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <para>
+The main difference between Scilab and Matlab function is that they do not use the same input values to build an Hankel matrix. If in Matlab, you just have to give a column vector (and eventually a row vector), Scilab function requires the size of the Hankel matrix to build and a covariance sequence vector for this matrix. (See syntax below)
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+H1 = hankel(C1)
+H2 = hankel(C2,R2)
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+N1 = size(C1,"*");
+COV1 = [matrix(C1,1,-1),zeros(1,N1)];
+H1 = hank(N1,N1,COV1);
+M2 = size(C2,"*");
+N2 = size(R2,"*");
+COV2 = [matrix(C2,1,-1),matrix(R2(2:$),1,-1)];
+H2 = hank(M2,N2,COV2);
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+</refentry>

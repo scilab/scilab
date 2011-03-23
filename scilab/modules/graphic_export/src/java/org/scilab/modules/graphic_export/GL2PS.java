@@ -235,6 +235,16 @@ public class GL2PS {
 	}
 
 	/**
+	 * Interface to gl2psLineStipple (added in scilab version of gl2ps).
+	 * @param arg0 stipple factor.
+	 * @param arg1 stipple patern.
+	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS
+	 */
+	public int gl2psLineStipple(int arg0, int arg1) {
+		return GL2PSWrappingJNI.sci_gl2psLineStipple(arg0, arg1);
+	}
+
+	/**
 	 * Interface to gl2psLineWidth (http://geuz.org/gl2ps/#tth_sEc2.6)
 	 * @param value line width
 	 * @return GL2PS_UNINITIALIZED, GL2PS_ERROR or GL2PS_SUCCESS

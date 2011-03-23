@@ -57,7 +57,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
  
 //make h a rational polynomial
  
-         hs=maxi(size(h));
+         hs=max(size(h));
          z=poly(0,'z');
          h=poly(h,'z','c');
          h=gtild(h,'d')*(1/z^(hs-1));
@@ -70,7 +70,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
       //-compat ht==15 retained for list/tlist compatibility
       if ht==15|ht==16 then
          z=varn(h(3));
-         hcs=maxi(size(h(2)));
+         hcs=max(size(h(2)));
       end,
  
 //if the rational polynomial is not in cascade form then

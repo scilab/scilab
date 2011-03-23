@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2007
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2007 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # List of the c files
 WINDOWS_TOOLS_C_SOURCES = src/nowindows_tools/nowindows_tools.c
@@ -17,7 +17,7 @@ libsciwindows_tools_la_CFLAGS=  -I$(srcdir)/includes/ \
 # the system)
 pkglib_LTLIBRARIES = libsciwindows_tools.la
 
-libsciwindows_tools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciwindows_tools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libsciwindows_tools.la
 libsciwindows_tools_la_SOURCES = $(WINDOWS_TOOLS_C_SOURCES)
@@ -30,7 +30,7 @@ modulename=windows_tools
 
 #### windows_tools : Conf files ####
 libsciwindows_tools_la_rootdir = $(mydatadir)
-libsciwindows_tools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciwindows_tools_la_root_DATA =  license.txt version.xml
 
 #### windows_tools : init scripts ####
 libsciwindows_tools_la_etcdir = $(mydatadir)/etc

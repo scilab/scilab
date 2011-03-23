@@ -20,7 +20,10 @@
 //
 
 function do_xsetech(wdm)
-xset('alufunction',3);clf();xselect();
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
+xset('alufunction',3);clf();show_window();
 
 f_xsetech(wdm)
 

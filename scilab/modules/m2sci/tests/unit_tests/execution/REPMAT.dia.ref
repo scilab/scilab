@@ -1,0 +1,190 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: REPMAT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("REPMAT") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/REPMAT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 
+ res162: Double <> Boolean   
+ 
+ res161: Double <> Boolean   
+ 
+ res160: Double <> Boolean   
+ 
+ res159: Double <> Boolean   
+ 
+ res158: Double <> Boolean   
+ 
+ res157: Double <> Boolean   
+ 
+ res156: Double <> Boolean   
+ 
+ res155: Double <> Boolean   
+ 
+ res154: Double <> Boolean   
+ 
+ res153: Double <> Boolean   
+ 
+ res152: Double <> Boolean   
+ 
+ res151: Double <> Boolean   
+ 
+ res150: [4,1] <> [4,36]   
+ 
+ res149: [6,1] <> [6,12]   
+ 
+ res148: [2,1] <> [2,36]   
+ 
+ res147: [2,1] <> [2,12]   
+ 
+ res146: [2,1] <> [2,3]   
+ 
+ res145: [4,1] <> [4,36]   
+ 
+ res144: [6,1] <> [6,12]   
+ 
+ res143: [2,1] <> [2,36]   
+ 
+ res142: [2,1] <> [2,12]   
+ 
+ res141: [2,1] <> [2,3]   
+ 
+ res140: [4,1] <> [4,36]   
+ 
+ res139: [6,1] <> [6,12]   
+ 
+ res138: [2,1] <> [2,36]   
+ 
+ res137: [2,1] <> [2,12]   
+ 
+ res136: [2,1] <> [2,3]   
+ 
+ res108: Double <> Boolean   
+ 
+ res107: Double <> Boolean   
+ 
+ res106: Double <> Boolean   
+ 
+ res105: Double <> Boolean   
+ 
+ res104: Double <> Boolean   
+ 
+ res103: Double <> Boolean   
+ 
+ res102: Double <> Boolean   
+ 
+ res101: Double <> Boolean   
+ 
+ res100: Double <> Boolean   
+ 
+ res99: Double <> Boolean   
+ 
+ res98: Double <> Boolean   
+ 
+ res97: Double <> Boolean   
+ 
+ res96: [4,1] <> [4,24]   
+ 
+ res95: [6,1] <> [6,8]   
+ 
+ res94: [2,1] <> [2,24]   
+ 
+ res93: [2,1] <> [2,8]   
+ 
+ res92: [2,1] <> [2,2]   
+ 
+ res91: [4,1] <> [4,24]   
+ 
+ res90: [6,1] <> [6,8]   
+ 
+ res89: [2,1] <> [2,24]   
+ 
+ res88: [2,1] <> [2,8]   
+ 
+ res87: [2,1] <> [2,2]   
+ 
+ res86: [4,1] <> [4,24]   
+ 
+ res85: [6,1] <> [6,8]   
+ 
+ res84: [2,1] <> [2,24]   
+ 
+ res83: [2,1] <> [2,8]   
+ 
+ res82: [2,1] <> [2,2]   
+ 
+ res54: Double <> Boolean   
+ 
+ res53: Double <> Boolean   
+ 
+ res52: Double <> Boolean   
+ 
+ res51: Double <> Boolean   
+ 
+ res50: Double <> Boolean   
+ 
+ res49: Double <> Boolean   
+ 
+ res48: Double <> Boolean   
+ 
+ res47: Double <> Boolean   
+ 
+ res46: Double <> Boolean   
+ 
+ res45: Double <> Boolean   
+ 
+ res44: Double <> Boolean   
+ 
+ res43: Double <> Boolean   
+ 
+ res42: [4,1] <> [4,24]   
+ 
+ res41: [6,1] <> [6,8]   
+ 
+ res40: [2,1] <> [2,24]   
+ 
+ res39: [2,1] <> [2,8]   
+ 
+ res38: [2,1] <> [2,2]   
+ 
+ res37: [4,1] <> [4,24]   
+ 
+ res36: [6,1] <> [6,8]   
+ 
+ res35: [2,1] <> [2,24]   
+ 
+ res34: [2,1] <> [2,8]   
+ 
+ res33: [2,1] <> [2,2]   
+ 
+ res32: [4,1] <> [4,24]   
+ 
+ res31: [6,1] <> [6,8]   
+ 
+ res30: [2,1] <> [2,24]   
+ 
+ res29: [2,1] <> [2,8]   
+ 
+ res28: [2,1] <> [2,2]   

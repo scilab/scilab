@@ -19,7 +19,7 @@ if l==c then
 else
   s=poly(0,varn(p))
   f=coeff(p,0)/m
-  for k=1:maxi(degree(p))
+  for k=1:max(degree(p))
     f=f+(coeff(p,k)/m)*(s^k)
   end
 end

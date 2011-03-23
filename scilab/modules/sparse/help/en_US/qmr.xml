@@ -23,7 +23,7 @@
     <synopsis>[x,flag,err,iter,res] = qmr(A,b,x0,M1,M1p,M2,M2p,maxi,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -129,8 +129,8 @@
     <title>Description</title>
     <para>Solves the linear system <literal>Ax=b</literal> using the Quasi Minimal Residual Method with preconditioning.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gmres">gmres</link>

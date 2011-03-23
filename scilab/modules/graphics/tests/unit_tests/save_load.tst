@@ -8,6 +8,7 @@
 // <-- TEST WITH GRAPHIC -->
 
 // test to check that save and load are working properly
+plotExportFile = pathconvert(TMPDIR) + "savePlot.scg";
 
 // check clip properties
 clf();
@@ -22,13 +23,13 @@ e.clip_box = [1, 2, 3, 4];
 e.clip_state = "on";
 
 // save the two curves
-save(TMPDIR + "savePlot.scg", gcf());
+save(plotExportFile, gcf());
 
 // close window
 delete(gcf());
 
 // reload data
-load(TMPDIR + "savePlot.scg");
+load(plotExportFile);
 axes = gca();
 
 // check axes properties
@@ -52,13 +53,13 @@ e.clip_box = [1, 2, 3, 4];
 e.clip_state = "on";
 
 // save the two curves
-save(TMPDIR + "savePlot.scg", gcf());
+save(plotExportFile, gcf());
 
 // close window
 delete(gcf());
 
 // reload data
-load(TMPDIR + "savePlot.scg");
+load(plotExportFile);
 axes = gca();
 
 // check axes properties
@@ -82,13 +83,13 @@ e.clip_box = [1, 2, 3, 4];
 e.clip_state = "on";
 
 // save the two curves
-save(TMPDIR + "savePlot.scg", gcf());
+save(plotExportFile, gcf());
 
 // close window
 delete(gcf());
 
 // reload data
-load(TMPDIR + "savePlot.scg");
+load(plotExportFile);
 axes = gca();
 
 // check axes properties
@@ -115,13 +116,13 @@ e.clip_box = [1, 2, 3, 4];
 e.clip_state = "on";
 
 // save the two curves
-save(TMPDIR + "savePlot.scg", gcf());
+save(plotExportFile, gcf());
 
 // close window
 delete(gcf());
 
 // reload data
-load(TMPDIR + "savePlot.scg");
+load(plotExportFile);
 axes = gca();
 
 // check axes properties

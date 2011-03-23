@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 deff('[x] = myplus(y,z)','x=y+z');
 if isdef('myplus') <> %t then pause,end
 if myplus(3,2) <> 5 then pause,end

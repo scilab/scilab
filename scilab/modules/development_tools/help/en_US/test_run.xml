@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="test_run" xml:lang="en">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-14 11:58:09 +0100 (ven, 14 mar 2008) $</pubdate>
-  </info>
   <refnamediv>
     <refname>test_run</refname>
     <refpurpose>Launch tests</refpurpose>
@@ -26,54 +23,69 @@
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>module</term>
         <listitem>
-          <para>a vector of string. It can be the name of a module or the absolute path of a toolbox.</para>
+          <para>A String array. This input argument must be</para>
+          <itemizedlist>
+            <listitem>
+              <para>the name of an internal Scilab module ("core", "time", ...)</para>
+            </listitem>
+            <listitem>
+              <para>the name of an ATOMS module ("module_lycee", "nisp", ...). To
+              be taken into account, the module must be loaded when test_run() is called.</para>
+            </listitem>
+            <listitem>
+              <para>the absolute path of a module</para>
+            </listitem>
+          </itemizedlist>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>test_name</term>
         <listitem>
-          <para>a vector of string</para>
+          <para>A string array</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>options</term>
         <listitem>
-          <para>a vector of string</para>
+          <para>A string array</para>
           <itemizedlist>
             <listitem>
-              <para>no_check_ref : does not check if the .dia and .dia.ref are equal</para>
+              <para>no_check_ref: does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
-              <para>no_check_error_output</para>
+              <para>no_check_error_output: The error output stream is not checked. This option can be used when Scilab complains about the localization being not available.</para>
             </listitem>
             <listitem>
-              <para>create_ref : create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
+              <para>create_ref: create the .dia.ref file and does not check if the .dia and .dia.ref are equal</para>
             </listitem>
             <listitem>
-              <para>list : does not perform the tests but displays a list of available tests</para>
+              <para>list: does not perform the tests but displays a list of available tests</para>
             </listitem>
             <listitem>
-              <para>help : display some examples about how to use this command</para>
+              <para>help: display some examples about how to use this command</para>
             </listitem>
             <listitem>
-              <para>mode_nw : add the "-nw" option to the launch</para>
+              <para>mode_nw: add the "-nw" option to the launch</para>
             </listitem>
             <listitem>
-              <para>mode_nwni : add the "-nwni" option to the launch</para>
+              <para>mode_nwni: add the "-nwni" option to the launch</para>
             </listitem>
             <listitem>
-              <para>nonreg_test : runs only the non-regression tests, skipping unit tests</para>
+              <para>nonreg_test: runs only the non-regression tests, skipping unit tests</para>
             </listitem>
             <listitem>
-              <para>unit_test : runs only the unit tests, skipping non-regression tests</para>
+              <para>unit_test: runs only the unit tests, skipping non-regression tests</para>
             </listitem>
             <listitem>
               <para>skip_tests</para>
+            </listitem>
+            <listitem>
+              <para>enable_lt: Enable long-time execution tests</para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -98,86 +110,100 @@
    control the processing of the corresponding test. These tags
    are expected to be found in Scilab comments.
    </para>
-    <para>These are the available tags :</para>
+    <para>These are the available tags:</para>
    <itemizedlist>
      <listitem>
        <para>
        &#60;-- INTERACTIVE TEST --&#62;
        This test will be skipped because it is interactive.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NOT FIXED --&#62;
-       This test will be skipped because it is a known, but unfixed bug.
+       &#60;-- LONG TIME EXECUTION --&#62;
+       This test will be skipped because it needs long-time duration. To enable
+       the test, call test_run with the following option: "enable_lt"
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- TEST WITH GRAPHIC --&#62;
-       This test will not be executed if the option "mode_nwni" is used.
+	 &#60;-- NOT FIXED --&#62;
+	 This test will be skipped because it is a known, but unfixed bug.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO TRY CATCH --&#62;
+	 &#60;-- TEST WITH GRAPHIC --&#62;
+	 This test will not be executed if the option "mode_nwni" is used.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO CHECK ERROR OUTPUT --&#62;
-       The error output file is not checked
+	 &#60;-- NO TRY CATCH --&#62;
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- NO CHECK REF --&#62;
-       The .dia and the .dia.ref files are not compared.
+	 &#60;-- NO CHECK ERROR OUTPUT --&#62;
+	 The error output file is not checked
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- ENGLISH IMPOSED --&#62;
-       This test will be executed with the -l en_US option.
+	 &#60;-- NO CHECK REF --&#62;
+	 The .dia and the .dia.ref files are not compared.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- FRENCH IMPOSED --&#62;
-       This test will be executed with the -l fr_FR option.
+	 &#60;-- ENGLISH IMPOSED --&#62;
+	 This test will be executed with the -l en_US option.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- JVM NOT MANDATORY --&#62;
-       This test will be executed with the nwni mode by default.
+	 &#60;-- FRENCH IMPOSED --&#62;
+	 This test will be executed with the -l fr_FR option.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
+       <para>
+	 &#60;-- JVM NOT MANDATORY --&#62;
+	 This test will be executed with the nwni mode by default.
+       </para>
+     </listitem>
+     <listitem>
        <para>
        &#60;-- WINDOWS ONLY --&#62;
        If the operating system isn't Windows, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- UNIX ONLY --&#62;
-       If the operating system isn't an unix OS, the test is skipped.
+	 &#60;-- UNIX ONLY --&#62;
+	 If the operating system isn't an Unix OS, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- LINUX ONLY --&#62;
-       If the operating system isn't Linux, the test is skipped.
+	 &#60;-- LINUX ONLY --&#62;
+	 If the operating system isn't GNU/Linux, the test is skipped.
        </para>
-       </listitem>
-       <listitem>
+     </listitem>
+     <listitem>
        <para>
-       &#60;-- MACOSX ONLY --&#62;
-       If the operating system isn't MacOSX, the test is skipped.
+	 &#60;-- MACOSX ONLY --&#62;
+	 If the operating system isn't Mac OS X, the test is skipped.
        </para>
-       </listitem>
-     </itemizedlist>
+     </listitem>
+     <listitem>
+       <para>
+	 &#60;-- XCOS TEST --&#62;
+	 This test will launch all the necessary Xcos libs. This test
+	 will be launched in nw mode.
+       </para>
+     </listitem>
+   </itemizedlist>
    
     <para>
    Each test is executed in a separated process, created with the "host" command.
@@ -210,7 +236,7 @@
 
        <listitem>
        <para>
-       <literal>.linux..diaref</literal> for Linux platform,
+       <literal>.linux.dia.ref</literal> for GNU/Linux platform,
        </para>
        </listitem>
        
@@ -238,7 +264,7 @@
 
        <listitem>
        <para>
-       on windows platforms: <literal>.win.dia.ref</literal>,
+       on Windows platforms: <literal>.win.dia.ref</literal>,
        </para>
        </listitem>
 
@@ -250,7 +276,7 @@
        
        <listitem>
        <para>
-       on Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
+       on GNU/Linux platforms: <literal>.unix.dia.ref</literal>, <literal>.linux.dia.ref</literal>.
        </para>
        </listitem>
       

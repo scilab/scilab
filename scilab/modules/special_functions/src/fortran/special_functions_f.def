@@ -1,0 +1,12 @@
+LIBRARY    special_functions_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; special_functions_f
+; --------------------------------------- 
+	intscalerf_
+	intsdlgamma_
+	intsgamma_
+	intslgamma_
+

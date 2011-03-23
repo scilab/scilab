@@ -25,7 +25,7 @@
 [P1,r1]=lft(P,r,Ps,rs)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -102,8 +102,8 @@ W=[1,1;1,1/(s^2+0.1*s)];K=1+1/s+s
 lft(W,[1,1],K); ss2tf(lft(tf2ss(W),[1,1],tf2ss(K)))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sensi">sensi</link>

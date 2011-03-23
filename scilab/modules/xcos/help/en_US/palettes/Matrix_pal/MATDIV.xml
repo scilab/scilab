@@ -39,7 +39,7 @@
 
     <para><inlinemediaobject>
         <imageobject>
-          <imagedata align="center" fileref="../../../../images/palettes/MATDIV.jpg"
+          <imagedata align="center" fileref="../../../../images/palettes/MATDIV.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -83,22 +83,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATDIV">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATDIV">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATDIV">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATDIV">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATDIV">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATDIV">Computational function</xref>
             </para>
           </listitem>
 
@@ -133,13 +130,16 @@
   <refsection id="Description_MATDIV">
     <title>Description</title>
 
-    <para>The MATDIV block outputs the right matrix division. It is a solution
-    to x*B=A. The higher input is the A matrix, the lower one is the B matrix,
-    and the output is x. If A is an M1-by-N matrix, B must be a M2-by-N where
-    M1 and M2 can be different or equal. The output x is a M1-by-M2
-    matrix.</para>
+    <para>
+      The MATDIV block outputs the right matrix division. It is a solution to x*B=A. The higher
+      input is the A matrix, the lower one is the B matrix, and the output is x.
+    </para>
+    <para>
+      If A is an M1xN matrix, B must be a M2xN where M1 and M2 can be different or equal.
+      The output x is a M1xM2 matrix.
+    </para>
 
-    <para>The equivalent of BACKSLASH is "/" in Scilab.</para>
+    <para>The equivalent of MATDIV is <link linkend ="slash">slash (/)</link> in Scilab.</para>
 
     <para />
   </refsection>
@@ -164,10 +164,9 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label Xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label Xcos will print the message "Datatype is not supported".</para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -177,7 +176,7 @@
   <refsection id="Example_MATDIV">
     <title>Example</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example">
 A=[1 7 3;23 32 29]
 B=[21 18 34;13 10 19;11 54 36]
 then the result of the x*B=A equation is (A/B):
@@ -230,18 +229,15 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -249,8 +245,7 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -293,13 +288,13 @@ x=[-0.475 0.712 0.156;-4.350 8.381 0.491]
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATBKSL">MATBKSL - MATBKSL:left matrix division</link>
+          <link linkend="MATBKSL">MATBKSL - Left matrix division</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATMUL">MATMUL - MATMUL Matrix Multiplication</link>
+          <link linkend="MATMUL">MATMUL - Matrix Multiplication</link>
         </para>
       </listitem>
     </itemizedlist>

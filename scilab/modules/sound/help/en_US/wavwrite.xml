@@ -36,7 +36,7 @@ wavwrite(y, Fs, nbits, wavfile)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -96,8 +96,8 @@ B=wavread(TMPDIR+'/foo.wav');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="auread">auread</link></member>

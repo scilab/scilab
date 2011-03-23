@@ -7,12 +7,36 @@
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
+### SOURCES ###
+
+PARAMETERS_C_SOURCES = src/c/parameters.c
+
+libsciparameters_la_CFLAGS=-I$(srcdir)/includes/ \
+-I$(srcdir)/src/c/ \
+-I$(top_srcdir)/modules/api_scilab/includes \
+-I$(top_srcdir)/modules/core/includes \
+-I$(top_srcdir)/libs/MALLOC/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/localization/includes 
+
+pkglib_LTLIBRARIES = libsciparameters.la
+
+libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
+
+libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
+
+# For the code check (splint)
+CHECK_SRC= $(libsciparameters_la_SOURCES)
+INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS) 
+
+libsciparameters_la_LIBADD =  $(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+
 #### Target ######
 modulename=parameters
 
 #### parameters : Conf files ####
 libparameters_la_rootdir = $(mydatadir)
-libparameters_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libparameters_la_root_DATA =  license.txt version.xml
 
 #### parameters : init scripts ####
 libparameters_la_etcdir = $(mydatadir)/etc

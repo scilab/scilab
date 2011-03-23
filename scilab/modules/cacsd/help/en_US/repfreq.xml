@@ -26,7 +26,7 @@
 [ frq,repf,splitf]=repfreq(sys [,frq])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sys</term>
@@ -106,8 +106,8 @@ repf=repfreq(Sys,frq);
 repf(2)-x
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bode">bode</link>

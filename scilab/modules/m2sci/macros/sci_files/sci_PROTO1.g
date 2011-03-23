@@ -37,7 +37,11 @@ if rhs==1 then
     tree.lhs(1).dims=A.dims
     if dim==0 then
       tree.rhs=Rhs_tlist(A)
-      tree.lhs(1).dims=list(1,1)
+      if is_empty(A) then
+        tree.lhs(1).dims=A.dims
+      else
+        tree.lhs(1).dims=list(1,1)
+      end
     elseif dim==1 then
       tree.rhs=Rhs_tlist(A,"r")
       tree.lhs(1).dims(dim)=1
@@ -109,7 +113,7 @@ else
   // C = MFUN(A,[],dim) or [C,I] = MFUN(A,[],dim)
   if or(lhs==[1,2]) then
     if is_real(A) then
-      tree.lhs(1).type=Type(Double,Real)
+      tree.lhs(1).type=Type(vtype,Real)
       if typeof(dim)=="cste" then
 	if dim.value==1 then
 	  tree.rhs=Rhs_tlist(A,"r")
@@ -140,7 +144,7 @@ else
       tree.name="mtlb_MFUN"
       tree.rhs=Rhs_tlist(A,tmp,dim)
       tree.lhs(1).dims=allunknown(A.dims)
-      tree.lhs(1).type=Type(Double,Unknown)
+      tree.lhs(1).type=Type(vtype,Unknown)
     end
   end
   

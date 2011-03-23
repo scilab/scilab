@@ -23,7 +23,7 @@
     <synopsis>K=parrot(D,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>D,K</term>
@@ -48,8 +48,8 @@
     largest singular value of <literal>[D11 D12; D21 D22+K]</literal>
     is minimal (Parrot's problem)</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="h_inf_st">h_inf_st</link>

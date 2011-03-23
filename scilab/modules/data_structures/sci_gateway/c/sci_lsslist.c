@@ -16,7 +16,7 @@
 extern int C2F(lsstyp)(); /* fortran */
 extern int C2F(mtlist)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_lsslist)(char *fname,unsigned long fname_len)
+int sci_lsslist(char *fname,unsigned long fname_len)
 {
    C2F(mtlist)(C2F(lsstyp));
    return 0;

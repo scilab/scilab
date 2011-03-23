@@ -244,7 +244,7 @@ combobox $w.frame.style \
     -textvariable curlinestyle \
     -editable false \
     -command [list SelectLineStyle ] -font $gedFont
-eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash"]
+eval $w.frame.style list insert end [list "solid" "dash" "dash dot" "longdash dot" "bigdash dot" "bigdash longdash" "dot" "double dot"]
 
 #Add thickness here
 combobox $w.frame.thickness \

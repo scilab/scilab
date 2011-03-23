@@ -15,22 +15,40 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
-import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.control.ControlPort;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.input.ImplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
+import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
+import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.io.mxObjectCodec;
+import com.mxgraph.util.mxConstants;
 
 /**
- * Codec for any Port
+ * Codec for any Port.
+ * 
+ * This class doesn't pas the Data Abstraction Coupling (DAC) as we perform some
+ * template initialization on the {@link #register()} method.
  */
+// CSOFF: ClassDataAbstractionCoupling
 public class BasicPortCodec extends XcosObjectCodec {
 
-    private static final String DATA_TYPE = "dataType";
+	private static final Log LOG = LogFactory.getLog(BasicPortCodec.class);
+	private static final String DATA_TYPE = "dataType";
+    private static final String[] IGNORED_FIELDS = new String[] {DATA_TYPE};
 
 	/**
 	 * The constructor used on for configuration
@@ -39,12 +57,29 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @param idrefs Optional array of fieldnames to be converted to/from references.
 	 * @param mapping Optional mapping from field- to attributenames.
 	 */
-    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping)
-    {
-	super(template, exclude, idrefs, mapping);
-
+    public BasicPortCodec(Object template, String[] exclude, String[] idrefs, Map<String, String> mapping) {
+    	super(template, exclude, idrefs, mapping);
     }
 
+    /**
+     * Register all the know codecs on the {@link mxCodecRegistry}
+     */
+    public static void register() {
+    	XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(explicitOutputPortCodec);
+    	XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(explicitInputPortCodec);    
+    	XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(implicitOutputPortCodec);
+    	XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(implicitInputPortCodec);
+    	XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(commandPortCodec);
+    	XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(), IGNORED_FIELDS, REFS, null);
+    	mxCodecRegistry.register(controlPortCodec);
+    	mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
+    }
+    
 	/**
 	 * Things to do before encoding
 	 * @param enc Codec that controls the encoding process.
@@ -53,6 +88,7 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @return Returns the object to be encoded by the default encoding.
 	 * @see com.mxgraph.io.mxObjectCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
 	 */
+	@Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
 	((Element) node).setAttribute(DATA_TYPE,
 		String.valueOf(((BasicPort) obj).getDataType()));
@@ -67,7 +103,13 @@ public class BasicPortCodec extends XcosObjectCodec {
 	 * @return The Object transformed 
 	 * @see org.scilab.modules.xcos.io.XcosObjectCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
 	 */
+	@Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {
+		if (!(obj instanceof BasicPort)) {
+			LOG.error("Unable to decode " + obj);
+			return obj;
+		}
+		
 	String attr = ((Element) node).getAttribute(DATA_TYPE);
 
 	if (attr == null || attr.equals("")) {
@@ -120,20 +162,34 @@ public class BasicPortCodec extends XcosObjectCodec {
 		boolean mirrored = false;
 
 		
-		if (map.get(XcosConstants.STYLE_ROTATION) != null) {
-			rotation = Integer.parseInt(map.get(XcosConstants.STYLE_ROTATION));
+		if (map.get(mxConstants.STYLE_ROTATION) != null) {
+			rotation = Integer.parseInt(map.get(mxConstants.STYLE_ROTATION));
 		} else {
 			rotation = 0;
 		}
 		
-		flipped = Boolean.parseBoolean(map.get(XcosConstants.STYLE_FLIP));
-		mirrored = Boolean.parseBoolean(map.get(XcosConstants.STYLE_MIRROR));
+		/*
+		 * Protect against a not set parent 
+		 */
+		if (obj.getParent() == null || !(obj.getParent() instanceof BasicBlock)) {
+			return;
+		}
+		
+		StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
+		flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
+		mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
+		
+		final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj
+				.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
+		
+		if (rotation == baseAngle) {
+			return;
+		}
 
-		// First calculate the block angle then calculate the current rotation
-		// from it.
-		rotation = orientation.getAngle(orientation.getBlockRotationValue(
-				rotation, flipped, mirrored), flipped, mirrored);
+		// Calculate the rotation for this kind of port.
+		rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-		map.put(XcosConstants.STYLE_ROTATION, Integer.toString(rotation));
+		map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
 	}
 }
+// CSON: ClassDataAbstractionCoupling

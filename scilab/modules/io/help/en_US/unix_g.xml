@@ -38,7 +38,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -94,7 +94,7 @@
     <programlisting role="example"><![CDATA[ 
 function d=DIR(path)
   path=pathconvert(path,%t,%t)
-  if MSDOS then
+  if getos() == 'Windows' then
     d=unix_g('dir '+path)
   else
     d=unix_g('ls '+path)
@@ -105,8 +105,8 @@ DIR('SCI/etc')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="unix_s">unix_s</link></member>

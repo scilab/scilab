@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intnbprop)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_number_properties)(char *fname,unsigned long fname_len)
+int sci_number_properties(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intnbprop)(id);

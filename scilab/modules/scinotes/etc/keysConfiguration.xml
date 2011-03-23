@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <comment>
+    Map between action and keys
+    If no path is given, org.scilab.modules.scinotes.actions will be choosen
+  </comment>
+
+  <entry key="ActivateHelpOnTypingForOpenersAction">OSSCKEY H</entry>
+  <entry key="ActivateHelpOnTypingForKeywordsAction">OSSCKEY shift H</entry>
+  <entry key="GenerateHelpFromFunctionAction">OSSCKEY shift G</entry>
+  <entry key="TabifyAction">TAB</entry>
+  <entry key="UnTabifyAction">shift TAB</entry>
+  <entry key="IndentAction">OSSCKEY I</entry>
+  <entry key="CommentAction">OSSCKEY D</entry>
+  <entry key="UnCommentAction">OSSCKEY shift D</entry>
+  <entry key="RemoveTrailingWhiteAction">OSSCKEY shift W</entry>
+  <entry key="SelectAllAction">OSSCKEY A</entry>
+  <entry key="SelectBlockAction">OSSCKEY B</entry>
+  <entry key="OpenTabInNewWindowAction">OSSCKEY shift T</entry>
+  <entry key="CCloseTabInNewWindowAction">OSSCKEY shift X</entry>
+
+  <entry key="CopyAsHTMLAction">OSSCKEY C</entry>
+  <entry key="CutAction">OSSCKEY X</entry>
+  <entry key="PasteAction">OSSCKEY V</entry>
+  <entry key="PasteColumnAction">control shift V</entry>
+  <entry key="RepeatSelectionOnColumnAction">control shift Z</entry>
+  <entry key="UndoAction">OSSCKEY Z</entry>
+  <entry key="RedoAction">OSSCKEY Y</entry>
+
+  <entry key="CopyAsHTMLWithLineNumberAction">OSSCKEY shift C</entry>
+
+  <entry key="NewAction">OSSCKEY N</entry>
+  <entry key="OpenAction">OSSCKEY O</entry>
+  <entry key="OpenURLAction">OSSCKEY U</entry>
+  <entry key="OpenSourceFileOnKeywordAction">OSSCKEY shift O</entry>
+  <entry key="SaveAction">OSSCKEY S</entry>
+  <entry key="SaveAsAction">OSSCKEY shift S</entry>
+  <entry key="ReloadAction">OSSCKEY shift R</entry>
+  <entry key="PrintPreviewAction">OSSCKEY shift P</entry>
+  <entry key="PrintAction">OSSCKEY P</entry>
+  <entry key="CloseAction">OSSCKEY W</entry>
+  <entry key="ExitAction">OSSCKEY Q</entry>
+
+  <entry key="ToLowerCaseAction">OSSCKEY J</entry>
+  <entry key="ToUpperCaseAction">OSSCKEY shift J</entry>
+  <entry key="CapitalizeAction">OSSCKEY shift A</entry>
+  <entry key="HelpOnKeywordAction">OSSCKEY F1</entry>
+
+  <entry key="LoadIntoScilabAction">OSSCKEY L</entry>
+  <entry key="ExecuteFileIntoScilabAction">OSSCKEY shift E</entry>
+  <entry key="EvaluateSelectionAction">OSSCKEY E</entry>
+
+  <entry key="FindAction">OSSCKEY F</entry>
+  <entry key="FindNextAction">OSSCKEY K</entry>
+  <entry key="FindPreviousAction">OSSCKEY shift K</entry>
+  <entry key="IncrementalSearchAction">F3</entry>
+  <entry key="SetAnchorAction">OSSCKEY M</entry>
+  <entry key="RemoveAnchorAction">OSSCKEY shift M</entry>
+  <entry key="GotoNextAnchorAction">OSSCKEY shift LESS</entry>
+  <entry key="GotoPreviousAnchorAction">OSSCKEY LESS</entry>
+  <entry key="CodeNavigatorAction">OSSCKEY G</entry>
+
+  <entry key="SciNotesCompletionAction">OSSCKEY SPACE</entry>
+
+  <entry key="HelpAction">F1</entry>
+  <entry key="AboutAction">shift F1</entry>
+
+  <entry key="NextTabAction">ctrl UP</entry>
+  <entry key="PreviousTabAction">ctrl DOWN</entry>
+
+  <entry key="DeleteAction">DELETE</entry>
+
+</properties>

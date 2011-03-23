@@ -2,7 +2,7 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA/ENPC
 c 
-c This file is released into the public domain
+c This file is released under the 3-clause BSD license. See COPYING-BSD.
 
       subroutine ext7f(a,b)
 c     example 7

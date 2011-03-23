@@ -12,7 +12,7 @@ function [tree]=sci_prod(tree)
 // M2SCI function
 // Conversion function for Matlab prod()
 // Input: tree = Matlab funcall tree
-// Ouput: tree = Scilab equivalent for tree
+// Output: tree = Scilab equivalent for tree
 // Emulation function: mtlb_prod()
 
 // B = prod(A)

@@ -1,0 +1,1379 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"PO-Revision-Date: 2009-11-02 06:07+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr "       在函数中：%s。\n"
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr ""
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr ""
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  清检查参数或定义函数%s以解决过载问题。\n"
+
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr " 使用了%s个变量，总共可用数为%s个。\n"
+
+msgid " end or else is missing...\n"
+msgstr " 缺少end或else ...\n"
+
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr " 已被截断：%s。\n"
+
+#, c-format
+msgid " input line longer than buffer size: %d\n"
+msgstr " 输入行的长度超过了缓冲大小：%d\n"
+
+msgid "\"unknown data\""
+msgstr "\"未知数据\""
+
+#, c-format
+msgid "%d graphic terminal?\n"
+msgstr "%d图像终端？\n"
+
+#, c-format
+msgid "%d: logical unit already used.\n"
+msgstr "%d：逻辑单元已经被用。\n"
+
+#, c-format
+msgid "%dth argument type must be boolean.\n"
+msgstr "第%d个参数的类型必须为布尔型。\n"
+
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
+msgstr "%s和%s必须同样大小。\n"
+
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
+msgstr "%s和%s必须列数相等。\n"
+
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
+msgstr "%s和%s必须行数相等。\n"
+
+#, c-format
+msgid "%s is not valid in this context.\n"
+msgstr "上下文的%s不正确。\n"
+
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr "完整输入参数的%s尚未实现。\n"
+
+#, c-format
+msgid "%s was a function when compiled but is now a primitive!\n"
+msgstr "当被编译时，%s是一个函数，但是现在是一个primitive。\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s：出现错误：%s\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+msgstr "%s：不可将转换标志 'l' 或 'h' 与 'c'标志混在一起。\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+msgstr "%s：不可将转换标志 'l' 或 'h' 与 's'标志混在一起。\n"
+
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr "%s：界限和初始猜测不兼容。\n"
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s：搜索域边界的交点失败。\n"
+"   返回已经计算的阶数的结果。\n"
+
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
+msgstr "%s：第一个参数不能为一个数字。\n"
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s：不可能达到要求的阶数。\n"
+"   返回已经计算的阶数的结果。\n"
+
+#, c-format
+msgid "%s: Incorrect bounds.\n"
+msgstr "%s：不正确的界限。\n"
+
+#, c-format
+msgid "%s: Incorrect stopping parameters.\n"
+msgstr "%s：不正确的停止参数。\n"
+
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr "%s：输入参数应该有同样的正式变量名。\n"
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s：检测到两阶循环。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
+
+#, c-format
+msgid "%s: Not enough arguments.\n"
+msgstr "%s：无足够参数。\n"
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s：调用%s的次数已经达到或超出%s。\n"
+
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
+msgstr "%s：在这个操作系统中只允许一个入口点。\n"
+
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr "%s：仿真中的初始限制错误。\n"
+
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr "%s：仿真器请求停止（ind=0）。\n"
+
+#, c-format
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s：得到太多的解。\n"
+"   返回已经计算的阶数的结果。\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr "%s：输入参数错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该做多为%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr "%s：输入参数的数目错误：数据跟格式不符。\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s：输出参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s：参数%d的大小错误：应该为%d。\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个向量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s：参数%d的类型错误：应该为bool矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr "%s：参数%d的类型错误：应该为函数或者字符串（外部函数）。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s：参数%d的类型错误：应该为列表(list)。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s：参数%d的类型错误：应该为矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s：参数%d的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s：参数%d的类型错误：应该为多项式。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该是实数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr "%s：参数%d的类型错误：应该为实数或者复数矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s：第%d个参数的类型错误：应该为实数向量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgstr "%s：参数%d的类型错误：应该为标量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s：参数%d的类型错误：应该为向量。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s：输入参数#%d的类型错误。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个标量。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s：输入参数#%d的值错误。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgstr "%s：输入参数#%d的值错误：数据与格式不符。\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: df0 must be positive !\n"
+msgstr "%s：df0必须为正数！\n"
+
+#, c-format
+msgid "%s: error can not close diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error can not create diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error can not create diary: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: expecting more than one argument.\n"
+msgstr "%s：应该有多于一个参数。\n"
+
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
+msgstr "%s：fixpnt的大小必须为ipar(11)。\n"
+
+#, c-format
+msgid "%s: input data error.\n"
+msgstr "%s：输入数据错误。\n"
+
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
+msgstr "%s：ipar至少为11维。\n"
+
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
+msgstr "%s：ltol大小必须为ipar(4)。\n"
+
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
+msgstr "%s：m的大小必须为ncomp。\n"
+
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr "%s：maxpts太小，无法获得所需精度。\n"
+
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
+msgstr "%s：需要ncomp < 20。\n"
+
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
+msgstr "%s：子区间的编号超出存储。\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s：其中的一个入口点出错。\n"
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
+msgstr "%s：sum(m)必须小于40。\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s：系统无法显示在此页面中。\n"
+
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr "%s：因为 roundoff 噪声终止。\n"
+
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr "%s：划分三角形缺少空间，所以终止。\n"
+
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr "%s：因为相对错误 <( 5.0 * %eps )而终止。\n"
+
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr "%s：终止：函数估值 > MEVALS。\n"
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
+msgstr "%s：共享的档案（archive）没有载入。\n"
+
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr "%s：窗口维数已被设置为少于2^16。\n"
+
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
+
+msgid "Argument type must be boolean.\n"
+msgstr "参数的类型必须为布尔型。\n"
+
+msgid "Arguments are :\n"
+msgstr "参数是：\n"
+
+#, c-format
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
+
+#, c-format
+msgid "Bad call to primitive: %s\n"
+msgstr "错误的元语（primitive）调用：%s\n"
+
+msgid "Bad conversion."
+msgstr "错误的转换。"
+
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
+
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr "函数断点：%s。\n"
+
+msgid "Buffer too small."
+msgstr "缓冲区太小。"
+
+msgid "C file logical unit not allowed here.\n"
+msgstr "此处不允许C文件的逻辑单元。\n"
+
+msgid "Commands:\n"
+msgstr "命令:\n"
+
+msgid "Convergence problem...\n"
+msgstr "收敛问题...\n"
+
+msgid "Degenerate starting point.\n"
+msgstr "退化的开始点。\n"
+
+msgid "Direct access : give format.\n"
+msgstr "直接读取：指定格式。\n"
+
+msgid "Division by zero...\n"
+msgstr "被 0 除 ...\n"
+
+msgid "Dot cannot be used as modifier for this operator.\n"
+msgstr "点（dot）不能用来作为该操作符的修饰符。\n"
+
+#, c-format
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
+msgstr "第%d个参数的元素不是（严格）递减顺序。\n"
+
+#, c-format
+msgid "Elements of %dth argument must be in increasing order.\n"
+msgstr "第%d个参数的元素必须递增排列。\n"
+
+msgid "Elements of first argument are not (strictly) increasing.\n"
+msgstr "第1个参数的元素不是（严格）递增。\n"
+
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
+msgstr "第1个参数的元素不是（严格）递减。\n"
+
+msgid "Empty function...\n"
+msgstr "空函数...\n"
+
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr "文件在第%d行结束。\n"
+
+msgid "End of optimization (linear search fails).\n"
+msgstr "优化结束（线性搜索失败）。\n"
+
+msgid "End of optimization.\n"
+msgstr "优化结束。\n"
+
+msgid "Entry name not found.\n"
+msgstr "未找到入口名。\n"
+
+msgid "Error while linking.\n"
+msgstr "连接时错误。\n"
+
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr ""
+
+msgid "Eye variable undefined in this context.\n"
+msgstr "单位阵变量在上下文中没有定义。\n"
+
+#, c-format
+msgid ""
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr "文件\"%s\"已经存在，或者目录禁止写入。\n"
+
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr "文件\"%s\"已经存在，或者目录禁止读取。\n"
+
+msgid "Floating point exception.\n"
+msgstr "浮点异常。\n"
+
+msgid "Formal variable name has been truncated.\n"
+msgstr "正式变量名已被截断。\n"
+
+msgid "Fortran file logical unit not allowed here.\n"
+msgstr "此处不允许Fortran文件的逻辑单元。\n"
+
+msgid "Function name already used.\n"
+msgstr "函数名已经被使用。\n"
+
+msgid "Function not bounded from below.\n"
+msgstr "下面的函数不是有界函数。\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "给定参数类型的函数未定义。\n"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "函数文件位置：%s。\n"
+
+msgid "Help file inconsistent...\n"
+msgstr "帮助文件不符...\n"
+
+msgid "Host does not answer...\n"
+msgstr "主机（host）没有答复...\n"
+
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr "热启动：工作表（working table）的维数（参数n：%d）。\n"
+
+msgid "Imaginary part\n"
+msgstr "虚数部分\n"
+
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr "不可能载入变量 %s。\n"
+
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr "非零元素的索引不兼容。\n"
+
+msgid "Incompatible input argument.\n"
+msgstr "不兼容的输入参数。\n"
+
+msgid "Incompatible output argument.\n"
+msgstr "不兼容的输出参数。\n"
+
+msgid "Inconsistent addition.\n"
+msgstr "不一致的加法。\n"
+
+msgid "Inconsistent column/row dimensions.\n"
+msgstr "不一致的列维数／行维数。\n"
+
+msgid "Inconsistent constraints.\n"
+msgstr "不一致的限制。\n"
+
+msgid "Inconsistent left division.\n"
+msgstr "不一致的左除法。\n"
+
+msgid "Inconsistent multiplication.\n"
+msgstr "不一致的乘法。\n"
+
+msgid "Inconsistent right division.\n"
+msgstr "不一致的右除法。\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "不一致的行维数／列维数。\n"
+
+msgid "Inconsistent subtraction.\n"
+msgstr "不一致的减法。\n"
+
+msgid "Incorrect assignment.\n"
+msgstr "不正确的赋值\n"
+
+msgid "Incorrect command!\n"
+msgstr "不正确的命令。\n"
+
+msgid "Incorrect control instruction syntax.\n"
+msgstr "不正确的控制指令语法。\n"
+
+msgid "Incorrect file or format.\n"
+msgstr "不正确的文件或格式。\n"
+
+#, c-format
+msgid "Incorrect function (argument n: %d).\n"
+msgstr "不正确的函数（参数n：%d）\n"
+
+#, c-format
+msgid "Incorrect function at line %d.\n"
+msgstr "在第%d行存在不正确的函数。\n"
+
+msgid "Incorrect function.\n"
+msgstr "不正确的函数。\n"
+
+msgid "Incorrect number of input arguments.\n"
+msgstr "输入参数的数目不正确。\n"
+
+msgid "Incorrect string.\n"
+msgstr "不正确的字符串。\n"
+
+msgid "Incorrect syntax.\n"
+msgstr "不正确的语法。\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
+
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr "非零元素的索引值必须通过一个2列的矩阵指定。\n"
+
+msgid "Inequality comparison with empty matrix.\n"
+msgstr "空矩阵的不等式比较。\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr ""
+
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgstr "指令左侧：等待一个点活一个左括号。\n"
+
+msgid "Instruction left hand side: waiting for a name.\n"
+msgstr "指令左侧：等待一个名字。\n"
+
+msgid "Integration fails.\n"
+msgstr "积分失败。\n"
+
+msgid "Interface property table is full.\n"
+msgstr "接口属性表已满。\n"
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "需要的临时内存：%d\n"
+
+msgid "Invalid exponent.\n"
+msgstr "不正确的指数。\n"
+
+msgid "Invalid factor.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr "不正确的索引。\n"
+
+#, c-format
+msgid "Invalid return value for function passed in arg %d.\n"
+msgstr "在参数%d处输入的函数的返回值错误。\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr "不可能以此种方式重定义%s primitive（参考clearfun）。\n"
+
+#, c-format
+msgid "Last element of %dth argument <> first.\n"
+msgstr "第%d个参数的最后一个元素<>第一个。\n"
+
+msgid "Last element of first argument does not match the first one.\n"
+msgstr "第1个参数的最后一个元素跟第一个元素不匹配。\n"
+
+msgid "Leading coefficient is zero.\n"
+msgstr "第一个（leading）系数是零。\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "列表（list）元素数目%d未定义。\n"
+
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr "逻辑单元数字必须大于%d。\n"
+
+msgid "Matrix is not positive definite.\n"
+msgstr "矩阵不是正定的。\n"
+
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
+msgstr "矩阵基准可用的是 1,2, inf 和 fro。\n"
+
+msgid "Maximum number of dynamic interfaces reached.\n"
+msgstr "已经达到动态接口的最大数目。\n"
+
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr "缓存的最大大小：%d个字符。\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "变量已用的内存：%d\n"
+
+msgid "Missing index.\n"
+msgstr "索引缺失。\n"
+
+msgid "Missing operator, comma, or semicolon.\n"
+msgstr "缺少操作符，逗号或分号。\n"
+
+msgid "NO hot restart available in this method.\n"
+msgstr "该方法中无热重启可用。\n"
+
+msgid "No feasible point has been found.\n"
+msgstr "没有发现可行点（feasible point）。\n"
+
+msgid "No feasible solution.\n"
+msgstr "无可行解。\n"
+
+#, c-format
+msgid "No input file associated to logical unit %d.\n"
+msgstr "没有输入文件与逻辑单元%d联系在一起。\n"
+
+msgid "No more memory.\n"
+msgstr "已无更多内存。\n"
+
+msgid "Non convergence in QR steps.\n"
+msgstr "在QR迭代中不收敛。\n"
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "QZ算法中不收敛。\n"
+
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr "投影后的梯度的范数小于%s。\n"
+
+msgid "Not enough memory to perform simplification.\n"
+msgstr "执行简化所需的内存不足。\n"
+
+msgid "Not implemented in scilab...\n"
+msgstr "在Scilab中尚未实现...\n"
+
+msgid "Null variable cannot be used here.\n"
+msgstr "此处不可使用空变量（null）。\n"
+
+msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgstr ""
+
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr "优化停止：已经达到了调用f的最大次数。\n"
+
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr "优化停止：已经达到了迭代的最大次数。\n"
+
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr "优化停止：在梯度方向上的变化太小。\n"
+
+msgid "Optimization fails: back to initial point.\n"
+msgstr "优化失败：回到了初始点。\n"
+
+msgid "Optimization stops because too small variations for x.\n"
+msgstr "优化停止，因为对x来说变化太小。\n"
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "暂停模式：请输入空行来继续。\n"
+
+msgid "Problem is singular.\n"
+msgstr "问题是奇异的。\n"
+
+msgid ""
+"Problem may be unbounded: too high distance between two consecutive "
+"iterations.\n"
+msgstr "问题可能无界：两个连续迭代之间的距离太远。\n"
+
+msgid "Problem with comparison symbol...\n"
+msgstr "比较符号的问题...\n"
+
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr ""
+
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr "秩（rank）不足：rand = %s - tol = %s。\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
+
+msgid "Real part\n"
+msgstr "实数部分\n"
+
+msgid "Rebuild your function libraries.\n"
+msgstr "请重建您的函数库。\n"
+
+msgid "Recursion problems. Sorry...\n"
+msgstr "递归问题。抱歉...\n"
+
+msgid "Recursive extraction is not valid in this context.\n"
+msgstr "在此处上下文中的递归提取不正确。\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "重定义固定变量。\n"
+
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+"Roundoff错误使得Schur form的\n"
+"leading特征值不再满足标准。\n"
+
+msgid "Singularity of log or tan function.\n"
+msgstr "log或tan函数的奇异性。\n"
+
+#, c-format
+msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr "参数大小不定，此处不允许使用a*eys()(arg %d）。\n"
+
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr "一些数据没有被计算，它们已被NaN代替。\n"
+
+msgid ""
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output "
+"arguments.\n"
+"No output argument test has been made for this function.\n"
+"Please report this bug :\n"
+msgstr ""
+"在一个循环中探测到栈问题。\n"
+"一个primitive函数被调用时输出参数的数目错误。\n"
+"无法测试该函数的输出参数。\n"
+"请报告该bug：\n"
+
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr "在行%s位于函数%s中停止。\n"
+
+msgid "Stop during calculation of descent direction.\n"
+msgstr "在计算下降方向时停止。\n"
+
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr "在计算估计的hessian时停止。\n"
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "子矩阵（Submatrix）定义不正确。\n"
+
+#, c-format
+msgid "Syntax error in a '%s' instruction.\n"
+msgstr "在指令'%s'中存在语法错误。\n"
+
+msgid "System functions:\n"
+msgstr "系统函数：\n"
+
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr "第一个%d奇异值可能不正确。\n"
+
+#, c-format
+msgid "The identifier : %s\n"
+msgstr "标识符：%s\n"
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr "顶端的 %d x %d 块可能不是generalized Schur form。\n"
+
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr "顶端的 %d x %d 块可能不是Schur form。\n"
+
+msgid "This data type is already defined.\n"
+msgstr "该数据类型已经定义。\n"
+
+msgid "This variable is not valid in fort.\n"
+msgstr "在fort中的变量不正确。\n"
+
+msgid "Too complex for scilab, may be a too long control instruction.\n"
+msgstr "对Scilab来说太复杂，可能有一个太长的控制指令。\n"
+
+msgid "Too complex recursion! (recursion tables are full)\n"
+msgstr "太多复杂递归！（递归表已满）\n"
+
+msgid "Too high degree (max 100).\n"
+msgstr "度数（degree）太高（最大为100）\n"
+
+msgid "Too large string.\n"
+msgstr "字符串太大。\n"
+
+msgid "Too large, can't be displayed.\n"
+msgstr "太大，无法显示。\n"
+
+msgid "Too many ':'\n"
+msgstr "太多的':'\n"
+
+msgid "Too many arguments in fort (max 30).\n"
+msgstr "在fort中的参数太多（最多为30）。\n"
+
+msgid "Too many commands defined.\n"
+msgstr "定义了太多命令。\n"
+
+msgid "Too many files opened!\n"
+msgstr ""
+
+#, c-format
+msgid "Too many functions are defined (maximum #:%d).\n"
+msgstr "定义的函数太多（最大数目:%d）\n"
+
+#, c-format
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
+
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
+
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
+
+msgid "Too many linked routines.\n"
+msgstr "链接的routine太多。\n"
+
+msgid "Too many variables!\n"
+msgstr "变量太多！\n"
+
+msgid "Too small memory.\n"
+msgstr "内存太少。\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "总共可用的内存：%d\n"
+
+#, c-format
+msgid "Trying to re-define function %s.\n"
+msgstr "尝试重定义函数%s。\n"
+
+msgid "Type data base is full.\n"
+msgstr "类型数据库已满。\n"
+
+msgid "Uncontrollable system.\n"
+msgstr "不可控系统。\n"
+
+msgid "Undefined display for this data type.\n"
+msgstr "此种数据类型没有定义显示。\n"
+
+msgid "Undefined fonction.\n"
+msgstr "函数未定义。\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "给定命令的操作未定义。\n"
+
+msgid "Undefined variable.\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "未定义的变量：%s\n"
+
+msgid "Unknown file format.\n"
+msgstr "未知的文件格式。\n"
+
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr "忽略未知的键 <%s>。\n"
+
+msgid "Unobservable system.\n"
+msgstr "不可观察系统。\n"
+
+msgid "Use stacksize function to increase it.\n"
+msgstr "请使用 stacksize 函数增加栈大小。\n"
+
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr "使用了%s个元素，总共可用数为%s个。\n"
+
+#, c-format
+msgid "Variable %s is not a valid rational function.\n"
+msgstr "变量%s不是一个正确的有理函数。\n"
+
+#, c-format
+msgid "Variable %s is not a valid state space representation.\n"
+msgstr "变量%s不是一个正确的状态空间表达。\n"
+
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr "变量：%s必须为一个list\n"
+
+#, c-format
+msgid "Variable or function %s are not in file.\n"
+msgstr "变量或函数%s不在文件之中。\n"
+
+msgid "Variable returned by scilab argument function is incorrect.\n"
+msgstr "Scilab参数函数返回的变量不正确。\n"
+
+msgid "Waiting for end of command.\n"
+msgstr "等待命令结束。\n"
+
+msgid "Waiting for right parenthesis.\n"
+msgstr "等待右括号\n"
+
+msgid "Warning :\n"
+msgstr "警告：\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "警告：被零除...\n"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr "警告：函数重复定义：%s。使用funcprot(0)来忽略本消息。"
+
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr "警告：'log'或'tan'函数的奇异性。\n"
+
+msgid "Warning:\n"
+msgstr "警告：\n"
+
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr "警告：结果可能不精确。\n"
+
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used! See %ODEOPTIONS(6).\n"
+msgstr ""
+
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+"警告：没有给定外部的雅可比，但是\n"
+" 它被 %ODEOPTIONS(6) 需要。\n"
+
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr "警告：使用标准列表来定义类型结构是老用法。请使用tlist。\n"
+
+msgid "Warning: function is already compiled.\n"
+msgstr "警告：函数已经被编译。\n"
+
+msgid ""
+"Warning: integration not completed! Check tolerance parameters or step "
+"size.\n"
+msgstr ""
+
+msgid "Warning: integration up to tcrit.\n"
+msgstr "警告：积分达到tcrit。\n"
+
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+"警告：载入的文件是先前版本的Scilab所创建或者\n"
+"您正在尝试载入一个不同系统架构下保存的文件。\n"
+
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr "警告：'='用法已过时，应该是'=='。\n"
+
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
+
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr "警告：odedc 强制 itask=4 并且控制 tcrit。\n"
+
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr "警告：primitive函数%s已经被移除。\n"
+
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr "警告：primitive函数%s现在是一个Scilab函数。\n"
+
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr "警告：循环问题...，已清除。\n"
+
+msgid "Warning: stack problem..., cleared.\n"
+msgstr "警告：栈问题...，已清除。\n"
+
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr "警告：没有发现变量%%ODEOPTIONS。\n"
+
+#, c-format
+msgid "Wrong argument %d.\n"
+msgstr "第%d个参数错误。\n"
+
+msgid "Wrong file name.\n"
+msgstr "错误的文件名。\n"
+
+msgid "Wrong first argument.\n"
+msgstr "第一个参数错误。\n"
+
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr "第%d个输入参数错误。\n"
+
+msgid "Wrong number of input arguments:\n"
+msgstr ""
+
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
+msgstr ""
+
+msgid "Wrong number of output arguments\n"
+msgstr ""
+
+msgid ""
+"Wrong number of output arguments: This function has no output argument.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for argument %d.\n"
+msgstr "第%d个参数的大小错误。\n"
+
+msgid "Wrong size for argument: Incompatible dimensions.\n"
+msgstr "参数的大小错误：不兼容的维数。\n"
+
+#, c-format
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgstr "参数%d的类型错误：应该为稀疏或稠密矩阵。\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
+msgstr "第%d个参数的类型错误：应该为一个在状态空间内的系统或转换矩阵形式。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgstr "参数%d的类型错误：应该为布尔类型或标量。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgstr "参数%d的类型错误：应该为稀疏lu因子的句柄。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgstr "第%d个参数的类型错误：应该在连续时间内。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgstr "第%d个参数的类型错误：应该在离散时间内。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In state space form expected.\n"
+msgstr "第%d个参数的类型错误：应该为状态空间方式。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: List expected.\n"
+msgstr "第%d个参数的类型错误：应该列表。\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr "第%d个参数的类型错误：应该为一个已被命名的变量，不能是一个表达式。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgstr "第%d个参数的类型错误：应该为有理数矩阵。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgstr "第%d个参数的类型错误：应该为实矩阵。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "第%d个参数的类型错误：应该为SISO。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgstr "参数%d的类型错误：应该为稀疏矩阵。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgstr "第%d个参数类型错误：应该为方阵。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: String expected.\n"
+msgstr "第%d个参数的类型错误：应该字符串。\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgstr "第%d个参数的类型错误：应该为转换矩阵。\n"
+
+msgid "Wrong type for first argument: Square matrix expected.\n"
+msgstr "第一个参数的类型错误：应该为方阵。\n"
+
+msgid "Wrong type for first input argument: Single string expected.\n"
+msgstr "第一个输入参数的类型错误：应该为一个字符串。\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
+msgstr "第%d个输入参数的类型错误：应该为多项式。\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr "第%d个输入参数的类型错误：应该为实数或复数矩阵。\n"
+
+#, c-format
+msgid "Wrong value for argument %d.\n"
+msgstr "第%d个参数的值错误。\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Empty string expected.\n"
+msgstr "参数%d的值错误：应该为空字符串。\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr "参数%d的值错误：不能包含NaN和Inf。\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgstr "参数%d的值错误：应该为正确的变量名。\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgstr "参数%d的值错误：特征值modulus必须少于一个。\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgstr "参数%d的值错误：特征值必须具有负实数部分。\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr "参数%d的值错误：句柄lu不再正确。\n"
+
+msgid "You cannot link more functions, maxentry reached.\n"
+msgstr "你不能链接更多函数，已经达到最大入口。\n"
+
+msgid "Your global variables are...\n"
+msgstr "您的全局变量是...\n"
+
+msgid "Your variables are:\n"
+msgstr "您的变量是：\n"
+
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr "最终迭代f降低少于%s。\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "请检查或定义函数%s来解决重载问题。\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "计算最小二乘结（参考 lsq）。\n"
+
+msgid "eigenvectors are badly conditioned.\n"
+msgstr ""
+
+msgid "endfunction is missing.\n"
+msgstr "缺少endfunction。\n"
+
+#, c-format
+msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
+msgstr "x=val且type(val)=%d尚未在Scilab中。\n"
+
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+"itask=2,4或5：最多允许t的一个值，\n"
+" 使用了 t 的最后一个元素。\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "矩阵接近奇异或病态scaled. rcond=%s\n"
+
+#, c-format
+msgid "null matrix (argument # %d).\n"
+msgstr "NULL矩阵（第%d个参数）\n"
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr "poly：变量名长度必须至少为5个字符。\n"
+
+#, c-format
+msgid "reference to the cleared global variable %s.\n"
+msgstr "引用已经被清除的全局变量%s。\n"
+
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr "结果可能不精确 。rcond=%s。\n"
+
+msgid "semi def fails.\n"
+msgstr "半正定失败。\n"
+
+#, c-format
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr "sfact：收敛未完成时已达到相对精度：10**(%s)。\n"
+
+msgid "stack size exceeded!\n"
+msgstr "超出了栈的大小！\n"
+
+msgid "stepsize not significant in rkqc.\n"
+msgstr "在rkqc中的步长不明显（not significant）\n"
+
+#, c-format
+msgid "subroutine not found: %s\n"
+msgstr "没有发现子程序：%s\n"
+
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
+msgstr "第%d个参数的时间域未定义。\n"
+
+msgid "varargout keyword cannot be used here.\n"
+msgstr "varargout关键词在此处不能使用。\n"

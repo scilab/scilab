@@ -1,0 +1,1043 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<category enable="true" name="Config">
+    <node xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Category" enable="true" name="Palettes">
+        <node xsi:type="PreLoaded" enable="true" name="Commonly Used Blocks">
+            <block name="ANDBLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ANDBLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ANDBLK.png"/>
+            </block>
+            <block name="BIGSOM_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BIGSOM_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BIGSOM_f.png"/>
+            </block>
+            <block name="CMSCOPE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CMSCOPE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
+            </block>
+            <block name="CONST_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONST_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_m.png"/>
+            </block>
+            <block name="CONVERT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONVERT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONVERT.png"/>
+            </block>
+            <block name="CSCOPXY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CSCOPXY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPXY.png"/>
+            </block>
+            <block name="DEMUX">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DEMUX.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEMUX.png"/>
+            </block>
+            <block name="DOLLAR_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DOLLAR_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DOLLAR_f.png"/>
+            </block>
+            <block name="INTEGRAL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTEGRAL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTEGRAL_f.png"/>
+            </block>
+            <block name="IN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/IN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/IN_f.png"/>
+            </block>
+            <block name="LOGICAL_OP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/LOGICAL_OP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOGICAL_OP.png"/>
+            </block>
+            <block name="MUX">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MUX.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MUX.png"/>
+            </block>
+            <block name="NRMSOM_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/NRMSOM_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/NRMSOM_f.png"/>
+            </block>
+            <block name="OUT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OUT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OUT_f.png"/>
+            </block>
+            <block name="PRODUCT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PRODUCT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PRODUCT.png"/>
+            </block>
+            <block name="RELATIONALOP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RELATIONALOP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RELATIONALOP.png"/>
+            </block>
+            <block name="SATURATION">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SATURATION.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SATURATION.png"/>
+            </block>
+            <block name="SWITCH2_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SWITCH2_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SWITCH2_m.png"/>
+            </block>
+            <block name="TEXT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TEXT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TEXT_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Continuous time systems">
+            <block name="CLINDUMMY_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLINDUMMY_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLINDUMMY_f.png"/>
+            </block>
+            <block name="CLR">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLR.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLR.png"/>
+            </block>
+            <block name="CLSS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLSS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLSS.png"/>
+            </block>
+            <block name="DERIV">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DERIV.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DERIV.png"/>
+            </block>
+            <block name="INTEGRAL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTEGRAL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTEGRAL_f.png"/>
+            </block>
+            <block name="INTEGRAL_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTEGRAL_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTEGRAL_m.png"/>
+            </block>
+            <block name="PID">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PID.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PID.png"/>
+            </block>
+            <block name="TCLSS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TCLSS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TCLSS.png"/>
+            </block>
+            <block name="TIME_DELAY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TIME_DELAY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TIME_DELAY.png"/>
+            </block>
+            <block name="VARIABLE_DELAY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VARIABLE_DELAY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VARIABLE_DELAY.png"/>
+            </block>
+            <block name="PDE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PDE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PDE.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Discontinuities">
+            <block name="BACKLASH">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BACKLASH.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BACKLASH.png"/>
+            </block>
+            <block name="DEADBAND">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DEADBAND.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEADBAND.png"/>
+            </block>
+            <block name="DELAYV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DELAYV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DELAYV_f.png"/>
+            </block>
+            <block name="HYSTHERESIS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/HYSTHERESIS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/HYSTHERESIS.png"/>
+            </block>
+            <block name="RATELIMITER">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RATELIMITER.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RATELIMITER.png"/>
+            </block>
+            <block name="QUANT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/QUANT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/QUANT_f.png"/>
+            </block>
+            <block name="SATURATION">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SATURATION.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SATURATION.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Discrete time systems">
+            <block name="AUTOMAT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/AUTOMAT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/AUTOMAT.png"/>
+            </block>
+            <block name="DELAYV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DELAYV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DELAYV_f.png"/>
+            </block>
+            <block name="DELAY_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DELAY_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DELAY_f.png"/>
+            </block>
+            <block name="DLR">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DLR.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DLR.png"/>
+            </block>
+            <block name="DLRADAPT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DLRADAPT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DLRADAPT_f.png"/>
+            </block>
+            <block name="DLSS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DLSS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DLSS.png"/>
+            </block>
+            <block name="DOLLAR_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DOLLAR_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DOLLAR_f.png"/>
+            </block>
+            <block name="SAMPHOLD_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SAMPHOLD_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SAMPHOLD_m.png"/>
+            </block>
+            <block name="TCLSS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TCLSS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TCLSS.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Lookup Tables">
+            <block name="INTRP2BLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTRP2BLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTRP2BLK_f.png"/>
+            </block>
+            <block name="INTRPLBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTRPLBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTRPLBLK_f.png"/>
+            </block>
+            <block name="LOOKUP_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/LOOKUP_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOOKUP_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Event handling">
+            <block name="ANDBLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ANDBLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ANDBLK.png"/>
+            </block>
+            <block name="ANDLOG_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ANDLOG_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ANDLOG_f.png"/>
+            </block>
+            <block name="CEVENTSCOPE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CEVENTSCOPE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CEVENTSCOPE.png"/>
+            </block>
+            <block name="CLKFROM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKFROM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKFROM.png"/>
+            </block>
+            <block name="CLKGOTO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKGOTO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKGOTO.png"/>
+            </block>
+            <block name="CLKGotoTagVisibility">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKGotoTagVisibility.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKGotoTagVisibility.png"/>
+            </block>
+            <block name="CLKOUTV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKOUTV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKOUTV_f.png"/>
+            </block>
+            <block name="CLKSOMV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKSOMV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKSOMV_f.png"/>
+            </block>
+            <block name="CLOCK_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLOCK_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLOCK_c.png"/>
+            </block>
+            <block name="EDGE_TRIGGER">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EDGE_TRIGGER.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EDGE_TRIGGER.png"/>
+            </block>
+            <block name="ENDBLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ENDBLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ENDBLK.png"/>
+            </block>
+            <block name="END_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/END_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/END_c.png"/>
+            </block>
+            <block name="ESELECT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ESELECT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ESELECT_f.png"/>
+            </block>
+            <block name="EVTDLY_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EVTDLY_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EVTDLY_c.png"/>
+            </block>
+            <block name="EVTGEN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EVTGEN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EVTGEN_f.png"/>
+            </block>
+            <block name="EVTVARDLY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EVTVARDLY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EVTVARDLY.png"/>
+            </block>
+            <block name="Extract_Activation">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Extract_Activation.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Extract_Activation.png"/>
+            </block>
+            <block name="HALT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/HALT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/HALT_f.png"/>
+            </block>
+            <block name="IFTHEL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/IFTHEL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/IFTHEL_f.png"/>
+            </block>
+            <block name="M_freq">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/M_freq.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/M_freq.png"/>
+            </block>
+            <block name="MCLOCK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MCLOCK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MCLOCK_f.png"/>
+            </block>
+            <block name="MFCLCK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MFCLCK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MFCLCK_f.png"/>
+            </block>
+            <block name="REGISTER">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/REGISTER.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/REGISTER.png"/>
+            </block>
+            <block name="SampleCLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SampleCLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SampleCLK.png"/>
+            </block>
+            <block name="freq_div">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/freq_div.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/freq_div.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Mathematical Operations">
+            <block name="ABS_VALUE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ABS_VALUE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ABS_VALUE.png"/>
+            </block>
+            <block name="BIGSOM_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BIGSOM_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BIGSOM_f.png"/>
+            </block>
+            <block name="COSBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/COSBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/COSBLK_f.png"/>
+            </block>
+            <block name="EXPBLK_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXPBLK_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXPBLK_m.png"/>
+            </block>
+            <block name="GAINBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GAINBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GAINBLK_f.png"/>
+            </block>
+            <block name="INVBLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INVBLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INVBLK.png"/>
+            </block>
+            <block name="LOGBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/LOGBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOGBLK_f.png"/>
+            </block>
+            <block name="MATMAGPHI">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATMAGPHI.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATMAGPHI.png"/>
+            </block>
+            <block name="MATZREIM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATZREIM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATZREIM.png"/>
+            </block>
+            <block name="MAXMIN">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MAXMIN.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MAXMIN.png"/>
+            </block>
+            <block name="MAX_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MAX_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MAX_f.png"/>
+            </block>
+            <block name="MIN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MIN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MIN_f.png"/>
+            </block>
+            <block name="POWBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/POWBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/POWBLK_f.png"/>
+            </block>
+            <block name="PRODUCT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PRODUCT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PRODUCT.png"/>
+            </block>
+            <block name="PROD_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PROD_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PROD_f.png"/>
+            </block>
+            <block name="SIGNUM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SIGNUM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SIGNUM.png"/>
+            </block>
+            <block name="SINBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SINBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SINBLK_f.png"/>
+            </block>
+            <block name="SQRT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SQRT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SQRT.png"/>
+            </block>
+            <block name="SUMMATION">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SUMMATION.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SUMMATION.png"/>
+            </block>
+            <block name="SUM_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SUM_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SUM_f.png"/>
+            </block>
+            <block name="TANBLK_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TANBLK_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TANBLK_f.png"/>
+            </block>
+            <block name="TrigFun">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TrigFun.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TrigFun.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Matrix">
+            <block name="CUMSUM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CUMSUM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CUMSUM.png"/>
+            </block>
+            <block name="EXTRACT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXTRACT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXTRACT.png"/>
+            </block>
+            <block name="EXTTRI">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXTTRI.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXTTRI.png"/>
+            </block>
+            <block name="MATBKSL">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATBKSL.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATBKSL.png"/>
+            </block>
+            <block name="MATCATH">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATCATH.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATCATH.png"/>
+            </block>
+            <block name="MATCATV">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATCATV.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATCATV.png"/>
+            </block>
+            <block name="MATDET">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATDET.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATDET.png"/>
+            </block>
+            <block name="MATDIAG">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATDIAG.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATDIAG.png"/>
+            </block>
+            <block name="MATDIV">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATDIV.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATDIV.png"/>
+            </block>
+            <block name="MATEIG">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATEIG.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATEIG.png"/>
+            </block>
+            <block name="MATEXPM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATEXPM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATEXPM.png"/>
+            </block>
+            <block name="MATINV">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATINV.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATINV.png"/>
+            </block>
+            <block name="MATLU">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATLU.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATLU.png"/>
+            </block>
+            <block name="MATMAGPHI">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATMAGPHI.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATMAGPHI.png"/>
+            </block>
+            <block name="MATMUL">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATMUL.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATMUL.png"/>
+            </block>
+            <block name="MATPINV">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATPINV.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATPINV.png"/>
+            </block>
+            <block name="MATRESH">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATRESH.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATRESH.png"/>
+            </block>
+            <block name="MATSING">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATSING.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATSING.png"/>
+            </block>
+            <block name="MATSUM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATSUM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATSUM.png"/>
+            </block>
+            <block name="MATTRAN">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATTRAN.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATTRAN.png"/>
+            </block>
+            <block name="MATZCONJ">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATZCONJ.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATZCONJ.png"/>
+            </block>
+            <block name="MATZREIM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MATZREIM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MATZREIM.png"/>
+            </block>
+            <block name="RICC">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RICC.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RICC.png"/>
+            </block>
+            <block name="ROOTCOEF">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ROOTCOEF.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ROOTCOEF.png"/>
+            </block>
+            <block name="SQRT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SQRT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SQRT.png"/>
+            </block>
+            <block name="SUBMAT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SUBMAT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SUBMAT.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Electrical">
+            <block name="CCS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CCS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CCS.png"/>
+            </block>
+            <block name="CVS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CVS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CVS.png"/>
+            </block>
+            <block name="Capacitor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Capacitor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Capacitor.png"/>
+            </block>
+            <block name="ConstantVoltage">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ConstantVoltage.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ConstantVoltage.png"/>
+            </block>
+            <block name="CurrentSensor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CurrentSensor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CurrentSensor.png"/>
+            </block>
+            <block name="Diode">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Diode.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Diode.png"/>
+            </block>
+            <block name="Ground">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Ground.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Ground.png"/>
+            </block>
+            <block name="Gyrator">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Gyrator.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Gyrator.png"/>
+            </block>
+            <block name="IdealTransformer">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/IdealTransformer.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/IdealTransformer.png"/>
+            </block>
+            <block name="Inductor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Inductor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Inductor.png"/>
+            </block>
+            <block name="NMOS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/NMOS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/NMOS.png"/>
+            </block>
+            <block name="NPN">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/NPN.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/NPN.png"/>
+            </block>
+            <block name="OpAmp">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OpAmp.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OpAmp.png"/>
+            </block>
+            <block name="PMOS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PMOS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PMOS.png"/>
+            </block>
+            <block name="PNP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PNP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PNP.png"/>
+            </block>
+            <block name="PotentialSensor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PotentialSensor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PotentialSensor.png"/>
+            </block>
+            <block name="Resistor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Resistor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Resistor.png"/>
+            </block>
+            <block name="SineVoltage">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SineVoltage.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SineVoltage.png"/>
+            </block>
+            <block name="Switch">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Switch.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Switch.png"/>
+            </block>
+            <block name="VVsourceAC">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VVsourceAC.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VVsourceAC.png"/>
+            </block>
+            <block name="VariableResistor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VariableResistor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VariableResistor.png"/>
+            </block>
+            <block name="VoltageSensor">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VoltageSensor.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VoltageSensor.png"/>
+            </block>
+            <block name="VsourceAC">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VsourceAC.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VsourceAC.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Integer">
+            <block name="BITCLEAR">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BITCLEAR.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BITCLEAR.png"/>
+            </block>
+            <block name="BITSET">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BITSET.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BITSET.png"/>
+            </block>
+            <block name="CONVERT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONVERT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONVERT.png"/>
+            </block>
+            <block name="DFLIPFLOP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DFLIPFLOP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DFLIPFLOP.png"/>
+            </block>
+            <block name="DLATCH">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DLATCH.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DLATCH.png"/>
+            </block>
+            <block name="EXTRACTBITS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXTRACTBITS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXTRACTBITS.png"/>
+            </block>
+            <block name="INTMUL">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INTMUL.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INTMUL.png"/>
+            </block>
+            <block name="JKFLIPFLOP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/JKFLIPFLOP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/JKFLIPFLOP.png"/>
+            </block>
+            <block name="LOGIC">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/LOGIC.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/LOGIC.png"/>
+            </block>
+            <block name="SHIFT">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SHIFT.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SHIFT.png"/>
+            </block>
+            <block name="SRFLIPFLOP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SRFLIPFLOP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SRFLIPFLOP.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Port &amp; Subsystem">
+            <block name="CLKINV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKINV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKINV_f.png"/>
+            </block>
+            <block name="CLKOUTV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKOUTV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKOUTV_f.png"/>
+            </block>
+            <block name="IN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/IN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/IN_f.png"/>
+            </block>
+            <block name="INIMPL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INIMPL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INIMPL_f.png"/>
+            </block>
+            <block name="OUTIMPL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OUTIMPL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OUTIMPL_f.png"/>
+            </block>
+            <block name="OUT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OUT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OUT_f.png"/>
+            </block>
+            <block name="SUPER_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SUPER_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SUPER_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Zero crossing detection">
+            <block name="GENERAL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GENERAL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GENERAL_f.png"/>
+            </block>
+            <block name="NEGTOPOS_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/NEGTOPOS_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/NEGTOPOS_f.png"/>
+            </block>
+            <block name="POSTONEG_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/POSTONEG_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/POSTONEG_f.png"/>
+            </block>
+            <block name="ZCROSS_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ZCROSS_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ZCROSS_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Signal Routing">
+            <block name="DEMUX">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DEMUX.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEMUX.png"/>
+            </block>
+            <block name="EXTRACTOR">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXTRACTOR.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXTRACTOR.png"/>
+            </block>
+            <block name="FROM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/FROM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/FROM.png"/>
+            </block>
+            <block name="FROMMO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/FROMMO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/FROMMO.png"/>
+            </block>
+            <block name="GOTO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GOTO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GOTO.png"/>
+            </block>
+            <block name="GOTOMO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GOTOMO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GOTOMO.png"/>
+            </block>
+            <block name="GotoTagVisibility">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GotoTagVisibility.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GotoTagVisibility.png"/>
+            </block>
+            <block name="GotoTagVisibilityMO">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GotoTagVisibilityMO.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GotoTagVisibilityMO.png"/>
+            </block>
+            <block name="ISELECT_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ISELECT_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ISELECT_m.png"/>
+            </block>
+            <block name="MUX">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MUX.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MUX.png"/>
+            </block>
+            <block name="M_SWITCH">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/M_SWITCH.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/M_SWITCH.png"/>
+            </block>
+            <block name="NRMSOM_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/NRMSOM_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/NRMSOM_f.png"/>
+            </block>
+            <block name="RELAY_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RELAY_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RELAY_f.png"/>
+            </block>
+            <block name="SELECT_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SELECT_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SELECT_m.png"/>
+            </block>
+            <block name="SWITCH2_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SWITCH2_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SWITCH2_m.png"/>
+            </block>
+            <block name="SWITCH_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SWITCH_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SWITCH_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Signal Processing">
+            <block name="QUANT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/QUANT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/QUANT_f.png"/>
+            </block>
+            <block name="SAMPHOLD_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SAMPHOLD_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SAMPHOLD_m.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Implicit">
+            <block name="CONSTRAINT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONSTRAINT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONSTRAINT_f.png"/>
+            </block>
+            <block name="DIFF_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DIFF_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DIFF_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Annotations">
+            <block name="TEXT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TEXT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TEXT_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Sinks">
+            <block name="AFFICH_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/AFFICH_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/AFFICH_m.png"/>
+            </block>
+            <block name="CANIMXY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CANIMXY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CANIMXY.png"/>
+            </block>
+            <block name="CANIMXY3D">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CANIMXY3D.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CANIMXY3D.png"/>
+            </block>
+            <block name="CFSCOPE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CFSCOPE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CFSCOPE.png"/>
+            </block>
+            <block name="CLKOUTV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKOUTV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKOUTV_f.png"/>
+            </block>
+            <block name="CMAT3D">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CMAT3D.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CMAT3D.png"/>
+            </block>
+            <block name="CMATVIEW">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CMATVIEW.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CMATVIEW.png"/>
+            </block>
+            <block name="CMSCOPE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CMSCOPE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CMSCOPE.png"/>
+            </block>
+            <block name="CSCOPE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CSCOPE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPE.png"/>
+            </block>
+            <block name="CSCOPXY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CSCOPXY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPXY.png"/>
+            </block>
+            <block name="CSCOPXY3D">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CSCOPXY3D.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CSCOPXY3D.png"/>
+            </block>
+            <block name="ENDBLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/ENDBLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/ENDBLK.png"/>
+            </block>
+            <block name="END_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/END_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/END_c.png"/>
+            </block>
+            <block name="HALT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/HALT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/HALT_f.png"/>
+            </block>
+            <block name="OUTIMPL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OUTIMPL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OUTIMPL_f.png"/>
+            </block>
+            <block name="OUT_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/OUT_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/OUT_f.png"/>
+            </block>
+            <block name="TOWS_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TOWS_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TOWS_c.png"/>
+            </block>
+            <block name="TRASH_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TRASH_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TRASH_f.png"/>
+            </block>
+            <block name="WFILE_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/WFILE_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/WFILE_f.png"/>
+            </block>
+            <block name="WRITEAU_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/WRITEAU_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/WRITEAU_f.png"/>
+            </block>
+            <block name="WRITEC_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/WRITEC_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/WRITEC_f.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Sources">
+            <block name="CLKINV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLKINV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLKINV_f.png"/>
+            </block>
+            <block name="CLOCK_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CLOCK_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CLOCK_c.png"/>
+            </block>
+            <block name="CONST_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONST_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONST_m.png"/>
+            </block>
+            <block name="CURV_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CURV_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CURV_f.png"/>
+            </block>
+            <block name="Counter">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Counter.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Counter.png"/>
+            </block>
+            <block name="FROMWSB">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/FROMWSB.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/FROMWSB.png"/>
+            </block>
+            <block name="GENSIN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GENSIN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GENSIN_f.png"/>
+            </block>
+            <block name="GENSQR_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/GENSQR_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/GENSQR_f.png"/>
+            </block>
+            <block name="INIMPL_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/INIMPL_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/INIMPL_f.png"/>
+            </block>
+            <block name="IN_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/IN_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/IN_f.png"/>
+            </block>
+            <block name="Modulo_Count">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Modulo_Count.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Modulo_Count.png"/>
+            </block>
+            <block name="RAMP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RAMP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RAMP.png"/>
+            </block>
+            <block name="RAND_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RAND_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RAND_m.png"/>
+            </block>
+            <block name="READAU_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/READAU_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/READAU_f.png"/>
+            </block>
+            <block name="READC_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/READC_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/READC_f.png"/>
+            </block>
+            <block name="RFILE_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/RFILE_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/RFILE_f.png"/>
+            </block>
+            <block name="SAWTOOTH_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SAWTOOTH_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SAWTOOTH_f.png"/>
+            </block>
+            <block name="STEP_FUNCTION">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/STEP_FUNCTION.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/STEP_FUNCTION.png"/>
+            </block>
+            <block name="SampleCLK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SampleCLK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SampleCLK.png"/>
+            </block>
+            <block name="Sigbuilder">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Sigbuilder.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Sigbuilder.png"/>
+            </block>
+            <block name="TIME_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TIME_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TIME_f.png"/>
+            </block>
+            <block name="TKSCALE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/TKSCALE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/TKSCALE.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Thermo-Hydraulics">
+            <block name="Bache">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/Bache.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/Bache.png"/>
+            </block>
+            <block name="PerteDP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PerteDP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PerteDP.png"/>
+            </block>
+            <block name="PuitsP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PuitsP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PuitsP.png"/>
+            </block>
+            <block name="SourceP">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SourceP.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SourceP.png"/>
+            </block>
+            <block name="VanneReglante">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/VanneReglante.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/VanneReglante.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="Demonstrations Blocks">
+            <block name="BOUNCE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BOUNCE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BOUNCE.png"/>
+            </block>
+            <block name="BOUNCEXY">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BOUNCEXY.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BOUNCEXY.png"/>
+            </block>
+            <block name="BPLATFORM">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/BPLATFORM.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/BPLATFORM.png"/>
+            </block>
+        </node>
+        <node xsi:type="PreLoaded" enable="true" name="User-Defined Functions">
+            <block name="CBLOCK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CBLOCK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CBLOCK.png"/>
+            </block>
+            <block name="DEBUG_SCICOS">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/DEBUG_SCICOS.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/DEBUG_SCICOS.png"/>
+            </block>
+            <block name="EXPRESSION">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/EXPRESSION.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/EXPRESSION.png"/>
+            </block>
+            <block name="MBLOCK">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/MBLOCK.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/MBLOCK.png"/>
+            </block>
+            <block name="PDE">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/PDE.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/PDE.png"/>
+            </block>
+            <block name="SUPER_f">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/SUPER_f.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/SUPER_f.png"/>
+            </block>
+            <block name="c_block">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/c_block.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/c_block.png"/>
+            </block>
+            <block name="fortran_block">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/fortran_block.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/fortran_block.png"/>
+            </block>
+            <block name="generic_block3">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/generic_block3.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/generic_block3.png"/>
+            </block>
+            <block name="scifunc_block_m">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/scifunc_block_m.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/scifunc_block_m.png"/>
+            </block>
+        </node>
+    </node>
+</category>

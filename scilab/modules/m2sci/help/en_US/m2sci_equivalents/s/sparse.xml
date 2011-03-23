@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="m2sci_sparse">
+  <refnamediv>
+    <refname>sparse (Matlab function)</refname>
+    <refpurpose>Create sparse matrix</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Matlab/Scilab equivalent</title>
+    <informaltable border="1" width="100%">
+      <tr>
+        <td align="center">
+          <emphasis role="bold">Matlab</emphasis>
+        </td>
+        <td align="center">
+          <emphasis role="bold">Scilab</emphasis>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <programlisting role="example"><![CDATA[
+sparse
+]]></programlisting>
+        </td>
+        <td>
+          <programlisting role="example"><![CDATA[
+sparse
+]]></programlisting>
+        </td>
+      </tr>
+    </informaltable>
+  </refsection>
+  <refsection>
+    <title>Particular cases</title>
+    <informaltable  border="1" width="100%">
+      <tr>
+        <td align="center">
+          <para>
+            <emphasis role="strong">Equivalence table</emphasis>
+          </para>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <para> Matlab </para>
+        </td>
+        <td align="center">
+          <para> Scilab </para>
+        </td>
+        <td align="center">
+          <para> Comment </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para>sparse(A) </para>
+        </td>
+        <td>
+          <para> sparse(A) </para>
+        </td>
+        <td>
+          <para> </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para>sparse(m,n) </para>
+        </td>
+        <td>
+          <para> sparse([],[],[m,n]) </para>
+        </td>
+        <td>
+          <para> </para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para>sparse(i,j,s) </para>
+        </td>
+        <td>
+          <para> sparse([i,j],s) </para>
+        </td>
+        <td>
+          <para>This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
+          and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+          <emphasis role="strong">j</emphasis> are column vectors.</para>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <para>sparse(i,j,s,m,n) </para>
+        </td>
+        <td>
+          <para> sparse([i,j],s,[m,n]) </para>
+        </td>
+        <td>
+          <para>This equivalence is true considering <emphasis role="strong">i</emphasis>, <emphasis role="strong">j</emphasis>
+          and <emphasis role="strong">s</emphasis> have the same length and that <emphasis role="strong">i</emphasis> and 
+          <emphasis role="strong">j</emphasis> are column vectors.</para>
+        </td>
+      </tr>
+    </informaltable>
+    <para>sparse(i,j,s,m,n,nzmax) : There is no Scilab equivalent for this use of Matlab <emphasis role="strong">sparse</emphasis>.</para>
+  </refsection>
+</refentry>

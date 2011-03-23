@@ -26,22 +26,17 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.hdf5.scilabTypes.ScilabDouble;
-import org.scilab.modules.hdf5.scilabTypes.ScilabMList;
-import org.scilab.modules.hdf5.scilabTypes.ScilabString;
-import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
-import org.scilab.modules.xcos.link.actions.TextAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
 import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
-import org.scilab.modules.xcos.port.control.ControlPort;
-import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -55,8 +50,6 @@ import com.mxgraph.util.mxRectangle;
  * A link is always oriented from Input to Output or from Command to Control. 
  */
 public abstract class BasicLink extends ScilabGraphUniqueObject {
-
-	private static final long serialVersionUID = 8557979393361216098L;
 	private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
 	private static final int DETECTION_RECTANGLE_DIMENSION = 10;
 
@@ -105,31 +98,25 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	 *            otherwise
 	 * @return The points
 	 */
-    public mxPoint[] getPoints(int index, boolean fromStart) { 
+	public List<mxPoint> getPoints(int index, boolean fromStart) {
 
-	if (getGeometry() == null || getGeometry().getPoints() == null) { 
-	    return new mxPoint[0];
-	}
+		if (getGeometry() == null || getGeometry().getPoints() == null) {
+			return new ArrayList<mxPoint>();
+		}
 
-	int start = 0;
-	int size = 0;
-	if (fromStart) { 
-	    size = Math.min(getGeometry().getPoints().size(), index);
-	    start = 0;
-	} else {
-	    start = index;
-	    size = getGeometry().getPoints().size() - index;
+		final List<mxPoint> points = getGeometry().getPoints();
+		if (fromStart) {
+			return new ArrayList<mxPoint>(points.subList(0,
+					Math.min(points.size(), index)));
+		} else {
+			if (index < points.size()) {
+				return new ArrayList<mxPoint>(points.subList(index,
+						points.size()));
+			} else {
+				return new ArrayList<mxPoint>();
+			}
+		}
 	}
-
-	if (size > 0) {
-	    mxPoint[] points = new mxPoint[size];
-	    for (int i = 0; i < size; i++) { 
-		points[i] = (mxPoint) getGeometry().getPoints().get(start + i);
-	    }
-	    return points;
-	}
-	return null;
-    }
 
     /** @return the number of points in this link */
     public int getPointCount() { 
@@ -166,18 +153,18 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	    if (i == 0) { //first block
 		point1 = new Point2D.Double(startX, startY);
 	    } else {
-				point1 = new Point2D.Double((int) ((mxPoint) getGeometry()
+				point1 = new Point2D.Double((int) (getGeometry()
 						.getPoints().get(i - 1)).getX(),
-						(int) ((mxPoint) getGeometry().getPoints().get(i - 1))
+						(int) (getGeometry().getPoints().get(i - 1))
 								.getY());
 	    }
 
 	    if (i == getGeometry().getPoints().size()) { 
 		point2 = new Point2D.Double(endX, endY);
 	    } else {
-				point2 = new Point2D.Double((int) ((mxPoint) getGeometry()
+				point2 = new Point2D.Double((int) (getGeometry()
 						.getPoints().get(i)).getX(),
-						(int) ((mxPoint) getGeometry().getPoints().get(i))
+						(int) (getGeometry().getPoints().get(i))
 								.getY());
 	    }
 
@@ -234,7 +221,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	} else {
 	    //check to delete an old point before try to insert
 	    for (int i = 0; i < getGeometry().getPoints().size(); i++) { 
-		mxPoint oldPoint = (mxPoint) getGeometry().getPoints().get(i);
+		mxPoint oldPoint = getGeometry().getPoints().get(i);
 				mxRectangle rect = new mxRectangle(oldPoint.getX()
 						- (DETECTION_RECTANGLE_DIMENSION / 2), oldPoint.getY()
 						- (DETECTION_RECTANGLE_DIMENSION / 2),
@@ -261,65 +248,6 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	return false;
     }
 
-    /**
-     * @return A scicos representation of this link
-     */
-    public ScilabMList getAsScilabObj() {
-	String[] fields = {"Link", "xx", "yy", "id", "thick", "ct", "from", "to"};
-	ScilabMList data = new ScilabMList(fields);
-
-	double[][] xx = new double[1][2 + getPointCount()];
-
-	// xx
-	xx[0][0] = getSource().getGeometry().getCenterX() + getSource().getParent().getGeometry().getX();
-	for (int i = 0; i < getPointCount(); i++) { 
-	    xx[0][i + 1] = ((mxPoint) getGeometry().getPoints().get(i)).getX();
-	}
-	xx[0][1 + getPointCount()] = getTarget().getGeometry().getCenterX() + getTarget().getParent().getGeometry().getX();
-	data.add(new ScilabDouble(xx));
-
-	// yy
-	double[][] yy = new double[1][2 + getPointCount()];
-		yy[0][0] = -(getSource().getGeometry().getCenterY()
-				+ getSource().getParent().getGeometry().getY() - getSource()
-				.getParent().getGeometry().getHeight());
-	for (int i = 0; i < getPointCount(); i++) { 
-			yy[0][i + 1] = -(((mxPoint) getGeometry().getPoints().get(i)).getY());
-	}
-		yy[0][1 + getPointCount()] = -(getTarget().getGeometry().getCenterY()
-				+ getTarget().getParent().getGeometry().getY() - getSource()
-				.getParent().getGeometry().getHeight());
-	data.add(new ScilabDouble(yy));
-
-	data.add(new ScilabString("drawlink")); // id
-
-	double[][] thick = {{0, 0}};
-	data.add(new ScilabDouble(thick)); // thick
-
-	data.add(new ScilabDouble(getColorAndType())); //ct
-
-	double fromBlockID = ((BasicBlock) getSource().getParent()).getOrdering();
-	double fromPortID = ((BasicPort) getSource()).getOrdering();
-	double fromType = 0;
-
-	if (getSource() instanceof InputPort || getSource() instanceof ControlPort) { 
-	    fromType = 1;
-	}
-	double[][] fromData = {{fromBlockID, fromPortID, fromType}};
-	data.add(new ScilabDouble(fromData)); // from
-
-	double toBlockID = ((BasicBlock) getTarget().getParent()).getOrdering();
-	double toPortID = ((BasicPort) getTarget()).getOrdering();
-	double toType = 0;
-	if (getTarget() instanceof InputPort || getTarget() instanceof ControlPort) { 
-	    toType = 1;
-	}
-	double[][] toData = {{toBlockID, toPortID, toType}};
-	data.add(new ScilabDouble(toData)); // to
-
-	return data;
-    }
-
     /** @return The scicos color and type values */
     public abstract double[][] getColorAndType();
 
@@ -336,7 +264,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	Menu format = ScilabMenu.createMenu();
 	format.setText(XcosMessages.FORMAT);
 	format.add(BorderColorAction.createMenu(graph));
-	format.add(TextAction.createMenu(graph));
+	format.add(EditFormatAction.createMenu(graph));
 	menu.add(format);
 	/*--- */
 	menu.getAsSimpleContextMenu().addSeparator();
@@ -362,7 +290,9 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	 * @param from The source
 	 * @param to The target
 	 * @return The new link
+	 * @deprecated Prefer using {@link XcosDiagram#createEdge(Object, String, Object, Object, Object, String)}
 	 */
+    @Deprecated
     public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
     	// Pre-conditions
     	if (to == null || from == null) {
@@ -398,11 +328,47 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
 	    setSource(linkTarget);
 	    setTarget(linkSource);
 
-	    removePoints();
-	    for (int i = points.size() - 1; i >= 0; i--) {
-		addPoint(points.get(i).getX(), points.get(i).getY());
+	    if (points != null) {
+		    removePoints();
+		    for (int i = points.size() - 1; i >= 0; i--) {
+		    	addPoint(points.get(i).getX(), points.get(i).getY());
+		    }
 	    }
-	    
     }
-
+    
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return always true
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     * @see XcosDiagram#isValidSource(Object)
+     */
+    @Override
+    public boolean isConnectable() {
+    	return true;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+    	final StringBuilder str = new StringBuilder();
+    	str.append(source);
+    	
+    	str.append(" -> ");
+    	if (getChildCount() > 0) {
+    		// append the label
+    		str.append(getChildAt(0).getValue());
+    	} else {
+    		str.append(getClass().getSimpleName());
+    	}
+    	str.append(" -> ");
+    	
+    	str.append(target);
+    	
+    	return str.toString();
+    }
 }

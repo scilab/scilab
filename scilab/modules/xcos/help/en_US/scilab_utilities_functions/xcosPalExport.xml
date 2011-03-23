@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * 
+ * This help file was generated from xcosPalExport.sci using help_from_sci().
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosPalExport" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 12-Juil-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xcosPalExport</refname>
+    <refpurpose>Export a palette instance to a path.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+   xcosPalExport(pal, path);
+   status = xcosPalExport(pal, path);
+   [status, message] = xcosPalExport(pal, path);
+   
+   </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>pal:</term>
+        <listitem>
+          <para> palette tlist; the palette to export</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path:</term>
+        <listitem>
+          <para> string path; where to export the palette (HDF5 formatted file)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status:</term>
+        <listitem>
+          <para> boolean; status of the export</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>msg:</term>
+        <listitem>
+          <para> string; error message</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+Export Scilab palette instance to a file.
+   </para>
+    <para>
+</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+loadXcosLibs();
+pal = xcosPal();
+
+sumPath = TMPDIR + "/sum.h5";
+bigSomPath = TMPDIR + "/sum.h5";
+
+scs_m = SUM_f("define");
+export_to_hdf5(sumPath, "scs_m");
+scs_m = BIGSOM("define");
+export_to_hdf5(bigSomPath, "scs_m");
+
+pal = xcosPalAddBlock(pal, sumPath);
+pal = xcosPalAddBlock(pal, bigSomPath);
+
+xcosPalExport(pal, TMPDIR + "/palette.h5");
+
+   ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xcosPal">xcosPal</link>
+      </member>
+      <member>
+        <link linkend="xcosPalAdd">xcosPalAdd</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Clément DAVID</member>
+    </simplelist>
+  </refsection>
+</refentry>

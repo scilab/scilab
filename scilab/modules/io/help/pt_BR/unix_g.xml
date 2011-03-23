@@ -94,7 +94,7 @@
     <programlisting role="example"><![CDATA[ 
 function d=DIR(path)
   path=pathconvert(path,%t,%t)
-  if MSDOS then
+  if getos() == 'Windows' then
     d=unix_g('dir '+path)
   else
     d=unix_g('ls '+path)

@@ -23,7 +23,7 @@ libs  = [];
 // table of (scilab_name,interface-name or mexfile-name, type)
 table =['square','temptst','cmex'];
 
-if ~MSDOS then 
+if getos() <> 'Windows' then 
   if part(getenv('OSTYPE','no'),1:6)=='darwin' then 
 	  cflags = ""
 	  fflags = ""; 

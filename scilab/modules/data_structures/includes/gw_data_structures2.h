@@ -14,18 +14,12 @@
 #ifndef __GW_DATA_STRUCTURES2__
 #define __GW_DATA_STRUCTURES2__
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include <windows.h>
-#include <stdio.h>
-#endif
+#include "dynlib_data_structures.h"
 /*--------------------------------------------------------------------------*/
-#include "machine.h"
-#include "api_scilab.h"
+DATA_STRUCTURES_IMPEXP int gw_data_structures2(void);
 /*--------------------------------------------------------------------------*/
-int gw_data_structures2(void);
-/*--------------------------------------------------------------------------*/
-int C2F(sci_getfield)(char *fname,unsigned long fname_len);
-int C2F(sci_setfield)(char *fname,unsigned long fname_len);
+int sci_getfield(char *fname,unsigned long fname_len);
+int sci_setfield(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_DATA_STRUCTURES2__ */
 /*--------------------------------------------------------------------------*/

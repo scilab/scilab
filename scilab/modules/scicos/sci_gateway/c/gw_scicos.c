@@ -25,7 +25,10 @@
 #include <string.h>
 #include "gw_scicos.h"
 #include "stack-c.h"
+#include "api_common.h"
 #include "callFunctionFromGateway.h"
+
+
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = 
 {
@@ -60,7 +63,8 @@ static gw_generic_table Tab[] =
 	{sci_data2sig,"data2sig"},
 	{sci_sig2data,"sig2data"},
 	{sci_model2blk,"model2blk"},
-	{sci_callblk,"callblk"}
+	{sci_callblk,"callblk"},
+	{sci_loadScicos,"loadScicos"}
 };
 /*--------------------------------------------------------------------------*/
 int gw_scicos(void)

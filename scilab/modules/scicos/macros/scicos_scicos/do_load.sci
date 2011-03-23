@@ -20,6 +20,9 @@
 //
 
 function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**
 //** Load a Scicos diagram 
 //**
@@ -127,11 +130,11 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   
   if ierr<>0 then
     if ext=='xml' then
-      messagebox([msprintf(_('An error has occured during parsing of file %s.\n'+..
+      messagebox([msprintf(_('An error has occurred during parsing of file %s.\n'+..
 			     'Please check the format of your XML file\n'),fname)
 		  lasterror()],"modal")
     else
-      messagebox([msprintf(_('An error has occured during loading of file %s.\n'),fname)
+      messagebox([msprintf(_('An error has occurred during loading of file %s.\n'),fname)
 		  lasterror()],"modal")
     end
     ok=%f
@@ -156,7 +159,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   //##update version
   [ierr,scicos_ver,scs_m]=update_version(scs_m)
   if ierr<>0 then
-    messagebox('An error has occured during the update of '+name+'.', 'modal')
+    messagebox('An error has occurred during the update of '+name+'.', 'modal')
     ok=%f
     scs_m = get_new_scs_m();
     //scs_m=scicos_diagram(version=current_version)
@@ -257,6 +260,9 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 endfunction
 
 function [ok,scs_m]=do_define_and_set(scs_m,flg)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 %mprt=funcprot()
 funcprot(0) 
@@ -279,9 +285,8 @@ deff('result         = dialog(labels,valueini)','result=valueini')
 deff('[result,Quit]  = scstxtedit(valueini,v2)','result=valueini,Quit=0')
 deff('[ok,tt]        = MODCOM(funam,tt,vinp,vout,vparam,vparamv,vpprop)',..
      ['[dirF,nameF,extF]=fileparts(funam);'
-      'tarpath=pathconvert(TMPDIR+''/Modelica/'',%f,%t);'
       'if (extF=='''')  then'
-      '   funam1=tarpath+nameF+''.mo'';'
+      '   funam1=nameF+''.mo'';'
       'elseif fileinfo(funam)==[] then'
       '   funam1=funam;'
       'end;'
@@ -303,7 +308,7 @@ for i=1:n
     sim=o.model.sim;
     ierr=execstr('o='+o.gui+'(""define"",o);','errcatch');
      if ierr<>0 then
-       messagebox([_('An error occured while opening the diagram:');
+       messagebox([_('An error occurred while opening the diagram:');
 		   lasterror();
 		   _('The diagram will not be opened')],'error','modal')
        ok=%f;
@@ -333,7 +338,7 @@ for i=1:n
     else
      ierr=execstr('o='+o.gui+'(""set"",o);','errcatch');
      if ierr<>0 then
-       messagebox([_('An error occured while opening the diagram:');
+       messagebox([_('An error occurred while opening the diagram:');
 		   lasterror();
 		   _('The diagram will not be opened')],'error','modal')
        ok=%f;
@@ -351,6 +356,9 @@ end
 endfunction
 
 function model=update_model(model)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 tt='model=scicos_model(';
 xx=getfield(1,o.model)
 for i=2:size(xx,'*')-1
@@ -361,6 +369,9 @@ execstr(tt);
 endfunction
 
 function [scs_m,ok]=generating_atomic_code(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 scs_m_sav=scs_m;
 for i=1:lstsize(scs_m.objs)
   o=scs_m.objs(i);

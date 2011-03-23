@@ -10,7 +10,7 @@
  *
  */
 
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 /* TO DO : See with V.C if we need again this file */
 
 /***********************************
@@ -54,5 +54,5 @@ void C2F(fbutn)(char *name, int *win, int *entry)
 
 void C2F(setfbutn)(char *name, int *rep)
 {
-	fbutnfonc = (fbutnf) AddFunctionInTable(name,rep,FTab_fbutn);
+	fbutnfonc = (fbutnf) GetFunctionByName(name,rep,FTab_fbutn);
 }

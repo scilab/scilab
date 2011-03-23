@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="secto3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>secto3d</refname>
+    <refpurpose> conversion de surfaces 3D  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>[m[,x]]=secto3d(seclist,npas)
+[m]=secto3d(seclist ,x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>seclist  </term>
+        <listitem>
+          <para>une liste dont les éléments sont des matrices (2,.) 
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>npas  </term>
+        <listitem>
+          <para>un entier
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m  </term>
+        <listitem>
+          <para>une matrice
+	  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x  </term>
+        <listitem>
+          <para>un vecteur
+	  </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      Considérant une surface donnée sous forme d'une liste <literal>seclist</literal> de sections dans le plan 
+      <literal>(x,z)</literal> la commande <literal>[m [,x]]=secto3d(seclist [,npas])</literal> renvoie une matrice <literal>m</literal>
+      contenant une discrétisation régulière de la surface.
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>La i-ème ligne de la matrice m correspond à la ième section </para>
+      </listitem>
+      <listitem>
+        <para>La j-ième colonne de m correspond aux x(j)</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Chaque section <literal>seclist(i)</literal> est décrite par une matrice (2,.) donnant respectivement les coordonnées 
+      x et z des points.
+    </para>
+    <para><literal>[m]=secto3d(seclist ,x)</literal> : dans ce cas le vecteur x donne la discrétisation 
+      de l'axe des x pour toutes les sections 
+    </para>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Steer S.; ;   </para>
+  </refsection>
+</refentry>

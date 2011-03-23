@@ -10,8 +10,9 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "machine.h"
+#include "dynlib_differential_equations.h"
 
 extern int C2F(getcodc)(int *nd1, int *iflag1);
 
@@ -30,8 +31,9 @@ extern void C2F(fcd)(ARGS_fydot2);
 extern void C2F(fcd1)(ARGS_fydot2);
 extern void C2F(phis)(ARGS_fydot2);
 extern void C2F(phit)(ARGS_fydot2);
-void C2F(fydot2)(ARGS_fydot2f);
-void C2F(setfydot2)(char *name, int *rep);
+
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(fydot2)(ARGS_fydot2f);
+DIFFERENTIAL_EQUATIONS_IMPEXP void C2F(setfydot2)(char *name, int *rep);
 
 FTAB FTab_fydot2[] =
 {
@@ -64,5 +66,5 @@ void C2F(fydot2)(int *n, double *t, double *y, double *ydot)
 
 void C2F(setfydot2)(char *name, int *rep)
 {
-	fydot2fonc = (fydot2f) AddFunctionInTable(name,rep,FTab_fydot2);
+	fydot2fonc = (fydot2f) GetFunctionByName(name,rep,FTab_fydot2);
 }

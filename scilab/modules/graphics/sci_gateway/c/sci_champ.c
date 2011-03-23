@@ -66,7 +66,7 @@ int sci_champ_G(char *fname,
   if ( get_optionals(fname,opts) == 0) { return 0 ; }
   if ( FirstOpt() < 5 )
   {
-    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d\n"), fname,1, 5);
+    Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname,1, 5);
     return -1;
   }
   GetRhsVar(1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);

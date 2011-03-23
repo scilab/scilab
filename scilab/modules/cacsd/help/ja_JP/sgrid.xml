@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="sgrid">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>sgrid</refname>
+    <refpurpose> s平面のグリッド線.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>sgrid()
+sgrid('new')
+sgrid(zeta,wn [,color])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	evansと組み合わせて使用され,
+	ダンピング比(<literal>zeta</literal>),
+	固有周波数 (<literal>wn</literal>)が一定値となる
+	線をプロットします.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>sgrid()</term>
+        <listitem>
+          <para>
+	<literal>zeta</literal> および <literal>wn</literal>
+	のデフォルト値を用いて,
+	既存の連続したs平面の根軌跡の上にグリッドを追加します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sgrid('new')</term>
+        <listitem>
+          <para>グラフィックスクリーンをクリアした後,
+	デフォルトの s平面グリッドをプロットします</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sgrid(zeta,wn [,color])</term>
+        <listitem>
+          <para><literal>sgrid()</literal>と同じですが, 指定された
+	ダンピング比と固有周波数を使用します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+H=syslin('c',352*poly(-5,'s')/poly([0,0,2000,200,25,1],'s','c'));
+evans(H,100)
+sgrid()
+sgrid(0.6,2,7)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="evans">evans</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - INRIA - Pierre Lando
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Factory for TicksDrawer classes
  * 
  * This file must be used under the terms of the CeCILL.
@@ -93,8 +94,7 @@ TicksDrawer * TicksDrawerFactory::createXTicksDrawer(void)
     }
     ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_xgrads,
                                 pSUBWIN_FEATURE(pSubwin)->axes.u_xlabels,
-                                pSUBWIN_FEATURE(pSubwin)->axes.u_nxgrads,
-                                pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[0]);
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_nxgrads);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
   else
@@ -204,8 +204,7 @@ TicksDrawer * TicksDrawerFactory::createYTicksDrawer(void)
     }
     ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_ygrads,
                                 pSUBWIN_FEATURE(pSubwin)->axes.u_ylabels,
-                                pSUBWIN_FEATURE(pSubwin)->axes.u_nygrads,
-                                pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[1]);
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_nygrads);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
   else
@@ -318,8 +317,7 @@ TicksDrawer * TicksDrawerFactory::createZTicksDrawer(void)
     }
     ticksComputer->setUserTicks(pSUBWIN_FEATURE(pSubwin)->axes.u_zgrads,
                                 pSUBWIN_FEATURE(pSubwin)->axes.u_zlabels,
-                                pSUBWIN_FEATURE(pSubwin)->axes.u_nzgrads,
-                                pSUBWIN_FEATURE(pSubwin)->axes.nbsubtics[2]);
+                                pSUBWIN_FEATURE(pSubwin)->axes.u_nzgrads);
     newTicksDrawer->setTicksComputer(ticksComputer);
   }
   else

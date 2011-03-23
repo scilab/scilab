@@ -24,7 +24,7 @@
     <synopsis>unix_x(cmd)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>cmd</term>
@@ -44,15 +44,15 @@
   <refsection>
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
-if MSDOS then 
+if getos() == 'Windows' then 
   unix_x("dir "+""""+WSCI+"modules\graphics\demos"+""""); 
 else 
   unix_x("ls $SCI/modules/graphics/demos");
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="edit">edit</link>

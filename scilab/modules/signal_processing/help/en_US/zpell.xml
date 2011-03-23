@@ -12,7 +12,7 @@
     <synopsis>[zeros,poles,gain]=zpell(epsilon,A,omegac,omegar)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>epsilon</term>
@@ -64,8 +64,8 @@
     Poles and zeros of prototype lowpass elliptic filter.
     <literal>gain</literal> is the gain of the filter</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ell1mag">ell1mag</link>

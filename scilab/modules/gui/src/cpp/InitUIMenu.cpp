@@ -16,7 +16,7 @@
 #include "getHandleDrawer.h"
 #include "CallScilabBridge.hxx"
 extern "C"{
-#include "stack-c.h"
+#include "sci_types.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
 #include "CurrentObjectsManagement.h"

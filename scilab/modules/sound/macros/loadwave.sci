@@ -28,7 +28,7 @@ function varargout = loadwave(filename)
     return
   end
 	
-	if ( fileinfo(filename) == [] ) then
+	if ~isfile(filename) then
 	  error(msprintf(gettext("%s: Cannot open file %s.\n"),'loadwave',filename));
 	end
 

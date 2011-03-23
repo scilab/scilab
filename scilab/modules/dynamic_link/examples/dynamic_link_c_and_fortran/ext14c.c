@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA/ENPC
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  */
 
@@ -30,7 +30,7 @@ int ext14cI(char *fname)
   if ( m3*n3 != m2*n2) 
     {
       sciprint("%s :Incompatible dimensions\n",fname);
-      Error(999); return(0);
+      SciError(999); return(0);
     }
   CreateVar( 4,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l4);
   n=m3*n3;

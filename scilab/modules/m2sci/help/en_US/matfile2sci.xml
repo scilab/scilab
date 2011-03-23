@@ -24,7 +24,7 @@
     <synopsis>matfile2sci(mat_file_path,sci_file_path)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>mat_file_path</term>
@@ -47,8 +47,8 @@
     with  the function <literal>load</literal> The Matlab data types are
     converted into the Scilab equivalents.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="loadmatfile">loadmatfile</link>

@@ -6,10 +6,6 @@
           xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>qld</refname>
@@ -25,7 +21,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -98,7 +94,7 @@
         <term>tol</term>
 
         <listitem>
-          <para>Floatting point number, required prÃ©cision.</para>
+          <para>Floatting point number, required precision.</para>
         </listitem>
       </varlistentry>
 
@@ -194,8 +190,8 @@ me=3;
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="qpsolve">qpsolve</link></member>

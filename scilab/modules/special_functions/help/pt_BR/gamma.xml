@@ -91,12 +91,12 @@ xset("color",2)
 plot2d(x, y, style=0, axesflag=5, rect=[a, -10, b, 10])
 xset("color",c)
 xtitle("A função gama em ["+string(a)+","+string(b)+"]")
-xselect()
+show_window()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="gammaln">gammaln</link></member>

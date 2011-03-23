@@ -20,6 +20,9 @@
 //
 
 function reg=get_inside2(SelectRegion)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   reg=list();
   [ox,oy,w,h,win]=SelectRegion(:)
   kc=find(win==windows(:,2))

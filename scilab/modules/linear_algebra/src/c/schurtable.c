@@ -17,7 +17,7 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "AddFunctionInTable.h"
+#include "GetFunctionByName.h"
 #include "linear_FTables.h"
 #include "schur.h"
 
@@ -95,11 +95,11 @@ int *C2F(schsel)(double *alpha, double *beta)
 void C2F(setschsel)(int *len, char *name, int *rep)
 {
 	if ( ((strncmp(name,"c",1)== 0 ) && (*len==1)) || strncmp(name,"cont",4)== 0 )
-		schselfonc = (schself) AddFunctionInTable("sb02mv",rep,FTab_schsel);
+		schselfonc = (schself) GetFunctionByName("sb02mv",rep,FTab_schsel);
 	else if ( ((strncmp(name,"d",1)== 0) && (*len==1)) || strncmp(name,"disc",4)== 0 )
-		schselfonc = (schself) AddFunctionInTable("sb02mw",rep,FTab_schsel);
+		schselfonc = (schself) GetFunctionByName("sb02mw",rep,FTab_schsel);
 	else 
-		schselfonc = (schself) AddFunctionInTable(name,rep,FTab_schsel);
+		schselfonc = (schself) GetFunctionByName(name,rep,FTab_schsel);
 }
 
 /***********************************
@@ -121,12 +121,12 @@ int *C2F(zchsel)(doublecmplx *alpha)
 
 void C2F(setzchsel)(int *len, char *name, int *rep)
 {
-	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		zchselfonc = (zchself) AddFunctionInTable("zb02mv",rep,FTab_zchsel);
+	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",4)== 0 )
+		zchselfonc = (zchself) GetFunctionByName("zb02mv",rep,FTab_zchsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		zchselfonc = (zchself) AddFunctionInTable("zb02mw",rep,FTab_zchsel);
+		zchselfonc = (zchself) GetFunctionByName("zb02mw",rep,FTab_zchsel);
 	else 
-		zchselfonc = (zchself) AddFunctionInTable(name,rep,FTab_zchsel);
+		zchselfonc = (zchself) GetFunctionByName(name,rep,FTab_zchsel);
 }
 
 /***********************************
@@ -148,12 +148,12 @@ int *C2F(gshsel)(double *alphar, double *alphai, double *beta)
 
 void C2F(setgshsel)(int *len, char *name, int *rep)
 {
-	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		gshselfonc = (gshself) AddFunctionInTable("sb02ow",rep,FTab_gshsel);
+	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",4)== 0 )
+		gshselfonc = (gshself) GetFunctionByName("sb02ow",rep,FTab_gshsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		gshselfonc = (gshself) AddFunctionInTable("sb02ox",rep,FTab_gshsel);
+		gshselfonc = (gshself) GetFunctionByName("sb02ox",rep,FTab_gshsel);
 	else 
-		gshselfonc = (gshself) AddFunctionInTable(name,rep,FTab_gshsel);
+		gshselfonc = (gshself) GetFunctionByName(name,rep,FTab_gshsel);
 }
 
 /***********************************
@@ -175,12 +175,12 @@ int *C2F(gzhsel)(doublecmplx *alpha, doublecmplx *beta)
 
 void C2F(setgzhsel)(int *len, char *name, int *rep)
 {
-	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",3)== 0 )
-		gzhselfonc = (gzhself) AddFunctionInTable("zb02ow",rep,FTab_gzhsel);
+	if ( ((strncmp(name,"c",1)== 0) && (*len==1)) || strncmp(name,"cont",4)== 0 )
+		gzhselfonc = (gzhself) GetFunctionByName("zb02ow",rep,FTab_gzhsel);
 	else if ( ( (strncmp(name,"d",1)== 0) && (*len==1) ) || strncmp(name,"disc",4)== 0 )
-		gzhselfonc = (gzhself) AddFunctionInTable("zb02ox",rep,FTab_gzhsel);
+		gzhselfonc = (gzhself) GetFunctionByName("zb02ox",rep,FTab_gzhsel);
 	else 
-		gzhselfonc = (gzhself) AddFunctionInTable(name,rep,FTab_gzhsel);
+		gzhselfonc = (gzhself) GetFunctionByName(name,rep,FTab_gzhsel);
 }
 
 /***********************************
@@ -202,11 +202,11 @@ int *C2F(fschur)(int *lsize, double *alpha, double *beta, double *s, double *p)
 
 void C2F(setfschur)(char *name, int *rep)
 {
-	if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",3)== 0 )
-		fschurfonc = (fschurf) AddFunctionInTable("folhp",rep,FTab_fschur);
+	if (strncmp(name,"c",1)== 0 || strncmp(name,"cont",4)== 0 )
+		fschurfonc = (fschurf) GetFunctionByName("folhp",rep,FTab_fschur);
 	else if (strncmp(name,"d",1)== 0 || strncmp(name,"disc",4)== 0 )
-		fschurfonc = (fschurf) AddFunctionInTable("find",rep,FTab_fschur);
+		fschurfonc = (fschurf) GetFunctionByName("find",rep,FTab_fschur);
 	else 
-		fschurfonc = (fschurf) AddFunctionInTable(name,rep,FTab_fschur);
+		fschurfonc = (fschurf) GetFunctionByName(name,rep,FTab_fschur);
 }
 

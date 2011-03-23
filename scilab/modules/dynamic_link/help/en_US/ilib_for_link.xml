@@ -23,7 +23,7 @@
     <synopsis>libn=ilib_for_link(names,files,libs,flag [,makename [,loadername [,libname [,ldflags [,cflags [,fflags [,cc]]]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>names</term>
@@ -34,7 +34,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving source (from Scilab 5.0) or object files needed for shared library creation</para>
+          <para>string matrix giving source files needed for shared library creation. Since Scilab 5.3.1, object files are deprecated.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -53,6 +53,9 @@
         <term>makename</term>
         <listitem>
           <para>character string. The pathname of the Makefile file without extension (default value <literal>Makelib</literal>).</para>
+          <para>This parameter is useless since Scilab 5.0.</para>
+          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
+
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -66,7 +69,7 @@
         <term>libname</term>
         <listitem>
           <para>optional character string. The name of the generated shared
-	    library (default value  is '', and in this case the name is derived
+	    library (default value  is "", and in this case the name is derived
 	    from <literal>names(1)</literal>).</para>
         </listitem>
       </varlistentry>
@@ -74,27 +77,27 @@
         <term>ldflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific linker options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific C compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>fflags</term>
         <listitem>
           <para>optional character string. It can be used to add specific Fortran compiler options in the
-	    generated Makefile. Default value is ''</para>
+	    generated Makefile. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>cc</term>
         <listitem>
-          <para>optional character string. It can be used to specify a C compiler. Default value is ''</para>
+          <para>optional character string. It can be used to specify a C compiler. Default value is ""</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -156,8 +159,8 @@ end
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

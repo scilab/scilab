@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="exec">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>exec</refname>
+    <refpurpose>スクリプトファイルを実行する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>exec(path [,mode])
+exec(fun [,mode])
+ierr=exec(path,'errcatch' [,mode])
+ierr=exec(fun,'errcatch' [,mode])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>文字列, スクリプトファイルへのパス</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode</term>
+        <listitem>
+          <para>整数スカラー,実行モード (以下参照)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>scilab 関数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ierr</term>
+        <listitem>
+          <para>整数, 0 またはエラー番号</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>exec(path [,mode])</literal> は,
+<literal>path</literal>で指定したファイルの中のオプションの
+実行モード<literal>mode</literal> でscilab命令を逐次実行します.</para>
+    <para>
+      以下の <literal>mode</literal> を指定できます :</para>
+    <para>
+     0 
+    : デフォルト値</para>
+    <para>
+     -1 
+    : 何も出力しない</para>
+    <para>
+     1 
+    : 各コマンド行を出力(エコーバック)する</para>
+    <para>
+     2 
+    : プロンプト <literal>--&gt;</literal> を出力する</para>
+    <para>
+     3 
+    : エコー + プロンプト</para>
+    <para>
+     4 
+    : 各プロンプト出力の前に停止します. キャレッジリターンを入力すると
+     実行が再開します.</para>
+    <para>
+     7 
+    : 停止 + プロンプト + エコー : デモを行う際に有用なモード.</para>
+    <para><literal>exec(fun [,mode])</literal> は関数
+      <literal>fun</literal> をスクリプトとして実行します: 
+      入出力の引数も特定の変数環境もありません.
+      スクリプトコードはプリコンパイル(comp参照)されるため,
+      この形式は最も効率的です.
+      スクリプト評価のこの方法により,スクリプトをライブラリの
+      関数として保持することが可能になります.</para>
+    <para>実行時にエラーが発生し,
+      'errcatch'フラグが指定されている場合,
+       <literal>exec</literal>はエラーメッセージを出力せずに
+       命令を実行を破棄し,エラー番号を<literal>ierr</literal>に
+       代入して復帰します.
+       'errcatch' フラグが存在しない場合,標準のエラー処理が
+       機能します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>注意k</title>
+    <para><literal>exec</literal> ファイルは,
+      インライン関数定義構文(関数の項参照)により関数を定義する際に使用されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// スクリプトファイルを作成
+mputl('a=1;b=2',TMPDIR+'/myscript')
+
+// スクリプトを実行
+exec(TMPDIR+'/myscript')
+whos -name "a "
+
+// 関数を作成
+deff('y=foo(x)','a=x+1;y=a^2')
+clear a b
+// 関数をコール
+foo(1)
+// a は関数 foo の環境に作成された変数
+//    この変数は foo がリターンする時に破棄されます
+whos -name "a "
+
+x=1 // xを作成し,スクリプトfooによりアクセス可能とする.
+exec(foo)
+
+// カレントの環境にa と y が作成されました
+whos -name "a "
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="evstr">evstr</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="mode">mode</link>
+      </member>
+      <member>
+        <link linkend="chdir">chdir</link>
+      </member>
+      <member>
+        <link linkend="pwd">pwd</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

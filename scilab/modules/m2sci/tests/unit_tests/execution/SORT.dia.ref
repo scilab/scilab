@@ -1,0 +1,172 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: SORT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("SORT") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/SORT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+ 
+ res377: [2,1] <> [2,12]   
+ 
+ res375: [3,1] <> [3,4]   
+ 
+ res373: [1,1] <> [1,12]   
+ 
+ res371: [1,1] <> [1,4]   
+ 
+ res367: [2,1] <> [2,12]   
+ 
+ res365: [3,1] <> [3,4]   
+ 
+ res363: [1,1] <> [1,12]   
+ 
+ res361: [1,1] <> [1,4]   
+ 
+ res357: [2,1] <> [2,12]   
+ 
+ res355: [3,1] <> [3,4]   
+ 
+ res353: [1,1] <> [1,12]   
+ 
+ res351: [1,1] <> [1,4]   
+ 
+ res293: [2,1] <> [2,12]   
+ 
+ res291: [3,1] <> [3,4]   
+ 
+ res289: [1,1] <> [1,12]   
+ 
+ res287: [1,1] <> [1,4]   
+ 
+ res283: [2,1] <> [2,12]   
+ 
+ res281: [3,1] <> [3,4]   
+ 
+ res279: [1,1] <> [1,12]   
+ 
+ res277: [1,1] <> [1,4]   
+ 
+ res273: [2,1] <> [2,12]   
+ 
+ res271: [3,1] <> [3,4]   
+ 
+ res269: [1,1] <> [1,12]   
+ 
+ res267: [1,1] <> [1,4]   
+ 
+ res209: [2,1] <> [2,12]   
+ 
+ res207: [3,1] <> [3,4]   
+ 
+ res205: [1,1] <> [1,12]   
+ 
+ res203: [1,1] <> [1,4]   
+ 
+ res199: [2,1] <> [2,12]   
+ 
+ res197: [3,1] <> [3,4]   
+ 
+ res195: [1,1] <> [1,12]   
+ 
+ res193: [1,1] <> [1,4]   
+ 
+ res189: [2,1] <> [2,12]   
+ 
+ res187: [3,1] <> [3,4]   
+ 
+ res185: [1,1] <> [1,12]   
+ 
+ res183: [1,1] <> [1,4]   
+ 
+ res126: [2,1] <> [2,12]   
+ 
+ res125: [3,1] <> [3,4]   
+ 
+ res124: [1,1] <> [1,12]   
+ 
+ res123: [1,1] <> [1,4]   
+ 
+ res121: [2,1] <> [2,12]   
+ 
+ res120: [3,1] <> [3,4]   
+ 
+ res119: [1,1] <> [1,12]   
+ 
+ res118: [1,1] <> [1,4]   
+ 
+ res116: [2,1] <> [2,12]   
+ 
+ res115: [3,1] <> [3,4]   
+ 
+ res114: [1,1] <> [1,12]   
+ 
+ res113: [1,1] <> [1,4]   
+ 
+ res84: [2,1] <> [2,12]   
+ 
+ res83: [3,1] <> [3,4]   
+ 
+ res82: [1,1] <> [1,12]   
+ 
+ res81: [1,1] <> [1,4]   
+ 
+ res79: [2,1] <> [2,12]   
+ 
+ res78: [3,1] <> [3,4]   
+ 
+ res77: [1,1] <> [1,12]   
+ 
+ res76: [1,1] <> [1,4]   
+ 
+ res74: [2,1] <> [2,12]   
+ 
+ res73: [3,1] <> [3,4]   
+ 
+ res72: [1,1] <> [1,12]   
+ 
+ res71: [1,1] <> [1,4]   
+ 
+ res42: [2,1] <> [2,12]   
+ 
+ res41: [3,1] <> [3,4]   
+ 
+ res40: [1,1] <> [1,12]   
+ 
+ res39: [1,1] <> [1,4]   
+ 
+ res37: [2,1] <> [2,12]   
+ 
+ res36: [3,1] <> [3,4]   
+ 
+ res35: [1,1] <> [1,12]   
+ 
+ res34: [1,1] <> [1,4]   
+ 
+ res32: [2,1] <> [2,12]   
+ 
+ res31: [3,1] <> [3,4]   
+ 
+ res30: [1,1] <> [1,12]   
+ 
+ res29: [1,1] <> [1,4]   

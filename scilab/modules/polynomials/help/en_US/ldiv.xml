@@ -23,7 +23,7 @@
     <synopsis>[x]=ldiv(n,d,k)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n,d</term>
@@ -60,8 +60,8 @@ wtfbis=clean(ss2tf(wssbis))
 x3=ldiv(numer(wtfbis),denom(wtfbis),5)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="arl2">arl2</link>

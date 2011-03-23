@@ -1,0 +1,255 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-03-17 02:42+0000\n"
+"Last-Translator: Teylo Laundos Aguiar <teylo.aguiar@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: %s must be a real %d-dim hypermatrix.\n"
+msgstr "%s: %s deve ser uma hipermatriz %d-dimensional.\n"
+
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr "%s: Duplica nós ou colineares a todos os nós (ier = %d).\n"
+
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr ""
+"%s: Para um spline do tipo 'clamped', você deve fornecer a inclinação das "
+"extremidades.\n"
+
+#, c-format
+msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
+msgstr ""
+"%s: As abscissas de dimensão %d do grid não estão em ordem estritamente "
+"crescente.\n"
+
+#, c-format
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: Não há pontos suficientes para o ajuste.\n"
+
+#, c-format
+msgid "%s: Problem with 'flag' = %d\n"
+msgstr "%s: Problema com 'flag' = %d\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and grid values in dimension "
+"%d.\n"
+msgstr ""
+"%s: Incompatibilidade de tamanhos entre os pontos do grid e os valores do "
+"grid na dimensão %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d or "
+"%d.\n"
+msgstr ""
+"%s: Incompatibilidade de tamanhos entre os pontos do grid e os valores na "
+"dimensão %d ou %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgstr ""
+"%s: Incompatibilidade de tamanhos entre os pontos do grid e os valores na "
+"dimensão %d.\n"
+
+#, c-format
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr "%s: Aviso: Deficiência de posto da matriz de mínimos quadrados.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Quantidade errada de argumentos de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr ""
+"%s: Quantidade errada de argumentos de entrada: Deve estar enre %d e %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma "
+"hipermatriz real tridimensional.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Inclinações das "
+"extremidades.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d: Deve ser %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se duas "
+"linhas.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor ou "
+"uma matriz.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
+"tamanhos iguais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
+"tamanhos iguais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
+"vetores de mesmo tamanho.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada #%d, #%d e #%d: Esperava-se "
+"tamanhos iguais.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr "%s: Tamanho errado para os argumentos de entrada #%d, #%d ou #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
+"points.\n"
+msgstr ""
+"%s: Tamanho errado para os argumentos de entrada: os grides x, y e z devem "
+"possuir pelo menos %d pontos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se tlist %s "
+"tlist.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: Tipo errado para o argumento de entrada #%d: Esperava-se array de "
+"reais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+"''%s'' ou ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Não (estritamente) "
+"crescente ou +-inf detectado.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se reais, mas "
+"foram encontrados alguns NaN.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgstr ""
+"%s: Valor errado para o argumento de entrada #%d: Esperava-se um vetor com "
+"%d componentes.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Valores errados para os argumentos de entrada #%d e #%d: Esperava-se "
+"tamanhos iguais.\n"
+
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr "%s: Valor errado para spline periódico %s: Deve ser igual a %s.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Valores errados para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: Tipo '%s' é "
+"desconhecido.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+"%s: Valores errados para o argumento de entrada #%d: O tipo '%s' não é "
+"suportado.\n"
+
+#, c-format
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr ""
+"%s: x e/ou y não estão em ordem estritamente crescente (ou +-inf detectado)\n"
+
+#, c-format
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr "%s: xyz deve ser uma matriz de reais (n,3) com n >= 10\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
+msgstr ""
+"Tipo errado para o argumento de entrada #%d: Esperava-se hipermatriz de "
+"reais.\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: String expected.\n"
+msgstr "Tipo errado para o argumento de entrada #%d: Esperava-se string.\n"

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="ceil" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>ceil</refname>
+
+    <refpurpose>partie entière supérieure</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[y]=ceil(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>matrice réelle</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>matrice entière</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Renvoie dans y, pour chaque élément de x, le plus petit entier
+    supérieur.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+ceil([1.9 -2.5])-[2,-2]
+ceil(-%inf)
+x=rand()*10^20;ceil(x)-x
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="round">round</link></member>
+
+      <member><link linkend="floor">floor</link></member>
+
+      <member><link linkend="int">int</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

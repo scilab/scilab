@@ -80,7 +80,7 @@
   </para>
     <para>
      14 
-    :  fonction d'une librairie.
+    :  fonction d'une bibliothèque.
   </para>
     <para>
      15 
@@ -107,8 +107,8 @@
     : fonction Scilab intrinsèque (Code C ou Fortran).
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="typeof">typeof</link>

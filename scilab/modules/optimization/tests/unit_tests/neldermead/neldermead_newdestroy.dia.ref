@@ -1,0 +1,639 @@
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+//
+// assert_close --
+//   Returns 1 if the two real matrices computed and expected are close,
+//   i.e. if the relative distance between computed and expected is lesser than epsilon.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_close ( computed, expected, epsilon )
+  if expected==0.0 then
+    shift = norm(computed-expected);
+  else
+    shift = norm(computed-expected)/norm(expected);
+  end
+  if shift < epsilon then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// assert_equal --
+//   Returns 1 if the two real matrices computed and expected are equal.
+// Arguments
+//   computed, expected : the two matrices to compare
+//   epsilon : a small number
+//
+function flag = assert_equal ( computed , expected )
+  if computed==expected then
+    flag = 1;
+  else
+    flag = 0;
+  end
+  if flag <> 1 then bugmes();quit;end
+endfunction
+//
+// Test basic new/destroy sequence
+//
+nm = neldermead_new ();
+nm = neldermead_destroy(nm);
+//
+// Test printing system
+//
+nm = neldermead_new ();
+str = string(nm)
+ str  =
+ 
+!Nelder-Mead Object:                                                   !
+!                                                                      !
+!======================                                                !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex0 Method : axes                                                !
+!                                                                      !
+!Simplex0 Length : 1                                                   !
+!                                                                      !
+!Simplex0, Pfeffer, Delta Usual : 0.05                                 !
+!                                                                      !
+!Simplex0, Pfeffer, Delta Zero : 0.0075                                !
+!                                                                      !
+!Simplex0, Given, Coords :                                             !
+!                                                                      !
+![]                                                                    !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Termination parameters                                                !
+!                                                                      !
+!Termination on simplex size : T                                       !
+!                                                                      !
+!Termination on simplex size, Absolute Tolerance : 0                   !
+!                                                                      !
+!Termination on simplex size, Relative Tolerance : 2.220D-16           !
+!                                                                      !
+!Termination on simplex size, Initial Simplex Size : 0                 !
+!                                                                      !
+!Termination on simplex size + Delta of function value : F             !
+!                                                                      !
+!Termination on simplex size + Delta of function value, Absolute Tolera!
+!     nce on Delta F : 2.220D-16                                       !
+!                                                                      !
+!Termination on Kelley's Stagnation : F                                !
+!                                                                      !
+!Termination on Kelley's Stagnation, Normalization : T                 !
+!                                                                      !
+!Termination on Kelley's Stagnation, Alpha0 : 0.0001                   !
+!                                                                      !
+!Termination on Kelley's Stagnation, Alpha : 0.0001                    !
+!                                                                      !
+!Termination by Box : F                                                !
+!                                                                      !
+!Termination by Box, Absolute Tolerance on Function: 0.00001           !
+!                                                                      !
+!Termination by Box, Maximum Number of Consecutive Match : 5           !
+!                                                                      !
+!Termination by Box, Current Number of Consecutive Match : 0           !
+!                                                                      !
+!Termination on Variance : F                                           !
+!                                                                      !
+!Termination on Variance, Absolute Tolerance : 0                       !
+!                                                                      !
+!Termination on Variance, Relative Tolerance : 2.220D-16               !
+!                                                                      !
+!Termination on Variance, Variance of Initial Simplex : 0              !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Algorithms parameters                                                 !
+!                                                                      !
+!Method : variable                                                     !
+!                                                                      !
+!Reflection Factor (rho) : 1                                           !
+!                                                                      !
+!Expansion Factor (chi) : 2                                            !
+!                                                                      !
+!Contraction Factor (gamma) : 0.5                                      !
+!                                                                      !
+!Shrinkage Factor (sigma) : 0.5                                        !
+!                                                                      !
+!Kelley Stagnation : F                                                 !
+!                                                                      !
+!Restart Epsilon : 2.220446e-016                                       !
+!                                                                      !
+!Restart Step : 1                                                      !
+!                                                                      !
+!Restart Maximum : 3                                                   !
+!                                                                      !
+!Restart Simplex Method : oriented                                     !
+!                                                                      !
+!Restart Flag : F                                                      !
+!                                                                      !
+!Restart Number : 0                                                    !
+!                                                                      !
+!Restart Detection Method : oneill                                     !
+!                                                                      !
+!Startup Flag : F                                                      !
+!                                                                      !
+!Automatic Checking of Cost Function : T                               !
+!                                                                      !
+!Box, Number of Points  : 2n                                           !
+!                                                                      !
+!Box, Current Number of Points  : 0                                    !
+!                                                                      !
+!Box, Scaling, Factor  : 0.5                                           !
+!                                                                      !
+!Box, Scaling, Method  : tox0                                          !
+!                                                                      !
+!Box, Scaling, Minimum : 0.00001                                       !
+!                                                                      !
+!Box, Bounds Parameter: 0.000001                                       !
+!                                                                      !
+!Box, Reflection Coefficient : 1.3                                     !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Optim Base Object:                                                    !
+!                                                                      !
+!==================                                                    !
+!                                                                      !
+!Number of variables : 0                                               !
+!                                                                      !
+!Initial Guess : []                                                    !
+!                                                                      !
+!Initial Function Value :                                              !
+!                                                                      !
+!Number of Inequality Constraints :0                                   !
+!                                                                      !
+!Bounds Mininimum : []                                                 !
+!                                                                      !
+!Bounds Maxinimum :[]                                                  !
+!                                                                      !
+!Optimum Parameters : [0]                                              !
+!                                                                      !
+!Optimum Function Value :0.000000e+000                                 !
+!                                                                      !
+!Number of iterations : 0                                              !
+!                                                                      !
+!Maximum number of iterations : 100                                    !
+!                                                                      !
+!Number function evaluations : 0                                       !
+!                                                                      !
+!Maximum number of function evaluations : 100                          !
+!                                                                      !
+!Termination Method on function value : F                              !
+!                                                                      !
+!Termination Absolute Tolerance on function value : 0                  !
+!                                                                      !
+!Termination Relative Tolerance on function value : 2.220D-16          !
+!                                                                      !
+!Termination Method on x : T                                           !
+!                                                                      !
+!Termination Absolute Tolerance on x : 0                               !
+!                                                                      !
+!Termination Relative Tolerance on x : 2.220D-16                       !
+!                                                                      !
+!Optimization Status :                                                 !
+!                                                                      !
+!Verbose logging : 0                                                   !
+!                                                                      !
+!Verbose Termination : 0                                               !
+!                                                                      !
+!Verbose Log File :                                                    !
+!                                                                      !
+!Verbose Log File Startup Up: F                                        !
+!                                                                      !
+!Store History : F                                                     !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex0 :                                                            !
+!                                                                      !
+!Optim Simplex Object:                                                 !
+!                                                                      !
+!=====================                                                 !
+!                                                                      !
+!Empty simplex (zero dimension)                                        !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex Optimum :                                                     !
+assert_equal ( typeof(str) , "string" )
+ ans  =
+ 
+    1.  
+nm
+ nm  =
+ 
+Nelder-Mead Object:
+======================
+
+Simplex0 Method : axes
+Simplex0 Length : 1
+Simplex0, Pfeffer, Delta Usual : 0.05
+Simplex0, Pfeffer, Delta Zero : 0.0075
+Simplex0, Given, Coords :
+[]
+
+Termination parameters
+Termination on simplex size : T
+Termination on simplex size, Absolute Tolerance : 0
+Termination on simplex size, Relative Tolerance : 2.220D-16
+Termination on simplex size, Initial Simplex Size : 0
+Termination on simplex size + Delta of function value : F
+Termination on simplex size + Delta of function value, Absolute Tolerance on Delta F : 2.220D-16
+Termination on Kelley's Stagnation : F
+Termination on Kelley's Stagnation, Normalization : T
+Termination on Kelley's Stagnation, Alpha0 : 0.0001
+Termination on Kelley's Stagnation, Alpha : 0.0001
+Termination by Box : F
+Termination by Box, Absolute Tolerance on Function: 0.00001
+Termination by Box, Maximum Number of Consecutive Match : 5
+Termination by Box, Current Number of Consecutive Match : 0
+Termination on Variance : F
+Termination on Variance, Absolute Tolerance : 0
+Termination on Variance, Relative Tolerance : 2.220D-16
+Termination on Variance, Variance of Initial Simplex : 0
+
+Algorithms parameters
+Method : variable
+Reflection Factor (rho) : 1
+Expansion Factor (chi) : 2
+Contraction Factor (gamma) : 0.5
+Shrinkage Factor (sigma) : 0.5
+Kelley Stagnation : F
+Restart Epsilon : 2.220446e-016
+Restart Step : 1
+Restart Maximum : 3
+Restart Simplex Method : oriented
+Restart Flag : F
+Restart Number : 0
+Restart Detection Method : oneill
+Startup Flag : F
+Automatic Checking of Cost Function : T
+Box, Number of Points  : 2n
+Box, Current Number of Points  : 0
+Box, Scaling, Factor  : 0.5
+Box, Scaling, Method  : tox0
+Box, Scaling, Minimum : 0.00001
+Box, Bounds Parameter: 0.000001
+Box, Reflection Coefficient : 1.3
+
+Optim Base Object:
+==================
+Number of variables : 0
+Initial Guess : []
+Initial Function Value :
+Number of Inequality Constraints :0
+Bounds Mininimum : []
+Bounds Maxinimum :[]
+Optimum Parameters : [0]
+Optimum Function Value :0.000000e+000
+Number of iterations : 0
+Maximum number of iterations : 100
+Number function evaluations : 0
+Maximum number of function evaluations : 100
+Termination Method on function value : F
+Termination Absolute Tolerance on function value : 0
+Termination Relative Tolerance on function value : 2.220D-16
+Termination Method on x : T
+Termination Absolute Tolerance on x : 0
+Termination Relative Tolerance on x : 2.220D-16
+Optimization Status : 
+Verbose logging : 0
+Verbose Termination : 0
+Verbose Log File : 
+Verbose Log File Startup Up: F
+Store History : F
+
+Simplex0 : 
+Optim Simplex Object:
+=====================
+Empty simplex (zero dimension)
+
+Simplex Optimum : 
+nm = neldermead_destroy(nm);
+//
+// optimtestcase --
+//   Non linear inequality constraints are positive.
+//    
+// Arguments
+//   x: the point where to compute the function
+//   index : the stuff to compute
+//
+function [ f , c , index ] = optimtestcase ( x , index )
+  f = []
+  c = []
+  if ( index == 2 | index == 6 ) then
+    f = x(1)^2 + x(2)^2 + 2.0 * x(3)^2 + x(4)^2 ...
+      - 5.0 * x(1) - 5.0 * x(2) - 21.0 * x(3) + 7.0 * x(4)
+  end
+  if ( index == 5 | index == 6 ) then
+    c1 = - x(1)^2 - x(2)^2 - x(3)^2 - x(4)^2 ...
+              - x(1) + x(2) - x(3) + x(4) + 8
+    c2 = - x(1)^2 - 2.0 * x(2)^2 - x(3)^2 - 2.0 * x(4)^2 ...
+              + x(1) + x(4) + 10.0
+    c3 = - 2.0 * x(1)^2 - x(2)^2 - x(3)^2 - 2.0 * x(1) ...
+              + x(2) + x(4) + 5.0
+    c = [c1 c2 c3]
+  end
+endfunction
+//
+// Test printing system with various options configured
+//
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",4);
+nm = neldermead_configure(nm,"-function",optimtestcase);
+nm = neldermead_configure(nm,"-x0",[0.0 0.0 0.0 0.0]');
+nm = neldermead_configure(nm,"-maxiter",200);
+nm = neldermead_configure(nm,"-maxfunevals",1000);
+nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-4);
+nm = neldermead_configure(nm,"-simplex0method","axes");
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-nbineqconst",3);
+nm = neldermead_configure(nm,"-simplex0length",20.0);
+str = string(nm)
+ str  =
+ 
+!Nelder-Mead Object:                                                   !
+!                                                                      !
+!======================                                                !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex0 Method : axes                                                !
+!                                                                      !
+!Simplex0 Length : 20                                                  !
+!                                                                      !
+!Simplex0, Pfeffer, Delta Usual : 0.05                                 !
+!                                                                      !
+!Simplex0, Pfeffer, Delta Zero : 0.0075                                !
+!                                                                      !
+!Simplex0, Given, Coords :                                             !
+!                                                                      !
+![]                                                                    !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Termination parameters                                                !
+!                                                                      !
+!Termination on simplex size : T                                       !
+!                                                                      !
+!Termination on simplex size, Absolute Tolerance : 0                   !
+!                                                                      !
+!Termination on simplex size, Relative Tolerance : 0.0001              !
+!                                                                      !
+!Termination on simplex size, Initial Simplex Size : 0                 !
+!                                                                      !
+!Termination on simplex size + Delta of function value : F             !
+!                                                                      !
+!Termination on simplex size + Delta of function value, Absolute Tolera!
+!     nce on Delta F : 2.220D-16                                       !
+!                                                                      !
+!Termination on Kelley's Stagnation : F                                !
+!                                                                      !
+!Termination on Kelley's Stagnation, Normalization : T                 !
+!                                                                      !
+!Termination on Kelley's Stagnation, Alpha0 : 0.0001                   !
+!                                                                      !
+!Termination on Kelley's Stagnation, Alpha : 0.0001                    !
+!                                                                      !
+!Termination by Box : F                                                !
+!                                                                      !
+!Termination by Box, Absolute Tolerance on Function: 0.00001           !
+!                                                                      !
+!Termination by Box, Maximum Number of Consecutive Match : 5           !
+!                                                                      !
+!Termination by Box, Current Number of Consecutive Match : 0           !
+!                                                                      !
+!Termination on Variance : F                                           !
+!                                                                      !
+!Termination on Variance, Absolute Tolerance : 0                       !
+!                                                                      !
+!Termination on Variance, Relative Tolerance : 2.220D-16               !
+!                                                                      !
+!Termination on Variance, Variance of Initial Simplex : 0              !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Algorithms parameters                                                 !
+!                                                                      !
+!Method : box                                                          !
+!                                                                      !
+!Reflection Factor (rho) : 1                                           !
+!                                                                      !
+!Expansion Factor (chi) : 2                                            !
+!                                                                      !
+!Contraction Factor (gamma) : 0.5                                      !
+!                                                                      !
+!Shrinkage Factor (sigma) : 0.5                                        !
+!                                                                      !
+!Kelley Stagnation : F                                                 !
+!                                                                      !
+!Restart Epsilon : 2.220446e-016                                       !
+!                                                                      !
+!Restart Step : 1                                                      !
+!                                                                      !
+!Restart Maximum : 3                                                   !
+!                                                                      !
+!Restart Simplex Method : oriented                                     !
+!                                                                      !
+!Restart Flag : F                                                      !
+!                                                                      !
+!Restart Number : 0                                                    !
+!                                                                      !
+!Restart Detection Method : oneill                                     !
+!                                                                      !
+!Startup Flag : F                                                      !
+!                                                                      !
+!Automatic Checking of Cost Function : T                               !
+!                                                                      !
+!Box, Number of Points  : 2n                                           !
+!                                                                      !
+!Box, Current Number of Points  : 0                                    !
+!                                                                      !
+!Box, Scaling, Factor  : 0.5                                           !
+!                                                                      !
+!Box, Scaling, Method  : tox0                                          !
+!                                                                      !
+!Box, Scaling, Minimum : 0.00001                                       !
+!                                                                      !
+!Box, Bounds Parameter: 0.000001                                       !
+!                                                                      !
+!Box, Reflection Coefficient : 1.3                                     !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Optim Base Object:                                                    !
+!                                                                      !
+!==================                                                    !
+!                                                                      !
+!Number of variables : 4                                               !
+!                                                                      !
+!Initial Guess : [0 0 0 0]                                             !
+!                                                                      !
+!Initial Function Value :                                              !
+!                                                                      !
+!Number of Inequality Constraints :3                                   !
+!                                                                      !
+!Bounds Mininimum : []                                                 !
+!                                                                      !
+!Bounds Maxinimum :[]                                                  !
+!                                                                      !
+!Optimum Parameters : [0]                                              !
+!                                                                      !
+!Optimum Function Value :0.000000e+000                                 !
+!                                                                      !
+!Number of iterations : 0                                              !
+!                                                                      !
+!Maximum number of iterations : 200                                    !
+!                                                                      !
+!Number function evaluations : 0                                       !
+!                                                                      !
+!Maximum number of function evaluations : 1000                         !
+!                                                                      !
+!Termination Method on function value : F                              !
+!                                                                      !
+!Termination Absolute Tolerance on function value : 0                  !
+!                                                                      !
+!Termination Relative Tolerance on function value : 2.220D-16          !
+!                                                                      !
+!Termination Method on x : T                                           !
+!                                                                      !
+!Termination Absolute Tolerance on x : 0                               !
+!                                                                      !
+!Termination Relative Tolerance on x : 2.220D-16                       !
+!                                                                      !
+!Optimization Status :                                                 !
+!                                                                      !
+!Verbose logging : 0                                                   !
+!                                                                      !
+!Verbose Termination : 0                                               !
+!                                                                      !
+!Verbose Log File :                                                    !
+!                                                                      !
+!Verbose Log File Startup Up: F                                        !
+!                                                                      !
+!Store History : F                                                     !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex0 :                                                            !
+!                                                                      !
+!Optim Simplex Object:                                                 !
+!                                                                      !
+!=====================                                                 !
+!                                                                      !
+!Empty simplex (zero dimension)                                        !
+!                                                                      !
+!                                                                      !
+!                                                                      !
+!Simplex Optimum :                                                     !
+assert_equal ( typeof(str) , "string" )
+ ans  =
+ 
+    1.  
+nm
+ nm  =
+ 
+Nelder-Mead Object:
+======================
+
+Simplex0 Method : axes
+Simplex0 Length : 20
+Simplex0, Pfeffer, Delta Usual : 0.05
+Simplex0, Pfeffer, Delta Zero : 0.0075
+Simplex0, Given, Coords :
+[]
+
+Termination parameters
+Termination on simplex size : T
+Termination on simplex size, Absolute Tolerance : 0
+Termination on simplex size, Relative Tolerance : 0.0001
+Termination on simplex size, Initial Simplex Size : 0
+Termination on simplex size + Delta of function value : F
+Termination on simplex size + Delta of function value, Absolute Tolerance on Delta F : 2.220D-16
+Termination on Kelley's Stagnation : F
+Termination on Kelley's Stagnation, Normalization : T
+Termination on Kelley's Stagnation, Alpha0 : 0.0001
+Termination on Kelley's Stagnation, Alpha : 0.0001
+Termination by Box : F
+Termination by Box, Absolute Tolerance on Function: 0.00001
+Termination by Box, Maximum Number of Consecutive Match : 5
+Termination by Box, Current Number of Consecutive Match : 0
+Termination on Variance : F
+Termination on Variance, Absolute Tolerance : 0
+Termination on Variance, Relative Tolerance : 2.220D-16
+Termination on Variance, Variance of Initial Simplex : 0
+
+Algorithms parameters
+Method : box
+Reflection Factor (rho) : 1
+Expansion Factor (chi) : 2
+Contraction Factor (gamma) : 0.5
+Shrinkage Factor (sigma) : 0.5
+Kelley Stagnation : F
+Restart Epsilon : 2.220446e-016
+Restart Step : 1
+Restart Maximum : 3
+Restart Simplex Method : oriented
+Restart Flag : F
+Restart Number : 0
+Restart Detection Method : oneill
+Startup Flag : F
+Automatic Checking of Cost Function : T
+Box, Number of Points  : 2n
+Box, Current Number of Points  : 0
+Box, Scaling, Factor  : 0.5
+Box, Scaling, Method  : tox0
+Box, Scaling, Minimum : 0.00001
+Box, Bounds Parameter: 0.000001
+Box, Reflection Coefficient : 1.3
+
+Optim Base Object:
+==================
+Number of variables : 4
+Initial Guess : [0 0 0 0]
+Initial Function Value :
+Number of Inequality Constraints :3
+Bounds Mininimum : []
+Bounds Maxinimum :[]
+Optimum Parameters : [0]
+Optimum Function Value :0.000000e+000
+Number of iterations : 0
+Maximum number of iterations : 200
+Number function evaluations : 0
+Maximum number of function evaluations : 1000
+Termination Method on function value : F
+Termination Absolute Tolerance on function value : 0
+Termination Relative Tolerance on function value : 2.220D-16
+Termination Method on x : T
+Termination Absolute Tolerance on x : 0
+Termination Relative Tolerance on x : 2.220D-16
+Optimization Status : 
+Verbose logging : 0
+Verbose Termination : 0
+Verbose Log File : 
+Verbose Log File Startup Up: F
+Store History : F
+
+Simplex0 : 
+Optim Simplex Object:
+=====================
+Empty simplex (zero dimension)
+
+Simplex Optimum : 
+nm = neldermead_destroy(nm);

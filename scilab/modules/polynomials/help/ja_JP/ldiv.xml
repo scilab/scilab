@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ldiv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ldiv</refname>
+    <refpurpose>多項式行列の長除算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[x]=ldiv(n,d,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n,d</term>
+        <listitem>
+          <para>実数多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>x=ldiv(n,d,k)</literal> は,
+	<literal>n</literal>の<literal>d</literal>による長除算の
+	最初の<literal>k</literal>個の係数を出力します.
+	すなわち,有理行列<literal>[nij(z)/dij(z)]</literal>の無限大近傍での
+	テイラー展開を出力します.</para>
+    <para>
+    <literal>nij/dij</literal>の展開の係数は
+    <literal>x((i-1)*n+k,j)  k=1:n</literal>に保存されます</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+wss=ssrand(1,1,3);[a,b,c,d]=abcd(wss);
+wtf=ss2tf(wss);
+x1=ldiv(numer(wtf),denom(wtf),5)
+x2=[c*b;c*a*b;c*a^2*b;c*a^3*b;c*a^4*b]
+wssbis=markp2ss(x1',5,1,1);
+wtfbis=clean(ss2tf(wssbis))
+x3=ldiv(numer(wtfbis),denom(wtfbis),5)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="arl2">arl2</link>
+      </member>
+      <member>
+        <link linkend="markp2ss">markp2ss</link>
+      </member>
+      <member>
+        <link linkend="pdiv">pdiv</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -21,6 +21,9 @@
 //
 
 function [scs_m] = prt_align(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** 25/07/07: Al@n's patch for rotation of blocks
   
   //** first click 
@@ -100,8 +103,8 @@ function [scs_m] = prt_align(scs_m)
     xx2=xxx(1,:);
     yy2=xxx(2,:);
 
-    [m,kp1]=mini((yc1-yy1)^2+(xc1-xx1)^2)
-    [m,kp2]=mini((yc2-yy2)^2+(xc2-xx2)^2)
+    [m,kp1]=min((yc1-yy1)^2+(xc1-xx1)^2)
+    [m,kp2]=min((yc2-yy2)^2+(xc2-xx2)^2)
 
     //
     xx1=xx1(kp1)

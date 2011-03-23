@@ -5,21 +5,8 @@ EXPORTS
 
 
 ;scicos
-; default import
-cosdebugcounter_
-cmsolver_
 curblk_
-rtfactor_
+cosdebugcounter_
 scsptr_
-dbcos_
-costol_
-coshlt_
-ierscode_
 cosdebug_
-scsptr_
-;
-getlabel_
-getouttb_
-scicosclip_
 getscilabel_
-oldgraphics_

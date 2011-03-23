@@ -20,6 +20,9 @@
 //
 
 function ok = set_cmap(cmap)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // appends new colors to the colormap
 
   if cmap==[] then
@@ -35,7 +38,7 @@ function ok = set_cmap(cmap)
   //** Not easy to understand code :( here 
   //** Probably avoid to add already defined colors
   for k=1:size(cmap,1)
-    [mc,kk] = mini(abs(d-ones(size(d,1),1)*cmap(k,:))*[1;1;1]); 
+    [mc,kk] = min(abs(d-ones(size(d,1),1)*cmap(k,:))*[1;1;1]); 
     if mc>.0001 then
       d=[d;cmap(k,:)]; 
     end

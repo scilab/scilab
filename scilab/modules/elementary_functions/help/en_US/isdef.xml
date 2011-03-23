@@ -34,7 +34,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -102,19 +102,19 @@ go()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="exists">exists</link> <link
-      linkend="isglobal">isglobal</link></member>
-
+      <member>
+	<link linkend="exists">exists</link>
+      </member>
+      <member>
+	<link linkend="isglobal">isglobal</link>
+      </member>
       <member><link linkend="whereis">whereis</link></member>
-
       <member><link linkend="type">type</link></member>
-
       <member><link linkend="typeof">typeof</link></member>
-
       <member><link linkend="clear">clear</link></member>
     </simplelist>
   </refsection>

@@ -432,7 +432,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_state_evtspt=(int *) MALLOC((m1e7*n1e7)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 		else
@@ -447,7 +447,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n1e8 = il_pointi[2];
 	if ((l_pointi=(int *) MALLOC((m1e8*n1e8)*sizeof(int))) ==NULL )
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		FREE(l_state_evtspt);
 		return 0;
 	}
@@ -539,7 +539,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_xptr=(int *) MALLOC((m_xptr*n_xptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_state_evtspt); FREE(l_pointi);
 			return 0;
 		}
@@ -558,7 +558,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_zptr=(int *) MALLOC((m_zptr*n_zptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_xptr);
 			FREE(l_state_evtspt); FREE(l_pointi);
 			return 0;
@@ -578,7 +578,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_ozptr=(int *) MALLOC((m_ozptr*n_ozptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_zptr); FREE(l_sim_xptr);
 			FREE(l_state_evtspt); FREE(l_pointi);
 			return 0;
@@ -598,7 +598,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_zcptr=(int *) MALLOC((m_zcptr*n_zcptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ozptr); FREE(l_sim_zptr); FREE(l_sim_xptr);
 			FREE(l_state_evtspt); FREE(l_pointi);
 			return 0;
@@ -618,7 +618,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_inpptr=(int *) MALLOC((m_inpptr*n_inpptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ozptr);
 			FREE(l_sim_zcptr); FREE(l_sim_zptr); FREE(l_sim_xptr);
 			FREE(l_state_evtspt); FREE(l_pointi);
@@ -639,7 +639,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_outptr=(int *) MALLOC((m_outptr*n_outptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_inpptr);
 			FREE(l_sim_ozptr);
 			FREE(l_sim_zcptr); FREE(l_sim_zptr); FREE(l_sim_xptr);
@@ -661,7 +661,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_inplnk=(int *) MALLOC((m_inplnk*n_inplnk)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
 			FREE(l_sim_ozptr);
 			FREE(l_sim_zptr); FREE(l_sim_xptr);
@@ -683,7 +683,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_outlnk=(int *) MALLOC((m_outlnk*n_outlnk)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_inplnk);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
 			FREE(l_sim_ozptr);
@@ -716,7 +716,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_rpptr=(int *) MALLOC((m_rpptr*n_rpptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_outlnk); FREE(l_sim_inplnk);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
 			FREE(l_sim_ozptr);
@@ -739,7 +739,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_ipar=(int *) MALLOC((m_ipar*n_ipar)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_rpptr); FREE(l_sim_outlnk); FREE(l_sim_inplnk);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
 			FREE(l_sim_ozptr);
@@ -762,7 +762,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_ipptr=(int *) MALLOC((m_ipptr*n_ipptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ipar);
 			FREE(l_sim_rpptr); FREE(l_sim_outlnk); FREE(l_sim_inplnk);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
@@ -802,7 +802,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_opptr=(int *) MALLOC((m_opptr*n_opptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ipptr); FREE(l_sim_ipar);
 			FREE(l_sim_rpptr); FREE(l_sim_outlnk); FREE(l_sim_inplnk);
 			FREE(l_sim_outptr); FREE(l_sim_inpptr); FREE(l_sim_zcptr);
@@ -826,7 +826,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_clkptr=(int *) MALLOC((m_clkptr*n_clkptr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999,  _("%s : Memory allocation error.\n"),fname);
+			Scierror(999,  _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
 			FREE(l_sim_ipptr); FREE(l_sim_ipar);
@@ -849,7 +849,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_ordptr = il_sim_ordptr[2];
 	if ((l_sim_ordptr=(int *) MALLOC((m_ordptr*n_ordptr)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_clkptr);
 		FREE(l_sim_opptr);
 		FREE(l_sim_ipptr); FREE(l_sim_ipar);
@@ -874,7 +874,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_execlk=(int *) MALLOC((m_execlk*n_execlk)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
 			FREE(l_sim_ipptr); FREE(l_sim_ipar);
@@ -900,7 +900,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_ordclk=(int *) MALLOC((m_ordclk*n_ordclk)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
 			FREE(l_sim_ipptr); FREE(l_sim_ipar);
@@ -926,7 +926,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_cord=(int *) MALLOC((m_cord*n_cord)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
 			FREE(l_sim_ipptr); FREE(l_sim_ipar);
@@ -952,7 +952,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_oord=(int *) MALLOC((m_oord*n_oord)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_cord);
 			FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
@@ -979,7 +979,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_zord=(int *) MALLOC((m_zord*n_zord)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_oord); FREE(l_sim_cord);
 			FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
@@ -1006,7 +1006,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_critev=(int *) MALLOC((m_critev*n_critev)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
 			FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
 			FREE(l_sim_opptr);
@@ -1030,7 +1030,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_nb = il_sim_nb[2];
 	if ((l_sim_nb=(int *) MALLOC((m_nb*n_nb)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
 		FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
@@ -1059,7 +1059,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_ztyp = il_sim_ztyp[2];
 	if ((l_sim_ztyp=(int *) MALLOC((m_ztyp*n_ztyp)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_nb); FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
 		FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
@@ -1083,7 +1083,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_nblk = il_sim_nblk[2];
 	if ((l_sim_nblk=(int *) MALLOC((m_nblk*n_nblk)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
 		FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
@@ -1107,7 +1107,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_ndcblk = il_sim_ndcblk[2];
 	if ((l_sim_ndcblk=(int *) MALLOC((m_ndcblk*n_ndcblk)*sizeof(int))) ==NULL )
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_nblk); FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
 		FREE(l_sim_ordclk); FREE(l_sim_execlk); FREE(l_sim_ordptr); FREE(l_sim_clkptr);
@@ -1134,7 +1134,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_subscr=(int *) MALLOC((m_subscr*n_subscr)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_ndcblk);
 			FREE(l_sim_nblk); FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 			FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
@@ -1160,7 +1160,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_funtyp = il_sim_funtyp[2];
 	if ((l_sim_funtyp=(int *) MALLOC((m_funtyp*n_funtyp)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_subscr); FREE(l_sim_ndcblk);
 		FREE(l_sim_nblk); FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
@@ -1188,7 +1188,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	{
 		if ((l_sim_iord=(int *) MALLOC((m_iord*n_iord)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(l_sim_funtyp); FREE(l_sim_subscr); FREE(l_sim_ndcblk);
 			FREE(l_sim_nblk); FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 			FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
@@ -1221,7 +1221,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	n_modptr = il_sim_modptr[2];
 	if ((l_sim_modptr=(int *) MALLOC((m_modptr*n_modptr)*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		FREE(l_sim_iord); FREE(l_sim_funtyp); FREE(l_sim_subscr); FREE(l_sim_ndcblk);
 		FREE(l_sim_nblk); FREE(l_sim_ztyp); FREE(l_sim_nb); FREE(l_sim_critev);
 		FREE(l_sim_zord); FREE(l_sim_oord); FREE(l_sim_cord);
@@ -1337,7 +1337,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	/*define new variable lfunpt*/
 	if ((lfunpt=(int *) MALLOC(nblk*sizeof(int))) ==NULL )
 	{
-		Scierror(999, _("%s : Memory allocation error.\n"),fname);
+		Scierror(999, _("%s: Memory allocation error.\n"),fname);
 		freeparam;
 		return 0;
 	}
@@ -1401,7 +1401,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of oz*/
 		if ((oz=(void **) MALLOC((noz)*sizeof(void *))) ==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(lfunpt);
 			freeparam;
 			return 0;
@@ -1409,7 +1409,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of ozsz*/
 		if ((ozsz=(int *) MALLOC(2*(noz)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(oz);
 			FREE(lfunpt);
 			freeparam;
@@ -1418,7 +1418,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of oztyp*/
 		if ((oztyp=(int *) MALLOC((noz)*sizeof(int))) ==NULL )
 		{
-			Scierror(999, _("%s : Memory allocation error.\n"),fname);
+			Scierror(999, _("%s: Memory allocation error.\n"),fname);
 			FREE(oz); FREE(ozsz);
 			FREE(lfunpt);
 			freeparam;
@@ -1525,7 +1525,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of opar*/
 		if ((opar=(void **) MALLOC((nopar)*sizeof(void *))) ==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
 			FREE(lfunpt);
 			freeparam;
@@ -1534,7 +1534,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of oparsz*/
 		if ((oparsz=(int *) MALLOC(2*(nopar)*sizeof(int))) ==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(opar);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
 			FREE(lfunpt);
@@ -1544,7 +1544,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of opartyp*/
 		if ((opartyp=(int *) MALLOC((nopar)*sizeof(int))) ==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(opar); FREE(oparsz);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
 			FREE(lfunpt);
@@ -1654,7 +1654,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of outtbptr*/
 		if ((outtbptr=(void **) MALLOC(nlnk*sizeof(void *)))==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(opar); FREE(oparsz); FREE(opartyp);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
 			FREE(lfunpt);
@@ -1664,7 +1664,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of outtbsz*/
 		if ((outtbsz=(int *) MALLOC(nlnk*2*sizeof(int)))==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(outtbptr);
 			FREE(opar); FREE(oparsz); FREE(opartyp);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
@@ -1675,7 +1675,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		/*Allocation of outtbtyp*/
 		if ((outtbtyp=(int *) MALLOC(nlnk*sizeof(int)))==NULL )
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			FREE(outtbsz); FREE(outtbptr);
 			FREE(opar); FREE(oparsz); FREE(opartyp);
 			FREE(oz); FREE(ozsz); FREE(oztyp);
@@ -1800,7 +1800,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	new = MALLOC(Rhs*sizeof(intersci_state));
 	if (new == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		FREE(outtbptr); FREE(outtbtyp); FREE(outtbsz);
 		FREE(opar); FREE(oparsz); FREE(opartyp);
 		FREE(oz); FREE(ozsz); FREE(oztyp);
@@ -1812,7 +1812,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 	loc = MALLOC(sizeof(intersci_list));
 	if (loc == NULL)
 	{
-		Scierror(999,_("%s : Memory allocation error.\n"),fname);
+		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		FREE(outtbptr); FREE(outtbtyp); FREE(outtbsz);
 		FREE(opar); FREE(oparsz); FREE(opartyp);
 		FREE(oz); FREE(ozsz); FREE(oztyp);
@@ -1926,7 +1926,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			C2F(curblk).kfun=0;
 			break;
 
-		case 4  : strcpy(C2F(cha1).buf,_("algrebraic loop detected"));
+		case 4  : strcpy(C2F(cha1).buf,_("algebraic loop detected"));
 			C2F(curblk).kfun=0;
 			break;
 
@@ -2050,7 +2050,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 239  : strcpy(C2F(cha1).buf,_("IDA_NULL_Y0: y0 = NULL illegal."));
 			break;
-		case 240  : strcpy(C2F(cha1).buf,_("IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, and IDA_WF."));
+		case 240  : strcpy(C2F(cha1).buf,_("IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, and IDA_WF."));
 			break;
 		case 241  : strcpy(C2F(cha1).buf,_("IDA_NULL_F: user supplied ODE routine is (NULL) illegal."));
 			break;
@@ -2068,7 +2068,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 248  : strcpy(C2F(cha1).buf,_("IDA_YP0_NULL: the derivative yp0 = NULL is illegal."));
 			break;
-		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: th returned residual res = NULL is illegal."));
+		case 249  : strcpy(C2F(cha1).buf,_("IDA_RES_NULL: the returned residual res = NULL is illegal."));
 			break;
 		case 250  : strcpy(C2F(cha1).buf,_("IDA_YRET_NULL: yret = NULL illegal.."));
 			break;
@@ -2114,7 +2114,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 		case 308  : strcpy(C2F(cha1).buf,_("CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in an unrecoverable manner"));
 			break;
 
-		case 309  : strcpy(C2F(cha1).buf,_("CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error at th efirst call"));
+		case 309  : strcpy(C2F(cha1).buf,_("CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error at the first call"));
 			break;
 
 		case 310  : strcpy(C2F(cha1).buf,_("CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to repeated recoverable errors in the right-hand side function (user supplied ODE). This error may be raised due to repeated  recoverable errors during the estimation of an initial step size."));
@@ -2122,7 +2122,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 
 		case 311  : strcpy(C2F(cha1).buf,_("CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a recoverable error, but no recovery was possible."));
 			break;
-		case 312  : strcpy(C2F(cha1).buf,_("CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."));
+		case 312  : strcpy(C2F(cha1).buf,_("CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."));
 			break;
 		case 320  : strcpy(C2F(cha1).buf,_("CV_MEM_FAIL: a memory allocation failed, including an attempt to increase maxord"));
 			break;
@@ -2136,7 +2136,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 325  : strcpy(C2F(cha1).buf,_("CV_BAD_T: t is not in the interval [tn-hu,tn]."));
 			break;
-		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dy)^k)y](t)."));
+		case 326  : strcpy(C2F(cha1).buf,_("CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector [((d/dt)^k)y](t)."));
 			break;
 		case 327  : strcpy(C2F(cha1).buf,_("CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."));
 			break;
@@ -2164,7 +2164,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 339  : strcpy(C2F(cha1).buf,_("CV_NULL_Y0: y0 = NULL illegal."));
 			break;
-		case 340  : strcpy(C2F(cha1).buf,_("CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and CV_WF."));
+		case 340  : strcpy(C2F(cha1).buf,_("CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and CV_WF."));
 			break;
 		case 341  : strcpy(C2F(cha1).buf,_("CV_NULL_F: user supplied ODE routine is (NULL) illegal."));
 			break;
@@ -2208,7 +2208,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 			break;
 		case 411  : strcpy(C2F(cha1).buf,_("KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the preconditioner) encountered an unrecoverable error ."));
 			break;
-		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine  (lsolve) encountered an error condition."));
+		case 412  : strcpy(C2F(cha1).buf,_("KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the preconditioned linear system) encountered an unrecoverable error, or the linear solver routine (lsolve) encountered an error condition."));
 			break;
 		case 413  : strcpy(C2F(cha1).buf,_("KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."));
 			break;
@@ -2229,7 +2229,7 @@ int sci_scicosim(char *fname,unsigned long fname_len)
 				   }
 				   else
 				   {
-					   strcpy(C2F(cha1).buf,_("scicos unexpected error,please report..."));
+					   strcpy(C2F(cha1).buf,_("scicos unexpected error, please report..."));
 					   C2F(curblk).kfun=0;
 				   }
 				   break;

@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1997 - INRIA
+ * Copyright (C) 2010 - DIGITEO - Allan CORNET
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,15 +11,18 @@
  *
  */
 
-#ifndef __SCI_TOOLS
-#define __SCI_TOOLS
+#ifndef __SCI_TOOLS_H__
+#define __SCI_TOOLS_H__
+
 #include "machine.h"
+#include "dynlib_elementary_functions.h"
+
 #define DATA_TYPE_SCALAR     1
 
 #define TYPE_DOUBLE  0
 #define TYPE_COMPLEX 1
 
-/* Valide for Real or Complex matrix */
+/* valid for Real or Complex matrix */
 #define TYPE(ptr)   (((int*) (ptr))[-1])
 #define NB_COL(ptr) (((int*) (ptr))[-2])
 #define NB_ROW(ptr) (((int*) (ptr))[-3])
@@ -30,14 +34,10 @@
 #define SET_NB_COL(ptr,m) (((int*) (ptr))[-2] = (m))
 #define SET_NB_ROW(ptr,n) (((int*) (ptr))[-3] = (n))
 
-typedef struct {double re, im;} complex16;
+ELEMENTARY_FUNCTIONS_IMPEXP void (SciToF77)(double *ptr, int size, int lda);
+ELEMENTARY_FUNCTIONS_IMPEXP void (F77ToSci)(double *ptr, int size, int lda);
 
-extern int  F2C(mycmatptr)(char *name,int *m, int *n, int *type, int *lp);
-extern void C2F(ccomplexf)(int *n, double **ip, double *op);
-extern void (SciToF77)(double *ptr, int size, int lda);
-extern void (F77ToSci)(double *ptr, int size, int lda);
+ELEMENTARY_FUNCTIONS_IMPEXP void double2z(double *ptr, double *ptr77z, int size, int lda);
+ELEMENTARY_FUNCTIONS_IMPEXP void z2double(double *ptrz, double *ptrsci, int size, int lda);
 
-void double2z(double *ptr, double *ptr77z, int size, int lda);
-void z2double(double *ptrz, double *ptrsci, int size, int lda);
-
-#endif /* __SCI_TOOLS */
+#endif /* __SCI_TOOLS_H__ */

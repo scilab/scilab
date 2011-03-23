@@ -15,10 +15,10 @@
 
 @SET_MAKE@
 
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006-2008 - INRIA - Sylvestre LEDRU <sylvestre.ledru@inria.fr>
@@ -67,10 +67,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
@@ -121,7 +122,7 @@ libscidynamic_link_la_DEPENDENCIES =  \
 am__objects_1 = libscidynamic_link_la-addinter.lo \
 	libscidynamic_link_la-dynamic_link.lo \
 	libscidynamic_link_la-dl_genErrorMessage.lo \
-	libscidynamic_link_la-AddFunctionInTable.lo \
+	libscidynamic_link_la-GetFunctionByName.lo \
 	libscidynamic_link_la-ilib_verbose.lo
 am__objects_2 = libscidynamic_link_la-gw_dynamic_link.lo \
 	libscidynamic_link_la-sci_getdynlibext.lo \
@@ -215,6 +216,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -237,9 +239,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -257,6 +260,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -294,6 +298,10 @@ OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_FLAGS = @OPENMPI_FLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -322,8 +330,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -344,6 +355,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -415,7 +427,7 @@ top_srcdir = @top_srcdir@
 DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
 src/c/dynamic_link.c \
 src/c/dl_genErrorMessage.c \
-src/c/AddFunctionInTable.c \
+src/c/GetFunctionByName.c \
 src/c/ilib_verbose.c
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
@@ -433,6 +445,7 @@ libscidynamic_link_la_CFLAGS = \
 -I$(top_srcdir)/libs/MALLOC/includes/ \
 -I$(top_srcdir)/modules/fileio/includes \
 -I$(top_srcdir)/modules/localization/includes \
+-I$(top_srcdir)/modules/string/includes \
 -I$(top_srcdir)/modules/io/includes \
 -I$(top_srcdir)/libs/dynamiclibrary/includes \
 -I$(srcdir)/src/c/ \
@@ -440,21 +453,21 @@ libscidynamic_link_la_CFLAGS = \
 -I$(srcdir)/includes/
 
 pkglib_LTLIBRARIES = libscidynamic_link.la
-libscidynamic_link_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscidynamic_link_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscidynamic_link_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CFLAGS)
 
-# cyclic $(top_builddir)/modules/core/libscicore.la 
+# cyclic  
 libscidynamic_link_la_LIBADD = $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename = dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscidynamic_link_la_root_DATA = license.txt version.xml
 
 #### dynamic_link : init scripts #### 
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
@@ -532,7 +545,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -655,7 +668,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-AddFunctionInTable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-addinter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-dl_genErrorMessage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscidynamic_link_la-dynamic_link.Plo@am__quote@
@@ -711,12 +724,12 @@ libscidynamic_link_la-dl_genErrorMessage.lo: src/c/dl_genErrorMessage.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-dl_genErrorMessage.lo `test -f 'src/c/dl_genErrorMessage.c' || echo '$(srcdir)/'`src/c/dl_genErrorMessage.c
 
-libscidynamic_link_la-AddFunctionInTable.lo: src/c/AddFunctionInTable.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-AddFunctionInTable.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-AddFunctionInTable.Tpo -c -o libscidynamic_link_la-AddFunctionInTable.lo `test -f 'src/c/AddFunctionInTable.c' || echo '$(srcdir)/'`src/c/AddFunctionInTable.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-AddFunctionInTable.Tpo $(DEPDIR)/libscidynamic_link_la-AddFunctionInTable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/AddFunctionInTable.c' object='libscidynamic_link_la-AddFunctionInTable.lo' libtool=yes @AMDEPBACKSLASH@
+libscidynamic_link_la-GetFunctionByName.lo: src/c/GetFunctionByName.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-GetFunctionByName.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Tpo -c -o libscidynamic_link_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Tpo $(DEPDIR)/libscidynamic_link_la-GetFunctionByName.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/GetFunctionByName.c' object='libscidynamic_link_la-GetFunctionByName.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-AddFunctionInTable.lo `test -f 'src/c/AddFunctionInTable.c' || echo '$(srcdir)/'`src/c/AddFunctionInTable.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -c -o libscidynamic_link_la-GetFunctionByName.lo `test -f 'src/c/GetFunctionByName.c' || echo '$(srcdir)/'`src/c/GetFunctionByName.c
 
 libscidynamic_link_la-ilib_verbose.lo: src/c/ilib_verbose.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscidynamic_link_la_CFLAGS) $(CFLAGS) -MT libscidynamic_link_la-ilib_verbose.lo -MD -MP -MF $(DEPDIR)/libscidynamic_link_la-ilib_verbose.Tpo -c -o libscidynamic_link_la-ilib_verbose.lo `test -f 'src/c/ilib_verbose.c' || echo '$(srcdir)/'`src/c/ilib_verbose.c
@@ -1107,7 +1120,7 @@ uninstall-am: uninstall-libscidynamic_link_la_etcDATA \
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1155,7 +1168,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1174,6 +1187,13 @@ clean-macros:
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
+
 all-local: $(TARGETS_ALL)
 
 .sci.bin:
@@ -1185,6 +1205,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1259,6 +1285,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \
@@ -1281,9 +1308,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

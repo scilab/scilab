@@ -18,7 +18,7 @@ if mb<>nb then
 end
 
 [h,rk]=lufact(b')
-if rk<mini(mb,nb) then warning('deficient rank: rank = '+string(rk)),end
+if rk<min(mb,nb) then warning('deficient rank: rank = '+string(rk)),end
 x=[]    
 for k=1:ma
   x=[x;sparse(lusolve(h,full(a(k,:))')')]

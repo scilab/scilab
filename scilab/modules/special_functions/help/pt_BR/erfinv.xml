@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,77 +19,61 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2008-04-05 20:49:31 +0200 (sam, 05 avr 2008)
-    $</pubdate>
+    <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>erfinv</refname>
-
-    <refpurpose>função inversa à função de erro</refpurpose>
+    <refpurpose>funÃ§Ã£o inversa Ã  funÃ§Ã£o de erro</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
-    <title>Seqüência de Chamamento</title>
-
+    <title>SeqÃ¼Ãªncia de Chamamento</title>
     <synopsis>y = erfinv(x)</synopsis>
   </refsynopsisdiv>
-
   <refsection>
-    <title>Parâmetros</title>
-
+    <title>ParÃ¢metros</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
-
         <listitem>
-          <para>vetor ou matriz de reais </para>
+          <para>vetor ou matriz de reais</para>
         </listitem>
       </varlistentry>
-
       <varlistentry>
         <term>y</term>
-
         <listitem>
           <para>vetor ou matriz de reais (de mesmo tamanho que x)</para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
-
   <refsection>
-    <title>Descrição</title>
-
-    <para><literal>erfinv</literal> computa a função inversa à função de erro
-    <literal>erf</literal>. <literal>x = erfinv(y)</literal> satisfaz
-    <literal>y = erf(x)</literal>, -1 &lt;= <literal>y</literal> &lt; 1, -inf
-    &lt;= <literal>x</literal> &lt;= inf.</para>
+    <title>DescriÃ§Ã£o</title>
+    <para>
+      <literal>erfinv</literal> computa a funÃ§Ã£o inversa Ã  funÃ§Ã£o de
+      erro <literal>erf</literal>. <literal>x = erfinv(y)</literal>
+      satisfaz <literal>y = erf(x)</literal>, <literal>-1 â‰¤ y â‰¤
+      1</literal>, <literal>âˆž â‰¤ x â‰¤ âˆž</literal>.
+    </para>
   </refsection>
-
   <refsection>
     <title>Exemplos</title>
-
     <programlisting role="example"><![CDATA[ 
 x=linspace(-0.99,0.99,100);
 y=erfinv(x);
 plot2d(x,y)
-norm(x-erf(y),'inf')
- ]]></programlisting>
+]]></programlisting>
   </refsection>
-
   <refsection>
-    <title>Ver Também</title>
-
+    <title>Ver TambÃ©m</title>
     <simplelist type="inline">
-      <member><link linkend="erf">erfc</link></member>
-
       <member><link linkend="cdfnor">cdfnor</link></member>
+      <member><link linkend="erf">erf</link></member>
+      <member><link linkend="erfc">erfc</link></member>
+      <member><link linkend="erfcx">erfcx</link></member>
     </simplelist>
   </refsection>
-
   <refsection>
-    <title>Referências</title>
-
+    <title>ReferÃªncias</title>
     <para>Milton Abramowitz e Irene A. Stegun, eds. Handbook of Mathematical
     Functions with Formulas, Graphs, and Mathematical Tables. New York: Dover,
     1972.</para>

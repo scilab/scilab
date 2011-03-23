@@ -35,7 +35,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -60,8 +60,7 @@
         <term>files</term>
 
         <listitem>
-          <para>string matrix giving source (from Scilab 5.0) or object files
-          needed for shared library creation</para>
+          <para>string matrix giving source files needed for shared library creation. Since Scilab 5.3.1, object files are deprecated.</para>
         </listitem>
       </varlistentry>
 
@@ -78,8 +77,9 @@
         <term>makename</term>
 
         <listitem>
-          <para>character string. The path of the Makefile file without
-          extension.</para>
+          <para>character string. The path of the Makefile file without extension.</para>
+          <para>This parameter is useless since Scilab 5.0. Default value to use: [].</para>
+          <para>A warning will be displayed in Scilab 5.3 if you use another value that the default.</para>
         </listitem>
       </varlistentry>
 
@@ -363,7 +363,7 @@ i=['#include <string>'
    ' pStVarOne = new char[lenStVarOne + 1];'
    ' if (pStVarOne == NULL)'
    ' {'
-   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
+   '   Scierror(999,_(""%s: Memory allocation error.\n""),fname);'
    '   return 0;'
    ' }'
    ''
@@ -377,7 +377,7 @@ i=['#include <string>'
    ' pStVarTwo = new char[lenStVarTwo + 1];'
    ' if (pStVarTwo == NULL)'
    ' {'
-   '   Scierror(999,_(""%s : Memory allocation error.\n""),fname);'
+   '   Scierror(999,_(""%s: Memory allocation error.\n""),fname);'
    '   return 0;'
    ' }'
    ''
@@ -533,8 +533,8 @@ if abs(m-3.)>%eps then pause,end
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="addinter">addinter</link></member>

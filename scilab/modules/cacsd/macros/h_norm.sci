@@ -39,12 +39,12 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
   end
   [a,b,c,d]=Sl(2:5);
   eiga=spec(a);
-  if maxi(real(eiga)) >= -1e-12 then 
+  if max(real(eiga)) >= -1e-12 then 
     warning(msprintf(_("%s: System is not stable.\n"),"h_norm"))
   end
   if argn(2)==1 then rerr=1e-8; end;
   [no,ns] = size(c); [ns,ni] = size(b);
-  if mini(ni,no) == 1 then isiso = 2; else isiso = 1; end;
+  if min(ni,no) == 1 then isiso = 2; else isiso = 1; end;
   [p,a] = hess(a); [u,d,v] = svd(d); b = p' * b * v; c = u' * c * p;
   dtd = diag(d'*d); ddt = diag(d*d'); dtc = d' * c;
   aj = sqrt(-1)*eye(ns); R1 = ones(ni,1); S1 = ones(no,1);
@@ -52,11 +52,11 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
  
   // compute starting value
   q = ((imag(eiga) + 0.01 * ones(eiga)) ./ real(eiga)) ./ abs(eiga);
-  [q,i] = maxi(q); w = abs(eiga(i));
+  [q,i] = max(q); w = abs(eiga(i));
   svw = norm( c * ((w*aj*eye()-a)\b) + d );
   sv0 = norm( -c * (a\b) + d );
   svdd = norm(d);
-  [lb,i] = maxi([svdd sv0 svw]);l=lb;
+  [lb,i] = max([svdd sv0 svw]);l=lb;
   w = [1.d30 0 w ]; M = w(i);
   // to avoid numerical problems with Rinv and Sinv if lb == norm(d), lb must be
   // enlarged to at least (1+1e-3)*lb;
@@ -71,7 +71,7 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     idx = find(abs(real(evH)) < 1e-8 & imag(evH) >= 0);
     imev= imag(evH(idx));
     [imev] = gsort(imev);
-    q = maxi(size(imev));
+    q = max(size(imev));
     if q <= 1 then
       // q=1 can only happen in the first step if H-norm==maxsv(D) or H-norm==maxsv(0)
       // due to inaccurate eigenvalue computation (so gam must be an upper bound).
@@ -79,10 +79,10 @@ function [hinfnorm,frequency]=h_norm(Sl,rerr)
     else
       M =  0.5 * (imev(1:q-1) + imev(2:q)); M = M(1:isiso:q-1);
       sv=[];
-      for j = 1:maxi(size(M)),
-	sv = [sv maxi(svd(d + c*((M(j)*aj*eye() - a)\b)))];
+      for j = 1:max(size(M)),
+	sv = [sv max(svd(d + c*((M(j)*aj*eye() - a)\b)))];
       end;
-      lb = maxi(sv);l=[l;lb];
+      lb = max(sv);l=[l;lb];
     end;
   end;
   if M == 1.d30 then
@@ -138,7 +138,7 @@ function ok=dhtest(Sl,gama)
   if rcond(x12) > 1.d-6 then
     X=phi12/x12;
     z=eye()-B'*X*B
-    ok= mini(real(spec(z))) > -%eps
+    ok= min(real(spec(z))) > -%eps
   else
     ok=%t;end
 endfunction

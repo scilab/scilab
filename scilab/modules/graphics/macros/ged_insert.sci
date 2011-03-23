@@ -157,7 +157,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2))]
       show_pixmap()
       xinfo(mess2)
     end    
@@ -173,7 +173,7 @@ function ged_insert(k,win)
     xinfo(mess2)
     while rep(3)==-1 do
       rep=xgetmouse(0,[%t %t])
-      r.data=[mini(xc,rep(1)),maxi(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
+      r.data=[min(xc,rep(1)),max(yc,rep(2)),abs(xc-rep(1)),abs(yc-rep(2)),0,64*360]
       show_pixmap()
       xinfo(mess2)
     end 

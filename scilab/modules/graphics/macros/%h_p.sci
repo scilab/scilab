@@ -786,7 +786,7 @@ function %h_p(h)
         case "Axis"
             u=h.user_data;
             T=sci2exp(h.tics_labels,0)
-            if length(T)>70 then T="string array 1x"+string(length(T)),end
+            if length(T)>70 then T="string array "+strcat(string(size(h.tics_labels)),'x'),end
             t=[t;
                 "parent: "+h.parent.type
                 "visible = "+sci2exp(h.visible)
@@ -811,19 +811,21 @@ function %h_p(h)
         // =====================================================================
         
         case "uimenu"
+            u=h.user_data;
             t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
-		"Enable = "+sci2exp(h.enable)
+                "Enable = "+sci2exp(h.enable)
                 "Foregroundcolor = "+sci2exp(h.foregroundcolor,0)
                 "Label = "+h.label 
                 //"Handle_visible = "+sci2exp(h.handle_visible)
                 //"Position = "+sci2exp(h.position,0)
                 "Visible = "+sci2exp(h.visible)
                 "Callback = "+h.callback
-                "CallbackType = "+sci2exp(h.callback_type,0)
-		"Checked: "+sci2exp(h.checked)
-		"Tag = "+h.tag
+                "Callback_type = "+sci2exp(h.callback_type,0)
+                "Checked =  "+sci2exp(h.checked)
+                "Userdata = "+fmtuser_data(u)
+                "Tag = "+h.tag
             ]
         
         // uicontextmenu

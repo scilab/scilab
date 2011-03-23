@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="resize_matrix" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>resize_matrix</refname>
+
+    <refpurpose>異なる大きさの新規行列を作成</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mat</term>
+
+        <listitem>
+          <para>入力行列で, この行列から大きさが変更された行列が
+	作成されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nbRow</term>
+
+        <listitem>
+          <para>大きさが変更される行列の行の数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nbCol</term>
+
+        <listitem>
+          <para>大きさが変更される行列の列の数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>typeOfMat</term>
+
+        <listitem>
+          <para>文字列, 大きさが変更される行列の型名.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>resMat</term>
+
+        <listitem>
+          <para>大きさが変更された行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>大きさ <literal>nbRow</literal> x
+    <literal>nbCol</literal> の行列を作成し,
+	<literal>(i,j)</literal>が入力行列の範囲の場合,
+	その要素<literal>(i,j)</literal>
+	を<literal>mat(i,j)</literal>とします.
+	それ以外の場合, 要素 <literal>(i,j)</literal>は
+	実数または整数行列の場合に <literal>0</literal>,
+	論理値行列,文字列行列の空の文字列
+	の場合に <literal>%f</literal>となります.</para>
+
+    <para>出力行列の型は
+    <literal>typeOfMat</literal> 引数で指定することにより修正できます.
+	この場合,入力行列がこの型と互換性があることを確認してください.</para>
+
+    <para>現在,実数,整数行列,論理値および文字列行列のみが
+	サポートされています.
+	これは, <literal>typeOfMat</literal>を
+	'constant', 'boolean', 'string' または任意の整数型 
+    ('int8', 'int16',...)の中から選択する必要があることを意味します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 数値行列
+myMat = 5 * rand( 3, 4 )
+myMat = resize_matrix( myMat, 3, 3 ) // 行列の大きさを縮小
+myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // 整数行列を作成
+myMatBoolean = resize_matrix( myMat, 2, 2, 'boolean' )
+myMatBoolean = resize_matrix( myMatBoolean, 3, 5 )
+
+// 文字列行列
+myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
+myMatString = resize_matrix( myMatString, 3, 1 )
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="matrix">matrix</link></member>
+
+      <member><link linkend="size">size</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

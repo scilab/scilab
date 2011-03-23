@@ -13,7 +13,7 @@ function bOK = configure_pvm()
   bOK = %F;
   
   if %pvm then 
-    if MSDOS then
+    if getos() == 'Windows' then
       if getenv('PVM_ROOT','') == '' then 
         setenv("PVM_ROOT",pathconvert(SCI,%f,%f,'w')+"\modules\pvm\pvm3");
       end
@@ -46,7 +46,7 @@ function bOK = configure_pvm()
         home = getenv('HOME',SCI);
       end
       
-      if fileinfo(home+'/.pvmd.conf') == [] then
+      if ~isfile(home+'/.pvmd.conf') then
         pcname = getenv('COMPUTERNAME','');
         pvm_root = getenv('PVM_ROOT','');
         pvm_arch = getenv('PVM_ARCH','');

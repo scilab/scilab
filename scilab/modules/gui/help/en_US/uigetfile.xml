@@ -121,12 +121,12 @@ PathFileName=uigetfile([file_mask[,dir[,boxTitle[,multiple]]]])
 
     <para>To disable, this feature:</para>
 
-    <para>if MSDOS then unix("REGSVR32 /u %WINDIR%\System32\zipfldr.dll")
+    <para>if getos() == 'Windows' then unix("REGSVR32 /u %WINDIR%\System32\zipfldr.dll")
     ;end</para>
 
     <para>To re-enable,</para>
 
-    <para>if MSDOS then unix("REGSVR32 %WINDIR%\System32\zipfldr.dll")
+    <para>if getos() == 'Windows' then unix("REGSVR32 %WINDIR%\System32\zipfldr.dll")
     ;end</para>
   </refsection>
 
@@ -142,8 +142,8 @@ uigetfile(["*.sce";"*.bin"],"SCI/modules/gui/macros/", "Choose a file name", %f)
 </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="uiputfile">uiputfile</link></member>

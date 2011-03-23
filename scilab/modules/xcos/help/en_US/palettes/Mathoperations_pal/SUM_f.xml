@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/SUM_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/SUM_f.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -73,6 +73,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_SUM_f">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_SUM_f">Authors</xref>
             </para>
           </listitem>
@@ -93,10 +98,8 @@
   <refsection id="Description_SUM_f">
     <title>Description</title>
     <para>
-The Sum block performs addition  on its inputs. This block can add
-scalar, vector, or matrix inputs.   
-
-</para>
+      The block performs addition of its three inputs. This block can add scalar or vector inputs.
+    </para>
   </refsection>
   <refsection id="Defaultproperties_SUM_f">
     <title>Default properties</title>
@@ -171,6 +174,21 @@ scalar, vector, or matrix inputs.
     <itemizedlist>
       <listitem>
         <para> SCI/modules/scicos_blocks/src/c/plusblk.c (Type 2)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_SUM_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SUMMATION">SUMMATION - Matrix Addition/Subtraction (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="BIGSOM_f">BIGSOM_f - Scalars/Vectors Addition/Subtraction (Xcos block)</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>

@@ -12,10 +12,11 @@
  */
 /*--------------------------------------------------------------------------*/ 
 #include "gw_differential_equations1.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
 extern int C2F(sciode)();
 /*--------------------------------------------------------------------------*/
-int C2F(sci_ode)(char *fname,unsigned long fname_len)
+int sci_ode(char *fname,unsigned long fname_len)
 {
 	C2F(sciode)();
 	return 0;

@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
+// Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -11,9 +11,9 @@ mkdir(pathconvert(TMPDIR+"/double_writing_api"));
 cd(pathconvert(TMPDIR+"/double_writing_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/double_writing_api.c",pathconvert(TMPDIR+"/double_writing_api/double_writing_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("double_writing",["write_double","write_double"],"double_writing_api.c",[],"Makefile","",cflags);
+ilib_build("double_writing",["write_double","write_double"],"double_writing_api.c",[],"","",cflags);
 exec("loader.sce");
- 
+
 a_ref = [   0 1 2 3; ..
             4 5 6 7; ..
             8 9 10 11];
@@ -24,4 +24,3 @@ b_ref = [   23*%i,      1+22*%i,    2+21*%i,    3+20*%i,    4+19*%i,    5+18*%i;
 [a,b] = write_double();
 if or(a <> a_ref) then pause;end
 if or(b <> b_ref) then pause;end
- 

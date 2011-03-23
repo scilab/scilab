@@ -10,14 +10,16 @@
  *
  */
 
-#ifndef __FINITE__
-#define __FINITE__
+#ifndef __FINITE_H__
+#define __FINITE_H__
 
 #include "doublecomplex.h" 
+#include "dynlib_elementary_functions.h"
 
 #ifndef HAVE_FINITE
-int finite(double x);
+ELEMENTARY_FUNCTIONS_IMPEXP int finite(double x);
 #endif
 
-int finiteComplex(doublecomplex x);
-#endif /* !__FINITE__ */
+ELEMENTARY_FUNCTIONS_IMPEXP int finiteComplex(doublecomplex x);
+
+#endif /* __FINITE_H__ */

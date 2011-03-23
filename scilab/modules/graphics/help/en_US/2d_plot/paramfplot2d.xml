@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="paramfplot2d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>paramfplot2d</refname>
+    <refpurpose> animated 2D plot, curve defined by a function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>paramfplot2d(f,x,theta)
+paramfplot2d(f,x,theta,flag)
+paramfplot2d(f,x,theta,flagrect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>real vector.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>function <literal>y=f(x,t)</literal> . f is a Scilab function or a dynamically linked routine (referred to as a string).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta</term>
+        <listitem>
+          <para>real vector (set of parameters).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>string <literal>'no'</literal> or <literal>'yes'</literal>: If "yes" screen is cleared  between two consecutive plots.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>"rectangle" [xmin, xmax, ymin, ymax] (1 x 4 real vector),</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Animated plot of the function x--&gt;f(x,t) for t=theta(1),theta(2),etc.
+    f can be a either Scilab function or a dynamically linked routine since
+    y=f(x,t) is evaluated as y=feval(x(:),t,f). See feval.
+    f: mapping x,t -&gt; f(x,t) = <literal>R^N</literal>  valued function for x= vector of <literal>R^N</literal>
+    and t=real number. x is a N-vector of x-values and for each t in theta, f(x,t)=N-vector of y-values.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+deff('y=f(x,t)','y=t*sin(x)')
+x=linspace(0,2*%pi,50);theta=0:0.05:1;
+paramfplot2d(f,x,theta);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="feval">feval</link>
+      </member>
+      <member>
+        <link linkend="fplot2d">fplot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,9 +1,7 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mode(1)
 rand('normal')
@@ -16,7 +14,7 @@ J=rand(Plant(5));Plant(5)=0*J;
 // define state space model of the Signal to track
 nw=4;nuu=2;
 A=rand(nw,nw);
-A=A-maxi(real(spec(A)))*eye(A); 
+A=A-max(real(spec(A)))*eye(A); 
 B=rand(nw,nuu);
 C=2*rand(ny,nw);
 D=0*rand(C*B);

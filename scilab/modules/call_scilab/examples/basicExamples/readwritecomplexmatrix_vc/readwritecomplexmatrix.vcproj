@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -6,6 +6,7 @@
 	ProjectGUID="{A82BBD7C-42F0-449E-BD28-58F3784543F9}"
 	RootNamespace="readwritecomplexmatrix"
 	Keyword="Win32Proj"
+	TargetFrameworkVersion="0"
 	>
 	<Platforms>
 		<Platform
@@ -43,7 +44,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../includes;../../../../api_scilab/includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -52,7 +53,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -66,7 +66,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
+				AdditionalDependencies="../../../../../bin/api_scilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritecomplexmatrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -126,7 +126,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../includes;../../../../api_scilab/includes"
 				PreprocessorDefinitions="_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -135,7 +135,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -149,7 +148,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
+				AdditionalDependencies="../../../../../bin/api_scilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritecomplexmatrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames="libcmt.lib"
@@ -208,7 +207,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../includes;../../../../api_scilab/includes"
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -216,7 +215,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -230,7 +228,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
+				AdditionalDependencies="../../../../../bin/api_scilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritecomplexmatrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -238,7 +236,6 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="1"
@@ -292,7 +289,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				FavorSizeOrSpeed="1"
-				AdditionalIncludeDirectories="../../../../core/includes;../../../includes"
+				AdditionalIncludeDirectories="../../../../core/includes;../../../includes;../../../../api_scilab/includes"
 				PreprocessorDefinitions="NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE"
 				RuntimeLibrary="2"
 				EnableEnhancedInstructionSet="0"
@@ -300,7 +297,6 @@
 				ObjectFile="$(ConfigurationName)/"
 				ProgramDataBaseFileName="$(ConfigurationName)/vc80.pdb"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="false"
 				DebugInformationFormat="0"
 			/>
 			<Tool
@@ -314,7 +310,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="../../../../../bin/libscilab.lib ../../../../../bin/call_scilab.lib"
+				AdditionalDependencies="../../../../../bin/api_scilab.lib ../../../../../bin/call_scilab.lib"
 				OutputFile="../../../../../bin/readwritecomplexmatrix.exe"
 				LinkIncremental="1"
 				IgnoreDefaultLibraryNames=""
@@ -322,7 +318,6 @@
 				SubSystem="1"
 				OptimizeReferences="2"
 				EnableCOMDATFolding="2"
-				OptimizeForWindows98="0"
 				RandomizedBaseAddress="1"
 				DataExecutionPrevention="0"
 				TargetMachine="17"

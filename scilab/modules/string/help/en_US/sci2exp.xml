@@ -23,7 +23,7 @@
     <synopsis>t=sci2exp(a [,nam] [,lmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>
@@ -98,4 +98,11 @@ sci2exp(ssrand(2,2,2))
 sci2exp(poly([1 0 3 4],'s'),'fi')
  ]]></programlisting>
   </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="prettyprint">prettyprint</link></member>
+    </simplelist>
+  </refsection>
+
 </refentry>

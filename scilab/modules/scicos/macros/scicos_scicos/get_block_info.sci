@@ -20,6 +20,9 @@
 //
 
 function txt = get_block_info(scs_m, k, ksave)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**
 //**   
 if argn(2)>2 then
@@ -57,7 +60,7 @@ case "Block" then
     ligne_5 = list('Super Blocks', 2, boutons)
     //
     titre = ['This is a super block, Select additional '
-	'informations you want to get on it''s'
+	'information you want to get on its'
 	'components']
     reponse = x_choices(titre, list(ligne_1, ligne_2, ligne_3, ligne_4, ligne_5))
     if reponse <>[] then

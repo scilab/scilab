@@ -23,7 +23,7 @@
     <synopsis>B=clean(A [,epsa [,epsr]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>

@@ -23,7 +23,7 @@
     <synopsis>[Y,rk,ac]=colcompr(A);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -65,8 +65,8 @@ p=[s;s*(s+1)^2;2*s^2+s^3];
 p*p'*Y
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowcompr">rowcompr</link>

@@ -55,6 +55,7 @@ public final class ViewGridAction extends DefaultAction {
 		menu.setChecked(true);
 		
 		scilabGraph.addPropertyChangeListener("gridEnabled", new PropertyChangeListener() {
+			@Override
 			public void propertyChange(PropertyChangeEvent evt) {
 				XcosDiagram graph = (XcosDiagram) evt.getSource();
 				
@@ -73,6 +74,6 @@ public final class ViewGridAction extends DefaultAction {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		((ScilabGraph) getGraph(e)).setGridEnabled(!((XcosDiagram) getGraph(e)).isGridEnabled());
+		(getGraph(e)).setGridEnabled(!((XcosDiagram) getGraph(e)).isGridEnabled());
 	}
 }

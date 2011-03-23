@@ -28,7 +28,7 @@ ScilabEval instruction "sync" "seq"
 ScilabEval "flush"</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>instruction</term>
@@ -101,6 +101,9 @@ ScilabEval "flush"</synopsis>
     </variablelist>
     <para>The evaluation context of all these cases is the current Scilab context
     when the<literal>instruction</literal> evaluation starts.</para>
+    
+    <para>More information about Tcl/Tk: <ulink url="http://www.tcl.tk/doc/">http://www.tcl.tk/doc/</ulink></para>
+    
   </refsection>
   <refsection>
     <title>Examples</title>
@@ -157,8 +160,8 @@ TCL_EvalFile(TMPDIR+'/test.tcl');mprintf('TCL_EvalFile finished\n');
 // The ScilabEval are executed  synchronously with TCL_EvalFile
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="TCL_EvalFile">TCL_EvalFile</link>

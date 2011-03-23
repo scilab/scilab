@@ -1,12 +1,13 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
+ * Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
  *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -23,33 +24,45 @@
 static BOOL loadedDep = FALSE;
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[] = {
-  {sci_Xcos, "xcos"},
-  {sci_xcosNotify, "xcosNotify"},
-  {sci_warnBlockByUID, "warnBlockByUID"},
-  {sci_closeXcosFromScilab, "closeXcos"},
-  {sci_xcosDiagramToHDF5, "xcosDiagramToHDF5"},
-  {sci_xcosDiagramOpen, "xcosDiagramOpen"},
-  {sci_xcosDiagramClose, "xcosDiagramClose"}
+    {sci_Xcos,                            "xcos"},
+    {sci_warnBlockByUID,                  "warnBlockByUID"},
+    {sci_closeXcosFromScilab,             "closeXcos"},
+    {sci_xcosDiagramToHDF5,               "xcosDiagramToHDF5"},
+    {sci_xcosDiagramOpen,                 "xcosDiagramOpen"},
+    {sci_xcosDiagramClose,                "xcosDiagramClose"},
+    {sci_xcosPalLoad,                     "xcosPalLoad"},
+    {sci_xcosPalCategoryAdd,              "xcosPalCategoryAdd"},
+    {sci_xcosPalDelete,                   "xcosPalDelete"},
+    {sci_xcosPalMove,                     "xcosPalMove"},
+    {sci_xcosPalEnable,                   "xcosPalEnable"},
+    {sci_xcosPalDisable,                  "xcosPalDisable"},
+    {sci_xcosPalGenerateIcon,             "xcosPalGenerateIcon"},
+    {sci_xcosConfigureXmlFile,            "xcosConfigureXmlFile"}
 };
 
 /*--------------------------------------------------------------------------*/
 int gw_xcos(void)
 {
-	Rhs = Max(0, Rhs);
+    Rhs = Max(0, Rhs);
 
-	if ( getScilabMode() == SCILAB_NWNI)
-	{
-		Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
-		return 0;
-	}
+    if  ( getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999,_("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "xcos");
+        return 0;
+    }
 
-	if (!loadedDep) 
-	{
-
-		loadOnUseClassPath("XCos");
-		loadedDep = TRUE;
-	}
-	callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
-	return 0;
+    if (!loadedDep                                      // never reload
+        && Tab[Fin-1].f != sci_closeXcosFromScilab)     // do not load on close
+    {
+        loadOnUseClassPath("XCos");
+        loadedDep = TRUE;
+    }
+    callFunctionFromGateway(Tab,  SIZE_CURRENT_GENERIC_TABLE(Tab));
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int xcosStarted(void)
+{
+    return loadedDep;
 }
 /*--------------------------------------------------------------------------*/

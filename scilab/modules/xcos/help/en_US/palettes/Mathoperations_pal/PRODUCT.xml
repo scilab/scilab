@@ -24,14 +24,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="PRODUCT">
   <refnamediv>
     <refname>PRODUCT</refname>
-    <refpurpose>Product</refpurpose>
+    <refpurpose>Element-wise vector multiplication/division</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/PRODUCT.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/PRODUCT.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="PRODUCT">Product</link>
+          <link linkend="PRODUCT">Element-wise vector multiplication/division</link>
         </para>
       </listitem>
       <listitem>
@@ -78,6 +78,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_PRODUCT">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_PRODUCT">Authors</xref>
             </para>
           </listitem>
@@ -98,14 +103,22 @@
   <refsection id="Description_PRODUCT">
     <title>Description</title>
     <para>
-The Product block performs multiplication or division of its
-inputs. This block produces outputs using either element-wise or
-matrix multiplication, depending on the value of the Multiplication
-parameter. You specify the operations with the Number of inputs
-parameter. Multiply(+1) and divide (-1) characters indicate the
-operations to be performed on the inputs.
-
-</para>
+      That bloc computes element-wise multiplication or division of its vector inputs. The number of inputs
+      and operation are specified with the <emphasis role="bold">Number of inputs or sign vector</emphasis> parameter.
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          To multiply all the inputs between them, set this parameter to the number of inputs.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          To multiply/divide the input <emphasis>ui</emphasis>, set in this parameter a vector k with
+          <emphasis>k[i]</emphasis> = +1 (multiply) or -1 (divide) for the input <emphasis>ui</emphasis>.
+        </para>
+      </listitem>
+    </itemizedlist>
   </refsection>
   <refsection id="Dialogbox_PRODUCT">
     <title>Dialog box</title>
@@ -202,6 +215,28 @@ operations to be performed on the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Seealso_PRODUCT">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f- Gain (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="INVBLK">INVBLK - Invert (Xcos block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PROD_f">PROD_f - Element-wise product (Xcos block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Authors_PRODUCT">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

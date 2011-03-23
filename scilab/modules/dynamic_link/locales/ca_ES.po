@@ -1,0 +1,417 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-07-29 09:46+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "   %s: Command: %s\n"
+msgstr "   %s: Comanda: %s\n"
+
+#, c-format
+msgid "   %s: Copy %s to TMPDIR\n"
+msgstr "   %s: Còpia de %s al TMPDIR\n"
+
+#, c-format
+msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
+msgstr ""
+"   %s: Copieu els fitxers de compilació (Makefile*, libtool...) al TMPDIR\n"
+
+#, c-format
+msgid ""
+"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgstr ""
+"   %s: No s'ha copiat el %s: Els directoris d'origen i de destí són els "
+"mateixos (%s).\n"
+
+#, c-format
+msgid "   %s: File %s ignored.\n"
+msgstr "   %s: S'ignora el fitxer %s.\n"
+
+#, c-format
+msgid "   %s: Modification of the Makefile in TMPDIR.\n"
+msgstr "   %s: Modificació del Makefile al TMPDIR.\n"
+
+#, c-format
+msgid "   %s: Need to run the compiler detection (configure).\n"
+msgstr "   %s: Cal executar la detecció del compilador (configuració).\n"
+
+#, c-format
+msgid "   %s: Substitute the reference by the actual file.\n"
+msgstr "   %s: Substitueix la referència pel fitxer actual.\n"
+
+#, c-format
+msgid "   %s: Use the previous detection of compiler.\n"
+msgstr "   %s: Utilitzar l'anterior detecció del compilador.\n"
+
+#, c-format
+msgid "   %s: configure : Generate Makefile.\n"
+msgstr "   %s: Configuració: Generació del Makefile.\n"
+
+msgid "   Building shared library (be patient)\n"
+msgstr "   S'està generant la llibreria compartida (sigueu pacient)\n"
+
+#, c-format
+msgid "   Command: %s\n"
+msgstr "   Comanda: %s\n"
+
+msgid "   Compilation of "
+msgstr "   Compilació de "
+
+msgid "   Generate a Makefile\n"
+msgstr "   Genera un Makefile\n"
+
+#, c-format
+msgid "   Generate a Makefile: %s\n"
+msgstr "   Genera un Makefile: %s\n"
+
+msgid "   Generate a cleaner file\n"
+msgstr "   Genera un fitxer de neteja\n"
+
+msgid "   Generate a gateway file\n"
+msgstr "   Genera un fitxer de porta d'enllaç\n"
+
+msgid "   Generate a loader file\n"
+msgstr "   Genera un fitxer de càrrega\n"
+
+#, c-format
+msgid "   Output: %s\n"
+msgstr "   Sortida: %s\n"
+
+msgid "   Running the Makefile\n"
+msgstr "   S'està executant el Makefile\n"
+
+msgid "   Running the makefile\n"
+msgstr "   S'està executant el makefile\n"
+
+#, c-format
+msgid "   stderr: %s\n"
+msgstr "   Sortida d'error: %s\n"
+
+#, c-format
+msgid "%s : Wrong type for input argument #%d: %s\n"
+msgstr "%s : L'argument d'entrada #%d és d'un tipus incorrecte: %s\n"
+
+#, c-format
+msgid "%s : Wrong value for argument #%d: %s\n"
+msgstr "%s : L'argument #%d té un valor incorrecte: %s\n"
+
+#, c-format
+msgid "%s : second argument must be a unique id of a shared library.\n"
+msgstr ""
+"%s : El segon argument ha de ser un identificador únic d'una llibreria "
+"compartida.\n"
+
+#, c-format
+msgid "%s Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s : L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid "%s is not an entry point.\n"
+msgstr "%s no és un punt d'entrada.\n"
+
+#, c-format
+msgid "%s: A Fortran or C compiler is required.\n"
+msgstr "%s: Es necessita un compilador de Fortran o de C.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Ja s'ha carregat de la llibreria %s\n"
+
+#, c-format
+msgid "%s: An error occurred during the compilation:\n"
+msgstr "%s: S'ha produït un error en la compilació:\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred during the detection of the compiler(s). Set "
+"ilib_verbose(2) for more information.\n"
+msgstr ""
+"%s: S'ha produït un error en la detecció del compilador. Establiu "
+"ilib_verbose(2) per més informació.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Hi ha hagut un error: %s\n"
+
+#, c-format
+msgid "%s: Build command: %s\n"
+msgstr "%s: Comanda de generació: %s\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
+#, c-format
+msgid "%s: Cannot open shared files. Max entry %d reached.\n"
+msgstr ""
+"%s: No s'ha pogut obrir els fitxers compartits. S'ha assolit el nombre màxim "
+"%d.\n"
+
+#, c-format
+msgid "%s: Error while modifying the reference Makefile:\n"
+msgstr "%s: S'ha produït un error en modificar la referència del Makefile:\n"
+
+#, c-format
+msgid "%s: Feature not available under Microsoft Windows.\n"
+msgstr ""
+"%s: Aquesta característica no està disponible per a Microsoft Windows.\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: La llibreria compartida %s no existeix.\n"
+
+#, c-format
+msgid "%s: The command was:\n"
+msgstr "%s: La comanda era:\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: El fitxer %s no existeix.\n"
+
+#, c-format
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: No s'ha pogut carregar el fitxer compartit: %s\n"
+
+#, c-format
+msgid "%s: This feature has been implemented for Windows.\n"
+msgstr "%s: Aquesta característica s'ha implementat per a Windows.\n"
+
+#, c-format
+msgid "%s: This feature required Microsoft visual studio C compiler.\n"
+msgstr ""
+"%s: Aquesta característica necessita el compilador de C del Microsoft Visual "
+"Studio.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: No error code returned by the compilation but the error output "
+"is not empty:\n"
+msgstr ""
+"%s: Avís: La compilació no ha retornat cap codi d'error, però la sortida "
+"d'errors no és buida:\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
+"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgstr ""
+"%s: Avís: L'Scilab no ha pogut trobar on són les fonts de Scilab. Obriu un "
+"informe d'error a http://bugzilla.scilab.org/\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser %d,%d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Com a mínim han de ser "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"caràcters < 999.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecte: Ha de ser un vector de "
+"cadenes de caràcters < %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un vector de "
+"cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de cadenes de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings expected.\n"
+msgstr ""
+"%s : L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgstr ""
+"%s : L'argument d'entrada és d'un tipus incorrecte: Ha de ser un vector de "
+"cadenes de text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada són d'un tipus incorrecte. Han de ser cadenes de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '''' o "
+"''[]''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"d'aquests {%s}.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: Hi ha un problema amb un dels punts d'entrada.\n"
+
+msgid "A Fortran or C compiler is required."
+msgstr "Es necessita un compilador de Fortran o de C."
+
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Hi ha hagut un error: %s\n"
+
+#, c-format
+msgid "Cannot open shared files max entry %d reached.\n"
+msgstr ""
+"No s'ha pogut obrir els fitxers compartits, s'ha assolit el nombre màxim "
+"d'entrades %d.\n"
+
+msgid "Dynamic link"
+msgstr "Enllaç dinàmic"
+
+#, c-format
+msgid "Entry name %s.\n"
+msgstr "Nom de l'entrada %s.\n"
+
+#, c-format
+msgid "Entry point %s in shared library %d.\n"
+msgstr "Punt d'entrada %s a la llibreria compartida %d.\n"
+
+#, c-format
+msgid "Error: Not a valid internal routine number %d.\n"
+msgstr "Error: El número %d intern de rutina no és vàlid.\n"
+
+msgid "F2C cannot build fortran 90"
+msgstr "F2C no pot generar fortran 90"
+
+#, c-format
+msgid "Interface %s not linked.\n"
+msgstr "La interfície %s no està enllaçada.\n"
+
+msgid "Link done.\n"
+msgstr "Enllaç realitzat.\n"
+
+#, c-format
+msgid "Link failed for dynamic library '%s'.\n"
+msgstr "Ha fallat l'enllaç a la llibreria dinàmica '%s'.\n"
+
+#, c-format
+msgid "Linking %s.\n"
+msgstr "S'està enllaçant %s.\n"
+
+#, c-format
+msgid ""
+"Number of entry points %d.\n"
+"Shared libraries :\n"
+msgstr ""
+"Nombre de punts d'entrada %d.\n"
+"Llibreries compartides :\n"
+
+#, c-format
+msgid "Output: %s\n"
+msgstr "Sortida: %s\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "S'ha carregat el fitxer compartit.\n"
+
+msgid "Unique dynamic library name expected."
+msgstr "Ha de ser un nom únic de llibreria compartida."
+
+msgid "Unique id of a shared library expected."
+msgstr "Ha de ser un identificador únic d'una llibreria compartida."
+
+#, c-format
+msgid "] : %d libraries.\n"
+msgstr "] : %d llibreries.\n"
+
+#, c-format
+msgid "] : %d library.\n"
+msgstr "] : %d llibreria.\n"
+
+#, c-format
+msgid "stderr: %s\n"
+msgstr "Sortida d'error: %s\n"

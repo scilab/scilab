@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// <-- JVM NOT MANDATORY -->
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -140,4 +141,56 @@ computed = optimsimplex_getn(s1);
 assert_equal ( computed , 2 );
 computed = optimsimplex_getnbve (s1);
 assert_equal ( computed , 5 );
+s1 = optimsimplex_destroy(s1);
+// Check printing system
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords , rosenbrock );
+string(s1)
+ ans  =
+ 
+!Optim Simplex Object:                                          !
+!                                                               !
+!=====================                                          !
+!                                                               !
+!Vertex #1/5 : fv=1.000000e+000, x=0.000000e+000 0.000000e+000  !
+!                                                               !
+!Vertex #2/5 : fv=1.000000e+002, x=1.000000e+000 0.000000e+000  !
+!                                                               !
+!Vertex #3/5 : fv=1.010000e+002, x=0.000000e+000 1.000000e+000  !
+!                                                               !
+!Vertex #4/5 : fv=0.000000e+000, x=1.000000e+000 1.000000e+000  !
+!                                                               !
+!Vertex #5/5 : fv=4.010000e+002, x=2.000000e+000 2.000000e+000  !
+s1
+ s1  =
+ 
+Optim Simplex Object:
+=====================
+Vertex #1/5 : fv=1.000000e+000, x=0.000000e+000 0.000000e+000
+Vertex #2/5 : fv=1.000000e+002, x=1.000000e+000 0.000000e+000
+Vertex #3/5 : fv=1.010000e+002, x=0.000000e+000 1.000000e+000
+Vertex #4/5 : fv=0.000000e+000, x=1.000000e+000 1.000000e+000
+Vertex #5/5 : fv=4.010000e+002, x=2.000000e+000 2.000000e+000
+s1 = optimsimplex_destroy(s1);
+//
+coords = [
+    0.    0.  
+    1.    0.  
+    0.    1.  
+    1.    1.  
+    2.    2.  
+];
+s1 = optimsimplex_new ( coords );
+s1
+ s1  =
+ 
+Optim Simplex Object:
+=====================
+Empty simplex (zero function values)
 s1 = optimsimplex_destroy(s1);

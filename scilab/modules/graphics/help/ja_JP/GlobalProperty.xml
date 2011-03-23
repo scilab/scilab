@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="GlobalProperty">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>GlobalProperty</refname>
+    <refpurpose>plotまたはsurfコマンドでオブジェクト(曲線,曲面...)の外観をカスタマイズ.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>The GlobalProperty は,
+	<link linkend="plot">plot</link> または <link linkend="surf">surf</link>コマンドの内部で
+	使用可能なオプション引数です.
+	これにより,新規にプロットされる全ての線(または平面)のグローバルなカスタマイズが
+	可能となります.
+	値は, {PropertyName, PropertyValue}の対で指定する必要があります.
+	plot または surf をコールする際に一度に複数の対を設定できます.
+	</para>
+    <para>PropertyName は設定するプロパティを定義する文字列とする必要があります.
+	PropertyValue は,使用するプロパティの型により
+	実数, 整数または文字列 (スカラーまたは行列)とすることができます. 
+	例えば,菱形のマーカ(マーカ)が付いた赤(色)の長い破線+ドット(線の形式)
+	を指定する場合,このシーケンスは以下のようになります :
+	 'Colo','red','LineSt','-.','Marker','diam'.</para>
+    <para>
+	見てわかるように,各プロパティ名および値の綴り全体を指定する
+	必要はなく,順序も任意ですが,一義的である必要があります.
+	更に,文字列の指定は大文字と小文字を区別しません.
+	GlobalProperty は過去に記述された全ての LineSpacに
+	優先します.</para>
+
+    <para>
+	以下に全ての(<link linkend="plot">plot</link>または
+	 <link linkend="surf">surf</link>により)
+	指定可能な<literal>PropertyName</literal>の一覧と
+	関連する<literal>PropertyValue</literal>を示します.
+	指定されない場合,これらのプロパティは
+	(それぞれ plot または surfにより作成された)
+	<literal>Polyline</literal> および <literal>Fac3d</literal>
+	オブジェクトの両方で利用可能で,前記のように
+	新規に作成されるオブジェクト(線または曲面)に適用されます.</para>
+    <para>
+	時々,1つのプロパティに2つのPropertyNameが対応する場合があります :
+	最初の1つはデフォルトMatlabの名前に等価なもので,
+	2番目のものはScilabにより使用されるデフォルトの名前です.
+	(線の場合 <literal> Color</literal> またはs <literal>Foreground</literal>
+	,下記参照).</para>
+    <variablelist>
+      <varlistentry>
+        <term>CData または ColorData: </term>
+        <listitem>
+          <para>
+	<literal>Z</literal>行列で定義される各点における色を指定する実数行列.
+	このプロパティはオブジェクトの<literal>data.color</literal>プロパティに
+	リンクされています(
+        <link linkend="surface_properties">surface_properties</link>参照). 
+	このプロパティは曲面(surface)でのみ使用可能であることに注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>CDataMapping または ColorDataMapping: </term>
+        <listitem>
+          <para> <literal>'scaled'</literal> または
+        <literal>'direct'</literal>を値とする文字列. <literal>data.color</literal> が設定された場合, 
+	color data の各インデックスは各頂点について単一の値を指定します.
+
+        <literal>cdata_mapping</literal> はこれらのインデックスが
+	カレントのカラーマップに線形にマップするためにスケーリングされる
+	(<literal>'scaled'</literal> モード)か,もしくは,
+	このカラーマップを直接指す(<literal>'direct</literal>' モード)
+	かのどちらとなるかを定義します.
+	このプロパティは,<literal>color_flag</literal>が
+	<literal>2</literal>,<literal>3</literal> または <literal>4</literal>の時に有用です.
+	このプロパティは,<literal>Fac3d</literal>エンティティのみに存在することに注意してください.
+	また,<literal>plot3d</literal> では <literal>'direct'</literal>モードがデフォルトで,
+        <literal>surf</literal> では<literal> 'scaled'</literal> モードがデフォルトであることに
+	も注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Clipping: </term>
+        <listitem>
+          <para>文字列 <literal>"on"</literal> または <literal>"off"</literal> は,
+	クリッピングモード (デフォルト: <literal>"on"</literal>)を定義します.
+	これは, <literal>clip_state</literal>プロパティと等価です.
+	このフィールドは,<literal>visible</literal>プロパティを有します
+	 (<link linkend="polyline_properties">polyline_properties</link>参照).
+	このプロパティは surface エンティティではまだ利用できないことに注意してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Color または Foreground: </term>
+        <listitem>
+          <para>
+	既知の色を定義する文字列(<link linkend="color_list">color_list</link>参照)
+	または,色番号を定義する
+	<literal>1</literal>x<literal>3</literal> (または<literal>3</literal>x<literal>1</literal>) RGB
+	ベクトル.
+	色番号は,それぞれ赤,緑,青の彩度(0から1)に対応する <literal>R</literal>, <literal>G</literal>, 
+	<literal>B</literal> の組で指定されます.
+	このプロパティはオブジェクトの<literal>foreground</literal>プロパティに
+	リンクされています
+        (<link linkend="polyline_properties">polyline_properties</link>参照). 
+	<literal>警告</literal><literal>
+        :</literal> Color は surface オブジェクトでは使用できません.surfaceオブジェクトにおいても
+        <literal>Foreground</literal> プロパティは存在しますが,
+	Matlab <literal>EdgeColor</literal>プロパティにリンクされています(
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>EdgeColor または Foreground: </term>
+        <listitem>
+          <para>
+	既知の色を定義する文字列 (<link linkend="color_list">color_list</link>参照) または,
+	色番号を定義するベクトル.
+	色番号は,それぞれ赤,緑,青の彩度(0から1)に対応する <literal>R</literal>, <literal>G</literal>, 
+	<literal>B</literal> の組で指定されます.
+	このプロパティはオブジェクトの<literal>foreground</literal>プロパティに
+	リンクされています
+        (<link linkend="surface_properties">surface_properties</link>参照). 
+	<literal>警告</literal><literal>
+        :</literal> polylineオブジェクトの場合,
+        <literal>Foreground</literal> プロパティは存在しますが,意味が異なります(上記参照).
+	また,<literal>EdgeColor</literal>は存在しません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>FaceColor: </term>
+        <listitem>
+          <para>文字列で,値は <literal>'none'</literal>, <literal>'flat'</literal> または
+        <literal>'interp'</literal>.
+	この値は,小平面の色をレンダリングする方法を指定します.
+	<literal> 'none'</literal> が選択された場合, 曲面のメッシュが描画されます.
+	<literal>'flat'</literal> (デフォルトモード) が設定された場合, 
+        <literal>Fac3d</literal> <literal>color.data</literal> の値が
+	小平面の最初の頂点の色により小平面毎に1つの色を定義します.
+	値が<literal>'interp'</literal>の場合,
+	小平面の各頂点における色を定義する<literal>color.data</literal>を用いて
+	曲面上で補間シェーディングが実行されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>LineStyle: </term>
+        <listitem>
+          <para>このプロパティは線の形式を定義する文字列です.
+	このプロパティは tje オブジェクトの<literal>line_style</literal>プロパティ
+	にリンクしています
+        (<link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+          <para/>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>指定子</literal>
+              </td>
+              <td>
+                <literal>線の形式</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-</literal>
+              </td>
+              <td>実線 (デフォルト)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>--</literal>
+              </td>
+              <td>破線</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>:</literal>
+              </td>
+              <td>点線</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>-.</literal>
+              </td>
+              <td>一点鎖線</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>none</literal>
+              </td>
+              <td>線を描画しない</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Marker または MarkStyle: </term>
+        <listitem>
+          <para>マーカの型を定義する文字列. 線の形式を指定せずにマーカを
+	指定した場合,線(デフォルトでは実線モードが有効)とマーカが描画されます.
+	このプロパティはオブジェクトの<literal>mark_style</literal>
+	および<literal>mark_mode</literal>プロパティにリンクされています.
+	 (
+        <link linkend="polyline_properties">polyline_properties</link>または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+          <informaltable border="1">
+            <tr>
+              <td>
+                <literal>指定子</literal>
+              </td>
+              <td>
+                <literal>マーカ型</literal>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <literal>+</literal>
+              </td>
+              <td>+記号</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>o</literal>
+              </td>
+              <td>円</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>*</literal>
+              </td>
+              <td>アスタリスク</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>.</literal>
+              </td>
+              <td>点</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>x</literal>
+              </td>
+              <td>十字</td>
+            </tr>
+            <tr>
+              <td><literal>'square'</literal> または
+            <literal>'s'</literal></td>
+              <td>正方形</td>
+            </tr>
+            <tr>
+              <td><literal>'diamond'</literal> または
+            <literal>'d'</literal></td>
+              <td>菱形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>^</literal>
+              </td>
+              <td>上向き三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>v</literal>
+              </td>
+              <td>下向き三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&gt;</literal>
+              </td>
+              <td>右向き三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>&lt;</literal>
+              </td>
+              <td>左向き三角形</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'pentagram'</literal>
+              </td>
+              <td>星型五角形 (ペンタグラム)</td>
+            </tr>
+            <tr>
+              <td>
+                <literal>'none'</literal>
+              </td>
+              <td>マーカなし (デフォルト)</td>
+            </tr>
+          </informaltable>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MarkerEdgeColor または MarkForeground: </term>
+        <listitem>
+          <para>既知の色を定義する文字列(color_list参照)または
+	色番号を定義する<literal>1</literal>x<literal>3</literal> 
+	(または <literal>3</literal>x<literal>1</literal>) RGBベクトル.
+	色番号は,それぞれ赤,緑,青の彩度(0から1)に対応する <literal>R</literal>, <literal>G</literal>, 
+	<literal>B</literal> の組で指定されます.
+	このプロパティはオブジェクトの<literal>mark_foreground</literal>プロパティに
+	リンクされています
+        (<link linkend="polyline_properties">polyline_properties</link>または
+	<link linkend="surface_properties">surface_properties</link>参照). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MarkerFaceColor または MarkBackground: </term>
+        <listitem>
+          <para>既知の色を定義する文字列(color_list参照)または
+        <literal>1</literal>x<literal>3</literal> (または <literal>3</literal>x<literal>1</literal>) 
+	RGBベクトル.
+	色番号は,それぞれ赤,緑,青の彩度(0から1)に対応する <literal>R</literal>, <literal>G</literal>, 
+	<literal>B</literal> の組で指定されます.
+	このプロパティはオブジェクトの<literal>mark_background</literal>プロパティに
+	リンクされています
+        (<link linkend="polyline_properties">polyline_properties</link>または
+	<link linkend="surface_properties">surface_properties</link>参照). </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>MarkerSize または MarkSize: </term>
+        <listitem>
+          <para><literal>point</literal> ユニットのマーカの大きさを定義するスカラー値.
+	このプロパティはオブジェクトの<literal>mark_size</literal>プロパティに
+	リンクされ,<literal>mark_size_unit</literal>の値は<literal>"point"</literal>
+	に設定されています
+	 (
+        <link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Visible: </term>
+        <listitem>
+          <para>文字列で, 可視モード <literal>"on"</literal> または <literal>"off"</literal>
+	を定義します(デフォルト: <literal>"on"</literal>).
+	このプロパティはオブジェクトの <literal>visible</literal>プロパティに
+	リンクされています
+	 (
+        <link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X data: </term>
+        <listitem>
+          <para>
+	実数のベクトルまたは行列で,プロット済みの全ての線または曲面に関する
+	指定データを(再)定義します.
+	次元について,
+	この新しいデータは,過去に指定された<literal>X</literal>データと
+	完全に一致する必要があることに注意してください:
+	これはこれらのデータ行列を全て同じ次元とする必要があることを意味します.
+	このプロパティはオブジェクトの<literal>data.x</literal>プロパティに
+	リンクされています (
+        <link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Y data: </term>
+        <listitem>
+          <para>
+	実数のベクトルまたは行列で,プロット済みの全ての線または曲面に関する
+	指定データを(再)定義します.
+	次元について,
+	この新しいデータは,前に指定された<literal>Y</literal>データと
+	完全に一致する必要があることに注意してください:
+	これはこれらのデータ行列を全て同じ次元とする必要があることを意味します.
+	このプロパティはオブジェクトの<literal>data.y</literal>プロパティに
+	リンクされています (
+        <link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Z data: </term>
+        <listitem>
+          <para><literal>plot</literal>と共に使用した場合は実数のベクトルまたは行列
+	で,全てのプロット済みの線に<literal>Z</literal>を追加します.</para>
+          <para><literal>surf</literal>と共に使用した場合は実数行列で,
+	全ての平面に関する指定データを再定義します.
+	次元について,
+	この新しいデータは前に指定された<literal>X</literal> および<literal>Y</literal>
+	データと完全に位置する必要があります.
+	このプロパティはオブジェクトの<literal>data.z</literal>プロパティに
+	リンクされています (<link linkend="polyline_properties">polyline_properties</link> または
+        <link linkend="surface_properties">surface_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// --------------------
+// With the plot command :
+// --------------------
+x=1:10; // Init.
+plot(x,sin(x),'colo','red','linest','-.','marker','>','markeredg','cyan','markerFace','yellow','markersize',5)
+clf();
+
+// combinations' order in {PropertyName,PropertyValue} does not matter
+plot(x,sin(x),'marker','p','markerfac','cyan','markersiz',10)
+clf();
+
+// combination of LineSpec and GlobalProperty shows the GlobalProperty predominance
+plot(x,x.*x,'*cya--','color','gr','linestyle','-','marker','sq','markersize',6,'markforegroun','red','markbackgro',[0.2 0.5 0.6])
+clf();
+
+//multiple plots with different LineSpecs and finally some global GlobalProperty
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo','markstyl','diam')
+
+// --------------------
+// With the plot2d command :
+// --------------------
+function draw_marks(title)
+  a=gca();
+  a.title.text=title;
+  a.mark_size=8;
+  a.data_bounds=[-1.5 1.5 -1.5 1.5];
+
+  theta=(1/15)*(2*%pi)*[0:15];
+  plot2d(cos(theta),sin(theta));
+
+  for i=0:14 do
+    theta=(i/15)*(2*%pi);
+    plot2d(cos(theta),sin(theta),style=-i);
+  end
+endfunction
+
+clf();
+subplot(2,2,1)
+draw_marks("black foreground / white background")
+
+subplot(2,2,2)
+a=gca();
+a.mark_foreground=-1;
+a.mark_background=4;
+draw_marks("black foreground / cyan background")
+
+subplot(2,2,3)
+a=gca();
+a.mark_background=0;
+draw_marks("black foreground / invisible background")
+
+subplot(2,2,4)
+a=gca();
+a.mark_foreground=0;
+a.mark_background=4;
+draw_marks("invisible foreground / cyan background")
+
+// --------------------
+// With the surf command :
+// --------------------
+
+
+Z= [   0.0001    0.0013    0.0053   -0.0299   -0.1809   -0.2465   -0.1100   -0.0168   -0.0008   -0.0000
+    0.0005    0.0089    0.0259   -0.3673   -1.8670   -2.4736   -1.0866   -0.1602   -0.0067    0.0000
+    0.0004    0.0214    0.1739   -0.3147   -4.0919   -6.4101   -2.7589   -0.2779    0.0131    0.0020
+   -0.0088   -0.0871    0.0364    1.8559    1.4995   -2.2171   -0.2729    0.8368    0.2016    0.0130
+   -0.0308   -0.4313   -1.7334   -0.1148    3.0731    0.4444    2.6145    2.4410    0.4877    0.0301
+   -0.0336   -0.4990   -2.3552   -2.1722    0.8856   -0.0531    2.6416    2.4064    0.4771    0.0294
+   -0.0137   -0.1967   -0.8083    0.2289    3.3983    3.1955    2.4338    1.2129    0.2108    0.0125
+   -0.0014   -0.0017    0.3189    2.7414    7.1622    7.1361    3.1242    0.6633    0.0674    0.0030
+    0.0002    0.0104    0.1733    1.0852    2.6741    2.6725    1.1119    0.1973    0.0152    0.0005
+    0.0000    0.0012    0.0183    0.1099    0.2684    0.2683    0.1107    0.0190    0.0014    0.0000];
+
+clf();
+f=gcf();
+f.figure_size = [610,724];
+subplot(211)
+surf(Z,'facecol','interp','ydat',101:110,'edgecol','mage')
+subplot(212)
+surf(Z,'edgeco','b','marker','d','markersiz',9,'markerfac','k','xdata',-50:-41)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="LineSpec">LineSpec</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="polyline_properties">polyline_properties</link>
+      </member>
+      <member>
+        <link linkend="surface_properties">surface_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

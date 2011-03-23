@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="champ">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>champ</refname>
+    <refpurpose>2D vector field plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
+champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two vectors which define the grid.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fx</term>
+        <listitem>
+          <para>a matrix which describes the x component of the vector field.
+          <literal>fx(i,j)</literal> is the x component of the vector field at point
+          <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fy</term>
+        <listitem>
+          <para>a matrix which describes the y component of the vector field.
+          <literal>fy(i,j)</literal> is the y component of the vector field at point
+          <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>This represents a sequence of statements 
+         <literal>key1=value1,key2=value2</literal>,... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: arfact, rect,
+          strf (see below).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arfact</term>
+        <listitem>
+          <para>an optional argument of type real which gives a scale factor
+          for the display of the arrow heads on the plot (default value is
+          1.0).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>a vector <literal>rect=[xmin,ymin,xmax,ymax]</literal> which gives
+          the boundaries of the graphics frame to use.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf</term>
+        <listitem>
+          <para>a string of length 3 "xyz" which has the same meaning as the
+          <literal>strf</literal> parameter of <literal>plot2d</literal>. The first
+          character x has no effect with <literal>champ</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>champ</literal> draws a 2D vector field. The length of the arrows is
+    proportional to the intensity of the field.</para>
+    <para>If you want colored arrows with the color of the arrows depending on
+    the intensity of the field, use <literal>champ1</literal>.</para>
+    <para>Enter the command <literal>champ()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+// using rect as plot boundaries 
+champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+// using (x,y) to get boundaries 
+clf()
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="champ1">champ1</link>
+      </member>
+      <member>
+        <link linkend="fchamp">fchamp</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

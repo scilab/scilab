@@ -18,7 +18,7 @@
 /* desc : function to modify in Scilab the callback field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "stack-c.h"
+#include "sci_types.h"
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Interaction.h"

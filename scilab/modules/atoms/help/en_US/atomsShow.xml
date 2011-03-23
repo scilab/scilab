@@ -28,7 +28,7 @@
   <!-- Parameters -->
   <!-- ===================================================================== -->
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
 			<varlistentry>
         <term>module</term>
@@ -103,8 +103,8 @@ atomsShow("toolbox_5");
   <!-- ===================================================================== -->
   <!-- See also -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsList">atomsList</link>

@@ -8,6 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 
 //
 // assert_close --
@@ -49,4 +50,21 @@ fopt = neldermead_get(nm,"-fopt");
 assert_close ( fopt , 0.0, 1e-6 );
 nm = neldermead_destroy(nm);
 
+//
+// Interrupt the algorithm when done.
+
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
+nm = neldermead_configure(nm,"-method","fixed");
+nm = neldermead_configure(nm,"-function",squarefun);
+nm = neldermead_configure(nm,"-verbose",1);
+// Set the relative size to zero: it should never stop...
+nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt");
+assert_close ( xopt , [0.0;0.0], 1e-6 );
+fopt = neldermead_get(nm,"-fopt");
+assert_close ( fopt , 0.0, 1e-6 );
+nm = neldermead_destroy(nm);
 

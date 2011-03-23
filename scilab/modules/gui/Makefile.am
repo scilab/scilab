@@ -4,6 +4,7 @@
 # Copyright (C) INRIA   - 2007 - Vincent COUVERT
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
+# Copyright (C) DIGITEO - 2010 - Clément DAVID
 # 
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -18,7 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigui_la_root_DATA =  license.txt version.xml
 
 
 #### gui : init scripts ####
@@ -50,6 +51,7 @@ src/c/InitWaitBar.c \
 src/c/InitProgressionBar.c \
 src/c/CreateUIContextMenu.c \
 src/c/UicontrolStyleToString.c \
+src/c/checkColorRange.c \
 src/c/messageboxoptions.c 
 
 GUI_CPP_SOURCES = src/cpp/InitUIMenu.cpp \
@@ -149,7 +151,6 @@ GIWS_WRAPPERS = \
 src/jni/CallScilabBridge.giws.xml \
 src/jni/Jxclick.giws.xml \
 src/jni/Jxgetmouse.giws.xml \
-src/jni/SwingScilabMenu.giws.xml \
 src/jni/LookAndFeelManager.giws.xml \
 src/jni/UIElementMapper.giws.xml \
 src/jni/Juigetfile.giws.xml \
@@ -253,7 +254,7 @@ libscigui_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 GUI_DISABLE_C_SOURCES = src/nogui/nogui.c
-libscigui_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscigui_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscigui_disable_la_SOURCES = $(GUI_DISABLE_C_SOURCES)
 
 
@@ -263,7 +264,7 @@ if GUI
 pkglib_LTLIBRARIES += libscigui.la 
 endif
 
-libscigui_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscigui_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscigui_la_SOURCES = $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GUI_CPP_SOURCES)
 
@@ -272,7 +273,7 @@ CHECK_SRC= $(GUI_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigui_la_CFLAGS)
 
 #  cyclic $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/jvm/libscijvm.la
-libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscigui_la_LIBADD = $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### gui : gateway declaration ####
@@ -281,43 +282,63 @@ libscigui_la_sci_gateway_DATA = sci_gateway/gui_gateway.xml
 
 
 #### gui : icons files ####
+#
+# Generated with:
+#    $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png |sort -u
 libscigui_la_iconsdir=$(mydatadir)/
-nobase_libscigui_la_icons_DATA = images/icons/accessories-text-editor.png \
+nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
+images/icons/32x32/apps/rrze_table.png \
+images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/16x16/actions/go-bottom.png \
+images/icons/16x16/actions/go-top.png \
+images/icons/16x16/actions/view-refresh.png \
+images/icons/aboutscilab.png \
+images/icons/accessories-text-editor.png \
+images/icons/applications-system.png \
+images/icons/check-icon.png \
+images/icons/close-tab.png \
+images/icons/datatips.png \
+images/icons/document-new.png \
 images/icons/document-open.png \
+images/icons/document-open-sci.png \
+images/icons/document-print.png \
+images/icons/document-print-preview.png \
+images/icons/document-save-as.png \
+images/icons/document-save.png \
 images/icons/edit-copy.png \
 images/icons/edit-cut.png \
+images/icons/edit-delete.png \
+images/icons/edit-find.png \
+images/icons/edit-find-replace.png \
 images/icons/edit-paste.png \
+images/icons/edit-redo.png \
+images/icons/edit-undo.png \
 images/icons/emblem-readonly.png \
 images/icons/folder.png \
 images/icons/format-text-bold.png \
+images/icons/graphic-window.png \
 images/icons/help-browser.png \
-images/icons/original-view.png \
+images/icons/media-floppy.png \
+images/icons/media-playback-start.png \
+images/icons/package-x-generic.png \
 images/icons/printer.png \
 images/icons/process-working.png \
+images/icons/puff.png \
 images/icons/rotate.png \
 images/icons/scilab_close_active.png \
 images/icons/scilab_close_default.png \
 images/icons/scilab.png \
+images/icons/transform-rotate.png \
 images/icons/undock_active.png \
 images/icons/undock_default.png \
+images/icons/utilities-system-monitor.png \
 images/icons/window-new.png \
 images/icons/zoom-area-cursor.png \
-images/icons/zoom-area.png \
-images/icons/document-new.png \
-images/icons/document-print-preview.png \
-images/icons/document-print.png \
-images/icons/document-save-as.png \
-images/icons/document-save.png \
-images/icons/edit-find-replace.png \
-images/icons/edit-find.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
-images/icons/media-floppy.png \
-images/icons/aboutscilab.png \
-images/icons/package-x-generic.png \
-images/icons/utilities-system-monitor.png \
-images/icons/applications-system.png
-
+images/icons/zoom-fit-drawing.png \
+images/icons/zoom-fit-selection.png \
+images/icons/zoom-in.png \
+images/icons/zoom-original.png \
+images/icons/zoom-out.png
 
 if GUI
 USEANT=1

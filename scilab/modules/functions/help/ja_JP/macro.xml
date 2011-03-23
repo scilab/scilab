@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="macro">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>macro</refname>
+    <refpurpose> Scilabプロシージャおよび Scilabオブジェクト</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	マクロはScilabプロシージャ("macro", "function" および "procedure"
+    は同じ意味です)です.
+	通常,これらはエディタによりファイルの中で定義さえ,
+	<literal>exec</literal>によりまたは
+	ライブラリによりScilabにロードされます.</para>
+    <para>
+	マクロをオンラインで定義することも可能です(<literal>deff</literal>参照).
+	マクロを含むファイルは以下のように開始する必要があります:</para>
+    <programlisting><![CDATA[ 
+function [y1,...,yn]=foo(x1,...,xm)
+ ]]></programlisting>
+    <para>
+    <literal>yi</literal> は,
+	入力変数およびマクロが実行される時点でScilabの中に存在する
+	変数の関数として計算される出力変数です.
+	マクロはより高速に実行するためにコンパイルすることが可能です.
+	複数のマクロをライブラリに集約することができます.
+	<literal>%</literal>記号で始まり(例: <literal>%foo</literal>),
+	その引数がリストであるマクロは,
+	特定の処理を実行する際に使用されます:
+	例えば, <literal>z=%rmr(x,y)</literal> は
+	<literal>x</literal> および <literal>z</literal>が
+	有理数の場合に<literal>z=x*y</literal>と等価です.
+	(すなわち, 多項式<literal>n</literal> および
+	 <literal>d</literal> を指定した <literal>x=list('r',n,d,[])</literal>)</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

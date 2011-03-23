@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="coth" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>coth</refname>
+
+    <refpurpose>cotangente hyperbolique</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[t]=coth(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,t</term>
+
+        <listitem>
+          <para>vecteur ou matrice (réelle ou complexe)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Les éléments de <literal>t</literal> sont les cotangentes
+    hyperboliques des éléments de <literal>x</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[1,2*%i]
+t=exp(x);
+(t-ones(x)./t).\(t+ones(x)./t)
+coth(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cotg">cotg</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

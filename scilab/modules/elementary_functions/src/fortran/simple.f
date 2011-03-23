@@ -12,7 +12,10 @@ c
       double precision d(*)
       real s(*),rmax,slamch
 c
-      rmax=slamch('o')
+c      slamch return wrong value under MacOSX
+c      slamch('o') <=> HUGE(ZERO)
+c      http://www.netlib.org/lapack/util/slamch.f
+       rmax=HUGE(0.0E+0)
 c
       do 10 i=1,n
       if(abs(d(i)).gt.rmax) then

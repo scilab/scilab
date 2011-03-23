@@ -12,7 +12,7 @@ mydir = TMPDIR + filesep() + "loadlib";
 createdir(mydir);
 chdir(mydir);
 
-if MSDOS then
+if getos() == 'Windows' then
 	unix_w(jre_path()+"\bin\java.exe -cp "+SCI+"\modules\localization\tests\unit_tests CreateDir");
 else
 	unix_w(jre_path()+"/bin/java -classpath "+SCI+"/modules/localization/tests/unit_tests CreateDir");
@@ -34,7 +34,7 @@ tab_ref = [
 
 PathOrigin = getenv("PATH");
 
-if MSDOS then
+if getos() == 'Windows' then
 
 for i = 1 : size(tab_ref,'*')
 	sz = "dir_" + tab_ref(i);

@@ -24,14 +24,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MATZREIM">
   <refnamediv>
     <refname>MATZREIM</refname>
-    <refpurpose>Complex decomposition</refpurpose>
+    <refpurpose>Complex decomposition/composition</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/MATZREIM.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/MATZREIM.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATZREIM">Complex decomposition</link>
+          <link linkend="MATZREIM">Complex decomposition/composition</link>
         </para>
       </listitem>
       <listitem>
@@ -102,11 +102,41 @@
   </refsection>
   <refsection id="Description_MATZREIM">
     <title>Description</title>
+
     <para>
-This block decomposes a complex number by separating the real and imaginary parts or compose a complex number by joining the two parts. The user can select even to separate or to join real and imaginary part by setting the decomposition type to 1 or 2. When it is set to 1, the input is a complex matrix and the outputs are the real and imaginary parts of the input. When it set to 2, The inputs are two real matrices, the output is a complex number with real part the first input and imaginary part the second input.  
-</para>
-    <para>
-</para>
+      This block decomposes a matrix of complex numbers by separating the real and imaginary parts or composes a
+      matrix of complex numbers by joining the two parts with respect to the value of
+      <emphasis role="bold">decomposition type</emphasis> parameter.
+      The following table summarize the bloc behaviour :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left" width="18%"><emphasis role="bold">Decomposition type</emphasis></td>
+        <td align="left" width="20%"><emphasis role="bold">Inputs</emphasis></td>
+        <td align="left" width="20%"><emphasis role="bold">Outputs</emphasis></td>
+        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">One (complex)</td>
+        <td align="left">Two (double)</td>
+        <td align="left">
+          Decomposition: The real part and the imaginary part of the input are available respectively on the first and
+          the second outputs.
+        </td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Two (double)</td>
+        <td align="left">One (complex)</td>
+        <td align="left">
+          Composition: The output is a matrix of complex numbers built with the real and imaginary parts coming respectively from
+          the first and from the second inputs.
+        </td>
+      </tr>
+    </informaltable>
+    <para />
   </refsection>
   <refsection id="Dialogbox_MATZREIM">
     <title>Dialog box</title>

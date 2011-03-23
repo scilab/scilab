@@ -39,13 +39,13 @@ int sci_mseek(char *fname,unsigned long fname_len)
 		GetRhsVar(1,MATRIX_OF_INTEGER_DATATYPE,&m1,&n1,&l1);
 		if (m1*n1 != 1)
 		{
-			Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,1);
+			Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,1);
 			return 0;
 		}
 	}
 	else
 	{
-		Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,1);
+		Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,1);
 		return 0;
 	}
 
@@ -60,12 +60,12 @@ int sci_mseek(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,2);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,2);
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,2);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,2);
 			return 0;
 		}
 	}
@@ -84,7 +84,7 @@ int sci_mseek(char *fname,unsigned long fname_len)
 
 	if (err >  0)
 	{
-		Error(10000);
+		SciError(10000);
 		return 0;
 	}
 

@@ -1,0 +1,15 @@
+LIBRARY    special_functions_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; special_functions_f
+; --------------------------------------- 
+intsbessely_
+intsbesselk_
+intsbesselj_
+intsbesseli_
+intslgamma_
+intsgamma_
+intsdlgamma_
+intscalerf_

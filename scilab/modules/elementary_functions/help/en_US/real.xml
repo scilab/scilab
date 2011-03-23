@@ -23,7 +23,7 @@
     <synopsis>[y]=real(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -43,8 +43,8 @@
     <title>Description</title>
     <para><literal>real(x)</literal> is the real part of <literal>x</literal> (See <literal>%i</literal> to enter complex numbers).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imag">imag</link>

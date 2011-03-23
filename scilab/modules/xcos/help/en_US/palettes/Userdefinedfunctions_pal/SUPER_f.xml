@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/SUPER_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/SUPER_f.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="SeeAlso_SUPER_f">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_SUPER_f">Authors</xref>
             </para>
           </listitem>
@@ -88,7 +93,7 @@
   <refsection id="Description_SUPER_f">
     <title>Description</title>
     <para>
-This block opens up a new Scicos window for editing a new block
+This block opens up a new Xcos window for editing a new block
 diagram. This diagram describes the internal functions of the super
 block.  
 </para>
@@ -172,10 +177,24 @@ to the right.
       <listitem>
         <para> SCI/modules/scicos_blocks/macros/Misc/SUPER_f.sci</para>
       </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Misc/DSUPER.sci</para>
+      </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_SUPER_f">
+    <title>See also</title>
+    <variablelist>
+      <varlistentry><term><xref linkend="DSUPER">Masked super block</xref></term>
+        <listitem>
+          <para>Any super block can be masked to provide a black box implementation with parameters.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
   </refsection>
   <refsection id="Authors_SUPER_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

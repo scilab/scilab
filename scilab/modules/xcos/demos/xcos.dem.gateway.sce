@@ -1,26 +1,22 @@
-//
-// Scilab ( http://www.scilab.org/ ) 
-// This file is part of Scilab
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009 - DIGITEO
+// Copyright (C) 2009-2010 - DIGITEO
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("xcos.dem.gateway.sce");
+subdemolist = [_("Standard demos")                       , "standard.dem.gateway.sce"       ; ..
+               _("Control Systems")                      , "control_systems.dem.gateway.sce"    ; ..
+               _("Electrical Systems")                   , "electrical_systems.dem.gateway.sce" ; ..
+               _("Mechanical Systems")                   , "mechanical_systems.dem.gateway.sce" ;];
 
-subdemolist = ["Standard demos"                       , "standard.dem.gateway.sce"       ; ..
-               "Control Systems"                      , "control_systems.dem.gateway.sce"    ; ..
-               "Electrical Systems"                   , "electrical_systems.dem.gateway.sce" ; ..
-               "Mechanical Systems"                   , "mechanical_systems.dem.gateway.sce" ;];
-               
-if with_modelica_compiler() then               
+if with_modelica_compiler() then
 subdemolist = [subdemolist; ..
-               "Modelica demos"                       , "modelica_demos.dem.gateway.sce"];
+               _("Modelica demos")                       , "modelica_demos.dem.gateway.sce"];
 end
 
 subdemolist = [subdemolist; ..
-               "Old demos"                            , "old_demos.dem.gateway.sce"          ; ..
+               _("Old demos")                            , "old_demos.dem.gateway.sce"          ; ..
               ];
 
-subdemolist(:,2) = demopath + subdemolist(:,2);
+subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);
+clear with_modelica_compiler;

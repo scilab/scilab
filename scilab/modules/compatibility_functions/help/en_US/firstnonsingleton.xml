@@ -23,7 +23,7 @@
     <synopsis>[dim]=firstnonsingleton(A[,opt])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>dim</term>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg id="svg11300" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48px" width="48px" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:dc="http://purl.org/dc/elements/1.1/">
+ <title id="title3289">base scilan</title>
+ <defs id="defs3"></defs>
+ <metadata id="metadata4">
+  <rdf:RDF>
+   <cc:Work rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+    <dc:creator>
+     <cc:Agent>
+      <dc:title>Mathieu Drouet / Take a sip</dc:title>
+     </cc:Agent>
+    </dc:creator>
+    <dc:source>http://www.takeasip.net/</dc:source>
+    <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+    <dc:title>base scilan</dc:title>
+   </cc:Work>
+   <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+    <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+   </cc:License>
+  </rdf:RDF>
+ </metadata>
+ <g id="layer1">
+  <g id="layer1-0" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+   <g id="g9544" transform="translate(-2.0023665,2.2530854)">
+    <g id="g9570" transform="translate(0.34662852,-1.7289484)">
+     <g id="g28489" transform="translate(2.3098495,0.12996954)">
+      <g id="g5362">
+       <g id="layer1-8" transform="matrix(0,-1.4676275,1.4676275,0,-37.823485,137.74736)">
+        <g id="g5857" transform="translate(-0.49999954,-9.6375814e-8)">
+         <path id="path6316" stroke-linejoin="miter" d="m94.5,41.5h-19" stroke="#000" stroke-linecap="butt" stroke-width="1.20894098px" fill="none"/>
+         <path id="path6314" stroke-linejoin="miter" d="m9,24,6,0,0-10,0-11" transform="translate(55.500003,17.5)" stroke="#000" stroke-linecap="butt" stroke-width="1px" fill="none"/>
+         <rect id="rect6830" stroke-linejoin="miter" style="stroke-dasharray:none;" height="5" width="3" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" y="39" x="72.5" stroke-width="1" fill="#babdb6"/>
+         <rect id="rect6832" stroke-linejoin="miter" style="stroke-dasharray:none;" height="5" width="3" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" y="39" x="72.5" stroke-width="1" fill="#babdb6"/>
+         <rect id="rect6834" stroke-linejoin="miter" style="stroke-dasharray:none;" height="5" width="3" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" y="25.729" x="72.5" stroke-width="1" fill="#babdb6"/>
+         <rect id="rect6836" stroke-linejoin="miter" style="stroke-dasharray:none;" height="5" width="3" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" y="52.271" x="72.5" stroke-width="1" fill="#babdb6"/>
+         <path id="path6838" stroke-linejoin="miter" d="m93.5,54.771h-18" stroke="#000" stroke-linecap="butt" stroke-width="1.06066012px" fill="none"/>
+         <path id="path6840" stroke-linejoin="miter" d="m93.5,54.771h-18" stroke="#000" stroke-linecap="butt" stroke-width="1.06066012px" fill="none"/>
+         <path id="path6844" stroke-linejoin="miter" d="m93.5,28.229h-18" stroke="#000" stroke-linecap="butt" stroke-width="1.06066012px" fill="none"/>
+         <g id="layer1-3" transform="translate(-32.999999,-0.68501239)">
+          <g id="layer1-0-8" transform="matrix(0,0.68137179,-0.68137179,0,39.302853,7.826163)">
+           <g id="g9544-4" transform="translate(-2.0023665,2.2530854)">
+            <g id="g9570-8" transform="translate(0.34662852,-1.7289484)">
+             <g id="g28489-0" transform="translate(2.3098495,0.12996954)">
+              <g id="g5362-4">
+               <path id="path6318-8" stroke-linejoin="miter" style="stroke-dasharray:none;" d="m-22-16,2.5981,4.5,2.5981,4.5h-5.196l-5.1962-1E-7,2.598-4.5,2.598-4.5z" transform="matrix(-0.46212385,0.85088519,-0.85088519,-0.46212385,31.020611,-98.466165)" stroke="#000" stroke-linecap="square" stroke-miterlimit="4" stroke-width="1.51570737" fill="#000"/>
+              </g>
+             </g>
+            </g>
+           </g>
+          </g>
+         </g>
+        </g>
+       </g>
+      </g>
+     </g>
+    </g>
+   </g>
+  </g>
+ </g>
+</svg>

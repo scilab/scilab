@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="eval_cshep2d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>eval_cshep2d</refname>
+
+    <refpurpose>2次元の3次シェパード補間の評価</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp</term>
+
+        <listitem>
+          <para>同じ大きさの実数ベクトル (または行列)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl_coef</term>
+
+        <listitem>
+          <para>
+	3次シェパード補間関数を定義する
+	(cshep2d型の) tlist scilab 構造体 (以下では
+	 <literal>S</literal>と呼びます)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zp</term>
+
+        <listitem>
+          <para>v<literal>xp</literal>
+          および <literal>yp</literal>と同じ大きさのベクトル(または行列)で, 
+		これらの点における補間<literal>S</literal>を評価します</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dzpdx,dzpdy</term>
+
+        <listitem>
+          <para>
+		 <literal>xp</literal> および <literal>yp</literal>と
+	同じ大きさのベクトル(または行列)で,
+	これらの点における<literal>S</literal>の1階微分の評価値</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>d2zpdxx,d2zpdxy,d2zpdyy</term>
+
+        <listitem>
+          <para>
+	 <literal>xp</literal> および <literal>yp</literal>と
+	同じ大きさのベクトル(または行列)で,
+	これらの点における<literal>S</literal>の2階微分の評価値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,<link linkend="cshep2d">cshep2d</link>で計算される
+	3次シェパード補間関数の評価ルーチンで,
+	以下のようになります:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../mml/eval_cshep2d_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>補間式 <emphasis>S</emphasis> は C2 (2階連続微分可能)ですが,
+	十分遠い補間点<emphasis>(x,y)</emphasis>について0 により
+	拡張されます.
+	これにより,補間点のかなり外側の領域に不連続が発生しますが,
+	実用上は問題とはなりません
+	(一般に,補間点の外側での評価(すなわち補外)は
+	かなり精度が劣化します).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// see example section of cshep2d
+
+// this example shows the behavior far from the interpolation points ...
+deff("z=f(x,y)","z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2")
+x = linspace(0,1,10);
+[X,Y] = ndgrid(x,x);
+X = X(:); Y = Y(:); Z = f(X,Y);
+S = cshep2d([X Y Z]);
+// evaluation inside and outside the square [0,1]x[0,1]
+m = 40;
+xx = linspace(-1.5,0.5,m);
+[xp,yp] = ndgrid(xx,xx);
+zp = eval_cshep2d(xp,yp,S);
+// compute facet (to draw one color for extrapolation region
+// and another one for the interpolation region)
+[xf,yf,zf] = genfac3d(xx,xx,zp);
+color = 2*ones(1,size(zf,2));
+// indices corresponding to facet in the interpolation region
+ind=find( mean(xf,"r")>0 & mean(xf,"r")<1 & mean(yf,"r")>0 & mean(yf,"r")<1 );
+color(ind)=3;
+clf();
+plot3d(xf,yf,list(zf,color), flag=[2 6 4])
+legends(["extrapolation region","interpolation region"],[2 3],1)
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cshep2d">cshep2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Robert J. Renka</member>
+
+      <member>B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

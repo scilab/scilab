@@ -20,6 +20,11 @@
 
 #ifndef STACK3_H
 #define STACK3_H
+
+#ifndef API_SCILAB_VERSION
+#pragma message("Using stack3.h is deprecated. Please use api_scilab instead (try 'help api_scilab'). Note the stack3.h API will be removed after Scilab 6.0.")
+#endif
+
 #include "machine.h"
 #include "doublecomplex.h"
 
@@ -179,7 +184,7 @@ int iGetStringFromAddress(int _iAddr, int *_piRows, int *_piCols, int *_piLen, i
 *  @param _iSize the number of elements to set
 *  @param _pdblReal, _pdblImg the target array (real and imaginary parts)
 */
-void vGetPointerFromDoubleComplex(doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
+void vGetPointerFromDoubleComplex(const doublecomplex *_poComplex, int _iSize, double *_pdblReal, double *_pdblImg);
 
 /**
 *  Returns a target doublecomplex array constructed from the source real and imaginary parts.

@@ -9,7 +9,7 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-
+#include <string.h>
 #include "machine.h" /* DIR_SEPARATOR */
 #include "getrelativefilename.h"
 #include "MALLOC.h"

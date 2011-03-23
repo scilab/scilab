@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+ * Copyright (C) 2010 - DIGITEO - Yann COLLETTE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,10 +30,10 @@ static int numberOfMatfiles = 0;
 void matfile_manager(int action, int *fileIndex, mat_t **matfile)
 {
   int K = 0; /* Loop index */
-
-  if(action == MATFILEMANAGER_GETFILE) /* Get the mat_t structure corresponding to the fileIndex (fileIndex is an input) */
+  
+  if (action == MATFILEMANAGER_GETFILE) /* Get the mat_t structure corresponding to the fileIndex (fileIndex is an input) */
     {
-      if(*fileIndex>=numberOfMatfiles) /* FileIndex is too big */
+      if((*fileIndex >= numberOfMatfiles) || (*fileIndex < 0)) /* FileIndex is too big or invalid */
         {
           *matfile = NULL; /* Return NULL */
         }
@@ -46,14 +47,14 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
       if(numberOfMatfiles==0) /* No file opened */
         {
           numberOfMatfiles++;
-		  if (openedMatfiles)
-		  {
-			  openedMatfiles = (mat_t**)REALLOC(openedMatfiles, numberOfMatfiles*sizeof(mat_t*));
-		  }
-		  else
-		  {
-			  openedMatfiles = (mat_t**)MALLOC(numberOfMatfiles*sizeof(mat_t*));
-		  }
+	  if (openedMatfiles)
+	    {
+	      openedMatfiles = (mat_t**)REALLOC(openedMatfiles, numberOfMatfiles*sizeof(mat_t*));
+	    }
+	  else
+	    {
+	      openedMatfiles = (mat_t**)MALLOC(numberOfMatfiles*sizeof(mat_t*));
+	    }
           *fileIndex = numberOfMatfiles-1;
           openedMatfiles[*fileIndex] = *matfile;
         }
@@ -77,7 +78,7 @@ void matfile_manager(int action, int *fileIndex, mat_t **matfile)
     }
   else if(action == MATFILEMANAGER_DELFILE) /* Close matfile (fileIndex is an input) */
     {
-      if(*fileIndex>numberOfMatfiles) /* FileIndex is too big */
+      if((*fileIndex >= numberOfMatfiles) || (*fileIndex < 0)) /* FileIndex is too big or invalid */
         {
           matfile = NULL; /* Return NULL */
         }

@@ -82,8 +82,8 @@ s=poly(0,"s");p=1+s+2*s^2;
 A=rand(2,2);poly(A,"x")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="coeff">coeff</link>

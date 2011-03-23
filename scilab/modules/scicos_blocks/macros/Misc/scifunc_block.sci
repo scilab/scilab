@@ -116,8 +116,12 @@ case 'set' then
       model.state=xx
       model.dstate=z
       model.rpar=rpar
-      if or(model.ipar<>tt) then needcompile=4,end
-      model.ipar=tt
+      if model.ipar <> 0 then
+        model.opar=model.ipar;
+        model.ipar=0;
+      end
+      if or(model.opar<>tt) then needcompile=4,end
+      model.opar=tt
       model.firing=auto
       model.dep_ut=dep_ut
       x.model=model
@@ -149,6 +153,7 @@ case 'define' then
   model.dstate=z0
   model.rpar=rpar
   model.ipar=0
+  model.opar=list()
   model.blocktype=typ
   model.firing=auto
   model.dep_ut=[%t %f]

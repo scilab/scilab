@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="compile_and_run_javasci_v1"
+          xml:lang="en" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Compile and run with javasci v1</refname>
+
+    <refpurpose>How to compile a Java application using Javasci v1. Deprecated: Please use <link linkend="javasci">Javasci v2</link></refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>To compile a Java code based on Javasci, it is only necessary to
+    have javasci.jar defined in the classpath.</para>
+
+    <para>For example, with the code defined in the example of this page, the
+    command would be:</para>
+
+    <para>on Linux/Unix/MacOSX:</para>
+
+    <para><literal>$ javac -cp $SCI/modules/javasci/jar/javasci.jar
+    BasicExample.java</literal></para>
+
+    <para>on Windows:</para>
+
+    <para><literal>D:\&gt; javac -cp %SCI%\modules\javasci\jar\javasci.jar
+    BasicExample.java</literal></para>
+
+    <para>To run Scilab, there are a few other things to set up.</para>
+
+    <para>Some global variables must me set:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI - Path to Scilab files</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Linux/Unix/MacOSX:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>In the binary version of Scilab, SCI will point to
+                /path/to/scilab/share/scilab/</para>
+              </listitem>
+
+              <listitem>
+                <para>In the source tree of Scilab, SCI will point to the root
+                of the source tree /path/to/scilab/source/tree/</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Windows</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>path of scilab root directory:</para>
+
+                <para>set SCI=C:\program files\scilab-5.1</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>LD_LIBRARY_PATH - Paths to libscilab.so and libjavasci.so (or
+        .jnilib...)</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Linux/Unix/MacOSX:</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>In the binary version of Scilab, SCI will point to
+                /path/to/scilab/lib/scilab/</para>
+              </listitem>
+
+              <listitem>
+                <para>In the source tree of Scilab, SCI will point to the root
+                of the source tree /path/to/scilab/modules/javasci/.libs/ and
+                /path/to/scilab/.libs/</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+
+          <listitem>
+            <para>Windows: Path to libscilab.dll and javasci.dll</para>
+
+            <itemizedlist>
+              <listitem>
+                <para>equivalent to LD_LIBRARY_PATH on Windows is PATH</para>
+
+                <para>set PATH="%SCI%\bin";%PATH%</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+    <para>To launch the Java Application, you can either provide them with
+    environnement variable</para>
+
+     <itemizedlist>
+      <listitem>
+        <para>Linux/Unix/MacOSX:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><literal>LD_LIBRARY_PATH=/path/to/libjavasci/ SCI=/path/to/scilab/
+            java -cp modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
+          </listitem>
+        </itemizedlist>
+
+        <itemizedlist>
+          <listitem>
+            <para><literal>SCI=/path/to/scilab/ java
+            -Djava.library.path=/path/to/libjavasci/ -cp
+            modules/javasci/jar/javasci.jar:. BasicExample</literal></para>
+          </listitem>
+        </itemizedlist>
+
+        <para>or with the arguments</para>
+      </listitem>
+
+      <listitem>
+        <para>Windows:</para>
+
+        <para><literal>set SCI=c:\program files\scilab-5.1</literal></para>
+
+        <para><literal>set PATH="%SCI%\bin";%PATH%</literal></para>
+
+        <para><literal>D:\java -cp "%SCI%\modules\javasci\jar\javasci.jar";.
+        BasicExample</literal></para>
+      </listitem>
+    </itemizedlist>
+
+    <para>optional options to launch java : <literal>-Djava.compiler=JIT
+    -Xmx256m</literal></para>
+
+    <para>(With these arguments , you launch javasci with same initial options
+    that standard scilab).</para>
+
+    <para>Note that two environnement variables are taken in account for specific needs: 
+</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>SCI_DISABLE_TK=1</literal> Disables Tk (Tcl's GUI)</para>
+	  </listitem>
+      <listitem>
+        <para><literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> Launch Java in headless mode (no AWT/Swing)</para>
+      </listitem>
+	  </itemizedlist>
+
+
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="java"><![CDATA[ 
+// A simple Java example 
+// Filename: BasicExample.java
+
+import javasci.Scilab;
+
+public class BasicExample {
+	public static void main(String []args){
+	Scilab.Exec("disp((%pi^2)/6);");
+	}
+}
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+    <member>
+        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+       </member>
+      <member><link linkend="javasci">Javasci</link></member>
+      <member><link linkend="javasci_faq_v1">Javasci v1 FAQ</link></member>
+
+      <member><link linkend="SciDouble">SciDouble</link></member>
+
+      <member><link linkend="SciDoubleArray">SciDoubleArray</link></member>
+
+      <member><link linkend="SciString">SciString</link></member>
+
+      <member><link linkend="SciStringArray">SciStringArray</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>Allan Cornet</para>
+
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

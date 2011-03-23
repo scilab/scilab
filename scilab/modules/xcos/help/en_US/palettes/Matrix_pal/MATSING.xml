@@ -31,7 +31,7 @@
   <refnamediv>
     <refname>MATSING</refname>
 
-    <refpurpose>SVD decomposition</refpurpose>
+    <refpurpose>SVD Decomposition</refpurpose>
   </refnamediv>
 
   <refsection>
@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATSING.jpg"
+                     fileref="../../../../images/palettes/MATSING.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -52,7 +52,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATSING">SVD decomposition</link>
+          <link linkend="MATSING">SVD Decomposition</link>
         </para>
       </listitem>
 
@@ -78,22 +78,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATSING">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATSING">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATSING">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATSING">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATSING">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATSING">Computational function</xref>
             </para>
           </listitem>
 
@@ -128,19 +125,27 @@
   <refsection id="Description_MATSING">
     <title>Description</title>
 
-    <para>The MATSING block computes the economy sized SVD of the M-by-N input
-    matrix A by finding U,S and V such that</para>
+    <para>
+      The MATSING block computes the economy sized SVD of the MxN input matrix A by finding U,S and V such that
+    </para>
 
     <para>A=U*S*V'.</para>
-
-    <para>When the decomposition type is set to one, the output is a vector
-    composed by the singular values.</para>
-
-    <para>When the decomposition type is set to two, we have three outputs:
-    the second output is a diagonal matrix S composed by the singular values
-    and the other two outputs are the unitary matrices U and V.</para>
-
-    <para>The equivalent function of this block in Scilab is "svd".</para>
+    <para>When the <emphasis role="bold">decomposition type </emphasis> parameter is set to;</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis> : the output is a vector composed by the singular values.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">2</emphasis> : we have three outputs: the second output is a diagonal matrix
+          S composed by the singular values and the other two outputs are the unitary matrices U and V.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>The equivalent function of this block in Scilab is <link linkend="svd">svd(A,"e")</link>.</para>
 
     <para />
   </refsection>
@@ -166,10 +171,10 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -180,9 +185,10 @@
           values+matrix U &amp;amp; V)</emphasis>
         </para>
 
-        <para>It indicates the form of the output. When it is set to one, we
-        have a unique vector output (singular values). When it is set to two
-        we have three same sizes matrices(U,S,V).</para>
+        <para>
+          It indicates the form of the output. When it is set to one, we have a unique vector output
+          (singular values). When it is set to two we have three same sizes matrices(U,S,V).
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -230,18 +236,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -249,8 +252,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -301,15 +303,18 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATEIG">MATEIG - MATEIG Matrix Eigenvalues (xcos
-          Block)</link>
+          <link linkend="MATEIG">MATEIG - Matrix Eigenvalues (xcos Block)</link>
         </para>
       </listitem>
 
       <listitem>
         <para>
-          <link linkend="MATLU">MATLU - MATLU LU Factorization (xcos
-          Block)</link>
+          <link linkend="MATLU">MATLU - LU Factorization (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="svd">svd (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

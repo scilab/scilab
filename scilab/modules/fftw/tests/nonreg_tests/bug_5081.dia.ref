@@ -20,8 +20,8 @@
  des = [1 0];
  wate = [1 1];
  h = eqfir(nf,bedge,des,wate);
- h1 = [h 0*ones(1:maxi(size(x))-1)];
- x1 = [x 0*ones(1:maxi(size(h))-1)];
+ h1 = [h 0*ones(1:max(size(x))-1)];
+ x1 = [x 0*ones(1:max(size(h))-1)];
  hf = fft(h1,-1);
  xf = fft(x1,-1);
  yf = hf.*xf;

@@ -19,12 +19,27 @@
 #include <Windows.h>
 #include "ExceptionMessage.h"
 #endif
+#include "machine.h"
 #include "../../../mexlib/includes/mex.h"
 #include "../../../mexlib/includes/sci_gateway.h"
 #include "sci_rankqr.h"
 #include "sci_contr.h"
 #include "gw_slicot.h"
-
+/*--------------------------------------------------------------------------*/ 
+#ifndef __DEF_MXARRAY__
+#define __DEF_MXARRAY__
+typedef int mxArray;
+typedef int Gatefunc (int nlhs,mxArray *plhs[],int nrhs,mxArray *prhs[]);
+#endif
+/* fortran subroutines */
+extern Gatefunc C2F(sident);
+extern Gatefunc C2F(sorder);
+extern Gatefunc C2F(findbd);
+extern Gatefunc C2F(intmucomp);
+extern Gatefunc C2F(intricc2);
+extern Gatefunc C2F(inthinf);
+extern Gatefunc C2F(intdhinf);
+extern Gatefunc C2F(intlinmeq);
 /*--------------------------------------------------------------------------*/ 
 static GenericTable Tab[]={
   {(Myinterfun) fortran_mex_gateway, C2F(sident),"sident"},

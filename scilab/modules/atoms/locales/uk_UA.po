@@ -1,0 +1,839 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"PO-Revision-Date: 2010-06-29 11:50+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "\t - ''%s - %s''\n"
+msgstr "\t - «%s — %s»\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is already loaded\n"
+msgstr "\t - «%s — %s» вже завантажено\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
+msgstr "\t - «%s — %s» потрібен для «%s — %s»\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s''\n"
+msgstr "\t - «%s — %s» потрібен для «%s»\n"
+
+#, c-format
+msgid "\t - Local location : ''%s''\n"
+msgstr "\t - Локальна адреса: «%s»\n"
+
+#, c-format
+msgid "\t - MD5SUM expected : ''%s''\n"
+msgstr "\t - Очікувалася MD5SUM: «%s»\n"
+
+#, c-format
+msgid "\t - MD5SUM watched  : ''%s''\n"
+msgstr "\t - Отримана MD5SUM: «%s»\n"
+
+#, c-format
+msgid "\t - URL            : ''%s''\n"
+msgstr "\t - Адреса         : «%s»\n"
+
+#, c-format
+msgid "\t - You''ve asked ''%s - %s''\n"
+msgstr "\t - Надійшов запит на «%s — %s»\n"
+
+#, c-format
+msgid "\t - destination : ''%s''\n"
+msgstr "\t - призначення: «%s»\n"
+
+#, c-format
+msgid "\t - file            : ''%s''\n"
+msgstr "\t - файл            : «%s»\n"
+
+#, c-format
+msgid "\t - source      : ''%s''\n"
+msgstr "\t - джерело      : «%s»\n"
+
+#, c-format
+msgid "%s: %s (%s) isn''t installed.\n"
+msgstr "%s: %s (%s) не встановлено.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
+msgstr "%s: «%s — %s» (розділ «%s») не встановлено.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' is not installed.\n"
+msgstr "%s: «%s — %s» не встановлено.\n"
+
+#, c-format
+msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
+msgstr "%s: «%s» (розділ «%s») не встановлено.\n"
+
+#, c-format
+msgid "%s: ''%s'' isn''t installed.\n"
+msgstr "%s: «%s» не встановлено.\n"
+
+#, c-format
+msgid "%s: An error occurred while loading ''%s-%s'':\n"
+msgstr "%s: сталася помилка під час завантаження «%s-%s»:\n"
+
+#, c-format
+msgid "%s: Another version of the package %s is already loaded : %s\n"
+msgstr "%s: вже завантажено іншу версію пакунка %s: %s\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
+msgstr "%s: у пакунку «%s» не знайдено файла DESCRIPTION\n"
+
+#, c-format
+msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+msgstr ""
+"%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
+
+#, c-format
+msgid "%s: Error while creating the directory ''%s''.\n"
+msgstr "%s: під час спроби створення каталогу «%s» сталася помилка.\n"
+
+#, c-format
+msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
+msgstr ""
+"%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність.\n"
+
+#, c-format
+msgid "%s: Module ''%s - %s'' is not installed.\n"
+msgstr "%s: модуль «%s — %s» не встановлено.\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgstr "%s: модуль «%s» не встановлено (розділ «%s»).\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed.\n"
+msgstr "%s: модуль «%s» не встановлено.\n"
+
+#, c-format
+msgid "%s: Neither Wget or Curl found: Please install one of them\n"
+msgstr ""
+"%s: не знайдено ні wget, ні curl: будь ласка, встановіть одну з цих програм\n"
+
+#, c-format
+msgid ""
+"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
+"session :\n"
+msgstr ""
+"%s: під час одного сеансу Scilab не можна завантажувати декілька версій "
+"одного пакунка (%s):\n"
+
+#, c-format
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr "%s: помилка у файлі налаштування («%s»), рядок %d\n"
+
+#, c-format
+msgid "%s: The dependency tree cannot be resolved.\n"
+msgstr "%s: не вдалося побудувати ієрархію залежностей.\n"
+
+#, c-format
+msgid "%s: The description is not well formated at line %d\n"
+msgstr "%s:помилка у описі, рядок %d\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: не вдалося створити каталог %s, будь ласка, перевірте, чи є у вас права "
+"доступу на запис до відповідного каталогу.\n"
+
+#, c-format
+msgid "%s: The directory %s doesn''t exist.\n"
+msgstr "%s: каталогу з назвою %s не існує.\n"
+
+#, c-format
+msgid ""
+"%s: The directory ''%s'' cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"''%s: не вдалося створити каталог «%s», будь ласка, перевірте, чи є у вас "
+"права доступу на запис до відповідного каталогу.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) cannot been deleted, please check "
+"if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: не вдалося вилучити каталог цього пакунка (%s—%s), будь ласка, "
+"перевірте, чи є у вас права доступу на запис до відповідного каталогу: %s.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
+"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+msgstr ""
+"%s: каталог цього пакунка (%s—%s) розташовано за адресою, запису якої немає "
+"у жодній зі змінних, SCI або SCIHOME. З міркувань безпеки ATOMS не буде "
+"вилучати цей каталог.\n"
+
+#, c-format
+msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
+msgstr "%s: звантажений файл не пройшов перевірки на MD5SUM:\n"
+
+#, c-format
+msgid "%s: The extraction of the archive ''%s'' has failed.\n"
+msgstr "%s: спроба видобування даних архіву «%s» завершилася невдало.\n"
+
+#, c-format
+msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
+msgstr "%s: файла з назвою %s не існує, або читання цього файла неможливе.\n"
+
+#, c-format
+msgid ""
+"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+"the %s field\n"
+msgstr ""
+"%s: формат файла %s є помилковим, набір інструментів %s — %s не містить поля "
+"%s\n"
+
+#, c-format
+msgid "%s: The file ''%s'' cannot be written.\n"
+msgstr "%s: запис до файла «%s» неможливий.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
+msgstr ""
+"%s: файла з назвою «%s» не існує, або цей файл непридатний для читання\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+"%s: файла з назвою «%s» не існує, або читання цього файла неможливе.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr "%s: помилкове форматування файла «%s», рядок %d\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been copied:\n"
+msgstr "%s: файл, назву якого наведено нижче, скопіювати не вдалося:\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been downloaded:\n"
+msgstr "%s: файл, назву якого наведено нижче, звантажити не вдалося:\n"
+
+#, c-format
+msgid ""
+"%s: The following module is installed in the user section, you cannot add it "
+"to the autoload list for all users:\n"
+msgstr ""
+"%s: модуль, назву якого наведено нижче, встановлено у розділі користувача, "
+"ви не можете додавати його до списку автоматичного завантаження для всіх "
+"користувачів:\n"
+
+#, c-format
+msgid "%s: The following module is not installed:\n"
+msgstr "%s: модуль, назву якого наведено нижче, не встановлено:\n"
+
+#, c-format
+msgid "%s: The following modules are not installed:\n"
+msgstr "%s: модулі, назви яких наведено нижче, не встановлено:\n"
+
+#, c-format
+msgid "%s: The package %s is not available.\n"
+msgstr "%s: пакунок з назвою %s недоступний.\n"
+
+#, c-format
+msgid "%s: The package ''%s'' is not present in the struct.\n"
+msgstr "%s: пакунка з назвою «%s» не має у структурі пакунків.\n"
+
+#, c-format
+msgid ""
+"%s: The root directory of this package (%s-%s) cannot been deleted, please "
+"check if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: не вдалося вилучити кореневий каталог цього пакунка (%s—%s), будь ласка, "
+"перевірте, чи є у вас права доступу на запис до відповідного каталогу: %s.\n"
+
+#, c-format
+msgid ""
+"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+msgstr "%s: версії «%s» пакунка «%s» немає у структурі пакунків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong length for input argument #%d: String which has 32-characters "
+"length expected.\n"
+msgstr ""
+"%s: помилкова довжина вхідного параметра №%d: слід використовувати рядок з "
+"32 символів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: at most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків 1x1 або 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків 1x2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"матрицю з рядків розмірності 1x1 або 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
+"рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx1 або mx2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx1, mx2 або mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx1, mx2 або mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx2 або mx3.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати матрицю з "
+"рядків mx або mx3.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати булівське "
+"значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати булівське "
+"значення або окремий рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
+"значення типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«struct».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати типізований "
+"список на основі матриць.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«mlist».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: «%s» не є зареєстрованою "
+"категорією"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: «%s» не є коректною адресою "
+"URL.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути «all» або «main».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
+"''session'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «all», "
+"«allusers», «user» або «session».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
+"''official'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «all», "
+"«user», «allusers» або «official».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути "
+"«filter:all»,«filter:main» або коректна назва основної категорії.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «system» "
+"або «install».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «user» "
+"або «allusers».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «user», "
+"«all» або «allusers».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «user», "
+"«all» або «allusers».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «user», "
+"«all» або «allusers».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказати коректну "
+"назву категорії.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «ASC» "
+"або «DESC».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: має бути вказано версію всіх "
+"модулів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It should have a field named "
+"''%s''.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути поле з назвою "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати літеру "
+"«A» або «I».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати назву "
+"пакунка atoms.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід було вказати один рядок, "
+"що завершується на .tar.gz, .tgz або .zip.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
+"що містить «TOOLBOXES» або «DESCRIPTION».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
+"що завершується словом DESCRIPTION.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
+"що починається з ''http://'',''ftp://'' або ''file://''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The matrix oriented typed list is "
+"not well formatted.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилковий типізований список "
+"на основі матриць\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: This ("
+msgstr "%s: помилкове значення вхідного параметра №%d: такого ("
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: некоректне значення версії.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: вказано некоректну версію або "
+"залежність.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «error» "
+"або «warning».\n"
+
+#, c-format
+msgid ""
+"%s: You have not enough rights to remove any version of the package %s.\n"
+msgstr ""
+"%s: у вас недостатньо прав для вилучення будь-якої версії пакунка %s.\n"
+
+#, c-format
+msgid "%s: You have not enough rights to remove the package %s (%s).\n"
+msgstr "%s: у вас недостатні права доступу для вилучення пакунка %s (%s).\n"
+
+#, c-format
+msgid "%s: You haven''t write access on this directory : %s.\n"
+msgstr "%s: у вас немає прав на запис до цього каталогу: %s.\n"
+
+#, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr "%s: одночасно не вказано назву і версію\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgstr "%s: у записі пакунка «%s» не міститься поля «%s».\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t exist.\n"
+msgstr "%s: пакунка з назвою «%s» не існує.\n"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Інструменти"
+
+msgid "?"
+msgstr "Довідка"
+
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr "Випущено нову версію («%s») «%s»"
+
+msgid "ATOMS"
+msgstr "ATOMS"
+
+msgid "ATOMS error"
+msgstr "Помилка ATOMS"
+
+msgid "All modules"
+msgstr "Всі модулі"
+
+msgid "Atoms Help..."
+msgstr "Довідка з Atoms…"
+
+msgid "Author(s)"
+msgstr "Автори"
+
+msgid "Automatically Installed"
+msgstr "Встановлено автоматично"
+
+msgid "Bytes"
+msgstr "Байтів"
+
+msgid "Category(ies)"
+msgstr "Категорії"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Depend"
+msgstr "Залежності"
+
+msgid "Description"
+msgstr "Опис"
+
+msgid "Download size"
+msgstr "Розмір звантаження"
+
+msgid "Entity"
+msgstr "Установа"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Home"
+msgstr "Домівка"
+
+msgid "Install"
+msgstr "Встановити"
+
+msgid "Install Directory"
+msgstr "Каталог встановлення"
+
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"Встановлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
+"чинності."
+
+msgid "Installation failed!"
+msgstr "Невдала спроба встановлення!"
+
+msgid "Installing"
+msgstr "Встановлення"
+
+msgid "KB"
+msgstr "кБ"
+
+msgid "License"
+msgstr "Ліцензія"
+
+msgid "List of installed modules"
+msgstr "Список встановлених модулів"
+
+msgid "MB"
+msgstr "МБ"
+
+msgid "Main categories"
+msgstr "Основні категорії"
+
+msgid "Maintainer(s)"
+msgstr "Супровідники"
+
+msgid "No ATOMS module is available. Please, check your Internet connection."
+msgstr ""
+"Немає доступу до жодного з модулів ATOMS. Будь ласка, перевірте "
+"працездатність інтернет-з’єднання."
+
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+"Немає доступу до жодного з модулів ATOMS: список модулів вашого сховища "
+"порожній."
+
+msgid "Package"
+msgstr "Пакунок"
+
+msgid "Release date"
+msgstr "Дата випуску"
+
+msgid "Remove"
+msgstr "Вилучити"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Вилучення завершено. Будь ласка, перезапустіть Scilab, щоб зміни набули "
+"чинності. "
+
+msgid "Remove failed!"
+msgstr "Невдала спроба вилучення!"
+
+msgid "Removing"
+msgstr "Вилучення"
+
+msgid "Scilab Version"
+msgstr "Версія Scilab"
+
+msgid "See also"
+msgstr "Див. також"
+
+msgid "Status"
+msgstr "Стан"
+
+msgid "Summary"
+msgstr "Резюме"
+
+msgid "Title"
+msgstr "Назва"
+
+msgid "Update"
+msgstr "Оновити"
+
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"Оновлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
+"чинності."
+
+msgid "Update failed!"
+msgstr "Помилка оновлення!"
+
+msgid "Updating"
+msgstr "Оновлення"
+
+msgid "Version"
+msgstr "Версія"
+
+msgid "WebSite"
+msgstr "Веб-сайт"

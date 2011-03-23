@@ -40,7 +40,7 @@
     <para><inlinemediaobject>
         <imageobject>
           <imagedata align="center"
-                     fileref="../../../../images/palettes/MATLU.jpg"
+                     fileref="../../../../images/palettes/MATLU.png"
                      valign="middle"></imagedata>
         </imageobject>
       </inlinemediaobject></para>
@@ -78,22 +78,19 @@
 
           <listitem>
             <para>
-              <xref linkend="Defaultproperties_MATLU">Default
-              properties</xref>
+              <xref linkend="Defaultproperties_MATLU">Default properties</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_MATLU">Interfacing
-              function</xref>
+              <xref linkend="Interfacingfunction_MATLU">Interfacing function</xref>
             </para>
           </listitem>
 
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_MATLU">Computational
-              function</xref>
+              <xref linkend="Computationalfunction_MATLU">Computational function</xref>
             </para>
           </listitem>
 
@@ -128,10 +125,16 @@
   <refsection id="Description_MATLU">
     <title>Description</title>
 
-    <para>The MATLU Block outputs two matrices L and U, with row pivoting,
-    from the LU factorization of a square input matrix. If A is the input
-    matrix then E*A=L*U where E is the permutation matrix.The equivalent
-    function of this block in Scilab is "[l,u,e]=lu(A)"</para>
+    <para>
+      The MATLU Block outputs two matrices L and U, with row pivoting, from the LU factorization of a
+      square input matrix. If A is the input matrix then:
+    <para>
+    </para>
+      E*A=L*U where E is the permutation matrix, U an upper triangular matrix and L a lower triangular matrix.
+    </para>
+    <para>
+      The equivalent function of this block in Scilab is <link linkend="lu">[l,u,e]=lu(A)</link>.
+    </para>
 
     <para />
   </refsection>
@@ -157,10 +160,10 @@
           <emphasis role="bold">Datatype(1=real double 2=Complex)</emphasis>
         </para>
 
-        <para>It indicates the type of the output. It support only the two
-        types double (1) and complex (2). If we input another entry in this
-        label xcos will print the message "Datatype is not
-        supported".</para>
+        <para>
+          It indicates the type of the output. It support only the two types double (1) and complex (2).
+          If we input another entry in this label xcos will print the message "Datatype is not supported".
+        </para>
 
         <para>Properties : Type 'vec' of size 1.</para>
       </listitem>
@@ -212,18 +215,15 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        inputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">number/sizes of activation
-        outputs:</emphasis> 0</para>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">continuous-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">continuous-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -231,8 +231,7 @@
       </listitem>
 
       <listitem>
-        <para><emphasis role="bold">object discrete-time state:</emphasis>
-        no</para>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> no</para>
       </listitem>
 
       <listitem>
@@ -275,8 +274,12 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="MATINV">MATINV - MATINV Matrix Inverse (xcos
-          Block)</link>
+          <link linkend="MATINV">MATINV - Matrix Inverse (xcos Block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="lu">lu (Scilab function)</link>
         </para>
       </listitem>
     </itemizedlist>

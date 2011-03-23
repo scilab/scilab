@@ -1,0 +1,94 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-23 11:10+0100\n"
+"PO-Revision-Date: 2010-02-22 07:47+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+"%s: inkompatibles Eingangsargument '#%d and '#%d': gleiche Größe erwartet.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher verfügbar\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: falsche Anzahl an Eingangsargumenten: %d nicht erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: eine reelle oder komplexe Zahl "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: N-dimensionales Array erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr "%s: falsche Typn Eingangsargument #%d: Integermatrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: FFTW Erkennungszeichen "
+"erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: nicht-negative Integer "
+"erwartet.\n"
+
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "FFTW Bibliothek %s nicht gefunden.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "FFTW Bibliothek nicht gefunden.\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW kann Gedanken nicht lesen."
+
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Scilab FFTW Modul nicht installiert.\n"

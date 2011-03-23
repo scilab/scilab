@@ -1,0 +1,73 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-06-30 02:03+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2008-06-13 13:34+0100\n"
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " 超矩陣擷取運算(Extraction)必須至少是2個以上的參數. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " hypermatrix insertion 必須至少有 3 參數. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " 此參數並不是一個超矩陣. "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " 超矩陣插入運算錯誤. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " 超矩陣擷取運算不相容. "
+
+#, c-format
+msgid "%s: ''dims'' can not be used as a field name.\n"
+msgstr "%s: ''dims'' 不能用於欄位名稱.\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr "%s:輸入的參數有誤:偶數才對.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數的個數錯誤: 應該有 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr "%s: 輸入參數的個數錯誤: 應該有 %d 個"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是結構陣列.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: field name ''%s'' defined twice.\n"
+msgstr "%s: 欄位名稱 ''%s'' 定義兩次.\n"
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "在超矩陣擷取運算中的第 %d 個索引有問題. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr "堆疊中太多的參數, 編輯 stack.h 檔案並且加大 intersiz. 變數的數值.\n"

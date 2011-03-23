@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="contour2di">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contour2di</refname>
+    <refpurpose> compute level curves of a surface on a 2D plot</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>two real row vectors of size n1 and n2: the grid.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>real matrix of size (n1,n2), the values of the function.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nz</term>
+        <listitem>
+          <para>the level values or the number of levels.</para>
+          <variablelist>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para>If <literal>nz</literal> is an integer, its value gives the number of
+  level curves  equally spaced from zmin to zmax as follows:</para>
+                <programlisting role = ""><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                <para>
+    Note that the <literal>zmin</literal> and <literal>zmax</literal> levels are not drawn  (generically they are reduced to points) but they can be added  with 
+  </para>
+                <programlisting role = ""><![CDATA[ 
+[im,jm] = find(z == zmin);     // or zmax 
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para>If <literal>nz</literal> is a vector, <literal>nz(i)</literal> gives the value of the ith level curve.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xc,yc</term>
+        <listitem>
+          <para>vectors of identical sizes containing the contours definitions. See below for details.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>contour2di</literal> computes level curves of a surface <literal>z=f(x,y)</literal> on
+    a 2D plot.  The values of <literal>f(x,y)</literal> are given by the matrix <literal>z</literal>
+    at the grid points defined by <literal>x</literal> and <literal>y</literal>.</para>
+    <para><literal>xc(1)</literal> contains the level associated with first contour path,
+    <literal>yc(1)</literal> contains the number <literal>N1</literal> of points defining this contour path
+    and (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> ) contain the coordinates
+    of the paths points.
+    The second path begin at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and so on.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
+k=1;n=yc(k);c=1;
+while k+yc(k)<size(xc,'*')
+  n=yc(k);
+  plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
+  c=c+1;
+  k=k+n+1;
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour">contour</link>
+      </member>
+      <member>
+        <link linkend="fcontour">fcontour</link>
+      </member>
+      <member>
+        <link linkend="fcontour2d">fcontour2d</link>
+      </member>
+      <member>
+        <link linkend="contour2d">contour2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

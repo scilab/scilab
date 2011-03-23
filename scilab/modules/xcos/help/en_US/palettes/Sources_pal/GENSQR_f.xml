@@ -31,7 +31,7 @@
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/GENSQR_f.jpg" align="center" valign="middle"/>
+          <imagedata align="center" fileref="../../../../images/palettes/GENSQR_f.png" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -68,6 +68,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_GENSQR_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_GENSQR_f">Interfacing function</xref>
             </para>
           </listitem>
@@ -98,10 +103,14 @@
   <refsection id="Description_GENSQR_f">
     <title>Description</title>
     <para>
-This block is a square wave generator: output takes values  -M  and  M
-. Every time an event is received on the input event port, the output
-switches from  -M  to  M , or  M  to  -M .    
-
+This block is a square wave generator: output takes values <emphasis>-M</emphasis> and  <emphasis>+M</emphasis>. Every time an event is received on the input event port, the output switches from <emphasis>-M</emphasis>  to <emphasis>M</emphasis>, or <emphasis>M</emphasis> to <emphasis>-M</emphasis>.</para>
+    <para>
+      <latex><![CDATA[
+v(k)=\begin{cases}-M\\+M\end{cases}\ \ \mbox{,switch on activation}
+]]></latex>
+    </para>
+    <para>
+Typically the event input port is used to specify the signal period.
 </para>
   </refsection>
   <refsection id="Dialogbox_GENSQR_f">
@@ -109,7 +118,7 @@ switches from  -M  to  M , or  M  to  -M .
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/GENSQR_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/sources_pal/en_US/GENSQR_f_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -121,7 +130,7 @@ switches from  -M  to  M , or  M  to  -M .
         <para>
           <emphasis role="bold">Amplitude</emphasis>
         </para>
-        <para> a scalar<inlinemediaobject><imageobject><imagedata fileref="../../../../help/images/GENSQR_f_img3_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> .</para>
+        <para> a scalar <emphasis>M</emphasis>.</para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
     </itemizedlist>
@@ -172,11 +181,41 @@ switches from  -M  to  M , or  M  to  -M .
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_GENSQR_f">
+    <title>Square wave generator: Example</title>
+    <para>This is a typical use of this block in context. This example should also alert the user about a specific behavior when linked to the same event its sink. <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
+          Open this exemple into Xcos
+      </link></para>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/GENSQR_f_diagram_en_US.xcos">
+        <inlinemediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../../../examples/sources_pal/en_US/GENSQR_f_diagram_en_US.png" valign="middle"/>
+          </imageobject>
+        </inlinemediaobject>
+      </link>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../examples/sources_pal/en_US/GENSQR_f_plot_en_US.png" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>First the sink block is a <link linkend="CMSCOPE">scope</link> with a sample rate set to <emphasis>1 second</emphasis>. This parameter will affect the printed results of all the diagram branches.</para>
+    <para>
+The first source block (green) illustrate the typical use of this block. The period of each output level is set with a <link linkend="CLOCK_c">clock</link>. The signal edge is fast and should be accurate for most of the application with a edge speed ratio of <emphasis>1/10</emphasis>.
+</para>
+    <para>
+The second source block (blue) illustrate a much more problematic use case. The signal edge is not as fast as the previous one and can lead problematic use case. Users can use these parameters to illustrate some limitations of a design.
+</para>
+    <para>The third source block (yellow) illustrate a mis-use and a common first user error. The block activation times are the same as the <link linkend="CMSCOPE">scope</link>. The scope compute only one positve or negative <emphasis>M</emphasis> point at a <latex>t_{n}</latex> and draw a line from <latex>t_{n-1}</latex> (positive) to <latex>t_{n}</latex> (negative).</para>
+  </refsection>
   <refsection id="Interfacingfunction_GENSQR_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/GENSQR_f.sci</para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/GENSQR_f.sci">SCI/modules/scicos_blocks/macros/Sources/GENSQR_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
@@ -191,5 +230,6 @@ switches from  -M  to  M , or  M  to  -M .
   <refsection id="Authors_GENSQR_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

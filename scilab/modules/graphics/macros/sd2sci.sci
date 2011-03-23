@@ -31,7 +31,7 @@ rect=sd(2)
 xmx=rect(3);ymx=rect(4)
 dx=abs(rect(3)-rect(1));dx=10^(-log(dx/100)/log(10))*10
 dy=abs(rect(4)-rect(2));dy=10^(-log(dy/100)/log(10))*10
-dxy=maxi(dx,dy)
+dxy=max(dx,dy)
 txt=[]
 txt='xsetech([0 0 1 1],'+sci2exp(sd(2))+')'
 for k=3:size(sd)
@@ -44,7 +44,7 @@ for k=3:size(sd)
       x2=round(dx*x2)/dx
       y1=round(dy*y1)/dy
       y2=round(dy*y2)/dy
-      xi=string(mini(x1,x2));
+      xi=string(min(x1,x2));
       w=string(abs(x1-x2));
       yi=string(max(y1,y2));
       h=string(abs(y1-y2));
@@ -55,7 +55,7 @@ for k=3:size(sd)
       x2=round(dx*x2)/dx
       y1=round(dy*y1)/dy
       y2=round(dy*y2)/dy
-      xi=string(mini(x1,x2));
+      xi=string(min(x1,x2));
       w=string(abs(x1-x2));
       yi=string(max(y1,y2));
       h=string(abs(y1-y2));

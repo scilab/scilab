@@ -13,8 +13,8 @@
   <refnamediv>
     <refname>scilab</refname>
 
-    <refpurpose>Major unix script to execute Scilab and miscellaneous
-    tools</refpurpose>
+    <refpurpose>Main script to start Scilab and miscellaneous
+    tools (GNU/Linux, Unix and Mac OS X)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -37,7 +37,8 @@ scilab-cli &lt;Options&gt;</synopsis>
           They can then be got by <link linkend="sciargs">sciargs</link>
           function. For multi arguments passing use a quoted, blank separated
           sequence of words like: <literal>scilab -args 'foo1
-          foo2'</literal></para>
+          foo2'</literal>. Without this option, unknown arguments will not
+	  be accepted.</para>
         </listitem>
       </varlistentry>
 
@@ -57,7 +58,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug</term>
 
         <listitem>
-          <para>Start Scilab under the debugguer gdb (Unix/linux only).</para>
+          <para>Start Scilab under the debugguer gdb (Unix/Linux/Mac OS X only).</para>
 
           <para>Define the variable SCILAB_GDB_OPT to add custom options to
           gdb.</para>
@@ -70,7 +71,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-debug-kdbg</term>
 
         <listitem>
-          <para>Start Scilab under kdbg (Unix/linux only).</para>
+          <para>Start Scilab under kdbg (Unix/Linux/Mac OS X only).</para>
 
           <para>Advise: use this option on a Scilab source tree.</para>
         </listitem>
@@ -80,7 +81,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling</term>
 
         <listitem>
-          <para>Start Scilab under valgrind (Unix/linux only).</para>
+          <para>Start Scilab under valgrind (Unix/Linux/Mac OS X only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to valgrind (and override the existing valgrind options).</para>
@@ -93,7 +94,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-profiling-visu</term>
 
         <listitem>
-          <para>Start Scilab under callgrind (Unix/linux only).</para>
+          <para>Start Scilab under callgrind (Unix/Linux/Mac OS X only).</para>
 
           <para>Define the variable SCILAB_VALGRIND_OPT to add custom options
           to callgrind (and override the existing callgrind options).</para>
@@ -106,7 +107,7 @@ scilab-cli &lt;Options&gt;</synopsis>
         <term>-electric-fence</term>
 
         <listitem>
-          <para>Start Scilab with the Electric Fence (Unix/linux only).</para>
+          <para>Start Scilab with the Electric Fence (Unix/Linux/Mac OS X only).</para>
 
           <para>Advise: use this option on a Scilab source tree.</para>
         </listitem>
@@ -235,7 +236,7 @@ scilab -l ja_JP
       </varlistentry>
 
       <varlistentry>
-        <term>-nwni</term>
+        <term>-nwni / -nogui</term>
 
         <listitem>
           <para>If this option is present, Scilab is started as command line
@@ -337,16 +338,16 @@ scilab -l ja_JP
     </variablelist>
 
     <para>Many more options are available. They can improve the performances,
-    change look and feel, change memory managements... See: <link
-    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</link>
-    or <link
-    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</link></para>
+    change look and feel, change memory managements... See: <ulink
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
+    or <ulink
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink></para>
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"> 
+    <programlisting role="example"><![CDATA[ 
 # Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
 # We are under Bash shell
 export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
@@ -354,14 +355,14 @@ scilab -profiling
 
 # Let's start Scilab in debug mode without stopping after each SIGSEGV
 # First, we write a small command file
-echo "handle SIGSEGV nostop" &amp;gt; debug.txt
+echo "handle SIGSEGV nostop" &> debug.txt
 # Now set the custom option
 # We are under Bash shell
 export SCILAB_GDB_OPT="--command=debug.txt"
 # Start Scilab in debug mode
-scilab -debug</programlisting>
+scilab -debug]]></programlisting>
 
-    <programlisting role="example-cli">
+    <programlisting role="example-cli"><![CDATA[
 # Under GNU/Linux, Mac OS X or Unix:
 $ echo "disp(%pi)"|scilab-cli
 or
@@ -374,12 +375,12 @@ $ scilab -nw -e "help()"
 
 
 # Scilab can be used for scripting aspects:
-echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
-echo $? </programlisting>
+echo "if 1<>2 then exit(99) end"|scilab-cli
+echo $? ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="exit">exit</link></member>

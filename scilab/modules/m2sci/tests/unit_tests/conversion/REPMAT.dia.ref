@@ -1,0 +1,100 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: REPMAT
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("REPMAT"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/REPMAT.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function repmat()
+// Copyright INRIA
+// Matlab version: 7.0.0.19901 (R14)
+// V.C.
+
+A = ones(2,2) .*. 2;
+B = ones(2,2) .*. [2,2];
+C = ones(2,2) .*. bool2s(1==1);
+D = ones(2,2) .*. bool2s([1==1,1==1]);
+E = asciimat(ones(2,2) .*. asciimat("str1"));
+F = asciimat(ones(2,2) .*. asciimat(["str1";"str2"]));
+
+%v0 = [2,2];
+G = ones(%v0(1),%v0(2)) .*. 2;
+%v0 = [2,2];
+H = ones(%v0(1),%v0(2)) .*. [2,2];
+%v0 = [2,2];
+I = ones(%v0(1),%v0(2)) .*. bool2s(1==1);
+%v0 = [2,2];
+J = ones(%v0(1),%v0(2)) .*. bool2s([1==1,1==1]);
+%v0 = [2,2];
+K = asciimat(ones(%v0(1),%v0(2)) .*. asciimat("str1"));
+%v0 = [2,2];
+L = asciimat(ones(%v0(1),%v0(2)) .*. asciimat(["str1";"str2"]));
+
+
+N = mtlb_repmat(2,m);
+O = mtlb_repmat(1==1,m);
+P = mtlb_repmat("str1",m);
+
+
+Q = ones(n,n) .*. 2;
+R = ones(n,n) .*. bool2s(1==1);
+S = asciimat(ones(n,n) .*. asciimat("str1"));
+
+A1 = ones(2,3) .*. 2;
+B1 = ones(2,3) .*. [2,2];
+C1 = ones(2,3) .*. bool2s(1==1);
+D1 = ones(2,3) .*. bool2s([1==1,1==1]);
+E1 = asciimat(ones(2,3) .*. asciimat("str1"));
+F1 = asciimat(ones(2,3) .*. asciimat(["str1";"str2"]));
+
+G1 = ones(2,3) .*. 2;
+H1 = ones(2,3) .*. [2,2];
+I1 = ones(2,3) .*. bool2s(1==1);
+J1 = ones(2,3) .*. bool2s([1==1,1==1]);
+K1 = asciimat(ones(2,3) .*. asciimat("str1"));
+L1 = asciimat(ones(2,3) .*. asciimat(["str1";"str2"]));
+
+
+
+N1 = ones(m2,n2) .*. 2;
+O1 = ones(m2,n2) .*. bool2s(1==1);
+P1 = asciimat(ones(m2,n2) .*. asciimat("str1"));
+
+
+
+Q1 = ones(m1,n1) .*. 2;
+R1 = ones(m1,n1) .*. bool2s(1==1);
+S1 = asciimat(ones(m1,n1) .*. asciimat("str1"));
+
+T = ones(2,2) .*. ones(2,2,2)
+%v0 = [2,2];
+T = ones(%v0(1),%v0(2)) .*. ones(2,2,2)

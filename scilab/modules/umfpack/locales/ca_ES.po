@@ -1,0 +1,309 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2008-05-27 18:59+0100\n"
+"PO-Revision-Date: 2010-04-10 19:19+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" (lM,vM) aproximat amb el mètode de potència iterativa \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" (lm,vm) aproximat amb el mètode invers de potència iterativa \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        pivot no positiu a la columna %d\n"
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               FEU CLIC PER A CONTINUAR                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr ""
+"           no s'ha assolit després de %d iteracions (només s'ha obtingut %e) "
+"\n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           torneu a entrar el scisptdemo()                "
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    Factorització CC^T: La matriu no és definida positiva.\n"
+
+msgid "   then click on OK   "
+msgstr "   després feu clic a Accepta   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " La pila és massa petita per a aquesta demostració "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Avís: per a convergència lM a rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Avís: per a convergència lm a rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " Entreu el següent a la línia de comandes del Scilab:          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " iteració %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " iteració %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Hi ha hagut un error: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: Hi ha hagut un error: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: Hi ha hagut un error: %s: %s\n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+"%s: El tipus i/o la mida i/o el valor del segon argument és invàlid.\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s: No hi ha més memòria (n=%d, nnz=%d).\n"
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr ""
+"%s: No hi ha més memòria: Incrementeu el stacksize. Es necessiten %d "
+"paraules més.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: Aquesta matriu no té valors (només patrons diferents de zero) : poseu "
+"algun 1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: El fitxer conté un rhs però no es llegirà !"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: La matriu i els factors LU no tenen la mateixa dimensió.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"dispersa quadrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: No és compatible amb la "
+"factorització de Choleski.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada tenen una mida incorrecta: Ha de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"dispersa quadrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"dispersa.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una "
+"referència vàlida als factors (umf) LU.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una "
+"referència vàlida a una factorització de Cholesky"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una matriu "
+"simètrica definida positiva."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: No és una referència "
+"vàlida als factors de Cholesky"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: La referència als "
+"factors Cholesky no és vàlida.\n"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s: actualment no es llegeix una matriu dispersa elemental."
+
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s: no hi ha prou memòria.\n"
+
+msgid "Choose a sparse matrix"
+msgstr "Escolliu una matriu dispersa"
+
+msgid "Click to choose a demo"
+msgstr "Feu clic per a escollir una demostració"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr "L'rdenació GENMMD només funciona per a matrius simètriques.\n"
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "La matriu no és compatible amb els factors LU donats"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "El mòdul UMFPACK del Scilab no està instal·lat.\n"
+
+msgid "The (square) matrix appears to be singular."
+msgstr "La matriu (quadrada) sembla que sigui singular."
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr "S'ha de representar la part inferior de la matriu.\n"
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "Això és la factorització d'una matriu singular"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "Això no és la factorització d'una matriu quadrada"
+
+msgid "Warning"
+msgstr "Avís"
+
+msgid "display a speed comparison test"
+msgstr "mostra un test de comparació de velocitat"
+
+msgid "factorization"
+msgstr "factorització"
+
+msgid "how to use this stuff"
+msgstr "Com s'utilitza"
+
+msgid "internal error"
+msgstr "error intern"
+
+msgid "invalid matrix"
+msgstr "matriu invàlida"
+
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "no hi ha espai per a desar el punter LU a la ListNumeric."
+
+msgid "not enough memory"
+msgstr "no hi ha prou memòria"
+
+msgid "numeric factorization"
+msgstr "factorització numèrica"
+
+msgid "singular matrix"
+msgstr "matriu singular"
+
+msgid "small tests for condestsp"
+msgstr "petits tests per a condestsp"
+
+msgid "symbolic factorization"
+msgstr "factoritació simbòlica"

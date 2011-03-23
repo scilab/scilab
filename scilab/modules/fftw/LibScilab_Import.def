@@ -15,11 +15,8 @@ GetData
 getrhscvar_
 checklhs_
 checkrhs_
-createvarfromptr_
-freeArrayOfString
+createvarfromptr_ 
+freeArrayOfString 
 getrhsvar_
 gettype_
 vstk_
-
-;elementary_functions_f
- dset_

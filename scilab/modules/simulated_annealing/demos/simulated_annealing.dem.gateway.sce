@@ -1,11 +1,10 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA
+// Copyright (C) 2010 - DIGITEO - Yann COLLETTE
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-demopath = get_absolute_file_path("simulated_annealing.dem.gateway.sce");
-subdemolist = ["Simulated Annealing",                   "SAdemo.sce"; ...
-	       "Simulated Annealing and Ising problem", "SAIsing2ddemo.sce"];
-subdemolist(:,2) = demopath + subdemolist(:,2)
+subdemolist = [_("Simulated Annealing"),                   "SAdemo.sce"; ..
+	           _("Simulated Annealing and Ising problem"), "SAIsing2ddemo.sce"];
+
+subdemolist(:,2) = SCI + "/modules/simulated_annealing/demos/" + subdemolist(:,2)

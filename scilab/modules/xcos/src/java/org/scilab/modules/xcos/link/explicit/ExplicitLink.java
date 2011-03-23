@@ -13,6 +13,8 @@
 package org.scilab.modules.xcos.link.explicit;
 
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.input.ExplicitInputPort;
+import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 
 /**
  * An explicit link connect an {@link ExplicitOutputPort} to an
@@ -31,6 +33,7 @@ public class ExplicitLink extends BasicLink {
     }
     
     /** @return A black colored explicit link identifier */
+	@Override
     public double[][] getColorAndType() {
 	return COLOR_AND_TYPE;
     }

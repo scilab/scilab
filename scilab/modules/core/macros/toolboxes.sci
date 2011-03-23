@@ -34,7 +34,7 @@ function [y] = toolboxes(path)
   files = listfiles('.');
   contribs = [];
   for k = 1:size(files,'*') 
-    if fileinfo(files(k)+'/loader.sce') <> [] then 
+    if isfile(files(k)+'/loader.sce') then 
       contribs = [contribs ; files(k)];
     end
   end

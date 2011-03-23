@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="category" type="Category"/>
+
+  <xs:complexType name="PaletteBlock">
+    <xs:sequence>
+      <xs:element name="data" type="VariablePath" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="icon" type="VariablePath" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+    <xs:attribute name="name" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="VariablePath">
+  	<xs:attribute name="path" type="xs:anyURI" use="required"/>
+  	<xs:attribute name="variable" type="xs:string" use="optional"/>
+  </xs:complexType>
+
+  <xs:complexType name="Custom">
+    <xs:complexContent>
+      <xs:extension base="Palette">
+        <xs:sequence>
+          <xs:element name="path" type="VariablePath" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Palette" abstract="true">
+    <xs:complexContent>
+      <xs:extension base="PaletteNode" />
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="PaletteNode" abstract="true">
+    <xs:attribute name="name" type="xs:string" use="required"/>
+    <xs:attribute name="enable" type="xs:boolean" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="PreLoaded">
+    <xs:complexContent>
+      <xs:extension base="Palette">
+        <xs:sequence>
+          <xs:element name="block" type="PaletteBlock" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="Category">
+    <xs:complexContent>
+      <xs:extension base="PaletteNode">
+        <xs:sequence>
+          <xs:element name="node" type="PaletteNode" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+</xs:schema>
+

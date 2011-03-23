@@ -13,7 +13,7 @@
 result=x_mdialog(title,labelsv,labelsh,default_input_matrix)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title</term>
@@ -84,8 +84,8 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
                  ['P gain';'I gain '],[' ';' '])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="editvar">editvar</link>
@@ -107,9 +107,6 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
       </member>
       <member>
         <link linkend="execstr">execstr</link>
-      </member>
-      <member>
-        <link linkend="editvar">editvar</link>
       </member>
     </simplelist>
   </refsection>

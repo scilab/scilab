@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intsetfield)(); /* fortran */
 /*--------------------------------------------------------------------------*/
-int C2F(sci_setfield)(char *fname,unsigned long fname_len)
+int sci_setfield(char *fname,unsigned long fname_len)
 {
 	C2F(intsetfield)();
 	return 0;

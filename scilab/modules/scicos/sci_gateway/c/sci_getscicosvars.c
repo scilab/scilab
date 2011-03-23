@@ -37,7 +37,7 @@ extern void str2sci(char** x,int n,int m); /* core/src/c/str2sci.h */
 extern int C2F(mktlist)(); 
 /*--------------------------------------------------------------------------*/
 /* intgetscicosvarsc getscicosvars interface routine
-* retrieve some informations during simulation.
+* retrieve some information during simulation.
 *
 * [myvar]=getscicosvars(str)
 *

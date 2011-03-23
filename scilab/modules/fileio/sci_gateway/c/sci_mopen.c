@@ -74,13 +74,13 @@ int sci_mopen(char *fname,unsigned long fname_len)
 			}
 			else
 			{
-				Scierror(999, _("%s: Wrong size for input argument #%d: A integer expected.\n"), fname,3);
+				Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), fname,3);
 				return 0;
 			}
 		}
 		else
 		{
-			Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), fname,3);
+			Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname,3);
 			return 0;
 		}
 	}
@@ -102,7 +102,7 @@ int sci_mopen(char *fname,unsigned long fname_len)
 			{
 				case (int)MOPEN_NO_MORE_LOGICAL_UNIT : 
 				{
-					Error(66);/* no more logical units */
+					SciError(66);/* no more logical units */
 					FREE(filename);
 					filename = NULL;
 					return 0;

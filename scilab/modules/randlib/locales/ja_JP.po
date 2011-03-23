@@ -1,0 +1,450 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-08-14 02:44+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+msgid ""
+"\n"
+" bad seeds for clcg4, must be integers with  s1 in [1, 2147483646]\n"
+"                                             s2 in [1, 2147483542]\n"
+"                                             s3 in [1, 2147483422]\n"
+"                                             s4 in [1, 2147483322]"
+msgstr ""
+"\n"
+" clcg4 のシードが間違っています. 以下の値を指定してください.\n"
+"s1 は [1, 2147483646] の範囲の整数\n"
+"s2 は [1, 2147483542] の範囲の整数\n"
+"s3 は [1, 2147483422] の範囲の整数\n"
+"s4 は [1, 2147483322] の範囲の整数"
+
+#, c-format
+msgid ""
+"\n"
+"=> be aware that you have may lost synchronization\n"
+"    between the virtual gen %d and the others !\n"
+"    use grand(\"setall\", s1, s2, s3, s4) if you want recover it."
+msgstr ""
+"\n"
+"=> 仮想生成器 %d とその他の間で同期が失われる可能性があります!\n"
+"     修復するには, grand(\"setall\", s1, s2, s3, s4) を実行してください."
+
+msgid ""
+"\n"
+"Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultra のシードが間違っています. [0, 2^32-1] の整数を指定してください.\n"
+
+msgid ""
+"\n"
+"Bad seed for urand, must be an int in [0,  2147483647]\n"
+msgstr ""
+"\n"
+"urand のシードが間違っています. [0, 2147483647]の整数を指定してください.\n"
+
+msgid ""
+"\n"
+"Bad seeds for clcg2, must be integers with  s1 in [1, 2147483562]\n"
+"                                        and  s2 in [1, 2147483398]\n"
+msgstr ""
+"\n"
+"clcg2 のシードが間違っています. s1 には [1, 2147483562]の整数を指定してください.\n"
+
+#, c-format
+msgid ""
+"\n"
+"The first component of the fsultra state, must be an int in [0, %d]\n"
+msgstr ""
+"\n"
+"fsultra 状態量の最初の要素は, [0, %d] の整数でなければなりません\n"
+
+msgid ""
+"\n"
+"The second component of the fsultra state, must be 0 or 1\n"
+msgstr ""
+"\n"
+"fsultra 状態量の2番目の要素は, 0 または1 でなければなりません\n"
+
+msgid ""
+"\n"
+"The third component of the fsultra state, must be an int in [1, 2^32-1]\n"
+msgstr ""
+"\n"
+"fsultra 状態量の3番目の要素は, [1, 2^32-1] の整数でなければなりません\n"
+
+#, c-format
+msgid "%s Wrong value for first input argument %s.\n"
+msgstr "%s: 最初の入力引数 %s の値が間違っています.\n"
+
+#, c-format
+msgid "%s: Missing P matrix and X0 for Markov chain\n"
+msgstr "%s: P行列 および マルコフ連鎖の X0 が指定されていません\n"
+
+#, c-format
+msgid "%s: The %s option affects only the %s generator\n"
+msgstr "%s: %s オプションは %s 生成器のみに作用します.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: 入力引数の数が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
+msgstr "%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
+"generator.\n"
+msgstr "%1$s: 入力引数の数が間違っています:  %4$s 生成器のオプション '%3$s' には%2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d expected for '%s' with the %s "
+"generator.\n"
+msgstr "%1$s: 入力引数の数が間違っています:  %4$s 生成器の '%3$s' には %2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
+msgstr "%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
+"the %s generator.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  %5$s 生成器の '%4$s' オプションには %2$d または %3$d "
+"個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
+"or %s generator.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  %4$s または %5$s 生成器の '%3$s' オプションには %2$d "
+"個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
+msgstr "%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
+msgstr "%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong second input argument: Square matrix or row vector expected.\n"
+msgstr "%s: 第2引数が間違っています: 正方行列または行ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Column vector expected.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
+msgstr "%s: 入力引数の大きさが間違っています: %s にはスカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
+msgstr "%s: 入力引数の大きさが間違っています: 平均(Mean)と分散(Cov)の大きさが NULL です.\n"
+
+#, c-format
+msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
+msgstr "%s: 第2引数の大きさが間違っています: %dx%d を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
+msgstr "%s: 5番目の入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Scalar expected.\n"
+msgstr "%s: 最初の入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
+msgstr "%s: 4番目の入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Column vector expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgstr "%s: 入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Square matrix expected.\n"
+msgstr "%s: 入力引数の型が間違っています: 正方行列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input arguments: Mean and Cov have incompatible "
+"dimensions\n"
+msgstr "%s: 入力引数の型が間違っています: 平均(Mean)と分散(Cov)の次元が一致しません.\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Scalar expected.\n"
+msgstr "%s: 2番目の入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for third input argument: Scalar expected.\n"
+msgstr "%s: 3番目の入力引数の型が間違っています: スカラーを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"deviate.\n"
+msgstr "%s: 最初の入力引数の値が間違っています: ランダム偏差の数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for first input argument: Must be the number of random "
+"simulation.\n"
+msgstr "%s: 最初の入力引数の値が間違っています: ランダムシミュレーションの数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %s.\n"
+msgstr "%s: 入力引数 %s の値が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
+msgstr "%s: 入力引数の値が間違っています: '%s' および %d の間で指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 714
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Number of random simulation expected.\n"
+msgstr "%s: 入力引数で不正な値: ランダム・シュミレーションの数を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: %d, %d or %d expected.\n"
+msgstr "%s: 2番目の入力引数の値が間違っています: %d, %d または %dを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
+"'%s' expected.\n"
+msgstr ""
+"%s: 2番目の入力引数の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: Must be > %d.\n"
+msgstr "%s: 2番目の入力引数の値が間違っています: %d より大きな値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgstr "%s: 2番目の入力引数の値が間違っています:  %d から %d の値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument: Vector of %d or %d values for %s "
+"expected.\n"
+msgstr "%1$s: 入力引数の値が間違っています: %2$d のベクトルまたは %4$s の %3$d 値を指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 849
+#, c-format
+msgid "%s: X0(%d) must be in the range [1,%d]\n"
+msgstr "%s: X0(%d)  は [1,%d] の範囲でなければなりません。\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1007
+msgid "Av < 0\n"
+msgstr "Av < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 1049
+msgid "Av < 0.0\n"
+msgstr "Av < 0.0\n"
+
+msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
+msgstr "mt のシードが間違っています. [0, 2^32-1] の整数を指定してください.\n"
+
+msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
+msgstr "kiss のシードが間違っています. [0, 2^32-1] の整数を指定してください.\n"
+
+msgid "DF < 1 or XNONC < 0\n"
+msgstr "DF < 1 または XNONC < 0\n"
+
+msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
+msgstr "DF < 1.0 または DF <= 0.0 または Xnonc < 0.0\n"
+
+msgid "Degrees of freedom nonpositive\n"
+msgstr "自由度が正ではありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 664
+msgid "Low > High\n"
+msgstr "低 > 高\n"
+
+msgid "Missing A and B for beta law\n"
+msgstr "ベータ分布でAおよびBが指定されていません\n"
+
+msgid "Missing Av and Sd for Normal law\n"
+msgstr "正規分布で平均(Av)と標準偏差(Sd)が指定されていません\n"
+
+msgid "Missing Av for Poisson law\n"
+msgstr "ポアソン分布で平均(Av) が指定されていません\n"
+
+msgid "Missing Av for exponential law\n"
+msgstr "指数分布で平均(Av) が指定されていません\n"
+
+msgid "Missing Df and Xnonc for non-central chi-square law\n"
+msgstr "非中心カイ二乗分布でDfおよびXnonc が指定されていません\n"
+
+msgid "Missing Df for chi-square law\n"
+msgstr "カイ二乗分布でDfが指定されていません\n"
+
+msgid "Missing Dfn and Dfd for F law\n"
+msgstr "F分布でDfnおよびDfdが指定されていません\n"
+
+msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
+msgstr "非中心F分布でDfn, Dfd および Xnonc が指定されていません\n"
+
+msgid "Missing Low and High for Uniform Real law\n"
+msgstr "一様実数分布で下限(Low)および上限(High)が指定されていません\n"
+
+msgid "Missing Low and High for Uniform int law\n"
+msgstr "一様整数分布で下限(Low)および上限(High)が指定されていません\n"
+
+msgid "Missing Mean and Cov for Multivariate Normal law\n"
+msgstr "多変量正規分布で平均(Mean)と分散(Cov)が指定されていません\n"
+
+msgid "Missing N and P for Binomial law\n"
+msgstr "二項分布でNおよびPが指定されていません\n"
+
+msgid "Missing N and P for MULtinomial law\n"
+msgstr "多項分布でNおよびPが指定されていません\n"
+
+msgid "Missing N and P for Negative Binomial law\n"
+msgstr "負の二項分布でNおよびPが指定されていません\n"
+
+msgid "Missing p for Geometric law\n"
+msgstr "幾何学的分布でpが指定されていません\n"
+
+msgid "Missing shape and scale for Gamma law\n"
+msgstr "ガンマ分布でshape およびscaleが指定されていません\n"
+
+msgid "Missing vect for random permutation\n"
+msgstr "ランダム置換でvectが指定されていません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 566
+# File: sci_gateway/c/sci_grand.c, line: 752
+# File: sci_gateway/c/sci_grand.c, line: 779
+msgid "N < 0\n"
+msgstr "N < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 571
+msgid "Ncat <= 1\n"
+msgstr "Ncat <= 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 747
+# File: sci_gateway/c/sci_grand.c, line: 774
+msgid "P is not in [0,1]\n"
+msgstr "Pは、 [0,1]にありません\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 579
+#, c-format
+msgid "P(%d) < 0\n"
+msgstr "P(%d) < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 584
+#, c-format
+msgid "P(%d) > 1\n"
+msgstr "P(%d) > 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 864
+#, c-format
+msgid "P(%d,%d) < 0\n"
+msgstr "P(%d,%d) < 0\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 869
+#, c-format
+msgid "P(%d,%d) > 1\n"
+msgstr "P(%d,%d) > 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 510
+#, c-format
+msgid "Rand(...,'bet',..): A or B < %f\n"
+msgstr "Rand(...,'bet',..): A または B < %f\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 987
+msgid "Rand: DF <= 0\n"
+msgstr "Rand: DF <= 0\n"
+
+# File: etc/randlib.start, line: 23
+msgid "Random"
+msgstr "ランダム"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 642
+msgid "SD < 0.0\n"
+msgstr "SD < 0.0\n"
+
+msgid "Scilab randlib interface not installed.\n"
+msgstr "Scilab randlibインターフェースがインストールされていません.\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 876
+#, c-format
+msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
+msgstr "Sum of P(%d,1:%d)=%f ~= 1\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 591
+msgid "Sum of P(i) > 1\n"
+msgstr "Sum of P(i) > 1\n"
+
+#, c-format
+msgid "The %s option affects only the %s generator\n"
+msgstr "オプション %s は, %s 生成器専用です\n"
+
+#, c-format
+msgid "The %s option affects only the clcg4 generator\n"
+msgstr "オプション %s は, clcg4 生成器専用です\n"
+
+msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
+msgstr "mt状態量の最初の要素 は, [1, 624] の範囲の整数としてください.\n"
+
+msgid "This information concerns only the clcg4 generator\n"
+msgstr "この情報は clcg4 生成器にのみ関係します\n"
+
+msgid "X0 is empty\n"
+msgstr "X0が空です\n"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 685
+msgid "a and b must integers with (b-a+1) <= 2147483561"
+msgstr "a と b は (b-a+1) <= 2147483561 の整数でなければなりません"
+
+#
+# File: sci_gateway/c/sci_grand.c, line: 617
+msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"

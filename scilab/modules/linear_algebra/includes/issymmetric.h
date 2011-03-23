@@ -23,7 +23,7 @@
 #ifndef __ISSYMMETRIC__
 #define __ISSYMMETRIC__
 #include "dynlib_linear_algebra.h"
-#include "stack-c.h"
+
 
 
 #define SYMMETRIC	1

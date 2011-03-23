@@ -28,7 +28,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[xprop]=pointer_xproperty</synopsis>
+    <synopsis>[xprop] = pointer_xproperty()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_pointer_xproperty">
     <title>Module</title>
@@ -52,7 +52,7 @@ This function returns a vector that informs the type (algebraic or differential)
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_pointer_xproperty">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para>

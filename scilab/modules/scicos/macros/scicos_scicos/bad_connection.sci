@@ -78,9 +78,9 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
     //** hilite_obj(scs_m.objs(path_out)); //**
     hilite_obj(path_out); //** new
     if typ==0 then
-      messagebox(['Hilited block has connected ports ';'with  incompatible sizes'],"modal")
+      messagebox(['Highlighted block has connected ports ';'with  incompatible sizes'],"modal")
     else
-      messagebox(['Hilited block has connected ports ';'with  incompatible types'],"modal")
+      messagebox(['Highlighted block has connected ports ';'with  incompatible types'],"modal")
     end
     unhilite_obj(path_out); //** new
     return;
@@ -88,7 +88,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
 
   //[lhs,rhs]=argn(0)
   if prt_in <> -1 then  //two connected blocks
-    lp=mini(size(path_out,'*'),size(path_in,'*'))
+    lp=min(size(path_out,'*'),size(path_in,'*'))
     k=find(path_out(1:lp)<>path_in(1:lp))
     path=path_out(1:k(1)-1) // common superbloc path
     path_out=path_out(k(1)) // "from" block number
@@ -103,12 +103,12 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 
       if typ==0 then
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible sizes';
                  ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
                  ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)],"modal");
       else
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible type';
                  ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
                  ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
@@ -119,7 +119,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       //** hilite_obj(scs_m.objs(path_out))
       //** if or(path_in<>path_out) then hilite_obj(scs_m.objs(path_in)),end
     else
-      mxwin=maxi(winsid())
+      mxwin=max(winsid())
 //*****************************************
       for k=1:size(path,'*')
 	//** hilite_obj(scs_m.objs(path(k))) //**
@@ -135,12 +135,12 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 //*****************************************
       if typ==0 then
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible sizes';
                  string(prt_out)+' output port size is :'+sci2exp(nout);
                  string(prt_in)+' input port size is  :'+sci2exp(nin)],"modal");
       else
-        messagebox(['Hilited block(s) have connected ports ';
+        messagebox(['Highlighted block(s) have connected ports ';
                  'with  incompatible type';
                  ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
                  ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
@@ -174,7 +174,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
 	//** hilite_obj(scs_m.objs(path_out)) //** clear
         unhilite_obj(path_out) ;
       else
-	mxwin=maxi(winsid())
+	mxwin=max(winsid())
 	for k=1:size(path,'*')
 	  //** hilite_obj(scs_m.objs(path(k))) //**
 	  hilite_obj(path(k)) ; //**

@@ -1,6 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Localization of the module interpolation
@@ -37,7 +37,7 @@ libsciinterpolation_la_CFLAGS= 	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 
-libsciinterpolation_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciinterpolation_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciinterpolation_la_SOURCES = $(INTERPOLATION_C_SOURCES) $(INTERPOLATION_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -46,7 +46,7 @@ CHECK_SRC= $(INTERPOLATION_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciinterpolation_la_CFLAGS)
 
 libsciinterpolation_la_LIBADD = \
-	$(top_builddir)/modules/core/libscicore.la \
+	 \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
     $(top_builddir)/modules/string/libscistring.la
 
@@ -57,7 +57,7 @@ modulename=interpolation
 
 #### interpolation : Conf files ####
 libsciinterpolation_la_rootdir = $(mydatadir)
-libsciinterpolation_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciinterpolation_la_root_DATA =  license.txt version.xml
 
 
 ####�interpolation : init scripts ####

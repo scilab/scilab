@@ -19,7 +19,7 @@
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>n=lstsize(x)</synopsis>
+    <synopsis>n=lstsize(l)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -65,8 +65,8 @@ lstsize(x)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="length">length</link></member>

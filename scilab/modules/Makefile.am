@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -14,11 +14,9 @@
 
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
-SUBDIRS = core
 
-SUBDIRS += \
+SUBDIRS = \
 output_stream \
-action_binding \
 arnoldi \
 elementary_functions \
 string \
@@ -29,13 +27,15 @@ history_manager \
 spreadsheet \
 tclsci \
 localization \
+commons \
+jvm \
+action_binding \
 renderer \
 shell \
 completion \
 console \
 graphic_export \
 gui \
-jvm \
 graphics \
 optimization \
 symbolic \
@@ -80,10 +80,15 @@ simulated_annealing \
 parameters \
 matio \
 atoms \
+types \
 hdf5 \
 graph\
 xcos \
-xpad 
+scinotes \
+parallel \
+modules_manager \
+ui_data \
+history_browser
 
 #umfpack
 
@@ -91,7 +96,7 @@ if MPI
 SUBDIRS += mpi
 endif
 
-if SCICOS
+if XCOS
 SUBDIRS += scicos_blocks
 endif
 
@@ -128,9 +133,13 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
 	$(top_builddir)/modules/console/libsciconsole.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/jvm/libscijvm.la \
-	$(top_builddir)/modules/xcos/libscixcos.la \
-	$(top_builddir)/modules/xpad/libscixpad.la
+	$(top_builddir)/modules/scinotes/libsciscinotes.la \
+	$(top_builddir)/modules/ui_data/libsciui_data.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 if HDF5
 GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload.la
@@ -141,9 +150,13 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export-disable.la \
 	$(top_builddir)/modules/console/libsciconsole-disable.la \
+	$(top_builddir)/modules/action_binding/libsciaction_binding-disable.la \
 	$(top_builddir)/modules/jvm/libscijvm-disable.la \
 	$(top_builddir)/modules/xcos/libscixcos-disable.la \
-	$(top_builddir)/modules/xpad/libscixpad-disable.la
+	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
+	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
+	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
+	$(top_builddir)/modules/commons/libscicommons-disable.la
 
 if HDF5
 NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
@@ -151,6 +164,7 @@ NO_GUI_LIBS += $(top_builddir)/modules/hdf5/libscihdf5-forceload-disable.la
 endif
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
+	$(top_builddir)/modules/parameters/libsciparameters.la \
 	$(top_builddir)/modules/boolean/libsciboolean.la \
 	$(top_builddir)/modules/cacsd/libscicacsd.la \
 	$(top_builddir)/modules/core/libscicore.la \
@@ -170,18 +184,16 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/special_functions/libscispecial_functions.la \
 	$(top_builddir)/modules/time/libscitime.la \
 	$(top_builddir)/modules/windows_tools/libsciwindows_tools.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/pvm/libscipvm.la \
 	$(top_builddir)/modules/sparse/libscisparse.la \
 	$(top_builddir)/modules/shell/libscishell.la \
 	$(top_builddir)/modules/completion/libscicompletion.la \
 	$(top_builddir)/modules/history_manager/libscihistory_manager.la \
-	$(top_builddir)/modules/action_binding/libsciaction_binding.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
 	$(top_builddir)/modules/string/libscistring.la \
-	$(top_builddir)/modules/fftw/libscifftw.la \
+	$(top_builddir)/modules/functions/libscifunctions.la \
 	$(top_builddir)/modules/hdf5/libscihdf5.la \
-	$(top_builddir)/modules/functions/libscifunctions.la
+	$(top_builddir)/modules/pvm/libscipvm.la \
+	$(top_builddir)/modules/fftw/libscifftw.la
 
 
 # These libraries are loaded dynamically from Scilab.
@@ -193,6 +205,7 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
+	$(top_builddir)/modules/xcos/libscixcos.la \
 	$(top_builddir)/modules/scicos_blocks/libsciscicos_blocks.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
@@ -200,7 +213,9 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/parallel/libsciparallel.la
+
 
 if MPI
 ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la

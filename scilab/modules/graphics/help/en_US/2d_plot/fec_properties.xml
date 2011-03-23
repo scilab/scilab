@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fec_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fec_properties</refname>
+    <refpurpose>description of the fec entities
+  properties</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>The Fec entity is a leaf of the graphics entities hierarchy. It
+    represents 2D finite elements plots (see <literal>fec</literal>,
+    <literal>Sgrayplot</literal>).</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>This property contains the handle of the parent. The parent of the
+        fec entity should be of the type <literal>"Axes"</literal> or
+        <literal>"Compound"</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>This property contains a vector with the <literal>children</literal> of
+        the handle. However, <literal>Fec</literal> handles currently do not have
+        any <literal>children</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>This field contains the <literal>visible</literal> property value for
+        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
+        By default, the plot is visible, the value's property is
+        <literal>"on"</literal>. If <literal>"off"</literal> the plot is not drawn on the
+        screen.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>This is a three column matrix <literal>[x,y,f]</literal>, where
+        <literal>x(i)</literal> and <literal>y(i)</literal> are the coordinates of the
+        <literal>i</literal>'th node. <literal>f(i)</literal> is the value associated to
+        the node <literal>i</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>triangles: </term>
+        <listitem>
+          <para>This is a five column matrix <literal>[tn,n1,n2,n3,flag]</literal>.
+        <literal>tn(j)</literal> is the triangle number. <literal>n1(j)</literal>,
+        <literal>n2(j)</literal> and <literal>n3(j)</literal> are the index of the nodes
+        which constitute the triangle. (<literal>flag(j)</literal> is not
+        used).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z_bounds: </term>
+        <listitem>
+          <para>This vector of size 2, <literal>[zmin,zmax]</literal>, gives the z values associated
+        with the first and the last color (of the current colormap). More
+        exactly if the colormap have <literal>nc</literal> colors and if we note <literal>dz
+        = (zmax-zmin)/nc</literal>, then the part of the triangulation where
+        <literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal> is filled with the
+        color <literal>i</literal>). By default the <literal>z_bounds</literal> property value
+		is <literal>[0,0]</literal>. In this case, the <literal>zmin</literal> and <literal>zmax</literal> are
+		autommatically set to the minumum and maximum of the <literal>func</literal> argument.
+		</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>outside_color: </term>
+        <listitem>
+          <para>
+		    This vector of size 2, <literal>[cmin, cmax]</literal>, defines the color used
+			when nodes values are outside the <literal>z_bounds = [zmin,zmax]</literal> interval.
+			When node values are lower than <literal>zmin</literal> the color with index <literal>cmin</literal>
+			is used. When node values are greater than <literal>zmax</literal> the color with index <literal>cmax</literal>
+			is used. By default, the <literal>outside_color</literal> property value is <literal>[0,0]</literal>.
+			In this case, <literal>cmin</literal> and <literal>cmax</literal> are automatically set to the two bounds of the colormap.
+			If <literal>cmin</literal> or <literal>cmax</literal> are negative, then values outside z_bounds interval are
+			not displayed, they appear transparent.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>color_range: </term>
+        <listitem>
+          <para>
+		    This vector of size 2, <literal>[rmin, rmax]</literal>, allows to use only a part of the
+			colormap for display. <literal>rmin</literal> and <literal>rmax</literal> stand for
+			colormap indices. If they are both greater than 1, then the actual colormap used to
+			display the fec entity is <literal>colormap(rmin:rmax)</literal> where <literal>colormap</literal>
+			is the colormap of the parent figure. By default, the <literal>color_range</literal> property value is <literal>[0,0]</literal>.
+			In this case, the whole colormap is used.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>line_mode:</term>
+        <listitem>
+          <para>If <literal>"on"</literal>, the wireframe enclosing triangles is drawn.
+		  If <literal>"off"</literal>, only the inside of triangles are drawn.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>foreground:</term>
+        <listitem>
+          <para>This color index specifies the color of the mesh.
+		  If <literal>line_mode</literal> property is <literal>"on"</literal>,
+		  the wireframe is drawn using this color.
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>This field contains the <literal>clip_state</literal> property value for
+        the fec. It should be :</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> this means that the fec is not
+            clipped.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> this means that the fec is clipped
+            outside the Axes box.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal> this means that the fec is clipped
+            outside the rectangle given by property clip_box.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>This field is to determinate the <literal>clip_box</literal> property.
+        By Default its value should be an empty matrix if clip_state is "off".
+        Other cases the vector <literal>[x,y,w,h]</literal> (upper-left point width
+        height) defines the portions of the fec to display, however
+        <literal>clip_state</literal> property value will be changed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>This field can be use to store any scilab variable in the fec data
+        structure, and to retreive it.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+x=-10:10; y=-10:10;m =rand(21,21);
+Sgrayplot(x,y,m);
+a=get("current_axes");
+f=a.children.children(1)
+f.data(:,3)=(1:size(f.data,1))';
+a.parent.color_map=hotcolormap(64);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="fec">fec</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

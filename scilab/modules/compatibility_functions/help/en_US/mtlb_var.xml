@@ -19,7 +19,7 @@
     <refpurpose>Matlab var emulation function</refpurpose>
   </refnamediv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
 
       <varlistentry>
@@ -114,8 +114,8 @@ x = grand(N,1,'nor',0,1) + %i*grand(N,1,'nor',0,1);
 computed = mtlb_var(x);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="variance">variance</link>

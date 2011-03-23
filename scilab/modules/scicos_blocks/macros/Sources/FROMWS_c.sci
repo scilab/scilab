@@ -96,7 +96,7 @@ case 'define' then
   model.dep_ut=[%f %t];
   gr_i=['txt=[''From workspace''];'..
         ;'xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')']
-  exprs=[string(varnam),string(Method),string(ZC),string(OutEnd)];
+  exprs=[string(varnam);string(Method);string(ZC);string(OutEnd)];
   x=standard_define([3.5 2],model,exprs,gr_i)
 end
 endfunction

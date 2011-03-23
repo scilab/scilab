@@ -11,3 +11,4 @@
 
 exec("SCI/modules/graphics/demos/anim/anim8/anim8.sci");
 demo_riemann();
+clear demo_riemann;

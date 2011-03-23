@@ -114,6 +114,7 @@ public class SciDockingListener implements DockingListener {
 			}
 		}
 		dockedTab.setParentWindowId(newId);
+		dockedTab.requestFocus();
 
 		// one more tab in the list
 		nbDockedObjects++;

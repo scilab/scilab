@@ -23,7 +23,7 @@
     <synopsis>res = strncpy(str1,num)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>
@@ -58,8 +58,8 @@ strncpy(['scilab','SciLab';'strncpy','strstr'],3)
 strncpy(['scilab','SciLab';'strncpy','strstr'],[1,2;3,4])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strcat">strcat</link>

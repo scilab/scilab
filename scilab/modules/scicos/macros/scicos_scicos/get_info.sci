@@ -20,8 +20,11 @@
 //
 
 function txt=get_info(info)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //This function may be redefined by the user to get a textual
-//form of the informations associated with the current diagram
+//form of the information associated with the current diagram
 if size(info)>0 then
   txt=info(1)
 else

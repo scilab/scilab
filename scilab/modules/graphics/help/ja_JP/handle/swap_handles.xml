@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="swap_handles">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>swap_handles</refname>
+    <refpurpose>グラフィック階層の2つのハンドルを交換する.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>swap_handle( handle1, handle2 )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>handle1</term>
+        <listitem>
+          <para>交換する最初のハンドル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>handle2</term>
+        <listitem>
+          <para>交換する2番目のハンドル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><emphasis role="bold">swap_handles</emphasis>関数により
+	グラフィック階層の2つのハンドルを交換することができます.
+	最初のハンドルは2番目のハンドルの位置と交換されます.</para>
+    <para>あるハンドルは他のハンドルと常に互換であるわけではないため,
+	ハンドルの交換についえはいくつかの制約があります.
+	例えば,  polylineとaxesハンドルを交換することはできません.
+	この互換性に関する詳細については,
+	 <link linkend="graphics_entities">graphics_entities</link>ページを参照ください.</para>
+    <para>このルーチンは同じ親の子の間で添字を変更する際に使用することができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//-----------------//
+//  最初の例       //
+//-----------------//
+
+// 矩形を作成
+xrect( 0.5, 0.5,0.5,0.5) ;
+rect = gce() ;
+
+// 円を作成
+xarc( 0.5, 0.5, 0.5, 0.5, 0, 64 * 360 ) ;
+circle = gce() ;
+
+// 矢印を作成
+xpoly([0,1],[0,1]) ;
+arrow = gce() ;
+arrow.polyline_style = 4 ;
+arrow.arrow_size_factor = 4 ;
+
+// 子のリストを取得
+axes = gca()  ;
+axes.children
+
+// 順番を変更
+swap_handles( rect, arrow ) ;
+swap_handles( arrow, circle ) ;
+
+// 新しい順番を得る
+axes.children
+
+//-----------------//
+//  2番目の例      //
+//-----------------//
+
+// 2つのウインドウを作成
+plot2d ;
+axes1 = gca() ;
+
+scf() ;
+fec ;
+axes2 = gca() ;
+
+// 軸を交換
+// 色マップは変更されないことに注意.
+swap_handles( axes1, axes2 ) ;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="relocate_handle">relocate_handle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

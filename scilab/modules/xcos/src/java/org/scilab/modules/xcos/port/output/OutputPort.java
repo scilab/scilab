@@ -20,7 +20,7 @@ import org.scilab.modules.xcos.port.Orientation;
  * the block and a link.
  * 
  * It's default orientation is on the block's EAST side and it <b>must</b> be
- * connected to an {@link InputPort} .
+ * connected to an {@link org.scilab.modules.xcos.port.input.InputPort} .
  */
 public abstract class OutputPort extends BasicPort {
 
@@ -33,5 +33,7 @@ public abstract class OutputPort extends BasicPort {
     public OutputPort(String type) {
 	super(type);
 	setOrientation(Orientation.EAST);
+	
+	setDefaultValues();
     }
 }

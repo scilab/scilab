@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 extern int C2F(intimult)(int *id);
 /*--------------------------------------------------------------------------*/
-int C2F(sci_imult)(char *fname,unsigned long fname_len)
+int sci_imult(char *fname,unsigned long fname_len)
 {
 	static int id[6];
 	C2F(intimult)(id);

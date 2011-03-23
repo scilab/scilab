@@ -16,7 +16,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
-#include "stack-c.h"
+#include "sci_types.h"
 #include "SetUiobjectForegroundColor.h"
 #include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -26,6 +26,7 @@ extern "C"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "UicontrolStyleToString.h"
+#include "checkColorRange.h"
 }
 
 #endif /* __SET_UIOBJECT_FOREGROUNDCOLOR_HXX__ */

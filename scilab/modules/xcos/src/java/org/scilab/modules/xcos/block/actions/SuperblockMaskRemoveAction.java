@@ -57,6 +57,7 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
 	 * @param e the event source
 	 * @see org.scilab.modules.gui.events.callback.CallBack#actionPerformed(java.awt.event.ActionEvent)
 	 */
+	@Override
 	public void actionPerformed(ActionEvent e) {
 	    SuperBlock block = (SuperBlock) ((XcosDiagram) getGraph(e)).getSelectionCell();
 	    block.unmask();

@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA -
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  */
 #include "matmul.h"
 
@@ -26,7 +26,7 @@ int sci_matmul(char *fname)
 
   /* Check dimensions    */
   if (!(n1==m2)) { sciprint("%s: Incompatible inputs\n", "matmul");
-    Error(999);
+    SciError(999);
     return 0;}
 
   /* Call multiplication function 

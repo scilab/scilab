@@ -17,68 +17,6 @@
 
 /** 
  * TODO : comment
- * @param rep
- * @return 
- */
-int C2F(withscicos)(int *rep);
-
-/** 
- * TODO : comment
- * @param rep
- * @return 
- */
-int C2F(withmodelicac)(int *rep);
-
-/** 
- * TODO : comment
- * @param rep
- * @return 
- */
-int C2F(withjavasci)(int *rep);
-
-/** 
- * TODO : comment
- * @param rep
- * @return 
- */
-int C2F(withmsdos)(int *rep);
-
-/** 
- * TODO : comment
- * @param buf
- * @param nbuf
- * @param lbuf
- * @return 
- */
-int C2F(getcomp)(char *buf,int *nbuf,long int lbuf);
-
-
-/** 
- * TODO : comment
- * @return 
- */
-int ExistJavaSciUnix(void);
-
-/** 
- * TODO : comment
- * @return 
- */
-BOOL ExistModelicac(void);
-
-/** 
- * TODO : comment
- * @return 
- */
-BOOL ExistScicos(void);
-
-/** 
- * TODO : comment
- * @return 
- */
-BOOL ExistJavaSciWin(void);
-
-/** 
- * TODO : comment
  * @return 
  */
 int SetSci(void);

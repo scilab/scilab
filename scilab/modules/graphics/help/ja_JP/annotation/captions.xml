@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="captions" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>captions</refname>
+
+    <refpurpose>グラフの表題を描画</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>hl=captions(h, strings [,location])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>ポリラインエンティティのハンドルのベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>n個の文字列のベクトル , strings(i) は i番目のポリラインの表題
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>"<literal>Legend</literal>"型のハンドル,
+		表題の情報を含む構造体を指します
+	 (<link
+          linkend="legend_properties">legend_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>location</term>
+
+        <listitem>
+          <para>文字列で,以下の値を指定できます:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"in_upper_right" </literal>:表題は
+		軸ボックスの右上隅に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_upper_left"</literal>: 表題は
+		軸ボックスの左上隅に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_right"</literal>: 表題は
+		軸ボックスの右下隅に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"in_lower_left"</literal>: 表題は
+		軸ボックスの左下隅に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_right"</literal>: 表題は
+		軸ボックスの右上隅の右に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_upper_left"</literal>: 表題は
+		軸ボックスの左上隅の左に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_right"</literal>: 表題は
+		軸ボックスの右下隅の右に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"out_lower_left"</literal>: 表題は
+		軸ボックスの左下隅の左に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"upper_caption"</literal>: 表題は
+		軸ボックスの左上隅の上に描画されます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"lower_caption"</literal>: 表題は
+		軸ボックス左下隅の下に描画されます.
+		このオプションは<link
+              linkend="plot2d">plot2d</link>の<literal>leg</literal>引数に対応します.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"by_coordinates"</literal>: 
+		表題ボックスの左上隅をデータ構造体の
+		"position"フィールドで指定します.
+		<literal>x</literal>および
+              <literal>y</literal>座標は
+		<literal>axes_bounds</literal>の大きさに対する
+		比で指定します.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	カレントのプロットの表題を指定した文字列をラベルにして
+	グラフィックウインドウの左下隅に配置します.
+    <literal>captions</literal> は対応するポリラインを想定した
+	ラベルを前に付加します.
+	型とプロパティは指定したハンドルから取得されます:
+	</para>
+
+    <para><literal>captions</literal> 関数は <link
+    linkend="legend_properties">Legend</link> データ構造体を作成します.</para>
+
+    <para>
+	各軸に付随した<literal>Legend</literal>が最大1個作成されます.
+	caption 関数が<literal>Legend</literal>がまだ存在する時に
+	再度コールされた場合,古いものが置換されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+t=0:0.1:2*%pi;
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+a.margins(4)=0.2;
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[1,2 3]);  
+e=gce();
+e.children(1).thickness=3;
+e.children(2).line_style=4;
+
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)']);
+hl=captions(e.children,['cos(t)';'cos(2*t)';'cos(3*t)'],'in_upper_right');
+
+hl.legend_location='in_upper_right'
+hl.fill_mode='on';
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="legend">legend</link></member>
+
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+
+      <member><link
+      linkend="legend_properties">legend_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

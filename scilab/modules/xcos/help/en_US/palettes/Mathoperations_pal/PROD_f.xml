@@ -24,14 +24,14 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="PROD_f">
   <refnamediv>
     <refname>PROD_f</refname>
-    <refpurpose>Multiplication</refpurpose>
+    <refpurpose>Element-wise product</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/PROD_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/PROD_f.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="PROD_f">Multiplication</link>
+          <link linkend="PROD_f">Element-wise product</link>
         </para>
       </listitem>
       <listitem>
@@ -73,6 +73,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_PROD_f">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_PROD_f">Authors</xref>
             </para>
           </listitem>
@@ -93,9 +98,8 @@
   <refsection id="Description_PROD_f">
     <title>Description</title>
     <para>
-The output is the element wise product of the inputs.   
-
-</para>
+      The output of that block is the element-wise product of its two input vectors.
+    </para>
   </refsection>
   <refsection id="Defaultproperties_PROD_f">
     <title>Default properties</title>
@@ -170,6 +174,28 @@ The output is the element wise product of the inputs.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Seealso_PROD_f">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="GAINBLK_f">GAINBLK_f - Gain (Xcos block)</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="INVBLK">INVBLK - Invert (Xcos block)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="PRODUCT">PRODUCT - Element-wise vectors Multiplication/Division (Xcos block)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Authors_PROD_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

@@ -3,16 +3,16 @@ LIBRARY    Libscilab.dll
 
 EXPORTS
 ;core
-ExitScilab
+getScilabMode
 disp_scilab_version
+settexmacs
 setCommandLineArgs
 setScilabMode
-getScilabMode
-settexmacs
+with_module
 setSCIpath
-IsFromJava
-IsFromC
-sciquit_
 realmain
 InitializeLaunchScilabSignal
-with_module
+sciquit
+getTMPDIR
+getTMPDIRW
+StoreCommand

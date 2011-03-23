@@ -1,0 +1,199 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-06-30 02:04+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 產生錯誤: %s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: 處理程序建立時發生錯誤: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體空間不足.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: 沒有這個檔案或目錄.\n"
+
+#, c-format
+msgid "%s: Unknown or not yet implemented type.\n"
+msgstr "%s: 未知的或未實作的型別.\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr "%s: 第一個輸入參數錯誤: 應該是 '%s' 或 '%s'.\n"
+
+#, c-format
+msgid "%s: workspace (stacksize) is too small.\n"
+msgstr "%s: workspace (stacksize) 太小.\n"
+
+msgid "(group,instance) already exists"
+msgstr "(群組, 實例) 已經存在"
+
+msgid "Already doing operation"
+msgstr "已經在執行了"
+
+msgid "Already in group"
+msgstr "已經在群組中"
+
+msgid "Bad message id"
+msgstr "錯誤的訊息代號"
+
+msgid "Bad parameter"
+msgstr "參數錯誤"
+
+msgid "Barrier count mismatch"
+msgstr "柵欄數目不吻合"
+
+msgid "Can not decode received msg"
+msgstr "所接收的訊息無法解碼"
+
+msgid "Can not get memory"
+msgstr "無法取得記憶體"
+
+msgid "Daemon pvmd is not responding"
+msgstr "pvmd 背景程序未回應"
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "在 pvm_error 中配置錯誤\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "pvm_halt - signal 錯誤\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "pvm_reduce 錯誤: 不是純量資料型態\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "錯誤的pvm_reduce: 未知的reduction 操作%s\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr "執行新的附屬 pvmd 失敗"
+
+msgid "Function not implemented"
+msgstr "函數尚未執行"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "主控台已經定義了 (重複的主控台)"
+
+msgid "Host failed"
+msgstr "主控台定義失敗"
+
+msgid "No current buffer"
+msgstr "無任何的緩衝記憶體"
+
+msgid "No group with that name"
+msgstr "無任何該名稱的群組"
+
+msgid "No parent task"
+msgstr "無上層的執行工作"
+
+msgid "No such (group,instance)"
+msgstr "無任何 (群組, 實例)"
+
+msgid "No such executable"
+msgstr "無任何可執行檔"
+
+msgid "No such host"
+msgstr "無任何的主控台"
+
+msgid "No such instance in group"
+msgstr "群組中無此實例"
+
+msgid "No such task"
+msgstr "沒有這個執行工作"
+
+msgid "Not in group"
+msgstr "不在群組中"
+
+msgid "Null group name is illegal"
+msgstr "空的群組名稱是不合法的"
+
+msgid "OK"
+msgstr "確定"
+
+msgid "Out of resources"
+msgstr "資源不足"
+
+msgid "PVM exists"
+msgstr "PVM 已存在"
+
+msgid "PVM not found"
+msgstr "PVM 找不到"
+
+msgid "PVM parallel Toolbox"
+msgstr "PVM 平行運算工具箱"
+
+msgid "Pvmd system error"
+msgstr "Pvmd 系統錯誤"
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Pvmd-pvmd 通訊協定不吻合"
+
+msgid "Read past end of buffer"
+msgstr "讀取舊的緩衝記憶體結尾"
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "Scilab PVM 模組尚未安裝.\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "定義檔 %s 已經使用.\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"標準定義檔 $SCI%s 將被使用.\n"
+"SCI=%s\n"
+"為了產生 scilab\n"
+"SCI 會被設定到遠端的主控台\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr "標準定義檔案 $SCI%s%s 需要設定環境變數 %s, %s, %s. PVM 不可以被啟動.\n"
+
+msgid "Unknown Error"
+msgstr "未知的錯誤"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "警告: PVM_ROOT 未設定.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "警告: PVM_ROOT 設定給 %s\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"警告:  找不到標準定義檔案 $SCI%s.\n"
+"我認為 PVM 與 scilab 是存放在你網路上\n"
+" (Cf. man pvmd3)\n"
+
+msgid "but there exists no configuration file:\n"
+msgstr "但是那裏並不存在定義檔案:\n"

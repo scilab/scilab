@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006 
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 
 #### Target ######
@@ -10,7 +10,7 @@ modulename=overloading
 
 #### overloading : Conf files ####
 libscioverloading_la_rootdir = $(mydatadir)
-libscioverloading_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscioverloading_la_root_DATA =  license.txt version.xml
 
 
 

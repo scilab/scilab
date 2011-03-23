@@ -20,6 +20,9 @@
 //
 
 function texte = tabule(tab)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // transforms a matrix of strings into a column vector of string in tabular form 
 //
 //%Syntaxe
@@ -46,7 +49,7 @@ function texte = tabule(tab)
 //- Largeur des colonnes
 for i = 1 : n_colonnes
   //- Largeur maximale 
-  largeur = maxi(length(tab(:, i)))
+  largeur = max(length(tab(:, i)))
   //- Formatage de la colonne 
   for j = 1 : n_lignes
     if tab(j, i) <> '-' then

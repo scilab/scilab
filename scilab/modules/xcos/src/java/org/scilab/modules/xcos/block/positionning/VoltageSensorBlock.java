@@ -13,11 +13,13 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.io.BasicBlockInfo;
+import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.output.OutputPort;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+
+import com.mxgraph.model.mxICell;
 
 /**
  * The VoltageSensor block has only one specificity : it's port position.
@@ -31,25 +33,20 @@ public class VoltageSensorBlock extends BasicBlock {
 	
 	/**
 	 * Set the orientation before calling parent method.
-	 * @param port the port to add.
+	 * @param child the port to add.
+	 * @param index the port index
 	 */
 	@Override
-	public void addPort(BasicPort port) {
-		if (port instanceof OutputPort) {
-			insert(port);
-			int order = BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size();
-			port.setOrdering(order);
+	public mxICell insert(mxICell child, int index) {
+		if (child instanceof OutputPort) {
+			final OutputPort port = (OutputPort) child;
 			
 			// Only orientate the first output port
-			if (order == 1) {
+			if (port.getOrdering() == 1) {
 				port.setOrientation(Orientation.SOUTH);
-			} else {
-				port.setOrientation(Orientation.EAST);
 			}
-			
-			BlockPositioning.updateBlockView(this);
-		} else {
-			super.addPort(port);
 		}
+		
+		return super.insert(child, index);
 	}
 }

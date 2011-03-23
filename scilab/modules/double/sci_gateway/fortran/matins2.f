@@ -1,6 +1,6 @@
-
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
+c Copyright (C) DIGITEO - 2010 - Allan CORNET
 c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -147,7 +147,7 @@ c     .           call extraction
                   goto 90
                endif
             elseif(nj.eq.n4) then
-c               arg4(arg1,[])=[] --> arg4
+c              arg4(arg1,[])=[] --> arg4
                call icopy(4,istk(il4),1,istk(ilrs),1)
                l=sadr(ilrs+4)
                call unsfdcopy(mn4*(it4+1),stk(l4),1,stk(l),1)
@@ -156,6 +156,7 @@ c               arg4(arg1,[])=[] --> arg4
             else
                call indxgc(il1,m4,ili,mi,mxi,lw)
                if(err.gt.0) return
+
                if(mi.eq.0) then
 c     .           arg4(1:m4,arg2)=[] 
                   call indxg(il1,m4,ili,mi,mxi,lw,1)
@@ -163,6 +164,8 @@ c     .           arg4(1:m4,arg2)=[]
                   l3=l4
                   n3=n4
                   m3=m4
+C     .           given set is larger than 1:m4
+                  mi=min(m4,mi)
                   it3=it4
                   mn3=m3*n3
 c     .           call extraction
@@ -277,7 +280,8 @@ c
          lr=lw
          lw=lr + mnr*(itr+1)
          err = lw - lstk(bot)
-         if (err .gt. 0) then
+c        lw must > 0         
+         if (err .gt. 0 .or. lw .le. 0) then
             call error(17)
             return
          endif
@@ -300,6 +304,11 @@ c     copy arg3 elements in r
          do 114 i = 0, mi-1
             ll = lr+istk(ili+i)-1+ljj*mr
             ls = l3+(i+j*m3)*inc3
+c           check ll and ls values
+            if (ll.le.0.or.ls.le.0) then
+              call error(17)
+              return 
+            endif
             stk(ll) = stk(ls)
             if(it3.eq.1) then
                stk(ll+mnr)=stk(ls+mn3)

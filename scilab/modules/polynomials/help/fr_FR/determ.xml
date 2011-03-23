@@ -41,7 +41,7 @@
   </para>
     <para>
     La valeur par défaut de <literal>k</literal> est la plus petite
-    puissance de 2 plus grande que <literal>n*maxi(degree(W))</literal>.
+    puissance de 2 plus grande que <literal>n*max(degree(W))</literal>.
   </para>
     <para>
     Méthode (pour les matrices dont la taille est supérieure à 2*2) : évaluation du déterminant de <literal>W</literal> aux
@@ -58,8 +58,8 @@ determ(w)
 det(coeff(w,1))*s^10
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

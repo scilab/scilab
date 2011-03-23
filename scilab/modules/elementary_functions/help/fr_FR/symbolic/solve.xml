@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="solve" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>solve</refname>
+
+    <refpurpose>solveur symbolique de système linéaire</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[x]=solve(A,b)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A,b,x</term>
+
+        <listitem>
+          <para>matrices (resp. vecteurs) de chaînes de caractères</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Résout <literal>A*x = b</literal> quand <literal>A</literal> est une
+    matrice triangulaire supérieure de chaînes de caractères.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=['1','a';'0','2'];   //  matrice triangulaire supérieure 
+b=['x';'y'];
+w=solve(A,b)
+a=1;x=2;y=5;
+evstr(w)
+inv([1,1;0,2])*[2;5]
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="trianfml">trianfml</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -18,5 +18,10 @@
  */
 void saveMainWindowSettings(void);
 
+/**
+ * Save Help Window Size and Position
+ */
+void saveHelpWindowSettings(void);
+
 #endif /* !__CALLMAINWINDOW_H__ */
 

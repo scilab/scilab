@@ -36,6 +36,8 @@ Source: bin\Microsoft.VC90.CRT.manifest; DestDir: {app}\bin; Components: {#COMPN
 Source: bin\LIBMMD.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcoremd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libifcorertd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\libiomp5md.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\svml_dispmd.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\dynamiclibrary.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -57,13 +59,10 @@ Source: bin\hashtable.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\doublylinkedlist.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\libjvm.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\LibScilab.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\scilab_windows.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libxml2.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\MALLOC.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\time.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\intersci.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcre.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\pcreposix.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -71,18 +70,18 @@ Source: bin\MALLOC.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\libf2c.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\lapack.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\LibScilab.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\intersci.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
 Source: bin\scilab_windows.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hashtable.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\Scilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\WScilex.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: bin\Dumpexts.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\f2c.exe; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 ; hdf5 libraries
 Source: bin\jhdf5.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\szlibdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\szip.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5dll.dll ; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\hdf5_cppdll.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;

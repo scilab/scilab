@@ -23,7 +23,7 @@
     <synopsis>mu=lin2mu(y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -46,8 +46,8 @@
     <literal>mu = lin2mu(y)</literal> converts linear audio signal amplitudes
     in the range  -1 &lt;= y &lt;= 1 to mu-law in the range 0 &lt;= mu &lt;= 255.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mu2lin">mu2lin</link>

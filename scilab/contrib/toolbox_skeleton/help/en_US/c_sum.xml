@@ -3,7 +3,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  -->
 <refentry version="5.0-subset Scilab" xml:id="c_sum" xml:lang="en"
@@ -42,6 +42,15 @@
     <title>Examples</title>
 
     <programlisting role="example">c_sum(3,4)</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fortran_sum">fortran_sum</link>
+      </member>
+    </simplelist>
   </refsection>
 
   <refsection>

@@ -12,7 +12,7 @@
     <synopsis>[xe,pe]=sskf(y,f,h,q,r,x0)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>

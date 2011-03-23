@@ -11,9 +11,6 @@
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="struct">
-  <info>
-    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (mar, 08 aoÃ» 2006) $</pubdate>
-  </info>
   <refnamediv>
     <refname>struct</refname>
     <refpurpose>create a struct</refpurpose>
@@ -23,7 +20,7 @@
     <synopsis>st=struct(field1,value1,field2,value2...)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>field1, field2, ..</term>
@@ -50,23 +47,23 @@
     <title>Examples</title>
     <programlisting role="example"><![CDATA[ 
 // create a struct date
-date=struct('day',25,'month' ,'DEC','year',2006)
+date_st=struct('day',25,'month' ,'DEC','year',2006)
 
 //change the month
-date.month='AUG';
+date_st.month='AUG';
 
 // change the year
-date.year=1973;
+date_st.year=1973;
 
 //change the day
-date.day=19;
+date_st.day=19;
 
 // add a new field
-date.semaine=32
+date_st.semaine=32
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cell">cell</link>

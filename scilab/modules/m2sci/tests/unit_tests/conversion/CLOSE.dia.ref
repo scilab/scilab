@@ -1,0 +1,105 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: CLOSE
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversionNoExe.sci", -1);
+mprintf("%s\n", m2sciTestConversionNoExe("CLOSE"));
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfilesnoexec/CLOSE.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  L.7: Unknown variable close is a M-file.
+  L.9: Unknown variable close is a M-file.
+  L.11: Unknown variable close is a M-file.
+  L.12: Unknown variable close is a M-file.
+  L.13: Unknown variable close is a M-file.
+  !! L.13: All windows will be deleted.
+  L.15: Unknown variable close is a M-file.
+  !! L.15: No Scilab equivalent for: status will be ignored at run time.
+  L.16: Unknown variable close is a M-file.
+  !! L.16: No Scilab equivalent for: status will be ignored at run time.
+  L.17: Unknown variable close is a M-file.
+  !! L.17: No Scilab equivalent for: status will be ignored at run time.
+  L.18: Unknown variable close is a M-file.
+  !! L.18: No Scilab equivalent for: status will be ignored at run time.
+  L.19: Unknown variable close is a M-file.
+  !! L.19: No Scilab equivalent for: status will be ignored at run time.
+  !! L.19: All windows will be deleted.
+  L.22: Unknown variable close is a M-file.
+  L.24: Unknown variable close is a M-file.
+  L.26: Unknown variable close is a M-file.
+  L.27: Unknown variable close is a M-file.
+  L.28: Unknown variable close is a M-file.
+  !! L.28: All windows will be deleted.
+  L.30: Unknown variable close is a M-file.
+  !! L.30: No Scilab equivalent for: status will be ignored at run time.
+  L.31: Unknown variable close is a M-file.
+  !! L.31: No Scilab equivalent for: status will be ignored at run time.
+  L.32: Unknown variable close is a M-file.
+  !! L.32: No Scilab equivalent for: status will be ignored at run time.
+  L.33: Unknown variable close is a M-file.
+  !! L.33: No Scilab equivalent for: status will be ignored at run time.
+  L.34: Unknown variable close is a M-file.
+  !! L.34: No Scilab equivalent for: status will be ignored at run time.
+  !! L.34: All windows will be deleted.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be wrong (see the //!! comments).
+  ****** End of mfile2sci() session ******
+
+// Display mode
+mode(0);
+
+// Display warning for floating point exception
+ieee(1);
+
+// Test file for function close()
+// Copyright INRIA
+// Matlab version: 6.5.1.199709 (R13) Service Pack 1
+// V.C.
+
+
+close
+
+close(h)
+
+mtlb_close("name")
+xdel(winsid())
+xdel(winsid())
+
+status = close()
+status = close(h)
+status = mtlb_close(name)
+status = xdel(winsid())
+status = xdel(winsid())
+
+
+delete(gcf())
+
+delete(h1)
+
+mtlb_close("name")
+xdel(winsid())
+xdel(winsid())
+
+status = delete(gcf())
+status = delete(h1)
+status = mtlb_close(name)
+status = xdel(winsid())
+status = xdel(winsid())

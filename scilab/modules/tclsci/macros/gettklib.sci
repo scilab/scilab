@@ -14,7 +14,7 @@ function tklib=gettklib()
   // don't use string() but msprintf because of format() - see bug 3602
   major = msprintf("%d",tcltkver(1));
   minor = msprintf("%d",tcltkver(2));
-	if MSDOS then 
+	if getos() == 'Windows' then 
 		tklib = 'tk' + major + minor + getdynlibext();
 	else
 		cur_verbose = ilib_verbose();
@@ -25,7 +25,7 @@ function tklib=gettklib()
 		// to the LD_LIBRARY_PATH (or SHLIB_PATH).
 		// So, If libtk8.X.so (or .sl) exists in SCI/bin ... it's ok
 		libname = 'libtk' + major + '.' + minor;
-		if fileinfo('SCI/bin/'+libname+getdynlibext()) <> [] then
+		if isfile('SCI/bin/'+libname+getdynlibext()) then
 			tklib = libname + getdynlibext();
 			ilib_verbose(cur_verbose);
 			return;

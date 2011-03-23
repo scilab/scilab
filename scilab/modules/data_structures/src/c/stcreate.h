@@ -13,12 +13,14 @@
 #ifndef  __STCREATE_H__
 #define __STCREATE_H__
 
-int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retval);
+#include "dynlib_data_structures.h"
 
-int sttyp(int *ivt, char *job, int *nf, char *fnames[]);
+DATA_STRUCTURES_IMPEXP int C2F(stcreate)(int *lw, int *nz, int *sz, int *nf, char *fnames[], int *retval);
 
-int creonevoid(int *slw,int *lw);
+DATA_STRUCTURES_IMPEXP int sttyp(int *ivt, char *job, int *nf, char *fnames[]);
 
-int crelistofvoids(int *slw,int *lw,int *nels);
+DATA_STRUCTURES_IMPEXP int creonevoid(int *slw,int *lw);
+
+DATA_STRUCTURES_IMPEXP int crelistofvoids(int *slw,int *lw,int *nels);
 
 #endif /* __STCREATE_H__ */

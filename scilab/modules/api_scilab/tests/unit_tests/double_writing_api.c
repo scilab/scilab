@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Scilab Consortium Operational Team
- * 
+ * Copyright (C) 2009-2010 - DIGITEO - Scilab Consortium Operational Team
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at    
+ * you should have received as part of this distribution. The terms
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +17,6 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 
-	 
 int write_double(char *fname,unsigned long fname_len)
 {
 	SciErr sciErr;
@@ -26,19 +25,16 @@ int write_double(char *fname,unsigned long fname_len)
 	int iRows1			= 3;
 	int iCols1			= 4;
 	double* pdblReal1	= NULL;
-
 	//second variable info : complex matrix of double 4 x 6
 	int iRows2			= 4;
 	int iCols2			= 6;
 	double* pdblReal2	= NULL;
 	double* pdblImg2	= NULL;
-
 	/************************
 	*    First variable    *
 	************************/
 	//alloc array of data in OS memory
 	pdblReal1 = (double*)malloc(sizeof(double) * iRows1 * iCols1);
-
 	//fill array with incremental values
 	//[ 0   1   2   3
 	//  4   5   6   7
@@ -55,7 +51,6 @@ int write_double(char *fname,unsigned long fname_len)
 	//{
 	//  pdblReal1[i] = i;
 	//}
-
 	//create a variable from a existing data array
 	sciErr = createMatrixOfDouble(pvApiCtx, Rhs + 1, iRows1, iCols1, pdblReal1);
 	if(sciErr.iErr)
@@ -63,10 +58,8 @@ int write_double(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
-
 	//after creation, we can free memory.
 	free(pdblReal1);
-
 	/*************************
 	*    Second variable    *
 	*************************/
@@ -77,7 +70,6 @@ int write_double(char *fname,unsigned long fname_len)
 		printError(&sciErr, 0);
 		return 0;
 	}
-
 	//fill array with incremental values for real part and decremental for imaginary part
 	//[ 23i     1+22i       2+21i       3+20i       4+19i       5+18i
 	//  6+17i   7+16i       8+15i       9+14i       10+13i      11+12i
@@ -97,13 +89,9 @@ int write_double(char *fname,unsigned long fname_len)
 	//  pdblReal2[i] = i;
 	//  pdblImg2 [i] = (iRows2 * iCols2 - 1) - i;
 	//}
-
 	// /!\ DO NOT FREE MEMORY, in this case, it's the Scilab memory
-
-
 	//assign allocated variables to Lhs position
 	LhsVar(1) = Rhs + 1;
 	LhsVar(2) = Rhs + 2;
 	return 0;
 }
- 

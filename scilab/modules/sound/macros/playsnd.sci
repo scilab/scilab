@@ -39,7 +39,7 @@ function [] = playsnd(y, rate, bits, aplay)
     end
   end
 
-  if MSDOS then
+  if getos() == 'Windows' then
     savewave(TMPDIR+'/_playsnd_.wav', y, rate);
     PlaySound(TMPDIR+'/_playsnd_.wav');      
     return 

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="adj2sp" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>adj2sp</refname>
+
+    <refpurpose>converte forma de adjacência para matriz esparsa </refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xadj</term>
+
+        <listitem>
+          <para>vetor de inteiros de comprimento (n+1). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>adjncy</term>
+
+        <listitem>
+          <para>vetor de inteiros de comprimento nz contendo os índices de
+          linha para os elementos correspondentes em anz</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>anz</term>
+
+        <listitem>
+          <para>vetor coluna de comprimento nz contendo os elementos não-nulos
+          de A </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mn</term>
+
+        <listitem>
+          <para>vetor linha com duas entradas, <literal>mn=size(A)</literal>
+          (opcional).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>matriz quadrada esparsa de reais ou complexos (nz entradas
+          não-nulas)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <programlisting role = ""><![CDATA[ 
+adj2sp converte uma representação em forma de adjacência de uma matriz
+em sua representação padrão do Scilab (função utilitária).
+xadj, adjncy, anz = representação  de adjacência de A i.e:
+ ]]></programlisting>
+
+    <para><literal>xadj(j+1)-xadj(j)</literal> = número de entradas não-nulas
+    na linha j. <literal>adjncy</literal> = índice de coluna das entradas
+    não-nulas nas linha 1, linha 2..., linha n.<literal> anz</literal> =
+    valores das entradas não-nulas nas linha 1, linha 2,..., linha n.
+    <literal>xadj</literal> é um vetor (coluna) de tamanho n+1 e
+    <literal>adjncy</literal> é um vetor (coluna) de inteiros de tamanho
+    <literal>nz=nnz(A)</literal>. <literal>anz</literal> é um vetor de reais
+    de tamanho <literal>nz=nnz(A)</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+A = sprand(100,50,.05);
+[xadj,adjncy,anz]= sp2adj(A);
+[n,m]=size(A);
+p = adj2sp(xadj,adjncy,anz,[n,m]);
+A-p,
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sp2adj">sp2adj</link></member>
+
+      <member><link linkend="spcompack">spcompack</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -32,8 +32,8 @@ rlist(a1,....an)</synopsis>
     first entry and  <literal>ai</literal>'s as next entries if any. No type nor size
     checking is done on <literal>ai</literal>'s.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tlist">tlist</link>

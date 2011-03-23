@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
+ * Xcos
  * 
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,21 +22,32 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="OUTIMPL_f">
+<refentry 
+  version="5.0-subset Scilab" xml:id="OUTIMPL_f" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg" 
+  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
+  xmlns:db="http://docbook.org/ns/docbook" 
+>
+
   <refnamediv>
     <refname>OUTIMPL_f</refname>
     <refpurpose>Output implicit port</refpurpose>
   </refnamediv>
+  
   <refsection>
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/palettes/OUTIMPL_f.jpg" align="center" valign="middle"/>
+          <imagedata fileref="../../../../images/palettes/OUTIMPL_f.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
   </refsection>
+  
   <refsection id="Contents_OUTIMPL_f">
     <title>Contents</title>
     <itemizedlist>
@@ -68,9 +80,19 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_OUTIMPL_f">Example</xref>
+            </para>
+          </listitem>           
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_OUTIMPL_f">Interfacing function</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_OUTIMPL_f">See also</xref>
+            </para>
+          </listitem>          
           <listitem>
             <para>
               <xref linkend="Authors_OUTIMPL_f">Authors</xref>
@@ -80,30 +102,39 @@
       </listitem>
     </itemizedlist>
   </refsection>
+  
   <refsection id="Palette_OUTIMPL_f">
-    <title>Palette</title>
+    <title>Palettes</title>
     <itemizedlist>
       <listitem>
         <para>
           <link linkend="Portaction_pal">Port &amp; Subsystem palette</link>
         </para>
       </listitem>
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Sinks palette</link>
+        </para>
+      </listitem>       
     </itemizedlist>
   </refsection>
+  
   <refsection id="Description_OUTIMPL_f">
     <title>Description</title>
     <para>
-Outport blocks are the links from a system to a destination outside
-the system.
-
-</para>
+      This block represents a regular implicit port. It must only be used inside a Xcos Super Block and be connected to an implicit output of an internal implicit output in the sub-system.
+    </para>
+    <para>
+      This block is a signal link from outside of a system into a sub-system. In a Super Block, the implicit's output ports must be numbered from 1 to the total number of implicit's output ports. You can set it with the <emphasis role="bold">Port number</emphasis> parameter.
+    </para>
   </refsection>
+  
   <refsection id="Dialogbox_OUTIMPL_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/OUTIMPL_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/portaction_pal/en_US/OUTIMPL_f_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -115,11 +146,12 @@ the system.
         <para>
           <emphasis role="bold">Port number</emphasis>
         </para>
-        <para> Specify the port number of the Outport block.</para>
+        <para> An integer defining the port number.</para>
         <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+  
   <refsection id="Defaultproperties_OUTIMPL_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -166,14 +198,53 @@ the system.
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection id="Example_OUTIMPL_f">
+    <title>Example</title>
+    <para>
+      In the following example the Super block is a basic transistor switch. 
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/en_US/OUTIMPL_f_en_US.xcos">
+        Open this example in Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_superbloc_en_US.png" />
+      </imageobject>
+    </mediaobject>
+    <para>
+      The following figure shows the use of the Super block and the resulting ouput when its input is toggled between the potentials GND and Vcc. You can also see on the output the effect of the saturation voltage (minimal output = 0.4 Volt).
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/en_US/outimpl_f_diagram_en_US.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>   
+  
   <refsection id="Interfacingfunction_OUTIMPL_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUTIMPL_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUTIMPL_f.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
+  
+  <refsection role="see also" id="Seealso_OUTIMPL_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="INIMPL_f">INIMPL_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+    </listitem>
+    </itemizedlist>
+  </refsection>   
+  
   <refsection id="Authors_OUTIMPL_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

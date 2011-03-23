@@ -1,7 +1,7 @@
-##########
-### Sylvestre Ledru <sylvestre.ledru@inria.fr>
-### INRIA - Scilab 2006/2007
-##########
+# Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+# Copyright (C) 2006-2007 - INRIA - Sylvestre LEDRU
+#
+# This file is distributed under the same license as the Scilab package.
 
 STATISTICS_C_SOURCES = src/c/CdfBase.c \
 src/c/ipmpar1.c
@@ -89,7 +89,7 @@ libscistatistics_la_CFLAGS=  	-I$(srcdir)/includes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscistatistics.la
 
-libscistatistics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscistatistics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -97,7 +97,7 @@ libscistatistics_la_SOURCES = $(STATISTICS_C_SOURCES) $(STATISTICS_FORTRAN_SOURC
 CHECK_SRC= $(STATISTICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscistatistics_la_CFLAGS)
 
-libscistatistics_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscistatistics_la_LIBADD =  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 #### Target ######
 modulename=statistics
@@ -105,7 +105,7 @@ modulename=statistics
 
 #### statistics : Conf files ####
 libscistatistics_la_rootdir = $(mydatadir)
-libscistatistics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscistatistics_la_root_DATA =  license.txt version.xml
 
 
 #### statistics : init scripts ####

@@ -23,7 +23,7 @@
     <synopsis>[R]=chol(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -57,8 +57,8 @@ R=chol(X);
 norm(R'*R-X)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="spchol">spchol</link>

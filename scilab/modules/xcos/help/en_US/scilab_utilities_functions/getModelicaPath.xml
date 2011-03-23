@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Jérôme PICARD
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getModelicaPath"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>getModelicaPath</refname>
+
+    <refpurpose>Get the Modelica directory path needed by Xcos diagram
+    containing Modelica blocks</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[modelica_path, modelica_directory] = getModelicaPath()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>This function is used to know where are the Modelica files used to
+    define Xcos Modelica blocks.</para>
+
+    <para>If the user wants to define his own Modelica blocks, Modelica files
+    describing the blocks must be indicated. The variable %MODELICA_USER_LIBS has
+    to be declared before launching xcos.</para>
+  </refsection>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">modelica_path:</emphasis> a string providing
+        the absolute path of the Modelica directory containing the defining
+        blocks Modelica files.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">modelica_directory:</emphasis> a string
+        providing the name of the Modelica directory where are created the files
+        needed for the simulation.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_getModelicaPath">
+    <title>Example</title>
+
+    <programlisting role="example">
+//Get the modelica path and directory
+[modelica_path, modelica_directory] = getModelicaPath()
+
+// To define user's Modelica blocks
+// path of the directory containing the user's Modelica files
+%MODELICA_USER_LIBS = SCI + "/modules/xcos/modelica_library";
+
+// launch xcos
+xcos();
+// load the diagram with Modelica blocks
+
+[modelica_path, modelica_directory] = getModelicaPath()
+
+// To define user's Modelica blocks
+// paths of the directory containing the user's Modelica files
+%MODELICA_USER_LIBS = [%MODELICA_USER_LIBS , SCI + "/modules/xcos/my_modelica_blocks/Electrical_network"];
+
+// launch xcos
+xcos();
+// load the diagram with Modelica blocks
+
+[modelica_path, modelica_directory] = getModelicaPath()
+
+    </programlisting>
+  </refsection>
+
+  <refsection id="Authors_getModelicaPath">
+    <title>Authors</title>
+
+    <para><emphasis role="bold">Jérôme Picard</emphasis> - "DIGITEO"</para>
+  </refsection>
+</refentry>

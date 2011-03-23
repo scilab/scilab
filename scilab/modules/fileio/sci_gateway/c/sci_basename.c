@@ -188,12 +188,12 @@ int sci_basename(char *fname,unsigned long fname_len)
 		lenStVarOne = (int*)MALLOC(sizeof(int) * (m1 * n1));
 		if (lenStVarOne == NULL)
 		{
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 
 		// get lenStVarOne value
-		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, pStVarOne);
+		sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, NULL);
 		if(sciErr.iErr)
 		{
 			freeArrayOfWideString(pStVarOne, m1 * n1);
@@ -206,7 +206,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if (pStVarOne == NULL)
 		{
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 
@@ -217,7 +217,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 			{
 				freeArrayOfWideString(pStVarOne, m1 * n1);
 				if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-				Scierror(999,_("%s : Memory allocation error.\n"),fname);
+				Scierror(999,_("%s: Memory allocation error.\n"),fname);
 				return 0;
 			}
 		}
@@ -237,7 +237,7 @@ int sci_basename(char *fname,unsigned long fname_len)
 		if (pStResult == NULL)
 		{
 			if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
-			Scierror(999,_("%s : Memory allocation error.\n"),fname);
+			Scierror(999,_("%s: Memory allocation error.\n"),fname);
 			return 0;
 		}
 

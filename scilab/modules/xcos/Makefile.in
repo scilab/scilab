@@ -17,12 +17,13 @@
 
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-# Copyright (C) DIGITEO - 2009 - Allan CORNET
-# 
+# Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
+# Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -62,7 +63,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@GUI_TRUE@am__append_1 = libscixcos.la 
+@GUI_TRUE@@XCOS_TRUE@am__append_1 = libscixcos.la
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_2 = java
@@ -73,10 +74,11 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/mpi.m4 $(top_srcdir)/m4/ocaml.m4 \
 	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
 	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
@@ -125,27 +127,35 @@ libscixcos_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscixcos_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscixcos_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscixcos_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
+	$(top_builddir)/modules/jvm/libscijvm.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 =
 am__objects_3 = libscixcos_la-gw_xcos.lo
 am__objects_4 = libscixcos_la-sci_Xcos.lo \
-	libscixcos_la-sci_xcosNotify.lo \
 	libscixcos_la-sci_warnBlockByUID.lo \
 	libscixcos_la-sci_closeXcosFromScilab.lo \
 	libscixcos_la-sci_xcosDiagramToHDF5.lo \
 	libscixcos_la-sci_xcosDiagramOpen.lo \
-	libscixcos_la-sci_xcosDiagramClose.lo
+	libscixcos_la-sci_xcosDiagramClose.lo \
+	libscixcos_la-sci_xcosPalLoad.lo \
+	libscixcos_la-sci_xcosPalCategoryAdd.lo \
+	libscixcos_la-sci_xcosPalDelete.lo \
+	libscixcos_la-sci_xcosPalMove.lo \
+	libscixcos_la-sci_xcosPalEnable.lo \
+	libscixcos_la-sci_xcosPalDisable.lo \
+	libscixcos_la-sci_xcosPalGenerateIcon.lo \
+	libscixcos_la-sci_xcosConfigureXmlFile.lo
 am__objects_5 = libscixcos_la-callxcos.lo libscixcos_la-Xcos.lo \
-	libscixcos_la-Signal.lo libscixcos_la-GiwsException.lo
+	libscixcos_la-Palette.lo libscixcos_la-Modelica.lo \
+	libscixcos_la-GiwsException.lo libscixcos_la-xcosUtilities.lo
 am_libscixcos_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_4) $(am__objects_5)
 libscixcos_la_OBJECTS = $(am_libscixcos_la_OBJECTS)
 libscixcos_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
 	$(CXXFLAGS) $(libscixcos_la_LDFLAGS) $(LDFLAGS) -o $@
-@GUI_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
+@GUI_TRUE@@XCOS_TRUE@am_libscixcos_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
@@ -224,6 +234,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -246,9 +257,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -266,6 +278,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -303,6 +316,10 @@ OCAMLYACC = @OCAMLYACC@
 OPENMPI_CC = @OPENMPI_CC@
 OPENMPI_FLAGS = @OPENMPI_FLAGS@
 OPENMPI_LIBS = @OPENMPI_LIBS@
+OPENMP_CFLAGS = @OPENMP_CFLAGS@
+OPENMP_CXXFLAGS = @OPENMP_CXXFLAGS@
+OPENMP_ENABLE = @OPENMP_ENABLE@
+OPENMP_LIBS = @OPENMP_LIBS@
 OTOOL = @OTOOL@
 OTOOL64 = @OTOOL64@
 PACKAGE = @PACKAGE@
@@ -331,8 +348,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -353,6 +373,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -427,36 +448,52 @@ modulename = xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscixcos_la_root_DATA = license.txt version.xml
 
 #### xcos : init scripts ####
 libscixcos_la_etcdir = $(mydatadir)/etc
 libscixcos_la_etc_DATA = etc/xcos.quit \
 				etc/xcos.start \
 				etc/Xcos-style.xml \
-				etc/xcosConfiguration.xml
+				etc/XcosFile.xsd \
+				etc/xcos.xml \
+				etc/XcosConfiguration.xsd \
+				etc/palettes.xml \
+				etc/PaletteConfiguration.xsd \
+				etc/Modelica.xsd
 
 XCOS_C_SOURCES = 
 XCOS_CPP_SOURCES = src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
 			src/jni/Xcos.hxx \
-			src/jni/Signal.cpp \
-			src/jni/Signal.hxx \
-			src/jni/GiwsException.cpp
+			src/jni/Palette.cpp \
+			src/jni/Palette.hxx \
+			src/jni/Modelica.cpp \
+			src/jni/Modelica.hxx \
+			src/jni/GiwsException.cpp \
+			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
-src/jni/XcosUtils.giws.xml
+			src/jni/Palette.giws.xml \
+			src/jni/Modelica.giws.xml
 
 @GIWS_TRUE@BUILT_SOURCES = giws
 GATEWAY_C_SOURCES = sci_gateway/c/gw_xcos.c
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
-	sci_gateway/cpp/sci_xcosNotify.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
-	sci_gateway/cpp/sci_xcosDiagramClose.cpp
+	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
+	sci_gateway/cpp/sci_xcosPalLoad.cpp \
+	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
+	sci_gateway/cpp/sci_xcosPalDelete.cpp \
+	sci_gateway/cpp/sci_xcosPalMove.cpp \
+	sci_gateway/cpp/sci_xcosPalEnable.cpp \
+	sci_gateway/cpp/sci_xcosPalDisable.cpp \
+	sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp \
+	sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
 
 libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/libs/MALLOC/includes/ \
@@ -464,7 +501,7 @@ libscixcos_la_CFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes	
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -479,22 +516,23 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
 
-# Without the xcos module 
+# Without the xcos module
 libscixcos_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscixcos-disable.la $(am__append_1)
-libscixcos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XCOS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD = \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -503,290 +541,280 @@ libscixcos_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 
 #### xcos : images files ####
+#
+# Generated with:
+#   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir = $(mydatadir)/
-nobase_libscixcos_la_images_DATA = images/blocks/Bache.gif \
-images/blocks/BIGSOM_f.gif \
-images/blocks/BOUNCEXY.gif \
-images/blocks/BPLATFORM.gif \
-images/blocks/CANIMXY.gif \
-images/blocks/CANIMXY3D.gif \
-images/blocks/CCS.gif \
-images/blocks/CEVENTSCOPE.gif \
-images/blocks/CFSCOPE.gif \
-images/blocks/CLKSOMV_f.gif \
-images/blocks/CLOCK_c.gif \
-images/blocks/CLOCK_f.gif \
-images/blocks/CSCOPE.gif \
-images/blocks/CSCOPXY.gif \
-images/blocks/CSCOPXY3D.gif \
-images/blocks/CVS.gif \
-images/blocks/Capacitor.gif \
-images/blocks/ConstantVoltage.gif \
-images/blocks/CurrentSensor.gif \
-images/blocks/DEADBAND.gif \
-images/blocks/Diode.gif \
-images/blocks/Ground.gif \
-images/blocks/Gyrator.gif \
-images/blocks/HYSTHERESIS.gif \
-images/blocks/INTEGRAL_m.gif \
-images/blocks/IdealTransformer.gif \
-images/blocks/Inductor.gif \
-images/blocks/LOOKUP_f.gif \
-images/blocks/NMOS.gif \
-images/blocks/NPN.gif \
-images/blocks/PMOS.gif \
-images/blocks/PNP.gif \
-images/blocks/PRODUCT.gif \
-images/blocks/PROD_f.gif \
-images/blocks/PerteDP.gif \
-images/blocks/PotentialSensor.gif \
-images/blocks/PuitsP.gif \
-images/blocks/QUANT_f.gif \
-images/blocks/RAMP.gif \
-images/blocks/Resistor.gif \
-images/blocks/SATURATION.gif \
-images/blocks/SAT_f.gif \
-images/blocks/STEP_FUNCTION.gif \
-images/blocks/SUMMATION.gif \
-images/blocks/SUM_f.gif \
-images/blocks/SUPER_f.gif \
-images/blocks/SampleCLK.gif \
-images/blocks/SourceP.gif \
-images/blocks/Switch.gif \
-images/blocks/TIME_f.gif \
-images/blocks/VanneReglante.gif \
-images/blocks/VariableResistor.gif \
-images/blocks/VoltageSensor.gif \
-images/icons/document-new.png \
-images/icons/document-open.png \
-images/icons/document-print.png \
-images/icons/document-save-as.png \
-images/icons/edit-copy.png \
-images/icons/edit-cut.png \
-images/icons/edit-delete.png \
-images/icons/edit-paste.png \
-images/icons/edit-redo.png \
-images/icons/edit-undo.png \
-images/icons/list-add.png \
-images/icons/list-remove.png \
-images/icons/media-floppy.png \
-images/icons/media-playback-start.png \
+nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
+images/blocks/ANDBLK.svg \
+images/blocks/ASCOPE.svg \
+images/blocks/BACHE.svg \
+images/blocks/BPLATFORM.svg \
+images/blocks/Capacitor.svg \
+images/blocks/CCS.svg \
+images/blocks/CLOCK_c.svg \
+images/blocks/CLOCK_f.svg \
+images/blocks/ConstantVoltage.svg \
+images/blocks/CSCOPXY.svg \
+images/blocks/CurrentSensor.svg \
+images/blocks/CVS.svg \
+images/blocks/DEADBAND.svg \
+images/blocks/Diode.svg \
+images/blocks/DSCOPE.svg \
+images/blocks/Ground.svg \
+images/blocks/Gyrator.svg \
+images/blocks/HYSTHERESIS.svg \
+images/blocks/IdealTransformer.svg \
+images/blocks/Inductor.svg \
+images/blocks/INTEGRAL.svg \
+images/blocks/NMOS.svg \
+images/blocks/NPN.svg \
+images/blocks/PerteDP.svg \
+images/blocks/PMOS.svg \
+images/blocks/PNP.svg \
+images/blocks/PotentialSensor.svg \
+images/blocks/PRODUCT.svg \
+images/blocks/PuitP.svg \
+images/blocks/QUANT_f.svg \
+images/blocks/RAMP.svg \
+images/blocks/Resistor.svg \
+images/blocks/SampleCLK.svg \
+images/blocks/SATURATION.svg \
+images/blocks/SourceP.svg \
+images/blocks/STEP_FUNCTION.svg \
+images/blocks/SUM.svg \
+images/blocks/SUPER.svg \
+images/blocks/SWITCH.svg \
+images/blocks/VanneReglante.svg \
+images/blocks/VariableResistor.svg \
+images/blocks/VoltageSensor.svg \
+images/icons/align-horizontal-center.png \
+images/icons/align-horizontal-left.png \
+images/icons/align-horizontal-right.png \
+images/icons/align-vertical-bottom.png \
+images/icons/align-vertical-center.png \
+images/icons/align-vertical-top.png \
+images/icons/color-fill.png \
+images/icons/draw-brush.png \
+images/icons/object-group.png \
+images/icons/preferences-desktop.png \
 images/icons/process-stop.png \
-images/icons/view-fullscreen.png \
-images/icons/applications-system.png \
-images/icons/help-browser.png \
-images/palettes/ABS_VALUE.jpg \
-images/palettes/AFFICH_m.jpg \
-images/palettes/ANDBLK.jpg \
-images/palettes/ANDLOG_f.jpg \
-images/palettes/AUTOMAT.jpg \
-images/palettes/Bache.jpg \
-images/palettes/BACKLASH.jpg \
-images/palettes/BIGSOM_f.jpg \
-images/palettes/BITCLEAR.jpg \
-images/palettes/BITSET.jpg \
-images/palettes/BOUNCE.jpg \
-images/palettes/BOUNCEXY.jpg \
-images/palettes/BPLATFORM.jpg \
-images/palettes/c_block.jpg \
-images/palettes/CANIMXY.jpg \
-images/palettes/CANIMXY3D.jpg \
-images/palettes/Capacitor.jpg \
-images/palettes/CBLOCK.jpg \
-images/palettes/CCS.jpg \
-images/palettes/CEVENTSCOPE.jpg \
-images/palettes/CFSCOPE.jpg \
-images/palettes/CLINDUMMY_f.jpg \
-images/palettes/CLKFROM.jpg \
-images/palettes/CLKGOTO.jpg \
-images/palettes/CLKGotoTagVisibility.jpg \
-images/palettes/CLKINV_f.jpg \
-images/palettes/CLKOUTV_f.jpg \
-images/palettes/CLKSOMV_f.jpg \
-images/palettes/CLOCK_c.jpg \
-images/palettes/CLR.jpg \
-images/palettes/CLSS.jpg \
-images/palettes/CMAT3D.jpg \
-images/palettes/CMATVIEW.jpg \
-images/palettes/CMSCOPE.jpg \
-images/palettes/CONST_m.jpg \
-images/palettes/ConstantVoltage.jpg \
-images/palettes/CONSTRAINT_f.jpg \
-images/palettes/CONVERT.jpg \
-images/palettes/COSBLK_f.jpg \
-images/palettes/Counter.jpg \
-images/palettes/CSCOPE.jpg \
-images/palettes/CSCOPXY.jpg \
-images/palettes/CSCOPXY3D.jpg \
-images/palettes/CUMSUM.jpg \
-images/palettes/CurrentSensor.jpg \
-images/palettes/CURV_f.jpg \
-images/palettes/CVS.jpg \
-images/palettes/DEADBAND.jpg \
-images/palettes/DEBUG_SCICOS.jpg \
-images/palettes/DELAY_f.jpg \
-images/palettes/DELAYV_f.jpg \
-images/palettes/DEMUX.jpg \
-images/palettes/DERIV.jpg \
-images/palettes/DFLIPFLOP.jpg \
-images/palettes/Diode.jpg \
-images/palettes/DLATCH.jpg \
-images/palettes/DLR.jpg \
-images/palettes/DLRADAPT_f.jpg \
-images/palettes/DLSS.jpg \
-images/palettes/DOLLAR_f.jpg \
-images/palettes/EDGE_TRIGGER.jpg \
-images/palettes/ENDBLK.jpg \
-images/palettes/END_c.jpg \
-images/palettes/ESELECT_f.jpg \
-images/palettes/EVTDLY_c.jpg \
-images/palettes/EVTGEN_f.jpg \
-images/palettes/EVTVARDLY.jpg \
-images/palettes/EXPBLK_m.jpg \
-images/palettes/EXPRESSION.jpg \
-images/palettes/EXTRACT.jpg \
-images/palettes/Extract_Activation.jpg \
-images/palettes/EXTRACTBITS.jpg \
-images/palettes/EXTRACTOR.jpg \
-images/palettes/EXTTRI.jpg \
-images/palettes/fortran_block.jpg \
-images/palettes/freq_div.jpg \
-images/palettes/FROM.jpg \
-images/palettes/FROMMO.jpg \
-images/palettes/FROMWSB.jpg \
-images/palettes/GAINBLK_f.jpg \
-images/palettes/GENERAL_f.jpg \
-images/palettes/generic_block3.jpg \
-images/palettes/GENSIN_f.jpg \
-images/palettes/GENSQR_f.jpg \
-images/palettes/GOTO.jpg \
-images/palettes/GOTOMO.jpg \
-images/palettes/GotoTagVisibility.jpg \
-images/palettes/GotoTagVisibilityMO.jpg \
-images/palettes/Ground.jpg \
-images/palettes/Gyrator.jpg \
-images/palettes/HALT_f.jpg \
-images/palettes/HYSTHERESIS.jpg \
-images/palettes/IdealTransformer.jpg \
-images/palettes/IFTHEL_f.jpg \
-images/palettes/IN_f.jpg \
-images/palettes/Inductor.jpg \
-images/palettes/INIMPL_f.jpg \
-images/palettes/INTEGRAL_f.jpg \
-images/palettes/INTEGRAL_m.jpg \
-images/palettes/INTMUL.jpg \
-images/palettes/INTRP2BLK_f.jpg \
-images/palettes/INTRPLBLK_f.jpg \
-images/palettes/INVBLK.jpg \
-images/palettes/ISELECT_m.jpg \
-images/palettes/JKFLIPFLOP.jpg \
-images/palettes/LOGBLK_f.jpg \
-images/palettes/LOGIC.jpg \
-images/palettes/LOGICAL_OP.jpg \
-images/palettes/LOOKUP_f.jpg \
-images/palettes/M_freq.jpg \
-images/palettes/M_SWITCH.jpg \
-images/palettes/MATBKSL.jpg \
-images/palettes/MATCATH.jpg \
-images/palettes/MATCATV.jpg \
-images/palettes/MATDET.jpg \
-images/palettes/MATDIAG.jpg \
-images/palettes/MATDIV.jpg \
-images/palettes/MATEIG.jpg \
-images/palettes/MATEXPM.jpg \
-images/palettes/MATINV.jpg \
-images/palettes/MATLU.jpg \
-images/palettes/MATMAGPHI.jpg \
-images/palettes/MATMUL.jpg \
-images/palettes/MATPINV.jpg \
-images/palettes/MATRESH.jpg \
-images/palettes/MATSING.jpg \
-images/palettes/MATSUM.jpg \
-images/palettes/MATTRAN.jpg \
-images/palettes/MATZCONJ.jpg \
-images/palettes/MATZREIM.jpg \
-images/palettes/MAX_f.jpg \
-images/palettes/MAXMIN.jpg \
-images/palettes/MBLOCK.jpg \
-images/palettes/MCLOCK_f.jpg \
-images/palettes/MFCLCK_f.jpg \
-images/palettes/MIN_f.jpg \
-images/palettes/Modulo_Count.jpg \
-images/palettes/MUX.jpg \
-images/palettes/NEGTOPOS_f.jpg \
-images/palettes/NMOS.jpg \
-images/palettes/NPN.jpg \
-images/palettes/NRMSOM_f.jpg \
-images/palettes/OpAmp.jpg \
-images/palettes/OUT_f.jpg \
-images/palettes/OUTIMPL_f.jpg \
-images/palettes/PDE.jpg \
-images/palettes/PerteDP.jpg \
-images/palettes/PID.jpg \
-images/palettes/PMOS.jpg \
-images/palettes/PNP.jpg \
-images/palettes/POSTONEG_f.jpg \
-images/palettes/PotentialSensor.jpg \
-images/palettes/POWBLK_f.jpg \
-images/palettes/PROD_f.jpg \
-images/palettes/PRODUCT.jpg \
-images/palettes/PuitsP.jpg \
-images/palettes/QUANT_f.jpg \
-images/palettes/RAMP.jpg \
-images/palettes/RAND_m.jpg \
-images/palettes/RATELIMITER.jpg \
-images/palettes/READAU_f.jpg \
-images/palettes/READC_f.jpg \
-images/palettes/REGISTER.jpg \
-images/palettes/RELATIONALOP.jpg \
-images/palettes/RELAY_f.jpg \
-images/palettes/Resistor.jpg \
-images/palettes/RFILE_f.jpg \
-images/palettes/RICC.jpg \
-images/palettes/ROOTCOEF.jpg \
-images/palettes/SAMPHOLD_m.jpg \
-images/palettes/SampleCLK.jpg \
-images/palettes/SATURATION.jpg \
-images/palettes/SAWTOOTH_f.jpg \
-images/palettes/scifunc_block_m.jpg \
-images/palettes/SELECT_m.jpg \
-images/palettes/SHIFT.jpg \
-images/palettes/Sigbuilder.jpg \
-images/palettes/SIGNUM.jpg \
-images/palettes/SINBLK_f.jpg \
-images/palettes/SineVoltage.jpg \
-images/palettes/SourceP.jpg \
-images/palettes/SQRT.jpg \
-images/palettes/SRFLIPFLOP.jpg \
-images/palettes/STEP_FUNCTION.jpg \
-images/palettes/SUBMAT.jpg \
-images/palettes/SUM_f.jpg \
-images/palettes/SUMMATION.jpg \
-images/palettes/SUPER_f.jpg \
-images/palettes/Switch.jpg \
-images/palettes/SWITCH2_m.jpg \
-images/palettes/SWITCH_f.jpg \
-images/palettes/TANBLK_f.jpg \
-images/palettes/TCLSS.jpg \
-images/palettes/TEXT_f.jpg \
-images/palettes/TIME_DELAY.jpg \
-images/palettes/TIME_f.jpg \
-images/palettes/TKSCALE.jpg \
-images/palettes/TOWS_c.jpg \
-images/palettes/TRASH_f.jpg \
-images/palettes/TrigFun.jpg \
-images/palettes/VanneReglante.jpg \
-images/palettes/VARIABLE_DELAY.jpg \
-images/palettes/VariableResistor.jpg \
-images/palettes/VoltageSensor.jpg \
-images/palettes/VsourceAC.jpg \
-images/palettes/VVsourceAC.jpg \
-images/palettes/WFILE_f.jpg \
-images/palettes/WRITEAU_f.jpg \
-images/palettes/WRITEC_f.jpg \
-images/palettes/ZCROSS_f.jpg
+images/icons/select-by-color.png \
+images/icons/transform-flip.png \
+images/icons/transform-mirror.png \
+images/palettes/ABS_VALUE.png \
+images/palettes/AFFICH_m.png \
+images/palettes/ANDBLK.png \
+images/palettes/ANDLOG_f.png \
+images/palettes/AUTOMAT.png \
+images/palettes/Bache.png \
+images/palettes/BACKLASH.png \
+images/palettes/BIGSOM_f.png \
+images/palettes/BITCLEAR.png \
+images/palettes/BITSET.png \
+images/palettes/BOUNCE.png \
+images/palettes/BOUNCEXY.png \
+images/palettes/BPLATFORM.png \
+images/palettes/CANIMXY3D.png \
+images/palettes/CANIMXY.png \
+images/palettes/Capacitor.png \
+images/palettes/c_block.png \
+images/palettes/CBLOCK.png \
+images/palettes/CCS.png \
+images/palettes/CEVENTSCOPE.png \
+images/palettes/CFSCOPE.png \
+images/palettes/CLINDUMMY_f.png \
+images/palettes/CLKFROM.png \
+images/palettes/CLKGOTO.png \
+images/palettes/CLKGotoTagVisibility.png \
+images/palettes/CLKINV_f.png \
+images/palettes/CLKOUTV_f.png \
+images/palettes/CLKSOMV_f.png \
+images/palettes/CLOCK_c.png \
+images/palettes/CLR.png \
+images/palettes/CLSS.png \
+images/palettes/CMAT3D.png \
+images/palettes/CMATVIEW.png \
+images/palettes/CMSCOPE.png \
+images/palettes/ConstantVoltage.png \
+images/palettes/CONST_m.png \
+images/palettes/CONSTRAINT_f.png \
+images/palettes/CONVERT.png \
+images/palettes/COSBLK_f.png \
+images/palettes/Counter.png \
+images/palettes/CSCOPE.png \
+images/palettes/CSCOPXY3D.png \
+images/palettes/CSCOPXY.png \
+images/palettes/CUMSUM.png \
+images/palettes/CurrentSensor.png \
+images/palettes/CURV_f.png \
+images/palettes/CVS.png \
+images/palettes/DEADBAND.png \
+images/palettes/DEBUG_SCICOS.png \
+images/palettes/DELAY_f.png \
+images/palettes/DELAYV_f.png \
+images/palettes/DEMUX.png \
+images/palettes/DERIV.png \
+images/palettes/DFLIPFLOP.png \
+images/palettes/DIFF_f.png \
+images/palettes/Diode.png \
+images/palettes/DLATCH.png \
+images/palettes/DLRADAPT_f.png \
+images/palettes/DLR.png \
+images/palettes/DLSS.png \
+images/palettes/DOLLAR_f.png \
+images/palettes/EDGE_TRIGGER.png \
+images/palettes/ENDBLK.png \
+images/palettes/END_c.png \
+images/palettes/ESELECT_f.png \
+images/palettes/EVTDLY_c.png \
+images/palettes/EVTGEN_f.png \
+images/palettes/EVTVARDLY.png \
+images/palettes/EXPBLK_m.png \
+images/palettes/EXPRESSION.png \
+images/palettes/Extract_Activation.png \
+images/palettes/EXTRACTBITS.png \
+images/palettes/EXTRACTOR.png \
+images/palettes/EXTRACT.png \
+images/palettes/EXTTRI.png \
+images/palettes/fortran_block.png \
+images/palettes/freq_div.png \
+images/palettes/FROMMO.png \
+images/palettes/FROM.png \
+images/palettes/FROMWSB.png \
+images/palettes/GAINBLK_f.png \
+images/palettes/GENERAL_f.png \
+images/palettes/generic_block3.png \
+images/palettes/GENSIN_f.png \
+images/palettes/GENSQR_f.png \
+images/palettes/GOTOMO.png \
+images/palettes/GOTO.png \
+images/palettes/GotoTagVisibilityMO.png \
+images/palettes/GotoTagVisibility.png \
+images/palettes/Ground.png \
+images/palettes/Gyrator.png \
+images/palettes/HALT_f.png \
+images/palettes/HYSTHERESIS.png \
+images/palettes/IdealTransformer.png \
+images/palettes/IFTHEL_f.png \
+images/palettes/Inductor.png \
+images/palettes/IN_f.png \
+images/palettes/INIMPL_f.png \
+images/palettes/INTEGRAL_f.png \
+images/palettes/INTEGRAL_m.png \
+images/palettes/INTMUL.png \
+images/palettes/INTRP2BLK_f.png \
+images/palettes/INTRPLBLK_f.png \
+images/palettes/INVBLK.png \
+images/palettes/ISELECT_m.png \
+images/palettes/JKFLIPFLOP.png \
+images/palettes/LOGBLK_f.png \
+images/palettes/LOGICAL_OP.png \
+images/palettes/LOGIC.png \
+images/palettes/LOOKUP_f.png \
+images/palettes/MATBKSL.png \
+images/palettes/MATCATH.png \
+images/palettes/MATCATV.png \
+images/palettes/MATDET.png \
+images/palettes/MATDIAG.png \
+images/palettes/MATDIV.png \
+images/palettes/MATEIG.png \
+images/palettes/MATEXPM.png \
+images/palettes/MATINV.png \
+images/palettes/MATLU.png \
+images/palettes/MATMAGPHI.png \
+images/palettes/MATMUL.png \
+images/palettes/MATPINV.png \
+images/palettes/MATRESH.png \
+images/palettes/MATSING.png \
+images/palettes/MATSUM.png \
+images/palettes/MATTRAN.png \
+images/palettes/MATZCONJ.png \
+images/palettes/MATZREIM.png \
+images/palettes/MAX_f.png \
+images/palettes/MAXMIN.png \
+images/palettes/MBLOCK.png \
+images/palettes/MCLOCK_f.png \
+images/palettes/MFCLCK_f.png \
+images/palettes/M_freq.png \
+images/palettes/MIN_f.png \
+images/palettes/Modulo_Count.png \
+images/palettes/M_SWITCH.png \
+images/palettes/MUX.png \
+images/palettes/NEGTOPOS_f.png \
+images/palettes/NMOS.png \
+images/palettes/NPN.png \
+images/palettes/NRMSOM_f.png \
+images/palettes/OpAmp.png \
+images/palettes/OUT_f.png \
+images/palettes/OUTIMPL_f.png \
+images/palettes/PDE.png \
+images/palettes/PerteDP.png \
+images/palettes/PID.png \
+images/palettes/PMOS.png \
+images/palettes/PNP.png \
+images/palettes/POSTONEG_f.png \
+images/palettes/PotentialSensor.png \
+images/palettes/POWBLK_f.png \
+images/palettes/PROD_f.png \
+images/palettes/PRODUCT.png \
+images/palettes/PuitsP.png \
+images/palettes/QUANT_f.png \
+images/palettes/RAMP.png \
+images/palettes/RAND_m.png \
+images/palettes/RATELIMITER.png \
+images/palettes/READAU_f.png \
+images/palettes/READC_f.png \
+images/palettes/REGISTER.png \
+images/palettes/RELATIONALOP.png \
+images/palettes/RELAY_f.png \
+images/palettes/Resistor.png \
+images/palettes/RFILE_f.png \
+images/palettes/RICC.png \
+images/palettes/ROOTCOEF.png \
+images/palettes/SAMPHOLD_m.png \
+images/palettes/SampleCLK.png \
+images/palettes/SATURATION.png \
+images/palettes/SAWTOOTH_f.png \
+images/palettes/scifunc_block_m.png \
+images/palettes/SELECT_m.png \
+images/palettes/SHIFT.png \
+images/palettes/Sigbuilder.png \
+images/palettes/SIGNUM.png \
+images/palettes/SINBLK_f.png \
+images/palettes/SineVoltage.png \
+images/palettes/SourceP.png \
+images/palettes/SQRT.png \
+images/palettes/SRFLIPFLOP.png \
+images/palettes/STEP_FUNCTION.png \
+images/palettes/SUBMAT.png \
+images/palettes/SUM_f.png \
+images/palettes/SUMMATION.png \
+images/palettes/SUPER_f.png \
+images/palettes/SWITCH2_m.png \
+images/palettes/SWITCH_f.png \
+images/palettes/Switch.png \
+images/palettes/TANBLK_f.png \
+images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
+images/palettes/TIME_DELAY.png \
+images/palettes/TIME_f.png \
+images/palettes/TKSCALE.png \
+images/palettes/TOWS_c.png \
+images/palettes/TRASH_f.png \
+images/palettes/TrigFun.png \
+images/palettes/VanneReglante.png \
+images/palettes/VARIABLE_DELAY.png \
+images/palettes/VariableResistor.png \
+images/palettes/VoltageSensor.png \
+images/palettes/VsourceAC.png \
+images/palettes/VVsourceAC.png \
+images/palettes/WFILE_f.png \
+images/palettes/WRITEAU_f.png \
+images/palettes/WRITEC_f.png \
+images/palettes/ZCROSS_f.png
 
-@GUI_TRUE@@HDF5_TRUE@USEANT = 1
+@GUI_TRUE@@HDF5_TRUE@@XCOS_TRUE@USEANT = 1
 
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
@@ -835,7 +863,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -929,17 +957,26 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_disable_la-noxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-GiwsException.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Signal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Modelica.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Palette.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-callxcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-gw_xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_Xcos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_closeXcosFromScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramClose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramOpen.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosDiagramToHDF5.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosNotify.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscixcos_la-xcosUtilities.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -1004,13 +1041,6 @@ libscixcos_la-sci_Xcos.lo: sci_gateway/cpp/sci_Xcos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_Xcos.lo `test -f 'sci_gateway/cpp/sci_Xcos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_Xcos.cpp
 
-libscixcos_la-sci_xcosNotify.lo: sci_gateway/cpp/sci_xcosNotify.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosNotify.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosNotify.Tpo -c -o libscixcos_la-sci_xcosNotify.lo `test -f 'sci_gateway/cpp/sci_xcosNotify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosNotify.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosNotify.Tpo $(DEPDIR)/libscixcos_la-sci_xcosNotify.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosNotify.cpp' object='libscixcos_la-sci_xcosNotify.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosNotify.lo `test -f 'sci_gateway/cpp/sci_xcosNotify.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosNotify.cpp
-
 libscixcos_la-sci_warnBlockByUID.lo: sci_gateway/cpp/sci_warnBlockByUID.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_warnBlockByUID.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo -c -o libscixcos_la-sci_warnBlockByUID.lo `test -f 'sci_gateway/cpp/sci_warnBlockByUID.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_warnBlockByUID.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Tpo $(DEPDIR)/libscixcos_la-sci_warnBlockByUID.Plo
@@ -1046,6 +1076,62 @@ libscixcos_la-sci_xcosDiagramClose.lo: sci_gateway/cpp/sci_xcosDiagramClose.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosDiagramClose.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramClose.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramClose.cpp
 
+libscixcos_la-sci_xcosPalLoad.lo: sci_gateway/cpp/sci_xcosPalLoad.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalLoad.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo -c -o libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalLoad.cpp' object='libscixcos_la-sci_xcosPalLoad.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp
+
+libscixcos_la-sci_xcosPalCategoryAdd.lo: sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalCategoryAdd.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo -c -o libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' object='libscixcos_la-sci_xcosPalCategoryAdd.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalCategoryAdd.lo `test -f 'sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp
+
+libscixcos_la-sci_xcosPalDelete.lo: sci_gateway/cpp/sci_xcosPalDelete.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalDelete.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo -c -o libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalDelete.cpp' object='libscixcos_la-sci_xcosPalDelete.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalDelete.lo `test -f 'sci_gateway/cpp/sci_xcosPalDelete.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDelete.cpp
+
+libscixcos_la-sci_xcosPalMove.lo: sci_gateway/cpp/sci_xcosPalMove.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalMove.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo -c -o libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalMove.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalMove.cpp' object='libscixcos_la-sci_xcosPalMove.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalMove.lo `test -f 'sci_gateway/cpp/sci_xcosPalMove.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalMove.cpp
+
+libscixcos_la-sci_xcosPalEnable.lo: sci_gateway/cpp/sci_xcosPalEnable.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalEnable.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo -c -o libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalEnable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalEnable.cpp' object='libscixcos_la-sci_xcosPalEnable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalEnable.lo `test -f 'sci_gateway/cpp/sci_xcosPalEnable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalEnable.cpp
+
+libscixcos_la-sci_xcosPalDisable.lo: sci_gateway/cpp/sci_xcosPalDisable.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalDisable.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo -c -o libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalDisable.cpp' object='libscixcos_la-sci_xcosPalDisable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalDisable.lo `test -f 'sci_gateway/cpp/sci_xcosPalDisable.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalDisable.cpp
+
+libscixcos_la-sci_xcosPalGenerateIcon.lo: sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosPalGenerateIcon.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo -c -o libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Tpo $(DEPDIR)/libscixcos_la-sci_xcosPalGenerateIcon.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' object='libscixcos_la-sci_xcosPalGenerateIcon.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosPalGenerateIcon.lo `test -f 'sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalGenerateIcon.cpp
+
+libscixcos_la-sci_xcosConfigureXmlFile.lo: sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-sci_xcosConfigureXmlFile.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Tpo $(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' object='libscixcos_la-sci_xcosConfigureXmlFile.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-sci_xcosConfigureXmlFile.lo `test -f 'sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosConfigureXmlFile.cpp
+
 libscixcos_la-callxcos.lo: src/cpp/callxcos.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-callxcos.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-callxcos.Tpo -c -o libscixcos_la-callxcos.lo `test -f 'src/cpp/callxcos.cpp' || echo '$(srcdir)/'`src/cpp/callxcos.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-callxcos.Tpo $(DEPDIR)/libscixcos_la-callxcos.Plo
@@ -1060,12 +1146,19 @@ libscixcos_la-Xcos.lo: src/jni/Xcos.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Xcos.lo `test -f 'src/jni/Xcos.cpp' || echo '$(srcdir)/'`src/jni/Xcos.cpp
 
-libscixcos_la-Signal.lo: src/jni/Signal.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-Signal.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-Signal.Tpo -c -o libscixcos_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-Signal.Tpo $(DEPDIR)/libscixcos_la-Signal.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Signal.cpp' object='libscixcos_la-Signal.lo' libtool=yes @AMDEPBACKSLASH@
+libscixcos_la-Palette.lo: src/jni/Palette.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-Palette.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-Palette.Tpo -c -o libscixcos_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-Palette.Tpo $(DEPDIR)/libscixcos_la-Palette.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Palette.cpp' object='libscixcos_la-Palette.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Signal.lo `test -f 'src/jni/Signal.cpp' || echo '$(srcdir)/'`src/jni/Signal.cpp
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Palette.lo `test -f 'src/jni/Palette.cpp' || echo '$(srcdir)/'`src/jni/Palette.cpp
+
+libscixcos_la-Modelica.lo: src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-Modelica.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-Modelica.Tpo -c -o libscixcos_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-Modelica.Tpo $(DEPDIR)/libscixcos_la-Modelica.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/Modelica.cpp' object='libscixcos_la-Modelica.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-Modelica.lo `test -f 'src/jni/Modelica.cpp' || echo '$(srcdir)/'`src/jni/Modelica.cpp
 
 libscixcos_la-GiwsException.lo: src/jni/GiwsException.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-GiwsException.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-GiwsException.Tpo -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
@@ -1073,6 +1166,13 @@ libscixcos_la-GiwsException.lo: src/jni/GiwsException.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/jni/GiwsException.cpp' object='libscixcos_la-GiwsException.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-GiwsException.lo `test -f 'src/jni/GiwsException.cpp' || echo '$(srcdir)/'`src/jni/GiwsException.cpp
+
+libscixcos_la-xcosUtilities.lo: src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscixcos_la-xcosUtilities.lo -MD -MP -MF $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo -c -o libscixcos_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscixcos_la-xcosUtilities.Tpo $(DEPDIR)/libscixcos_la-xcosUtilities.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/xcosUtilities.cpp' object='libscixcos_la-xcosUtilities.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscixcos_la-xcosUtilities.lo `test -f 'src/cpp/xcosUtilities.cpp' || echo '$(srcdir)/'`src/cpp/xcosUtilities.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1386,7 +1486,7 @@ uninstall-am: uninstall-libscixcos_la_etcDATA \
 
 
 # This target enables tests for Scilab
-check-local: $(top_builddir)/scilab-bin
+check-local: $(top_builddir)/scilab-bin test
 	@COMMAND="test_run('$(modulename)');quit";\
 	export LANG=C;\
 	$(top_builddir)/bin/scilab -nwni -nb -e "$$COMMAND"
@@ -1434,7 +1534,7 @@ check-code:
 @GIWS_TRUE@	if test -n "$(GIWS_WRAPPERS)"; then \
 @GIWS_TRUE@		for file in $(GIWS_WRAPPERS) ; do \
 @GIWS_TRUE@			echo "GIWS process of $$file ..."; \
-@GIWS_TRUE@			$(GIWS_BIN) --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
+@GIWS_TRUE@			$(GIWS_BIN) --disable-return-size-array --output-dir $$GIWS_OUTPUTDIR --throws-exception-on-error --description-file $$file; \
 @GIWS_TRUE@		done; \
 @GIWS_TRUE@	fi
 
@@ -1453,6 +1553,13 @@ clean-macros:
 		rm -f $(builddir)/$$dir/$(MACROBINMASK); \
 	done
 
+test:
+# More tests could be added here
+	@if test -z "$(USEANT)"; then USEANT=0; else USEANT=1; fi; \
+	if test -f build.xml -a $$USEANT -eq 1; then \
+		$(ANT) test; \
+	fi
+
 all-local: $(TARGETS_ALL)
 
 .sci.bin:
@@ -1464,6 +1571,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1538,6 +1651,7 @@ install-data-local:
 		if test -d $(srcdir)/$$dir/; then \
 			FILELIST="$(srcdir)/$$dir/$(MACROMASK) $(srcdir)/$$dir/$(MACROBINMASK) $(srcdir)/$$dir/$(MACROBUILDMASK) $(srcdir)/$$dir/names $(srcdir)/$$dir/lib";\
 			if test -n "$(MACROSSPECIALEXT)"; then \
+				specialExtDir=""; \
 				for specialExt in $(MACROSSPECIALEXT); do \
 					specialExtDir="$$specialExtDir $(srcdir)/$$dir/$$specialExt"; \
 				done; \
@@ -1560,9 +1674,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

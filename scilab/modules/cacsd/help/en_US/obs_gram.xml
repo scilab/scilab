@@ -24,7 +24,7 @@
 Go=obs_gram(sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,C</term>
@@ -79,8 +79,8 @@ A=A/4; Go=obs_gram(A,C,'d');    //discrete time case
 norm(lyap(A,-C'*C,'d')-Go,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

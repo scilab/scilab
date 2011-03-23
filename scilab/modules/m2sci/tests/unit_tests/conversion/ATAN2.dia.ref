@@ -1,0 +1,90 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: ATAN2
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestConversion.sci", -1);
+if ~m2sciTestConversion("ATAN2") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/ATAN2.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: -1
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  ! L.7: real(m2sciUnknownType([])) may be replaced by:
+  !     m2sciUnknownType([]) if m2sciUnknownType([]) is real
+  ! L.7: real(m2sciUnknownType([])) may be replaced by:
+  !     m2sciUnknownType([]) if m2sciUnknownType([]) is real
+  ! L.19: real(m2sciUnknownType(1)) may be replaced by:
+  !     m2sciUnknownType(1) if m2sciUnknownType(1) is real
+  ! L.19: real(m2sciUnknownType(1)) may be replaced by:
+  !     m2sciUnknownType(1) if m2sciUnknownType(1) is real
+  ! L.21: real(m2sciUnknownType([1,2,3])) may be replaced by:
+  !     m2sciUnknownType([1,2,3]) if m2sciUnknownType([1,2,3]) is real
+  ! L.21: real(m2sciUnknownType([3,2,1])) may be replaced by:
+  !     m2sciUnknownType([3,2,1]) if m2sciUnknownType([3,2,1]) is real
+  ! L.23: real(m2sciUnknownType([1;2;3])) may be replaced by:
+  !     m2sciUnknownType([1;2;3]) if m2sciUnknownType([1;2;3]) is real
+  ! L.23: real(m2sciUnknownType([3;2;1])) may be replaced by:
+  !     m2sciUnknownType([3;2;1]) if m2sciUnknownType([3;2;1]) is real
+  ! L.25: real(m2sciUnknownType([1,2,3;4,5,6])) may be replaced by:
+  !     m2sciUnknownType([1,2,3;4,5,6]) if m2sciUnknownType([1,2,3;4,5,6]) is real
+  ! L.25: real(m2sciUnknownType([6,5,4;3,2,1])) may be replaced by:
+  !     m2sciUnknownType([6,5,4;3,2,1]) if m2sciUnknownType([6,5,4;3,2,1]) is real
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  ! L.43: real(m2sciUnknownType(%%i)) may be replaced by:
+  !     m2sciUnknownType(%%i) if m2sciUnknownType(%%i) is real
+  ! L.43: real(m2sciUnknownType(%%i)) may be replaced by:
+  !     m2sciUnknownType(%%i) if m2sciUnknownType(%%i) is real
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  ! L.45: real(m2sciUnknownType([%%i,2*%%i,3*%%i])) may be replaced by:
+  !     m2sciUnknownType([%%i,2*%%i,3*%%i]) if m2sciUnknownType([%%i,2*%%i,3*%%i]) is real
+  ! L.45: real(m2sciUnknownType([3*%%i,2*%%i,%%i])) may be replaced by:
+  !     m2sciUnknownType([3*%%i,2*%%i,%%i]) if m2sciUnknownType([3*%%i,2*%%i,%%i]) is real
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  ! L.47: real(m2sciUnknownType([%%i;2*%%i;3*%%i])) may be replaced by:
+  !     m2sciUnknownType([%%i;2*%%i;3*%%i]) if m2sciUnknownType([%%i;2*%%i;3*%%i]) is real
+  ! L.47: real(m2sciUnknownType([3*%%i;2*%%i;%%i])) may be replaced by:
+  !     m2sciUnknownType([3*%%i;2*%%i;%%i]) if m2sciUnknownType([3*%%i;2*%%i;%%i]) is real
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  ! L.49: real(m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i])) may be replaced by:
+  !     m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) if m2sciUnknownType([%%i,2*%%i,3*%%i;4*%%i,5*%%i,6*%%i]) is real
+  ! L.49: real(m2sciUnknownType([6*%%i,5*%%i,4*%%i;3*%%i,2*%%i,%%i])) may be replaced by:
+  !     m2sciUnknownType([6*%%i,5*%%i,4*%%i;3*%%i,2*%%i,%%i]) if m2sciUnknownType([6*%%i,5*%%i,4*%%i;3*%%i,2*%%i,%%i]) is real
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Variable i supposed to be the Imaginary unit.
+  Conversion of M-tree: Done
+TESTING M2SCI: creating varslist file...
+  Macro to tree conversion: Done
+  Translation may be improved: see the //! comments and for all mtlb_<funname> function call\n  Type help mtlb_<funname> in Scilab command window to get information about improvements.
+  ****** End of mfile2sci() session ******

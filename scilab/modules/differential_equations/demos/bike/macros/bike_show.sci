@@ -69,13 +69,13 @@ function []=bike_show(xx,t,p,f_name)
   zfrontar = sinl*sthe1+dec*xx(23,i);
   //---------------boundaries
   xp=[xprear,xpfront,[xf(2,:);yf(2,:);zf(2,:)]];
-  xmin=mini(xp(1,:));xmax=maxi(xp(1,:));
-  ymin=mini(xp(2,:));ymax=maxi(xp(2,:));
+  xmin=min(xp(1,:));xmax=max(xp(1,:));
+  ymin=min(xp(2,:));ymax=max(xp(2,:));
   if xmin <0 then xmin=1.04*xmin,else xmin=0.96*xmin;end
   if xmax >0 then xmax=1.04*xmax,else xmax=0.96*xmax;end
   if ymin <0 then ymin=1.04*ymin,else ymin=0.96*ymin;end
   if ymax >0 then ymax=1.04*ymax,else ymax=0.96*ymax;end
-  zmin=mini(xp(3,:));zmax=maxi(xp(3,:));
+  zmin=min(xp(3,:));zmax=max(xp(3,:));
   rect=[xmin,xmax,ymin,ymax,zmin,zmax]
   get_velo_rti(%f);
   f_name();

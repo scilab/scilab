@@ -1,0 +1,609 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2009-10-29 05:33+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+"    primal obj.  dual obj.  dual. gap \n"
+msgstr ""
+
+#, c-format
+msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
+msgstr ""
+
+#, c-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#, c-format
+msgid "%s: Accuracy insufficient to satisfy convergence criterion.\n"
+msgstr "%s：精度无法满足收敛标准。\n"
+
+#, c-format
+msgid "%s: Ambiguous property name %s matches several fields : %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument 3: wrong number of columns %d expected\n"
+msgstr "%s：参数3：列数应该为%d。\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s：无法申请更多内存。\n"
+
+#, c-format
+msgid "%s: Cannot check cost function when x0 is empty"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,1)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,2)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,3)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,4)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,5)."
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot evaluate cost function from costf(x0,6)."
+msgstr ""
+
+#, c-format
+msgid "%s: Empty function (use -function option)."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected real variable for variable %s at input #%d, but got %s instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected string variable for variable %s at input #%d, but got %s "
+"instead."
+msgstr ""
+
+#, c-format
+msgid "%s: History disabled ; enable -storehistory option."
+msgstr ""
+
+#, c-format
+msgid "%s: History disabled ; turn on -storehistory option."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Impossible to scale the vertex #%d/%d at [%s] into inequality constraints"
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess [%s] is not feasible."
+msgstr ""
+
+#, c-format
+msgid "%s: Initial guess not feasible.\n"
+msgstr "%s：初始猜测不可行。\n"
+
+#, c-format
+msgid "%s: Length of working array is too short.\n"
+msgstr "%s：工作数组的长度太短。\n"
+
+#, c-format
+msgid "%s: Log file handle non zero while starting up the logging."
+msgstr ""
+
+#, c-format
+msgid "%s: Logging already started."
+msgstr ""
+
+#, c-format
+msgid "%s: Logging not started."
+msgstr ""
+
+#, c-format
+msgid "%s: Negative iteration index %d is not allowed."
+msgstr ""
+
+#, c-format
+msgid "%s: Negative iteration index are not allowed."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: No default options available: the function ''%s'' does not exist on the "
+"path."
+msgstr ""
+
+#, c-format
+msgid "%s: No output command is defined."
+msgstr ""
+
+#, c-format
+msgid "%s: Number of columns of fv is %d, which is different from 1."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of columns of x is %d, which is different from dimension = %d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of rows of fv is %d, which is different from number of vertices = "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Number of rows of x is %d, which is different from number of vertices = "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Odd number of arguments : the first argument is expected to be a struct, "
+"but is a %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Order must be 1, 2 or 4.\n"
+msgstr "%s：阶数（order）必须为1，2或4。\n"
+
+#, c-format
+msgid "%s: Problem has constraints, but fixed algorithm ignores them."
+msgstr ""
+
+#, c-format
+msgid "%s: Problem has constraints, but variable algorithm ignores them."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgstr ""
+
+#, c-format
+msgid "%s: Q is not symmetric positive definite.\n"
+msgstr "%s：Q不是对称正定矩阵。\n"
+
+#, c-format
+msgid ""
+"%s: Randomized bounds initial simplex is not available without bounds."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The -withderivatives option is true but all algorithms in neldermead are "
+"derivative-free."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmax vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to be a row matrix, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The boundsmin vector is expected to have %d columns, but current shape "
+"is %d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The constraints are inconsistent.\n"
+msgstr "%s：约束不一致。\n"
+
+#, c-format
+msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The exclusion index vector has %d rows instead of 1."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The gradient can be applied only with a simplex made of n+1 points, but "
+"the dimension is %d and the number of vertices is %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a row matrix, but current shape is %d x "
+"%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is expected to be a scalar, but current shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The len vector is not consistent with the x0 point. Current shape of x0 "
+"is %d x %d while current shape of len is %d x %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The matrix %s from costf(x0,%d) has %d rows, instead of %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The minimization problem has no solution.\n"
+msgstr "%s：该最小化问题无解。\n"
+
+#, c-format
+msgid ""
+"%s: The number of columns in the function value array is %d, while expected "
+"1."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of columns in x is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of rows in the function value array is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of rows in x is %d, while expected %d."
+msgstr ""
+
+#, c-format
+msgid "%s: The number of variable is zero."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The number of vertices (i.e. the number of rows) is %d which is smaller "
+"than the number of columns %d (i.e. n+1)."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The numbers of columns of coords is %d but is expected to be at least %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The oriented simplex can be computed only with a simplex made of n+1 "
+"points, but the dimension is %d and the number of vertices is %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restarteps option is expected to be a scalar, but current shape is "
+"%d x %d"
+msgstr ""
+
+#, c-format
+msgid "%s: The restarteps option is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid "%s: The restartstep vector is expected to be positive"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The restartstep vector is expected to have %d x %d shape, but current "
+"shape is %d x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The value of the ''OutputFcn'' option is neither a function nor a list."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The value of the ''PlotFcns'' option is neither a function nor a list."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
+"x %d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The x0 vector is expected to be a row matrix, but current shape is %d x "
+"%d."
+msgstr ""
+
+#, c-format
+msgid "%s: Too many iterations (more than %d).\n"
+msgstr "%s：迭代次数太多（超过了%d）。\n"
+
+#, c-format
+msgid "%s: Unbounded problem!"
+msgstr "%s：无边界的错误！"
+
+#, c-format
+msgid "%s: Unexpected maximum number of function evaluations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected maximum number of iterations %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Unexpected negative value %s for %s option"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 0 to 7 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 1 to 3 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 are expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 or 3 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 4 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 5 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 2 to 6 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of input arguments : %d provided while 6 to 7 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of output arguments : %d provided while 3 to 5 are "
+"expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Unexpected number of variables %d. Cannot draw contour plot for "
+"functions which do not have two parameters."
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown -method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown key %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown restart detection %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown restart simplex method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown simplex size method %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown status %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown step %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for %s option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for -scalingsimplex0 option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown value %s for -simplex0method option"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized parameter name ''%s''."
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
+msgstr ""
+
+#, c-format
+msgid "%s: Weighting matrix must be square.\n"
+msgstr "%s：加权矩阵必须为方阵。\n"
+
+#, c-format
+msgid "%s: Wrong number of arguments : %d expected while %d given"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s：输入参数#%d的大小错误。"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为一个列向量。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为列数%d。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为一个函数。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为N维数组。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: external expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: x0 is not feasible."
+msgstr "%s：x0不可用。"
+
+#, c-format
+msgid "Error in dgels, info = %d.\n"
+msgstr "dgels中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dspev, info = %d.\n"
+msgstr "dspev中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dspgv, info = %d.\n"
+msgstr "dspgv中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dspst, info = %d.\n"
+msgstr "dspst中发生错误，info=%d。\n"
+
+#, c-format
+msgid "Error in dtrcon, info = %d.\n"
+msgstr "dtrcon中发生错误，info=%d。\n"
+
+msgid "F(x)*Z has a negative eigenvalue.\n"
+msgstr "F(x)*Z有一个负特征值。\n"
+
+msgid "L must be at least one.\n"
+msgstr "L必须至少为1.\n"
+
+msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
+msgstr "矩阵 Fi, i=1,...,m 是线性相关的。\n"
+
+msgid "Optimization and Simulation"
+msgstr "优化和仿真"
+
+msgid ""
+"The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
+"are very badly conditioned).\n"
+msgstr "矩阵 F_i, i=1,...,m 线性相关（或初始点为病态数据）\n"
+
+#, c-format
+msgid "Work space is too small.  Need at least %d*sizeof(double).\n"
+msgstr "工作空间太小，需要至少 %d*sizeof(double)。\n"
+
+msgid "Z0 does not satisfy equality conditions for dual feasibility.\n"
+msgstr ""
+
+msgid "Z0 is not positive definite.\n"
+msgstr "Z0不是正定的。\n"
+
+#, c-format
+msgid "blck_szs[%d] must be at least one.\n"
+msgstr "blck_szs[%d]必须至少为1.\n"
+
+msgid "m must be at least one.\n"
+msgstr "m必须至少为1。\n"
+
+msgid "nu must be at least 1.0.\n"
+msgstr "nu必须至少为1.0。\n"
+
+msgid "x0 is not strictly primal feasible.\n"
+msgstr ""

@@ -1,116 +1,121 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA
+// Copyright (C) 2010 - INRIA - Serge STEER
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
-// are also available at    
+// are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-
 function evans(n,d,kmax)
 // Seuil maxi et mini (relatifs) de discretisation en espace
 // Copyright INRIA
-  
+
   smax=0.002;smin=smax/3;
   nptmax=2000 //nbre maxi de pt de discretisation en k
-  
-  //analyse de la liste d'appel
-  
+
+  //Check calling sequence
+
   [lhs,rhs]=argn(0)
-  
-  if rhs <= 0 then   // demo
-    n=real(poly([0.1-%i 0.1+%i,-10],'s'));
-    d=real(poly([-1 -2 -%i %i],'s'));
+
+  if rhs <= 0 then   // demonstration
+    n=real(poly([0.1-%i 0.1+%i,-10],"s"));
+    d=real(poly([-1 -2 -%i %i],"s"));
     evans(n,d,80);
     return
   end
 
   select typeof(n)
-  case 'constant'  then
+  case "polynomial"  then
     if rhs==2 then kmax=0,end
-  case 'polynomial'  then
-    if rhs==2 then kmax=0,end
-    //-compat next case retained for list/tlist compatibility
-  case 'rational' then
+  case "rational" then
     if rhs==2 then kmax=d,else kmax=0,end
     [n,d]=n(2:3)
-  case 'state-space' then
+  case "state-space" then
     if rhs==2 then kmax=d,else kmax=0,end
     n=ss2tf(n);
     [n,d]=n(2:3);n=clean(n);d=clean(d);
-  else 
-     error(msprintf(gettext("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"evans",1));
+  else
+    error(msprintf(_("%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"),"evans",1));
   end
   if prod(size(n))<>1 then
-    error(msprintf(gettext("%s: Wrong value for input argument #%d: Single input, single output system expected.\n"),"evans",1));
+    error(msprintf(_("%s: Wrong value for input argument #%d: Single input, single output system expected.\n"),"evans",1));
   end
+  if degree(n)==0&degree(d)==0 then
+    error(msprintf(_("%s: The given system has no poles and no zeros.\n"),"evans"));
+  end
+
   if kmax<=0 then
-    nm=mini([degree(n),degree(d)])
+    nm=min([degree(n),degree(d)])
     fact=norm(coeff(d),2)/norm(coeff(n),2)
     kmax=round(500*fact),
   end
   //
-  //calcul de la discretisation en k et racines associees
+  //Compute the discretization for "k" and the associated roots
   nroots=roots(n);racines=roots(d);
   if nroots==[] then
-    nrm=maxi([norm(racines,1),norm(roots(d+kmax*n),1)])
+    nrm=max([norm(racines,1),norm(roots(d+kmax*n),1)])
   else
-    nrm=maxi([norm(racines,1),norm(nroots,1),norm(roots(d+kmax*n),1)])
+    nrm=max([norm(racines,1),norm(nroots,1),norm(roots(d+kmax*n),1)])
   end
   md=degree(d)
   //
-  ord=1:md;kk=0;nr=1;k=0;pas=0.99;fin='no';
-
-
-  while fin=='no' then
+  ord=1:md;kk=0;nr=1;k=0;pas=0.99;fin="no";
+  klim=gsort(krac2(rlist(n,d,"c")),"g","i")
+  ilim=1
+  while fin=="no" then
     k=k+pas
     r=roots(d+k*n);r=r(ord)
-    dist=maxi(abs(racines(:,nr)-r))/nrm
+    dist=max(abs(racines(:,nr)-r))/nrm
     //
-    point='nok'
+    point=%f
+
     if dist <smax then //pas correct
-      point='ok'
-    else //pas trop grand ou ordre incorrect
-	 // on cherche l'ordre qui minimise la distance
-	 ix=1:md
-	 ord1=[]
-	 for ky=1:md
-	   yy=r(ky)
-	   mn=10*dist*nrm
-	   for kx=1:md
-	     if ix(kx)>0 then
-	       if  abs(yy-racines(kx,nr)) < mn then
-		 mn=abs(yy-racines(kx,nr))
-		 kmn=kx
-	       end
-	     end
-	   end
-	   ix(kmn)=0
-	   ord1=[ord1 kmn]
-	 end
-	 r(ord1)=r
-	 dist=maxi(abs(racines(:,nr)-r))/nrm
-	 if dist <smax then
-	   point='ok',
-	   ord(ord1)=ord
-	 else
-	   k=k-pas,pas=pas/2.5
-	 end
+      if k-pas<klim(ilim)& k>klim(ilim) then,
+        k=klim(ilim);
+        r=roots(d+k*n);r=r(ord)
+      end
+      if k>klim(ilim) then ilim=min(ilim+1,size(klim,"*"));end
+      point=%t
+    else //Too big step or incorrect root order
+      // look for a root order that minimize the distance
+      ix=1:md
+      ord1=[]
+      for ky=1:md
+        yy=r(ky)
+        mn=10*dist*nrm
+        for kx=1:md
+          if ix(kx)>0 then
+            if  abs(yy-racines(kx,nr)) < mn then
+              mn=abs(yy-racines(kx,nr))
+              kmn=kx
+            end
+          end
+        end
+        ix(kmn)=0
+        ord1=[ord1 kmn]
+      end
+      r(ord1)=r
+      dist=max(abs(racines(:,nr)-r))/nrm
+      if dist <smax then
+        point=%t,
+        ord(ord1)=ord
+      else
+        k=k-pas,pas=pas/2.5
+      end
     end
     if dist<smin then
-      //pas trop petit
+      //KToo small step
       pas=2*pas;
     end
-    if point=='ok' then
+    if point then
       racines=[racines,r];kk=[kk,k];nr=nr+1
-      if k>kmax then fin='kmax',end
-      if nr>nptmax then fin='nptmax',end
+      if k>kmax then fin="kmax",end
+      if nr>nptmax then fin="nptmax",end
     end
   end
   //draw the axis
   x1 =[nroots;matrix(racines,md*nr,1)];
-  xmin=mini(real(x1));xmax=maxi(real(x1))
-  ymin=mini(imag(x1));ymax=maxi(imag(x1))
+  xmin=min(real(x1));xmax=max(real(x1))
+  ymin=min(imag(x1));ymax=max(imag(x1))
   dx=abs(xmax-xmin)*0.05
   dy=abs(ymax-ymin)*0.05
   if dx<1d-10, dx=0.01,end
@@ -118,26 +123,35 @@ function evans(n,d,kmax)
   legs=[],lstyle=[];lhandle=[]
   rect=[xmin-dx;ymin-dy;xmax+dx;ymax+dy];
   f=gcf();
-  cur_im_dr= f.immediate_drawing;
-  f.immediate_drawing = 'off';
-  a=gca()
-  a.data_bounds=[rect(1) rect(2);rect(3) rect(4)]
-  if nroots<>[] then 
+  immediate_drawing= f.immediate_drawing;
+  f.immediate_drawing = "off";
+  a=gca();
+  if a.children==[]
+    a.data_bounds=[rect(1) rect(2);rect(3) rect(4)];
+    a.axes_visible="on";
+    a.title.text=_("Evans root locus");
+    a.x_label.text=_("Real axis");
+    a.y_label.text=_("Imaginary axis");
+  else //enlarge the boundaries
+    a.data_bounds=[min(a.data_bounds(1,:),[rect(1) rect(2)]);
+                   max(a.data_bounds(2,:),[rect(3) rect(4)])];
+  end
+  if nroots<>[] then
     xpoly(real(nroots),imag(nroots))
-    e=gce();e.line_mode='off';e.mark_mode='on';
+    e=gce();e.line_mode="off";e.mark_mode="on";
     e.mark_size_unit="point";e.mark_size=7;e.mark_style=5;
     legs=[legs; _("open loop zeroes")]
     lhandle=[lhandle; e];
   end
-  if racines<>[] then 
+  if racines<>[] then
     xpoly(real(racines(:,1)),imag(racines(:,1)))
-    e=gce();e.line_mode='off';e.mark_mode='on';
+    e=gce();e.line_mode="off";e.mark_mode="on";
     e.mark_size_unit="point";e.mark_size=7;e.mark_style=2;
     legs=[legs;_("open loop poles")]
     lhandle=[lhandle; e];
   end
 
-  dx=maxi(abs(xmax-xmin),abs(ymax-ymin));
+  dx=max(abs(xmax-xmin),abs(ymax-ymin));
   //plot the zeros locations
 
 
@@ -155,10 +169,10 @@ function evans(n,d,kmax)
     end
     if md==2,
       if coeff(d,md)<0 then
-	x1=0*ones(2),y1=0*ones(2)
+        x1=0*ones(2),y1=0*ones(2)
       end,
     end;
-    if maxi(k)>0 then
+    if max(k)>0 then
       xpoly(i1,i2);
       e=gce();
       legs=[legs;_("asymptotic directions")]
@@ -166,21 +180,52 @@ function evans(n,d,kmax)
       axes = gca();
       axes.clip_state = "clipgrf";
       for i=1:q,xsegs([i1,x1(i)+i1],[i2,y1(i)+i2]),end,
-      
+
       axes.clip_state = "off";
     end
   end;
 
-  //lieu de evans
+
   [n1,n2]=size(racines);
 
-  plot2d(real(racines)',imag(racines)',style=2+(1:n2));
-  legend(lhandle,legs,1);
-  xtitle(_("Evans root locus"),_("Real axis"),_("Imaginary axis"));
-  f=gcf();
-  if(cur_im_dr=="on") then f.immediate_drawing = 'on';end
+  // assign the colors for each root locus
+  cmap=f.color_map;cols=1:size(cmap,1);
+  if a.background==-2 then
+    cols(and(cmap==1,2))=[]; //remove white
+  elseif a.background==-1 then
+    cols(and(cmap==0,2))=[]; //remove black
+  else
+    cols(a.background)=[];
+  end
+  cols=cols(modulo(0:n1-1,size(cols,"*"))+1);
 
-  if fin=='nptmax' then
+  //draw the root locus
+  xpolys(real(racines)',imag(racines)',cols)
+
+  //set info for datatips
+  E=gce();
+
+  for k=1:size(E.children,"*")
+    datatipInitStruct(E.children(k),"formatfunction","formatEvansTip","K",kk)
+  end
+  c=captions(lhandle,legs($:-1:1),"in_upper_right")
+  c.background=a.background;
+
+  f.immediate_drawing = immediate_drawing;
+
+  if fin=="nptmax" then
     warning(msprintf(gettext("%s: Curve truncated to the first %d discretization points.\n"),"evans",nptmax))
   end
+endfunction
+function str=formatEvansTip(curve,pt,index)
+//this function is called by the datatip mechanism to format the tip
+//string for the evans root loci curves
+  ud=datatipGetStruct(curve);
+  if index<>[] then
+    K=ud.K(index)
+  else //interpolated
+    [d,ptp,i,c]=orth_proj(curve.data,pt)
+    K=ud.K(i)+(ud.K(i+1)-ud.K(i))*c
+  end
+  str=msprintf("r: %.4g %+.4g i\nK: %.4g", pt,K);
 endfunction

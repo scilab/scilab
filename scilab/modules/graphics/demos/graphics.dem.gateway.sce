@@ -1,10 +1,8 @@
-//
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA
 // Copyright (C) 2009 - DIGITEO
 //
-// This file is distributed under the same license as the Scilab package.
-//
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 demopath = get_absolute_file_path("graphics.dem.gateway.sce");
 
@@ -23,7 +21,8 @@ subdemolist = ["2D and 3D plots"             ,"2d_3d_plots/2d_3d_plots.dem.gatew
 if ~ usecanvas() then
     subdemolist = [ subdemolist ;
                 "Misc"                        ,"misc/misc.dem.sce"                                  ; ..
-                "Colormap"                    ,"colormap.dem.sce"                                   ];
+                "Colormap"                    ,"colormap/colormap.dem.sce"                        ];
 end
 
 subdemolist(:,2) = demopath + subdemolist(:,2);
+clear demopath;

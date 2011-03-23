@@ -17,28 +17,30 @@ import ncsa.hdf.hdf5lib.HDF5Constants;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.hdf5.H5ScilabConstant;
-import org.scilab.modules.hdf5.scilabTypes.ScilabInteger;;
+import org.scilab.modules.types.ScilabInteger;
+import org.scilab.modules.types.ScilabIntegerTypeEnum;
+
 
 public class H5WriteScilabInteger {
 	public static void writeInDataSet(int file_id, String dataSetName, ScilabInteger data) throws NullPointerException, HDF5Exception {
 		Object[] dataToWrite = null; 
-		ScilabInteger.IntegerType prec = data.getPrec();
+		ScilabIntegerTypeEnum prec = data.getPrec();
 		int nativeType = 0;
 		String classType = "";
 
-		if(prec == ScilabInteger.IntegerType.TYPE8) {
+		if (prec == ScilabIntegerTypeEnum.sci_int8 || prec == ScilabIntegerTypeEnum.sci_uint8) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT8 : HDF5Constants.H5T_NATIVE_INT8; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT8 : H5ScilabConstant.SCILAB_CLASS_INT8; 
 			dataToWrite = getDataToWrite8(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE16) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int16 || prec == ScilabIntegerTypeEnum.sci_uint16) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT16 : HDF5Constants.H5T_NATIVE_INT16; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT16 : H5ScilabConstant.SCILAB_CLASS_INT16; 
 			dataToWrite = getDataToWrite16(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE32) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int32 || prec == ScilabIntegerTypeEnum.sci_uint32) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT32 : HDF5Constants.H5T_NATIVE_INT32; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT32 : H5ScilabConstant.SCILAB_CLASS_INT32; 
 			dataToWrite = getDataToWrite32(data);
-		}else if(prec == ScilabInteger.IntegerType.TYPE64) {
+		}else if (prec == ScilabIntegerTypeEnum.sci_int64 || prec == ScilabIntegerTypeEnum.sci_uint64) {
 			nativeType = data.isUnsigned() ? HDF5Constants.H5T_NATIVE_UINT64 : HDF5Constants.H5T_NATIVE_INT64; 
 			classType = data.isUnsigned() ? H5ScilabConstant.SCILAB_CLASS_UINT64 : H5ScilabConstant.SCILAB_CLASS_INT64; 
 			dataToWrite = getDataToWrite64(data);
@@ -62,11 +64,11 @@ public class H5WriteScilabInteger {
 
 	public static Byte[] getDataToWrite8(ScilabInteger data){
 		Byte[] dataToWrite = new Byte[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		byte[][] byteData = data.getDataAsByte();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].byteValue();
+				dataToWrite[i + data.getHeight() * j] = byteData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -74,11 +76,11 @@ public class H5WriteScilabInteger {
 
 	public static Short[] getDataToWrite16(ScilabInteger data){
 		Short[] dataToWrite = new Short[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		short[][] shortData = data.getDataAsShort();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].shortValue();
+				dataToWrite[i + data.getHeight() * j] = shortData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -86,11 +88,11 @@ public class H5WriteScilabInteger {
 
 	public static Integer[] getDataToWrite32(ScilabInteger data){
 		Integer[] dataToWrite = new Integer[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		int[][] intData = data.getDataAsInt();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].intValue();
+				dataToWrite[i + data.getHeight() * j] = intData[i][j];
 			}
 		}
 		return dataToWrite;
@@ -98,11 +100,11 @@ public class H5WriteScilabInteger {
 
 	public static Long[] getDataToWrite64(ScilabInteger data){
 		Long[] dataToWrite = new Long[data.getHeight() * data.getWidth()];
-		Long[][] LongData = data.getData();
+		long[][] longData = data.getDataAsLong();
 
 		for(int i = 0 ; i < data.getHeight() ; i++) {
 			for(int j = 0 ; j < data.getWidth() ; j++) {
-				dataToWrite[i + data.getHeight() * j] = LongData[i][j].longValue();
+				dataToWrite[i + data.getHeight() * j] = longData[i][j];
 			}
 		}
 		return dataToWrite;
