@@ -171,6 +171,8 @@ Bug fixes:
 
 * bug 9211 fixed - set("userdata", list()) crashed Scilab.
 
+* bug 9246 fixed - It was not possible to insert an integer in an integer array
+                   with a different integer type
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
