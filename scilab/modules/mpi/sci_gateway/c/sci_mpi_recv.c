@@ -22,7 +22,6 @@
 int sci_mpi_recv (char *fname,unsigned long fname_len)
 {
 	int nopt,iopos,m1,n1,l1,m2,n2,l2,m3,n3,l3,ne4,me4,nn4,un=1,mn4,l4,l5,lrs,mn;
-	static int xdat0[]= {MPI_COMM_WORLD}, *dat0 = xdat0;
 	double *le4;
 	int rankSource;
 	int tag;

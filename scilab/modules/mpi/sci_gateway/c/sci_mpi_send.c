@@ -23,7 +23,6 @@
 int sci_mpi_send(char *fname,unsigned long fname_len)
 {
 	int nopt,iopos,m1,n1,l1,m2,n2,m3,n3,m4,n4,l4,un=1,l5;
-	static int xcomm_world[]= {MPI_COMM_WORLD}, *comm_world = xcomm_world;
 	char *stringToBeSend;
 	double nodeID;
 	SciErr sciErr;
