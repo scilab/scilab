@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,6 +29,9 @@
 #include "MALLOC.h"
 #include "BasicAlgos.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueType, int nbRow, int nbCol )
 {
@@ -40,6 +44,8 @@ int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueT
 	int ** user_data_ptr                                   ;
 	int    data_size     = GetDataSize( (int)stackPointer ) * 2 ; /*GetDataSize returns the size of the variable in double words */
 	int *  data_ptr      = GetData( (int)stackPointer )         ;
+
+	BOOL status;
 
 	/* retrieve current user data matrix */
 	sciGetPointerToUserData( pobj, &user_data_ptr, &size_ptr ) ;
@@ -57,31 +63,16 @@ int set_user_data_property( sciPointObj * pobj, size_t stackPointer,  int valueT
 		}
 	}
 
-	/* Assigning something else than an epty matrix*/
-	if( user_data_ptr == NULL ) /* user_data property is currentlt empty */
-	{
-		*user_data_ptr = createIntArrayCopy( data_ptr, data_size ) ;
-		*size_ptr      = data_size ;
-	}
-	else if( *size_ptr == data_size ) /* current user_data value as the same size than the value toassign */
-	{
-		intArrayCopy( *user_data_ptr, data_ptr, data_size ) ;
-	}
-	else  /* current user_data value as a different size than the value toassign */
-	{
-		FREE( *user_data_ptr ) ;
-		*user_data_ptr = createIntArrayCopy( data_ptr, data_size ) ;
-		*size_ptr      = data_size ;
-	}
+	status = setGraphicObjectProperty(pobj->UID, __GO_USER_DATA__, data_ptr, jni_int_vector, data_size);
 
-	if ( *user_data_ptr == NULL )
+	if (status == TRUE)
 	{
-		Scierror(999, _("%s: No more memory.\n"),"set_user_data_property") ;
-		*size_ptr = 0 ;
-		return SET_PROPERTY_ERROR ;
+		return SET_PROPERTY_SUCCEED;
 	}
-
-	return SET_PROPERTY_SUCCEED ;
+	else
+	{
+		return SET_PROPERTY_ERROR;
+	}
 
 }
 /*------------------------------------------------------------------------*/

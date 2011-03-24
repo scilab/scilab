@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008-2011 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -115,3 +116,7 @@ v([%f %f],1)=[];
 if or(v<>v_ref) then pause,end
 v([%f %f],[%f %f])=[];
 if or(v<>v_ref) then pause,end
+
+v = [(1) (2) (3)];
+if or(v <> [1 2 3]) then pause, end
+

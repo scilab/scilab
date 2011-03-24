@@ -53,8 +53,8 @@ slc=contrss(sl);
 sl1=ss2tf(sl);sl2=ss2tf(slc);      //Compare sl1 and sl2
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cont_mat">cont_mat</link>

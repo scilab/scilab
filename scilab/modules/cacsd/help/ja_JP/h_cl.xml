@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - F. Delebecque
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="h_cl">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>h_cl</refname>
+    <refpurpose> 閉ループ行列</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Acl]=h_cl(P,r,K)
+[Acl]=h_cl(P22,K)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>P, P22</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト), 
+	それぞれ拡張プラントまたはノミナルプラント</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 行ベクトル, <literal>P</literal> の
+		2,2 部分の次元 (<literal>r=[rows,cols]=size(P22)</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>K</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト), コントローラ</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Acl</term>
+        <listitem>
+          <para>実数正方行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	標準プラント <literal>P</literal> を
+	(<literal>r=size(P22)</literal> とコントローラ <literal>K</literal> と共に)
+	指定すると,この関数は閉ループ行列
+	<literal>Acl</literal> を返します.</para>
+    <para>
+    閉ループ系の内部安定性を確保するために,<literal>Acl</literal> の極は,
+	安定である必要があります.</para>
+    <para><literal>Acl</literal> は線形システム<literal>[I -P22;-K I]^-1</literal>
+	の<literal>A</literal>行列,すなわち,
+	<literal>lft(P,r,K)</literal>の<literal>A</literal>行列です</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lft">lft</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.  </para>
+  </refsection>
+</refentry>

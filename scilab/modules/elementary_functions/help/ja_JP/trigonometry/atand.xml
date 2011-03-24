@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="atand" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>atand</refname>
+
+    <refpurpose>2象限および 4象限逆正接, 結果の単位は度.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>phi=atand(x)
+phi=atand(y,x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>実数のスカラー/ベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x, y</term>
+
+        <listitem>
+          <para>同じサイズの実数(スカラー,ベクトルまたは行列)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>phi</term>
+
+        <listitem>
+          <para>実数(スカラー,ベクトルまたは行列)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+      最初の形式は2象限逆正接を計算します.
+      これは,<literal>tand(phi)</literal>の逆関数です．
+      <literal>phi</literal>は [-90, 90] の範囲となります.
+    </para>
+
+    <para>
+      2番目の形式は4象限逆正接を計算します(Fortranの atan2).
+      この場合,この関数は,複素数 <literal>x+i*y</literal> の偏角(角度)を
+      返します.
+      <literal>atand(y,x)</literal>の範囲は, [-180,180i] です.</para>
+
+    <para>
+      引数が実数の場合,<literal>x&gt;0</literal>には
+      両形式とも同じ値となります.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 二番目の形式の例
+x=[0,1/sqrt(3),1,sqrt(3),%inf,0]
+atand(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tan">tan</link></member>
+
+      <member><link linkend="ieee">tand</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

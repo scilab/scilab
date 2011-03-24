@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,38 +24,38 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
+
+// sciGetNumColors prototype
+#include "GetProperty.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_hidden_axis_color_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-
-  int haColor      = (int) getDoubleFromStack( stackPointer ) ;
-  int colormapSize = sciGetNumColors( pobj ) ;
+  BOOL status;
+  int haColor;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "hidden_axis_color");
     return SET_PROPERTY_ERROR ;
   }
+  
+  haColor = (int) getDoubleFromStack( stackPointer );
 
-  if ( sciGetEntityType (pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color") ;
-    return SET_PROPERTY_ERROR ;
-  }
+  status = setGraphicObjectProperty(pobj->UID, __GO_HIDDEN_AXIS_COLOR__, &haColor, jni_int, 1);
 
-  if ( haColor >= -2 && haColor <= colormapSize + 1 )
+  if (status == TRUE)
   {
-    return sciSetHiddenAxisColor(pobj, haColor);
+    return SET_PROPERTY_SUCCEED;
   }
   else
   {
-    Scierror(999, _("Wrong value for '%s' property: Must be a valid color index.\n"), "hidden_axis_color");
-    return SET_PROPERTY_ERROR ;
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_axis_color");
+    return SET_PROPERTY_ERROR;
   }
-
-  return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="newaxes">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>newaxes</refname>
+    <refpurpose>新しいAxesエンティティを作成 </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>a=newaxes()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>ハンドル, 新たに作成された Axesエンティティのハンドル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>newaxes()</literal> は,カレントの図に新しい<literal>Axes</literal>
+	エンティティ(
+      <link linkend="graphics_entities">graphics_entities</link>参照)を
+	作成する際に使用されます.
+	このエンティティのプロパティは<literal>default_axes</literal>
+	(<link linkend="gda">gda</link>参照)
+	から継承されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+a1=newaxes(); 
+a1.axes_bounds=[0,0,1.0,0.5];
+t=0:0.1:20;
+plot(t,acosh(t),'r')
+a2=newaxes();
+a2.axes_bounds=[0,0.5,1.0,0.5];
+x=0:0.1:4;
+plot(x,sinh(x))
+legend('sinh')
+
+sca(a1); //最初の軸をカレントとする
+plot(t,asinh(t),'g')
+legend(['acosh','asinh'])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="sca">sca</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S. Steer, INRIA</para>
+  </refsection>
+</refentry>

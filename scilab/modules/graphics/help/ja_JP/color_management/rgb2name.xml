@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rgb2name">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rgb2name</refname>
+    <refpurpose>色の名前を返す</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>names=rgb2name(r,g,b)
+names=rgb2name(rgb)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>r,g,b</term>
+        <listitem>
+          <para>色のRGB整数値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para>色の整数値のRGBベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>色の名前.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>rgb2name</literal> は引数で指定されたRGB値に対応する色を返します.
+	色に複数の名前がある場合,色の名前のベクトルも返すことが可能です.
+    <literal>r</literal>, <literal>g</literal> および <literal>b</literal> は
+	0 から 255 の範囲の整数とする必要があり,
+	赤,緑および青の色要素に対応します.
+	通常と同様, 0 は明度なし, 255 は色の明度が最大であることを意味します.
+	RGB値はベクトル<literal>[r,g,b]</literal>で指定することも可能です.</para>
+    <para> 色が見つからない場合,<literal>[]</literal> が返されます.</para>
+    <para> 既知の色の全リストは <link linkend="color_list">color_list</link>により
+	取得できます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+rgb2name(255,128,128)
+rgb2name([255 215 0])
+// カレントのカラーマップの色 #10 を取得d
+cmap=get(gcf(),"color_map");
+rgb2name(cmap(10,:)*255)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="name2rgb">name2rgb</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

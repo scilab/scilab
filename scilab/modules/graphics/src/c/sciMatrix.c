@@ -17,7 +17,7 @@
 /*           These matrices acan be used as generic matrices since they used void * pointers */
 /*----------------------------------------------------------------------------------*/
 
-
+#include <string.h>
 #include "sciMatrix.h"
 #include "MALLOC.h"
 

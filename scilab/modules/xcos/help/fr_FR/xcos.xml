@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcos" xml:lang="fr_FR">
+  <refnamediv>
+    <refname>xcos</refname>
+    <refpurpose>
+      Editeur de schéma-bloc et IHM pour le simulateur hybride
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>
+      xcos(filename)
+      xcos(scs_m_list)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_xcos">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Parameters_xcos">
+    <title>Paramètres</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">filename :</emphasis> une chaîne de caractères contenant
+          le chemin du fichier de schéma (extension .cos, .cosf or .xcos). Si aucun argument
+          n'est fourni, un schéma vide est ouvert (nom par défaut <emphasis>Sans titre</emphasis>).
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">scs_m_list :</emphasis> une structure de schéma <emphasis>Xcos</emphasis>
+          après édition.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_xcos">
+    <title>Description</title>
+    <para><emphasis>Xcos</emphasis> est un éditeur visuel de construction de modèles de systèmes dynamiques hybrides.
+      Les modèles peuvent être assemblés, chargés, sauvés, compilés, simulés, en utilisant l'interface graphique de
+      <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> sert d'interface à divers compilateurs de schémas-blocs 
+      et au simulateur hybride scicosim.
+    </para>
+    <para>
+      L'environnement <emphasis>Xcos</emphasis> présente les éléments suivants :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Editeur</emphasis>
+        </para>
+        <para>
+          L'éditeur permet le dessin d'un schéma-bloc représentant un système dynamique fait de blocs définis dans des palettes.
+          Les utilisateurs peut personnaliser les blocs et en définir de nouveaux.
+        </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Navigateur de palette</emphasis>
+        </para>
+        <para>
+          Le navigateur de palette liste tous les blocs standards de <emphasis>Xcos</emphasis> groupés par catégories
+          (traitement du signal, électricité, hydraulique, dérivées, intégrale, etc.). Voir la figure ci-dessous
+        </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Compilateur/Simulateur</emphasis>
+        </para>
+        <para>
+          L'environnement <emphasis>Xcos</emphasis> permet, à partir du modèle défini, la simulation de systèmes 
+          complexes - discrets, continus, définis par des équations symboliques (Modelica), etc. et des systèmes hybrides
+          combinant les capacités énoncées ci-dessus. Les données résultant de la simulation peuvent ensuite être observées 
+          graphiquement en temps réel, utilisées dans Scilab pour être traitées ultérieurement, etc.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para/>
+    <para>
+      L'invocation de <emphasis>Xcos</emphasis> avec l'icône de la barre d'outils
+      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      , avec l'item <emphasis>Xcos</emphasis> du menu <emphasis>Applications</emphasis> de la fenêtre principale de 
+      Scilab, ou comme dans l'exemple suivant, ouvre la fenêtre <emphasis>Xcos</emphasis> d'édition montrée ci-dessous.
+    </para>
+    <para/>
+    <programlisting role="example">xcos</programlisting>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_gui.png"/>
+      </imageobject>
+    </mediaobject>
+    <para>
+      Pour ouvrir un schéma existant, vous devez fournir une nom de fichier valide, comme dans cet exemple :
+    </para>
+    <para/>
+    <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.xcos")]]></programlisting>
+    <para>
+      Dans ce cas d'utilisation, la fenêtre d'édition  <emphasis>Xcos</emphasis> affiche le schéma de la démonstration<emphasis> bounce.xcos</emphasis>
+    </para>
+    <para/>
+    <para>
+      Si une structure de schéma est présente dans l'espace de travail <emphasis>Scilab</emphasis>, vous pouvez l'ouvrir
+      comme dans cet exemple :
+    </para>
+    <para/>
+    <programlisting role="example"><![CDATA[
+loadXcosLibs();
+
+// définit un nouveau schéma
+scs_m = scicos_diagram();
+scs_m.props.title = "Schéma importé";
+scs_m.objs(1) = SUMMATION("define");
+scs_m.objs(1).graphics.sz = [30 50];
+
+xcos(scs_m);]]></programlisting>
+    <para>
+       où <emphasis>scs_m</emphasis> est la structure de schéma de <emphasis> bounce.xcos</emphasis>.
+    </para>
+    <para>
+      Vous construisez vos modèles en liant les blocs fournis dans le navigateur de palettes ouvert simultanément avec
+      l'éditeur <emphasis>Xcos</emphasis>. Cette fenêtre à l'apparence suivante :
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_palette_gui.png"/>
+      </imageobject>
+    </mediaobject>
+    <para/>
+    <para>
+      Vous pouvez choisir les palettes affichées en cliquant sur le titre <emphasis>Palette</emphasis> dans la partie
+      gauche de la fenêtre. La fenêtre palette montre une liste de sélection où vous pouvez sélectionner/déselectionner
+      les palettes individuellement. Pour revenir à l'affichage précédent, cliquer sur un titre de palette.
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
+  <refsection role="see also" id="SeeAlso_xcos">
+    <title>Voir Aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="scicosim">scicosim</link>
+      </listitem>
+      <listitem>
+        <link linkend="scicos_simulate">scicos_simulate</link>
+      </listitem>
+      <listitem>
+        <link linkend="xcos_menu_entries">Entrées de menu</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>DIGITEO</member>
+      <member>Bernard DUJARDIN - Contributeur</member>
+    </simplelist>
+  </refsection>
+</refentry>

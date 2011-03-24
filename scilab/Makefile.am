@@ -20,7 +20,7 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
-changelogs = CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
@@ -92,6 +92,10 @@ if GENERATE_LOCALIZATION_FILES
 TARGETS_ALL+=localization
 endif
 
+if COMPILATION_TESTS
+TARGETS_ALL+=check-java
+endif
+
 all-local: $(TARGETS_ALL)
 
 rootdir=$(pkgdatadir)/etc/
@@ -102,9 +106,7 @@ $(top_builddir)/etc/jvm_options.xml \
 $(top_builddir)/etc/modules.xml \
 $(top_builddir)/etc/classpath.xml \
 $(top_builddir)/etc/logging.properties \
-$(top_builddir)/etc/librarypath.xml \
-$(top_builddir)/Version.incl
-
+$(top_builddir)/etc/librarypath.xml
 
 infofilesdir=$(pkgdatadir)/
 infofiles_DATA = $(top_srcdir)/CHANGES_2.X \
@@ -114,6 +116,7 @@ $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
+$(top_srcdir)/CHANGES_5.4.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
@@ -124,7 +127,8 @@ $(top_srcdir)/RELEASE_NOTES_5.1.X \
 $(top_srcdir)/RELEASE_NOTES_5.2.X \
 $(top_srcdir)/RELEASE_NOTES_5.3.X \
 $(top_srcdir)/Readme_Visual.txt \
-$(top_srcdir)/README_Windows.txt
+$(top_srcdir)/README_Windows.txt \
+$(top_builddir)/Version.incl
 
 iconsdir=$(pkgdatadir)/icons/
 icons_DATA = $(top_srcdir)/icons/scilab.xpm \
@@ -149,21 +153,22 @@ macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 # This is not done in the module itself because its needs also the "types"
 # module
 javadoc:
-	$(JAVADOC) -noindex -nohelp -nonavbar -notree -d $(top_builddir)/modules/javasci/javadoc -sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java org.scilab.modules.javasci org.scilab.modules.types
+	$(JAVADOC) -noindex -nohelp -nonavbar -notree \
+	-d $(top_builddir)/modules/javasci/javadoc \
+	-sourcepath $(top_srcdir)/modules/javasci/src/java:$(top_srcdir)/modules/types/src/java \
+	org.scilab.modules.javasci org.scilab.modules.types
+
+LANGDOC=en_US fr_FR pt_BR ja_JP
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltojar([],[],'en_US');exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'fr_FR');exit;"; \
-		echo "-- Building documentation (portugues do Brasil) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'pt_BR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 DOCBOOK_ROOT=$(DOCBOOK_ROOT) $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltojar([],[],'pt_BR');exit;"; \
+		for l in $(LANGDOC); do \
+			echo "-- Building documentation ($$l) --"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'$$l');exit;\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltojar([],[],'$$l');exit;";\
+		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
 	fi
@@ -175,15 +180,16 @@ doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
 	-@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
-		echo "-- Building documentation (English) --"; \
-		echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'en_US');exit;\"";\
-		LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l en_US -nouserstartup -e "xmltoweb([],[],'en_US');exit;";\
-		echo "-- Building documentation (French) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'fr_FR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'fr_FR');exit;"; \
-		echo "-- Building documentation (portugues do Brasil) --"; \
-		echo "SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'pt_BR');exit;\""; \
-		SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e "xmltoweb([],[],'pt_BR');exit;"; \
+		for l in $(LANGDOC); do \
+			echo "-- Building documentation ($$l) --"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
+			if test ! -d $$JAVADOC_TARGET; then \
+				mkdir $$JAVADOC_TARGET; \
+				ln -s ../../../../javasci/javadoc/ $$JAVADOC_TARGET/; \
+			fi; \
+		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
 	fi
@@ -193,10 +199,10 @@ endif
 
 check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		echo "-- Checking documentation (English) --"; \
-		$(top_builddir)/bin/scilab-cli -nb -l en -e 'check_help();exit;';\
-		echo "-- Checking documentation (French) --"; \
-		$(top_builddir)/bin/scilab-cli  -nb -l fr -e 'check_help();exit;';\
+		for l in $(LANGDOC); do \
+			echo "-- Checking documentation ($$l) --"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e 'check_help();exit;';\
+		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -280,6 +286,17 @@ if IS_MACOSX
 MACOSX=1
 endif
 
+# For each module, build and call Java unitary tests
+# If fails, stops the call
+check-java:
+	@echo "-- Launch all TestNG (Java) unitary tests"; \
+	MASK="$(top_srcdir)/modules/*/tests/java/"; \
+	MODULES=`ls -d $$MASK`; \
+	for M in $$MODULES; do \
+		BASE=`echo $$M|sed -e "s|tests/java/$$||g"`; \
+		$(ANT) -buildfile $$BASE/build.xml test || exit $$?; \
+	done
+
 # The user wants to compile the localization files
 # Please note that ALL_LINGUAS is defined in configure.ac
 if GENERATE_LOCALIZATION_FILES
@@ -288,11 +305,11 @@ localization:
 	MASK="modules/*/locales/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-	FILENAME="*.po*"; \
-	rm modules/*/locales/*/*~ 2> /dev/null; \
+	EXTENSION="*.po"; \
+	rm modules/*/locales/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+		FILES=`ls $$MASK/$$LOCALE$$EXTENSION`; \
 		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \

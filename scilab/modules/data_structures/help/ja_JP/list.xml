@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="list">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>list</refname>
+    <refpurpose> Scilab オブジェクトおよびリスト関数定義</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>list(a1,....an)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	要素 <literal>ai</literal>を有する<literal>リスト</literal>を作成します．
+	その要素は任意のScilabオブジェクト(<literal>行列, リスト,...</literal>)
+	です.<literal>リスト</literal>オブジェクトの型は 15 です.
+	<literal>list()</literal> は空の <literal>リスト</literal> (要素数0)を
+	返します.</para>
+  </refsection>
+  <refsection>
+    <title>リストの処理</title>
+    <variablelist>
+      <varlistentry>
+        <term>展開</term>
+        <listitem>
+          <para> <literal>[x,y,z...]=L(v)</literal> ただし,
+	 <literal>v</literal> は添え字のベクトルです;
+	<literal>[x,y,z]=L(:)</literal> は全要素を展開します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>添字iに挿入</term>
+        <listitem>
+          <para>  
+	<literal>L(i)=a</literal> 
+(<emphasis>i &gt; 1 + size(L)</emphasis> により
+<literal>L(i)=a</literal>としてもエラーとなりませんが,
+この結果いくつかのリストのエントリが未定義となり,
+これらを展開する時にエラーを発生することに注意してください).
+	 </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>要素を末尾に追加</term>
+        <listitem>
+          <para>  <literal>L($+1)=e</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>要素を先頭に追加</term>
+        <listitem>
+          <para>  <literal>L(0)=e</literal>. 
+(この操作の後, <literal>e</literal>は添字1にあり,
+最初の要素は右にシフトすることに注意してください).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>削除</term>
+        <listitem>
+          <para> <literal>L(i)=null()</literal> removes the i-th element of the list <literal>L</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>二つのリストを結合</term>
+        <listitem>
+          <para> <literal>L3 = lstcat(L1,L2)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>リストの要素数</term>
+        <listitem>
+          <para>  <literal>nb_elm = size(L)</literal>
+		または <literal>nb_elm = length(L)</literal>のどちらかを
+		使用することができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>リストで反復処理</term>
+        <listitem>
+          <para> 
+	<link linkend="for">for</link> ループでリスト<literal>L</literal>
+	を使用することが可能です:
+	<literal>for e=L,...,end</literal> は <literal>length(L)</literal>
+	回の反復処理を行うループで,
+	ループ変数<literal>e</literal> はi番目の反復で <literal>L(i)</literal>
+	となります.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>注記</title>
+    <para>Scilab では他の種類のリストである <link linkend="tlist">tlist</link>
+	型(型付のリスト),<link linkend="mlist">mlist</link>型
+	も提供されています.
+	これらのリストは,演算子
+	<link linkend="overloading">オーバーロード</link>機能を
+	有する新しいデータ型を定義する際に有用です
+	 (Scilabの多次元配列である
+	<link linkend="hypermatrices">超越行列</link> 
+	は実際には<emphasis>mlist</emphasis>です).</para>
+    <para>Matlab <emphasis>struct</emphasis> も利用可能です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+l = list(1,["a" "b"])
+l(0) = "foo"
+l($+1) = "hello"
+l(2) = "toto"
+l(3) = rand(1,2)
+l(3) = null()
+lbis = list("gewurtz", "caipirina" ,"debug")
+lter = lstcat(l,lbis)
+size(lter) - size(lbis) - size(l)  // must be zero
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="null">null</link>
+      </member>
+      <member>
+        <link linkend="lstcat">lstcat</link>
+      </member>
+      <member>
+        <link linkend="tlist">tlist</link>
+      </member>
+      <member>
+        <link linkend="insertion">insertion</link>
+      </member>
+      <member>
+        <link linkend="extraction">extraction</link>
+      </member>
+      <member>
+        <link linkend="size">size</link>
+      </member>
+      <member>
+        <link linkend="length">length</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

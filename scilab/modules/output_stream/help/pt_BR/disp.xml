@@ -61,8 +61,8 @@ disp(tlist('t',1,2))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="lines">lines</link></member>

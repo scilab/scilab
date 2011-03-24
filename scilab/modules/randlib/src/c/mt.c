@@ -1,4 +1,12 @@
-/* A C-program for MT19937: Integer version (1999/10/28)          */
+/*
+ * 
+ * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ * Copyright (C) 2005 - Bruno Pincon
+ * Copyright (C) 2002 - Bruno Pincon
+ * Copyright (C) 1997, 1999 - Makoto Matsumoto and Takuji Nishimura
+ * 
+ A C-program for MT19937: Integer version (1999/10/28)          
+*/
 /*  genrand() generates one pseudorandom unsigned int (32bit) */
 /* which is uniformly distributed among 0 to 2^32-1  for each     */
 /* call. sgenrand(seed) sets initial values to the working area   */
@@ -12,7 +20,6 @@
 /* For the verification of the code, its output sequence file      */
 /* mt19937int.out is attached (2001/4/2)                           */
 
-/* Copyright (C) 1997, 1999 Makoto Matsumoto and Takuji Nishimura. */
 /* Any feedback is very welcome. For any question, comments,       */
 /* see http://www.math.keio.ac.jp/matumoto/emt.html or email       */
 /* matumoto@math.keio.ac.jp                                        */
@@ -71,22 +78,22 @@
 #define TEMPERING_SHIFT_T(y)  (y << 15)
 #define TEMPERING_SHIFT_L(y)  (y >> 18)
 
-static unsigned long mt[N]; /* the array for the state vector  */
+static unsigned int mt[N]; /* the array for the state vector  */
 static int mti=N;
 static int is_init=0;  
 static double DEFAULT_SEED=5489.0;
 
-unsigned long randmt()
+unsigned int randmt()
 {
-    unsigned long y;
-    static unsigned long mag01[2]={0x0, MATRIX_A};
+    unsigned int y;
+    static unsigned int mag01[2]={0x0, MATRIX_A};
     /* mag01[x] = x * MATRIX_A  for x=0,1 */
 
     if (mti >= N) { /* generate N words at one time */
         int kk;
 
-	if ( ! is_init )
-	  set_state_mt_simple(DEFAULT_SEED);
+        if ( ! is_init )
+            set_state_mt_simple(DEFAULT_SEED);
 
         for (kk=0;kk<N-M;kk++) {
             y = (mt[kk]&UPPER_MASK)|(mt[kk+1]&LOWER_MASK);
@@ -101,7 +108,7 @@ unsigned long randmt()
 
         mti = 0;
     }
-  
+
     y = mt[mti++];
     y ^= TEMPERING_SHIFT_U(y);
     y ^= TEMPERING_SHIFT_S(y) & TEMPERING_MASK_B;
@@ -114,45 +121,45 @@ unsigned long randmt()
 
 int set_state_mt_simple(double s)
 {
-  /*   set the initial state with the simple procedure  */
-  unsigned long seed;
+    /*   set the initial state with the simple procedure  */
+    unsigned int seed;
 
-  if ( s == floor(s) && 0.0 <= s && s <= 4294967295.0)
+    if ( s == floor(s) && 0.0 <= s && s <= 4294967295.0)
     {
-      seed = (unsigned long) s;
-	mt[0]= seed & 0xffffffff;
-      for (mti=1; mti<N; mti++)
-	{
-	  mt[mti] =  (1812433253UL * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti); 
-	  /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
-	  /* In the previous versions, MSBs of the seed affect   */
-	  /* only MSBs of the array mt[].                        */
-	  /* 2002/01/09 modified by Makoto Matsumoto             */
-	  mt[mti] &= 0xffffffffUL;   /* for >32 bit machines */
-	}
-      is_init = 1;
-      return ( 1 );
+        seed = (unsigned int) s;
+        mt[0]= seed & 0xffffffff;
+        for (mti=1; mti<N; mti++)
+        {
+            mt[mti] =  (1812433253UL * (mt[mti-1] ^ (mt[mti-1] >> 30)) + mti); 
+            /* See Knuth TAOCP Vol2. 3rd Ed. P.106 for multiplier. */
+            /* In the previous versions, MSBs of the seed affect   */
+            /* only MSBs of the array mt[].                        */
+            /* 2002/01/09 modified by Makoto Matsumoto             */
+            mt[mti] &= 0xffffffffUL;   /* for >32 bit machines */
+        }
+        is_init = 1;
+        return ( 1 );
     }
-  else
+    else
     {
-      sciprint(_("Bad seed for mt, must be an int in [0, 2^32-1]\n"));
-      return ( 0 );
+        sciprint(_("Bad seed for mt, must be an int in [0, 2^32-1]\n"));
+        return ( 0 );
     }
 }
 
 
 /* 
- *  Initialization by "set_state_simple_mt()" is an example. Theoretically,
- *  there are 2^19937-1 possible states as an intial state.           
- *   This function allows to choose any of 2^19937-1 ones.            
- *   Essential bits in "seed_array[]" is following 19937 bits:        
- *      (seed_array[0]&UPPER_MASK), seed_array[1], ..., seed_array[N-1].
- *      (seed_array[0]&LOWER_MASK) is discarded.                         
- *
- *   Theoretically,                                                   
- *      (seed_array[0]&UPPER_MASK), seed_array[1], ..., seed_array[N-1] 
- *   can take any values except all zeros.                            
- */
+*  Initialization by "set_state_simple_mt()" is an example. Theoretically,
+*  there are 2^19937-1 possible states as an intial state.           
+*   This function allows to choose any of 2^19937-1 ones.            
+*   Essential bits in "seed_array[]" is following 19937 bits:        
+*      (seed_array[0]&UPPER_MASK), seed_array[1], ..., seed_array[N-1].
+*      (seed_array[0]&LOWER_MASK) is discarded.                         
+*
+*   Theoretically,                                                   
+*      (seed_array[0]&UPPER_MASK), seed_array[1], ..., seed_array[N-1] 
+*   can take any values except all zeros.                            
+*/
 
 int set_state_mt(double seed_array[])
 
@@ -161,14 +168,14 @@ int set_state_mt(double seed_array[])
 
     mti_try = (int) seed_array[0];
     if (mti_try < 1  ||  mti_try > 624)
-      {
-	sciprint(_("The first component of the mt state mt, must be an int in [1, 624]\n"));
-	return ( 0 );
-      }
+    {
+        sciprint(_("The first component of the mt state mt, must be an int in [1, 624]\n"));
+        return ( 0 );
+    }
     is_init = 1;
     mti = mti_try;
     for (i=0;i<N;i++) 
-      mt[i] = ((unsigned long) seed_array[i+1]) & 0xffffffff;
+        mt[i] = ((unsigned int) seed_array[i+1]) & 0xffffffff;
     return ( 1 );
 }
 
@@ -179,19 +186,9 @@ void get_state_mt(double state[])
     int i;
 
     if ( ! is_init )
-      set_state_mt_simple(DEFAULT_SEED);
-    
+        set_state_mt_simple(DEFAULT_SEED);
+
     state[0] = (double) mti;
     for (i=0;i<N;i++) 
-      state[i+1] = (double) mt[i];
+        state[i+1] = (double) mt[i];
 }
-
-
-
-
-
-
-
-
-
-

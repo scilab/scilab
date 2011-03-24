@@ -446,27 +446,27 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_definedfields.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_definedfields.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getfield.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_getfield.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_list.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_list.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lstcat.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lstcat.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lstsize.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lstsize.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_setfield.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_setfield.c"
 				>
 			</File>
 			<File
@@ -534,27 +534,27 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_definedfields.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_definedfields.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_getfield.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_getfield.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_list.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_list.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lstcat.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lstcat.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lstsize.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lstsize.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_setfield.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_setfield.f"
 				>
 			</File>
 			<File

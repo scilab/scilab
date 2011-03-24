@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -24,22 +25,38 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_closed_property( sciPointObj * pobj )
 {
-  if(sciGetEntityType(pobj) != SCI_POLYLINE)
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"closed") ;
-    return -1 ;
-  }
+    int iClosed = 0;
+    int* piClosed = &iClosed;
 
-  if ( pPOLYLINE_FEATURE(pobj)->closed == 1 )
-  {
-    return sciReturnString( "on" ) ;
-  }
-  else
-  {
-    return sciReturnString( "off" ) ;
-  }
+#if 0
+    if(sciGetEntityType(pobj) != SCI_POLYLINE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"closed");
+        return -1;
+    }
+#endif
+
+    getGraphicObjectProperty(pobj->UID, __GO_CLOSED__, jni_bool, &piClosed);
+
+    if (piClosed == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"closed");
+        return -1;
+    }
+
+    if (iClosed)
+    {
+        return sciReturnString( "on" );
+    }
+    else
+    {
+        return sciReturnString( "off" );
+    }
 }
 /*------------------------------------------------------------------------*/

@@ -20,6 +20,9 @@
 //
 
 function standard_etiquette(bloc, legende, job)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
 // standard_etiquette - Draw legends on scicos blocks
 //

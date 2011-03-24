@@ -129,8 +129,8 @@ p3= a.children(1).children;
 set([a p1 p2 p3],"foreground",5)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="get">get</link>

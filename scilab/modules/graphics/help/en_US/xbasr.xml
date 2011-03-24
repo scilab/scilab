@@ -27,8 +27,8 @@
     <para><literal>xbasr</literal> is used to redraw the content of the graphics
     window with id <literal>win_num</literal>. It works only with the driver <literal>"Rec"</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="driver">driver</link>

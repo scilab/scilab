@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE jvm_options SYSTEM "../modules/jvm/xml/jvm-options.dtd">
+<!-- =================== -->
+<!--
+ Options JVM
+ @author Allan CORNET
+ ===================
+ Don't touch if you do not know what you are doing
+ http://blogs.sun.com/watt/resource/jvm-options-list.html
+ http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp
+ http://java.sun.com/javase/technologies/hotspot/exactoptions.jsp
+ -->
+<!-- =================== -->
+<!--
+$PATH_SEPARATOR : path separator ';' (windows) ':' linux
+$SCILAB : scilab path (SCI in Scilab)
+-->
+<jvm_options>
+  <option value="-Djava.library.path="/>
+  <option value="-Djava.class.path=$SCILAB/modules/jvm/jar/org.scilab.modules.jvm.jar"/>
+  <option value="-Djava.util.logging.config.file=$SCILAB/etc/logging.properties"/>
+  <!-- ENABLE Just In Time java compiler -->
+  <option value="-Djava.compiler=JIT"/>
+  <!-- Set Java Heap space to 256mb -->
+  <option value="-Xmx256m"/>
+  <option value="-Dapple.laf.useScreenMenuBar=true" os="macosx"/>
+  <!-- DISABLE Just In Time java compiler -->
+  <!--
+<option value="-Djava.compiler=NONE"/>
+-->
+  <!-- enable-debug-java enables also some more checks -->
+<!--
+<option value='-verbose:jni'/>
+	   <option value='-Xcheck:jni'/>
+-->
+</jvm_options>

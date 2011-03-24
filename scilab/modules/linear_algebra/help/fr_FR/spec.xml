@@ -112,7 +112,7 @@ evals=spec(A,E)
 	    <literal>evals</literal> les valeurs propres de <literal>A</literal>.
 	  </para>
           <para><literal> [evals,X] =spec(A)</literal> retourne de plus les vecteurs
-	    propres (s'ils existent). Voir aussi <literal>bdiag</literal>
+	    propres (s'ils existent). Voir Aussi <literal>bdiag</literal>
 	  </para>
         </listitem>
       </varlistentry>
@@ -167,8 +167,8 @@ A=A+%i*rand(A);E=rand(A);
 roots(det(%s*E-A))   //complex case
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

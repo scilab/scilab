@@ -114,10 +114,12 @@ event on the unique input event port, the state is updated.
 </para>
     <itemizedlist>
       <listitem>
-        <para>
-          <emphasis role="bold"><inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> matrix</emphasis>
+	<para>
+          <emphasis role="bold">A matrix</emphasis>
         </para>
-        <para> A square matrix.</para>
+        <para>
+          <inlinemediaobject><imageobject><imagedata fileref="../../../images/DLSS_img5_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> square matrix.
+	</para>
         <para> Properties : Type 'mat' of size [-1,-1]. </para>
       </listitem>
       <listitem>

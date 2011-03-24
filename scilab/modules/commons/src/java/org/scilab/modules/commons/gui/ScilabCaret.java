@@ -46,14 +46,36 @@ public class ScilabCaret extends DefaultCaret {
     public ScilabCaret(JTextComponent editor) {
         super();
         this.editor = editor;
-        selectionColor = editor.getSelectionColor();
-        inactiveSelectionColor = UIManager.getColor("TextComponent.selectionBackgroundInactive");
+        setSelectionColor(editor.getSelectionColor(), UIManager.getColor("TextComponent.selectionBackgroundInactive"));
+    }
+
+    /**
+     * @param active the color of the selection when it is active
+     * @param inactive the color of the selection when it is inactive
+     */
+    public void setSelectionColor(Color active, Color inactive) {
+        selectionColor = active;
+        inactiveSelectionColor = inactive;
         if (inactiveSelectionColor == null) {
             float r = 0.6f * selectionColor.getRed() / 255f + 0.4f * Color.LIGHT_GRAY.getRed() / 255f;
             float g = 0.6f * selectionColor.getGreen() / 255f + 0.4f * Color.LIGHT_GRAY.getGreen() / 255f;
             float b = 0.6f * selectionColor.getBlue() / 255f + 0.4f * Color.LIGHT_GRAY.getBlue() / 255f;
             inactiveSelectionColor = new Color(r, g, b);
         }
+    }
+
+    /**
+     * @return the color of the selection
+     */
+    public Color getSelectionColor() {
+        return selectionColor;
+    }
+
+    /**
+     * @return the color of the inactive selection
+     */
+    public Color getInactiveSelectionColor() {
+        return inactiveSelectionColor;
     }
 
     /**

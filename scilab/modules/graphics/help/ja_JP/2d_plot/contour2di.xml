@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="contour2di">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contour2di</refname>
+    <refpurpose>2次元プロット上の曲面の等高線を計算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[xc,yc]=contour2di(x,y,z,nz)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>大きさn1およびn2の実数行ベクトル: グリッド.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>大きさ (n1,n2)の実数行列, 関数の値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nz</term>
+        <listitem>
+          <para>等高線の値または等高線の数.</para>
+          <variablelist>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para><literal>nz</literal>が整数の場合, その値は等高線の数を
+		指定し, zmin から zmax の間で以下のように等間隔に配置されます:</para>
+                <programlisting role = ""><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                <para>
+     <literal>zmin</literal> および <literal>zmax</literal>の等高線は描画されません (
+	通常,これらは点に縮小されます)が,以下のコマンドで追加できることに
+	注意してください.
+  </para>
+                <programlisting role = ""><![CDATA[ 
+[im,jm] = find(z == zmin);     // または zmax 
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para><literal>nz</literal> がベクトルの場合, <literal>nz(i)</literal> は
+		i番目の等高線の値を指定します.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xc,yc</term>
+        <listitem>
+          <para>等高線の定義を含む同じ大きさのベクトル.
+	詳細は以下を参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>contour2di</literal> は,2次元プロット上の曲面 <literal>z=f(x,y)</literal>
+	の等高線を計算します.
+	<literal>f(x,y)</literal> の値は,行列<literal>z</literal>により
+	<literal>x</literal> および <literal>y</literal>で定義される
+	グリット点において指定します.</para>
+    <para><literal>xc(1)</literal> には最初の等高線のパスに関する値が含まれ,
+	<literal>yc(1)</literal>は,
+	この等高線のパスを定義する<literal>N1</literal>個の点を有します.
+	(<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> )nは
+	パスの点の座標を有します.
+	2番目のパスは,<literal>xc(2+N1)</literal> および <literal>yc(2+N1)</literal>
+	で始まるといったようになります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+[xc,yc]=contour2di(1:10,1:10,rand(10,10),5);
+k=1;n=yc(k);c=1;
+while k+yc(k)<size(xc,'*')
+  n=yc(k);
+  plot2d(xc(k+(1:n)),yc(k+(1:n)),c)
+  c=c+1;
+  k=k+n+1;
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour">contour</link>
+      </member>
+      <member>
+        <link linkend="fcontour">fcontour</link>
+      </member>
+      <member>
+        <link linkend="fcontour2d">fcontour2d</link>
+      </member>
+      <member>
+        <link linkend="contour2d">contour2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="xset">xset</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

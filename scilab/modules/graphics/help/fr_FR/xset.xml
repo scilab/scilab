@@ -389,8 +389,8 @@ xset("wdim",1000,500)
     </variablelist>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="xget">xget</link></member>

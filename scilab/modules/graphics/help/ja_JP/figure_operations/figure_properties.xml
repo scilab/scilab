@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="figure_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>figure_properties</refname>
+    <refpurpose>グラフィックエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>figureエンティティはグラフィックエンティティ階層の最上位です.
+	このエンティティにはScilabグラフィックオブジェクトの表示に
+	関する多くの要素を制御するために設計された多くのプロパティが
+	含まれています.
+	これらのプロパティは,図(figure)自体に関する情報を含むプロパティと,
+	子作成時のデフォルト値の設定に関連するプロパティの
+	2つのカテゴリに分けることができます.
+	</para>
+    <variablelist>
+      <varlistentry>
+        <term>figure プロパティ: </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>children: </term>
+              <listitem>
+                <para>このハンドルは図(figure)の子のベクトルを表します.
+		図の子は全て<literal>"Axes"</literal>であることに注意してください.
+		また,(<link linkend="scf">scf</link> コマンドにより)図のエンティティを作成する際,
+		同時に
+		<literal>Axes</literal>エンティティも一つ作成されることも覚えておいてください.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_style: </term>
+              <listitem>
+                <para>このフィールドの値は図(figure)の様式を定義します.
+		Scilab 5.0以降, 古いグラフィックモードは無効にされています.
+		このプロパティは互換性のために残されており,変更することはできません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_position: </term>
+              <listitem>
+                <para>
+		このフィールドはスクリーン上でのグラフィックウインドウのピクセル単位の
+		位置を保持します.
+		これはウインドウの左上隅の位置を定義するベクトル<literal>[x,y]</literal>です.
+		位置 <literal>[0,0]</literal> は画面の左上隅です.</para>
+		<para>グラフィックウインドウの初期位置はデフォルトの figure エンティティ
+		(<link linkend="gdf">gdf</link>参照)により指定されます.
+		唯一の例外は,
+		デフォルトの図の値<literal>figure_position</literal>が<literal>[-1,-1]</literal>
+		の場合です.
+		この場合,グラフィックウインドウの初期位置はウインドウシステムにより自動的に
+		設定されます.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_size: </term>
+              <listitem>
+                <para>このプロパティは画面のグラフィックウインドウのピクセル単位の
+		大きさを制御します.この大きさはベクトル<literal>[width,height]</literal>
+		です.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axes_size: </term>
+              <listitem>
+                <para>仮想グラフィックウインドウにおけるピクセル単位の大きさを
+		指定する際に使用されます.
+		この大きさはベクトル <literal>[width,height] </literal> です.
+		仮想グラフィックウインドウは画面で実際に可視となる領域よりも
+		大きくなります.
+		このプロパティは図が他の要素に結合されている場合には修正することができません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>auto_resize: </term>
+              <listitem>
+                <para>このプロパティはグラフィックウインドウの大きさの変更動作
+		を定義します.
+		この値が <literal>"on"</literal>の場合,<literal>axes_size</literal>
+		プロパティは <literal>figure_size</literal>に等しくなり,
+		子である軸自動的に拡大・縮小されます.
+		この値が<literal>"off"</literal> の場合,
+		<literal>figure_size</literal>が変更された場合でも
+		<literal>axes_size</literal>は変更されません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>viewport: </term>
+              <listitem>
+                <para>図の可視部分の位置.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_name: </term>
+              <listitem>
+                <para>このフィールドは図の名称を保持します.
+		この名称はグラフィックウインドウ上の最上部に表示される
+		文字列です.
+		この名称には文字列<literal>%d</literal>を一つ含めることができ,
+		この部分は<literal>figure_id</literal>で置換されます.
+		その他の<literal>%</literal>文字のインスタンスは名称の中で使用できません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>figure_id: </term>
+              <listitem>
+                <para>このフィールドは図のIDを保持します.
+		これは図の生成時に設定される整数で,後で変更することはできません.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>info_message: </term>
+              <listitem>
+                <para>この文字列はグラフィックウインドウの情報バーに表示されるテキストを指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>color_map: </term>
+              <listitem>
+                <para>
+		この図で使用されうカラーマップを定義するプロパティ.
+		カラーマップは <literal>m</literal> 行 <literal>3</literal>列の行列です.
+		<literal>m</literal>は色の数です.色番号 i は
+		<literal>R</literal>, <literal>G</literal>, <literal>B</literal>の3要素で
+		指定し,それぞれ, 0 から 1の間の赤,緑,青の輝度に対応します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>pixmap: </term>
+              <listitem>
+                <para>このプロパティはグラフィックウインドウのpixmapステータスを制御します.
+		このプロパティの値が<literal>"off"</literal>の場合,
+		グラフィックスは画面に直接表示されます. <literal>"on"</literal>の場合,
+		グラフィックスは pixmap上に表示され,
+		コマンド <literal>show_pixmap()</literal>によりグラフィックウインドウに
+		転送されます.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>pixel_drawing_mode: </term>
+              <listitem>
+                <para>このフィールドは画面上のピクセルの描画で使用されるビット単位の処理を定義します.
+		デフォルトのモードは <literal>copy</literal>で,ピクセルは必要に応じて描画されます.
+		より一般的に言うと,
+		ビット毎の処理は,ソースピクセルの色と画面上の既存のピクセルの色の間で行われます.
+		次の処理があります : <literal>"clear"</literal>, <literal>"and"</literal>,
+		  <literal>"andReverse"</literal> , <literal>"copy"</literal>,
+		  <literal>"andInverted"</literal> , <literal>"noop"</literal> ,
+		  <literal>"xor"</literal> , <literal>"or"</literal> , <literal>"nor"</literal> ,
+		  <literal>"equiv"</literal> , <literal>"invert"</literal> ,
+		  <literal>"orReverse"</literal> , <literal>"copyInverted"</literal> ,
+		  <literal>"orInverted"</literal> , <literal>"nand"</literal> ,
+		  <literal>"set"</literal>.</para>
+              </listitem>
+            </varlistentry>
+	    <varlistentry>
+              <term>anti_aliasing: </term>
+              <listitem>
+                <para>このプロパティはグラフィックの品質を改善する際に使用される
+		アンチエイリアス処理のレベルを制御します.
+		このプロパティが "off" に設定された場合,アンチエイリアス処理は無効になります.
+		アンチエイリアス処理を有効にするには,"2x", "4x", "8x"または "16x"のどれかを
+		指定することが必要です.
+		この場合, この値はアンチエイリアスのレベルを意味します.例えば,
+		例えば, "16x" は "2x"よりも高い品質となります.
+		より高いアンチエイリアスのレベルを指定することにより画像の品質は改善されますが,
+		グラフィック性能は低下します.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>immediate_drawing: </term>
+              <listitem>
+                <para>このプロパティは図の表示を制御します.
+		この値は
+		  <literal>"on"</literal> (デフォルトモード) または <literal>"off"</literal>です. 
+		(複数の描画や再描画を適用することにより)グラフィックスコマンドが大量に連続する場合に,
+		表示を遅延させるために使用されます.
+		
+ Note that, when using
+		  <literal>drawlater</literal> または <literal>drawnow</literal> コマンドを
+		使用した場合, カレントの図のプロパティの値を変更することに注意してください
+		(それぞれ,この値を<literal>'off'</literal> または
+		  <literal>'on'</literal>に変更します).
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>background: </term>
+              <listitem>
+                <para>このプロパティは図の背景を制御します. 
+		カレントのカラーマップに関連する添え字を値として指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>event_handler</term>
+              <listitem>
+                <para>文字列. イベントを処理を受け持つScilab 関数の名前.
+		空の文字列を指定するとイベントハンドルが無効となることに注意してください.
+		イベントハンドらに関する詳細は
+		  <link linkend="eventhandlerfunctions">イベントハンドラ関数</link> ヘルプを
+		参照してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>event_handler_enable</term>
+              <listitem>
+                <para>イベントハンドラを有効または無効にします. 値は "on" または "off" のどちらかです.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>user_data: </term>
+              <listitem>
+                <para>このフィールドは図のデータ構造に何らかのScilab変数を保存したり,
+		取得したりするために使用することができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tag: </term>
+              <listitem>
+                <para>このフィールドは一般に制御を識別するための文字列を保存するために使用できます．
+		これにより"名前"を指定することが可能となります.
+		主にfindobj()との組み合わせで使用されます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <variablelist>
+      <varlistentry>
+        <term>子のデフォルト値: </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>visible: </term>
+              <listitem>
+                <para>このフィールドは,
+		図の内容が再描画されるかどうかを定義します.
+		この値は <literal>"on"</literal> または
+		  <literal>"off"</literal>となります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rotation_style: </term>
+              <listitem>
+                <para>このフィールドは "3D Rot"(3次元回転) ボタンに関係します. 
+		デフォルトは,選択された3次元プロットのみが回転することを意味する
+		<literal>unary</literal>となっています.
+		この値は,全ての3次元プロットが回転することを意味する <literal>multiple</literal>
+		とすることができます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>デフォルト値に関する注記 :</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term/>
+              <listitem>
+                <para>
+		上記リストに提示した全てのプロパティとフィールドは,
+		figureモデルに保存されたデフォルト値から継承されたものです
+		これらのデフォルト値は,参照したり,変更したりすることができます.
+		これを行うには,<literal>get("default_figure")</literal>コマンドを
+		使用してください.これにより,figureモデルのグラフィックウインドウが
+		取得できます.
+		このコマンドにより特定のグラフィックウインドウが作成されるわけではない
+		ことに注意してください.
+		次に作成される図はこのモデルから継承されます
+		(下記の例2を参照).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+lines(0) // disables vertical paging 
+
+//Example 1
+f=get("current_figure") //get the handle of the current figure : 
+                        //if none exists, create a figure and return the corresponding handle
+f.figure_position
+f.figure_size=[200,200]
+f.background=2
+f.children  // man can see that an Axes entity already exists
+delete(f);
+f=gcf(); // macro shortcut <=> f=get("current_figure")
+f.pixmap = "on" // set pixmap status to on
+plot2d() // nothing happens on the screen...
+show_pixmap() // ...display the pixmap on screen
+
+//Example 2 : default_figure settings
+df=get("default_figure") // get the default values (shortcut is gdf() )
+// Let's change the defaults...
+df.color_map=hotcolormap(128)
+df.background= 110 // set background toa kind of yellow (Note that we
+                   // are using a color index inside the color_map previously redefined)
+scf(122); // creates new figure number 122 with the new default
+plot2d()
+scf(214);
+t=-%pi:0.3:%pi;
+plot3d(t,t,sin(t)'*cos(t),35,45,'X@Y@Z',[15,2,4]);
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lines">lines</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="gdf">gdf</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+      <member>
+        <link linkend="show_pixmap">show_pixmap</link>
+      </member>
+      <member>
+        <link linkend="clear_pixmap">clear_pixmap</link>
+      </member>
+      <member/>
+      <member>
+        <link linkend="hotcolormap">hotcolormap</link>
+      </member>
+      <member>
+        <link linkend="eventhandlerfunctions">event handler functions</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -76,8 +76,8 @@ delbpt('foo',[1,2,5,6]),dispbpt()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="setbpt">setbpt</link></member>

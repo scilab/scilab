@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitor" 
+          xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>bitor</refname>
+    <refpurpose>bitwise OR</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      z = bitor(x,y)
+
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles 
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of unsigned integers (uint8, uint16 or uint32).
+            Must contain positive integer values.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z :</term>
+        <listitem>
+          <para>
+            a m-by-n matrix of doubles
+            or a m1-by-m2-by-...-by-mm hypermatrix of doubles
+            or a m-by-n matrix of  integers.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+    <para>
+      Given x, y two positive integers, this function returns the decimal 
+      number whose the binary form is the OR of the binary representations
+      of x and y.
+    </para>
+    <para>
+    <literal>x</literal>, <literal>y</literal>, <literal>z</literal> have the same size.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
+// '110000' : is the binary representation of 48 
+// '100101' : is the binary representation of 37   
+// '110101' : is the binary representation for the OR applied to the binary forms 48 and 37 
+// so the decimal number corresponding to the OR  applied to binary forms 48 and 37 is : 53
+x=48; 
+y=37;
+z=bitor(x,y)
+
+// Compute the bitwise OR of two matrices of doubles.
+x=[12,45]; 
+y=[25,49];
+z=bitor(x,y)
+
+// Compute the bitwise OR of two matrices of doubles.
+x = [0 1 0 1];
+y = [0 0 1 1];
+z = bitor(x, y)
+expected = [0 1 1 1];
+
+// Compute the bitwise OR of two matrices of integers.
+x = uint8([0 1 0 1]);
+y = uint8([0 0 1 1]);
+z = bitor(x, y)
+
+// The types of x and y cannot be mixed (error).
+x = [0 1 0 1];
+y = uint8([0 0 1 1]);
+z = bitor(x, y)
+
+//  13 is (01101)_2
+//  27 is (11011)_2
+//  OR is (11111)_2 which is 31.
+bitor(uint8(13), uint8(27))
+bitor(13, 27)
+
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
+    </simplelist>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bitand">bitand</link></member>
+
+      <member><link linkend="bin2dec">bin2dec</link></member>
+
+      <member><link linkend="dec2bin">dec2bin</link></member>
+    </simplelist>
+  </refsection>
+
+</refentry>

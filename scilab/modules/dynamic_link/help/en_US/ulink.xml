@@ -51,8 +51,8 @@ scilab -nwni -profile
     loaded dynamic libraries. This will
     allow <literal>valgrind</literal> to perform its sum-up analysis.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="link">link</link>

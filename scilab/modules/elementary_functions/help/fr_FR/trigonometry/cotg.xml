@@ -53,8 +53,8 @@ cotg(x)-cos(x)./sin(x)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="tan">tan</link></member>

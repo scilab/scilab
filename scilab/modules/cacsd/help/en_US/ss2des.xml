@@ -72,8 +72,8 @@ Des=des2ss(S);Des(5)=clean(Des(5))
 Des1=des2ss(S1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pol2des">pol2des</link>

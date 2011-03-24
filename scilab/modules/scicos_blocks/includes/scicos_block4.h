@@ -38,9 +38,9 @@
 
 typedef void (*voidg)();
 
-/* scicos_block structure definition 
-* WARNING: take care that this sructure is 
-* not the same as the one in scicos_block.h 
+/* scicos_block structure definition
+* WARNING: take care that this sructure is
+* not the same as the one in scicos_block.h
 * i.e same name but inptr and outptr are void **
 */
 typedef struct {
@@ -86,7 +86,7 @@ typedef struct {
 } scicos_block;
 
 /** define scicos flag number */
-typedef enum scicos_flag {
+typedef enum {
     DerivativeState         = 0,
     OutputUpdate            = 1,
     StateUpdate             = 2,
@@ -94,7 +94,7 @@ typedef enum scicos_flag {
     Initialization          = 4,
     Ending                  = 5,
     ReInitialization        = 6
-};
+} scicos_flag;
 
 /* utility function for block declaration */
 int get_block_error(void);
@@ -664,15 +664,15 @@ typedef enum scicos_datatype_number {
 #if _MSC_VER
 #ifdef min
 #undef min
-#endif 
-#ifdef max 
+#endif
+#ifdef max
 #undef max
-#endif 
-#endif 
+#endif
+#endif
 
 #ifndef max
 #define max(a,b) ((a) >= (b) ? (a) : (b))
-#endif 
+#endif
 #ifndef min
 #define min(a,b) ((a) <= (b) ? (a) : (b))
 #endif

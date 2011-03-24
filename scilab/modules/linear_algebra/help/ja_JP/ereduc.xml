@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="ereduc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>ereduc</refname>
+    <refpurpose>qz変換により列階段形行列を計算</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数エントリを有するm x n 行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数の正のスカラー.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E</term>
+        <listitem>
+          <para>列階段形行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>m x m ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Z</term>
+        <listitem>
+          <para>n x n ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stair</term>
+        <listitem>
+          <para>添字ベクトル,</para>
+          <variablelist>
+            <varlistentry>
+              <term>*  </term>
+              <listitem>
+                <para>
+	境界要素<literal>E(i,j)</literal>がコーナ点の場合,
+	<literal>ISTAIR(i) = + j</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>*  </term>
+              <listitem>
+                <para>
+	境界要素<literal>E(i,j)</literal>がコーナ点でない場合,
+	<literal>ISTAIR(i) = - j</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+          <para>
+            <literal>(i=1,...,M)</literal>
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数, 行列のランクの推定値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>m x n</literal>行列<literal>X</literal> (正則である
+	必要はない)を指定すると,
+	関数ereducは,列階段形(台形)の
+	ユニタリ変換行列<literal>E=Q*X*Z</literal>
+	を計算します.
+	更に行列<literal>X</literal>のランクが定義されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+X=[1 2 3;4 5 6]
+[E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fstair">fstair</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
+  </refsection>
+</refentry>

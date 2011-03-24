@@ -97,7 +97,7 @@ int sci_isdir(char *fname,unsigned long fname_len)
 	pStVarOne = (wchar_t**)MALLOC(sizeof(wchar_t*) * (m1 * n1));
 	if (pStVarOne == NULL)
 	{
-		if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+		FREE(lenStVarOne); lenStVarOne = NULL;
 		Scierror(999,_("%s: Memory allocation error.\n"),fname);
 		return 0;
 	}

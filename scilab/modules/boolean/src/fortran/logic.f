@@ -854,6 +854,8 @@ c     .           arg4(1:m4,arg2)=[]
                   l3=l4
                   n3=n4
                   m3=m4
+C     .           given set is larger than 1:m4
+                  mi=min(m4,mi)
                   mn3=m3*n3
 c     .           call extraction
                   goto 56

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -29,12 +30,12 @@
 /*------------------------------------------------------------------------*/
 int set_text_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterStringMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !isParameterStringMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
+        return SET_PROPERTY_ERROR;
+    }
 
-  return sciSetText( pobj, getStringMatrixFromStack( stackPointer ), nbRow, nbCol ) ;
+    return sciSetText( pobj, getStringMatrixFromStack( stackPointer ), nbRow, nbCol );
 }
 /*------------------------------------------------------------------------*/

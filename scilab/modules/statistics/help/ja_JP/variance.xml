@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="variance">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>variance</refname>
+    <refpurpose>ベクトルまたは行列の値の分散</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>s=variance(x[,orien[,w]])
+s=variance(x,'r') or m=variance(x,1)
+s=variance(x,'c') or m=variance(x,2)
+</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orien</term>
+        <listitem>
+          <para>計算の向き.orienパタメータの有効な値は, 1, "r", 2および"c"です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>w</term>
+        <listitem>
+          <para>w : 使用する正規化の手法. 有効な値は0および1. 
+	  これはxの列の数(orien=1が選択された場合)または
+	行の数(orien=2が選択された場合)に依存します.
+	w = 0 の場合,m-1で正規化され,分散の最適な非バイアス推定器が出力されます(これがデフォルト).
+	w = 1 の場合, m で正規化され,平均周りの二次モーメントが出力されます.
+	orienオプションが指定されない場合,
+	n*m-1により正規化が行われます.ただし,n*mは行列における全要素数です.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,ベクトルまたは行列<literal>x</literal>の値の分散を計算します.</para>
+    <para>
+	あるベクトルまたは行列<literal>x</literal>について,
+	<literal>s=variance(x)</literal> は,スカラー<literal>s</literal>に
+	<literal>x</literal>の全てのエントリの分散を返します.</para>
+    <para><literal>s=variance(x,'r')</literal> (または等価な, <literal>s=variance(x,1)</literal>)
+    は行方向の分散です. 
+	この場合,行ベクトルsの各エントリに<literal>x</literal>の各列の分散が返されます.
+	複素数値を管理するよう一般化された式が使用されます.
+    </para>
+    <para><literal>s=variance(x,'c')</literal> (または等価な,<literal>s=variance(x,2)</literal>)
+    は列方向の分散です. 
+	この場合,列ベクトル<literal>s</literal>の各エントリに
+	<literal>x</literal>の各行の分散を返します.
+	複素数値を管理するよう一般化された式が使用されます.
+    </para>
+
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=[0.2113249 0.0002211 0.6653811;0.7560439 0.4453586 0.6283918]
+s=variance(x)
+s=variance(x,'r')
+s=variance(x,'c')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mtlb_var">mtlb_var</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, fifth edition, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+</refentry>

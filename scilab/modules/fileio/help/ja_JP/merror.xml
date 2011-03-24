@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="merror" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>merror</refname>
+
+    <refpurpose>ファイルアクセスに関するエラーインジケータを調べる</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>err = merror([fd])
+
+[err,msg] = merror([fd])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+         <para>スカラー. 関数 <literal>mopen</literal>により返された
+	<literal>fd</literal> パラメータ.
+	-1 は直近にオープンされたファイルを意味します.
+	デフォルト値は -1です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>スカラー. 
+	指定したファイルに関する直近のファイルI/O処理のエラーステータス番号 errnum
+	を返します.</para>
+
+          <para>
+	指定したファイルで実行された直近のI/O処理が成功した場合,
+	msg の値は空となり, merror は err の値として 0　を返します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>msg</term>
+
+        <listitem>
+          <para>文字列. エラー文字列メッセージを返します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>関数 <literal>merror</literal> はファイルアクセスエラーインジケータ
+	をテストするため使用されます.
+	エラーが設定されている場合, ゼロでない要素を返します.
+	エラーインジケータは<literal>mclearerr</literal>関数により
+	リセットすることのみが可能です.</para>
+
+    <para>
+	ゼロでない err は,直近のI/O処理で発生したエラーを指します.
+	メッセージの値は,エラーの特性に関する情報を含む文字列です.
+	このメッセージが役に立たない場合,
+	詳細については使用するオペレーティングシステム用の
+	C言語のランタイムライブラリのマニュアルを参照してください.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+fd = mopen(TMPDIR +'/filetxt.txt','wt');
+[err,msg] = merror(fd)
+if (err <> 0) then 
+  printf('Problem\n');
+end
+mclose(fd);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mclearerr">mclearerr</link></member>
+
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

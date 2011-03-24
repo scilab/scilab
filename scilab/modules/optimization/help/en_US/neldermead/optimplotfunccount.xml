@@ -64,8 +64,8 @@ opt = optimset ( "PlotFcns" , optimplotfunccount );
     <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
     

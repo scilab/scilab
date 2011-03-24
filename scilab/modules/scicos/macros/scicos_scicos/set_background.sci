@@ -20,6 +20,9 @@
 //
 
 function set_background(gh_window)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   
   rhs = argn(2) ; //** get the number of right side arguments  

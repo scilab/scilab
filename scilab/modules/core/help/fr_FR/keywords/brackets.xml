@@ -60,8 +60,8 @@ s=poly(0,'s');[1/s,2/s]
 [u,s]=schur(rand(3,3))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="comma">comma</link>

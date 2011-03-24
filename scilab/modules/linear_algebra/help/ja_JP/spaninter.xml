@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spaninter">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>spaninter</refname>
+    <refpurpose>共通部分空間</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X,dim]=spaninter(A,B [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, B</term>
+        <listitem>
+          <para>同数の行を有する実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>直交またはユニタリ正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>整数, range(<literal>A</literal>) と range(<literal>B</literal>間の共通部分空間の次元 )</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    range(<literal>A</literal>) および range(<literal>B</literal>)の
+	共通部分を計算します.</para>
+    <para>
+	<literal>X</literal>の最初の<literal>dim</literal>列は,この共通部分に展開します.
+	すなわち,<literal>X(:,1:dim)</literal>は,
+	range(<literal>A</literal>) と range(<literal>B</literal>)の間の直交基底です.</para>
+    <para>
+	<literal>X</literal>の基底では,
+	<literal>A</literal> および <literal>B</literal>がそれぞれ次のように
+	表されます:</para>
+    <para><literal>X'*A</literal> および <literal>X'*B</literal>.</para>
+    <para><literal>tol</literal> はしきい値です (<literal>sqrt(%eps)</literal> がデフォルト値です).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,3)*rand(3,4);     // A は 5 x 4, rank=3です.
+B=[A(:,2),rand(5,1)]*rand(2,2);
+[X,dim]=spaninter(A,B);
+X1=X(:,1:dim);    //共通部分
+svd(A),svd([X1,A])   // X1 in span(A)
+svd(B),svd([B,X1])   // X1 in span(B)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spanplus">spanplus</link>
+      </member>
+      <member>
+        <link linkend="spantwo">spantwo</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.; ;   </para>
+  </refsection>
+</refentry>

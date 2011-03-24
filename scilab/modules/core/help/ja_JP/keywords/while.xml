@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="while">
+  <info>
+    <pubdate>$LastChangedDate: 2006-09-10 20:58:00 +0200 (dim, 10 sep 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>while</refname>
+    <refpurpose> while キーワード</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para><literal>while</literal> 構文. 
+<literal>"end"</literal>で終わる必要があります.</para>
+    <para>
+      <literal>while expr ,instructions,...[,else instructions], end</literal>
+    </para>
+    <para>
+      <literal>while expr do instructions,...[,else instructions], end</literal>
+    </para>
+    <para>
+      <literal>while expr then instructions,...[,else instructions], end</literal>
+    </para>
+    <para>注意:</para>
+    <itemizedlist>
+      <listitem>
+        <para> 唯一の制約は,  <literal>then</literal> または
+	<literal>do</literal>" キーワードを
+	<literal>while</literal> キーワードと同じ行に置く必要がある
+	ことです.</para>
+      </listitem>
+      <listitem>
+        <para>キーワード <literal>then</literal> または <literal>do</literal> は
+	キャレッジリターンまたはカンマで置換することができます.
+	Matlabとの互換性のため,推奨されませんが,
+	式の終わりと命令の始まりの間に空白を置く方法で代替することも可能です.</para>
+      </listitem>
+      <listitem>
+        <para>
+	オプションの <literal>,else instructions</literal> 構造により,
+	式の評価が偽となった場合に実行される命令を指定することが可能です.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      警告: 条件付き命令(if while for または select/case)の本文を定義するために使用可能な
+	文字数は 16 k以下とする必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+e=1; a=1; k=1;
+while norm(a-(a+e),1) > %eps, e=e/2; k=k+1; end
+e,k
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="for">for</link>
+      </member>
+      <member>
+        <link linkend="select">select</link>
+      </member>
+      <member>
+        <link linkend="break">break</link>
+      </member>
+      <member>
+        <link linkend="return">return</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

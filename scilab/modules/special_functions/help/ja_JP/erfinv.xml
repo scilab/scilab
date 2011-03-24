@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab" xml:lang="ja" xml:id="erfinv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>erfinv</refname>
+    <refpurpose>逆誤差関数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>y = erfinv(x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>(xと同じ大きさの)実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>erfinv</literal> 関数は<literal>erf</literal>
+	誤差関数の逆,
+	つまり,<literal>-1 ≤ x ≤ 1</literal> となるような
+	任意の<literal>x</literal>について
+	erf(erfinv(x)) = x を計算します.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x = linspace(-0.99, 0.99, 100);
+y = erfinv(x);
+plot2d(x, y)
+]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="cdfnor">cdfnor</link></member>
+      <member><link linkend="erf">erf</link></member>
+      <member><link linkend="erfc">erfc</link></member>
+      <member><link linkend="erfcx">erfcx</link></member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>R参考文献</title>
+    <para>
+      Milton Abramowitz and Irene A. Stegun, eds. Handbook of
+      Mathematical Functions with Formulas, Graphs, and Mathematical
+      Tables. New York: Dover, 1972.
+    </para>
+  </refsection>
+</refentry>

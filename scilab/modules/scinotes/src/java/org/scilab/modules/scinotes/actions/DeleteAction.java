@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,12 +17,13 @@ import javax.swing.KeyStroke;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SciNotes;
 
 /**
  * Delete action
  * @author Bruno JOFRET
- *
+ * @author Calixte DENIZET
  */
 public final class DeleteAction extends DefaultAction {
 
@@ -43,7 +45,12 @@ public final class DeleteAction extends DefaultAction {
      * DoAction
      */
     public void doAction() {
-        getEditor().getTextPane().getActionMap().get(DefaultEditorKit.deleteNextCharAction).actionPerformed(null);
+        ScilabDocument doc = (ScilabDocument) getEditor().getTextPane().getDocument();
+        doc.mergeEditsBegin();
+        if (!getEditor().getTextPane().removeColumnSelection()) {
+            getEditor().getTextPane().getActionMap().get(DefaultEditorKit.deleteNextCharAction).actionPerformed(null);
+        }
+        doc.mergeEditsEnd();
     }
 
     /**
@@ -56,5 +63,4 @@ public final class DeleteAction extends DefaultAction {
     public static MenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         return createMenu(label, null, new DeleteAction(label, editor), key);
     }
-
 }

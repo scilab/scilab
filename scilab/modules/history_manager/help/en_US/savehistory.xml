@@ -45,8 +45,8 @@ savehistory(f)</synopsis>
 savehistory(SCI+'/session.scilab') 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="loadhistory">loadhistory</link>

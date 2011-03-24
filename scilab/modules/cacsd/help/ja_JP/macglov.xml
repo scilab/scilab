@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="macglov">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>macglov</refname>
+    <refpurpose> Mac Farlane Glover 問題</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[P,r]=macglov(Sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>Sl</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>P</term>
+        <listitem>
+          <para>線形システム (<literal>syslin</literal> リスト), ``拡張'' プラント</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r</term>
+        <listitem>
+          <para>1x2 ベクトル, <literal>P22</literal>の次元</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[P,r]=macglov(Sl)</literal> は,
+	Glover-McFarlane問題の
+	標準プラント<literal>P</literal>を返します.</para>
+    <para>
+	この問題の場合,
+	ro_optimal = 1-ハンケルノルム(<literal>[N,M]</literal>)
+    ただし, <literal>[N,M]=lcf(sl)</literal> (正規化既約分解) すなわち,</para>
+    <para>
+    gama_optimal = <literal>1/sqrt(ro_optimal)</literal></para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. Delebecque INRIA</para>
+  </refsection>
+</refentry>

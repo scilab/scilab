@@ -20,6 +20,9 @@
 //
 //## adjust scs_m.objs.model with bllst
 function scs_m_temporary=adjust_scs_m_temp(scs_m_temporary,corinvtemp,ind)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   //## test if we are in a sblock
   corinvtemp1=corinvtemp(1);

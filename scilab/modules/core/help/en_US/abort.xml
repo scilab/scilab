@@ -12,8 +12,8 @@
     <para><literal>abort</literal> interrupts current evaluation and gives the prompt. Within
     a <literal>pause</literal> level  <literal>abort</literal> return to level 0 prompt.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="quit">quit</link>

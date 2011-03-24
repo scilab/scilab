@@ -60,8 +60,8 @@ apropos "^ab"  //search help beginning the two characters "ab"
 apropos "quadratic.*solver"
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

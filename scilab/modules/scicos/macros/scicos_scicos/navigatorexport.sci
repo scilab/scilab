@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function ok=navigatorexport(scs_m, exp_dir,exp_format)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   fname = fullfile(%exp_dir, 'navigator')
 
   // Create a new window to host diagram and title, then get some useful handles

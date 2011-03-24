@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xtitle">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xtitle</refname>
+    <refpurpose>グラフィックスウインドにタイトルを追加する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xtitle(title,[x_label,[y_label,[z_label]]],&lt;opts_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>title,x_label,y_label, z_label</term>
+        <listitem>
+          <para>文字列の行列.</para>
+         <para>Scilab 5.2以降, 
+	   <link linkend="math_rendering_features_in_graphic">LaTeX
+	     または MathML 式</link>を指定することができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1,
+              key2=value2</literal>, ... ,ただし,
+	    キーには<literal>boxed</literal>とすることが
+	    できます(下記参照).
+	    この場合, 順番に特別な意味はありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>boxed</term>
+        <listitem>
+          <para>整数値. 1の場合, 各タイトルの周囲にボックスが
+	    描画されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>xtitle</literal> は 2D または 3D プロットに
+      タイトルを追加します. 
+      <literal>title</literal>は一般的なタイトルで,
+      <emphasis role="bold">x_label</emphasis>, 
+      <emphasis role="bold">y_label</emphasis> および
+    <emphasis role="bold">z_label</emphasis> は
+    3軸のタイトルです.
+    引数が行列の場合,行列の各行が異なる線上に表示されます.
+    </para>
+    <para>デモを参照には,コマンド <literal>xtitle()</literal> と入力してください.
+      </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 曲面を描画
+plot3d() ;
+// タイトルを描画
+xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis' ) ;
+// タイトルの周囲にボックスを描画
+xtitle( 'My surface is blue', 'X axis', 'Y axis', 'Z axis', boxed = 1 );
+
+
+//  LaTeX & MathMLで指定:
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+
+xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>参考</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="titlepage">titlepage</link>
+        <link linkend="label_properties">label_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

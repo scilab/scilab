@@ -73,8 +73,8 @@ hex2dec(['ABC','0','A'])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="base2dec">base2dec</link></member>

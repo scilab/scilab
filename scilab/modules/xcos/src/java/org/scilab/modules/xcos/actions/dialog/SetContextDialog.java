@@ -93,7 +93,8 @@ public class SetContextDialog extends JDialog {
         StringBuilder contextBuilder = new StringBuilder();
         for (int i = 0; i < parameters.getContext().length; i++) {
         	contextBuilder.append(parameters.getContext()[i]);
-        	contextBuilder.append(System.getProperty("line.separator"));
+        	// The '\n' is used on JTextArea for new lines.
+        	contextBuilder.append("\n");
         }
         
         contextArea = new JTextArea(contextBuilder.toString());
@@ -198,6 +199,8 @@ public class SetContextDialog extends JDialog {
 										.trim()
 										.replaceAll("\n", "; ") + ";");
 					}
+					
+					
 					
 					dispose();
 					

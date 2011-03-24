@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="write_csv" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>write_csv</refname>
+
+    <refpurpose>カンマ区切り形式でファイルに書き込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>write_csv(M, filename [,sep, dec])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>文字列. ファイルパス.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>文字列の行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>sep</term>
+
+        <listitem>
+          <para>列セパレータ記号, デフォルトはタブ文字: ascii(9)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dec</term>
+
+        <listitem>
+          <para>小数点記号 '.' または ','. デフォルトは ','</para>
+        </listitem>
+      </varlistentry>
+
+      
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>write_csv(M, filename) は,行列Mを
+	filenameにカンマ区切り形式で書き込みます.
+	filename入力は文字列です .</para>
+    <para>ファイル 'filename' がすでに存在する場合, 上書きされます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example">// 行列をCSVファイル形式で保存
+A = [1:10] * 0.1;
+write_csv(A, TMPDIR + '/datas.csv');
+
+// テキストとして読み込む
+mgetl(TMPDIR + '/datas.csv')
+
+r = read_csv(TMPDIR + '/datas.csv',ascii(9));
+r = strsubst(r,',','.');
+evstr(r)
+
+A = [1:10] * 0.1; 
+write_csv(A', TMPDIR+'/foo.csv', ' ', '.');
+mgetl(TMPDIR+'/foo.csv')
+
+</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="read_csv">read_csv</link></member>
+
+      <member><link linkend="evstr">evstr</link></member>
+
+      <member><link linkend="mgetl">mgetl</link></member>
+      
+      <member><link linkend="format">format</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Allan CORNET</term>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

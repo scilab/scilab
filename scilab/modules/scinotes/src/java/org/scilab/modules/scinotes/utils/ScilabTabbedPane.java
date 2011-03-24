@@ -95,14 +95,22 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
     }
 
     /**
-     * {@inheritDoc}
+     * @param index the index of the tab
+     * @return the title of the tab
      */
-    public String getTitleAt(int index) {
+    public String getScilabTitleAt(int index) {
         CloseTabButton tab = (CloseTabButton) getTabComponentAt(index);
         if (tab != null) {
             return tab.getText();
         }
 
+        return "";
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String getTitleAt(int index) {
         return "";
     }
 
@@ -190,8 +198,9 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                     dtde.rejectDrop();
                 } else {
                     Component c = tabbedPane.getComponentAt(tabbedPane.draggedIndex);
-                    String title = tabbedPane.getTitleAt(tabbedPane.draggedIndex);
+                    String title = tabbedPane.getScilabTitleAt(tabbedPane.draggedIndex);
                     ConfigSciNotesManager.removeFromOpenFiles(tabbedPane.editor, tabbedPane.editor.getTextPane(tabbedPane.draggedIndex));
+                    NavigatorWindow.removePane(tabbedPane.editor.getTextPane(tabbedPane.draggedIndex));
                     tabbedPane.remove(c);
                     if (tabbedPane.getTabCount() == 0) {
                         tabbedPane.editor.addEmptyTab();
@@ -204,7 +213,7 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                     ScilabEditorPane sep = editor.getTextPane(indexOfComponent(c));
                     sep.setEditor(editor);
                     if (sep.getName() != null) {
-                        ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, sep);
+                        ConfigSciNotesManager.saveToOpenFiles(sep.getName(), editor, sep, index);
                     }
 
                     setSelectedIndex(index);

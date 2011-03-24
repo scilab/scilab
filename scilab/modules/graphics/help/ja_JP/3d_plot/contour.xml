@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="contour">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>contour</refname>
+    <refpurpose>3次元曲面に等高線を描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>contour(x,y,z,nz,[theta,alpha,leg,flag,ebox,zlev])
+contour(x,y,z,nz,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>大きさ n1 および n2の実数行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>大きさ (n1,n2)の実数行列, 関数の値または
+	    曲面  <literal>z=f(x,y)</literal>を定義するScilab関数. </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nz</term>
+        <listitem>
+          <para>等高線の値または等高線の数.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para><literal>nz</literal>が整数の場合, その値は等高線の数
+		を指定し,以下のように zmin から zmaxまで等間隔に設定されます:</para>
+                <programlisting role = ""><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                <para>  <literal>zmin</literal> および
+                <literal>zmax</literal> の等高線は描画されません
+	(一般にこれらは複数の点となってしまいます)が,
+	以下のように追加できることに注意してください.</para>
+                <programlisting role = ""><![CDATA[ 
+[im,jm] = find(z == zmin);     // または zmax 
+plot2d(x(im)',y(jm)',-9,"000")
+ ]]></programlisting>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-  </term>
+              <listitem>
+                <para> <literal>nz</literal> がベクトルの場合,
+              <literal>nz(i)</literal> は i番目の等高線の値を指定します.
+		<literal>zmin</literal> および   <literal>zmax</literal> の
+		等高線を表示するには,以下のように
+		イプシロン許容誤差を追加するのが便利です:
+		 <literal>nz=[zmin+%eps,..,zmax-%eps]</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;  </term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1, key2=value2</literal>,
+  	... ただし, key は <literal>theta</literal>,<literal>alpha</literal>,<literal>leg</literal>,
+		<literal>flag</literal>, <literal>ebox</literal>,<literal>zlev</literal> (以下参照). 
+	この場合, 順番には特別な意味はありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta, alpha</term>
+        <listitem>
+          <para>実数値で,観測点の球座標(単位:度).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>leg</term>
+        <listitem>
+          <para>各軸の表題を定義する文字列, フィールドセパレータは @, 例: "X@Y@Z".</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>実数ベクトルで, その要素は  <literal>flag=[mode,type,box]</literal>.</para>
+          <variablelist>
+            <varlistentry>
+              <term>mode</term>
+              <listitem>
+                <para>文字列で,モードを定義.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>mode=0: </term>
+                    <listitem>
+                      <para>等高線は(x,y,z)で定義された曲面に描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>mode=1: </term>
+                    <listitem>
+                      <para>等高線は3次元プロットおよび
+			equation z=zlevで定義された平面に
+			描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>mode=2:</term>
+                    <listitem>
+                      <para>等高線は2次元プロットに描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>type</term>
+              <listitem>
+                <para>整数 (スケーリング).</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>type=0</term>
+                    <listitem>
+                      <para>プロットはカレント
+			(前の <literal>param3d</literal>,
+			<literal>plot3d</literal>, <literal>contour</literal>または
+			<literal>plot3d1</literal>のコールにより設定された)
+			の3次元スケーリングを用いて行われます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=1</term>
+                    <listitem>
+                      <para>アスペクト比の最大値に基づき3次元ボックスが
+			自動的にスケールが調整されます.オプション引数<literal>ebox</literal>
+			により境界が指定されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=2</term>
+                    <listitem>
+                      <para>アスペクト比の最大値に基づき3次元ボックスが
+			自動的にスケールが調整されます.
+			境界は指定したデータに基づき計算されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=3</term>
+                    <listitem>
+                      <para>
+			<literal>type=1</literal>に似ており,
+			オプションの<literal>ebox</literal>で指定された
+			ボックス付きの3次元の等しい軸となります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=4</term>
+                    <listitem>
+                      <para><literal>type=2</literal>に似ており,
+			データに基づく
+			3次元の等しい軸となります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=5</term>
+                    <listitem>
+                      <para>
+			<literal>type=1</literal>に似ており,
+			オプションの<literal>ebox</literal>で指定された
+			ボックス付きの3次元の拡大された等しい軸となります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>type=6</term>
+                    <listitem>
+                      <para><literal>type=2</literal>に似ており,
+			データに基づく
+			3次元の拡大された等しい軸となります.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>box</term>
+              <listitem>
+                <para>整数 (プロット周囲のフレーム).</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>box=0</term>
+                    <listitem>
+                      <para>プロットの周囲には何も描画されません.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=1</term>
+                    <listitem>
+                      <para>未実装 (box=0と同じ).</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=2</term>
+                    <listitem>
+                      <para>曲面の後ろの軸のみが描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=3</term>
+                    <listitem>
+                      <para>曲面を囲うボックスが描画され, 表題が追加されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>box=4</term>
+                    <listitem>
+                      <para>曲面を囲うボックスが描画され, 表題と軸が追加されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ebox</term>
+        <listitem>
+          <para>
+		<literal>flag</literal>の<literal>type</literal>が1の時に
+		使用されます.
+		ベクトル<literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>
+		としてプロットの境界を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zlev</term>
+        <listitem>
+          <para>実数.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>contour</literal> は,曲面 z=f(x,y) の等高線を描画します.
+	等高線は, 3次元曲面上に描画されます.(<literal>zlev</literal>を除く)
+	オプションの引数は関数<literal>plot3d</literal>と同じです.
+	これらのオプションの意味は同じです.
+	これらのオプションは3次元プロット上への等高線の描画を制御します.
+	<literal>flag(1)=mode</literal>のみが特別な意味を有します.
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>mode=0</term>
+        <listitem>
+          <para>等高線は (x,y,z) で定義された曲面上に描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode=1</term>
+        <listitem>
+          <para>3次元プロット上および
+		式 z=zlevで定義されたプロット上にに等高線が描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mode=2</term>
+        <listitem>
+          <para>2次元プロット上に等高線が描画されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+	等高線上に印字される浮動小数点数のフォーマットを
+	<literal>xset("fpf",string)</literal>により変更することができます.
+	ただし, <literal>string</literal> にはC言語の構文で
+	(例えば <literal>string="%.3f"</literal>)でフォーマットを指定します.
+	デフォルトのフォーマットに戻すには <literal>string=""</literal>と
+	してください.
+	出力を抑制するには,<literal>string=" "</literal>を使用してください.
+	</para>
+    <para>
+	通常, 2次元プロット上に等高線を描画するために<literal>contour2d</literal>
+	を使用します.</para>
+    <para>
+    コマンド <literal>contour()</literal> を入力することでデモを参照できます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=linspace(-%pi,%pi,30);
+function z=my_surface(x,y),z=x*sin(x)^2*cos(y),endfunction
+
+contour(t,t,my_surface,10)
+// 等高線の出力形式を変更します
+xset("fpf","%.1f")
+clf()
+contour(t,t,my_surface,10)
+// 3D
+clf()
+z=feval(t,t,my_surface);
+plot3d(t,t,z);contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="contour2d">contour2d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

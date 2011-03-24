@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="length" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>length</refname>
+
+    <refpurpose>オブジェクトの長さ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>n=length(M)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>行列 (通常または多項式または文字列) または
+          リスト</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>整数または整数行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection><title>説明</title>
+
+    <para>通常または多項式の行列の場合, <literal>n</literal>は
+	<literal>M</literal>の行の数に列の数を乗じた整数になります.
+    (<literal>M</literal>が論理値行列の場合にも有効)</para>
+
+    <para>文字列からなる行列の場合 (および部分的に文字列の場合)
+	<literal>length</literal>は,
+	文字列の行列<literal>M</literal>のエントリの長さを
+	<literal>n</literal>に返します.</para>
+
+    <para>リストの長さはリストの中の要素の長さです
+	(<literal>size</literal>でも出力されます).</para>
+
+    <para><literal>length('123')</literal>は <literal>3</literal>となります.
+    <literal>length([1,2;3,4])</literal>は <literal>4</literal>となります.</para>
+
+    <para>警告: 疎行列の長さは,行列の最大次元を返し,
+	次元の積ではありません.
+	(例:
+    length(sparse(eye(12,2))) はr max(12,2) を返し,24 とはなりません)</para>
+
+    <para>疎行列の場合は size(...,'*') を使用してください.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+length([123 ; 456 ])
+length(['hello world',SCI])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="size">size</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

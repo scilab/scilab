@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="mput">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>mput</refname>
+    <refpurpose> 指定したバイナリ形式でバイトまたはワードを書き込む</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>mput(x [,type,fd])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>浮動小数点数または整数型の数値のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>スカラー.  <literal>mopen</literal>関数により返された<literal>fd</literal>
+	パラメータ .  デフォルトは -1 で,直近にオープンされたファイルを意味します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>type</term>
+        <listitem>
+          <para>文字列. xの全エントリを書き込む際に使用されるバイナリ形式を指定.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>mput</literal> 関数は,
+    ストリームパラメータ <literal>fd</literal>で指定した出力先にデータを
+	を書き込みます.
+	データはポインタのカレントの位置に書き込まれ,
+	ポインタのインジケータは前に適当に前に移動されます.
+  </para>
+    <para>
+    <literal>type</literal> パラメータは変換指定子で,
+	以下のフラグ文字(デフォルト値: "l")
+	のどれかに設定されます:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>"l","i","s","ul","ui","us","d","f","c","uc"</term>
+        <listitem>
+          <para>
+	それぞれ long, int, short, unsigned long, unsigned int, unsigned short,
+	double, float, char, unsigned char を書き込みます.
+	書き込んだバイトは,(リトルインディアンモードで)マシンに依存するバイナリファイルを
+	出力するために
+	(リトルインディアンステータスを確認することにより)
+	必要に応じて自動的にスワップされます.
+	このデフォルトのスワップモードは<literal>mopen</literal>関数に
+	フラグを追加することにより抑制することができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"..l" or "..b"</term>
+        <listitem>
+          <para>
+	'l'または'b'文字を型指定子の末尾に追加することにより,
+	リトルインディアンまたはビッグインディアンモードで書き込むことも可能です.
+	例えば,"db"はビッグインディアンモードでdoubleを書き込みます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+filen = 'test.bin';
+mopen(filen,'wb');
+mput(1996,'l');mput(1996,'i');mput(1996,'s');mput(98,'c');
+
+// force little-endian 
+mput(1996,'ll');mput(1996,'il');mput(1996,'sl');mput(98,'cl');
+
+// force big-endian 
+mput(1996,'lb');mput(1996,'ib');mput(1996,'sb');mput(98,'cb');
+
+mclose();
+mopen(filen,'rb');
+if 1996<>mget(1,'l') then pause,end
+if 1996<>mget(1,'i') then pause,end
+if 1996<>mget(1,'s') then pause,end
+if   98<>mget(1,'c') then pause,end
+
+// リトルインディアンを強制
+if 1996<>mget(1,'ll') then pause,end
+if 1996<>mget(1,'il') then pause,end
+if 1996<>mget(1,'sl') then pause,end
+if   98<>mget(1,'cl') then pause,end
+
+// ビッグインディアンを強制
+if 1996<>mget(1,'lb') then pause,end
+if 1996<>mget(1,'ib') then pause,end
+if 1996<>mget(1,'sb') then pause,end
+if   98<>mget(1,'cb') then pause,end
+
+mclose();
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="mclose">mclose</link>
+      </member>
+      <member>
+        <link linkend="meof">meof</link>
+      </member>
+      <member>
+        <link linkend="mfprintf">mfprintf</link>
+      </member>
+      <member>
+        <link linkend="fprintfMat">fprintfMat</link>
+      </member>
+      <member>
+        <link linkend="mfscanf">mfscanf</link>
+      </member>
+      <member>
+        <link linkend="fscanfMat">fscanfMat</link>
+      </member>
+      <member>
+        <link linkend="mget">mget</link>
+      </member>
+      <member>
+        <link linkend="mgetl">mgetl</link>
+      </member>
+      <member>
+        <link linkend="mgetstr">mgetstr</link>
+      </member>
+      <member>
+        <link linkend="mopen">mopen</link>
+      </member>
+      <member>
+        <link linkend="mprintf">mprintf</link>
+      </member>
+      <member>
+        <link linkend="mputl">mputl</link>
+      </member>
+      <member>
+        <link linkend="mputstr">mputstr</link>
+      </member>
+      <member>
+        <link linkend="mscanf">mscanf</link>
+      </member>
+      <member>
+        <link linkend="mseek">mseek</link>
+      </member>
+      <member>
+        <link linkend="mtell">mtell</link>
+      </member>
+      <member>
+        <link linkend="mdelete">mdelete</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

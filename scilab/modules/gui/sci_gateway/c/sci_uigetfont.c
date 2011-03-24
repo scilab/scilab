@@ -129,7 +129,7 @@ int sci_uigetfont(char *fname,unsigned long fname_len)
   fontChooserID = createFontChooser();
 
   /* Default font */
-  if (fontNameAdr != 0)
+  if (fontNameAdr != NULL)
     {
       setFontChooserFontName(fontChooserID, getStringMatrixFromStack((size_t)fontNameAdr)[0]);
     }

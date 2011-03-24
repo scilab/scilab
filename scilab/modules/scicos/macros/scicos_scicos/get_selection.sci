@@ -20,6 +20,9 @@
 //
 
 function [win,o,%pt] = get_selection(Select)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   num = Select(1,1); win=Select(1,2)
   

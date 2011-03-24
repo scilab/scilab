@@ -67,8 +67,8 @@
     All input parameters values are verified to be compatible with "M2SCI tlists". (Unknown=-1 in M2SCI)
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="Funcall">Funcall</link>

@@ -5,23 +5,26 @@
  * Copyright (C) 2002 - 2004 - INRIA - Serge Steer
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
  *    This file contains all functions used to GET the properties of graphics
  *    objects.
  --------------------------------------------------------------------------*/
+
+#include <stdio.h>
 
 #include "GetProperty.h"
 #include "Scierror.h"
@@ -37,6 +40,8 @@
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
 
 /**sciGetPointerToFeature
@@ -67,11 +72,11 @@ sciGetPointerToFeature (sciPointObj * pobj)
     case SCI_POLYLINE:
         return (sciPolyline *) pPOLYLINE_FEATURE (pobj);
         break;
-    case SCI_SEGS:  
-        return (sciSegs *) pSEGS_FEATURE (pobj); 
+    case SCI_SEGS:
+        return (sciSegs *) pSEGS_FEATURE (pobj);
         break;
     case SCI_FEC:
-        return (sciFec *) pFEC_FEATURE (pobj); 
+        return (sciFec *) pFEC_FEATURE (pobj);
         break;
     case SCI_GRAYPLOT:
         return (sciGrayplot *) pGRAYPLOT_FEATURE (pobj);
@@ -112,6 +117,12 @@ sciGetPointerToFeature (sciPointObj * pobj)
 sciEntityType
 sciGetEntityType (sciPointObj * pobj)
 {
+    // TODO
+    // Call assert to force no more call to this method.
+    printf("[ABORT] sciGetEntityType must no more be called.\n");
+    printf("[ABORT] scilab will now abort.\n");
+    abort();
+
     if (pobj != (sciPointObj *) NULL)
         return pobj->entitytype;
     return (sciEntityType)-1;
@@ -141,14 +152,14 @@ sciGetCharEntityType (sciPointObj * pobj)
         break;
     case SCI_ARC:
         return "Arc";
-        break; 
+        break;
     case SCI_POLYLINE:
         return "Polyline";
         break;
     case SCI_SEGS:
         return (pSEGS_FEATURE (pobj)->ptype == 0) ?  "Segs": "Champ";
-        break; 
-    case SCI_FEC: 
+        break;
+    case SCI_FEC:
         return "Fec";
         break;
     case SCI_GRAYPLOT:
@@ -180,13 +191,13 @@ sciGetCharEntityType (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 27.05.04 */
         return "Label";
         break;
-    case SCI_UIMENU: 
+    case SCI_UIMENU:
         return "uimenu";
         break;
-    case SCI_UICONTEXTMENU: 
+    case SCI_UICONTEXTMENU:
         return "uicontextmenu";
         break;
-    case SCI_UICONTROL: 
+    case SCI_UICONTROL:
         return "uicontrol";
         break;
     case SCI_WAITBAR:
@@ -220,13 +231,13 @@ sciGetGraphicContext (sciPointObj * pobj)
     case SCI_ARC:
         return  &(pARC_FEATURE (pobj)->graphiccontext);
         break;
-    case SCI_SEGS: 
+    case SCI_SEGS:
         return  &(pSEGS_FEATURE (pobj)->graphiccontext);
-        break; 
+        break;
     case SCI_FEC:
         return  &(pFEC_FEATURE (pobj)->graphiccontext);
         break;
-    case SCI_GRAYPLOT: 
+    case SCI_GRAYPLOT:
         return  &(pGRAYPLOT_FEATURE (pobj)->graphiccontext);
         break;
     case SCI_POLYLINE:
@@ -267,6 +278,17 @@ sciGetNumColors (sciPointObj * pobj)
 {
     if (pobj)
     {
+        char* parentFigure;
+        int iNumColors = 0;
+        int* piNumColors = &iNumColors;
+
+        getGraphicObjectProperty(pobj->UID, __GO_PARENT_FIGURE__, jni_string, &parentFigure);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, &piNumColors);
+
+        return iNumColors;
+
+        /* To be deleted */
+#if 0
         /* modified jb Silvy 06/2006 */
         switch (sciGetEntityType (pobj))
         {
@@ -275,15 +297,16 @@ sciGetNumColors (sciPointObj * pobj)
         default:
             return sciGetNumColors( sciGetParentFigure( pobj ) ) ;
         }
+#endif
     }
-    return -1 ;
+    return -1;
 }
 
 
 /**sciGetColormap
 * This function gets a colormap from the figure. It's the same for all sons
-* Gets the colormap rgbmat must be a m x 3 double RGB matrix:  
-* a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE 
+* Gets the colormap rgbmat must be a m x 3 double RGB matrix:
+* a[i] = RED, a[i+m] = GREEN, a[i+2*m] = BLUE
 */
 int sciGetColormap(sciPointObj * pobj, double rgbmat[] )
 {
@@ -355,7 +378,7 @@ sciGetForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetBackground
-* Gets the color number of the Background. Be carreful the return of the subwindow 
+* Gets the color number of the Background. Be carreful the return of the subwindow
 * is the feature of its parent figure.
 */
 int
@@ -440,7 +463,7 @@ sciGetMarkForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetMarkBackground
-* Gets the color number of the Marks'Background. Be carreful the return of the subwindow 
+* Gets the color number of the Marks'Background. Be carreful the return of the subwindow
 * is the feature of its parent figure.
 */
 int
@@ -651,7 +674,7 @@ sciGetFontContext (sciPointObj * pobj)
         break;
     case SCI_AXES:
         return  &(pAXES_FEATURE (pobj)->fontcontext);
-        break;  
+        break;
     case SCI_FIGURE: /* F.Leray 08.04.04 THE MOST IMPORTANT*/
         return &(pFIGURE_FEATURE (pobj)->fontcontext);
         break;
@@ -659,9 +682,9 @@ sciGetFontContext (sciPointObj * pobj)
         return sciGetFontContext( pLABEL_FEATURE(pobj)->text ) ;
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -713,11 +736,11 @@ sciGetFontOrientation (sciPointObj * pobj)
 
 
 /**sciGetText
-* Gets the Text in TEXT, TITLE or LEGEND. Be Carreful, 
+* Gets the Text in TEXT, TITLE or LEGEND. Be Carreful,
 * this return a unterminated string (without \0)
 * To obtain the length of the text, use sciGetTextLength@param  sciPointObj *pobj
 * @param sciPointObj * pobj: the pointer to the entity
-* @return  point to char[] if OK or NULL if not 
+* @return  point to char[] if OK or NULL if not
 */
 StringMatrix * sciGetText( sciPointObj * pobj )
 {
@@ -737,9 +760,9 @@ StringMatrix * sciGetText( sciPointObj * pobj )
     case SCI_FIGURE:
     case SCI_SUBWIN:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -773,30 +796,48 @@ void sciGetTextSize( sciPointObj * pobj, int * nbRow, int * nbCol )
 }
 /**
 * Checks if a text object is empty #rows*#columns==0 or #rows*#columns==1 and entry is  zero length
+* This function has been adapted to the MVC: its parameter's type has been changed from sciPointObj to char*
+* (MVC identifier), the reason being that it is exclusively used to get the properties of Label objects,
+* which can be only be known by their MVC identifiers at the present moment.
 */
-BOOL sciisTextEmpty( sciPointObj * pobj)
+//BOOL sciisTextEmpty( sciPointObj * pobj)
+
+BOOL sciisTextEmpty(char* identifier)
 {
     int nbElements;
-    StringMatrix * text = sciGetText( pobj ) ;
-    if ( text == NULL )
+    int* dimensions;
+
+    getGraphicObjectProperty(identifier, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, &dimensions);
+
+    if (dimensions == NULL)
     {
         return TRUE;
     }
-    nbElements = getMatNbRow(text) * getMatNbCol(text);
-    if (nbElements == 0) {return TRUE;}
+
+    nbElements = dimensions[0]*dimensions[1];
+
+    if (nbElements == 0)
+    {
+        return TRUE;
+    }
+
     if (nbElements == 1)
     {
-        char * firstElement = getStrMatElement(text, 0, 0);
-        if (firstElement == NULL)
+        char** textMatrix;
+        getGraphicObjectProperty(identifier, __GO_TEXT_STRINGS__, jni_string_vector, &textMatrix);
+
+        if (textMatrix[0] == NULL)
         {
             return TRUE;
         }
-        else if (firstElement[0] == 0)
+        else if (strcmp(textMatrix[0], "") == 0)
         {
             /* empty string */
             return TRUE;
         }
+
     }
+
     return FALSE;
 }
 
@@ -804,7 +845,7 @@ BOOL sciisTextEmpty( sciPointObj * pobj)
 /**sciGetFontBackground
 * Gets the background color
 * @param sciPointObj * pobj: the pointer to the entity
-* @return  int color if OK, -1 if not 
+* @return  int color if OK, -1 if not
 */
 int
 sciGetFontBackground (sciPointObj * pobj)
@@ -823,9 +864,9 @@ sciGetFontBackground (sciPointObj * pobj)
         colorindex = (sciGetFontContext(pobj))->backgroundcolor+1; /* +1 added by F.Leray 25.06.04 */
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -837,7 +878,7 @@ sciGetFontBackground (sciPointObj * pobj)
     }
 
     colorindex = sciGetGoodIndex(pobj, colorindex); /* Adding F.Leray 31.03.04*/
-    return colorindex; 
+    return colorindex;
 }
 
 
@@ -861,9 +902,9 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
         colorindex = (sciGetFontContext(pobj))->backgroundcolor;
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -879,7 +920,7 @@ sciGetFontBackgroundToDisplay (sciPointObj * pobj)
 
     if((m - colorindex == -1) || (m - colorindex == -2)) colorindex =  m - colorindex;
 
-    return colorindex; 
+    return colorindex;
 }
 
 
@@ -906,9 +947,9 @@ sciGetFontForeground (sciPointObj * pobj)
         colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -945,9 +986,9 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
         colorindex =  (sciGetFontContext(pobj))->foregroundcolor + 1 ; /* Modif. F.Leray 31.03.04*/
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -968,7 +1009,7 @@ sciGetFontForegroundToDisplay (sciPointObj * pobj)
 
 
 /**sciGetFontStyle
-* Gets the font style 
+* Gets the font style
 
 * @param sciPointObj * pobj: the pointer to the entity
 * @return  int 0 OK, -1 if not
@@ -989,9 +1030,9 @@ sciGetFontStyle (sciPointObj * pobj)
         return sciGetFontContext(pobj)->fonttype;
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
+    case SCI_SEGS:
     case SCI_FEC:
-    case SCI_GRAYPLOT: 
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1071,9 +1112,9 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1085,7 +1126,7 @@ sciGetParentFigure (sciPointObj * pobj)
     case SCI_UIMENU:
         {
             return sciGetParentFigure( sciGetParent( pobj ) ) ; /* jbs 06/2006 */
-        }  
+        }
         break;
     default:
         return NULL;
@@ -1104,7 +1145,7 @@ sciGetParentSubwin (sciPointObj * pobj)
 
     subwin = pobj;
     switch (sciGetEntityType (pobj))
-    { 
+    {
     case SCI_FIGURE:
         return sciGetFirstTypedSelectedSon( pobj, SCI_SUBWIN );
         break;
@@ -1112,9 +1153,9 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1123,9 +1164,9 @@ sciGetParentSubwin (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
         while (sciGetEntityType(subwin) != SCI_SUBWIN)
-            subwin=sciGetParent(subwin);      
-        return (sciPointObj *) subwin;  
-        break;                                                     
+            subwin=sciGetParent(subwin);
+        return (sciPointObj *) subwin;
+        break;
     default:
         return NULL;
         break;
@@ -1136,13 +1177,13 @@ sciGetParentSubwin (sciPointObj * pobj)
 /**sciGetNumfigure
 * Returns the the Number of parent figure
 */
-int 
+int
 sciGetNumFigure (sciPointObj * pobj)
 {
     sciPointObj *figure = pobj;
 
     switch (sciGetEntityType (pobj))
-    { 
+    {
     case SCI_FIGURE:
         return  sciGetNum(figure) ;
         break;
@@ -1150,9 +1191,9 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1161,10 +1202,10 @@ sciGetNumFigure (sciPointObj * pobj)
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
         while (sciGetEntityType(figure) != SCI_FIGURE)
-            figure=sciGetParent(figure);      
-        return sciGetNum(figure); 
-        break;                                                     
-    default:  
+            figure=sciGetParent(figure);
+        return sciGetNum(figure);
+        break;
+    default:
         return -1;
         break;
     }
@@ -1185,9 +1226,9 @@ scigMode *sciGetGraphicMode (sciPointObj * pobj)
         return &(pSUBWIN_FEATURE (pobj)->gmode);
         break;
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1224,14 +1265,14 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
         break;
     case SCI_RECTANGLE:
         return pRECTANGLE_FEATURE (pobj)->clip_region_set;
-        break;   
-    case SCI_SEGS: 
+        break;
+    case SCI_SEGS:
         return pSEGS_FEATURE (pobj)->clip_region_set;
-        break;      
-    case SCI_TEXT: 
+        break;
+    case SCI_TEXT:
         return pTEXT_FEATURE (pobj)->clip_region_set;
-        break;  
-    case SCI_AXES: 
+        break;
+    case SCI_AXES:
         return pAXES_FEATURE (pobj)->clip_region_set;
         break;
     case SCI_SURFACE:
@@ -1245,14 +1286,14 @@ sciGetIsClipRegionValuated (sciPointObj * pobj)
         break;
     case SCI_LEGEND:
         return pLEGEND_FEATURE(pobj)->clip_region_set;
-    case SCI_AGREG: 
-    case SCI_FIGURE: 
+    case SCI_AGREG:
+    case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
         return -2;
         break;
-    } 
+    }
     return -2;
 }
 
@@ -1275,14 +1316,14 @@ sciGetIsClipping (sciPointObj * pobj)
         break;
     case SCI_RECTANGLE:
         return pRECTANGLE_FEATURE (pobj)->isclip;
-        break;   
-    case SCI_SEGS: 
+        break;
+    case SCI_SEGS:
         return pSEGS_FEATURE (pobj)->isclip;
-        break;      
-    case SCI_TEXT: 
+        break;
+    case SCI_TEXT:
         return pTEXT_FEATURE (pobj)->isclip;
-        break;   
-    case SCI_AXES: 
+        break;
+    case SCI_AXES:
         return pAXES_FEATURE (pobj)->isclip;
         break;
     case SCI_SURFACE:
@@ -1296,14 +1337,14 @@ sciGetIsClipping (sciPointObj * pobj)
         break;
     case SCI_LEGEND:
         return pLEGEND_FEATURE(pobj)->isclip;
-    case SCI_AGREG: 
-    case SCI_FIGURE: 
+    case SCI_AGREG:
+    case SCI_FIGURE:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
     default:
         return -2;
         break;
-    } 
+    }
     return -2;
 }
 
@@ -1329,14 +1370,14 @@ sciGetClipping (sciPointObj * pobj)
         break;
     case SCI_RECTANGLE:
         return pRECTANGLE_FEATURE (pobj)->clip_region;
-        break;   
-    case SCI_SEGS: 
+        break;
+    case SCI_SEGS:
         return pSEGS_FEATURE (pobj)->clip_region;
-        break;      
-    case SCI_TEXT: 
+        break;
+    case SCI_TEXT:
         return pTEXT_FEATURE (pobj)->clip_region;
-        break;    
-    case SCI_AXES: 
+        break;
+    case SCI_AXES:
         return pAXES_FEATURE (pobj)->clip_region;
         break;
     case SCI_LABEL:
@@ -1354,14 +1395,14 @@ sciGetClipping (sciPointObj * pobj)
     case SCI_GRAYPLOT:
         return pGRAYPLOT_FEATURE (pobj)->clip_region;
         break;
-    case SCI_UIMENU:  
+    case SCI_UIMENU:
     case SCI_AGREG:
-    case SCI_FIGURE: 
+    case SCI_FIGURE:
     default:
         printSetGetErrorMessage("clip_box");
         return (double *) NULL;
         break;
-    }   
+    }
     printSetGetErrorMessage("clip_box");
     return (double *) NULL;
 
@@ -1376,7 +1417,7 @@ sciGetClipping (sciPointObj * pobj)
 /**sciGetAddPlot
 * Returns the mode of the adding plot
 * @param sciPointObj * pobj: the pointer to the entity
-* @return TRUE if yes, FALSE if no 
+* @return TRUE if yes, FALSE if no
 * @author Djalel ABDEMOUCHE
 * 25/10/2002
 */
@@ -1389,14 +1430,14 @@ sciGetAddPlot (sciPointObj * pobj)
         return (sciGetGraphicMode (pobj))->addplot;
         break;
     case SCI_SUBWIN:
-        return (sciGetGraphicMode (pobj))->addplot; 
+        return (sciGetGraphicMode (pobj))->addplot;
         break;
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1408,7 +1449,7 @@ sciGetAddPlot (sciPointObj * pobj)
         printSetGetErrorMessage("auto_clear");
         return FALSE;
         break;
-    } 
+    }
     return FALSE;
 }
 
@@ -1430,9 +1471,9 @@ sciGetAutoScale (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -1467,13 +1508,13 @@ sciGetZooming (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES:  
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_UIMENU:
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1501,20 +1542,20 @@ sciGetXorMode (sciPointObj * pobj)
     case SCI_FIGURE:
         return (sciGetGraphicMode (pobj))->xormode;
         break;
-    case SCI_SUBWIN: 
+    case SCI_SUBWIN:
         /* the value is inhirated by the parent */
         return sciGetXorMode (sciGetParentFigure (pobj));
         break;
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES:  
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1579,23 +1620,23 @@ sciGetVisibility (sciPointObj * pobj)
         break;
     case SCI_SURFACE:
         return pSURFACE_FEATURE (pobj)->visible;
-        break;    
-    case SCI_SEGS: 
+        break;
+    case SCI_SEGS:
         return pSEGS_FEATURE (pobj)->visible;
-        break;    
-    case SCI_FEC: 
+        break;
+    case SCI_FEC:
         return pFEC_FEATURE (pobj)->visible;
-        break;    
-    case SCI_GRAYPLOT: 
+        break;
+    case SCI_GRAYPLOT:
         return pGRAYPLOT_FEATURE (pobj)->visible;
-        break;    
-    case SCI_TEXT: 
+        break;
+    case SCI_TEXT:
         return pTEXT_FEATURE (pobj)->visible;
-        break;   
-    case SCI_AXES: 
+        break;
+    case SCI_AXES:
         return pAXES_FEATURE (pobj)->visible;
-        break;    
-    case SCI_AGREG: 
+        break;
+    case SCI_AGREG:
         return pAGREG_FEATURE (pobj)->visible;
         break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
@@ -1637,13 +1678,13 @@ sciGetResize (sciPointObj * pobj)
     case SCI_TEXT:
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
-    case SCI_AXES: 
+    case SCI_AXES:
     case SCI_AGREG:
     case SCI_LABEL: /* F.Leray 28.05.04 */
     case SCI_UIMENU:
@@ -1686,6 +1727,25 @@ sciGetName (sciPointObj * pobj)
 int
 sciGetNum (sciPointObj * pobj)
 {
+    int iFigureId = 0;
+    int* piFigureId = &iFigureId;
+
+    getGraphicObjectProperty(pobj->UID, __GO_ID__, jni_int, &piFigureId);
+
+    if (piFigureId == NULL)
+    {
+        printSetGetErrorMessage("figure_id");
+        return -1;
+    }
+
+    return iFigureId;
+
+    /*
+     * Deactivated for now.
+     * The SUBWIN (Axes) case must be taken into account.
+     * To be implemented using the MVC framework.
+     */
+#if 0
     switch (sciGetEntityType (pobj))
     {
     case SCI_FIGURE:
@@ -1700,13 +1760,14 @@ sciGetNum (sciPointObj * pobj)
         return -1;
         break;
     }
+#endif
 }
 
 
 /**sciGetWidth
 * Returns the width in pixel of the figure or subwin
 * @param sciPointObj * pobj: the pointer to the entity
-* @return the width of the dimension of the window or figure 
+* @return the width of the dimension of the window or figure
 * (the visibility dimension) in pixel dimension
 */
 int sciGetWidth (sciPointObj * pobj)
@@ -1723,7 +1784,7 @@ int sciGetWidth (sciPointObj * pobj)
             int size[2] ;
             sciGetJavaFigureSize(pobj, size);
             return size[0];
-        }      
+        }
         break;
     default:
         printSetGetErrorMessage("width");
@@ -1843,10 +1904,10 @@ int sciGetWindowHeight(sciPointObj * pObj)
 
 
 /**sciIsExistingSubWin
-* Determines if this SubWindow is an existing one in the current SCI_FIGURE 
+* Determines if this SubWindow is an existing one in the current SCI_FIGURE
 * in association with the wrect and frect....
-* @param WRect: Window rectangle dimension in double, 
-* @param FRect: window user's scale dimension in double, 
+* @param WRect: Window rectangle dimension in double,
+* @param FRect: window user's scale dimension in double,
 * @param logscale: flag for logarithmic window
 * @return the pointer to the existing SubWindow, or Null if no one is existing
 */
@@ -1921,12 +1982,20 @@ sciIsExistingSubWin (double WRect[4])
 /**MAJ pour le 3D DJ.Abdemouche 2003**/
 double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
 {
+    char* type;
     double *tab;
     int i,k;
-    switch (sciGetEntityType (pthis))
+
+    getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string, &type);
+
+//    switch (sciGetEntityType (pthis))
+
+    /*
+     * switch over sciGetEntityType replaced by object type string comparisons
+     * Required as we have no better way to do this for the moment
+     */
+    if (strcmp(type, __GO_FIGURE__) == 0)
     {
-    case SCI_FIGURE:
-        {
             int posX ;
             int posY ;
             *numrow = 2;
@@ -1943,20 +2012,60 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             tab[2] = (double)sciGetWidth (pthis);
             tab[3] = (double)sciGetHeight (pthis);
             return tab;
+    }
+    else if (strcmp(type, __GO_POLYLINE__) == 0)
+    {
+        char* parentAxes;
+        double* dataX = NULL;
+        double* dataY = NULL;
+        double* dataZ = NULL;
+        int iTmp = 0;
+        int* piTmp = &iTmp;
+        int iView =0;
+        int *piView = &iView;
+
+        /*
+         * Testing whether data properties exist for this object
+         * is currently done only for this property. The type comparison already
+         * ensures that this is the case, though doing so is awkward.
+         */
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, &piTmp);
+
+        if (piTmp == NULL)
+        {
+            *numrow = -2;
+            *numcol = -2;
+            return NULL;
         }
-    case SCI_POLYLINE:
-        *numrow = pPOLYLINE_FEATURE (pthis)->n1;
-        *numcol=(pPOLYLINE_FEATURE (pthis)->pvz != NULL)? 3:2;
+
+        *numrow = iTmp;
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, jni_int, &piTmp);
+
+        if (iTmp)
+        {
+            *numcol = 3;
+        }
+        else
+        {
+            *numcol = 2;
+        }
 
         if ( (*numrow)*(*numcol) == 0 )
         {
             /* empty data, no warnings */
             *numrow = 0;
             *numcol = 0;
-            return NULL ;
+            return NULL;
         }
 
-        if(*numcol==2 && pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+
+        if (*numcol == 2 && iView)
         {
             *numcol = (*numcol)+1; /* colonne de 0. a prendre en compte / afficher => numcol+1*/
             if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
@@ -1965,10 +2074,11 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
                 *numcol = -1;
                 return NULL;
             }
+
             for ( i = 0 ; i < *numrow ; i++ )
             {
-                tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
-                tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
+                tab[i] = dataX[i];
+                tab[*numrow+i]= dataY[i];
                 tab[(2*(*numrow))+i]= 0.;
             }
         }
@@ -1978,183 +2088,294 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             {
                 *numrow = -1;
                 *numcol = -1;
-                return NULL ;
-            }
-            for ( i = 0 ; i < *numrow ; i++ )
-            {
-                tab[i] = pPOLYLINE_FEATURE (pthis)->pvx[i];	
-                tab[*numrow+i]= pPOLYLINE_FEATURE (pthis)->pvy[i];
-                if (*numcol== 3)
-                {
-                    tab[(2*(*numrow))+i] = pPOLYLINE_FEATURE (pthis)->pvz[i] ;
-                }
-            }
-        }
-        return tab;
-        break;
-    case SCI_RECTANGLE:
-        *numrow = 1;
-        *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 5: 4;
-        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-        {
-            *numrow = -1;
-            *numcol = -1;
-            return NULL;
-        }
-        tab[0] = pRECTANGLE_FEATURE (pthis)->x;
-        tab[1] = pRECTANGLE_FEATURE (pthis)->y;
-        if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-        {
-            tab[2] = pRECTANGLE_FEATURE (pthis)->z;
-            tab[3] = pRECTANGLE_FEATURE (pthis)->width;
-            tab[4] = pRECTANGLE_FEATURE (pthis)->height;
-        }
-        else
-        {
-            tab[2] = pRECTANGLE_FEATURE (pthis)->width;
-            tab[3] = pRECTANGLE_FEATURE (pthis)->height; 
-        }
-        return (double*)tab;
-        break;
-    case SCI_ARC:
-        *numrow = 1;
-        *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 7: 6;
-        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-        {
-            *numrow = -1;
-            *numcol = -1;
-            return NULL;
-        }
-        tab[0] = pARC_FEATURE (pthis)->x;
-        tab[1] =  pARC_FEATURE (pthis)->y;
-        if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-        {
-            tab[2] = pARC_FEATURE (pthis)->z;
-            tab[3] = pARC_FEATURE (pthis)->width;
-            tab[4] = pARC_FEATURE (pthis)->height;
-            tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
-            tab[6] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
-        }
-        else
-        {
-            tab[2] = pARC_FEATURE (pthis)->width;
-            tab[3] = pARC_FEATURE (pthis)->height;
-            tab[4] = RAD2DEG(pARC_FEATURE (pthis)->alphabegin);
-            tab[5] = RAD2DEG(pARC_FEATURE (pthis)->alphaend);
-
-        }
-        return (double*)tab;
-        break;
-    case SCI_AGREG:
-        return (double*)NULL;
-        break;
-    case SCI_TEXT:
-        *numrow = 1;
-        *numcol= (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d) ? 3: 2;
-        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-        {
-            *numrow = -1;
-            *numcol = -1;
-            return NULL;
-        }
-        tab[0] = pTEXT_FEATURE (pthis)->x;
-        tab[1] = pTEXT_FEATURE (pthis)->y;
-        if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-            tab[2] =  pTEXT_FEATURE (pthis)->z;
-        return (double*)tab;
-        break;
-
-    case SCI_SEGS:
-        if (pSEGS_FEATURE (pthis)->ptype == 0) {
-            *numrow = pSEGS_FEATURE (pthis)->Nbr1;
-
-            /* only two coordinates are displayed if the axe is in 2d
-            and the z coordinates has never been modified */
-            if (   pSEGS_FEATURE(pthis)->vz != NULL
-                || pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d )
-            {
-                *numcol = 3 ;
-            }
-            else
-            {
-                *numcol = 2 ;
-            }
-            /**numcol = ( pSEGS_FEATURE (pthis)->vz != NULL ? 3 : 2 ) ;*/
-            if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
                 return NULL;
             }
+
+            if (*numcol == 3)
+            {
+                getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
+            }
+
             for ( i = 0 ; i < *numrow ; i++ )
             {
-                tab[i] = pSEGS_FEATURE (pthis)->vx[i];	
-                tab[*numrow+i]= pSEGS_FEATURE (pthis)->vy[i];
-                if ( *numcol == 3 )
+                tab[i] = dataX[i];
+                tab[*numrow+i]= dataY[i];
+                if (*numcol== 3)
                 {
-                    if ( pSEGS_FEATURE (pthis)->vz == NULL )
-                    {
-                        /* default value */
-                        tab[2*(*numrow)+i] = 0.0 ;
-                    }
-                    else
-                    {
-                        tab[2*(*numrow)+i]= pSEGS_FEATURE (pthis)->vz[i];
-                    }
+                    tab[(2*(*numrow))+i] = dataZ[i];
                 }
             }
+
         }
-        else {
+        return tab;
+    }
+    else if (strcmp(type, __GO_RECTANGLE__) == 0)
+    {
+        char* parentAxes;
+        double* upperLeftPoint;
+        double* tmpDouble;
+        double width = 0.0;
+        double *pdblWidth = &width;
+        double height = 0.0;
+        double *pdblHeight = &height;
+        int* tmp;
+        int iView = 0;
+        int *piView = &iView;
+
+        *numrow = 1;
+
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        *numcol = iView ? 5: 4;
+
+        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
             *numrow = -1;
             *numcol = -1;
-            return (double *) NULL;
+            return NULL;
+        }
+
+        getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &upperLeftPoint);
+
+        getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double, &pdblWidth);
+        getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double, &pdblHeight);
+
+        tab[0] = upperLeftPoint[0];
+        tab[1] = upperLeftPoint[1];
+
+        if (iView)
+        {
+            tab[2] = upperLeftPoint[2];
+            tab[3] = width;
+            tab[4] = height;
+        }
+        else
+        {
+            tab[2] = width;
+            tab[3] = height;
         }
         return (double*)tab;
-        break;
-    case SCI_SURFACE:
-        /* F.Leray 17.03.04*/
+    }
+    else if (strcmp(type, __GO_ARC__) == 0)
+    {
+        char* parentAxes;
+        double* upperLeftPoint;
+        double* tmpDouble;
+        double width = 0.0;
+        double *pdblWidth = &width;
+
+        double height;
+        double *pdblHeight = &height;
+
+        double startAngle;
+        double *pdblStartAngle = &startAngle;
+        double endAngle;
+        double *pdblEndAngle = &endAngle;
+        int* tmp;
+        int view = 0;
+        int *piView = &view;
+
+        *numrow = 1;
+
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        *numcol = view ? 7: 6;
+
+        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return NULL;
+        }
+
+        getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &upperLeftPoint);
+
+        getGraphicObjectProperty(pthis->UID, __GO_WIDTH__, jni_double, &pdblWidth);
+        getGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, jni_double, &pdblHeight);
+
+        getGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, jni_double, &pdblStartAngle);
+        getGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, jni_double, &pdblEndAngle);
+
+        tab[0] = upperLeftPoint[0];
+        tab[1] = upperLeftPoint[1];
+
+        if (view)
+        {
+            tab[2] = upperLeftPoint[2];
+            tab[3] = width;
+            tab[4] = height;
+            tab[5] = RAD2DEG(startAngle);
+            tab[6] = RAD2DEG(endAngle);
+        }
+        else
+        {
+            tab[2] = width;
+            tab[3] = height;
+            tab[4] = RAD2DEG(startAngle);
+            tab[5] = RAD2DEG(endAngle);
+        }
+
+        return (double*)tab;
+    }
+    else if (strcmp(type, __GO_COMPOUND__) == 0)
+    {
+        return (double*)NULL;
+    }
+    else if (strcmp(type, __GO_TEXT__) == 0)
+    {
+        char* parentAxes;
+        double* textPosition;
+        int iView = 0;
+        int* piView = &iView;
+
+        *numrow = 1;
+
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        *numcol = iView ? 3: 2;
+
+        if ((tab = CALLOC((*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return NULL;
+        }
+
+        getGraphicObjectProperty(pthis->UID, __GO_POSITION__, jni_double_vector, &textPosition);
+
+        tab[0] = textPosition[0];
+        tab[1] = textPosition[1];
+
+        if (iView)
+        {
+            tab[2] = textPosition[2];
+        }
+
+        return (double*)tab;
+    }
+    else if (strcmp(type, __GO_SEGS__) == 0)
+    {
+        int iView = 0;
+        int* piView = &iView;
+        int iNumArrows = 0;
+        int* piNumArrows = &iNumArrows;
+        char* parentAxes;
+        double* arrowBases;
+        double* arrowDirections;
+
+        getGraphicObjectProperty(pthis->UID, __GO_NUMBER_ARROWS__, jni_int, &piNumArrows);
+        *numrow = iNumArrows;
+
+        /* only two coordinates are displayed if the axe is in 2d
+        and the z coordinates has never been modified */
+
+        getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+
+        getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
+
+        if (iView)
+        {
+            *numcol = 3;
+        }
+        else
+        {
+            *numcol = 2;
+        }
+
+        if ((tab = CALLOC(2*(*numrow)*(*numcol),sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return NULL;
+        }
+
+        getGraphicObjectProperty(pthis->UID, __GO_BASE__, jni_double_vector, &arrowBases);
+        getGraphicObjectProperty(pthis->UID, __GO_DIRECTION__, jni_double_vector, &arrowDirections);
+
+        for (i = 0; i < *numrow; i++)
+        {
+            tab[2*i] = arrowBases[3*i];
+            tab[2*i+1] = arrowDirections[3*i];
+            tab[2*(*numrow)+2*i] = arrowBases[3*i+1];
+            tab[2*(*numrow)+2*i+1] = arrowDirections[3*i+1];
+
+            if (iView)
+            {
+                tab[4*(*numrow)+2*i] = arrowBases[3*i+2];
+                tab[4*(*numrow)+2*i+1] = arrowDirections[3*i+2];
+            }
+        }
+
+        /* There are twice as many points as arrows (2 endpoints) */
+        *numrow = 2*(*numrow);
+
+        return (double*)tab;
+    }
+    /* F.Leray 17.03.04*/
+    /* SCI_SURFACE replaced by FAC3D and PLOT3D in the MVC framework */
+    else if (strcmp(type, __GO_FAC3D__) == 0)
+    {
         *numrow = -1;
         *numcol = -1;
         return (double*) NULL;
-        break;
-    case SCI_GRAYPLOT:
-        if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
-            int ny=pGRAYPLOT_FEATURE (pthis)->ny,nx=pGRAYPLOT_FEATURE (pthis)->nx;
-            *numrow = nx+1;
-            *numcol = ny+1;
-            if ((tab = CALLOC(*numrow * *numcol,sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return (double*)NULL;
-            }
-            tab[0]=0;
-            for (i=0;i < nx;i++) 
-                tab[i+1] = pGRAYPLOT_FEATURE (pthis)->pvecx[i];
-            for (i=0;i < ny;i++) 
-                tab[*numrow*(i+1)] = pGRAYPLOT_FEATURE (pthis)->pvecy[i];
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
+    {
+        *numrow = -1;
+        *numcol = -1;
+        return (double*) NULL;
+    }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        int* tmp;
+        int nx = 0;
+        int *piNx = &nx;
+        int ny = 0;
+        int *piNy = &ny;
+        double* data;
 
-            for (i=0;i < ny;i++) 
-                for (k=0;k < nx;k++) 
-                    tab[*numrow*(i+1)+k+1] = pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k];
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNx);
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNy);
+
+        /* The z data matrix has (ny-1) rows and (nx-1) cols */
+        nx = nx - 1;
+        ny = ny - 1;
+
+        *numrow = ny;
+        *numcol = nx;
+
+        if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
+        {
+            *numrow = -1;
+            *numcol = -1;
+            return (double*)NULL;
         }
-        else  {/* Matplot */
-            int ny=pGRAYPLOT_FEATURE (pthis)->ny-1,nx=pGRAYPLOT_FEATURE (pthis)->nx-1;
-            *numrow = nx;	*numcol = ny;
-            if ((tab = CALLOC(nx*ny,sizeof(double))) == NULL)
-            {
-                *numrow = -1;
-                *numcol = -1;
-                return (double*)NULL;
-            }
-            for (i=0;i < nx*ny;i++) 
-                tab[i] = pGRAYPLOT_FEATURE (pthis)->pvecz[i];
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &data);
+
+        for (i=0; i < nx*ny; i++)
+        {
+            tab[i] = data[i];
         }
+
         return (double*)tab;
-        break;
-    case SCI_FEC: 
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        double* coordinates;
+        double* values;
+        int iTmp = 0;
+        int* piTmp = &iTmp;
+
         *numcol = 3;
-        *numrow = pFEC_FEATURE (pthis)->Nnode;
+
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, &piTmp);
+        *numrow = iTmp;
+
         if ((tab = CALLOC(*numrow * 3,sizeof(double))) == NULL)
         {
             *numrow = -1;
@@ -2162,23 +2383,52 @@ double *sciGetPoint(sciPointObj * pthis, int *numrow, int *numcol)
             return (double*)NULL;
         }
 
-        for (i=0;i < *numrow;i++) {
-            tab[i] = pFEC_FEATURE (pthis)->pvecx[i];
-            tab[*numrow+i] = pFEC_FEATURE (pthis)->pvecy[i];
-            tab[*numrow*2+i] = pFEC_FEATURE (pthis)->pfun[i];
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, &coordinates);
+        getGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, jni_double_vector, &values);
+
+        for (i=0;i < *numrow;i++)
+        {
+            tab[i] = coordinates[3*i];
+            tab[*numrow+i] = coordinates[3*i+1];
+            tab[*numrow*2+i] = values[i];
+
         }
+
         return (double*)tab;
-        break;
-    case SCI_LEGEND:
-    case SCI_AXES:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
+    }
+    else if (strcmp(type, __GO_LEGEND__) == 0)
+    {
         *numrow = -2;
         *numcol = -2;
         return (double*)NULL;
-        break;
     }
+    else if (strcmp(type, __GO_AXES__) == 0)
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+    /* F.Leray 28.05.04 */
+    else if (strcmp(type, __GO_LABEL__) == 0)
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+    else
+    {
+        *numrow = -2;
+        *numcol = -2;
+        return (double*)NULL;
+    }
+
+    /*
+     * Deactivated for now
+     * Same as the else condition
+     */
+#if 0
+    case SCI_UIMENU:
+#endif
     return (double*)NULL;
 }
 
@@ -2189,7 +2439,7 @@ sciGetdrawmode (sciPointObj *pobj)
     static sciPointObj *subwin;
 
     subwin= (sciPointObj *) sciGetParentSubwin (pobj);
-    if  (subwin != (sciPointObj *) NULL) 
+    if  (subwin != (sciPointObj *) NULL)
         return pSUBWIN_FEATURE(subwin)->visible ;
     return FALSE;
 }
@@ -2201,13 +2451,13 @@ sciGetdrawmode (sciPointObj *pobj)
 sciPointObj *
 sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
 {
-    sciSons *psonstmp; 
+    sciSons *psonstmp;
 
     psonstmp = sciGetSons (pparentfigure);
 
 
-    if (psonstmp != (sciSons *) NULL)	
-    {  
+    if (psonstmp != (sciSons *) NULL)
+    {
         /* tant que le fils ne corespond pas a l'entite */
         while ((psonstmp->pnext  != (sciSons *) NULL)
             && (sciGetEntityType (psonstmp->pointobj) != SCI_SUBWIN))
@@ -2215,7 +2465,7 @@ sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
 
         if  (psonstmp->pnext  == (sciSons *) NULL)
             return (sciPointObj *) NULL;
-        else 
+        else
             if (sciGetEntityType (psonstmp->pointobj) == SCI_SUBWIN)
                 return (sciPointObj *)psonstmp->pointobj;
             else
@@ -2223,11 +2473,11 @@ sciGetAxes (sciPointObj *pparentfigure,sciPointObj *psubwin)
     }
     else
         return (sciPointObj *) NULL;
-} 
+}
 
 /**sciGetPointerToToUserData
-* Returns the pointer to the user_data and size_of_user_data fields associated with 
-the pobj object 
+* Returns the pointer to the user_data and size_of_user_data fields associated with
+the pobj object
 */
 void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **size_ptr)
 {
@@ -2259,12 +2509,12 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
         *user_data_ptr = &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->user_data);
         *size_ptr =  &(((sciPolyline *) pPOLYLINE_FEATURE (pobj))->size_of_user_data);
         break;
-    case SCI_SEGS:  
-        *user_data_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->user_data); 
+    case SCI_SEGS:
+        *user_data_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->user_data);
         *size_ptr = &(((sciSegs *) pSEGS_FEATURE (pobj))->size_of_user_data );
         break;
     case SCI_FEC:
-        *user_data_ptr = &(((sciFec *) pFEC_FEATURE (pobj))->user_data); 
+        *user_data_ptr = &(((sciFec *) pFEC_FEATURE (pobj))->user_data);
         *size_ptr =  &(((sciFec *) pFEC_FEATURE (pobj))->size_of_user_data) ;
         break;
     case SCI_GRAYPLOT:
@@ -2311,7 +2561,7 @@ void sciGetPointerToUserData (sciPointObj * pobj,int ***user_data_ptr, int **siz
 * 130 strcmp to know the type of a parameter
 */
 int sciType (char *marker,sciPointObj * pobj)
-{ 
+{
     if      (strcmp(marker,"arrow_size_factor") == 0) { return sci_matrix;}
     else if (strcmp(marker,"x_shift") == 0) { return sci_matrix;}
     else if (strcmp(marker,"y_shift") == 0) { return sci_matrix;}
@@ -2320,96 +2570,96 @@ int sciType (char *marker,sciPointObj * pobj)
     else if (strcmp(marker,"closed") == 0) { return sci_strings;}
     else if (strcmp(marker,"label") == 0) { return sci_strings;}
     else if (strcmp(marker,"callback") == 0) { return sci_strings;}
-    else if (strcmp(marker,"background") == 0) { return sci_matrix;}	
+    else if (strcmp(marker,"background") == 0) { return sci_matrix;}
     else if (strcmp(marker,"position") == 0) {return sci_matrix;}
-    else if (strcmp(marker,"auto_position") == 0)   {return sci_strings;}		
-    else if (strcmp(marker,"auto_rotation") == 0)   {return sci_strings;}		
+    else if (strcmp(marker,"auto_position") == 0)   {return sci_strings;}
+    else if (strcmp(marker,"auto_rotation") == 0)   {return sci_strings;}
     else if (strcmp(marker,"interp_color_vector") == 0) {return sci_matrix;}
     else if (strcmp(marker,"interp_color_mode") == 0) {return sci_strings;}
-    else if (strcmp(marker,"foreground") == 0) {return sci_matrix;}	
+    else if (strcmp(marker,"foreground") == 0) {return sci_matrix;}
     else if (strcmp(marker,"thickness") == 0)   {return sci_matrix;}
     else if (strcmp(marker,"line_style") == 0) {return sci_matrix;}
     else if (strcmp(marker,"line_mode") == 0) {return sci_strings;}
     else if (strcmp(marker,"fill_mode") == 0) {return sci_strings;}
     else if (strcmp(marker,"surface_mode") == 0) {return sci_strings;}
-    else if (strcmp(marker,"mark_style") == 0) {return sci_matrix;}	
+    else if (strcmp(marker,"mark_style") == 0) {return sci_matrix;}
     else if (strcmp(marker,"mark_size") == 0) {return sci_matrix;}
     else if (strcmp(marker,"mark_size_unit") == 0) {return sci_strings;}
     else if (strcmp(marker,"mark_mode") == 0)   {return sci_strings;}
     else if (strcmp(marker,"mark_foreground") == 0)   {return sci_matrix;}
     else if (strcmp(marker,"mark_background") == 0)   {return sci_matrix;}
-    else if (strcmp(marker,"figure_position") == 0) {return sci_matrix;}	 
+    else if (strcmp(marker,"figure_position") == 0) {return sci_matrix;}
     else if (strcmp(marker,"axes_size") == 0)   {return sci_matrix;}
     else if (strcmp(marker,"axes_visible") == 0)   {return sci_strings;}
     else if (strcmp(marker,"hiddencolor") == 0)   {return 1;}/* DJ.A 2003 */
     else if (strcmp(marker,"isoview") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/
-    else if (strcmp(marker,"view") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/	
-    else if (strcmp(marker,"figure_size") == 0){return sci_matrix;}	
-    else if (strcmp(marker,"figure_id") == 0)   {return sci_matrix;}	
-    else if (strcmp(marker,"figure_name") == 0){return sci_strings;}   
+    else if (strcmp(marker,"view") == 0)   {return sci_strings;}/**DJ.Abdemouche 2003**/
+    else if (strcmp(marker,"figure_size") == 0){return sci_matrix;}
+    else if (strcmp(marker,"figure_id") == 0)   {return sci_matrix;}
+    else if (strcmp(marker,"figure_name") == 0){return sci_strings;}
     else if (strcmp(marker,"figures_id") == 0)   {return sci_matrix;}
     else if (strcmp(marker,"pixmap") == 0)   {return sci_strings;}/*Ajout A.Djalel*/
-    else if (strcmp(marker,"polyline_style") == 0){return sci_matrix;} 
-    else if (strcmp(marker,"font_size") == 0)   {return sci_matrix;}	
-    else if (strcmp(marker,"font_angle") == 0) {return sci_matrix;}		
+    else if (strcmp(marker,"polyline_style") == 0){return sci_matrix;}
+    else if (strcmp(marker,"font_size") == 0)   {return sci_matrix;}
+    else if (strcmp(marker,"font_angle") == 0) {return sci_matrix;}
     else if (strcmp(marker,"font_foreground") == 0){return sci_matrix;}
     else if (strcmp(marker,"font_color") == 0)   {return sci_matrix;} /* F.Leray 09.04.04 : Adding to support font_color user interface */
-    else if (strcmp(marker,"font_style") == 0) {return sci_matrix;}	      
+    else if (strcmp(marker,"font_style") == 0) {return sci_matrix;}
     else if (strcmp(marker,"font_name") == 0)   {return sci_strings;}
     else if (strcmp(marker,"textcolor"          ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"labels_font_size"   ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"labels_font_color"  ) == 0) {return sci_matrix;}
-    else if (strcmp(marker,"text"               ) == 0) {return sci_strings;}	 
-    else if (strcmp(marker,"text_box"           ) == 0) {return sci_matrix;}	
-    else if (strcmp(marker,"text_box_mode"      ) == 0) {return sci_strings;}	
+    else if (strcmp(marker,"text"               ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"text_box"           ) == 0) {return sci_matrix;}
+    else if (strcmp(marker,"text_box_mode"      ) == 0) {return sci_strings;}
     else if (strcmp(marker,"old_style"          ) == 0) {return sci_strings;}
-    else if (strcmp(marker,"figure_style"       ) == 0) {return sci_strings;}        
-    else if (strcmp(marker,"visible"            ) == 0) {return sci_strings;} 
+    else if (strcmp(marker,"figure_style"       ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"visible"            ) == 0) {return sci_strings;}
     else if (strcmp(marker,"auto_resize"        ) == 0) {return sci_strings;}
-    else if (strcmp(marker,"pixel_drawing_mode" ) == 0) {return sci_strings;}    
-    else if (strcmp(marker,"default_values"     ) == 0) {return sci_matrix ;} 
-    else if (strcmp(marker,"color_map"          ) == 0) {return sci_matrix ;}    
-    else if (strcmp(marker,"x_location"         ) == 0) {return sci_strings;} 
-    else if (strcmp(marker,"y_location"         ) == 0) {return sci_strings;}   
-    else if (strcmp(marker,"tics_direction"     ) == 0) {return sci_strings;}   
-    else if (strcmp(marker,"tight_limits"       ) == 0) {return sci_strings;} 
+    else if (strcmp(marker,"pixel_drawing_mode" ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"default_values"     ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"color_map"          ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"x_location"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"y_location"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"tics_direction"     ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"tight_limits"       ) == 0) {return sci_strings;}
     else if (strcmp(marker,"box"                ) == 0) {return sci_strings;}
-    else if (strcmp(marker,"tics_color"         ) == 0) {return sci_matrix ;}	 
-    else if (strcmp(marker,"tics_textcolor"     ) == 0) {return sci_matrix ;}	  
+    else if (strcmp(marker,"tics_color"         ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"tics_textcolor"     ) == 0) {return sci_matrix ;}
     else if (strcmp(marker,"tics_textsize"      ) == 0) {return sci_matrix ;}
-    else if (strcmp(marker,"xtics_coord"        ) == 0) {return sci_matrix ;}	
-    else if (strcmp(marker,"ytics_coord"        ) == 0) {return sci_matrix ;}	 
-    else if (strcmp(marker,"grid"               ) == 0) {return sci_matrix ;}   
-    else if (strcmp(marker,"tics_segment"       ) == 0) {return sci_strings;} 
-    else if (strcmp(marker,"tics_style"         ) == 0) {return sci_strings;} 
-    else if (strcmp(marker,"format_n"           ) == 0) {return sci_strings;}    
-    else if (strcmp(marker,"tics_labels"        ) == 0) {return sci_strings;}  
+    else if (strcmp(marker,"xtics_coord"        ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"ytics_coord"        ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"grid"               ) == 0) {return sci_matrix ;}
+    else if (strcmp(marker,"tics_segment"       ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"tics_style"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"format_n"           ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"tics_labels"        ) == 0) {return sci_strings;}
     else if (strcmp(marker,"sub_tics"           ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"sub_ticks"          ) == 0) {return sci_matrix;} /* new writing F.Leray 12.10.04 to be consistent with x,y,z _ticks*/
-    else if (strcmp(marker,"zoom_box"           ) == 0) {return sci_matrix;}	
-    else if (strcmp(marker,"zoom_state"         ) == 0) {return sci_strings;}  
-    else if (strcmp(marker,"clip_box"           ) == 0) {return sci_matrix;}	
-    else if (strcmp(marker,"clip_state"         ) == 0) {return sci_strings;} 
-    else if (strcmp(marker,"auto_clear"         ) == 0) {return sci_strings;}		
-    else if (strcmp(marker,"auto_scale"         ) == 0) {return sci_strings;}		  	 
+    else if (strcmp(marker,"zoom_box"           ) == 0) {return sci_matrix;}
+    else if (strcmp(marker,"zoom_state"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"clip_box"           ) == 0) {return sci_matrix;}
+    else if (strcmp(marker,"clip_state"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"auto_clear"         ) == 0) {return sci_strings;}
+    else if (strcmp(marker,"auto_scale"         ) == 0) {return sci_strings;}
     else if (strcmp(marker,"arrow_size"         ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"segs_color"         ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"colored"            ) == 0) {return sci_strings;}
     else if (strcmp(marker,"data"               ) == 0)
-        if((sciGetEntityType(pobj) == SCI_SURFACE) || 
+        if((sciGetEntityType(pobj) == SCI_SURFACE) ||
             (sciGetEntityType(pobj) == SCI_SEGS     && pSEGS_FEATURE(pobj)->ptype == 1) || /* a champ */
             (sciGetEntityType(pobj) == SCI_GRAYPLOT && pGRAYPLOT_FEATURE(pobj)->type == 0))    /* a grayplot (case == 0) */
             return sci_tlist;
         else
             return 1;
-    else if (strcmp(marker,"hdl"                ) == 0) {return sci_matrix;}		
+    else if (strcmp(marker,"hdl"                ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"callbackmevent"     ) == 0) {return sci_matrix;}
-    else if (strcmp(marker,"callback"           ) == 0) {return sci_strings;} 	
+    else if (strcmp(marker,"callback"           ) == 0) {return sci_strings;}
     else if (strcmp(marker,"log_flags"          ) == 0) {return sci_strings;}
     else if (strcmp(marker,"data_mapping"       ) == 0) {return sci_strings;}
     else if (strcmp(marker,"surface_color"      ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"rotation_angles"    ) == 0) {return sci_matrix;}
-    else if (strcmp(marker,"color_mode"         ) == 0) {return sci_matrix;}/*DJ.A merge*/ 
+    else if (strcmp(marker,"color_mode"         ) == 0) {return sci_matrix;}/*DJ.A merge*/
     else if (strcmp(marker,"color_flag"         ) == 0) {return sci_matrix;}
     else if (strcmp(marker,"cdata_mapping"      ) == 0) {return sci_strings;}
     else if (strcmp(marker,"axes_bounds"        ) == 0) {return sci_matrix;}
@@ -2428,12 +2678,12 @@ int sciType (char *marker,sciPointObj * pobj)
     else if (strcmp(marker,"children"           ) == 0) {return sci_handles;}
     else if (strcmp(marker,"cube_scaling"       ) == 0) {return sci_strings;} /* F.Leray 22.04.04 */
     else if (strcmp(marker,"x_label"            ) == 0) {return sci_handles;}  /* F.Leray 27.05.04 */
-    else if (strcmp(marker,"y_label"            ) == 0) {return sci_handles;} 
+    else if (strcmp(marker,"y_label"            ) == 0) {return sci_handles;}
     else if (strcmp(marker,"z_label"            ) == 0) {return sci_handles;}
-    else if (strcmp(marker,"title"              ) == 0) {return sci_handles;} 
-    else if (strcmp(marker,"x_ticks"            ) == 0) {return sci_tlist;} 
-    else if (strcmp(marker,"y_ticks"            ) == 0) {return sci_tlist;} 
-    else if (strcmp(marker,"z_ticks"            ) == 0) {return sci_tlist;} 
+    else if (strcmp(marker,"title"              ) == 0) {return sci_handles;}
+    else if (strcmp(marker,"x_ticks"            ) == 0) {return sci_tlist;}
+    else if (strcmp(marker,"y_ticks"            ) == 0) {return sci_tlist;}
+    else if (strcmp(marker,"z_ticks"            ) == 0) {return sci_tlist;}
     else if (strcmp(marker,"auto_ticks"         ) == 0) {return sci_strings;}
     else if (strcmp(marker,"axes_reverse"       ) == 0) {return sci_strings;}
     else if (strcmp(marker,"immediate_drawing"  ) == 0) {return sci_strings;}
@@ -2486,7 +2736,7 @@ int CheckForCompound(long *handelsvalue, int number)
 {
     sciPointObj *prevpparent;
     int i;
-    long xtmp; 
+    long xtmp;
 
     prevpparent = sciGetParent(sciGetPointerFromHandle((long) handelsvalue[0]));
 
@@ -2499,9 +2749,9 @@ int CheckForCompound(long *handelsvalue, int number)
         {
         case SCI_ARC:
         case SCI_RECTANGLE:
-        case SCI_SEGS: 
-        case SCI_FEC: 
-        case SCI_GRAYPLOT: 
+        case SCI_SEGS:
+        case SCI_FEC:
+        case SCI_GRAYPLOT:
         case SCI_POLYLINE:
         case SCI_TEXT:
         case SCI_SURFACE:
@@ -2687,23 +2937,30 @@ BOOL sciGetAutoPosition ( sciPointObj * pObj )
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetLegendDefined( sciPointObj * pObj )
 {
-    sciSubWindow * ppSubWin ;
+    char* xLabelId;
+    char* yLabelId;
+    char* zLabelId;
 
-    if ( pObj == NULL )
+    if (pObj == NULL)
     {
-        return FALSE ;
+        return FALSE;
     }
 
-    ppSubWin = pSUBWIN_FEATURE( pObj ) ;
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &xLabelId);
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &yLabelId);
+    getGraphicObjectProperty(pObj->UID, __GO_X_AXIS_LABEL__, jni_string, &zLabelId);
 
     /* get the text size of labels */
-    if (sciisTextEmpty(ppSubWin->mon_x_label) && 
-        sciisTextEmpty(ppSubWin->mon_y_label) && 
-        sciisTextEmpty(ppSubWin->mon_z_label))
-        return FALSE ;
+    if (sciisTextEmpty(xLabelId) &&
+        sciisTextEmpty(yLabelId) &&
+        sciisTextEmpty(zLabelId))
+    {
+        return FALSE;
+    }
     else
-        return TRUE ;
-
+    {
+        return TRUE;
+    }
 }
 /*-----------------------------------------------------------------------------------*/
 BOOL sciGetAutoSize( sciPointObj * pObj )
@@ -3104,7 +3361,7 @@ void sciGetRealDataBounds( sciPointObj * pObj, double bounds[6] )
         for ( i = 0 ; i < 6 ; i++ )
         {
             bounds[i] = 0.0 ;
-        } 
+        }
     }
     return ;
 }
@@ -3150,7 +3407,7 @@ void sciGetDataBounds( sciPointObj * pObj, double bounds[6] )
         for ( i = 0 ; i < 6 ; i++ )
         {
             bounds[i] = 0.0 ;
-        } 
+        }
     }
     return ;
 }
@@ -3179,16 +3436,29 @@ void sciGetViewingAngles( sciPointObj * pObj, double * alpha, double * theta)
 */
 void sciGetLogFlags(sciPointObj * pObj, char flags[3])
 {
-    switch( sciGetEntityType(pObj) )
+    char* logflagPropertyNames[3] = {__GO_X_AXIS_LOG_FLAG__, __GO_Y_AXIS_LOG_FLAG__, __GO_Z_AXIS_LOG_FLAG__};
+    int i;
+    int iLogFlag = 0;
+    int* piLogFlag = &iLogFlag;
+
+    for (i = 0; i < 3; i++)
     {
-    case SCI_SUBWIN:
-        flags[0] = pSUBWIN_FEATURE(pObj)->logflags[0];
-        flags[1] = pSUBWIN_FEATURE(pObj)->logflags[1];
-        flags[2] = pSUBWIN_FEATURE(pObj)->logflags[2];
-        break;
-    default:
-        printSetGetErrorMessage("log_flags");
-        break;
+        getGraphicObjectProperty(pObj->UID, logflagPropertyNames[i], jni_bool, &piLogFlag);
+
+        if (piLogFlag == NULL)
+        {
+            printSetGetErrorMessage("log_flags");
+            return;
+        }
+
+        if (iLogFlag)
+        {
+            flags[i] = 'l';
+        }
+        else
+        {
+            flags[i] = 'n';
+        }
     }
 }
 /*----------------------------------------------------------------------------------*/

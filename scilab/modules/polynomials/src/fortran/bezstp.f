@@ -24,14 +24,28 @@ c
       iw1=ixy+ll
       iw=iw1+n0
       ifree=iw+2*n0
-c
+c     The matrix A is an upper triangular matrix catenated with a first full row
+c     [A(1,1) ... A(1,n0-1) A(1,n0)
+c      A(2,1) ... A(2,n0-1) A(2,n0)
+c      A(3,1) ... A(3,n0-1)    0
+c      A(4,1) ...    0         0
+c      ...    ...   ...      ...   ]
+c      
+c     make it upper triangular by a sequence of givens rotations
       do 10 k=1,l
+c     .  compute rotation that zeros a(k+1,n0+1-k)
          call giv(a(k,n0+1-k),a(k+1,n0+1-k),c,s)
+c     .  apply it to the rows k and k+1 of a
          call drot(n0,a(k,1),na,a(k+1,1),na,c,s)
          a(k+1,n0+1-k)=0.0d+0
+c     .  accumulate transformation in u
          call drot(ll,u(k,1),nu,u(k+1,1),nu,c,s)
          if(k.eq.1.and.l.lt.n0) then
+c     .     store second row of a in x (that is right part of row 0 of a)
+c     .     A=[[0 x]
+c     .          At ]
             call dcopy(n0-1,a(2,1),na,x,na)
+c     .     store second row of u in v (that is right part of row 0 of u)
             call dcopy(ll,u(2,1),nu,v,nu)
          endif
  10   continue
@@ -40,8 +54,16 @@ c
       call dcopy(ll,u(l+1,1),nu,w(ixy),1)
 
 c
-      if(l.le.abs(n1-n2)) goto 99
+      if(l.le.abs(n1-n2)) then
+c     .  The dimension of the image of the linear application is too
+c     .  small, skip the errors computations
+c     .  increase the space dimension
+         goto 99
+      endif
+c     Get the highest degree coefficient of the CGD candidate
       fact=a(l,n0-l+1)
+
+c     decrease the [u,v] degree using a linear combinaison with [x y]
       if(l.gt.1) then
          mm=w(ixy+2*m1)**2+w(ixy+1+2*m2)**2
          z=w(iuv+2*m1)*w(ixy+2*m1)+w(iuv+1+2*m2)*w(ixy+1+2*m2)
@@ -55,18 +77,29 @@ c     on abaisse le degre de [u,v]
          call daxpy(ll,z,w(ixy),1,w(iuv),1)
       endif
 c
-c     normalisation pour que le terme de plus haut degre du pgcd soit 1 et
-c       que le determinant soit 1
-c
-      if (fact.eq.0.0d+0) goto 99
+      if (fact.eq.0.0d+0) then
+c     .  the highest degree coefficient of the GCD candidate is zero. It is
+c     .  possible to find a lower degree one, increase the space dimension
+         goto 99
+      endif
+c     normalize the u and v componants of the unimodular matrix  to make
+c     CGD candidate higher degree coefficient equal to 1
       call dscal(ll,1.0d+0/fact,w(iuv),1)
+c     compute the determinant of the unimodular matrix (the determinant
+c     of its degree 0 coefficient
       dt0=w(ixy+2*(l-1))*w(iuv+2*l-1)-w(ixy+2*l-1)*w(iuv+2*(l-1))
-      if(dt0.eq.0.0d+0) goto 99
+      if(dt0.eq.0.0d+0) then
+c     .  the determinant of the unimodular matrix is 0,
+c     .  increase the space dimension
+         goto 99
+      endif
+c     normalize the x and y components of the unimodular matrix to make
+c     it's determinant equal to 1
       call dscal(ll,1.0d+0/dt0,w(ixy),1)
-      dt0=1
+      dt0=1.0d0
 c
-c     estimation de l'erreur directe
-c
+c     Estimate the forward error:
+c     first compute ||p1*x-p2*y||
 c     p1*x
       call dcopy(l-m1,w(ixy+2*m1),2,w(iw1),-1)
       call dpmul1(p1,n1,w(iw1),l-1-m1,w(iw))
@@ -75,6 +108,7 @@ c     p1*x+p2*y
       call dcopy(l-m2,w(ixy+1+2*m2),2,w(iw1),-1)
       call dpmul(p2,n2,w(iw1),l-1-m2,w(iw),nw)
       errd=ddot(nw+1,w(iw),1,w(iw),1)
+c     now compute ||p1*u-p2*v-p||
 c     p1*u
       if(l-1-m1.gt.0) then
          call dcopy(l-1-m1,w(iuv+2+2*m1),2,w(iw1),-1)
@@ -100,14 +134,16 @@ c     p1*u+p2*v-p
       call ddif(np+1,w(iw1),1,w(iw),1)
       errd=errd+ddot(nw+1,w(iw),1,w(iw),1)
 c
-c     estimation de l'erreur inverse
+c     Estimate the backward error
 c     ------------------------------
+c     first ||p*y+p1||
 c     y
       call dcopy(n1-np+1,w(ixy+1+2*m2),2,w(iw),-1)
 c     p*y+p1
       call dpmul1(w(iw1),np,w(iw),n1-np,w(iw))
       call dadd(n1+1,p1,1,w(iw),1)
       erri=ddot(n1+1,w(iw),1,w(iw),1)
+c     now ||p*x-p2||
 c     x
       call dcopy(n2-np+1,w(ixy+2*m1),2,w(iw),-1)
 c     p*x
@@ -116,19 +152,23 @@ c     p*x-p2
       call ddif(n2+1,p2,1,w(iw),1)
       erri=erri+ddot(n2+1,w(iw),1,w(iw),1)
 
-c       write(6,*) np,errd,erri
-c
       if(max(erri,errd).lt.errr) then
+c     .  A better solution found
          errr=max(erri,errd)
          nb=max(0,n0-l)
+c     .  preserve the gcd and unimodular matrix candidates
+c        best contains [gcd u,v,x,y],
+c        the ipb array give info to split best.
          ipb(1)=1
-c     pgcd
+c     .  store gcd candidate into best
          call dcopy(nb+1,a(l,1),na,best(ipb(1)),1)
          if(l.gt.1) then
             call daxpy(nb+1,z,a(l+1,1),na,best(ipb(1)),1)
          endif
          call dscal(nb+1,1.0d+0/fact,best(ipb(1)),1)
          ipb(2)=ipb(1)+nb+1
+
+c     .  store the unimodular matrix candidate into best
          if(l.gt.1) then
             nn=max(n2-nb,1)
             call dcopy(nn,w(iuv+2*(l-nn)),2,best(ipb(2)),-1)
@@ -150,5 +190,7 @@ c     pgcd
          ipb(6)=ipb(5)+nn
       endif
 c
- 99   return
+ 99   continue
+c     increase the dimension of the space
+      return
       end

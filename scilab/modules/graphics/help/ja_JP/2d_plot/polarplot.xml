@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="polarplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>polarplot</refname>
+    <refpurpose>極座標プロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>polarplot(theta,rho,[style,strf,leg,rect])
+polarplot(theta,rho,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>rho</term>
+        <listitem>
+          <para>ベクトル, 半径の値</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta</term>
+        <listitem>
+          <para>rho と同じ大きさのベクトル , 角度の値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1, key2=value2</literal>, ... ただし, keys は
+          <literal>style</literal>,<literal>leg</literal>,<literal>rect</literal>,<literal>strf</literal>
+          または <literal>frameflag</literal>とすることができます</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style</term>
+        <listitem>
+          <para>大きさ ncの実数行ベクトル. 曲線<literal>i</literal>に適用されるスタイルは
+	<literal>style(i)</literal>で定義されます.デフォルトのスタイルは
+	<literal>1:nc</literal> (1は最初の曲線e, 2 は2番目,
+          など.)です.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para><literal>style(i)</literal> が負の場合, 曲線は
+		ID <literal>abs(style(i))+1</literal>のマーカにより描画されます;
+		マーカIDを参照するには<literal>xset()</literal>を使用してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para><literal>style(i)</literal> が厳密に正の場合, 色ID <literal>style(i)</literal>
+		を有する実線または破線ID <literal>style(i)</literal>を有する破線が使用されます;
+		色IDを参照するには,<literal>xset()</literal>を使用してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para>曲線が1つだけ描画される場合,<literal>style</literal>は
+		大きさ2の行ベクトル<literal>[sty,pos]</literal>とすることができます.
+		ただし,<literal>sty</literal>はスタイルを指定するために使用され,
+		<literal>pos</literal>は1から6の範囲の整数で,関数
+		<literal>plot2d</literal>を複数回コールして複数の曲線をプロットし,
+		各曲線にキャプションを付加したい場合に有用です.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf</term>
+        <listitem>
+          <para>i長さ3の文字列 <literal>"xy0"</literal>.</para>
+          <variablelist>
+            <varlistentry>
+              <term>default</term>
+              <listitem>
+                <para>デフォルト値: <literal>"030"</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x</term>
+              <listitem>
+                <para>キャプションの表示を制御,</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+                    <listitem>
+                      <para>キャプションなし.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>x=1</term>
+                    <listitem>
+                      <para>キャプションは表示されます. 
+			オプションの引数<literal>leg</literal>により指定されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y</term>
+              <listitem>
+                <para>フレームの計算を制御します.frameflagと同じ.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+                    <listitem>
+                      <para>前のコールにより設定された
+			カレントの境界(他の高レベルプロット関数</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=1</term>
+                    <listitem>
+                      <para>
+			オプションの引数 <literal>rect</literal> はプロット境界を
+			指定する際に使用されます.
+	</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=2</term>
+                    <listitem>
+                      <para>プロットの境界は<literal>x</literal> および
+                      <literal>y</literal>の最小/最大値により計算されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=3</term>
+                    <listitem>
+                      <para><literal>y=1</literal>と同じですが,等軸スケールとなります..</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=4</term>
+                    <listitem>
+                      <para><literal>y=2</literal> と同じですが,等軸スケールとなります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=5</term>
+                    <listitem>
+                      <para><literal>y=1</literal> と同じですが, <literal>plot2d</literal> は
+			プロットの境界および軸の目盛を変更でき,
+			見栄えの良いグラデーションを生成することができます.
+			ズームボタンをアクティブにする時,このモードが使用されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=6</term>
+                    <listitem>
+                      <para><literal>y=2</literal>と同じですが, <literal>plot2d</literal>は
+			グラデーションの見栄えを良くするために
+			プロットの境界と軸のメモリを変更できます.
+			zoom関数がアクティブになった場合,このモードが使用されます.
+                    </para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=7</term>
+                    <listitem>
+                      <para><literal>y=5</literal>と同じですが,
+			新規プロットのスケールはカレントのスケールにマージされます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=8</term>
+                    <listitem>
+                      <para><literal>y=6</literal>と同じですが,
+			新規プロットのスケールはカレントのスケールにマージされます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>leg</term>
+        <listitem>
+          <para>文字列. 引数<literal>strf</literal>の最初の文字が1の場合に
+		使用されます.<literal>leg</literal> は <literal>"leg1@leg2@...."</literal>
+		という形式で, <literal>leg1</literal>,
+          	<literal>leg2</literal>,などは,それぞれ最初の曲線のキャプション,
+		2番目の曲線のキャプション, などです.
+		デフォルトは <literal>""</literal>です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>この引数は引数<literal>strf</literal>の2番目の文字が1,3または5の
+	場合に使用されます. この引数は大きさ4の行ベクトルで,フレームの次元を指定します:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>polarplot は,角度 theta に対して半径 rho をプロットする極座標プロット
+	を作成します.
+	theta はx軸からベクトルradius (単位:ラジアン)までの角度です; 
+	rho はデータ空間単位で指定されたベクトルradiusの長さです.
+	rhoの値が負の場合,対応する曲線の点が原点対称に折り返されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t= 0:.01:2*%pi;
+clf();polarplot(sin(7*t),cos(8*t))
+
+clf();polarplot([sin(7*t') sin(6*t')],[cos(8*t') cos(8*t')],[1,2])
+ ]]></programlisting>
+  </refsection>
+</refentry>

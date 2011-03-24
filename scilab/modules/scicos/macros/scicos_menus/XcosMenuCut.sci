@@ -20,6 +20,9 @@
 //
 
 function XcosMenuCut()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // ** Serge Steer 24/06/2009
 //  - Allow to cut element which was not previusly selected (to be
 //    coherent with delete)

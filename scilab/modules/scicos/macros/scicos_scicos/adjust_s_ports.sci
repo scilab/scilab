@@ -20,6 +20,9 @@
 //
 
 function [ok,sbloc]=adjust_s_ports(sbloc)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 graphics=sbloc.graphics;
 model=sbloc.model;

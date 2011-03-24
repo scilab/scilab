@@ -150,8 +150,8 @@ labels=["module";"frequence";"phase    "];
 list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>

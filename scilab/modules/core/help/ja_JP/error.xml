@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="error">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>error</refname>
+    <refpurpose> エラーメッセージ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>error(message [,n])
+error(n)
+error(n,pos)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>message</term>
+        <listitem>
+          <para>文字列. 表示されるエラーメッセージ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>整数. エラーメッセージの番号</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pos</term>
+        <listitem>
+          <para>整数. エラーメッセージのパラメータ</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>error</literal> 関数によりエラーメッセージを発行でき,
+	エラーを処理できます.
+	デフォルトで <literal>error</literal> は実行を停止し,
+	プロンプトレベルに復帰します.
+	このデフォルト動作は,<literal>errcatch</literal> または 
+	<literal>execstr(...,'errcatch')</literal> 関数により変更できます.</para>
+    <para><literal>error(message)</literal> は<literal>message</literal>の文字列を
+	出力します.
+	エラーメッセージの番号は 10000 となります.</para>
+    <para><literal>error(message,n)</literal> は
+      <literal>message</literal>の文字列を出力します.
+	エラーメッセージの番号は<literal>n</literal>で指定されます.
+	この番号は 10000 より大きい必要があります. </para>
+    <para><literal>error(n)</literal> は,
+	エラー番号 <literal>n</literal>の
+	定義済みエラーメッセージを出力します. </para>
+    <para>いくつかの定義済みエラーメッセージが
+	パラメータを必要とします(
+      <link linkend="error_table">error_table</link>参照).
+	この場合,パラメータの値を指定するために
+	<literal>error(n,pos)</literal>のように
+	引数<literal>pos</literal>を使用する必要があります.
+	その他の場合, <literal>pos</literal>  引数は無視されます.</para>
+    <para> エラーメッセージのリストおよび対応するエラー番号については
+	 <link linkend="error_table">error_table</link> を参照ください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+error('my error message')
+error(43)
+error(52,3)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="warning">warning</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+      <member>
+        <link linkend="execstr">execstr</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

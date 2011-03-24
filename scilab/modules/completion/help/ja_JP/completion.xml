@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="completion" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-07-29 20:39:36 +0200 (mar., 17 oct.
+    2007)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>completion</refname>
+
+    <refpurpose>パラメータとして指定したテキストから始まる単語を返す.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>r = completion(beginning_of_a_word)
+r = completion(beginning_of_a_word,dictionary)
+[functions, commands, variables, macros, graphic_properties, files] = completion(beginning_of_a_word)
+[functions, commands, variables, macros, graphic_properties] = completion(beginning_of_a_word)
+[functions, commands, variables, macros] = completion(beginning_of_a_word)
+[functions, commands, variables] = completion(beginning_of_a_word)
+[functions, commands] = completion(beginning_of_a_word)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>文字列行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>beginning_of_a_word</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>dictionary</term>
+
+        <listitem>
+          <para>文字列 ("functions", "commands", "variables", "macros",
+          "graphic_properties", "files")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <variablelist>
+      <varlistentry>
+        <term>functions, commands, variables, macros, graphic_properties,
+        files</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>パラメータとして指定したテキストから始まる単語を返します.</para>
+    <para>functions: 関数名の文字列行列 (C ゲートウエイ).  'what'参照.</para>
+    <para>commands: コマンドの文字列行列 (予約). 'what'参照.</para>
+    <para>variables: 変数名の文字列行列. 'who'参照.</para>
+    <para>macros: マクロ名の文字列行列.'who'参照.</para>
+    <para>graphic_properties: 文字列行列x</para>
+    <para>files: 文字列行列 </para>
+    
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"> 
+r = completion('w')
+r = completion('w','functions')
+r = completion('w','commands')
+r = completion('w','variables')
+r = completion('w','macros')
+r = completion('w','graphic_properties')
+r = completion('w','files')
+
+[functions,commands,variables,macros,graphic_properties,files] = completion('w')
+[functions,commands,variables,macros,graphic_properties] = completion('w')
+[functions,commands,variables,macros] = completion('w')
+[functions,commands,variables] = completion('w')
+[functions,commands] = completion('w')
+ </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getscilabkeywords">getscilabkeywords</link></member>
+      <member><link linkend="who">who</link></member>
+      <member><link linkend="what">what</link></member>
+      <member><link linkend="libraryinfo">libraryinfo</link></member>
+      <member><link linkend="librarieslist">librarieslist</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

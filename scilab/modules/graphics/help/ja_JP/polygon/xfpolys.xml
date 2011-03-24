@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xfpolys">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xfpolys</refname>
+    <refpurpose>一連のポリゴンを塗りつぶす </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>xfpolys(xpols,ypols,[fill])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>xpols,ypols</term>
+        <listitem>
+          <para>同じ大きさ (p,n) (ポリゴンの点)の行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill</term>
+        <listitem>
+          <para>大きさ n または大きさ (p,n)のベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection><title>説明</title>
+    <para><literal>xfpolys</literal>は
+	行列<literal>xpols</literal> および<literal>ypols</literal>
+	で定義された同じ大きさの一連のポリゴンを塗りつぶします.
+	各ポリゴンの座標は<literal>xpols</literal> および <literal>ypols</literal>
+	の列に保存されます.
+    </para>
+    <para>ポリゴンは指定した色で塗られるか(フラット),もしくは,
+	補間色(影付き)で塗られます.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>フラット彩色</term>
+        <listitem>
+          <para>この場合, <literal>fill</literal>は
+		大きさ<literal>n</literal>のベクトルとなります.
+	ポリゴン番号 i を塗るパターンは
+	  <literal>fill(i)</literal>で指定されます:</para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>fill(i)&lt;0</literal>の場合, ポリゴンは
+		パターンID <literal>-fill(i)</literal>で塗られます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>fill(i)=0</literal>の場合, ポリゴンは
+		カレントの破線(またはカレントの色)で描画され,
+		塗られません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>fill(i)&gt;0</literal>の場合, 
+		ポリゴンはパターンID <literal>fill(i)</literal>で
+		塗られます. この後, 等高線がカレントの破線(または色)が描画され,
+		および必要に応じて閉じられます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>補間色彩色</term>
+        <listitem>
+          <para>
+	この場合,<literal>fill</literal> は,
+	<literal>xpols</literal> および <literal>ypols</literal>と
+	同じ大きさの行列となります.
+	  <literal>p</literal> は 3 または 4とします.
+	</para>
+          <para><literal>fill(k,i)</literal>はポリゴン<literal>i</literal>の
+	<literal>k</literal>番目の縁の色を指定します.
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=gca();a.data_bounds=[0,-10;210,40];a.foreground=color('red');
+x1=[0,10,20,30,20,10,0]';
+y1=[15,30,30,15,0,0,15]';
+xpols=[x1 x1 x1 x1]; xpols=xpols+[0,60,120,180].*.ones(x1);
+ypols=[y1 y1 y1 y1];
+xfpolys(xpols,ypols,[-1,0,1,2])
+
+// 補間色
+clf()
+f=gcf();
+a=gca();a.data_bounds=[0,-10;40,30];a.isoview='on';
+x1=[0,10,20,10]';
+y1=[10,0,10,20]';
+c=linspace(2,100,4)';
+xpols=[x1 x1+20 x1+10 x1+10];
+ypols=[y1 y1    y1+10 y1-10];
+cols= [c c($:-1:1) c([3 4 1 2]) c]
+f.color_map=jetcolormap(max(cols));
+xfpolys(xpols,ypols,cols)
+  
+// 補間色
+clf()
+f=gcf();
+x11=[0;20;20;0];y11=[10;10;30;30];c11=[10;10;30;30];
+x12=x11;y12=y11+20;c12=[20;20;1;1];c12=[30;30;10;10];
+x21=[0;30;30;0]+22;y21=[20;20;30;30];c21=[20;20;30;30];
+x22=x21;y22=y21+10;c22=[30;30;20;20];
+x31=[0;40;40;0]+55;y31=[0;0;30;30];c31=[0;0;30;30];
+x32=x31;y32=y31+30;c32=[30;30;0;0];
+X=[x11 x12 x21 x22 x31 x32];Y=[y11 y12 y21 y22 y31 y32];C=([c11 c12 c21 c22  c31 c32]+1)*5;
+a=gca();a.isoview='on';
+a.data_bounds=[min(X),min(Y);max(X),max(Y)];
+f=gcf();f.color_map=graycolormap(max(C));
+xfpolys(X,Y,C)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xpoly">xpoly</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

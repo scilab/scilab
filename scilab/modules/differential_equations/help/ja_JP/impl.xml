@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="impl" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>impl</refname>
+
+    <refpurpose>微分代数方程式</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>y=impl([type],y0,ydot0,t0,t [,atol, [rtol]],res,adda [,jac])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>y0,ydot0</term>
+
+        <listitem>
+          <para>実数のベクトルまたは行列 (初期条件).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t0</term>
+
+        <listitem>
+          <para>実数のスカラー (初期時間).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数ベクトル (解を計算する時刻).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>res,adda</term>
+
+        <listitem>
+          <para>外部 (関数または文字列またはリスト).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>type</term>
+
+        <listitem>
+          <para>文字列 <literal>'adams'</literal> または
+          <literal>'stiff'</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>atol,rtol</term>
+
+        <listitem>
+          <para><literal>y</literal>と同じ大きさの実数スカラーまたは実数ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>jac</term>
+
+        <listitem>
+          <para>外部 (関数または文字列またはリスト).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>陰的な線形微分方程式の解</para>
+
+    <para>A(t,y) dy/dt=g(t,y), y(t0)=y0</para>
+
+    <para><literal>t0</literal> は初期時刻, <literal>y0</literal>
+	は初期条件, 
+	<literal>t0</literal>における<literal>y</literal>の時間微分
+	ベクトル <literal>ydot0</literal> も指定する必要があります.
+	入力 <literal>res</literal>は外部ルーチン,すなわち,
+	指定された構文を有する関数,また規定の呼び出し手順を有する
+	FortranサブルーチンまたはC関数の名前(文字列),
+	またはリストです.</para>
+
+    <para><literal>res</literal> が関数の場合, その構文は
+	以下のようにする必要があります:</para>
+
+    <programlisting role = ""><![CDATA[ 
+r = res(t,y,ydot)
+ ]]></programlisting>
+
+    <para>ただし <literal>t</literal> は実数ベクトル (時間) そして
+    <literal>y</literal> および <literal>ydot</literal> は実数ベクトルr (
+	状態量および状態量の微分)です. この関数は
+    <literal>r=g(t,y)-A(t,y)*ydot</literal>を返す必要があります.</para>
+
+    <para><literal>res</literal>が文字列の場合, 
+	FortranサブルーチンまたはC関数の名前を指します.
+	この例については,
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>を参照ください.</para>
+
+    <para><literal>res</literal> をリストとすることもできます: 
+    <literal>ode</literal>のヘルプを参照ください.</para>
+
+    <para>入力 <literal>adda</literal> も外部ルーチンですi.</para>
+
+    <para><literal>adda</literal> が関数の場合, その構文は以下のようにする必要があります:</para>
+
+    <programlisting role = ""><![CDATA[ 
+r = adda(t,y,p)
+ ]]></programlisting>
+
+    <para>これは<literal>r=A(t,y)+p</literal>を返します. ただし,
+    <literal>p</literal> は
+    <literal>A(t,y)</literal>に加算される行列です.</para>
+
+    <para><literal>adda</literal> が文字列の場合, 
+	FortranサブルーチンまたはC関数の名前を指します.
+	この例については,
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>を参照ください.</para>
+
+    <para><literal>adda</literal> をリストとすることもできます: 
+    <literal>ode</literal>のヘルプを参照ください.</para>
+
+    <para>入力 <literal>jac</literal> も外部ルーチンです.</para>
+
+    <para><literal>jac</literal> が関数の場合, その構文は以下のようにする必要があります:</para>
+
+    <programlisting role = ""><![CDATA[  
+j = jac(t,y,ydot)
+ ]]></programlisting>
+
+    <para>これは
+    <literal>r=g(t,y)-A(t,y)*ydot</literal>の
+    <literal>y</literal>に関するヤコビアンを返します.</para>
+
+    <para><literal>jac</literal> が文字列の場合, 
+	FortranサブルーチンまたはC関数の名前を指します.
+	この例については,
+    <literal>SCI/modules/differential_equations/sci_gateway/fortran/Ex-impl.f</literal>を参照ください.</para>
+
+    <para><literal>jac</literal> をリストとすることも可能です: 
+    <literal>ode</literal>のヘルプを参照ください.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+y=impl([1;0;0],[-0.04;0.04;0],0,0.4,'resid','aplusp');
+// Using hot restart 
+//[x1,w,iw]=impl([1;0;0],[-0.04;0.04;0],0,0.2,'resid','aplusp');
+// hot start from previous call 
+//[x1]=impl([1;0;0],[-0.04;0.04;0],0.2,0.4,'resid','aplusp',w,iw);
+//maxi(abs(x1-x))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dassl">dassl</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="external">external</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

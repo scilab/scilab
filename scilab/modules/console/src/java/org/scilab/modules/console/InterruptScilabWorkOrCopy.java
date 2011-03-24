@@ -16,6 +16,7 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.ActionEvent;
 import java.awt.Toolkit;
 import javax.swing.JPanel;
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
@@ -31,45 +32,45 @@ import com.artenum.rosetta.util.StringConstants;
  */
 public class InterruptScilabWorkOrCopy extends AbstractConsoleAction {
 
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-	/**
-	 * Constructor
-	 */
-	public InterruptScilabWorkOrCopy() {
-		super();
+        /**
+         * Constructor
+         */
+        public InterruptScilabWorkOrCopy() {
+                super();
 
-	}
+        }
 
-	/**
-	 * Threats the event
-	 * @param e the action event that occured
-	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
-	 */
-	public void actionPerformed(ActionEvent e) {
+        /**
+         * Threats the event
+         * @param e the action event that occured
+         * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+         */
+        public void actionPerformed(ActionEvent e) {
 
-		if (((JTextPane) configuration.getInputCommandView()).getSelectedText() != null) {
-			/* Text selected in the input --> Copy */
-			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
-		} else if (((JTextPane) configuration.getOutputView()).getSelectedText() != null) {
-			/* Text selected in the output --> Copy */
-			StringSelection strSelected = new StringSelection(((JTextPane) configuration.getOutputView()).getSelectedText());
-			Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
-		} else {
-			/* Interrupt Scilab */
-			InterpreterManagement.interruptScilab();
+                if (((JTextPane) configuration.getInputCommandView()).getSelectedText() != null) {
+                        /* Text selected in the input --> Copy */
+                        StringSelection strSelected = new StringSelection(((JTextPane) configuration.getInputCommandView()).getSelectedText());
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+                } else if (((JEditorPane) configuration.getOutputView()).getSelectedText() != null) {
+                        /* Text selected in the output --> Copy */
+                        StringSelection strSelected = new StringSelection(((JEditorPane) configuration.getOutputView()).getSelectedText());
+                        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(strSelected, null);
+                } else {
+                        /* Interrupt Scilab */
+                        InterpreterManagement.interruptScilab();
 
-			// If Scilab is on prompt, then emulate a user entry
-			if (((JPanel) configuration.getPromptView()).isVisible()) {
-				configuration.getOutputView().append(StringConstants.NEW_LINE);
-				configuration.getOutputView().append(configuration.getPromptView().getDefaultPrompt());
-				configuration.getOutputView().append(configuration.getInputParsingManager().getCommandLine());
-				configuration.getOutputView().append(StringConstants.NEW_LINE);
-				((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab("", false, false);
-				configuration.getInputParsingManager().reset();
-			}
-		}
-	}
+                        // If Scilab is on prompt, then emulate a user entry
+                        if (((JPanel) configuration.getPromptView()).isVisible()) {
+                                configuration.getOutputView().append(StringConstants.NEW_LINE);
+                                configuration.getOutputView().append(configuration.getPromptView().getDefaultPrompt());
+                                configuration.getOutputView().append(configuration.getInputParsingManager().getCommandLine());
+                                configuration.getOutputView().append(StringConstants.NEW_LINE);
+                                ((SciOutputView) configuration.getOutputView()).getConsole().sendCommandsToScilab("", false, false);
+                                configuration.getInputParsingManager().reset();
+                        }
+                }
+        }
 
 }

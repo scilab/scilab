@@ -70,8 +70,8 @@
     function is modified and no new object is created.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="type">type</link></member>

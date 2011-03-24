@@ -142,35 +142,45 @@ int getNewVarAddressFromPosition(void* _pvCtx, int _iVar, int** _piAddress)
 /*--------------------------------------------------------------------------*/
 SciErr getVarAddressFromName(void* _pvCtx, const char* _pstName, int** _piAddress)
 {
-	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
-	int iVarID[nsiz];
-	int* piAddr				= NULL;
+    SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
+    int iVarID[nsiz];
+    int* piAddr = NULL;
 
-	//get variable id from name
-	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    //get variable id from name
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
 
-	//define scope of search
-  Fin = -1;
-	Err = 0;
-	//search variable
-  C2F(stackg)(iVarID);
+    //define scope of search
+    Fin = -1;
+    Err = 0;
+    //search variable
+    C2F(stackg)(iVarID);
 
-	//No idea :(
-  if ( *Infstk(Fin) == 2)
-		Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
+    //No idea :(
+    if ( *Infstk(Fin) == 2)
+    {
+        Fin = *istk(iadr(*Lstk(Fin )) + 1 + 1);
+    }
 
-	if (Err > 0 || Fin == 0)
-	{
-		addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
-		return sciErr;
-	}
+    if (Err > 0 || Fin == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get address of variable \"%s\""), "getVarAddressFromName", _pstName);
+        return sciErr;
+    }
 
 
-	//get variable address
-	getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
-
-	*_piAddress = piAddr;
-	return sciErr;
+    //get variable address
+    getNewVarAddressFromPosition(_pvCtx, Fin, &piAddr);
+    if(piAddr[0] < 0)
+    {//get address from reference
+        int iStackRef       = *Lstk(Fin);
+        int iStackAddr      = iadr(iStackRef);
+        int iNewStackRef    = iStackAddr + 1;
+        int iNewStackPtr    = *istk(iNewStackRef);
+        int iNewStackAddr   = iadr(iNewStackPtr);
+        piAddr              = istk(iNewStackAddr);
+    }
+    *_piAddress = piAddr;
+    return sciErr;
 }
 /*--------------------------------------------------------------------------*/
 SciErr getVarType(void* _pvCtx, int* _piAddress, int* _piType)

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="writb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>writb</refname>
+    <refpurpose> fortranファイルへのバイナリ形式の書き込み</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>writb(file-name,a [,rec])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>file-name</term>
+        <listitem>
+          <para>文字列または整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rec</term>
+        <listitem>
+          <para>正の整数のベクトル. 
+	直接アクセス用に選択されたレコード.
+	このベクトルの大きさは<literal>a</literal>の行の数に等しい必要があります.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	行列<literal>a</literal>をファイル<literal>'filename'</literal>に
+	バイナリ形式で書き込みます.
+	行列のエントリは4バイトワードで書き込まれます.</para>
+    <para>
+	直接レコードアクセスの場合,record_lengthを設定するために
+	ファイルは<literal>file</literal>関数によりオープンされている
+	必要があります.
+	<literal>file-name</literal> は<literal>file</literal> 
+	関数の結果である必要があります.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="readb">readb</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="mput">mput</link>
+      </member>
+      <member>
+        <link linkend="write4b">write4b</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

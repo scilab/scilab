@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,21 +26,42 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_mark_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int status1 ;
-  int status2 ;
+    int status1;
+    int status2;
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_style");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status;
 
-   status1 = sciSetIsMark( pobj, TRUE ) ;
-   status2 = sciSetMarkStyle( pobj, (int) getDoubleFromStack(stackPointer) ) ;
+    int markMode = 1;
+    int markStyle;
 
-  return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 ) ;
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_style");
+        return SET_PROPERTY_ERROR ;
+    }
+
+    markStyle = (int) getDoubleFromStack(stackPointer);
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+
+    status2 = sciSetMarkStyle( pobj, (int) getDoubleFromStack(stackPointer) );
+
+    if (status == TRUE)
+    {
+        status1 = SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"mark_mode");
+        status1 = SET_PROPERTY_ERROR;
+    }
+
+    return sciSetFinalStatus( (SetPropertyStatus)status1, (SetPropertyStatus)status2 );
 }
 /*------------------------------------------------------------------------*/

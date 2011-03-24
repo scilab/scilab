@@ -77,8 +77,8 @@ p1.foreground=color("purple"); p2.foreground=color("navy blue");
 p1.foreground=color(255,128,128);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="colormap">colormap</link>

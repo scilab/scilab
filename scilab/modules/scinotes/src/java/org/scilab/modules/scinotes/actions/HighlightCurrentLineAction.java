@@ -59,6 +59,7 @@ public final class HighlightCurrentLineAction extends DefaultCheckAction {
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new HighlightCurrentLineAction(label, editor), key);
+        cb.setChecked(ConfigSciNotesManager.getHighlightState());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     cb.setChecked(ConfigSciNotesManager.getHighlightState());

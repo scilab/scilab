@@ -76,8 +76,8 @@ recompilefunction("asinh","p")
 flist(profilable)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="function">function</link>
@@ -117,7 +117,7 @@ flist(profilable)
   <refsection>
     <title>Bibliography</title>
     <para>
-   http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
+   <ulink url="http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation">http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation</ulink>
     </para>
   </refsection>
 </refentry>

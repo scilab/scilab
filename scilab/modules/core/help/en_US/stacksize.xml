@@ -48,8 +48,8 @@ sz=stacksize()</synopsis>
     total and used stack size.</para>
     <para>On 64 bit platforms, maximum size of the stack is limited to 268435454.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

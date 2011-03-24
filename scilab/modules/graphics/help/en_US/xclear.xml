@@ -48,8 +48,8 @@
 		To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
 	</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clf">clf</link>

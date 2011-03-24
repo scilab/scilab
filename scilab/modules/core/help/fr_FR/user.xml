@@ -20,8 +20,8 @@
      <literal>(e_1,e_2,...,e_rhs)</literal> sont les variables d'entrée. Pour utiliser cette commande dans Scilab il faut écrire quelques lignes dans la subroutine Fortran <literal>user</literal> de Scilab. Voir <literal>intersci</literal> ou la documentation de Scilab pour plus d'informations.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="fort">fort</link>

@@ -105,8 +105,10 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
 
 		for (int i = 0; i < blockNames.length; i++) {
 			for (int j = 0; j < blockNames[i].length; j++) {
-				final Map<String, Object> style = styleSheet.getCellStyle(
-						styles[i][j], styleSheet.getDefaultVertexStyle());
+				final Map<String, Object> style = 
+					styleSheet.getCellStyle(styles[i][j],
+					styleSheet.getCellStyle("Icon",
+							styleSheet.getDefaultVertexStyle()));
 				styleSheet.putCellStyle(blockNames[i][j], style);
 			}
 		}

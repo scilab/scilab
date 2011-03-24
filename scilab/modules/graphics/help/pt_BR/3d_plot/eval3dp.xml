@@ -100,8 +100,8 @@ plot3d(Xf,Yf,Zf)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="genfac3d">genfac3d</link></member>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="show_pixmap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>show_pixmap</refname>
+    <refpurpose>pixmapバッファを画面に送信する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>show_pixmap()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>グラフィックウインドウの <literal>pixmap</literal> プロパティが <literal>"on"</literal>の場合,
+	描画データは画面ではなく,pixmapメモリに送信されます.
+	</para>
+    <para><literal>show_pixmap()</literal>命令はpixmapを画面に送信します.</para>
+    <para>pixmapモードは滑らかなアニメーションを得るために使用されます.
+	このプロパティはfigureエンティティフィールドの中にあります
+	(
+    <link linkend="figure_properties">figure_properties</link>参照).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+f=gcf();f.pixmap='on'; //pixmapモードを設定
+a=gca();a.data_bounds=[0 0; 10 10];
+//2つの矩形を構築
+xrects([0;10;1;1],5);r1=gce();r1=r1.children;
+xrects([0;1;1;1],13);r2=gce();r2=r2.children;
+//アニメーションループ
+for k=1:1000
+  //pixmapバッファに矩形を描画
+  move(r1,[0.01,-0.01]);move(r2,[0.01,0.01]) 
+  //pixmapバッファを表示
+  show_pixmap()
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="figure_properties">figure_properties</link>
+      </member>
+      <member>
+        <link linkend="clear_pixmap">clear_pixmap</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Serge Steer INRIA</para>
+  </refsection>
+</refentry>

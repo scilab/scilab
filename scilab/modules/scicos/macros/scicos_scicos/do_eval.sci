@@ -28,6 +28,7 @@ needcompile1=max(2,needcompile)
 %mprt=funcprot()
 funcprot(0)
 scicos_getvalue=setvalue;
+getvalue=setvalue;
 
 function scicosmessage(txt)
   messagebox(['In block ' + o.gui + ': ';

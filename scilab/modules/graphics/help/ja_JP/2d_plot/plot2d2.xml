@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plot2d2">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot2d2</refname>
+    <refpurpose>2次元プロット (階段状関数)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>plot2d2([x],y)
+plot2d2([x],y,&lt;opt_args&gt;)
+plot2d2([logflag],x,y,[style,strf,leg,rect,nax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>args</term>
+        <listitem>
+          <para>パラメータの説明については<literal>plot2d</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>plot2d2</literal> は <literal>plot2d</literal>と同じですが,
+	<literal>(x,y)</literal>により指定される関数が区分定数であると仮定されます.
+	</para>
+    <para>デフォルトで, 連続するプロットは重ね描きされます.前のプロットを消去するには
+     <literal>clf()</literal>を使用してください.</para>
+    <para>コマンド <literal>plot2d2()</literal> を入力するとデモを参照できます. 
+	<literal>plot2dxx</literal> (xx = 1 から 4)により提供されるモードは全て
+	<literal>plot2d</literal>を用いて,
+	<literal>polyline_style</literal>オプションを対応する数字に設定することにより,
+	有効にすることができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 区間[i,i+1]において値がiとなる階段状関数をプロット 
+// 最後の区間は描画されません
+plot2d2([1:4],[1:4],1,"111","step function",[0,0,5,5])
+// 以下のplot2dによる場合と比較
+x=[0:0.1:2*%pi]';
+clf()
+plot2d2(x,[sin(x) sin(2*x) sin(3*x)])
+clf();
+plot2d(x,[sin(x) sin(2*x) sin(3*x)])
+e=gce();
+e.children(1).polyline_style=2;
+e.children(2).polyline_style=2;
+e.children(3).polyline_style=2;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot2d3">plot2d3</link>
+      </member>
+      <member>
+        <link linkend="plot2d4">plot2d4</link>
+      </member>
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="polyline_properties">polyline_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

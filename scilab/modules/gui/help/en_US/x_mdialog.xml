@@ -84,8 +84,8 @@ rep = x_mdialog(['System Simulation';'with PI regulator'],...
                  ['P gain';'I gain '],[' ';' '])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="editvar">editvar</link>

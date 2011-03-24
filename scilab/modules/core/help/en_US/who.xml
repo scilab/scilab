@@ -30,8 +30,8 @@ names=who('global','sorted')
 		used in double precision words.</para>
     <para><literal>who('sorted')</literal> displays in alphabetical order all variables.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="whos">whos</link>

@@ -9,7 +9,8 @@
 
 // Search children node(s) of node 'node1'
 children = uiGetChildrenNode(treeRoot, node1)
-// will return 'children = list(leaf11, leaf12)' ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+// will return 'children = list(leaf11, leaf12)' ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiDeleteNode">uiDeleteNode</link>       </member>

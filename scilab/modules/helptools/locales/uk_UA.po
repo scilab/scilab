@@ -1,0 +1,313 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"PO-Revision-Date: 2010-06-29 12:24+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tОбробка файла %s.xml\n"
+
+msgid ""
+"\n"
+"Building master documents:\n"
+msgstr ""
+"\n"
+"Збирання основних документів:\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"Збирання основного документа підручника Scilab для %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s. (Please wait building ... this can take "
+"a while)\n"
+msgstr ""
+"\n"
+"Збирання файла підручника [%s] у %s. (Будь ласка, зачекайте — це доволі "
+"тривала дія)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s]. (Please wait building ... this can take a "
+"while)\n"
+msgstr ""
+"\n"
+"Збирання файла підручника [%s]. (Будь ласка, зачекайте — це доволі тривала "
+"дія)\n"
+
+msgid ""
+"\n"
+"Building the master document:\n"
+msgstr ""
+"\n"
+"Збирання основного документа:\n"
+
+#, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: файл %s не було пересунуто до каталогу %s."
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s не було створено."
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: не вдалося знайти або створити робочий каталог %s.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr ""
+"%s: каталогу з назвою %s не існує або у вас недостатньо прав доступ для його "
+"читання."
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: помилка під час спроби збирання документації: %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: виконання стосу команд Java %s.\n"
+
+#, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: файл пропущено %s."
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
+"розмірність.\n"
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: обробка файла: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%s: обробка файла: %s у %s\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: читання з каталогу %s\n"
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr "%s: ці 2 mlist не повинні мати спільних полів.\n"
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: помилка у форматуванні файла CHAPTER, рядок %d\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: у режимі %s перегляд довідки вимкнено.\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr "%s: помилка у форматуванні файла last_successful_build, рядок %d\n"
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: ця можливість підтримується лише на платформі Windows.\n"
+
+#, c-format
+msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
+"рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
+"значення типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати типізований "
+"список на основі матриць.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
+"який завершується підрядком «.last_successful_build».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
+"який завершується словом «CHAPTER».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
+"назву існуючого каталогу.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати коректну "
+"назву існуючого файла.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати назву "
+"існуючого каталогу.\n"
+
+#, c-format
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: не встановлено файл довідки (.jar).\n"
+
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: не знайдено hhc.exe.\n"
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: створення файла не передбачено.\n"
+
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: оброблено %i файлів.\n"
+
+msgid "-- Deleting help files --\n"
+msgstr "-- Вилучення файлів довідки --\n"
+
+msgid "Building the scilab manual file ["
+msgstr "Збирання файла підручника зі scilab ["
+
+msgid "Help chapter"
+msgstr "Глава довідки"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Попередження: %s не відповідає dtd"

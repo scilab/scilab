@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="glever">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>glever</refname>
+    <refpurpose>行列ペンシルの逆</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>E, A</term>
+        <listitem>
+          <para>同じ次元の正方実行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>文字列 (デフォルト値 '<literal>s</literal>')</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Bfs,Bis</term>
+        <listitem>
+          <para>多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>chis</term>
+        <listitem>
+          <para>多項式</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>一般化したLeverrierのアルゴリズムによりある行列ペンシルについて
+    </para>
+    <para>
+      <literal>(s*E-A)^-1</literal>
+    </para>
+    <para>
+	を計算します.</para>
+    <programlisting role = ""><![CDATA[ 
+(s*E-A)^-1 = (Bfs/chis) - Bis.
+ ]]></programlisting>
+    <para><literal>chis</literal> = 特性多項式 (乗法定数まで).</para>
+    <para><literal>Bfs</literal>  = 分子の特性多項式行列.</para>
+    <para><literal>Bis</literal>
+    = 多項式行列 ( - <literal>(s*E-A)^-1</literal> の無限大までの級数展開).</para>
+    <para>
+    <literal>Bis</literal>の前に - 符号があることに注意してください.</para>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>
+    この関数は,<literal>Bfs,Bis</literal> および <literal>chis</literal>を簡単化するために
+	<literal>cleanp</literal>を使用します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
+[Bfs,Bis,chis]=glever(F)
+inv(F)-((Bfs/chis) - Bis)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rowshuff">rowshuff</link>
+      </member>
+      <member>
+        <link linkend="det">det</link>
+      </member>
+      <member>
+        <link linkend="invr">invr</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+      <member>
+        <link linkend="pencan">pencan</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D. (1988)  </para>
+  </refsection>
+</refentry>

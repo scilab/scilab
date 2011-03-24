@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="splin3d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>splin3d</refname>
+
+    <refpurpose>3次元補間グリッドのスプライン</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>tl = splin3d(x, y, z, v, [order])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y,z</term>
+
+        <listitem>
+          <para>3次元補間グリッドを定義する単調増加の行ベクトル (各行には最低3個の要素) 
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>nx x ny x nz ハイパー行列 (nx, ny, nz は
+          <literal>x</literal>, <literal>y</literal> および
+          <literal>z</literal>の長さ)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>order</term>
+
+        <listitem>
+          <para>(オプション) 1x3 ベクトル [kx,ky,kz] で,
+	各方向へのテンソルスプラインの次数を指定します
+	(デフォルトは [4,4,4], すなわち, 3次元3次スプライン).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl</term>
+
+        <listitem>
+          <para>スプラインを定義するsplin3d型のtlist</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,
+	<emphasis>(xi,yj,zk,vijk)</emphasis>個の点を補間する
+	3次元テンソルスプライン<emphasis>s</emphasis>
+	を計算します.
+	すなわち,<emphasis>i=1,..,nx</emphasis>, <emphasis>j=1,..,ny</emphasis> 
+	および<emphasis>k=1,..,nz</emphasis>について
+	<emphasis>s(xi,yj,zk)=vijk</emphasis>となります.
+	得られるスプライン<emphasis>s</emphasis>は,<emphasis>s</emphasis>の
+	Bスプラインテンソル表現により構成される<literal>tl</literal>
+	により定義されます.
+	いくつかの点で
+	(<emphasis>s</emphasis>およびその1階微分を計算する)
+	<link linkend="interp3d">interp3d</link>関数,または,
+	(<emphasis>s</emphasis>の任意微分を計算する)
+	<link linkend="bsplin3val">bsplin3val</link>関数により,
+	<emphasis>s</emphasis>の評価を行う必要があります.
+	いくつかの種類のスプラインを,各方向のスプラインの次数
+	<literal>order=[kx,ky,kz]</literal>を選択することにより
+	計算することができます.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>この関数は以下の条件で動作します:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/splin3d_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>これらの条件が考慮されない場合にエラーが発生します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例1
+// =============================================================================
+
+func =  "v=cos(2*%pi*x).*sin(2*%pi*y).*cos(2*%pi*z)";
+deff("v=f(x,y,z)",func);
+n = 10;  // n x n x n  補間点
+x = linspace(0,1,n); y=x; z=x; // 補間グリッド
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+tl = splin3d(x,y,z,V,[5 5 5]);
+m = 10000;
+// 近似誤差を計算
+xp = grand(m,1,"def"); yp = grand(m,1,"def"); zp = grand(m,1,"def");
+vp_exact = f(xp,yp,zp);
+vp_interp = interp3d(xp,yp,zp, tl);
+er = max(abs(vp_exact - vp_interp))
+// n=20で再試行し,誤差を見る
+
+// 例 2 (linear_interpn のヘルプを参照ください, 
+//       trilinear補間に関する同じ例があります)
+// =============================================================================
+
+exec("SCI/modules/interpolation/demos/interp_demo.sci")
+func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+tl = splin3d(x,y,z,V);
+// いくつかの断面で3次元スプラインを計算(および表示)
+m = 41;
+dir = ["z="  "z="  "z="  "x="  "y="];
+val = [ 0.1   0.5   0.9   0.5   0.5];
+ebox = [0 1 0 1 0 1];
+XF=[]; YF=[]; ZF=[]; VF=[];
+for i = 1:length(val)
+  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+  Vm = interp3d(Xm,Ym,Zm, tl);
+  [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  Vp = interp3d(Xp,Yp,Zp, tl);
+  [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+end
+nb_col = 128;
+vmin = min(VF); vmax = max(VF);
+color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
+xset("colormap",jetcolormap(nb_col));
+clf(); xset("hidden3d",xget("background"));
+colorbar(vmin,vmax)
+plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
+xtitle("3d spline interpolation of "+func)
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="linear_interpn">linear_interpn</link></member>
+
+      <member><link linkend="interp3d">interp3d</link></member>
+
+      <member><link linkend="bsplin3val">bsplin3val</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>R.F. Boisvert, C. De Boor (code from the CMLIB fortran
+      lib)</member>
+
+      <member>B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

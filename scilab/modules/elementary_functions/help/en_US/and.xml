@@ -59,8 +59,8 @@ b=and(A,'c'), b=and(A,2)
     <literal>y(i)= and(A(i,j),j=1,n)</literal>)).</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="not">not</link></member>

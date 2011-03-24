@@ -94,7 +94,11 @@ void ConcreteDrawableText::showTextContent(void)
 /*---------------------------------------------------------------------------------*/
 bool ConcreteDrawableText::isTextEmpty(void)
 {
-  return (sciisTextEmpty(m_pDrawed) == TRUE);
+  /*
+   * sciisTextEmpty now takes an MVC identifier as its argument.
+   * This has been modified only to be still able to compile the renderer module.
+   */
+  return (sciisTextEmpty(m_pDrawed->UID) == TRUE);
 }
 /*---------------------------------------------------------------------------------*/
 void ConcreteDrawableText::updateTextBox(void)

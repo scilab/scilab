@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sum" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sum</refname>
+
+    <refpurpose>ベクトル/行列エントリの合計 (行合計, 列合計)
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=sum(x)
+y=sum(x,'r') or y=sum(x,1)
+
+y=sum(x,'c') or y=sum(x,2)
+
+y=sum(x,'m')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>ベクトルまたは行列 (実数, 複素数, 疎行列または多項式)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>スカラーまたはベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>ベクトルまたは行列 <literal>x</literal>について,
+    <literal>y=sum(x)</literal> は,スカラー <literal>y</literal> に
+	<literal>x</literal>の
+	全てのエントリの合計を返します.</para>
+
+    <para><literal>y=sum(x,'r')</literal> (または, 等価な,
+    <literal>y=sum(x,1)</literal>) は行方向の合計です: <literal>y(j)=
+    sum(x(:,j))</literal>. <literal>y</literal> は行ベクトルです.</para>
+
+    <para><literal>y=sum(x,'c')</literal> (または, 等価な,
+    <literal>y=sum(x,2)</literal>) は列方向の合計です. 
+	列ベクトル<literal>y</literal>の各エントリに
+	合計: <literal>y(i)= sum(x(i,:))</literal>))を返します.</para>
+
+    <para><literal>y=sum(x,'m')</literal> は<literal>x</literal>の
+	最初の1でない次元方向の合計となります
+	(Matlabとの互換性用).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+trace(A)-sum(diag(A))
+sum(A,'c')-A*ones(2,1)
+sum(A+%i)
+A=sparse(A);sum(A,'c')-A*ones(2,1)
+s=poly(0,'s');
+M=[s,%i+s;s^2,1];
+sum(M),sum(M,2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cumsum">cumsum</link></member>
+
+      <member><link linkend="prod">prod</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

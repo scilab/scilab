@@ -11,7 +11,8 @@ treeDel = uiDeleteNode(treeRoot, node2)uiDisplayTree(treeDel)
 
 // Deletion of node at position '3.2'
 treeDel = uiDeleteNode(treeRoot, '3.2')uiDisplayTree(treeDel)
- ]]></programlisting>  </refsection>  <refsection>    <title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
+ ]]></programlisting>  </refsection>  <refsection role="see also">
+<title>See Also</title>    <simplelist type="inline">      <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDisplayTree">uiDisplayTree</link>       </member>      <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>
       <member>        <link linkend="uiInsertNode">uiInsertNode</link>       </member>
       <member>        <link linkend="uiConcatTree">uiConcatTree</link>       </member>      <member>        <link linkend="uiEqualsTree">uiEqualsTree</link>       </member>      <member>        <link linkend="uiFindNode">uiFindNode</link>       </member>

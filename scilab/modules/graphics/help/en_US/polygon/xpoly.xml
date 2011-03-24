@@ -71,8 +71,8 @@ e=gce(); // get the current entity (the last created: here the polyline)
 e.closed = 'off' // the polyline is now open
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xfpoly">xfpoly</link>

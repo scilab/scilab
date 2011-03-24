@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="drawaxis">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>drawaxis</refname>
+    <refpurpose>軸を描画</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>drawaxis([options])
+// options: x,y,dir,sub_int,fontsize,format_n,seg,textcolor,ticscolor,tics</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>dir=string</term>
+        <listitem>
+          <para>メモリの方向を指定するために使用されます.
+	<literal>string</literal> には'u','r','d','l'のどれかを指定し,
+	'l'がデフォルト値です.
+	値  'u','r','d','l' はそれぞれ up, right, down, leftを意味します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tics=string</term>
+        <listitem>
+          <para>
+	目盛の指定方法を記述するフラグ.
+	<literal>string</literal> には'v','r', および 'i'のどれかを指定し,
+	'v'がデフォルト値です</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>目盛の位置を指定するベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>val= string matrix</term>
+        <listitem>
+          <para>文字列行列で, 指定された場合,
+		目盛の位置で軸に沿って描画される文字列を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fontsize=int</term>
+        <listitem>
+          <para>
+	軸に沿って表示される数値で使用されるフォントの大きさを指定します.
+	デフォルト値はカレントのフォントサイズを意味する <literal>-1</literal> です</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>format_n=string</term>
+        <listitem>
+          <para>
+	軸に沿って表示される数値のフォーマットで,<literal>string</literal>には
+	C言語のprintf関数の構文形式に基づくフォーマット(例えば<literal>string="%.3f"</literal>)を指定します.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>seg= 1 または 0</term>
+        <listitem>
+          <para>
+	軸のベースセグメントの表示を制御するフラグ (デフォルト値は 1です).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sub_int=integer</term>
+        <listitem>
+          <para>
+	大きな目盛の間に描画されるサブ間隔(目盛)の数を指定する整数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>textcolor=integer</term>
+        <listitem>
+          <para>
+	軸に沿って表示される値で使用される色を指定します.
+	デフォルト値はカレントの色を意味する <literal>-1</literal> です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ticscolor=integer</term>
+        <listitem>
+          <para>目盛の描画で使用される色を指定します. デフォルト値はカレントの色を意味する
+	 <literal>-1</literal> です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>drawaxis</literal> は垂直または水平方向の
+	軸を描画する際に使用されます.
+	軸の方向は dir で指定され,
+	<literal>dir = 'u'</literal> または <literal>'d'</literal>は
+	目盛が増加 (<literal>'u'</literal>)または減少(<literal>'d'</literal>)
+	する水平軸を指定します.
+	
+	<literal>dir = 'r'</literal> または <literal>'l'</literal>は
+	右方向(<literal>'r'</literal>) または左方向 (<literal>'l'</literal>)の
+	目盛を有する垂直軸を指定します.
+	</para>
+    <para><literal>x</literal> および <literal>y</literal> は軸の目盛の位置を指定します. 
+    軸が水平軸の場合,<literal>y</literal> はスカラーまたは省略する必要があり,
+	<literal>x</literal> はScilabベクトルとします.
+	<literal>x</literal>の意味は<literal>tics</literal>で制御されます.</para>
+    <para>
+    <literal>tics='v'</literal>の場合, <literal>x</literal> は x軸方向の目盛の
+	位置を指定します.</para>
+    <para>
+    <literal>tics='r'</literal>の場合, <literal>x</literal> の大きさは3である必要があります.
+	<literal>x=[xmin,xmax,n]</literal>で,
+    <literal>n</literal> は間隔の数を指定します.</para>
+    <para>
+    <literal>tics='i'</literal>の場合, <literal>x</literal> は大きさ4の
+	<literal>x=[k1,k2,a,n]</literal>とします. 
+	<literal>xmin=k1*10^a</literal>, <literal>xmax=k2*10^a</literal>で,
+	<literal>n</literal> は間隔の数を指定します.</para>
+    <para>
+    <literal>y</literal> が省略された場合,軸は,<literal>dir='u'</literal>の場合に
+	フレームの上部,<literal>dir='d'</literal>の場合にフレームの下部
+	に配置されます.</para>
+    <para>
+	デフォルトで,軸に沿って数値が描画されます.
+	これらの数値はデフォルトのフォーマットで描画されますが,
+	このフォーマットは<literal>format_n</literal>で変更可能です.
+	数値ではなく文字列を表示することも可能で,
+	<literal>val</literal>を指定した場合に文字列が表示されます.
+	<literal>val</literal> の大きさは目盛の数に一致擦る必要があります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d(1:10,1:10,1,"020")
+// 水平軸 
+drawaxis(x=2:7,y=4,dir='u',tics='v')
+// フレームの上部に水平軸
+drawaxis(x=2:7,dir='u',tics='v') 
+// フレームの下部に水平軸
+drawaxis(x=2:7,dir='d',tics='v') 
+
+// 範囲で指定した水平軸
+drawaxis(x=[2,7,3],y=4,dir='d',tics='r') 
+
+// 垂直軸 
+drawaxis(x=4,y=2:7,dir='r',tics='v')
+drawaxis(x=2,y=[2,7,3],dir='l',tics='r')
+drawaxis(y=2:7,dir='r',tics='v')
+drawaxis(y=2:7,dir='l',tics='v')
+
+// 目盛位置に表示する文字列を指定した水平軸
+drawaxis(x=2:7,y=8,dir='u',tics='v',val='A'+string(1:6));
+// vertical axis with strings displayed at tics positions
+drawaxis(x=8,y=2:7,dir='r',tics='v',val='B'+string(1:6));
+
+// 'i' 範囲で指定した水平軸. 
+drawaxis(x=[2,5,0,3],y=9,dir='u',tics='i');
+drawaxis(x=9,y=[2,5,0,3],dir='r',tics='i',sub_int=5);
+
+// 再び水平軸 
+drawaxis(x=2:7,y=4,dir='u',tics='v',fontsize=10,textcolor=9,ticscolor=7,seg=0,sub_int=20) 
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="axis_properties">axis_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

@@ -52,8 +52,8 @@ exp(log([1,%i,-1,-%i]))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="log2">log2</link></member>

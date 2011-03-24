@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="unix_g" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>unix_g</refname>
+
+    <refpurpose>シェル (sh)コマンドを実行,　出力を変数にリダイレクト</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>rep=unix_g(cmd)
+[rep,stat]=unix_g(cmd)
+[rep,stat,stderr]=unix_g(cmd)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>cmd</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rep</term>
+
+        <listitem>
+          <para>文字列の列ベクトル (標準出力)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stat</term>
+
+        <listitem>
+          <para>整数, エラーステータス. エラーが発生しない場合, stat=0</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>文字列の列ベクトル  (標準エラー)</para>
+        </listitem>
+      </varlistentry>      
+      
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>shシェルで実行する文字列 <literal>cmd</literal> をUnixに送信します.
+	標準出力はScilab変数<literal>rep</literal>にリダイレクトされます.
+	標準エラーはScilab変数 err にリダイレクトされるか,出力引数が2つのみの場合に表示されます.
+	Unixの実行エラーはトラップされます; *注意* 
+	コマンドのリストを ";" で区切った場合,
+	最後のシェルコマンドエラーのみが
+	リポートされます.これは推奨されません.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+function d=DIR(path)
+  path=pathconvert(path,%t,%t)
+  if getos() == 'Windows' then
+    d=unix_g('dir '+path)
+  else
+    d=unix_g('ls '+path)
+  end
+endfunction
+
+DIR('SCI/etc')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="unix_s">unix_s</link></member>
+
+      <member><link linkend="unix_w">unix_w</link></member>
+
+      <member><link linkend="unix_x">unix_x</link></member>
+
+      <member><link linkend="unix">unix</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xls_open">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xls_open</refname>
+    <refpurpose>Excelファイルを読み込み用に開く</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>C呼び出し手順</title>
+    <synopsis>[fd,SST,Sheetnames,Sheetpos] = xls_open(file_path)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_path</term>
+        <listitem>
+          <para>文字列: Excelファイルのパス
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>数値, Excelストリームの論理ユニット.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>SST</term>
+        <listitem>
+          <para>Excelシートに全ての現れる文字列のベクトル.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sheetnames</term>
+        <listitem>
+          <para>文字列ベクトル: シート名.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sheetpos</term>
+        <listitem>
+          <para>数値ベクトル: Excelストリームにおけるシートの開始位置.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>この関数は,指定したファイルが属するExcelストリームを展開するために
+	まず指定したファイルに関するOLE2データ構造体を解析します.
+	その後,Excelストリームは<literal>TMDIR</literal>ディレクトリに保存され,
+	オープンされます.
+	続いてこのストリームの最初のシートが読み込まれ,
+	シート数,シート名,ストリームにおける
+	シートの位置のようなグローバル情報,および以下のシートで使用される全ての文字列を含む
+	 <literal>SST</literal>が取得されます.</para>
+    <para><literal>fd</literal> および <literal>Sheetpos</literal> データ
+	データシートを読み込む際に <link linkend="xls_read">xls_read</link>に指定する必要があります.</para>
+    <para>
+	1つの関数で1回関数コールをすることにより
+	Excelファイルを全て読み込む際には<link linkend="readxls">readxls</link>関数を
+	使用することができます.</para>
+    <para> BIFF8 Excelファイル(最近のExcelファイルのバージョン(2003))のみが処理可能です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//OLEファイルをデコード,展開し,Excelストリームをオープン
+[fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+//最初のデータシートを読み込む
+[Value,TextInd] = xls_read(fd,Sheetpos(1))
+//スプレッドシートストリームを閉じる
+mclose(fd)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xls_read">xls_read</link>
+      </member>
+      <member>
+        <link linkend="readxls">readxls</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>この関数はMicrosoft ole2 ファイルのドキュメント
+      (<ulink url="http://chicago.sourceforge.net/devel/docs/ole/">http://chicago.sourceforge.net/devel/docs/ole/</ulink>) および OpenOfficeのExcel
+      ストリームに関する説明   (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>)に基づいています.</para>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para>
+	OLEファイルからスプレッドシートストリームを展開するために
+	ripole-0.1.4 プロシージャ (http://www.pldaniels.com/ripole)  が使用されています.
+      </para>
+  </refsection>
+</refentry>

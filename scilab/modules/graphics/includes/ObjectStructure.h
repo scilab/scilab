@@ -5,17 +5,17 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    This file contains all structures definitions used for New Graphics mode.
  --------------------------------------------------------------------------*/
@@ -68,43 +68,43 @@ POINT2D;
  * @memo SCI_POLYLINE,
  * @memo SCI_RECTANGLE,
  * @memo SCI_SURFACE,
- * @memo SCI_AXIS, 
- * @memo SCI_AXES, 
- * @memo SCI_SEGS 
- * @memo SCI_GRAYPLOT, 
+ * @memo SCI_AXIS,
+ * @memo SCI_AXES,
+ * @memo SCI_SEGS
+ * @memo SCI_GRAYPLOT,
  * @memo SCI_FEC,
  * @memo SCI_UIMENU,
  * @memo SCI_UICONTEXTMENU,
  */
 typedef enum
   {/**Entity type FIGURE*/
-    SCI_FIGURE,		
+    SCI_FIGURE,
     /**Entity type SUBWINDOW*/
-    SCI_SUBWIN,		
+    SCI_SUBWIN,
     /**Entity type TEXT*/
     SCI_TEXT,
     /**Entity type LEGEND */
-    SCI_LEGEND,		
+    SCI_LEGEND,
     /**Entity type ARC */
-    SCI_ARC,			
+    SCI_ARC,
     /**Entity type POLYLINE*/
-    SCI_POLYLINE,	    
+    SCI_POLYLINE,
     /**Entity type RECTANGLE*/
-    SCI_RECTANGLE,    
+    SCI_RECTANGLE,
     /**Entity type SURFACE*/
-    SCI_SURFACE,	
+    SCI_SURFACE,
     /**Entity type AXES*/
-    SCI_AXES,	  
+    SCI_AXES,
     /**Entity type SEGS*/
-    SCI_SEGS,	
+    SCI_SEGS,
     /**Entity type GRAYPLOT*/
-    SCI_GRAYPLOT, 
+    SCI_GRAYPLOT,
     /**Entity type FEC*/
-    SCI_FEC,						
+    SCI_FEC,
     /**Entity type CONTEXT MENU*/
-    SCI_UICONTEXTMENU,		    
+    SCI_UICONTEXTMENU,
     /**Entity type Compound */
-    SCI_AGREG,			
+    SCI_AGREG,
     /**Entity type LABEL created by F.Leray 26.05.04 */
     SCI_LABEL,
     /**Entity type UIMENU created by A.C 28.09.05 **/
@@ -117,7 +117,7 @@ typedef enum
     SCI_PROGRESSIONBAR
   }
 /**Struct of Entity type*/
-sciEntityType;	
+sciEntityType;
 
 struct _sciRelationShip;
 
@@ -135,6 +135,10 @@ typedef struct
   void * pDrawer ;
 	/** reference the object in the hierachy */
 	struct _sciRelationShip * relationShip;
+    /** UID */
+    char * UID;
+    /** Scilab Handle */
+    long handleIndex;
 }
 sciPointObj;
 
@@ -146,14 +150,14 @@ sciPointObj;
 typedef struct tagSons
 {
   /** */
-  struct tagSons *pprev;	  
+  struct tagSons *pprev;
   /**  is the pointer of next the son's structure      */
-  sciPointObj *pointobj;	
+  sciPointObj *pointobj;
   /** */
   struct tagSons *pnext;
 }
 /** */
-sciSons;  
+sciSons;
 
 /**@name RelationShip
  * Used to determine the hierarchy
@@ -161,11 +165,11 @@ sciSons;
 typedef struct _sciRelationShip
 {
   /** is the scilab handle of THIS */
-  long handleIndex;       
+  long handleIndex;
   /** points to the parent structures */
-  sciPointObj * pparent;	       
+  sciPointObj * pparent;
   /** points to the sons structures */
-  sciSons * psons;	       
+  sciSons * psons;
   /** the last sciSons of the list (the first created!) */
   sciSons * plastsons;
   /** the set of selected sons. List of lists for each type. Not to be used directly.*/
@@ -175,13 +179,13 @@ sciRelationShip;
 
 
 /**@name GraphicContext
- * Used to know what are the contexte value attached with the Graphic area  
+ * Used to know what are the contexte value attached with the Graphic area
  */
 typedef struct
 {
   /** currently not used in this version */
   /** pointe sur un ID de la table des couleur Scilab */
-  int backgroundcolor;	    
+  int backgroundcolor;
   /** pointe sur un ID de la table des couleur Scilab */
   int foregroundcolor;
   /** */
@@ -207,18 +211,18 @@ typedef struct
   /** */
   int markforeground;
 }/** */
-sciGraphicContext;  
+sciGraphicContext;
 
 
 /**@name sciFont
- * Used to know what are the contexte value attached with the Graphic area  
+ * Used to know what are the contexte value attached with the Graphic area
  */
 typedef struct
 {
   /** currently not used in this version */
   /* il faudrait prendre la font windows */
   /** pointe sur un ID de la table des couleur Scilab */
-  int backgroundcolor;		
+  int backgroundcolor;
   /** pointe sur un ID de la table des couleur Scilab */
   int foregroundcolor;
   /** type of the font */
@@ -226,28 +230,28 @@ typedef struct
   /** specify if the font size must be stucks to Scilab font sizes 0:6 or might be any double */
   BOOL useFractionalMetrics;
   /** Gets the width of the character in tenth of point */
-  double fontSize;		
+  double fontSize;
   /** this is coded in radian*/
-  double textorientation;		
+  double textorientation;
 }/** */
-sciFont;  
+sciFont;
 
 
 /**@name scigMode
  * Used to determine all the mode that can be used. Only some entity can sets this itself
  */
 typedef struct
-{ 
+{
   /** Are new Plot added to the old plot on the graphics window        */
-  BOOL addplot;	       
+  BOOL addplot;
   /** The min max ranges of the the graphics window is given by users  */
-  BOOL autoscaling;    
+  BOOL autoscaling;
   /** Is zooming allowed                                               */
-  BOOL zooming;   
+  BOOL zooming;
   /** drawing xor mode                                                         */
   int xormode;
-  	       	       
-  
+
+
 }/** */
 scigMode;
 
@@ -270,7 +274,7 @@ typedef struct
   /** */
   double zmax;
 }/** */
-sciRange;  
+sciRange;
 
 
 /**
@@ -293,10 +297,10 @@ typedef struct
 FigureModelData ;
 
 /**
- * Structure used to specify Figure (different to XGC) 
+ * Structure used to specify Figure (different to XGC)
  */
 typedef struct
-{	
+{
   scigMode gmode;
   sciGraphicContext graphiccontext; /* the only property used here is background */
   sciPointObj * originalsubwin0011;
@@ -307,9 +311,9 @@ typedef struct
   int number;
 
   int numcolors;
-     
+
   /** specifies if this window is selected             */
-  BOOL isselected; 
+  BOOL isselected;
   int rotstyle;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -318,22 +322,22 @@ typedef struct
   int numsubwinselected;
   /** specifies the current pixmap status         */
   int pixmapMode ;
-  
+
   BOOL allredraw;
-  
+
   sciFont fontcontext; /* F.Leray 08.04.04 */
 
   char * eventHandler         ; /**< Name of the EventHandler function */
   BOOL   isEventHandlerEnable ; /**< flag enabling or disabling eventhandler */
-  
+
   FigureModelData * pModelData ; /**< To be used by figure model */
 
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
-  
+
   char * tag;
 }/** */
-sciFigure;  
+sciFigure;
 
 typedef enum { ALIGN_NONE = 0, ALIGN_LEFT = 1, ALIGN_CENTER = 2, ALIGN_RIGHT = 3 } sciTextAlignment ;
 
@@ -345,7 +349,7 @@ typedef struct
   /** */
   sciFont fontcontext;
   sciGraphicContext graphiccontext; /* the only properties used by Text are foreground and background */
-  
+
   /** the displayed text */
   StringMatrix * pStrings ;
 
@@ -362,17 +366,17 @@ typedef struct
                    /* automatically computed. */
 
   double userSize[2] ; /**< Width and height of the displayed string array defined by user */
-  
+
   sciTextAlignment stringsAlign ; /**< Alignment of the strings inside the array */
-  
+
   BOOL centeredPos ; /**< to know wether the (x,y) position is the point in the middle of the
                         string or the lower-left point */
   BOOL isboxed  ;
   /** */
   /** specifies the text scilab code for the callback associated with this entity */
-  char *callback; 
+  char *callback;
   /** the length of the callback code */
-  int callbacklen; 
+  int callbacklen;
   int callbackevent;
 
   double corners[4][3]; /**< position of the text bounding box corners */
@@ -382,12 +386,12 @@ typedef struct
   int isclip;
   double clip_region[4];
   int clip_region_set;
-  
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 
 }
-sciText;  
+sciText;
 
 
 
@@ -427,7 +431,7 @@ sciLegendPlace;
 
 
 /**@name Legend
- * Structure used to specify Legend 
+ * Structure used to specify Legend
  */
 typedef struct
 {
@@ -441,27 +445,27 @@ typedef struct
   /** */
   POINT2D pos;
   /** specifies the frame's width */
-  int width;	     
+  int width;
   /** specifies the frame's height */
-  int height;	     
+  int height;
   /** */
   BOOL isselected;
   /** specifies if the legend is surrounded */
-  BOOL issurround;	     
+  BOOL issurround;
   /* void    *associetedentity;  get the associated entity by asking parents.relation.sons */
   /* the subwindow dimension is get by asking relation     */
   sciLegendPlace place;
   /** pointer on the labelled objects */
   long long *tabofhandles;
   /** specifies if this object is visble             */
-  BOOL visible; 
+  BOOL visible;
   int isclip;
   double clip_region[4];
   int clip_region_set;
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }/** */
-sciLegend;  
+sciLegend;
 
 
 /**@name Titre
@@ -624,8 +628,8 @@ typedef enum {LEFT_ALIGNMENT, CENTER_ALIGNMENT, RIGHT_ALIGNMENT, TOP_ALIGNMENT, 
 /* the part of the drawn box for 3d axis */
 typedef enum { BT_OFF = FALSE, BT_ON = TRUE, BT_HIDDEN_AXES, BT_BACK_HALF } EAxesBoxType ;
 
-typedef struct 
-{  
+typedef struct
+{
   /* tics data from algo */
   double  xgrads[20], ygrads[20], zgrads[20];                   /* Here they are  */
   int nxgrads, nygrads, nzgrads;                         /* with their size <=> nber of tics */
@@ -633,39 +637,39 @@ typedef struct
   /* tics data from user (=> u_...)*/
   double *u_xgrads, *u_ygrads, *u_zgrads;                       /* Here they are  */
   int u_nxgrads, u_nygrads, u_nzgrads;                   /* with their size <=> nber of tics */
-  
+
   int  ticscolor;
   /*  int  fontsize;
       int  textcolor;*/
   sciFont fontcontext;
-  
+
   int  subint[3]; /* Dj.A 17/12/03 */
   EAxesBoxType  rect ; /**< to know the part of the box we have to draw */
   BOOL filled; /**< Specify wether the axis background should be drawn or not.
                     graphic_context is not used because otherwise all the children would inherit the value.*/
 
-  char xdir;   /**<  xdir  = 'u' | 'd'  : gives the xy-axes positions */ 
-  char ydir;   /**<  ydir  = 'r' | 'l' : gives the xy-axes positions */ 
- 
+  char xdir;   /**<  xdir  = 'u' | 'd'  : gives the xy-axes positions */
+  char ydir;   /**<  ydir  = 'r' | 'l' : gives the xy-axes positions */
+
 
   /* flags for switching from auto to manual ticks */
   BOOL auto_ticks[3]; /* if on, it means that the ticks are taken from computation (see theticks algo. by Francois D.) */
-  
+
   char **u_xlabels,  **u_ylabels,  **u_zlabels; /* label string corresponding to each specified u_xyzgrads */
-    
+
   int hiddenAxisColor ; /* the color and style of the hidden axis */
 
   double  limits[7]; /* = 1 set tight limits = 0 set axes auto shape */
   int flag[3]; /* 3d options */
-  
+
   /* F.Leray 07.10.04 REMOVE AAINT*/
   int nbsubtics[3]; /* Don't touch to subint because also deals with drawaxis: AXES structure has multiple uses... */ /* F.Leray 07.10.04 */
 
   BOOL reverse[3]; /* if TRUE, it means that the corresponding axe is reversed */
   BOOL axes_visible[3]; /* if TRUE, it means that the corresponding axes is drawn */
-  
+
 }
-AXES; 
+AXES;
 
 /**@name SubWindow
  * Structure used to specify SubWindow wich is a subplot
@@ -678,7 +682,7 @@ typedef struct
   /** */
   sciGraphicContext graphiccontext;
   /** specifies if this subwindow is selected                */
-      
+
   double SRect[6]; /* [xmin xmax ymin ymax zmin zmax] : Strict rect. coming from update_specification_bounds function or from a set(a,"data_bounds",[...]) */
   double FRect[6]; /* real data_bounds */
   double WRect[4]; /* size of the subplot */
@@ -699,12 +703,12 @@ typedef struct
   double alpha_kp;
   /* viewing angles */
   double theta;
-  double alpha;	  
+  double alpha;
   /** specifies the text scilab code for the callback associated with this entity */
-  char *callback; 
+  char *callback;
   /** the length of the callback code */
-  int callbacklen;  
-  int callbackevent; 
+  int callbacklen;
+  int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
 
@@ -715,7 +719,7 @@ typedef struct
   int clip_region_set;
   /**DJ.Abdemouche 2003**/
   int project[3];
-  BOOL isoview; 
+  BOOL isoview;
   int hiddencolor;
   BOOL cube_scaling; /* Matlab like view in 3D when one or two range is/are preferential */
   BOOL FirstPlot; /* An internal state used to indicated that high level functions must not use SRect*/
@@ -733,16 +737,16 @@ typedef struct
 
 
 }/** */
-sciSubWindow;  
+sciSubWindow;
 
 
 /**@name Arc
- * Structure used to specify 
+ * Structure used to specify
  * @author Matthieu PHILIPPE /MAJ D.ABDEMOUCHE
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
 typedef struct
 {
@@ -757,15 +761,15 @@ typedef struct
   /** */
   double height;
   /** begin at alpha1 */
-  double alphabegin;		
+  double alphabegin;
   /** end at alpha2   */
   double alphaend;
   /** */
   BOOL isselected;
   /** specifies the text scilab code for the callback associated with this entity */
-  char *callback; 
+  char *callback;
   /** the length of the callback code */
-  int callbacklen;   
+  int callbacklen;
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -784,12 +788,12 @@ sciArc;
 
 
 /**@name Polyline
- * Structure used to specify 
+ * Structure used to specify
  * @author Matthieu PHILIPPE /MAJ D.ABDEMOUCHE
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
 typedef struct
 {
@@ -802,7 +806,7 @@ typedef struct
   int plot;                     /** defines the polyline_style (interpolated, staircase, bar_plot,...) : is it simple poly or a plot (Plot2d /Plot2d1/.../Plot2d4) */
   BOOL isselected;
   char *callback;		/** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen;		/** the length of the callback code */  
+  int callbacklen;		/** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -818,16 +822,16 @@ typedef struct
   double * x_shift;
   double * y_shift;
   double * z_shift;
-  
+
   double bar_width;
-  
+
   double arsize_factor; /* to be able to enlarge arrow size without changing the line thickness */
 }
 sciPolyline;  /** */
 
 
 /**@name Rectangle
- * Structure used to specify 
+ * Structure used to specify
  */
 typedef struct
 {
@@ -838,7 +842,7 @@ typedef struct
   double height;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */  
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -865,7 +869,7 @@ sciTypeOf3D;
 
 
 /**@name Surface
- * Structure used to specify 
+ * Structure used to specify
  */
 typedef struct
 {
@@ -907,14 +911,14 @@ typedef struct
 
   int flag[3]; /* only the first value is used as color_mode */
   double ebox[6]; /* apparently unused */
-  int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored 
+  int flagcolor; /* this flag indicates the type of the color of how the facet have to be colored
 		    0: uniformed color
 		    1: facet's color are computed with z*/ /* in case of a simple plot...!!! F.Leray 19.03.04 */
   sciTypeOf3D typeof3d; /* Fac3d or Plot3d */
   int hiddencolor;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */  
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -926,7 +930,7 @@ typedef struct
   int isclip; /**< Clipping state of the object */
   double clip_region[4]; /**< Clipping region */
   int clip_region_set; /**< To know if the clippign region is set */
-  
+
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
@@ -934,22 +938,22 @@ sciSurface;  /** */
 
 
 /**@name Axes
- * Structure used to specify axes feature 
- * @author Djalel Abdemouche 
+ * Structure used to specify axes feature
+ * @author Djalel Abdemouche
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
- 
+
 typedef struct
 {
   sciGraphicContext graphiccontext;
   sciFont fontcontext;
-  char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/  
+  char dir;   /** dir = 'r' | 'l' | 'u' | 'd' : gives the tics directions **/
   char tics;  /** tics = 'v' (for vector) or 'r' (for range) or i **/
   double *vx;  /** vx vector of size nx **/
-  double *vy;  /** vy vector of size ny **/ 
+  double *vy;  /** vy vector of size ny **/
   /**DJ.Abdemouche 2003**/
   double *vz; /* not used */
   int nx;
@@ -958,11 +962,11 @@ typedef struct
   /***/
   int nz;
   char **str ;  /** string vector **/
-  int subint;  /** subints : number of sub intervals **/ 
+  int subint;  /** subints : number of sub intervals **/
   char *format; /** format for tick marks **/
   int seg;      /**0 or 1, flag which control the drawing of the segment associated to the axes **/
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */  
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -973,25 +977,25 @@ typedef struct
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
-sciAxes;  
+sciAxes;
 
 /**@name Segs
- * Structure used to specify axes feature 
- * @author Djalel Abdemouche 
+ * Structure used to specify axes feature
+ * @author Djalel Abdemouche
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
-  
+
 typedef struct
 {
-  sciGraphicContext graphiccontext; 
+  sciGraphicContext graphiccontext;
   double *vx;  /** vx vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr1 ? No depending on the type ptype*/
   double *vy;  /** vy vector of size Nbr **/ /*F.Leray 18.02.04 ...of size Nbr2 ? No depending on the type ptype*/
   double *vfx; /* size Nbr1 * Nbr2 */
   double *vfy; /* size Nbr1 * Nbr2 */
-  int Nbr1; /**< size of vx and vy id segs handle, or size of vx if champ */ 
+  int Nbr1; /**< size of vx and vy id segs handle, or size of vx if champ */
   int Nbr2; /**< size of vy if champ handle */
   int *pstyle;
   int iflag;      /**0 or 1, flag which control the drawing of the segment  **/
@@ -1000,7 +1004,7 @@ typedef struct
   int typeofchamp; /* when ptype=0, if typeofchamp=0 => champ is invoked else champ1 is invoked (typeofchamp==1) */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */  
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -1013,34 +1017,34 @@ typedef struct
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
-sciSegs; 
- 
+sciSegs;
+
 
 
 
 /**@name Grayplot
- * Structure used to specify axes feature 
- * @author Djalel Abdemouche 
+ * Structure used to specify axes feature
+ * @author Djalel Abdemouche
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
- 
+
 typedef struct
 {
-  sciGraphicContext graphiccontext; 
-  
+  sciGraphicContext graphiccontext;
+
   double *pvecx;  /** vx vector of size nx **/
-  double *pvecy;  /** vy vector of size ny **/ 
-  double *pvecz;  /** vz vector of size nx*ny **/  
-  int nx; 
+  double *pvecy;  /** vy vector of size ny **/
+  double *pvecz;  /** vz vector of size nx*ny **/
+  int nx;
   int ny;
-  int type;   /** 0 if a grayplot, 1if a matplot, 2 if matplot 1 **/  
+  int type;   /** 0 if a grayplot, 1if a matplot, 2 if matplot 1 **/
   char datamapping[7]; /* "scaled" or "direct" */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */   
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -1052,22 +1056,22 @@ typedef struct
   int * user_data; /* adding 27.06.05 */
   int size_of_user_data;
 }
-sciGrayplot;  
+sciGrayplot;
 /** */
 
 /**@name Fec
- * Structure used to specify fec feature 
- * @author Djalel Abdemouche 
+ * Structure used to specify fec feature
+ * @author Djalel Abdemouche
  * @version 0.1
- * @args 
- * @return 
- * @see 
+ * @args
+ * @return
+ * @see
  */
- 
+
 typedef struct
 {
-  sciGraphicContext graphiccontext; 
-  
+  sciGraphicContext graphiccontext;
+
   double *pvecx; /* X coordinates of nodes */
   double *pvecy; /* Y coordinates of nodes */
   double *pnoeud; /* indices of nodes */
@@ -1079,7 +1083,7 @@ typedef struct
   int colout[2]; /* color to use when outside zmin/zmax */
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */ 
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;
@@ -1096,7 +1100,7 @@ sciFec;  /** */
 
 
 /**@name Panner
- * Structure used to specify 
+ * Structure used to specify
  */
 typedef struct
 {
@@ -1106,7 +1110,7 @@ typedef struct
   double ymax;
   BOOL isselected;
   char *callback; /** specifies the text scilab code for the callback associated with this entity */
-  int callbacklen; /** the length of the callback code */ 
+  int callbacklen; /** the length of the callback code */
   int callbackevent;
   /** specifies if this object is visble             */
   BOOL visible;

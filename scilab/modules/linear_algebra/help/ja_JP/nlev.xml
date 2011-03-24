@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nlev">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>nlev</refname>
+    <refpurpose> Leverrierのアルゴリズム</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[num,den]=nlev(A,z [,rmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rmax</term>
+        <listitem>
+          <para>オプションのパラメータ (<literal>bdiag</literal>参照)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[num,den]=nlev(A,z [,rmax])</literal> は,
+	Aのブロック対角化の後に
+	Leverrierアルゴリズムを各ブロックに適用することにより
+    <literal>(z*eye()-A)^(-1)</literal>を計算します.</para>
+    <para>
+	このアルゴリズムは通常の Leverrierアルゴリズム
+	より優れていますが,
+	まだ完全ではありません!</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(3,3);x=poly(0,'x');
+[NUM,den]=nlev(A,'x')
+clean(den-poly(A,'x'))
+clean(NUM/den-inv(x*eye()-A))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="coff">coff</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+      <member>
+        <link linkend="glever">glever</link>
+      </member>
+      <member>
+        <link linkend="ss2tf">ss2tf</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. Delebecque., S. Steer INRIA;   </para>
+  </refsection>
+</refentry>

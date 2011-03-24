@@ -78,8 +78,8 @@ clean(ss2tf(W1))
 clean(ss2tf(W2))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="des2tf">des2tf</link>

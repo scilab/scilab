@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -34,6 +34,10 @@
 #include "JavaInteraction.h"
 #include "HandleManagement.h"
 
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------------*/
 static void zoomSubwin(sciPointObj * pSubwin, int posX, int posY, int width, int height);
 static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int height);
@@ -44,17 +48,22 @@ static void zoomFigure(sciPointObj * pFigure, int posX, int posY, int width, int
  */
 int sciZoom2D(sciPointObj * subwin, const double zoomRect[4])
 {
-  double zoomBox[6];
+  double* zoomBox;
 
   // add Z scale to data bounds.
+
+  getGraphicObjectProperty(subwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &zoomBox);
+
+#if 0
   sciGetDataBounds(subwin, zoomBox);
+#endif
+
   zoomBox[0] = zoomRect[0];
   zoomBox[1] = zoomRect[1];
   zoomBox[2] = zoomRect[2];
   zoomBox[3] = zoomRect[3];
 
   return sciZoom3D(subwin, zoomBox);
-
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -63,6 +72,9 @@ int sciZoom2D(sciPointObj * subwin, const double zoomRect[4])
  */
 int sciZoom3D(sciPointObj * subwin, const double zoomBox[6])
 {
+  BOOL status;
+  int zoomEnabled = 1;
+
   // convert zoomBox to [xMin, xMax, yMin, yMax, zMin, zMax]
   double zoomBox3D[6];
   zoomBox3D[0] = zoomBox[0];
@@ -78,11 +90,30 @@ int sciZoom3D(sciPointObj * subwin, const double zoomBox[6])
     return SET_PROPERTY_ERROR;
   }
 
-  sciSetZoomBox(subwin, zoomBox3D);
+  status = setGraphicObjectProperty(subwin->UID, __GO_ZOOM_BOX__, zoomBox3D, jni_double_vector, 6);
 
-  sciSetZooming(subwin, TRUE);
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box");
+    return SET_PROPERTY_ERROR;
+  }
 
-  return SET_PROPERTY_SUCCEED;
+  status = setGraphicObjectProperty(subwin->UID, __GO_ZOOM_ENABLED__, &zoomEnabled, jni_bool, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    return SET_PROPERTY_ERROR;
+  }
+
+
 }
 /*------------------------------------------------------------------------------*/
 /**
@@ -238,7 +269,7 @@ void sciDefaultInteractiveZoom(void)
   curFigure = sciGetCurrentFigure();
   endGraphicDataWriting();
 
- 
+
   /* zoom current figure */
   interactiveZoom(curFigure);
 }
@@ -251,6 +282,7 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
                      double yMin, double yMax, double zMin, double zMax)
 {
   char logFlags[3];
+
   sciGetLogFlags(pObj, logFlags);
 
   /* check if there is not an inf within the values */
@@ -262,7 +294,6 @@ BOOL checkDataBounds(sciPointObj * pObj, double xMin, double xMax,
     Scierror(999, "Error : data bounds values must be finite.");
     return FALSE ;
   }
-
 
   /* check if the bounds are corrects */
   /* allows equality with bounds since it is working */
@@ -293,6 +324,7 @@ void sciUnzoomSubwin(sciPointObj * pSubwin)
   // See bug 4979
   // javaUnzoomSubwin(pSubwin);
 
+  /* To be implemented using the MVC framework */
   sciPointObj * parentFigure = sciGetParentFigure(pSubwin);
 
   if( pSubwin == NULL || parentFigure == NULL )
@@ -300,9 +332,15 @@ void sciUnzoomSubwin(sciPointObj * pSubwin)
     return;
   }
 
+/*
+ * Deactivated since it performs drawing operations.
+ * To be implemented.
+ */
+#if 0
   startFigureDataWriting(parentFigure);
     unzoomSubwin(pSubwin);
   endFigureDataWriting(parentFigure);
+#endif
 
 }
 /*------------------------------------------------------------------------------*/
@@ -322,7 +360,7 @@ void unzoomSubwin(sciPointObj * pSubwin)
  */
 void sciUnzoomFigure(sciPointObj * figure)
 {
-  /* Copy subwins into the array */ 
+  /* Copy subwins into the array */
   sciSons * pSons = sciGetSons(figure);
   while (pSons != NULL)
   {
@@ -375,7 +413,7 @@ void sciUnzoomArray(sciPointObj * zoomedObjects[], int nbObjects)
       /* Unzoom only figure */
       sciUnzoomSubwin(zoomedObjects[i]);
     }
-    
+
     if (List_find(redrawnFigures, parentFigure) == NULL)
     {
       /* figure not already added for redraw */

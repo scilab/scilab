@@ -90,8 +90,8 @@ P=full(P);L=full(L);U=full(U);Q=full(Q);
 norm(P*L*U*Q-a) // P,Q sont des matrices de permutation
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="lufact">lufact</link>

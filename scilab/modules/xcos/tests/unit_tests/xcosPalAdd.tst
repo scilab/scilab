@@ -8,7 +8,7 @@
 // <-- Short Description -->
 // White-box test for the xcosPalAdd macro.
 
-loadScicosLibs();
+loadXcosLibs();
 
 prot = funcprot();
 funcprot(0);

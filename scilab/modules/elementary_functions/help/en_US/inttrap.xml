@@ -88,8 +88,8 @@ inttrap(t,sin(t))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="intg">intg</link></member>

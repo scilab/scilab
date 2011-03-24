@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="strcmpi">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>strcmpi</refname>
+    <refpurpose>文字列を比較 (大文字小文字に依存)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>res = strcmpi(string_one,string_two)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>string_one</term>
+        <listitem>
+          <para>文字列または文字列の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>string_two</term>
+        <listitem>
+          <para>文字列または文字列の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>res</term>
+        <listitem>
+          <para>行列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>res = strcmpi(string_one,string_two)</literal> は,
+	文字列の間の関係を示す内部的な値を返します.</para>
+    <para>0より大きな値は,一致しない最初の文字について,
+	<literal>string_one</literal> の方が
+    	<literal>string_two</literal> よりも大きな値を有することを
+	示します.</para>
+    <para>ゼロより小さい値はその逆を示します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+TXT1 = ['scilab','SciLab';'Strcmp','STRcmp'];
+TXT2 = ['ScIlAb','sciLab';'sTrCmP','StrCMP'];
+strcmpi(TXT1,TXT2)
+strcmpi(TXT1,'scilab')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strcat">strcat</link>
+      </member>
+      <member>
+        <link linkend="strcmp">strcmp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

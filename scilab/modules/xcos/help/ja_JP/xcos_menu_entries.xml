@@ -1,0 +1,581 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="xcos_menu_entries"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>Menu_entries</refname>
+    <refpurpose>エディタのメニューエントリ</refpurpose>
+  </refnamediv>
+
+  <refsection id="Filemenu_Menu_entries">
+    <title>Fileメニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_file.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">ファイル:新規</emphasis></para>
+
+        <para>
+	アクティブな編集xcosウインドウに空のダイアグラムを読み込む際には,
+	「新規ダイアグラム」メニューをクリックしてください.
+	ウインドウの前の内容が保存されていない場合は,失われます.
+	このメニューにより,新しいダイアグラムまたはパレットをオープンすることが
+	できます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:開く (Ctrl+o)</emphasis></para>
+
+        <para>保存されたブロックダイアグラムまたは
+	パレットを有するアスキーまたはバイナリのファイルを読み込む際には,
+	「開く」メニューを選択してください.
+	ダイアログボックスによりファイルを選択することができます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:保存 (Ctrl+s)</emphasis></para>
+
+        <para>前の「名前を付けて保存」で選択済みのバイナリファイルに
+	ブロック図を保存する際には,「保存」メニューを選択してください.
+	このメニュー項目を選択した時点で,
+	まだ「名前を付けて保存」メニューをクリックしていない場合は,
+	カレントのディレクトリに"window_name".cosという名前で保存されます.
+	ただし,"window_name"はウインドウの最上部に表示されている
+	ウインドウ名(通常は「無題」または「スーパーブロック」)です.
+	.cos バイナリファイルは計算機に依存しません.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:名前を付けて保存
+        (Ctrl+Shift+s)</emphasis></para>
+
+        <para>ブロックダイアグラムまたはパレットをファイルに保存する際には,
+	「名前を付けて保存」メニューを選択してください.
+	ダイアログボックスによりファイルを選択することができます.
+	ファイルの拡張子は .cos または .cosfとする必要があります.
+	ダイアグラムはファイル名(拡張子無し)を指定します.
+	拡張子が".cosf"の場合,バイナリではなく
+	アスキー形式で保存されます.
+	整形を伴なう保存は通常の保存よりも時間を要します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:エクスポート (Ctrl+e)</emphasis></para>
+
+        <para>
+	このメニューは,カレントのxcosダイアグラムの図をエキスポートする
+	際に使用されます.
+	エキスポートは,ポストスクリプト形式に直接行うか,または
+	まずグラフィックウインドウをエキスポートしたあとに
+	Scilabが出力可能な任意の形式にエキスポートします.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:最近のファイル</emphasis></para>
+
+        <para>このメニューにより,最近開いたファイルに簡単にアクセスすることができます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:印刷 (Ctrl+p)</emphasis></para>
+
+        <para>カレントのダイアグラムをプリンタで印刷します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:閉じる (Ctrl+w)</emphasis></para>
+
+        <para>複数のダイアグラムがオープンされている場合,
+	「閉じる」によりカレントのダイアグラムが閉じられます.
+	オープンされているダイアグラムが1つだけの場合,
+	「閉じる」によりxcosが閉じられ,
+	(開かれている場合には)ビューポートおよびパレットも閉じられます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ファイル:終了 (Ctrl+q)</emphasis></para>
+
+        <para>
+	複数のダイアグラムがオープンされている場合,
+	「終了」により xcosが閉じられ,
+	(開かれている場合には)ビューポートおよびパレットも閉じられます.
+	このメニューにより全ての開かれているダイアグラムが
+	閉じられます.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Editmenu_Menu_entries">
+    <title>編集メニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_edit.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">編集:元に戻す (Ctrl+z)</emphasis></para>
+
+        <para>直近の編集操作を取り消すには「元に戻す」を選択します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:やり直し (Ctrl+y)</emphasis></para>
+
+        <para>取り消した直近の編集操作を再度実行するには,
+	「やり直し」メニューを選択します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:切り取り (Ctrl+x)</emphasis></para>
+
+        <para>選択されたオブジェクトをダイアグラムから削除し,
+	オブジェクトがブロックの場合にクリップボードにコピーするには,
+	「切り取り」が使用されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:コピー (Ctrl+c)</emphasis></para>
+
+        <para>
+	選択されたオブジェクトを
+	オブジェクトがブロックの場合にクリップボードにコピーするには,
+	「コピー」が使用されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:貼り付け (Ctrl+v)</emphasis></para>
+
+        <para>「貼り付け」は,
+	クリップボード上にあるオブジェクトをダイアグラムに
+	配置します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:削除 (Delete)</emphasis></para>
+
+        <para>ブロックまたはリンクを削除するには,
+	まず「削除」メニューを選択した後,
+	選択するオブジェクトを順に(左ボタンで)クリックします.
+	オブジェクトに結合された全てのリンクを削除した時点で,
+	そのオブジェクトも同時に削除されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:全て選択 (Ctrl+a)</emphasis></para>
+
+        <para>カレントのダイアグラムのブロックを全て選択します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:選択範囲を反転</emphasis></para>
+
+        <para>カレントの選択範囲を反転します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:ブロックパラメータ
+        (Ctrl+b)</emphasis></para>
+
+        <para>選択されているブロックのブロック設定ウインドウを開きます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">編集:選択範囲をスーパーブロックに変換</emphasis></para>
+
+        <para>選択されたブロックをスーパーブロックに変換します.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Viewmenu_Menu_entries">
+    <title>表示メニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_view.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">表示:拡大 (Ctrl+plus)</emphasis></para>
+
+        <para>このメニューを選択すると,ダイアグラムが10%拡大されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:縮小
+        (Ctrl+minus)</emphasis></para>
+
+        <para>このメニューを選択すると,ダイアグラムが10%縮小されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:ビューをダイアグラムに合わせる</emphasis></para>
+
+        <para>このメニューを選択すると,ダイアグラムがカレントのウインドウの
+	大きさとなるよう調整されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:通常 100%</emphasis></para>
+
+        <para>ダイアグラムがこの作業範囲に合うように
+	作業範囲の大きさを調整します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:パレットブラウザ</emphasis></para>
+
+        <para>パレットブラウザを開きます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:ダイアグラムブラウザ</emphasis></para>
+
+        <para>ダイアグラムのブロックの一覧を出力する
+	ウインドウを表示し,
+	ブロックのscs_m構造体に関する情報を出力します.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:表示ポート</emphasis></para>
+
+        <para>表示ポートを表示します.表示ポートはカレントのダイアグラムの
+	イメージです.
+	この表示ポートにより,作業範囲をダイアグラムの一部に
+	移動することができます.
+	</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_viewport.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>上の図に,ダイアグラムの一部を拡大するビューポートの例を
+	示します.右側のxcosウインドウは,ダイアグラムの拡大された部分を
+	表示しています.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">表示:詳細</emphasis></para>
+
+        <para>ダイアグラムの選択されたブロックの一覧を示すウインドウを
+	表示し,これらのブロックのscs_m構造体に関する情報を出力します.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Simulatemenu_Menu_entries">
+    <title>シミュレーションメニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_simulation.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">シミュレーション:設定</emphasis></para>
+
+        <para>メインXcosウインドウにおいて,
+	設定メニューをクリックすると,
+	以下の積分パラメータを変更するための
+	ダイアログボックスが起動します:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>積分終了時間 (積分はこの時間で終了します,
+	この値は常に0を基準とします)</para>
+          </listitem>
+
+          <listitem>
+            <para>実時間スケール(xcosの時間の単位を1秒に設定することにより
+		強制的にリアルタイムシミュレーションが実行されます)</para>
+          </listitem>
+
+          <listitem>
+            <para>絶対許容誤差および相対許容誤差 (ソルバーのプロパティ)</para>
+          </listitem>
+
+          <listitem>
+            <para>時間許容値 (ODEソルバーが連続状態量を更新する際に使用される
+		積分間隔の最小値)</para>
+          </listitem>
+
+          <listitem>
+            <para>最大積分時間間隔(各ソルバーのコール時の時間間隔の最大値で
+		エラーメッセージ"too many calls"が発生した場合はより小さな値と
+		する必要があります)</para>
+          </listitem>
+
+          <listitem>
+            <para>ソルバー (使用する数値ソルバーを選択),
+		ステップの大きさの最大値(ソルバーにより設定される時間ステップの最大値)</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">実行トレースとデバッグ</emphasis></para>
+
+        <para>Xcosをデバッグモードに設定し. ダイアグラムのデバッグを
+	できるようにします.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">シミュレーション:コンテキスト設定</emphasis></para>
+
+        <para>
+	このメニューを選択すると,
+	ブロック定義または任意の処理で使用されるシンボリックなXcosパラメータ
+	を定義するための
+	Scilab命令を入力するダイアログがオープンされます.
+	これらの命令は,ダイアグラムが読み込まれる度に評価されます.
+	コンテキストのシンボリックなXcosパラメータの値を変更した場合,
+	全てのブロックが更新されます(evalが実行されます).</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">シミュレーション:コンパイル</emphasis></para>
+
+        <para>ブロックダイアグラムをコンパイルする際には
+	「コンパイル」メニューを選択します.
+	(実行メニューによる)各シミュレーションの開始前に必要に応じて実行前に
+	自動的にコンパイルが行われるため,このメニューは使用されることはありません.
+	通常,新たなコンパイルはシステムパラメータおよび内部状態量が
+	修正された場合でも不要です.
+	しかしながら,いくつかのケースでは,
+	これらの修正が正常に更新されない場合があり,
+	再開または継続の前にマニュアルでコンパイルを行うことが
+	必要となる可能性があります.
+	このようなケースが見つかった場合には,報告してください.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">シミュレーション:開始</emphasis></para>
+
+        <para>シミュレーションを開始するには開始メニューを選択します.
+	システムがシミュレーション済みの場合には,
+	シミュレーションの継続,再開または終了を選択する
+	ダイアログボックスが開きます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">シミュレーション:停止</emphasis></para>
+
+        <para>"停止"ボタンを選択することによりシミュレーションを中断することが
+	でき,任意のブロックパラメータを変更して,新しい値で
+	シミュレーションを継続することができます.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Formatmenu_Menu_entries">
+    <title>フォーマットメニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">フォーマット:回転 (Ctrl+r)</emphasis></para>
+
+        <para>「回転」によりブロックを左に回転できます.
+	ブロックが左に回転する度に,角度が45度増えます.
+	ブロックを選択しなかった場合または複数のブロックを選択した場合,
+	マウスポインタの下のブロックが回転されます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:反転 (Ctrl+f)</emphasis></para>
+
+        <para>側面に配置されたブロックの(通常の)入力および出力の位置を反転する
+	際には,まず「反転」メニューを選択した後,
+	選択するブロックをクリックします.
+	これにより,左から右に番号がふられている
+	入力および出力イベントポートの順番や位置は変更されません.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:影を表示/非表示</emphasis></para>
+
+        <para>このメニューにより選択されたブロックの
+	3次元表示および関連するパラメータを選択することができます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:ブロックの整列</emphasis></para>
+
+        <para>複数のブロックを選択した場合,
+	垂直方向(上,下,中央)および水平方向(左,右,中心)にこれらを整列させることができます.</para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_align.png" />
+          </imageobject>
+        </mediaobject>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット: 境界の色</emphasis></para>
+
+        <para>このメニューにより境界の色を変更できます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:線の色</emphasis></para>
+
+        <para>このメニューにより線の色を変更できます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:結合方法</emphasis></para>
+
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center"
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_link_style.png" />
+          </imageobject>
+        </mediaobject>
+
+        <para>このメニューにより結合の形式を選択できます:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>水平</para>
+          </listitem>
+
+          <listitem>
+            <para>直線</para>
+          </listitem>
+
+          <listitem>
+            <para>垂直</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:ダイアグラムの背景</emphasis></para>
+
+        <para>このメニューにより背景の色を変更できます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">フォーマット:グリッド</emphasis></para>
+
+        <para>このメニューによりグリッドを有効/無効にできます.
+	グリッドにより,作業領域でブロックを配置するのは容易になります.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Diagrammenu_Menu_entries">
+    <title>ツールメニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_tools.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">ツール:コード生成</emphasis></para>
+
+        <para>
+	このメニューにより,離散時間スーパーブロックに関連するシミュレーションコードを
+	生成することができます.
+	コード生成は,このメニューを選択した後,
+	指定するスーパーブロックを選択することにより行ないます.
+	スーパーブロックが必要な条件を満たす場合,
+	ブロック名,生成されたファイルを置くディレクトリおよび
+	リンカにより指定されたオプションのライブラリを入力する
+	ダイアログボックスがポップアップします.
+	これらの情報を指定すると,
+	コードが生成され,コンパイル,Scilabとリンクされます.
+	スーパーブロックは生成されたコードを実装する
+	新しいブロックで自動的に置換されます.
+	この後,修正されたダイアグラムを実行することができます.
+	スタンドアロン実行用のコードも生成されます.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="menu_Menu_entries">
+    <title>ヘルプメニュー</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_help.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">ヘルプ:Xcosヘルプ</emphasis></para>
+
+        <para>このメニューはヘルプブラウザをオープンします.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ヘルプ:ブロックヘルプ</emphasis></para>
+
+        <para>特定のXcosオブジェクト(ブロック)のヘルプを取得するには,
+	まずオブジェクト(ブロック)を選択した後,
+	このヘルプメニュー項目をクリックします.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ヘルプ:Xcosデモ</emphasis></para>
+
+        <para>このデモメニューによりXcosダイアグラムのいくつかの例を
+	オープンすることができます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">ヘルプ:Xcosについて</emphasis></para>
+
+        <para>Xcosの現在のバージョンおよびいくつかの有用な情報を出力します.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

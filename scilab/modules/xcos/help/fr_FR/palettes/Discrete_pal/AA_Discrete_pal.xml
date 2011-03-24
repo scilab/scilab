@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="Discrete_pal"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>Discrete_pal</refname>
+
+    <refpurpose>Palette Systèmes à temps discret</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="AUTOMAT" fileref="../../../../../../modules/xcos/images/palettes/AUTOMAT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAY_f" fileref="../../../../../../modules/xcos/images/palettes/DELAY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLR" fileref="../../../../../../modules/xcos/images/palettes/DLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLRADAPT_f" fileref="../../../../../../modules/xcos/images/palettes/DLRADAPT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DLSS" fileref="../../../../../../modules/xcos/images/palettes/DLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SAMPHOLD_m" fileref="../../../../../../modules/xcos/images/palettes/SAMPHOLD_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Discrete_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Discrete_pal">
+    <title>Description</title>
+
+    <para>La palette Systèmes à temps discret contient les blocs de modélisation en temps discret.</para>
+  </refsection>
+
+  <refsection id="Blocks_Discrete_pal">
+    <title>Blocks</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DELAY_f">DELAY_f — Retard en temps discret</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DELAYV_f">DELAYV_f — Retard variable</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLR">DLR — Fonction de transfert discrète</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLRADAPT_f">DLRADAPT_f — Fonction de transfert discrète (Pôles &amp; zéros)
+          function</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DLSS">DLSS — Représentation d'état en temps discret</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DOLLAR_f">DOLLAR_f — Opérateur retard</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="REGISTER">REGISTER — Registre à décalage</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="SAMPHOLD_m">SAMPHOLD_m — Echantilonneur-bloqueur</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS — Système continu linéaire avec saut</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="load" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>load</refname>
+
+    <refpurpose>保存した1個または複数の変数を読み込む</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>load(filename [,x1,...,xn])
+load(fd [,x1,...,xn])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>ファイルのパスを含む文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>mopenのコールにより得られたファイル記述子</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xi</term>
+
+        <listitem>
+          <para>文字列で指定した任意のScilab変数名.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>load</literal> コマンドは
+    <literal><link linkend="save">save</link></literal> コマンドにより
+	ファイルに保存されたScilabセッション変数を再度読み込む際に使用されます.
+	ファイルがグラフィックハンドル変数を含む場合,
+	対応する <link
+    linkend="graphics_entities">graphics_entities</link> が描画されます.</para>
+
+    <para>Scilab 5.0以降, <link linkend="uimenu">uimenu</link> または<link
+    linkend="uicontrol">uicontrol</link>ハンドルも描画されます.</para>
+
+    <para><literal>load(filename)</literal> はパス <literal>filename</literal>で指定されたファイル
+	に保存された変数を読み込みます.</para>
+
+    <para><literal>load(fd)</literal> は記述子 <literal>fd</literal>で指定された
+	ファイルに保存された変数を読み込みます.</para>
+
+    <para><literal>load(filename,'x','y')</literal> または
+    <literal>load(fd,'x','y')</literal> は変数
+    <literal>x,y</literal>のみを読み込ます.</para>
+
+    <para>Scilabバージョン 2.5でバイナリファイル形式が変更されましたが,
+	<literal>load(filename,...)</literal> は古い形式のファイルも読み込むことができます.</para>
+
+    <para>書き込まれたファイルは他のオペレーティングシステムやアーキテクチャ(リトルおよびビッグインディアン)に
+	対する可搬性があります.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+a=eye(2,2);b=ones(a);
+save('vals.dat',a,b);
+clear a
+clear b
+load('vals.dat','a','b');
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="save">save</link></member>
+
+      <member><link linkend="read">read</link></member>
+
+      <member><link linkend="listvarinfile">listvarinfile</link></member>
+
+      <member><link linkend="save_format">save_format</link></member>
+
+      <member><link linkend="exec">exec</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

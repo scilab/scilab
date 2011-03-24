@@ -20,8 +20,8 @@ result = perl(...)</synopsis>
     les arguments arg1, arg2, ..., à perlfile.</para>
     <para>result = perl(...) retourne le resultat du script Perl.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>

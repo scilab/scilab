@@ -87,8 +87,8 @@ r0=c(1:2,1:2);
 Rt=(Rt+Rt')/2
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="phc">phc</link>

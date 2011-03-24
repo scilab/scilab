@@ -31,7 +31,7 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>edit(functionname)</synopsis>
+    <synopsis>edit(functionname[,linenumber])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -43,6 +43,13 @@
 
         <listitem>
           <para>character string</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>linenumber</term>
+
+        <listitem>
+          <para>number</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -61,6 +68,10 @@
 
     <para>If functionname is not a valid macro or function name
     <literal>edit</literal> opens the file with filename equals to functionname.</para>
+
+    <para>
+      If linenumber is given, the file is opened at this line relatively to the definition of the macro named as the file itself. If the macro definition is not found, the file is opened at line given by linenumber.
+    </para>
   </refsection>
 
   <refsection>
@@ -70,11 +81,12 @@
 edit('edit')  //opens editor with text of this function
 edit('myfunction')  //opens editor for a new function
 edit('/home/foo/bar.sci') //opens the file bar.sci
+edit('test_run', 123) // opens the file test_run.sci at line 123 relatively to the definition of test_run()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="manedit">manedit</link></member>

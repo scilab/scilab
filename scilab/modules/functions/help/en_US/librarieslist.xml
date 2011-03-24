@@ -35,8 +35,8 @@ librarieslist()
 l =  gsort(librarieslist(),'r','i')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="libraryinfo">libraryinfo</link>

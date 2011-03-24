@@ -27,8 +27,8 @@
     <para>
     This mode is killed by the command <literal>"abort"</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="halt">halt</link>

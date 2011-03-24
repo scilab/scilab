@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -26,15 +27,35 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_color_map_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  BOOL status;
+
   if ( !isParameterDoubleMatrix( valueType ) )
   {
     Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "color_map");
     return SET_PROPERTY_ERROR ;
   }
 
+  status = setGraphicObjectProperty(pobj->UID, __GO_COLORMAP__, getDoubleMatrixFromStack(stackPointer), jni_double_vector, nbRow*nbCol);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"color_map");
+    return SET_PROPERTY_ERROR;
+  }
+
+/* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
   return sciSetColormap( pobj, getDoubleMatrixFromStack( stackPointer), nbRow, nbCol ) ;
+#endif
 }
 /*------------------------------------------------------------------------*/

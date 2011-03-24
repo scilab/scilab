@@ -351,8 +351,8 @@ should be used with caution in this specific case.
 
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="numdiff">numdiff</link></member>

@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function label=XcosGetMenuLabel(Id,%scicos_menu)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //returns an Xcos menu labels given their ID's
   label=[]
   for menu=%scicos_menu

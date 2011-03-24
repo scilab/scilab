@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="nancumsum">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>nancumsum</refname>
+    <refpurpose>
+	行列の値の累積合計</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>s = nancumsum(x,orient)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>x は数値ベクトルまたは行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orient</term>
+        <listitem>
+          <para>オプションのパラメータで,
+	指定可能な値は
+        '*', 1, 2, 'r' または 'c'.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s</term>
+        <listitem>
+          <para>数値スカラーまたはベクトル.
+	NaNを無視したxの値の累積合計を含みます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数はスカラーまたはベクトルsに
+	ベクトルまたは行列(実数または複素数)xの
+	(NaNを無視した)値の累積合計を返します.</para>
+    <para>
+	この関数は,あるベクトルまたは行列xについて,
+	s=nancumsum(x)
+   (または等価な  s=nancumsum(x,'*')) は,
+	スカラー sに xの列方向に取得した全てのエントリの
+	(NaNを無視した)累積合計を返します.</para>
+    <para>
+   s=nancumsum(x,'r')  (または等価な s=nancumsum(x,1))
+	は,大きさ cols(x) のベクトルsに
+	x の行の(NaNを無視した)累積合計を返します: s(:,i)=nancumsum(x(:,i))</para>
+    <para>
+   s=nancumsum(x,'c')  (または等価な  s=nancumsum(x,2))
+	は,大きさ rows(x) のベクトルsに
+	xの列の(NaNを無視した)累積合計を返します: s(i,:)=nancumsum(x(i,:))</para>
+    <para>
+	最後の2つのケースにおいて,
+	ある行または列が全てNaNから構成される場合,
+	sの対応する位置はNaNとなります.
+</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=[1 2 3;4 5 6]
+s=nancumsum(a)
+s=nancumsum(a,'r')
+s=nancumsum(a,'c')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="nansum">nansum</link>
+      </member>
+      <member>
+        <link linkend="cumsum">cumsum</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>
+    Carlos Klimann
+  </para>
+  </refsection>
+</refentry>

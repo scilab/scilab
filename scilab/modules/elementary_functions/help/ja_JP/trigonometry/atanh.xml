@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="atanh" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>atanh</refname>
+
+    <refpurpose>双曲線逆正接</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>t=atanh(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数のベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>実数または複素数のベクトル/行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>ベクトル <literal>t</literal> の要素は,
+      ベクトル<literal>x</literal>の対応する要素の双曲線逆正接となります.
+      実数関数の場合,定義域は,<literal>[-1,1]</literal>です(注記参照).
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>注記</title>
+
+    <para>Scilab では(他の数値計算ソフトウエアと同様に)
+      定義域の範囲外の基本数値関数の値を計算しようとした場合に,
+      
+      複素数拡張(結果は複素数)が使用されます.
+      より有名な例は, sqrt 関数で行われるものです
+      (<literal>sqrt(-1)</literal> を試してみてください!).
+      このやり方は,特異点で関数を評価する際に,
+      おの点が実数または複素数とみなされると,
+      その結果が異なってしまうという欠点があります.
+      <literal>atanh</literal>の場合,
+      <literal>-1</literal> および <literal>1</literal>でこれが
+      発生します.
+      これは,これらの点においては虚部は収束せず,
+      このため, 実際には <literal>atanh(1) = +Inf</literal>　となる
+      時(lim x-&gt;1- atanh(x) の時)に, 
+      <literal>atanh(1) = +Inf + i NaN</literal> となります.
+
+      このため,この関数をベクトル<literal>[1 2]</literal>で
+      評価すると,  <literal>2</literal> が定義域の外側にあるので,
+      そのベクトル全体に複素数拡張が使用されます.
+      その結果は,例えば,<literal>[1 0.5]</literal>で
+      <literal>atanh(1) = +Inf</literal>となるにもかかわらず,
+      <literal>atanh(1) = +Inf + i NaN</literal>となります.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1
+x=[0,%i,-%i]
+tanh(atanh(x))
+
+// example 2
+x = [-%inf -3 -2 -1 0 1 2 3 %inf]
+ieee(2)
+atanh(tanh(x))
+
+// example 3 (see Remark)
+ieee(2)
+atanh([1 2])
+atanh([1 0.5])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="tanh">tanh</link></member>
+
+      <member><link linkend="ieee">ieee</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

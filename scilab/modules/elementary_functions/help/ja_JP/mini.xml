@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mini" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mini</refname>
+
+    <refpurpose>最小値</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>[m [,k]]=mini(A)
+[m [,k]]=mini(A,'c')
+[m [,k]]=mini(A,'r')
+[m [,k]]=mini(A,'m')
+[m [,k]]=mini(A1,A2,...,An)
+[m [,k]]=mini(list(A1,A2,...,An))</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>A1,...,An</term>
+
+        <listitem>
+          <para>実数ベクトルまたは行列の集合, 全て同じ大きさまたはスカラー.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+	<para>
+	<literal>A</literal>が実数のベクトルまたは行列の場合,
+    <literal>mini(A)</literal>は<literal>A</literal>の最小要素となります.
+	<literal>[m,k]=mini(A)</literal> は,オプションで最小値の添え字も出力します.
+	文字列型の2番目の引数に<literal>'r'</literal> または
+    	<literal>'c'</literal>を指定できます:
+	<literal>'r'</literal>は<literal>m(j)</literal>が
+	Aの<literal>j</literal>番目の列(<literal>A(:,j)</literal>)の最小値となる
+	行ベクトル<literal>m</literal>および
+	<literal>k(j)</literal>が列<literal>j</literal>の最小値を
+	含む添え字を取得するために使用されます.
+    <literal>'c'</literal> は<literal>A</literal>の行でこの二つの処理を
+	行うために使用されます.
+	<literal>'m'</literal> は Matlabとの互換性維持のために使用されます.</para>
+
+    <para><literal>m=mini(A1,A2,...,An)</literal>, ただし,
+	<literal>Aj</literal>は全て同じ大きさの行列で,
+	<literal>m(i)= mini( Aj(i)), j=1,...,n</literal>とする時,
+	大きさ <literal>size(m)=size(A1)</literal>となる
+	ベクトルまたは行列 <literal>m</literal> を返します.
+    <literal>[m,k]=mini(A1,A2,...,An)</literal> は加えてベクトルまたは行列
+	<literal>k</literal>も返します.
+	ある<literal>i</literal>について,<literal>k(i)</literal>は
+	最小値となる最初の<literal>Aj(i)</literal>の番号です.</para>
+
+    <para><literal>[m,k]=mini(list(A1,...,An))</literal> は
+	<literal>[m,k]=mini(A1,A2,...,An)</literal>と等価な構文です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+[m,n]=mini([1,3,1])
+[m,n]=mini([3,1,1],[1,3,1],[1,1,3])
+[m,n]=mini([3,-2,1],1)
+[m,n]=mini(list([3,1,1],[1,3,1],[1,1,3]))
+[m,n]=mini(list(1,3,1))
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gsort">gsort</link></member>
+
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="min">min</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

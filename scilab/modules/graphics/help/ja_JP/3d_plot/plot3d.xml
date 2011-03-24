@@ -1,0 +1,721 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plot3d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plot3d</refname>
+
+    <refpurpose>曲面の3次元プロット</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])
+plot3d(x,y,z,&lt;opt_args&gt;)
+
+plot3d(xf,yf,zf,[theta,alpha,leg,flag,ebox])
+plot3d(xf,yf,zf,&lt;opt_args&gt;)
+
+plot3d(xf,yf,list(zf,colors),[theta,alpha,leg,flag,ebox])
+plot3d(xf,yf,list(zf,colors),&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>大きさ n1 および n2の行ベクトル (x軸およびy軸座標). 
+		これらの座標は単調である必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>大きさ (n1,n2)の行列. <literal>z(i,j)</literal> は点(x(i),y(j))における
+		曲面の値です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xf,yf,zf</term>
+
+        <listitem>
+          <para>大きさ (nf,n)の行列. 曲面を描画する際に使用される小平面を定義します.
+	<literal>n</literal>個の小平面があります. 各小平面
+          <literal>i</literal> は<literal>nf</literal>個の点を有するポリゴンで定義されます.
+	i番目の小平面の点のx軸,y軸,z軸座標はそれぞれ<literal>xf(:,i)</literal>, 
+	<literal>yf(:,i)</literal> および  <literal>zf(:,i)</literal>により指定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>colors</term>
+
+        <listitem>
+          <para>大きさnのベクトルで,各小平面の色を指定します,もしくは,
+	大きさ(nf,n)の行列で各小平面の境界近傍の色を指定します
+	(小平面の色は補間されます).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>一連の命令<literal>key1=value1,
+          key2=value2</literal>,...を表し, <literal>key1</literal>,
+          <literal>key2,...</literal> は以下のどれかとすることができます: theta,
+          alpha ,leg,flag,ebox (以下の定義を参照).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>theta, alpha</term>
+
+        <listitem>
+          <para>観測点の球座標を指定する実数値(単位:度).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>leg</term>
+
+        <listitem>
+          <para>各軸のラベルを定義する文字列. @ をフィールドセパレータとし,
+		"X@Y@Z"のようになります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>大きさ3の実数ベクトル.
+          <literal>flag=[mode,type,box]</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>mode</term>
+
+              <listitem>
+                <para>整数 (曲面の色).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>mode&gt;0</term>
+
+                    <listitem>
+                      <para>曲面は色<literal>"mode"</literal>で塗られます ;
+			小平面の境界はカレントの線種と色で描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>mode=0:</term>
+
+                    <listitem>
+                      <para>曲面のメッシュが描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>mode&lt;0:</term>
+
+                    <listitem>
+                      <para>曲面は色<literal>"-mode"</literal>で塗られます ;
+			小平面の境界は描画されません.</para>
+
+                      <para>曲面の色の取り扱いは,
+			surfaceエンティティプロパティによる
+			<literal>color_mode</literal>および
+			<literal>color_flag</literal>オプションを用いて
+			行われることに注意してください (<link
+                      linkend="surface_properties">surface_properties</link>参照).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>type</term>
+
+              <listitem>
+                <para>整数 (スケール).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>type=0:</term>
+
+                    <listitem>
+                      <para>プロットは
+			(前の<literal>param3d</literal>,
+                      <literal>plot3d</literal>, <literal>contour</literal> または
+                      <literal>plot3d1</literal>のコールで設定された)
+			カレントの3次元スケールで行われます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=1:</term>
+
+                    <listitem>
+                      <para>
+			3次元ボックスのスケールがアスペクト比の最大値に基づき
+			自動的に調整され,
+			境界はオプションの引数<literal>ebox</literal>の値で
+			指定されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=2:</term>
+
+                    <listitem>
+                     <para>
+			3次元ボックスのスケールがアスペクト比の最大値に基づき
+			自動的に調整され,
+			境界は指令したデータにより計算されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=3:</term>
+
+                    <listitem>
+                     <para>
+			オプション<literal>ebox</literal>で指定したボックス境界を有する
+			3次元等軸プロットで,<literal>type=1</literal>に似ています.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=4:</term>
+
+                    <listitem>
+                      <para>データで定義された境界に基づく3次元等軸プロットで,
+			<literal>type=2</literal>に似ています.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=5:</term>
+
+                    <listitem>
+                     <para>
+			オプション<literal>ebox</literal>で指定されたボックス境界で
+			定義された境界に基づく3次元拡張等軸プロットで,
+			<literal>type=1</literal>に似ています.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>type=6:</term>
+
+                    <listitem>
+                     <para>
+			データで定義された境界に基づく3次元拡張等軸プロットで,
+			<literal>type=2</literal>に似ています.
+			軸の境界は axes エンティティプロパティによりカスタマイズできる
+			ことに注意してください(<link
+                      linkend="axes_properties">axes_properties</link>参照).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>box</term>
+
+              <listitem>
+                <para>整数 (プロットの周囲のフレーム).</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>box=0:</term>
+
+                    <listitem>
+                      <para>プロットの周囲に何も描画されません.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=1:</term>
+
+                    <listitem>
+                      <para>実装されていません (box=0と同様).</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=2:</term>
+
+                    <listitem>
+                      <para>曲面の背後の軸のみが描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=3:</term>
+
+                    <listitem>
+                      <para>曲面を囲うボックスが描画され,キャプションが追加されます.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>box=4:</term>
+
+                    <listitem>
+                      <para>
+			曲面を囲うボックスが描画され,キャプションと軸が追加されます.
+			</para>
+                      <para>
+			軸のアスペクトもaxesエンティティのプロパティによりカスタマイズ
+			できることに注意してください (<link
+                      linkend="axes_properties">axes_properties</link>参照).
+                      </para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ebox</term>
+
+        <listitem>
+        <para>
+	プロットの境界をベクトル
+          <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>で指定します. 
+	この引数は,<literal>flag</literal>の<literal>type</literal>が<literal>1</literal>,
+          <literal>3</literal> または <literal>5</literal>に設定された場合,
+	使用されます (対応する動作については上記参照). 
+	<literal>flag</literal> が指定されない場合
+          <literal>ebox</literal> は無視されます. </para>
+          <para>
+	指定された場合, <literal>ebox</literal>引数は,
+	<literal>data_bounds</literal>に基づいて動作し,
+	axesエンティティのプロパティによりリセットすることも可能であることに
+	注意してください. ebox のデフォルト値は[0,1,0,1,0,1]です.(<link
+          linkend="axes_properties">axes_properties</link>参照)
+	</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>plot3d(x,y,z,[theta,alpha,leg,flag,ebox])</literal> は
+	パラメータ表現の曲面 <literal>z=f(x,y)</literal>を描画します.</para>
+
+    <para><literal>plot3d(xf,yf,zf,[theta,alpha,leg ,flag,ebox])</literal>
+	は小平面の集合で定義された曲面を描画します.
+	<literal>xf</literal>, <literal>yf</literal> および
+    <literal>zf</literal>を
+	<literal>[xf1 xf2 ...]</literal>, <literal>[yf1 yf2 ...]</literal> および
+    <literal>[zf1 zf2 ...]</literal>のように行単位で集約した
+	複数の行列で置き換えることにより
+	複数のプロットを描画することができます.
+	データはsurfaceエンティティパラメータにより設定または取得できること
+	に注意してください (<link
+    linkend="surface_properties">surface_properties</link>参照).</para>
+
+    <para></para>
+
+    <para>
+	小平面の色を<literal>zf</literal>ではなく<literal>list(zf,colors)</literal>
+	により指定することができます.
+	ただし,<literal>colors</literal> は大きさ<literal>n</literal>の
+	ベクトルです.
+    <literal>colors(i)</literal> が正の場合,この値が小平面<literal>i</literal>の
+	色を指定し,小平面の境界はカレントの線種と色で描画されます.
+	<literal>colors(i)</literal> が負の場合, 色ID
+    <literal>-colors(i)</literal>が使用され,小平面の境界は描画されません.</para>
+
+    <para></para>
+
+    <para>小平面に補間された色を適用することも可能です.
+	この場合, color 引数は nf x n の行列とする必要があり,その要素は
+	各小平面の極回近傍の色を指定します.
+	この場合, 正の値の色は境界が描画されないことを意味します.
+	色は( <literal>tlist</literal> affectationsにより)
+	 surface エンティティプロパティでも設定可能であり,
+	<literal>color_flag</literal>オプションにより編集可能です
+	 ( <link
+    linkend="surface_properties">surface_properties</link>参照).</para>
+
+    <para></para>
+
+    <para>オプションの引数 <literal>theta, alpha, leg ,flag,
+    ebox</literal>, を一連の命令
+    <literal>key1=value1, key2=value2</literal>, ...により指定することができます.
+	この場合,順番は任意です.
+	これらの<literal>flag</literal>以外のオプションの引数は
+	axesエンティティプロパティによりカスタマイズできます
+	 (see <link linkend="axes_properties">axes_properties</link>参照).
+    前述の通り, <literal>flag</literal> オプションは
+	<literal>mode</literal>についてはsurfaceエンティティプロパティ( <link
+    linkend="surface_properties">surface_properties</link>参照) ,
+	<literal>type</literal> および<literal>box</literal>については
+	axes プロパティ (<link linkend="axes_properties">axes_properties</link>参照)
+	で扱うことができます.</para>
+
+    <para></para>
+
+    <para>曲面<literal>z=f(x,y)</literal>から4角形の小平面を計算する際に
+	関数<literal>genfac3d</literal>を使用することができます.
+    <literal>eval3dp</literal> も使用できます.</para>
+
+    <para></para>
+
+    <para>コマンド <literal>plot3d()</literal> を入力するとデモを参照できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//  z=f(x,y) による簡単な例
+t=[0:0.3:2*%pi]';
+z=sin(t)*cos(t');
+plot3d(t,t,z) 
+// genfac3dにより計算された小平面を用いて同じ図をプロット
+[xx,yy,zz]=genfac3d(t,t,z); 
+clf() 
+plot3d(xx,yy,zz)
+// 複数のプロット
+clf()
+plot3d([xx xx],[yy yy],[zz 4+zz]) 
+// カラーで複数のプロット
+clf()
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)])) 
+// 視点とキャプションを指定してプロット
+clf() 
+plot3d(1:10,1:20,10*rand(10,20),alpha=35,theta=45,flag=[2,2,3]) 
+// eval3dp で計算された小平面により球をプロット
+deff("[x,y,z]=sph(alp,tet)",["x=r*cos(alp).*cos(tet)+orig(1)*ones(tet)";.. 
+     "y=r*cos(alp).*sin(tet)+orig(2)*ones(tet)";.. 
+     "z=r*sin(alp)+orig(3)*ones(tet)"]); 
+r=1; orig=[0 0 0]; 
+[xx,yy,zz]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20)); 
+clf();plot3d(xx,yy,zz) 
+clf();
+f=gcf();
+f.color_map = hotcolormap(128); 
+r=0.3;orig=[1.5 0 0]; 
+[xx1,yy1,zz1]=eval3dp(sph,linspace(-%pi/2,%pi/2,40),linspace(0,%pi*2,20)); 
+cc=(xx+zz+2)*32;cc1=(xx1-orig(1)+zz1/r+2)*32; 
+clf();plot3d1([xx xx1],[yy yy1],list([zz,zz1],[cc cc1]),theta=70,alpha=80,flag=[5,6,3])
+
+delete(gcf());
+t=[0:0.3:2*%pi]'; z=sin(t)*cos(t');
+[xx,yy,zz]=genfac3d(t,t,z);
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+e=gce();
+f=e.data;
+TL = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,6*rand(f.z)); // ランダムな色の行列
+e.data = TL;
+TL2 = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,4*rand(1,800)); // ランダムな色のベクトル
+e.data = TL2;
+TL3 = tlist(["3d" "x" "y" "z" "color"],f.x,f.y,f.z,[20*ones(1,400) 6*ones(1,400)]);
+e.data = TL3;
+TL4 = tlist(["3d" "x" "y" "z"],f.x,f.y,f.z); // no color
+e.data = TL4;
+e.color_flag=1 // 高度 (z座標)に比例する色インデックス
+e.color_flag=2; // デフォルトモードに戻る
+e.color_flag= 3; // 補間陰影モード (デフォルト色の青に基づく)
+clf()
+plot3d([xx xx],[yy yy],list([zz zz+4],[4*ones(1,400) 5*ones(1,400)]))
+h=gce(); //カレントのエンティティ(ここでは曲面)のハンドルを取得 
+a=gca(); //カレントの軸を取得
+a.rotation_angles=[40,70];
+a.grid=[1 1 1]; //グリッドを作成
+a.data_bounds=[-6,0,-1;6,6,5];
+a.axes_visible="off"; //軸を隠す
+a.axes_bounds=[.2 0 1 1];
+h.color_flag=1; //色は zに比例
+h.color_mode=-2;  //color_modeを白色に設定することにより小平面の境界を削除
+h.color_flag=2; //指定した色に基づく色
+h.color_mode = -1; //color_modeを黒色に設定することにより小平面の境界を戻す
+f=gcf();//親のfigureのハンドルを取得
+f.color_map=hotcolormap(512);
+c=[1:400,1:400];
+TL.color = [c;c+1;c+2;c+3];
+h.data = TL;
+h.color_flag=3; // 補間陰影モード
+ ]]></programlisting>
+
+    <para>一連のパッチ(3角形,4角形,など)をプロットする際にplot3d関数を使用することができます.</para>
+
+    <programlisting role="example"><![CDATA[ 
+// パッチを描画するe plot3d 関数:
+// patch(x,y,[z])
+// patch(x,y,[list(z,c)])
+// x の大きさ: パッチの点の数 x パッチの数
+// y および z は x と同じ大きさ
+// c:
+// - パッチの数を大きさとするベクトル: パッチの色
+// - 大きさがパッチの点の数 x パッチの数の行列
+//   : 各パッチの各点の色
+
+// 例 1: 3角形パッチの集合
+
+x = [0 0;
+     0 1;
+     1 1];
+
+y = [1 1;
+     2 2;
+     2 1];
+
+z = [1 1;
+     1 1;
+     1 1];
+
+tcolor = [2 3]';
+
+subplot(2,2,1);
+plot3d(x,y,list(z,tcolor));
+xtitle('A triangle set of patches');
+
+// 例2: 3角形および4角形パッチが混在
+
+xquad = [5, 0;
+         10,0;
+         15,5;
+         10,5];
+         
+yquad = [15,0;
+         20,10;
+         15,15;
+         10,5];
+         
+zquad = ones(4,2);
+
+xtri = [ 0,10,10, 5, 0;
+        10,20,20, 5, 0;
+        20,20,15,10,10];
+        
+ytri = [ 0,10,20, 5,10;
+        10,20,20,15,20;
+         0, 0,15,10,20];
+         
+ztri = zeros(3,5);
+
+subplot(2,2,3);
+plot3d(xquad,yquad,zquad);
+plot3d(xtri,ytri,ztri);
+xtitle('Mixing triangle and quadrangle set of patches');
+
+// 例3: いくつかのうさぎ
+
+rabxtri = [ 5,  5, 2.5,  7.5, 10;
+            5, 15, 5,   10,   10;
+           15, 15, 5,   10,   15];
+           
+rabytri = [10, 10, 9.5,  2.5, 0;
+           20, 10, 12,   5,   5;
+           10   0   7    0    0];
+rabztri = [0,0,0,0,0;
+           0,0,0,0,0;
+           0,0,0,0,0];
+
+rabtricolor_byface = [2 2 2 2 2];
+
+rabtricolor = [2,2,2,2,2;
+               3,3,3,3,3;
+               4,4,4,4,4];
+               
+rabxquad = [0, 1;
+            0, 6;
+            5,11;
+            5, 6];
+            
+rabyquad = [18,23;
+            23,28;
+            23,28;
+            18,23];
+            
+rabzquad = [1,1;
+            1,1;
+            1,1;
+            1,1];
+
+rabquadcolor_byface = [2 2];
+
+rabquadcolor = [2,2;
+                3,3;
+                4,4;
+                5,5];
+
+subplot(2,2,2);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A psychedelic rabbit set of patches');
+
+subplot(2,2,4);
+plot3d(rabxtri, rabytri, list(rabztri,rabtricolor_byface));
+plot3d(rabxquad,rabyquad,list(rabzquad,rabquadcolor_byface));
+h = gcf();
+h.children(1).background = 1;
+xtitle('A standard rabbit set of patches');
+ ]]></programlisting>
+
+    <para>前の例の結果:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../images/plot3d_patch.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>頂点と面により一連のパッチをプロットするために
+	plot3d関数を使用することもできます.</para>
+
+    <programlisting role = "example"><![CDATA[ 
+// 頂点 / 面の例: 3次元の例
+
+// 各パッチを構成するユニークな点の一覧を有する頂点のリスト
+// 2つのパッチに共通な点は頂点のリストで反復されません
+
+vertex = [0 1 1;
+          0 2 2;
+          1 2 3;
+          1 1 4];
+
+// 頂点のリストはどの点がパッチを構成するかを示します.        
+face = [1 2 3;
+        1 3 4];
+
+tcolor = [2 3]';
+
+// x, y, z のリストで表された頂点/面を変換する際に使用される式
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(vertex(face,3),size(face,1),length(vertex(face,1))/size(face,1))';
+
+scf();
+subplot(2,1,1);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 3d');
+
+// 2次元のテスト
+// 0 Z 値を有する3次元表現を使用した後, 2次元表現に切り替えます
+
+// 頂点/面の例: 3次元の例
+
+// 頂点のリストには各パッチを構成するユニークな点の一覧を有します
+// 2つのパッチに共通する点は頂点のリスト内で繰り返されません
+
+vertex = [0 1;
+          0 2;
+          1 2;
+          1 1];
+
+// 頂点のリストはどの点がパッチを構成するかを示します.       
+face = [1 2 3;
+        1 3 4];
+         
+// x, y, z のリストで表された頂点/面を変換する際に使用される式
+
+xvf = matrix(vertex(face,1),size(face,1),length(vertex(face,1))/size(face,1))';
+yvf = matrix(vertex(face,2),size(face,1),length(vertex(face,1))/size(face,1))';
+zvf = matrix(zeros(vertex(face,2)),size(face,1),length(vertex(face,1))/size(face,1))';
+
+subplot(2,1,2);
+plot3d(xvf,yvf,list(zvf,tcolor));
+xtitle('A triangle set of patches - vertex / face mode - 2D');
+a = gca();
+a.view = '2d';
+ ]]></programlisting>
+
+    <para>前の例の結果:</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../images/plot3d_patch_vertex.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>マニュアルで目盛を設定する方法</para>
+
+    <programlisting role = "example"><![CDATA[ 
+plot3d();
+h = gca();
+h.x_ticks = tlist(['ticks','locations','labels'],[-2,-1,0,1,2],['-2','-1','0','1','2']);
+h.y_ticks = tlist(['ticks','locations','labels'],[-4,-3-2,-1,0,1,2,3,4],['-4','-3','-2','-1','0','1','2','3','4']);
+h.z_ticks = tlist(['ticks','locations','labels'],[-1,0,1],['Point 1','Point 2','Point 3']);
+ ]]></programlisting>
+    <para></para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="eval3dp">eval3dp</link></member>
+
+      <member><link linkend="genfac3d">genfac3d</link></member>
+
+      <member><link linkend="geom3d">geom3d</link></member>
+
+      <member><link linkend="param3d">param3d</link></member>
+
+      <member><link linkend="plot3d1">plot3d1</link></member>
+
+      <member><link linkend="clf">clf</link></member>
+
+      <member><link linkend="gca">gca</link></member>
+
+      <member><link linkend="gcf">gcf</link></member>
+
+      <member><link linkend="xdel">xdel</link></member>
+
+      <member><link linkend="delete">delete</link></member>
+
+      <member><link linkend="axes_properties">axes_properties</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

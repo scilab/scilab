@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="secto3d">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>secto3d</refname>
+    <refpurpose> 3次元曲面変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[m[,x]]=secto3d(seclist,npas)
+[m]=secto3d(seclist ,x)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>seclist</term>
+        <listitem>
+          <para>要素が(2,.)行列のリスト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>npas</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>m</term>
+        <listitem>
+          <para>行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>(x,z)</literal>平面による断面のリスト<literal>seclist</literal>により
+	指定される曲面を考えると,<literal>[m [,x]]=secto3d(seclist [,npas])</literal> は
+	曲面を標準的に離散化した行列 <literal>m</literal>を返します.
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>行列mのi行目はi番目の断面に対応します</para>
+      </listitem>
+      <listitem>
+        <para>mのj列目は x(j)に対応します</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    各断面 <literal>seclist(i)</literal>はそれぞれ点のxおよびz座標を指定する
+	(2,.) 行列により記述されます.</para>
+    <para>
+	<literal>[m]=secto3d(seclist ,x)</literal> の場合,
+	xベクトルが全ての断面に関するx軸の離散化を指定します.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Steer S.; ;   </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matrices">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matrices</refname>
+    <refpurpose> Scilab オブジェクト, Scilabの行列</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	行列は,Scilabで定義される基本的なオブジェクトです.
+	行列は以下のように定義されます:</para>
+    <programlisting role = ""><![CDATA[ 
+E=[e11,e12,...,e1n;
+   e21,e22,...,e2n;
+        ....
+   em1,em2,...,emn];
+ ]]></programlisting>
+    <para>
+    エントリ <literal>eij</literal> は,
+	実数または複素数, 多項式, 有理数, 文字列, 論理値とすることができます.</para>
+    <para>
+    ベクトルは,1行または1列のみを有する行列として扱われます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+E=[1,2;3,4]
+E=[%T,%F;1==1,1~=1]
+s=poly(0,'s');E=[s,s^2;1,1+s]
+E=[1/s,0;s,1/(s+1)]
+E=['A11','A12';'A21','A22']
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="rational">rational</link>
+      </member>
+      <member>
+        <link linkend="empty">empty</link>
+      </member>
+      <member>
+        <link linkend="hypermatrices">hypermatrices</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

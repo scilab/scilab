@@ -25,9 +25,7 @@ Source: modules\{#UI_DATA}\etc\variableeditor_menubar.xml;DestDir: {app}\modules
 Source: modules\{#UI_DATA}\sci_gateway\{#UI_DATA}_gateway.xml; DestDir: {app}\modules\{#UI_DATA}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#UI_DATA}\version.xml; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#UI_DATA}\readme.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\license.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#UI_DATA}\changelog.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#UI_DATA}\images\icons\*.gif; DestDir: {app}\modules\{#UI_DATA}\images\icons; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

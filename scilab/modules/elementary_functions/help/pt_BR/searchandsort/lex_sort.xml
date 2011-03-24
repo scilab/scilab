@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lex_sort" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lex_sort</refname>
+
+    <refpurpose>ordenação lexicográfica de linhas de uma matriz</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>matriz de reais</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>N</term>
+
+        <listitem>
+          <para>matriz de reais </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>vetor coluna de inteiros</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>A função <literal>lex_sort</literal> está obsoleta gora. Ela pode
+    ser substituída pelas funções <link linkend="gsort">gsort</link> e <link
+    linkend="unique">unique</link>.</para>
+
+    <para><literal>N=lex_sort(M)</literal> ordena as linhas (como um grupo) da
+    matriz <literal>M</literal> em ordem ascendente. Se requerido, o argumento
+    de saída <literal>k</literal> contém a ordem:
+    <literal>[N,k]=lex_sort(M)</literal> retorna <literal>k</literal> tal que
+    <literal>N</literal> é igual a <literal>M(k,:)</literal> .</para>
+
+    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> produz o mesmo
+    resultado que a seguinte seqüência de instruções:</para>
+
+    <programlisting role = ""><![CDATA[ 
+[N,k]=lex_sort(M(:,sel) [,'unique']);
+N=M(k,:)
+ ]]></programlisting>
+
+    <para>O flag (indicador) <literal>'unique'</literal> deve ser fornecido
+    caso deseje-se reter apenas linhas únicas no resultado. Perceba que
+    <literal>lex_sort(M,sel,'unique')</literal> retém apenas linhas tais que
+    M(:,sel) são únicas.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+M=round(2*rand(20,3));
+
+lex_sort(M)
+lex_sort(M,'unique')
+[N,k]=lex_sort(M,[1 3],'unique')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gsort">gsort</link></member>
+
+      <member><link linkend="unique">unique</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

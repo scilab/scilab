@@ -20,6 +20,9 @@
 //
 
 function k=getblocktext(scs_m,pt)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   if pt==[] then k=[],return,end
   n=lstsize(scs_m.objs)
   xf=60;

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lmitool">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lmitool</refname>
+    <refpurpose>LMIを解くためのツール</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>lmitool()
+
+lmitool(filename)
+
+txt=lmitool(probname,varlist,datalist)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+        <listitem>
+          <para><literal>.sci</literal>関数を指す文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>probname</term>
+        <listitem>
+          <para>問題の名前を有する文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>varlist</term>
+        <listitem>
+          <para>未知の行列の名前を有する文字列 (複数名前が複数ある場合はカンマで区切ります)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>datalist</term>
+        <listitem>
+          <para>データ行列の名前を有する文字列 (複数名前が複数ある場合はカンマで区切ります)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>ユーザが次に行うべきことに関する情報を提供する文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>lmitool()</literal> または <literal>lmitool(filename)</literal> は,
+	LMI問題を対話的に定義する際に使用されます.
+	非対話モードでは,
+    <literal>txt=lmitool(probname,varlist,datalist)</literal>
+	はカレントのディレクトリにファイルを生成します.
+	このファイルの名前は,<literal>probname</literal>の末尾に
+	<literal>.sci</literal>を付加することにより得られます.
+	このファイルはソルバー関数のスケルトンで,
+	<literal>lmisolver</literal>により必要とされる評価関数です.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lmisolver">lmisolver</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

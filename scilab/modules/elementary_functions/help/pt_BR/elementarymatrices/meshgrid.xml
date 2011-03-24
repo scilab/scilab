@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="meshgrid" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>meshgrid</refname>
+
+    <refpurpose>cria matrizes ou arrays 3-D</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[X, Y] = meshgrid(x)
+[X, Y] = meshgrid(x,y)
+[X, Y, Z] = meshgrid(x,y,z)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x, y, z</term>
+
+        <listitem>
+          <para>vetores </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>X, Y, Z</term>
+
+        <listitem>
+          <para>matrizes, no caso de dois argumentos de entrada, arrays 3-D,
+          no caso de 3 argumentos de entrada. </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>...</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+x = -1:0.1:1;
+y = -1:0.1:1;
+
+[X,Y] = meshgrid(x,y);
+
+for i=1:size(X,1)
+  for j=1:size(X,2)
+    Z(i,j) = sinc(2*%pi*X(i,j)*Y(i,j));
+  end
+end
+
+surf(X,Y,Z)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ndgrid">ndgrid</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Farid Belahcene</para>
+  </refsection>
+</refentry>

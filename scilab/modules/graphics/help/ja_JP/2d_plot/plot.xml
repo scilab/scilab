@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="plot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>plot</refname>
+    <refpurpose>2Dプロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出しの手順</title>
+    <synopsis>plot(y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x,y,&lt;LineSpec&gt;,&lt;GlobalProperty&gt;)
+plot(x1,y1,&lt;LineSpec1&gt;,x2,y2,&lt;LineSpec2&gt;,...xN,yN,&lt;LineSpecN&gt;,&lt;GlobalProperty1&gt;,&lt;GlobalProperty2&gt;,..&lt;GlobalPropertyM&gt;)
+plot(&lt;axes_handle&gt;,...)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数行列またはベクトル. 省略した場合, <literal>1:n</literal>であると
+	仮定されます. ただし, <literal>n</literal>は<literal>y</literal>パラメータで
+	指定された曲線の点の数です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>実数行列またはベクトル. <literal>y</literal> はマクロまたはプリミティブ
+	として定義された関数とすることもできます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;LineSpec&gt;</term>
+        <listitem>
+          <para>このオプション引数は文字列で
+	線を描画する手法を指定するショートカットとして使用されます.
+	<literal>LineSpec</literal>は指定済みの各<literal> y</literal> または <literal>{x,y}</literal>
+	毎に一つ指定できます.
+	<literal>LineSpec</literal>はLineStyle,MarkerおよびColorと同時に処理されます
+	(<link linkend="LineSpec">LineSpec</link>参照).
+	これらの指定子はプロットされた線において線の種類,マーカの種類および色を定義します.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;GlobalProperty&gt;</term>
+        <listitem>
+          <para>このオプションの引数は,
+	グローバルオブジェクトのプロパティを定義する
+	一連の命令<literal>{PropertyName,PropertyValue}</literal>
+	を表し,	このプロットで作成された全ての曲線に適用されます.
+	利用可能なプロパティの全て参照するには
+          <link linkend="GlobalProperty">GlobalProperty</link>を参照してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;axes_handle&gt;</term>
+        <listitem>
+          <para>このオプションの引数は,カレントの軸ではなく <literal>axes_handle</literal>で
+	指定した軸の内部にプロットが表示されることを指定します
+	(<link linkend="gca">gca</link>参照).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>plot</literal> は一連の二次元曲線をプロットします.
+	<literal>plot</literal> はMatlab構文との互換性を改善するために
+	修正されています.
+	グラフィックの互換性を改善するために, Matlabユーザは 
+	(<link linkend="plot2d">plot2d</link>ではなく)
+	<literal>plot</literal>を使用してください.</para>
+    <para>データエントリ仕様 :</para>
+    <para>本節では,記述を明確化するため,オプションの引数
+    <literal>LineSpec</literal>および <literal>GlobalProperty</literal> 
+	については言及しません.
+	これはこれらの引数は,
+	(<literal>"Xdata"</literal>,
+    <literal>"Ydata"</literal> および <literal>"Zdata"</literal> プロパティを
+	除く, 
+    <link linkend="GlobalProperty">GlobalProperty</link>参照)
+	エントリデータと干渉しないためです.
+	これら全てのオプション引数を同時に指定することが可能です.
+	</para>
+    <para><literal>y</literal> がベクトルの場合, plot(y) はベクトル <literal>y</literal>
+	をベクトル <literal>1:size(y,'*')</literal>に対してプロットします.</para>
+    <para><literal>y</literal>が行列の場合, plot(y) は<literal>y</literal>の各列を
+	<literal>1:size(y,1)</literal>に対してプロットします.</para>
+    <para><literal>x</literal> および <literal>y</literal> がベクトルの場合, plot(x,y) は
+	ベクトル <literal>y</literal> をベクトル <literal>x</literal>に対してプロットします. 
+	ベクトル<literal>x</literal> および
+    <literal>y</literal> の要素数は同じである必要があります.</para>
+    <para><literal>x</literal> がベクトルで <literal>y</literal> が行列の場合, plot(x,y)
+    は <literal>y</literal> の各列をベクトル <literal>x</literal>に対してプロットします. 
+    この場合,<literal>y</literal> の列の数は
+    <literal>x</literal> のエントリの数と同じである必要があります.</para>
+    <para><literal>x</literal> と <literal>y</literal> が行列の場合, plot(x,y) は
+	<literal>y</literal> の各列を<literal>x</literal>の同じ列に対してプロットします.
+    この場合,<literal>x</literal> と<literal>y</literal> の大きさは同じである必要があります.</para>
+    <para>最後に, <literal>x</literal> または <literal>y</literal> が行列の場合, 
+	ベクトルは行列の各行または各列に対してプロットされます.
+	この選択は,行列の行また列の次元にベクトルの行または列の次元のどちらが
+	一致するかに応じて行われます.
+	(<literal>x</literal> または <literal>y</literal> のみが)正方行列の場合,
+	列が行よりも優先されます(以下の例参照).</para>
+    <para><literal>y</literal> はマクロまたはプリミティブとして定義された関数と
+	することも可能です.この場合,
+	<literal>x</literal> データを(ベクトルまたは行列として)指定する必要があり,
+	対応する<literal>y(x)</literal>の計算が暗黙の内に行われます.</para>
+    <para><literal>LineSpec</literal> と<literal>GlobalProperty</literal> 引数は
+	プロットをカスタマイズするために使用されます.
+	以下に利用可能な全オプションのリストを示します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>LineSpec</term>
+        <listitem>
+          <para>このオプションは曲線の描画方法を簡便な方法で
+	指定する際に使用されます.
+	このオプションは,LineStyle, Marker および Color指定子を含む文字列とする
+	必要があります.</para>
+	<para>これらのリファレンスは曖昧さがないように
+	文字列内で指定することが必要です(順番は重要ではありません).
+	例えば,ダイヤモンド型の記号を付けた赤い長い破線を指定する場合,
+	以下のように書くことができます:
+        <literal>'r--d'</literal> , <literal>'--dire'</literal> または
+        <literal>'--reddiam'</literal>  または他のあいまいでない命令,
+	もしくは全体を指定する <literal>'diamondred--'</literal>
+	(<link linkend="LineSpec">LineSpec</link>参照)</para>
+          <para>
+	線の種類,色,マーカの色(および大きさ)も
+	ポリラインエンティティプロパティにより(再)設定できることに
+	注意してください
+	(<link linkend="polyline_properties">polyline_properties</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>GlobalProperty</term>
+        <listitem>
+	<para>
+	このオプションは, <literal>LineSpec</literal>を使用する
+	よりも多くのオプションを用いて曲線のプロット方法を指定できます.
+	<literal>PropertyName</literal>を定義する文字列と
+	その値である<literal>PropertyValue</literal>
+	(<literal>PropertyName</literal>の型に依存して文字列または整数または...)
+	の組で指定する必要があります.
+        <literal>GlobalProperty</literal>により複数のプロパティ,
+	つまり, LineSpec により利用可能なあらゆるプロパティ,
+	マーカの色(表示色および背景色), 視認性, クリッピング, 曲線の太さ,
+	を設定可能です. 
+	(<link linkend="GlobalProperty">GlobalProperty</link>参照)</para>
+          <para>
+	これらのプロパティは全て
+	ポリラインエンティティプロパティ
+	(<link linkend="polyline_properties">polyline_properties</link>参照)
+	により(再)設定できることに注意してください.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>注意</title>
+    <para>デフォルトでは, 連続したプロットは重ね描きされます.
+	前のプロットを消去するには,
+	<literal>clf()</literal>を使用してください. <literal>auto_clear</literal> モードを
+	デフォルトで有効にするには,次のようにデフォルトの軸を編集してください:</para>
+    <para>da=gda();</para>
+    <para>da.auto_clear = 'on'</para>
+    <para>
+	表示を改善するために<literal>plot</literal>関数が親の軸の
+	<literal>box</literal>プロパティを修正することがあります.
+	これは,親の軸が<literal>plot</literal>のコールにより作成されたか,
+	コール前に空である場合に行われます.
+	軸の一つが原点を中心にしている場合, ボックスは無効となります.
+	その他の場合, ボックスが有効になります.
+    </para>
+    <para>
+      ボックスプロパティと軸の配置に関する詳細については,
+	<link linkend="axes_properties">axes_properties</link>を参照ください.
+    </para>
+    <para>
+	色を指定しない場合,曲線をプロットする際にデフォルトの色テーブルが
+	使用されます.
+	複数の線を描画する際,plotコマンドは自動的に
+	このテーブルに基づき周期的に選択します.
+	以下に使用される色を示します:</para>
+    <informaltable border="1">
+      <tr>
+        <td>
+          <literal>R</literal>
+        </td>
+        <td>
+          <literal>G</literal>
+        </td>
+        <td>
+          <literal>B</literal>
+        </td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.</td>
+        <td>1.</td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.5</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>1.</td>
+        <td>0.</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>0.</td>
+        <td>0.75</td>
+        <td>0.75</td>
+      </tr>
+      <tr>
+        <td>0.75</td>
+        <td>0.</td>
+        <td>0.75</td>
+      </tr>
+      <tr>
+        <td>0.75</td>
+        <td>0.75</td>
+        <td>0.</td>
+      </tr>
+      <tr>
+        <td>0.25</td>
+        <td>0.25</td>
+        <td>0.25</td>
+      </tr>
+    </informaltable>
+    <para/>
+    <para>コマンド <literal>plot</literal> を入力することによりデモを見ることができます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// x initialisation 
+x=[0:0.1:2*%pi]';
+//simple plot
+plot(sin(x))
+clf()
+plot(x,sin(x))
+//multiple plot
+clf()
+plot(x,[sin(x) sin(2*x) sin(3*x)])
+clf()
+
+// axis on the right 
+plot(x,sin(x)) 
+a=gca(); // Handle on current axes entity 
+a.y_location ="right"; 
+clf()
+
+// axis centered at (0,0)
+plot(x-4,sin(x),x+2,cos(x))
+a=gca(); // Handle on axes entity
+a.x_location = "origin"; 
+a.y_location = "origin"; 
+
+// Some operations on entities created by plot ...
+a=gca();
+a.isoview='on'; 
+a.children // list the children of the axes : here it is an Compound child composed of 2 entities 
+poly1= a.children.children(2); //store polyline handle into poly1 
+poly1.foreground = 4; // another way to change the style...
+poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.clip_state='off' // clipping control
+a.isoview='off'; 
+
+//LineSpec and GlobalProperty examples:
+clf();
+t=0:%pi/20:2*%pi;
+plot(t,sin(t),'ro-.',t,cos(t),'cya+',t,abs(sin(t)),'--mo')
+scf(2)
+plot([t ;t],[sin(t) ;cos(t)],'xdat',[1:2])
+scf(3)
+axfig3 = gca();
+scf(4) // should remain blank
+plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
+xdel(winsid())
+
+//Data specification
+t=-%pi:0.1:%pi;
+size(t)
+plot(t) // simply plots y versus t vector size
+clf(); // clear figure
+
+plot(t,sin(t)); // plots sin(t) versus t
+clf();
+
+t=[1     1     1     1
+   2     3     4     5
+   3     4     5     6
+   4     5     6     7];
+
+plot(t) // plots each t column versus row size
+clf();
+
+subplot(221)
+plot(t,sin(t)); // plots sin(t) versus t column by column this time
+xtitle("sin(t) versus t")
+subplot(222)
+plot(t,sin(t)')
+xtitle("sin(t)'' versus t")
+subplot(223)
+plot(t',sin(t))
+a=gca();
+a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+xtitle("sin(t) versus t''")
+subplot(224)
+plot(t',sin(t)')
+xtitle("sin(t)'' versus t''")
+
+clf();
+
+//Special case 1
+//x : vector ([5 6 7 8]) and y : matrix (t)
+x=[5 6 7 8]
+plot(x,t);
+plot(x',t); // idem, x is automatically transposed to match t (here the columns)
+clf()
+
+// Only one matching possibility case : how to make 4 identical plots in 4 manners...
+// x is 1x4 (vector) and y is 4x5 (non square matrix)
+subplot(221);
+plot(x,[t [8;9;10;12]]');
+subplot(222);
+plot(x',[t [8;9;10;12]]');
+subplot(223);
+plot(x,[t [8;9;10;12]]');
+subplot(224);
+plot(x',[t [8;9;10;12]]');
+clf()
+
+//Special case 2
+// Case where only x or y is a square matrix
+//x : matrix (t) and y  : vector ([1 2 3 4])
+plot(t,[1 2 3 4]) // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t,[1;2;3;4]) // the same plot
+clf();
+
+// t is transposed : notice the priority given to the columns treatment
+plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
+plot(t',[1 2 3 4]') // the same plot 
+clf();
+
+// y is a function defined by..
+// ..a primitive
+plot(1:0.1:10,sin) // equivalent to plot(1:0.1:10,sin(1:0.1:10))
+clf();
+
+// ..a macro:
+deff('[y]=toto(x)','y=x.*x')
+plot(1:10,toto)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="clf">clf</link>
+      </member>
+      <member>
+        <link linkend="xdel">xdel</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="LineSpec">LineSpec</link>
+      </member>
+      <member>
+        <link linkend="GlobalProperty">GlobalProperty</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.Leray</para>
+  </refsection>
+</refentry>

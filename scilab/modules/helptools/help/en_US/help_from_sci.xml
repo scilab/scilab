@@ -122,8 +122,8 @@ help_from_sci('test_fun','.','.')
  ]]></programlisting>
 </refsection>
 
-<refsection>
-   <title>See also</title>
+<refsection role="see also">
+<title>See Also</title>
    <simplelist type="inline">
    <member><link linkend="help">help</link></member>
    <member><link linkend="help_skeleton">help_skeleton</link></member>

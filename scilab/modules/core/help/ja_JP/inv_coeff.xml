@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="inv_coeff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>inv_coeff</refname>
+    <refpurpose> 係数を指定して多項式行列を作成</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>C</term>
+        <listitem>
+          <para>係数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>d</term>
+        <listitem>
+          <para>多項式行列の次数.
+		オプションのパラメータでデフォルト値は  <literal>d=-1+size(C,'c')/size(C,'r')</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>
+		多項式の変数名を指定する文字列  (デフォルト値: <literal>'x'</literal>).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>P=inv_coeff(Mp,k)</literal>は, <literal>k</literal> が <literal>Mp</literal> の
+	大きさと互換性がある場合, k次の多項式行列を返します.
+	<literal>C=[C0,C1,...,Ck]</literal> の時,
+    <literal>P= C0 + C1*x +... +Ck*x^k</literal>となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=int(10*rand(2,6))
+// 1次の多項式行列を作成
+P=inv_coeff(A,1)
+norm(coeff(P)-A)
+// 次数にデフォルト値を使用
+P1=inv_coeff(A)
+norm(coeff(P1)-A)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="poly">poly</link>
+      </member>
+      <member>
+        <link linkend="degree">degree</link>
+      </member>
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="randpencil">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>randpencil</refname>
+    <refpurpose>ランダムなペンシル</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>F=randpencil(eps,infi,fin,eta)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>eps</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>infi</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fin</term>
+        <listitem>
+          <para>実数ベクトル, またはモニックな多項式, またはモニックな多項式のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eta</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>F</term>
+        <listitem>
+          <para>実数行列ペンシル <literal>F=s*E-A</literal>  (<literal>s=poly(0,'s')</literal>)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    ユーティリティ関数.
+    <literal>F=randpencil(eps,infi,fin,eta)</literal> は,指定したクロネッカー構造を有する
+	ランダムなペンシル <literal>F</literal>を返します.
+    構造は以下のように指定されます:
+    <literal>eps=[eps1,...,epsk]</literal>: epsilon ブロックの構造 (大きさ eps1 x(eps1+1),....)
+    <literal>fin=[l1,...,ln]</literal>  有限の固有値の集合 (実数と仮定)( []の場合もあります)
+    <literal>infi=[k1,...,kp]</literal> 無限大におけるJ-ブロックの大きさ
+    <literal>ki&gt;=1</literal>  (J ブロックがない場合: infi=[] ).
+    <literal>eta=[eta1,...,etap]</literal>: ofeta ブロック構造 (大きさ (eta1+1)x eta1,...)</para>
+    <para><literal>epsi</literal> &gt;=0である必要があり, 
+	<literal>etai</literal> &gt;=0である必要があり, <literal>infi</literal>
+     &gt;=1である必要があります.</para>
+    <para>
+    <literal>fin</literal> が (モニックな) 多項式の場合,
+	有限のブロックは<literal>fin</literal>の根を固有値として許容します.</para>
+    <para>
+    <literal>fin</literal> が多項式のベクトルの場合, 
+	これらは<literal>F</literal>の有限単因子,すなわち,<literal>p(i)</literal>の根は
+	<literal>F</literal>の有限な固有値となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+F=randpencil([0,1],[2],[-1,0,1],[3]);
+[Q,Z,Qd,Zd,numbeps,numbeta]=kroneck(F);
+Qd, Zd
+s=poly(0,'s');
+F=randpencil([],[1,2],s^3-2,[]); //通常のペンシル
+det(F)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="kroneck">kroneck</link>
+      </member>
+      <member>
+        <link linkend="pencan">pencan</link>
+      </member>
+      <member>
+        <link linkend="penlaur">penlaur</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

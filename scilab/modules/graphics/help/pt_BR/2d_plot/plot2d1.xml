@@ -180,8 +180,8 @@ plot2d1("oll",x,[exp(x) exp(x^2) exp(x^3)])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="plot2d">plot2d</link></member>

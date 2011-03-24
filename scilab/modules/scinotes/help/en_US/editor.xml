@@ -34,6 +34,7 @@
       editor(file)
       editor([file1, file2])
       editor(file, line_number)
+      editor(file, line_number, macro_name)
       editor([file1, file2], [line_number1, line_number2])
       editor(file, 'readonly')
       editor([file1, file2], 'readonly')
@@ -73,6 +74,16 @@
       </varlistentry>
     </variablelist>
     
+    <variablelist>
+      <varlistentry>
+        <term>macro_name</term>
+	
+        <listitem>
+          <para>a string, the line number would be relative to the definition of the function macro_name</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
     <variablelist>
       <varlistentry>
         <term>[line_number1, line_number2]</term>
@@ -673,6 +684,9 @@ editor(['SCI/modules/time/macros/datenum.sci','SCI/modules/time/macros/datevec.s
     
 // editor with a file name and the line number to highlight
 editor('SCI/modules/time/macros/datenum.sci', 5);
+
+// editor with a file name and the line number to highlight
+editor('SCI/modules/time/macros/datenum.sci', 8, 'datenum');
 
 // editor with a matrix of files name and the corresponding matrix of lines to highlight
 // the files name matrix and the lines to highlight matrix should have the same size

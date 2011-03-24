@@ -59,8 +59,8 @@ a-[] -->[]
     <para><literal> mtlb_mode()</literal> renvoie la valeur du mode de compatibilité courant (%t=Matlab, %f=Scilab).
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="empty">empty</link>

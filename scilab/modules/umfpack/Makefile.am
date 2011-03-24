@@ -11,14 +11,15 @@
 modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
+noinst_LTLIBRARIES = libsciumfpack-algo.la
 
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
-libsciumfpack_la_root_DATA = changelog.txt \
+libsciumfpack_la_root_DATA =  \
 license.txt \
-readme.txt \
+ \
 version.xml \
 TAUCS_license.txt \
 UMFPACK_license.txt
@@ -52,7 +53,9 @@ sci_gateway/c/sci_umfpack.c
 libsciumfpack_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libsciumfpack_la_sci_gateway_DATA = sci_gateway/umfpack_gateway.xml
 
-libsciumfpack_la_SOURCES = $(UMFPACK_C_SOURCES) $(GATEWAY_C_SOURCES)
+libsciumfpack_algo_la_SOURCES = $(UMFPACK_C_SOURCES)
+libsciumfpack_la_SOURCES = $(GATEWAY_C_SOURCES)
+libsciumfpack_algo_la_CFLAGS = $(libsciumfpack_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciumfpack_la_SOURCES)

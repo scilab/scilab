@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legendre" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legendre</refname>
+
+    <refpurpose>随伴ルジャンドル関数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y = legendre(n,m,x [,normflag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>非負の整数または等間隔で増分刻みが1の
+	非負の整数のベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>非負の整数または等間隔で増分刻みが1の
+	非負の整数のベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数 (行) ベクトル (<literal>x</literal>の要素は
+          <literal>(-1,1)</literal>の範囲にある必要があります)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>normflag</term>
+
+        <listitem>
+          <para>(オプション) スカラー文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>n</literal> および <literal>m</literal> がスカラーの場合,
+    <literal>legendre(n,m,x)</literal> は,
+	<literal>x</literal>の全要素について
+	随伴ルジャンドル関数Pnm(x)を計算します.
+	使用される定義を以下に示します:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/legendre_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>ただし,<literal>Pn</literal>は<literal>n</literal>次の
+	ルジャンドル多項式です.
+	<literal>legendre(n,0,x)</literal> は
+	<literal>x</literal>の全要素について
+	ルジャンドル関数Pn(x)を計算します.</para>
+
+    <para>
+	normflagが"norm"に等しい時,
+	(<literal>(-1)^m</literal>係数を付けずに)
+	正規化された出力が得られます :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/legendre_equation2.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>これは,球面調和関数を計算する際に有用です(例3参照):</para>
+
+    <para>効率化のため,
+	最初の2つの引数の一つをベクトルとすることができ,
+	例えば,<literal>legendre(n1:n2,0,x)</literal>は
+	<literal>x</literal>の要素における
+	<emphasis>n1, n1+1, ..., n2</emphasis>次の
+	ルジャンドル多項式を全て計算します.
+	また,
+    <literal>legendre(n,m1:m2,x)</literal> は
+	<literal>x</literal>において<emphasis>m=m1, m1+1, ..., m2</emphasis>
+	に関する随伴ルジャンドル関数Pnmを全て計算します.</para>
+  </refsection>
+
+  <refsection>
+    <title>出力形式</title>
+
+    <para>どの場合でも, <literal>y</literal>の形式は以下のようになります :</para>
+
+    <programlisting role = ""><![CDATA[ 
+max(length(n),length(m)) x length(x)
+ ]]></programlisting>
+
+    <para>and :</para>
+
+    <programlisting role = ""><![CDATA[ 
+y(i,j) = P(n(i),m;x(j))   n がベクトルの場合
+y(i,j) = P(n,m(i);x(j))   m がベクトルの場合
+y(1,j) = P(n,m;x(j))      n と m が共にスカラーの場合
+ ]]></programlisting>
+
+    <para><literal>x</literal>は行ベクトルの方が好ましいですが,
+	任意の<literal>mx x nx</literal>行列を指定すると,
+	<literal>1 x (mx * nx)</literal>行列とみなされ,
+	以下のように列順に成形されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例 1 :  最初の6個のルジャンドル多項式を(-1,1)の範囲でプロット
+l = nearfloat("pred",1);
+x = linspace(-l,l,200)';
+y = legendre(0:5, 0,  x);
+clf()
+plot2d(x,y', leg="p0@p1@p2@p3@p4@p5@p6")
+xtitle("the 6 th first Legendre polynomials")
+
+// 例2 : 5次の随伴ルジャンドル関数をプロット
+l = nearfloat("pred",1);
+x = linspace(-l,l,200)';
+y = legendre(5, 0:5, x, "norm");
+clf()
+plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
+xtitle("the (normalised) associated Legendre functions of degree 5")
+
+// 例3 : 球面調和関数を定義,プロット
+// 3-1 : 関数Ylmを定義
+function [y] = Y(l,m,theta,phi)
+  // theta はスカラーまたは行ベクトル
+  // phi はスカラーまたは列ベクトル
+  if m >= 0 then
+     y = (-1)^m/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, m, cos(theta), "norm")
+  else
+     y = 1/(sqrt(2*%pi))*exp(%i*m*phi)*legendre(l, -m, cos(theta), "norm")
+  end      
+endfunction
+
+// 3.2 : 他の有用な関数を定義
+function [x,y,z] = sph2cart(theta,phi,r)
+  // theta 行ベクトル      1 x nt
+  // phi   列ベクトル  np x 1
+  // r    スカラーまたは np x nt 行列 (r(i,j) phi(i) theta(j)) における長さ
+  x = r.*(cos(phi)*sin(theta));
+  y = r.*(sin(phi)*sin(theta));
+  z = r.*(ones(phi)*cos(theta));
+endfunction
+
+// 3-3  Y31(theta,phi)をプロット
+l = 3; m = 1;
+theta = linspace(0.1,%pi-0.1,60);
+phi = linspace(0,2*%pi,120)';
+f = Y(l,m,theta,phi);
+[x1,y1,z1] = sph2cart(theta,phi,abs(f));       [xf1,yf1,zf1] = nf3d(x1,y1,z1);
+[x2,y2,z2] = sph2cart(theta,phi,abs(real(f))); [xf2,yf2,zf2] = nf3d(x2,y2,z2);
+[x3,y3,z3] = sph2cart(theta,phi,abs(imag(f))); [xf3,yf3,zf3] = nf3d(x3,y3,z3);
+
+clf()
+subplot(1,3,1)
+plot3d(xf1,yf1,zf1,flag=[2 4 4]); xtitle("|Y31(theta,phi)|")
+subplot(1,3,2)
+plot3d(xf2,yf2,zf2,flag=[2 4 4]); xtitle("|Real(Y31(theta,phi))|")
+subplot(1,3,3)
+plot3d(xf3,yf3,zf3,flag=[2 4 4]); xtitle("|Imag(Y31(theta,phi))|")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Smith, John M. (code dxlegf.f from Slatec)</member>
+
+      <member>B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

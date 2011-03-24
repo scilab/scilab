@@ -1,0 +1,2944 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="bvode" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bvode</refname>
+
+    <refpurpose>コロケーション法によるODEの境界値問題</refpurpose>
+  </refnamediv>
+
+  <refnamediv xml:id="bvodeS">
+    <refname>bvodeS</refname>
+
+    <refpurpose>bvodeの簡易的なコール</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,fsub,dfsub,gsub,dgsub,guess)
+zu=bvodeS(xpoints,m,N,x_low,x_up,fsub,gsub,zeta, &lt;optional_args&gt;)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>zu</term>
+
+        <listitem>
+          <para>
+	大きさMの列ベクトル.
+	複数の点で指定したメッシュ上で評価したODEの解.
+	各点における z(u(x)) が含まれます.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xpoints</term>
+
+        <listitem>
+          <para>
+	解を観測する点を指定する配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>N</term>
+
+        <listitem>
+          <para>整数値を有するスカラー,微分方程式の数
+          (N &lt;= 20).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>
+	整数要素を有する大きさ <literal>N</literal> のベクトル.
+	<literal>m</literal>は各微分方程式の次数のベクトルで,
+	<literal>m(i)</literal>はi番目の微分方程式の次数を指定します.
+	以下に示す <literal>M</literal>は
+	<literal>m</literal>の要素の合計を表します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x_low</term>，
+
+        <listitem>
+          <para>スカラー: 区間の左端</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x_up</term>
+
+        <listitem>
+          <para>スカラー: 区間の右端</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zeta</term>
+
+        <listitem>
+          <para>大きさ Mのベクトル,<literal>zeta(j)</literal> 
+	は, j番目の端の条件点(境界値)を指定します.
+	x_low&lt;=zeta(j)
+          &lt;= zeta(j+1)<literal>&lt;=x_up</literal>
+	となります.
+	</para>
+
+          <para>
+	全ての境界条件点は,
+	使用される全てのメッシュにおけるメッシュ点とする必要があります.
+	以下の <literal>ipar(11)</literal> および
+          <literal>fixpnt</literal>の説明を参照ください.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ipar</term>
+
+        <listitem>
+          <para>11個の整数要素を有する配列:</para>
+
+          <para>[<literal>nonlin, collpnt, subint, ntol, ndimf, ndimi, iprint,
+          iread, iguess, rstart,nfxpnt]</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>nonlin: ipar(1)</term>
+
+              <listitem>
+                <para>問題が線形の場合: 0 ,問題が非線形の場合: 1</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>collpnt: ipar(2)</term>
+
+              <listitem>
+                <para>
+		サブ区間毎のコロケーション点の数を指定します.
+		ただし, 
+                where max(m(j)) &lt;= collpnt &lt;= 7</para>
+
+                <para><literal>ipar(2)=0</literal> の場合,
+		<literal>collpnt</literal> は ( max(m(j))+1 ,
+                5-max(m(j)) )に設定されます</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>subint: ipar(3)</term>
+
+              <listitem>
+                <para>初期メッシュのサブ区間の数を指定します.
+		<literal>ipar(3) = 0</literal> の場合,
+		適宜 
+                <literal>subint = 5</literal>と設定します.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ntol: ipar(4)</term>
+
+              <listitem>
+                <para>
+		解と微分の許容誤差の数を指定します.
+		0 &lt; ntol &lt;= M とする必要があります.
+		<literal>ipar(4)</literal> は,
+		<literal>tol</literal> 引数の次元または
+		<literal>0</literal>に設定する必要があります.
+		後者の場合, 実際の値は自動的に
+		<literal>size(tol,'*')</literal> に設定されます.
+		</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ndimf: ipar(5)</term>
+
+              <listitem>
+                <para>
+
+		<literal>fspace</literal>(実数の作業配列)の次元を指定します.
+		この値は, 
+		サブ区間の最大数 nmax への拘束条件を指定します.</para>
+
+                <para>ipar(5) の値は,拘束条件
+                ipar(5)&gt;=nmax*nsizef を考慮する必要があります. ただし</para>
+
+                <para><literal>nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-nrec)*2*M</literal>
+                (<literal>nrec</literal> は終端境界条件の数です
+                ).</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ndimi: ipar(6)</term>
+
+              <listitem>
+                <para>ispace (整数作業配列)の次元を指定します.
+                この値は, サブ区間の最大数 nmax への拘束条件を指定します.</para>
+
+                <para>ipar(6) の値は, 拘束条件 ipar(6)&gt;=nmax*nsizei
+		を考慮する必要があります. ただし,</para>
+
+                <para><literal>nsizei=3 +
+                </literal><literal>collpnt*N+M</literal>.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iprint: ipar(7)</term>
+
+              <listitem>
+                <para>出力制御, 以下の値とします:</para>
+
+                <variablelist>
+                  <varlistentry>
+                    <term>-1</term>
+
+                    <listitem>
+                      <para>完全な診断出力の場合</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>0</term>
+
+                    <listitem>
+                      <para>部分的な出力の場合</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>1</term>
+
+                    <listitem>
+                      <para>出力しない場合</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iread: ipar(8)</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+
+                    <listitem>
+                      <para>
+			bvodeが一様な初期メッシュを生成するようにします.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= xx</term>
+
+                    <listitem>
+                      <para>他の値は, Scilabでは未実装です.</para>
+
+                      <variablelist>
+                        <varlistentry>
+                          <term>= 1</term>
+
+                          <listitem>
+                            <para>初期メッシュがユーザにより指定される場合.
+				fspace で以下のように定義されます: </para>
+
+                            <para>メッシュは <literal>fspace(1), ...,
+                            fspace(n+1)</literal>となります. 
+				ユーザは内部メッシュ点<literal>fspace(j) = x(j),
+                            j = 2, ..., n.</literal>
+				のみを指定する必要があります.</para>
+                          </listitem>
+                        </varlistentry>
+
+                        <varlistentry>
+                          <term>= 2 初期メッシュがユーザにより指定される場合.</term>
+
+                          <listitem>
+                            <para><literal>ipar(8)=1</literal>が指定された時と同様であり, 
+			加えて,適応型メッシュ選択は行われません.</para>
+                          </listitem>
+                        </varlistentry>
+                      </variablelist>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>iguess: ipar(9)</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+
+                    <listitem>
+                      <para>解の初期推定値が指定されない場合.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 1</term>
+
+                    <listitem>
+                      <para>引数 <literal>guess</literal> により,
+		初期推定値がユーザにより指定される場合.</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 2</term>
+
+                    <listitem>
+                      <para>
+		初期メッシュと近似解係数がユーザにより fspace で指定される場合
+		(前のメッシュと新規メッシュは同じものになります).</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 3</term>
+
+                    <listitem>
+                      <para>
+			前のメッシュと近似解の係数がユーザによりfspace で指定される場合,
+			新規メッシュは 2倍荒くとられます.
+			すなわち, 前のメッシュの各2点毎に1点となります．</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 4</term>
+
+                    <listitem>
+                      <para>
+			前の初期メッシュと近似解係数に加えて,同時に
+			新規メッシュが fspace に出力されます.
+			(詳細はiguess = 2, 3, および 4の出力の説明を参照ください)
+			</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>ireg: ipar(10)</term>
+
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term>= 0</term>
+
+                    <listitem>
+                      <para>問題が標準の場合</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 1</term>
+
+                    <listitem>
+                      <para>最初の緩和係数が ireg に等しい場合,
+		非線形反復は過去の収束結果に基づきません.
+		(別の敏感な非線形問題のみで使用されます)</para>
+                    </listitem>
+                  </varlistentry>
+
+                  <varlistentry>
+                    <term>= 2</term>
+
+                    <listitem>
+                      <para>
+			以下の場合,直ちにリターンします.
+			(a) 2回連続で収束しない場合,
+			または
+			(b)最初に誤差推定値を得た後.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>nfxpnt: ipar(11)</term>
+
+              <listitem>
+                <para>
+                <literal>x_low</literal> および <literal>x_up</literal>
+		以外のメッシュの固定点の数(<literal>fixpnt</literal>の次元)を指定します.
+                <literal>ipar(11)</literal> は,引数
+		<literal>fixpnt</literal>の次元または
+		<literal>0</literal>に設定する必要があります.
+		後者の場合, 実際の値は自動的に
+		<literal>size(fixpnt,'*')</literal> に設定されます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ltol</term>
+
+        <listitem>
+          <para>次元 <literal>ntol</literal>=ipar(4)の配列.
+          <literal>ltol(j) = l</literal> は,
+	tol 配列の j番目の許容誤差を指定します.これは,
+	以下の<literal>l</literal>番目の要素の誤差を制御します.
+	<inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                  <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
+                  <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
+                  <mml:mo mml:stretchy="false">)</mml:mo>
+                  </mml:mrow></mml:semantics></mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>. 以下も必要です:</para>
+
+          <para><literal>1 &lt;= ltol(1) &lt; ltol(2) &lt; ... &lt; ltol(ntol)
+          &lt;= M</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para> <literal>ntol=ipar(4)</literal>次の配列.</para>
+
+          <para><literal>tol(j)</literal>は,
+		以下の <literal>ltol(j)</literal> 番目の要素の許容誤差です.
+	 <inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                  <mml:semantics> <mml:mi>z</mml:mi> <mml:mrow>
+                  <mml:mo mml:stretchy="false">(</mml:mo> <mml:mi>u</mml:mi>
+                  <mml:mo mml:stretchy="false">)</mml:mo> </mml:mrow>
+                  </mml:semantics></mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject>. つまり, このコードは以下の条件を
+		満たそうとします.
+          <inlinemediaobject>
+                <imageobject>
+                  <imagedata>
+                    <mml:math>
+                      <mml:semantics>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mfenced mml:close="∣" mml:open="∣">
+                              <mml:msub>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:mi>z</mml:mi>
+
+                                    <mml:mrow>
+                                      <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                        <mml:mi>v</mml:mi>
+
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                      </mml:mrow>
+
+                                      <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                      <mml:mi>z</mml:mi>
+                                    </mml:mrow>
+
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                      <mml:mi>u</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+
+                                <mml:mrow>
+                                  <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                    <mml:mi>j</mml:mi>
+
+                                    <mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+                              </mml:msub>
+                            </mml:mfenced>
+
+                            <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                            <mml:mi mml:fontstyle="italic">tol</mml:mi>
+                          </mml:mrow>
+
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>j</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">⋅</mml:mo>
+
+                              <mml:mfenced mml:close="∣" mml:open="∣">
+                                <mml:msub>
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                    <mml:mrow>
+                                      <mml:mi>z</mml:mi>
+
+                                      <mml:mrow>
+                                        <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                        <mml:mi>u</mml:mi>
+
+                                        <mml:mo mml:stretchy="false">)</mml:mo>
+                                      </mml:mrow>
+                                    </mml:mrow>
+
+                                    <mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+
+                                  <mml:mrow>
+                                    <mml:mi mml:fontstyle="italic">ltol</mml:mi>
+
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                      <mml:mi>j</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+                                </mml:msub>
+                              </mml:mfenced>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">+</mml:mo>
+
+                            <mml:mi mml:fontstyle="italic">tol</mml:mi>
+                          </mml:mrow>
+
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mi>j</mml:mi>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+
+                          <mml:mi>,</mml:mi>
+
+                          <mml:mi mml:fontstyle="normal">for</mml:mi>
+
+                          <mml:mrow>
+                            <mml:mi>j</mml:mi>
+
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+
+                            <mml:mn>1</mml:mn>
+                          </mml:mrow>
+
+                          <mml:mi mml:fontstyle="normal">:</mml:mi>
+
+                          <mml:mi mml:fontstyle="normal">ntol</mml:mi>
+                        </mml:mrow>
+
+                        <mml:annotation
+                        mml:encoding="StarMath 5.0">abs(z(v)-z(u))_{ltol(j)}
+                        &lt;= tol(j) cdot abs(z(u))_{ltol(j)} + tol(j), for
+                        j=1:ntol</mml:annotation>
+                      </mml:semantics>
+                    </mml:math>
+                  </imagedata>
+                </imageobject>
+            </inlinemediaobject> (サブ区間について)</para>
+
+          <para><inlinemediaobject>
+              <imageobject>
+                <imagedata>
+                  <mml:math>
+                  <mml:semantics> <mml:mi>v</mml:mi>
+                  </mml:semantics></mml:math>
+                </imagedata>
+              </imageobject>
+            </inlinemediaobject> が近似解ベクトルの場合,
+	u は厳密解(未知)となります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fixpnt</term>
+
+        <listitem>
+          <para><literal>nfxpnt=ipar(11)</literal>次の配列. 
+	各メッシュに含まれる<literal>x_low</literal> および
+          <literal>x_up</literal>以外の点を含みます.
+	このコードは,<literal>x_low</literal> および <literal>x_up</literal>
+	以外の全ての周辺条件点(zetaの説明を参照)が
+	<literal>fixpnt</literal>の中の固定点として
+	含まれることを必要とします.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fsub</term>
+
+        <listitem>
+          <para>
+	<link linkend="external">external</link> は,以下の
+	列ベクトルの評価に使用されます. <literal>f=</literal>
+	<inlinemediaobject>
+                <imageobject>
+                  <imagedata>
+                    <mml:math>
+                      <mml:semantics>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">[</mml:mo>
+
+                          <mml:mrow>
+                            <mml:msub>
+                              <mml:mi>f</mml:mi>
+
+                              <mml:mn>1</mml:mn>
+                            </mml:msub>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mi>,</mml:mi>
+
+                                <mml:mi>z</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:mi>u</mml:mi>
+
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mi>;</mml:mi>
+
+                            <mml:msub>
+                              <mml:mi>f</mml:mi>
+
+                              <mml:mn>2</mml:mn>
+                            </mml:msub>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mi>,</mml:mi>
+
+                                <mml:mi>z</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:mi>u</mml:mi>
+
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mi>,</mml:mi>
+
+                            <mml:mo mml:stretchy="false">⋯</mml:mo>
+
+                            <mml:mi>,</mml:mi>
+
+                            <mml:msub>
+                              <mml:mi>f</mml:mi>
+
+                              <mml:mi>N</mml:mi>
+                            </mml:msub>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mi>,</mml:mi>
+
+                                <mml:mi>z</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:mi>u</mml:mi>
+
+                                    <mml:mrow>
+                                      <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">)</mml:mo>
+                                    </mml:mrow>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">]</mml:mo>
+                        </mml:mrow>
+
+                        <mml:annotation
+                        mml:encoding="StarMath 5.0">[f_1(x,z(u(x)));
+                        f_2(x,z(u(x))),dotsaxis,
+                        f_N(x,z(u(x)))]</mml:annotation>
+                      </mml:semantics>
+                    </mml:math>
+                  </imagedata>
+                </imageobject>
+            </inlinemediaobject> 
+	ただし,
+	x_low &lt;= x &lt;= x_up の任意のx,
+	および z=z(u(x)) となる任意のz とします.
+	(以下の説明を参照)</para>
+
+          <para>外部関数は以下のように宣言を必要とします:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
+
+              <programlisting><![CDATA[ 
+subroutine fsub(x,zu,f)
+double precision zu(*), f(*),x 
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>Cの場合,関数プロトタイプを以下のようにします</para>
+
+              <programlisting><![CDATA[ 
+void fsub(double *x, double *zu, double *f)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>そしてScilab上では</para>
+
+              <programlisting><![CDATA[ 
+function f=fsub(x,zu,parameters)
+ ]]></programlisting>
+
+               
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dfsub</term>
+
+        <listitem>
+          <para>
+		<link linkend="external">external</link>は,
+	点xにおけるヤコビアン<literal>f(x,z(u))</literal>の
+	評価に使用されます.
+	ただし,<literal>z(u(x))</literal>は,
+	<literal>fsub</literal>と同様に定義され,
+	(<literal>N</literal>) 行 (<literal>M</literal>列)配列
+	dfには,fの偏微分が代入されます:</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center">
+                  <mml:math>
+                  <mml:semantics> <mml:mrow> <mml:mi
+                  mml:fontstyle="italic">df</mml:mi> <mml:mrow> <mml:mrow>
+                  <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+                  <mml:mi>i</mml:mi> <mml:mi>,</mml:mi> <mml:mi>j</mml:mi>
+                  </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo>
+                  </mml:mrow> <mml:mo mml:stretchy="false">=</mml:mo>
+                  <mml:mfrac> <mml:mrow> <mml:mo
+                  mml:stretchy="false">∂</mml:mo> <mml:msub>
+                  <mml:mi>f</mml:mi> <mml:mi>i</mml:mi> </mml:msub>
+                  </mml:mrow> <mml:mrow> <mml:mo
+                  mml:stretchy="false">∂</mml:mo> <mml:msub>
+                  <mml:mi>z</mml:mi> <mml:mi>j</mml:mi> </mml:msub>
+                  </mml:mrow> </mml:mfrac> </mml:mrow> <mml:mtext> for
+                  </mml:mtext> <mml:mrow> <mml:mo
+                  mml:stretchy="true">{</mml:mo> <mml:mtable> <mml:mtr>
+                  <mml:mrow> <mml:mrow> <mml:mi>i</mml:mi> <mml:mo
+                  mml:stretchy="false">=</mml:mo> <mml:mn>1</mml:mn>
+                  </mml:mrow> <mml:mi mml:fontstyle="normal">:</mml:mi>
+                  <mml:mi mml:fontstyle="italic">N</mml:mi> </mml:mrow>
+                  </mml:mtr> <mml:mtr> <mml:mrow> <mml:mrow>
+                  <mml:mi>j</mml:mi> <mml:mo mml:stretchy="false">=</mml:mo>
+                  <mml:mn>1</mml:mn> </mml:mrow> <mml:mi
+                  mml:fontstyle="normal">:</mml:mi> <mml:mi
+                  mml:fontstyle="italic">M</mml:mi> </mml:mrow> </mml:mtr>
+                  </mml:mtable> </mml:mrow> </mml:mrow> <mml:annotation
+                  mml:encoding="StarMath 5.0">df(i,j)= {partial{f_i}} over
+                  {partial{z_j}} ~ for ~ left lbrace binom{i=1:N}{j=1:M} right
+                  none</mml:annotation> </mml:semantics></mml:math>
+                </imagedata>
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+
+          <para>外部関数は以下のように宣言を必要とします:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
+
+              <programlisting><![CDATA[ 
+subroutine dfsub(x,zu,df)
+double precision zu(*), df(*),x
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
+
+              <programlisting><![CDATA[ 
+void dfsub(double *x, double *zu, double *df)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>そして,Scilabにおいては</para>
+
+              <programlisting><![CDATA[ 
+function df=dfsub(x,zu,parameters)
+ ]]></programlisting>
+
+               
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>gsub</term>
+
+        <listitem>
+          <para>以下の評価に使用される<link linkend="external">external</link>
+          <inlinemediaobject>
+                <imageobject>
+                  <imagedata>
+                    <mml:math>
+                      <mml:semantics>
+                        <mml:mrow>
+                          <mml:msub>
+                            <mml:mi>g</mml:mi>
+
+                            <mml:mi>i</mml:mi>
+                          </mml:msub>
+
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mrow>
+                              <mml:msub>
+                                <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                <mml:mi>i</mml:mi>
+                              </mml:msub>
+
+                              <mml:mi>,</mml:mi>
+
+                              <mml:mi>z</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                    <mml:msub>
+                                      <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                      <mml:mi>i</mml:mi>
+                                    </mml:msub>
+
+                                    <mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mrow>
+
+                        <mml:annotation
+                        mml:encoding="StarMath 5.0">g_i(%zeta_i,z(u(%zeta_i)))</mml:annotation>
+                      </mml:semantics>
+                    </mml:math>
+                  </imagedata>
+                </imageobject>
+            </inlinemediaobject> given z=<inlinemediaobject>
+                <imageobject>
+                  <imagedata>
+                    <mml:math>
+                      <mml:semantics>
+                        <mml:mrow>
+                          <mml:mi>z</mml:mi>
+
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mi>u</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:msub>
+                                  <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                  <mml:mi>i</mml:mi>
+                                </mml:msub>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+                        </mml:mrow>
+
+                        <mml:annotation
+                        mml:encoding="StarMath 5.0">z(u(%zeta_i))</mml:annotation>
+                      </mml:semantics>
+                    </mml:math>
+                  </imagedata>
+                </imageobject>
+            </inlinemediaobject> 
+	<literal>z = zeta(i)</literal> ただし,
+          <literal>1&lt;=i&lt;=M.</literal></para>
+
+          <para>外部関数は以下のように宣言を必要とします:</para>
+
+          <itemizedlist>
+             
+
+            <listitem>
+              <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
+
+              <programlisting><![CDATA[ 
+subroutine gsub(i,zu,g)
+double precision zu(*), g(*)
+integer i
+ ]]></programlisting>
+            </listitem>
+
+             
+
+            <listitem>
+              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
+
+              <programlisting><![CDATA[ 
+void gsub(int *i, double *zu, double *g)
+ ]]></programlisting>
+            </listitem>
+
+             
+            <listitem>
+              <para>そして,Scilabでは</para>
+              <programlisting><![CDATA[ 
+function g=gsub(i,zu,parameters)
+ ]]></programlisting>
+            <para>
+	<literal>fsub</literal>の<literal>f</literal>とは逆に
+	<literal>g</literal>では
+	コール毎に一つの値のみが返されることに注意してください.</para>
+            </listitem>
+
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dgsub</term>
+
+        <listitem>
+          <para>an <link linkend="external">external</link> used to evaluate
+          the i-th row of the Jacobian of <literal>g(x,u(x))</literal>. Where
+          <literal>z(u)</literal> is as for fsub, i as for gsub and the
+          M-vector <literal>dg</literal> should be filled with the partial
+          derivatives of g, viz, for a particular call one calculates</para>
+
+          <informalequation>
+            <mediaobject>
+              <imageobject>
+                <imagedata align="center">
+                  <mml:math>
+                  <mml:semantics> <mml:mrow> <mml:mi
+                  mml:fontstyle="italic">dg</mml:mi> <mml:mrow> <mml:mrow>
+                  <mml:mo mml:stretchy="false">(</mml:mo> <mml:mrow>
+                  <mml:mi>i</mml:mi> <mml:mi>,</mml:mi> <mml:mi>j</mml:mi>
+                  </mml:mrow> <mml:mo mml:stretchy="false">)</mml:mo>
+                  </mml:mrow> <mml:mo mml:stretchy="false">=</mml:mo>
+                  <mml:mfrac> <mml:mrow> <mml:mo
+                  mml:stretchy="false">∂</mml:mo> <mml:msub>
+                  <mml:mi>g</mml:mi> <mml:mi>i</mml:mi> </mml:msub>
+                  </mml:mrow> <mml:mrow> <mml:mo
+                  mml:stretchy="false">∂</mml:mo> <mml:msub>
+                  <mml:mi>z</mml:mi> <mml:mi>j</mml:mi> </mml:msub>
+                  </mml:mrow> </mml:mfrac> </mml:mrow> <mml:mtext> for
+                  </mml:mtext> <mml:mrow> <mml:mo
+                  mml:stretchy="true">{</mml:mo> <mml:mtable> <mml:mtr>
+                  <mml:mrow> <mml:mrow> <mml:mi>i</mml:mi> <mml:mo
+                  mml:stretchy="false">=</mml:mo> <mml:mn>1</mml:mn>
+                  </mml:mrow> <mml:mi mml:fontstyle="normal">:</mml:mi>
+                  <mml:mi mml:fontstyle="italic">M</mml:mi> </mml:mrow>
+                  </mml:mtr> <mml:mtr> <mml:mrow> <mml:mrow>
+                  <mml:mi>j</mml:mi> <mml:mo mml:stretchy="false">=</mml:mo>
+                  <mml:mn>1</mml:mn> </mml:mrow> <mml:mi
+                  mml:fontstyle="normal">:</mml:mi> <mml:mi
+                  mml:fontstyle="italic">M</mml:mi> </mml:mrow> </mml:mtr>
+                  </mml:mtable> </mml:mrow> </mml:mrow> <mml:annotation
+                  mml:encoding="StarMath 5.0">dg(i,j)= {partial{g_i}} over
+                  {partial{z_j}} ~ for ~ left lbrace binom{i=1:M}{j=1:M} right
+                  none</mml:annotation> </mml:semantics></mml:math>
+                </imagedata>
+              </imageobject>
+            </mediaobject>
+          </informalequation>
+
+          <para>外部関数は以下のような宣言を必要とします:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
+
+              <programlisting><![CDATA[ 
+subroutine dgsub(i,zu,dg)
+double precision zu(*), dg(*)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
+
+              <programlisting><![CDATA[ 
+void dgsub(int *i, double *zu, double *dg)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>And in Scilab </para>
+
+              <programlisting><![CDATA[ 
+function dg=dgsub(i,zu,parameters)
+ ]]></programlisting>
+
+               
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>guess</term>
+
+        <listitem>
+          <para>
+	<literal>z(u(x))</literal>および
+	<literal>u(x)</literal>のmj階微分<literal>dmval(u(x))</literal>
+	の初期近似値を見積もるために
+	<link linkend="external">external</link>が使用されます.
+	<literal>ipar(9) = 1</literal>の場合のみ, このサブルーチンが
+	使用されることに注意してください.
+	このため，zuの<literal>M</literal>個の要素および dmval の N個の
+	要素がx_low &lt;= x &lt;= x_upの範囲の任意の x について計算される
+	必要があります.</para>
+
+          <para>外部関数は以下のように宣言を必要とします:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Fortranの場合, 呼び出し手順を以下のようにします:</para>
+
+              <programlisting><![CDATA[ 
+subroutine guess(x,zu,dmval)
+double precision x,z(*), dmval(*)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>Cの場合, 関数プロトタイプを以下のようにします</para>
+
+              <programlisting><![CDATA[ 
+void fsub(double *x, double *zu, double *dmval)
+ ]]></programlisting>
+            </listitem>
+
+            <listitem>
+              <para>そしてScilab上では, </para>
+
+              <programlisting><![CDATA[ 
+function [dmval,zu]=fsub(x,parameters)
+ ]]></programlisting>
+
+               
+            </listitem>
+          </itemizedlist>
+
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;optional_args&gt;</term>
+
+
+        <listitem>
+         <para>以下のどれかとする必要があります:</para>
+        <itemizedlist>
+         <listitem>
+		<para>
+		以下の一連の値:
+              <literal>guess, dfsub, dgsub, fixpnt, ndimf, ndimi, ltol, tol,
+              ntol,nonlin, collpnt, subint, iprint, ireg, ifail</literal>
+            </para>
+	</listitem>
+
+          <listitem>
+	<para>
+	もしくは,一連の<literal>arg_name=argvalue</literal>
+	で指定します.
+	ただし <literal>arg_name</literal> は以下のどれかとなります: 
+	<literal>guess</literal>,
+          <literal>dfsub</literal>, <literal>dgsub</literal>,
+          <literal>fixpnt</literal>, <literal>ndimf</literal>,
+          <literal>ndimi</literal>, <literal>ltol</literal>,
+          <literal>tol</literal>, <literal>ntol</literal>,
+          <literal>nonlin</literal>, <literal>collpnt</literal>,
+          <literal>subint</literal>, <literal>iprint</literal>,
+          <literal>ireg</literal>, <literal>ifail</literal></para></listitem>
+        </itemizedlist>
+
+        <para>
+	これらの引数が指定される場合は,常に
+	<literal>ifail</literal>は上記のように説明されます.
+	<literal>ifail</literal>は選択されたオプション引数
+	に対応する bvode コールを表示するために使用できます.
+	もし，<literal>guess</literal> が指定された場合,
+	<literal>iguess</literal>が 1 に設定されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	これらの関数は, 以下のように定義された ode-s の
+	混合次数に関連するシステム多点境界値問題を解きます.
+	</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="left">
+            <mml:math>
+              <mml:semantics>
+                <mml:mrow>
+                  <mml:mo mml:stretchy="true">{</mml:mo>
+
+                  <mml:mtable>
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:msubsup>
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mi>i</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:msub>
+                                <mml:mi>m</mml:mi>
+
+                                <mml:mi>i</mml:mi>
+                              </mml:msub>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:msubsup>
+
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+
+                          <mml:msub>
+                            <mml:mi>f</mml:mi>
+
+                            <mml:mi>i</mml:mi>
+                          </mml:msub>
+                        </mml:mrow>
+
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+
+                          <mml:mrow>
+                            <mml:mi>x</mml:mi>
+
+                            <mml:mi>,</mml:mi>
+
+                            <mml:mi>z</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mi>x</mml:mi>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+
+                        <mml:mi />
+
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="true">{</mml:mo>
+
+                          <mml:mtable>
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mi>i</mml:mi>
+
+                                  <mml:mo mml:stretchy="false">=</mml:mo>
+
+                                  <mml:mn>1</mml:mn>
+                                </mml:mrow>
+
+                                <mml:mi mml:fontstyle="normal">:</mml:mi>
+
+                                <mml:mi>N</mml:mi>
+                              </mml:mrow>
+                            </mml:mtr>
+
+                            <mml:mtr>
+                              <mml:mrow>
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">∈</mml:mo>
+
+                                <mml:mfenced mml:close="[" mml:open="]">
+                                  <mml:mrow>
+                                    <mml:msub>
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mi>l</mml:mi>
+                                    </mml:msub>
+
+                                    <mml:mi>,</mml:mi>
+
+                                    <mml:msub>
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mi>u</mml:mi>
+                                    </mml:msub>
+                                  </mml:mrow>
+                                </mml:mfenced>
+                              </mml:mrow>
+                            </mml:mtr>
+                          </mml:mtable>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mi />
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:msub>
+                          <mml:mi>g</mml:mi>
+
+                          <mml:mi>j</mml:mi>
+                        </mml:msub>
+
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mrow>
+                              <mml:msub>
+                                <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                <mml:mi>j</mml:mi>
+                              </mml:msub>
+
+                              <mml:mi>,</mml:mi>
+
+                              <mml:mi>z</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mi>u</mml:mi>
+
+                                  <mml:mrow>
+                                    <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                    <mml:msub>
+                                      <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                      <mml:mi>j</mml:mi>
+                                    </mml:msub>
+
+                                    <mml:mo mml:stretchy="false">)</mml:mo>
+                                  </mml:mrow>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+
+                          <mml:mn>0</mml:mn>
+                        </mml:mrow>
+
+                        <mml:mi />
+
+                        <mml:mrow>
+                          <mml:mtext>,</mml:mtext>
+
+                          <mml:mi>j</mml:mi>
+
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+
+                          <mml:mn>1</mml:mn>
+                        </mml:mrow>
+
+                        <mml:mi mml:fontstyle="normal">:</mml:mi>
+
+                        <mml:mi>M</mml:mi>
+                      </mml:mrow>
+                    </mml:mtr>
+                  </mml:mtable>
+                </mml:mrow>
+
+                <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                stack{u_i^(m_i)=f_i(x,z(u(x))) ~~left lbrace { binom{i=1:N}{x
+                in left ] a_l, a_u right [} } right none# `#
+                g_j(%zeta_j,z(u(%zeta_j))) = 0~~j=1:M} right
+                none</mml:annotation>
+              </mml:semantics>
+            </mml:math>
+          </imagedata>
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>ただし,e</para>
+
+    <mediaobject>
+        <imageobject>
+          <imagedata align="left">
+            <mml:math>
+              <mml:semantics>
+                <mml:mrow>
+                  <mml:mo mml:stretchy="true">{</mml:mo>
+
+                  <mml:mtable>
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:mi>M</mml:mi>
+
+                        <mml:mo mml:stretchy="false">=</mml:mo>
+
+                        <mml:mrow>
+                          <mml:munderover>
+                            <mml:mo mml:stretchy="false">∑</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mi>i</mml:mi>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>1</mml:mn>
+                            </mml:mrow>
+
+                            <mml:mi>N</mml:mi>
+                          </mml:munderover>
+
+                          <mml:msub>
+                            <mml:mi>m</mml:mi>
+
+                            <mml:mi>i</mml:mi>
+                          </mml:msub>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mi />
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:mi>z</mml:mi>
+
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">(</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mi>u</mml:mi>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">)</mml:mo>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">=</mml:mo>
+
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">[</mml:mo>
+
+                            <mml:mrow>
+                              <mml:msub>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mn>1</mml:mn>
+                              </mml:msub>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:msubsup>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mn>1</mml:mn>
+
+                                <mml:mn>1</mml:mn>
+                              </mml:msubsup>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:mo mml:stretchy="false">⋯</mml:mo>
+
+                              <mml:msubsup>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mn>1</mml:mn>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:msub>
+                                      <mml:mi>m</mml:mi>
+
+                                      <mml:mn>1</mml:mn>
+                                    </mml:msub>
+
+                                    <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                    <mml:mn>1</mml:mn>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:msubsup>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:mi />
+
+                              <mml:mo mml:stretchy="false">⋯</mml:mo>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:mi />
+
+                              <mml:msub>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mi>N</mml:mi>
+                              </mml:msub>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:msubsup>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mi>N</mml:mi>
+
+                                <mml:mn>1</mml:mn>
+                              </mml:msubsup>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:mo mml:stretchy="false">⋯</mml:mo>
+
+                              <mml:mi>;</mml:mi>
+
+                              <mml:msubsup>
+                                <mml:mi>u</mml:mi>
+
+                                <mml:mi>N</mml:mi>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:msub>
+                                      <mml:mi>m</mml:mi>
+
+                                      <mml:mi>N</mml:mi>
+                                    </mml:msub>
+
+                                    <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                    <mml:mn>1</mml:mn>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+                              </mml:msubsup>
+
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">]</mml:mo>
+                          </mml:mrow>
+                        </mml:mrow>
+                      </mml:mrow>
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mi />
+                    </mml:mtr>
+
+                    <mml:mtr>
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:msub>
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mi>l</mml:mi>
+                              </mml:msub>
+
+                              <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                              <mml:msub>
+                                <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                                <mml:mn>1</mml:mn>
+                              </mml:msub>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                            <mml:mo mml:stretchy="false">⋯</mml:mo>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                          <mml:msub>
+                            <mml:mo mml:stretchy="false">ζ</mml:mo>
+
+                            <mml:mi>M</mml:mi>
+                          </mml:msub>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">≤</mml:mo>
+
+                        <mml:msub>
+                          <mml:mi>x</mml:mi>
+
+                          <mml:mi>u</mml:mi>
+                        </mml:msub>
+                      </mml:mrow>
+                    </mml:mtr>
+                  </mml:mtable>
+                </mml:mrow>
+
+                <mml:annotation mml:encoding="StarMath 5.0">left lbrace stack
+                { M= sum from {i=1} to {N} m_i # ~# z(u(x)) =
+                [u_1(x);u_1^{1}(x);dotsaxis u_1^(m_1-1)(x);~ dotsaxis;
+                ~u_N(x);u_N^{1}(x);dotsaxis; u_N^(m_N-1)(x)]# ~# x_l &lt;=
+                %zeta_1 &lt;= dotsaxis &lt;= %zeta_M &lt;=x_u}right
+                none</mml:annotation>
+              </mml:semantics>
+            </mml:math>
+          </imagedata>
+        </imageobject>
+    </mediaobject>
+
+    <para>外部関数で使用され, <literal>bvode</literal>  により返される
+	引数 <literal>zu</literal> は, 
+	指定した <literal>x</literal> に関する z(u(x))の要素により
+	構成される列ベクトルです.</para>
+
+    <para>
+	解 u を近似するために使用される手法は,
+	ガウス点におけるコロケーションです.
+	この方法は,i番目(i = 1:N)の要素についてm(i)-1階の連続微分が可であることを
+	必要とします.
+	ここで, k はサブ区間毎のコロケーション点(ステージ)の数で,
+	k .ge. max m(i) となるように選択されます.
+	ルンゲクッタのノミナル解表現が使用されます.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <para>
+	最初の2つの問題は参考文献の論文 [1] からの引用です.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">問題 1</emphasis> は
+	両端で単純支持され,均等に負荷がかかった剛性が可変の梁について
+	記述します.</para>
+
+        <para>以下のように定義することができます :</para>
+
+        <para>次の4次の微分方程式を解きます:</para>
+
+        <mediaobject>
+            <imageobject>
+              <imagedata align="left">
+                <mml:math>
+                  <mml:semantics>
+                    <mml:mrow>
+                      <mml:mfrac>
+                        <mml:msup>
+                          <mml:mi>d</mml:mi>
+
+                          <mml:mn>4</mml:mn>
+                        </mml:msup>
+
+                        <mml:mrow>
+                          <mml:mi>d</mml:mi>
+
+                          <mml:msup>
+                            <mml:mi>x</mml:mi>
+
+                            <mml:mn>4</mml:mn>
+                          </mml:msup>
+                        </mml:mrow>
+                      </mml:mfrac>
+
+                      <mml:mi>u</mml:mi>
+
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+
+                          <mml:mi>x</mml:mi>
+
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">=</mml:mo>
+
+                        <mml:mfrac>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mn>1</mml:mn>
+
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mn>6</mml:mn>
+
+                                  <mml:mo mml:stretchy="false">.</mml:mo>
+
+                                  <mml:msup>
+                                    <mml:mi>x</mml:mi>
+
+                                    <mml:mn>2</mml:mn>
+                                  </mml:msup>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">.</mml:mo>
+
+                                <mml:mfrac>
+                                  <mml:msup>
+                                    <mml:mi>d</mml:mi>
+
+                                    <mml:mn>3</mml:mn>
+                                  </mml:msup>
+
+                                  <mml:mrow>
+                                    <mml:mi>d</mml:mi>
+
+                                    <mml:msup>
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mn>3</mml:mn>
+                                    </mml:msup>
+                                  </mml:mrow>
+                                </mml:mfrac>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mn>6</mml:mn>
+
+                                  <mml:mo mml:stretchy="false">.</mml:mo>
+
+                                  <mml:mi>x</mml:mi>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">.</mml:mo>
+
+                                <mml:mfrac>
+                                  <mml:msup>
+                                    <mml:mi>d</mml:mi>
+
+                                    <mml:mn>2</mml:mn>
+                                  </mml:msup>
+
+                                  <mml:mrow>
+                                    <mml:mi>d</mml:mi>
+
+                                    <mml:msup>
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mn>2</mml:mn>
+                                    </mml:msup>
+                                  </mml:mrow>
+                                </mml:mfrac>
+                              </mml:mrow>
+                            </mml:mrow>
+
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mi>x</mml:mi>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+                          </mml:mrow>
+
+                          <mml:msup>
+                            <mml:mi>x</mml:mi>
+
+                            <mml:mn>3</mml:mn>
+                          </mml:msup>
+                        </mml:mfrac>
+                      </mml:mrow>
+                    </mml:mrow>
+
+                    <mml:annotation mml:encoding="StarMath 5.0">d^4 over {d
+                    x^4} u(x)={1 -6*x^2*{{d^3} over {d x^3}} u(x)-6*x*{{d^2}
+                    over {d x^2}} u(x)} over x^3</mml:annotation>
+                  </mml:semantics>
+                </mml:math>
+              </imagedata>
+            </imageobject>
+        </mediaobject>
+
+        <para>設定する境界条件:</para>
+
+        <mediaobject>
+            <imageobject>
+              <imagedata align="left">
+                <mml:math>
+                  <mml:semantics>
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="true">{</mml:mo>
+
+                      <mml:mtable>
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mn>1</mml:mn>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mfrac>
+                              <mml:msup>
+                                <mml:mi>d</mml:mi>
+
+                                <mml:mn>2</mml:mn>
+                              </mml:msup>
+
+                              <mml:mrow>
+                                <mml:mi>d</mml:mi>
+
+                                <mml:msup>
+                                  <mml:mi>x</mml:mi>
+
+                                  <mml:mn>2</mml:mn>
+                                </mml:msup>
+                              </mml:mrow>
+                            </mml:mfrac>
+
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mi>x</mml:mi>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mn>1</mml:mn>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mn>2</mml:mn>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mfrac>
+                              <mml:msup>
+                                <mml:mi>d</mml:mi>
+
+                                <mml:mn>2</mml:mn>
+                              </mml:msup>
+
+                              <mml:mrow>
+                                <mml:mi>d</mml:mi>
+
+                                <mml:msup>
+                                  <mml:mi>x</mml:mi>
+
+                                  <mml:mn>2</mml:mn>
+                                </mml:msup>
+                              </mml:mrow>
+                            </mml:mfrac>
+
+                            <mml:mi>u</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mi>x</mml:mi>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mn>2</mml:mn>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+                      </mml:mtable>
+                    </mml:mrow>
+
+                    <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{ u(1)=0# {{d^2} over {d x^2}} u(x)(1)=0# u(2)=0#
+                    {{d^2} over {d x^2}} u(x)(2)=0} right
+                    none</mml:annotation>
+                  </mml:semantics>
+                </mml:math>
+              </imagedata>
+            </imageobject>
+        </mediaobject>
+
+        <para>この問題の厳密解は以下のようになることが知られています:</para>
+
+        <mediaobject>
+            <imageobject>
+              <imagedata align="left">
+                <mml:math>
+                  <mml:semantics>
+                    <mml:mrow>
+                      <mml:mi>u</mml:mi>
+
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+
+                          <mml:mi>x</mml:mi>
+
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">=</mml:mo>
+
+                        <mml:mfrac>
+                          <mml:mn>1</mml:mn>
+
+                          <mml:mn>4</mml:mn>
+                        </mml:mfrac>
+                      </mml:mrow>
+
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">(</mml:mo>
+
+                        <mml:mrow>
+                          <mml:mn>10</mml:mn>
+
+                          <mml:mi />
+
+                          <mml:mi>log</mml:mi>
+
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mn>2</mml:mn>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+
+                            <mml:mn>3</mml:mn>
+                          </mml:mrow>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">)</mml:mo>
+                      </mml:mrow>
+
+                      <mml:mi />
+
+                      <mml:mrow>
+                        <mml:mrow>
+                          <mml:mo mml:stretchy="false">(</mml:mo>
+
+                          <mml:mrow>
+                            <mml:mn>1</mml:mn>
+
+                            <mml:mo mml:stretchy="false">−</mml:mo>
+
+                            <mml:mi>x</mml:mi>
+                          </mml:mrow>
+
+                          <mml:mo mml:stretchy="false">)</mml:mo>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">+</mml:mo>
+
+                        <mml:mfrac>
+                          <mml:mn>1</mml:mn>
+
+                          <mml:mn>2</mml:mn>
+                        </mml:mfrac>
+                      </mml:mrow>
+
+                      <mml:mrow>
+                        <mml:mo mml:stretchy="false">[</mml:mo>
+
+                        <mml:mrow>
+                          <mml:mfrac>
+                            <mml:mn>1</mml:mn>
+
+                            <mml:mi>x</mml:mi>
+                          </mml:mfrac>
+
+                          <mml:mo mml:stretchy="false">+</mml:mo>
+
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mo mml:stretchy="false">(</mml:mo>
+
+                              <mml:mrow>
+                                <mml:mn>3</mml:mn>
+
+                                <mml:mo mml:stretchy="false">+</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">)</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mi />
+
+                            <mml:mi>log</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mi>x</mml:mi>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+
+                              <mml:mi>x</mml:mi>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mrow>
+
+                        <mml:mo mml:stretchy="false">]</mml:mo>
+                      </mml:mrow>
+                    </mml:mrow>
+
+                    <mml:annotation mml:encoding="StarMath 5.0">u(x)=1 over 4
+                    (10`log(2)-3)`(1-x)+ {1 over 2} [ {1 over x} + {(3+x) `
+                    log(x)-x}]</mml:annotation>
+                  </mml:semantics>
+                </mml:math>
+              </imagedata>
+            </imageobject>
+        </mediaobject>
+
+        <programlisting role="example"><![CDATA[ 
+N=1;// just one differential equation
+m=4;//a fourth order  differential equation
+M=sum(m);
+
+x_low=1;x_up=2; // the x limits
+zeta=[x_low,x_low,x_up,x_up]; //two constraints (on the value of u and its second derivative) on each bound.
+
+//The external functions
+//Theses functions are called by the solver with zu=[u(x);u'(x);u''(x);u'''(x)]
+
+// - The function which computes the right hand side of the differential equation
+function f=fsub(x,zu),f=(1-6*x^2*zu(4)-6*x*zu(3))/x^3,endfunction
+
+// - The function which computes the derivative of fsub with respect to zu
+function df=dfsub(x,zu),df=[0,0,-6/x^2,-6/x],endfunction
+
+// - The function which computes the ith constraint for a given i
+function g=gsub(i,zu),
+  select i
+  case 1 then  //x=zeta(1)=1
+    g=zu(1) //u(1)=0
+  case 2 then //x=zeta(2)=1
+    g=zu(3) //u''(1)=0
+  case 3 then //x=zeta(3)=2
+    g=zu(1) //u(2)=0
+  case 4 then  //x=zeta(4)=2
+    g=zu(3) //u''(2)=0
+  end
+endfunction
+
+// - The function which computes the derivative of gsub with respect to z
+function dg=dgsub(i,z)
+  select i
+  case 1 then  //x=zeta(1)=1
+    dg=[1,0,0,0]
+  case 2 then //x=zeta(2)=1
+    dg=[0,0,1,0]
+  case 3 then //x=zeta(3)=2
+     dg=[1,0,0,0]
+  case 4 then  //x=zeta(4)=2
+    dg=[0,0,1,0]
+  end
+endfunction
+
+// - The function which computes the initial guess, unused here
+function [zu,mpar]=guess(x),zu=0;mpar=0,endfunction 
+
+ //define the function which computes the exact value of u for a given x ( for testing purposes)
+function zu=trusol(x)
+  zu=0*ones(4,1)
+  zu(1) =  0.25*(10*log(2)-3)*(1-x) + 0.5 *( 1/x   + (3+x)*log(x) - x)
+  zu(2) = -0.25*(10*log(2)-3)       + 0.5 *(-1/x^2 + (3+x)/x      + log(x) - 1)
+  zu(3) = 0.5*( 2/x^3 + 1/x   - 3/x^2)
+  zu(4) = 0.5*(-6/x^4 - 1/x/x + 6/x^3)
+endfunction
+
+fixpnt=[ ];//All boundary conditions are located at x_low and x_up
+
+//    nonlin  collpnt n ntol ndimf  ndimi iprint iread iguess rstart nfxpnt
+ipar=[0       0       1 2    2000   200   1      0     0      0      0     ]
+
+ltol=[1,3];//set tolerance control on zu(1) and zu(3)
+tol=[1.e-11,1.e-11];//set tolreance values for these two controls
+xpoints=x_low:0.01:x_up;
+
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub,dfsub,gsub,dgsub,guess)
+//check the constraints
+zu([1,3],[1 $]) //should be zero
+plot(xpoints,zu(1,:)) // the evolution of the solution u
+zu1=[];for x=xpoints,zu1=[zu1,trusol(x)]; end;  
+norm(zu-zu1)
+ ]]></programlisting>
+      </listitem>
+
+      <listitem>
+        <para>同じ問題で <literal>bvodeS</literal> と初期推定を用います </para>
+        <programlisting role="example"><![CDATA[ 
+function [z,lhS]=zstart(x)
+  z=zeros(5,1);z(5)=1;
+  lhS=[0;1];
+endfunction
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ltol=ltol,tol=tol,guess=zstart)
+ ]]></programlisting>
+
+         
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">問題 2</emphasis>は,
+	二次関数として変化する軸対象の外部圧力分布のもとでの
+	一定の厚みの薄く浅い球状のキャップの
+	微小な有限変形を記述するものです.
+	ここで, phi は変形したシェルの経線角度変化, psi は応力関数です.
+	eps=mu=1e-3の場合,開始点に依存して2つの異なる解が得られる可能性が
+	あります.</para>
+
+        <mediaobject>
+            <imageobject>
+              <imagedata align="left">
+                <mml:math>
+                  <mml:semantics>
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="true">{</mml:mo>
+
+                      <mml:mtable>
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mfrac>
+                              <mml:msup>
+                                <mml:mo mml:stretchy="false">ε</mml:mo>
+
+                                <mml:mn>4</mml:mn>
+                              </mml:msup>
+
+                              <mml:mo mml:stretchy="false">μ</mml:mo>
+                            </mml:mfrac>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                                  <mml:mi>'</mml:mi>
+
+                                  <mml:mrow>
+                                    <mml:mrow>
+                                      <mml:mi>'</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">+</mml:mo>
+
+                                      <mml:mfrac>
+                                        <mml:mrow>
+                                          <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                                          <mml:mi>'</mml:mi>
+                                        </mml:mrow>
+
+                                        <mml:mi>x</mml:mi>
+                                      </mml:mfrac>
+                                    </mml:mrow>
+
+                                    <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                    <mml:mfrac>
+                                      <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                                      <mml:msup>
+                                        <mml:mi>x</mml:mi>
+
+                                        <mml:mn>2</mml:mn>
+                                      </mml:msup>
+                                    </mml:mfrac>
+                                  </mml:mrow>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">+</mml:mo>
+
+                              <mml:mo mml:stretchy="false">ψ</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                  <mml:mrow>
+                                    <mml:mn>1</mml:mn>
+
+                                    <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                    <mml:mfrac>
+                                      <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                                      <mml:mi>x</mml:mi>
+                                    </mml:mfrac>
+                                  </mml:mrow>
+
+                                  <mml:mo mml:stretchy="false">)</mml:mo>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                <mml:mo mml:stretchy="false">φ</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">+</mml:mo>
+
+                              <mml:mo mml:stretchy="false">γ</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mi>x</mml:mi>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mn>1</mml:mn>
+
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                  <mml:mfrac>
+                                    <mml:msup>
+                                      <mml:mi>x</mml:mi>
+
+                                      <mml:mn>2</mml:mn>
+                                    </mml:msup>
+
+                                    <mml:mn>2</mml:mn>
+                                  </mml:mfrac>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">μ</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mo mml:stretchy="false">ψ</mml:mo>
+
+                                  <mml:mi>'</mml:mi>
+
+                                  <mml:mrow>
+                                    <mml:mrow>
+                                      <mml:mi>'</mml:mi>
+
+                                      <mml:mo mml:stretchy="false">+</mml:mo>
+
+                                      <mml:mfrac>
+                                        <mml:mrow>
+                                          <mml:mo mml:stretchy="false">ψ</mml:mo>
+
+                                          <mml:mi>'</mml:mi>
+                                        </mml:mrow>
+
+                                        <mml:mi>x</mml:mi>
+                                      </mml:mfrac>
+                                    </mml:mrow>
+
+                                    <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                    <mml:mfrac>
+                                      <mml:mo mml:stretchy="false">ψ</mml:mo>
+
+                                      <mml:msup>
+                                        <mml:mi>x</mml:mi>
+
+                                        <mml:mn>2</mml:mn>
+                                      </mml:msup>
+                                    </mml:mfrac>
+                                  </mml:mrow>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+
+                              <mml:mo mml:stretchy="false">φ</mml:mo>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">(</mml:mo>
+
+                                <mml:mrow>
+                                  <mml:mn>1</mml:mn>
+
+                                  <mml:mo mml:stretchy="false">−</mml:mo>
+
+                                  <mml:mfrac>
+                                    <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                                    <mml:mn>2x</mml:mn>
+                                  </mml:mfrac>
+                                </mml:mrow>
+
+                                <mml:mo mml:stretchy="false">)</mml:mo>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mrow>
+                              <mml:mn>0</mml:mn>
+
+                              <mml:mo mml:stretchy="false">&lt;</mml:mo>
+
+                              <mml:mi>x</mml:mi>
+                            </mml:mrow>
+
+                            <mml:mo mml:stretchy="false">&lt;</mml:mo>
+
+                            <mml:mn>1</mml:mn>
+                          </mml:mrow>
+                        </mml:mtr>
+                      </mml:mtable>
+                    </mml:mrow>
+
+                    <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{{%epsilon^4} over %mu (%phi''+ {%phi'} over x
+                    -{%phi} over {x^2} ) +%psi (1- %phi over x ) -%phi+%gamma
+                    x(1-{x^2} over 2)=0# %mu(%psi''+{%psi'} over x-%psi over
+                    {x^2})-%phi(1-%phi over{2x})=0 # 0&lt;x&lt;1} right
+                    none</mml:annotation>
+                  </mml:semantics>
+                </mml:math>
+              </imagedata>
+            </imageobject>
+        </mediaobject>
+
+        <para>境界条件のもとで</para>
+
+        <mediaobject>
+            <imageobject>
+              <imagedata align="left">
+                <mml:math>
+                  <mml:semantics>
+                    <mml:mrow>
+                      <mml:mo mml:stretchy="true">{</mml:mo>
+
+                      <mml:mtable>
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mo mml:stretchy="false">φ</mml:mo>
+
+                            <mml:mo mml:stretchy="false">=</mml:mo>
+
+                            <mml:mn>0</mml:mn>
+                          </mml:mrow>
+                        </mml:mtr>
+
+                        <mml:mtr>
+                          <mml:mrow>
+                            <mml:mi>x</mml:mi>
+
+                            <mml:mi />
+
+                            <mml:mo mml:stretchy="false">ψ</mml:mo>
+
+                            <mml:mrow>
+                              <mml:mi>'</mml:mi>
+
+                              <mml:mo mml:stretchy="false">−</mml:mo>
+
+                              <mml:mn>0.3</mml:mn>
+                            </mml:mrow>
+
+                            <mml:mrow>
+                              <mml:mrow>
+                                <mml:mo mml:stretchy="false">ψ</mml:mo>
+
+                                <mml:mo mml:stretchy="false">+</mml:mo>
+
+                                <mml:mn>0.7x</mml:mn>
+                              </mml:mrow>
+
+                              <mml:mo mml:stretchy="false">=</mml:mo>
+
+                              <mml:mn>0</mml:mn>
+                            </mml:mrow>
+                          </mml:mrow>
+                        </mml:mtr>
+                      </mml:mtable>
+                    </mml:mrow>
+
+                    <mml:annotation mml:encoding="StarMath 5.0">left lbrace
+                    stack{ %phi=0# x`%psi'-0.3%psi+0.7x=0} right
+                    none</mml:annotation>
+                  </mml:semantics>
+                </mml:math>
+              </imagedata>
+            </imageobject>
+        </mediaobject>
+
+        <para><literal>x=0</literal> かつ <literal>x=1</literal>の場合</para>
+
+        <programlisting role="example"><![CDATA[ 
+N=2;// two differential equations
+m=[2 2];//each differential equation is of second  order
+M=sum(m);
+
+x_low=0;x_up=1; // the x limits
+zeta=[x_low,x_low, x_up x_up]; //two  constraints on each bound.
+
+//The external functions
+//Theses functions are called by the solver with zu=[u1(x);u1'(x);u2(x);u2'(x)]
+
+// - The function which computes the right hand side of the differential equation
+function f=fsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+   f=[zu(1)/x^2-zu(2)/x+(zu(1)-zu(3)*(1-zu(1)/x)-gam*x*(1-x^2/2))/eps4mu //phi''
+      zu(3)/x^2-zu(4)/x+zu(1)*(1-zu(1)/(2*x))/dmu];//psi''
+endfunction
+
+// - The function which computes the derivative of fsub with respect to zu
+function df=dfsub2(x,zu,eps,dmu,eps4mu,gam,xt),
+  df=[1/x^2+(1+zu(3)/x)/eps4mu, -1/x, -(1-zu(1)/x)/eps4mu, 0
+      (1-zu(1)/x)/dmu             0    1/x^2              -1/x];
+endfunction
+
+// - The function which computes the ith constraint for a given i
+function g=gsub2(i,zu),
+  select i
+  case 1 then  //x=zeta(1)=0
+    g=zu(1) //u(0)=0
+  case 2 then //x=zeta(2)=0
+    g=-0.3*zu(3) //x*psi'-0.3*psi+0.7x=0
+  case 3 then //x=zeta(3)=1
+    g=zu(1) //u(1)=0
+  case 4 then  //x=zeta(4)=1
+    g=1*zu(4)-0.3*zu(3)+0.7*1 //x*psi'-0.3*psi+0.7x=0
+  end
+endfunction
+
+// - The function which computes the derivative of gsub with respect to z
+function dg=dgsub2(i,z)
+  select i
+  case 1 then  //x=zeta(1)=1
+    dg=[1,0,0,0]
+  case 2 then //x=zeta(2)=1
+    dg=[0,0,-0.3,0]
+  case 3 then //x=zeta(3)=2
+     dg=[1,0,0,0]
+  case 4 then  //x=zeta(4)=2
+    dg=[0,0,-0.3,1]
+  end
+endfunction
+
+gam=1.1
+eps=1d-3
+dmu=eps
+eps4mu=eps^4/dmu
+xt=sqrt(2*(gam-1)/gam)
+
+fixpnt=[ ];//All boundary conditions are located at x_low and x_up
+collpnt=4;
+nsizef=4+3*M+(5+collpnt*N)*(collpnt*N+M)+(2*M-2)*2*M ;
+nsizei=3 + collpnt*N+M;;
+nmax=200;
+//    nonlin  collpnt n  ntol ndimf        ndimi        iprint iread iguess rstart nfxpnt
+ipar=[1       k       10 4    nmax*nsizef  nmax*nsizei   -1      0     0      0      0     ]
+
+ltol=1:4;//set tolerance control on zu(1) zu(2 ) zu(3) and zu(4)
+tol=[1.e-5,1.e-5,1.e-5,1.e-5];//set tolreance values for these four controls
+xpoints=x_low:0.01:x_up;
+
+zu=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub2,dfsub2,gsub2,dgsub2,guess2);
+scf(1);clf();plot(xpoints,zu([1 3],:)) // the evolution of the solution phi and psi
+
+//using an initial guess
+// - The function which computes the initial guess, unused here
+function [zu,dmval]=guess2(x,gam),
+   cons=gam*x*(1-x^2/2)
+   dcons=gam*(1-3*x^2/2)
+   d2cons=-3*gam*x
+   dmval=zeros(2,1)
+   if x>xt then
+     zu=[0 0 -cons -dcons]
+     dmval(2)=-d2cons
+   else
+     zu=[2*x;2;-2*x+cons;-2*dcons]
+     dmval(2)=d2cons
+   end
+endfunction 
+ipar(9)=1;//iguess
+
+zu2=bvode(xpoints,N,m,x_low,x_up,zeta,ipar,ltol,tol,fixpnt,...
+        fsub2,dfsub2,gsub2,dgsub2,guess2);
+scf(2);clf();plot(xpoints,zu2([1 3],:)) // the evolution of the solution phi and psi
+ ]]></programlisting>
+      </listitem>
+
+      <listitem>
+        <para>固有値問題:</para>
+
+        <programlisting role="example"><![CDATA[ 
+// y''(x)=-la*y(x)
+// BV: y(0)=y'(0); y(1)=0
+// Eigenfunctions and eigenvalues are y(x,n)=sin(s(n)*(1-x)), la(n)=s(n)^2,
+// where s(n) are the zeros of f(s,n)=s+atan(s)-(n+1)*pi, n=0,1,2,...
+// To get a third boundary condition, we choose y(0)=1
+// (With y(x) also c*y(x) is a solution for each constant c.)
+// We solve the following ode system:
+// y''=-la*y
+// la'=0
+// BV: y(0)=y'(0), y(0)=1; y(1)=0
+// z=[y(x) ; y'(x) ; la]
+
+function rhs=fsub(x,z)
+  rhs=[-z(3)*z(1);0]
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-z(2) z(1)-1 z(1)]
+  g=g(i)
+endfunction
+
+// The following start function is good for the first 8 eigenfunctions.
+function [z,lhs]=ystart(x,z,la0)
+  z=[1;0;la0]
+  lhs=[0;0]
+endfunction
+
+a=0;b=1;
+m=[2;1];
+n=2;
+zeta=[a a b];
+N=101;
+x=linspace(a,b,N)';
+
+// We have s(n)-(n+1/2)*pi -> 0 for n to infinity.
+la0=input('n-th eigenvalue: n= ?');la0=(%pi/2+la0*%pi)^2;
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,la0));
+
+clf()
+plot(x,[z(1,:)' z(2,:)']) 
+xtitle(['Startvalue =  '+string(la0);'Eigenvalue = '+string(z(3,1))],'x',' ')
+legend(['y(x)';'y''(x)'])
+ ]]></programlisting>
+      </listitem>
+
+      <listitem>
+         <para>一つ以上の解がある多点境界値問題.</para>
+
+        <programlisting role="example"><![CDATA[ 
+// DE: y''(x)=-exp(y(x))
+// BV: y(0)=0; y(1)=0
+// This boundary value problem has more than one solution.
+// It is demonstrated how to find two of them with the help of
+// some preinformation of the solutions y(x) to build the function ystart.
+// z=[y(x);y'(x)]
+
+a=0;b=1;m=2;n=1;
+zeta=[a b];
+N=101;
+tol=1e-8*[1 1];
+x=linspace(a,b,N);
+
+function rhs=fsub(x,z),rhs=-exp(z(1));endfunction
+
+function g=gsub(i,z)
+  g=[z(1) z(1)]
+  g=g(i)
+endfunction
+
+function [z,lhs]=ystart(x,z,M) 
+  //z=[4*x*(1-x)*M ; 4*(1-2*x)*M]
+  z=[M;0]
+  //lhs=[-exp(4*x*(1-x)*M)]
+  lhs=0
+endfunction
+
+for M=[1 4]
+   if M==1
+      z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   else
+      z1=bvodeS(x,m,n,a,b,fsub,gsub,zeta,ystart=list(ystart,M),tol=tol);
+   end
+end
+
+// Integrating the ode yield e.g. the two solutions yex and yex1. 
+
+function y=f(c),y=c.*(1-tanh(sqrt(c)/4).^2)-2;endfunction 
+c=fsolve(2,f);
+
+function y=yex(x,c)
+  y=log(c/2*(1-tanh(sqrt(c)*(1/4-x/2)).^2))
+endfunction 
+
+function y=f1(c1), y=2*c1^2+tanh(1/4/c1)^2-1;endfunction
+c1=fsolve(0.1,f1);
+
+function y=yex1(x,c1)
+  y=log((1-tanh((2*x-1)/4/c1).^2)/2/c1/c1)
+endfunction 
+
+disp(norm(z(1,:)-yex(x)),'norm(yex(x)-z(1,:))= ')
+disp(norm(z1(1,:)-yex1(x)),'norm(yex1(x)-z1(1,:))= ')
+clf();
+subplot(2,1,1)
+plot2d(x,z(1,:),style=[5])
+xtitle('Two different solutions','x',' ') 
+subplot(2,1,2)
+plot2d(x,z1(1,:),style=[5])
+xtitle(' ','x',' ')
+ ]]></programlisting>
+
+         
+      </listitem>
+
+      <listitem>
+        <para>多点境界値問題.</para>
+
+        <programlisting role="example"><![CDATA[ 
+// DE y'''(x)=1
+// z=[y(x);y'(x);y''(x)]
+// BV: y(-1)=2 y(1)=2
+// Side condition: y(0)=1 
+
+a=-1;b=1;c=0;
+// The side condition point c must be included in the array fixpnt.
+n=1;
+m=[3];
+
+function rhs=fsub(x,z)
+  rhs=1
+endfunction
+
+function g=gsub(i,z)
+  g=[z(1)-2 z(1)-1 z(1)-2]
+  g=g(i)
+endfunction
+
+N=10;
+zeta=[a c b];
+x=linspace(a,b,N);
+
+z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,fixpnt=c);
+          
+function y=yex(x)
+y=x.^3/6+x.^2-x./6+1
+endfunction
+
+disp(norm(yex(x)-z(1,:)),'norm(yex(x)-z(1,:))= ')
+ ]]></programlisting>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="link">link</link></member>
+
+      <member><link linkend="external">external</link></member>
+
+      <member><link linkend="ode">ode</link></member>
+
+      <member><link linkend="dassl">dassl</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>使用される関数</title>
+
+    <para>この関数は, 以下の作者により開発された
+	 Fortran ルーチン<literal>colnew</literal>
+	に基づいています.</para>
+
+    <para>U. Ascher, Department of Computer Science, University of British
+    Columbia, Vancouver, B.C. V6T 1W5, Canada</para>
+
+    <para>G. Bader, institut f. Angewandte mathematik university of
+    Heidelberg; im Neuenheimer feld 294d-6900 Heidelberg 1</para>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>
+	このヘルプはもとの colnew.f のコメントに基づいており,
+	J.P Chancelier ENPC により Scilab に適用され,
+	bvodeS ヘルプページは Rainer von Seggern によります.
+	また, 両関数は S. Steer INRIA によりマージ,改定されています.</para>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <orderedlist>
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. Russell, collocation
+        software for boundary-value ODEs, acm trans. math software 7 (1981),
+        209-222. this paper contains EXAMPLES where use of the code is
+        demonstrated.</para>
+      </listitem>
+
+      <listitem>
+        <para>G. Bader and U. Ascher, a new basis implementation for a mixed
+        order boundary value ode solver, siam j. scient. stat. comput.
+        (1987).</para>
+      </listitem>
+
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. Russell, a collocation
+        solver for mixed order systems of boundary value problems, math. comp.
+        33 (1979), 659-679.</para>
+      </listitem>
+
+      <listitem>
+        <para>U. Ascher, J. Christiansen and R.D. russell, colsys - a
+        collocation code for boundary value problems, lecture notes comp.sc.
+        76, springer verlag, b. childs et. al. (eds.) (1979), 164-185.</para>
+      </listitem>
+
+      <listitem>
+        <para>C. Deboor and R. Weiss, solveblok: a package for solving almost
+        block diagonal linear systems, acm trans. math. software 6 (1980),
+        80-87.</para>
+      </listitem>
+    </orderedlist>
+  </refsection>
+</refentry>

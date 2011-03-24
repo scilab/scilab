@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function scs_m = do_icon_edit(%pt,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   
   K=Select(find(Select(:,2)==%win),1) //look for selected blocks in the current window
   if K==[] then

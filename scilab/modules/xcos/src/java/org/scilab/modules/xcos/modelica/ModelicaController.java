@@ -13,11 +13,11 @@
 package org.scilab.modules.xcos.modelica;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.WindowConstants;
 import javax.swing.event.ChangeEvent;
@@ -81,6 +81,7 @@ public final class ModelicaController {
 	}
 
 	private final Model root;
+	private TerminalTableModel model;
 	private ModelStatistics statistics = new ModelStatistics();
 
 	private boolean compileNeeded;
@@ -108,8 +109,8 @@ public final class ModelicaController {
 			public void stateChanged(ChangeEvent e) {
 				final ModelStatistics stats = (ModelStatistics) e.getSource();
 
-				// Validate equation == unknowns
-				setValid(stats.getEquations() == stats.getUnknowns());
+				// Validate equation >= (unknowns + discretes)
+				setValid(stats.getEquations() >= (stats.getUnknowns() + stats.getDiscreteStates()));
 			}
 		});
 
@@ -136,6 +137,8 @@ public final class ModelicaController {
 		JDialog dialog = new JDialog();
 		dialog.setTitle(ModelicaMessages.MODELICA_SETTINGS);
 		dialog.setAlwaysOnTop(false);
+		dialog.setIconImage(new ImageIcon(System.getenv("SCI")
+				+ "/modules/gui/images/icons/scilab.png").getImage());
 
 		ModelicaController controller;
 		try {
@@ -161,6 +164,13 @@ public final class ModelicaController {
 		return root;
 	}
 
+	/**
+	 * @param model the model to set
+	 */
+	public void setModel(TerminalTableModel model) {
+		this.model = model;
+	}
+	
 	/**
 	 * @return the compileNeeded flag
 	 */
@@ -378,13 +388,13 @@ public final class ModelicaController {
 	 */
 	private void incrementTerminalWeight(final String kind, final double weight) {
 		if (FIXED_PARAMETER.equals(kind)) {
-			if (weight == 1) {
+			if (weight >= 1.0) {
 				statistics.incFixedParameters();
 			} else {
 				statistics.incRelaxedParameters();
 			}
 		} else if (VARIABLE.equals(kind)) {
-			if (weight == 1) {
+			if (weight >= 1.0) {
 				statistics.incFixedVariables();
 			} else {
 				statistics.incRelaxedVariables();
@@ -470,7 +480,7 @@ public final class ModelicaController {
 	 */
 	private void updateWeight(final Struct struct, double derivative,
 			double state) {
-		final List<String> localVarName = new ArrayList<String>();
+		final HashSet<String> localVarName = new HashSet<String>();
 
 		for (final Object child : struct.getSubnodes().getTerminalOrStruct()) {
 			if (child instanceof Terminal) {
@@ -485,6 +495,7 @@ public final class ModelicaController {
 
 				if (matcher.matches()) {
 					// update the derivative weight
+					
 					TerminalAccessor.WEIGHT.setData(derivative, terminal);
 					TerminalAccessor.SELECTED.setData(Boolean.TRUE, terminal);
 

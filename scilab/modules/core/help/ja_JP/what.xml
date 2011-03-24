@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="what">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>what</refname>
+    <refpurpose>Scilabプリミティブの一覧を得る
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>what()
+[primitives,commands]=what();</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>低レベルプリミティブおよびコマンドの一覧を得ます.</para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>A.C</para>
+  </refsection>
+</refentry>

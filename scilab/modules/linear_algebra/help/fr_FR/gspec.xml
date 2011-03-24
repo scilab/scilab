@@ -60,8 +60,8 @@ Cette fonction est maintenant un cas particulier de la fonction
 [al,be,Z]=spec(A,E)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="spec">spec</link>

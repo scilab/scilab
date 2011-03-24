@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xclick" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xclick</refname>
+
+    <refpurpose>マウスクリップを待つ.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[ibutton,xcoord,yxcoord,iwin,cbmenu]=xclick([flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton</term>
+
+        <listitem>
+          <para>実数スカラー (整数値): マウスボタン番号, キーコード...
+          (以下の説明参照).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>xcoord</term>
+
+        <listitem>
+          <para>実数スカラー: クリックが発生した時のマウスポインタのカレントの
+	グラフィックスケールにおけるx座標.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ycoord</term>
+
+        <listitem>
+          <para>実数スカラー: クリックが発生した時のマウスポインタのカレントの
+	グラフィックスケールにおけるy座標.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>iwin</term>
+
+        <listitem>
+          <para>実数スカラー (整数値): アクションが発生したウインドウの番号.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>cbmenu</term>
+
+        <listitem>
+          <para>文字列: 
+	<literal>xclick</literal>がメニューのクリックによるものであると
+	返した場合にメニューに関連付けられるコールバック.
+	この場合,<literal>ibutton</literal>, <literal>xcoord</literal>,
+          <literal>ycoord</literal>, および <literal>iwin</literal>は
+	任意の値をとります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>実数スカラー (整数値): 指定された場合, click イベントキュー
+	は xclick を実行した際にもクリアされません.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>xclick</literal> はグラフィックウインドウ内へのマウスクリック
+	を待ちます.</para>
+
+    <para>左辺の引数を3つ指定してコールされた場合,
+	カレントのグラフィックウインドウ内へのマウスクリックを待ちます.</para>
+
+    <para>4または5個の左辺の引数を指定してコールされた場合,
+	任意のグラフィックウインドウへのマウスクリックを待ちます.</para>
+
+    <para><literal>ibutton</literal>の値を以下に説明します.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>ibutton==0</term>
+
+        <listitem>
+          <para>左ボタンが押された.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==1</term>
+
+        <listitem>
+          <para>中ボタンが押された.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==2</term>
+
+        <listitem>
+          <para>右ボタンが押された.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==3</term>
+
+        <listitem>
+          <para>左ボタンがクリックされた.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==4</term>
+
+        <listitem>
+          <para>中ボタンがクリックされた.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==5</term>
+
+        <listitem>
+          <para>右ボタンがクリックされた.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==10</term>
+
+        <listitem>
+          <para>左ボタンがダブルクリックされた.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==11</term>
+
+        <listitem>
+          <para>中ボタンがダブルクリックされた.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==12</term>
+
+        <listitem>
+          <para>右ボタンがダブルクリックされた.</para>
+
+          <para></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=32</term>
+
+        <listitem>
+          <para>ASCIIコード<literal>ibutton</literal>のキーが押された.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &lt;=32</term>
+
+        <listitem>
+          <para>ASCIIコード<literal>ibutton</literal>のキーが放された.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton &gt;=1000+32</term>
+
+        <listitem>
+          <para>key with ASCII code <literal>ibutton-1000</literal> has been
+          pressed while CTRL key pressed.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-1000</term>
+
+        <listitem>
+          <para>グラフィックウインドウが閉じられた.</para>
+
+          <para>警告: <literal>ibutton</literal> は, Scilab 4.1.2 まではグラフィックウインドウを
+		閉じる際の値が -100でしたが,
+	キー<literal>d</literal>が開放された際に返されるコードでもあったため,
+	このコードは(Scilab 5.0)で変更されました.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ibutton==-2</term>
+
+        <listitem>
+          <para>動的メニューが選択され,
+	コールバックは<literal>cbmenu</literal>となります.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>参照o</title>
+
+    <simplelist type="inline">
+      <member><link linkend="locate">locate</link></member>
+
+      <member><link linkend="xgetmouse">xgetmouse</link></member>
+
+      <member><link linkend="seteventhandler">seteventhandler</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>J.Ph.C.</para>
+
+    <para>V.C.</para>
+  </refsection>
+</refentry>

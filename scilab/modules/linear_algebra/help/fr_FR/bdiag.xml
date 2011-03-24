@@ -93,8 +93,8 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="schur">schur</link>

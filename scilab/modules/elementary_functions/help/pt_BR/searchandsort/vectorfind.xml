@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA - Ramine NIKOUKHAH
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="vectorfind" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>vectorfind</refname>
+
+    <refpurpose>acha, em uma matriz, linhas ou colunas que coincidem com um
+    vetor</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>ind = vectorfind(m,v,job)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>m</term>
+
+        <listitem>
+          <para>uma matriz de qualquer tipo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>um vetor de qualquer tipo </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>job</term>
+
+        <listitem>
+          <para>um string indicador com valores possíveis "r" para procura de
+          linhas coincidentes ou "c" para procura de colunas coincidentes
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ind</term>
+
+        <listitem>
+          <para>vetor-linha contendo os índices das linhas ou colunas
+          coincidentes </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Acha, em uma matriz, as linhas ou colunas que coincidem com um dado
+    vetor.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1;
+     1,2,1];
+ind = vectorfind(alr,[1,2,1],'r')
+ind = vectorfind(string(alr),string([1,2,1]),'r')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="find">find</link></member>
+
+      <member><link linkend="gsort">gsort</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autores</title>
+
+    <para>R. Nikoukhah, S. Steer INRIA</para>
+  </refsection>
+</refentry>

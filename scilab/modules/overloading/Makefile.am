@@ -10,7 +10,7 @@ modulename=overloading
 
 #### overloading : Conf files ####
 libscioverloading_la_rootdir = $(mydatadir)
-libscioverloading_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscioverloading_la_root_DATA =  license.txt version.xml
 
 
 

@@ -47,8 +47,8 @@ V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
 V*U
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="bezout">bezout</link>

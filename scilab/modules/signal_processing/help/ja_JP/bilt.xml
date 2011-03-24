@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bilt">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bilt</refname>
+    <refpurpose>極/ゼロ表現で指定したSISO系の双一次または双二次変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>pl</term>
+        <listitem>
+          <para>ベクトル, 指定したシステムの極.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zr</term>
+        <listitem>
+          <para>ベクトル, 指定したシステムのゼロ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>num</term>
+        <listitem>
+          <para>
+          <literal>den</literal>の次数に等しい次数を有する多項式, 伝達関数の分子.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>den</term>
+        <listitem>
+          <para>1または2次の多項式, 伝達関数の分母.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>npl</term>
+        <listitem>
+          <para>ベクトル, 変換後のシステムの極.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nzr</term>
+        <listitem>
+          <para>ベクトル, 変換後のシステムのゼロ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ngn</term>
+        <listitem>
+          <para>スカラー,変換後のシステムのゲイン.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	双一次変換または双二次変換に基づき
+	ゲインの極およびゼロを計算する関数.
+	<link linkend="iir">iir</link> および <link linkend="trans">trans</link>
+	で使用されます.</para>
+   
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+Hlp=iir(3,'lp','ellip',[0.1 0],[.08 .03]);
+pl=roots(Hlp.den);
+zr=roots(Hlp.num);
+gn=coeff(Hlp.num,degree(Hlp.num))/coeff(Hlp.den,degree(Hlp.den));
+z=poly(0,'z');
+a=0.3;
+num=z-a;
+den=1-a*z;
+[npl,nzr,ngn] = bilt(pl,zr,gn,num,den)
+
+Hlpt=ngn*poly(nzr,'z','r')/poly(npl,'z','r')
+
+//hornerと比較
+horner(Hlp,num/den)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Carey Bunks ;   </para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member><link linkend="iir">iir</link></member>
+      <member><link linkend="trans">trans</link></member>
+      <member><link linkend="horner">horner</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

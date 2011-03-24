@@ -57,8 +57,8 @@ A=rand(5,2)*rand(2,4);
 norm(A*pinv(A)*A-A,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rank">rank</link>

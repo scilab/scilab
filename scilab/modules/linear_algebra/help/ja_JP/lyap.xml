@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lyap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lyap</refname>
+    <refpurpose>リアプノフ方程式</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X]=lyap(A,C,'c')
+[X]=lyap(A,C,'d')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, C</term>
+        <listitem>
+          <para>実数正方行列, <literal>C</literal> は対称であることが必要</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>X = lyap(A,C,flag)</literal> は連続時間または離散時間行列リアプノフ方程式を解きます:</para>
+    <programlisting role = ""><![CDATA[ 
+A'*X + X*A = C       ( flag='c' )
+A'*X*A - X = C       ( flag='d' )
+ ]]></programlisting>
+    <para>
+<literal>A</literal>の固有値が<literal>-A</literal>の固有値でない場合(<literal>flag='c'</literal>) 
+または<literal>A</literal>の固有値が1を超える場合(<literal>flag='d'</literal>)にのみユニークな
+解が得られることに注意してください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(4,4);C=rand(A);C=C+C';
+X=lyap(A,C,'c');
+A'*X + X*A -C
+X=lyap(A,C,'d');
+A'*X*A - X -C
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sylv">sylv</link>
+      </member>
+      <member>
+        <link linkend="ctr_gram">ctr_gram</link>
+      </member>
+      <member>
+        <link linkend="obs_gram">obs_gram</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

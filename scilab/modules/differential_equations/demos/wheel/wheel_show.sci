@@ -173,7 +173,7 @@ function []=wheel_build_and_load()
         fcode = mgetl(path+"/dlslv.f");  mputl(fcode,"dlslv.f");
         fcode = mgetl(path+"/wheel.f");  mputl(fcode,"wheel.f");
         fcode = mgetl(path+"/wheelg.f"); mputl(fcode,"wheelg.f");
-        files = ["wheel.o","wheelg.o","dlslv.o" ];
+        files = ["wheel.f","wheelg.f","dlslv.f" ];
         ilib_verbose(0);
         ilib_for_link(['wheel';'wheelg'],files,[],"f");
         exec("loader.sce",-1);

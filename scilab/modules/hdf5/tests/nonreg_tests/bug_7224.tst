@@ -16,7 +16,7 @@
 // HDF5 functions don't unlock file wih empty matrix.
 //
 
-loadScicosLibs();
+loadXcosLibs();
 importScicosDiagram("SCI/modules/hdf5/tests/nonreg_tests/bug_7224.cos");
 
 emp=[];         // or list([]), scicos_diagram(), etc.

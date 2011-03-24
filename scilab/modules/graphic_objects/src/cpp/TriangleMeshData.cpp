@@ -1,0 +1,384 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#include "TriangleMeshData.hxx"
+#include "DataProperties.hxx"
+
+extern "C" {
+#include <string.h>
+#include "BOOL.h"
+
+#include "graphicObjectProperties.h"
+}
+
+TriangleMeshData::TriangleMeshData(void)
+{
+    vertices = NULL;
+    indices = NULL;
+    values = NULL;
+
+    numberVertices = 0;
+    numberTriangles = 0;
+}
+
+/* To be correctly implemented */
+TriangleMeshData::TriangleMeshData(unsigned int numberVertices, unsigned int numberTriangles)
+{
+    vertices = new double[3*numberVertices];
+
+    indices = new unsigned int[3*numberTriangles];
+
+    this->numberVertices = numberVertices;
+    this->numberTriangles = numberTriangles;
+}
+
+/* To be correctly implemented */
+TriangleMeshData::~TriangleMeshData(void)
+{
+    if (numberVertices > 0)
+    {
+        delete [] vertices;
+        delete [] values;
+    }
+
+    if (numberTriangles > 0)
+    {
+        delete [] indices;
+    }
+
+}
+
+int TriangleMeshData::getPropertyFromName(char* propertyName)
+{
+    if (strcmp(propertyName, __GO_DATA_MODEL_NUM_VERTICES__) == 0)
+    {
+        return NUM_VERTICES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_NUM_INDICES__) == 0)
+    {
+        return NUM_INDICES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_X__) == 0)
+    {
+        return X_COORDINATES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_Y__) == 0)
+    {
+        return Y_COORDINATES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_Z__) == 0)
+    {
+        return Z_COORDINATES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_COORDINATES__) == 0)
+    {
+        return COORDINATES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_INDICES__) == 0)
+    {
+        return INDICES;
+    }
+    else if (strcmp(propertyName, __GO_DATA_MODEL_VALUES__) == 0)
+    {
+        return VALUES;
+    }
+    else
+    {
+        return Data3D::getPropertyFromName(propertyName);
+    }
+
+}
+
+
+int TriangleMeshData::setDataProperty(int property, void* value, int numElements)
+{
+    if (property == NUM_VERTICES)
+    {
+        return setNumVertices(*((unsigned int*) value));
+    }
+    else if (property == NUM_INDICES)
+    {
+        return setNumIndices(*((unsigned int*) value));
+    }
+    else if (property == X_COORDINATES)
+    {
+        setDataX((double*) value, numElements);
+    }
+    else if (property == Y_COORDINATES)
+    {
+        setDataY((double*) value, numElements);
+    }
+    else if (property == Z_COORDINATES)
+    {
+        setDataZ((double*) value, numElements);
+    }
+    else if (property == COORDINATES)
+    {
+        setVertices((double*) value, numElements);
+    }
+    else if (property == INDICES)
+    {
+        setIndices((unsigned int*) value, numElements);
+    }
+    else if (property == VALUES)
+    {
+        setValues((double*) value, numElements);
+    }
+    else
+    {
+        return Data3D::setDataProperty(property, value, numElements);
+    }
+
+    return 1;
+}
+
+void TriangleMeshData::getDataProperty(int property, void **_pvData)
+{
+    if (property == NUM_VERTICES)
+    {
+        ((int *)*_pvData)[0] = getNumVertices();
+    }
+    else if (property == NUM_INDICES)
+    {
+        ((int *)*_pvData)[0] = getNumIndices();
+    }
+    else if (property == COORDINATES)
+    {
+        *_pvData = getVertices();
+    }
+    else if (property == INDICES)
+    {
+        *_pvData = getIndices();
+    }
+    else if (property == VALUES)
+    {
+        *_pvData = getValues();
+    }
+    else
+    {
+        Data3D::getDataProperty(property, _pvData);
+    }
+}
+
+unsigned int TriangleMeshData::getNumVertices(void)
+{
+    return numberVertices;
+}
+
+/*
+ * Values are considered as being specified per-vertex for now
+ * To be corrected
+ */
+int TriangleMeshData::setNumVertices(unsigned int numVertices)
+{
+    int result;
+
+    result = 1;
+
+    if (numVertices == 0 && numberVertices > 0)
+    {
+        numberVertices = 0;
+
+        delete [] vertices;
+        delete [] values;
+
+        return 1;
+    }
+
+    if (numVertices != this->numberVertices)
+    {
+        double* newVertices = NULL;
+        double* newValues = NULL;
+
+        try
+        {
+            newVertices = new double[3*numVertices];
+        }
+        catch (const std::exception& e)
+        {
+            result = 0;
+        }
+
+        try
+        {
+            newValues = new double[3*numVertices];
+        }
+        catch (const std::exception& e)
+        {
+            result = 0;
+        }
+
+        if (result)
+        {
+            if (this->numberVertices > 0)
+            {
+                delete [] vertices;
+                delete [] values;
+            }
+
+            vertices = newVertices;
+            values = newValues;
+
+            this->numberVertices =  numVertices;
+
+            resetCoordinates();
+        }
+        else
+        {
+            /* Failed allocation, nothing is set */
+            if (newVertices != NULL)
+            {
+                delete [] newVertices;
+            }
+
+            if (newValues != NULL)
+            {
+                delete [] newValues;
+            }
+        }
+
+    }
+
+    return result;
+}
+
+unsigned int TriangleMeshData::getNumIndices(void)
+{
+    return numberTriangles;
+}
+
+int TriangleMeshData::setNumIndices(unsigned int numIndices)
+{
+    int result;
+
+    result = 1;
+
+    if (numIndices != this->numberTriangles)
+    {
+        unsigned int* newIndices = NULL;
+
+        try
+        {
+            newIndices = new unsigned int[3*numIndices];
+        }
+        catch (const std::exception& e)
+        {
+            result = 0;
+        }
+
+        if (result)
+        {
+            if (this->numberTriangles > 0)
+            {
+                delete [] indices;
+            }
+
+            indices = newIndices;
+
+            this->numberTriangles =  numIndices;
+        }
+        else
+        {
+            /* Failed allocation, nothing is set */
+            if (newIndices != NULL)
+            {
+                delete [] newIndices;
+            }
+        }
+
+    }
+
+    return result;
+}
+
+double* TriangleMeshData::getVertices(void)
+{
+    return vertices;
+}
+
+void TriangleMeshData::setVertices(double* vertices, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        this->vertices[3*i] = vertices[3*i];
+        this->vertices[3*i+1] = vertices[3*i+1];
+        this->vertices[3*i+2] = vertices[3*i+2];
+    }
+}
+
+unsigned int* TriangleMeshData::getIndices(void)
+{
+    return indices;
+}
+
+void TriangleMeshData::setIndices(unsigned int* indices, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        this->indices[3*i] = indices[3*i];
+        this->indices[3*i+1] = indices[3*i+1];
+        this->indices[3*i+2] = indices[3*i+2];
+    }
+}
+
+void TriangleMeshData::setDataX(double* data, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        vertices[3*i] = data[i];
+    }
+}
+
+void TriangleMeshData::setDataY(double* data, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        vertices[3*i+1] = data[i];
+    }
+}
+
+void TriangleMeshData::setDataZ(double* data, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        vertices[3*i+2] = data[i];
+    }
+}
+
+void TriangleMeshData::setValues(double* data, unsigned int numElements)
+{
+    for (int i = 0; i < numElements; i++)
+    {
+        values[i] = data[i];
+    }
+}
+
+double* TriangleMeshData::getValues(void)
+{
+    return values;
+}
+
+unsigned int TriangleMeshData::scilabIndexToIndex(unsigned int scilabIndex)
+{
+    return (scilabIndex - 1);
+}
+
+void TriangleMeshData::resetCoordinates(void)
+{
+    for (int i = 0; i < numberVertices; i++)
+    {
+        vertices[3*i] = 0.0;
+        vertices[3*i+1] = 0.0;
+        vertices[3*i+2] = 0.0;
+    }
+}
+

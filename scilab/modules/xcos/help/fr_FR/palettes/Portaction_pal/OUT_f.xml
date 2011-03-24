@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="OUT_f" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+
+  <refnamediv>
+    <refname>OUT_f</refname>
+    <refpurpose>Port de sortie régulier</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/OUT_f.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_OUT_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="OUT_f">Port de sortie régulier</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_OUT_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_OUT_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Datatype_OUT_f">Types de données</xref>
+            </para>
+          </listitem>          
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_OUT_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_OUT_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_OUT_f">Exemple</xref>
+            </para>
+          </listitem>          
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_OUT_f">Fonction  d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_OUT_f">Voir aussi</xref>
+            </para>
+          </listitem>          
+          <listitem>
+            <para>
+              <xref linkend="Authors_OUT_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_OUT_f">
+    <title>Palettes</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Portaction_pal">Palette Port &amp; Sous-systèmes</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Sinks_pal">Palette Sinks</link>
+        </para>
+      </listitem>      
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_OUT_f">
+    <title>Description</title>
+    <para>
+      Ce bloc représente un port de sortie régulier. Il doit seulement être utilisé à l'intérieur
+      des Super Blocs Xcos et être connecté sur une sortie régulière dans le sous-système.
+    </para>
+    <para>
+      Ce bloc est une liaison de signal d'un système dans un sous-système. Dans un Super Bloc,
+      les ports de sortie réguliers doivent être numérotés de 1 au nombre de ports de sortie
+      réguliers. Vous pouvez l'initialiser avec le paramètre <emphasis role="bold">Port number</emphasis>.
+    </para>    
+  </refsection>
+  
+  <refsection id="Datatype_OUT_f">
+    <title>Types de données</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Sortie : même type que la sortie qui lui est connectée dans le sous-système.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection> 
+
+  <refsection id="Dialogbox_OUT_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/portaction_pal/fr_FR/OUT_f_gui.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Port number</emphasis>
+        </para>
+        <para> Un entier définissant le numéro de port.</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_OUT_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type -1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">output</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection id="Example_OUT_f">
+    <title>Exemple</title>
+    <para>
+      Dans l'exemple suivant le Super bloc englobe deux non linéarités. Le bloc OUT_f est la sortie du signal non linéaire.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/OUT_f_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/fr_FR/out_f_diagram_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>  
+
+  <refsection id="Interfacingfunction_OUT_f">
+    <title>Fonction  d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sinks/OUT_f.sci">SCI/modules/scicos_blocks/macros/Sinks/OUT_f.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  
+  <refsection role="see also" id="Seealso_OUT_f">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="IN_f">IN_f</link>
+      </listitem>
+      <listitem>
+      <link linkend="SUPER_f">SUPER_f</link>
+    </listitem>
+    </itemizedlist>
+  </refsection>  
+
+  <refsection id="Authors_OUT_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

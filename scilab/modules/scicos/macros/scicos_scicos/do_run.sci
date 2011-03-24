@@ -20,6 +20,9 @@
 //
 
 function [ok,%tcur,%cpr,alreadyran,needcompile,%state0,solver]=do_run(%cpr)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // realize action associated to the run button
 // performs necessary diagram (re-)compilation
 // performs simulation initialisation

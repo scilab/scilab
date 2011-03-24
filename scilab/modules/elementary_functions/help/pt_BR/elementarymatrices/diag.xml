@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="diag" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>diag</refname>
+
+    <refpurpose>inclusão ou extração diagonal</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>[y]=diag(vm, [k])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>vm</term>
+
+        <listitem>
+          <para>vetor ou matriz (armazenamento cheio ou esparso)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>inteiro (o valor padrão é 0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>vetor ou matriz</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Para um n-vetor (linha ou coluna) <literal>vm</literal> ,
+    <literal>diag(vm)</literal> retorna uma matriz diagonal com entradas de
+    <literal>vm</literal> ao longo da diagonal principal.</para>
+
+    <para><literal>diag(vm,k)</literal> é uma matriz
+    <literal>(n+abs(k))x(n+abs(k))</literal> com entradas de
+    <literal>vm</literal> ao longo da k-ésima diagonal. <literal>k=0</literal>
+    é a diagonal principal, <literal>k&gt;0</literal> são as diagonais
+    superiores e <literal>k&lt;0</literal> são as diagonais inferiores.</para>
+
+    <para>Para uma matriz <literal>vm</literal>, <literal>diag(vm,k)</literal>
+    é o vetor coluna feito das entradas da k-ésima diagonal de
+    <literal>vm</literal>. <literal>diag(vm)</literal> é a diagonal principal
+    de <literal>vm</literal>. <literal>diag(diag(x))</literal> é a matriz
+    diagonal.</para>
+
+    <para>Se <literal>vm</literal> é uma matriz esparsa,
+    <literal>diag(vm,k)</literal> retorna uma matriz esparsa.</para>
+
+    <para>Para construir um sistema linear diagonal, use
+    <literal>sysdiag</literal>.</para>
+
+    <para>Perceba que <literal>eye(A).*A</literal> retorna uma matriz diagonal
+    feita das entradas diagonais de <literal>A</literal>. Isto é válido para
+    qualquer matriz (constante, de polinômios, de razões de polinômios,
+    sistema linear em espaço de estados,...).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+diag([1,2])
+
+A=[1,2;3,4];
+diag(A)  // diagonal principal
+diag(A,1) 
+
+diag(sparse(1:10))  // matriz diagonal esparsa
+
+// forma de uma matriz triadiagonal de tamanho 2*m+1
+m=5;diag(-m:m) +  diag(ones(2*m,1),1) +diag(ones(2*m,1),-1)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sysdiag">sysdiag</link></member>
+
+      <member><link linkend="sparse">sparse</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

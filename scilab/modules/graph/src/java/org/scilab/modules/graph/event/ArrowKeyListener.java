@@ -45,14 +45,7 @@ public final class ArrowKeyListener implements KeyListener {
 	private ActionListener doMove = new ActionListener() {
 		public void actionPerformed(ActionEvent arg0) {
 			if (graph != null) {
-				Object[] cells = graph.getSelectionCells();
-
-				graph.getModel().beginUpdate();
-				for (Object cell : cells) {
-					graph.translateCell(cell, xIncrement, yIncrement);
-				}
-				graph.getModel().endUpdate();
-				graph.refresh();
+				graph.moveCells(graph.getSelectionCells(), xIncrement, yIncrement, false);
 			}
 		}
 	};
@@ -101,6 +94,10 @@ public final class ArrowKeyListener implements KeyListener {
 	 *            key event
 	 */
 	public void keyPressed(KeyEvent e) {
+		if (e.isConsumed()) {
+			return;
+		}
+		
 		double realMove;
 		boolean mustMove = true;
 
@@ -149,6 +146,8 @@ public final class ArrowKeyListener implements KeyListener {
 		}
 
 		repetitionTimer.start();
+		
+		e.consume();
 	}
 
 	/**
@@ -158,10 +157,16 @@ public final class ArrowKeyListener implements KeyListener {
 	 *            key event
 	 */
 	public void keyReleased(KeyEvent e) {
+		if (e.isConsumed()) {
+			return;
+		}
+		
 		repetitionTimer.stop();
 		yIncrement = 0;
 		xIncrement = 0;
 		graph = null;
+		
+		e.consume();
 	}
 
 	/**

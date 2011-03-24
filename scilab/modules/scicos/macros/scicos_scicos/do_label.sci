@@ -20,6 +20,9 @@
 //
 
 function [mod,scs_m]=do_label(%pt,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // do_block - edit a block label
 //**
 //** This code must be upgrated to NEW graphics 

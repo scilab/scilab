@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+ <refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="SineVoltage"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>SineVoltage</refname>
+    <refpurpose>Source de tension sinusoïdale</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/SineVoltage.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_SineVoltage">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="SineVoltage">Source de tension sinusoïdale</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_SineVoltage">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_SineVoltage">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_SineVoltage">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_SineVoltage">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_SineVoltage">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <link linkend="SineVoltage">Modèle Modelica</link>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_SineVoltage">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_SineVoltage">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Electrical_pal">Electrical.cosf - Boîte à outils électrique</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_SineVoltage">
+    <title>Description</title>
+    <para>
+      Ce bloc Modelica est une source de tension sinusoïdale générale. La résistance interne est nulle.
+</para>
+    <para>
+</para>
+  </refsection>
+  <refsection id="Dialogbox_SineVoltage">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/SineVoltage_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Amplitude (Volt)</emphasis>
+        </para>
+        <para> Amplitude de la tension sinusoïdale</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">phase (rad)</emphasis>
+        </para>
+        <para> Déphasage du signal sinusoïdal</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Frequency (Hz)</emphasis>
+        </para>
+        <para> Fréquence du signal sinusoïdal</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Voltageoffset (V)</emphasis>
+        </para>
+        <para> Composante continue du  signal sinusoïdal</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Timeoffset (s)</emphasis>
+        </para>
+        <para> Temps initial. Pendant le temps initial, la valeur du signal est égale à VoltageOffset.</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_SineVoltage">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Inputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'p'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Outputs :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica variable name :</emphasis> 'n'</para>
+            <para>Implicit <emphasis role="bold">variable.</emphasis></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Parameters :</emphasis>
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'V'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'phase'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'freqHz'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 1</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'offset'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+          <listitem>
+            <para><emphasis role="bold">Modelica parameter name :</emphasis> 'startTime'</para>
+            <para><emphasis role="bold">Default value :</emphasis> 0</para>
+            <para><emphasis role="bold">Is a state variable :</emphasis> no.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">File name of the model :</emphasis> SineVoltage</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_SineVoltage">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/SineVoltage.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Modelicamodel_SineVoltage">
+    <title>Modèle Modelica</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/Electrical/SineVoltage.mo</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_SineVoltage">
+    <title>Auteurs</title>
+    <para><emphasis role="bold"/> - www.modelica.org</para>
+  </refsection>
+</refentry>

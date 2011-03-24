@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="readgateway" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>readgateway</refname>
+
+    <refpurpose>モジュールのプリミティブの一覧を取得</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>readgateway(module_name)
+primitives = readgateway(module_name);
+[primitives,primitivesID] = readgateway(module_name);
+[primitives,primitivesID,gatewayID] = readgateway(module_name);
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>モジュールのプリミティブの一覧を取得します.</para>
+
+    <para>primitives : モジュールのプリミティブの一覧.</para>
+
+    <para>primitivesID : プリミティブのIDの一覧.</para>
+
+    <para>gatewayID : モジュールに関連するゲートウエイのIDの一覧</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+[primitives,primitivesID,gatewayID] = readgateway('core');
+primitives(1) // 'debug' primitive
+primitivesID(1) // 1 is ID of 'debug' in 'core' gateway
+gatewayID(1) // 13 is ID of 'core' gateway in scilab
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getmodules">getmodules</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

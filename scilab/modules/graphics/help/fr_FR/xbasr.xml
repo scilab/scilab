@@ -16,8 +16,8 @@
     <para><literal>xbasr</literal> est utilisée pour redessiner le contenu de la fenêtre graphique <literal>win_num</literal>. Fonctionne uniquement avec le pilote <literal>"Rec"</literal>.
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="driver">driver</link>

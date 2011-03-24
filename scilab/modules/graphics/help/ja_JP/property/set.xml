@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="set">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>set</refname>
+    <refpurpose>グラフィックエンティティオブジェクトまたは
+	またはユーザインターフェイスオブジェクトのプロパティの値を設定する.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>set(prop,val)
+set(h,prop)
+set(h,prop,val)
+h.prop=val</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>名前のあるプロパティを設定するエンティティの
+	グラフィックハンドル.
+	<literal>h</literal> はハンドルのベクトルとすることができ,
+	この場合,プロパティを修正すると,hに含まれる全てのエンティティに
+	適用されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prop</term>
+        <listitem>
+          <para>文字列, 設定するプロパティの名前.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>val</term>
+        <listitem>
+          <para>プロパティに設定する値.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+	
+	<para>このルーチンはグラフィックエンティティまたはGUIオブジェクトの
+	特定のプロパティの値を修正する際に使用できます.
+	この場合,ハンドルにドット演算子を使用するのと等価です.
+	例えば,<literal>set(h,"background",5)</literal> は <literal>h.background = 5</literal>と等価です.
+	</para>
+	<para>プロパティの名前は文字列です.
+	設定する値はハンドルの型とプロパティに依存します.
+	</para>
+	<para>存在するプロパティの全リストを取得するには,
+	<link linkend="graphics_entities">graphics_entities</link> または
+	 (ユーザインタフェースオブジェクトについては)<link linkend="uicontrol">uicontrol</link>を
+	参照ください.</para>
+	
+	<para>
+	<literal>set</literal> 関数はプロパティと値のみを指定するコールも可能です.
+	この場合,プロパティは以下のどれかとします:
+        </para>
+	<variablelist>
+      <varlistentry>
+        <term>current_entity または hdl</term>
+        <listitem>
+          <para><literal>set('current_entity',h)</literal> または
+	 <literal>set('hdl',h)</literal>は新規エンティティをカレントに設定します.
+	この場合,値にはグラフィックハンドルを指定します.</para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>current_figure</term>
+        <listitem>
+          <para><literal>set('current_figure',fig)</literal> は新しいグラフィック図を
+	カレントに設定します.
+	これは <link linkend="scf">scf</link>と等価です. この場合,
+	値には図のハンドルを指定します.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>current_axes</term>
+        <listitem>
+		  <para><literal>set('current_axes',axes)</literal> は新しい軸をカレントに
+		設定します.
+		これは,<link linkend="sca">sca</link>と等価です. この場合,
+		値にはAxesハンドルを指定します.
+		  </para>
+        </listitem>
+      </varlistentry>
+	</variablelist>
+	
+	<para>
+	<literal>set</literal> は引数にグラフィックハンドルとプロパティを指定して
+	コールすることも可能です.
+	ハンドルにはデフォルト図またはデフォルト軸のエンティティへのハンドルのどちらかを
+	指定します.
+	プロパティの値は, <literal>"default_values"</literal>とします.
+	この場合,デフォルトのエンティティはScilabの起動時にこの値にリセットされます.
+	<literal>set("default_values",h)</literal>は
+	<link linkend="sda">sda</link> または <link linkend="sdf">sdf</link>と等価です.
+	</para>
+	
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+set("auto_clear","off") ;
+// Plot 2Dの例
+x=[-.2:0.1:2*%pi]';
+plot2d(x-.3,[sin(x-1) cos(2*x)],[1 2] );
+a=get("current_axes");
+p1=a.children.children(1);
+p2=a.children.children(2);
+// 名前のあるプロパティをオブジェクト固有の値に設定
+set(p2,"foreground",13);
+set(p2,"polyline_style",2);
+set(a,'tight_limits',"on");
+set(a,"box","off");
+set(a,"sub_tics",[ 7 0 ]);
+set(a,"y_location","middle")
+set(p2,'thickness',2);
+set(p1,'mark_mode',"on");
+set(p1,'mark_style',3);
+plot2d(x-2,x.^2/20);
+p3= a.children(1).children;
+set([a p1 p2 p3],"foreground",5)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

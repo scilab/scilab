@@ -138,10 +138,10 @@ public enum Orientation {
 		
 		switch (this) {
 			case EAST:
-				ret = mxConstants.ALIGN_LEFT;
+				ret = mxConstants.ALIGN_RIGHT;
 				break;
 			case WEST:
-				ret = mxConstants.ALIGN_RIGHT;
+				ret = mxConstants.ALIGN_LEFT;
 				break;
 			default:
 				ret = mxConstants.ALIGN_CENTER;
@@ -160,10 +160,10 @@ public enum Orientation {
 		
 		switch (this) {
 			case NORTH:
-				ret = mxConstants.ALIGN_BOTTOM;
+				ret = mxConstants.ALIGN_TOP;
 				break;
 			case SOUTH:
-				ret = mxConstants.ALIGN_TOP;
+				ret = mxConstants.ALIGN_BOTTOM;
 				break;
 			default:
 				ret = mxConstants.ALIGN_MIDDLE;

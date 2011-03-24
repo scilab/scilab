@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="color">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>color</refname>
+    <refpurpose>色の色IDを取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>id=color(name)
+id=color(r,g,b)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>色の名前.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r,g,b</term>
+        <listitem>
+          <para>色のRGB整数値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>id</term>
+        <listitem>
+          <para>色のid.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>color</literal>は引数に対応する色IDを返します:</para>
+    <itemizedlist>
+      <listitem>
+        <para><literal>name</literal> には既知の色の名前を指定する必要があります (<link linkend="color_list">color_list</link>参照). </para>
+      </listitem>
+      <listitem>
+        <para><literal>r</literal>, <literal>g</literal> および <literal>b</literal> は
+	赤,緑,青の色素に対応し, 0 から 255の範囲の整数とする必要があります.
+	通常と同様に, 0 は彩度がないことを意味し, 255 は色の彩度の最大値を意味します.</para>
+      </listitem>
+    </itemizedlist>
+    <para>指定した色がカレントのカラーマップに存在しない場合,
+	カラーマップに追加されます.</para>
+    <para>この関数はプロットの際に前景色または背景色を指定するために使用されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=linspace(-2*%pi,2*%pi,100)';
+// 既存の色を使用
+plot2d(x,[sin(x),cos(x)],style=[color("red"),color("green")]);
+// 新しい色: カラーマップに追加されます
+e=gce(); p1=e.children(1); p2=e.children(2);
+p1.foreground=color("purple"); p2.foreground=color("navy blue");
+// RGB値を使用
+p1.foreground=color(255,128,128);
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="getcolor">getcolor</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

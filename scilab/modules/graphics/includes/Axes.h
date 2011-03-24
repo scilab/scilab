@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -54,6 +55,16 @@ GRAPHICS_IMPEXP sciPointObj * getClickedSubwin(sciPointObj * pFigure, int xCoord
  * Convert property name into a sciLegendPlace
  */
 GRAPHICS_IMPEXP sciLegendPlace propertyNameToLegendPlace(const char * string);
+
+/*
+ * Converts a boolean log flag to the character format
+ */
+GRAPHICS_IMPEXP char getTextLogFlag(int logFlag);
+
+/*
+ * Converts a character log flag to the equivalent boolean
+ */
+GRAPHICS_IMPEXP int getBooleanLogFlag(char logFlag);
 
 /*-----------------------------------------------------------------------------*/
 #endif /*__SCI_AXES_H_*/

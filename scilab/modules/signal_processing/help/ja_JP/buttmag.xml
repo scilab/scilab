@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="buttmag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>buttmag</refname>
+    <refpurpose>バターワースフィルタの応答</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[h]=buttmag(order,omegac,sample)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>order</term>
+        <listitem>
+          <para>整数: フィルタ次数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>omegac</term>
+        <listitem>
+          <para>実数 : カットオフ周波数(単位:Hz)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>sample</term>
+        <listitem>
+          <para><literal>buttmag</literal>が評価する周波数ベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>サンプル点におけるバターワースフィルタの値</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	バターワースフィルタの二乗振幅応答
+    <literal>omegac</literal> = カットオフ周波数 ; <literal>sample</literal> = 
+	周波数のサンプル</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//バターワースフィルタの二乗振幅応答
+h=buttmag(13,300,1:1000);
+mag=20*log(h)'/log(10);
+plot2d((1:1000)',mag,[2],"011"," ",[0,-180,1000,20])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.  </para>
+  </refsection>
+</refentry>

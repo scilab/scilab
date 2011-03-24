@@ -14,10 +14,15 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.util.List;
 
+import org.scilab.modules.localization.Messages;
+
 /**
  * Default exception for a Xcos - Scicos communication
  */
 public abstract class ScicosFormatException extends Exception {
+	private static final String UNABLE_TO_DECODE_INVALID_DATA = Messages.gettext("Unable to decode \"%s\" : invalid data.");
+	private static final String UNABLE_TO_DECODE_INVALID_FIELD = Messages.gettext("Unable to decode \"%s.%s\" : invalid field.");
+	
 	/**
 	 * Used when the {@link Element} cannot be used to decode/encode the instance.
 	 */
@@ -37,6 +42,7 @@ public abstract class ScicosFormatException extends Exception {
 	 * Used when the expected data cannot be casted safely.
 	 */
 	public static class WrongTypeException extends ScicosFormatException {
+
 		/**
 		 * Default cstr
 		 */
@@ -63,7 +69,7 @@ public abstract class ScicosFormatException extends Exception {
 		 * @param index the buggy index
 		 */
 		public WrongTypeException(List<String> fields, int index) {
-			super(String.format("Unable to decode \"%s.%s\" : invalid field.", fields.get(0), fields.get(index)));
+			super(String.format(UNABLE_TO_DECODE_INVALID_FIELD, fields.get(0), fields.get(index)));
 		}
 	}
 	
@@ -71,6 +77,7 @@ public abstract class ScicosFormatException extends Exception {
 	 * Used when the expected data are not well formatted.
 	 */
 	public static class WrongStructureException extends ScicosFormatException {
+		
 		/**
 		 * Default constructor
 		 */
@@ -81,7 +88,7 @@ public abstract class ScicosFormatException extends Exception {
 		 * @param fields the erroneous fields
 		 */
 		public WrongStructureException(List<String> fields) {
-			String.format("Unable to decode \"%s\" : invalid data.", fields.get(0));
+			super(String.format(UNABLE_TO_DECODE_INVALID_DATA, fields.get(0)));
 		}
 	}
 	

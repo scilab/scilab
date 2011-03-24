@@ -156,8 +156,8 @@
     </itemizedlist>
     <para>Pour plus d'informations sur l'inférence, voir la page d'aide de m2scideclare.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfile2sci">mfile2sci</link>

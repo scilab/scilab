@@ -1,0 +1,13 @@
+﻿Scilab is a numerical computational package developed since 1990 by researchers from the INRIA and the Ecole nationale des ponts et chaussees (ENPC). It is, since the creation of the Scilab consortium in May 2003, developed and maintained by the INRIA.
+It is a high level programming language in that most of its functionality is based around the ability to specify many computations with few lines of code. It does this primarily by abstracting primitive data types to functionally equivalent matrices.
+It is similar in functionality to MATLAB, but is available for download at no cost. The program enables users to compute a wide range of mathematical operations from relatively simple operations such as multiplication to high level operations such as correlation and complex arithmetic. The software is often used for signal processing, statistical analysis, image enhancement, fluid dynamics simulations etc.
+Scilab has been widely used in several industry and research projects, and many contributions have been made by users. The syntax is similar to MATLAB but the two are not completely compatible, though there is a converter included in Scilab for MATLAB=>Scilab Conversions. Scilab has fewer help files than MATLAB.
+Scilab also includes a package called Scicos for modeling and simulation of explicit and implicit dynamical systems including both continuous and discrete sub-systems and the screenshot shows the Scicos block diagram editor in the top right window.
+
+"世界您好"
+"азеазея"
+"ハロー・ワールド"
+"เฮลโลเวิลด์"
+"حريات وحقوق"
+"프로그램"
+"תוכנית"

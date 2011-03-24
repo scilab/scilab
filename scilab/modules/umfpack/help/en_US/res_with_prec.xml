@@ -71,8 +71,8 @@ norm(A*x0 - b)
 norm(res_with_prec(A, x0, b))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rafiter">rafiter</link>

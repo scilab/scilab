@@ -108,8 +108,8 @@ x=[1 2 3];x.^2 .*x // il faut absolument mettre un espace entre le 2 et le point
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="star">star</link></member>

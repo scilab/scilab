@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Serge Steer - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="sum" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>sum</refname>
+
+    <refpurpose>sum of array elements</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>y=sum(x)
+    y=sum(x,orientation)
+    y=sum(x,outtype)
+    y=sum(x,orientation,outtype)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>
+            an array of  reals, complex, booleans,  polynomials or
+            rational fractions.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>orientation</term>
+        <listitem>
+          <para>
+            it can be either </para>
+            <itemizedlist>
+              <listitem>
+                <para>a string with possible values <literal>"*"</literal>, <literal>"r"</literal>, 
+                <literal>"c"</literal> or  <literal>"m"</literal></para>
+              </listitem>
+              <listitem>
+                <para>a number with positive integer value</para>
+              </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>outtype</term>
+        <listitem>
+          <para>
+            a string with possible values <literal>"native"</literal> or <literal>"double"</literal>. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>scalar or array</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>For an array <literal>x</literal>,
+    <literal>y=sum(x)</literal> returns in the scalar <literal>y</literal> the
+    sum of all the elements of <literal>x</literal>.</para>
+
+    <para><literal>y=sum(x,orientation)</literal> returns in
+    <literal>y</literal> the sum of <literal>x</literal> along the
+    dimension given by <literal>orientation</literal>:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>if <literal>orientation</literal> is equal to 1 or "r" then</para>
+         <para><latex><![CDATA[ y(1,j) = \sum_i x(i,j)]]> </latex> </para>
+         <para>or </para>
+         <para><latex><![CDATA[ y(1,j,k,\ldots) = \sum_i x(i,j,k,\ldots)]]> </latex> </para>
+      </listitem>
+      <listitem>
+        <para>if <literal>orientation</literal> is equal to 2 or "c" then:</para>
+        <para><latex><![CDATA[ y(i,\mathbf{1}) = \sum_{\mathbf{j}} x(i,\mathbf{j})]]> </latex> </para>
+        <para>or </para>
+        <para><latex><![CDATA[ y(i,\mathbf{1},k,\ldots) = \sum_{j} x(i,\mathbf{j},k,\ldots)]]> </latex> </para>
+      </listitem>
+      <listitem>
+        <para>if <literal>orientation</literal> is equal to n  then</para>
+         <para><latex><![CDATA[ y(i_1,\ldots,i_{n-1},\mathbf{1},i_{n+1},\ldots) = \sum_{\mathbf{i_n}} x(i_1,\ldots,i_{n-1},\mathbf{i_n},i_{n+1},\ldots)]]> </latex> </para>
+      </listitem>
+      <listitem>
+        <para><literal>y=sum(x,"*")</literal> is equivalent to <literal>y=sum(x)</literal> </para>
+      </listitem>
+      <listitem>
+        <para><literal>y=sum(x,"m")</literal> is equivalent to
+        <literal>y=sum(x,orientation)</literal> where
+        <literal>orientation</literal> is the index of the
+        first dimension of  <literal>x</literal> that is greater than 1.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para></para>
+    <para>The <literal>outtype</literal>  argument rules the way the summation is done:</para>
+    <itemizedlist>
+      <listitem>
+        <para>For arrays of floats, of polynomials, of rational
+        fractions, the evaluation is always done using floating points
+        computations. The <literal>"double"</literal> or <literal>"native"</literal> options are equivalent.</para>
+      </listitem>
+      <listitem>
+        <para>For arrays of integers,</para>
+        <para> if <literal>outtype="native"</literal> the evaluation is done using integer
+        computations (modulo 2^b, where b is the number of bits used),</para>
+         <para> if <literal>outtype="double"</literal> the evaluation is done using floating point
+        computations.</para>
+        <para>The default value is <literal>outtype="native"</literal>.</para>
+      </listitem>
+      <listitem>
+        <para>For arrays of booleans,</para>
+        <para> if <literal>outtype="native"</literal> the evaluation is done using boolean
+        computations ( + is replaced by |),</para>
+         <para> if <literal>outtype="double"</literal> the evaluation is done using floating point
+        computations (%t values are replaced by 1 and %f values by 0).</para>
+         <para>The default value is <literal>outtype="double"</literal>.</para>
+      </listitem>
+
+    </itemizedlist>
+  </refsection>
+
+  <refsection>
+    <title>Remark</title>
+    <para>This function applies, with identical rules to <link
+    linkend="sparse">sparse matrices</link> and <link
+    linkend="hypermat">hypermatrices</link>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+sum(A)
+sum(A,1)
+
+I=uint8([2 95 103;254 9 0])
+sum(I) //native evaluation
+sum(I,"double")
+sum(I,2,"double")
+
+s=poly(0,"s");
+P=[s,%i+s;s^2,1];
+sum(P),
+sum(P,2)
+
+B=[%t %t %f %f];
+sum(B) //evaluation in float
+sum(B,"native") //similar to or(B)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member><link linkend="cumsum">cumsum</link></member>
+      <member><link linkend="prod">prod</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

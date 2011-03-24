@@ -47,8 +47,8 @@
 pvm_set_timer()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_get_timer">pvm_get_timer</link>

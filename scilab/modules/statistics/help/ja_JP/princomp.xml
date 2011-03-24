@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="princomp">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>princomp</refname>
+    <refpurpose>主成分解析</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[facpr,comprinc,lambda,tsquare] = princomp(x,eco)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+	 <literal>n</literal>行<literal>p</literal>列
+          (<literal>n</literal>個の独立変数, <literal>p</literal>
+          個の変数)の実数行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>eco</term>
+        <listitem><para>論理値, 
+	小さな大きさの特異値分解を可能とするために使用されます.
+	</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>facpr</term>
+        <listitem>
+          <para><literal>p</literal>行<literal>p</literal>列の行列.
+	主成分を有します: 相関行列<literal>V</literal>の固有ベクトル.</para>
+        </listitem>
+      </varlistentry>
+       <varlistentry>
+        <term>comprinc</term>
+        <listitem>
+          <para><literal>n</literal>行<literal>p</literal>列の行列.
+	主成分を有します.この行列の各列は,M個の主軸への個々の直交投影です.
+	この列の各々は,
+	条件<literal>u'_i M^(-1) u_i=1</literal>の下で分散を最大化する
+	変数x1, ...,xpの線形結合です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lambda</term>
+        <listitem>
+          <para><literal>p</literal>列ベクトルです.
+	<literal>V</literal>の固有値を有します.
+	ただし,<literal>V</literal>は相関行列です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tsquare</term>
+        <listitem>
+          <para><literal>n</literal>列ベクトル. 
+	各データ点に関するHotellingのT^2統計量を有します.</para>
+        </listitem>
+      </varlistentry>
+     
+     
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,<literal>n</literal>行<literal>p</literal>列の
+	データ行列<literal>x</literal>で
+	"主成分解析"を行ないます.</para>
+   <para>
+	この手法の背後のアイデアは,
+	n個独立変量からなるクラスタを
+	より小さな次元の部分空間に
+	近似的な手法で表すことです.
+	これを行うために,
+	この手法はクラスタを部分空間に投影します.
+	k次元投影部分区間の選択は,
+	投影の距離が最小のゆがみを有するように行われます:
+	投影の距離の平方が最大化されるような
+	k次元部分空間を探します(実際には投影では距離は伸ばすことのみできます).
+	言い換えると,
+	投影のk次元部分空間への投影の慣性は最大化される必要があります.
+    </para>
+    <para> 
+	標準化された変数について主成分解析を計算する際に,
+	<literal>princomp(wcenter(x,1))</literal>または<link
+      linkend="pca">pca</link>関数を使用することができます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=rand(100,10,'n');
+[facpr,comprinc,lambda,tsquare] = princomp(a);
+ ]]></programlisting>
+  </refsection>
+ <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="wcenter">wcenter</link>
+      </member>
+      <member>
+        <link linkend="pca">pca</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>
+    Carlos Klimann
+  </para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>Saporta, Gilbert, Probabilites,  Analyse des
+Donnees et Statistique, Editions Technip, Paris, 1990.</para>
+  </refsection>
+</refentry>

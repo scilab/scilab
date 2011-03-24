@@ -20,6 +20,9 @@
 //
 
 function do_exit()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** This function is executed at the end of the SCICOS main loop
 //

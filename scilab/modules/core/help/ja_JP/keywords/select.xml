@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="select">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>select</refname>
+    <refpurpose> select キーワード</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <programlisting role = ""><![CDATA[ 
+select expr,
+  case expr1 then instructions1,
+  case expr2 then instructions2,
+  ...
+  case exprn then instructionsn,
+  [else instructions],
+end
+ ]]></programlisting>
+    <para>
+  </para>
+    <para>
+    注意:
+  </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+	唯一の規則は,各 "then" キーワードを対応する "case" キーワードと同じ行に
+	置く必要があることです.</para>
+      </listitem>
+      <listitem>
+        <para>キーワード "then"  の代わりにキャレッジリターンまたはカンマを使用することができます.
+	<literal>instructions1</literal> は <literal>expr1=expr</literal> の場合に実行される, 
+	といったようになります.</para>
+      </listitem>
+    </itemizedlist>
+    <para>
+    警告: 条件文(if while for または select/case)の本体の定義に使用できる文字数は 16k に制限されています.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+while %t do
+  n=round(10*rand(1,1))
+  select n
+  case 0 then 
+    disp(0)
+  case 1 then
+    disp(1)
+  else
+    break
+  end
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="if">if</link>
+      </member>
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="for">for</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

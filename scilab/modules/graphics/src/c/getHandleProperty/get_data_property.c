@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,6 +19,8 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+
 #include "get_data_property.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
@@ -27,144 +30,244 @@
 #include "MALLOC.h"
 #include "SetPropertyStatus.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 int getgrayplotdata(sciPointObj *pobj)
 {
-  char * variable_tlist[] = {"grayplotdata","x","y","z"};
+    char * variable_tlist[] = {"grayplotdata","x","y","z"};
+    int numX;
+    int *piNumX = &numX;
+    int numY;
+    int *piNumY = &numY;
+    double* dataX;
+    double* dataY;
+    double* dataZ;
 
-  /* F.Leray debug*/
-  sciGrayplot * ppgrayplot = pGRAYPLOT_FEATURE (pobj);
+    /* Add 'variable' tlist items to stack */
+    returnedList * tList = createReturnedList( 3, variable_tlist );
 
-  /* Add 'variable' tlist items to stack */
-  returnedList * tList = createReturnedList( 3, variable_tlist ) ;
+    if ( tList == NULL )
+    {
+        return -1;
+    }
 
-  if ( tList == NULL )
-  {
-    return -1 ;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNumX);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNumY);
 
-  addColVectorToReturnedList( tList, ppgrayplot->pvecx, ppgrayplot->nx ) ;
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
 
-  addColVectorToReturnedList( tList, ppgrayplot->pvecy, ppgrayplot->ny ) ;
+    addColVectorToReturnedList(tList, dataX, numX);
+    addColVectorToReturnedList(tList, dataY, numY);
+    addMatrixToReturnedList(tList, dataZ, numX, numY);
 
-  addMatrixToReturnedList( tList, ppgrayplot->pvecz, ppgrayplot->nx, ppgrayplot->ny ) ;
+    destroyReturnedList( tList );
 
-  destroyReturnedList( tList ) ;
-
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 /* F.Leray 29.04.05 */
 /* the champ data is now given as a tlist (like for surface objects) */
 int getchampdata(sciPointObj *pobj)
 {
-  char * variable_tlist[] = {"champdata","x","y","fx","fy"};
+    char * variable_tlist[] = {"champdata","x","y","fx","fy"};
+    int* dimensions;
+    double* arrowBasesX;
+    double* arrowBasesY;
+    double* arrowDirectionsX;
+    double* arrowDirectionsY;
 
-  /* F.Leray debug*/
-  sciSegs * ppsegs = pSEGS_FEATURE (pobj);
+    /* Add 'variable' tlist items to stack */
 
-  /* Add 'variable' tlist items to stack */
+    returnedList * tList = createReturnedList( 4, variable_tlist );
 
-  returnedList * tList = createReturnedList( 4, variable_tlist ) ;
+    if ( tList == NULL )
+    {
+        return -1;
+    }
 
-  if ( tList == NULL )
-  {
-    return -1 ;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_CHAMP_DIMENSIONS__, jni_int_vector, &dimensions);
 
-  addColVectorToReturnedList( tList, ppsegs->vx, ppsegs->Nbr1 ) ;
+    getGraphicObjectProperty(pobj->UID, __GO_BASE_X__, jni_double_vector, &arrowBasesX);
+    getGraphicObjectProperty(pobj->UID, __GO_BASE_Y__, jni_double_vector, &arrowBasesY);
+    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_X__, jni_double_vector, &arrowDirectionsX);
+    getGraphicObjectProperty(pobj->UID, __GO_DIRECTION_Y__, jni_double_vector, &arrowDirectionsY);
 
-  addColVectorToReturnedList( tList, ppsegs->vy, ppsegs->Nbr2 ) ;
+    addColVectorToReturnedList(tList, arrowBasesX, dimensions[0]);
+    addColVectorToReturnedList(tList, arrowBasesY, dimensions[1]);
+    addMatrixToReturnedList(tList, arrowDirectionsX, dimensions[0], dimensions[1]);
+    addMatrixToReturnedList(tList, arrowDirectionsY, dimensions[0], dimensions[1]);
 
-  addMatrixToReturnedList( tList, ppsegs->vfx, ppsegs->Nbr1, ppsegs->Nbr2 ) ;
+    destroyReturnedList( tList );
 
-  addMatrixToReturnedList( tList, ppsegs->vfy, ppsegs->Nbr1, ppsegs->Nbr2 ) ;
-
-  destroyReturnedList( tList ) ;
-
-  return 0;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int get3ddata(sciPointObj *pobj)
 {
-  char *variable_tlist_color[] = {"3d","x","y","z","color"};
-  char *variable_tlist[] = {"3d","x","y","z"};
+    char *variable_tlist_color[] = {"3d","x","y","z","color"};
+    char *variable_tlist[] = {"3d","x","y","z"};
+    char* type;
+    double* colors;
+    double* dataX;
+    double* dataY;
+    double* dataZ;
+    int nbRow = 0;
+    int *piNbRow = &nbRow;
+    int nbCol;
+    int *piNbCol = &nbCol;
 
-  returnedList * tList = NULL ;
+    returnedList * tList = NULL;
 
-  /* tests a faire sur presence et taille color */
-  if ( pSURFACE_FEATURE (pobj)->m3n != 0 )
-  {
+    getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
-    /* Add 'variable' tlist items to stack */
-    tList = createReturnedList( 4, variable_tlist_color ) ;
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X__, jni_double_vector, &dataX);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y__, jni_double_vector, &dataY);
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Z__, jni_double_vector, &dataZ);
 
-    if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_FAC3D)
+    getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COLORS__, jni_double_vector, &colors);
+
+    if (colors != NULL)
     {
-      int nbRow = pSURFACE_FEATURE (pobj)->m1 ;
-      int nbCol = pSURFACE_FEATURE (pobj)->n1 ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecx, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecy, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecz, nbRow, nbCol ) ;
-      
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n ) ;
+        /* Add 'variable' tlist items to stack */
+        tList = createReturnedList( 4, variable_tlist_color );
 
-      
+        if (strcmp(type, __GO_FAC3D__) == 0)
+        {
+            int numColors = 0;
+            int *piNumColors = &numColors;
+
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
+
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, &piNumColors);
+
+            addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
+
+            /*
+             * With per-facet colors, the data vector might be either a column one or a row one,
+             * only the row vector case is managed at the moment.
+             */
+            if (numColors == nbCol)
+            {
+                addMatrixToReturnedList(tList, colors, 1, nbCol);
+            }
+            else
+            {
+                addMatrixToReturnedList(tList, colors, nbRow, nbCol);
+            }
+
+        }
+        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        {
+            /*
+             * Deactivated for now.
+             * The color matrix is not implemented yet within the MVC for Plot 3D objects (and possibly
+             * useless regarding rendering).
+             * To be implemented.
+             */
+#if 0
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 );
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 );
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 );
+
+            addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n );
+#endif
+        }
+
+        destroyReturnedList( tList );
     }
-    else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
+    else /* no color provided in input*/
     {
-      
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 ) ;
+        /* Add 'variable' tlist items to stack */
+        tList = createReturnedList( 3, variable_tlist );
 
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->inputCMoV, pSURFACE_FEATURE (pobj)->m3n, pSURFACE_FEATURE (pobj)->n3n ) ;
+        if (strcmp(type, __GO_FAC3D__) == 0)
+        {
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_VERTICES_PER_GON__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_GONS__, jni_int, &piNbCol);
+
+            addMatrixToReturnedList(tList, dataX, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataY, nbRow, nbCol);
+            addMatrixToReturnedList(tList, dataZ, nbRow, nbCol);
+        }
+        else if (strcmp(type, __GO_PLOT3D__) == 0)
+        {
+            int* xDimensions;
+            int* yDimensions;
+
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_X__, jni_int, &piNbRow);
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_NUM_Y__, jni_int, &piNbCol);
+
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_X_DIMENSIONS__, jni_int_vector, &xDimensions);
+            getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_Y_DIMENSIONS__, jni_int_vector, &yDimensions);
+
+            addMatrixToReturnedList( tList, dataX, xDimensions[0], xDimensions[1]);
+            addMatrixToReturnedList( tList, dataY, yDimensions[0], yDimensions[1]);
+            addMatrixToReturnedList( tList, dataZ, nbRow, nbCol);
+        }
+
+        destroyReturnedList( tList );
     }
-    destroyReturnedList( tList ) ;
-  }
-  else /* no color provided in input*/
-  {
 
-    /* Add 'variable' tlist items to stack */
-    tList = createReturnedList( 3, variable_tlist ) ;
-
-    if( pSURFACE_FEATURE(pobj)->typeof3d == SCI_FAC3D )
-    {
-      int nbRow = pSURFACE_FEATURE (pobj)->m1 ;
-      int nbCol = pSURFACE_FEATURE (pobj)->n1 ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecx, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecy, nbRow, nbCol ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE (pobj)->pvecz, nbRow, nbCol ) ;
-    }
-    else if(pSURFACE_FEATURE (pobj)->typeof3d == SCI_PLOT3D)
-    {
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecx, pSURFACE_FEATURE(pobj)->m1, pSURFACE_FEATURE(pobj)->n1 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecy, pSURFACE_FEATURE(pobj)->m2, pSURFACE_FEATURE(pobj)->n2 ) ;
-      addMatrixToReturnedList( tList, pSURFACE_FEATURE(pobj)->pvecz, pSURFACE_FEATURE(pobj)->m3, pSURFACE_FEATURE(pobj)->n3 ) ;
-    }
-    destroyReturnedList( tList ) ;
-  }
-
-
-  return 0;
+    return 0;
 }
 /*------------------------------------------------------------------------*/
+/*
+ * This version of get_data_property corresponds to the first data model
+ * implementation (now obsolete)
+ * To be deleted
+ */
+#if 0
 int get_data_property( sciPointObj * pobj )
 {
+    double *pdblData = getGraphicObjectProperty(pobj->UID, __GO_DATA_MODEL_COORDINATES__, jni_double);
 
-  if ( sciGetEntityType( pobj ) == SCI_SURFACE )
+    if (pdblData == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"data");
+        return -1;
+    }
+
+    return sciReturnDouble(*pdblData);
+
+}
+#endif
+
+/*
+ * This version of get_data_property allows to get data from the data model.
+ * It currently only works for a Polyline object.
+ */
+
+int get_data_property( sciPointObj * pobj )
+{
+  char* type;
+
+  getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
+
+  /*
+   * 0 values put within the conditional expressions to prevent calling sciGetEntityType
+   * The last else block allows to get Polyline data (via sciGetPoint)
+   * To be implemented with string comparisons using the GO_TYPE property (see the sciGetPoint function)
+   */
+  if ((strcmp(type, __GO_FAC3D__) == 0) || (strcmp(type, __GO_PLOT3D__) == 0))
   {
-    return get3ddata( pobj ) ;
+    return get3ddata( pobj );
   }
-  else if ( (sciGetEntityType(pobj) == SCI_SEGS) && (pSEGS_FEATURE(pobj)->ptype == 1) )
+  else if (strcmp(type, __GO_CHAMP__) == 0)
   {
-    return getchampdata( pobj ) ;
+    return getchampdata( pobj );
   }
-  else if ( (sciGetEntityType(pobj) == SCI_GRAYPLOT)  && (pGRAYPLOT_FEATURE(pobj)->type == 0) ) /* case 0: real grayplot */
+  else if (strcmp(type, __GO_GRAYPLOT__) == 0)
   {
-    return getgrayplotdata( pobj ) ;
+    return getgrayplotdata( pobj );
   }
   else /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
   {
@@ -199,6 +302,6 @@ int get_data_property( sciPointObj * pobj )
 
     return status ;
   }
-  
+
 }
 /*------------------------------------------------------------------------*/

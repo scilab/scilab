@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,28 +20,42 @@
 /*------------------------------------------------------------------------*/
 
 #include "getHandleProperty.h"
-#include "GetProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_view_property( sciPointObj * pobj )
 {
+    int iView = 0;
+    int* piView = &iView;
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"view") ;
-    return -1;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
+        return -1;
+    }
+#endif
 
-  if ( sciGetIs3d( pobj ) )
-  {
-    return sciReturnString( "3d" ) ;
-  }
-  else
-  {
-    return sciReturnString( "2d" ) ;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_VIEW__, jni_int, &piView);
+
+    if (piView == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"view");
+        return -1;
+    }
+
+    if (iView == 0)
+    {
+        return sciReturnString( "2d" );
+    }
+    else if (iView == 1)
+    {
+        return sciReturnString( "3d" );
+    }
 }
 /*------------------------------------------------------------------------*/

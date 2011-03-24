@@ -607,15 +607,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_amell.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_amell.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_corr.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_corr.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delip.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_delip.c"
 				>
 			</File>
 			<File
@@ -623,23 +623,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fft.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_fft.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fiir.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_fiir.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_remez.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_remez.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_rpem.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_rpem.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_syredi.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_syredi.c"
 				>
 			</File>
 			<File
@@ -919,15 +919,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_amell.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_amell.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_corr.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_corr.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_delip.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_delip.f"
 				>
 			</File>
 			<File
@@ -935,23 +935,23 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fft.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_fft.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fiir.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_fiir.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_remez.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_remez.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_rpem.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_rpem.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_syredi.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_syredi.f"
 				>
 			</File>
 			<File

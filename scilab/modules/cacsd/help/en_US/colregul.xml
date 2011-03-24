@@ -51,8 +51,8 @@
     <para><literal>Sl</literal> is a assumed to be a left invertible linear system (<literal>syslin</literal> list)
     in state-space representation with possibly a polynomial <literal>D</literal> matrix.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="invsyslin">invsyslin</link>

@@ -113,8 +113,8 @@ v=%t([1 1 1 1 1])
 [x,y,z]=(1,2,3)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="colon">colon</link>

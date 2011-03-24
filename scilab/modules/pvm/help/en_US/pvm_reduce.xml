@@ -81,8 +81,8 @@
          pvm_reduce  and  then  leaves  the group before the root has
          called pvm_reduce an error may occur.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_bcast">pvm_bcast</link>

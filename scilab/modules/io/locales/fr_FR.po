@@ -1,0 +1,130 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2007-11-20 18:25+0100\n"
+"PO-Revision-Date: 2010-09-16 11:09+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "\"%s\" directory write access denied.\n"
+msgstr "Écriture refusée dans le dossier \"%s\".\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: The file \"%s\" does not exist.\n"
+msgstr "%s : Le fichier \"%s\" n'existe pas.\n"
+
+#, c-format
+msgid "%s: The file does not exist.\n"
+msgstr "%s : Le fichier n'existe pas.\n"
+
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: L'interpréteur système ne répond pas..."
+
+#, c-format
+msgid "%s: Undefined environment variable %s.\n"
+msgstr "%s: Variable d'environnement %s non définie.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Mauvais nombre d'argument(s) en entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: Mauvais nombre d'argument d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s : Mauvais nombre d'argument(s) de sortie.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un scalaire "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Un int attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
+msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée #%d : ''%s'' attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un entier attendu.\n"
+
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: erreur pendant l'exécution de %s"
+
+#, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Le fichier \"%s\" existe déjà.\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "Le fichier \"%s\" n'existe pas.\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "Accès en lecture au fichier \"%s\" refusé.\n"
+
+msgid "Too many files opened!\n"
+msgstr "Trop de fichiers ouverts!\n"
+
+#, c-format
+msgid "Undefined environment variable %s.\n"
+msgstr "Variable d'environnement %s non définie.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "Erreur non gérée par v2cunit.\n"

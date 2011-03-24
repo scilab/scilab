@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="casc">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>casc</refname>
+    <refpurpose>係数からフィルタのカスケード実現を作成</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[cels]=casc(x,z)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+	
+
+	(4xN)-行列. この各列は1つのカスケード要素で,
+	その最初の2列のエントリは分子の係数,次の2列のエントリは
+	分母の係数です</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>カスケード変数を表す文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cels</term>
+        <listitem>
+          <para>結果のカスケード表現</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	係数の行列からフィルタのカスケード実現を作成します
+    (ユーティリティ関数).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=[1,2,3;4,5,6;7,8,9;10,11,12]
+cels=casc(x,'z')
+ ]]></programlisting>
+  </refsection>
+</refentry>

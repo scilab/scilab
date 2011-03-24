@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lcf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lcf</refname>
+    <refpurpose>正規化された既約分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[N,M]=lcf(sl)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+        <listitem>
+          <para>状態空間または伝達関数で指定された線形システム (<literal>syslin</literal> リスト)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>N,M</term>
+        <listitem>
+          <para>2つの線形システム (<literal>syslin</literal> リスト)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	線形システム<literal>sl</literal>の
+	正規化された既約分解を計算します.</para>
+    <para>
+      <literal>sl = M^-1 N</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.; ;   </para>
+  </refsection>
+</refentry>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="hist3d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>hist3d</refname>
+
+    <refpurpose>3次元ヒストグラム</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>hist3d(f,[theta,alpha,leg,flag,ebox])
+hist3d(f,&lt;opt_args&gt;)
+hist3d(list(f,x,y),[theta,alpha,leg,flag,ebox])
+hist3d(list(f,x,y),&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mtx</term>
+
+        <listitem>
+          <para>大きさ (m,n) の行列で, ヒストグラム
+          <literal>mtx(i,j)=F(x(i),y(j))</literal>を定義します. ただし, <literal>x</literal>
+          および <literal>y</literal> は <literal>0:m</literal> および
+          <literal>0:n</literal>の範囲とします.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>list(mtx,x,y)</term>
+
+        <listitem>
+          <para>mtxは大きさ(m,n)の行列で,ヒストグラム<literal>mtx(i,j)=F(x(i),y(j))</literal>
+	を定義します.<literal>x</literal>
+          および <literal>y</literal> は, 大きさ (1,m+1) および (1,n+1)のベクトルです.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>一連の命令<literal>key1=value1,
+          key2=value2</literal>,...を定義します.ただし, <literal>key1</literal>,
+          <literal>key2,...</literal> には以下のどれかを指定できます: theta,
+          alpha,leg,flag,ebox.  <link linkend="plot3d">plot3d</link>を参照ください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>theta,alpha,leg,flag,ebox</term>
+
+        <listitem>
+          <para><link linkend="plot3d">plot3d</link>を参照くださ.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>hist3d</literal> は2次元ヒストグラムを3次元プロットとして
+	表します.この値は,間隔<literal>[x(i) x(i+1)[ X [y(i)
+    y(i+1)[</literal>に関連します.</para>
+
+    <para>コマンド <literal>hist3d()</literal> を入力するとデモを参照できます.</para>
+  </refsection>
+
+  <refsection>
+  <title>例</title>
+
+  <programlisting role="example"><![CDATA[ 
+hist3d(10*rand(10,10));
+
+Z = zeros(100,5);
+A = abs(rand(40,5));
+Z(1:40,:) = A;
+scf();
+hist3d(Z);
+
+Index = find(Z==0);
+Z(Index) = %nan;
+scf();
+hist3d(Z);
+
+A = abs(rand(10,5));
+Z(91:100,:) = A;
+scf();
+hist3d(Z); 
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="histplot">histplot</link>
+      </member>
+
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+    <para>Steer S. &amp; JPhilippe C.</para>
+  </refsection>
+</refentry>

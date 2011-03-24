@@ -57,7 +57,7 @@ public class FileTypeTest {
 			if (type != XcosFileType.XCOS) {
 				assert type == XcosFileType.findFileType(tmp);
 			} else {
-				assert XcosFileType.findFileType(tmp) == XcosFileType.UNKNOW;
+				assert XcosFileType.findFileType(tmp) == null;
 			}
 			
 			tmp.delete();

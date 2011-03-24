@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2008 - INRIA - Vincent COUVERT 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="matfile_varwrite">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-10 14:32:05 +0200 (jeu, 10 avr 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>matfile_varwrite</refname>
+    <refpurpose>Matlab V5バイナリ MATファイルに変数を書き込む.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>status = matfile_varreadnext(fd, name, value, compressionflag)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータs</title>
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>実数: ファイル記述子 (<link linkend="matfile_open">matfile_open</link>により返された).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>文字列: ファイルに書き込む変数の名前.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value</term>
+        <listitem>
+          <para>任意のScilab型: ファイルに書き込む変数の値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>compressionflag</term>
+        <listitem>
+          <para>論理値: データ圧縮を使用する (有効フラグ <emphasis>%T</emphasis>) かどうかを示す.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>status</term>
+        <listitem>
+          <para>論理値: 書き込み成功の場合に <emphasis>%T</emphasis> , それ以外の場合に <emphasis>%F</emphasis> .</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	変数を<link linkend="matfile_open">matfile_open</link>
+	により開かれたMatlabバイナリMATファイルに書き込みます.</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="matfile_open">matfile_open</link>
+      </member>
+      <member>
+        <link linkend="matfile_close">matfile_close</link>
+      </member>
+      <member>
+        <link linkend="matfile_varreadnext">matfile_varreadnext</link>
+      </member>
+      <member>
+        <link linkend="matfile_listvar">matfile_listvar</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>V.C</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>この関数はMATIOライブラリ (<literal><ulink url="http://sourceforge.net/projects/matio/">http://sourceforge.net/projects/matio/</ulink></literal>)を使用しています.</para>
+  </refsection>
+</refentry>

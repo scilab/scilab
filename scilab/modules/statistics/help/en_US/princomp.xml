@@ -109,8 +109,8 @@ a=rand(100,10,'n');
 [facpr,comprinc,lambda,tsquare] = princomp(a);
  ]]></programlisting>
   </refsection>
- <refsection>
-    <title>See Also</title>
+ <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="wcenter">wcenter</link>

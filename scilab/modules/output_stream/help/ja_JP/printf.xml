@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="printf">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>printf</refname>
+    <refpurpose>C言語のprinf関数をエミュレート</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>printf(format,value_1,..,value_n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>format</term>
+        <listitem>
+          <para>Scilab文字列. 変換指定を含む文字リテラルを組み合わせた文字列を指定.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>value_i</term>
+        <listitem>
+          <para>formatパラメータに基づき変換されるデータを指定.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>printf</literal>関数は,<literal>value</literal>パラメータを
+	<literal>format</literal>パラメータの制御の下で
+	変換, 整形した後, 標準出力に書き込みます.
+  </para>
+    <para>
+    <literal>format</literal> パラメータは以下の2種類の型のオブジェクトを含む
+	文字列です:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>文字リテラルs</term>
+        <listitem>
+          <para>出力ストリームにコピーされます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>変換指定子</term>
+        <listitem>
+          <para>
+	各々について,0以上の項目が<literal>value</literal>パラメータから
+	取得されます. 詳細については,
+	<link linkend="printf_conversion">printf_conversion</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+   <para>
+    	いくつかの<literal>value</literal>が<literal>format</literal>を処理
+	し終わった後で残った場合, これらは無視されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+printf('Result is:\nalpha=%f',0.535)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="print">print</link>
+      </member>
+      <member>
+        <link linkend="write">write</link>
+      </member>
+      <member>
+        <link linkend="format">format</link>
+      </member>
+      <member>
+        <link linkend="disp">disp</link>
+      </member>
+      <member>
+        <link linkend="file">file</link>
+      </member>
+      <member>
+        <link linkend="fprintf">fprintf</link>
+      </member>
+      <member>
+        <link linkend="sprintf">sprintf</link>
+      </member>
+      <member>
+        <link linkend="printf_conversion">printf_conversion</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

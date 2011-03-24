@@ -15,7 +15,7 @@ modulename=javasci
 
 #### javasci : Conf files ####
 libjavasci_la_rootdir = $(mydatadir)
-libjavasci_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libjavasci_la_root_DATA =  license.txt version.xml
 
 #### javasci : init scripts ####
 libjavasci_la_etcdir = $(mydatadir)/etc
@@ -44,11 +44,11 @@ src/c/javasci2_helper.c
 
 pkglib_LTLIBRARIES = libjavasci.la libjavasci2.la
 
-libjavasci_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libjavasci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libjavasci_la_SOURCES = $(JAVASCI_V1_C_SOURCES)
 
-libjavasci2_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libjavasci2_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
 

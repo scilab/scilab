@@ -5,21 +5,21 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------
- *    Graphic library 
+ *    Graphic library
  *    newGraph Library header
  *    Comment:
- *    This file contains all functions used to BUILD new objects : 
- - break the binding between the deleted object and its parent in the 
+ *    This file contains all functions used to BUILD new objects :
+ - break the binding between the deleted object and its parent in the
  existing hierarchy
  - freeing memory
  --------------------------------------------------------------------------*/
@@ -53,6 +53,8 @@
 #include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 
+#include "deleteGraphicObject.h"
+
 /*----------------------------------------------------------------------------*/
 
 /**
@@ -75,9 +77,9 @@ int destroyGraphicsSons(sciPointObj * pthis)
 
 /********************* modifie le 01/02/2002 ************************
  * On detruit pas la sous fenetre, elle est initialiser avec la figure
- * pour cette version, on considere qu'il y'a 1 seule sous fenetre et 
- * elle suit la fenetre principale (voir clf() ), la fenetre n'est pas 
- * consideree comme un des fils.  
+ * pour cette version, on considere qu'il y'a 1 seule sous fenetre et
+ * elle suit la fenetre principale (voir clf() ), la fenetre n'est pas
+ * consideree comme un des fils.
  */
  /**
   * This function destroies childs and pthis
@@ -85,6 +87,11 @@ int destroyGraphicsSons(sciPointObj * pthis)
   */
 int destroyGraphicHierarchy(sciPointObj * pthis)
 {
+    deleteGraphicObject(pthis->UID);
+
+    return 0;
+
+#ifdef __OLD_IMPLEMENTATION__
   destroyGraphicsSons(pthis);
   switch (sciGetEntityType (pthis))
     {
@@ -107,20 +114,20 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
       break;
     case SCI_ARC:
       DestroyArc (pthis);
-      return 0; 
+      return 0;
       break;
     case SCI_SEGS:
       DestroySegs (pthis);
       return 0;
-      break;  
-    case SCI_FEC:  
+      break;
+    case SCI_FEC:
       DestroyFec (pthis);
       return 0;
-      break; 
-    case SCI_GRAYPLOT: 
+      break;
+    case SCI_GRAYPLOT:
       DestroyGrayplot (pthis);
       return 0;
-      break; 
+      break;
     case SCI_POLYLINE:
       DestroyPolyline (pthis);
       return 0;
@@ -140,7 +147,7 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
     case SCI_AGREG:
       DestroyCompound (pthis);
       return 0;
-      break; 
+      break;
     case SCI_LABEL: /* F.Leray 28.05.04 */
       DestroyLabel (pthis);
       return 0;
@@ -160,6 +167,7 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
     }
 
   return 0;
+#endif
 }
 
 
@@ -173,6 +181,11 @@ int destroyGraphicHierarchy(sciPointObj * pthis)
 int
 sciDelGraphicObj (sciPointObj * pthis)
 {
+     deleteGraphicObject(pthis->UID);
+
+    return 0;
+
+#ifdef __OLD_IMPLEMENTATION__
   switch (sciGetEntityType (pthis))
     {
     case SCI_LABEL:
@@ -180,9 +193,9 @@ sciDelGraphicObj (sciPointObj * pthis)
       return -1;
     case SCI_LEGEND:
     case SCI_ARC:
-    case SCI_SEGS: 
-    case SCI_FEC: 
-    case SCI_GRAYPLOT: 
+    case SCI_SEGS:
+    case SCI_FEC:
+    case SCI_GRAYPLOT:
     case SCI_POLYLINE:
     case SCI_RECTANGLE:
     case SCI_SURFACE:
@@ -198,7 +211,7 @@ sciDelGraphicObj (sciPointObj * pthis)
 				/* Inside a figure */
 				sciPointObj * parentFigure = sciGetParentFigure(pthis);
 				destroyGraphicHierarchy (pthis);
-				
+
 				createFirstSubwin(parentFigure);
 				return 0;
 			}
@@ -206,6 +219,7 @@ sciDelGraphicObj (sciPointObj * pthis)
       Scierror(999, _("This object cannot be deleted.\n"));
       return -1;
     }
+#endif
 }
 
 /*-----------------------------------------------------------------------------*/
@@ -219,7 +233,7 @@ int C2F(scigerase)( void )
     sciClearFigure(sciGetCurrentFigure());
   }
   return 0;
-} 
+}
 /*-----------------------------------------------------------------------------*/
 
 /**DestroyFigure
@@ -230,7 +244,7 @@ int DestroyFigure (sciPointObj * pthis)
 {
   // remove the figure if it is in the list
   removeFigureFromList(pthis);
-  
+
   if (sciIsCurrentFigure(pthis) )
   {
 
@@ -239,17 +253,17 @@ int DestroyFigure (sciPointObj * pthis)
   }
 
   sciSetIsEventHandlerEnable(pthis, FALSE ) ;
-  
+
   if (pFIGURE_FEATURE(pthis)->eventHandler != NULL)
   {
     FREE( pFIGURE_FEATURE(pthis)->eventHandler ) ;
   }
-  
+
   if (pFIGURE_FEATURE(pthis)->name != NULL)
   {
     FREE( pFIGURE_FEATURE(pthis)->name ) ;
   }
-  
+
 	destroyUiobjectTag(pthis);
   destroyFigureModelData(pFIGURE_FEATURE(pthis)->pModelData) ;
   pFIGURE_FEATURE(pthis)->pModelData = NULL;
@@ -265,7 +279,7 @@ int DestroyFigure (sciPointObj * pthis)
  */
 int
 DestroySubWin (sciPointObj * pthis)
-{ 
+{
   /* Add. grads arrays */ /* F.Leray 11.10.04 */
   /* specific user arrays */
   sciSubWindow * ppsubwin = pSUBWIN_FEATURE (pthis);
@@ -284,13 +298,13 @@ DestroySubWin (sciPointObj * pthis)
   ppsubwin->axes.u_nxgrads = 0;
   ppsubwin->axes.u_nygrads = 0;
   ppsubwin->axes.u_nzgrads = 0;
- 
- 
+
+
   /* auto (computed) arrays are defined with max. length == 20 */
   ppsubwin->axes.nxgrads = 0;
   ppsubwin->axes.nygrads = 0;
   ppsubwin->axes.nzgrads = 0;
-  
+
   if ( sciGetCallback(pthis) != (char *)NULL)
 	{
     FREE(sciGetCallback(pthis));
@@ -419,7 +433,7 @@ DestroySurface (sciPointObj * pthis)
   sciSubWindow * ppSubWin ;
   sciSurface * ppSurface = pSURFACE_FEATURE (pthis) ;
   int res = -1 ;
-  
+
   psubwin  = sciGetParentSubwin(pthis) ;
   ppSubWin = pSUBWIN_FEATURE ( psubwin ) ;
 
@@ -428,9 +442,9 @@ DestroySurface (sciPointObj * pthis)
   FREE(ppSurface->pvecx);
   FREE(ppSurface->inputCMoV); /* Adding F.Leray 24.03.04*/
   FREE(ppSurface->color); /* Adding F.Leray 18.03.05 */
-  
+
   if ( ppSurface->izcol != 0 )
-  { 
+  {
     FREE(ppSurface->zcol);
   }
   /* DJ.A 2003 */
@@ -469,8 +483,8 @@ DestroyAxes (sciPointObj * pthis)
   FREE (pAXES_FEATURE(pthis)->vx);
   FREE (pAXES_FEATURE(pthis)->vy);
   str=pAXES_FEATURE(pthis)->str;
-  for (i=Max(pAXES_FEATURE(pthis)->nx,pAXES_FEATURE(pthis)->ny)-1;i<0;i--) 
-    FREE (pAXES_FEATURE(pthis)->str); 
+  for (i=Max(pAXES_FEATURE(pthis)->nx,pAXES_FEATURE(pthis)->ny)-1;i<0;i--)
+    FREE (pAXES_FEATURE(pthis)->str);
   FREE (pAXES_FEATURE(pthis)->str);
   return sciStandardDestroyOperations(pthis) ;
 }
@@ -480,15 +494,15 @@ DestroyAxes (sciPointObj * pthis)
  * @param sciPointObj * pthis: the pointer to the entity
  * @author Djalel ABDEMOUCHE
  * @version 0.1
- * @see 
+ * @see
  */
 int
 DestroyFec (sciPointObj * pthis)
 {
   FREE (pFEC_FEATURE (pthis)->pvecx);
   FREE (pFEC_FEATURE (pthis)->pvecy);
-  FREE (pFEC_FEATURE (pthis)->pnoeud); 
-  FREE (pFEC_FEATURE (pthis)->pfun); 
+  FREE (pFEC_FEATURE (pthis)->pnoeud);
+  FREE (pFEC_FEATURE (pthis)->pfun);
   return sciStandardDestroyOperations(pthis) ;
 }
 
@@ -498,25 +512,25 @@ DestroyFec (sciPointObj * pthis)
  * @param sciPointObj * pthis: the pointer to the entity
  * @author Djalel ABDEMOUCHE
  * @version 0.1
- * @see 
+ * @see
  */
 int
 DestroySegs (sciPointObj * pthis)
-{  
+{
   FREE (pSEGS_FEATURE (pthis)->vx);
-  FREE (pSEGS_FEATURE (pthis)->vy); 
-  if (pSEGS_FEATURE (pthis)->vz != (double *)NULL) 
-    FREE (pSEGS_FEATURE (pthis)->vz);  
-  if (pSEGS_FEATURE (pthis)->ptype <=0) 
+  FREE (pSEGS_FEATURE (pthis)->vy);
+  if (pSEGS_FEATURE (pthis)->vz != (double *)NULL)
+    FREE (pSEGS_FEATURE (pthis)->vz);
+  if (pSEGS_FEATURE (pthis)->ptype <=0)
     {
       FREE(pSEGS_FEATURE (pthis)->pstyle);
-    } 
-  else 
+    }
+  else
     {
       FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
       FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
       FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
-    } 
+    }
   return sciStandardDestroyOperations(pthis) ;
 }
 
@@ -536,7 +550,7 @@ sciUnCompound (sciPointObj * pobj)
 {
   sciPointObj *pparent, *pobjson;
   sciSons *psons = (sciSons *)NULL;
-	
+
   if (sciGetEntityType(pobj) != SCI_AGREG)
     return -1;
 
@@ -545,7 +559,7 @@ sciUnCompound (sciPointObj * pobj)
   pparent = sciGetParent(pobj);
   while ((psons != (sciSons *) NULL) && (pobjson != (sciPointObj *) NULL))
     {
-      /* we delete this son to this */ 
+      /* we delete this son to this */
       pobjson = psons->pointobj;
       /* take the previous sons before the current is freed */
       psons = psons->pprev;
@@ -615,7 +629,6 @@ void sciDeleteWindow( int winNum )
 void AllGraphWinDelete( void )
 {
 
-  int iflag=0 ;
   int num = sciGetNbFigure() ;
   int *ArrayWGraph = NULL ;
 
@@ -626,7 +639,6 @@ void AllGraphWinDelete( void )
     int i=0;
     ArrayWGraph=(int*)MALLOC(sizeof(int)*num);
 
-    iflag = 1;
     sciGetFiguresId( ArrayWGraph ) ;
 
     for (i=0;i<num;i++)

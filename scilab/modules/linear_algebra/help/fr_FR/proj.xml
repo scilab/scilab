@@ -57,8 +57,8 @@ trace(P)    // il s'agit de dim(X2)
 svd([Q,X2])   // Im(Q) = Im(X2)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="projspec">projspec</link>

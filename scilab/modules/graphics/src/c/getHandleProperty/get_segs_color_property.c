@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,38 +26,39 @@
 #include "localization.h"
 #include "MALLOC.h"
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int get_segs_color_property( sciPointObj * pobj )
 {
-  double * colors = NULL ;
-  int nbSegs = 0 ;
-  int i ;
-  int status = -1 ;
-  if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color") ;
-    return -1 ;
-  }
+    int* segsColors = NULL;
+    int iNbSegs = 0;
+    int piNbSegs = &iNbSegs;
+    int i;
+    int status = -1;
 
-  /* convert from int array to double one. */
-  nbSegs = pSEGS_FEATURE(pobj)->Nbr1 / 2 ;
-  colors = MALLOC( nbSegs * sizeof(double) ) ;
-  if ( colors == NULL )
-  {
-	  Scierror(999, _("%s: No more memory.\n"),"get_segs_color_property");
-	  return -1 ;
-  }
+#if 0
+    if ( sciGetEntityType( pobj ) != SCI_SEGS || pSEGS_FEATURE(pobj)->ptype != 0 )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color") ;
+        return -1;
+    }
+#endif
 
-  for ( i = 0 ; i  < nbSegs ; i++ )
-  {
-    colors[i] = pSEGS_FEATURE (pobj)->pstyle[i] ;
-  }
+    getGraphicObjectProperty(pobj->UID, __GO_SEGS_COLORS__, jni_int_vector, &segsColors);
 
-  status = sciReturnRowVector( colors, pSEGS_FEATURE(pobj)->Nbr1 / 2 ) ;
+    if (segsColors == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"segs_color");
+        return -1;
+    }
 
-  FREE( colors ) ;
+    /* convert from int array to double one. */
+    getGraphicObjectProperty(pobj->UID, __GO_NUMBER_ARROWS__, jni_int, &piNbSegs);
 
-  return status ;
+    status = sciReturnRowIntVector(segsColors, iNbSegs);
 
+    return status;
 }
 /*------------------------------------------------------------------------*/

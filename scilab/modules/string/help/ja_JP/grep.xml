@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="grep" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-01-07 16:57:13 +0200 (Mon, 07 Jan
+    2008)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>grep</refname>
+
+    <refpurpose>文字列のベクトルの中で指定した文字列に一致するかどうかを調べる</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>row=grep(haystack,needle )
+[row,which]=grep(haystack,needle )
+row=grep(haystack,needle ,[flag])
+[row,which]=grep(haystack,needle ,[flag])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>haystack</term>
+
+        <listitem>
+          <para>文字列の行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>needle</term>
+
+        <listitem>
+          <para>文字列または文字列の行ベクトル.
+          <literal>haystack</literal>の中で文字列を探します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>row</term>
+
+        <listitem>
+          <para>インデックスのベクトル: 
+		一致するものが見つかった行,
+		または一致するものが見つからなかった場合は空の行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>which</term>
+
+        <listitem>
+          <para>インデックスのベクトル: 
+	見つかったneedle文字列のインデックスまたは
+	一致するものがなかった場合は空の行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>flag</term>
+
+        <listitem>
+          <para>文字 (正規表現の場合は"r")</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>haystack</literal>の各エントリについて,
+	grepは少なくとも<literal>needle</literal>の中の一つの文字列が
+	部分文字列に一致するかどうかを探します.
+	最低でも一致するものが一つある
+	<literal>haystack</literal>のエントリのインデックスが
+	出力引数<literal>row</literal>に返されます.
+	オプションの出力引数<literal>which</literal>は,
+	<literal>needle</literal>の最初に見つかった文字列のインデックスを
+	指定します.</para>
+
+    <para>
+	3番目のパラメータに<literal>flag="r"</literal>を指定した場合,
+	<literal>needle</literal>に正規表現文字列を指定できます.
+	この場合, <literal>grep</literal> は<literal>needle</literal>
+	を正規表現として使用し,正規表現の規則に基づいて
+	<literal>haystack</literal>とこの文字列を比較します.
+	正規表現に関する詳細については関数<link linkend="regexp">regexp</link>
+	を参照ください.</para>
+  </refsection>
+
+  <refsection>
+    <title>例 #1</title>
+
+    <para>
+	以下の例では,<literal>txt</literal>変数に保存されている
+	テキスト中で,1つまたは2つの文字列を探します.</para>
+
+    <programlisting role="example"><![CDATA[ 
+txt=['find matches of a string in a vector of strings'
+     'search position of a character string in an other string'
+     'Compare Strings'];
+
+grep(txt,'strings')
+grep(txt,['strings' 'Strings'])
+
+[r,w]=grep(txt,['strings' 'Strings'])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>例 #2</title>
+
+    <para>以下の例では, 正規表現検索を行ないます.</para>
+
+    <programlisting role="example"><![CDATA[ 
+str = ["hat";"cat";"hhat";"chat";"hcat";"ccchat";"at";"dog"]
+
+grep(str,'/[hc]+at/','r')
+grep(str,'/[hc]?at/','r')
+grep(str,'/cat|dog/','r')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="strindex">strindex</link></member>
+
+      <member><link linkend="regexp">regexp</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

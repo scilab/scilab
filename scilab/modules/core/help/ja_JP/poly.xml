@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="poly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>poly</refname>
+    <refpurpose> 多項式を定義する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>p=poly(a,vname, ["flag"])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>行列または実数値</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>vname</term>
+        <listitem>
+          <para>文字列, 記号変数を表します. 文字列が4文字以上の場合,
+最初の4文字のみが使用されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>"flag"  </term>
+        <listitem>
+          <para>文字列 ("roots", "coeff"), デフォルト値は
+	    "roots"です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <variablelist>
+      <varlistentry>
+        <term>a が行列の場合,</term>
+        <listitem>
+          <para><literal>p</literal> は特性多項式,すなわち 
+	<literal>determinant(x*eye()-a)</literal>となり, <literal>x</literal>が	
+	記号変数となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>v がベクトルの場合,</term>
+        <listitem>
+          <itemizedlist>
+            <listitem>
+              <para><literal>poly(v,"x",["roots"])</literal>  は
+	<literal>v</literal>のエントリを<literal>根(roots)</literal>とし,
+	<literal>"x"</literal>を形式変数とする多項式となります
+	(この場合,<literal>roots</literal>と<literal>poly</literal>は逆関数となります).
+	根が無限大の場合,最高次の係数がゼロになることに注意してください.</para>
+            </listitem>
+            <listitem>
+              <para><literal>poly(v,"x","coeff")</literal> は記号を<literal>"x"</literal>
+		とし,<literal>v</literal>のエントリを係数とする多項式を作成します
+		(v(1)が多項式の定数項となります).
+		(この場合, <literal>poly</literal> と <literal>coeff</literal> が逆関数となります)
+		</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para><literal>s=poly(0,"s")</literal> は記号<literal>"s"</literal>を
+	用いた多項式を定義するための準備作業です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,"s");p=1+s+2*s^2;
+A=rand(2,2);poly(A,"x")
+//rational fractions
+h=(1+2*%s)/poly(1:4,'s','c')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="coeff">coeff</link>
+      </member>
+      <member>
+        <link linkend="roots">roots</link>
+      </member>
+      <member>
+        <link linkend="varn">varn</link>
+      </member>
+      <member>
+        <link linkend="horner">horner</link>
+      </member>
+      <member>
+        <link linkend="derivat">derivat</link>
+      </member>
+      <member>
+        <link linkend="matrices">matrices</link>
+      </member>
+      <member>
+        <link linkend="rational">rational</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

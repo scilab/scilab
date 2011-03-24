@@ -104,8 +104,8 @@ B = read(TMPDIR + '/foo', -1, 5);
 read(%io(1), 1, 1, '(a)')  // waits for user's input
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="write">write</link>

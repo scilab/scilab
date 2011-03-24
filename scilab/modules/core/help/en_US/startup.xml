@@ -41,8 +41,8 @@
     /home/&lt;User&gt;/.Scilab/&lt;Scilab-Version&gt;</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="scilab">scilab</link></member>

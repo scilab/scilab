@@ -64,8 +64,8 @@ A(1,1)=%i;sinhm(A)-(expm(A)-expm(-A))/2   //Complex case
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sinh">sinh</link></member>

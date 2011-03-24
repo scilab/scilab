@@ -61,8 +61,8 @@ e.children(2).polyline_style=3;
 e.children(3).polyline_style=3;
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot2d">plot2d</link>

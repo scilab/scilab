@@ -20,6 +20,9 @@
 //
 
 function [ind]=modelica_cind_from_name(txt)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Copyright INRIA
 //## return indices of a modelica block in the
 //## compiled modelica structure given its name(s)

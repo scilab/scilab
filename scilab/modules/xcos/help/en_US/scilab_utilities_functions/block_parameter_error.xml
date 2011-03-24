@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="block_parameter_error" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate: 15-Fév-2011 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>block_parameter_error</refname>
+    <refpurpose>
+      Displays a parameter input error box for an Xcos block
+    </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+    block_parameter_error(inform, expected)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>inform:</term>
+        <listitem>
+          <para> a string, type of error</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>expected:</term>
+        <listitem>
+          <para> a string, the expected value or the range of expected values.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      The goal of this function is to give a precise information to an user on his error when he inputs a block parameter. The user information is displayed on two lines provided respectively by the parameters:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">inform</emphasis>: it is reserved to the information for the
+          user on his mistake. The better way to do this is to do a recall of the parameter name and of
+          the wrong value provided by the user.
+        </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">expected</emphasis>: a positive information to guide the user
+          to be in the way of the error correction. By example, if the parameter is an integer, the
+          message may be "Must be an integer", for a range of values we can use a message like that:
+        </para>
+        <para/>
+        <programlisting role="example"><![CDATA[
+        msprintf(gettext("Must be in the interval %s."), "[3, 8]")
+        ]]></programlisting>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <para>
+          The example below is a simple use case for the function. The user inputs a value
+          in the parameter dialog box. If the value is not valid, the example displays
+          this error box:
+      </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../examples/scilab_utilities_functions/en_US/block_parameter_error_en_US.png"/>
+      </imageobject>
+    </mediaobject>
+    <para/>
+    <programlisting role="example"><![CDATA[
+  loadXcosLibs // Useless in Xcos block programming context
+
+  ok = %f;
+
+  while ~ok do
+      // Input the parameter
+      [Datatype] = x_mdialog( ..
+          "Parameter input", ..
+          "Data Type (3:int32, 4:int16, 5:int8, ...) ?", ..
+          "3" ..
+      );
+
+      if isempty(Datatype) then // Cancel or Ok ?
+          break;
+
+      else
+          Datatype = evstr(Datatype);
+
+      end
+      // Test 'Data Type' parameter and displays error box if necessary
+      if Datatype < 3 | Datatype > 8 then
+          block_parameter_error( ..
+              msprintf("Wrong values for ''Data Type'' parameter: %d.", Datatype), ..
+              msprintf("Must be in the interval %s.", "[3, 8]") ..
+          );
+          ok = %f;
+
+      else // Parameter is valid, continue the job
+          ok = %t;
+          print(%io(2), "Data Type parameter is valid");
+      end
+  end
+    ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="x_mdialog">x_mdialog</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Bernard DUJARDIN</member>
+    </simplelist>
+  </refsection>
+</refentry>

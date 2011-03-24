@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2001 - ENPC - Jean-Philipp Chancelier
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
+ * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,6 +34,10 @@
 #include "Plot2d.h"
 #include "Scierror.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*-----------------------------------------------------------------
  *  int C2F(champ)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
  *  int C2F(champ1)(x,y,fx,fy,n1,n2,strflag,brect,arfact,lstr)
@@ -53,130 +58,207 @@
 void champg(char *name, int colored, double *x, double *y, double *fx, double *fy, int *n1, 
 	    int *n2, char *strflag, double *brect, double *arfact, int lstr)
 {
-  int n;
-  double  xx[2],yy[2];
-  double boundingBox[6];
-  int nn1=1,nn2=2;  
-  /* NG */
-  sciPointObj  * psubwin = NULL;
-  sciPointObj * newSegs = NULL;
-  int flag,type =1;
-  double arsize1;
-  int *style;
-  int i;
-  double drect[6];
-  BOOL bounds_changed = FALSE;
-  BOOL axes_properties_changed = FALSE;
-  /* champ with color inheritated from subwin */
-  /* or champ1 (normed vector + color) is enabled */
-  int typeofchamp = ( colored == 0 ? 0 : 1 ) ;
+    int clipState;
+    char textLogFlags[3];
+    double xx[2];
+    double yy[2];
+    double* boundingBox;
+    double rotationAngles[2];
+    int nn1=1;
+    int nn2=2;
+    int autoScale = 0;
+    int* piAutoScale = &autoScale;
+    int firstPlot = 0;
+    int* piFirstPlot = &firstPlot;
+    int logFlags[3];
+    /* NG */
+    sciPointObj * psubwin = NULL;
+    sciPointObj * newSegs = NULL;
+    int flag,type =1;
+    double arsize1;
+    int *style;
 
-  /** The arrowsize acording to the windowsize **/
-  n=2*(*n1)*((*n2)+1); /*F.Leray 17.02.04*/
-  
-  
-  /* First create champ object */
-  /* F.Leray Allocation de style[dim = Nbr1] */
-  if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
-  {
-    Scierror(999, _("%s: No more memory.\n"),"champg");
-    return;
-  }
+    int iTmp = 0;
+    int* piTmp = &iTmp;
 
-  flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
-  arsize1 = *arfact;
+    int i;
+    double drect[6];
+    BOOL bounds_changed = FALSE;
+    BOOL axes_properties_changed = FALSE;
 
-  psubwin = sciGetCurrentSubWin() ;
+    /* champ with color inherited from subwin */
+    /* or champ1 (normed vector + color) is enabled */
+    int typeofchamp = ( colored == 0 ? 0 : 1 );
 
-  /* then modify subwindow if needed */
-  checkRedrawing() ;
+    /* First create champ object */
+    /* F.Leray Allocation de style[dim = Nbr1] */
+    if ((style = MALLOC ((*n1) * sizeof (int) )) == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"),"champg");
+        return;
+    }
 
-  /* force clipping */
-  sciSetIsClipping(psubwin, 0);
+    flag = 1; /* je le mets à 1 pour voir F.Leray 19.02.04*/
+    arsize1 = *arfact;
 
-  for(i=0;i<(*n1);i++) { style[i] = i ; }
+    psubwin = sciGetCurrentSubWin();
 
-  newSegs = ConstructSegs(psubwin,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
-                          style,arsize1,colored,typeofchamp);
-  sciSetCurrentObj(newSegs);
+    /* then modify subwindow if needed */
+    checkRedrawing();
 
-  if( style != NULL )
-  {
-    FREE( style ) ;
-    style = NULL;
-  }
+    /* Force clipping to CLIPGRF (1) */
+    clipState = 1;
+    setGraphicObjectProperty(psubwin->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
 
-  sciSetIsClipping(newSegs, 0);
+    for(i=0;i<(*n1);i++)
+    {
+        style[i] = i;
+    }
 
-  /* Get segs bounding box */
+    newSegs = ConstructSegs(psubwin,type,x,y, NULL,*n1,*n2,0,fx,fy,flag,
+                            style,arsize1,colored,typeofchamp);
+
+    if (newSegs == NULL)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "champg");
+        if (style != NULL)
+        {
+            FREE(style);
+        }
+
+        return;
+    }
+
+    sciSetCurrentObj(newSegs);
+
+    if( style != NULL )
+    {
+        FREE( style );
+        style = NULL;
+    }
+
+    /* Force clipping to CLIPGRF (1) */
+    clipState = 1;
+    setGraphicObjectProperty(newSegs->UID, __GO_CLIP_STATE__, &clipState, jni_int, 1);
+
+  /* Deactivated since it tells the renderer module that the object has changed */
+#if 0
   forceRedraw(newSegs); /* update drawer */
-  sciGetAABoundingBox(newSegs, boundingBox);
-  xx[0] = boundingBox[0];
-  xx[1] = boundingBox[1];
-  yy[0] = boundingBox[2];
-  yy[1] = boundingBox[3];
+#endif
 
-  /* Force psubwin->is3d to FALSE: we are in 2D mode */
-  if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
-  {
-    pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
-    pSUBWIN_FEATURE (psubwin)->project[2]= 0;
-  } 
-  else
-  {
-    pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
-    pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;  
-  }
+    /* Get segs bounding box */
+    getGraphicObjectProperty(newSegs->UID, __GO_BOUNDING_BOX__, jni_double_vector, &boundingBox);
 
-  pSUBWIN_FEATURE (psubwin)->alpha  = 0.0;
-  pSUBWIN_FEATURE (psubwin)->theta  = 270.0;
+    xx[0] = boundingBox[0];
+    xx[1] = boundingBox[1];
+    yy[0] = boundingBox[2];
+    yy[1] = boundingBox[3];
 
+    /* To be implemented */
+#if 0
+    /* Force psubwin->is3d to FALSE: we are in 2D mode */
+    if (sciGetSurface(psubwin) == (sciPointObj *) NULL)
+    {
+        pSUBWIN_FEATURE (psubwin)->is3d = FALSE;
+        pSUBWIN_FEATURE (psubwin)->project[2]= 0;
+    }
+    else
+    {
+        pSUBWIN_FEATURE (psubwin)->theta_kp=pSUBWIN_FEATURE (psubwin)->theta;
+        pSUBWIN_FEATURE (psubwin)->alpha_kp=pSUBWIN_FEATURE (psubwin)->alpha;
+    }
+#endif
 
-  if (sciGetGraphicMode (psubwin)->autoscaling)
-  {
-    /* compute and merge new specified bounds with psubwin->Srect */
-    switch (strflag[1])  {
-        case '0': 
-          /* do not change psubwin->Srect */
+    rotationAngles[0] = 0.0;
+    rotationAngles[1] = 270.0;
+
+    setGraphicObjectProperty(psubwin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+
+    getGraphicObjectProperty(psubwin->UID, __GO_AUTO_SCALE__, jni_bool, &piAutoScale);
+
+    getGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, jni_bool, &piFirstPlot);
+
+    if (autoScale)
+    {
+        /* compute and merge new specified bounds with the data bounds */
+        switch (strflag[1])
+        {
+        case '0':
+          /* do not change data bounds */
           break;
         case '1' : case '3' : case '5' : case '7':
-          /* Force psubwin->Srect=brect */
+          /* Force data bounds=brect */
           re_index_brect(brect,drect);
           break;
         case '2' : case '4' : case '6' : case '8': case '9':
-          /* Force psubwin->Srect to the x and y bounds */
-          compute_data_bounds2(0,'g',pSUBWIN_FEATURE (psubwin)->logflags,xx,yy,nn1,nn2,drect);
+
+          getGraphicObjectProperty(psubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          logFlags[0] = iTmp;
+          getGraphicObjectProperty(psubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          logFlags[1] = iTmp;
+          getGraphicObjectProperty(psubwin->UID, __GO_Z_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+          logFlags[2] = iTmp;
+
+          /* Conversion required by compute_data_bounds2 */
+          textLogFlags[0] = getTextLogFlag(logFlags[0]);
+          textLogFlags[1] = getTextLogFlag(logFlags[1]);
+          textLogFlags[2] = getTextLogFlag(logFlags[2]);
+
+          /* Force data bounds to the x and y bounds */
+          compute_data_bounds2(0,'g',textLogFlags,xx,yy,nn1,nn2,drect);
           break;
-    }
-    if (!pSUBWIN_FEATURE(psubwin)->FirstPlot &&
-      (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9')) { /* merge psubwin->Srect and drect */
-        drect[0] = Min(pSUBWIN_FEATURE(psubwin)->SRect[0],drect[0]); /*xmin*/
-        drect[2] = Min(pSUBWIN_FEATURE(psubwin)->SRect[2],drect[2]); /*ymin*/
-        drect[1] = Max(pSUBWIN_FEATURE(psubwin)->SRect[1],drect[1]); /*xmax*/
-        drect[3] = Max(pSUBWIN_FEATURE(psubwin)->SRect[3],drect[3]); /*ymax*/
+        }
+
+        /* merge data bounds and drect */
+        if (!firstPlot &&
+          (strflag[1] == '7' || strflag[1] == '8'|| strflag[1] == '9'))
+        {
+            double* dataBounds;
+
+            getGraphicObjectProperty(psubwin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+
+            drect[0] = Min(dataBounds[0],drect[0]); /*xmin*/
+            drect[2] = Min(dataBounds[2],drect[2]); /*ymin*/
+            drect[1] = Max(dataBounds[1],drect[1]); /*xmax*/
+            drect[3] = Max(dataBounds[3],drect[3]); /*ymax*/
+        }
+
+        if (strflag[1] != '0')
+        {
+            bounds_changed = update_specification_bounds(psubwin, drect,2);
+        }
+
     }
 
-    if (strflag[1] != '0')
+    if (firstPlot)
     {
-      bounds_changed = update_specification_bounds(psubwin, drect,2);
+        bounds_changed = TRUE;
     }
-  }
 
-  if(pSUBWIN_FEATURE (psubwin)->FirstPlot == TRUE) bounds_changed = TRUE;
+    axes_properties_changed = strflag2axes_properties(psubwin, strflag);
 
-  axes_properties_changed = strflag2axes_properties(psubwin, strflag);
+    /* just after strflag2axes_properties */
+    firstPlot = 0;
+    setGraphicObjectProperty(psubwin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  pSUBWIN_FEATURE (psubwin)->FirstPlot = FALSE; /* just after strflag2axes_properties */
+  /*
+   * Deactivated since it tells the renderer module that the object has changed
+   * To be implemented
+   */
+#if 0
+    if( bounds_changed || axes_properties_changed )
+    {
+        forceRedraw(psubwin);
+    }
+#endif
 
-  if( bounds_changed || axes_properties_changed )
-  {
-    forceRedraw(psubwin);
-  }
+  /*
+   * Deactivated since it involves drawing via the renderer module
+   */
+#if 0
+    sciDrawObj(sciGetCurrentFigure());
+#endif
 
-
-  sciDrawObj(sciGetCurrentFigure());
-
-  
 }
 
 int C2F(champ)(double *x, double *y, double *fx, double *fy, int *n1, int *n2, char *strflag, double *brect, double *arfact, int lstr)

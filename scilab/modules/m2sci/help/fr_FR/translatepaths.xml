@@ -51,8 +51,8 @@
     Un appel à <literal>translatepaths()</literal> sans rhs lance une interface graphique pour aider à la sélection d'un fichier/répertoire et des options.
     </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfile2sci">mfile2sci</link>

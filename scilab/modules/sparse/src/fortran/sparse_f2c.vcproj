@@ -594,91 +594,91 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_bfinit.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_bfinit.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_blkfc1i.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_blkfc1i.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_blkslvi.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_blkslvi.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fadj2sp.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_fadj2sp.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_full.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_full.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_inpnvi.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_inpnvi.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ludel.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ludel.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lufact.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lufact.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_luget.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_luget.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lusolve.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_lusolve.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_nnz.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_nnz.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ordmmd.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ordmmd.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sfinit.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_sfinit.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sparse.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_sparse.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spchol.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spchol.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spclean.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spclean.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spcompa.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spcompa.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spget.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spget.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spmatrix.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spmatrix.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spmax.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_spmax.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_symfcti.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_symfcti.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ta2lpd.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ta2lpd.c"
 				>
 			</File>
 			<File
@@ -1060,91 +1060,91 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_bfinit.f"
+				RelativePath="..\..\sci_gateway\fortran\intbfinit.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_blkfc1i.f"
+				RelativePath="..\..\sci_gateway\fortran\intblkfc1i.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_blkslvi.f"
+				RelativePath="..\..\sci_gateway\fortran\intblkslvi.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_fadj2sp.f"
+				RelativePath="..\..\sci_gateway\fortran\intfadj2sp.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_full.f"
+				RelativePath="..\..\sci_gateway\fortran\intfull.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_inpnvi.f"
+				RelativePath="..\..\sci_gateway\fortran\intinpnvi.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ludel.f"
+				RelativePath="..\..\sci_gateway\fortran\intludel.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lufact.f"
+				RelativePath="..\..\sci_gateway\fortran\intlufact.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_luget.f"
+				RelativePath="..\..\sci_gateway\fortran\intluget.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_lusolve.f"
+				RelativePath="..\..\sci_gateway\fortran\intlusolve.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_nnz.f"
+				RelativePath="..\..\sci_gateway\fortran\intnnz.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ordmmd.f"
+				RelativePath="..\..\sci_gateway\fortran\intordmmd.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sfinit.f"
+				RelativePath="..\..\sci_gateway\fortran\intsfinit.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_sparse.f"
+				RelativePath="..\..\sci_gateway\fortran\intsparse.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spchol.f"
+				RelativePath="..\..\sci_gateway\fortran\intspchol.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spclean.f"
+				RelativePath="..\..\sci_gateway\fortran\intspclean.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spcompa.f"
+				RelativePath="..\..\sci_gateway\fortran\intspcompa.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spget.f"
+				RelativePath="..\..\sci_gateway\fortran\intspget.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spmatrix.f"
+				RelativePath="..\..\sci_gateway\fortran\intspmatrix.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_spmax.f"
+				RelativePath="..\..\sci_gateway\fortran\intspmax.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_symfcti.f"
+				RelativePath="..\..\sci_gateway\fortran\intsymfcti.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ta2lpd.f"
+				RelativePath="..\..\sci_gateway\fortran\intta2lpd.f"
 				>
 			</File>
 			<File

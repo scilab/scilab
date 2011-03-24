@@ -22,9 +22,7 @@ Source: bin\{#POLYNOMIALS}.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
 Source: bin\{#POLYNOMIALS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\VERSION.xml; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
-Source: modules\{#POLYNOMIALS}\readme.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 Source: modules\{#POLYNOMIALS}\license.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
-Source: modules\{#POLYNOMIALS}\changelog.txt; DestDir: {app}\modules\{#POLYNOMIALS}; Components: {#COMPN_POLY}
 ;
 Source: modules\{#POLYNOMIALS}\sci_gateway\{#POLYNOMIALS}_gateway.xml; DestDir: {app}\modules\{#POLYNOMIALS}\sci_gateway; Components: {#COMPN_POLY}
 ;

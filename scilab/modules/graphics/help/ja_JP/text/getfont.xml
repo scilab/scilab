@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="getfont" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getfont</refname>
+
+    <refpurpose>フォント選択用のダイアログ<emphasis role="bold">. 廃止された関数.</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[fId,fSize]=getfont()
+[fId,fSize]=getfont(str)
+fnt=getfont()
+fnt=getfont(str)
+fnt=getfont(S=str,font=[fId,fSize])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>文字 (e.g. "a")</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fId</term>
+
+        <listitem>
+          <para>整数, 選択されたフォントの番号</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fSize</term>
+
+        <listitem>
+          <para>整数, 選択されたフォントの大きさ</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fnt</term>
+
+        <listitem>
+          <para>ベクトル [fId,fSize]</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は<link
+    linkend="xset">xset</link> 関数(この関数も廃止されています)と
+	共に使用されるよう設計されています.
+	代わりにプロパティエディタ<link
+    linkend="ged">ged</link> を使用してください.</para>
+
+    <para><literal>getfont</literal> はフォントを選択するためのグラフィック
+	ウインドウをオープンします.
+	ユーザはフォントを選択し,表示された文字の大きさをクリックする
+	必要があります.
+	キーボードのキーを押すと文字を変更します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+[fId,fSize]=getfont();
+xset("font",fId,fSize)
+plot2d(0,0,rect=[0 0 10 10],axesflag=0)
+xstring(5,5,"string")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="ged">ged</link></member>
+
+      <member><link linkend="text_properties">text_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

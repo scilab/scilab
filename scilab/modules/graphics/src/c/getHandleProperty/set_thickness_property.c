@@ -29,12 +29,12 @@
 int set_thickness_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
 
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "thickness");
-    return SET_PROPERTY_ERROR ;
-  }
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "thickness");
+        return SET_PROPERTY_ERROR;
+    }
 
-  return sciSetLineWidth( pobj, getDoubleFromStack( stackPointer ) ) ;
+    return sciSetLineWidth( pobj, getDoubleFromStack( stackPointer ) );
 }
 /*------------------------------------------------------------------------*/

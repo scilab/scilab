@@ -686,31 +686,31 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_bvode.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_bvode.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dasrt.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dasrt.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dassl.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dassl.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_feval.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_feval.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_impl.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_impl.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ode.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ode.c"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_odedc.c"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_odedc.c"
 				>
 			</File>
 			<File
@@ -1066,31 +1066,31 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_bvode.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_bvode.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dasrt.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dasrt.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_dassl.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_dassl.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_feval.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_feval.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_impl.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_impl.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_ode.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_ode.f"
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\sci_odedc.f"
+				RelativePath="..\..\sci_gateway\fortran\sci_f_odedc.f"
 				>
 			</File>
 			<File

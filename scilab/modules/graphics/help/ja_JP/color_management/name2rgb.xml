@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="name2rgb">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>name2rgb</refname>
+    <refpurpose> 指定した名前の色の RGB値を返す </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>rgb=name2rgb(name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>name</term>
+        <listitem>
+          <para>色の名前.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para>カラーのRGB整数値ベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>整数</title>
+    <para><literal>name2rgb</literal> は名前で指定した色のRGB値を返します.
+	結果はベクトル<literal>[r,g,b]</literal>となります.
+	ただし,<literal>r</literal>, <literal>g</literal>および <literal>b</literal>は
+	0から255の間の整数でそれぞれ赤,緑,青の色要素に対応します.
+	通常と同様,0は明度がないことを意味し,255は色の明度が最大であることを意味します.
+    </para>
+    <para> 色が見つからない場合, <literal>[]</literal> が返されます.</para>
+    <para> 既知の色の一覧は <link linkend="color_list">color_list</link>により
+		取得できます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+rgb=name2rgb("gold")
+rgb2name(rgb)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="rgb2name">rgb2name</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

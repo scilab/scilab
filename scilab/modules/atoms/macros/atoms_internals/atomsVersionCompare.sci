@@ -49,7 +49,7 @@ function result = atomsVersionCompare( version_1 , version_2 )
 
     for i=1:size(version_1,"*")
 
-        if (length(version_1(i)) > 1) & (regexp(version_1(i),"/^[0-9]([0-9\.])*[0-9](\-[1-9]([0-9])*)?$/") == []) then
+        if (length(version_1(i)) > 1) & (regexp(version_1(i),"/^[0-9]([0-9\.])*[0-9](\-[0-9]([0-9])*)?$/") == []) then
             error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",1));
         end
 
@@ -59,7 +59,7 @@ function result = atomsVersionCompare( version_1 , version_2 )
 
     end
 
-    if (length(version_2) > 1) & (regexp(version_2,"/^[0-9]([0-9\.])*[0-9](\-[1-9]([0-9])*)?$/") == []) then
+    if (length(version_2) > 1) & (regexp(version_2,"/^[0-9]([0-9\.])*[0-9](\-[0-9]([0-9])*)?$/") == []) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",2));
     end
 

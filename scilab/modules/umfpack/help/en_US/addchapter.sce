@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("UMFPACK Interface",SCI+"/modules/umfpack/help/en_US",%T);
+add_help_chapter("UMFPACK Interface (sparse)",SCI+"/modules/umfpack/help/en_US",%T);
 

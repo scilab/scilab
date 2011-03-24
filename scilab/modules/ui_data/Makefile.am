@@ -15,7 +15,7 @@ modulename=ui_data
 
 #### ui_data : Conf files ####
 libsciui_data_la_rootdir = $(mydatadir)
-libsciui_data_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciui_data_la_root_DATA =  license.txt version.xml
 
 
 #### ui_data : init scripts ####
@@ -27,7 +27,6 @@ libsciui_data_la_etc_DATA = etc/ui_data.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
-
 UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 					  src/jni/EditVar.cpp
 
@@ -35,7 +34,9 @@ UI_DATA_C_SOURCES =
 
 UI_DATA_CPP_SOURCES = 
 
-GIWS_WRAPPERS = 
+GIWS_WRAPPERS = \
+src/jni/BrowseVar.giws.xml \
+src/jni/EditVar.giws.xml
 
 if GIWS
 BUILT_SOURCES=giws
@@ -71,32 +72,29 @@ libsciui_data_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libsciui_data_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
 
 if GUI
 pkglib_LTLIBRARIES += libsciui_data.la 
+noinst_LTLIBRARIES = libsciui_data-algo.la 
 endif
 
-libsciui_data_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libsciui_data_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libsciui_data_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CPP_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciui_data_algo_la_CFLAGS = $(libsciui_data_la_CFLAGS)
+libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CFLAGS)
 
-
-#### SWIG Declaration ####
-SWIG_WRAPPERS = 
-
-if SWIG
-BUILT_SOURCES=swig
-endif
-
 libsciui_data_la_LIBADD =  \
+libsciui_data-algo.la \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la

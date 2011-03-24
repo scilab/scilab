@@ -25,6 +25,9 @@
 //
 
 function XcosMenuCodeGeneration()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
     [scs_m,edited,needcompile,Cmenu,ok]=do_CodeGen(scs_m,%pt)
 endfunction

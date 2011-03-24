@@ -11,9 +11,9 @@ subdemolist = [_("Simple Demo")                          , "simple_demo.dem.sce"
                _("Signal Builder")                       , "signal_builder.dem.sce"    ; ..
                _("Fibonacci Numbers")                    , "fibonacci.dem.sce"         ; ..
                _("Scilab block")                         , "scilab_block.dem.sce"      ; ..
-               _("Scicos data types")                    , "data_type.dem.sce"         ; ..
+               _("Xcos data types")                    , "data_type.dem.sce"         ; ..
                _("Zero Crossing")                        , "zero_crossing.dem.sce"     ; ..
-               _("_IF_ Scicos block")                    , "if_scicos_block.dem.sce"   ; ..
+               _("_IF_ Xcos block")                    , "if_xcos_block.dem.sce"   ; ..
                _("Goto/From blocks")                     , "goto_from.dem.sce"         ; ..
               ];
 

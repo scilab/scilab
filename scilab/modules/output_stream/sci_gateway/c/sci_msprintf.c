@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA
-* Copyright (C) DIGITEO - 2010 - Allan CORNET
+* Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -11,6 +11,7 @@
 *
 */
 #include "gw_output_stream.h"
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "MALLOC.h"
 #include "stack-c.h"
@@ -19,51 +20,132 @@
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 /*--------------------------------------------------------------------------*/
-int sci_msprintf(char *fname,unsigned long fname_len)
+#define TAB_CHAR_SEARCHED "\\t"
+#define TAB_CHAR_REPLACED "\t"
+#define PERCENT_CHAR '%'
+#define SPLIT_ON_CR_IN_FORMAT "<CR_IN_FORMAT>"
+#define CR_IN_FORMAT "\\n"
+#define EMPTY_CHAR '\0'
+/*--------------------------------------------------------------------------*/
+int sci_msprintf(char *fname, unsigned long fname_len)
 {
-    char **lstr = NULL;
-    static int l1 = 0, m1 = 0, n1 = 0, n2 = 0, lcount = 0, rval = 0, blk = 200;
-    static int k = 0;
-    char ** strs = NULL;
-    char *str = NULL, *str1 = NULL;
-    int n = 0, nmax = 0, cat_to_last = 0, ll = 0;
-
-    char *ptrFormat   = NULL;
-    int i             = 0;
+    SciErr sciErr;
+    int iType = 0;
+    int *piAddressVarOne = NULL;
+    char *ptrFormat = NULL;
+    int K = 0;
+    int i = 0;
+    int lenghtFormat = 0;
     int NumberPercent = 0;
-    int NumberCols    = 0;
+    int NumberCols = 0;
+    int nmax = 0;
+    int cat_to_last = 0;
+    int ll = 0;
+    char **pStrs = NULL;
+    char **pOutputStrings = NULL;
+    char *pStrTmp = NULL;
+    char *pStrTmp1 = NULL;
+    int lcount = 0;
+    int rval = 0;
+    int blk = 200;
+
+    int k = 0;
+    int mOut = 0;
+    int nOut = 0;
+    int lenghtSplitChar = (int)strlen(SPLIT_ON_CR_IN_FORMAT);
 
     Nbvars = 0;
-    CheckRhs(1,1000);
-    CheckLhs(0,1);
+    CheckRhs(1, 1000);
+    CheckLhs(0, 1);
 
-    if ( Rhs < 1 )
+    for (K = 2; K <= Rhs; K++)
     {
-        Scierror(999,_("%s: Wrong number of input arguments: at least %d expected.\n"),fname,1);
-        return 0;
-    }
+        int iTypeK = 0;
+        int *piAddressVarK = NULL;
 
-    for (k=2;k<=Rhs;k++)
-    {
-        if ( (VarType(k) != sci_matrix) && (VarType(k) != sci_strings) )
+        sciErr = getVarAddressFromPosition(pvApiCtx, K, &piAddressVarK);
+        if(sciErr.iErr)
         {
-            OverLoad(k);
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        sciErr = getVarType(pvApiCtx, piAddressVarK, &iTypeK);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+
+        if ( (iTypeK != sci_matrix) && (iTypeK != sci_strings) )
+        {
+            OverLoad(K);
             return 0;
         }
     }
 
-    GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-
-    ptrFormat = strsub(cstk(l1), "\\t", "\t");
-
-    for( i=0; i<(int)strlen(ptrFormat); i++)
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
+    if(sciErr.iErr)
     {
-        if (ptrFormat[i]=='%')
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    if (checkVarDimension(pvApiCtx, piAddressVarOne, 1, 1) != 1)
+    {
+        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        return 0;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, piAddressVarOne, &ptrFormat))
+    {
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    if (ptrFormat == NULL)
+    {
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+    else
+    {
+        char *pFormatTmp = strsub(ptrFormat, TAB_CHAR_SEARCHED, TAB_CHAR_REPLACED);
+        if (pFormatTmp)
+        {
+            freeAllocatedSingleString(ptrFormat);
+            ptrFormat = strsub(pFormatTmp, CR_IN_FORMAT, SPLIT_ON_CR_IN_FORMAT);
+            FREE(pFormatTmp);
+            if (ptrFormat == NULL)
+            {
+                Scierror(999,_("%s: Memory allocation error.\n"), fname);
+                return 0;
+            }
+        }
+        else
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
+
+    lenghtFormat = (int)strlen(ptrFormat);
+    for(i = 0; i < lenghtFormat; i++)
+    {
+        if (ptrFormat[i] == PERCENT_CHAR)
         {
             NumberPercent++;
-            if (ptrFormat[i+1]=='%')
+            if ( (i+1 < lenghtFormat) && (ptrFormat[i+1] == PERCENT_CHAR))
             {
-                NumberPercent--;i++;
+                NumberPercent--;
+                i++;
             }
         }
     }
@@ -75,7 +157,8 @@ int sci_msprintf(char *fname,unsigned long fname_len)
             FREE(ptrFormat);
             ptrFormat = NULL;
         }
-        Scierror(999,_("%s: Wrong number of input arguments: at most %d expected.\n"),fname,NumberPercent);
+
+        Scierror(999,_("%s: Wrong number of input arguments: at most %d expected.\n"), fname, NumberPercent);
         return 0;
     }
 
@@ -83,10 +166,24 @@ int sci_msprintf(char *fname,unsigned long fname_len)
     {
         for( i = 2 ; i <= Rhs ; i++ )
         {
-            int mk = 0;
-            int nk = 0;
-            GetMatrixdims(i,&mk,&nk);
-            NumberCols += nk;
+            int iRows = 0;
+            int iCols = 0;
+            int *piAddressVarI = NULL;
+
+            sciErr = getVarAddressFromPosition(pvApiCtx, i, &piAddressVarI);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+
+            sciErr = getVarDimension(pvApiCtx, piAddressVarI, &iRows, &iCols);
+            if(sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                return 0;
+            }
+            NumberCols += iCols;
         }
     }
 
@@ -97,54 +194,59 @@ int sci_msprintf(char *fname,unsigned long fname_len)
             FREE(ptrFormat);
             ptrFormat = NULL;
         }
-        Scierror(999,_("%s: Wrong number of input arguments: data doesn't fit with format.\n"),fname);
+        Scierror(999,_("%s: Wrong number of input arguments: data doesn't fit with format.\n"), fname);
         return 0;
     }
 
-    n           = 0; /* output line counter */
-    nmax        = 0;
-    strs        = NULL;
-    lcount      = 1;
+    mOut = 0; /* output line counter */
+    nmax = 0;
+    pOutputStrings = NULL;
+    lcount = 1;
     cat_to_last = 0;
 
     while (1)
     {
-        if ((rval = do_xxprintf("msprintf",(FILE *) 0, ptrFormat, Rhs, 1, lcount,(char **) &lstr)) < 0) break;
+        if ((rval = do_xxprintf("msprintf",(FILE *) 0, ptrFormat, Rhs, 1, lcount, (char **) &pStrs)) < 0) 
+        {
+            break;
+        }
 
         lcount++;
-        str =(char *) lstr;
-        if ( str == NULL )
+        pStrTmp = (char *)pStrs;
+        if (pStrTmp == NULL)
         {
             if (ptrFormat)
             {
                 FREE(ptrFormat);
                 ptrFormat = NULL;
             }
+
             Scierror(999,_("%s: Wrong value of input argument %d: data doesn't fit with format.\n"),fname,1);
             return 0;
         }
-        str1 = str;
-        while (*str != '\0')  
+
+        pStrTmp1 = pStrTmp;
+        while (*pStrTmp != '\0')  
         {
-            if (strncmp(str,"\\n",2) ==0) 
+            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) ==0) 
             {
-                k = (int)(str - str1);
-                if (! cat_to_last) 
+                k = (int)(pStrTmp - pStrTmp1);
+                if (!cat_to_last) 
                 { 
                     /*add a new line */
-                    if (n==nmax) 
+                    if (mOut == nmax) 
                     {
-                        nmax+=blk;
-                        if (strs) 
+                        nmax += blk;
+                        if (pOutputStrings) 
                         {
-                            strs = (char **) REALLOC(strs,nmax*sizeof(char **));
+                            pOutputStrings = (char **) REALLOC(pOutputStrings, nmax * sizeof(char **));
                         } 
                         else 
                         {
-                            strs = (char **) MALLOC(nmax*sizeof(char **));
+                            pOutputStrings = (char **) MALLOC(nmax * sizeof(char **));
                         }
 
-                        if ( strs == NULL) 
+                        if (pOutputStrings == NULL) 
                         {
                             if (ptrFormat)
                             {
@@ -156,7 +258,9 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                             return 0;
                         }
                     }
-                    if ((strs[n]=MALLOC((k+1))) == NULL) 
+
+                    pOutputStrings[mOut] = (char*)MALLOC((k+1) * sizeof(char));
+                    if (pOutputStrings[mOut] == NULL) 
                     {
                         if (ptrFormat)
                         {
@@ -167,14 +271,16 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                         Scierror(999,_("%s: No more memory.\n"),fname);
                         return 0;
                     }
-                    strncpy(strs[n],str1, k);
-                    strs[n][k]='\0';
-                    n++;
+                    strncpy(pOutputStrings[mOut], pStrTmp1, k);
+                    pOutputStrings[mOut][k] = EMPTY_CHAR;
+                    mOut++;
                 }
                 else 
-                { /* cat to previous line */
-                    ll=(int)strlen(strs[n-1]);
-                    if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) 
+                {
+                    /* cat to previous line */
+                    ll = (int)strlen(pOutputStrings[mOut - 1]);
+                    pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll)*sizeof(char));
+                    if (pOutputStrings[mOut - 1] == NULL) 
                     {
                         if (ptrFormat)
                         {
@@ -185,28 +291,32 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                         Scierror(999,_("%s: No more memory.\n"),fname);
                         return 0;
                     }
-                    strncpy(&(strs[n-1][ll]),str1, k);
-                    strs[n-1][k+ll]='\0';
+                    strncpy(&(pOutputStrings[mOut - 1][ll]), pStrTmp1, k);
+                    pOutputStrings[mOut - 1][k + ll] = EMPTY_CHAR;
                 }
-                k=0;
-                str+=2;
-                str1=str;
-                cat_to_last=0;
+                k = 0;
+                pStrTmp += lenghtSplitChar;
+                pStrTmp1 = pStrTmp;
+                cat_to_last = 0;
             }
             else
             {
-                str++;
+                pStrTmp++;
             }
         }
-        k=(int)(str-str1); /* @TODO add comment */
-        if (k>0) {
-            if ((! cat_to_last) || (n == 0)) { /*add a new line */
-                if (n==nmax) 
+        k = (int)(pStrTmp - pStrTmp1);
+        if (k > 0) 
+        {
+            if ((!cat_to_last) || (mOut == 0)) 
+            { 
+                /*add a new line */
+                if (mOut == nmax) 
                 {
-                    nmax+=blk;
-                    if (strs)
+                    nmax += blk;
+                    if (pOutputStrings)
                     {
-                        if ((strs = (char **) REALLOC(strs,nmax*sizeof(char **))) == NULL) 
+                        pOutputStrings = (char **) REALLOC(pOutputStrings, nmax*sizeof(char **));
+                        if (pOutputStrings == NULL) 
                         {
                             if (ptrFormat)
                             {
@@ -220,7 +330,8 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                     }
                     else
                     {
-                        if ( (strs = (char **) MALLOC(nmax*sizeof(char **))) == NULL) 
+                        pOutputStrings = (char **) MALLOC(nmax * sizeof(char **));
+                        if (pOutputStrings == NULL) 
                         {
                             if (ptrFormat)
                             {
@@ -232,10 +343,10 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                             return 0;
                         }
                     }
-
                 }
 
-                if ((strs[n]=MALLOC((k+1))) == NULL) 
+                pOutputStrings[mOut] = (char*) MALLOC((k + 1) * sizeof(char));
+                if (pOutputStrings[mOut] == NULL) 
                 {
                     if (ptrFormat)
                     {
@@ -243,17 +354,19 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                         ptrFormat = NULL;
                     }
 
-                    Scierror(999,_("%s: No more memory.\n"),fname);
+                    Scierror(999,_("%s: No more memory.\n"), fname);
                     return 0;
                 }
-                strncpy(strs[n],str1, k);
-                strs[n][k]='\0';
-                n++;
-
+                strncpy(pOutputStrings[mOut], pStrTmp1, k);
+                pOutputStrings[mOut][k] = EMPTY_CHAR;
+                mOut++;
             }
-            else { /* cat to previous line */
-                ll=(int)strlen(strs[n-1]);
-                if ((strs[n-1]=REALLOC(strs[n-1],(k+1+ll))) == NULL) 
+            else 
+            { 
+                /* cat to previous line */
+                ll = (int)strlen(pOutputStrings[mOut - 1]);
+                pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll) * sizeof(char));
+                if (pOutputStrings[mOut - 1] == NULL) 
                 {
                     if (ptrFormat)
                     {
@@ -264,11 +377,15 @@ int sci_msprintf(char *fname,unsigned long fname_len)
                     Scierror(999,_("%s: No more memory.\n"),fname);
                     return 0;
                 }
-                strncpy(&(strs[n-1][ll]),str1, k);
-                strs[n-1][k+ll]='\0';
+                strncpy(&(pOutputStrings[mOut - 1][ll]), pStrTmp1, k);
+                pOutputStrings[mOut - 1][k + ll] = EMPTY_CHAR;
             }
         }
-        if (strncmp(str-2,"\\n",2) !=0) cat_to_last=1;
+
+        if (strncmp(pStrTmp - lenghtSplitChar, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) != 0) 
+        {
+            cat_to_last = 1;
+        }
         if (Rhs == 1) break;
 
     }
@@ -280,14 +397,22 @@ int sci_msprintf(char *fname,unsigned long fname_len)
     }
 
     if (rval == RET_BUG) return 0;
-    /** Create a Scilab String : lstr must not be freed **/
-    n2=1;
-    CreateVarFromPtr(Rhs+1,MATRIX_OF_STRING_DATATYPE, &n, &n2, strs);
 
-    freeArrayOfString(strs, n);
+    /* Create a Scilab String */
+    nOut = 1;
+    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1 , mOut, nOut, pOutputStrings);
 
-    LhsVar(1)=Rhs+1;
-    PutLhsVar();
+    /* lstr must not be freed */
+    freeArrayOfString(pOutputStrings, mOut * nOut);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+    }
+    else
+    {
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/ 

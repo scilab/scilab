@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,13 +26,16 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  int id; 
+  int id;
+  BOOL status;
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -39,14 +43,30 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
     return SET_PROPERTY_ERROR ;
   }
 
-	id = (int) getDoubleFromStack( stackPointer ) ;
+  id = (int) getDoubleFromStack( stackPointer ) ;
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
+  status = setGraphicObjectProperty(pobj->UID, __GO_ID__, &id, jni_int, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_id");
+    return SET_PROPERTY_ERROR;
+  }
+
+  /* to be implemented later */
+#if 0
   if ( pobj != getFigureModel() )
   {
     return sciInitUsedWindow( id ) ;
@@ -55,6 +75,8 @@ int set_figure_id_property( sciPointObj * pobj, size_t stackPointer, int valueTy
   {
     return sciSetNum( getFigureModel(), id ) ;
   }
+#endif
+
   return SET_PROPERTY_ERROR ;
 }
 /*------------------------------------------------------------------------*/

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="recompilefunction">
+  <info>
+    <pubdate>10-Jun-2007</pubdate>
+  </info>
+  <refnamediv>
+    <refname>recompilefunction</refname>
+    <refpurpose>型を変更し,Scilab関数を再コンパイルする</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>recompilefunction(funname [,kind [,force]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>funname</term>
+        <listitem>
+          <para>文字列, 再コンパイルする関数の名前
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kind</term>
+        <listitem>
+          <para>文字列: <emphasis role="bold">"n"</emphasis> (コンパイル前, 11型), <emphasis role="bold">"c"</emphasis> 
+       (コンパイル済み, 13型) または <emphasis role="bold">"p"</emphasis> (コンパイル済み, type 型, プロファイル用). デフォルト: "c".
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>force</term>
+        <listitem>
+          <para>論理値. falseの場合, 関数は kind が変更された場合のみ再コンパイルされます;
+	true の場合, 同じ kind が維持される場合でも再コンパイルされます
+	(プロファイル統計をリセットするために "p" 関数を再コンパイルする場合に特に有用です).
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+	この関数は<link linkend="fun2string">fun2string</link>により
+	関数変数を逆コンパイルし, <link linkend="deff">deff</link>により
+	指定した kind に再コンパイルします.
+     </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+recompilefunction("asinh","p")
+for i=1:100; asinh(rand(100,100)); end
+showprofile(asinh)   
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="fun2string">fun2string</link>
+      </member>
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <variablelist>
+      <varlistentry>
+        <term>Enrico Segre</term>
+        <listitem>
+          <para>
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+   http://wiki.scilab.org/Scilab_function_variables%3A_representation%2C_manipulation
+  </para>
+  </refsection>
+</refentry>

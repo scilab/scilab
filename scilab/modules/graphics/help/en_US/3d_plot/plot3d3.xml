@@ -237,8 +237,8 @@ e.visible='off';
 e.visible='on'; // back to the mesh view
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d2">plot3d2</link>

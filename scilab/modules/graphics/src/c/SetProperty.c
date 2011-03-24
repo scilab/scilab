@@ -5,6 +5,7 @@
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2010 - Paul Griffiths
  *
  * This file must be used under the terms of the CeCILL.
@@ -59,6 +60,10 @@
 #include "DrawingBridge.h"
 
 #include "CallFigure.h"
+
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 #define MAX_MARK_STYLE 14
 
@@ -247,7 +252,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
      (sciGetEntityType(pobj) == SCI_AXES)        ||
-     (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
      (sciGetEntityType(pobj) == SCI_LABEL))
     {
@@ -581,11 +585,18 @@ sciSetForeground (sciPointObj * pobj, int colorindex)
 
 int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetLineWidth( pobj ) == linewidth )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitLineWidth( pobj, linewidth ) ;
 }
 
@@ -596,6 +607,7 @@ int sciSetLineWidth( sciPointObj * pobj, double linewidth )
 int
 sciInitLineWidth (sciPointObj * pobj, double linewidth)
 {
+  BOOL status;
 
   if (linewidth < 0)
     {
@@ -604,10 +616,10 @@ sciInitLineWidth (sciPointObj * pobj, double linewidth)
     }
   else
   {
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_THICKNESS__, &linewidth, jni_double, 1);
 
-    if (sciGetGraphicContext(pobj) != NULL)
+    if (status == TRUE)
     {
-      (sciGetGraphicContext(pobj))->linewidth = linewidth;
       return 0;
     }
   }
@@ -618,11 +630,18 @@ sciInitLineWidth (sciPointObj * pobj, double linewidth)
 
 int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetLineStyle( pobj ) == linestyle )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitLineStyle( pobj, linestyle ) ;
 }
 
@@ -632,7 +651,7 @@ int sciSetLineStyle( sciPointObj * pobj, int linestyle )
 int
 sciInitLineStyle (sciPointObj * pobj, int linestyle)
 {
-
+  BOOL status;
   if (linestyle < 0)
     {
       Scierror(999, _("The line style must be greater than %d.\n"),0);
@@ -640,9 +659,10 @@ sciInitLineStyle (sciPointObj * pobj, int linestyle)
     }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    status = setGraphicObjectProperty(pobj->UID, __GO_LINE_STYLE__, &linestyle, jni_int, 1);
+
+    if (status == TRUE)
     {
-      (sciGetGraphicContext(pobj))->linestyle = linestyle;
       return 0;
     }
   }
@@ -755,6 +775,8 @@ sciSetMarkBackground (sciPointObj * pobj, int colorindex)
 
 int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 {
+  BOOL status;
+
   if (markstyle < 0 || markstyle > MAX_MARK_STYLE )
   {
     Scierror(999, _("Wrong value for '%s' property: Must be between %d and %d.\n"), "mark_style", 0, MAX_MARK_STYLE);
@@ -762,9 +784,10 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
   }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    status = setGraphicObjectProperty(pobj->UID, __GO_MARK_STYLE__, &markstyle, jni_int, 1);
+
+    if (status == TRUE)
     {
-      sciGetGraphicContext(pobj)->markstyle = markstyle;
       return 0;
     }
   }
@@ -780,12 +803,18 @@ int sciInitMarkStyle( sciPointObj * pobj, int markstyle )
 int
 sciSetMarkStyle (sciPointObj * pobj, int markstyle)
 {
-
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkStyle( pobj ) == markstyle )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitMarkStyle( pobj, markstyle ) ;
 }
 
@@ -798,12 +827,14 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
   }
   else
   {
-    if (sciGetGraphicContext(pobj) != NULL)
+    BOOL status;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_MARK_SIZE__, &marksize, jni_int, 1);
+
+    if (status == TRUE)
     {
-      sciGetGraphicContext(pobj)->marksize = marksize;
       return 0;
     }
-
   }
 
   printSetGetErrorMessage("mark_size");
@@ -816,13 +847,19 @@ int sciInitMarkSize( sciPointObj * pobj, int marksize )
 int
 sciSetMarkSize (sciPointObj * pobj, int marksize)
 {
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkSize( pobj ) == marksize )
   {
     /* nothing to do */
     return 1 ;
   }
-  return sciInitMarkSize( pobj, marksize ) ;
+#endif
 
+  return sciInitMarkSize( pobj, marksize ) ;
 }
 
 int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
@@ -834,7 +871,6 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
   }
   else
   {
-
     if (sciGetGraphicContext(pobj) != NULL)
     {
       (sciGetGraphicContext(pobj))->marksizeunit = marksizeunit;
@@ -853,12 +889,18 @@ int sciInitMarkSizeUnit( sciPointObj * pobj, int marksizeunit )
 int
 sciSetMarkSizeUnit (sciPointObj * pobj, int marksizeunit)
 {
-
+/*
+ * Deactivated: the property is set within the MVC regardless of its
+ * currently stored value.
+ */
+#if 0
   if ( sciGetMarkSizeUnit( pobj ) == marksizeunit )
   {
     /* nothing to do */
     return 1 ;
   }
+#endif
+
   return sciInitMarkSizeUnit( pobj, marksizeunit ) ;
 }
 
@@ -1041,49 +1083,34 @@ int sciSetStrings( sciPointObj * pObjDest, const StringMatrix * pStrings )
  */
 int sciSetText (sciPointObj * pobj, char ** text, int nbRow, int nbCol)
 {
+    int dimensions[2];
+    BOOL status;
 
-/* Check if we should load LaTex / MathML Java libraries */
-	loadTextRenderingAPI(text, nbRow, nbCol);
+    /* Check if we should load LaTex / MathML Java libraries */
+    loadTextRenderingAPI(text, nbRow, nbCol);
 
-	switch (sciGetEntityType (pobj))
+    dimensions[0] = nbRow;
+    dimensions[1] = nbCol;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_TEXT_ARRAY_DIMENSIONS__, dimensions, jni_int_vector, 2);
+
+    if (status != TRUE)
     {
-    case SCI_TEXT:
-      deleteMatrix( pTEXT_FEATURE (pobj)->pStrings ) ;
-      pTEXT_FEATURE (pobj)->pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pTEXT_FEATURE (pobj)->pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
-    case SCI_LEGEND:
-      deleteMatrix( pLEGEND_FEATURE (pobj)->text.pStrings ) ;
-      pLEGEND_FEATURE (pobj)->text.pStrings = newFullStringMatrix( text, nbRow, nbCol ) ;
-      if ( pLEGEND_FEATURE (pobj)->text.pStrings == NULL )
-      {
-        return -1 ;
-      }
-      break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-      return sciSetText( pLABEL_FEATURE(pobj)->text, text, nbRow, nbCol ) ;
-      break;
-    case SCI_UIMENU:
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_ARC:
-    case SCI_SEGS:
-    case SCI_FEC:
-    case SCI_GRAYPLOT:
-    case SCI_POLYLINE:
-    case SCI_RECTANGLE:
-    case SCI_SURFACE:
-    case SCI_AXES:
-    case SCI_AGREG:
-    default:
-      printSetGetErrorMessage("text");
-      return -1;
-      break;
+        printSetGetErrorMessage("text");
+        return -1;
     }
-  return 0;
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_TEXT_STRINGS__, text, jni_string_vector, dimensions[0]*dimensions[1]);
+
+    if (status == TRUE)
+    {
+        return 0;
+    }
+    else
+    {
+        printSetGetErrorMessage("text");
+        return -1;
+    }
 }
 
 
@@ -1270,7 +1297,7 @@ sciSetFontStyle (sciPointObj * pobj, int iAttributes )
 int sciInitLegendPlace( sciPointObj * pobj, sciLegendPlace place )
 {
   double position[2]={0.0,0.0};
-  
+
   if (sciGetEntityType (pobj) == SCI_LEGEND)
   {
     pLEGEND_FEATURE (pobj)->place = place;
@@ -1857,19 +1884,19 @@ int sciInitName(sciPointObj * pobj, char * newName)
 				{
 					sciSetJavaTitle(pobj, "");
 				}
-				
+
 				return 0;
 			}
-			
+
 			/* newName is a valid string */
 			newNameLength = (int) strlen(newName);
-      
+
       /* Reallocate name */
       pFIGURE_FEATURE(pobj)->name = MALLOC( (newNameLength + 1) * sizeof(char) );
 
 			/* copy the string */
       strcpy(pFIGURE_FEATURE(pobj)->name, newName) ;
-			
+
 			/* Update the name of the physical window if one exists */
       if (!isFigureModel(pobj))
       {
@@ -1897,7 +1924,7 @@ int sciInitName(sciPointObj * pobj, char * newName)
           FREE(realTitle) ;
         }
 
-        
+
       }
 
       return 0 ;
@@ -1925,21 +1952,21 @@ sciSetName(sciPointObj * pobj, char * newName)
 		// nothing to do
 		return 1;
 	}
-	
+
 	/* Check that the string contains at most one %d character */
 	if (checkPercent(newName) < 0)
   {
   	Scierror(999, _("Figure name may not contains any %% character, except a single %%d.\n")) ;
   	return -1 ;
   }
-	
+
 	/* Free the current name if needed */
 	if (sciGetName(pobj) != NULL)
 	{
 		FREE(pFIGURE_FEATURE(pobj)->name);
 		pFIGURE_FEATURE(pobj)->name = NULL;
 	}
-	
+
 	return sciInitName(pobj, newName);
 }
 
@@ -2146,29 +2173,49 @@ int sciInitSelectedSubWin( sciPointObj * psubwinobj )
 
 /**sciSetSelectedSubWin
  * Determines wich SubWin is selected or not. WARNING TO BE DEFINED.
+ * It has been adapted to the MVC. Its should be implemented entirely
+ * within the MVC (as the setGraphicObjectRelationship function).
  * @param sciPointObj * psubwinobj: the pointer to the entity sub window
  * @return 1 if OK or -1 if NOT OK
  */
 int
 sciSetSelectedSubWin (sciPointObj * psubwinobj)
 {
+    char* type;
+    char* parent;
 
+    getGraphicObjectProperty(psubwinobj->UID, __GO_TYPE__, jni_string, &type);
 
-  /* on verifie que l'entite passee en argument est bien une sous fenetre */
-  if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
-  {
-    Scierror(999, _("Handle is not a SubWindow.\n"));
-    return -1;
-  }
+    /* Check that the object is an AXES */
+    if (strcmp(type, __GO_AXES__) != 0)
+    {
+        Scierror(999, _("Handle is not a SubWindow.\n"));
+        return -1;
+    }
 
-  /* on verifie que la sous fenetre donnee n'est pas deja selectionnee */
-  if (sciGetIsSelected(psubwinobj))
-  {
-    /* nothing to do then */
-    return 1 ;
-  }
+    getGraphicObjectProperty(psubwinobj->UID, __GO_PARENT__, jni_string, &parent);
 
-  return sciInitSelectedSubWin( psubwinobj ) ;
+    setGraphicObjectProperty(parent, __GO_SELECTED_CHILD__, psubwinobj->UID, jni_string, 1);
+
+    /* To be deleted */
+#if 0
+    /* on verifie que l'entite passee en argument est bien une sous fenetre */
+    if (sciGetEntityType (psubwinobj) != SCI_SUBWIN)
+    {
+        Scierror(999, _("Handle is not a SubWindow.\n"));
+        return -1;
+    }
+
+    /* on verifie que la sous fenetre donnee n'est pas deja selectionnee */
+    /* No need to check anymore, as we set it anyway. */
+    if (sciGetIsSelected(psubwinobj))
+    {
+        /* nothing to do then */
+        return 1 ;
+    }
+
+    return sciInitSelectedSubWin( psubwinobj );
+#endif
 }
 
 /*-------------------------------------------------------------------------------*/
@@ -2199,6 +2246,7 @@ sciSetOriginalSubWin (sciPointObj * pfigure, sciPointObj * psubwin)
 int
 sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
 {
+  char* type;
   int i,n1,k,k1,k2;
   double * pvx  = NULL ;
   double * pvy  = NULL ;
@@ -2208,104 +2256,110 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
   double * pvfz = NULL ;
   int * pstyle = NULL;
 
-  switch (sciGetEntityType (pthis))
-    {
-    case SCI_POLYLINE:
-      n1=pPOLYLINE_FEATURE (pthis)->n1;
+  getGraphicObjectProperty(pthis->UID, __GO_TYPE__, jni_string, &type);
+
+  /*
+   * switch over sciGetEntityType replaced by object type string comparisons
+   * Still required as we have no better way to do this for the moment
+   */
+  if (strcmp(type, __GO_POLYLINE__) == 0)
+  {
+      BOOL result;
+      int numElementsArray[2];
+      int zCoordinatesSet;
+
       if ( (*numcol != 3) && (*numcol != 2) && (*numcol != 0) )
-	{
+      {
 	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
 	  return -1;
-	}
-      if (*numrow != n1) /* SS 30/1/02 */
+      }
+
+      /*
+       * The coordinates array is re-allocated (if required) within the data model, testing whether
+       * the new number of points is different in order to free/re-allocate is not needed anymore.
+       * The 0-element array case is managed by the data model as well.
+       */
+
+      if (*numcol == 0)
       {
-
-        FREE(pPOLYLINE_FEATURE (pthis)->pvx); pPOLYLINE_FEATURE (pthis)->pvx = NULL;
-        FREE(pPOLYLINE_FEATURE (pthis)->pvy); pPOLYLINE_FEATURE (pthis)->pvy = NULL;
-        FREE(pPOLYLINE_FEATURE (pthis)->pvz); pPOLYLINE_FEATURE (pthis)->pvz = NULL;
-
-        n1=*numrow;
-
-        if ( *numcol > 0 )
-        {
-          if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL)
-          {
-            FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-          {
-            if ((pvz = MALLOC (n1 * sizeof (double))) == NULL)
-            {
-              FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-              return -1;
-            }
-          }
-
-	  for ( i = 0 ; i < *numrow ; i++ )
-	  {
-	    pvx[i] = tab[i];
-	    pvy[i] = tab[i+ (*numrow)];
-            if (*numcol == 3)
-            {
-	      pvz[i] = tab[i+ 2*(*numrow)];
-            }
-          }
-	  pPOLYLINE_FEATURE (pthis)->pvx=pvx;
-	  pPOLYLINE_FEATURE (pthis)->pvy=pvy;
-          pPOLYLINE_FEATURE (pthis)->pvz=pvz;
-        }
-
-        pPOLYLINE_FEATURE (pthis)->n1 = n1 ;
-
+          n1 = 0;
       }
       else
-	{
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pPOLYLINE_FEATURE (pthis)->pvx[i] = tab[i];
-	      pPOLYLINE_FEATURE (pthis)->pvy[i] = tab[i+ (*numrow)];
-	    }
-	  if (*numcol == 3)
-	    {
-	      if(pPOLYLINE_FEATURE (pthis)->pvz==NULL)
-		if ((pPOLYLINE_FEATURE (pthis)->pvz = MALLOC ((*numrow) * sizeof (double))) == NULL)
-		  return -1;
-
-	      for (i=0;i < *numrow;i++)
-		pPOLYLINE_FEATURE (pthis)->pvz[i] = tab[i+ 2*(*numrow)];
-	    }
-	  else
-	    {
-	      FREE(pPOLYLINE_FEATURE (pthis)->pvz);
-	      pPOLYLINE_FEATURE (pthis)->pvz=NULL;
-	    }
-	}
-
-
-
-      return 0;
-      break;
-    case SCI_RECTANGLE:
-    {
-      int widthIndex = 2 ;
-      int size = *numrow * *numcol ;
-      if ( size != 5 && size != 4 )
       {
-        Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
-        return -1;
+          n1 = *numrow;
       }
 
-      pRECTANGLE_FEATURE (pthis)->x = tab[0] ;
-      pRECTANGLE_FEATURE (pthis)->y = tab[1] ;
+      /* The first element must be equal to 1 for a Polyline, the second is the polyline's number of vertices */
+      numElementsArray[0] = 1;
+      numElementsArray[1] = n1;
+
+      /* Resizes the data coordinates array if required */
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_ELEMENTS_ARRAY__, numElementsArray, jni_int_vector, 2);
+
+      /*
+       * For now, the FALSE return value corresponds to a failed memory allocation,
+       * which does not allow to discriminate between the failed allocation and non-existing
+       * property conditions.
+       */
+      if (result == FALSE)
+      {
+	  Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      if ( *numcol > 0 )
+      {
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, tab, jni_double_vector, n1);
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, &tab[n1], jni_double_vector, n1);
+
+          if (*numcol == 3)
+          {
+              setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, &tab[2*n1], jni_double_vector, n1);
+              zCoordinatesSet = 1;
+          }
+          else
+          {
+              zCoordinatesSet = 0;
+          }
+
+          /* Required for now to indicate that the z coordinates have been set or not */
+          setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z_COORDINATES_SET__, &zCoordinatesSet, jni_int, 1);
+      }
+
+      return 0;
+  }
+  else if (strcmp(type, __GO_RECTANGLE__) == 0)
+  {
+      double* currentUpperLeftPoint;
+      double upperLeftPoint[3];
+      int widthIndex = 2;
+      int size = *numrow * *numcol;
+
+      if ( size != 5 && size != 4 )
+      {
+          Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),4,5,"z");
+          return -1;
+      }
+
+      upperLeftPoint[0] = tab[0];
+      upperLeftPoint[1] = tab[1];
 
       if ( size == 5 )
       {
-        pRECTANGLE_FEATURE (pthis)->z = tab[2] ;
-        widthIndex = 3 ;
+          upperLeftPoint[2] = tab[2];
+          widthIndex = 3;
       }
+      else
+      {
+          /*
+           * Needed in order to set the z coordinate if size == 4
+           * Being able to set only the point's x and y coordinates values would avoid doing this.
+           */
+          getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+          upperLeftPoint[2] = currentUpperLeftPoint[2];
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
 
       /* check that the height and width are positive */
       if ( tab[widthIndex] < 0.0 || tab[widthIndex + 1] < 0.0 )
@@ -2313,306 +2367,291 @@ sciSetPoint(sciPointObj * pthis, double *tab, int *numrow, int *numcol)
         Scierror(999,"Width and height must be positive.\n") ;
         return -1 ;
       }
-      pRECTANGLE_FEATURE (pthis)->width  = tab[widthIndex    ] ;
-      pRECTANGLE_FEATURE (pthis)->height = tab[widthIndex + 1] ;
+
+      setGraphicObjectProperty(pthis->UID, __GO_WIDTH__, &tab[widthIndex], jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, &tab[widthIndex + 1], jni_double, 1);
 
       return 0;
-    }
-    break;
-    case SCI_ARC:
-      if ((*numrow * *numcol != 7)&&(*numrow * *numcol != 6))
-	{
-	  Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
-	  return -1;
-	}
+  }
+  else if (strcmp(type, __GO_ARC__) == 0)
+  {
+      double startAngle;
+      double endAngle;
+      double upperLeftPoint[3];
+      double width;
+      double height;
+      double* currentUpperLeftPoint;
+      int size;
 
-      pARC_FEATURE (pthis)->x          = tab[0];
-      pARC_FEATURE (pthis)->y          = tab[1];
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	{
-	  pARC_FEATURE (pthis)->z          = tab[2];
-	  pARC_FEATURE (pthis)->width      = tab[3];
-	  pARC_FEATURE (pthis)->height     = tab[4];
-	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[5]);
-	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[6]);
-	}
+      size = *numrow * *numcol;
+
+      if ((size != 7) && (size != 6))
+      {
+          Scierror(999, _("Number of elements must be %d (%d if z coordinate )\n"),6,7);
+          return -1;
+      }
+
+      upperLeftPoint[0] = tab[0];
+      upperLeftPoint[1] = tab[1];
+
+      /*
+       * Setting the data has been made consistent with how it is done for the Rectangle:
+       * it takes into account the size of the input array instead of the parent Axes'
+       * view property. Using the latter led to incorrectly set values when size and view
+       * were not corresponding (for example when size==7, and view==2d).
+       */
+      if (size == 7)
+      {
+          upperLeftPoint[2] = tab[2];
+          width = tab[3];
+          height = tab[4];
+          startAngle = DEG2RAD(tab[5]);
+          endAngle = DEG2RAD(tab[6]);
+      }
       else
-	{
-	  pARC_FEATURE (pthis)->width      = tab[2];
-	  pARC_FEATURE (pthis)->height     = tab[3];
-	  pARC_FEATURE (pthis)->alphabegin = DEG2RAD(tab[4]);
-	  pARC_FEATURE (pthis)->alphaend   = DEG2RAD(tab[5]);
-	}
+      {
+          /* Needed in order to set the z coordinate if size == 6 */
+          getGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, jni_double_vector, &currentUpperLeftPoint);
+
+          upperLeftPoint[2] = currentUpperLeftPoint[2];
+          width = tab[2];
+          height = tab[3];
+          startAngle = DEG2RAD(tab[4]);
+          endAngle = DEG2RAD(tab[5]);
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_UPPER_LEFT_POINT__, upperLeftPoint, jni_double_vector, 3);
+
+      setGraphicObjectProperty(pthis->UID, __GO_WIDTH__, &width, jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_HEIGHT__, &height, jni_double, 1);
+
+      setGraphicObjectProperty(pthis->UID, __GO_START_ANGLE__, &startAngle, jni_double, 1);
+      setGraphicObjectProperty(pthis->UID, __GO_END_ANGLE__, &endAngle, jni_double, 1);
+
       return 0;
-      break;
-    case SCI_TEXT:
+  }
+  else if (strcmp(type, __GO_TEXT__) == 0)
+  {
+      char* parentAxes;
+      double position[3];
+      int iView = 0;
+      int* piView = &iView;
+
       if ((*numrow * *numcol != 2)&&(*numrow * *numcol != 3))
-	{
-	  Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
-	  return -1;
-	}
-      pTEXT_FEATURE (pthis)->x = tab[0];
-      pTEXT_FEATURE (pthis)->y = tab[1];
-      if (pSUBWIN_FEATURE (sciGetParentSubwin(pthis))->is3d)
-	pTEXT_FEATURE (pthis)->z = tab[2];
-      return 0;
-      break;
-    case SCI_SEGS:
-      if (pSEGS_FEATURE (pthis)->ptype <= 0) {
-	if ((*numcol != 3)&&(*numcol != 2)) {
-	  Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
-	  return -1;
-	}
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) {
-	  n1=*numrow;
-	  if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	  if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    return -1;
-	  }
-	  if (*numcol == 3)
-	    if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      return -1;
-	    }
-	  if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	    FREE(pvx); pvx = (double *) NULL;
-	    FREE(pvy); pvy = (double *) NULL;
-	    FREE(pvz); pvz = (double *) NULL;
-	    return -1;
-	  }
-	  FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	  FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vx = NULL;
-	  if (*numcol == 3)
-	    FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-	  /* Attention ici on detruit pstyle !! F.Leray 20.02.04*/
-	  FREE(pSEGS_FEATURE (pthis)->pstyle); pSEGS_FEATURE (pthis)->pstyle = NULL;
-	  for (i=0;i < *numrow;i++)
-	    {
-	      pvx[i] = tab[i];
-	      pvy[i] = tab[i+ (*numrow)];
-	      if (*numcol == 3)
-		pvz[i] = tab[i+ 2*(*numrow)];
-	      pstyle[i] = 0;
-	    }
-	  pSEGS_FEATURE (pthis)->vx=pvx;
-	  pSEGS_FEATURE (pthis)->vy=pvy;
-	  if (*numcol == 3)
-	    pSEGS_FEATURE (pthis)->vz=pvz;
-	  pSEGS_FEATURE (pthis)->Nbr1=n1;
-	  pSEGS_FEATURE (pthis)->pstyle=pstyle;
-	}
-	else {
-	  if ((*numcol == 3) && (pSEGS_FEATURE (pthis)->vz == NULL))
-	    if ((pSEGS_FEATURE (pthis)->vz = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-
-	  for (i=0;i < *numrow;i++) {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (*numcol == 3)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	}
+      {
+          Scierror(999, _("Number of elements must be %d (%d if %s coordinate).\n"),2,3,"z");
+          return -1;
       }
-      else { /* Strange test object == Champ: e=gce(); e.data = e.data
-	        make this error happened! Remove it to perform such legal operation */
 
-	n1=pSEGS_FEATURE (pthis)->Nbr1;
-	if (*numrow != n1) /* SS 30/1/02 */
-	  {
-	    n1=*numrow;
-	    if ((pvx = MALLOC (n1 * sizeof (double))) == NULL) return -1;
-	    if ((pvy = MALLOC (n1 * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pstyle = MALLOC (n1 * sizeof (int))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      return -1;
-	    }
-	    if ((pvfx = MALLOC ((n1*n1) * sizeof (double))) == NULL) return -1;
-	    if ((pvfy = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-	      FREE(pvx); pvx = (double *) NULL;
-	      FREE(pvy); pvy = (double *) NULL;
-	      FREE(pvz); pvz = (double *) NULL;
-	      FREE(pvfx); pvfx = (double *) NULL;
-	      return -1;
-	    }
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		if ((pvz = MALLOC (n1 * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  return -1;
-		}
-		if ((pvfz = MALLOC ((n1*n1) * sizeof (double))) == NULL) {
-		  FREE(pvx); pvx = (double *) NULL;
-		  FREE(pvy); pvy = (double *) NULL;
-		  FREE(pvz); pvz = (double *) NULL;
-		  FREE(pvfx); pvfx = (double *) NULL;
-		  FREE(pvfy); pvfy = (double *) NULL;
-		  return -1;
-		}
-		FREE(pSEGS_FEATURE (pthis)->vz); pSEGS_FEATURE (pthis)->vz = NULL;
-		FREE(pSEGS_FEATURE (pthis)->vfz); pSEGS_FEATURE (pthis)->vfz = NULL;
-	      }
-	    FREE(pSEGS_FEATURE (pthis)->vx); pSEGS_FEATURE (pthis)->vx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vy); pSEGS_FEATURE (pthis)->vy = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfx); pSEGS_FEATURE (pthis)->vfx = NULL;
-	    FREE(pSEGS_FEATURE (pthis)->vfy); pSEGS_FEATURE (pthis)->vfy = NULL;
-	    for (i=0;i < n1;i++)
-	      {
-		pvx[i] = tab[i];
-		pvy[i] = tab[i+ (*numrow)];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvz[i] = tab[i+ 2*(*numrow)];
+      getGraphicObjectProperty(pthis->UID, __GO_PARENT_AXES__, jni_string, &parentAxes);
+      getGraphicObjectProperty(parentAxes, __GO_VIEW__, jni_int, &piView);
 
-	      }
-	    k=3*n1;
-	    for (i=0;i < n1*n1;i++)
-	      {
-		pvfx[i] = tab[k+i];
-		pvfy[i] = tab[k+n1*n1+i];
-		if (*numcol == 3 +3*(*numrow * *numrow))
-		  pvfz[i] = tab[2*k+n1*n1+i];
+      position[0] = tab[0];
+      position[1] = tab[1];
 
-	      }
-	    pSEGS_FEATURE (pthis)->vx=pvx;
-	    pSEGS_FEATURE (pthis)->vy=pvy;
-	    pSEGS_FEATURE (pthis)->vx=pvfx;
-	    pSEGS_FEATURE (pthis)->vy=pvfy;
-	    pSEGS_FEATURE (pthis)->Nbr1=n1;
-	    if (*numcol == 3 +3*(*numrow * *numrow))
-	      {
-		pSEGS_FEATURE (pthis)->vz=pvz;
-		pSEGS_FEATURE (pthis)->vy=pvfz;
-	      }
-
-	  }
-	else {
-	  for (i=0;i < *numrow;i++)   {
-	    pSEGS_FEATURE (pthis)->vx[i] = tab[i];
-	    pSEGS_FEATURE (pthis)->vy[i] = tab[i+ (*numrow)];
-	    if (pSEGS_FEATURE (pthis)->vz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vz[i] = tab[i+ 2*(*numrow)];
-	  }
-	  k=2* (*numrow);
-	  k1=k+ (*numrow * *numrow);
-	  k2=2*k+ (*numrow * *numrow);
-	  for (i=0;i < *numrow * *numrow ;i++)   {
-	    pSEGS_FEATURE (pthis)->vfx[i] = tab[k+i];
-	    pSEGS_FEATURE (pthis)->vfy[i] = tab[k1+i];
-	    if (pSEGS_FEATURE (pthis)->vfz != (double *)NULL)
-	      pSEGS_FEATURE (pthis)->vfz[i] = tab[k2+i];
-	  }
-	}
+      if (iView)
+      {
+          position[2] = tab[2];
       }
+      else
+      {
+          /*
+           * Required as the position has 3 coordinates, hence the z-coordinate
+           * is set to its current value, which must be retrieved beforehand.
+           * Avoiding doing this would require being able to set only the x and y
+           * coordinates if required.
+           */
+          double* currentPosition;
+          getGraphicObjectProperty(pthis->UID, __GO_POSITION__, jni_double_vector, &currentPosition);
+          position[2] = currentPosition[2];
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_POSITION__, position, jni_double_vector, 3);
+
       return 0;
-      break;
+  }
+  else if (strcmp(type, __GO_SEGS__) == 0)
+  {
+      int numArrows;
+      double* arrowPoints = NULL;
+
+      if ((*numcol != 3)&&(*numcol != 2))
+      {
+          Scierror(999, _("Number of columns must be %d (%d if %s coordinate).\n"),2,3,"z");
+          return -1;
+      }
+
+      if (*numrow % 2 != 0)
+      {
+          Scierror(999, _("Number of rows must be a multiple of 2.\n"));
+          return -1;
+      }
 
 
-    case SCI_SURFACE:/* DJ.A 2003 */
+      numArrows = *numrow/2;
+
+      arrowPoints = (double*) MALLOC(3*numArrows*sizeof(double));
+
+      if (arrowPoints == NULL)
+      {
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      /*
+       * Interlacing ought to be done in the MVC's coordinates
+       * set function to avoid the additional code below.
+       */
+      for (i = 0; i < numArrows; i++)
+      {
+          arrowPoints[3*i] = tab[2*i];
+          arrowPoints[3*i+1] = tab[2*numArrows+2*i];
+
+          if (*numcol == 3)
+          {
+              arrowPoints[3*i+2] = tab[4*numArrows+2*i];
+          }
+          else
+          {
+              arrowPoints[3*i+2] = 0.0;
+          }
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_NUMBER_ARROWS__, &numArrows, jni_int, 1);
+
+      setGraphicObjectProperty(pthis->UID, __GO_BASE__, arrowPoints, jni_double_vector, 3*numArrows);
+
+      for (i = 0; i < numArrows; i++)
+      {
+          arrowPoints[3*i] = tab[2*i+1];
+          arrowPoints[3*i+1] = tab[2*numArrows+2*i+1];
+
+          if (*numcol == 3)
+          {
+              arrowPoints[3*i+2] = tab[4*numArrows+2*i+1];
+          }
+          else
+          {
+              arrowPoints[3*i+2] = 0.0;
+          }
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_DIRECTION__, arrowPoints, jni_double_vector, 3*numArrows);
+
+      FREE(arrowPoints);
+
+      return 0;
+  }
+  /* DJ.A 2003 */
+  /* SCI_SURFACE has been replaced by the MVC's FAC3D and PLOT3D */
+  else if (strcmp(type, __GO_FAC3D__) == 0)
+  {
       Scierror(999, _("Unhandled data field\n"));
       return -1;
-      break;
-    case SCI_GRAYPLOT:
-      if (pGRAYPLOT_FEATURE (pthis)->type == 0) { /* gray plot */
-	double *pvecx,*pvecy,*pvecz;
-	int nx,ny;
-	nx=*numrow-1;
-	ny=*numcol-1;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny || pGRAYPLOT_FEATURE (pthis)->nx!=nx) {
-	  if ((pvecx = CALLOC(nx,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecy = CALLOC(ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    FREE(pvecx);FREE(pvecy);
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecx);pGRAYPLOT_FEATURE (pthis)->pvecx=pvecx;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecy);pGRAYPLOT_FEATURE (pthis)->pvecy=pvecy;
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecx[i] = tab[i+1];
+  }
+  else if (strcmp(type, __GO_PLOT3D__) == 0)
+  {
+      Scierror(999, _("Unhandled data field\n"));
+      return -1;
+  }
+  else if (strcmp(type, __GO_MATPLOT__) == 0)
+  {
+      int nx;
+      int ny;
+      int gridSize[4];
+      int result;
 
-	for (i=0;i < ny;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecy[i] = tab[*numrow*(i+1)];
-	for (i=0;i < ny;i++)
-	  for (k=0;k < nx;k++)
-	    pGRAYPLOT_FEATURE (pthis)->pvecz[nx*i+k]=tab[*numrow*(i+1)+k+1];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx;
-      }
-      else  {/* Matplot */
-	double *pvecz;
-	int nx,ny;
-	nx=*numrow;
-	ny=*numcol;
-	if (pGRAYPLOT_FEATURE (pthis)->ny!=ny+1 || pGRAYPLOT_FEATURE (pthis)->nx!=nx+1) {
-	  if ((pvecz = CALLOC(nx*ny,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  FREE(pGRAYPLOT_FEATURE (pthis)->pvecz);pGRAYPLOT_FEATURE (pthis)->pvecz=pvecz;
-	}
-	for (i=0;i < nx*ny;i++)
-	  pGRAYPLOT_FEATURE (pthis)->pvecz[i]=tab[i];
-	pGRAYPLOT_FEATURE (pthis)->ny=ny+1;
-	pGRAYPLOT_FEATURE (pthis)->nx=nx+1;
-      }
-      break;
-    case SCI_FEC:
+      ny = *numrow;
+      nx = *numcol;
+
+      /*
+       * The number of points along each dimension is equal to the z data matrix's
+       * corresponding dimension plus 1
+       */
+      gridSize[0] = nx + 1;
+      gridSize[1] = 1;
+      gridSize[2] = ny + 1;
+      gridSize[3] = 1;
+
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_GRID_SIZE__, gridSize, jni_int_vector, 4);
+
+      if (result == FALSE)
       {
-	double *pvecx,*pvecy,*pfun;
-	int Nnode;
-	if (*numcol != 3) {
-	  Scierror(999, _("Number of columns must be %d.\n"),2);
-	  return -1;}
-
-	Nnode = *numrow;
-	if (pFEC_FEATURE (pthis)->Nnode!=Nnode) {
-	  if ((pvecx = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    return -1;}
-	  if ((pvecy = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    FREE(pvecx);
-	    return -1;}
-	  if ((pfun = CALLOC(Nnode,sizeof(double))) == NULL) {
-	    Scierror(999, _("%s: No more memory.\n"), "sciSetPoint") ;
-	    FREE(pvecx);FREE(pvecy);
-	    return -1;}
-	  FREE( pFEC_FEATURE (pthis)->pvecx); pFEC_FEATURE (pthis)->pvecx=pvecx;
-	  FREE( pFEC_FEATURE (pthis)->pvecy); pFEC_FEATURE (pthis)->pvecy=pvecy;
-	  FREE( pFEC_FEATURE (pthis)->pfun); pFEC_FEATURE (pthis)->pfun=pfun;
-	}
-	for (i=0;i < Nnode;i++) {
-	  pFEC_FEATURE (pthis)->pvecx[i]=tab[i];
-	  pFEC_FEATURE (pthis)->pvecy[i]=tab[Nnode+i];
-	  pFEC_FEATURE (pthis)->pfun[i]=tab[2*Nnode+i];
-	}
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
       }
-      break;
-    case SCI_FIGURE:
-    case SCI_SUBWIN:
-    case SCI_LEGEND:
-    case SCI_AXES:
-    case SCI_AGREG:
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-    case SCI_UIMENU:
-    default:
+
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Z__, tab, jni_double_vector, nx*ny);
+  }
+  else if (strcmp(type, __GO_FEC__) == 0)
+  {
+      BOOL result;
+      int Nnode;
+      if (*numcol != 3)
+      {
+          Scierror(999, _("Number of columns must be %d.\n"),3);
+          return -1;
+      }
+
+      Nnode = *numrow;
+
+      /* Resizes the data coordinates array if required */
+      result = setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_NUM_VERTICES__, &Nnode, jni_int, 1);
+
+      if (result == FALSE)
+      {
+          Scierror(999, _("%s: No more memory.\n"), "sciSetPoint");
+          return -1;
+      }
+
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_X__, tab, jni_double_vector, Nnode);
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_Y__, &tab[Nnode], jni_double_vector, Nnode);
+      setGraphicObjectProperty(pthis->UID, __GO_DATA_MODEL_VALUES__, &tab[2*Nnode], jni_double_vector, Nnode);
+  }
+  else if (strcmp(type, __GO_FIGURE__) == 0)
+  {
       printSetGetErrorMessage("data");
       return -1;
-      break;
-    }
+  }
+  else if (strcmp(type, __GO_AXES__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_LEGEND__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_AXIS__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  else if (strcmp(type, __GO_COMPOUND__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  /* F.Leray 28.05.04 */
+  else if (strcmp(type, __GO_LABEL__) == 0)
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+  /*
+   * Deactivated for now
+   * Same condition as the default one
+   */
+#if 0
+    case SCI_UIMENU:
+#endif
+  else
+  {
+      printSetGetErrorMessage("data");
+      return -1;
+  }
+
   return 0;
 }
 
@@ -3356,7 +3395,7 @@ int sciInitInfoMessage(sciPointObj * pObj, const char * newMessage)
 			{
 				sciSetJavaInfoMessage(pObj, "");
 			}
-				
+
 			return 0;
 		}
 

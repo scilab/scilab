@@ -35,8 +35,8 @@
 		Pour effacer une figure graphique, la fonction <literal>clf</literal> ou la prorpiété <literal>visible</literal> peuvent être utilisées.
 	</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="clf">clf</link>

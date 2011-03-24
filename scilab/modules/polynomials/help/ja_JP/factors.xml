@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="factors">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>factors</refname>
+    <refpurpose>実数因数分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[lnum,g]=factors(pol [,'flag'])
+[lnum,lden,g]=factors(rat [,'flag'])
+rat=factors(rat,'flag')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>pol</term>
+        <listitem>
+          <para>実数多項式</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rat</term>
+        <listitem>
+          <para>実数有理多項式 (<literal>rat=pol1/pol2</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lnum</term>
+        <listitem>
+          <para>(1 または 2次の)多項式のリスト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>lden</term>
+        <listitem>
+          <para>(1 または 2次の)多項式のリスト</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>g</term>
+        <listitem>
+          <para>実数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>文字列 <literal>'c'</literal>または <literal>'d'</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	多項式<literal>pol</literal>の因数を
+	リスト<literal>lnum</literal>および"ゲイン" gに返します.</para>
+    <para>
+	(<literal>flag</literal>が指定されない場合,)
+	pol= g にリスト<literal>lnum</literal>のエントリの積を乗じることになります.
+	<literal>flag='c'</literal>が指定された暴い,
+	<literal>|pol(i omega)|</literal> = <literal>|g*prod(lnum_j(i omega)|</literal>
+	となります.
+	<literal>flag='d'</literal>が指定された場合,
+	<literal>|pol(exp(i omega))|</literal> = <literal>|g*prod(lnum_i(exp(i omega))|</literal>
+	となります.
+	<literal>factors</literal>の引数が 1x1 有理数 <literal>rat=pol1/pol2</literal>の場合,
+	分子<literal>pol1</literal> および分母 the denominator <literal>pol2</literal>の因数
+	がそれぞれリスト<literal>lnum</literal> および <literal>lden</literal>に返されます.</para>
+    <para>
+    "gain" は <literal>g</literal>に返されます.
+	すなわち:
+    rat= g times (lnumのエントリの積) / (ldenのエントリの積).</para>
+    <para>
+    <literal>flag</literal> が<literal>'c'</literal> (または<literal>'d'</literal>)の場合, 
+	<literal>pol</literal>の根は虚軸(または単位円)に関して折り返されます.
+	すなわち,<literal>lnum</literal>の因数は安定な多項式となります.</para>
+    <para>
+	有理数の引数を指定して<literal>factors</literal>がコールされた場合:
+	<literal>lnum</literal>および <literal>lden</literal>のエントリは,
+	<literal>flag</literal>が指定された場合に
+	安定な多項式となります.
+	有理関数<literal>R1</literal>またはSISOリスト<literal>syslin</literal>を指定する
+	<literal>R2=factors(R1,'c')</literal> または <literal>R2=factors(R1,'d')</literal>
+	の場合,
+	出力<literal>R2</literal>は,安定な分子および分母を有し,
+	虚軸(<literal>'c'</literal>)または単位円(<literal>'d'</literal>)に沿った
+	<literal>R1</literal>と同じ大きさの伝達関数となります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+n=poly([0.2,2,5],'z');
+d=poly([0.1,0.3,7],'z');
+R=syslin('d',n,d);
+R1=factors(R,'d')
+roots(R1('num'))
+roots(R1('den'))
+w=exp(2*%i*%pi*[0:0.1:1]);
+norm(abs(horner(R1,w))-abs(horner(R,w)))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="simp">simp</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

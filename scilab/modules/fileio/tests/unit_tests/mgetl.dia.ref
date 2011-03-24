@@ -71,3 +71,7 @@ mclose(fd);
 r = mgetl(TMPDIR + '/mgetl_text_tst.txt');
 if ~and(r == ref) then bugmes();quit;end
 //==============================================================================
+txt = mgetl("SCI/modules/fileio/tests/unit_tests/text-UTF8BOM.txt");
+if and(size(txt) <> [12 1]) then bugmes();quit;end
+r = "Scilab is a numerical computational package developed since 1990 by researchers from the INRIA and the Ecole nationale des ponts et chaussees (ENPC). It is, since the creation of the Scilab consortium in May 2003, developed and maintained by the INRIA.";
+if r <> txt(1) then bugmes();quit;end

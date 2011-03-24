@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Sylvestre Koumar
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xs2png" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xs2png</refname>
+
+    <refpurpose>グラフィックスをPNG ファイルに出力.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>xs2png(win_num, file_name)
+xs2png(fig, file_name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>win_num</term>
+
+        <listitem>
+          <para>整数, エキスポートする図のID.</para>
+        </listitem>
+      </varlistentry>
+	  
+	  <varlistentry>
+        <term>fig</term>
+
+        <listitem>
+          <para>エキスポートする図のハンドル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>file_name</term>
+
+        <listitem>
+          <para>文字列, エキスポートするファイルの名前.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>xs2png</literal> はグラフィックウインドウの表示内容を
+	PNGファイルにエキスポートします.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+scf(0)
+plot2d()
+//PNG export
+xs2png(0,'foo.png');
+xs2png(gcf(),'foo.png');
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xs2bmp">xs2bmp</link></member>
+
+      <member><link linkend="xs2gif">xs2gif</link></member>
+
+      <member><link linkend="xs2jpg">xs2jpg</link></member>
+
+      <member><link linkend="xs2ppm">xs2ppm</link></member>
+
+      <member><link linkend="xs2eps">xs2eps</link></member>
+
+      <member><link linkend="xs2pdf">xs2pdf</link></member>
+
+      <member><link linkend="xs2svg">xs2svg</link></member>
+
+      <member><link linkend="xs2ps">xs2ps</link></member>
+
+      <member><link linkend="xs2fig">xs2fig</link></member>
+
+      <member><link linkend="xs2emf">xs2emf</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>S.K</para>
+  </refsection>
+</refentry>

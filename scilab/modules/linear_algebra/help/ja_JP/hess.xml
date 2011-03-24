@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="hess">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hess</refname>
+    <refpurpose>ヘッセンベルク形式</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>H = hess(A)
+[U,H] = hess(A)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>H</term>
+        <listitem>
+          <para>実数または複素数の正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>U</term>
+        <listitem>
+          <para>直交またはユニタリ正方行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>[U,H] = hess(A)</literal> は,
+	<literal>A = U*H*U'</literal> および <literal>U'*U</literal> =単位行列 となるような
+	ユニタリ行列<literal>U</literal> およびヘッセンベルク行列<literal>H</literal>を出力します.
+	これにより, <literal>hess(A)</literal> は <literal>H</literal>を返します.</para>
+    <para>行列のヘッセンベルク形式は最初の副対角線以下では 0となります.
+	この行列が対称またはエルミート行列の場合,
+	形は3重対角となります.</para>
+  </refsection>
+  <refsection>
+    <title>リファレンス</title>
+    <para>
+	hess 関数は Lapack ルーチン
+ DGEHRD, DORGHR (実数行列の場合) および ZGEHRD, ZORGHR (複素数行列の場合)に基づいています.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(3,3);[U,H]=hess(A);
+and( abs(U*H*U'-A)<1.d-10 )
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="qr">qr</link>
+      </member>
+      <member>
+        <link linkend="contr">contr</link>
+      </member>
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para><literal>hess</literal> 関数はLapack ルーチン
+  DGEHRD, DORGHR (実数行列の場合) および  ZGEHRD, ZORGHR (複素数行列の場合)に
+	基づいています.</para>
+  </refsection>
+</refentry>

@@ -60,8 +60,8 @@ sca(a2); //make secoçnd axes current
 legend('sinh')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="subplot">subplot</link>

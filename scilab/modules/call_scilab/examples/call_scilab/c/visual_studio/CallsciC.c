@@ -1,27 +1,43 @@
-/* Allan CORNET */
-/* Scilab, INRIA 2004 */
-/* Only For Windows */
+/*--------------------------------------------------------------------------*/
+/* Example only for Windows */
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../../../bin/call_scilab.lib")
-#pragma comment(lib, "../../../../../../bin/MALLOC.lib")
+#pragma comment(lib, "../../../../../../bin/api_scilab.lib")
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h> 
 #include <stdio.h> 
 #include <string.h>
 #include "call_scilab.h"
+#include "api_scilab.h"
 #include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 /* See SCI/modules/core/includes/call_scilab.h */
+/* See SCI/modules/core/includes/api_scilab.h */
 /*--------------------------------------------------------------------------*/
 static int example1(void)
 {
-	static double A[]={1,2,3,4};  int mA=2,nA=2;
-	static double b[]={4,5};  int mb=2,nb=1;
+    SciErr sciErr;
 
+	static double A[] = {1, 2, 3, 4};
+    int mA = 2, nA = 2;
+
+	static double b[] = {4, 5};
+    int mb = 2, nb = 1;
 
 	/* Create Scilab matrices A and b */
-	WriteMatrix("A", &mA, &nA, A);
-	WriteMatrix("b", &mb, &nb, b);
+    sciErr = createNamedMatrixOfDouble(pvApiCtx, "A", mA, nA, A);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
+
+    sciErr = createNamedMatrixOfDouble(pvApiCtx, "b", mb, nb, b);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return -1;
+    }
 
 	SendScilabJob("disp('A=');");
 	SendScilabJob("disp(A);");
@@ -35,25 +51,35 @@ static int example1(void)
 	}
 	else 
 	{
-		double *cxtmp=NULL;
-		int m,n,lp,i;
+		double *cxtmp = NULL;
+		int m = 0, n = 0;
+        int i = 0;
 
-		/* Get m and n */
-		GetMatrixptr("x", &m, &n, &lp);
+		/* Get m and n dimensions of x */
+        sciErr = readNamedMatrixOfDouble(pvApiCtx, "x", &m, &n , NULL);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return -1;
+        }
 
-		cxtmp=(double*)malloc((m*n)*sizeof(double));
+		cxtmp = (double*)malloc((m*n)*sizeof(double));
+        sciErr = readNamedMatrixOfDouble(pvApiCtx, "x", &m, &n , cxtmp);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return -1;
+        }
 
-		ReadMatrix("x", &m, &n, cxtmp);
-
-		for(i=0;i<m*n;i++)
+		for(i = 0; i < m*n; i++)
 		{
-			fprintf(stdout,"x[%d] = %5.2f\n",i,cxtmp[i]);
+			fprintf(stdout, "x[%d] = %5.2f\n", i, cxtmp[i]);
 		}
 
 		if (cxtmp) 
 		{
 			free(cxtmp);
-			cxtmp=NULL;
+			cxtmp = NULL;
 		}
 	}
 	return 0;
@@ -72,13 +98,13 @@ static int example2(void)
 /*--------------------------------------------------------------------------*/
 static int example3(void)
 {
-	int code=0;
+	int code = 0;
 
-	char **JOBS=NULL;
-	const int SizeJOBS=6;
-	int i=0;
+	char **JOBS = NULL;
+	const int SizeJOBS = 6;
+	int i = 0;
 
-	JOBS=(char**)malloc(sizeof(char**)*SizeJOBS);
+	JOBS = (char**)malloc(sizeof(char**)*SizeJOBS);
 
 	for (i=0;i<SizeJOBS;i++)
 	{
@@ -92,20 +118,20 @@ static int example3(void)
 	strcpy(JOBS[4],"disp('C=');");
     strcpy(JOBS[5],"C=A+B;disp(C);"); /* C = 12 */
 
-	code=SendScilabJobs(JOBS,SizeJOBS);
+	code = SendScilabJobs(JOBS, SizeJOBS);
 
 	if (code)
 	{
 		char lastjob[4096]; // bsiz in scilab 4096 max
-		if (GetLastJob(lastjob,4096))
+		if (GetLastJob(lastjob, 4096))
 		{
-			printf("Error %s\n",lastjob);
+			printf("Error %s\n", lastjob);
 		}
 	}
 
-	for (i=0;i<SizeJOBS;i++)
+	for (i = 0; i < SizeJOBS; i++)
 	{
-		if (JOBS[i]) {free(JOBS[i]);JOBS[i]=NULL;}
+		if (JOBS[i]) {free(JOBS[i]); JOBS[i] = NULL;}
 	}
 	return 1;
 }
@@ -113,7 +139,12 @@ static int example3(void)
 int main(void)
 /* int WINAPI WinMain (HINSTANCE hInstance, HINSTANCE hPrevInstance,LPSTR szCmdLine, int iCmdShow) */
 {
-	if ( StartScilab(NULL,NULL,NULL) == FALSE ) printf("Error : StartScilab\n");
+	if ( StartScilab(NULL, NULL, 0) == FALSE ) 
+    {
+        printf("Error : StartScilab\n");
+        return 0;
+    }
+
 	printf("\nexample 1\n");
 	example1();
 	system("pause");

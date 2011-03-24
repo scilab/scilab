@@ -72,7 +72,7 @@
     <para>The <literal>msprintf</literal> writes formatted operands in its
     returned value (a Scilab string). The argument operands are formatted
     under control of the format operand.</para>
-    <para>Note that, in this case, the escape sequences (<literal>"\n"</literal>) 
+    <para>Note that, in this case, the escape sequences (<literal>"\n"</literal>) (in format)
     split string to a matrix of string (see example)</para>
   </refsection>
 
@@ -86,8 +86,8 @@ msprintf('--%s-\n-%d--',"hello",3)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="mprintf">mprintf</link></member>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="mopen" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>mopen</refname>
+
+    <refpurpose>ファイルをオープン</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[fd,err]=mopen(file [, mode, swap ])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>file</term>
+
+        <listitem>
+          <para>文字列. オープンするファイルのパス名.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>mode</term>
+
+        <listitem>
+          <para>
+	ファイルが読み込み(r), 書き込み (w), または追加 (a) のどれか,
+	ファイルが更新用にオープンされるかどうか(+)を制御する文字列.
+	mode にはバイナリファイルを示す b パラメータを含むことも可能です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>swap</term>
+
+        <listitem>
+          <para>スカラー. <literal>swap</literal> が存在し,
+	<literal>swap=0</literal>の場合,
+	自動バイトスワップは無効になります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>スカラー. エラーインジケータ. merror参照.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fd</term>
+
+        <listitem>
+          <para>スカラー. <literal>mopen</literal>関数によい返された
+	<literal>fd</literal>パラメータがファイル記述子(正の整数)として返されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>mopen</literal> は,C言語の<literal>fopen</literal>
+	プロシージャと互換の方法でファイルをオープンするために
+	使用できます.
+	swap引数が指定されない場合,
+	ファイルが"リトルインディアン IEEE 形式"でコード化されていると
+	仮定されます.
+	プロセッサのIEEE形式と一致する必要がある場合,
+	データはスワップされます.
+	</para>
+
+    <para>modeパラメータはストリームに許可される
+	アクセスを制御します.
+	パラメータには以下の値の一つを指定することができます.
+	この値のリストの中で, b文字はバイナリファイルを示します.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>ファイルを読み込み用にオープン.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rb</term>
+
+        <listitem>
+          <para>バイナリファイルを読み込み用にオープン.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rt</term>
+
+        <listitem>
+          <para>テキストファイルを読み込み用にオープン.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w</term>
+
+        <listitem>
+          <para>書き込み用に新規ファイルを作成,または
+	ファイルを長さ0に縮める.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>wb</term>
+
+        <listitem>
+          <para>書き込み用にバイナリファイルを作成,または
+	ファイルを長さ0に縮める.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>wt</term>
+
+        <listitem>
+          <para>書き込み用にテキストファイルを作成,または
+	ファイルを長さ0に縮める.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a または ab</term>
+
+        <listitem>
+          <para>追記 (ファイル終端への書込み用にファイルをオープン, 
+	ファイルを書き込み用に作成).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r+ または r+b</term>
+
+        <listitem>
+          <para>更新用にファイルをオープン (読み込みおよび書き込み).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>w+ または w+b</term>
+
+        <listitem>
+          <para>長さ0に縮めるまたは更新用にファイルを作成.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>a+ または a+b</term>
+
+        <listitem>
+          <para>追記 (更新用にファイルをオープンし,
+	ファイルの終端に書き込み,
+	または書き込み用にファイルを作成).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>
+	更新用にファイルをオープンする際,
+	結果のストリームに入力および出力の両方の処理を行うことができます.
+	しかし,ファイル中の位置決め処理(mseek() 関数)を行わずに
+	出力処理を入力処理の直後に行うことはできません.
+	また,入力処理がファイルの終端に達しない限り,
+	ファイルの位置決め処理を中断せずに
+	入力処理を出力処理の直後に行うことはできません.
+	</para>
+
+    <para>
+	ファイルを追記用にオープンする場合(つまり,modeパラメータが
+	a または a+ の場合),ファイルにすでにある情報を上書きすることは
+	できません. fseek()関数により,
+	ファイルの任意の位置にファイルポインタを移動することができますが,
+	出力をファイルに書き込む際に,カレントのファイルポインタは無視されます.
+	全ての出力はファイルの終端に書き込まれ,
+	ファイル位置は出力の末尾に移動されます.
+	</para>
+
+    <para>
+	functionsのようにFortranと互換性のある方法でファイルをオープンするには,
+	<literal>file</literal>関数を使用してください.</para>
+  </refsection>
+
+  <refsection>
+    <programlisting role="example">// SCI+'/ACKNOWLEDGEMENTS'をテキスト,読込みのみとしてオープン
+fd_r = mopen(SCI+'/ACKNOWLEDGEMENTS','rt')
+
+// fd_rから5行読み込む
+mgetl(fd_r, 5)
+
+// ファイルを読み込む他の方法
+// 5つのワードを読み込む
+mfscanf(5,fd_r,'%s')
+
+// テキスト,読込みのみのSCI+'/ACKNOWLEDGEMENTS'のファイル記述子を閉じる
+mclose(fd_r);</programlisting>
+  </refsection>
+
+  <refsection>
+    <programlisting role="example">// ファイルをテキスト/書込みプロパティでオープン
+fd_w = mopen(TMPDIR+'/write.txt','wt');
+
+// fd_w に1行書き込み
+mputl('This is a line of text', fwd_w);
+mclose(fd_w);
+
+// テキスト読み込み 
+fd_r2 = mopen(TMPDIR+'/write.txt','rt');
+mgetl(fd_r2) 
+mclose(fd_r2);</programlisting>
+  </refsection>
+
+  <refsection>
+    <programlisting role="example">// 書き込んだファイルをバイナリとして読み込む
+
+// まずファイルに書き込む
+fd_wb = mopen(TMPDIR+'/writeread.bin','wb')
+
+// バイナリとして値を出力
+mput(2003,'l',fd_wb);
+mput(2008,'i',fd_wb);
+mput(2012,'s',fd_wb);
+mput(98,'c',fd_wb);
+
+// TMPDIR+'/writeread.bin'を指すファイル記述子を閉じる
+mclose(fd_wb);
+
+// ファイルを読み込む
+fd_rb = mopen(TMPDIR+'/writeread.bin','rb')
+
+mget(fd_rb, 'l')
+mget(fd_rb, 'i')
+mget(fd_rb, 's')
+mget(fd_rb, 'c')
+
+mclose(fd_rb) </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="mclose">mclose</link></member>
+
+      <member><link linkend="merror">merror</link></member>
+
+      <member><link linkend="meof">meof</link></member>
+
+      <member><link linkend="mfprintf">mfprintf</link></member>
+
+      <member><link linkend="fprintfMat">fprintfMat</link></member>
+
+      <member><link linkend="mfscanf">mfscanf</link></member>
+
+      <member><link linkend="fscanfMat">fscanfMat</link></member>
+
+      <member><link linkend="mget">mget</link></member>
+
+      <member><link linkend="mgetl">mgetl</link></member>
+
+      <member><link linkend="mgetstr">mgetstr</link></member>
+
+      <member><link linkend="mopen">mopen</link></member>
+
+      <member><link linkend="mprintf">mprintf</link></member>
+
+      <member><link linkend="mput">mput</link></member>
+
+      <member><link linkend="mputl">mputl</link></member>
+
+      <member><link linkend="mputstr">mputstr</link></member>
+
+      <member><link linkend="mscanf">mscanf</link></member>
+
+      <member><link linkend="mseek">mseek</link></member>
+
+      <member><link linkend="mtell">mtell</link></member>
+
+      <member><link linkend="mdelete">mdelete</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

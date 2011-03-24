@@ -7,5 +7,5 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-add_help_chapter("API call_scilab",SCI+"/modules/call_scilab/help/fr_FR",%T);
+add_help_chapter("API call_scilab (moteur Scilab)",SCI+"/modules/call_scilab/help/fr_FR",%T);
 

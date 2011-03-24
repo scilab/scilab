@@ -34,7 +34,6 @@ case 'plot' then
     x1=0;x2=arg1.graphics.sz(1)
   end
 //  standard_draw(arg1,%f,puit_draw_ports)
-//  standard_etiquette(arg1, ['T';'P';'H'], 'in')
  standard_draw(arg1,%f)
 case 'getinputs' then
  // [x,y,typ]=puit_inputs(arg1)

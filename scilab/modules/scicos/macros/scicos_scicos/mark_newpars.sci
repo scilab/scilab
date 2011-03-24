@@ -20,6 +20,9 @@
 //
 
 function newparameters=mark_newpars(k,newparametersb,newparameters)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // k block index in x
 //
   o=scs_m(get_subobj_path(k))

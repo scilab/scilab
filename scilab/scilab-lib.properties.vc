@@ -6,6 +6,8 @@ flexdock.jar=${thirdparty.dir}/flexdock-0.5.2.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
+scirenderer.jar=${thirdparty.dir}/scirenderer-0.2.1.jar
+
 jogl.jar=${thirdparty.dir}/jogl.jar
 
 jhdf5.jar=${thirdparty.dir}/jhdf5.jar
@@ -18,9 +20,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.3.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.3.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -92,6 +94,9 @@ library.scinotes.name=org.scilab.modules.scinotes.jar
 
 library.ui_data.dir=${modules.dir}/ui_data/${build.jar.dir}/
 library.ui_data.name=org.scilab.modules.ui_data.jar
+
+library.graphic_objects.dir=${modules.dir}/graphic_objects/${build.jar.dir}/
+library.graphic_objects.name=org.scilab.modules.graphic_objects.jar
 
 library.graph.dir=${modules.dir}/graph/${build.jar.dir}/
 library.graph.name=org.scilab.modules.graph.jar

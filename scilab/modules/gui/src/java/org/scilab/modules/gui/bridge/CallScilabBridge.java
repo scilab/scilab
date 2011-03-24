@@ -42,9 +42,10 @@ import javax.print.attribute.PrintRequestAttribute;
 import javax.print.attribute.PrintRequestAttributeSet;
 import javax.print.attribute.standard.OrientationRequested;
 import javax.swing.ImageIcon;
+import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.StyledDocument;
+import javax.swing.text.Document;
 
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.graphic_export.ExportRenderer;
@@ -671,8 +672,8 @@ public class CallScilabBridge {
         graphicTab.addMenuBar(menuBar);
         graphicTab.addToolBar(toolBar);
         graphicTab.addInfoBar(infoBar);
-	((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
-										   + "/modules/gui/images/icons/graphic-window.png").getImage());
+        ((SwingScilabTab) graphicTab.getAsSimpleTab()).setWindowIcon(new ImageIcon(System.getenv("SCI")
+                                                                                   + "/modules/gui/images/icons/graphic-window.png").getImage());
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
@@ -2220,6 +2221,7 @@ public class CallScilabBridge {
      */
     public static void launchHelpBrowser(String[] helps, String language) {
         ScilabHelpBrowser.createHelpBrowser(helps, language);
+        ScilabHelpBrowser.startHomePage();
     }
 
     /**
@@ -2251,6 +2253,27 @@ public class CallScilabBridge {
         ScilabHelpBrowser.getHelpBrowser().close();
     }
 
+    /**
+     * Show search field in Scilab Help Browser
+     */
+    public static void showSearchFieldInHelp() {
+        ScilabHelpBrowser.getHelpBrowser().showSearchField();
+    }
+
+    /**
+     * Increase the font in the help viewer
+     */
+    public static void increaseFontInHelpViewer() {
+        ScilabHelpBrowser.getHelpBrowser().increaseFont();
+    }
+
+    /**
+     * Decrease the font in the help viewer
+     */
+    public static void decreaseFontInHelpViewer() {
+        ScilabHelpBrowser.getHelpBrowser().decreaseFont();
+    }
+
     /************/
     /*          */
     /* WEBLINKS */
@@ -2265,31 +2288,52 @@ public class CallScilabBridge {
     }
 
     /**
+     * Open a Browser on Wiki Web Site
+     */
+    public static void openWiki() {
+        WebBrowser.openUrl("http://wiki.scilab.org/");
+    }
+
+    /**
      * Open a Browser on ATOMS Web Site
      */
-    public static void openAtomsScilabWebSite() {
+    public static void openAtomsScilab() {
         WebBrowser.openUrl("http://atoms.scilab.org/");
     }
 
     /**
-     * Open a Browser on Contributions Web Site
+     * Open a Browser on File Exchange Web Site
      */
-    public static void openContributionsWebSite() {
-        WebBrowser.openUrl("http://www.scilab.org/contrib/index_contrib.php?page=howto.html");
+    public static void openFileExchange() {
+        WebBrowser.openUrl("http://fileexchange.scilab.org/");
     }
 
     /**
      * Open a Browser on Bugzilla Web Site
      */
-    public static void openBugzillaWebSite() {
+    public static void openBugzilla() {
         WebBrowser.openUrl("http://bugzilla.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on Forge Web Site
+     */
+    public static void openForge() {
+        WebBrowser.openUrl("http://forge.scilab.org/");
+    }
+
+    /**
+     * Open a Browser on Scilab Online Help
+     */
+    public static void openOnlineHelp() {
+        WebBrowser.openUrl("http://help.scilab.org/");
     }
 
     /**
      * Open a Browser on Mailing List Archives
      */
-    public static void openMailingListWebSite() {
-        WebBrowser.openUrl("http://www.scilab.org/contactus/index_contactus.php?page=mailing_lists");
+    public static void openMailingList() {
+        WebBrowser.openUrl("http://www.scilab.org/communities/developer_zone/tools/mailing_list");
     }
 
     /***************************/
@@ -2339,6 +2383,20 @@ public class CallScilabBridge {
     public static void emptyClipboard() {
         Transferable contents = new StringSelection("");
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(contents, null);
+    }
+
+    /**
+     * Evaluate the selection with echo
+     */
+    public static void evaluateSelectionWithEcho() {
+        ScilabConsole.getConsole().evaluateSelectionWithEcho();
+    }
+
+    /**
+     * Evaluate the selection with no echo
+     */
+    public static void evaluateSelectionWithNoEcho() {
+        ScilabConsole.getConsole().evaluateSelectionWithNoEcho();
     }
 
     /**
@@ -2429,19 +2487,19 @@ public class CallScilabBridge {
         }
     }
 
-/**
- * Display a dialog to print the console text contents
- */
+    /**
+     * Display a dialog to print the console text contents
+     */
     public static void printConsoleContents() {
 
         SciConsole scilabConsole = ((SciConsole) ScilabConsole.getConsole().getAsSimpleConsole());
-        StyledDocument doc = scilabConsole.getConfiguration().getOutputViewStyledDocument();
+        Document doc = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getDocument();
         String textToPrint = null;
 
         /* Text selected in the input */
         String strInputSelected = ((JTextPane) scilabConsole.getConfiguration().getInputCommandView()).getSelectedText();
         /* Text selected in the output */
-        String strOutputSelected = ((JTextPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
+        String strOutputSelected = ((JEditorPane) scilabConsole.getConfiguration().getOutputView()).getSelectedText();
 
         try {
             textToPrint = doc.getText(0, doc.getLength());
@@ -2522,16 +2580,16 @@ public class CallScilabBridge {
                 String fileExtension = ".ps";
 
                 try {
-                       String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
+                    String tmpPrinterFile = File.createTempFile("scilabfigure","").getAbsolutePath();
                     /** Export image to PostScript */
                     if (((PrintRequestAttribute) scilabPageFormat.get(OrientationRequested.class)) == OrientationRequested.PORTRAIT) {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 0);
+                                                exportRendererMode, 1, 0); /* 1 is the quality. Useless in this context */
                     } else {
                         FileExporter.fileExport(figureID,
                                                 tmpPrinterFile + fileExtension,
-                                                exportRendererMode, 1);
+                                                exportRendererMode, 1, 1); /* 1 is the quality. Useless in this context */
                     }
 
                     /** Read file */
@@ -3013,7 +3071,6 @@ public class CallScilabBridge {
     public static void raiseWindow(int id) {
         ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().getParentWindow().raise();
         ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(id).getRendererProperties()).getParentTab().setCurrent();
-
     }
 
     /**

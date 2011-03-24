@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,12 +22,21 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="SAWTOOTH_f">
+<refentry
+  version="5.0-subset Scilab" xml:id="SAWTOOTH_f" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>SAWTOOTH_f</refname>
     <refpurpose>Sawtooth generator</refpurpose>
   </refnamediv>
   <refsection>
+
     <title>Block Screenshot</title>
     <para>
       <inlinemediaobject>
@@ -36,6 +46,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_SAWTOOTH_f">
     <title>Contents</title>
     <itemizedlist>
@@ -58,7 +69,17 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Datatype_SAWTOOTH_f">Data types</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Defaultproperties_SAWTOOTH_f">Default properties</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_SAWTOOTH_f">Example</xref>
             </para>
           </listitem>
           <listitem>
@@ -73,6 +94,11 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Seealso_SAWTOOTH_f">See also</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Authors_SAWTOOTH_f">Authors</xref>
             </para>
           </listitem>
@@ -80,25 +106,48 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_SAWTOOTH_f">
     <title>Palette</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="Sources_pal">Sources palette</link>
+          Output:scalar double.
         </para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_SAWTOOTH_f">
     <title>Description</title>
     <para>
-This block is a sawtooth wave generator: output is  from
- to  where  and  denote the times of two
-successive input events.    
-
-</para>
+      This block is a sawtooth wave generator. The output of the block is described by the equation:
+    </para>
+    <para>
+      <latex><![CDATA[
+        s\left(t\right)=\begin{cases}0 & \textrm{ for }t=t_{i}\\t-t_{i} & \textrm{ for }t_{i}\leq t<t_{i+1}\end{cases}
+      ]]></latex>
+    </para>
+    <para>
+      At first event on its activation input, the output increases linearly from 0 with a unitary rate. When the
+      following event occurs, the ouput goes to 0 and begin again to increase until the next event and so on.
+    </para>
+    <para>
+      The resulting amplitude of the output is equal to the period of event signal. If you want more control on the amplitude or a negative rate, use the <link linkend="Sigbuilder">Sigbuilder</link> or <link linkend="Sigbuilder">Curve_f</link> blocks.
+    </para>
   </refsection>
+
+  <refsection id="Datatype_SAWTOOTH_f">
+    <title>Data types</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Output: scalar double.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Defaultproperties_SAWTOOTH_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -145,14 +194,32 @@ successive input events.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Example_SAWTOOTH_f">
+    <title>Example</title>
+    <para>
+      This diagram shows the output of the SAWTOOTH_f block with an event period of 2 seconds and an offset
+      of 1 second on event generation.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/sawtooth_f_en_US.xcos">
+        Open this example in Xcos
+      </link>
+    </para>
+    <para>
+      <inlinemediaobject><imageobject>
+        <imagedata fileref="../../../examples/sources_pal/en_US/sawtooth_f_diagram_en_US.png" />
+      </imageobject></inlinemediaobject>
+    </para>
+  </refsection>
+
   <refsection id="Interfacingfunction_SAWTOOTH_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/SAWTOOTH_f.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/SAWTOOTH_f.sci">SCI/modules/scicos_blocks/macros/Sources/SAWTOOTH_f.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Computationalfunction_SAWTOOTH_f">
     <title>Computational function</title>
     <itemizedlist>
@@ -161,6 +228,25 @@ successive input events.
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection role="see also" id="Seealso_SAWTOOTH_f">
+    <title>See also</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="GENSQR_f">GENSQR_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="GENSIN_f">GENSIN_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="Sigbuilder">Sigbuilder</link>
+      </listitem>
+      <listitem>
+        <link linkend="Sigbuilder">Curve_f</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
   <refsection id="Authors_SAWTOOTH_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

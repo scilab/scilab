@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="logspace" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>logspace</refname>
+
+    <refpurpose>vecteur de valeurs logarithmiquement
+    équidistantes.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>logspace(d1,d2, [n])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>d1,d2</term>
+
+        <listitem>
+          <para>scalaire réel ou complexe (une signification particulière est
+          donnée à la valeur <literal>%pi</literal>)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>entier (nombre de valeurs, 50 par défaut)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>vecteur ligne réel ou complexe</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Renvoie un vecteur ligne <literal>n</literal> de valeurs
+    logarithmiquement équidistantes entre <literal>10^d1</literal> et
+    <literal>10^d2</literal>. Si <literal>d2=%pi</literal> alors les valeurs
+    sont comprises entre <literal>10^d1</literal> et
+    <literal>pi</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+logspace(1,2,10)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="linspace">linspace</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

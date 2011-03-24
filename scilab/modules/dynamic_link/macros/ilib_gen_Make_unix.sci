@@ -62,7 +62,8 @@ function ilib_gen_Make_unix(names,   ..
 
 
     originPath  = pwd();
-    linkBuildDir    = TMPDIR;
+    linkBuildDir    = TMPDIR+"/"+libname;
+    mkdir(linkBuildDir);
     commandpath = SCI+"/modules/dynamic_link/src/scripts";
     [fd,ierr] = mopen(commandpath+"/write.test","w+");
 
@@ -106,7 +107,7 @@ function ilib_gen_Make_unix(names,   ..
     // Copy files to the working tmpdir
     for x = mandatoryFiles(:)' ;
       fullPath=commandpath+"/"+x;
-      if (fileinfo(fullPath)<>[]) then
+      if (isfile(fullPath)) then
         [status,msg]=copyfile(fullPath,linkBuildDir);
         if (status <> 1)
           error(msprintf(gettext("%s: An error occurred: %s\n"), "ilib_gen_Make",msg));
@@ -147,7 +148,11 @@ function ilib_gen_Make_unix(names,   ..
                       mprintf(gettext("   %s: Did not copy %s: Source and target directories are the same (%s).\n"),"ilib_gen_Make",x,pathFrom);
                     end
                 end
-
+                
+                if ~isfile(file_name + file_extension) then
+                  error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
+                end
+                
                 filelist = filelist + " " + file_name + file_extension;
 
             else
@@ -159,6 +164,10 @@ function ilib_gen_Make_unix(names,   ..
                 // Not that we don't want to copy working files
                 ignoredFileExtension=[".lo",".la",".lai"]
                 for f=filesMatching(:)'
+                
+                  if ~isfile(f) then
+                    error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make_unix", 2));
+                  end
 
                   if strindex(f,ignoredFileExtension) == [] then
                       if ( ilib_verbose() <> 0 ) then

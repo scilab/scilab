@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 
 import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileFilter;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
@@ -26,8 +27,8 @@ import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.utils.XcosFileType;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -77,29 +78,31 @@ public final class OpenAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 	    SwingScilabFileChooser fc = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
 
-		/* Standard files */
-	    fc.setTitle(XcosMessages.OPEN);
+		fc.setTitle(XcosMessages.OPEN);
 	    fc.setUiDialogType(JFileChooser.OPEN_DIALOG);
-	    fc.setMultipleSelection(false);
+	    fc.setMultipleSelection(true);
 	    
-	    /*
-	     * FIXME: why hardcoded values ?  
-	     */
-	    SciFileFilter xcosFilter = new SciFileFilter("*.xcos", null, 0);
-	    SciFileFilter cosFilter = new SciFileFilter("*.cos*", null, 1);
-	    SciFileFilter allFilter = new SciFileFilter("*.*", null, 2);
-	    fc.addChoosableFileFilter(xcosFilter);
-	    fc.addChoosableFileFilter(cosFilter);
-	    fc.addChoosableFileFilter(allFilter);
-	    fc.setFileFilter(xcosFilter);
+	    /* Standard files */
+	    fc.setAcceptAllFileFilterUsed(true);
+	    final FileFilter[] filters = XcosFileType.getValidFilters();
+	    for (FileFilter fileFilter : filters) {
+	    	fc.addChoosableFileFilter(fileFilter);
+		}
+	    fc.setFileFilter(filters[0]);
 
-	    fc.setAcceptAllFileFilterUsed(false);
-	    fc.displayAndWait();
-
-	    if (fc.getSelection() == null || fc.getSelection().length == 0 || fc.getSelection()[0].equals("")) {
-		return;
+	    int status = fc.showOpenDialog(getGraph(e).getAsComponent());
+	    if (status != JFileChooser.APPROVE_OPTION) {
+	    	return;
 	    }
 
-		Xcos.getInstance().open(new File(fc.getSelection()[0]));
+	    final File onlySelected = fc.getSelectedFile();
+	    if (onlySelected != null) {
+	    	Xcos.getInstance().open(onlySelected);
+	    }
+	    
+	    final File[] multiSelected = fc.getSelectedFiles();
+	    for (File file : multiSelected) {
+	    	Xcos.getInstance().open(file);
+		}
 	}
 }

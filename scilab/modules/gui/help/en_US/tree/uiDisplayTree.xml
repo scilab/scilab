@@ -48,8 +48,8 @@ treeRoot = uiCreateTree( root, treeNode1, node2, treeNode3)
 uiDisplayTree(treeRoot)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>        <link linkend="uiCreateNode">uiCreateNode</link>       </member>      <member>        <link linkend="uiCreateTree">uiCreateTree</link>       </member>
       <member>        <link linkend="uiDumpTree">uiDumpTree</link>       </member>

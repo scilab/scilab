@@ -109,7 +109,7 @@ int sci_xstring( char *fname, unsigned long fname_len )
 
 	if(nbElement == 1)
 	{
-		Objstring (sendStr,sendm3,sendn3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed && (angle==0),TRUE,FALSE, ALIGN_LEFT ) ;
+		Objstring (sendStr,sendm3,sendn3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed && (angle==0),TRUE,FALSE, ALIGN_LEFT );
 	}
 	else
 	{
@@ -125,8 +125,14 @@ int sci_xstring( char *fname, unsigned long fname_len )
 			if(Rhs >= 4 && m4*n4 == nbElement) angle = DEG2RAD(*(stk(l4)+i));
 			if(Rhs >= 5 && m5*n5 == nbElement) isboxed = (*stk(l5) != 0);
 
-			Objstring (sendStr,sendm3,sendn3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed && (angle==0),TRUE,FALSE, ALIGN_LEFT ) ;
+			Objstring (sendStr,sendm3,sendn3,x,y,&angle,rect,TRUE,NULL,&hdlstr,FALSE,NULL,NULL,isboxed && (angle==0),TRUE,FALSE, ALIGN_LEFT );
 		}
+
+		/*
+		 * If one of the string creation calls fails,
+		 * the compound build call will crash.
+		 * To be modified
+		 */
 		ConstructCompoundSeq(nbElement);
 	}
 

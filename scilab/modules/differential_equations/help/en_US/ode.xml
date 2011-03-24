@@ -432,8 +432,8 @@ ode("stiff",[0;1],0,1,f,Jacobian)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="ode_discrete">ode_discrete</link></member>

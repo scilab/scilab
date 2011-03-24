@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="getversion" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-10-17 20:39:36 +0200 (mar., 17 oct.
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>getversion</refname>
+
+    <refpurpose>Scilabおよびモジュールのバージョン情報を取得</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>version=getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+versioninfo=getversion('scilab','string_info')
+ver=getversion('&lt;module&gt;')
+versioninfo=getversion('&lt;module&gt;','string_info')</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>version</term>
+
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>versioninfo</term>
+
+        <listitem>
+          <para>バージョンに関する文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ver</term>
+
+        <listitem>
+          <para>整数ベクトル</para>
+
+          <para>ver(1) メジャーバージョン</para>
+
+          <para>ver(2) マイナーバージョン</para>
+
+          <para>ver(3) メンテナンスバージョン</para>
+
+          <para>ver(4) GIT タイムスタンプ</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>opts</term>
+
+        <listitem>
+          <para>7個のエントリを有するベクトル
+          :<literal>[compiler, pvm, tk, modelicac, release_mode, release_date, release_time]</literal></para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>Scilab バージョン名を<literal>version</literal>,
+	構築オプションを <literal>opts</literal>に返します.
+	この構築オプションは,
+	Scilabが pvm, tk または modelica を組み込んで構築されたかどうかを
+	定義するために使用され, リリース日や時間も含まれます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+getversion()
+[version,opts]=getversion()
+ver=getversion('scilab')
+verstr=getversion('scilab','string_info')
+ver=getversion('overloading')
+verstr=getversion('overloading','string_info')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getmodules">getmodules</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

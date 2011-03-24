@@ -20,6 +20,9 @@
 //
 
 function [scs_m] = do_smart_move(%pt, scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** get a scicos object to move, and move it with connected objects
 //**
 
@@ -101,6 +104,9 @@ endfunction
 
 
 function scs_m = moveblock(scs_m,k,xc,yc)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Move  block 'k' and modify connected links if any
 //
 //** This code handle the case of moving a block with connectected link(s)
@@ -543,6 +549,9 @@ endfunction
 //**------------------------------------------------------------------------------------------
 
 function scs_m = movelink(scs_m, k, xc, yc, wh)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** INRIA 
 //**
 //** This function handle the case of a Smartmove of a single link where the use has clicked
@@ -794,6 +803,9 @@ endfunction
 //**---------------------------------------------------------------------------------
 
 function scs_m = movelink4(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**---> the user has cliked over at least 4 segment long link, NOR at the start NOR at the end
 
   o; //** local copy of an external variable "o"
@@ -855,6 +867,9 @@ function scs_m = movelink4(scs_m)
 
 
 function scs_m = movelink1(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   // link between to splits
 
     //**
@@ -992,6 +1007,9 @@ endfunction
 //**-------------------------------------------------------------------------------------
 
 function scs_m = movelink2(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Move the first segment 'wh==1' of a link that start from a split 
 //** In the first part, the first segment link that start from the plist is interactively moved
 //** if the move is valid, also the 'split' object is moved accordly at the link starting point
@@ -1117,6 +1135,9 @@ endfunction
 //**--------------------------------------------------------------------------------
 
 function scs_m = movelink3(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // link goes to a split 
 // click over the last segment of 3 or more segment link
 //**
@@ -1211,6 +1232,9 @@ endfunction
 //**--------------------------------------------------------------------------------
 
 function scs_m = movecorner(scs_m,k,xc,yc,wh)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** the user has clicked near a link corner (link segment joint)
   o = scs_m.objs(k) ; //** get the object
   [xx,yy,ct] = (o.xx,o.yy,o.ct)

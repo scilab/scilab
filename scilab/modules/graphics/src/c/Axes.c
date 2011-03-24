@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 1998-2000 - ENPC - Jean-Philippe Chancelier
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -31,6 +32,10 @@
 #include "GetProperty.h"
 #include "HandleManagement.h"
 
+#include "getGraphicObjectProperty.h"
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*--------------------------------------------------------------------------------*/
 static int getSqDistanceToCenter(sciPointObj * pSubwin, int xCoord, int yCoord);
 static BOOL isSubwinUnderPixel(sciPointObj * pSubwin, int xCoord, int yCoord);
@@ -57,35 +62,59 @@ void clearSubWin( sciPointObj * pSubWin )
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit a subwindow (but don't change position ) */
+/*
+ * To be implemented using the MVC (clearSubWin)
+ */
 void reinitSubWin( sciPointObj * pSubWin )
 {
-  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin) ;
+  int visible;
+  int firstPlot;
+  int axisLocation;
 
-  clearSubWin( pSubWin ) ;
+  /*
+   * Deletes the Axes' hierarchy
+   * To be implemented within the MVC
+   */
+#if 0
+  clearSubWin(pSubWin);
+#endif
 
-  initSubWinBounds( pSubWin ) ;
-  ppSubWin->axes.xdir = 'd' ;
-  ppSubWin->axes.ydir = 'l' ;
+  initSubWinBounds(pSubWin);
 
-  ppSubWin->visible = TRUE;
+  /* bottom */
+  axisLocation = 0;
+  setGraphicObjectProperty(pSubWin->UID, __GO_X_AXIS_LOCATION__, &axisLocation, jni_int, 1);
+  /* left */
+  axisLocation = 4;
+  setGraphicObjectProperty(pSubWin->UID, __GO_Y_AXIS_LOCATION__, &axisLocation, jni_int, 1);
 
-  initSubWinAngles( pSubWin ) ;
+  visible = 1;
+  setGraphicObjectProperty(pSubWin->UID, __GO_VISIBLE__, &visible, jni_bool, 1);
+  firstPlot = 1;
+  setGraphicObjectProperty(pSubWin->UID, __GO_FIRST_PLOT__, &firstPlot, jni_bool, 1);
 
-  ppSubWin->FirstPlot = TRUE;
-
-
+  initSubWinAngles(pSubWin);
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the viewing angles of a subwindow */
 void initSubWinAngles( sciPointObj * pSubWin )
 {
-  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
-  ppSubWin->is3d     = ppAxesMdl->is3d     ;
-  ppSubWin->alpha_kp = ppAxesMdl->alpha_kp ;
-  ppSubWin->theta_kp = ppAxesMdl->theta_kp ;
-  ppSubWin->alpha    = ppAxesMdl->alpha    ;
-  ppSubWin->theta    = ppAxesMdl->theta    ;
+    int iViewType = 0;
+    int* piViewType = &iViewType;
+    double* rotationAngles;
+    sciPointObj* axesModel = getAxesModel();
+
+    getGraphicObjectProperty(axesModel->UID, __GO_VIEW__, jni_int, &piViewType);
+    setGraphicObjectProperty(pSubWin->UID, __GO_VIEW__, iViewType, jni_int, 1);
+
+    getGraphicObjectProperty(axesModel->UID, __GO_ROTATION_ANGLES__, jni_double_vector, &rotationAngles);
+    setGraphicObjectProperty(pSubWin->UID, __GO_ROTATION_ANGLES__, rotationAngles, jni_double_vector, 2);
+
+   /* To be implemented: last known values of the rotation angles when VIEW was equal to 3D */
+#if 0
+    ppSubWin->alpha_kp = ppAxesMdl->alpha_kp ;
+    ppSubWin->theta_kp = ppAxesMdl->theta_kp ;
+#endif
 }
 
 /*--------------------------------------------------------------------------------*/
@@ -104,38 +133,48 @@ void initSubWinSize( sciPointObj * pSubWin )
 /* set the data_bounds of the axes to the default value */
 void initSubWinBounds( sciPointObj * pSubWin )
 {
-  sciSubWindow * ppSubWin  = pSUBWIN_FEATURE (pSubWin ) ;
-  sciSubWindow * ppAxesMdl = pSUBWIN_FEATURE (getAxesModel()) ;
-  ppSubWin->FRect[0] = ppAxesMdl->FRect[0] ;
-  ppSubWin->FRect[1] = ppAxesMdl->FRect[1] ;
-  ppSubWin->FRect[2] = ppAxesMdl->FRect[2] ;
-  ppSubWin->FRect[3] = ppAxesMdl->FRect[3] ;
-  ppSubWin->FRect[4] = ppAxesMdl->FRect[4] ;
-  ppSubWin->FRect[5] = ppAxesMdl->FRect[5] ;
+    double* dataBounds;
+    double* realDataBounds;
+    sciPointObj* axesModel;
 
-  ppSubWin->SRect[0] = ppAxesMdl->SRect[0] ;
-  ppSubWin->SRect[1] = ppAxesMdl->SRect[1] ;
-  ppSubWin->SRect[2] = ppAxesMdl->SRect[2] ;
-  ppSubWin->SRect[3] = ppAxesMdl->SRect[3] ;
-  ppSubWin->SRect[4] = ppAxesMdl->SRect[4] ;
-  ppSubWin->SRect[5] = ppAxesMdl->SRect[5] ;
+    axesModel = getAxesModel();
+
+    getGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, jni_double_vector, &dataBounds);
+    setGraphicObjectProperty(pSubWin->UID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
+
+    getGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+    setGraphicObjectProperty(pSubWin->UID, __GO_REAL_DATA_BOUNDS__, realDataBounds, jni_double_vector, 6);
 }
 /*--------------------------------------------------------------------------------*/
 /* reinit the selected subwindow if the auto_clear property is set to on */
 /* return TRUE if the window has been redrawn */
 BOOL checkRedrawing( void )
 {
-  //  nbCheckRedraw++;
-  //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
-  sciPointObj * pSubWin = sciGetCurrentSubWin() ;
-  if ( !sciGetAddPlot( pSubWin ) )
-  {
-      /* redraw the axis */
-      reinitSubWin( pSubWin ) ;
-      forceRedraw(pSubWin);
-      return TRUE ;
-  }
-  return FALSE ;
+    int iAutoClear = 0;
+    int* piAutoClear = &iAutoClear;
+
+    //  nbCheckRedraw++;
+    //  fprintf(stderr, "[DEBUG] checkRedrawing : %d\n", nbCheckRedraw);
+    sciPointObj * pSubWin = sciGetCurrentSubWin();
+
+    getGraphicObjectProperty(pSubWin->UID, __GO_AUTO_CLEAR__, jni_bool, &piAutoClear);
+
+    if (iAutoClear)
+    {
+        reinitSubWin(pSubWin);
+
+        /*
+         * Deactivated for now: forces redrawing by telling the renderer module
+         * that the Axes object has changed
+         * To be implemented
+         */
+#if 0
+        forceRedraw(pSubWin);
+#endif
+        return TRUE;
+    }
+
+    return FALSE;
 }
 /*--------------------------------------------------------------------------------*/
 /**
@@ -287,3 +326,34 @@ sciLegendPlace propertyNameToLegendPlace(const char * string)
 	}
 }
 /*--------------------------------------------------------------------------------*/
+/*
+ * Converts a boolean log flag to the character format
+ */
+char getTextLogFlag(int logFlag)
+{
+    if (logFlag)
+    {
+        return 'l';
+    }
+    else
+    {
+        return 'n';
+    }
+}
+/*--------------------------------------------------------------------------------*/
+/*
+ * Converts a character log flag to the equivalent boolean
+ */
+int getBooleanLogFlag(char logFlag)
+{
+    if (logFlag == 'l')
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
+}
+/*--------------------------------------------------------------------------------*/
+

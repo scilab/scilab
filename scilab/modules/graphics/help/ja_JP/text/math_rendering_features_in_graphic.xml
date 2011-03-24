@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab"
+          xml:id="math_rendering_features_in_graphic" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Math rendering in Scilab graphics</refname>
+
+    <refpurpose>LaTeX またはMathML言語によりScilabグラフィックスで数式を表示する.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>使用方法</title>
+
+    <para>Scilab 5.2以降, LaTeX または MathML式を記述することが可能です.</para>
+
+    <para>LaTeX テキストは先頭を末尾を $ (ドル記号) とし,
+	MathMLは&lt; で開始し, &gt;で終了すること,また文法的に正しいことが必要です.
+	</para>
+
+    <para>初回の使用の際,MathMLエンジンの起動はLaTeXよりも時間がかかります.
+	(これらのライブラリは必要な時にオンザフライで読み込まれます)</para>
+
+    <programlisting role="example"><![CDATA[ 
+// Example with LaTeX / MathML ticks:
+plot2d();
+a=gca();
+
+mathml="<mrow>;<mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo>..
+<mfrac><mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
+// LaTeX and MathML mixed expression
+a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>LaTeXに関する説明</title>
+
+    <para>レンダリングエンジンはJavaライブラリJLaTeXMathに基づいています.
+	JLaTeXMathはLaTeXの数式モードの実装の一つです.
+	全てのLaTeXのコマンドを処理することができます(欠けている場合には
+	バグレポートを遠慮なく投稿してください).
+	逆に, <literal>\over</literal> のようなTeX コマンドはサポートされていません.
+	</para>
+    
+    <para>Scilab 5.2.1以降, ギリシャ文字, キリル文字およびラテンアルファベット文字に
+	関する完全な Unicode　が Scilabグラフィックスで処理されます.</para>
+
+    <programlisting role="example"><![CDATA[
+xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
+xtitle('$\big(\bigg)$')
+xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
+xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
+xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
+ ]]></programlisting>
+
+    <para>JLaTeXMath では以下のコマンドにより複数のフォントを
+	指定することができます:
+    <literal>\mathbb</literal>, <literal>\mathscr</literal>,
+    <literal>\mathcal</literal>, <literal>\mathbf</literal>,
+    <literal>\mathit</literal>, <literal>\mathsf</literal>,
+    <literal>\mathtt</literal>, <literal>\mathfrak</literal>,
+    <literal>\mathds</literal>, <literal>\mathrm</literal>, 
+	コマンド<literal>\boldsymbol</literal>を付けることにより,
+	ボールド体を指定することが可能です:</para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\mathbb{SCILAB}\ \mathsf{or}\ \boldsymbol{\mathfrak{Scilab}}$')
+xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
+ ]]></programlisting>
+
+    <para>以下のLaTeXパッケージが利用可能です:
+    <replaceable>amsmath</replaceable>, <replaceable>amssymb</replaceable>,
+    <replaceable>stmaryrd</replaceable>, <replaceable>amsxtra</replaceable>
+	および<replaceable>graphics</replaceable>のいくつかのコマンドをサポートする
+	<replaceable>accents</replaceable>.
+	これらのパッケージのコマンドのほとんどが使用可能です
+	(例えば,<replaceable>amsmath</replaceable>のいくつかのコマンドは利用できません).
+	 </para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
+xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }..
+\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
+xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
+xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
+xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
+xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
+xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
+xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
+ ]]></programlisting>
+
+    <para>以下のように新しいコマンドや環境を定義することも可能です:</para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
+xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>MathML に関する説明</title>
+
+    <para>MathML レンダリングは Jeuclidに基づいています. Jeuclid は MathML
+	実装の一つで,仕様全体をカバーしています.
+	これにより、 MathML言語の全てが Scilabによりサポートされます.</para>
+
+    <para>Jeuclid ライブラリの大きさのため,
+	初回の使用時にロードに数秒かかります.
+	しかし,次回以降は高速化されます.</para>
+
+    <programlisting role="example"><![CDATA[ 
+plot3d();
+a=get("current_axes");
+a.x_label.font_size= 5;
+a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
+<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
+<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xtitle">xtitle</link></member>
+      <member><link linkend="axes_properties">axes_properties</link></member>
+      <member><link linkend="label_properties">label_properties</link></member>
+      <member><link linkend="legend_properties">legend_properties</link></member>
+      <member><link linkend="text_properties">text_properties</link></member>
+      <member><link linkend="xstringb">xstringb</link></member>
+      <member><link linkend="xstringl">xstringl</link></member>
+      <member><link linkend="xstring">xstring</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

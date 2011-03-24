@@ -6,7 +6,7 @@
 //
 // <-- Short Description -->
 // White-box test for the xcosPal macro.
-loadScicosLibs();
+loadXcosLibs();
 name = "My palette";
 exec(SCI + "/modules/scicos/palettes/Lookup_Tables.cosf", -1); // getting an scs_m
 pal = xcosPal()

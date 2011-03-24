@@ -13,7 +13,7 @@
 //
 // <-- Short Description -->
 // The capacitor block doesn't define valid settings.
-loadScicosLibs();
+loadXcosLibs();
 scs_m = Capacitor("define", [], []);
 // Stubbing the x_mdialog method
 funcprot(0);

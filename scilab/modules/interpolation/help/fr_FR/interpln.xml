@@ -64,8 +64,8 @@ yi=interpln([x;y],-4:45);
 plot2d((-4:45)',yi',[3],"000");
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="splin">splin</link>

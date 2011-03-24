@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2007 - INRIA - Allan CORNET
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+    *
+    -->
+<refentry version="5.0-subset Scilab" xml:id="prompt" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2007-05-13 12:13:33 +0200 (dim., 13 mai 2007)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>prompt</refname>
+
+    <refpurpose>カレントのプロンプトを取得/設定</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>
+      currentprompt = prompt()
+      [currentprompt,pauselevel] = prompt()
+      prompt(userprompt)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>currentprompt</term>
+
+        <listitem>
+          <para>文字列: カレントのプロンプトを文字列として返します.</para>
+        </listitem>
+      </varlistentry>
+      
+      <varlistentry>
+        <term>pauselevel</term>
+
+        <listitem>
+          <para>整数: カレントのポーズレベル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>userprompt</term>
+
+        <listitem>
+          <para>文字列: 次のユーザ入力で表示されるプロンプト. この後,カレントの
+          が再び使用されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>currentprompt = prompt()</literal> はカレントのプロンプトを
+	取得します.</para>
+
+    <para><literal>prompt(userprompt)</literal> はプロンプトを設定します.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="pause">pause</link></member>
+
+      <member><link linkend="input">input</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -314,20 +314,21 @@ endfunction
 
 //This function handles the syslin
 function str = lss2mathml(sys)
+    ptp = '<mo>(</mo><mi>t</mi><mo>)</mo>';
     if sys(7) == 'c' then
-        der = '<mover><mi>X</mi><mo>.</mo></mover>';
+        der = '<mrow><mover><mi>X</mi><mo>.</mo></mover>' + ptp + '</mrow>';
     else
-        der = '<mover><mi>X</mi><mo>+</mo></mover>'
+        der = '<mrow><mover><mi>X</mi><mo>+</mo></mover>' + ptp + '</mrow>'
     end
-    str = '<mfenced close="""" open=""{""><mtable columnalign=""right center left""><mtr><mtd>' + der + '</mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(2),'mathml','(',%F,%F) + '<mi>X</mi><mo>+</mo>' + prettyprint(sys(3),'mathml','(',%F,%F) + '<mi>U</mi></mtd></mtr><mtr><mtd><mi>Y</mi></mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(4),'mathml','(',%F,%F) + '<mi>X</mi></mtd></mtr>';
+    str = '<mfenced close="""" open=""{""><mtable columnalign=""right center left""><mtr><mtd>' + der + '</mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(2),'mathml','(',%F,%F) + '<mrow><mi>X</mi>' + ptp + '</mrow><mo>+</mo>' + prettyprint(sys(3),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr><mtr><mtd><mrow><mi>Y</mi>' + ptp + '</mrow></mtd><mtd><mo>=</mo></mtd><mtd>' + prettyprint(sys(4),'mathml','(',%F,%F) + '<mrow><mi>X</mi>' + ptp + '</mrow>';
     try
         if norm(sys(5),1) == 0 then
-            str = str + '</mtable></mfenced>';
+            str = str + '</mtd></mtr></mtable></mfenced>';
         else
-            str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '</mtable></mfenced>';
+            str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr></mtable></mfenced>';
         end
     catch
-        str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '</mtable></mfenced>';
+        str = str + '<mo>+</mo>' + prettyprint(sys(5),'mathml','(',%F,%F) + '<mrow><mi>U</mi>' + ptp + '</mrow></mtd></mtr></mtable></mfenced>';
     end
 endfunction
 
@@ -374,19 +375,19 @@ endfunction
 
 function str = lss2latex(sys)
     if sys(7) == 'c' then
-        der = '\dot{X}';
+        der = '\dot{X}(t)';
     else
-        der = '\stackrel{+}{X}'
+        der = '\stackrel{+}{X}(t)'
     end
-    str = '{\left\{\begin{array}{rcl}' + der + '&=&' + prettyprint(sys(2),'latex','(',%F,%F) + ' X+' + prettyprint(sys(3),'latex','(',%F,%F) + 'U\cr Y &=& ' + prettyprint(sys(4),'latex','(',%F,%F) + ' X ';
+    str = '{\left\{\begin{array}{rcl}' + der + '&=&' + prettyprint(sys(2),'latex','(',%F,%F) + ' X(t)+' + prettyprint(sys(3),'latex','(',%F,%F) + 'U(t)\cr Y(t) &=& ' + prettyprint(sys(4),'latex','(',%F,%F) + ' X(t) ';
     try
         if norm(sys(5),1) == 0 then
             str = str + '\end{array}\right.}';
         else
-            str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + '\end{array}\right.}';
+            str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + ' U(t)\end{array}\right.}';
         end
     catch
-        str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + '\end{array}\right.}';
+        str = str + ' + ' + prettyprint(sys(5),'latex','(',%F,%F) + ' U(t)\end{array}\right.}';
     end
 endfunction
 
@@ -452,19 +453,19 @@ endfunction
 
 function str = lss2tex(sys)
     if sys(7) == 'c' then
-        der = '\dot{X}';
+        der = '\dot{X}(t)';
     else
-        der = '{\buildrel + \over X}'
+        der = '{\buildrel + \over X(t)}'
     end
-    str = '{\left\{\eqalign{' + der + ' &= ' + prettyprint(sys(2),'tex','(',%F,%F) + ' X+' + prettyprint(sys(3),'tex','(',%F,%F) + 'U\cr Y &= ' + prettyprint(sys(4),'tex','(',%F,%F) + ' X ';
+    str = '{\left\{\eqalign{' + der + ' &= ' + prettyprint(sys(2),'tex','(',%F,%F) + ' X(t)+' + prettyprint(sys(3),'tex','(',%F,%F) + 'U(t)\cr Y(t) &= ' + prettyprint(sys(4),'tex','(',%F,%F) + ' X(t) ';
     try
         if norm(sys(5),1) == 0 then
             str = str + '}\right.}';
         else
-            str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + '}\right.}';
+            str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + ' U(t)}\right.}';
         end
     catch
-        str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + '}\right.}';
+        str = str + ' + ' + prettyprint(sys(5),'tex','(',%F,%F) + ' U(t)}\right.}';
     end
 endfunction
 

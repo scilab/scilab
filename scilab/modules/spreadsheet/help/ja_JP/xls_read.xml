@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2005      - INRIA - Pierrick MODE
+ * Copyright (C) 2005-2008 - INRIA - Serge STEER <serge.steer@inria.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xls_read">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xls_read</refname>
+    <refpurpose>Excelファイルからシートを読み込む</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Value,TextInd] = xls_read(fd,Sheetpos)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>fd</term>
+        <listitem>
+          <para>数値, <link linkend="xls_open">xls_open</link>により返されたExcelストリームの論理ユニット.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Sheetpos</term>
+        <listitem>
+          <para> 数値: 
+	    Excelストリームにおけるシートの開始位置. この位置は
+		<link linkend="xls_open">xls_open</link>により返された値です.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Value</term>
+        <listitem>
+          <para>数値の行列, シートでみつかった数値データ.
+	数値データではないセルは値<literal>NaN</literal>で表されます.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>TextInd</term>
+        <listitem>
+          <para><literal>Value</literal>と同じ大きさのインデックスの行列.
+	インデックス 0 は,対応するExcelのセルに文字列が存在しないことを示します.
+	正のインデックス<literal>i</literal>は
+	文字列<literal>SST(i)</literal>を指します.
+	ただし,<literal>SST</literal>は<link linkend="xls_open">xls_open</link>の出力です.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	Excelストリームの論理ユニットとこのストリーム内のシートの先頭位置を指定すると,
+	この関数はExcelシートを読み込みます.
+	この関数はExcelセルが有する数値データおよび文字列を返します.
+     </para>
+    <para>
+	1つの関数で1回関数コールをすることにより
+	Excelファイルを全て読み込む際には<link linkend="readxls">readxls</link>関数を
+	使用することができます.</para>
+    <para> BIFF8 Excelファイル(最近のExcelファイルのバージョン)のみが処理可能です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//OLEファイルをデコード,展開し,Excelストリームをオープン
+[fd,SST,Sheetnames,Sheetpos] = xls_open('SCI/modules/spreadsheet/demos/xls/Test1.xls')
+//最初のデータシートを読み込む
+[Value,TextInd] = xls_read(fd,Sheetpos(1))
+//スプレッドシートストリームを閉じる
+mclose(fd)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xls_open">xls_open</link>
+      </member>
+      <member>
+        <link linkend="readxls">readxls</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <variablelist>
+      <varlistentry>
+        <term>Pierrick Mode</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+    INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>この関数は,OpenOfficeのExcel
+      ストリームに関する説明   (<ulink url="http://sc.openoffice.org/spreadsheetfileformat.pdf">http://sc.openoffice.org/spreadsheetfileformat.pdf</ulink>)に基づいています.</para>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para>
+	この関数は, Sclabソース版のディレクトリSCIDIR/modules/spreadsheet/src/c
+	にあるxls.cを使用します.
+      </para>
+  </refsection>
+</refentry>

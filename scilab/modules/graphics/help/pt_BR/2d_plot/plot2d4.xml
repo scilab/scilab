@@ -85,8 +85,8 @@ e.children(3).polyline_style=4;
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="fchamp">fchamp</link></member>

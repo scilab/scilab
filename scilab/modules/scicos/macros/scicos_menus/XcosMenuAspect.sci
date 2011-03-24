@@ -20,6 +20,9 @@
 //
 
 function XcosMenuAspect()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //
   Cmenu=[]
   [edited,options]=do_options(scs_m.props.options,'3D')

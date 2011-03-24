@@ -22,6 +22,9 @@
 //
 
 function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** Edition of a link from an output block to an input  block
 //** using "Simulink like" orthogonal links only 
 //** oblique links are not accepted ! 

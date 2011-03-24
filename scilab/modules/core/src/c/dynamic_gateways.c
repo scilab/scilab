@@ -401,6 +401,29 @@ int gw_dynamic_ui_data(void)
         &ptr_gw_ui_data);
 }
 /*--------------------------------------------------------------------------*/
+/* graphic_objects module */
+#define GRAPHIC_OBJECTS_MODULE_NAME "graphic_objects"
+static DynLibHandle hGraphic_objectsLib = NULL;
+static PROC_GATEWAY ptr_gw_graphic_objects = NULL;
+static char* dynlibname_graphic_objects = NULL;
+static char* gatewayname_graphic_objects = NULL;
+/*--------------------------------------------------------------------------*/
+int gw_dynamic_graphic_objects(void)
+{
+#ifdef _MSC_VER
+	if (dynlibname_graphic_objects == NULL)
+	{
+		dynlibname_graphic_objects = buildModuleDynLibraryName(GRAPHIC_OBJECTS_MODULE_NAME, DYNLIB_NAME_FORMAT_2);
+	}
+#endif
+
+	return gw_dynamic_generic(GRAPHIC_OBJECTS_MODULE_NAME,
+		&dynlibname_graphic_objects,
+		&gatewayname_graphic_objects,
+		&hGraphic_objectsLib,
+		&ptr_gw_graphic_objects);
+}
+/*--------------------------------------------------------------------------*/
 void freeAllDynamicGateways(void)
 {
     freeDynamicGateway(&dynlibname_special_functions,
@@ -513,6 +536,11 @@ void freeAllDynamicGateways(void)
         &gatewayname_ui_data,
         &hUi_dataLib,
         &ptr_gw_ui_data);
+
+    freeDynamicGateway(&dynlibname_graphic_objects,
+        &gatewayname_graphic_objects,
+        &hGraphic_objectsLib,
+        &ptr_gw_graphic_objects);
 }
 /*--------------------------------------------------------------------------*/
 

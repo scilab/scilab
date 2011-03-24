@@ -80,8 +80,8 @@ cotd(x)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="cotg">cotg</link></member>

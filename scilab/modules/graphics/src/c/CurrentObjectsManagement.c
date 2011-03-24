@@ -2,18 +2,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
- * 
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 /*------------------------------------------------------------------------*/
-/* file: CurrentObjectsManagemet.c                                        */
+/* file: CurrentObjectsManagement.c                                        */
 /* desc : Set of functions to retrieve the currents objects               */
 /*------------------------------------------------------------------------*/
 
@@ -24,6 +25,12 @@
 #include "HandleManagement.h"
 #include "InitObjects.h"
 #include "MALLOC.h"
+#include "CloneObjects.h"
+
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+#include "callJoGLView.h"
 
 /*----------------------------------------------------------------------------------*/
 /* root of the graphic hierarchy */
@@ -41,16 +48,52 @@ static sciPointObj * getCurrentPointedFigure(void)
 sciPointObj * sciGetCurrentFigure( void )
 {
   /* debug F.Leray 22.07.04 */
-  sciPointObj * pfigure = getCurrentPointedFigure();
+  sciPointObj * pFigure = getCurrentPointedFigure();
+  sciPointObj* newaxes = NULL;
 
   if( !sciHasFigures() )
   {
     /* it would mean that we have change the driver to GIF,Pos or PPM and perform a xinit F.Leray 22.07.04 */
     /* for now, no higher entities than figure */
-    pfigure = createFullFigure(NULL);
+      int iZero = 0;
+      pFigure = sciCloneObj(getFigureModel());
+      setGraphicObjectProperty(pFigure->UID, __GO_ID__, &iZero, jni_int, 1);
+      createJoGLView(pFigure->UID);
+
+      /*
+       * Clones a new Axes object using the Axes model which is then
+       * attached to the newly created Figure.
+       */
+      newaxes = sciCloneObj(getAxesModel());
+
+      /* Sets the parent-child relationship within the MVC */
+      setGraphicObjectRelationship(pFigure->UID, newaxes->UID);
+
+      /* Sets the newly created Axes as the Figure's current selected child */
+      setGraphicObjectProperty(pFigure->UID, __GO_SELECTED_CHILD__, newaxes->UID, jni_string, 1);
+
+      /*
+       * Added back to avoid creating a new Figure each time gcf() is executed.
+       * This was previously done in ConstructFigure, called by createFullFigure
+       * which has been replaced by the Figure model clone call above.
+       */
+      addNewFigureToList(pFigure);
+
+      sciSetCurrentFigure(pFigure);
+
+      // Register handle to Scilab.
+      sciAddNewHandle(pFigure);
+
+      /*
+       * Registers the Axes' handle and sets the Axes as the current object.
+       * This was previously done in ConstructSubWin, called by createFirstSubwin
+       * which was also called by createFullFigure.
+       */
+      sciAddNewHandle(newaxes);
+      sciSetCurrentObj(newaxes);
   }
 
-  return pfigure;
+  return pFigure;
 }
 /*----------------------------------------------------------------------------------*/
 BOOL sciIsCurrentFigure(sciPointObj * pFigure)
@@ -98,10 +141,37 @@ long sciGetCurrentHandle( void )
 /*-----------------------------------------------------------------------------*/
 sciPointObj * sciGetCurrentSubWin( void )
 {
-  sciPointObj * currentFigure = sciGetCurrentFigure() ;
-  sciPointObj * currentSubwin = NULL; 
+  sciPointObj * currentFigure = sciGetCurrentFigure();
+  sciPointObj * currentSubwin = NULL;
+  int iNbChildren = 0;
+  int *piNbChildren = &iNbChildren;
+  char* selectedChild;
+
   if ( currentFigure == NULL ) { return NULL ; }
+
+  getGraphicObjectProperty(currentFigure->UID, __GO_CHILDREN_COUNT__, jni_int, &piNbChildren);
+
+  if (iNbChildren == 0)
+  {
+    return NULL;
+  }
+
+  /* The figure's current selected child corresponds to the current subwindow */
+  getGraphicObjectProperty(currentFigure->UID, __GO_SELECTED_CHILD__, jni_string, &selectedChild);
+
+  currentSubwin = MALLOC(sizeof(sciPointObj));
+
+  currentSubwin->UID = selectedChild;
+  sciAddNewHandle(currentSubwin);
+
+  /*
+   * Former way to get the Figure's current selected Axes.
+   * To be deleted
+   */
+#if 0
   currentSubwin = sciGetFirstTypedSelectedSon( currentFigure, SCI_SUBWIN ) ;
+#endif
+
   return currentSubwin;
 }
 /*-----------------------------------------------------------------------------*/

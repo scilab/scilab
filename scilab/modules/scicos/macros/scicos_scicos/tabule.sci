@@ -20,6 +20,9 @@
 //
 
 function texte = tabule(tab)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // transforms a matrix of strings into a column vector of string in tabular form 
 //
 //%Syntaxe

@@ -42,8 +42,8 @@ z= sin(u)'*ones(v);
 [xx,yy,zz]=nf3d(x,y,z); plot3d(xx,yy,zz)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="plot3d">plot3d</link>

@@ -114,8 +114,8 @@ lter = lstcat(l,lbis)
 size(lter) - size(lbis) - size(l)  // must be zero
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="null">null</link>

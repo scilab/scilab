@@ -60,6 +60,14 @@ public class CompoundUndoManager extends UndoManager {
     }
 
     /**
+     * getBreakingChars returns the breaking chars
+     * @return the breaking chars
+     */
+    public String getBreakingChars() {
+        return new String(breaks);
+    }
+
+    /**
      * startCompoundEdit
      */
     public void startCompoundEdit() {
@@ -84,7 +92,7 @@ public class CompoundUndoManager extends UndoManager {
     /**
      * Enable one shot, i.e. if several modifs on one char occured then they
      * can be added in the same CompoundEdit.
-     * @param true if one shot must be enabled
+     * @param b true if one shot must be enabled
      */
     public void enableOneShot(boolean b) {
         this.oneShot = b;

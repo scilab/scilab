@@ -89,8 +89,8 @@ mycheckrhs(A,B,C,D); // ERROR, 4 output arguments
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="CheckLhs">CheckLhs</link></member>

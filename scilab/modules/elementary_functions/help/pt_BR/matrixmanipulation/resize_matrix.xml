@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Jean-Baptiste SILVY
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="resize_matrix" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-30 13:26:08 +0200 (mer, 30 aoû 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>resize_matrix</refname>
+
+    <refpurpose>cria uma nova matriz com tamanho diferente</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>resMat = resize_matrix(mat,nbRow,nbCol,[typeOfMat])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>mat</term>
+
+        <listitem>
+          <para>matriz de entrada da qual a matriz redimensionada será
+          criada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nbRow</term>
+
+        <listitem>
+          <para>número de linhas da matriz redimensionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nbCol</term>
+
+        <listitem>
+          <para>número de colunas da matriz redimensionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>typeOfMat</term>
+
+        <listitem>
+          <para>string, nome do tipo da matriz redimensionada</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>resMat</term>
+
+        <listitem>
+          <para>matriz redimensionada</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Cria uma matriz de tamanho <literal>nbRow</literal> x
+    <literal>nbCol</literal> e cujos elementos <literal>(i,j)</literal> são
+    <literal>mat(i,j)</literal> se <literal>(i,j)</literal> está ao alcance da
+    matriz de entrada. De outro modo, <literal>(i,j)</literal> são
+    <literal>0</literal> para matrizes de reais ou de inteiros,
+    <literal>%f</literal> para matrizes de booleanos e um string vazio para
+    matrizes de strings.</para>
+
+    <para>O tipo da matriz de saída pode ser modificado especificando-se o
+    argumento <literal>typeOfMat</literal>. Neste caso, esteja certo de que o
+    tipo da matriz de entrada é compatível com este.</para>
+
+    <para>Por enquanto, apenas matrizes de reais, inteiros, booleanos, e
+    strings são suportadas. Isto significa que <literal>typeOfMat</literal>
+    deve ser escolhido dentre: 'constant', 'boolean', 'string' ou qualquer
+    tipo inteiro ('int8', 'int16',...).</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+  // matriz de números
+  myMat = 5 * rand( 3, 4 )
+  myMat = resize_matrix( myMat, 3, 3 ) // reduzindo tamanho da matriz
+  myMatInteger = resize_matrix( myMat, 4, 4, 'int32' ) // criando uma matriz de inteiros
+  myMatBoolean = resize_matrix( myMat, 2, 2, 'boolean' )
+  myMatBoolean = resize_matrix( myMatBoolean, 3, 5 )
+
+  // Matriz de strings
+  myMatString = ["Scilab","the";"Open Source","Scientific";"Software","Package"]
+  myMatString = resize_matrix( myMatString, 3, 1 )
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="matrix">matrix</link></member>
+
+      <member><link linkend="size">size</link></member>
+
+      <member><link linkend="typeof">typeof</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

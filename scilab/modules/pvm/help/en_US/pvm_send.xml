@@ -85,8 +85,8 @@
     from it may result in those messages being lost.  To be sure, always
     call pvm_exit() before stopping.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_recv">pvm_recv</link>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="covar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>covar</refname>
+    <refpurpose>2つの変数の共分散</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>s=covar(x,y,fre)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数または複素数のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>実数または複素数のベクトル</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fre</term>
+        <listitem>
+          <para>length(x) x length(y)の行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>covar(x,y,fre)</literal>  は2つの変数xおよびyの
+	共分散を計算します.
+	freは次元length(x) x length(y)の行列です.
+	freの中で,インデックス(i,j)の要素はx_i&amp;y_jの
+	値または数値または周波数に対応します.</para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+    Wonacott, T.H. &amp; Wonacott, R.J.; Introductory Statistics, J.Wiley &amp; Sons, 1990.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=[10 20 30 40]
+y=[10 20 30 40]
+fre=[.20 .04 .01  0;
+     .10 .36 .09  0;
+       0 .05 .10  0;
+       0   0   0 .05]
+s=covar(x,y,fre)
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para> Carlos Klimann</para>
+  </refsection>
+</refentry>

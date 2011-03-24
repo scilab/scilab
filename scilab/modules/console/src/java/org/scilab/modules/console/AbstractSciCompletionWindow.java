@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent COUVERT
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010-2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -134,7 +134,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
 
                 getTextComponent().add(window);
 
-                window.setVisible(false);
+                setVisible(false);
         }
 
         /**
@@ -299,13 +299,13 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
                         }
 
                         /* Hide the completion window and give the focus to the console */
-                        window.setVisible(false);
+                        setVisible(false);
                         focusOutComponent.grabFocus();
                 } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
                         /* The user want to exit from completion mode */
 
                         /* Hide the completion window and give the focus to the console */
-                        window.setVisible(false);
+                        setVisible(false);
                         focusOutComponent.grabFocus();
                 } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
                         /* The user want to select next item */
@@ -331,7 +331,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
                                 listUI.setSelectedIndex(0);
                         } else {
                                 /* Hide the completion window and give the focus to the console */
-                                window.setVisible(false);
+                                setVisible(false);
                                 focusOutComponent.grabFocus();
                         }
                 } else if (e.getKeyCode() != KeyEvent.VK_TAB) { // IGNORE TAB KEYS BECAUSE ALREADY IN COMPLETION MODE
@@ -374,7 +374,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
          * @param e event
          */
         public void focusLost(FocusEvent e) {
-                window.setVisible(false);
+                setVisible(false);
         }
 
         /**
@@ -410,7 +410,7 @@ public abstract class AbstractSciCompletionWindow implements CompletionWindow, K
                             addCompletedWord(currentCaretPosition);
 
                                 /* Hide the completion window and give the focus to the console */
-                                window.setVisible(false);
+                                setVisible(false);
                                 focusOutComponent.grabFocus();
                         }
                 }

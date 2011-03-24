@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fileinfo" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fileinfo</refname>
+
+    <refpurpose>ファイルに関する情報を出力</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[x,ierr] = fileinfo(files)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>files</term>
+
+        <listitem>
+          <para>文字列または文字列の列ベクトル, ファイルパス名
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>
+	情報を含む大きさ13の整数ベクトルまたは
+	ファイルが存在しない場合に空の行列.</para>
+
+          <para>'files' が文字列の列ベクトルの場合, x は
+	m x 13の大きさの行列となります.</para>
+          <para>filename が存在しない場合, 出力情報として
+	13行を返し,その各行にはNaNが含まれます.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ierr</term>
+
+        <listitem>
+          <para>エラーインジケータ, エラーが発生していない場合に 0</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>x = fileinfo(file) は以下を返します</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>x(1)</term>
+
+        <listitem>
+          <para>ファイルの大きさ</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(2)</term>
+
+        <listitem>
+          <para>ファイルモード (10進値).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(3)</term>
+
+        <listitem>
+          <para>ユーザid</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(4)</term>
+
+        <listitem>
+          <para>グループid</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(5)</term>
+
+        <listitem>
+          <para>デバイス番号</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(6)</term>
+
+        <listitem>
+          <para>直近の修正日</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(7)</term>
+
+        <listitem>
+          <para>直近の変更日</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(8)</term>
+
+        <listitem>
+          <para>直近のアクセス日</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(9)</term>
+
+        <listitem>
+          <para>デバイス型 (inode デバイスの場合)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(10)</term>
+
+        <listitem>
+          <para>ファイルシステム I/O のブロックサイズ (Windowsでは常に0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(11)</term>
+
+        <listitem>
+          <para>確保されたブロック数 (Windowsでは常に0)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(12)</term>
+
+        <listitem>
+          <para>The inode</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x(13)</term>
+
+        <listitem>
+          <para>ハードリンクの数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <para>この関数はCの関数statへのインターフェイスです.</para>
+
+    <para>許可属性は,通常,8進数で指定されます : 変換にはdec2oct(x(2))
+	を使用します
+    </para>
+
+    <para>
+	数値モードは,1から4個の8進数 (0-7),
+	4, 2, および 1でビットを加算することにより導かれます.
+	全ての省略された桁は先頭にゼロがあると仮定されます.
+	最初の桁はユーザID(4)を選択し,
+	グループID(2)およびスティッキー(1)属性を設定します.
+	2番目の桁は,fileを所有するユーザの許可属性を選択します
+	: 読み込み(4), 書き込み(2),実行(1);
+	3桁目はファイルのグループの同じ値を有する
+	他のユーザの許可属性を選択します;
+	4桁目はファイルグループにない同じ値を有する許可属性を
+	選択します.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+w = fileinfo(SCI+'/etc/scilab.start')
+// ファイル許可属性
+dec2oct(w(2))
+// file date
+getdate(w(6))
+
+// ファイルの書き込み許可属性を確認
+w = fileinfo(SCI+'/etc/scilab.start')
+
+S_IWRITE = 128; // 書き込み許可属性をマスク
+S_IEXEC = 64; // 実行許可属性をマスク
+S_IREAD = 256; // 読み込み許可属性をマスク
+S_IFCHR = 8192; // ディレクトリ許可属性をマスク
+
+if ( bitand( w(2), S_IWRITE ) &lt;&gt; 0) then
+ disp('WRITE PERMISSION on this file.');
+else
+ disp('NO WRITE PERMISSION on this file.');
+end
+
+FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
+[X,ERRS] = fileinfo(FILES)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="getdate">getdate</link></member>
+
+      <member><link linkend="file">file</link></member>
+
+      <member><link linkend="dispfiles">dispfiles</link></member>
+
+      <member><link linkend="newest">newest</link></member>
+
+      <member><link linkend="isdir">isdir</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>S. Steer INRIA</para>
+
+    <para>A.C</para>
+  </refsection>
+</refentry>

@@ -42,6 +42,11 @@ The option is "disableUnderMode" and can be:
 	<load on="XCos"/>
 </path>
 
+<path value="@SCIRENDERER@" load="onUse">
+	<load on="graphics"/>
+  <load on="graphic_ojects"/>
+</path>
+
 <path value="@JOGL@" load="onUse">
 	<load on="graphics"/>
 	<load on="graphic_export"/>
@@ -161,6 +166,10 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">
 	<load on="SciNotes"/>
 </path>
+
+
+<!-- TO DO Load only when we need -->
+<path value="$SCILAB/modules/graphic_objects/jar/org.scilab.modules.graphic_objects.jar"/>
 
 <!-- TO DO Load only when we need -->
 <path value="$SCILAB/modules/ui_data/jar/org.scilab.modules.ui_data.jar"/>

@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
@@ -81,6 +82,9 @@ public class GraphHandler extends mxGraphHandler {
 					clickOnLink(e, (BasicLink) cell);
 				} else if (cell instanceof BasicBlock) {
 					openBlock(e, (BasicBlock) cell);
+				} else if (cell instanceof BasicPort) {
+					// translated to the parent
+					openBlock(e, (BasicBlock) ((BasicPort) cell).getParent());
 				} else if (cell == null) {
 					createTextBlock(e);
 				}
@@ -153,6 +157,15 @@ public class GraphHandler extends mxGraphHandler {
 		
 		// get the point
 		final mxPoint pt = graphComponent.getPointForEvent(e);
+		
+		// translate the point if it is a loop link
+		if (cell.getSource() != null && cell.getTarget() != null
+				&& cell.getSource().getParent() == cell.getTarget().getParent()
+				&& cell.getSource().getParent() != null) {
+			final mxGeometry parent = cell.getSource().getParent().getGeometry();
+			pt.setX(pt.getX() - parent.getX());
+			pt.setY(pt.getY() - parent.getY());
+		}
 		
 		// add or remove the point to the list and fire event
 		final mxIGraphModel model = graphComponent.getGraph().getModel();

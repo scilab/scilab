@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="DLRADAPT_f"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>DLRADAPT_f</refname>
+
+    <refpurpose>Fonction de transfert discrète (Pôles &amp; zéros)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/DLRADAPT_f.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_DLRADAPT_f">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="DLRADAPT_f">Fonction de transfert discrète (Pôles &amp; zéros)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_DLRADAPT_f">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_DLRADAPT_f">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_DLRADAPT_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_DLRADAPT_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_DLRADAPT_f">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_DLRADAPT_f">Fonction de calcul</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_DLRADAPT_f">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Discrete_pal">Palette Systèmes à temps discret</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_DLRADAPT_f">
+    <title>Description</title>
+
+    <para>Ce bloc modèlise un système représenté par les zéros et les pôles de la fonction de transfert discréte.</para>
+  </refsection>
+
+  <refsection id="Dialogbox_DLRADAPT_f">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/gui/DLRADAPT_f_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Vector of p mesh points</emphasis>
+        </para>
+
+        <para>The parameter description 1.</para>
+
+        <para>Propriétés : Type 'vec' de taille -1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Numerator roots (one line for each
+          mesh)</emphasis>
+        </para>
+
+        <para>The parameter description 2.</para>
+
+        <para>Propriétés : Type 'mat' de taille [-1,-1].</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Denominator roots (one line for each
+          mesh)</emphasis>
+        </para>
+
+        <para>The parameter description 3.</para>
+
+        <para>Propriétés : Type 'mat' de taille ["size(%1,''*'')","-1"].</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Vector of gain at mesh points</emphasis>
+        </para>
+
+        <para>The parameter description 4.</para>
+
+        <para>Propriétés : Type 'vec' de taille "size(%1,''*'')".</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">past inputs (Num degree values)</emphasis>
+        </para>
+
+        <para>The parameter description 5.</para>
+
+        <para>Propriétés : Type 'vec' de taille "size(%2,2)".</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">past outputs (Den degree values)</emphasis>
+        </para>
+
+        <para>The parameter description 6.</para>
+
+        <para>Propriétés : Type 'vec' de taille "size(%3,2)".</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_DLRADAPT_f">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 2 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        inputs:</emphasis> 1</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>
+        non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>
+        non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+
+          <emphasis role="italic">dlradp</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_DLRADAPT_f">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/NonLinear/DLRADAPT_f.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_DLRADAPT_f">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/fortran/dlradp.f (Type 0)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

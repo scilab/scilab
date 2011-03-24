@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) INRIA\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="MAXMIN"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>MAXMIN</refname>
+    <refpurpose>Valeur maximale ou minimale des éléments de vecteurs</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/MAXMIN.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection id="Contents_MAXMIN">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MAXMIN">Valeur maximale ou minimale des éléments de vecteurs</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_MAXMIN">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_MAXMIN">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_MAXMIN">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_MAXMIN">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_MAXMIN">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_MAXMIN">Fonction de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_MAXMIN">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_MAXMIN">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Palette_MAXMIN">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_MAXMIN">
+    <title>Description</title>
+    <para>
+      Le bloc calcule le minimum/maximum (paramètre <emphasis role="bold">Min or Max</emphasis>) et accepte une ou deux entrées
+      en fonction du paramètre <emphasis role="bold">Number of input vectors</emphasis> :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="3">
+      <tr>
+        <td align="left"><emphasis role="bold">Number of input vectors</emphasis></td>
+        <td align="left"><emphasis role="bold">Entrée</emphasis></td>
+        <td align="left"><emphasis role="bold">Operation</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">Vecteur</td>
+        <td align="left">La sortie du bloc est l'élément de valeur minimale/maximale des éléments du vecteur.</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Scalaire</td>
+        <td align="left">La sortie du bloc est le scalaire minimum ou maximum.</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Vecteur</td>
+        <td align="left">
+          Les vecteurs doivent avoir les mêmes dimensions et la sortie du bloc est un vecteur de même dimension
+          que les entrées, dont les éléments sont les éléments minimaux ou maximaux des éléments correspondants
+          des vecteurs d'entrée.
+        </td>
+      </tr>
+    </informaltable>
+
+    <para />
+
+  </refsection>
+  <refsection id="Dialogbox_MAXMIN">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/gui/MAXMIN_gui.gif" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para>
+
+</para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Min or Max</emphasis>
+        </para>
+        <para> La fonction (min ou max) à appliquer à l'entrée.</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Number of input vectors</emphasis>
+        </para>
+        <para> Le nombre des entrées du bloc.</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">zero-crossing</emphasis>
+        </para>
+        <para> A sélectionner pour valider la détection du passage à zéro pour détecter les valeurs minimum and maximum.</para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Defaultproperties_MAXMIN">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 1</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">minmax</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Interfacingfunction_MAXMIN">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/macros/NonLinear/MAXMIN.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Computationalfunction_MAXMIN">
+    <title>Fonction de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/minmax.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Seealso_MAXMIN">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MIN_f">MIN_f - Valeur minimale des éléments d'un vecteur</link>
+        </para>
+      </listitem>
+       <listitem>
+        <para>
+          <link linkend="MAX_f">MAX_f - Valeur maximale des éléments d'un vecteur</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_MAXMIN">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

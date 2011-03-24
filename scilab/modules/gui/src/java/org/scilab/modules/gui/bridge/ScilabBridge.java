@@ -5383,6 +5383,22 @@ public class ScilabBridge {
 		
 	}
 
+    /**
+     * Evaluate the selection with echo
+     * @param console the console
+     */
+    public static void evaluateSelectionWithEcho(ScilabConsole console) {
+        ScilabConsoleBridge.evaluateSelectionWithEcho(console);
+    }
+
+    /**
+     * Evaluate the selection with no echo
+     * @param console the console
+     */
+    public static void evaluateSelectionWithNoEcho(ScilabConsole console) {
+        ScilabConsoleBridge.evaluateSelectionWithNoEcho(console);
+    }
+
 	/************************/
 	/* ImageRenderer Bridge */
 	/************************/

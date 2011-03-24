@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2000 - INRIA - Carlos Klimann
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="median">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>median</refname>
+    <refpurpose>ベクトル/行列/配列の要素の中央値 (行単位の中央値, 列単位の中央値,...)
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>y=median(x)
+y=median(x,'r')
+y=median(x,'c')
+y=median(x,'m')
+y=median(x,dim)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>実数のベクトル, 行列または配列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>スカラー,ベクトル, 行列または配列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>正の整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>x</literal>がベクトルまたは行列の場合, <literal>y=median(x)</literal>
+    は
+    <literal>x</literal>の全要素の中央値をスカラー<literal>y</literal>として返します.</para>
+    <para><literal>y=median(x,'r')</literal> (または等価的に,
+    <literal>y=median(x,1)</literal>) は,行インデックス方向の中央値です.
+    列ベクトル <literal>y</literal>の各要素に関して<literal>x</literal>の
+	各列の中央値を返します.</para>
+    <para><literal>y=median(x,'c')</literal> (または等価的に,
+    <literal>y=median(x,2)</literal>) は,列インデックス方向の中央値です.
+    行ベクトル <literal>y</literal>の各要素に関して<literal>x</literal>の
+	各行の中央値を返します.</para>
+    <para><literal>y=median(x,'m')</literal>は<literal>x</literal>の
+	最初の1でない次元方向の中央値です(Matlabとの互換用).</para>
+    <para><literal>y=median(x,dim)</literal> は
+	<literal>x</literal>の次元<literal>dim</literal>方向の中央値です (Matlabとの互換用).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=[1,2,10;7,7.1,7.01];
+median(A)
+median(A,'r')
+median(A,'c')
+A=matrix([-9 3 -8 6 74 39 12 -6 -89 23 65 34],[2,3,2]);
+median(A,3)
+median(A,'m')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="sum">sum</link>
+      </member>
+      <member>
+        <link linkend="mean">mean</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

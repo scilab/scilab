@@ -37,8 +37,8 @@
     <title>Description</title>
     <para>retourne dans une matrice de type chaine de caracteres l'historique de scilab.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>

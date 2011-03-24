@@ -117,8 +117,8 @@
     <para> Il est fortement déconseillé d'utiliser ces opérateurs alternatifs, car il seront supprimés dans le futur.</para>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="overloading">overloading</link>

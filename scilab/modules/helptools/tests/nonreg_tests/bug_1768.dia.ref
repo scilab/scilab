@@ -5,7 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- ENGLISH IMPOSED -->
-// <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 // <-- Non-regression test for bug 1768 -->
 //
@@ -31,6 +30,6 @@ index_file = xmltohtml(TMPDIR+"/bug_1768/help/en_US","Bug 1768 Manual");
 Building the master document:
 	TMPDIR/bug_1768/help/en_US
 
-Building the manual file [html] in TMPDIR/bug_1768/help/en_US. (Please wait building ... this can take a while)
+Building the manual file [html] in TMPDIR/bug_1768/help/en_US.
 if ~isdir(TMPDIR+"/bug_1768/help/en_US/scilab_en_US_help") then bugmes();quit;end
 if fileinfo(index_file) == [] then bugmes();quit;end

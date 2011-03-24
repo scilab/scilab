@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,12 +24,17 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
+  int rotationStyle;
+  BOOL status;
+
   getStringFromStack( stackPointer ) ;
 
   if ( !isParameterStringMatrix( valueType ) )
@@ -37,21 +43,21 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType (pobj) != SCI_FIGURE ) 
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   if ( isStringParamEqual( stackPointer, "unary" ) )
   {
-    pFIGURE_FEATURE(pobj)->rotstyle = 0 ;
-    return SET_PROPERTY_SUCCEED ;
+    rotationStyle = 0;
   }
   else if ( isStringParamEqual( stackPointer, "multiple" ) )
   {
-    pFIGURE_FEATURE(pobj)->rotstyle = 1 ;
-    return SET_PROPERTY_SUCCEED ;
+    rotationStyle = 1;
   }
   else
   {
@@ -59,6 +65,18 @@ int set_rotation_style_property( sciPointObj * pobj, size_t stackPointer, int va
     Scierror(999, _("Wrong value for '%s' property: %s or %s expected.\n"), "rotation_style", "'unary'", "'multiple'");
     return SET_PROPERTY_ERROR ;
   }
-  return SET_PROPERTY_ERROR ;
+
+
+  status = setGraphicObjectProperty(pobj->UID, __GO_ROTATION_TYPE__, &rotationStyle, jni_int, 1);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"rotation_style");
+    return SET_PROPERTY_ERROR;
+  }
 }
 /*------------------------------------------------------------------------*/

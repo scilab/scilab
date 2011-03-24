@@ -219,7 +219,7 @@ static char *getCleanedFormat(char *format)
                 char *token = strstr(percent, supportedFormat[i]);
                 if (token)
                 {
-                    int nbcharacters = strlen(percent) - strlen(token);          
+                    int nbcharacters = (int)(strlen(percent) - strlen(token));          
                     cleanedFormat = strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters-1])) ||

@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="Matrix_pal"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>Matrix_pal</refname>
+
+    <refpurpose>Palette Opérations Matricielles</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CUMSUM" fileref="../../../../../../modules/xcos/images/palettes/CUMSUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="EXTRACT" fileref="../../../../../../modules/xcos/images/palettes/EXTRACT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="EXTTRI" fileref="../../../../../../modules/xcos/images/palettes/EXTTRI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATBKSL" fileref="../../../../../../modules/xcos/images/palettes/MATBKSL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATCATH" fileref="../../../../../../modules/xcos/images/palettes/MATCATH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATCATV" fileref="../../../../../../modules/xcos/images/palettes/MATCATV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATDET" fileref="../../../../../../modules/xcos/images/palettes/MATDET.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATDIAG" fileref="../../../../../../modules/xcos/images/palettes/MATDIAG.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATDIV" fileref="../../../../../../modules/xcos/images/palettes/MATDIV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATEIG" fileref="../../../../../../modules/xcos/images/palettes/MATEIG.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATEXPM" fileref="../../../../../../modules/xcos/images/palettes/MATEXPM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATINV" fileref="../../../../../../modules/xcos/images/palettes/MATINV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATLU" fileref="../../../../../../modules/xcos/images/palettes/MATLU.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATMAGPHI" fileref="../../../../../../modules/xcos/images/palettes/MATMAGPHI.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATMUL" fileref="../../../../../../modules/xcos/images/palettes/MATMUL.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATPINV" fileref="../../../../../../modules/xcos/images/palettes/MATPINV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATRESH" fileref="../../../../../../modules/xcos/images/palettes/MATRESH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATSING" fileref="../../../../../../modules/xcos/images/palettes/MATSING.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATSUM" fileref="../../../../../../modules/xcos/images/palettes/MATSUM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATTRAN" fileref="../../../../../../modules/xcos/images/palettes/MATTRAN.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATZCONJ" fileref="../../../../../../modules/xcos/images/palettes/MATZCONJ.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="MATZREIM" fileref="../../../../../../modules/xcos/images/palettes/MATZREIM.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RICC" fileref="../../../../../../modules/xcos/images/palettes/RICC.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="ROOTCOEF" fileref="../../../../../../modules/xcos/images/palettes/ROOTCOEF.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SQRT" fileref="../../../../../../modules/xcos/images/palettes/SQRT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SUBMAT" fileref="../../../../../../modules/xcos/images/palettes/SUBMAT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Matrix_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Matrix_pal">
+    <title>Description</title>
+
+    <para>
+      La Palette Opérations matricielles contient les blocs dont vous avez besoin pour faire des opération
+      matricielles simples et complexes.
+    </para>
+  </refsection>
+
+  <refsection id="Blocks_Matrix_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CUMSUM">CUMSUM - Somme cumulative</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXTRACT">EXTRACT - Extraction de matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="EXTTRI">EXTTRI - Extraction triangulaire ou diagonale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATBKSL">MATBKSL - Division gauche de matrices</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATCATH">MATCATH - Concaténation horizontale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATCATV">MATCATV - Concaténation verticale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATDET">MATDET - Déterminant d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATDIAG">MATDIAG - Création d'une matrice diagonale</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATDIV">MATDIV - Division de matrices</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATEIG">MATEIG - Valeurs propres d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATEXPM">MATEXPM - Exponentielle d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATINV">MATINV -  Inverse d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATLU">MATLU - Factorisation LU</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATMAGPHI">MATMAGPHI - Complexe à partir de/vers module et phase</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATMUL">MATMUL - Multiplication de matrices</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATPINV">MATPINV - Pseudo-inverse d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATRESH">MATRESH - Remise en forme de matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATSING">MATSING - Décomposition SVD</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATSUM">MATSUM - Somme des éléments d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATTRAN">MATTRAN - Transposée d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATZCONJ">MATZCONJ - Conjuguée des éléments d'une matrice</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="MATZREIM">MATZREIM - Composition/décomposition complexe</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RICC">RICC - Equation de Riccati</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="ROOTCOEF">ROOTCOEF - Calcul de coefficients</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SQRT">SQRT - Racine carrée</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="SUBMAT">SUBMAT - Extraction de sous-matrice</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

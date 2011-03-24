@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rowcomp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rowcomp</refname>
+    <refpurpose>行圧縮, 範囲</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[W,rk]=rowcomp(A [,flag [,tol]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>オプションの文字列, 指定可能な値は
+	    <literal>'svd'</literal> または <literal>'qr'</literal>です. 
+	デフォルト値  <literal>'svd'</literal>はです.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>オプションの非負の実数. デフォルト値は 
+	    <literal>sqrt(%eps)*norm(A,1)</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>W</term>
+        <listitem>
+          <para>正方正則行列 (基底の変更)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数 (<literal>A</literal>のランク)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>A</literal>の行圧縮. <literal>Ac = W*A</literal> は行圧縮された行列です: すなわち, 
+	<literal>Af</literal>を行フルランクとして
+    <literal>Ac=[Af;0]</literal> となります.</para>
+    <para><literal>flag</literal> および <literal>tol</literal> はオプションのパラメータです: <literal>flag='qr'</literal> 
+    または <literal>'svd'</literal> (デフォルト <literal>'svd'</literal>).</para>
+    <para><literal>tol</literal> は許容誤差パラメータです.</para>
+    <para><literal>W'</literal>の最初の<literal>rk</literal> 列には,
+	<literal>A</literal>の範囲が広がります.
+	</para>
+    <para>
+	<literal>W</literal>の最初の(上側の)<literal>rk</literal> 行には,
+	<literal>A</literal>の行範囲が広がります.
+	</para>
+    <para>非ゼロベクトル <literal>x</literal> は,
+	<literal>W*x</literal>が<literal>Ac</literal>に基づき行圧縮された場合,
+	すなわち,その最後の要素のノルムが最初の要素に対して小さい場合に限り,
+	range(<literal>A</literal>)に属します.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,2)*rand(2,4);              // 4 列ベクトル, 2 つは独立.
+[X,dim]=rowcomp(A);Xp=X';
+svd([Xp(:,1:dim),A])                //span(A) = span(Xp(:,1:dim)
+x=A*rand(4,1);                      //x は span(A)に属します
+y=X*x  
+norm(y(dim+1:$))/norm(y(1:dim))     // 小さい
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colcomp">colcomp</link>
+      </member>
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.; INRIA   </para>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para><literal>rowcomp</literal> 関数は<link linkend="svd">svd</link> または
+    <link linkend="qr">qr</link> 分解d.</para>
+  </refsection>
+</refentry>

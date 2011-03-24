@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,29 +22,53 @@
 
 #include "setHandleProperty.h"
 #include "SetProperty.h"
-#include "GetProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_auto_resize_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-	int b =  (int)FALSE;
-	int status = 0;
-	if ( sciGetEntityType(pobj) != SCI_FIGURE )
-	{
-		Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
-		return SET_PROPERTY_ERROR ;
-	}
+    BOOL result = FALSE;
+    int b =  (int)FALSE;
+    int status = 0;
 
-	b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
-	if(b == NOT_A_BOOLEAN_VALUE) return SET_PROPERTY_ERROR;
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_FIGURE )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+        return SET_PROPERTY_ERROR ;
+    }
+#endif
 
-	status = sciSetResize(pobj, b);
-	enableFigureSynchronization(pobj);
-	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+    b = tryGetBooleanValueFromStack(stackPointer, valueType, nbRow, nbCol, "auto_resize");
+    if(b == NOT_A_BOOLEAN_VALUE)
+    {
+        return SET_PROPERTY_ERROR;
+    }
+
+    result = setGraphicObjectProperty(pobj->UID, __GO_AUTORESIZE__, &b, jni_bool, 1);
+
+    if (result == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"auto_resize");
+        return SET_PROPERTY_ERROR;
+    }
+
+    /* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
+    status = sciSetResize(pobj, b);
+    enableFigureSynchronization(pobj);
+    return sciSetNoRedrawStatus((SetPropertyStatus)status);
+#endif
 }
 /*------------------------------------------------------------------------*/

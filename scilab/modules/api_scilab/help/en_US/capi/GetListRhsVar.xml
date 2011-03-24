@@ -202,8 +202,8 @@ int sci_print_list(char * fname)
     SCI/modules/core/example/print_list.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="ScilabCTypes">Scilab C Type</link></member>

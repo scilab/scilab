@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="colcomp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>colcomp</refname>
+    <refpurpose>列圧縮,カーネル,ヌル空間</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[W,rk]=colcomp(A [,flag] [,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>W</term>
+        <listitem>
+          <para>正方正則行列 (基底変換)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数 (<literal>A</literal>のランク)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    <literal>A</literal>の列圧縮: <literal>Ac = A*W</literal> は
+	列圧縮,すなわち <literal>Ac=[0,Af]</literal> となります.
+	</para><para>
+	ただし, <literal>Af</literal> はフル列ランクを有します:
+    rank(<literal>Af</literal>) = rank(<literal>A</literal>) = <literal>rk</literal>.</para>
+    <para><literal>flag</literal> および <literal>tol</literal> は
+	オプションのパラメータ: <literal>flag = 'qr'</literal> 
+    または <literal>'svd'</literal> (デフォルトは
+	 <literal>'svd'</literal>)です.</para>
+    <para><literal>tol</literal> = 許容誤差パラメータ (デフォルト値は
+	<literal>%eps</literal>のオーダー).</para>
+    <para>
+     <literal>W</literal>の最初の<literal>ma-rk</literal>列は,
+	<literal>size(A)=(na,ma)</literal>とするとき,
+	<literal>A</literal>のカーネルに広がります.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(5,2)*rand(2,5);
+[X,r]=colcomp(A);
+norm(A*X(:,1:$-r),1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+      <member>
+        <link linkend="fullrf">fullrf</link>
+      </member>
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+      <member>
+        <link linkend="kernel">kernel</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.D.;   </para>
+  </refsection>
+</refentry>

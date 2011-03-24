@@ -35,6 +35,7 @@ import javax.swing.event.DocumentListener;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.console.utils.ScilabLaTeXViewer;
 
 /**
  * The class ScilabDocument is used to render a document .sci or .sce
@@ -550,6 +551,27 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     }
 
     /**
+     * Get the anchors between two positions
+     * @param start the beginning
+     * @param end the end
+     * @return a list of the anchors
+     */
+    public List<Anchor> getAnchorsBetween(int start, int end) {
+        Element root = getDefaultRootElement();
+        int lineS = root.getElementIndex(start);
+        int lineE = root.getElementIndex(end);
+        List<Anchor> list = new ArrayList<Anchor>();
+        for (int i = lineS; i <= lineE; i++) {
+            final ScilabLeafElement se = (ScilabLeafElement) root.getElement(i);
+            if (se.isAnchor()) {
+                list.add(new Anchor(i, se.getAnchorName()));
+            }
+        }
+
+        return list;
+    }
+
+    /**
      * Get the lhs/rhs args used in a function declaration
      * @param pos the position in the document
      * @return the two lists containing args and returned values or null if we are not
@@ -598,7 +620,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 break;
             case ScilabLeafElement.FUN :
                 if (compt == 0) {
-                    return String.format(SciNotesMessages.POSFUN_IN_DOC, e.getFunctionInfo().functionName, line + 1, pos - root.getElement(line).getStartOffset());
+                    return String.format(SciNotesMessages.POSFUN_IN_DOC, line + 1, pos - root.getElement(line).getStartOffset(), e.getFunctionInfo().functionName, line - index);
                 } else {
                     compt++;
                 }
@@ -695,6 +717,17 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 || (index > 0 && ((ScilabLeafElement) root.getElement(index - 1)).isBroken())) {
                 pane.repaint();
             }
+        }
+
+        KeywordEvent e = pane.getKeywordEvent();
+        if (ScilabLexerConstants.isLaTeX(e.getType())) {
+            try {
+                int start = e.getStart();
+                int end = start + e.getLength();
+                String exp = getText(start, e.getLength());
+                int height = pane.getScrollPane().getHeight() + pane.getScrollPane().getVerticalScrollBar().getValue();
+                ScilabLaTeXViewer.displayExpressionIfVisible(pane, height, exp, start, end);
+            } catch (BadLocationException ex) { }
         }
     }
 
@@ -963,6 +996,39 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
             return info.functionName;
+        }
+    }
+
+    /**
+     * Inner class to get infos on anchor
+     */
+    public class Anchor {
+
+        private int line;
+        private String name;
+
+        /**
+         * Default constructor
+         * @param line the line where the anchor is
+         * @param name the anchor's name
+         */
+        public Anchor(int line, String name) {
+            this.line = line;
+            this.name = name;
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public String toString() {
+            return name;
+        }
+
+        /**
+         * @return the line number
+         */
+        public int getLine() {
+            return line;
         }
     }
 }

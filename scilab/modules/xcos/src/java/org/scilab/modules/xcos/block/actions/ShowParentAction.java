@@ -17,10 +17,14 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -61,7 +65,16 @@ public class ShowParentAction extends DefaultAction {
 	public void actionPerformed(ActionEvent e) {
 	    if (getGraph(null) instanceof SuperBlockDiagram) {
 		SuperBlockDiagram diagram =  (SuperBlockDiagram) getGraph(null);
-		diagram.getContainer().getParentDiagram().setVisible(true);
+		final SuperBlock block = diagram.getContainer();
+		
+		XcosDiagram graph = block.getParentDiagram();
+		if (graph == null) {
+			block.setParentDiagram(Xcos.findParent(block));
+			graph = block.getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
+		}
+		
+		graph.setVisible(true);
 	    }
 	}
 }

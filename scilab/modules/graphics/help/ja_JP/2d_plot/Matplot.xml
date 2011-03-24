@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Matplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Matplot</refname>
+    <refpurpose>行列のカラー二次元プロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>Matplot(a,[strf,rect,nax])
+Matplot(a,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>大きさ (n1,n2)の実数行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令<literal>key1=value1,
+          key2=value2</literal>,... を表し,<literal>key1</literal>,
+          <literal>key2,...</literal> には以下のどれかを指定できます:</para>
+          <variablelist>
+            <varlistentry>
+              <term>rect</term>
+              <listitem>
+                <para>
+		プロットの境界を設定します.
+		このキーが指定され,<literal>frameflag</literal> および <literal>strf</literal>
+		のどちらも指定されない場合,<literal>strf</literal> の文字<literal>y</literal>
+		は<literal>7</literal>に設定されます.
+		値については以下を参照ください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>nax</term>
+              <listitem>
+                <para>グリッドの定義を設定します.このキーが指定され,
+		<literal>axesflag</literal>および<literal>strf</literal>のどちらも指定されない場合,
+		<literal>strf</literal>の文字 <literal>z</literal>が
+		<literal>1</literal>に設定されます.値については以下を参照ください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>frameflag</term>
+              <listitem>
+                <para>プロットのフレームの計算方法を指定します.
+		この値は 0 から 8の整数です.<literal>strf</literal>の文字
+                <literal>y</literal>に対応します.以下を参照ください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axesflag</term>
+              <listitem>
+                <para>プロットの周囲に描画される軸の種類を指定します.
+		この値は 0 から 5の整数です.<literal>strf</literal>の文字
+                <literal>z</literal>に対応します.以下を参照ください.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf</term>
+        <listitem>
+          <para>長さの文字列 <literal>"xyz"</literal>です.</para>
+          <variablelist>
+            <varlistentry>
+              <term>default</term>
+              <listitem>
+                <para>デフォルトは <literal>"081"</literal>です.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x</term>
+              <listitem>
+                <para>キャプションの表示を制御します.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>x=0</term>
+                    <listitem>
+                      <para>キャプションなし.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>x=1</term>
+                    <listitem>
+                      <para>キャプションが表示されます.
+			これらはオプションの引数<literal>leg</literal>で指定されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y</term>
+              <listitem>
+                <para>
+		指定された値に関する最小限の範囲をカバーする実際の座標を
+		計算する手法を制御します.
+		実際の範囲は必要最小限の値よりも大きくすることができます.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>y=0</term>
+                    <listitem>
+                      <para>計算せずにプロットは前(またはデフォルト)のスケールを使用します</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=1</term>
+                    <listitem>
+                      <para>rect引数による</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=2</term>
+                    <listitem>
+                      <para>x, yデータの最小値/最大値による</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=3</term>
+                    <listitem>
+                      <para>rect引数に基づき等軸スケールで設定</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=4</term>
+                    <listitem>
+                      <para>x, yデータの最小値/最大値に基づき等軸スケールで設定</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=5</term>
+                    <listitem>
+                      <para>rect引数の設定値から見栄えが良くなるよう
+			軸を拡大</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=6</term>
+                    <listitem>
+                      <para>x, yデータの最小値/最大値に基づく設定から見栄えが良くなるよう
+			軸を拡大</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=7</term>
+                    <listitem>
+                      <para>like y=1 but the previus plot(s) are redrawn to
+                      use the new scale</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>y=8</term>
+                    <listitem>
+                      <para>y=2と似ていますが,前のプロットが新しいスケールを
+			用いて再描画されます.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>z</term>
+              <listitem>
+                <para>プロットの周囲のフレームへの情報の表示を制御します.
+		軸が指定された場合,目盛の数をオプションの引数
+		<literal>nax</literal>により指定できます.</para>
+                <variablelist>
+                  <varlistentry>
+                    <term>z=0</term>
+                    <listitem>
+                      <para>プロットの周囲に何も描画されません.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>z=1</term>
+                    <listitem>
+                      <para>軸が描画され, y軸が左に表示されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>z=2</term>
+                    <listitem>
+                      <para>プロットが目盛のない箱で囲われます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>z=3</term>
+                    <listitem>
+                      <para>軸が描画され,y軸が右側に表示されます.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>z=4</term>
+                    <listitem>
+                      <para>
+			フレームボックスの中央に軸が描画され,ボックスは無効になります.</para>
+                    </listitem>
+                  </varlistentry>
+                  <varlistentry>
+                    <term>z=5</term>
+                    <listitem>
+                      <para>
+			フレームボックスの中央に軸が描画され,ボックスは有効となります.</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>この引数は引数<literal>strf</literal>の2文字目のyが1, 3または5の時に
+		使用されます.
+		この値は大きさ4の行ベクトルで,フレームの次元を指定します:
+          <literal>rect=[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nax</term>
+        <listitem>
+          <para>この引数は引数<literal>strf</literal>の3文字目のzが1の場合に
+		使用されます.
+		この値は4つのエントリ<literal>[nx,Nx,ny,Ny]</literal>を有する
+		行ベクトルです.
+		ただし,<literal>nx</literal> (<literal>ny</literal>)
+          は x (y) 軸のサブグラデーションの数,
+          <literal>Nx</literal> (<literal>Ny</literal>) はx (y) 軸のグラデーションの数です.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>行列のエントリ<literal>int(a)</literal>がカレントのカラーマップにおける
+	カラーマップのエントリとして使用されます.
+	<literal>a(i,j)</literal>が指す色が位置<literal>(x=j,y=(n1-i+1))</literal>
+	を中心とする大きさ1の小さな正方領域を描画する際に使用されます.
+	行列のエントリがカラーマップの外側の場合,
+	対応する矩形は表示されません..</para>
+    <para>コマンド <literal>Matplot()</literal> を入力するとデモが表示されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+Matplot([1 2 3;4 5 6])
+clf()
+// カレントのカラーマップを表示
+Matplot((1:xget("lastpattern")))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Matplot1">Matplot1</link>
+      </member>
+      <member>
+        <link linkend="Matplot_properties">Matplot_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

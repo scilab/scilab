@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="or" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>or</refname>
+
+    <refpurpose>配列の要素の論理和</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>or(A), or(A,'*')
+or(A,'r'), or(A,1)
+
+or(A,'c'), or(A,2)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>or(A)</literal> は論理値行列<literal>A</literal>の
+	要素の <literal>or</literal> を取得します.
+	
+    <literal>or(A)</literal> は,
+	<literal>A</literal>の少なくとも1個の要素が<literal>%t</literal>
+	の場合に限り,
+	真 (<literal>%t</literal>)となります.</para>
+
+    <para><literal>y=or(A,'r')</literal> (または, 等価的に
+    <literal>y=or(A,1)</literal>) は行方向の論理和となります.
+	行ベクトル <literal>y</literal>の各エントリに
+	<literal>x</literal>の各行の論理和が返されます.
+	(論理和は行添字について実行されます :
+    <literal>y(j)= or(A(i,j),i=1,m)</literal>).</para>
+
+    <para><literal>y=or(A,'c')</literal> (または, 等価的に
+    <literal>y=or(A,2)</literal>) は列方向の論理和となります.
+	列ベクトル <literal>y</literal>の各エントリに
+	<literal>x</literal>の各列の論理和が返されます.
+	(論理和は列添字について実行されます :
+    <literal>y(i)= or(A(i,j),j=1,n)</literal>).</para>
+
+    <para></para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+or([%t %t %f])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="or_op">or 演算子 (|)</link></member>
+
+      <member><link linkend="and">and</link></member>
+
+      <member><link linkend="not">not</link></member>
+
+      <member><link linkend="find">find</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

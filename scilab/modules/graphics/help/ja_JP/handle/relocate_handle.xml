@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="relocate_handle">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>relocate_handle</refname>
+    <refpurpose>グラフィック階層内のハンドルを移動する.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>relocate_handle( movedHandles, parent )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>movedHandles</term>
+        <listitem>
+          <para>再配置されたハンドルのベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>parent</term>
+        <listitem>
+          <para>ハンドルの新しい親.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>relocate_handle 関数によりグラフィック階層のカレントの位置から
+	ハンドルを他の場所に移動することが可能です.
+	移動されたエントリは全て<emphasis role="bold">parent</emphasis>
+	パラメータで指定された同じ親のハンドルの元で再配置されます. </para>
+    <para>
+	全てのハンドルが他のハンドルと互換性があるわけでないので,
+	ハンドルの再配置にはいくつかの制約があります.
+	例えば,axesハンドラをpolylineの下に移動することはできません.
+	互換性に関する詳細については,
+	<link linkend="graphics_entities">graphics_entities</link>のページを
+	参照ください.</para>
+    <para>このルーチンはあるaxesエンティティから他のエンティティに
+	オブジェクトを移動したり, figureハンドルから axes を移動する際に
+	特に有用です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x = 0:10 ;
+
+// 最初のポリラインをプロット
+plot(x,x^2) ;
+axes1 = gca() ;
+poly1 = gce() ;
+
+// 2番目のポリラインを他のウインドウにプロット
+scf() ;
+plot( x,x )  ;
+axes2 = gca() ;
+poly2 = gce()  ;
+poly2bis = copy( poly2 ) ; // ポリラインのコピーを作成
+
+// 両方のポリラインを同じウインドウに配置
+relocate_handle( poly2bis, axes1 ) ;
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="copy">copy</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="swap_handles">swap_handles</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Jean-Baptiste Silvy</para>
+  </refsection>
+</refentry>

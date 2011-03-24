@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xchange">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xchange</refname>
+    <refpurpose>実座標をピクセル座標に変換する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[x1,y1,rect]=xchange(x,y,dir)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>大きさ(n1,n2) (点の集合の座標)の行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dir</term>
+        <listitem>
+          <para>変換の種類を指定するパラメータ (詳細は "説明" 参照)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>x1,y1</term>
+        <listitem>
+          <para>t大きさ (n1,n2) (点の集合の座標)の行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rect</term>
+        <listitem>
+          <para>大きさ 4のベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	グラフィック関数を使用した後,
+	<literal>xchange</literal>は,パラメータ
+	<literal>dir</literal>の値に基づき,
+	実座標からピクセル座標への変換またはその逆変換を計算します:
+    "f2i" (float to int) は実座標からピクセルを意味し, "i2f" (int to float)
+	はピクセルから実座標を意味します.
+    <literal>x1</literal> および <literal>y1</literal>は
+	古い座標 <literal>x</literal> と <literal>y</literal>により
+	定義される一連の点の新しい座標です.</para>
+    <para><literal>rect</literal> は
+	プロットが行われる矩形のピクセル単位の座標です:
+	[左上の点, 幅, 高さ].</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]';
+plot2d(t,sin(t))
+[x,y,rect]=xchange(1,1,"f2i")
+[x,y,rect]=xchange(0,0,"i2f")
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

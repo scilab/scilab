@@ -105,8 +105,8 @@
     zeros followed by df1/dx2, df2/dx2, etc</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="ode">ode</link></member>

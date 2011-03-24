@@ -5,11 +5,12 @@
  * Copyright (C) 2002 - INRIA - Serge Steer
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -18,7 +19,7 @@
  *    Graphic library
  --------------------------------------------------------------------------*/
 
-#include "math_graphics.h" 
+#include "math_graphics.h"
 #include "PloEch.h"
 
 #include "GetProperty.h"
@@ -30,25 +31,29 @@
 #include "DrawingBridge.h"
 #include "GraphicSynchronizerInterface.h"
 #include "HandleManagement.h"
+#include "Axes.h"
 
 #include "MALLOC.h" /* MALLOC */
 
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*-------------------------------------------
- * setscale2d 
- * uses WRect,ARect,FRect,logscale to update 
+ * setscale2d
+ * uses WRect,ARect,FRect,logscale to update
  * current subwindow
- *  WRect gives the subwindow to use 
- *  ARect gives the axis rectangle 
- *  FRect gives the bounds 
+ *  WRect gives the subwindow to use
+ *  ARect gives the axis rectangle
+ *  FRect gives the bounds
  *  WRect=[<x-upperleft>,<y-upperleft>,largeur,hauteur]
- *    example WRect=[0,0,1.0,1.0] we use all the window 
- *            WRect=[0.5,0.5,0.5,0.5] we use the down right 
+ *    example WRect=[0,0,1.0,1.0] we use all the window
+ *            WRect=[0.5,0.5,0.5,0.5] we use the down right
  *            quarter of the window
- *  logscale : gives xy log axis flags 
- *  each argument can be a null pointer if they are 
- *  not to be changed from their current value 
+ *  logscale : gives xy log axis flags
+ *  each argument can be a null pointer if they are
+ *  not to be changed from their current value
  *
- *  
+ *
  *-------------------------------------------*/
 
 int setscale2d(double WRect[4],
@@ -58,9 +63,9 @@ int setscale2d(double WRect[4],
 {
   sciPointObj * masousfen = NULL;
   sciPointObj * currentFigure = sciGetCurrentFigure();
- 
+
 	startFigureDataWriting(currentFigure);
-  if (WRect != NULL) 
+  if (WRect != NULL)
   {
       /* Ajout djalel */
       if (( masousfen = sciIsExistingSubWin(WRect)) != NULL)
@@ -85,7 +90,7 @@ int setscale2d(double WRect[4],
 				return -1;
 			}
 	}
-   
+
 	masousfen = sciGetCurrentSubWin();
 
   if (FRect != NULL)
@@ -129,24 +134,34 @@ int setscale2d(double WRect[4],
 int getscale2d( double WRect[4], double FRect[4], char logscale[2], double ARect[4] )
 {
   int i;
-	sciPointObj * curSubwin = sciGetCurrentSubWin();
-	
-	char logFlags[3];
-	sciGetLogFlags(curSubwin, logFlags);
-	logscale[0] = logFlags[0];
-	logscale[1] = logFlags[1];
-  
-	for ( i=0; i < 4 ; i++) 
+  int iTmp = 0;
+  int *piTmp = &iTmp;
+  double* axesBounds;
+  double* margins;
+  double* realDataBounds;
+  sciPointObj * curSubwin = sciGetCurrentSubWin();
+
+  getGraphicObjectProperty(curSubwin->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+  logscale[0] = getTextLogFlag(iTmp);
+
+  getGraphicObjectProperty(curSubwin->UID, __GO_Y_AXIS_LOG_FLAG__, jni_bool, &piTmp);
+  logscale[1] = getTextLogFlag(iTmp);
+
+  getGraphicObjectProperty(curSubwin->UID, __GO_AXES_BOUNDS__, jni_double_vector, &axesBounds);
+  getGraphicObjectProperty(curSubwin->UID, __GO_MARGINS__, jni_double_vector, &margins);
+  getGraphicObjectProperty(curSubwin->UID, __GO_REAL_DATA_BOUNDS__, jni_double_vector, &realDataBounds);
+
+  for ( i=0; i < 4 ; i++)
   {
-		WRect[i] = pSUBWIN_FEATURE(curSubwin)->WRect[i];
-    ARect[i] = pSUBWIN_FEATURE(curSubwin)->ARect[i];
+    WRect[i] = axesBounds[i];
+    ARect[i] = margins[i];
   }
 
-	/* Frect is [xMin, yMin, xMax, yMax] */
-	FRect[0] = pSUBWIN_FEATURE(curSubwin)->FRect[0];
-	FRect[1] = pSUBWIN_FEATURE(curSubwin)->FRect[2];
-	FRect[2] = pSUBWIN_FEATURE(curSubwin)->FRect[1];
-	FRect[3] = pSUBWIN_FEATURE(curSubwin)->FRect[3];
+  /* Frect is [xMin, yMin, xMax, yMax] whereas data bounds are [xmin, xmax, ymin, ymax] */
+  FRect[0] = realDataBounds[0];
+  FRect[1] = realDataBounds[2];
+  FRect[2] = realDataBounds[1];
+  FRect[3] = realDataBounds[3];
 
   return(0);
 }
@@ -176,7 +191,7 @@ extern void unzoom()
         pSUBWIN_FEATURE (psousfen)->ZRect[2]   = pSUBWIN_FEATURE (psousfen)->SRect[2];
         pSUBWIN_FEATURE (psousfen)->ZRect[3]   = pSUBWIN_FEATURE (psousfen)->SRect[3];
 
-        /*}  SS: moved below because if sciGetZooming(psousfen)==0 
+        /*}  SS: moved below because if sciGetZooming(psousfen)==0
         ZRect is undefined -> code may enter in infinite recursion loop to compute graduation
         and there is no use to regraduate */
 
@@ -206,7 +221,7 @@ extern void unzoom()
 void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[],
                                    int xPixCoords[], int yPixCoords[], int nbCoords,
                                    int rect[4])
-{ 
+{
   /* coordinates transformation */
   int i;
   sciPointObj * selectedSubwin = sciGetCurrentSubWin();
@@ -223,7 +238,7 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
 
   /* get viewing area */
   sciGetViewingArea(selectedSubwin, &rect[0], &rect[1], &rect[2], &rect[3]);
- 
+
 }
 /*--------------------------------------------------------------------------*/
 /**
@@ -234,7 +249,7 @@ void convertUserCoordToPixelCoords(const double xCoords[], const double yCoords[
 void convertPixelCoordsToUserCoords(const int xPixCoords[], const int yPixCoords[],
                                     double xUserCoords[], double yUserCoords[], int nbCoords,
                                     int rect[4])
-{ 
+{
   /* coordinates transformation */
   int i;
   sciPointObj * selectedSubwin = sciGetCurrentSubWin();

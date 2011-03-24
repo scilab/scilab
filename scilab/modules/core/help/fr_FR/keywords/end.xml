@@ -14,8 +14,8 @@
     <literal>for, while, if, select</literal> doivent être terminées par <literal>end</literal> .
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="for">for</link>

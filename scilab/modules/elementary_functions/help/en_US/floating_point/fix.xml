@@ -44,8 +44,8 @@
     <para><literal>fix(x)</literal> returns an integer matrix made of nearest rounded integers 
     toward zero,i.e, <literal>y=sign(x).*floor(abs(x))</literal>. Same as <literal>int</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="round">round</link>

@@ -58,8 +58,8 @@
     for the doubly coprime factorization</para>
     <para><literal>G</literal> must be stabilizable and detectable.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="copfac">copfac</link>

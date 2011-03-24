@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="varargout" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-04-22 16:42:47 +0000 (mar, 22 avr 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>varargout</refname>
+
+    <refpurpose>出力変数リストの引数の数を可変にする</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	出力引数リスト <literal>varargout</literal>を含む関数は
+	出力引数に示されたよりも多くの出力引数を指定して
+	コールされる必要があります.
+	<literal>varargout</literal>キーワード以降に指定された引数は
+	関数で定義された<literal>varargout</literal>リストから
+	展開することができます.</para>
+
+    <para><literal>varargout= function ex()</literal> は任意の数の
+	出力引数を指定してコールすることができます.
+	関数<literal>ex</literal>の中では
+	出力引数を<literal>varargout(i)</literal>に保存することができます.
+	</para>
+
+    <para><literal>[X1,...Xn,varargout]= function ex()</literal> も
+	使用可能です.
+	この場合,<literal>Xi</literal>引数は,
+	<literal>varargout(i)</literal>と同様に
+	関数内で代入される必要があります.
+	</para>
+
+    <para>出力引数の実際の総数は,<link
+    linkend="argn">argn(1)</link>で取得できます.</para>
+  </refsection>
+
+  <refsection>
+    <title>注記</title>
+
+    <para><literal>varargout</literal> 変数は関数内で作成され,
+	<link linkend="list">list</link>に代入される必要があります.
+	varargout が唯一の形式上の出力変数の場合,
+	リストには最低でも一つのエントリを含む必要があります.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+function varargout=exampl()
+  varargout=list(1,2,3,4)
+endfunction
+
+x=exampl()
+[x,y]=exampl()
+[x,y,z]=exampl()
+
+function [a,b,varargout]=exampl1()
+  a='first'
+  b='second'
+  varargout=list(1,2,3,4)
+endfunction
+
+exampl1()
+[a,b]=exampl1()
+[a,b,c]=exampl1()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="function">function</link></member>
+
+      <member><link linkend="varargin">varargin</link></member>
+
+      <member><link linkend="list">list</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

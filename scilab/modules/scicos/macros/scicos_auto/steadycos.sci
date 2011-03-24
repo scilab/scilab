@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) DIGITEO - Clément DAVID <clement.david@scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -76,20 +77,22 @@ end
 // =====================================================================
 
 [lhs,rhs] = argn(0) ;
-IN = [];
-OUT= [];
 
-// check version
+if rhs < 1 then
+  error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "steadycos", 1));
+end
+if typeof(scs_m)<>"diagram" then
+  error(msprintf(gettext("%s: Wrong type for input argument #%d: A diagram expected.\n"), "steadycos", 1));
+end
+
+IN  = [];
+OUT = [];
+
+// check and do version
 current_version = get_scicos_version()
 scicos_ver = find_scicos_version(scs_m)
-
-// do version
 if scicos_ver<>current_version then
-  ierr = execstr('scs_m=do_version(scs_m,scicos_ver)','errcatch')
-  if ierr<>0 then
-    error("Can''t convert old diagram (problem in version)")
-    return
-  end
+  scs_m=do_version(scs_m,scicos_ver);
 end
 
 if rhs==7 then
@@ -98,42 +101,49 @@ elseif rhs==8 then
   param=list(1.d-6,0)
 elseif rhs==9 then
 else
-  error('wrong number of arguments. 7, 8 or 9 expected.')
+  error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "steadycos", 7, 9));
 end
 
 for i=1:length(scs_m.objs)
   if typeof(scs_m.objs(i))=='Block' then  
-    if scs_m.objs(i).gui=='IN_f' then
+    if or(scs_m.objs(i).gui==['IN_f', 'INPUTPORT']) then
       scs_m.objs(i).gui='INPUTPORT';
       IN=[IN scs_m.objs(i).model.ipar]
-    elseif scs_m.objs(i).gui=='OUT_f' then
+    elseif or(scs_m.objs(i).gui==['OUT_f', 'OUTPUTPORT']) then
       scs_m.objs(i).gui='OUTPUTPORT';
       OUT=[OUT  scs_m.objs(i).model.ipar]
     end
   end
 end
 
+if IN == [] then
+  error(msprintf(gettext("%s: Unable to find diagram inputs\n"), "steadycos"));
+end
+if OUT == [] then
+  error(msprintf(gettext("%s: Unable to find diagram outputs\n"), "steadycos"));
+end
+
 IN=-gsort(-IN);
 if or(IN<>[1:size(IN,'*')]) then 
-  error("Input ports are not numbered properly.")
+  error(msprintf(gettext("%s: Input ports are not numbered properly.\n"), "steadycos"))
 end
 
 OUT=-gsort(-OUT);
 if or(OUT<>[1:size(OUT,'*')]) then 
-  error("Output ports are not numbered properly.")
+  error(msprintf(gettext("%s: Output ports are not numbered properly.\n"), "steadycos"))
 end
 
 // compile scs_m
 [bllst,connectmat,clkconnect,cor,corinv,ok] = c_pass1(scs_m);
 if ~ok then
-  error("Diagram does not compile in pass 1");
+  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"steadycos",1));
 end
 %cpr = c_pass2(bllst,connectmat,clkconnect,cor,corinv);
 if %cpr==list() then 
   ok=%f,
 end
 if ~ok then
-  error("Diagram does not compile in pass 2");
+  error(msprintf(gettext("%s: Diagram does not compile in pass %d.\n"),"steadycos",2));
 end 
 sim=%cpr.sim;state=%cpr.state;
 //

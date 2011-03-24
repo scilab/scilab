@@ -196,17 +196,11 @@ int sci_ClipBoard(char *fname,unsigned long l)
                             /* Call Java to do the job */
                             setClipboardContents(TextToSendInClipboard);
 
-                            if (buffer) 
-                            {
-                                FREE(buffer);
-                                buffer=NULL;
-                            }
+                            FREE(buffer);
+                            buffer=NULL;
 
-                            if(TextToSendInClipboard) 
-                            {
-                                FREE(TextToSendInClipboard);
-                                TextToSendInClipboard=NULL;
-                            }
+                            FREE(TextToSendInClipboard);
+                            TextToSendInClipboard=NULL;
                         }
 
                         freeArrayOfString(Str,m2*n2);

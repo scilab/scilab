@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipManagerMode">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipManagerMode</refname>
+    <refpurpose>datatipsモードを設定またはトグルする. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+    datatipManagerMode()
+    datatipManagerMode('on')
+    datatipManagerMode('off')
+    datatipManagerMode(fig)
+    datatipManagerMode(fig,'on')
+    datatipManagerMode(fig,'off')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>fig</term>
+        <listitem>
+          <para>
+           グラフィックウインドウのハンドルまたはグラフィックウィンドウID.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	atatipsモードが有効の場合,
+	曲線の選択した点にtipsを追加または編集することができます.
+	選択は選択する点の上で右クリックすることにより行うことができます.
+    </para>
+    <para>
+      <literal>datatipManagerMode()</literal>, はカレントの図に関するdatatipsモードを
+	トグルします.
+	一方,
+      <literal>datatipManagerMode(fig)</literal>は,ハンドル<literal>fig</literal>で
+	指定された図のdatatipsモードをトグルします.
+    </para>
+    <para>
+      <literal>datatipManagerMode('on')</literal>は,カレントの図に関するdatatipsモードを
+	有効にし,
+      <literal>datatipManagerMode(fig,'on')</literal> はハンドル<literal>fig</literal>で
+	指定された図のdatatipsモードを有効にします.
+    </para>
+ 
+    <para>
+      <literal>datatipManagerMode('off')</literal>はカレントの図のdatatipsモードを無効にし,
+      <literal>datatipManagerMode(fig,'off')</literal> はハンドル
+       <literal>fig</literal>で指定した図のdatatipsモードを無効にします.
+    </para>
+ 
+
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+       t=linspace(0,10,200);
+       plot(t,sin(t))
+       datatipManagerMode('on')
+       //ここで,曲線のどこかをクリック
+    ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipToggle" >datatipToggle</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+
+  
+</refentry>

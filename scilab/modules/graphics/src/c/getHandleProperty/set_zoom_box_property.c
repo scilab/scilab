@@ -37,11 +37,13 @@ int set_zoom_box_property( sciPointObj * pobj, size_t stackPointer, int valueTyp
     return SET_PROPERTY_ERROR ;
   }
 
+#if 0
   if ( sciGetEntityType(pobj) != SCI_SUBWIN )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"zoom_box") ;
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   /* We must have a 4x1 matrix */
   if ( nbRow * nbCol == 6 )

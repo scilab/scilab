@@ -20,6 +20,9 @@
 //
 
 function XcosMenuColor()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
     
     scs_m_save = scs_m    ;
     nc_save = needcompile ;

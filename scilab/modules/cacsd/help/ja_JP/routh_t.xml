@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="routh_t" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>routh_t</refname>
+
+    <refpurpose>ラウス表</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>r=routh_t(p)
+r=routh_t(h [,k])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+
+        <listitem>
+          <para>実数多項式</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>実数 SISO 伝達システム</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>実数多項式またはスカラー</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>r</term>
+
+        <listitem>
+          <para>行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>r=routh_t(p)</literal> は
+	多項式<literal>h</literal>のラウス表を計算します.</para>
+
+    <para><literal>r=routh_t(h,k)</literal> は,
+	ゲイン<literal>k</literal>によるフィードバックを有する
+	SISO伝達行列 <literal>h</literal>で記述されたシステムの
+	分母のラウス表を計算します.
+	</para>
+
+    <para><literal>k=poly(0,'k')</literal> の場合,ダミー変数<literal>k</literal>
+	で表した多項式行列でラウス表が記述されます.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+s=%s;
+P=5*s^3-10*s^2+7*s+20;
+routh_t(P)
+
+//transfer function with formal feedback
+routh_t((1+s)/P,poly(0,'k'))
+    
+// One of the coefficients in the polynomial equals zero
+P1=2*s^3-24*s+32; 
+routh_t(P1)
+
+// A row full of zeros
+P2=s^4-6*s^3+10*s^2-6*s+9;
+routh_t(P2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="roots">roots</link></member>
+
+      <member><link linkend="kpure">kpure</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>http://controls.engin.umich.edu/wiki/index.php/RouthStability</para>
+
+    <para>http://www.jdotec.net/s3i/TD_Info/Routh/Routh.pdf</para>
+
+    <para>Comments on the Routh-Hurwitz criterion, Shamash, Y.,Automatic
+    Control, IEEE T.A.C Volume 25, Issue 1, Feb 1980 Page(s): 132 - 133</para>
+  </refsection>
+</refentry>

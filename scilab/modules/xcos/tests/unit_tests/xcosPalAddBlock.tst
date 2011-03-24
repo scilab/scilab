@@ -12,7 +12,7 @@
 //
 // Init
 //
-loadScicosLibs;
+loadXcosLibs;
 iconPath = SCI + "/modules/xcos/images/palettes/NPN.png";
 stylePath = SCI + "/modules/xcos/images/blocks/NPN.svg";
 scs_m = SUM_f("define");

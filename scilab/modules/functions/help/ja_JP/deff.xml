@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="deff">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>deff</refname>
+    <refpurpose> 関数のオンライン定義</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>deff('[s1,s2,...]=newfunction(e1,e2,....)',text [,opt])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>e1,e2,...,  </term>
+        <listitem>
+          <para>入力変数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s1,s2,...,  </term>
+        <listitem>
+          <para>出力変数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text</term>
+        <listitem>
+          <para>文字列行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>opt</term>
+        <listitem>
+          <para>オプションの文字列</para>
+          <variablelist>
+            <varlistentry>
+              <term>'c'  </term>
+              <listitem>
+                <para>実行効率改善のために関数は "コンパイル" されます (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'p'  </term>
+              <listitem>
+                <para>関数は"コンパイル"され,
+		  プロファイルに備えます (profile参照)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>'n'  </term>
+              <listitem>
+                <para>関数は"コンパイル"されません</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>deff</literal> はテキスト文字列で記述された一連の命令から
+      関数を定義する際に使用されます.
+      得られる関数オブジェクトはテキストファイルで定義され,
+      <literal>exec</literal> または <literal>exec</literal> で
+      定義された他の関数と同じ特性を有しています.
+    </para>
+    <para>
+      命令の中の引用符(文字列の区切りまたは行列の転置を意味する)は,
+      ただしく解釈されるように二重化する必要があります(quoteのヘルプを参照).
+      この仕様のため,作成作業はやや不便となります.
+      このような場合のオプションとしては,通常と同様に関数を
+      ファイルで定義し,
+      (<literal>'n'</literal> オプションを付けて)
+      <literal>exec</literal>によりScilabにロードし,
+      <literal>deff</literal> 命令と同じ出力を得るために
+      <literal>sci2exp</literal>を使用するという方法があります.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+deff('[x]=myplus(y,z)','x=y+z')
+
+deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="comp">comp</link>
+      </member>
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="profile">profile</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * ...
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="daeoptions" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>daeoptions</refname>
+
+    <refpurpose>daeソルバのオプションを設定</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>daeoptions()</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	dae関数の呼び出しコンテキストに変数
+	<literal>%DAEOPTIONS</literal>が存在した場合,
+	dae関数はこれをオプションとして設定します.</para>
+
+    <para>この daeoptions 関数は,<link
+    linkend="dae">dae</link> ソルバの様々なオプションを設定する際に
+	実行されるコマンドを対話的に表示します.</para>
+
+    <para>注意: <literal>dae</literal>関数は
+	この変数が存在するかどうかを確認し,存在する場合にはこれを使用します.
+	デフォルト値を使用する場合にはこの変数を消去する必要があります.
+	<literal>daeoptions</literal> は
+	この変数を作成しないことに注意してください.この変数を作成するには,
+	<literal>daeoptions</literal>で表示されるコマンド行で実行する
+	必要があります.</para>
+
+    <para>変数 <literal>%DAEOPTIONS</literal> は以下の要素を有する <link
+    linkend="list">リスト</link>です:</para>
+
+    <programlisting role = ""><![CDATA[  
+list(tstop,imode,band,maxstep,stepin,nonneg,isest)
+ ]]></programlisting>
+
+    <para>デフォルト値は:</para>
+
+    <programlisting role = ""><![CDATA[  
+list([],0,[],[],[],0,0)
+ ]]></programlisting>
+
+    <para>要素の意味を以下に示します.</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>tstop</term>
+
+        <listitem>
+          <para>実数スカラーまたは空の行列で, 許容される
+	<literal>g </literal>の評価の最大回数を指定します.
+	空の行列は回数の"制限なし"を意味します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>imode</term>
+
+        <listitem>
+          <para>0 を指定した場合, dae は
+	ユーザが指定した時間での値のみを返します.
+	1を指定した場合, dae は計算した経過値を返します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>band</term>
+
+        <listitem>
+          <para>2個の要素を有するベクトルで,
+	<literal>jac</literal> で計算された帯行列の定義
+	<literal>[ml,mu]</literal>を指定します.</para>
+
+          <para><literal>r(i - j + ml + mu + 1,j)</literal> =
+          <literal>dg(i)/dy(j)+cj*dg(i)/dydot(j)</literal> . 
+          <literal>jac</literal> が完全な行列を返す場合,
+          <literal>band=[]</literal>を指定します</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>maxstep</term>
+
+        <listitem>
+          <para>スカラーまたは空の行列で, ステップの最大値.
+	空の行列は"指定なし"を意味します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>stepin</term>
+
+        <listitem>
+          <para>スカラーまたは空の行列で, ステップの最小値.
+		空の行列は"指定なし"を意味します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nonneg</term>
+
+        <listitem>
+          <para>スカラーで, <literal>解が
+	非負であることが既知の場合</literal> には 0 とする
+	必要があります.
+	その他の場合には 1 に設定する必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>isest</term>
+
+        <listitem>
+          <para>スカラーで, 
+	指定した初期条件が以下と互換の場合には0 とする
+	必要があります
+	: <literal>g(t0,x0,xdot0)=0</literal>.
+	<literal>xdot0</literal>が単なる推定値である場合には
+	1 に設定します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="dae">dae</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

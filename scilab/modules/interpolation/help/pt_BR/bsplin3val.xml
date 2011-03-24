@@ -131,8 +131,8 @@ fxxyz_i = bsplin3val(xp,yp,zp,tl,[2 1 1])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin3d">splin3d</link></member>

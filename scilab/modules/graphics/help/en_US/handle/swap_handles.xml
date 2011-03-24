@@ -102,8 +102,8 @@ axes2 = gca() ;
 swap_handles( axes1, axes2 ) ;
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="graphics_entities">graphics_entities</link>

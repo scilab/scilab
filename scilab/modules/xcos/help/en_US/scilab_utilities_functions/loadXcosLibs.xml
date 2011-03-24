@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="loadXcosLibs">
+  <refnamediv>
+    <refname>loadXcosLibs</refname>
+    <refpurpose>Load most of the Xcos macros</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>loadXcosLibs()</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_loadXcosLibs">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_loadXcosLibs">
+    <title>Description</title>
+    <para>Import some useful Xcos macros into Scilab.</para>
+    <para>This function has been introduced in Scilab 5.3.1 to replace loadScicosLibs.</para>
+    <para>
+      <programlisting role="example"><![CDATA[
+exists("SUM_f")
+loadXcosLibs();
+exists("SUM_f")
+typeof(SUM_f)
+]]></programlisting>
+    </para>
+  </refsection>
+  <refsection id="SeeAlso_loadXcos">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos"><programlisting>xcos</programlisting> - Hybrid dynamic systems modeler and simulator.</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="loadScicos"><programlisting>loadScicos</programlisting> - Load the simulation native libraries.</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_loadXcosLibs">
+    <title>Authors</title>
+    <para><emphasis role="bold">Clément David</emphasis> - DIGITEO</para>
+  </refsection>
+</refentry>

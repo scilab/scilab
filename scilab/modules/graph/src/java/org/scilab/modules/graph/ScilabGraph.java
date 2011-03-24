@@ -184,7 +184,9 @@ public class ScilabGraph extends mxGraph {
 		boolean oldValue = this.modified;
 		this.modified = modified;
 
-		getAsComponent().firePropertyChange("modified", oldValue, modified);
+		if (getAsComponent() != null) {
+			getAsComponent().firePropertyChange("modified", oldValue, modified);
+		}
 	}
 
 	/**

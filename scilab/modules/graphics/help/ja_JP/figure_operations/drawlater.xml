@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="drawlater">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>drawlater</refname>
+    <refpurpose>軸の子を不可視にする.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>drawlater()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>この関数は,
+	プロットを行う関数のような高レベル関数をコールすることにより,
+	または既存のオブジェクトにプロパティを設定することにより,
+	次に作成されるグラフィックオブジェクト,
+	<literal>カレントの図</literal>にただちに
+	表示しない場合に使用されます.カレントの図の
+	<literal>immediate_drawing</literal>プロパティは
+	次の描画を延期するために<literal>'off'</literal>に設定されます.</para>
+    <para>
+	この関数は特に<literal>drawnow</literal>関数と組み合わせて使用されます.</para>
+    <para>
+	カレントの図の<literal>immediate_drawing</literal>を有効に戻すには,
+	<literal>drawnow</literal>関数を使用します.</para>
+    <para>警告 :  drawlater と drawnow コールの間に, カレントの図が
+	変更される可能性があります.
+	このため, 使用に際しては注意を要します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//例1 :  軸を1つ / 図を1つ
+drawlater(); 
+xfarc(.25,.55,.1,.15,0,64*360);
+xfarc(.55,.55,.1,.15,0,64*360);
+xfrect(.3,.8,.3,.2); 
+xfrect(.2,.7,.5,.2);  
+xfrect(.32,.78,.1,.1);
+xfrect(.44,.78,.14,.1);
+xfrect(-.2,.4,1.5,.8);
+xstring(0.33,.9,"A Scilab Car");    
+a=get("current_axes");
+a.children(1).font_size=4;
+a.children(1).font_style=4;  
+a.children(1).background=5;
+a.children(3).background=8;
+a.children(4).background=8; 
+a.children(5).background=17;
+a.children(6).background=17; 
+a.children(7).background=25;
+a.children(8).background=25;
+xclick();drawnow();
+ 
+//例 2: 軸を2つ / 図を1つ
+
+subplot(212)
+a=gca();
+drawlater //この軸に描画されるものは後で表示されます
+plot2d // これらの軸と子に後で描画します...
+
+subplot(211) //警告: 軸を変更します
+plot2d1 // デフォルトの描画モード
+
+draw(a) // ...指定した軸のみが可視で,ウインドウは再描画されません
+drawnow() // 全て可視
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="drawnow">drawnow</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
+</refentry>

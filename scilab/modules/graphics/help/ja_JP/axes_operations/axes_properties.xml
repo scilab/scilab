@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="axes_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>axes_properties</refname>
+    <refpurpose>axesエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Axesエンティティはグラフィックエンティティ階層の第2レベルのエンティティです.
+	このエンティティは
+	座標系を変更するパラメータと子の作成時のパラメータのデフォルト値と共に
+	描画する軸を定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>Axesプロパティs</term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>parent: </term>
+              <listitem>
+                <para>このフィールドは親の図のハンドルを有します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>children: </term>
+              <listitem>
+                <para>FA ベクトルは,軸の子である全てのグラフィックオブジェクトのハンドルを有します.
+		これらのグラフィックオブジェクトは以下の型となります:
+            <literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
+            <literal>"Polyline"</literal>, <literal>"Segs"</literal>, <literal>"Arc"</literal>,
+            <literal>"Grayplot"</literal>,.. (<link linkend="Compound_properties">Compound_properties</link>,
+            <link linkend="rectangle_properties">rectangle_properties</link>, <link linkend="champ_properties">champ_properties</link>,
+            <link linkend="axis_properties">axis_properties</link>, <link linkend="polyline_properties">polyline_properties</link>,
+            <link linkend="segs_properties">segs_properties</link>, <link linkend="grayplot_properties">grayplot_properties</link>,
+            <link linkend="surface_properties">surface_properties</link>,
+            <link linkend="fec_properties">fec_properties</link>, <link linkend="text_properties">text_properties</link>,
+            <link linkend="legend_properties">legend_properties</link>参照)</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>visible: </term>
+              <listitem>
+                <para>このフィールドは軸の<literal>visible</literal>プロパティの値を有します.
+		この値は<literal>"on" </literal>または<literal>"off"</literal>となります.
+		デフォルトで,軸の visibleは <literal>"on"</literal>で,
+		この場合, 全ての "visible" な子は画面に表示されます.
+		<literal>"off"</literal> の場合, 軸とその全ての子は描画されません.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axes_visible: </term>
+              <listitem>
+                <para><literal>1x3</literal> 文字列ベクトル. このプロパティは
+		各軸が描画されるかどうかを指定します.
+		この値はグローバル設定の場合<literal>"on"</literal> または <literal>"off"</literal>
+		となります.
+		一つの軸のみ変更する場合, 構文は <literal>axes_visible(N)</literal>となります.
+		ただし, <literal>N</literal> は <literal>1,2</literal> または <literal>3</literal>で,
+		それぞれ, <literal> x,y</literal> または <literal>z</literal>軸に対応します.
+		データは必要に応じてスケーリングされ,値が <literal>"on"</literal>の場合,
+		グリッドが描画されます.
+		<literal>gca()</literal>コマンド(<literal>get"current_axes")</literal>のショートカット)
+		または<literal>gcf()</literal>(<literal>get(current_figure)</literal>のショートカット)
+		により簡単な軸エンティティを作成する際,軸の可視性(axes
+            	visiblibilty)は <literal>"off"</literal>に設定されます.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axes_reverse: </term>
+              <listitem>
+                <para>3つの軸(X,Y,Z)に対応する<literal>1x3</literal>文字列ベクトル.
+		各軸について,このプロパティは値の増加方向を指定します.
+		<literal>"off"</literal>の場合,デフォルトの方向が使用されます.
+		<literal>"on"</literal>の場合, 方向は逆になります.
+		一つの文字列のみ(<literal>"on"</literal> または
+            <literal>"off"</literal>) を使用することも可能です.
+		この場合, 3つのデータは同じ値に設定されます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>grid: </term>
+              <listitem>
+                <para>フィールドの値はベクトル<literal>[x-grid,y-grid,z-grid]</literal>です.
+		ただし,<literal>x-grid</literal>はx軸の描画グリッドを制御し,
+		<literal>y-grid,z-grid</literal>はそれぞれy軸,z軸に対応します.
+		デフォルト値は <literal>-1</literal>で,グリッドは描画されません.
+		それ以外の場合, grid の値により指定された色添字により</para>
+              </listitem>
+            </varlistentry>
+			<varlistentry>
+              <term>grid_position: </term>
+              <listitem>
+                <para>この文字列は他のグラフィックエンティティに相対的なグリッドの位置
+		を指定します.その値には 他のグラフィックエンティティの前にグリッドを描画する
+		<literal>"foreground"</literal>, もしくは
+		グリッドの背後に描画する<literal>"background"</literal>のどちらかを指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x_location: </term>
+              <listitem>
+                <para>x軸の位置を指定します.指定可能な値は:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"bottom"</literal>. この場合,x軸は軸の矩形の最下部に描画されます.
+		</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"top"</literal>. この場合,x軸は軸の矩形の
+			最上部に描画されます.
+               </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"middle"</literal>. この場合,x軸は中心部に描画されます.
+                </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. この場合,x軸は原点に描画されます.
+                </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y_location: </term>
+              <listitem>
+                <para>y軸の位置を指定します. 以下の値を指定可能です:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"left"</literal>.この場合,y軸は軸の矩形の左に描画されます.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"right"</literal>. この場合,y軸は軸の矩形の右に描画されます.
+                </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"middle"</literal>. この場合,y軸は中心に描画されます.
+                </para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"origin"</literal>. この場合,y軸は原点に描画されます.
+                </para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>title: </term>
+              <listitem>
+                <para>Axesエンティティに付属するオブジェクトで,Label構造体の
+			グラフィックハンドルを返します
+			(<link linkend="label_properties">label_properties</link>参照).
+		このフィールドはこのラベルのオプションで,タイトルを定義します.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x_label: </term>
+              <listitem>
+                <para>
+		Axesエンティティに付属するオブジェクトで, Label構造体のハンドルを
+		返します(<link linkend="label_properties">label_properties</link>参照).
+		このフィールドはこのラベルのオプションで,x軸のラベルを定義します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y_label: </term>
+              <listitem>
+                 <para>
+		Axesエンティティに付属するオブジェクトで, Label構造体のハンドルを
+		返します(<link linkend="label_properties">label_properties</link>参照).
+		このフィールドはこのラベルのオプションで,y軸のラベルを定義します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>z_label: </term>
+              <listitem>
+                <para>
+		Axesエンティティに付属するオブジェクトで, Label構造体のハンドルを
+		返します(<link linkend="label_properties">label_properties</link>参照).
+		このフィールドはこのラベルのオプションで,z軸のラベルを定義します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>auto_ticks: </term>
+              <listitem>
+                <para>各軸のauto_ticksステータスを指定する
+		<literal>1x3</literal> 文字列ベクトル.
+		このプロパティは,各軸に計算アルゴリズムに基づく目盛が付くか否か
+		(目盛をユーザが指定)を指定します.
+		この値は,グローバルな設定値で, <literal>"on"</literal> または
+            	<literal>"off"</literal>とします.
+		1つの軸にのみ適用する場合の構文は<literal>auto_ticks(N)</literal>で,
+		<literal>N</literal>は<literal>1,2</literal> または <literal>3</literal>
+		とし,それぞれ,<literal>x,y</literal> または <literal>z</literal>軸に
+		対応します.
+		<literal>x_ticks, y_ticks</literal> または<literal>z_ticks</literal>により
+		目盛(テキストまたは文字)を編集すると,対応する軸の
+		<literal>auto_ticks</literal>が自動的に<literal>"off"</literal>に設定
+		されることに注意してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x_ticks.locations: </term>
+              <listitem>
+                <para>x軸の目盛の位置を有する実数ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する文字列ベクトル<literal> x_ticks.labels</literal>
+		を定義する<literal>tlist</literal><literal>x_ticks</literal> 
+		も操作することができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y_ticks.locations: </term>
+              <listitem>
+                <para>y軸の目盛の位置を有する実数ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する文字列ベクトル<literal> y_ticks.labels</literal>
+		を定義する<literal>tlist</literal><literal>y_ticks</literal> 
+		も操作することができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>z_ticks.locations: </term>
+              <listitem>
+                <para>z軸の目盛の位置を有する実数ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する文字列ベクトル<literal>z_ticks.labels</literal>
+		を定義する<literal>tlist</literal><literal>z_ticks</literal> 
+		も操作することができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>x_ticks.labels: </term>
+              <listitem>
+                <para>x軸の目盛のラベルを有する文字列ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する実数ベクトル<literal>x_ticks.locations</literal>
+		を定義する<literal>tlist</literal><literal>x_ticks</literal> 
+		も操作することができます.</para>
+         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeX または MathML式</link>を
+		書くことができます.</para>
+
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>y_ticks.labels: </term>
+             <listitem>
+                <para>y軸の目盛のラベルを有する文字列ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する実数ベクトル<literal>y_ticks.locations</literal>
+		を定義する<literal>tlist</literal><literal>y_ticks</literal> 
+		も操作することができます.</para>
+         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeX または MathML式</link>を
+		書くことができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>z_ticks.labels: </term>
+              <listitem>
+              <para>z軸の目盛のラベルを有する文字列ベクトル.
+		このプロパティは(同じ大きさの)新しい実数ベクトルを指定することにより
+		編集可能です.
+		目盛を多くまたは少なくするには,対応する実数ベクトル<literal>z_ticks.locations</literal>
+		を定義する<literal>tlist</literal><literal>z_ticks</literal> 
+		も操作することができます.</para>
+         <para>Scilab 5.2以降, <link linkend="math_rendering_features_in_graphic">LaTeX または MathML式</link>を
+		書くことができます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>box: </term>
+              <listitem>
+                <para>このプロパティは軸を箱で囲うかどうかを指定します.
+		値には, <literal>"off"</literal>,
+            <literal>"hidden_axes"</literal>, <literal>"back_half"</literal> または
+            <literal>"on".</literal>のどれかを指定します.
+		プロパティが <literal>"off"</literal>の場合,箱は描画されません.
+		プロパティが<literal>"hidden_axes"</literal>の場合,
+		背景枠のみが描画されます.
+		プロパティが<literal>"back_half"</literal>の場合, 
+		X, Y および Z 軸も描画されます.
+		プロパティが<literal>"on"</literal>の場合,箱全体が描画されます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>filled: </term>
+              <listitem>
+                <para>このプロパティは軸の背景が描画されるかどうかを指定します.
+		値には, <literal>"off"</literal> または
+                <literal>"on".</literal>を指定します.
+		このプロパティが <literal>"off"</literal>の場合,
+		<literal>background</literal>プロパティで指定された色により
+		背景が描画されます.
+                </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>sub_ticks: </term>
+              <listitem>
+                <para>このフィールドは主目盛の間に描画される目盛の数を設定します.
+		このフィールドの値はベクトル <literal>[nx,ny]</literal>で,
+		<literal>nx</literal>はx軸の副目盛の数,
+		<literal>ny</literal>はy軸の副目盛の数となります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>font_style: </term>
+              <listitem>
+                <para>目盛ラベルの表示に使用するフォントを指定します.
+		この値はロード済みのフォントの一つを指す正の整数です.
+		この値は最初のフォントを指す 0 と最後のフォントを指す
+		(ロード済みのフォントの数 - 1) の間である必要があります.
+		 より詳細な情報については<link linkend="graphics_fonts">graphics_fonts</link>
+		を参照ください.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>font_size: </term>
+              <listitem>
+                <para>スカラーで,目盛ラベルに使用する文字の大きさを指定します.
+		<literal>fractional_font</literal>プロパティが <literal>"off"</literal>の場合,
+		値の整数部分のみが使用されます.
+		 より詳細な情報については<link linkend="graphics_fonts">graphics_fonts</link>
+		を参照ください.
+		</para>	
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>font_color: </term>
+              <listitem>
+                <para>このプロパティは目盛ラベルの色を定義します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+	        <para>
+		このプロパティは目盛ラベルが分数のフォントの大きさにより表示されるかどうかを指定します.
+		値には<literal>"on"</literal> または <literal>"off"</literal>を指定します.
+		<literal>"on"</literal>の場合,<literal>font_size</literal>の浮動小数点の値が
+		表示に使用され,フォントにアンチエイリアス処理が適用されます.
+		<literal>"off"</literal> の場合整数部のみが使用され,フォントのスムージングは
+		行われません.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>isoview: </term>
+              <listitem>
+                <para>このプロパティは x, y および z軸を等軸スケールにするため
+		(例えば曲線 sin(x) および cos(x) を表示する際に楕円ではなく円となるように)
+		に使用されます.
+		値には<literal>"on"</literal> または <literal>"off"</literal>を指定します.
+		値が <literal>"on"</literal> の場合,対応する図のプロパティ
+		<literal>figure_size</literal>の値に基づき
+		軸の <literal>data_bounds</literal> は自動的に変更されます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>cube_scaling:</term>
+              <listitem>
+                <para>このプロパティは<literal>3d mode</literal>で使用され,
+		x, y および z軸の再スケーリングを行います.
+		<literal>data</literal>を 1x1x1 の立方体に適合させることができます ;
+		目的は, 軸スケールが個々に非常に異なる場合に3次元グラフィックをより
+		よく表示することです.
+		値には  <literal>"on" </literal> または
+            <literal>"off"</literal> (デフォルト値)を指定します. 多くの場合, 
+		Matlabのような3次元表示の生成を容易にします.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>view: </term>
+              <listitem>
+                <para>このフィールドは,グラフィック領域に関係します.
+		<literal>"3d"</literal>を3次元視点に対応する値として指定する
+		ことができます.
+		その他の場合,初期値である2次元プロットを意味する
+		<literal>"2d"</literal> (デフォルト値)とすることができます.
+		このフラグはユーザが入力したプロットにも依存します:
+		例えば, <literal>plot3d </literal> コマンドは
+		<literal>view</literal>フラグを<literal>"2d"</literal>から
+		 <literal>"3d"</literal>に切り替えます.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>rotation_angles: </term>
+              <listitem>
+                <para>このフィールドはベクトル <literal>[alpha,theta]</literal>です. 
+		この2つの値は視点の球座標(単位:度)を指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>log_flags: </term>
+              <listitem>
+                <para> 各軸のスケール(線形または対数)を指定する3文字の文字列.
+		各文字はそれぞれX, YおよびZ軸のスケールを指定します.
+		値には,線形スケールの場合に<literal>'n'</literal>,
+		対数スケールの場合に <literal>'l'</literal>を指定します.
+            </para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>tight_limits: </term>
+              <listitem>
+                <para>このプロパティの値が  <literal>"on"</literal> の場合,
+		軸は厳密に<literal>data_bounds</literal>の最小値と最大値に
+		調整されます.
+		このフィールドの値が <literal>"off"</literal>の場合,
+		目盛ラベルを見栄え良く表示するなどのために境界が拡大される
+		場合があります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>data_bounds: </term>
+              <listitem>
+                <para>このフィールドにはx,yおよびz座標の境界値が含まれます.
+		このフィールドは行列  <literal>[xmin,ymin,zmin;xmax,ymax,zmax]</literal>または
+            <literal>[xmin,ymin;xmax,ymax]</literal>となります.
+		厳密に指定したデータ境界にするためには<literal>tight_limits</literal> を
+            <literal>"on"</literal>に設定する必要があることに注意してください (上記参照).
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>zoom_box: </term>
+              <listitem>
+                <para>このフィールドには座標系が指定された場合の
+		カレントのズームボックスが含まれます.
+		この値は空の行列(ズームなし)または(より小さな軸ボックスを指定する)ベクトル
+		<literal>[xmin,ymin,xmax,ymax,zmin,zmax]</literal>となります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>margins: </term>
+              <listitem>
+                <para>A vector
+            <literal>[margin_left,margin_right,margin_top,margin_bottom]</literal>
+            はこの軸の余白部を指定します.このベクトルは[0 1]の範囲の数値で構成され,
+		デフォルト値は [0.125 0.125 0.125 0.125]です.
+		これらの数値は<literal>axes_bounds</literal>プロパティの対応する値,
+		つまり,
+		<literal>margin_left</literal> および <literal>margin_right</literal>
+		の場合は <literal>width</literal>,
+		<literal>margin_top</literal> および
+            <literal>margin_bottom</literal>の場合は<literal>height</literal>
+		に関する相対比です.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>axes_bounds: </term>
+              <listitem>
+                <para>ベクトル <literal>[x_left,y_up,width,height]</literal> はこの軸で
+		使用される図の部分を指定します.
+		ただし, <literal>x_left</literal>, <literal>y_up</literal>, <literal>width</literal> 
+		および<literal>height</literal>は[0 1]の範囲の数値で,
+		それぞれ左上隅の位置と軸の寸法を指定します.
+		(これらの数値は対応する図<literal>figure_size</literal>プロパティの値
+		に対する比です.)
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>hidden_axis_color: </term>
+              <listitem>
+                <para>このプロパティはhidden軸の色を定義します.
+		カレントのカラーマップに関連する添字を指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>user_data: </term>
+              <listitem>
+                <para>このフィールドは軸データ構造に任意のScilab変数を保存し,
+		再度取得するために使用できます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>高レベル関数のプロパティ</term>
+        <listitem>
+          <para><literal>plot</literal>, <literal>plot2dx</literal>, <literal>grayplot</literal>
+        および <literal>matplot</literal> 関数は,
+	引数<literal>frameflag</literal>により指定されない場合,
+	以降のプロットをマージする方法を決定するために
+	以下のプロパティを使用します.
+	マージの結果は以下の2つのプロパティにより決定されます:</para>
+          <variablelist>
+            <varlistentry>
+              <term>auto_clear: </term>
+              <listitem>
+                <para>このプロパティが<literal>"on"</literal>に等しい場合,
+		高レベルグラフィクをコールする際に
+		カレントの軸は再初期化され,描画前に全ての子が消去されます.
+		この値が<literal>"off"</literal>の場合,
+		描画内容が<literal>"auto_scale"</literal>プロパティに基づき
+		カレントの軸に追加されます.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>auto_scale: </term>
+              <listitem>
+                <para>
+		軸データ境界を更新するためのプロパティ.
+		この値が <literal>"on"</literal>の場合,
+		プロットを新規に行うとカレントの軸プロパティは
+		以前とカレントのプロットに適合するよう調整されます.
+		この値が <literal>"off"</literal>の場合,
+		新規のプロットはカレントの軸データ境界内に描画されます.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>子のデフォルト値: </term>
+        <listitem>
+          <variablelist>
+            <varlistentry>
+              <term>hiddencolor: </term>
+              <listitem>
+                <para>
+		このプロパティは,隠蔽された部分の色を制御します.
+		カレントの色マップへの相対インデックスを値として指定します.
+		その他の場合,値が負の時,隠蔽された部分は面と同じ色となります.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>line_mode: </term>
+              <listitem>
+                <para>このフィールドには,
+		Segs Rectangle Legend Axis Plot3d Fac3d および
+            	Polylineオブジェクトに関する
+		デフォルトの<literal>line_mode</literal>
+		プロパティの値が含まれます.
+		この値には, <literal>"on" </literal>(デフォルト)
+            または <literal>"off"</literal>を指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>line_style: </term>
+              <listitem>
+                <para>このフィールドには,
+		Segs, Arcs, Rectangle および Polylineオブジェクトに関する
+		デフォルトの<literal>line_style</literal>
+		プロパティの値が含まれます.
+            <literal>line_style</literal> は線を描画する際に使用される線の種類を
+		選択します.
+		その値には, [0 8] の範囲の整数を指定します.
+		0 および 1は実線, その他の値は破線(破線,1点鎖線,長い1点鎖線,非常に大きい1点鎖線,
+		非常に大きく長い1点鎖線,点,2点)の選択を意味します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>thickness: </term>
+              <listitem>
+                <para>このフィールドは線の描画を行う全てのオブジェクトの<literal>thickness</literal>
+		プロパティのデフォルト値を含みます.
+		この値は,ピクセル単位の線幅を指定する正の実数です.
+		実際に表示される幅は指定された幅を最も近い整数に丸めることにより定義されます.
+		唯一の例外は,<literal>thickness</literal>の合計値が使用されるベクトルの
+		エキスポートの場合です.
+			</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_mode: </term>
+              <listitem>
+                <para>
+		このフィールドには,Segs Rectangle Legend Axis Plot3d Fac3d および
+            Polyline オブジェクトに関する<literal>mark_mode</literal>プロパティの
+		デフォルト値が含まれます.
+		この値には,<literal>"on" </literal> または
+            <literal>"off"</literal> (デフォルト)を指定します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_style: </term>
+              <listitem>
+                <para>このフィールドには,Segs Rectangle Legend Axis Plot3d Fac3d および
+            Polyline オブジェクトに関する<literal>mark_style</literal>プロパティの
+		デフォルト値が含まれます.
+		<literal>mark_style</literal> は表示される記号の種類を選択します.
+		この値には, 以下を意味する[0 9]の範囲の整数を指定します:
+		ドット, プラス, 十宇, 星型, 塗りつぶされた菱形, 菱形,
+            	上三角, 下三角, 三つ葉および円.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_size_unit: </term>
+              <listitem>
+                <para>このフィールドには,Segs Rectangle Legend Axis Plot3d Fac3d および
+            Polyline に関する<literal>mark_size_unit</literal>プロパティのデフォルト値が
+		含まれます.
+		<literal>mark_size_unit</literal>に<literal>"point"</literal>が
+		指定された場合,<literal>mark_size</literal>の値は
+		直接ポイント単位で指定されます.
+		<literal>mark_size_unit</literal>に<literal>"tabulated"</literal>が
+		指定された場合,<literal>mark_size</literal>は
+		フォントサイズ配列に相対的に設定されます:
+		この場合,値には [0 5]の範囲の整数値を指定し,
+		それぞれ, 8pt, 10pt, 12pt, 14pt, 18pt および
+            	24ptを意味します.
+		<link linkend="plot2d">plot2d</link>およびScilabの組み込み関数は
+		<literal>tabulated</literal>モードがデフォルトであることに注意
+		してください;
+		<link linkend="plot">plot</link>を使用する場合,
+		 <literal>point</literal>モードが自動的に有効になります.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_size: </term>
+              <listitem>
+                <para>
+		このフィールドには,Segs Rectangle Legend Axis Plot3d Fac3d および
+            Polylineオブジェクトに関する<literal>mark_size</literal>プロパティの
+		デフォルト値が含まれます.
+		<literal>mark_size</literal> は表示される記号のフォントの大きさを
+		選択します.
+		この値は [0 5]の範囲の整数である必要があり,それぞれ,
+		8pt, 10pt, 12pt, 14pt, 18pt および 24pt (
+            <link linkend="getmark">getmark</link>参照)を意味します.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_foreground: </term>
+              <listitem>
+                <para>このフィールドには,
+		この軸のもとで作成された全てのオブジェクトに関する<literal>mark_foreground</literal>
+		プロパティのデフォルト値が含まれます.
+		Polyline,
+		rectangle, legend, surface, segment および axisオブジェクトは
+		記号の表面(縁)色を指定する際にこのプロパティを使用します.
+		値には,(カレントのカラーマップに基づく)色のインデックスまたは
+		透明な輪郭を意味する 0 を指定します.
+		デフォルト値は<literal>-1</literal>(デフォルトの黒)で,
+		<literal>color_map</literal>を変更した場合でも,
+		この値<literal>-1</literal>は常にデフォルトの黒色を指し続けることに
+		注意してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>mark_background: </term>
+              <listitem>
+                <para>このフィールドには,
+		この軸のもとで作成された全てのオブジェクトに関する
+		<literal>mark_background</literal>
+		プロパティのデフォルト値が含まれます.
+		Polyline,
+		rectangle, legend, surface, segment および axisオブジェクトは
+		背景(表面)色を指定する際にこのプロパティを使用します.
+		値には,(カレントのカラーマップに基づく)色のインデックスまたは
+		透明な輪郭を意味する 0 を指定します.
+		デフォルト値は<literal>-2</literal>(デフォルトの白)で,
+		<literal>color_map</literal>を変更した場合でも,
+		この値<literal>-2</literal>は常にデフォルトの白色を指し続けることに
+		注意してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>foreground: </term>
+              <listitem>
+                <para>このフィールドには,
+		この軸のもとで作成された全てのオブジェクトに関する
+		<literal>foreground</literal>
+		プロパティのデフォルト値が含まれます.
+		値には,(カレントのカラーマップに基づく)色のインデックスを指定します.
+		デフォルト値は<literal>-1</literal>(デフォルトの黒)で,
+		<literal>color_map</literal>を変更した場合でも,
+		この値<literal>-1</literal>は常にデフォルトの黒色を指し続けることに
+		注意してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>background: </term>
+              <listitem>
+                <para>このフィールドには,
+		この軸のもとで作成された全てのオブジェクトに関する
+		<literal>background</literal>
+		プロパティのデフォルト値が含まれます.
+		値には,(カレントのカラーマップに基づく)色のインデックスを指定します.
+		デフォルト値は<literal>-2</literal>(デフォルトの白)で,
+		<literal>color_map</literal>を変更した場合でも,
+		この値<literal>-2</literal>は常にデフォルトの白色を指し続けることに
+		注意してください.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>arc_drawing_mode: </term>
+              <listitem>
+                <para>
+		このプロパティは,この Axes オブジェクトの元で作成された全ての Arc
+		オブジェクトの<literal>arc_drawing_mode</literal>プロパティの
+		デフォルト値を制御します.
+		値には, <literal>"nurbs"</literal> または <literal>"lines"</literal>
+		のどちらかを指定します.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>clip_state: </term>
+              <listitem>
+                <para>
+		このフィールドには全てのオブジェクトに関する<literal>clip_state</literal>
+		プロパティのデフォルト値が含まれます.以下の値を指定します:</para>
+                <itemizedlist>
+                  <listitem>
+                    <para><literal>"off"</literal> 
+			以降に作成される全てのオブジェクトはクリップされない
+			ことを意味します (デフォルト値).</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"clipgrf"</literal> 
+			以降に作成される全てのオブジェクトはAxesの境界の外側はクリップされる
+			ことを意味します.</para>
+                  </listitem>
+                  <listitem>
+                    <para><literal>"on"</literal> 
+			以降に作成される全てのオブジェクトは
+			プロパティ clip_box で指定した矩形の外側はクリップされることを
+			意味します.</para>
+                  </listitem>
+                </itemizedlist>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>clip_box: </term>
+              <listitem>
+                <para>
+		このフィールドには全てのオブジェクトに関する<literal>clip_box</literal>
+		プロパティのデフォルト値が含まれます.
+		clip_state が <literal>"off"</literal>の場合,
+		この値は空の行列となります.その他の場合,このクリッピングは
+		ベクトル<literal>[x,y,w,h]</literal>(左上の点, 幅, 高さ)により指定されます.
+		</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>デフォルト値に関する注意 :</term>
+              <listitem>
+                <variablelist>
+                  <varlistentry>
+                    <term/>
+                    <listitem>
+                      <para>
+			上記のプロパティとフィールドは軸モデルに保存された
+		デフォルト値を継承します.
+		これらのデフォルト値は参照および変更が可能です.
+		これを行うには,<literal>get("default_axes")</literal>
+		コマンドを使用してください:
+		これにより軸モデルのグラフィックハンドルが返されます.
+		このコマンドによりグラフィックウインドウが作成されるわけではないことに
+		注意してください.
+		次に生成される軸はこのモデルを継承します
+		(以下の"軸モデルの例"を参照ください).</para>
+                    </listitem>
+                  </varlistentry>
+                </variablelist>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+lines(0) // 垂直方向のページングを無効にする
+a=get("current_axes")//新規に作成された軸のハンドルを取得
+a.axes_visible="on"; // 軸を可視にする
+a.font_size=3; //目盛ラベルのフォントサイズを設定
+a.x_location="top"; //x軸の位置を設定
+a.data_bounds=[-100,-2,-1;100,2,1]; //x, y および z 座標の境界値を設定
+a.sub_tics=[5,0];
+a.labels_font_color=5;
+a.grid=[2,2];
+a.box="off";
+   
+// 3D軸の例
+clf(); //グラフィックウインドウを消去
+x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
+a=gca(); // カレントの軸のハンドルを取得
+a.grid=[1 -1 -1]; //x-グリッドを作成
+a.rotation_angles=[70 250]; //指定した角度に軸を回転
+a.grid=[1 6 -1]; //y-グリッドを作成
+a.view="2d"; //2d視点に戻す
+a.box="back_half"; 
+a.labels_font_color=5;
+a.children.children.thickness=4;
+a.children.children.polyline_style=3;
+a.view="3d"; //return te the 3d view
+a.children.children.thickness=1;
+a.children.children.foreground=2;
+a.grid=[1 6 3]; //make z-grid
+a.parent.background=4;
+a.background=7;
+plot2d(cos(x)+1,3*sin(x)-3);
+plot2d(cos(x)+7,3*sin(x)+3);
+a.children(2).children.polyline_style=2;
+a.children(1).children.polyline_style=4;
+a.children(1).children.foreground=5;
+a.children(2).children.foreground=14;
+a.parent.figure_size= [1200,800];
+a.box="on";
+a.labels_font_size=4;
+a.parent.background=8;
+a.parent.figure_size= [400,200];
+a.rotation_angles=[0 260];
+delete(a.children(2)); 
+delete(); // カレントオブジェクトを削除
+   
+a = gca();
+a.labels_font_size=1;
+a.auto_clear= "on";
+x=0:0.1:2.5*%pi;plot2d(10*cos(x),sin(x));
+
+a.data_bounds(:,1) = [1;15] ; // X 軸の正の境界を設定
+a.log_flags = "lnn" ; // X軸を対数スケールに設定
+a.log_flags = "nnn" ; // 線形軸に戻す
+
+a=gca(); 
+a.rotation_angles=[45 45];
+a.data_bounds=[-20,-3,-2;20 3 ,2];
+xrect([-4 0.5 8 1]);
+a.auto_clear = "off" ;
+a.isoview="on"; // 等軸モード
+xrect([-2 0.25 4 0.5]);
+a.children(1).fill_mode="on";
+a.axes_visible="off";
+a.children(1).data=[-2 0.25 -1 4 0.5];
+a.children(2).data=[-4 0.5 1 8 1];
+x=2*%pi*(0:7)/8;
+xv=[.2*sin(x);.9*sin(x)];yv=[.2*cos(x);.9*cos(x)];
+xsegs(10*xv,yv,1:8)
+s=a.children(1);
+s.arrow_size=1;
+s.segs_color=5;
+a.data_bounds //x,y および z 座標の境界値
+a.view="2d";
+a.data_bounds=[-10,-1; 10,1]; // 二次元視点の境界値を設定
+   
+// 軸モデルの例
+da=gda() // 軸もでるのハンドルを取得し,フィールドを参照,編集する
+// デフォルトのタイトル
+da.title.text="My Default@Title"
+da.title.foreground = 12;
+da.title.font_size = 4;
+// x ラベルのデフォルト
+da.x_label.text="x";
+da.x_label.text="x"; // Latex または MathML をここで使用することもできます
+da.x_label.font_style = 8;
+da.x_label.font_size = 2;
+da.x_label.foreground = 5;
+da.x_location = "middle";
+// y ラベルのデフォルト
+da.y_label.text="y";
+da.y_label.font_style = 3;
+da.y_label.font_size = 5;
+da.y_label.foreground = 3;
+da.y_location = "right";
+da.thickness = 2;
+da.foreground = 7;
+// プロット
+x=(0:0.1:2*%pi)';
+plot2d(x,[sin(x),sin(2*x),sin(3*x)],style=[1,2,3],rect=[0,-2,2*%pi,2]);
+sda() // デフォルトの軸モデルに戻す
+
+
+// LaTeX / MathML 目盛の例:
+plot2d();
+a=gca();
+
+mathml="<mrow><mfrac><mrow><mi>d</mi>  <mi>y</mi></mrow><mrow>  <mi>d</mi>  <mi>x</mi></mrow></mfrac> <mo>=</mo>..
+<mfrac><mn>1</mn><msup> <mi>y</mi>  <mn>2</mn></msup> </mfrac> </mrow>";
+// LaTeX 式のみ
+a.x_ticks.labels=["0";"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+
+// 式の混用: MathML と LaTex
+a.y_ticks.labels=["0";"1";"2";"3";"$\cos(a)$";"5";"6";mathml;"8"];
+
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lines">lines</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="gca">gca</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="gcf">gcf</link>
+      </member>
+      <member>
+        <link linkend="sda">sda</link>
+      </member>
+      <member>
+        <link linkend="sdf">sdf</link>
+      </member>
+      <member>
+        <link linkend="scf">scf</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

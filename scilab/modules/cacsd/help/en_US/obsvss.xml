@@ -52,8 +52,8 @@
     <para><literal>tol</literal>  threshold to test controllability (see <literal>contr</literal>); 
     default value = <literal>100*%eps</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="contr">contr</link>

@@ -20,6 +20,9 @@
 //
 
 function XcosMenuPaste()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
 //** 02 May 2007: Update the paste operation with "Replace" (paste over) operation 
 //** 10 Aug. 2007 : updated function 

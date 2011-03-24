@@ -154,17 +154,17 @@ lib /DEF:&quot;$(InputDir)differential_equations_Import.def&quot; /SUBSYSTEM:WIN
 		<File RelativePath=".\rscar1.f"/>
 		<File RelativePath=".\rscma1.f"/>
 		<File RelativePath=".\rscom1.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_bvode.f">
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bvode.f">
 			<FileConfiguration Name="Release|x64">
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
 			<FileConfiguration Name="Release|Win32">
 				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_dasrt.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_dassl.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_feval.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_impl.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_ode.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_odedc.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dasrt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dassl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_feval.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_impl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_odedc.f"/>
 		<File RelativePath=".\solsy.f"/>
 		<File RelativePath=".\stoda.f"/>
 		<File RelativePath=".\stode.f"/>

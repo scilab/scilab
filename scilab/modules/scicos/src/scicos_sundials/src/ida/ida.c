@@ -3668,7 +3668,6 @@ void IDAErrHandler(int error_code, const char *module,
 static int IDARcheck1Ext(IDAMem IDA_mem)
 {
 	int i, retval;
-	booleantype zroot;
 
 	for (i = 0; i < nrtfn; i++) iroots[i] = 0;
 	tlo = tn;
@@ -3678,8 +3677,6 @@ static int IDARcheck1Ext(IDAMem IDA_mem)
 	retval = gfun (tlo, phi[0], phi[1], glo, g_data);
 	nge = 1;
 	if (retval != 0) return(IDA_RTFUNC_FAIL);
-
-	zroot = FALSE;
 
 	for (i = 0; i < nrtfn; i++) {
 		if (ABS(glo[i]) == ZERO) 

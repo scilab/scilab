@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="char" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>char</refname>
+
+    <refpurpose>char 関数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=char( x)
+y=char(st1,st2,st3,....)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>文字列配列のセル, またはアスキーコードの配列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>st1,st2,st3</term>
+
+        <listitem>
+          <para>文字列配列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y:</term>
+
+        <listitem>
+          <para>文字列(列)ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>入力引数が一つの場合 :</literal></para>
+
+    <para>文字列配列<literal>x</literal>のセルを指定すると, この関数は
+	文字列セルの要素を行とする文字列ベクトル <literal>y</literal>
+	を返します.</para>
+
+    <para>
+	アスキーコード<literal>x</literal>の配列を指定すると,
+	この関数はそのアスキーコードに対応する文字列の配列 <literal>y</literal> 
+	を返します.
+	dims (<literal>x</literal>)=[n1,n2,n3,n4,....],
+	は,2番目の dims 以外は入力値と同じ大きさの値,
+	dims(<literal>y</literal>)=[n1,n3,n4,..]
+	を返します.</para>
+
+    <para><literal>入力引数が1より多い場合 :</literal></para>
+
+    <para>文字列配列
+    <literal>st1,st2,st3,...</literal>を指定すると, この関数は,
+	<literal>st1,st2,st3,...</literal>の要素が行となる
+	文字列のベクトルを返します.
+	ベクトル <literal>y </literal> において,
+	文字列の長さ sti は空白で埋めることにより,
+	stiの最長のものと同じ長さとする必要があります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+//Example with a hypermatrix of ascii codes :
+x=hypermat([4,2,3],61:84);
+y=char(x)
+size(x)
+size(y)
+
+//Example with more than one argument :
+st1="zeros";
+st2=["one","two"];
+st3=["three"];
+y=char(st1,st2,st3)
+size(y)
+
+//all strings rows are completed by 'blanks' to have the same length : 6
+length(y)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="asciimat">asciimat</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>F.B</para>
+  </refsection>
+</refentry>

@@ -4,6 +4,7 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -27,22 +28,42 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_arrow_size_factor_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "arrow_size_factor");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status;
+    double arrowSizeFactor;
 
-  if ( sciGetEntityType(pobj) != SCI_POLYLINE )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size_factor");
-    return SET_PROPERTY_ERROR ;
-  }
-  pPOLYLINE_FEATURE(pobj)->arsize_factor = getDoubleFromStack( stackPointer ) ;
-  return SET_PROPERTY_SUCCEED ;
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "arrow_size_factor");
+        return SET_PROPERTY_ERROR;
+    }
+
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_POLYLINE )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size_factor");
+       return SET_PROPERTY_ERROR;
+    }
+#endif
+
+    arrowSizeFactor = getDoubleFromStack(stackPointer);
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_ARROW_SIZE_FACTOR__, &arrowSizeFactor, jni_double, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"arrow_size_factor");
+        return SET_PROPERTY_ERROR;
+    }
 }
 /*------------------------------------------------------------------------*/
 

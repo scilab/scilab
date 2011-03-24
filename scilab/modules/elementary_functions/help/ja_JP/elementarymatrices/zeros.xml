@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="zeros" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>zeros</refname>
+
+    <refpurpose>ゼロからなる行列</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>y=zeros()
+y=zeros(x)
+y=zeros(m1,m2,..)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>m1, m2,..</term>
+
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>ゼロ行列を作成します (<literal>0*ones</literal>と等価).</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>zeros(m1,m2)</term>
+
+        <listitem>
+          <para><literal>(m1,m2)</literal> 行列の場合.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zeros(m1,m2,..,mn)</term>
+
+        <listitem>
+          <para>ゼロで埋めた <literal>(m1,m2,..,mn)</literal> 行列を作成します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zeros(A)</term>
+
+        <listitem>
+          <para><literal>A</literal>の同じ大きさの行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zeros(3)</term>
+
+        <listitem>
+          <para>は<literal>a=3</literal>と指定した<literal>zeros(a)</literal>
+	となり, すなわち, 3x3 行列とはなりません!</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zeros()</term>
+
+        <listitem>
+          <para>単一のゼロを返します</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para><literal>x</literal> が <literal>syslin</literal> リスト
+	(状態空間または伝達関数の線形システム)の場合でも,
+	<literal>zeros(x)</literal> は有効で,ゼロ行列を返します.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+zeros(3)
+zeros(3,3)
+zeros(2,3,2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="eye">eye</link></member>
+
+      <member><link linkend="ones">ones</link></member>
+
+      <member><link linkend="spzeros">spzeros</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

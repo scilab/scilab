@@ -3,11 +3,12 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -17,7 +18,7 @@
 /* desc : function to modify in Scilab the x_ticks field of               */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
+#include <math.h>
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -32,90 +33,138 @@
 #include "freeArrayOfString.h"
 #include "loadTextRenderingAPI.h"
 
+#include "setGraphicObjectProperty.h"
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_x_ticks_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  AssignedList * tlist     = NULL ;
-  sciSubWindow * ppSubWin  = NULL ;
-  int            nbTicsRow = 0    ;
-  int            nbTicsCol = 0    ;
-  char        ** labels    = NULL ; 
+    BOOL autoTicks;
+    BOOL status;
+    AssignedList * tlist     = NULL ;
+    sciSubWindow * ppSubWin  = NULL ;
+    int            nbTicsRow = 0    ;
+    int            nbTicsCol = 0    ;
+    char        ** labels    = NULL ;
 
-  if ( !isParameterTlist( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "x_ticks");
-    return SET_PROPERTY_ERROR ;
-  }
+    double* userGrads = NULL;
+    char** userLabels = NULL;
+    int iLogFlag = 0;
+    int* piLogFlag = &iLogFlag;
 
-  if ( sciGetEntityType(pobj) != SCI_SUBWIN )
-  {
-    Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks") ;
-    return SET_PROPERTY_ERROR ;
-  }
-
-  ppSubWin = pSUBWIN_FEATURE(pobj) ;
-
-  tlist = createTlistForTicks() ;
-
-  if ( tlist == NULL )
-  {
-    return SET_PROPERTY_ERROR ;
-  }
-
-  /* locations */
-  FREE( ppSubWin->axes.u_xgrads ) ;
-  ppSubWin->axes.u_xgrads = NULL ;
-
-  destroyStringArray( ppSubWin->axes.u_xlabels, ppSubWin->axes.u_nxgrads ) ;
-  ppSubWin->axes.u_xlabels = NULL ;
-
-  ppSubWin->axes.u_nxgrads = 0 ;
-
-  ppSubWin->axes.u_xgrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol ) ;
-
-  if ( ppSubWin->axes.u_xgrads == NULL && nbTicsRow == -1 )
-  {
-    Scierror(999, _("%s: No more memory.\n"),"set_x_ticks_property");
-    return SET_PROPERTY_ERROR ;
-  }
-
-  if ( ppSubWin->logflags[0] == 'l' )
-  {
-    int  i ;
-    for ( i = 0 ; i < nbTicsCol * nbTicsRow ; i++ )
+    if ( !isParameterTlist( valueType ) )
     {
-      ppSubWin->axes.u_xgrads[i] = log10( ppSubWin->axes.u_xgrads[i] ) ;
+        Scierror(999, _("Wrong type for '%s' property: Typed list expected.\n"), "x_ticks");
+        return SET_PROPERTY_ERROR ;
     }
-  }
-  else
-  {
-     /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
-    ppSubWin->axes.nbsubtics[0] = ComputeNbSubTics( pobj,ppSubWin->axes.u_nxgrads,'n',NULL,ppSubWin->axes.nbsubtics[0] ) ;
-  }
 
-  /*  labels */
-  // Here we check the size of "locations" instead of "labels", but they have the same size.
-  // We need to check the size to not be 0 because an empty matrix is a matrix of double
-  // and 'getCurrentStringMatrixFromList' expect a matrix of string (see bug 5148).
-  // P.Lando
-  if( nbTicsCol * nbTicsRow )
-  {
-    ppSubWin->axes.u_xlabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
-    /* Check if we should load LaTex / MathML Java libraries */
-    loadTextRenderingAPI(ppSubWin->axes.u_xlabels, nbTicsCol, nbTicsRow);
-  }
-  else
-  {
-    ppSubWin->axes.u_xlabels = NULL;
-  }
+#if 0
+    if ( sciGetEntityType(pobj) != SCI_SUBWIN )
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+        return SET_PROPERTY_ERROR;
+    }
+#endif
+
+    /* To be removed */
+#if 0
+    ppSubWin = pSUBWIN_FEATURE(pobj);
+#endif
+
+    tlist = createTlistForTicks();
+
+    if ( tlist == NULL )
+    {
+        return SET_PROPERTY_ERROR;
+    }
+
+    /* locations */
+    /* To be implemented */
+#if 0
+    ppSubWin->axes.u_nxgrads = 0;
+#endif
+
+    userGrads = createCopyDoubleMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+
+    if ( userGrads == NULL && nbTicsRow == -1 )
+    {
+        Scierror(999, _("%s: No more memory.\n"),"set_x_ticks_property");
+        return SET_PROPERTY_ERROR ;
+    }
+
+    getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_LOG_FLAG__, jni_bool, &piLogFlag);
+
+    if (iLogFlag)
+    {
+        int  i ;
+        for ( i = 0 ; i < nbTicsCol * nbTicsRow ; i++ )
+        {
+            userGrads[i] = log10(userGrads[i]);
+        }
+    }
+    else
+    {
+        int nbSubticks = 0;
+        int *piNbSubTicks = &nbSubticks;
+
+        getGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, jni_int, &piNbSubTicks);
+
+        /* Nb of subtics computation and storage */ /* F.Leray 07.10.04 */
+        nbSubticks = ComputeNbSubTics(pobj, userGrads, 'n', NULL, nbSubticks);
+
+        setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_SUBTICKS__, &nbSubticks, jni_int, 1);
+    }
+
+    /* Automatic ticks must be first deactivated in order to set user ticks */
+    autoTicks = FALSE;
+
+    setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_AUTO_TICKS__, &autoTicks, jni_bool, 1);
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LOCATIONS__, userGrads, jni_double_vector, nbTicsRow*nbTicsCol);
+
+    if (status == FALSE)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"x_ticks");
+        FREE(userGrads);
+        return SET_PROPERTY_ERROR;
+    }
+
+    /*  labels */
+    // Here we check the size of "locations" instead of "labels", but they have the same size.
+    // We need to check the size to not be 0 because an empty matrix is a matrix of double
+    // and 'getCurrentStringMatrixFromList' expect a matrix of string (see bug 5148).
+    // P.Lando
+    if( nbTicsCol * nbTicsRow )
+    {
+        userLabels = getCurrentStringMatrixFromList( tlist, &nbTicsRow, &nbTicsCol );
+        /* Check if we should load LaTex / MathML Java libraries */
+        loadTextRenderingAPI(userLabels, nbTicsCol, nbTicsRow);
+
+        setGraphicObjectProperty(pobj->UID, __GO_X_AXIS_TICKS_LABELS__, userLabels, jni_string_vector, nbTicsRow*nbTicsCol);
+    }
+    else
+    {
+        /* To be implemented */
+#if 0
+        ppSubWin->axes.u_xlabels = NULL;
+#endif
+    }
 
 
-  ppSubWin->axes.u_nxgrads = nbTicsRow * nbTicsCol ;
-  ppSubWin->axes.auto_ticks[0] = FALSE ;
+    /* To be implemented */
+#if 0
+    ppSubWin->axes.u_nxgrads = nbTicsRow * nbTicsCol;
+#endif
 
-  destroyAssignedList( tlist ) ;
+    if (userGrads != NULL)
+    {
+        FREE(userGrads);
+    }
 
-  return SET_PROPERTY_SUCCEED ;
+    destroyAssignedList( tlist );
+
+    return SET_PROPERTY_SUCCEED;
 
 }
 /*------------------------------------------------------------------------*/

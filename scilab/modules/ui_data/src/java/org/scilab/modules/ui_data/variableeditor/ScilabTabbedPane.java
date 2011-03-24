@@ -96,22 +96,30 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      * {@inheritDoc}
      */
     public Component add(String title, Component c) {
-	Component cc = super.add(title, c);
-	setTitleAt(getTabCount() - 1, title);
-	return cc;
+        Component cc = super.add(title, c);
+        setTitleAt(getTabCount() - 1, title);
+        return cc;
+    }
+
+    /**
+     * @param index the index of the tab
+     * @return the title of the tab
+     */
+    public String getScilabTitleAt(int index) {
+        if (index != -1) {
+            CloseTabButton tab = (CloseTabButton) getTabComponentAt(index);
+            if (tab != null) {
+                return tab.getText();
+            }
+        }
+
+        return "";
     }
 
     /**
      * {@inheritDoc}
      */
     public String getTitleAt(int index) {
-        if (index != -1) {
-	    CloseTabButton tab = (CloseTabButton) getTabComponentAt(index);
-	    if (tab != null) {
-		return tab.getText();
-	    }
-	}
-
         return "";
     }
 
@@ -120,11 +128,11 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
      */
     public void setTitleAt(int index, String title) {
         if (index != -1) {
-	    CloseTabButton tab = (CloseTabButton) getTabComponentAt(index);
-	    if (tab != null) {
-		tab.setText(title);
-	    }
-	}
+            CloseTabButton tab = (CloseTabButton) getTabComponentAt(index);
+            if (tab != null) {
+                tab.setText(title);
+            }
+        }
     }
 
     /**
@@ -201,14 +209,14 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                     dtde.rejectDrop();
                 } else {
                     Component c = tabbedPane.getComponentAt(tabbedPane.draggedIndex);
-                    String title = tabbedPane.getTitleAt(tabbedPane.draggedIndex);
+                    String title = tabbedPane.getScilabTitleAt(tabbedPane.draggedIndex);
                     tabbedPane.remove(c);
                     if (index == -1) {
                         index = getTabCount();
                     }
 
                     insertTab(title, null, c, null, index);
-                    
+
                     setSelectedIndex(index);
                     dtde.acceptDrop(DnDConstants.ACTION_MOVE);
                 }
@@ -351,15 +359,15 @@ public class ScilabTabbedPane extends JTabbedPane implements DragGestureListener
                 setFocusable(false);
                 setContentAreaFilled(true);
                 setOpaque(false);
-                setRolloverEnabled(true); 
+                setRolloverEnabled(true);
                 setBorderPainted(false);
                 setPreferredSize(new Dimension(BUTTONSIZE, BUTTONSIZE));
                 addActionListener(new CallBack("") {
                         public void callBack() {
-			    String name = CloseTabButton.this.getText().substring(SwingScilabVariableEditor.PREFIX.length());
+                            String name = CloseTabButton.this.getText().substring(SwingScilabVariableEditor.PREFIX.length());
                             removeTabAt(indexOfTabComponent(CloseTabButton.this));
-			    ScilabVariableEditor.close(name);
-			}
+                            ScilabVariableEditor.close(name);
+                        }
                     });
             }
         }

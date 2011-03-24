@@ -10,13 +10,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-	  xmlns:xlink="http://www.w3.org/1999/xlink" 
-	  xmlns:svg="http://www.w3.org/2000/svg" 
-	  xmlns:ns5="http://www.w3.org/1999/xhtml" 
-	  xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-	  xmlns:db="http://docbook.org/ns/docbook" 
-	  version="5.0-subset Scilab" xml:id="bench_run" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:svg="http://www.w3.org/2000/svg"
+      xmlns:ns5="http://www.w3.org/1999/xhtml"
+      xmlns:mml="http://www.w3.org/1998/Math/MathML"
+      xmlns:db="http://docbook.org/ns/docbook"
+      version="5.0-subset Scilab" xml:id="bench_run" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate: 2009-12-07 $</pubdate>
   </info>
@@ -73,7 +73,7 @@
    The .tst files are searched in directories SCI+"/modules/*/tests/benchmark".
    </para>
    <para>
-   Special tags may be inserted in the .tst file, which help to 
+   Special tags may be inserted in the .tst file, which help to
    control the processing of the corresponding test. These tags
    are expected to be found in Scilab comments.
    </para>
@@ -99,7 +99,7 @@
 <refsection>
   <title>Examples</title>
   <para>Some simple examples of invocation of bench_run</para>
-  <programlisting role="example"><![CDATA[ 
+  <programlisting role="example"><![CDATA[
 // Launch all tests
 bench_run();
 bench_run([]);
@@ -121,7 +121,7 @@ bench_run([],[],'nb_run=2000');
   <para>An example of a benchmark file. This file corresponds to the
     file
     SCI/modules/linear_algebra/tests/benchmarks/bench_chol.tst.</para>
-  <programlisting role="example"><![CDATA[ 
+  <programlisting role="example"><![CDATA[
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
@@ -147,17 +147,17 @@ b = chol(a);
 // <-- BENCH END -->
  ]]></programlisting>
   <para>The result of the test</para>
-  <programlisting role="example"><![CDATA[ 
+  <programlisting role="example"><![CDATA[
 -->bench_run('linear_algebra','bench_chol')
 
-             Boucle For .......................................       0.19 µs [ 1000000 x]
+           For Loop (as reference) ...........................      143.00 ms [ 1000000 x]
 
-   001/001 - [linear_algebra] bench_chol ......................  151576.71 µs [      10 x]
+  001/001 - [linear_algebra] bench_chol ......................      130.60 ms [      10 x]
  ]]></programlisting>
 </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="test_run">test_run</link></member>

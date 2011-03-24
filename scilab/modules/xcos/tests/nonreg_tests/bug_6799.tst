@@ -15,7 +15,7 @@
 // <-- Short Description -->
 //  The TOWS_c.sci define the default setting in the wrong order.
 
-loadScicosLibs;
+loadXcosLibs;
 
 // exec(SCI + "/modules/scicos_blocks/macros/Sinks/TOWS_c.sci");
 

@@ -20,6 +20,9 @@
 //
 
 function XcosMenuSelectLink()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //** This function is called after a single left click 
 
   Select=[]; 

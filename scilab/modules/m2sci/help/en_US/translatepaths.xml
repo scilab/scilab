@@ -51,8 +51,8 @@
     When called without rhs, <literal>translatepaths()</literal> launches a GUI to help to select a file/directory and options.
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfile2sci">mfile2sci</link>

@@ -106,16 +106,18 @@ public abstract class ExportToFile {
 	 * Choose which kind of filetype will be exported 
 	 * @param filetype type of the file
 	 * @param fileName name of the file
+	 * @param jpegCompressionQuality the jpeg compression rate
 	 * @return new ExportBitmap of
 	 */
-	public static ExportToFile createExporter(String fileName, int filetype) {	
+        public static ExportToFile createExporter(String fileName, int filetype, float jpegCompressionQuality) {	
 		/** Select in which type the file will be exported */
 		switch (filetype) {
 		case ExportRenderer.BMP_EXPORT:  
 		case ExportRenderer.GIF_EXPORT:
-		case ExportRenderer.JPG_EXPORT:
 		case ExportRenderer.PNG_EXPORT:
 			return new ExportBitmap(fileName, filetype);
+		case ExportRenderer.JPG_EXPORT:
+		        return new ExportBitmap(fileName, filetype, jpegCompressionQuality);
 		case ExportRenderer.PPM_EXPORT:
 			return new ExportPPM(fileName, filetype);	  
 		default: System.err.println(ExportRenderer.INVALID_FILE);

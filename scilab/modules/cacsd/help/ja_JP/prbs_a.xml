@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="prbs_a">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>prbs_a</refname>
+    <refpurpose> 擬似バイナリ乱数列の生成</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[u]=prbs_a(n,nc,[ids])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	擬似バイナリ乱数列
+    <literal>u=[u0,u1,...,u_(n-1)]</literal>を生成します.
+	u は {-1,1} の範囲の値となり,
+	最大で nc 回その符号を変えます.
+	ids は u が符号を変える日付を修正するために使用されます.
+	ids は<literal>[1:n]</literal>の範囲の値をとる整数ベクトルです.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+u=prbs_a(50,10);
+plot2d2("onn",(1:50)',u',1,"151",' ',[0,-1.5,50,1.5]);
+ ]]></programlisting>
+  </refsection>
+</refentry>

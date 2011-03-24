@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) INRIA
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+-->
+<refentry version="5.0-subset Scilab" xml:id="nyquist" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>nyquist</refname>
+
+    <refpurpose>ナイキスト線図</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出しの手順</title>
+
+    <synopsis>
+      nyquist( sl,[fmin,fmax] [,step] [,comments] )
+      nyquist( sl, frq [,comments] )
+      nyquist(frq,db,phi [,comments])
+      nyquist(frq, repf [,comments])
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>sl</term>
+
+        <listitem>
+          <para> 
+	    連続または離散時間 SIMO 線形システム
+	    ( 参照: <link linkend="syslin">syslin</link>).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fmin,fmax</term>
+
+        <listitem>
+          <para>スカラー (周波数範囲の境界(単位:Hz))</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>step</term>
+
+        <listitem>
+          <para>real (対数単位の離散化増分)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>commments</term>
+
+        <listitem>
+          <para>文字列ベクトル (キャプション).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frq</term>
+
+        <listitem>
+          <para>周波数のベクトルまたは行列 (単位: Hz)
+	    (各行が<literal>sl</literal>の各出力に対応).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>db,phi</term>
+
+        <listitem>
+          <para>ゲイン(単位:dB)および位相(単位:度)の行列
+	    (各行が<literal>sl</literal>の各出力に対応).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>repf</term>
+
+        <listitem>
+          <para>
+	    周波数応答を表す複素行列.
+	    (各行が<literal>sl</literal>の各出力に対応).</para>	    
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>ナイキスト線図は,
+      <literal>sl</literal>の周波数応答の虚部と実部の関係をプロットする.</para>
+
+    <para>連続時間システムの場合, <literal>sl(2*%i*%pi*w)</literal> が
+      プロットされる.
+      離散時間システムまたは離散化されたシステムの場合,
+      <literal>sl(exp(2*%i*%pi*w*fd)</literal>が使用される.
+       (離散時間システムの場合は <literal>fd=1</literal>,
+       離散化されたシステムの場合は <literal>fd=sl('dt')</literal>)</para>
+
+    <para><literal>sl</literal> は
+      連続時間または離散時間 SIMOシステム (<literal>syslin</literal>参照)と
+      することができる.
+      多出力系の場合,各出力は異なる記号でプロットされる.</para>
+
+    <para>周波数は範囲の境界 <literal>fmin,fmax</literal> (単位: Hz)
+     または行ベクトル (多出力系の場合は行列) <literal>frq</literal>
+      で指定する.</para>
+
+    <para><literal>step</literal> は (対数表現の) 離散刻みである.
+    (デフォルト値の選択については <literal>calfrq</literal> を参照).</para>
+
+    <para><literal>comments</literal> は(キャプション)文字列のベクトルである.</para>
+
+    <para><literal>db,phi</literal> はゲイン(単位:dB)および位相(単位:度)の
+      行列である (各行が各応答に対応する).</para>
+
+    <para><literal>repf</literal> は複素行列である. 
+      各行が各応答に対応する.</para>
+
+    <para><literal>fmin</literal> および<literal>fmax</literal> のデフォルト値は,
+    <literal>sl</literal> が連続時間系の場合に
+    <literal>1.d-3</literal>,<literal>1.d+3</literal>,
+    <literal>sl</literal> が離散時間系の場合に<literal>1.d-3</literal>,
+    <literal>0.5</literal>/sl.dt (ナイキスト周波数)
+    となる.</para>
+
+    <para>周波数の自動離散化は<link linkend="calfrq">calfrq</link>
+      により行われる.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+clf();
+s=poly(0,'s');
+h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+comm='(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)';
+nyquist(h,0.01,100,comm);
+h1=h*syslin('c',(s^2+2*0.1*15.1*s+228.01)/(s^2+2*0.9*15*s+225))
+clf();
+nyquist([h1;h],0.01,100,['h1';'h'])
+clf();nyquist([h1;h])
+    ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member>
+        <link linkend="syslin">syslin</link>
+      </member>
+
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="black">black</link></member>
+
+      <member><link linkend="calfrq">calfrq</link></member>
+
+      <member><link linkend="freq">freq</link></member>
+
+      <member><link linkend="repfreq">repfreq</link></member>
+
+      <member><link linkend="phasemag">phasemag</link></member>
+      <member>
+        <link linkend="datatips">datatips</link>
+      </member>
+
+    </simplelist>
+  </refsection>
+</refentry>

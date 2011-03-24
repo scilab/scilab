@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tokenpos">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tokenpos</refname>
+    <refpurpose>文字列の中のトークンの位置を返す.  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>kdf=tokenpos(str [,delimiter])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>文字列. トークンを探す文字列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>delimiter</term>
+        <listitem>
+          <para>(オプション) 文字列または文字列のベクトル. トークンデリミタ.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>kdf</term>
+        <listitem>
+          <para>2列の行列で, 最初の列はトークン開始位置のインデックス,
+		2列目はトークンの最後の文字のインデックスを出力します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>kdf=tokenpos(str [,delimiter]) </literal> は文字列
+	<literal>str</literal>に含まれるトークンを探します.
+	<literal>delimiter</literal> のデフォルト値は [" ",&lt;Tab&gt;]です.
+	ただし, &lt;Tab&gt; は <literal>ascii(9)</literal>を意味します. 
+	この関数は各トークンが見つかった最初および最後の文字のインデックスを返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+str='This is a character string';
+kdf=tokenpos(str)
+first=part(str,kdf(1,1):kdf(1,2))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="strindex">strindex</link>
+      </member>
+      <member>
+        <link linkend="tokens">tokens</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

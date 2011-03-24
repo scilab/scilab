@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="DesignEllipticFilter"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xi="http://www.w3.org/2001/XInclude"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:html="http://www.w3.org/1999/xhtml"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>How to design an elliptic filter</refname>
+
+    <refpurpose>楕円フィルタの設計法 (アナログおよびデジタル)</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	このヘルプの目的は,アナログおよびデジタル楕円フィルタを簡単に設計することです.</para>
+  </refsection>
+
+  <refsection>
+    <title>アナログ楕円フィルタを設計する</title>
+
+    <para>
+	楕円ローパスフィルタを設計する複数の手法があります.
+	<link linkend="analpf">analpf</link> または <link
+    linkend="zpell">zpell</link>を使用することができます.
+	フィルタの極およびゼロを得る際にzpellを使用します.
+	これらの極及びゼロを取得した後,この形式を<link
+    linkend="syslin">syslin</link> の形式に変換する必要があります.
+	</para>
+
+    <para>次に,フィルタはボード線図に表すことができます.</para>
+
+    <programlisting role = ""><![CDATA[  
+// analog elliptic (Bessel), order 2, cutoff 1 Hz
+Epsilon = 3;  // 通過域のフィルタのリップル (0<epsilon<1)
+A       = 60; // 阻止域のフィルタの減衰 (A<1)
+OmegaC  = 10; // 通過域カットオフ周波数 (Hz)
+OmegaR  = 50; // 阻止域カットオフ周波数 (Hz)
+// フィルタを生成
+[_zeros,pols,gain] = zpell(3,60,10,50);
+
+// フィルタの等価な線形システムを生成
+num   = gain * real(poly(_zeros,'s'));
+den   = real(poly(pols,'s'));
+elatf = syslin('c',num,den);
+
+// 得られたフィルタをプロット
+bode(elatf,0.01,100);
+title('Analog Elliptic filter');
+ ]]></programlisting>
+
+    <para>ボード線図はアナログフィルタでのみ使用できます.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center"
+                   fileref="../../images/analog_elliptic_filter.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>ハイパス,バンドパスまたはバンドストップフィルタを設計したい場合,
+	ローパスフィルタをまず設計した後,このローパスフィルタを
+	<link linkend="trans">trans</link>関数により変換します.</para>
+  </refsection>
+
+  <refsection>
+    <title>デジタル楕円フィルタを設計</title>
+
+    <para>次に,デジタル系ローパス楕円フィルタを作成する方法に着目します.</para>
+
+    <para>以下の2種類のデジタルフィルタを作成することができます:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>IIR (Infinite Impulse Response).</para>
+
+        <para>このようなフィルタを作成する際,以下の関数を使用できます:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><link linkend="iir">iir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="eqiir">eqiir</link></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+
+      <listitem>
+        <para>FIR (Finite Impulse Response).</para>
+
+        <para>このようなフィルタを作成する際,以下の関数を使用できます:</para>
+
+        <itemizedlist>
+          <listitem>
+            <para><link linkend="eqfir">eqfir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="ffilt">ffilt</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="wfir">wfir</link></para>
+          </listitem>
+
+          <listitem>
+            <para><link linkend="fsfirlin">fsfirlin</link></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+
+    <para>以下のデモでは,<link
+    linkend="iir">iir</link> 関数を使用します.</para>
+
+    <programlisting role="example"><![CDATA[ 
+Order   = 2; // フィルタの次数
+Fs      = 1000; // サンプル周期
+Fcutoff = 40;   // カットオフ周波数
+
+// ローパス楕円フィルタを設計
+hz = iir(Order,'lp','ellip',[Fcutoff/Fs/2 0],[0.1 0.1]);
+
+// フィルタの周波数応用を計算
+[frq,repf]=repfreq(hz,0:0.001:0.5);
+[db_repf, phi_repf] = dbphi(repf);
+
+// デジタルフィルタのボード線図に類似の図をプロット
+subplot(2,1,1);
+plot2d(Fs*frq,db_repf);
+xtitle('Obtained Frequency Response (Magnitude)');
+subplot(2,1,2);
+plot2d(Fs*frq,phi_repf);
+xtitle('Obtained Frequency Response (Phase in degree)');
+ ]]></programlisting>
+
+    <para>以下にデジタル楕円フィルタの表現を示します.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center"
+                   fileref="../../images/digital_elliptic_filter.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>
+	フィルタを位相および振幅で表すには,
+	まず<link linkend="dbphi">dbphi</link>関数により離散インパルス応答を
+	振幅および位相に変換する必要があります.
+	この変換は,正規化された周波数の集合を用いて行われます.</para>
+  </refsection>
+
+  <refsection>
+    <title>デジタルフィルタにより信号をフィルタ処理する</title>
+
+    <para>
+	フィルタの設計は最初の一歩です.設計が完了した後,このフィルタは
+	信号を変換する際に使用されます.
+	例えば何らかのノイズを取り除くために使用されます.</para>
+
+    <para>以下の例では、ガウスノイズをフィルタ処理します.</para>
+
+    <programlisting role = ""><![CDATA[ 
+rand('normal');
+Input = rand(1,1000); // Produce a random gaussian noise
+t     = 1:1000;
+
+sl= tf2ss(hz); // From transfert function to syslin representation
+y = flts(Input,sl); // Filter the signal
+
+subplot(2,1,1);
+plot(t,Input);
+xtitle('The gaussian noise','t','y');
+subplot(2,1,2);
+plot(t,y);
+xtitle('The filtered gaussian noise','t','y');
+ ]]></programlisting>
+
+    <para>以下にフィルタ処理の前後の信号をプロットします.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/digital_filtered_noise.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>
+	結果を見てわかるように,ノイズの高周波成分は取り除かれ,
+	低周波成分のみが残っています.
+	この信号はまだノイジーですが,主に低周波域が含まれています.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>アナログフィルタにより信号をフィルタ処理</title>
+
+    <para>アナログフィルタにより信号をフィルタ処理するには,以下の2種類の方法があります:</para>
+
+    <itemizedlist>
+      <listitem>
+        <para>アナログフィルタを<link
+        linkend="dscr">dscr</link>関数により離散系に変換する</para>
+      </listitem>
+
+      <listitem>
+        <para>信号をフィルタ処理するために<link linkend="csim">csim</link>関数を適用する</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>まず,<link linkend="dscr">dscr</link> + <link
+    linkend="flts">flts</link>関数を用います.</para>
+
+    <programlisting role = ""><![CDATA[ 
+rand('normal');
+Input = rand(1,1000); // ランダムなガウスノイズを生成
+n     = 1:1000; // 標本インデックス
+
+eldtf = dscr(elatf,1/100); //線形フィルタの離散化
+y = flts(Input,eldtf); // 信号をフィルタ処理
+
+subplot(2,1,1);
+plot(n,Input);
+xtitle('The gaussian noise','n','y');
+subplot(2,1,2);
+plot(n,y);
+xtitle('The filtered gaussian noise','n','y');
+ ]]></programlisting>
+
+    <para>ここで, <link linkend="dscr">dscr</link> + <link
+    linkend="flts">flts</link> の方法によりフィルタ処理する前後の信号を以下にプロットします.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/analog_filtered_noise.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para>次に,  <link linkend="csim">csim</link>関数を使用します.</para>
+
+    <programlisting role = ""><![CDATA[ 
+rand('normal');
+Input = rand(1,1000); // Pランダムなガウスノイズを生成
+t     = 1:1000;
+t     = t*0.01; // 標本インデックスを時間刻みに変換
+
+y = csim(Input,t,elatf); // 信号をフィルタ処理
+
+subplot(2,1,1);
+plot(t,Input);
+xtitle('The gaussian noise','t','y');
+subplot(2,1,2);
+plot(t,y);
+xtitle('The filtered gaussian noise','t','y');
+ ]]></programlisting>
+
+    <para>以下に
+    <link linkend="csim">csim</link>の方法によりフィルタ処理する前後の信号を以下にプロットします.</para>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../images/analog_filtered_noise_csim.png" />
+      </imageobject>
+    </mediaobject>
+
+    <para><link linkend="dscr">dscr</link> +
+    <link linkend="flts">flts</link> による方法を <link
+    linkend="csim">csim</link> による方法の主な違いを以下に示します : <link linkend="dscr">dscr</link>
+    + <link linkend="flts">flts</link> は標本を使用しますが,<link
+    linkend="csim">csim</link> 関数は時間刻みを使用します.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="bode">bode</link></member>
+
+      <member><link linkend="iir">iir</link></member>
+
+      <member><link linkend="poly">poly</link></member>
+
+      <member><link linkend="syslin">syslin</link></member>
+
+      <member><link linkend="zpell">zpell</link></member>
+
+      <member><link linkend="flts">flts</link></member>
+
+      <member><link linkend="tf2ss">tf2ss</link></member>
+
+      <member><link linkend="dscr">dscr</link></member>
+
+      <member><link linkend="csim">csim</link></member>
+
+      <member><link linkend="trans">trans</link></member>
+
+      <member><link linkend="analpf">analpf</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

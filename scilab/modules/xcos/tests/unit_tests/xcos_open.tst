@@ -25,7 +25,7 @@ global callWithShowed;
 callWithUID = "";
 callWithShowed = %f;
 
-loadScicosLibs();
+loadXcosLibs();
 scs_m = scicos_diagram();
 
 scs_m.objs(1) = SUM_f("define");

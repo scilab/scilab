@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA/ENPC
-// Copyright (C) DIGITEO - 2009-2010 - Allan CORNET
+// Copyright (C) DIGITEO - 2009-2011 - Allan CORNET
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -28,8 +28,8 @@ function libn = ilib_for_link(names, ..
   end
 
   if rhs > 4 then
-    if (makename <> [] & makename <> '') then
-      warning(msprintf(_("%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"), 'ilib_for_link', 5));
+    if (makename <> [] & makename <> "") then
+      warning(msprintf(_("%s: Wrong value for input argument #%d: """" or ""[]"" expected.\n"), "ilib_for_link", 5));
     end
   end
   if rhs <= 5 then loadername = "loader.sce";end
@@ -38,17 +38,25 @@ function libn = ilib_for_link(names, ..
   if rhs <= 8 then cflags  = ""; end
   if rhs <= 9 then fflags  = ""; end
   if rhs <= 10 then cc  = ""; end
+  
+  if isempty(files) | ~and(isfile(files)) then
+     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_for_link", 2));
+  end  
 
-  if getos() == 'Windows' then
-    if ~isdef('makename') | (makename == []) | (makename == '') then
-      // Load dynamic_link Internal lib if it's not already loaded
+  if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
+    error(999, msprintf(_("%s: A managed file extension for input argument #%d expected.\n"), "ilib_for_link", 2));
+  end
+
+  if getos() == "Windows" then
+    if ~isdef("makename") | (makename == []) | (makename == "") then
+      // Load dynamic_link Internal lib if it"s not already loaded
       if ~ exists("dynamic_linkwindowslib") then
         load("SCI/modules/dynamic_link/macros/windows/lib");
       end
       makename = dlwGetDefltMakefileName();
     end
   else
-    makename = 'Makefile';
+    makename = "Makefile";
   end
 
   // generate a loader file
@@ -59,7 +67,7 @@ function libn = ilib_for_link(names, ..
   tables = [];
 
   // we manage .f90 as .f on windows
-  if getos() == 'Windows' then
+  if getos() == "Windows" then
    if findmsifortcompiler() <> "unknown" then
      if flag == "f90" then
        flag = "f";
@@ -74,9 +82,9 @@ function libn = ilib_for_link(names, ..
   ilib_gen_loader(names, tables, libs, libname, flag, loadername);
 
   // bug 4515 - unlink previous function with same name
-  n = size(names,'*');
+  n = size(names,"*");
   for i = 1:n
-    execstr("[bOK, ilib] = c_link(''" + names(i) + "'');if bOK then ulink(ilib), end");
+    execstr("[bOK, ilib] = c_link(""" + names(i) + """);if bOK then ulink(ilib), end");
   end
 
   // generate a Makefile
@@ -104,7 +112,7 @@ function libn = ilib_for_link(names, ..
     libname = names(1);
   end
 
-  libn = ilib_compile('lib' + libname, makename, files);
+  libn = ilib_compile("lib" + libname, makename, files);
 
   if ( ilib_verbose() <> 0 ) then
     mprintf(_("   Generate a cleaner file\n"));
@@ -126,7 +134,7 @@ function generateMakefile(names, ..
                             flag)
 
 
-  if getos() <> 'Windows' then
+  if getos() <> "Windows" then
     Makename = makename;
     ilib_gen_Make_unix(names, ..
                      files, ..
@@ -141,8 +149,8 @@ function generateMakefile(names, ..
       load("SCI/modules/dynamic_link/macros/windows/lib");
     end
 
-    if strncpy(names,3) <> 'lib' then
-      names = 'lib' + names;
+    if strncpy(names,3) <> "lib" then
+      names = "lib" + names;
     end
 
     names = names(1);

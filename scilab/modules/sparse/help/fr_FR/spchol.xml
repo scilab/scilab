@@ -28,7 +28,7 @@
       <varlistentry>
         <term>X  </term>
         <listitem>
-          <para>matrice creuse réelle ou complexe
+          <para>matrice creuse réelle symétrique et définie positive.
 </para>
         </listitem>
       </varlistentry>
@@ -72,8 +72,8 @@ X=sparse(X);[R,P] = spchol(X);
 max(P*R*R'*P'-X)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

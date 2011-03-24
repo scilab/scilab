@@ -288,13 +288,15 @@ public final class Xcos {
 
 			if (filename != null) {
 				// wait the end of the load before displaying the tab.
-				diag.openDiagramFromFile(filename);
+				diag = diag.openDiagramFromFile(filename);
 			} else {
 				// empty tab, display it
 				tab.setVisible(true);
 			}
-
-			diagrams.add(diag);
+			
+			if (diag != null) {
+				diagrams.add(diag);
+			}
 		} else {
 
 			/*
@@ -359,7 +361,7 @@ public final class Xcos {
 			return;
 		}
 		
-		final Xcos instance = getInstance();
+		final Xcos instance = sharedInstance;
 		final List<XcosDiagram> diagrams = instance.diagrams;
 
 		/*
@@ -378,6 +380,13 @@ public final class Xcos {
 			instance.palette.getView().close();
 			instance.palette.setView(null);
 		}
+		
+		/* terminate any remaining simulation */
+		InterpreterManagement.requestScilabExec("haltscicos");
+
+		/* Saving modified data */
+		instance.palette.saveConfig();
+		instance.configuration.saveConfig();
 	}
 
 	/**
@@ -411,7 +420,7 @@ public final class Xcos {
 		final Xcos instance = getInstance();
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 
 		SwingUtilities.invokeLater(new Runnable() {
 			@Override
@@ -432,17 +441,31 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos(final String fileName) {
+		final Xcos instance = getInstance();
 		final File filename = new File(fileName);
 		
 		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadScicosLibs();");
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 		
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				getInstance().open(filename);
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					instance.open(filename);
+				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
 			}
-		});
+			
+			throw new RuntimeException(firstMessage, e);
+		}
 	}
 
 	/**
@@ -457,10 +480,6 @@ public final class Xcos {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					// Saving modified data
-					getInstance().palette.saveConfig();
-					getInstance().configuration.saveConfig();
-					
 					closeSession();
 					clearInstance();
 				}
@@ -659,5 +678,20 @@ public final class Xcos {
 			
 			throw new RuntimeException(firstMessage, e);
 		}
+	}
+	
+	/**
+	 * Look for the parent diagram of the cell in the diagram hierarchy.
+	 * @param cell the cell to search for
+	 * @return the associated diagram
+	 */
+	public static XcosDiagram findParent(Object cell) {
+		final Xcos instance = getInstance();
+		for (XcosDiagram diag : instance.getDiagrams()) {
+			if (diag.getModel().contains(cell)) {
+				return diag;
+			}
+		}
+		return null;
 	}
 }

@@ -3,6 +3,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,15 +26,38 @@
 #include "Scierror.h"
 #include "localization.h"
 
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+
 /*------------------------------------------------------------------------*/
 int set_hidden_color_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
-  if ( !isParameterDoubleMatrix( valueType ) )
-  {
-    Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "hidden_color");
-    return SET_PROPERTY_ERROR ;
-  }
+    BOOL status;
+    int hiddenColor;
 
-  return sciSetHiddenColor( pobj, (int) getDoubleFromStack( stackPointer ) ) ;
+    if ( !isParameterDoubleMatrix( valueType ) )
+    {
+        Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "hidden_color");
+        return SET_PROPERTY_ERROR;
+    }
+
+    hiddenColor = (int) getDoubleFromStack(stackPointer);
+
+    status = setGraphicObjectProperty(pobj->UID, __GO_HIDDEN_COLOR__, &hiddenColor, jni_int, 1);
+
+    if (status == TRUE)
+    {
+        return SET_PROPERTY_SUCCEED;
+    }
+    else
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"),"hidden_color");
+        return SET_PROPERTY_ERROR;
+    }
+
+/* To be implemented using the MVC framework since it involves color range checks. */
+#if 0
+    return sciSetHiddenColor( pobj, (int) getDoubleFromStack( stackPointer ) );
+#endif
 }
 /*------------------------------------------------------------------------*/

@@ -76,3 +76,4 @@ setFigureEventHandler
 setFigureEventHandlerEnabled
 deleteMenuCallBack
 destroyUiobjectTag
+createJoGLView

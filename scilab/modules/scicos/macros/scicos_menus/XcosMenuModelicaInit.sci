@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function XcosMenuModelicaInit()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
   Cmenu=[]
 
@@ -73,6 +76,9 @@ function XcosMenuModelicaInit()
 endfunction
 
 function  Doubleclick(name,last_name)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  
   %cpr=tlist(['cpr','corinv'],corinv)
 

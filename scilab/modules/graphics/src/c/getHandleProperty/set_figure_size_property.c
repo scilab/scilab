@@ -4,7 +4,8 @@
  * Copyright (C) 2006 - INRIA - Allan Cornet
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - DIGITEO - Pierre Lando
- * 
+ * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -24,20 +25,26 @@
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "GetProperty.h"
 #include "SetPropertyStatus.h"
 #include "GraphicSynchronizerInterface.h"
+
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
 int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int valueType, int nbRow, int nbCol )
 {
   double * values = getDoubleMatrixFromStack( stackPointer ) ;
-  int status;
+  BOOL status;
+  int intValues[2];
+
+#if 0
   if ( sciGetEntityType(pobj) != SCI_FIGURE )
   {
     Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
     return SET_PROPERTY_ERROR ;
   }
+#endif
 
   if ( !isParameterDoubleMatrix( valueType ) )
   {
@@ -51,6 +58,23 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
     return SET_PROPERTY_ERROR ;
   }
 
+  intValues[0] = (int)values[0];
+  intValues[1] = (int)values[1];
+
+  status = setGraphicObjectProperty(pobj->UID, __GO_SIZE__, intValues, jni_int_vector, 2);
+
+  if (status == TRUE)
+  {
+    return SET_PROPERTY_SUCCEED;
+  }
+  else
+  {
+    Scierror(999, _("'%s' property does not exist for this handle.\n"),"figure_size");
+    return SET_PROPERTY_ERROR;
+  }
+
+/* deactivated for now since it involves drawing operations, to be implemented */
+#if 0
   /* disable protection since this function will call Java */
   disableFigureSynchronization(pobj);
   status = sciSetWindowDim( pobj, (int)values[0], (int)values[1] ) ;
@@ -58,5 +82,7 @@ int set_figure_size_property( sciPointObj * pobj, size_t stackPointer, int value
 
   /* return set property unchanged since repaint is not really needed */
 	return sciSetNoRedrawStatus((SetPropertyStatus)status);
+#endif
+
 }
 /*------------------------------------------------------------------------*/

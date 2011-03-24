@@ -28,9 +28,7 @@ Source: modules\{#CONSOLE}\etc\configuration.xml; DestDir: {app}\modules\{#CONSO
 ;
 Source: bin\no{#CONSOLE}.dll; DestDir: {app}\bin; DestName: sci{#CONSOLE}.dll; Components: not ({#COMPN_JVM_MODULE})
 ;
-Source: modules\{#CONSOLE}\changelog.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\license.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#CONSOLE}\readme.txt; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#CONSOLE}\version.xml; DestDir: {app}\modules\{#CONSOLE}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#CONSOLE}\sci_gateway\{#CONSOLE}_gateway.xml; DestDir: {app}\modules\{#CONSOLE}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

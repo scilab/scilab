@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="graphics_entities">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graphics_entities</refname>
+    <refpurpose>グラフィックスエンティティデータ構造体の説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para> Scilabでは,
+	グラフィックウインドウおよびそのウインドウに描画されたもの
+	は階層的なエンティティにより表されます.
+	最上位の階層は Figure (図)です.
+	各 Figure は1個以上のAxes型の子を定義します.
+	各 Axes エンティティは
+	Polylines, Rectangles, Arcs, Segs,...のような
+	一連の葉(leaf)エンティティを有します.
+	エンティティの再帰的な集合のCompound型を有することも可能です.
+	グラフィックモードの主要な関心事は,プロパティの変更をより簡単に
+	することです.このグラフィックモードは,
+	データ,座標やスケーリング,色や外観のようなオブジェクトのプロパティを
+	最初のグラフィックコマンドを再度実行することなく制御するために
+	複数の高レベルグラフ作成ルーチン
+	を提供します (<link linkend="set">set</link>, <link linkend="get">get</link>参照)
+	</para>
+    <para>グラフィックエンティティは<literal>handle</literal>型のScilab変数に
+	対応します.
+	このハンドルは,
+	作成されたグラフィックエンティティの各インスタンスを示すユニークなIDです.
+	このハンドルを用いて, "set" および "get"ルーチンによりエンティティの
+	プロパティにアクセスすることができるようになります.
+	ハンドルはグラフィックオブジェクトを操作したり,移動したり,
+	コピーまたは削除する際にも使用されます.</para>
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Figure: </term>
+        <listitem>
+          <para>
+		figureエンティティは,グラフィックエンティティ階層の最上位です.
+	このエンティティは図(figure)本体のパラメータを定義し,
+	同時に子を作成する際のデフォルト値も定義します.
+	figureの子はAxesエンティティです.</para>
+          <para>カレントのfigure(描画指示が送信されるfigure)のハンドル
+	は,<literal>get("current_figure")</literal>により取得でき,
+	<literal>set("current_figure",h)</literal>により設定できます.
+	ただし, <literal>h</literal> は figureのハンドルまたは
+	<literal>figure_id</literal> のどちらかです.
+	後者について,その図がまだ作成されていない場合には,作成されます.</para>
+          <para>詳細は<link linkend="figure_properties">figure_properties</link> 
+	を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Axes: </term>
+        <listitem>
+          <para>
+	Axesエンティティはグラフィックエンティティ階層の第二レベルです.
+	このエンティティは座標系の変化に関するパラメータおよび
+	軸に描画されるものを定義し,
+	同時に,作成される子のデフォルトのパラメータを定義します.
+	詳細は,<link linkend="axes_properties">axes_properties</link> for
+        details. The handle on the current Axes may be got using
+        <literal>get("current_axes")</literal>を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Compound: </term>
+        <listitem>
+          <para>Compound エンティティは単なる子のベクトルで,
+	プロパティを1つだけ(visibilityプロパティ)有しています.
+	これは,一連のエンティティを集約するためのグルーとして
+	使用されます.</para>
+          <para>
+	<link linkend="glue">glue</link>, <link linkend="unglue">unglue</link>および
+        <link linkend="Compound_properties">Compound_properties</link> 関数を
+	参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Axis: </term>
+        <listitem>
+          <para>Axisエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは軸の目盛および外観に関するパラメータを定義します.</para>
+          <para>詳細は<link linkend="axis_properties">axis_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Polyline: </term>
+        <listitem>
+          <para>ポリラインエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは,2次元および3次元ポリラインおよび
+	ポリラインの拡張描画プロパティを定義します.</para>
+          <para>詳細は <link linkend="polyline_properties">polyline_properties</link> を
+	参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Arc: </term>
+        <listitem>
+          <para>Arcエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは楕円および楕円の一部を定義します.</para>
+          <para>詳細は<link linkend="arc_properties">arc_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Rectangle: </term>
+        <listitem>
+          <para>Rectangleエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは矩形および塗りつぶされた矩形のパラメータを
+	定義します.</para>
+          <para>詳細は<link linkend="rectangle_properties">rectangle_properties</link> 
+	を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Surface: </term>
+        <listitem>
+          <para>Surfaceエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティはサブタイプ <literal>Fac3d</literal> または
+	 <literal>Plot3d</literal>を有します. このエンティティは
+	3次元プロットのパラメータを定義します.</para>
+          <para>詳細は<link linkend="surface_properties">surface_properties</link> 
+	を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Fec: </term>
+        <listitem>
+          <para>Fec エンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは2次元有限要素プロットを表します.</para>
+          <para>詳細は <link linkend="fec_properties">fec_properties</link> 
+	を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Grayplot: </term>
+        <listitem>
+          <para>Grayplot eエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは色および画像による曲面の二次元プロット表します.</para>
+          <para>詳細は <link linkend="grayplot_properties">grayplot_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Matplot: </term>
+        <listitem>
+          <para>Matplot エンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは整数行列による二次元プロット表します.</para>
+          <para>詳細は <link linkend="Matplot_properties">Matplot_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Segs: </term>
+        <listitem>
+          <para>Segs エンティティはグラフィックエンティティ階層の葉です. 
+	このエンティティは,一連の色付の線分または色付の矢印のパラメータを定義します.</para>
+          <para>詳細は <link linkend="segs_properties">segs_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Champ: </term>
+        <listitem>
+          <para>Champ エンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは2次元ベクトルフィールドに関するパラメータを定義します.</para>
+          <para>詳細は <link linkend="champ_properties">champ_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Text: </term>
+        <listitem>
+          <para>Text エンティティはグラフィックエンティティ階層の葉です. 
+	このエンティティは文字列の描画に関するパラメータを定義します.</para>
+          <para>詳細は <link linkend="text_properties">text_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Label: </term>
+        <listitem>
+          <para>Labelエンティティは<literal>Axes</literal>グラフィックエンティティの
+	子です.このエンティティはグラフィックウィンドウに描画される
+	 x, y, z 軸のラベルとタイトルを定義します.</para>
+          <para>詳細は <link linkend="label_properties">label_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Legend: </term>
+        <listitem>
+          <para>Legend エンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは,<literal>plot2dx</literal>グラフに描画される
+	凡例に関するパラメータを定義します.
+	このエンティティはまだ開発中です.</para>
+          <para>詳細は <link linkend="legend_properties">legend_properties</link> を参照ください.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//この例を行単位で実行してください
+
+scf() //エンティティモードで図を作成
+
+// Figureエンティティのハンドルを取得し,そのプロパティを表示
+f=get("current_figure") 
+a=f.children //Axisの子のハンドル
+x=(1:10)';  plot2d(x,[x.^2 x.^1.5])
+e=a.children // 2つのポリラインからなるCompoun
+
+p1=e.children(1) //直近に描画されたポリラインのプロパティ
+p1.foreground=5;  // ポリラインの色を変更
+e.children.thickness=5; // 2つのポリラインの幅を変更
+
+delete(e.children(2))
+
+move(e.children,[0,30]) //ポリラインを変換
+
+a.axes_bounds=[0 0 0.5 0.5]; 
+
+subplot(222) //新たにAxesエンティティを作成
+plot(1:10);
+a1=f.children(1); //ハンドルを取得
+copy(e.children,a1); //最初のプロットのポリラインを新しい軸にコピー
+a1.data_bounds=[1 0;10 100]; //軸の範囲を変更 
+
+set("current_figure",10) //figure_id=10の新規図を作成
+plot3d() //描画データは figure 10に送信される
+set("current_figure",f) //前の図をカレントの図にする
+plot2d(x,x^3)  //描画データは最初の図に送信される
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="move">move</link>
+      </member>
+      <member>
+        <link linkend="draw">draw</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="object_editor">object_editor</link>
+      </member>
+      <member>
+        <link linkend="plot">plot</link>
+      </member>
+      <member>
+        <link linkend="surf">surf</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -7,13 +7,12 @@
 // =============================================================================
 
 // <-- ENGLISH IMPOSED -->
-// <-- NOT FIXED -->
 
 ilib_verbose(0);
 
-exec(fullfile(SCI,"modules","xcos","tests","unit_tests","PENDULUM_ANIM.sci"));
-exec(fullfile(SCI,"modules","xcos","tests","unit_tests","anim_pen.sci"));
-importXcosDiagram(fullfile(SCI,"modules","xcos","tests","unit_tests","pendulum_anim45.xcos"));
+exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
 
 M  = 10;
 m  = 3;
@@ -27,6 +26,35 @@ for i=1:length(scs_m.objs)
     end
 end
 
-//scs_m = scs_m.objs(5).model.rpar;
+// scs_m is the top SUPER_f;
 [X,U,Y,XP] = steadycos(scs_m,[],[],[],[],1,1:$);
 sys        = lincos(scs_m,X,U);
+
+// valid results
+A_ref = [..
+    0.    0.   -8.962D-08   -2.9195682  ;..
+    1.    0.    0.           0.         ;..
+    0.    0.    2.972D-08    4.2383276  ;..
+    0.    0.    1.           0.         ];
+
+B_ref = [..
+    0.0997019  ;..
+    0.         ;..
+   -0.0330679  ;..
+    0.         ];
+
+C_ref = [..
+    0.    1.    0.    0.  ;..
+    0.    0.    0.    1.  ];
+
+D_ref = [..
+    0.  ;..
+    0.  ];
+
+// diff
+margin = 5D-08;
+if and(abs(sys.A - A_ref) > margin) |..
+   and(abs(sys.B - B_ref) > margin) |..
+   and(abs(sys.D - D_ref) > margin) |..
+   and(abs(sys.C - C_ref) > margin) then pause, end
+

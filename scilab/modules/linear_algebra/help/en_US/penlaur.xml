@@ -84,8 +84,8 @@ F=rand(6,6)*F*rand(6,6);[E,A]=pen2ea(F);
 norm(coeff(Bis,1)-Di,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>

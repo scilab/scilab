@@ -1,11 +1,11 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -35,7 +35,7 @@ static GetPropertyHashTable * getHashTable = NULL ;
  * a couple of key (property name) and associated value
  * (accessor name)
  */
-typedef struct  
+typedef struct
 {
   char            * key ;
   getPropertyFunc   accessor ;
@@ -46,14 +46,14 @@ typedef struct
  * don't forget to modify it each time the propertyTable
  * is modified.
  */
-#define NB_PROPERTIES 159
+#define NB_PROPERTIES 160
 
 /**
  * list of all property names and associated functions in scilab
  * This is inserted in the hashTable
  */
 static getHashTableCouple propertyTable[NB_PROPERTIES] =
-{ 
+{
 { "figures_id"          , get_figures_id_property           },
 { "visible"             , get_visible_property              },
 { "pixel_drawing_mode"  , get_pixel_drawing_mode_property   },
@@ -183,8 +183,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
 { "dimension"           , get_dimension_property            },
 { "event_handler_enable", get_event_handler_enable_property },
 { "event_handler"       , get_event_handler_property        },
-{ "label"               , GetUimenuLabel                    },  
-{ "string"              , GetUicontrolString                },  
+{ "label"               , GetUimenuLabel                    },
+{ "string"              , GetUicontrolString                },
 { "style"               , GetUicontrolStyle                 },
 { "backgroundcolor"     , GetUicontrolBackgroundColor       },
 { "foregroundcolor"     , GetUiobjectForegroundColor        },
@@ -212,7 +212,8 @@ static getHashTableCouple propertyTable[NB_PROPERTIES] =
 { "outside_colors"      , get_outside_colors_property       },
 { "color_range"         , get_color_range_property          },
 { "grid_position"       , get_grid_position_property        },
-{ "anti_aliasing"       , get_anti_aliasing_property        }
+{ "anti_aliasing"       , get_anti_aliasing_property        },
+{ "UID"                 , get_UID                           }
 } ;
 
 /*--------------------------------------------------------------------------*/
@@ -261,7 +262,7 @@ void destroyScilabGetHashTable( void )
   {
     return ;
   }
-  
+
   destroyGetHashTable( getHashTable ) ;
   getHashTableCreated = FALSE ;
 }
