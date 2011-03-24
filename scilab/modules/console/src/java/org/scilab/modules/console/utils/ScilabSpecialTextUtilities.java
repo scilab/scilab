@@ -12,6 +12,8 @@
 
 package org.scilab.modules.console.utils;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -69,9 +71,7 @@ public final class ScilabSpecialTextUtilities {
         }
 
         try {
-        	if (icon != null) {
-        		setIcon(component, icon);
-        	}
+            setIcon(component, icon);
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
@@ -145,7 +145,7 @@ public final class ScilabSpecialTextUtilities {
             Class clazz = component.getClass();
             Method method = clazz.getMethod("getIcon", new Class[]{});
             Object obj = method.invoke(component, new Object[]{});
-            if (obj != null || icon != null) {
+            if (icon != null || (obj != null && (obj instanceof SpecialIcon))) {
                 method = clazz.getMethod("setIcon", new Class[]{Icon.class});
                 method.invoke(component, new Object[]{icon});
             }
@@ -176,7 +176,7 @@ public final class ScilabSpecialTextUtilities {
                 icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
             } catch (ParseException e) { }
 
-            return icon;
+            return new SpecialIcon(icon);
         }
 
         /**
@@ -241,7 +241,43 @@ public final class ScilabSpecialTextUtilities {
             jev.draw(g2d, 0, ascent);
             g2d.dispose();
 
-            return new ImageIcon(bimg);
+            return new SpecialIcon(new ImageIcon(bimg));
+        }
+    }
+
+    /**
+     * Inner class to distinguish normal icons and icons coming from a LaTeX or a MathML compilation
+     */
+    private static class SpecialIcon implements Icon {
+
+        Icon icon;
+
+        /**
+         * @param icon the Icon to wrap
+         */
+        SpecialIcon(Icon icon) {
+            this.icon = icon;
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public int getIconHeight() {
+            return icon.getIconHeight();
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public int getIconWidth() {
+            return icon.getIconWidth();
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            icon.paintIcon(c, g, x, y);
         }
     }
 }
