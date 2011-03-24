@@ -69,7 +69,9 @@ public final class ScilabSpecialTextUtilities {
         }
 
         try {
-            setIcon(component, icon);
+        	if (icon != null) {
+        		setIcon(component, icon);
+        	}
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
