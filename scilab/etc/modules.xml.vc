@@ -34,5 +34,6 @@
     <module name="windows_tools" activate="yes"/>
     <module name="jvm" activate="yes"/>
     <module name="helptools" activate="yes"/>
+    <module name="hdf5" activate="yes"/>
 </modules>
 

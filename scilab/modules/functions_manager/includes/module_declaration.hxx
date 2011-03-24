@@ -31,5 +31,6 @@
 #include "../../windows_tools/includes/windows_tools_gw.hxx"
 #include "../../jvm/includes/jvm_gw.hxx"
 #include "../../helptools/includes/helptools_gw.hxx"
+#include "../../hdf5/includes/hdf5_gw.hxx"
 
 #endif /* !__MODULE_DECLARATION_HXX__ */

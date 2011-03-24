@@ -29,7 +29,7 @@ namespace types
 
         ListUndefined*          getAsListUndefined(void);
         RealType                getType(void);
-        bool                    is() { return true; }
+        bool                    isListUndefined() { return true; }
 
         void                    whoAmI();
 

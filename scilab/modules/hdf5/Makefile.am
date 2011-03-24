@@ -36,8 +36,10 @@ endif
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_hdf5.c
 
-GATEWAY_CPP_SOURCES = sci_gateway/cpp/sci_export_to_hdf5.cpp \
-sci_gateway/cpp/sci_import_from_hdf5.cpp
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/sci_export_to_hdf5.cpp \
+    sci_gateway/cpp/sci_import_from_hdf5.cpp \
+    sci_gateway/cpp/hdf5_gw.cpp
 
 FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
 
@@ -80,6 +82,10 @@ libscihdf5_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes \
 				-I$(top_srcdir)/modules/system_env/includes \
 				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/types/includes \
+				-I$(top_srcdir)/modules/functions_manager/includes \
+				-I$(top_srcdir)/modules/symbol/includes \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes \
 				$(JAVA_JNI_INCLUDE) \
 				$(HDF5_CFLAGS)
 

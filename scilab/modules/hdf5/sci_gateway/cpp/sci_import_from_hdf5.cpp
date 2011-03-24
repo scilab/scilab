@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+* Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -10,23 +11,28 @@
 *
 */
 
+#include "string.hxx"
+#include "bool.hxx"
+#include "polynom.hxx"
+#include "int.hxx"
+#include "tlist.hxx"
+#include "mlist.hxx"
+#include "function.hxx"
+#include "funcmanager.hxx"
+#include "hdf5_gw.hxx"
+#include "listundefined.hxx"
+
 extern "C"
 {
-#include <hdf5.h>
-#include <string.h>
-#include "gw_hdf5.h"
-#include "stack-c.h"
-#include "MALLOC.h"
-#include "Scierror.h"
+#include "sci_types.h"
 #include "localization.h"
-#include "sciprint.h"
-#include "api_scilab.h"
-#include "../../../call_scilab/includes/call_scilab.h"
+#include "charEncoding.h"
+#include "Scierror.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
-#include "intmacr2tree.h"
-#include "stack-def.h"
+#include "api_scilab.h"
 }
+
 #include "forceJHDF5load.hxx"
 
 
@@ -39,86 +45,61 @@ static int iCloseList = 0;
 
 void print_tree(char* _pstMsg);
 
-static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_string(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_boolean(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_poly(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_void(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
-static bool import_undefined(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+static types::InternalType* import_data(int _iDatasetId);
+static types::InternalType* import_double(int _iDatasetId);
+static types::InternalType* import_string(int _iDatasetId);
+static types::InternalType* import_boolean(int _iDatasetId);
+static types::InternalType* import_integer(int _iDatasetId);
+//static types::InternalType* import_sparse(int _iDatasetId);
+//static types::InternalType* import_boolean_sparse(int _iDatasetId);
+static types::InternalType* import_poly(int _iDatasetId);
+static types::InternalType* import_list(int _iDatasetId, int _iVarType);
+//static types::InternalType* import_void(int _iDatasetId);
+static types::InternalType* import_undefined(int _iDatasetId);
 
-int sci_import_from_hdf5(char *fname, int* _piKey)
+types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    CheckRhs(1,2);
-    CheckLhs(1,1);
-
-    int iRows						= 0;
-    int iCols						= 0;
-    int iLen						= 0;
-    int iType						= 0;
-    int* piAddr					= NULL;
-    char *pstVarName		= NULL;
-    bool bImport				= false;
-    SciErr sciErr;
-
+    char* pstFileName       = NULL;
+    int iNbItem             = 0;
+    int iFile               = 0;
+    bool bImport            = false;
+    
 #ifndef _MSC_VER
     forceJHDF5load();
 #endif
 
-    iCloseList = 0;
-    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddr);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
 
-    sciErr = getVarDimension(_piKey, piAddr, &iRows, &iCols);
-    if(sciErr.iErr)
+    if(in.size() != 1)
     {
-        printError(&sciErr, 0);
-        return 0;
+        //error
+        return types::Function::Error;
     }
-
-    if(iRows != 1 || iCols != 1)
+    
+    if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A string expected.\n"),fname,2);
-    }
-
-    sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, NULL);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    pstVarName = (char*)MALLOC((iLen + 1) * sizeof(char));
-    sciErr = getMatrixOfString(_piKey, piAddr, &iRows, &iCols, &iLen, &pstVarName);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
+        ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"import_from_hdf5", 1);
+        return types::Function::Error;
+    }   
+    
+    pstFileName = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    
     //open hdf5 file
-    int iFile = openHDF5File(pstVarName);
-
+    iFile = openHDF5File(pstFileName);
     if(iFile < 0)
     {
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstVarName);
-        return 0;
-    }
-
-    int iNbItem = 0;
+        ScierrorW(999,_W("%ls: Cannot open file %s.\n"), L"import_to_hdf5", pstFileName);
+        return types::Function::Error;
+    }    
     iNbItem = getVariableNames(iFile, NULL);
     if(iNbItem != 0)
     {
-        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
+        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);                   
+        wchar_t** pwstVarNameList = (wchar_t**)MALLOC(sizeof(wchar_t*) * iNbItem);
         iNbItem = getVariableNames(iFile, pstVarNameList);
+        for(int i=0; i<iNbItem; i++)
+        {
+            pwstVarNameList[i] = to_wide_string(pstVarNameList[i]);
+        }
 
         //import all data
         for(int i = 0 ; i < iNbItem ; i++)
@@ -126,48 +107,35 @@ int sci_import_from_hdf5(char *fname, int* _piKey)
             int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
             if(iDataSetId == 0)
             {
-                return 0;
+                return types::Function::Error;
             }
 
-            bImport = import_data(_piKey, iDataSetId, 0, NULL, pstVarNameList[i]);
-            if(bImport == false)
+            types::InternalType* pIT = import_data(iDataSetId);
+
+            if(pIT == NULL)
             {
                 break;
             }
-
+                      
+            symbol::Context::getInstance()->put(symbol::Symbol(pwstVarNameList[i]), *pIT);
+            bImport = true;
         }
     }
     //close the file
-    closeHDF5File(iFile);
-
-    FREE(pstVarName);
-
-    int *piReturn = NULL;
-    sciErr = allocMatrixOfBoolean(_piKey, Rhs + 1, 1, 1, &piReturn);
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    if(bImport == true)
-    {
-        piReturn[0] = 1;
-    }
-    else
-    {
-        piReturn[0] = 0;
-    }
-
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
-
-    //	printf("End gateway !!!\n");
-    return 0;
+    closeHDF5File(iFile); 
+    
+    //create boolean return value
+    types::Bool* pOut = new types::Bool(bImport);
+    out.push_back(pOut); 
+      
+    FREE(pstFileName);
+    return types::Function::OK;
 }
 
-static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+//static types::InternalType* import_data(int* _piKey, int _iDatasetId)
+static types::InternalType* import_data(int _iDatasetId)
 {
+    types::InternalType* pIT = NULL;
     bool bRet = false;
     //get var type
     int iVarType = getScilabTypeFromDataSet(_iDatasetId);
@@ -175,54 +143,56 @@ static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
     {
     case sci_matrix :
         {
-            bRet = import_double(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_double(_iDatasetId);
             break;
         }
     case sci_strings :
         {
-            bRet = import_string(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_string(_iDatasetId);
             break;
         }
     case sci_list :
     case sci_tlist :
     case sci_mlist :
         {
-            bRet = import_list(_piKey, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_list(_iDatasetId, iVarType);
             break;
         }
     case sci_boolean :
         {
-            bRet = import_boolean(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_boolean(_iDatasetId);
             break;
         }
     case sci_poly :
         {
-            bRet = import_poly(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_poly(_iDatasetId);
             break;
         }
     case sci_ints:
         {
-            bRet = import_integer(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_integer(_iDatasetId);
             break;
         }
+        /*
     case sci_sparse :
         {
-            bRet = import_sparse(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_sparse(_piKey, _iDatasetId);
             break;
         }
     case sci_boolean_sparse :
         {
-            bRet = import_boolean_sparse(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_boolean_sparse(_piKey, _iDatasetId);
             break;
         }
+        */
     case sci_void : //void item only on list variable
         {
-            bRet = import_void(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            //pIT = import_void(_iDatasetId);
             break;
         }
     case sci_undefined : //undefined item only on list variable
         {
-            bRet = import_undefined(_piKey, _iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            pIT = import_undefined(_iDatasetId);
             break;
         }
     default :
@@ -235,75 +205,48 @@ static bool import_data(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAdd
                 print_tree(pstMsg);
             }
 #endif
+            return NULL;
         }
     }
 
-    return bRet;
+    return pIT;
 }
-
-static bool import_void(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+/*
+static types::InternalType* import_void(int _iDatasetId)
 {
-    SciErr sciErr;
+
     if(_piAddress)
     {
-        sciErr = createVoidInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos);
+        sciErr = createVoidInNamedList(_piKey);
     }
     else
     {
-        return false;
+        return NULL;
     }
 
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-    return true;
+    return pVoid;
 }
-
-static bool import_undefined(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+*/
+static types::InternalType* import_undefined(int _iDatasetId)
 {
-    SciErr sciErr;
-    if(_piAddress)
-    {
-        sciErr = createUndefinedInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos);
-    }
-    else
-    {
-        return false;
-    }
-
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-    return true;
+    return new types::ListUndefined();
 }
 
-static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_double(int _iDatasetId)
 {
     int iRet            = 0;
-    double *pdblReal    = NULL;
+    int iComplex        = 0;
+    double *pdblReal    = NULL; 
     double *pdblImg     = NULL;
     int	iRows           = 0;
     int iCols           = 0;
-    int iComplex        = 0;
-    SciErr sciErr;
-
-#ifdef TIME_DEBUG
-    LARGE_INTEGER iStart, iEnd, iFreq;
-    QueryPerformanceFrequency(&iFreq);
-    QueryPerformanceCounter(&iStart);
-#endif
-
+    
     iRet        = getDatasetDims(_iDatasetId, &iRows, &iCols);
     iComplex    = isComplexData(_iDatasetId);
     if(iRet)
     {
-        return false;
-    }
-
+        return NULL;
+    }    
     if(iRows * iCols != 0)
     {
         if(iComplex)
@@ -320,54 +263,26 @@ static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
 
         if(iRet)
         {
-            return false;
+            return NULL;
         }
     }
     else
     {
-        /*bug 7224 : to close dataset*/
+        //bug 7224 : to close dataset
         iRet    = readEmptyMatrix(_iDatasetId);
         if(iRet)
         {
-            return false;
+            return NULL;
         }
     }
-
-    if(_piAddress == NULL)
+    
+    types::Double* pDbl = new types::Double(iRows, iCols, iComplex == 0 ? false : true);
+    pDbl->set(pdblReal);
+    if(pDbl->isComplex())
     {
-        if(iComplex)
-        {
-            sciErr		= createNamedComplexMatrixOfDouble(_piKey, _pstVarname, iRows, iCols, pdblReal, pdblImg);
-        }
-        else
-        {
-            sciErr		= createNamedMatrixOfDouble(_piKey, _pstVarname, iRows, iCols, pdblReal);
-        }
+        pDbl->setImg(pdblImg);
     }
-    else //if not null this variable is in a list
-    {
-        if(iComplex)
-        {
-            sciErr		= createComplexMatrixOfDoubleInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pdblReal, pdblImg);
-        }
-        else
-        {
-            sciErr		= createMatrixOfDoubleInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pdblReal);
-        }
-    }
-
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "double_%d (%d x %d)", _iItemPos, iRows, iCols);
-    print_tree(pstMsg);
-#endif
-
+    
     if(pdblReal)
     {
         FREE(pdblReal);
@@ -377,130 +292,64 @@ static bool import_double(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
     {
         FREE(pdblImg);
     }
+    
+    return pDbl;
 
-    if(iRet)
-    {
-        return false;
-    }
-
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iEnd);
-    double dblTime	=((iEnd.QuadPart - iStart.QuadPart) * 1000.0) / iFreq.QuadPart;
-    printf("Total Double : %0.3f ms\n\n", dblTime);
-#endif
-
-    return true;
 }
 
-static bool import_string(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_string(int _iDatasetId)
 {
-    int iRet						= 0;
-    int i								= 0;
-    int	iRows						= 0;
-    int iCols						= 0;
-    char **pstData			= NULL;
-    SciErr sciErr;
-
-#ifdef TIME_DEBUG
-    LARGE_INTEGER iStart1, iEnd1, iStart2, iEnd2, iStart3, iEnd3, iFreq;
-
-    QueryPerformanceFrequency(&iFreq);
-    QueryPerformanceCounter(&iStart1);
-#endif
+    int iRet            = 0;
+    int	iRows           = 0;
+    int iCols           = 0;
+    char **pstData      = NULL;
+    wchar_t** pwstData   = NULL;
+    
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
-
-
+    
     pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
-
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iStart1);
-#endif
-
+    pwstData = (wchar_t **) MALLOC(iRows * iCols * sizeof(wchar_t*)); 
+    
     iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
-
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iEnd1);
-#endif
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iStart2);
-#endif
-
-    if(_piAddress == NULL)
+    
+    for(int i=0; i < iRows * iCols; i++)
     {
-        sciErr = createNamedMatrixOfString(_piKey, _pstVarname, iRows, iCols, pstData);
+        pwstData[i] = to_wide_string(pstData[i]);
     }
-    else //if not null this variable is in a list
-    {
-        sciErr = createMatrixOfStringInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pstData);
-    }
+    
+    types::String* pStr = new types::String(iRows,iCols);
+    pStr->set(pwstData);
 
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iEnd2);
-    QueryPerformanceCounter(&iStart3);
-#endif
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "string_%d (%d x %d)", _iItemPos, iRows, iCols);
-    print_tree(pstMsg);
-#endif
-    for(i = 0 ; i < iRows * iCols ; i++)
-    {
-        FREE(pstData[i]);
-    }
     FREE(pstData);
-
-    if(iRet)
-    {
-        return false;
-    }
-
-#ifdef TIME_DEBUG
-    QueryPerformanceCounter(&iEnd3);
-
-    //double dblTime	=((iEnd1.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
-    //printf("HDF5 : %0.3f ms\n", dblTime);
-    //dblTime	=((iEnd2.QuadPart - iStart2.QuadPart) * 1000.0) / iFreq.QuadPart;
-    //printf("Stack : %0.3f ms\n", dblTime);
-    //dblTime	=((iEnd3.QuadPart - iStart3.QuadPart) * 1000.0) / iFreq.QuadPart;
-    //printf("Clear : %0.3f ms\n", dblTime);
-    double dblTime	=((iEnd3.QuadPart - iStart1.QuadPart) * 1000.0) / iFreq.QuadPart;
-    printf("Total String: %0.3f ms\n\n", dblTime);
-#endif
-    return true;
+    FREE(pwstData);
+    return pStr;
 }
 
-static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_integer( int _iDatasetId)
 {
-    int iRet						= 0;
-    int	iRows						= 0;
-    int iCols						= 0;
-    int iPrec						= 0;
-    SciErr sciErr;
+    int iRet    = 0;
+    int	iRows   = 0;
+    int iCols   = 0;
+    int iPrec   = 0;
 
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
-    iRet								= getDatasetPrecision(_iDatasetId, &iPrec);
+    iRet = getDatasetPrecision(_iDatasetId, &iPrec);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
     switch(iPrec)
@@ -512,19 +361,12 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readInterger8Matrix(_iDatasetId, iRows, iCols, pcData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
-
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfInteger8(_piKey, _pstVarname, iRows, iCols, pcData);
-            }
-            else
-            {
-                sciErr = createMatrixOfInteger8InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pcData);
-            }
+            types::Int8* pInt = new types::Int8(iRows,iCols);;
+            pInt->set(pcData);
+            return pInt;
         }
-        break;
     case SCI_UINT8 :
         {
             unsigned char* pucData	= NULL;
@@ -532,19 +374,12 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readUnsignedInterger8Matrix(_iDatasetId, iRows, iCols, pucData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
-
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfUnsignedInteger8(_piKey, _pstVarname, iRows, iCols, pucData);
-            }
-            else
-            {
-                sciErr = createMatrixOfUnsignedInteger8InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pucData);
-            }
+            types::UInt8* pInt = new types::UInt8(iRows,iCols);;
+            pInt->set(pucData);
+            return pInt;
         }
-        break;
     case SCI_INT16 :
         {
             short* psData	= NULL;
@@ -552,19 +387,13 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readInterger16Matrix(_iDatasetId, iRows, iCols, psData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfInteger16(_piKey, _pstVarname, iRows, iCols, psData);
-            }
-            else
-            {
-                sciErr = createMatrixOfInteger16InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, psData);
-            }
+            types::Int16* pInt = new types::Int16(iRows,iCols);
+            pInt->set(psData);
+            return pInt;
         }
-        break;
     case SCI_UINT16 :
         {
             unsigned short* pusData	= NULL;
@@ -572,19 +401,13 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readUnsignedInterger16Matrix(_iDatasetId, iRows, iCols, pusData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfUnsignedInteger16(_piKey, _pstVarname, iRows, iCols, pusData);
-            }
-            else
-            {
-                sciErr = createMatrixOfUnsignedInteger16InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pusData);
-            }
+            types::UInt16* pInt = new types::UInt16(iRows,iCols);;
+            pInt->set(pusData);
+            return pInt;
         }
-        break;
     case SCI_INT32 :
         {
             int* piData	= NULL;
@@ -592,19 +415,13 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readInterger32Matrix(_iDatasetId, iRows, iCols, piData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfInteger32(_piKey, _pstVarname, iRows, iCols, piData);
-            }
-            else
-            {
-                sciErr = createMatrixOfInteger32InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, piData);
-            }
+            types::Int32* pInt = new types::Int32(iRows,iCols);;
+            pInt->set(piData);
+            return pInt;
         }
-        break;
     case SCI_UINT32 :
         {
             unsigned int* puiData	= NULL;
@@ -612,236 +429,164 @@ static bool import_integer(int* _piKey, int _iDatasetId, int _iItemPos, int* _pi
             iRet = readUnsignedInterger32Matrix(_iDatasetId, iRows, iCols, puiData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfUnsignedInteger32(_piKey, _pstVarname, iRows, iCols, puiData);
-            }
-            else
-            {
-                sciErr = createMatrixOfUnsignedInteger32InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, puiData);
-            }
+            types::UInt32* pInt = new types::UInt32(iRows,iCols);
+            pInt->set(puiData);
+            return pInt;
         }
-        break;
     case SCI_INT64 :
         {
-#ifdef __SCILAB_INT64__
             long long* pllData	= NULL;
             pllData = (long long*)MALLOC(sizeof(long long) * iRows * iCols);
             iRet = readInterger64Matrix(_iDatasetId, iRows, iCols, pllData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfInteger64(_piKey, _pstVarname, iRows, iCols, pllData);
-            }
-            else
-            {
-                sciErr = createMatrixOfInteger64InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pllData);
-            }
-#else
-            return false;
-#endif
+            types::Int64* pInt = new types::Int64(iRows,iCols);
+            pInt->set(pllData);
+            return pInt;
         }
         break;
     case SCI_UINT64 :
         {
-#ifdef __SCILAB_INT64__
             unsigned long long* pullData	= NULL;
             pullData = (unsigned long long*)MALLOC(sizeof(unsigned long long) * iRows * iCols);
             iRet = readUnsignedInterger64Matrix(_iDatasetId, iRows, iCols, pullData);
             if(iRet)
             {
-                return false;
+                return NULL;
             }
 
-            if(_piAddress == NULL)
-            {
-                sciErr = createNamedMatrixOfUnsignedInteger64(_piKey, _pstVarname, iRows, iCols, pullData);
-            }
-            else
-            {
-                sciErr = createMatrixOfUnsignedInteger64InNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pullData);
-            }
-#else
-            return false;
-#endif
+            types::UInt64* pInt = new types::UInt64(iRows,iCols);
+            pInt->set(pullData);
+            return pInt;
         }
         break;
     default :
-        return false;
+        return NULL;
     }
 
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "integer_%d (%d x %d)", _iItemPos, iRows, iCols);
-    print_tree(pstMsg);
-#endif
-
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-
-    return true;
+    return NULL;
 }
 
-static bool import_boolean(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_boolean(int _iDatasetId)
 {
-    int iRet						= 0;
-    int* piData					= NULL;
-    int	iRows						= 0;
-    int iCols						= 0;
-    SciErr sciErr;
+    int iRet        = 0;
+    int* piData	    = NULL;
+    int	iRows       = 0;
+    int iCols       = 0;
 
-    iRet				= getDatasetDims(_iDatasetId, &iRows, &iCols);
+    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
     if(iRows * iCols != 0)
     {
-        piData		= (int *) MALLOC(iRows * iCols * sizeof(int));
-        iRet			= readBooleanMatrix(_iDatasetId, iRows, iCols, piData);
+        piData  = (int *) MALLOC(iRows * iCols * sizeof(int));
+        iRet    = readBooleanMatrix(_iDatasetId, iRows, iCols, piData);
         if(iRet)
         {
-            return false;
+            return NULL;
         }
     }
-
-    if(_piAddress == NULL)
-    {
-        sciErr = createNamedMatrixOfBoolean(_piKey, _pstVarname, iRows, iCols, piData);
-    }
-    else //if not null this variable is in a list
-    {
-        sciErr = createMatrixOfBooleanInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, piData);
-    }
-
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "boolean_%d (%d x %d)", _iItemPos, iRows, iCols);
-    print_tree(pstMsg);
-#endif
+    
+    types::Bool* pBool = new types::Bool(iRows,iCols);
+    pBool->set(piData);
 
     if(piData)
     {
         FREE(piData);
     }
 
-    if(iRet)
-    {
-        return false;
-    }
-
-    return true;
+    return pBool;
 }
 
-static bool import_poly(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_poly(int _iDatasetId)
 {
-    int iRet						= 0;
-    int i								= 0;
-    int	iRows						= 0;
-    int iCols						= 0;
-    int iComplex				= 0;
-    char pstVarName[64]	= {0};
-    double **pdblReal		= NULL;
-    double **pdblImg		= NULL;
-    int *piNbCoef				= NULL;
-    SciErr sciErr;
+    int iRet                = 0;
+    int i                   = 0;
+    int	iRows               = 0;
+    int iCols               = 0;
+    int iComplex            = 0;
+    char pstVarName[64]	    = {0};
+    wchar_t* pwstVarName    = NULL;
+    double **pdblReal       = NULL;
+    double **pdblImg        = NULL;
+    int *piNbCoef           = NULL;
 
-    iRet				= getDatasetDims(_iDatasetId, &iRows, &iCols);
+    iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
-    iComplex		= isComplexData(_iDatasetId);
-
+    iComplex = isComplexData(_iDatasetId);
 
     if(iComplex)
     {
-        piNbCoef		= (int*)MALLOC(iRows * iCols * sizeof(int));
-        pdblReal		= (double**)MALLOC(iRows * iCols * sizeof(double*));
-        pdblImg			= (double**)MALLOC(iRows * iCols * sizeof(double*));
-        iRet				= readPolyComplexMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+        piNbCoef    = (int*)MALLOC(iRows * iCols * sizeof(int));
+        pdblReal    = (double**)MALLOC(iRows * iCols * sizeof(double*));
+        pdblImg     = (double**)MALLOC(iRows * iCols * sizeof(double*));
+        iRet        = readPolyComplexMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
     }
     else
     {
-        piNbCoef		= (int*)MALLOC(iRows * iCols * sizeof(int));
-        pdblReal		= (double**)MALLOC(iRows * iCols * sizeof(double*));
-        iRet				= readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
+        piNbCoef    = (int*)MALLOC(iRows * iCols * sizeof(int));
+        pdblReal    = (double**)MALLOC(iRows * iCols * sizeof(double*));
+        iRet    	= readPolyMatrix(_iDatasetId, pstVarName, iRows, iCols, piNbCoef, pdblReal);
     }
 
     if(iRet)
     {
-        return false;
+        return NULL;
     }
+    
+    pwstVarName = to_wide_string(pstVarName);
+    types::Polynom* pPoly = new types::Polynom(pwstVarName,iRows,iCols,piNbCoef);
 
-    if(_piAddress == NULL)
+    for(int i = 0 ; i < iRows * iCols ; i++)
     {
+        types::Double* pCoef = new types::Double(1, piNbCoef[i],  iComplex == 0 ? false : true);
+        pCoef->set(pdblReal[i]);
         if(iComplex)
         {
-            sciErr = createNamedComplexMatrixOfPoly(_piKey, _pstVarname, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
+            pCoef->setImg(pdblImg[i]);
         }
-        else
-        {
-            sciErr = createNamedMatrixOfPoly(_piKey, _pstVarname, pstVarName, iRows, iCols, piNbCoef, pdblReal);
-        }
+        pPoly->setCoef(i, pCoef);
     }
-    else //if not null this variable is in a list
-    {
-        if(iComplex)
-        {
-            sciErr = createComplexMatrixOfPolyInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal, pdblImg);
-        }
-        else
-        {
-            sciErr = createMatrixOfPolyInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, pstVarName, iRows, iCols, piNbCoef, pdblReal);
-        }
-    }
-
-    if(sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return false;
-    }
-
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "poly_%d (%d x %d)", _iItemPos, iRows, iCols);
-    print_tree(pstMsg);
-#endif
-
+ 
     for(i = 0 ; i < iRows * iCols ; i++)
     {
         FREE(pdblReal[i]);
+        if(iComplex)
+        {
+            FREE(pdblImg[i]);
+        }
     }
+
     FREE(pdblReal);
+    if(iComplex)
+    {
+        FREE(pdblImg);
+    }
+    
     FREE(piNbCoef);
 
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
-    return true;
+    return pPoly;
 }
-
-static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+/*
+static types::InternalType* import_sparse(int* _piKey, int _iDatasetId)
 {
     int iRet						= 0;
     int i								= 0;
@@ -889,22 +634,22 @@ static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
     {
         if(iComplex)
         {
-            sciErr = createNamedComplexSparseMatrix(_piKey, _pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+            sciErr = createNamedComplexSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
         }
         else
         {
-            sciErr = createNamedSparseMatrix(_piKey, _pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+            sciErr = createNamedSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
         }
     }
     else //if not null this variable is in a list
     {
         if(iComplex)
         {
-            sciErr = createComplexSparseMatrixInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
+            sciErr = createComplexSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal, pdblImg);
         }
         else
         {
-            sciErr = createSparseMatrixInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
+            sciErr = createSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos, pdblReal);
         }
     }
 
@@ -916,7 +661,7 @@ static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
 
 #ifdef PRINT_DEBUG
     char pstMsg[512];
-    sprintf(pstMsg, "sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
+    sprintf(pstMsg, "sparse_%d (%d x %d)", iRows, iCols);
     print_tree(pstMsg);
 #endif
 
@@ -937,13 +682,13 @@ static bool import_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piA
     return true;
 }
 
-static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+static types::InternalType* import_boolean_sparse(int* _piKey, int _iDatasetId)
 {
     int iRet						= 0;
     int i								= 0;
     int	iRows						= 0;
     int iCols						= 0;
-    int iNbItem					= 0;
+    int     types::Polynom* pPoly = NULL;iNbItem					= 0;
     int* piNbItemRow		= NULL;
     int* piColPos				= NULL;
     SciErr sciErr;
@@ -965,11 +710,11 @@ static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, i
 
     if(_piAddress == NULL)
     {
-        sciErr					= createNamedBooleanSparseMatrix(_piKey, _pstVarname, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+        sciErr					= createNamedBooleanSparseMatrix(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     }
     else //if not null this variable is in a list
     {
-        sciErr					= createBooleanSparseMatrixInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iRows, iCols, iNbItem, piNbItemRow, piColPos);
+        sciErr					= createBooleanSparseMatrixInNamedList(_piKey, iRows, iCols, iNbItem, piNbItemRow, piColPos);
     }
 
     if(sciErr.iErr)
@@ -980,7 +725,7 @@ static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, i
 
 #ifdef PRINT_DEBUG
     char pstMsg[512];
-    sprintf(pstMsg, "boolean sparse_%d (%d x %d)", _iItemPos, iRows, iCols);
+    sprintf(pstMsg, "boolean sparse_%d (%d x %d)", iRows, iCols);
     print_tree(pstMsg);
 #endif
 
@@ -995,20 +740,18 @@ static bool import_boolean_sparse(int* _piKey, int _iDatasetId, int _iItemPos, i
 
     return true;
 }
-
-static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname)
+*/
+static types::InternalType* import_list(int _iDatasetId, int _iVarType)
 {
-    int iRet								= 0;
-    int i										= 0;
-    int	iItems							= 0;
-    int* piListAddr					= NULL;
-    hobj_ref_t* piItemRef		= NULL;
-    SciErr sciErr;
+    int iRet                = 0;
+    int i                   = 0;
+    int	iItems              = 0;
+    hobj_ref_t* piItemRef   = NULL;
 
     iRet = getListDims(_iDatasetId, &iItems);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
 
@@ -1017,94 +760,62 @@ static bool import_list(int* _piKey, int _iDatasetId, int _iVarType, int _iItemP
     }
     else
     {
-        iRet			= getListItemReferences(_iDatasetId, &piItemRef);
+        iRet = getListItemReferences(_iDatasetId, &piItemRef);
         if(iRet)
         {
-            return false;
+            return NULL;
         }
     }
-
-#ifdef PRINT_DEBUG
-    char pstMsg[512];
-    sprintf(pstMsg, "list_%d (%d)", _iItemPos, iItems);
-    print_tree(pstMsg);
-#endif
-
-    if(_piAddress == 0)
+    
+    types::List* pList  = NULL;
+    
+    switch(_iVarType)
     {
-        switch(_iVarType)
-        {
-        case sci_list :
-            sciErr	= createNamedList(_piKey, _pstVarname, iItems, &piListAddr);
-            break;
-        case sci_tlist :
-            sciErr	= createNamedTList(_piKey, _pstVarname, iItems, &piListAddr);
-            break;
-        case sci_mlist :
-            sciErr	= createNamedMList(_piKey, _pstVarname, iItems, &piListAddr);
-            break;
-        default :
-            return false;
-        }
-    }
-    else //if not null this variable is in a list
+    case sci_list :
     {
-        switch(_iVarType)
-        {
-        case sci_list :
-            sciErr	= createListInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        case sci_tlist :
-            sciErr	= createTListInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        case sci_mlist :
-            sciErr	= createMListInNamedList(_piKey, _pstVarname, _piAddress, _iItemPos, iItems, &piListAddr);
-            break;
-        default :
-            return false;
-        }
+        pList = new types::List();
+        break;
     }
-
-    if(sciErr.iErr)
+    case sci_tlist :
     {
-        printError(&sciErr, 0);
-        return false;
+        pList = new types::TList();
+        break;
     }
-
+    case sci_mlist :
+    {
+        pList = new types::MList();
+        break;
+    }
+    default :
+        return NULL;
+    }
+    
     iTab++;
     for(i = 0 ; i < iItems ; i++)
     {
         int iItemDataset = 0;
-        iRet			= getListItemDataset(_iDatasetId, piItemRef, i, &iItemDataset);
+        iRet = getListItemDataset(_iDatasetId, piItemRef, i, &iItemDataset);
         if(iRet || iItemDataset == 0)
         {
-            return false;
+            return NULL;
         }
 
-        bool bRet = import_data(_piKey, iItemDataset, i + 1, piListAddr, _pstVarname);
-        if(bRet == false)
+        types::InternalType* pItem = import_data(iItemDataset);
+        if(pItem == NULL)
         {
-            return false;
+            return NULL;
         }
+        pList->append(pItem);
     }
     iTab--;
 
     iRet = deleteListItemReferences(_iDatasetId, piItemRef);
     if(iRet)
     {
-        return false;
+        return NULL;
     }
 
-#ifdef TIME_DEBUG
-    printf("Close List %d\n\n", iCloseList++);
-#endif
-
-#ifdef PRINT_DEBUG
-    char pstMsg1[512];
-    sprintf(pstMsg1, "ListEnd_%d", _iItemPos);
-    print_tree(pstMsg1);
-#endif
-    return true;
+    return pList;
 }
 
 void print_tree(char* _pstMsg)
@@ -1117,4 +828,5 @@ void print_tree(char* _pstMsg)
     printf("%s\n", _pstMsg);
 #endif
 }
+
 /*--------------------------------------------------------------------------*/

@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes;../../../types/includes;../../../functions_manager/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -128,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes;../../../types/includes;../../../functions_manager/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -214,7 +214,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes;../../../types/includes;../../../functions_manager/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -303,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../../libs/intl;../../../../libs/hdf5/include;../../../windows_tools/includes;../../../operations/includes;../../../fileio/includes;../../../jvm/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../jni;../cpp;../../../system_env/includes;../../../string/includes;../../../types/includes;../../../functions_manager/includes;../../../abstractSyntaxTree/includes;../../../symbol/includes"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;_HDF5USEDLL_;WIN32"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -400,6 +400,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\cpp\hdf5_gw.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\jhdf5load.cpp"
 				>
 			</File>
@@ -482,11 +486,19 @@
 			</File>
 		</Filter>
 		<File
+			RelativePath="..\..\..\..\bin\blasplus.lib"
+			>
+		</File>
+		<File
 			RelativePath="..\..\hdf5.iss"
 			>
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\hdf5_gateway.xml"
+			>
+		</File>
+		<File
+			RelativePath="..\..\..\..\bin\lapack.lib"
 			>
 		</File>
 		<File
