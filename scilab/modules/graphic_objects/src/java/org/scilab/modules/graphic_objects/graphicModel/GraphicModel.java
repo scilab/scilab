@@ -32,6 +32,7 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 
@@ -187,6 +188,8 @@ public class GraphicModel {
 			return new Segs();
 		case TEXT:
 			return new Text();
+		case UICONTROL:
+		    return new Uicontrol();
 		case UNKNOWNOBJECT:
 			return null;
 		default:

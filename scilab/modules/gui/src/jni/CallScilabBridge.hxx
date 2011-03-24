@@ -68,6 +68,7 @@ jmethodID jintnewWindowID; // cache method id
 jmethodID jintnewMenuBarID; // cache method id
 jmethodID jintnewMenuID; // cache method id
 jmethodID jintnewPushButtonID; // cache method id
+jmethodID jintnewPushButtonjstringID; // cache method id
 jmethodID jintnewEditBoxID; // cache method id
 jmethodID jintnewLabelID; // cache method id
 jmethodID jintnewCheckBoxID; // cache method id
@@ -328,6 +329,8 @@ static int newMenuBar(JavaVM * jvm_);
 static int newMenu(JavaVM * jvm_);
 
 static int newPushButton(JavaVM * jvm_);
+
+static int newPushButton(JavaVM * jvm_, char * UID);
 
 static int newEditBox(JavaVM * jvm_);
 

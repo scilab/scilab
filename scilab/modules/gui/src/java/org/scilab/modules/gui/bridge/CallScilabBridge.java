@@ -53,6 +53,7 @@ import org.scilab.modules.graphic_export.FileExporter;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.checkbox.CheckBox;
@@ -362,7 +363,23 @@ public class CallScilabBridge {
         setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
         return id;
     }
+  
+    public static void newPushButton(String UID) {
+        PushButton pushButton = ScilabPushButton.createPushButton();
+        ((ScilabPushButton) pushButton).setIdentifier(UID);
+        int id = UIElementMapper.add(pushButton);
 
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.RAISED);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) BUTTON_RED_BACKGROUND, (int) BUTTON_GREEN_BACKGROUND, (int) BUTTON_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+    }
     /**
      * Create a new EditBox in Scilab GUIs
      * @return the ID of the Edit in the UIElementMapper

@@ -37,6 +37,8 @@ public static final String __GO_POLYLINE__ =               "Polyline";
 public static final String __GO_RECTANGLE__ =              "Rectangle";
 public static final String __GO_SEGS__ =                   "Segs";
 public static final String __GO_TEXT__ =                   "Text";
+public static final String __GO_UICONTROL__ =              "Uicontrol";
+
 
 public static final String __GO_CHILDREN__ =               "Children";
 public static final String __GO_CHILDREN_COUNT__ =         "ChildrenCount";

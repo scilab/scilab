@@ -5,6 +5,9 @@
     <method name="newMenuBar" returnType="int" modifier="static"/>
     <method name="newMenu" returnType="int" modifier="static"/>
     <method name="newPushButton" returnType="int" modifier="static"/>
+    <method name="newPushButton" returnType="int" modifier="static">
+      <parameter type="String" name="UID"/>
+    </method>
     <method name="newEditBox" returnType="int" modifier="static"/>
     <method name="newLabel" returnType="int" modifier="static"/>
     <method name="newCheckBox" returnType="int" modifier="static"/>
@@ -562,7 +565,7 @@
     </method>
     <!-- Help settings -->
     <method name="saveHelpWindowSettings" returnType="void" modifier="static">
-    </method> 
+    </method>
     <!-- Export GUI-->
     <method name="newExportFileChooser" returnType="int" modifier="static">
       <parameter type="int" name="figureId"/>

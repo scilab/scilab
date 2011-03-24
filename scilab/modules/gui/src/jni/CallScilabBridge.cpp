@@ -108,6 +108,7 @@ jintnewWindowID=NULL;
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
+jintnewPushButtonjstringID=NULL; 
 jintnewEditBoxID=NULL; 
 jintnewLabelID=NULL; 
 jintnewCheckBoxID=NULL; 
@@ -330,6 +331,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 jintnewMenuBarID=NULL; 
 jintnewMenuID=NULL; 
 jintnewPushButtonID=NULL; 
+jintnewPushButtonjstringID=NULL; 
 jintnewEditBoxID=NULL; 
 jintnewLabelID=NULL; 
 jintnewCheckBoxID=NULL; 
@@ -618,6 +620,34 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "newPushButton");
 
                         jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewPushButtonID ));
                         curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newPushButton (JavaVM * jvm_, char * UID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewPushButtonjstringID = curEnv->GetStaticMethodID(cls, "newPushButton", "(Ljava/lang/String;)I" ) ;
+if (jintnewPushButtonjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newPushButton");
+}
+
+jstring UID_ = curEnv->NewStringUTF( UID );
+if (UID_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewPushButtonjstringID ,UID_));
+                        curEnv->DeleteLocalRef(UID_);
+curEnv->DeleteLocalRef(cls);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }

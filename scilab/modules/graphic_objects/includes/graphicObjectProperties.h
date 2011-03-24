@@ -36,6 +36,8 @@
 #define __GO_RECTANGLE__                   "Rectangle"
 #define __GO_SEGS__                        "Segs"
 #define __GO_TEXT__                        "Text"
+#define __GO_UICONTROL__                   "Uicontrol"
+
 
 #define __GO_CHILDREN__                    "Children"
 #define __GO_CHILDREN_COUNT__              "ChildrenCount"

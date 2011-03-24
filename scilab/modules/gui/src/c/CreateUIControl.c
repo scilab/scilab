@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
- * Create Java object matching Scilab uicontrol 
- * 
+ * Create Java object matching Scilab uicontrol
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -29,6 +29,9 @@
 #include "UiDisplayTree.h"
 #include "DestroyObjects.h" /* sciStandardDestroyOperations */
 
+#include "createGraphicObject.h"
+#include "graphicObjectProperties.h"
+
 /**CreateUIControl
  * This function creates Uicontrol structure.
  * @param char style[]: the type of the uicontrol object
@@ -37,7 +40,17 @@
 sciPointObj * CreateUIControl(char *style)
 {
   sciPointObj *pobj = (sciPointObj *) NULL;
+  pobj = MALLOC (sizeof (sciPointObj));
 
+  if (pobj == NULL)
+  {
+      return NULL;
+  }
+
+  pobj->UID = createGraphicObject(__GO_UICONTROL__);
+  sciAddNewHandle(pobj);
+
+#if 0
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;
 
   sciSetEntityType (pobj, SCI_UICONTROL);
@@ -180,7 +193,8 @@ sciPointObj * CreateUIControl(char *style)
       FREE(pobj);
       return (sciPointObj *) NULL;
     }
-      
+ #endif
+
   return (sciPointObj *) pobj;
 }
 /*----------------------------------------------------------------------------*/
