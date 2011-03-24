@@ -46,6 +46,8 @@ Xcos:
   - Counter
   - RAMP
 
+* bug 5605 fixed - REGISTER block was not present into the discrete palette.
+
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
 
 * bug 8692 fixed - Null block parameters was not checked before encoding.
