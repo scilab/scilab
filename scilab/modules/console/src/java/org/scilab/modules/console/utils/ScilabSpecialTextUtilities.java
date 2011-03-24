@@ -12,10 +12,10 @@
 
 package org.scilab.modules.console.utils;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -24,25 +24,19 @@ import java.lang.reflect.Method;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.jvm.LoadClassPath;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-import org.scilab.forge.jlatexmath.ParseException;
-
 import net.sourceforge.jeuclid.MathMLParserSupport;
-import net.sourceforge.jeuclid.MutableLayoutContext;
-import net.sourceforge.jeuclid.layout.JEuclidView;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.context.Parameter;
+import net.sourceforge.jeuclid.layout.JEuclidView;
 
-import org.w3c.dom.Node;
+import org.scilab.forge.jlatexmath.ParseException;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.modules.jvm.LoadClassPath;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**

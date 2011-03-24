@@ -19,9 +19,9 @@ import java.awt.EventQueue;
 import java.awt.FontMetrics;
 import java.awt.Point;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.awt.dnd.DnDConstants;
 import java.awt.dnd.DropTarget;
+import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -36,15 +36,14 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.commons.gui.ScilabCaret;
+import org.scilab.modules.console.utils.ScilabLaTeXViewer;
+
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.interfaces.ui.OutputView;
 import com.artenum.rosetta.interfaces.ui.PromptView;
 import com.artenum.rosetta.ui.ConsoleTextPane;
 import com.artenum.rosetta.util.StringConstants;
-
-import org.scilab.modules.commons.gui.ScilabCaret;
-import org.scilab.modules.console.utils.ScilabLaTeXViewer;
-import org.scilab.modules.history_manager.HistoryManagement;
 
 /**
  * Scilab UI that contains the line edited by the user
@@ -61,7 +60,6 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
     // A clearest pattern: ['"] \$ [^\\\$'"]* (( [\\].? | ['"]{2} ) [^\\\$'"]* )+
     private static final Pattern latexPattern = Pattern.compile("[\'\"]\\$[^\\\\\\$\'\"]*(?:(?:[\\\\].?|[\'\"]{2})[^\\\\\\$\'\"]*)*");
-    private static final int INSET = 3;
 
     private static BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
     private static BlockingQueue<Boolean> displayQueue = new LinkedBlockingQueue<Boolean>();
