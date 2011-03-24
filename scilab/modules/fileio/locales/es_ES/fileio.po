@@ -263,7 +263,7 @@ msgstr ""
 "archivo.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
@@ -344,13 +344,13 @@ msgstr ""
 "descriptor de archivo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero o "
 "una cadena.\n"
@@ -483,10 +483,10 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A valid filename or directory "
+"%s: Wrong value for input argument #%d ('%ls'): A valid filename or directory "
 "expected.\n"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un nombre de "
+"%s: Valor incorrecto del argumento de entrada #%d ('%ls'): Se esperaba un nombre de "
 "archivo o un directorio.\n"
 
 #, c-format

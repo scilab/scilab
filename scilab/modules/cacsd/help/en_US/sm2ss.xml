@@ -50,8 +50,8 @@ Sm = [-sI + A   B;
     <para>
     to linear system in state-space representation (<literal>syslin</literal>) list.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2des">ss2des</link>

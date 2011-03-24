@@ -59,8 +59,8 @@
     where <literal>S=(eye()+D'*D)</literal>, <literal>Si=inv(S)</literal>, <literal>R=(eye()+D*D')</literal>, <literal>Ri=inv(R)</literal> 
     and <literal>F=-Si*(D'*C+B'*X)</literal> is such that <literal>A+B*F</literal> is stable.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gfare">gfare</link>

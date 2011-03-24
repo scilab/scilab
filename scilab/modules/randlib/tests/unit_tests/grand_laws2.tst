@@ -1,0 +1,194 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Sabine Gaüzere
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+
+//
+// These tests makes comparisons between the empirical cumulated 
+// distribution function and the theoretical distribution function.
+// They do not make use of the Chi-square distribution function,
+// and, therefore, are not Kolmogorov-Smirnov tests.
+//
+// For each test, we can compare the two plots with the statements :
+// plot(RdevS,PS,"b-"); // Empirical distribution
+// plot(RdevS,P,"ro-"); // Theoretical distribution
+// 
+// Not all distribution functions are tested.
+// Moreover, the comparison is not done for integer-based (piecewise) 
+// distribution functions.
+// This work is to be updated.
+//
+
+
+// Set the seed to always get the same random numbers
+grand("setsd",0);
+
+prec = 1;
+
+// test for exp 
+
+for i=linspace(0.1,50,10)
+  N=10000;A=i;
+  Rdev=grand(1,N,'exp',A);
+  RdevS=gsort(Rdev,"g","i")';
+  PS=(1:N)'/N;
+  P=1-exp(-RdevS/A);
+  if norm(P-PS) > 2*prec then pause,end
+end
+
+
+// test for gamma 
+for i=linspace(1,15,4)
+  for j=linspace(1,15,4)
+    N=10000;A=i;B=j;
+    Rdev=grand(1,N,'gam',A,B); 
+    RdevS=gsort(Rdev,"g","i")';
+    PS=(1:N)'/N;
+    [P]=cdfgam("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
+    if norm(P-PS)> 2*prec then pause,end
+  end
+end
+
+
+// test for beta random deviate 
+for i=linspace(1,20,4)
+  for j=linspace(1,20,4)
+    N=10000;A=i;B=j;
+    Rdev=grand(1,N,'bet',A,B); 
+    RdevS=gsort(Rdev,"g","i")';
+    PS=(1:N)'/N;
+    [P]=cdfbet("PQ",RdevS,1-RdevS,A*ones(RdevS),B*ones(RdevS));
+    if norm(P-PS)> 2*prec then pause,end
+  end
+end
+
+// test for poi 
+for i=floor(linspace(50,70,10))
+  N=10000;A=i;
+  Rdev=grand(1,N,'poi',A);
+  RdevS=gsort(Rdev,"g","i")';
+  PS=(1:N)'/N;
+  [P]=cdfpoi("PQ",RdevS,A*ones(RdevS));
+  // Need an other test P is piecewize linear and PS
+  // linear
+  //if norm(P-PS) > prec then pause,end
+end
+
+
+N=100;A=5;B=0.7;
+Rdev=grand(N,N,'bin',A,B); 
+Rdev=matrix(Rdev,1,N^2);
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:(N^2))'/(N^2);
+[P]=cdfbin("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
+//if norm(P-PS) > prec then pause,end
+
+// test for f 
+
+N=10000;A=1;B=3;
+Rdev=grand(1,N,'f',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdff("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
+if norm(P-PS) > prec then pause,end
+
+// test for mul
+// TODO 
+
+// test for nor 
+
+N=10000;A=1;B=2;
+Rdev=grand(1,N,'nor',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdfnor("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
+if norm(P-PS) > prec then pause,end
+
+// test for unf 
+
+N=10000;A=1;B=2;
+Rdev=grand(1,N,'unf',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=RdevS-A;
+if norm(P-PS) > prec then pause,end
+
+// test for uin ( a finir ) 
+
+N=10000;A=1;B=10;
+Rdev=grand(1,N,'uin',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=RdevS-A;
+//TODO need an other test
+//if norm(P-PS) > prec then pause,end
+
+// test for lgi 
+// This is a completely wrong test:
+// The output depends on the random number generator...
+N=10000;
+Rdev=grand(1,N,'lgi');
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=RdevS-A;
+//TODO need an other test 
+//if norm(P-PS) > prec then pause,end
+
+
+
+// test for nbn 
+
+N=10000;A=5;B=0.7;
+Rdev=grand(1,N,'nbn',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdfnbn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),(1-B)*ones(RdevS));
+//TODO need an other test 
+//if norm(P-PS) > prec then pause,end
+
+
+
+// test for mn 
+// TODO
+
+// test for 'def'
+
+N=10000;
+Rdev=grand(1,N,'def');
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=RdevS;
+if norm(P-PS) > prec then pause,end
+
+// test for nch or chn 
+
+N=10000;A=5;B=4;
+Rdev=grand(1,N,'nch',A,B); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdfchn("PQ",RdevS,A*ones(RdevS),B*ones(RdevS));
+if norm(P-PS) > prec then pause,end
+
+// test for nf or fnc
+
+N=10000;A=5;B=4;C=10;
+Rdev=grand(1,N,'nf',A,B,C); 
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdffnc("PQ",RdevS,A*ones(RdevS),B*ones(RdevS),C*ones(RdevS));
+if norm(P-PS) > prec then pause,end
+
+// test for chi 
+
+N=10000;A=5;
+Rdev=grand(1,N,'chi',A);
+RdevS=gsort(Rdev,"g","i")';
+PS=(1:N)'/N;
+[P]=cdfchi("PQ",RdevS,A*ones(RdevS));
+if norm(P-PS) > prec then pause,end
+
+

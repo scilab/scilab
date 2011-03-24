@@ -20,6 +20,9 @@
 //
 
 function XcosMenuAddNewBlock()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
     Cmenu=[]// here because Cmenu Quit can come out
     [scs_m,%fct]=do_addnew(scs_m)
     if %fct<>[] then 

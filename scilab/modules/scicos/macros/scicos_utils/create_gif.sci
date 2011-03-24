@@ -20,6 +20,9 @@
 //
 
 function create_gif(TXT,path)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // creates gif files of icon size from scicos blocks. The list of
 // block names can be provided in TXT. path contains the path to the
 // directory where the gif files are to be stored. Background color

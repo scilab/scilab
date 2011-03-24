@@ -18,7 +18,10 @@ import org.scilab.modules.types.ScilabType;
 
 /**
  * A {@link BasicBlock} which print getExprs()[0][0] as bloc value.
+ * 
+ * @deprecated prefer using "displayedLabel" = "%s" style property. 
  */
+@Deprecated
 public class PrintBlock extends BasicBlock {
 	private final String format;
 	

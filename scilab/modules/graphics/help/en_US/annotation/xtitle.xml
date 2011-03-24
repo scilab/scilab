@@ -75,8 +75,8 @@ mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi
 xtitle( 'My surface is blue', 'X axis', '$Y axis$', mathml );
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>

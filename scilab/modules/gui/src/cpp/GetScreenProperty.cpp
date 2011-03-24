@@ -53,8 +53,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-	  value[2] = pixelTocm( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
-	  value[3] = pixelTocm( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
+      value[2] = pixelTocm( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
+      value[3] = pixelTocm( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
       flag = sciReturnRowVector(value, 4);
       
@@ -66,8 +66,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-	  value[2] = pixelToinch( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
-	  value[3] = pixelToinch( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
+      value[2] = pixelToinch( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
+      value[3] = pixelToinch( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
       flag = sciReturnRowVector(value, 4);
       
@@ -79,8 +79,8 @@ int GetScreenProperty(char *propertyName)
     {
       value[0] = 0.0;
       value[1] = 0.0;
-	  value[2] = pixelTopt( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
-	  value[3] = pixelTopt( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
+      value[2] = pixelTopt( CallScilabBridge::getScreenWidth(getScilabJavaVM()) );
+      value[3] = pixelTopt( CallScilabBridge::getScreenHeight(getScilabJavaVM()) );
       
       flag = sciReturnRowVector(value, 4);
       
@@ -113,6 +113,7 @@ int GetScreenProperty(char *propertyName)
     }
   else
     {
+        delete[] value;
       return SET_PROPERTY_ERROR;
     }
 }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="grayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>grayplot</refname>
+    <refpurpose>曲面の2次元カラープロット</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>grayplot(x,y,z,[strf,rect,nax])
+grayplot(x,y,z,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>大きさ n1 および n2の実数行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z</term>
+        <listitem>
+          <para>大きさ (n1,n2)の実数行列. <literal>z(i,j)</literal> は
+          点 (x(i),y(j))における曲面の値です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>一連の命令 <literal>key1=value1,
+          key2=value2</literal>,... を表します.ただし,<literal>key1</literal>,
+          <literal>key2,...</literal> には以下のどれかを指定します: rect, nax, strf
+          または axesflag および frameflag (<literal>plot2d</literal> および
+          <literal>plot2d_old_version</literal>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para><literal>plot2d</literal>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>grayplot</literal> は,
+	<literal>x</literal> および <literal>y</literal>で定義されるグリッド上で
+	<literal>z</literal>により指定された曲面の2次元プロットを作成します.
+	グリッド上の各矩形は,矩形の4隅の<literal>z</literal>の値の平均値
+	に基づきモノクロまたはカラーで塗りつぶされます.
+	z に %nan 値が含まれる場合,周囲の矩形は表示されません.</para>
+    <para>コマンド <literal>grayplot()</literal> を入力するとデモが表示されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+x=-10:10; y=-10:10;m =rand(21,21);
+grayplot(x,y,m,rect=[-20,-20,20,20])
+t=-%pi:0.1:%pi; m=sin(t)'*cos(t);
+clf()
+grayplot(t,t,m)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fgrayplot">fgrayplot</link>
+      </member>
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+      <member>
+        <link linkend="Sfgrayplot">Sfgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="EXTRACTBITS" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>EXTRACTBITS</refname>
+    <refpurpose>Extraction de bits</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/EXTRACTBITS.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_EXTRACTBITS">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="EXTRACTBITS">Extraction de bits</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_EXTRACTBITS">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_EXTRACTBITS">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_EXTRACTBITS">Types de données</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_EXTRACTBITS">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_EXTRACTBITS">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_EXTRACTBITS">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_EXTRACTBITS">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_EXTRACTBITS">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_EXTRACTBITS">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_EXTRACTBITS">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_EXTRACTBITS">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_EXTRACTBITS">
+    <title>Description</title>
+
+    <para>
+      Pour une entrée numérique entière, ce bloc sort une sélection contiguë de bits. L'opération peut être résumée par cette expression :
+    </para>
+    <para>
+      <latex><![CDATA[ Sortie=Entrée \wedge Masque]]></latex>
+    </para>
+    <para>
+      i.e. un <literal>ET</literal> bit à bit entre <literal>Entrée</literal> et <literal>Masque</literal> un entier
+      de même longueur que l'entrée avec les bits à extraire positionnés à <literal>1</literal> et les autres positionnés
+      à <literal>0</literal>.
+      Le paramètre <emphasis role="bold">Bits to Extract</emphasis> définit la méthode par laquelle l'utilisateur sélectionne
+      les bits de sortie comme résumé dans la table suivante avec l'indice <literal>0</literal> celui du bit le moins
+      significatif :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left"><emphasis role="bold">Bits to Extract</emphasis></td>
+        <td align="left"><emphasis role="bold">Output</emphasis></td>
+        <td align="left"><emphasis role="bold">Number of Bits or Index of Bit</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">Upper Half</emphasis></td>
+        <td align="left">Demi-partie de l'entrée qui contient les bits les plus significatifs</td>
+        <td align="left">Ignoré</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">Lower Half</emphasis></td>
+        <td align="left">Demi-partie de l'entrée qui contient les bits les moins significatifs</td>
+        <td align="left">Ignoré</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">Range from MSB</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Number of Bits or Index of Bit</emphasis> bits d'entrée qui contiennent
+          le bit le plus significatif.
+        </td>
+        <td align="left">Le nombre de bits à extraire</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">Range to LSB</emphasis></td>
+        <td align="left">
+          <emphasis role="bold">Number of Bits or Index of Bit</emphasis> bits d'entrée qui contiennent
+          le bit le moins significatif.
+        </td>
+        <td align="left">Le nombre de bits à extraire</td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">Range of Bits</emphasis></td>
+        <td align="left">
+          Une partie des bits de l'entrée entre les indices de bit <literal>Début</literal>
+          et <literal>Fin</literal> du paramètre <emphasis role="bold">Number of Bits or Index of Bit</emphasis>.
+        </td>
+        <td align="left">
+          Vecteur avec le format <literal>[Début, Fin]</literal> où <literal>Début</literal>
+          est le premier indice et <literal>Fin</literal> le dernier indice.
+        </td>
+      </tr>
+    </informaltable>
+
+    <para>
+      La valeur extraite dépend du quatrième paramètre <emphasis role="bold">Treat Bit Field as an Integer</emphasis>.
+    </para>
+        <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">0</emphasis> : La sortie est directement le résultat de l'extraction.
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">1</emphasis> : la sortie est la conversion en entier du résultat de
+          l'extraction en accord avec le statut signé ou non signé de la valeur d'entrée.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para />
+  </refsection>
+
+  <refsection id="Data_Type_EXTRACTBITS">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Entrée : scalaire. Tout type entier de Scilab (paramètre <emphasis role="bold">Data Type</emphasis>).
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          Sortie : scalaire. Même type que l'entrée.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Dialogbox_EXTRACTBITS">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/integer_pal/fr_FR/EXTRACTBITS_gui.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+        <para>
+          Indique le type entier des données en entrée : Entre 3 et 8.
+        </para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Bits to Extract</emphasis>
+        </para>
+        <para>
+          Indique le mode d'extraction des bits à partir de la donnée d'entrée : Entre 1 et 5 (1:Demi partie haute,
+          2:Demi partie basse, 3:Etendue à partir du MSB, 4:Etendue à partir du LSB, 5:Etendue).
+        </para>
+        <para> Propriétés : Type 'vec' de taille 1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Number of Bits or Index of Bit</emphasis>
+        </para>
+        <para>
+          Quand le champ  <emphasis role="bold">Bits to Extract</emphasis> est initialisé à :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>
+              1 ou 2, ce paramètre est ignoré.
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              3 ou 4, ce paramètre est utilisé pour déterminer le nombre de bits à extraire.
+              Ce nombre doit être, si le type est :
+            </para>
+            <itemizedlist>
+              <listitem>
+                <para>int32 ou uint32 : inférieur à 32.</para>
+              </listitem>
+              <listitem>
+                <para>int16 ou uint16 : inférieur à 16,</para>
+              </listitem>
+              <listitem>
+                <para>int8 ou uint8 : inférieur à 8.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+          <listitem>
+            <para>
+              5, ce paramètre est utilisé pour déterminer l'intervalle de bits à extraire
+              et ce doit être un vecteur de la forme <literal>[Début, Fin]</literal>.
+              <literal>Début</literal> doit être inférieur à <literal>Fin</literal>. Ces valeurs
+              doivent être, si le type est :
+            </para>
+            <itemizedlist>
+              <listitem>
+                <para>int32 ou uint32 : inférieures à 32.</para>
+              </listitem>
+              <listitem>
+                <para>int16 ou uint16 : inférieures à 16,</para>
+              </listitem>
+              <listitem>
+                <para>int8 ou uint8 : inférieures à 8.</para>
+              </listitem>
+            </itemizedlist>
+          </listitem>
+        </itemizedlist>
+        <para>Voir la description pour plus d'informations</para>
+        <para> Propriétés : Type 'vec' de taille -1. </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Treat Bit Field as an Integer (0:No, 1:Yes)</emphasis>
+        </para>
+        <para>
+          Indique le mode de cadrage à utiliser sur la sélection de bits en sortie : 0 ou 1.
+          Voir la description pour plus d'informations.
+        </para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_EXTRACTBITS">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 3</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+        <para>
+          <emphasis role="bold">- port 1 : size [1,1] / type 3</emphasis>
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">extract_bit_32_UH0</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_EXTRACTBITS">
+    <title>Exemple</title>
+
+    <para>
+      Le tableau suivant présente les résultats obtenus pour le nombre 215 en fonction de plusieurs combinaisons de paramètres.
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="3">
+    <tr>
+      <td><emphasis role="bold">Input</emphasis></td>
+      <td><emphasis role="bold">Bits to Extract</emphasis></td>
+      <td><emphasis role="bold">Number of Bits or Index of Bit</emphasis></td>
+      <td><emphasis role="bold">Treat Bit Field as an Integer</emphasis></td>
+      <td><emphasis role="bold">Output</emphasis></td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Upper Half</td>
+      <td>Ignoré</td>
+      <td>non</td>
+      <td>01100000 (208)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Upper Half</td>
+      <td>Ignoré</td>
+      <td>oui</td>
+      <td>00001101 (13)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Lower Half</td>
+      <td>Ignoré</td>
+      <td>non</td>
+      <td>00000111 (7)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Lower Half</td>
+      <td>Ignoré</td>
+      <td>oui</td>
+      <td>00000111 (7)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range starting with MSB</td>
+      <td>6</td>
+      <td>non</td>
+      <td>11010100 (212)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range starting with MSB</td>
+      <td>6</td>
+      <td>oui</td>
+      <td>00110101 (53)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range starting with LSB</td>
+      <td>6</td>
+      <td>non</td>
+      <td>00010111 (23)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range starting with LSB</td>
+      <td>6</td>
+      <td>oui</td>
+      <td>00010111 (23)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range of bits</td>
+      <td>[ 2, 5 ]</td>
+      <td>non</td>
+      <td>00010100 (20)</td>
+    </tr>
+    <tr>
+      <td>11010111 (215)</td>
+      <td>Range of bits</td>
+      <td>[ 2, 5 ]</td>
+      <td>oui</td>
+      <td>00000101 (5)</td>
+    </tr>
+        <tr>
+      <td>11010111 (-41)</td>
+      <td>Upper half</td>
+      <td>Ignoré</td>
+      <td>non</td>
+      <td>11010000 (-48)</td>
+    </tr>
+    <tr>
+      <td>11010111 (-48)</td>
+      <td>Upper half</td>
+      <td>Ignoré</td>
+      <td>oui</td>
+      <td>11111101 (-3)</td>
+    </tr>
+    </informaltable>
+    <para>
+      Dans le schéma suivant, deux chiffres décimaux sont codés sur un seul octet. Le diagramme décode
+      l'entrée pour obtenir deux chiffres séparés.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/EXTRACTBITS_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/extractbits_diagram_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_EXTRACTBITS">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci">SCI/modules/scicos_blocks/macros/IntegerOp/EXTRACTBITS.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_EXTRACTBITS">
+    <title>Fonctions de calcul</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_UH0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u32_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_LH.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_MSB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u32_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_LSB.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_RB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_32_RB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u32_RB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_UH0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u16_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_LH.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_MSB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u16_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_LSB.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_RB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_16_RB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u16_RB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_UH0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u8_UH1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_LH.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_MSB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u8_MSB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_LSB.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_RB0.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_8_RB1.c</para>
+      </listitem>
+      <listitem>
+        <para> SCI/modules/scicos_blocks/src/c/extract_bit_u8_RB1.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_EXTRACTBITS">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="BITSET">BITSET</link>
+      </listitem>
+      <listitem>
+        <link linkend="BITCLEAR">BITCLEAR</link>
+      </listitem>
+      <listitem>
+        <link linkend="LOGICAL_OP">LOGICAL_OP</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_EXTRACTBITS">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

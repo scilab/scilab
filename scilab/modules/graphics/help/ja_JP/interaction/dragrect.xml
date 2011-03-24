@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dragrect">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dragrect</refname>
+    <refpurpose>マウスで矩形をドラッグ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[final_rect,btn]=dragrect(initial_rect)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>initial_rect</term>
+        <listitem>
+          <para>矩形の初期位置を有する4xn 行列.
+	各列は[x_left; y_top; width; height]を有します.
+	矩形が一つだけ存在する場合,initial_rectもベクトルになります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>final_rect</term>
+        <listitem>
+          <para>[x_left, y_top, width, height]で定義される矩形</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>btn</term>
+        <listitem>
+          <para>整数, マウスボタンがクリックされた数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>dragrect</literal> は一つまたは複数の矩形を画面上の任意の場所に
+	ドラッグします.
+	4xn 行列 rect がこの矩形を定義します.
+	<literal>initial_rect</literal> の各列には,
+	値[left;top;width;height]で矩形の初期位置を指定する必要があります.
+	ボタンがクリックされると<literal>dragrect</literal>は
+	最終的な矩形の定義を<literal>final_Rect</literal>に返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+xsetech(frect=[0,0,100,100])
+r=dragrect([10;10;30;10])
+xrect(r)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+      <member>
+        <link linkend="xrects">xrects</link>
+      </member>
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+      <member>
+        <link linkend="xgetmouse">xgetmouse</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

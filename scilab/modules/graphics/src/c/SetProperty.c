@@ -247,7 +247,6 @@ void sciRecursiveUpdateBaW(sciPointObj *pobj, int old_m, int m)
      (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_LEGEND)      ||
      (sciGetEntityType(pobj) == SCI_AXES)        ||
-     (sciGetEntityType(pobj) == SCI_SUBWIN)      ||
      (sciGetEntityType(pobj) == SCI_FIGURE)      ||
      (sciGetEntityType(pobj) == SCI_LABEL))
     {

@@ -67,8 +67,8 @@ xrect(r(1),r(2)+r(4),r(3),r(4))
 xstringb(r(1),r(2),str,r(3),r(4),"fill");
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>

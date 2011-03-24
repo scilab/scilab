@@ -200,7 +200,7 @@ int sci_mputl(char *fname, unsigned long fname_len)
     pStVarOne = (char**) MALLOC(sizeof(char*) * mnOne);
     if (pStVarOne == NULL)
     {
-        if (lenStVarOne) {FREE(lenStVarOne); lenStVarOne = NULL;}
+        FREE(lenStVarOne); lenStVarOne = NULL;
         Scierror(999, _("%s: No more memory.\n"), fname);
         return 0;
     }

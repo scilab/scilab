@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
+import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 
@@ -141,14 +142,22 @@ class BlockModelElement extends BlockPartsElement {
 		if (dataNbControlPort.getRealPart() != null) {
 			int nbControlPort = dataNbControlPort.getHeight();
 			for (int i = 0; i < nbControlPort; i++) {
-				into.addPort(new ControlPort());
+				final BasicPort port = new ControlPort();
+				
+				// do not use BasicPort#addPort() to avoid the view update
+				port.setOrdering(i + 1);
+				into.insert(port, i);
 			}
 		}
 
 		if (dataNbCommandPort.getRealPart() != null) {
 			int nbCommandPort = dataNbCommandPort.getHeight();
 			for (int i = 0; i < nbCommandPort; i++) {
-				into.addPort(new CommandPort());
+				final BasicPort port = new CommandPort();
+				
+				// do not use BasicPort#addPort() to avoid the view update
+				port.setOrdering(i + 1);
+				into.insert(port, i);
 			}
 		}
 	}
@@ -399,7 +408,8 @@ class BlockModelElement extends BlockPartsElement {
 
 		// opar
 		field++;
-		if (!(data.get(field) instanceof ScilabList)) {
+		if (!(data.get(field) instanceof ScilabDouble)
+				&& !(data.get(field) instanceof ScilabList)) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
 
@@ -554,7 +564,7 @@ class BlockModelElement extends BlockPartsElement {
 		data.set(field, new ScilabBoolean(dependsOnUandT));
 		
 		field++; // label
-		data.set(field, new ScilabString(""));
+		data.set(field, new ScilabString(from.getId()));
 		
 		field++; // nzcross
 		data.set(field, from.getNbZerosCrossing());

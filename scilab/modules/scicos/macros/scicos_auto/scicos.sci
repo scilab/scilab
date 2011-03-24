@@ -20,6 +20,9 @@
 //
 
 function [scs_m, newparameters, needcompile, edited] = scicos(scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //Copyright INRIA
 
 // scicos - block diagram graphic editor
@@ -683,6 +686,9 @@ endfunction //** scicos(); end here :) : you had a good day
 //** ----------------------------------------------------------------------------------------------------------------
 
 function uni = gunique(m1,m2)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Used to eliminate duplicate palette item(s)
   uni = [m1;m2] ; //** merge the two matrix
   [j,ind] = unique(uni(:,1) + uni(:,2)) ; //** remove the duplicate palette name
@@ -693,6 +699,9 @@ endfunction
 //**---------------------------------------------------------------------------------------------------------------------
 
 function scicos_pal = check_palettes_paths(scicos_pal)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   toremove=[]
   for k=1:size(scicos_pal,1)
     if fileinfo(scicos_pal(k,2))==[] then toremove=[toremove k],end

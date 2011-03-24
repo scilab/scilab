@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="interp3d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>interp3d</refname>
+
+    <refpurpose>3次スプライン評価関数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[fp[,dfpdx,dfpdy,dfpdz]]=interp3d(xp,yp,zp,tl,out_mode)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp, yp, zp</term>
+
+        <listitem>
+          <para>同じ大きさの実数ベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tl</term>
+
+        <listitem>
+          <para>s"splin3d"型のtlistで, 3dスプラインを以下のように定義します</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>(オプション) ([xmin,xmax]x[ymin,ymax]x[zmin,zmax])における
+	外側のグリッド
+<literal>s</literal>の評価を定義する文字列
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fp</term>
+
+        <listitem>
+          <para><literal>xp</literal>,
+	<literal>yp</literal> および <literal>zp</literal> 
+	と同じ形式のベクトルまたは行列で,
+	これらの点における<literal>s</literal>の用途毎の評価値.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>dfpdx, dfpdy, dfpdz</term>
+
+        <listitem>
+          <para>
+	<literal>xp</literal>,
+	<literal>yp</literal> および <literal>zp</literal> 
+	と同じ形式のベクトル (または行列) で,
+	これらの点における<literal>s</literal>の用途毎の1次微分値.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para> 3次元スプライン関数を定義する tlist <literal>tl</literal> を指定すると
+    (<link linkend="splin3d">splin3d</link>参照), 
+	この関数は 
+    <emphasis>s</emphasis> (および要すれば <emphasis>ds/dx, ds/dy, ds/dz</emphasis> )
+	 を <emphasis>(xp(i),yp(i),zp(i))</emphasis>において計算します :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/interp3d_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para><literal>out_mode</literal> パラメータは捕外,
+	すなわち, <emphasis>(xp(i),yp(i),zp(i)) が
+    [xmin,xmax]x[ymin,ymax]x[zmin,zmax]の範囲にない場合</emphasis>,
+	の評価方法を定義します:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>ゼロによる捕外が行われます</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>NaNによる捕外</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>以下のように定義された捕外 :</para>
+
+          <programlisting role = ""><![CDATA[ 
+ s(x,y) = s(proj(x,y)) where proj(x,y) is nearest point 
+                       of [x(1),x(nx)]x[y(1),y(ny)] from (x,y)
+ ]]></programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para> <literal>s</literal> は周期性に
+	基づき拡張されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// splin3d ヘルプページの例を参照
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin3d">splin3d</link></member>
+
+      <member><link linkend="bsplin3val">bsplin3val</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>R.F. Boisvert, C. De Boor (code from the CMLIB fortran
+      lib)</member>
+
+      <member>B. Pincon (scilab interface)</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -811,6 +811,7 @@ function %h_p(h)
         // =====================================================================
         
         case "uimenu"
+            u=h.user_data;
             t=[t;
                 "Parent: "+h.parent.type
                 "Children: "+fmtchildren(h.children)
@@ -823,6 +824,7 @@ function %h_p(h)
                 "Callback = "+h.callback
                 "Callback_type = "+sci2exp(h.callback_type,0)
                 "Checked =  "+sci2exp(h.checked)
+                "Userdata = "+fmtuser_data(u)
                 "Tag = "+h.tag
             ]
         

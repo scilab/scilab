@@ -18,7 +18,10 @@ import org.scilab.modules.xcos.block.listener.SumPortLabelingListener;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.command.CommandPort;
+import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
+
+import com.mxgraph.model.mxICell;
 
 /**
  * Implement a round block with inputs spread around the block.
@@ -60,33 +63,52 @@ public class RoundBlock extends BasicBlock {
 			getParametersPCS().addPropertyChangeListener("realParameters", ProdPortLabelingListener.getInstance());
 		}
 	}
-
+	
 	/**
-	 * Calculate current port position on the block and add it.
-	 * @param port the port to add
-	 * @see org.scilab.modules.xcos.block.BasicBlock#addPort(org.scilab.modules.xcos.port.BasicPort)
+	 * Insert a port into this block.
+	 * 
+	 * @param child the port to add
+	 * @param index the index 
 	 */
 	@Override
-	public void addPort(BasicPort port) {
+	public mxICell insert(mxICell child, int index) {
 		/*
-		 * Any output port keep its orientation.
+		 * Any input are placed around the block.
 		 */
-		if (port instanceof OutputPort || port instanceof CommandPort) {
-			super.addPort(port);
-			return;
+		if (child instanceof InputPort) {
+			final InputPort port = (InputPort) child;
+			port.setOrientation(getPortOrientation(port.getOrdering()));
+			
 		}
 		
-		/*
-		 * The other ones are placed around the block.
-		 */
-		final int def = port.getOrientation().ordinal() - 1;
-		final int side = getChildCount();
-		
-		final int rotatedSide = (side + def + SIDE_NUMBER) % SIDE_NUMBER;
-		
-		final Orientation current = Orientation.values()[rotatedSide];
-		port.setOrientation(current);
-		
-		super.addPort(port);
+		return super.insert(child, index);
+	}
+	
+	/**
+	 * Get the Orientation from the order
+	 * @param order the port ordering
+	 * @return the selected orientation
+	 */
+	private Orientation getPortOrientation(int order) {
+		final Orientation ret;
+
+		switch (order) {
+		case 1:
+			ret = Orientation.SOUTH;
+			break;
+
+		case 2:
+			ret = Orientation.WEST;
+			break;
+
+		case 3:
+			ret = Orientation.NORTH;
+			break;
+
+		default:
+			ret = Orientation.WEST;
+			break;
+		}
+		return ret;
 	}
 }

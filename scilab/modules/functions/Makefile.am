@@ -37,7 +37,7 @@ libscifunctions_la_CFLAGS=		-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscifunctions.la
 
-libscifunctions_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscifunctions_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscifunctions_la_SOURCES = $(FUNCTIONS_C_SOURCES) $(FUNCTIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -57,7 +57,7 @@ modulename=functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(mydatadir)
-libscifunctions_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscifunctions_la_root_DATA =  license.txt version.xml
 
 
 #### functions : init scripts ####

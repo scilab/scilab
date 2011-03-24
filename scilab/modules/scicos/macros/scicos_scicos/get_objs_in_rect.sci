@@ -20,6 +20,9 @@
 // See the file ../license.txt
 //
 function [in,out] = get_objs_in_rect(scs_m,ox,oy,w,h)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //returns in "in" the index of Scicos objects which are inside the
 //selected rectangle and in "out" index of Scicos objects which are
 //outside the rectangle

@@ -48,8 +48,8 @@ Cc=cont_mat(sl)</synopsis>
 Cc=[B, AB, A^2 B,..., A^(n-1) B]  
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ctr_gram">ctr_gram</link>

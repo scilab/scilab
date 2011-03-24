@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="rectangle_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rectangle_properties</refname>
+    <refpurpose>Rectangleエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Rectangle エンティティはグラフィックエンティティ階層の葉です. このエンティティは
+	矩形または塗りつぶされた矩形のパラメータを定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このフィールドには親のハンドルが含まれます.
+	rectangleエンティティの親は<literal>"Axes"</literal>型または
+        <literal>"Compound"</literal>型です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティはハンドルの<literal>子</literal>を保持する
+	ベクトルを有します.しかし,現在,<literal>rectangle</literal>ハンドルには
+	子がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_mode: </term>
+        <listitem>
+          <para>このフィールドはポリラインの<literal>mark_mode</literal>
+	プロパティのデフォルト値を有します.
+	この値は<literal>"on"</literal> (マーカを描画
+        drawn) または <literal>"off"</literal> (マーカを描画しない)となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_style: </term>
+        <listitem>
+          <para><literal>mark_style</literal>プロパティの値は
+	<literal>mark_mode</literal>プロパティが<literal>"on"</literal>の場合に,
+	使用するマーカの種類を選択するために使用されます.
+	この値は[0 14]の範囲の整数で,それぞれ以下の意味があります :
+	ドット,プラス,十字,星,塗りつぶした菱形,
+	上向き三角形, 下向き三角形, 菱形プラス,円,アスタリスク,
+	正方形,右向き三角形,左向き三角形およびペンタグラム.
+	以下の図は,マーカのアスペクトが<literal>mark_style</literal>,
+          <literal>mark_foreground</literal> および
+          <literal>mark_background</literal>プロパティに依存する
+	ことを示します.</para>
+	<para>
+	  <inlinemediaobject>
+	    <imageobject>
+	      <imagedata fileref="../images/marks.svg"/>
+	    </imageobject>
+	  </inlinemediaobject>
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size_unit: </term>
+        <listitem>
+          <para>このフィールは<literal>mark_size_unit</literal>プロパティのデフォルト値
+		を有します.<literal>mark_size_unit</literal>が<literal>"point"</literal>
+		に設定された場合,<literal>mark_size</literal>の値はポイント単位で直接
+		指定されます.
+		<literal>mark_size_unit</literal> に<literal>"tabulated"</literal>が
+		指定された場合,<literal>mark_size</literal>はfont size配列に相対的に
+		計算されます: この場合,この値は,
+		8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味する
+		[0 5]の範囲の整数とします.
+		 <link linkend="xrect">xrect</link>および Scilabのネーティブ関数は
+		<literal>tabulated</literal>モードをデフォルトとします;
+		<link linkend="plot">plot</link>関数を使用する場合,
+		<literal>point</literal> モードが自動的に有効となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_size: </term>
+        <listitem>
+          <para><literal>mark_size</literal>プロパティは,
+	<literal>mark_mode</literal>プロパティが<literal>"on"</literal>の時,
+	マーカの大きさを選択するために使用されます.
+	この値は, 8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味する
+	 [0 5]の範囲の整数です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_foreground: </term>
+        <listitem>
+          <para>このフィールドは,マーカの縁の色である<literal>mark_foreground</literal>
+	プロパティの値を有します.この値は(カレントのcolor_mapに関連する)色インデックス
+	または透過エッジを意味する 0 とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mark_background: </term>
+        <listitem>
+          <para>このフィールドは,マーカの前景色である
+	<literal>mark_background</literal>プロパティの値を有します.
+	この値は(カレントのcolor_mapに関連する)色インデックス
+	または透過エッジを意味する 0 とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_mode: </term>
+        <listitem>
+          <para>このフィールドは矩形の<literal>line_mode</literal>プロパティ
+	のデフォルト値を有します.
+	この値は,<literal>"on" </literal>(線を描画
+        ) または <literal>"off"</literal> 線を描画しない)とします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill_mode: </term>
+        <listitem>
+          <para><literal>fill_mode</literal>プロパティの値が<literal>"on" </literal>の場合,
+        この矩形は前景色(foreground color)で塗りつぶされ,
+	<literal>mark_mode</literal>も<literal>"off"</literal>となります.
+	そうでない場合,このプロパティの値は<literal>"off"</literal>で,
+	矩形の輪郭のみが前景色により描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_style: </term>
+        <listitem>
+          <para><literal>line_style</literal>プロパティの値は[0 8]の範囲の整数とします.
+	0および1は実線,その他の値は破線を意味します
+	(<link linkend="axes_properties">getlinestyle</link>参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>thickness: </term>
+        <listitem>
+          <para>このプロパティは正の実数で,ピクセル単位で矩形の線幅を指定します.
+	実際の表示幅は指定された幅を最も近い整数に丸めることにより定義されます.
+	唯一の例外はベクトル単位のエクスポートで,
+	この場合,全体の<literal>thickness</literal>が考慮されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>foreground: </term>
+        <listitem>
+          <para>このフィールドは矩形の外形を描画する際に使用される色を有します.
+	この値は(カレントのカラーマップの)色インデックスとします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>background: </term>
+        <listitem>
+          <para>このフィールドは矩形を塗りつぶす際に使用される色を有します.
+	この値は(カレントのカラーマップの)色インデックスとします.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>このプロパティは
+	矩形の左上の点の座標,幅と高さをユーザ座標で返す際に使用されます.
+	この結果は,行列
+        <literal>[xleft,yup,[zup],width,height]</literal>です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはこのエンティティの<literal>visible</literal>
+		プロパティの値を有します.
+		この値は <literal>"on" </literal> または <literal>"off"</literal>とします.
+        デフォルトで矩形は可視であり, このプロパティの値は
+        <literal>"on"</literal>です.  <literal>"off"</literal>の場合,矩形は画面に描画
+	されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドは矩形の<literal>clip_state</literal>プロパティの
+		値を有します. 値は以下となります: </para>
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> 矩形はクリップされません.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"clipgrf"</literal> 矩形はAxesボックスの外側でクリップ
+		されます.</para>
+            </listitem>
+            <listitem>
+              <para><literal>"on"</literal>矩形はclip_boxプロパティで
+		指定された矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>このフィールドは<literal>clip_box</literal>プロパティを定義します.
+	clip_state が "off" の場合, デフォルトで,この値は空の行列です.
+	その他の場合, ベクトル　<literal>[x,y,w,h]</literal> (左上の点 幅 高さ) 
+	は表示する矩形の部分を定義しますが,
+	<literal>clip_state</literal>プロパティの値が変更されます.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドはrectangleデータ構造体に任意のScilab変数を
+	保存し,再度取得する際に使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");//get the handle of the newly created axes
+a.data_bounds=[-2,-2;2,2];
+
+xrect(-1,1,2,2)
+
+r=get("hdl");//カレントのエンティティ(ここでは rectangle エンティティ)のハンドルを取得y 
+r.type
+r.parent.type
+r.foreground=13;
+r.line_style=2;
+r.fill_mode="on";
+r.background=color('red');
+r.clip_box=[-1 1;1 1];
+r.data(:,[3 4])=[1/2 1/2];
+r.data(:,[1 2])=[1/2 1/2];
+r.clip_state="off"
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+      <member>
+        <link linkend="xfrect">xfrect</link>
+      </member>
+      <member>
+        <link linkend="xrects">xrects</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

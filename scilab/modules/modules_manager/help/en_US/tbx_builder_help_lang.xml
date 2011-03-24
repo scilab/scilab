@@ -49,8 +49,8 @@
 tbx_builder_help_lang("en_US", get_absolute_file_path('builder_help.sce'))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tbx_builder_help">tbx_builder_help</link>

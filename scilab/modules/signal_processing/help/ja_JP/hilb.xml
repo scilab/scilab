@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hilb">
+<info><pubdate>$LastChangedDate$</pubdate></info>
+<refnamediv>
+<refname>hilb</refname>
+<refpurpose>ヒルバート変換フィルタのFIR近似</refpurpose>
+</refnamediv>
+  
+  <refsynopsisdiv><title>呼び出し手順</title>
+	<synopsis>xh=hilb(n [,wtype [,par]])</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>奇数の整数 : フィルタにおける点の数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>wtype</term>
+        <listitem>
+          <para>文字列 : ウインドウの種類 <literal>('re','tr','hn','hm','kr','ch')</literal> (default <literal>='re'</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>par</term>
+        <listitem>
+          <para><literal>wtype='kr' or 'ch'</literal>の場合のウインドウのパラメータ .
+	デフォルトは<literal>par=[0 0]</literal>.
+	詳細は関数windowのヘルプを参照ください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xh</term>
+        <listitem>
+          <para>ヒルバート変換</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	原点を中心とするヒルバート変換フィルタを近似するFIRの
+	最初のn個の点を返します.</para>
+    <para> 
+	FIRフィルタは,理想インパルス応答,つまし,
+	<literal>n</literal> が 0 でない場合は 
+	<literal>h(n)=(2/(n*pi))*(sin(n*pi/2))^2</literal>,
+	<literal>h(0)=0</literal>
+	を適当にウインドウ処理することにより
+	設計されます.</para>
+    <para>
+	ヒルバート変換演算子を近似するFIR (Finite Impulse Response)フィルタを
+	設計することにより解析的な信号生成器の近似を得るすることができます.
+	解析的な信号は適当に時間シフトされた実信号をヒルバートフィルタにより
+	生成された虚部に加算することにより計算されます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>参考文献</title>
+    <para>
+      <literal><ulink url="http://ieeexplore.ieee.org/iel4/78/7823/00330385.pdf?tp=&amp;arnumber=330385&amp;isnumber=7823">http://ieeexplore.ieee.org/iel4/78/7823/00330385.pdf?tp=&amp;arnumber=330385&amp;isnumber=7823</ulink></literal>
+    </para>
+    <para>
+      A. Reilly, G. Frazer, and B. Boashash, "Analytic signal generation Tips and traps", IEEE Trans. Signal Processing, vol. 42,
+      pp.3241-3245, Nov. 1994. 
+    </para>
+ 
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="window">window</link>
+      </member>
+      <member>
+        <link linkend="hilbert">hilbert</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection><title>例</title>
+  <programlisting role="example"><![CDATA[ 
+plot(hilb(51))
+ ]]></programlisting></refsection>
+  <refsection>
+<title>作者</title>
+  <para>C. B.  </para></refsection>
+</refentry>

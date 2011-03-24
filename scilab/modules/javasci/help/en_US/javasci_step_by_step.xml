@@ -27,7 +27,7 @@
       <listitem>org.scilab.modules.types.*; // Contains Scilab &lt;=&gt; Java mappings</listitem>
     </itemizedlist>
     <para><para>Here is an example of a classical use-case:</para></para>
-    <programlisting>/*
+    <programlisting role="java">/*
  * Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
  *
  * This file is released under the 3-clause BSD license. See COPYING-BSD.
@@ -95,7 +95,7 @@ foo[1,1] = 0.0
     4.    3.1415927    10.
     6.    10.          12.
 </programlisting>
-    <para>For more information about the objects and methods, browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).</para>
+    <para>For more information about the objects and methods, browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).</para>
   </refsection>
   <refsection>
     <title>Step 2 - Build</title>
@@ -146,7 +146,7 @@ all:
   <refsection>
     <title>See Also</title>
     <simplelist type="inline">
-      <member> Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser). </member>
+      <member> Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). </member>
       <member>
         <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
       </member>

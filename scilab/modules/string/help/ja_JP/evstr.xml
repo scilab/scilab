@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="evstr" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>evstr</refname>
+
+    <refpurpose>式の評価</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>H=evstr(Z)
+[H,ierr]=evstr(Z)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>文字列の行列 <literal>M</literal> または
+          <literal>list(M,Subexp)</literal></para>
+
+          <variablelist>
+            <varlistentry>
+              <term>M</term>
+
+              <listitem>
+                <para>文字列の行列</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Subexp</term>
+
+              <listitem>
+                <para>文字列のベクトル</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>H</term>
+
+        <listitem>
+          <para>matrix</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ierr</term>
+
+        <listitem>
+          <para>整数, エラーインジケータ</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	文字列の行列<literal>M</literal>を評価した結果を返します.
+	行列の各要素は有効なScilab式を定義している必要があります.</para>
+
+    <para>
+	<literal>M</literal>式の評価でエラーが発生した場合,
+	戻り値が1つの版,<literal>H = evstr(M)</literal>,では通常と同様に
+	エラーを発生します.
+	一方,戻り値が2つの版,<literal>[H,ierr] = evstr(M)</literal>,
+	はエラーを発生しませんが,<literal>ierr</literal>にエラー番号が
+	返されます.</para>
+
+    <para><literal>Z</literal> がリストの場合, <literal>Subexp</literal> は
+	文字列のベクトルとなり,<literal>M</literal>を評価する前に評価された
+	sub_expressionsを定義します.
+	これらのsub_expressionsは<literal>M</literal>の中では
+	<literal>%(k)</literal>として参照する必要があります.
+	ただし,<literal>k</literal>は<literal>Subexp</literal>における
+	sub-expressionのインデックスです.</para>
+
+    <para>evstr('a = 1') は有効ではありません (代わりに<literal>execstr</literal>
+    を使用してください).</para>
+
+    <para>Nan, NaN は %nan と評価されます.</para>
+
+    <para>Inf は %inf と評価されます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example">a = 1; b = 2; Z = ['a', 'b'] ; evstr(Z) 
+a = 1; b = 2; Z = list(['%(1)','%(1)-%(2)'],['a+1','b+1']);
+evstr(Z)
+
+evstr('NaN'), evstr('Inf')</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="execstr">execstr</link></member>
+      <member><link linkend="evstr">evstr</link></member>
+      <member><link linkend="execstr">execstr</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

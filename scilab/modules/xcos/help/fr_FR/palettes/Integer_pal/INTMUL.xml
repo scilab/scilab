@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="INTMUL" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xml.mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>INTMUL</refname>
+
+    <refpurpose>Multiplication de matrices entières</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/palettes/INTMUL.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_INTMUL">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="INTMUL">Multiplication de matrices entières</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_INTMUL">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_INTMUL">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Data_Type_INTMUL">Types de données</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_INTMUL">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_INTMUL">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Example_INTMUL">Exemple</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_INTMUL">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_INTMUL">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_INTMUL">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_INTMUL">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_INTMUL">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Integer_pal">Palette Entier</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_INTMUL">
+    <title>Description</title>
+
+    <para>
+      Ce bloc calcule la multiplication de deux entrées constituées par des matrices d'entiers.
+      Le nombre de lignes de la seconde matrice doit être égal au nombre de colonnes de la première
+      matrice.
+    </para>
+    <para>
+      La sortie est une matrice où le nombre de lignes est égal au nombre de lignes de la première
+      matrice d'entrée et le nombre de colonnes est égal au nombre de colonnes de la seconde matrice
+      d'entrée.
+    </para>
+    <para>Lors d'un dépassement de capacité, le résultat peut prendre trois formes :</para>
+    <orderedlist>
+      <listitem>
+        <para>
+          Un résultat normal non saturé. Par exemple, si le type est int8 et le résultat 128, la valeur de sortie du bloc sera -128.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Un résultat saturé. Pour l'exemple précédent la valeur de sortie du bloc sera 127
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          Un message d'erreur prévenant l'utilisateur du dépassement de capacité.
+        </para>
+      </listitem>
+    </orderedlist>
+    <para>
+      L'utilisateur peut sélectionner l'une de ces trois formes en mettant le champ
+      <emphasis role="bold">Do on Overflow</emphasis> à 0,1 ou 2.
+    </para>
+
+    <para />
+  </refsection>
+
+  <refsection id="Data_Type_INTMUL">
+    <title>Types de données</title>
+
+    <para>
+      Le bloc supporte les types de données suivants  :
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          Entrées : matrices, vecteurs ou scalaires. Type entiers de Scilab
+          (paramètre <emphasis role="bold">Data Type</emphasis>).
+        </para>
+	<para />
+      </listitem>
+      <listitem>
+        <para>
+          Sortie : même type que les entrées.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+
+  <refsection id="Dialogbox_INTMUL">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../gui/integer_pal/fr_FR/INTMUL_gui.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Data Type (3:int32, 4:int16, 5:int8, ...)</emphasis>
+        </para>
+
+        <para>
+          Indique le type de données des entrées : entre 3 et 8.
+        </para>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Do on Overflow (0:Nothing, 1:Saturate, 2:Error)</emphasis>
+        </para>
+        <para>
+          Entre 0 et 2. Lors d'un dépassement de capacité, si le paramètre est égal à :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para><emphasis role="bold">0</emphasis> : le résultat est non saturé.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">1</emphasis> : le résultat est saturé.</para>
+          </listitem>
+          <listitem>
+              <para><emphasis role="bold">2</emphasis> : la simulation affiche un message d'erreur.</para>
+          </listitem>
+        </itemizedlist>
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_INTMUL">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 3</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 2 : size [-2,-3] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-3] / type 3</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">matmul_i32</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_INTMUL">
+    <title>Exemple</title>
+    <para>
+      Le but de cet exemple est de coder deux chiffres décimaux dans un seul octet. Il fait exactement
+      le travail inverse de l'exemple du bloc <link linkend="EXTRACTBITS">EXTRACTBITS</link>.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/INTMUL_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../../../examples/integer_pal/fr_FR/intmul_diagram_fr_FR.png" />        </imageobject>
+    </mediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_INTMUL">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/IntegerOp/INTMUL.sci">SCI/modules/scicos_blocks/macros/IntegerOp/INTMUL.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_INTMUL">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i32n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i16n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i8n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui32n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui16n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui8n.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i32s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i16s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i8s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui32s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui16s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui8s.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i32e.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i16e.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_i8e.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui32e.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui16e.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matmul_ui8e.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_INTMUL">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <link linkend="MATMUL">MATMUL</link>
+      </listitem>
+      <listitem>  
+        <link linkend="EXTRACTBITS">EXTRACTBITS</link>
+      </listitem>  
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_INTMUL">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

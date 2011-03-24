@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="lincos"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>lincos</refname>
+    <refpurpose>xcosダイアグラムにより記述された一般的な動的システムから
+	線形化により定義された線形状態空間モデル</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>sys= lincos(scs_m [,x0,u0 [,param] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_lincos">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_lincos">
+    <title>説明</title>
+    <para>
+xcosダイアグラムで指定されたモデルを線形化することにより
+線形状態空間システムを構築します.
+</para>
+    <para>
+出力は,連続時間状態空間線形システム型のScilabデータ構造体です.
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+sys= lincos(scs_m [,x0,u0 [,param] ])
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_lincos">
+    <title>パラメータ</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">scs_m :</emphasis>xcosデータ構造体</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">x0 :</emphasis> 列ベクトル.連続時間状態変数で,
+	この近傍で線形化が行われます (デフォルト: 0)</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">u0 :</emphasis> 列ベクトル. 
+	入力で,この近傍で線形化が行われます (デフォルト: 0)</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">param :</emphasis> param: 
+	2つの要素を有するリスト (デフォルト: list(1.d-6,0)).
+	param(1): スカラー. 線形化用の擾乱の大きさ; 以下の変動が使用されます
+	del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. 
+	param(2): スカラー. 時刻 t.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">sys :</emphasis> 状態空間システム</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_lincos">
+    <title>ファイルの内容</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_auto/lincos.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_lincos">
+    <title>参照</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="steadycos">steadycos - 
+	xcosダイアグラムで記述された一般の動的システムの状態変数の定常値を見つけます
+	(Scilab関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scicos_simulate">scicos_simulate - 
+	xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_lincos">
+    <title>作者</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

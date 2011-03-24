@@ -320,7 +320,7 @@ int getVariableNames(int _iFile, char **pstNameList)
             if(pstNameList != NULL)
             {
                 int iLen = 0;
-                iLen = H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
+                iLen = (int)H5Gget_objname_by_idx(_iFile, i, NULL, iLen);
                 pstNameList[iNbItem] = (char*)MALLOC(sizeof(char) * (iLen + 1)); //null terminated
                 H5Gget_objname_by_idx(_iFile, i, pstNameList[iNbItem], iLen + 1);
             }
@@ -1100,7 +1100,7 @@ int getScilabTypeFromDataSet(int _iDatasetId)
 
     if(pstScilabClass == NULL)
     {
-        return -1;
+        return unknow_type;
     }
     /* HDF5 Float type + SCILAB_Class = double <=> double */
     if(strcmp(pstScilabClass, g_SCILAB_CLASS_DOUBLE) == 0)
@@ -1146,6 +1146,14 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     else if(strcmp(pstScilabClass, g_SCILAB_CLASS_MLIST) == 0)
     {
         iVarType = sci_mlist;
+    }
+    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_VOID) == 0)
+    {
+        iVarType = sci_void;
+    }
+    else if(strcmp(pstScilabClass, g_SCILAB_CLASS_UNDEFINED) == 0)
+    {
+        iVarType = sci_undefined;
     }
 
     if(iVarType == 0)

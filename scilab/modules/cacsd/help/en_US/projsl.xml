@@ -71,8 +71,8 @@ slr=projsl(sl,Q,M);  //reduced model
 hankelsv(slr)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pbig">pbig</link>

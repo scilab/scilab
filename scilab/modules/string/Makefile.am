@@ -53,7 +53,6 @@ sci_gateway/c/sci_isascii.c \
 sci_gateway/c/sci_strchr.c \
 sci_gateway/c/sci_strcspn.c \
 sci_gateway/c/sci_strncpy.c \
-sci_gateway/c/sci_strrchr.c \
 sci_gateway/c/sci_strrev.c \
 sci_gateway/c/sci_strspn.c \
 sci_gateway/c/sci_strstr.c \
@@ -76,7 +75,7 @@ libscistring_la_CFLAGS= $(PCRE_CFLAGS) \
 
 pkglib_LTLIBRARIES = libscistring.la
 
-libscistring_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
+libscistring_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PCRE_LIBS)
 
 libscistring_la_SOURCES = $(STRING_C_SOURCES) $(STRING_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -94,7 +93,7 @@ modulename=string
 
 #### string : Conf files ####
 libscistring_la_rootdir = $(mydatadir)
-libscistring_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscistring_la_root_DATA =  license.txt version.xml
 
 #### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc

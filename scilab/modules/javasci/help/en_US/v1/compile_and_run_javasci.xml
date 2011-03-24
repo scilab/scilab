@@ -182,7 +182,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="java"><![CDATA[ 
 // A simple Java example 
 // Filename: BasicExample.java
 
@@ -196,8 +196,8 @@ public class BasicExample {
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
     <member>

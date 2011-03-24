@@ -16,6 +16,8 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
+import com.mxgraph.model.mxICell;
+
 /**
  * The Ground block has only one specificity : it's port position.
  */
@@ -28,11 +30,14 @@ public class GroundBlock extends BasicBlock {
 	
 	/**
 	 * Set the orientation before calling parent method.
-	 * @param port the port to add.
+	 * @param child the port to add.
+	 * @param index the index of the add
 	 */
 	@Override
-	public void addPort(BasicPort port) {
-		port.setOrientation(Orientation.NORTH);
-		super.addPort(port);
+	public mxICell insert(mxICell child, int index) {
+		if (child instanceof BasicPort) {
+			((BasicPort) child).setOrientation(Orientation.NORTH);
+		}
+		return super.insert(child, index);
 	}
 }

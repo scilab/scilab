@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="splin2d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>splin2d</refname>
+
+    <refpurpose>双3次スプラインのグリッド2次元補間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>C = splin2d(x, y, z, [,spline_type])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>
+		補間グリッドを定義する単調増加の行ベクトル
+		(要素数は2以上)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>z</term>
+
+        <listitem>
+          <para>nx x ny 行列 (nx は <literal>x</literal>の長さ,
+	ny は <literal>y</literal>の長さ)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>spline_type</term>
+
+        <listitem>
+          <para>(オプション) 計算する双3次スプラインの種類を選択する文字列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>C</term>
+
+        <listitem>
+          <para>
+	双3次パッチの係数を有するベクトル(詳細は注記を参照))</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は点<emphasis>(xi,yj,zij)</emphasis>を補間する,
+	すなわち,全ての<emphasis>i=1,..,nx</emphasis>および
+    	<emphasis>j=1,..,ny</emphasis>について
+	<emphasis>s(xi,yj)=zij</emphasis>となるような,
+	双3次スプラインまたはサブスプライン
+	<emphasis>s</emphasis>を計算します.
+	得られるスプラインは<emphasis>s</emphasis>は
+	<literal>(x,y,C)</literal>の組で定義されます.
+	ただし,<literal>C</literal> は,
+	(nx-1)(ny-1)個の双3次パッチの各々の係数
+	<emphasis>[x(i) x(i+1)]x[y(j) y(j+1)]</emphasis>
+	を有する
+	（長さ16(nx-1)(ny-1)の)ベクトルです,
+    <emphasis>s</emphasis>は次のように定義されます :</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/splin2d_equation_1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>
+	いくつかの点で<link linkend="interp2d">interp2d</link>関数により
+	<emphasis>s</emphasis>の評価を行う必要があります.
+	適当な<literal>spline_type</literal>パラメータを選択することにより,
+	複数の種類のスプラインを計算することができます.
+
+	双3次スプライン(またはサブスプライン)を計算するために使用する方法は,
+	古い形式の手法,すなわち,
+	各グリッドの点<emphasis>(xi,yj)</emphasis>において
+	1階微分<emphasis>ds/dx(xi,yj)</emphasis> および
+	<emphasis>ds/dy(xi,yj)</emphasis>と相互微分
+	<emphasis>d2s/dxdy(xi,yj)</emphasis>の近似値を計算する手法です.
+
+	これらの微係数は,C2関数
+	(<emphasis>s</emphasis>は連続2階微分可能)となる
+	1次元スプライン法の平均,または
+	C1関数となるローカルな近似法の平均により,計算されます.
+	この手法は,<literal>spline_type</literal>パラメータにより
+	選択されます.(詳細は,
+    <link linkend="splin">splin</link>を参照ください) :</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"not_a_knot"</term>
+
+        <listitem>
+          <para>これがデフォルトです.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para>
+	基本関数に周期性がある場合に使用します:
+	<emphasis>[1,ny]の範囲のあらゆるjについてz(1,j) = z(nx,j),
+	[1,nx]の範囲のあらゆるuについてz(i,1) = z(i,ny)</emphasis>
+	となる必要がありますが,これはインターフェイスでは検証されません.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para>精度の観点から,<emphasis
+    role="bold">not_a_knot</emphasis>型,また
+	基本となる補間関数に周期性がある場合には<emphasis
+    role="bold">periodic</emphasis>型を使用してください.</para>
+
+    <para><emphasis role="bold">natural</emphasis>, <emphasis
+    role="bold">monotone</emphasis>, <emphasis role="bold">fast</emphasis> (または
+    <emphasis role="bold">fast_periodic</emphasis>) 型は,
+	例えば振動を防止したい場合(<emphasis
+    role="bold">monotone</emphasis> がこの用途には最も強力です)に有用です.</para>
+
+    <para>より簡便な方法で双三次パッチの係数を得るには,
+	<literal>c = hypermat([4,4,nx-1,ny-1],C)</literal>を使用し,
+	続いてパッチ<emphasis>(i,j)</emphasis>(前記の式参照)
+	の係数<emphasis>(k,l)</emphasis>
+	を<literal>c(k,l,i,j)</literal>に保存します.
+	ただし,<link linkend="interp2d">interp2d</link>関数は,
+	ハイパー行列<literal>c</literal>ではなく,
+	大きなベクトル<literal>C</literal>を引数として受け入れます
+    (<literal>C=c(:)</literal>とすることで<literal>c</literal>から
+	容易に<literal>C</literal>を取得できます).</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 例1 : cos(x)cos(y)の補間
+n = 7;  //  n x n 個の補間点を有する通常のグリッドを
+        // 使用します
+x = linspace(0,2*%pi,n); y = x;
+z = cos(x')*cos(y);
+C = splin2d(x, y, z, "periodic");
+m = 50; // 評価グリッドの離散化パラメータ
+xx = linspace(0,2*%pi,m); yy = xx;
+[XX,YY] = ndgrid(xx,yy);
+zz = interp2d(XX,YY, x, y, C);
+emax = max(abs(zz - cos(xx')*cos(yy)));
+clf()
+plot3d(xx, yy, zz, flag=[2 4 4])
+[X,Y] = ndgrid(x,y);
+param3d1(X,Y,list(z,-9*ones(1,n)), flag=[0 0])
+str = msprintf(" with %d x %d interpolation points. ermax = %g",n,n,emax) 
+xtitle("spline interpolation of cos(x)cos(y)"+str)
+
+// 例2 : ランダムなデータに異なる補間関数を適用
+n = 6;
+x = linspace(0,1,n); y = x;
+z = rand(n,n);
+np = 50;
+xp = linspace(0,1,np); yp = xp;
+[XP, YP] = ndgrid(xp,yp);
+ZP1 = interp2d(XP, YP, x, y, splin2d(x, y, z, "not_a_knot"));
+ZP2 = linear_interpn(XP, YP, x, y, z);
+ZP3 = interp2d(XP, YP, x, y, splin2d(x, y, z, "natural"));
+ZP4 = interp2d(XP, YP, x, y, splin2d(x, y, z, "monotone"));
+xset("colormap", jetcolormap(64))
+clf()
+subplot(2,2,1)
+plot3d1(xp, yp, ZP1, flag=[2 2 4])
+xtitle("not_a_knot")
+subplot(2,2,2)
+plot3d1(xp, yp, ZP2, flag=[2 2 4])
+xtitle("bilinear interpolation")
+subplot(2,2,3)
+plot3d1(xp, yp, ZP3, flag=[2 2 4])
+xtitle("natural")
+subplot(2,2,4)
+plot3d1(xp, yp, ZP4, flag=[2 2 4])
+xtitle("monotone")
+show_window()
+
+// 例3 : ステップ関数のnot_a_knot スプラインおよびmonotoneスプライン
+//             
+a = 0; b = 1; c = 0.25; d = 0.75;
+// 補間グリッドを作成
+n = 11;
+x = linspace(a,b,n);
+ind = find(c &lt;= x &amp; x &lt;= d); 
+z = zeros(n,n); z(ind,ind) = 1;  // 正方形の中にステップ
+// 評価グリッドを作成
+np = 220;
+xp = linspace(a,b, np);
+[XP, YP] = ndgrid(xp, xp);
+zp1 = interp2d(XP, YP, x, x, splin2d(x,x,z));
+zp2 = interp2d(XP, YP, x, x, splin2d(x,x,z,"monotone"));
+// プロット
+clf()
+xset("colormap",jetcolormap(128))
+subplot(1,2,1)
+plot3d1(xp, xp, zp1, flag=[-2 6 4])
+xtitle("spline (not_a_knot)")
+subplot(1,2,2)
+plot3d1(xp, xp, zp2, flag=[-2 6 4])
+xtitle("subspline (monotone)")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="cshep2d">cshep2d</link></member>
+
+      <member><link linkend="linear_interpn">linear_interpn</link></member>
+
+      <member><link linkend="interp2d">interp2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

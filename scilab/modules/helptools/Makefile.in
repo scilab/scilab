@@ -59,9 +59,6 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
 subdir = modules/helptools
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
@@ -69,16 +66,16 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
-	$(top_srcdir)/m4/macosx.m4 $(top_srcdir)/m4/ocaml.m4 \
-	$(top_srcdir)/m4/pcre.m4 $(top_srcdir)/m4/pkg.m4 \
-	$(top_srcdir)/m4/pvm.m4 $(top_srcdir)/m4/relocatable.m4 \
-	$(top_srcdir)/m4/swig.m4 $(top_srcdir)/m4/symlinks.m4 \
-	$(top_srcdir)/m4/tcltk.m4 $(top_srcdir)/m4/umfpack.m4 \
-	$(top_srcdir)/configure.ac
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
+	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
+	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
+	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
+	$(top_srcdir)/m4/symlinks.m4 $(top_srcdir)/m4/tcltk.m4 \
+	$(top_srcdir)/m4/umfpack.m4 $(top_srcdir)/configure.ac
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 mkinstalldirs = $(SHELL) $(top_srcdir)/config/mkinstalldirs
@@ -110,6 +107,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscihelptools_la_bindir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_configurationdir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_cssdir)" \
+	"$(DESTDIR)$(libscihelptools_la_data_pagesdir)" \
 	"$(DESTDIR)$(libscihelptools_la_data_templatedir)" \
 	"$(DESTDIR)$(libscihelptools_la_etcdir)" \
 	"$(DESTDIR)$(libscihelptools_la_rootdir)" \
@@ -168,6 +166,7 @@ DIST_SOURCES = $(am__libscihelptools_la_SOURCES_DIST)
 DATA = $(libscihelptools_la_bin_DATA) \
 	$(libscihelptools_la_data_configuration_DATA) \
 	$(libscihelptools_la_data_css_DATA) \
+	$(libscihelptools_la_data_pages_DATA) \
 	$(libscihelptools_la_data_template_DATA) \
 	$(libscihelptools_la_etc_DATA) $(libscihelptools_la_root_DATA) \
 	$(libscihelptools_la_schema_DATA) \
@@ -335,7 +334,11 @@ RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
 SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -453,7 +456,7 @@ libscihelptools_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/api_scilab/includes \
 				-I$(top_srcdir)/modules/output_stream/includes/
 
-libscihelptools_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscihelptools_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libscihelptools_la_SOURCES = $(GATEWAY_C_SOURCES) $(HELPTOOLS_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
@@ -465,17 +468,17 @@ modulename = helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihelptools_la_root_DATA = license.txt version.xml
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
-libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml
+libscihelptools_la_etc_DATA = etc/helptools.quit etc/helptools.start etc/MAIN_CHAPTERS etc/fopconf.xml etc/SciDocConf.xml
 
 #### helptools : bin files ####
 libscihelptools_la_bindir = $(mydatadir)/bin
 libscihelptools_la_bin_DATA = bin/scivalid \
 bin/man2sci \
-bin/manrev2sci 
+bin/manrev2sci
 
 
 #### helptools : gateway declaration ####
@@ -491,6 +494,8 @@ libscihelptools_la_data_templatedir = $(mydatadir)/data/template
 libscihelptools_la_data_template_DATA = data/template/template_javahelp.html
 libscihelptools_la_data_cssdir = $(mydatadir)/data/css
 libscihelptools_la_data_css_DATA = data/css/scilab_code.css \
+data/css/c_code.css \
+data/css/xml_code.css \
 data/css/style.css
 
 
@@ -509,6 +514,15 @@ libscihelptools_la_schema_DATA = schema/scilab.rnc \
 schema/extendedStyle.xsl
 
 
+#### helptools : pages files ####
+libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
+libscihelptools_la_data_pages_DATA = data/pages/error.html \
+data/pages/homepage-en_US.html \
+data/pages/homepage-fr_FR.html \
+data/pages/ban-en_US.png \
+data/pages/ban-fr_FR.png
+
+
 # Where all the Scilab stuff is installed (macros, help, ...)
 mydatadir = $(pkgdatadir)/modules/$(modulename)
 
@@ -520,7 +534,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -810,6 +824,26 @@ uninstall-libscihelptools_la_data_cssDATA:
 	test -n "$$files" || exit 0; \
 	echo " ( cd '$(DESTDIR)$(libscihelptools_la_data_cssdir)' && rm -f" $$files ")"; \
 	cd "$(DESTDIR)$(libscihelptools_la_data_cssdir)" && rm -f $$files
+install-libscihelptools_la_data_pagesDATA: $(libscihelptools_la_data_pages_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(libscihelptools_la_data_pagesdir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_data_pagesdir)"
+	@list='$(libscihelptools_la_data_pages_DATA)'; test -n "$(libscihelptools_la_data_pagesdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(libscihelptools_la_data_pagesdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(libscihelptools_la_data_pagesdir)" || exit $$?; \
+	done
+
+uninstall-libscihelptools_la_data_pagesDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libscihelptools_la_data_pages_DATA)'; test -n "$(libscihelptools_la_data_pagesdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(libscihelptools_la_data_pagesdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(libscihelptools_la_data_pagesdir)" && rm -f $$files
 install-libscihelptools_la_data_templateDATA: $(libscihelptools_la_data_template_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(libscihelptools_la_data_templatedir)" || $(MKDIR_P) "$(DESTDIR)$(libscihelptools_la_data_templatedir)"
@@ -1039,7 +1073,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_data_configurationdir)" "$(DESTDIR)$(libscihelptools_la_data_cssdir)" "$(DESTDIR)$(libscihelptools_la_data_templatedir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libscihelptools_la_bindir)" "$(DESTDIR)$(libscihelptools_la_data_configurationdir)" "$(DESTDIR)$(libscihelptools_la_data_cssdir)" "$(DESTDIR)$(libscihelptools_la_data_pagesdir)" "$(DESTDIR)$(libscihelptools_la_data_templatedir)" "$(DESTDIR)$(libscihelptools_la_etcdir)" "$(DESTDIR)$(libscihelptools_la_rootdir)" "$(DESTDIR)$(libscihelptools_la_schemadir)" "$(DESTDIR)$(libscihelptools_la_sci_gatewaydir)" "$(DESTDIR)$(libscihelptools_la_xsl_convertdir)" "$(DESTDIR)$(libscihelptools_la_xsl_fodir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -1095,6 +1129,7 @@ info-am:
 install-data-am: install-data-local install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_data_configurationDATA \
 	install-libscihelptools_la_data_cssDATA \
+	install-libscihelptools_la_data_pagesDATA \
 	install-libscihelptools_la_data_templateDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
@@ -1150,6 +1185,7 @@ ps-am:
 uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_data_configurationDATA \
 	uninstall-libscihelptools_la_data_cssDATA \
+	uninstall-libscihelptools_la_data_pagesDATA \
 	uninstall-libscihelptools_la_data_templateDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
@@ -1173,6 +1209,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	install-libscihelptools_la_binDATA \
 	install-libscihelptools_la_data_configurationDATA \
 	install-libscihelptools_la_data_cssDATA \
+	install-libscihelptools_la_data_pagesDATA \
 	install-libscihelptools_la_data_templateDATA \
 	install-libscihelptools_la_etcDATA \
 	install-libscihelptools_la_rootDATA \
@@ -1188,6 +1225,7 @@ uninstall-am: uninstall-libscihelptools_la_binDATA \
 	uninstall-am uninstall-libscihelptools_la_binDATA \
 	uninstall-libscihelptools_la_data_configurationDATA \
 	uninstall-libscihelptools_la_data_cssDATA \
+	uninstall-libscihelptools_la_data_pagesDATA \
 	uninstall-libscihelptools_la_data_templateDATA \
 	uninstall-libscihelptools_la_etcDATA \
 	uninstall-libscihelptools_la_rootDATA \
@@ -1284,6 +1322,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \

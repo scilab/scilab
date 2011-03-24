@@ -120,6 +120,27 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
     }
 
     /**
+     * Get the number of the lines used in the panel
+     * @return the lines number depending on whereami mode or none
+     */
+    public int[] getLineNumber() {
+        int[] ret = null;
+        if (display) {
+            if (whereami) {
+                updateLineNumber();
+                ret = lineNumber;
+            } else {
+                ret = new int[doc.getDefaultRootElement().getElementCount()];
+                for (int i = 0; i < ret.length; i++) {
+                    ret[i] = i + 1;
+                }
+            }
+        }
+
+        return ret;
+    }
+
+    /**
      * @return the current state
      */
     public int getState() {

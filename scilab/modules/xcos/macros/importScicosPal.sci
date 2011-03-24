@@ -40,7 +40,7 @@ function importScicosPal(palFiles, outPath)
   rhs = argn(2);
 
   if ~exists("scicos_diagram") then
-    loadScicosLibs();
+    loadXcosLibs();
   end
 
   if rhs < 2 then

@@ -24,6 +24,9 @@ function [%ok,%1,%2,%3,%4,%5,...
           %6,%7,%8,%9,%10,...
           %11,%12,%13,%14,%15,...
           %16,%17,%18,%19,%20]=x_getvalue(%desc,%labels,%typ,%ini)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //  getvalues - %window dialog for data acquisition
 //%Synta%
 //  [%ok,%1,..,%11]=scicos_getvalue(desc,labels,typ,ini)

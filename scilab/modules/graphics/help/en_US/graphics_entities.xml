@@ -226,8 +226,8 @@ set("current_figure",f) //make the previous figure the current one
 plot2d(x,x^3)  //the drawing are sent to the initial figure
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>

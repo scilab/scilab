@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="lsq_splin" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lsq_splin</refname>
+
+    <refpurpose>重み付き最小二乗三次スプラインフィッティング</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[y, d] = lsq_splin(xd, yd [, wd], x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xd, yd</term>
+
+        <listitem>
+          <para>同じ大きさのベクトル, 3次スプラインによりフィッティング
+	するデータ</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>wd</term>
+
+        <listitem>
+          <para>(オプション) <literal>xd</literal>
+          および <literal>yd</literal>の形式のベクトルで, 
+	最小二乗フィッティングの重み.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>単調増加の (行または列) ベクトル, 
+          3次スプラインの折点</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y, d</term>
+
+        <listitem>
+          <para><literal>x</literal>と同じ大きさのベクトル,
+	近似3次スプラインを定義する組(x,y,d).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>この関数は,データ<literal>xd, yd, wd</literal>
+	(以下では,<emphasis>m</emphasis>をこれらのベクトルの長さと
+	仮定します)および
+	スプライン折点<literal>x</literal>
+	(例えばn個の等間隔折点を選択したい場合には
+	<literal>x=linspace(min(xd),max(xd),n))</literal>とする
+	ことができます)
+	に関して
+	近似3次スプライン<emphasis>s</emphasis>を計算します.
+	<emphasis>S</emphasis>を折点
+	<emphasis>x1 &lt; x2 &lt; ... &lt; xn</emphasis>を指定する
+	あらゆる3次スプライン関数の空間とする場合,
+	得られるスプライン <emphasis>s</emphasis>は次のようになります:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../mml/lsq_splin_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>
+	ただし,<emphasis>fはSの中の任意の値</emphasis>.
+	すなわち,<emphasis>S</emphasis>の任意の関数について,
+	二乗誤差の合計を最小化します.</para>
+
+    <para>スプライン<emphasis>s</emphasis>は
+	組<literal>(x,y,d)</literal>により完全に定義されます
+	 (<literal>y</literal> および <literal>d</literal> 
+	は,xiにおけるスプライン座標および1階微分のベクトル
+	です : <emphasis>yi=s(xi)</emphasis> および
+    <emphasis>di=s'(xi)</emphasis>) .
+	何らかの点における評価は,
+	<link linkend="interp">interp</link>関数で行います.</para>
+  </refsection>
+
+  <refsection>
+    <title>注意</title>
+
+    <para><literal>wd</literal>が指定されない場合, 全ての点は
+	同じ重み1を有します.</para>
+
+    <para>
+	<emphasis>xd(k) が [x1,xn] の範囲で,wd(k) &gt; 0</emphasis>の場合,
+	点 <emphasis>(xd(k),yd(k))</emphasis> は,
+	フィットの範囲にあるとみなされます.
+	特に,
+	フィッティングにおいて無視したいデータ点に重み0 (または負の重み)
+	を設定することができます.
+	フィット処理が適用される点の総数が4個未満の場合,
+	エラーが発生します.</para>
+
+    <para>ベクトル <literal>xd</literal> は昇順である必要は
+	ありません.</para>
+
+    <para>
+	数,<emphasis>xd(k)</emphasis>の位置,
+	<emphasis>x(i)</emphasis>の選択に基づき
+	いくつかの解が存在しますが,
+	選択できるのは1つだけです.
+	この場合,Scilabコマンドウインドウに警告メッセージが
+	発生します.
+	この関数は,<emphasis>m</emphasis>が<emphasis>n</emphasis>よりも
+	はるかに大きい場合に使用されることを意図しています.
+	このような場合,このような問題は発生しません.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// これは人工的な例で,データxdおよびydは
+// 外乱付きのsin関数から構築されます
+a = 0; b = 2*%pi;
+sigma = 0.1;  // ガウスノイズの標準偏差
+m = 200;       // 試行点の数
+xd = linspace(a,b,m)';
+yd = sin(xd) + grand(xd,"nor",0,sigma);
+
+n = 6; // 折点の数
+x = linspace(a,b,n)';
+
+// スプラインを計算
+[y, d] = lsq_splin(xd, yd, x);  // 等しい重みを使用
+
+// プロット
+ye = sin(xd);
+ys = interp(xd, x, y, d);
+clf()
+plot2d(xd,[ye yd ys],style=[2 -2 3], ...
+       leg="exact function@experimental measures (gaussian perturbation)@fitted spline")
+xtitle("a least square spline")
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="interp">interp</link></member>
+
+      <member><link linkend="splin">splin</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>C. De Boor, A.H. Morris (code from the NSWC fortran
+      lib)</member>
+
+      <member>B. Pincon (scilab interface and slight modifications)</member>
+    </simplelist>
+  </refsection>
+</refentry>

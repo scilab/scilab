@@ -176,6 +176,9 @@ function ilib_gen_Make_win32(name, ..
     end
   end
 
+  if ~and(isfile(FILES_SRC_MATRIX)) then
+     error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
+  end  
 
   FILES_SRC = strcat(FILES_SRC_MATRIX,' ');
 

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="whereami">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>whereami</refname>
+    <refpurpose>カレントの命令コールツリーを表示</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>whereami()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	whereami()を含む命令への呼び出しツリーを表示します.
+	pauseレベル内で使用可能です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+deff('y=test(a)',['y=sin(a)+1';
+                  'y=t1(y)';
+                  'y=y+1'])
+deff('y=t1(y)',['y=y^2';'whereami()'])
+test(1)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="where">where</link>
+      </member>
+      <member>
+        <link linkend="pause">pause</link>
+      </member>
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

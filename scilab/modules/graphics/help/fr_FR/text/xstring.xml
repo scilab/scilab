@@ -78,8 +78,8 @@ xset("font",1,24); xstring(0.1,0.6,"a") // un grand alpha
 xset("default")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="titlepage">titlepage</link>

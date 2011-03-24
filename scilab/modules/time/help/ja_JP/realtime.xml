@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="realtime">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv xml:id="realtimeinit">
+    <refname>realtimeinit</refname>
+    <refpurpose>時間の単位を設定</refpurpose>
+  </refnamediv>
+  <refnamediv>
+    <refname>realtime</refname>
+    <refpurpose>日付の原点を設定または指定日付まで待つ</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>realtimeinit(time_unit)
+realtime(t)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>time_unit</term>
+        <listitem>
+          <para>実数. <literal>realtime</literal> の引数に関連する秒数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>実数.  日付</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>   
+	これら2つの関数はScilabで実時間を処理する際に使用できます.
+	</para>
+    <para><literal>realtimeinit(time_unit)</literal>  は,
+	<literal>realtime</literal> の引数 <literal>t</literal>に
+	関する時間の単位を定義します.
+	</para>
+    <para>
+   <literal>realtime(t0)</literal>を最初にコールした際,
+	カレントの日付が<literal>t0</literal>に設定されます.
+	これ以降のコール<literal>realtime(t)</literal>では,
+	日付<literal>t</literal>に達するまで待機します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+realtimeinit(1/2);//時間の単位を 0.5秒に設定s
+realtime(0);// カレントの時刻を 0に設定
+for k=1:10,realtime(k);mprintf('current time is '+string(k/2)+'sec .\r\n');end
+ 
+//次の命令では2秒毎にドットを出力
+ realtimeinit(2); realtime(0);for k=1:10,realtime(k);mprintf('.\r\n');end
+
+realtimeinit(1);realtime(0);
+dt=getdate('s'); realtime(10);   getdate('s')-dt
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="getdate">getdate</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

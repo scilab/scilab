@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="xcos"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>xcos</refname>
+
+    <refpurpose>ハイブリッドシミュレータ用のブロック図エディタおよびGUI</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>xcos(filename)
+xcos(scs_m_list)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection id="Module_xcos">
+    <title>モジュール</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_xcos">
+    <title>説明</title>
+
+    <para>Xcos はハイブリッド動的システムのモデル構築用の
+	ビジュアルエディタです.</para>
+
+    <para>引数を指定せずにXcosを起動すると空のXcosウインドウがオープンされます.
+	ここで,XcosのGUIを用いてモデルを作成,読み込み,保存,コンパイルすることができます.
+	Xcosは様々なブロックダイアグラムコンパイラおよびハイブリッドシミュレータ scicosim
+	へのインターフェイスとして動作します.</para>
+
+    <programlisting role="example"> 
+xcos('mydiagram.xcos')
+ </programlisting>
+  </refsection>
+
+  <refsection id="Parameters_xcos">
+    <title>パラメータ</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">filename : </emphasis> 
+	図形ファイル(拡張子: .cos, .cosf または .xcos)のパスを有する文字列.
+	入力引数を指定しない場合,空のダイアグラム(デフォルト名:Untitled)がオープンされます.</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">scs_m_list : </emphasis>
+	編集後のXcos図の構造体.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_xcos">
+    <title>例</title>
+
+    <programlisting role="example"> 
+// 新しいダイアグラムをオープン
+xcos();
+xcos
+
+// ダイアグラムを読み込む
+xcos SCI/scicos/demos/bounce.cosf; 
+
+// 構造体を読み込む
+load('mondiagr.cos'); 
+xcos(scs_m);
+ </programlisting>
+  </refsection>
+
+  <refsection id="SeeAlso_xcos">
+    <title>参照</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="scicosim">scicosim - Scicos (バッチ) シミュレーション関数
+        (Scilab 関数)</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="scicos_simulate">scicos_simulate - 
+	xcosシミュレーションをバッチモードで実行するための関数
+	(Scilab関数)</link></para>
+      </listitem>
+
+      <listitem>
+        <para><link linkend="xcos_menu_entries">メニューエントリ</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

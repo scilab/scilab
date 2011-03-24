@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="smooth" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>smooth</refname>
+
+    <refpurpose>スプライン関数によるスムージング</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>[pt]=smooth(ptd [,step])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>ptd</term>
+
+        <listitem>
+          <para>(2xn) 実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>step</term>
+
+        <listitem>
+          <para>実数 (横軸の刻み離散値)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pt</term>
+
+        <listitem>
+          <para>(2xn) 実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	この関数は,指定した点集合についてスプライン関数により補間を行います.
+	座標は,<literal>(ptd(1,i),ptd(2,i))</literal>です. 
+	要素
+    	<literal>ptd(1,:)</literal> は昇順とする必要があります. 刻みのデフォルト値は
+    <literal>abs(maxi(ptd(1,:))-mini(ptd(1,:)))/100</literal>です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[1 10 20 30 40];
+y=[1 30 -10 20 40];
+plot2d(x',y',[3],"011"," ",[-10,-40,50,50]);
+yi=smooth([x;y],0.1);
+plot2d(yi(1,:)',yi(2,:)',[1],"000");
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="splin">splin</link></member>
+
+      <member><link linkend="interp">interp</link></member>
+
+      <member><link linkend="interpln">interpln</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

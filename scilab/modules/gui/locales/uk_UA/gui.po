@@ -640,7 +640,7 @@ msgstr "Властивості &осей"
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&База даних вад і запитів"
 
 msgid "&Change current directory..."
@@ -793,7 +793,7 @@ msgstr "Перегляд з&мінних"
 msgid "&Vectorial export"
 msgstr "Е&кспорт у векторному форматі"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Веб-посилання"
 
 msgid "&Xcos"

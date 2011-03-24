@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="DERIV"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>DERIV</refname>
+
+    <refpurpose>Dérivée</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../../images/palettes/DERIV.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_DERIV">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="DERIV">Dérivée</link></para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para><xref linkend="Palette_DERIV">Palette</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Description_DERIV">Description</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Defaultproperties_DERIV">Propriétés par défaut</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Example_DERIV">DERIVATIVE Example</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Interfacingfunction_DERIV">Fonction d'interfaçage</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Computationalfunction_DERIV">Fonction de calcul</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Authors_DERIV">Auteurs</xref></para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_DERIV">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="Continuous_pal">Palette Systèmes à temps continu</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_DERIV">
+    <title>Description</title>
+
+    <para>Le bloc dérivée approxime la dérivée instantanée de son entrée par rapport au temps t.</para>
+
+    <para>Il mesure la variation de la sortie en fonction de la variation de l'entée Δu. La dérivée est donnée par :</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../images/DERIV_img2_eng.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+
+    <para>Le bloc dérivée n'a pas de paramètres et la valeur initiale de la sortie pour le bloc est zéro.</para>
+  </refsection>
+
+  <refsection id="Defaultproperties_DERIV">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular inputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [-1,1] / type 1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">regular outputs:</emphasis></para>
+
+        <para><emphasis role="bold">- port 1 : size [-1,1] / type
+        1</emphasis></para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation
+        outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis>
+        non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis>
+        non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">name of computational function:</emphasis>
+        <emphasis role="italic">deriv</emphasis></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_DERIV">
+    <title>DERIVATIVE : Exemple</title>
+
+    <para>Dans cet exemple, nous calculons et affichons la forme d'onde dérivée d'un signal d'entrée
+	  sinusoïdal, d'amplitude 2 et de frequence 1,25 Hz.</para>
+
+    <para>Les formes d'onde de l'entrée et de la sortie du bloc DERIVATIVE sont montrées ci-dessous :</para>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../../../examples/derivative_diag.png"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Interfacingfunction_DERIV">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/Linear/DERIV.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_DERIV">
+    <title>Fonction de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/deriv.c (Type 4)</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_DERIV">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+
+    <para><emphasis role="bold">Zhour MADINI-ZOUINE</emphasis> -
+    DIGITEO</para>
+  </refsection>
+</refentry>

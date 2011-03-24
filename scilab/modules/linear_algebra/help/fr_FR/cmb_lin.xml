@@ -28,8 +28,8 @@
     Évalue <literal>alfa*x-beta*y</literal>. <literal> alfa, beta, x, y</literal> sont des chaînes de caractères (routine de bas niveau).
   </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="mulf">mulf</link>

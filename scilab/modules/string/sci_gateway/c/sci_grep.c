@@ -237,11 +237,9 @@ static int sci_grep_common(char *fname,BOOL new_grep)
 	case GREP_OK :
 		{
 			int x = 0;
-			int numRow   = 0;
+			int numRow   = 1;
 			int outIndex = 0;
 
-			numRow   = 1;  /* Output values[]*/
-			outIndex = 0;
 			CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,&numRow,&grepresults.currentLength,&outIndex);
 			for ( x = 0 ; x < grepresults.currentLength ; x++ )
 			{

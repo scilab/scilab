@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="gsort" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>gsort</refname>
+
+    <refpurpose>クイックソートアルゴリズムによるソート</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[B [,k]]=gsort(A)
+[B [,k]]=gsort(A,option)
+[B [,k]]=gsort(A,option,direction)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+
+        <listitem>
+          <para>実数,整数または文字列のベクトル/行列または疎ベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>option</term>
+
+        <listitem>
+          <para>文字列. ソートの種類(下記)を指定します:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>'r' : <literal>A</literal> の各列がソートされます</para>
+            </listitem>
+
+            <listitem>
+              <para>'c': <literal>A</literal> の各行がソートされます</para>
+            </listitem>
+
+            <listitem>
+              <para>'g': <literal>A</literal> の全要素がソートされます. 
+              デフォルト値です.</para>
+            </listitem>
+
+            <listitem>
+              <para>'lr': <literal>A</literal>の列の辞書式ソート</para>
+            </listitem>
+
+            <listitem>
+              <para>'lc': <literal>A</literal>のの行の辞書式ソート</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>direction</term>
+
+        <listitem>
+          <para>文字列. ソートの方向を指定します:
+          <literal>'i'</literal> は昇順,
+          <literal>'d'</literal> は降順 (デフォルト)を意味します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>B</term>
+
+        <listitem>
+          <para><literal>A</literal>と同じ型と次元の配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>整数値を有し,<literal>A</literal>と同じ次元の実数配列.
+	元の添え字を有します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>gsort</literal> は種々のデータ型に関する
+	 "クイックソート" アルゴリズムです.</para>
+
+    <itemizedlist>
+      <listitem>
+        <para><literal>B=gsort(A,'g')</literal>,
+        <literal>B=gsort(A,'g','d')</literal> および
+        <literal>B=gsort(A)</literal> は
+	配列  <literal>A</literal>の要素を<literal>A(:)</literal>として
+	降順にソートします.</para>
+
+        <para><literal>B=gsort(A,'g','i')</literal> は
+	 <literal>A</literal>の要素を昇順にソートします.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>B=gsort(A,'lr')</literal> は<literal>A</literal>
+	の行を辞書的に降順にソートします.
+	<literal>B</literal>は,
+	<literal>B</literal>の各行が<literal>B(i,:)&gt;=B(j,:)</literal>
+	(ただし,<literal>i&lt;j</literal>)となるように,
+	行列<literal>A</literal>の行を並び替えることにより
+	得られます.</para>
+
+        <para><literal>B=gsort(A,'lr','i')</literal> は
+	昇順の辞書的ソートについても同様に動作します.</para>
+      </listitem>
+
+      <listitem>
+        <para><literal>B=gsort(A,'lc')</literal> 
+	の列を辞書的に降順にソートします.
+	<literal>B</literal>は,
+	<literal>B</literal>の各列が<literal>B(:,i)&gt;=B(:,j)</literal>
+	(ただし,<literal>i&lt;j</literal>となるように,
+	行列<literal>A</literal>の列を並び替えることにより
+	得られます.</para>
+
+        <para><literal>B=gsort(A,'lc','i')</literal> は
+	昇順の辞書的ソートについても同様に動作します.</para>
+      </listitem>
+    </itemizedlist>
+
+    <para>二番目の戻り値引数が指定された場合, 
+	<literal>k</literal>に<literal>A</literal>のソートされた値の添え字が
+	代入されます.
+    <literal>[B,k]=gsort(A,'g')</literal>の場合,
+	<literal>B==A(k)</literal>となります.
+    <emphasis role="bold">このアルゴリズムは,等しい値を有する
+	レコードの相対的な順序を保持します.</emphasis></para>
+
+    <para><literal>v</literal> が複素数の場合, その要素は
+	大きさ,すなわち, abs(<literal>v</literal>) によりソートされます,
+	2番目の引数としては<literal>'g'</literal>のみが複素数で使用可能です.</para>
+
+    <para><literal>v</literal> が <literal>%nan</literal> または
+    <literal>%inf</literal> を要素として有する場合, gsort は
+	これらを <literal>'i'</literal> の場合は先頭,
+	<literal>'d'</literal>の場合は末尾に置きます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"> 
+alr=[1,2,2;
+     1,2,1;
+     1,1,2;
+     1,1,1];
+[alr1,k]=gsort(alr,'lr','i')
+[alr1,k]=gsort(alr,'lc','i')
+
+v=int32(alr)
+
+gsort(v)
+gsort(v,'lr','i')
+gsort(v,'lc','i')
+
+v=['Scilab' '2.6'
+   'Scilab' '2.7'
+   'xcos' '2.7'
+   'Scilab' '3.1'
+   'xcos' '3.1'
+   'xcos' '4.0'
+   'Scilab' '4.0']
+
+gsort(v,'lr','i')
+gsort(v,'lc','i')
+ </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="find">find</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>参考文献</title>
+
+    <para>Quick sort algorithm from Bentley &amp; McIlroy's "Engineering a
+    Sort Function". Software---Practice and Experience,
+    23(11):1249-1265</para>
+  </refsection>
+</refentry>

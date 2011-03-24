@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="scilab" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>scilab</refname>
+
+    <refpurpose>
+	Scilabおよび関連ツールを実行すうｒための
+	主要なUnixスクリプト</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>scilab &lt;Options&gt;
+scilab-adv-cli &lt;Options&gt;
+scilab-cli &lt;Options&gt;</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>説明</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>-args Arguments</term>
+
+        <listitem>
+          <para>
+	このオプションが存在する場合,引数がScilabに渡されます.
+	これらは,<link linkend="sciargs">sciargs</link>関数で取得することが
+	できます.
+	複数の引数を指定する場合,以下のように一連の複数の単語を引用符で括り,
+	空白で分割してください: <literal>scilab -args 'foo1 foo2'</literal>. 
+	このオプションを指定しない場合,未知の引数は受け付けられません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-display Display</term>
+
+        <listitem>
+          <para>
+	Xwindow システム上でのみ使用可能で, 表示する
+	Xサーバーを指定します.
+	デフォルトの表示先は unix:0.0 です.</para>
+
+          <para><literal>-display</literal> は,
+          <literal>-d</literal>と短縮形で指定できます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-debug</term>
+
+        <listitem>
+          <para>デバッガgdb上でScilabを開始します(Unix/linuxのみ).</para>
+
+          <para>
+		gdb にカスタムオプションを追加する場合,
+		変数SCILAB_GDB_OPTを定義します.</para>
+
+          <para>助言: このオプションをScilabソースツリー上で使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-debug-kdbg</term>
+
+        <listitem>
+          <para>kdbg上でScilabを開始します (Unix/linux のみ).</para>
+
+          <para>助言: このオプションをScilabソースツリー上で使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-profiling</term>
+
+        <listitem>
+          <para>valgrind上でScilabを開始します (Unix/linux のみ).</para>
+
+          <para>
+	valgrind にカスタムオプションを追加する場合
+	(および既存の valgrind オプションを上書きする場合),SCILAB_VALGRIND_OPT
+	を定義してください.</para>
+
+          <para>助言: このオプションをScilabソースツリー上で使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-profiling-visu</term>
+
+        <listitem>
+          <para>callgrind上でScilabを開始します (Unix/linux のみ).</para>
+
+          <para>
+	callgrind にカスタムオプションを追加する場合
+	(および既存の callgrind オプションを上書きする場合),SCILAB_VALGRIND_OPT
+	を定義してください.</para>
+
+          <para>助言: このオプションをScilabソースツリー上で使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-electric-fence</term>
+
+        <listitem>
+          <para>Electric Fence を指定して Scilab を開始します(Unix/linux のみ).</para>
+
+          <para>助言: このオプションをScilabソースツリー上で使用してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-e Instruction</term>
+
+        <listitem>
+          <para>
+	このオプションを指定すると Scilab 命令
+          <literal>Instruction</literal> が(スタートアップファイルの実行直後に)
+	まずScilabで実行されます.
+	<literal>-e</literal> および
+          <literal>-f</literal> オプションは相互に排他的です.</para>
+
+          <para>-e により複数の命令を指定できることに注意してください.</para>
+
+          <programlisting>scilab-cli -e  "a=1+%i; aPlusPi=a+%pi; disp(aPlusPi);exit;" -nb</programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-f file</term>
+
+        <listitem>
+          <para>このオプションを指定すると, Scilab はスクリプト <literal>file</literal>
+	を(スタートアップファイルの実行直後,)Scilab上で最初に実行します.
+
+	<literal>-e</literal> および
+          <literal>-f</literal> オプションは相互に排他的です.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-l lang</term>
+
+        <listitem>
+          <para>このオプションを指定した場合,
+	ユーザ言語を指定します.
+          <emphasis>lang</emphasis> は以下の値を指定できます: <emphasis>ca_ES de_DE en_US es_ES
+          fr_FR ja_JP pt_BR ru_RU zh_CN zh_TW</emphasis> (Scilab 5.2以降).</para>
+
+          <para>互換性維持のため，その他に <literal>lang</literal> の値は,フランス語として
+          <literal>'fr'</literal> および英語として <literal>'en'</literal> を使用可能です.
+	デフォルト値は,<literal>scilab.start</literal>ファイルで指定されます.</para>
+
+          <para>いくつかのシステムでは,UTF-8フォントを正しく描画するために,
+	ロケールをコンパイルする必要があります.
+	</para>
+
+          <para>Scilab を以下のようにコールすることも可能です:</para>
+
+          <programlisting>LANG=ja_JP scilab
+# これは以下と等価です
+scilab -l ja_JP
+</programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-mem N</term>
+
+        <listitem>
+          <para>-nsオプションと共に指定し,stacksizeの初期値を設定します. 
+	-ns オプションを指定しない場合, stacksizeの初期値は
+	scilab.startにより設定されます.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nb</term>
+
+        <listitem>
+          <para>
+	このオプションが指定された場合, Scilabの Welcome バナーは表示されません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-ns</term>
+
+        <listitem>
+          <para>
+	このオプションが指定された場合, スタートアップファイル
+          <literal>SCI/etc/scilab.start</literal> およびユーザスタートアップファイル
+          <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> は実行されません.</para>
+
+          <para>このオプションは, Scilabの多くの機能を無効にします (動作を理解している場合のみ
+	使用してください).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nouserstartup</term>
+
+        <listitem>
+          <para>このオプションが指定された場合, スタートアップファイル
+          <literal>SCIHOME/.scilab</literal>,
+          <literal>SCIHOME/scilab.ini</literal> は実行されません.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nw</term>
+
+        <listitem>
+          <para>このオプションが指定された場合, Scilab は(グラフィックスなどの)先進的な機能と
+	共にコマンドラインで起動されます.</para>
+
+          <para>このオプションは -f または -e オプションと同時に指定することができます.</para>
+
+          <para>Scilab 5.2以降:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>Scilab のディストリビューションには,
+		-nw と同様のバイナリとして scilab-adv-cli (Scilab Advanced
+              Command Line Interpreter) が含まれています.</para>
+            </listitem>
+
+            <listitem>
+              <para>全てのオペレーティングシステムについて
+		パイプが有効です (詳細については例を参照ください).</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-nwni / -nogui</term>
+
+        <listitem>
+          <para>このオプションが指定された場合, Scilab は(先進的な機能を含まない)
+	コマンドラインで起動されます.</para>
+
+          <para>このオプションは -f または -e オプションと同時に指定することができます.</para>
+
+          <para>Scilab 5.2以降:</para>
+
+          <itemizedlist>
+            <listitem>
+              <para>
+		Scilab のディストリビューションには,
+		-nwni と同様のバイナリとして scilab-cli (Scilab
+              Command Line Interpreter) が含まれています.</para>
+            </listitem>
+          </itemizedlist>
+
+          <itemizedlist>
+            <listitem>
+              <para>全てのオペレーティングシステムについて
+		パイプが有効です (詳細については例を参照ください).</para>
+            </listitem>
+          </itemizedlist>
+
+          <para>このモードでは Java 仮想マシンはロードされません.
+	(起動は高速化され,メモリ消費量は減少します)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>--texmacs</term>
+
+        <listitem>
+          <para>このオプションは TeXMacs用に予約されています.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-version</term>
+
+        <listitem>
+          <para>このオプションはプロダクトのバージョンを出力し,終了します.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Java 仮想マシンオプション</title>
+
+    <para>Scilab 5.0以降, グラフィカルユーザインターフェイス (GUI) および
+	ドキュメントの構築は,Java機能に基づいています.
+	いくつかのケースでは,
+	JVM (Java仮想マシン)オプションを編集することが重要となります.</para>
+
+    <para>これらのオプションは,
+	<emphasis>jvm_options.xml</emphasis>ファイルで利用可能です.</para>
+
+    <para>5.0.X および 5.1.Xでは, このファイルは
+    <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis>に保存されています.</para>
+
+    <para>&gt;= 5.2.0以降, このファイルは
+    <emphasis>etc/jvm_options.xml<emphasis> </emphasis></emphasis>にあります.</para>
+
+    <para>デフォルトで, 以下の3つのオプションが
+	設定ファイルで容易にアクセス可能です:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>-XmxXXXm</term>
+
+        <listitem>
+          <para>このオプションは,Java仮想マシンで利用可能なメモリ量を設定します.
+	デフォルトで, 256M が確保されます.
+	この値を変更した場合, その値がシステムで利用可能なメモリを超えないことを確認してください.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-Djava.compiler=JIT</term>
+
+        <listitem>
+          <para>このオプションを引数<emphasis>JIT</emphasis>を付けて指定すると,
+	Java Just In Time compilerが有効になります.
+	このオプションはデフォルトで有効となります.
+	<emphasis>NONE</emphasis>によりJITは無効となり,
+	著しく性能が低下します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>-verbose:jni / -Xcheck:jni</term>
+
+        <listitem>
+          <para>
+		これらのオプションは,JNIコールとその出力をより詳細に確認します.
+		デバッグ時にはこれらのオプションを利用可能ですが,
+		性能を低下させるためデフォルトでは無効となっています.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+
+    <para>より多くのオプションが利用可能です.
+	これにより性能を改善したり,ルックアンドフィールを変更したり,
+	メモリ管理を変更したりといったことが可能です.
+	参照: <ulink
+    url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
+    or <ulink
+    url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink></para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"> 
+# Let's start Scilab in profiling mode without attaching a gdb one a SIGSEGV is meet.
+# We are under Bash shell
+export SCILAB_VALGRIND_OPT="--deb-attach=no --log-file=myfile.txt"
+scilab -profiling
+
+# Let's start Scilab in debug mode without stopping after each SIGSEGV
+# First, we write a small command file
+echo "handle SIGSEGV nostop" &amp;gt; debug.txt
+# Now set the custom option
+# We are under Bash shell
+export SCILAB_GDB_OPT="--command=debug.txt"
+# Start Scilab in debug mode
+scilab -debug</programlisting>
+
+    <programlisting role="example-cli">
+# Under GNU/Linux, Mac OS X or Unix:
+$ echo "disp(%pi)"|scilab-cli
+or
+$ echo "disp(%pi)"|scilab -nwni
+
+# Only open the Scilab help window:
+$ scilab-adv-cli -e "help()"
+or
+$ scilab -nw -e "help()"
+
+
+# Scilab can be used for scripting aspects:
+echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
+echo $? </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="exit">exit</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

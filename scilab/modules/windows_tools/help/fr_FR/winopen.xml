@@ -18,8 +18,8 @@
     appropriée de Microsoft Windows. winopen effectue la même action que si
     vous double-cliquez sur l'icone dans l'explorateur de Windows.</para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>

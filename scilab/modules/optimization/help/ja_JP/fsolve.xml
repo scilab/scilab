@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="fsolve" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>fsolve</refname>
+
+    <refpurpose>n個の非線形関数システムのゼロを見つける</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[x [,v [,info]]]=fsolve(x0,fct [,fjac] [,tol])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x0</term>
+
+        <listitem>
+          <para>実数ベクトル (関数引数の初期値).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fct</term>
+
+        <listitem>
+          <para>外部ルーチン (すなわち,関数/リスト/文字列).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fjac</term>
+
+        <listitem>
+          <para>外部ルーチン (すなわち,関数/リスト/文字列).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tol</term>
+
+        <listitem>
+          <para>実数スカラー. 許容誤差: 
+	x と解の相対誤差がtol以下となったとアルゴリズムが推定した時点で
+	終了します.
+	(<literal>tol=1.d-10</literal> がデフォルト値です).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x :</term>
+
+        <listitem>
+          <para>実数ベクトル (関数引数の最終値, 解の推定値).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v :</term>
+
+        <listitem>
+          <para>実数ベクトル (xにおける関数の値).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>info</term>
+
+        <listitem>
+          <para>終了インジケータ</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>0</term>
+
+              <listitem>
+                <para>入力パラメータが適切ではありませｎ.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>1</term>
+
+              <listitem>
+                <para>アルゴリズムは,xと解の間の相対誤差が
+		tol以下であると指定しています.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>2</term>
+
+              <listitem>
+                <para>コール回数がfcnに達しましたn</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>3</term>
+
+              <listitem>
+                <para>tolが小さすぎます. 近似解 x の
+		改善が不可能です.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>4</term>
+
+              <listitem>
+                <para>反復により解が改善されませんでした.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	n個の変数のn個の非線形関数のシステムのゼロを
+	修正パウエル混合法により求めます.
+	ヤコビアンを指定することができます.</para>
+
+    <programlisting role = ""><![CDATA[ 
+0 = fct(x) w.r.t x.
+ ]]></programlisting>
+
+    <para><literal>fct</literal> は"外部ルーチン"です.この外部ルーチンは,
+	指定した<literal>x</literal>について<literal>v=fct(x)</literal>
+	を返します.</para>
+
+    <para><literal>fct</literal>に関する最も簡単な呼び出し手順は以下のようになります:</para>
+
+    <programlisting role = ""><![CDATA[  
+[v]=fct(x).
+ ]]></programlisting>
+
+    <para><literal>fct</literal>が文字列の場合, Scilabにリンクされている
+	CまたはFortranルーチンを指します.
+	Fortranの呼び出し手順は以下のようにします</para>
+
+    <programlisting role = ""><![CDATA[ 
+fct(n,x,v,iflag)
+integer n,iflag
+double precision x(n),v(n)
+ ]]></programlisting>
+
+    <para>そしてCの呼び出し手順は以下のようにします</para>
+
+    <programlisting role = ""><![CDATA[ 
+fct(int *n, double x[],double v[],int *iflag)
+ ]]></programlisting>
+
+    <para>インクリメンタルリンクが可能です (ヘルプ <literal>link</literal>).</para>
+
+    <para><literal>jac</literal> は外部ルーチン"です.この外部ルーチンは,
+	指定した<literal>x</literal>について<literal>v=d(fct)/dx (x)</literal>
+	を返します.</para>
+
+    <para><literal>jac</literal>に関する最も簡単な呼び出し手順は以下のようになります:</para>
+
+    <programlisting role = ""><![CDATA[ 
+[v]=jac(x).
+ ]]></programlisting>
+
+    <para><literal>jac</literal>が文字列の場合,
+	Scilabにリンクされている
+	CまたはFortranルーチンを指します.
+	この際の呼び出し手順は fctと同じになります.
+	ただし, v は nxn 配列とする必要があります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// fsolve に関する簡単な例
+a=[1,7;2,8];b=[10;11];
+
+deff('[y]=fsol1(x)','y=a*x+b');
+deff('[y]=fsolj1(x)','y=a');
+
+[xres]=fsolve([100;100],fsol1);
+a*xres+b
+
+[xres]=fsolve([100;100],fsol1,fsolj1);
+a*xres+b
+
+// See SCI/modules/optimization/sci_gateway/fortran/Ex-fsolve.f
+[xres]=fsolve([100;100],'fsol1','fsolj1',1.e-7);
+a*xres+b
+ ]]></programlisting>
+    <para>初期値や方程式によっては, fsolve の処理は失敗する可能性があります.
+	fsolveで使用される手法はローカル探索法です.
+	このため,使用する方程式で解が得られる確率を大きくするためには,
+	fsolveに良い初期値を与える必要があります.</para>
+    <para> 以下に fsolve が失敗する例を示します:</para>
+    <programlisting role="example"><![CDATA[ 
+// fsolve に関する別の例
+function F=feuler(x,r)
+  F=x-r-dt*(x^2-x^3);
+endfunction
+function J=dFdx(x)  // Fの微分を定義
+   J=1-dt*(2*x-3*x^2);
+endfunction
+
+r = 0.04257794928862307 ;
+dt = 10;
+
+[x,v,info]=fsolve(r,list(feuler,r),dFdx); // fsolveは解を見つけることができません
+disp(v); // 残差
+disp(info); // 終了インジケータ
+
+[x,v,info]=fsolve(1,list(feuler,r),dFdx); // fsolve は解を見つけます
+disp(v); // 残差
+disp(info); // 終了インジケータ
+
+clf();x=linspace(0,1,1000);plot(x,feuler(x))
+a=gca();a.grid=[5 5];
+ ]]></programlisting>
+    <para>
+	このため,fsolveを使用する度に,
+	fsolve が収束したかどうかを確認するために,
+	終了インジケータと残差を確認するようにしてください.</para>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="external">external</link></member>
+
+      <member><link linkend="qpsolve">qpsolve</link></member>
+
+      <member><link linkend="optim">optim</link></member>
+    </simplelist>pw
+  </refsection>
+</refentry>

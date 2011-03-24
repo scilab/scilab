@@ -20,6 +20,9 @@
 //
 
 function o = disconnect_ports(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   graphics = o.graphics ;
   graphics.pin  = 0*graphics.pin ;
   graphics.pout = 0*graphics.pout ;

@@ -156,8 +156,8 @@ disp('Button width: ' + string(p(3))); // print the width of the button
 close(); // close figure
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="uicontrol">uicontrol</link>

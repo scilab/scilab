@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="bdiag">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bdiag</refname>
+    <refpurpose>ブロック対角化, 一般化固有ベクトル</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数または複素数の正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rmax</term>
+        <listitem>
+          <para>実数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Ab</term>
+        <listitem>
+          <para>実数または複素数の正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>実数または複素数の正則行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>bs</term>
+        <listitem>
+          <para>整数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <programlisting role = ""><![CDATA[ 
+[Ab [,X [,bs]]]=bdiag(A [,rmax]) 
+ ]]></programlisting>
+    <para>
+	は,行列<literal>A</literal>のブロック対角化を行ないます.
+	bs はブロックの構造(個々のブロックの大きさ)を出力します.
+	<literal>X</literal> は基底変換です.
+	すなわち, <literal>Ab = inv(X)*A*X</literal> はブロック対角です.</para>
+    <para><literal>rmax</literal> は<literal>X</literal>の
+	条件数を制御します;
+	デフォルト値は <literal>A</literal> の l1ノルムです.</para>
+    <para>
+	(存在する場合,)対角形式を得るには<literal>rmax</literal>に
+	大きな値を指定します(例えば,<literal>rmax=1/%eps</literal>).
+	一般に(ランダムな実数の Aの場合) ブロックは (1x1) および (2x2) で,
+    <literal>X</literal> は固有値の行列です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//実数の場合: 1x1 および 2x2 ブロック
+a=rand(5,5);[ab,x,bs]=bdiag(a);ab
+
+//複素数の場合: 複素数 1x1 ブロック
+[ab,x,bs]=bdiag(a+%i*0);ab
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="schur">schur</link>
+      </member>
+      <member>
+        <link linkend="sylv">sylv</link>
+      </member>
+      <member>
+        <link linkend="spec">spec</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

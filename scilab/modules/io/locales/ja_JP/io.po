@@ -171,7 +171,7 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 整数を想定します。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #

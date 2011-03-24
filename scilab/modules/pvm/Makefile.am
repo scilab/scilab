@@ -59,7 +59,7 @@ libscipvm_la_CFLAGS=  -I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscipvm.la
 
-libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
+libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(PVM_LIB)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -73,7 +73,7 @@ modulename=pvm
 
 #### pvm : Conf files ####
 libscipvm_la_rootdir = $(mydatadir)
-libscipvm_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscipvm_la_root_DATA =  license.txt version.xml
 
 #### pvm : init scripts #### 
 libscipvm_la_etcdir = $(mydatadir)/etc
@@ -92,7 +92,7 @@ PVM_C_SOURCES = src/nopvm/nopvm.c
 
 pkglib_LTLIBRARIES = libscipvm.la
 
-libscipvm_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscipvm_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscipvm_la_SOURCES = $(PVM_C_SOURCES) 
 

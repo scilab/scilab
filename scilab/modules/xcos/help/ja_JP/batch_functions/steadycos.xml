@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry version="5.0-subset Scilab" xml:lang="ja" xml:id="steadycos"
+	xmlns="http://docbook.org/ns/docbook"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:svg="http://www.w3.org/2000/svg"
+	xmlns:mml="http://www.w3.org/1998/Math/MathML"
+	xmlns:db="http://docbook.org/ns/docbook">
+  <refnamediv>
+    <refname>steadycos</refname>
+    <refpurpose>xcosダイアグラムで記述された一般の動的システムの状態変数の
+	定常値を見つける</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])</synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_steadycos">
+    <title>モジュール</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Description_steadycos">
+    <title>説明</title>
+    <para>
+この関数はxcosダイアグラムにより記述されたシステムの状態変数の定常値を見つけます.
+ダイアグラムは一般に入力および出力ポートブロックを有するスーパーブロックから
+構成されます.
+状態変数の定常値は連続時間ダイナミクスのみを考慮します.
+</para>
+    <para>
+</para>
+    <programlisting role="example"><![CDATA[ 
+[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
+ ]]></programlisting>
+  </refsection>
+  <refsection id="Parameters_steadycos">
+    <title>パラメータ</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">scs_m :</emphasis> a xcos データ構造体</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">X :</emphasis> 列ベクトル. 連続時間状態変数. 
+	0の場合には [] を指定可能.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">U :</emphasis> 列ベクトル. 入力. 0の場合には [] を指定可能.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Y :</emphasis> 列ベクトル. 出力. 0の場合には [] を指定可能.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indx :</emphasis> 固定しないXのエントリの添字.
+	全て変化する場合, 1:$ としてください:</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indu :</emphasis> 固定しないUのエントリの添字.
+	全て変化する場合, 1:$ としてください</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indy :</emphasis> 固定しないYのエントリの添字.
+	全て変化する場合, 1:$ としてください</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Indxp :</emphasis> ゼロにする必要がないXP (xの微係数))のエントリの添字. 
+	全て変化する場合, 1:$ としてください. デフォルト: [].</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">param :</emphasis> 
+	2つの要素を有するリスト  (デフォルト: list(1.d-6,0)). 
+	param(1): スカラー. 線形化用の擾乱の大きさ; 以下の変動が使用されます
+	del([x;u])_i = param(1)+param(1)*1d-4*abs([x;u])_i. 
+	param(2): スカラー. 時刻 t.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">X :</emphasis> 状態変数 Xの定常値</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">U :</emphasis> 入力 Uの定常値</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">Y :</emphasis> 計算した定常状態に対応する出力</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">XP :</emphasis> 計算した定常状態に対応する状態変数の微係数</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Filecontent_steadycos">
+    <title>ファイルの内容</title>
+    <itemizedlist>
+      <listitem>
+        <para> SCI/modules/scicos/macros/scicos_auto/steadycos.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_steadycos">
+    <title>参照</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="lincos">lincos - xcosダイアグラムで記述された一般の動的システムから線形化により線形状態空間モデルを構築する (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="scicos_simulate">scicos_simulate - xcosシミュレーションをバッチモードで実行する関数 (Scilab 関数)</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="xcos">xcos - ブロックダイアグラムエディタおよびハイブリッドシミュレータのGUI (Scilab 関数)</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Authors_steadycos">
+    <title>作者</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

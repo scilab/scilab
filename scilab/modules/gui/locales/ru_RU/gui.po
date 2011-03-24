@@ -573,7 +573,7 @@ msgstr "С&войства осей..."
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Сообщить об ошибке"
 
 msgid "&Change current directory..."
@@ -726,7 +726,7 @@ msgstr "&Окно обзора переменных"
 msgid "&Vectorial export"
 msgstr "&Векторный экспорт"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "&Веб-ресурсы"
 
 msgid "&Xcos"

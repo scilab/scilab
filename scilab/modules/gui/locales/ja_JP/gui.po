@@ -559,7 +559,7 @@ msgstr "BMP(&B)"
 
 #
 # File: scilab_fake_localization_file.c, line: 79
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "バグと要求のデータベース(&B)"
 
 #
@@ -800,7 +800,7 @@ msgstr "ベクトル形式でエクスポート(&V)"
 
 #
 # File: scilab_fake_localization_file.c, line: 76
-msgid "&Web links"
+msgid "&Links"
 msgstr "ウエブリンク(&W)"
 
 #

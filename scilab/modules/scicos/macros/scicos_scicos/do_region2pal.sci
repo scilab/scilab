@@ -19,6 +19,9 @@
 // See the file ../license.txt
 //
 function [%pt,scs_m] = do_region2pal(%pt,scs_m)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // Copyright INRIA
   win = %win;
   xc = %pt(1); yc = %pt(2);
@@ -78,6 +81,9 @@ function [%pt,scs_m] = do_region2pal(%pt,scs_m)
 endfunction
 
 function [reg, rect, prt] = get_region22(xc, yc, win)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   wins = curwin ; //** save the semi-global current window variable
   scf(win); //** set the current wind. from calling arg.
   reg = list(); rect = []

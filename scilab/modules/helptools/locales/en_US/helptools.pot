@@ -228,7 +228,7 @@ msgstr ""
 #
 # File: macros/xmltoformat.sci, line: 900
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: macros/help_skeleton.sci, line: 24
@@ -251,7 +251,7 @@ msgstr ""
 # File: macros/xmltoformat.sci, line: 889
 # File: macros/xmltoformat.sci, line: 1500
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: macros/help_skeleton.sci, line: 20

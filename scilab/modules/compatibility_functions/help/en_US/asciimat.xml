@@ -47,8 +47,8 @@ txt=asciimat(a)</synopsis>
     Output is a matrix having same number of lines than input, what is not the case with <literal>ascii</literal>.
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ascii">ascii</link>

@@ -2,11 +2,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Vincent Couvert
  * Copyright (C) 2007 - INRIA - Marouane BEN JELLOUL
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -26,131 +26,141 @@ import org.scilab.modules.gui.dockable.Dockable;
  */
 public interface Console extends Dockable {
 
-	/**
-	 * Gets this Bridge component object
-	 * @return this Bridge component object
-	 */
-	SimpleConsole getAsSimpleConsole();
+    /**
+     * Gets this Bridge component object
+     * @return this Bridge component object
+     */
+    SimpleConsole getAsSimpleConsole();
 
-	/**
-	 * Reads input data in console
-	 * @return the string entered by user
-	 */
-	String readLine();
+    /**
+     * Reads input data in console
+     * @return the string entered by user
+     */
+    String readLine();
 
-	/**
-	 * Displays data in Console
-	 * @param dataToDisplay the data to be displayed
-	 */
-	void display(String dataToDisplay);
-	
-	/**
-	 * Clears the console (all output view is cleared)
-	 */
-	void clear();
-	
-	/**
-	 * Clears lines from the end of the output view
-	 * @param nbLines the number of lines to be deleted
-	 */
-	void clear(int nbLines);
+    /**
+     * Displays data in Console
+     * @param dataToDisplay the data to be displayed
+     */
+    void display(String dataToDisplay);
 
-	/**
-	 * Puts the prompt in the top left corner of the console
-	 */
-	void toHome();
+    /**
+     * Clears the console (all output view is cleared)
+     */
+    void clear();
 
-	/**
-	 * Sets the prompt displayed in the console
-	 * @param prompt the prompt to be displayed in the console
-	 */
-	void setPrompt(String prompt);
+    /**
+     * Clears lines from the end of the output view
+     * @param nbLines the number of lines to be deleted
+     */
+    void clear(int nbLines);
 
-	/**
-	 * Updates Scilab internal variables containing the size of the console
-	 * These variables are used to format data before displaying it
-	 */
-	void scilabLinesUpdate();
+    /**
+     * Puts the prompt in the top left corner of the console
+     */
+    void toHome();
 
-	/**
-	 * Get the current status of the console
-	 * If the prompt view is visible, Scilab is waiting for commands
-	 * @return true is Scilab is waiting for commands
-	 */
-	boolean isWaitingForInput();
-	
-	/**
-	 * Clear the commands history 
-	 */
-	void clearHistory();
-	
-	/**
-	 * Select all the console contents
-	 */
-	void selectAll();
-	
-	/**
-	 * Put the console selected text in the clipboard
-	 */
-	void copyToClipboard();
-	
-	/**
-	 * Paste clipboard contents in Console input line
-	 */
-	void pasteClipboard();
+    /**
+     * Sets the prompt displayed in the console
+     * @param prompt the prompt to be displayed in the console
+     */
+    void setPrompt(String prompt);
 
-	/**
-	 * Cut selected text in the Console input line
-	 */
-	void cutSelection();
-	
-	/**
-	 * Set the font of the Console
-	 * @param font the font to set
-	 */
-	void setFont(Font font);
+    /**
+     * Updates Scilab internal variables containing the size of the console
+     * These variables are used to format data before displaying it
+     */
+    void scilabLinesUpdate();
 
-	/**
-	 * Get the font of the Console
-	 * @return the font
-	 */
-	Font getFont();
-	
-	/**
-	 * Get the Foreground Color of the Console
-	 * @return the Foreground Color
-	 */
-	Color getForeground();
-	
-	/**
-	 * Get the Background Color of the Console
-	 * @return the Background Color
-	 */
-	Color getBackground();
+    /**
+     * Get the current status of the console
+     * If the prompt view is visible, Scilab is waiting for commands
+     * @return true is Scilab is waiting for commands
+     */
+    boolean isWaitingForInput();
 
-	/**
-	 * Set the Foreground Color of the Console
-	 * @param color the Foreground Color
-	 */
-	void setForeground(Color color);
-	
-	/**
-	 * Set the Background Color of the Console
-	 * @param color the Background Color
-	 */
-	void setBackground(Color color);
+    /**
+     * Clear the commands history
+     */
+    void clearHistory();
 
-	/**
-	 * Set the maximum number of lines stored in the Output
-	 * @param nbLines the number of lines 
-	 */
-	void setMaxOutputSize(int nbLines);
-	
-	/**
-	 * Set the cursor pointer over the Console
-	 * @param cursor the Cursor to set
-	 */
-	void setCursor(Cursor cursor);
+    /**
+     * Select all the console contents
+     */
+    void selectAll();
 
-	void helpOnTheKeyword();
+    /**
+     * Put the console selected text in the clipboard
+     */
+    void copyToClipboard();
+
+    /**
+     * Paste clipboard contents in Console input line
+     */
+    void pasteClipboard();
+
+    /**
+     * Cut selected text in the Console input line
+     */
+    void cutSelection();
+
+    /**
+     * Set the font of the Console
+     * @param font the font to set
+     */
+    void setFont(Font font);
+
+    /**
+     * Get the font of the Console
+     * @return the font
+     */
+    Font getFont();
+
+    /**
+     * Get the Foreground Color of the Console
+     * @return the Foreground Color
+     */
+    Color getForeground();
+
+    /**
+     * Get the Background Color of the Console
+     * @return the Background Color
+     */
+    Color getBackground();
+
+    /**
+     * Set the Foreground Color of the Console
+     * @param color the Foreground Color
+     */
+    void setForeground(Color color);
+
+    /**
+     * Set the Background Color of the Console
+     * @param color the Background Color
+     */
+    void setBackground(Color color);
+
+    /**
+     * Set the maximum number of lines stored in the Output
+     * @param nbLines the number of lines
+     */
+    void setMaxOutputSize(int nbLines);
+
+    /**
+     * Set the cursor pointer over the Console
+     * @param cursor the Cursor to set
+     */
+    void setCursor(Cursor cursor);
+
+    void helpOnTheKeyword();
+
+    /**
+     * Evaluate the selection with echo
+     */
+    void evaluateSelectionWithEcho();
+
+    /**
+     * Evaluate the selection with no echo
+     */
+    void evaluateSelectionWithNoEcho();
 }

@@ -12,12 +12,17 @@
 
 package org.scilab.modules.xcos.modelica;
 
+import static org.scilab.modules.xcos.modelica.TerminalAccessor.getData;
+import static org.scilab.modules.xcos.modelica.TerminalAccessor.values;
+
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.AbstractTableModel;
 
+import org.scilab.modules.xcos.modelica.TerminalAccessor.ChangeEvent;
 import org.scilab.modules.xcos.modelica.model.Terminal;
 
 /**
@@ -86,6 +91,36 @@ public final class TerminalTableModel extends AbstractTableModel {
 		}
 	}
 
+	/**
+	 * Pass {@link TerminalAccessor} change events to {@link TableModelEvent}.
+	 */
+	private static class ModelChangeListener implements TerminalAccessor.ChangeListener {
+		final TerminalTableModel model;
+		
+		/**
+		 * Default Constructor
+		 */
+		public ModelChangeListener(TerminalTableModel model) {
+			this.model = model; 
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void change(ChangeEvent event) {
+			final TerminalAccessor source = (TerminalAccessor) event.getSource();
+			final Terminal terminal = event.getTerminal();
+			
+			final int columnIndex = Arrays.asList(TerminalAccessor.values()).indexOf(source);
+			final int rowIndex = model.getTerminals().indexOf(terminal);
+			if (rowIndex < model.getRowCount() && columnIndex < model.getColumnCount()) {
+				model.fireTableChanged(new TableModelEvent(model, rowIndex, rowIndex, columnIndex));
+			}
+		}
+		
+	}
+	
 	private List<Terminal> terminals;
 
 	/**
@@ -93,6 +128,11 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	public TerminalTableModel() {
 		setTerminals(null);
+		
+		for (int i = 0; i < TerminalAccessor.values().length; i++) {
+			final TerminalAccessor row = TerminalAccessor.values()[i];
+			row.addChangeListener(new ModelChangeListener(this));
+		}
 	}
 
 	/**
@@ -135,7 +175,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public int getColumnCount() {
-		return TerminalAccessor.values().length;
+		return values().length - 1; // the selected data is just a flag
 	}
 
 	/**
@@ -146,7 +186,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public String getColumnName(int column) {
-		return TerminalAccessor.values()[column].getName();
+		return values()[column].getName();
 	}
 
 	/**
@@ -157,7 +197,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Class< ? > getColumnClass(int columnIndex) {
-		return TerminalAccessor.values()[columnIndex].getKlass();
+		return values()[columnIndex].getKlass();
 	}
 
 	/**
@@ -170,11 +210,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public boolean isCellEditable(int rowIndex, int columnIndex) {
-		final Terminal terminal = terminals.get(rowIndex);
-		final Boolean isValueFixed = TerminalAccessor.getData(
-				TerminalAccessor.FIXED, terminal);
-		return TerminalAccessor.values()[columnIndex].isEditable()
-				&& !isValueFixed.booleanValue();
+		return values()[columnIndex].isEditable();
 	}
 
 	/**
@@ -187,8 +223,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	 */
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		return TerminalAccessor.values()[columnIndex].getData(terminals
-				.get(rowIndex));
+		return getData(values()[columnIndex], terminals.get(rowIndex));
 	}
 
 	/**
@@ -205,8 +240,7 @@ public final class TerminalTableModel extends AbstractTableModel {
 	public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
 		fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
 				columnIndex, true));
-		TerminalAccessor.values()[columnIndex].setData(aValue,
-				terminals.get(rowIndex));
+		values()[columnIndex].setData(aValue,terminals.get(rowIndex));
 		fireTableChanged(new TerminalTableModelEvent(this, rowIndex,
 				columnIndex, false));
 	}

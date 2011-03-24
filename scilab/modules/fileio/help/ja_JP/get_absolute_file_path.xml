@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="get_absolute_file_path"
+          xml:lang="ja" xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-10-10 17:02:59 +0200 (mar., 10 oct.
+    2006)$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>get_absolute_file_path</refname>
+
+    <refpurpose>
+	Scilabでオープンしたファイルの絶対パス名を出力します.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>pathname = get_absolute_file_path(filename)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>filename</term>
+
+        <listitem>
+          <para>文字列 : ファイル名</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pathname</term>
+
+        <listitem>
+          <para>文字列 : 絶対パス名</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	Scilabですでにオープンしている
+	ファイルの絶対パス名を出力します.</para>
+
+    <para>get_absolute_file_path は
+	Scilabで現在オープンしているファイルの内部リストの中で
+	filename を検索し,そのパスを返します.</para>
+
+    <para>"get_absolute_file_path" は,
+	Scilabが現在オープンしているファイルの内部リストの中で
+	"filename" を検索し,そのパスを出力します.</para>
+
+    <para>オープンされていない場合,エラーを返します.</para>
+
+    <para>警告 : 以前のバージョン (scilab 5.0.x) では,
+	ファイルが見つからない場合,
+	カレントのディレクトが返されていました.</para>
+
+    <para>この関数は,
+	Scilabスクリプトを実行する(パス)を見つけるために
+	使用することができます.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// このスクリプトを実行
+
+a=mopen(TMPDIR+'test.sce','wt');
+disp(get_absolute_file_path('test.sce'));
+mclose(a);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link
+      linkend="getshortpathname">getshortpathname</link></member>
+
+      <member><link linkend="getlongpathname">getlongpathname</link></member>
+
+      <member><link linkend="pwd">pwd</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Allan CORNET</para>
+  </refsection>
+</refentry>

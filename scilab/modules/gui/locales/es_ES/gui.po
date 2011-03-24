@@ -618,7 +618,7 @@ msgstr "Propied&ades de los ejes."
 msgid "&BMP"
 msgstr "&BMP"
 
-msgid "&Bug And Request database"
+msgid "&Bugs And Requests"
 msgstr "&Bug y Pedir base de datos"
 
 msgid "&Change current directory..."
@@ -771,7 +771,7 @@ msgstr "Explorador de $Variables"
 msgid "&Vectorial export"
 msgstr "Exportacion &vectorial"
 
-msgid "&Web links"
+msgid "&Links"
 msgstr "Enlaces &Web"
 
 msgid "&Xcos"

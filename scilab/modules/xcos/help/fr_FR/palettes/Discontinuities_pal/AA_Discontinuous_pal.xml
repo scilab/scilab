@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="discontinuities_pal"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>discontinuities_pal</refname>
+
+    <refpurpose>Palette Fonctions discontinues</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="BACKLASH" fileref="../../../../../../modules/xcos/images/palettes/BACKLASH.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DEADBAND" fileref="../../../../../../modules/xcos/images/palettes/DEADBAND_modif.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DELAYV_f" fileref="../../../../../../modules/xcos/images/palettes/DELAYV_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="HYSTHERESIS" fileref="../../../../../../modules/xcos/images/palettes/HYSTHERESIS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="RATELIMITER" fileref="../../../../../../modules/xcos/images/palettes/RATELIMITER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="QUANT_f" fileref="../../../../../../modules/xcos/images/palettes/QUANT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_discontinuities_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_discontinuities_pal">
+    <title>Description</title>
+
+    <para>
+      La palette Fonctions discontinues contient les blocs dont les sorties sont des fonctions
+      discontinues de leurs entrées.
+    </para>
+  </refsection>
+
+  <refsection id="Blocks_discontinuities_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="BACKLASH">BACKLASH - Backlash (Jeu)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DEADBAND">DEADBAND - Zone morte</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DELAYV_f">DELAYV_f — Délai variable</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="HYSTHERESIS">HYSTHERESIS — Hystérésis (relais)</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="RATELIMITER">RATELIMITER - Limitation de vitesse</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="QUANT_f">QUANT_f - Quantification</link>
+        </para>
+      </listitem>
+
+
+      <listitem>
+        <para>
+          <link linkend="SATURATION">SATURATION — Saturation</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -100,8 +100,8 @@ write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="macr2tree">macr2tree</link></member>

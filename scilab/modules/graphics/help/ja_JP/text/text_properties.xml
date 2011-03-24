@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Jean-Baptiste silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="text_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>text_properties</refname>
+    <refpurpose>Textエンティティプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Textエンティティはグラフィックエンティティ階層の葉です.
+	このエンティティは文字列描画用のパラメータを定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このフィールドには親のハンドルが含まれます.
+	textエンティティの親は<literal>"Axes"</literal> 型または
+        <literal>"Compound"</literal>型です.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>このプロパティにはこのハンドルの<literal>children</literal>
+	のベクトルが含まれます.
+	しかし,現在, textハンドルには<literal>children</literal>がありません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドはエンティティの <literal>visible</literal> プロパティを有します.
+	この値は, "on" または "off"とします. デフォルトでテキストは可視で,
+	このプロパティの値は "on" です. "off" の場合, テキストは画面に表示されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text: </term>
+        <listitem>
+          <para>オブジェクトの文字列を保持する行列.行列の各行は
+	水平に表示され,列は縦方向に表示されます.
+	</para>
+         <para>Scilab 5.2以降,<link linkend="math_rendering_features_in_graphic">LaTeX または MathML 式</link>
+	を指定することができます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>alignment: </term>
+        <listitem>
+          <para>文字列が列の中で整列される方法を指定します.値には,
+	<emphasis role="bold">'left'</emphasis>,<emphasis role="bold"> 'center' </emphasis>
+	または <emphasis role="bold">'right'</emphasis>を指定します.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>data: </term>
+        <listitem>
+          <para>このフィールドはテキストの原点位置を表すベクトル<literal>[x,y,[z]]</literal>
+		で,単には軸のデータユニットです.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>box: </term>
+        <listitem>
+          <para>このフィールドの値は,<literal>"on"</literal> または
+        <literal>"off"</literal>です. <literal>"on"</literal>の場合,テキストの周囲に
+	縁に線が引かれ,背景を有するボックスが描画されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>line_mode: </term>
+        <listitem>
+          <para>
+	この論理値プロパティにより,<literal>box</literal> プロパティが
+	 <literal>"on"</literal>の時にボックスの周囲に線を描画するかどうかを指定できます.	
+        <literal>line_mode</literal> が <literal>"off"</literal>の場合,ボックスの線は
+	描画されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fill_mode: </term>
+        <listitem>
+          <para>
+		この論理値プロパティにより,<literal>box</literal> プロパティが
+	 <literal>"on"</literal>の時にボックスの背景を塗りつぶすかどうかを指定できます.
+	<literal>fill_mode</literal> が <literal>"off"</literal>の場合,
+	ボックスの背景は透明ではありません..</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text_box: </term>
+        <listitem>
+          <para>ユーザ座標で矩形の大きさを指定する2次元ベクトル.
+	この矩形は,text_box_mode プロパティが
+	<emphasis role="bold">'centered'</emphasis> または <emphasis role="bold">'filled'</emphasis>
+	に設定されている時に使用されます.
+        </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>text_box_mode: </term>
+        <listitem>
+          <para>以下の3種類の値をとる可能性があります : <emphasis role="bold">'off'</emphasis>,
+        <emphasis role="bold">'centered'</emphasis> または <emphasis role="bold">'filled'</emphasis>. 
+	<emphasis role="bold">'off'</emphasis>の場合,
+	文字列は指令したフォントで表示され,
+	dataフィールドはテキストの左下の点の位置を指定します.
+        <emphasis role="bold">'centered'</emphasis>の場合, テキストは
+	大きさがtext_boxで指定された矩形の中心に表示されます.
+	<emphasis role="bold">'filled'</emphasis>の場合,
+	文字列のフォントの大きさは矩形を塗りつぶすように拡大されます.</para>
+		<para>
+		  <emphasis role="bold">'off'</emphasis>または<emphasis role="bold">'centered'</emphasis>モードを
+		使用する場合,テキストの大きさはズームの際にも一定となります.
+		これらはグラフの注記を作成する際には最適のモードです.
+		逆に<emphasis role="bold">'filled'</emphasis>モードを使用した場合, 
+		テキストの大きさはグラフィックの縮尺に依存します.
+		この場合,テキストオブジェクトをズームすることが可能です.
+		</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_foreground: </term>
+        <listitem>
+          <para>このフィールドはテキストの文字を表示する際に使用される色を
+		有します.色のインデックスは(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>foreground: </term>
+        <listitem>
+          <para>このフィールドはボックスの周りに線を表示する際に使用される色を
+	有します.この値は(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>background: </term>
+        <listitem>
+          <para>このフィールドはボックスを塗る際に使用される色を
+	有します.この値は(カレントのカラーマップに基づく)色インデックス
+		である必要があります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_size: </term>
+        <listitem>
+          <para>
+		表示される文字の大きさを指定するスカラー値です.
+		<literal>fractional_font</literal>プロファイルが <literal>"off"</literal>の場合,
+		値の整数部のみが使用されます.
+		詳細については<link linkend="graphics_fonts">graphics_fonts</link>を参照ください.
+		</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>font_style: </term>
+        <listitem>
+          <para>
+		文字列の表示に使用されるフォントを指定します.
+		これはロード済みのフォントの一つを指す正の整数です.
+		その値は最初のフォントを指す 0 から最後のフォントを指すロード済みの
+		フォントの数から1を引いた数までとします.
+		詳細については<link linkend="graphics_fonts">graphics_fonts</link>を参照ください.
+		  </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+              <term>fractional_font: </term>
+              <listitem>
+          <para>このプロパティはテキストを分数のフォントサイズにより表示するかどうかを
+	指定します.この値には,<literal>"on"</literal> または <literal>"off"</literal>を指定します. 
+	<literal>"on"</literal> の場合,<literal>font_size</literal>の浮動小数点の値が
+	表示の際に使用され,フォントはアンチエイリアス処理されます.
+	<literal>"off"</literal> の場合,整数部のみが使用され,フォントは平滑化されません.
+		  </para>
+              </listitem>
+            </varlistentry>
+      <varlistentry>
+        <term>font_angle: </term>
+        <listitem>
+          <para>このプロパティはテキスト文字列の向きを定義します.
+	回転角(単位:度)の値を指定してください.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_state: </term>
+        <listitem>
+          <para>このフィールドは,テキストに関する
+	<literal>clip_state</literal>プロパティの値を有します.
+	値は以下となります :</para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>"off"</literal> 
+		テキストはクリップされません.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"clipgrf"</literal> 
+		テキストはAxesボックスの外側でクリップされます.</para>
+            </listitem>
+
+            <listitem>
+              <para><literal>"on"</literal> 
+		テキストは<literal>clip_box</literal>プロパティで指定される
+		矩形の外側でクリップされます.</para>
+            </listitem>
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>clip_box: </term>
+        <listitem>
+          <para>
+		このフィールドは
+	<literal>clip_box</literal>プロパティを有します.
+	この値はclip_state が"off"の場合,空の行列となります.
+	その他の場合,ベクトル<literal>[x,y,w,h]</literal> (左上の点,幅,高さ)により
+	クリップ領域が指定されます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドは任意のScilab変数をtextデータ構造体に保存し,
+	復元する際に使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+a=get("current_axes");
+a.data_bounds=[0,0;1,1];
+a.axes_visible = 'on' ;
+
+xstring(0.5,0.5,"Scilab is not esilaB",0,0)
+
+t=get("hdl")   //新規に作成されたオブジェクトのハンドルを取得
+
+t.font_foreground=6; // フォントプロパティを変更
+t.font_size=5;
+t.font_style=5;
+
+
+t.text=["SCILAB","is";"not","esilaB"] ; // テキストを変更
+t.font_angle=90 ; // turn the strings
+t.text_box = [0,0] ;
+t.text_box_mode = 'centered' ; // テキストの中心を [0.5,0.5]に設定.
+t.alignment = 'center' ;
+t.box = 'on' ; // テキストの周囲にボックスを描画
+
+//  Scilab 5.2以降でのみ有効
+mathml="<mrow>      <mfrac>        <mrow>          <mi>d</mi>          <mi>y</mi>        </mrow>        <mrow>          <mi>d</mi>          <mi>x</mi>        </mrow>      </mfrac>      <mo>=</mo>      <mfrac>        <mn>1</mn>        <msup>          <mi>y</mi>          <mn>2</mn>        </msup>      </mfrac>    </mrow>";
+t.text=["SCILAB","can write LaTeX :","$\frac{abc}{xyz}$";"or","MathML :",mathml] ; 
+
+
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="delete">delete</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE, Jean-Baptiste SILVY</para>
+  </refsection>
+</refentry>

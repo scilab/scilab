@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * Copyright (C) 2008 - INRIA - Vincent COUVERT
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="xgetmouse">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xgetmouse</refname>
+    <refpurpose>マウスのイベントおよびカレントの位置を取得する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[rep [,win]]=xgetmouse([sel])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>sel</term>
+        <listitem>
+          <para>論理値ベクトル <literal>[getmotion, getrelease]</literal>. デフォルト値は <literal>[%t, %f]</literal>です</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>大きさ 3のベクトル, [x,y,ibutton].</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>win</term>
+        <listitem>
+          <para>イベントが発生した図の番号.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	マウスポインタがカレントの図のウインドウ内に位置する場合,
+	<literal>xgetmouse</literal> は<literal>rep</literal>に
+	カレントのポインタの位置(x,y)と値<literal>ibutton</literal>を返します.
+	<literal>ibutton</literal>の値は以下のイベントの種類を示します:
+  </para>
+    <variablelist>
+      <varlistentry>
+        <term>ibutton==0</term>
+        <listitem>
+          <para>マウスの左ボタンが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==1</term>
+        <listitem>
+          <para>マウスの中ボタンが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==2</term>
+        <listitem>
+          <para>マウスの右ボタンが押されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==3</term>
+        <listitem>
+          <para>マウスの左ボタンがクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==4</term>
+        <listitem>
+          <para>マウスの中ボタンがクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==5</term>
+        <listitem>
+          <para>マウスの右ボタンがクリックされました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==10</term>
+        <listitem>
+          <para>マウスの左ボタンがダブルクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==11</term>
+        <listitem>
+          <para>マウスの中ボタンがダブルクリックされました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==12</term>
+        <listitem>
+          <para>マウスの右ボタンがダブルクリックされました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==-5</term>
+        <listitem>
+          <para>マウスの左ボタンが放されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==-4</term>
+        <listitem>
+          <para>マウスの中ボタンが放されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==-3</term>
+        <listitem>
+          <para>マウスの右ボタンが放されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==-1</term>
+        <listitem>
+          <para>ポインタが移動されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton &gt; =32</term>
+        <listitem>
+          <para>ASCIIコードascii(ibutton)を有するキーが押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton &lt; =-32</term>
+        <listitem>
+          <para>ASCIIコードascii(-ibutton)を有するキーが放されました</para>
+          <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton &gt; =1000+32</term>
+        <listitem>
+          <para>ASCIIコードascii(ibutton-1000)を有するキーがCTRLキーが押されている間に
+		押されました</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ibutton==-1000</term>
+        <listitem>
+          <para>グラフィックウインドが閉じられました</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+    警告: 前のバージョンの Scilab  (&lt;5.0)では, xgetmouseが入力された時点で
+	マウスクリックのイベントキューをクリアするかどうかを設定するフラグを
+	ユーザが設定できました. このオプションは, Scilab 5.1 で削除されています.
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//  矩形選択
+clf();  // ウインドウを消去/作成
+a=gca();a.data_bounds=[0 0;100 100];//ユーザ座標を設定
+xtitle(" drawing a rectangle ") //タイトルを追加
+show_window(); //ウインドウを最前面に配置
+
+[b,xc,yc]=xclick(); //ポイントを取得
+xrect(xc,yc,0,0) //矩形エンティティを描画
+r=gce();// 矩形のハンドル
+rep=[xc,yc,-1];first=%f;
+
+while rep(3)==-1 do // マウスを移動 ...
+  rep=xgetmouse();
+  xc1=rep(1);yc1=rep(2);
+  ox=min(xc,xc1);
+  oy=max(yc,yc1);
+  w=abs(xc-xc1);h=abs(yc-yc1);
+  r.data=[ox,oy,w,h]; //矩形の原点,幅と高さを変更
+  first=%f;
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="locate">locate</link>
+      </member>
+      <member>
+        <link linkend="xclick">xclick</link>
+      </member>
+      <member>
+        <link linkend="seteventhandler">seteventhandler</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>S. Steer</para>
+  </refsection>
+</refentry>

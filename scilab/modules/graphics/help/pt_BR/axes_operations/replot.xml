@@ -97,8 +97,8 @@ replot([-3,-2,8,4],f.children(2))
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="xbasr">xbasr</link></member>

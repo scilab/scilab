@@ -20,6 +20,9 @@
 //
 
 function set_viewport(viewport)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
     //** Beware ! : I'm forced to use old graphics instructions because there are not
     //**            direct equivalent inside the new graphics (24 may 2006)

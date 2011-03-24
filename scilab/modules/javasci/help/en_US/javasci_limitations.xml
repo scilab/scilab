@@ -32,11 +32,11 @@
       <listitem>Cannot manage several instances of Scilab (this problem is not addressed yet in Javasci v2)</listitem>
     </itemizedlist>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
     <member>
-        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink> (this will open the web browser).
+        Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).
        </member>
       <member>
         <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci</link>

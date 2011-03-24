@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="library">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>library</refname>
+    <refpurpose>ライブラリのデータ型の説明
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis/>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	ライブラリは型番号14のデータ型です.
+	これには,パス名と名前の集合が含まれます.
+	これにより,以下のアルゴリズムにより変数を自動的に
+	ロードすることが可能になります:</para>
+    <para>
+	Scilabユーザが<literal>foo</literal>という名前の変数を参照すると
+	仮定します.
+	Scilabはまず<literal>foo</literal>がプリミティブの名前または
+	すでに定義ずみであるかどうかを調べます.
+	そうでない場合,<literal>foo</literal>を(新しいものから順に)
+	順番に全ての定義済みのライブラリの中で探します.</para>
+    <para>
+    <literal>foo</literal> がライブラリ<literal>xlib</literal>の
+	名前の集合に属すると仮定すると,
+	Scilabはファイル &lt;xlib-path-name&gt;/foo.bin をロード
+	します.
+	&lt;xlib-path-name&gt;/foo.bin は
+	<literal>save</literal> 関数により作成されている必要があります.
+	</para>
+    <para>
+    ライブラリはしばしば関数の集約に使用されますが,
+	Scilab変数の集約にも使用することができます.</para>
+    <para>
+	ある関数が1つ以上のライブラリで定義されている場合,
+	デフォルトの探索アルゴリズムは最新のライブラリに
+	含まれる関数をロードします.
+	ドット表記により
+	特定のライブラリの関数を強制的に使用することも可能です:</para>
+    <para><literal>xlib.foo</literal> は
+	<literal>xlib</literal>に含まれる変数<literal>foo</literal>
+	をロードします.
+	<literal>foo</literal>が関数の場合,
+	<literal>xlib.foo(args)</literal>はこの関数を実行します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// elemlib は定義済みのライブラリです
+elementary_functionlib //ライブラリの中身を表示
+A=rand(3,3);
+cosm(A) //cosmをロードし実行
+whos -name cosm // ここでcosmは変数です
+elementary_functionlib.sinm //sinmをライブラリからロード
+elementary_functionlib.cosm(A) //cosmを再ロードし,実行
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

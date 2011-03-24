@@ -271,8 +271,8 @@ a.rotation_angles=[10 70];
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="param3d1">param3d1</link></member>

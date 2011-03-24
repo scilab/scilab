@@ -23,9 +23,7 @@ Source: bin\lib{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
 Source: bin\{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\VERSION.xml; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
-Source: modules\{#UMFPACK}\readme.txt; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
 Source: modules\{#UMFPACK}\license.txt; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
-Source: modules\{#UMFPACK}\changelog.txt; DestDir: {app}\modules\{#UMFPACK}; Components: {#COMPN_UMFPACK}
 ;
 Source: modules\{#UMFPACK}\sci_gateway\{#UMFPACK}_gateway.xml; DestDir: {app}\modules\{#UMFPACK}\sci_gateway; Components: {#COMPN_UMFPACK}
 ;

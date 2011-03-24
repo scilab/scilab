@@ -117,8 +117,8 @@ tbx_build_src(['csum','csub'], ['csum.c','csub.c'], 'c', ..
               get_absolute_file_path('builder_c.sce'));
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ilib_for_link">ilib_for_link</link>

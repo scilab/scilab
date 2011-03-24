@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="range">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>range</refname>
+    <refpurpose>A^kの範囲</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X,dim]=range(A,k)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>整数</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>直交実数行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim</term>
+        <listitem>
+          <para>整数 (部分空間の次元)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    範囲 <literal>A^k</literal>を計算します ; the first dim rows of <literal>X</literal> の
+	最初の dim 行は, <literal>A^k</literal>の範囲に広がります.
+	<literal>X</literal>の最後の行は,
+	この直交相補な範囲に広がります.
+	<literal>X*X'</literal> は単位行列です.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(4,2)*rand(2,4);   // 4 列ベクトル, 2 独立.
+[X,dim]=range(A,1);dim   // 範囲を計算
+
+y1=A*rand(4,1);          //Aの範囲のベクトル
+y2=rand(4,1);            //Aの範囲にないベクトル
+norm(X(dim+1:$,:)*y1)    //最後のエントリはゼロ, y1 はAの範囲
+norm(X(dim+1:$,:)*y2)    //最後のエントリは非ゼロ
+
+I=X(1:dim,:)'            //I が範囲の基底is a basis of the range
+coeffs=X(1:dim,:)*y1     // 基底Iに関連るy1の要素
+
+norm(I*coeffs-y1)        //check
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fullrfk">fullrfk</link>
+      </member>
+      <member>
+        <link linkend="rowcomp">rowcomp</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D. INRIA ;   </para>
+  </refsection>
+  <refsection>
+    <title>使用される関数</title>
+    <para><literal>range</literal> 関数は,
+	<link linkend="svd">svd</link>分解を使用する
+	<link linkend="rowcomp">rowcomp</link> 関数
+	に基づいています.</para>
+  </refsection>
+</refentry>

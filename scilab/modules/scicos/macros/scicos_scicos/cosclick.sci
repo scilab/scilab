@@ -20,6 +20,9 @@
 //
 
 function [btn, %pt, win, Cmenu ] = cosclick(flag)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //**    
 //** btn : button / event id (numeric code)
 //** %pt : mouse position[x,y] of the event

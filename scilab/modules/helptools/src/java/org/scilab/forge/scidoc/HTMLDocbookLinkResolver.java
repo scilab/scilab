@@ -30,14 +30,20 @@ import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import org.scilab.modules.commons.ScilabCommonsUtils;
+
 /**
  * Class the convert a DocBook xml file
  * @author Calixte DENIZET
  */
 public class HTMLDocbookLinkResolver extends DefaultHandler {
 
+    private static boolean isCaseInsensitiveOS = System.getProperty("os.name").toLowerCase().contains("windows");
+
     private Map<String, String> mapId = new LinkedHashMap();
+    private List<String> listIdIgnoreCase = new ArrayList();
     private Map<String, String> toc = new LinkedHashMap();
+    private Map<String, String> mapIdPurpose = new LinkedHashMap();
     private Map<String, TreeId> mapTreeId = new HashMap();
     private Map<String, String> mapIdDeclaringFile = new HashMap();
     private TreeId tree = new TreeId(null, "root");
@@ -49,8 +55,10 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
     private Locator locator;
     private String currentFileName;
     private boolean waitForRefname;
+    private boolean waitForRefpurpose;
     private boolean waitForTitle;
     private boolean getContents;
+    private boolean idInRefentry;
     private final File in;
     private int level;
     private StringBuilder buffer = new StringBuilder(256);
@@ -70,6 +78,13 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
      */
     public Map<String, String> getMapId() {
         return mapId;
+    }
+
+    /**
+     * @return the map id-&gt;title
+     */
+    public Map<String, String> getMapIdPurpose() {
+        return mapIdPurpose;
     }
 
     /**
@@ -124,6 +139,10 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             }
         }
 
+        if (localName.equals("refentry")) {
+            idInRefentry = false;
+        }
+
         if (localName.equals("title")) {
             if (waitForTitle) {
                 getContents = true;
@@ -134,11 +153,18 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
                 getContents = true;
                 buffer.setLength(0);
             }
-        } else if (localName.equals("refentry") || localName.equals("section") || localName.equals("part") || localName.equals("chapter")) {
+        } else if (localName.equals("refpurpose")) {
+            if (waitForRefpurpose) {
+                getContents = true;
+                buffer.setLength(0);
+            }
+        } else if ((id != null && localName.equals("refentry")) || localName.equals("section")
+                   || localName.equals("part") || localName.equals("chapter") || (!idInRefentry && localName.equals("refnamediv"))) {
             if (id == null) {
                 throw new SAXException(errorMsg());
             }
-            current = id + ".html";
+            current = makeFileName(id);
+            listIdIgnoreCase.add(id.toLowerCase());
             lastId = id;
             if (mapIdDeclaringFile.containsKey(id)) {
                 String prev = mapIdDeclaringFile.get(id);
@@ -149,6 +175,8 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             mapId.put(id, current);
             waitForTitle = localName.charAt(0) != 'r';
             waitForRefname = !waitForTitle;
+            idInRefentry = waitForRefname;
+            waitForRefpurpose = waitForRefname;
             TreeId leaf = new TreeId(currentLeaf, id);
             currentLeaf.add(leaf);
             currentLeaf = leaf;
@@ -158,14 +186,34 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
     }
 
     /**
+     * Make a file name which take into account that under Windows the file name
+     * is case insensitive and the xml:id is case sensitive.
+     * @param id the xml:id
+     * @return an unique file name
+     */
+    public String makeFileName(String id) {
+        if (isCaseInsensitiveOS && listIdIgnoreCase.contains(id.toLowerCase())) {
+            return id + "-" + ScilabCommonsUtils.getMD5(id) + ".html";
+        }
+
+        return id + ".html";
+    }
+
+    /**
      * {@inheritDoc}
      */
     public void endElement(String uri, String localName, String qName) throws SAXException {
         if (getContents) {
-            toc.put(lastId, buffer.toString().trim());
-            getContents = false;
-            waitForRefname = false;
-            waitForTitle = false;
+            if (localName.equals("refpurpose")) {
+                mapIdPurpose.put(lastId, buffer.toString().trim());
+                waitForRefpurpose = false;
+                getContents = false;
+            } else if (localName.equals("title") || localName.equals("refname")) {
+                toc.put(lastId, buffer.toString().trim());
+                getContents = false;
+                waitForRefname = false;
+                waitForTitle = false;
+            }
         }
         if (localName.equals("refentry") || localName.equals("section") || localName.equals("part") || localName.equals("chapter")) {
             currentLeaf = currentLeaf.parent;
@@ -250,15 +298,15 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
         if (currentFileName != null) {
             str = currentFileName;
         } else {
-                try {
-                    str = in.getCanonicalPath();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    str = null;
-                }
+            try {
+                str = in.getCanonicalPath();
+            } catch (IOException e) {
+                e.printStackTrace();
+                str = null;
+            }
         }
 
-        return "Refentry without id attributes in file " + str + " at line " + locator.getLineNumber();
+        return "No id attribute in <refentry> or <refnamediv> in file " + str + " at line " + locator.getLineNumber();
     }
 
     class TreeId {

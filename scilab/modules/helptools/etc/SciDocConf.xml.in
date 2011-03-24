@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<!-- id is used to identify the jar file (JavaHelp only) -->
+<scidoc id="scilab">
+
+  <!-- Path to the CSS file for the doc style -->
+  <css doc="${SCI}/modules/helptools/data/css/style.css" />
+
+  <!-- These files are used to give the structure of a the documentation files -->
+  <templates javahelp="${SCI}/modules/helptools/data/template/template_javahelp.html"
+             html="${SCI}/modules/helptools/data/template/template_html.html"
+             chm="${SCI}/modules/helptools/data/template/template_chm.html"
+             web="${SCI}/modules/helptools/data/template/template_web.html" />
+
+  <!-- Path to the file containing all the Scilab's macros. This file is used with
+       the code parser to guess the kind of the keywords met. -->
+  <macros>
+    <file path="${SCI}/modules/helptools/data/configuration/scilab_macros.txt" />
+  </macros>
+
+  <!-- As above but for built-in functions -->
+  <builtins>
+    <file path="${SCI}/modules/helptools/data/configuration/scilab_primitives.txt" />
+  </builtins>
+
+  <!-- Useful to make link on Scilab's official documentation -->
+  <website url="http://help.scilab.org/docs/@SCILAB_VERSION_MAJOR@.@SCILAB_VERSION_MINOR@.@SCILAB_VERSION_MAINTENANCE@/" />
+
+</scidoc>
