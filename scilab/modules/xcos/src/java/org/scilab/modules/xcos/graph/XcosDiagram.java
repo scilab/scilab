@@ -541,6 +541,8 @@ public class XcosDiagram extends ScilabGraph {
 
 	setMultiplicities();
 	
+	setAutoOrigin(true);
+	
 	// Add a listener to track when model is changed
 	getModel().addListener(mxEvent.CHANGE, new ModelTracker());
 	

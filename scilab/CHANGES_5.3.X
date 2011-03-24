@@ -50,6 +50,8 @@ Xcos:
 
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
 
+* bug 7479 fixed - The diagram did not update its origin on block moving.
+
 * bug 8692 fixed - Null block parameters was not checked before encoding.
 
 * bug 9024 fixed - Opening a non existing file lead to palette closing issues.
