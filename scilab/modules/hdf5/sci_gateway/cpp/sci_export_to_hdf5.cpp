@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -77,7 +78,7 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
         //error
         return types::Function::Error;
     }
-    
+
     pwstNameList = (wchar_t**)MALLOC(sizeof(wchar_t*) * in.size());
     iNbVar = extractVarNameList(in, pwstNameList);
     if(iNbVar != 0)
@@ -97,35 +98,34 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
             {
                 ScierrorW(999,_W("%ls: Cannot open file %s.\n"), L"export_to_hdf5", pstFileName);
             }
- 
+
             FREE(pstFileName);
             FREE(pwstNameList);
             return types::Function::Error;
         }
-        
+
         for(int i = 0 ; i < in.size() - 1; i++)
         {
             types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(pwstNameList[i + 1]));
-       
+
             bExport = export_data(iH5File, pIT, pwstNameList[i + 1]);
             if(bExport == false)
             {
                 break;
             }
         }
-        
+
         //close hdf5 file
         closeHDF5File(iH5File);
-    
     }
     //create boolean return value
     types::Bool* pOut = new types::Bool(bExport);
     out.push_back(pOut);
-    
+
     //free allocated memory
     FREE(pstFileName);
     FREE(pwstNameList);
-    
+
     return types::Function::OK;
 }
 
@@ -166,15 +166,15 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
             bReturn = export_matlab_sparse(_piKey, _piVar, _pwstName);
             break;
         }
-     */   
-    case types::InternalType::RealInt8 : 
-    case types::InternalType::RealUInt8 : 
-    case types::InternalType::RealInt16 : 
-    case types::InternalType::RealUInt16 : 
-    case types::InternalType::RealInt32 : 
-    case types::InternalType::RealUInt32 : 
-    case types::InternalType::RealInt64 : 
-    case types::InternalType::RealUInt64 : 
+     */
+    case types::InternalType::RealInt8 :
+    case types::InternalType::RealUInt8 :
+    case types::InternalType::RealInt16 :
+    case types::InternalType::RealUInt16 :
+    case types::InternalType::RealInt32 :
+    case types::InternalType::RealUInt32 :
+    case types::InternalType::RealInt64 :
+    case types::InternalType::RealUInt64 :
         {
             bReturn = export_ints(_iH5File, pIT, _pwstName);
             break;
@@ -192,7 +192,7 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
             break;
         }
         /*
-    case types::Function : 
+    case types::Function :
         {
             bReturn = export_u_function(_piKey, _piVar, _pwstName);
             break;
@@ -208,9 +208,9 @@ static bool export_data(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
             break;
         }
         */
-    case types::InternalType::RealList : 
-    case types::InternalType::RealTList : 
-    case types::InternalType::RealMList : 
+    case types::InternalType::RealList :
+    case types::InternalType::RealTList :
+    case types::InternalType::RealMList :
         {
             bReturn = export_list(_iH5File, pIT, _pwstName);
             break;
@@ -259,11 +259,11 @@ static bool export_undefined(int _iH5File, types::InternalType* pIT,wchar_t* _pw
 }
 
 static bool export_list(int _iH5File, types::InternalType* pIT, wchar_t* _pwstName)
-{    
+{
     int iRet        = 0;
     char* pstName   = wide_string_to_UTF8(_pwstName);
     bool bReturn    = false;
-    
+
     types::List* pList = pIT->getAs<types::List>();
     int iItemNumber = pList->getSize();
     //create groupe name
@@ -291,27 +291,27 @@ static bool export_list(int _iH5File, types::InternalType* pIT, wchar_t* _pwstNa
         iRet = addItemInList(_iH5File, pvList, i, pstPathName);
         FREE(pstPathName);
         FREE(pwstPathName);
-        
+
         if(bReturn == false || iRet)
             return false;
     }
     iLevel--;
-    
+
     int type = 0;
     switch(pIT->getType())
     {
-    case types::InternalType::RealList : 
+    case types::InternalType::RealList :
         type = sci_list;
         break;
-    case types::InternalType::RealTList : 
+    case types::InternalType::RealTList :
         type = sci_tlist;
         break;
-    case types::InternalType::RealMList : 
+    case types::InternalType::RealMList :
         type = sci_mlist;
         break;
     default : return false;
     }
-    
+
     closeList(_iH5File, pvList, pstName, iItemNumber, type);
     FREE(pstGroupName);
     //close list
@@ -328,7 +328,7 @@ static bool export_double(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
         iRet = writeDoubleComplexMatrix(_iH5File, pstName, pDbl->getRows(), pDbl->getCols(), pDbl->getReal(), pDbl->getImg());
     else
         iRet = writeDoubleMatrix(_iH5File, pstName, pDbl->getRows(), pDbl->getCols(), pDbl->getReal());
-    
+
     FREE(pstName);
 
     if(iRet)
@@ -352,10 +352,10 @@ static bool export_poly(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
     double** img            = NULL;
     int* nbrCoef            = NULL;
     int size                = pPoly->getRows()*pPoly->getCols();
-    
+
     real = (double**)MALLOC(size*sizeof(double*));
     nbrCoef = (int*)MALLOC(size*sizeof(int));
-     
+
     for(int i=0; i < size; i++)
     {
         nbrCoef[i] = pPoly->get(i)->getRank();
@@ -377,12 +377,12 @@ static bool export_poly(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
     {
         iRet = writePolyMatrix(_iH5File, pstName, varName, pPoly->getRows(), pPoly->getCols(), nbrCoef, real);
     }
-    
+
     FREE(nbrCoef);
     FREE(real);
     FREE(pstName);
     FREE(varName);
-    
+
     if(iRet)
     {
         return false;
@@ -402,7 +402,7 @@ static bool export_boolean(int _iH5File, types::InternalType* pIT,wchar_t* _pwst
     char* pstName       = wide_string_to_UTF8(_pwstName);
 
     iRet = writeBooleanMatrix(_iH5File, pstName, pBool->getRows(), pBool->getCols(), pBool->get());
-    
+
     FREE(pstName);
 
     if(iRet)
@@ -584,17 +584,17 @@ static bool export_strings(int _iH5File, types::InternalType* pIT,wchar_t* _pwst
     types::String* pStr = pIT->getAs<types::String>();
     char* pstName       = wide_string_to_UTF8(_pwstName);
     char** pstData      = NULL;
-    
+
     pstData = (char**)malloc(pStr->getRows()*pStr->getCols()*sizeof(char*));
-    
+
     for(int i=0; i < pStr->getRows()*pStr->getCols(); i++)
         pstData[i] = wide_string_to_UTF8(pStr->get(i));
 
     iRet = writeStringMatrix(_iH5File, pstName, pStr->getRows(), pStr->getCols(),pstData);
- 
+
     FREE(pstName);
     FREE(pstData);
-    
+
     if(iRet)
     {
         return false;

@@ -1,7 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
-* Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
     int iNbItem             = 0;
     int iFile               = 0;
     bool bImport            = false;
-    
+
 #ifndef _MSC_VER
     forceJHDF5load();
 #endif
@@ -74,26 +74,26 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
         //error
         return types::Function::Error;
     }
-    
+
     if(in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
     {
         ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"import_from_hdf5", 1);
         return types::Function::Error;
-    }   
-    
+    }
+
     pstFileName = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-    
+
     //open hdf5 file
     iFile = openHDF5File(pstFileName);
     if(iFile < 0)
     {
         ScierrorW(999,_W("%ls: Cannot open file %s.\n"), L"import_to_hdf5", pstFileName);
         return types::Function::Error;
-    }    
+    }
     iNbItem = getVariableNames(iFile, NULL);
     if(iNbItem != 0)
     {
-        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);                   
+        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
         wchar_t** pwstVarNameList = (wchar_t**)MALLOC(sizeof(wchar_t*) * iNbItem);
         iNbItem = getVariableNames(iFile, pstVarNameList);
         for(int i=0; i<iNbItem; i++)
@@ -116,18 +116,18 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
             {
                 break;
             }
-                      
+
             symbol::Context::getInstance()->put(symbol::Symbol(pwstVarNameList[i]), *pIT);
             bImport = true;
         }
     }
     //close the file
-    closeHDF5File(iFile); 
-    
+    closeHDF5File(iFile);
+
     //create boolean return value
     types::Bool* pOut = new types::Bool(bImport);
-    out.push_back(pOut); 
-      
+    out.push_back(pOut);
+
     FREE(pstFileName);
     return types::Function::OK;
 }
@@ -236,17 +236,17 @@ static types::InternalType* import_double(int _iDatasetId)
 {
     int iRet            = 0;
     int iComplex        = 0;
-    double *pdblReal    = NULL; 
+    double *pdblReal    = NULL;
     double *pdblImg     = NULL;
     int	iRows           = 0;
     int iCols           = 0;
-    
+
     iRet        = getDatasetDims(_iDatasetId, &iRows, &iCols);
     iComplex    = isComplexData(_iDatasetId);
     if(iRet)
     {
         return NULL;
-    }    
+    }
     if(iRows * iCols != 0)
     {
         if(iComplex)
@@ -275,14 +275,14 @@ static types::InternalType* import_double(int _iDatasetId)
             return NULL;
         }
     }
-    
+
     types::Double* pDbl = new types::Double(iRows, iCols, iComplex == 0 ? false : true);
     pDbl->set(pdblReal);
     if(pDbl->isComplex())
     {
         pDbl->setImg(pdblImg);
     }
-    
+
     if(pdblReal)
     {
         FREE(pdblReal);
@@ -292,7 +292,7 @@ static types::InternalType* import_double(int _iDatasetId)
     {
         FREE(pdblImg);
     }
-    
+
     return pDbl;
 
 }
@@ -304,27 +304,27 @@ static types::InternalType* import_string(int _iDatasetId)
     int iCols           = 0;
     char **pstData      = NULL;
     wchar_t** pwstData   = NULL;
-    
+
     iRet = getDatasetDims(_iDatasetId, &iRows, &iCols);
     if(iRet)
     {
         return NULL;
     }
-    
+
     pstData = (char **) MALLOC(iRows * iCols * sizeof(char*));
     pwstData = (wchar_t **) MALLOC(iRows * iCols * sizeof(wchar_t*)); 
-    
+
     iRet = readStringMatrix(_iDatasetId, iRows, iCols, pstData);
     if(iRet)
     {
         return NULL;
     }
-    
+
     for(int i=0; i < iRows * iCols; i++)
     {
         pwstData[i] = to_wide_string(pstData[i]);
     }
-    
+
     types::String* pStr = new types::String(iRows,iCols);
     pStr->set(pwstData);
 
@@ -495,7 +495,7 @@ static types::InternalType* import_boolean(int _iDatasetId)
             return NULL;
         }
     }
-    
+
     types::Bool* pBool = new types::Bool(iRows,iCols);
     pBool->set(piData);
 
@@ -546,7 +546,7 @@ static types::InternalType* import_poly(int _iDatasetId)
     {
         return NULL;
     }
-    
+
     pwstVarName = to_wide_string(pstVarName);
     types::Polynom* pPoly = new types::Polynom(pwstVarName,iRows,iCols,piNbCoef);
 
@@ -560,7 +560,7 @@ static types::InternalType* import_poly(int _iDatasetId)
         }
         pPoly->setCoef(i, pCoef);
     }
- 
+
     for(i = 0 ; i < iRows * iCols ; i++)
     {
         FREE(pdblReal[i]);
@@ -575,7 +575,7 @@ static types::InternalType* import_poly(int _iDatasetId)
     {
         FREE(pdblImg);
     }
-    
+
     FREE(piNbCoef);
 
     if(iRet)
@@ -766,9 +766,9 @@ static types::InternalType* import_list(int _iDatasetId, int _iVarType)
             return NULL;
         }
     }
-    
+
     types::List* pList  = NULL;
-    
+
     switch(_iVarType)
     {
     case sci_list :
@@ -789,7 +789,7 @@ static types::InternalType* import_list(int _iDatasetId, int _iVarType)
     default :
         return NULL;
     }
-    
+
     iTab++;
     for(i = 0 ; i < iItems ; i++)
     {
