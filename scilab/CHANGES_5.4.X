@@ -11,14 +11,21 @@ New functions
 =============
 
 * The assert module provides a set of assertion functions.
-  The goal of this module is to provide functions to check the 
-  behavior of some other functions, for example in unit tests. 
-  We emphasize the use of consistent tools for testing numerical 
-  issues, with the goal of testing numerical algorithms more easily. 
-  In particular, we provide a comparison function for two floating 
-  point numbers, which allows to check that two numbers are 
+  The goal of this module is to provide functions to check the
+  behavior of some other functions, for example in unit tests.
+  We emphasize the use of consistent tools for testing numerical
+  issues, with the goal of testing numerical algorithms more easily.
+  In particular, we provide a comparison function for two floating
+  point numbers, which allows to check that two numbers are
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
+
+
+Graphic capabilities
+====================
+
+* Entire refactoring of Scilab graphic capabilities.
+
 
 Bug Fixes:
 ==========
@@ -43,7 +50,7 @@ Performance:
 ============
 
 * SSE is now enabled by default under GNU/Linux with 32 bit CPU (it is already
-  the case under 64 bit CPU). 
+  the case under 64 bit CPU).
   Pentium III class (or equivalent) with SSE instructions is required.
 
 * bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
