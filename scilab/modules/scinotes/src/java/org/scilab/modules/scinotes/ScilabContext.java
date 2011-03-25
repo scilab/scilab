@@ -50,7 +50,7 @@ public class ScilabContext implements ViewFactory {
 
     private View view;
     private boolean plain;
-    private List<Integer> typeToDefault = new ArrayList();
+    private List<Integer> typeToDefault = new ArrayList<Integer>();
 
     /**
      * The constructor
@@ -92,11 +92,11 @@ public class ScilabContext implements ViewFactory {
      */
     public void genAttributes() {
         tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map map = ConfigSciNotesManager.getAllAttributes();
-        Iterator it = map.keySet().iterator();
+        Map<String, Integer>  map = ConfigSciNotesManager.getAllAttributes();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
+            String tokenType = it.next();
+            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType).intValue();
         }
 
         for (Integer i : typeToDefault) {
@@ -111,11 +111,11 @@ public class ScilabContext implements ViewFactory {
      */
     public void genColors() {
         tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map map = ConfigSciNotesManager.getAllForegroundColors();
-        Iterator it = map.keySet().iterator();
+        Map<String, Color> map = ConfigSciNotesManager.getAllForegroundColors();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
+            String tokenType = it.next();
+            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType);
         }
 
         tokenColors[ScilabLexerConstants.OSKEYWORD] = Color.BLACK;
@@ -140,7 +140,6 @@ public class ScilabContext implements ViewFactory {
      * @param color the color to use
      */
     public void genColors(String name, Color color) {
-        Map map = ConfigSciNotesManager.getAllForegroundColors();
         if (tokenColors == null) {
             genColors();
         }
@@ -203,7 +202,7 @@ public class ScilabContext implements ViewFactory {
      * @param font the base font to use
      */
     public void genFonts(Font font) {
-        Map map;
+        Map<String,Font> map;
         Font f = font;
         if (f == null) {
             f = ConfigSciNotesManager.getFont();
@@ -214,10 +213,10 @@ public class ScilabContext implements ViewFactory {
 
         tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
-        Iterator it = map.keySet().iterator();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            f = (Font) map.get(tokenType);
+            String tokenType = it.next();
+            f = map.get(tokenType);
             if (!compatible && (f.isBold() || f.isItalic())) {
                 f = f.deriveFont(Font.PLAIN);
             }

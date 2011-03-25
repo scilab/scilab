@@ -19,34 +19,23 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.CharacterCodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
-import java.nio.charset.CharacterCodingException;
 import java.nio.charset.CodingErrorAction;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.StringTokenizer;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.KeyStroke;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.EditorKit;
 
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
-import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * DefaultEncodingAction Class
@@ -55,12 +44,14 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class DefaultEncodingAction extends DefaultCheckAction {
 
+    private static final long serialVersionUID = 455217357242331617L;
+
     /**
      * Default encoding to test
      */
     public static final String[] ENCODINGS = new String[]{"utf-8", "windows-1252", "iso-8859-1"};
 
-    private static final Map<String, Integer> encPos = new HashMap(ENCODINGS.length);
+    private static final Map<String, Integer> encPos = new HashMap<String, Integer>(ENCODINGS.length);
 
     static {
         for (int i = 0; i < ENCODINGS.length; i++) {
