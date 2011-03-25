@@ -68,7 +68,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             if(in.size() == 2)
             {
                 iMode = getProcessMode(in, 1, 0);
-                if((iMode == 1 || iMode == 2) && in[0]->getAs<Double>()->getDims() > 2)
+                if((iMode == 1 || iMode == 2) && in[0]->getAsGenericType()->getDims() > 2)
                 {
                     ScierrorW(999, _W("%ls: Wrong values for input argument #%d: '%ls' or '%ls' expected.\n"), L"size", 2, L"*", L"0");
                     return Function::Error;
