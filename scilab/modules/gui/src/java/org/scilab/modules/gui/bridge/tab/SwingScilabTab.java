@@ -47,6 +47,9 @@ import org.scilab.modules.gui.bridge.listbox.SwingScilabListBox;
 import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.imagerenderer.SwingScilabImageRenderer;
+import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
+import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.slider.SwingScilabSlider;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -64,6 +67,9 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -630,6 +636,87 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
      */
     private void removeMember(SwingScilabRadioButton member) {
         contentPane.removeWidget(member);
+    }
+
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(ImageRenderer member) {
+	return this.addMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
+    }
+
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    private int addMember(SwingScilabImageRenderer member) {
+	return contentPane.addWidget(member);
+    }
+
+    /**
+     * Remove a ImageRenderer from its container
+     * @param member the ImageRenderer to remove
+     */
+    public void removeMember(ImageRenderer member) {
+	this.removeMember((SwingScilabImageRenderer) member.getAsSimpleImageRenderer());
+    }
+
+    /**
+     * Remove a ImageRenderer from its container
+     * @param member the ImageRenderer to remove
+     */
+    private void removeMember(SwingScilabImageRenderer member) {
+	contentPane.removeWidget(member);
+    }
+	
+    public int addMember(UiDisplayTree member) {
+ 	return this.addMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    }
+    private int addMember(SwingScilabUiDisplayTree member) {
+	return contentPane.addWidget(member);
+    }
+    public void removeMember(UiDisplayTree member) {
+	this.removeMember((SwingScilabUiDisplayTree) member.getAsSimpleUiDisplayTree());
+    }
+    private void removeMember(SwingScilabUiDisplayTree member) {
+	contentPane.removeWidget(member);
+    }
+
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    public int addMember(UiTable member) {
+	return this.addMember((SwingScilabUiTable) member.getAsSimpleUiTable());
+    }
+
+    /**
+     * Add a member (dockable element) to container and returns its index
+     * @param member the member to add
+     * @return index of member in ArrayList
+     */
+    private int addMember(SwingScilabUiTable member) {
+	return contentPane.addWidget(member);
+    }
+
+    /**
+     * Remove a UiTable from its container
+     * @param member the UiTable to remove
+     */
+    public void removeMember(UiTable member) {
+	this.removeMember((SwingScilabUiTable) member.getAsSimpleUiTable());
+    }
+
+    /**
+     * Remove a UiTable from its container
+     * @param member the UiTable to remove
+     */
+    private void removeMember(SwingScilabUiTable member) {
+	contentPane.removeWidget(member);
     }
 
     /**

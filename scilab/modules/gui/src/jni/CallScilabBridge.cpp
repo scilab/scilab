@@ -116,6 +116,9 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+jintnewImageRendererID=NULL; 
+jintnewUiTableID=NULL; 
+jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
@@ -135,6 +138,12 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
+voidsetImageRendererParentjintjintID=NULL; 
+voidremoveImageRendererFromParentjintjintID=NULL; 
+voidsetUiTableParentjintjintID=NULL; 
+voidremoveUiTableFromParentjintjintID=NULL; 
+voidsetUiDisplayTreeParentjintjintID=NULL; 
+voidremoveUiDisplayTreeFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -288,6 +297,13 @@ voidraiseWindowjintID=NULL;
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
+voidsetImageRendererRotatejintjobjectArray_ID=NULL; 
+voidsetImageRendererShearjintjobjectArray_ID=NULL; 
+voidsetImageRendererScalejintjobjectArray_ID=NULL; 
+voidsetUiTableColnamesjintjstringID=NULL; 
+voidsetUiTableRownamesjintjstringID=NULL; 
+voidsetUiTableDatajintjstringID=NULL; 
+voidsetUiTreeDatajintjobjectArray_ID=NULL; 
 
 
 }
@@ -322,6 +338,9 @@ jintnewSliderID=NULL;
 jintnewPopupMenuID=NULL; 
 jintnewListBoxID=NULL; 
 jintnewFrameID=NULL; 
+jintnewImageRendererID=NULL; 
+jintnewUiTableID=NULL; 
+jintnewUiDisplayTreeID=NULL; 
 jstringnewContextMenujobjectArray_ID=NULL; 
 jintnewContextMenuID=NULL; 
 voiddestroyWidgetjintID=NULL; 
@@ -341,6 +360,12 @@ voidsetCheckBoxParentjintjintID=NULL;
 voidremoveCheckBoxFromParentjintjintID=NULL; 
 voidsetRadioButtonParentjintjintID=NULL; 
 voidremoveRadioButtonFromParentjintjintID=NULL; 
+voidsetImageRendererParentjintjintID=NULL; 
+voidremoveImageRendererFromParentjintjintID=NULL; 
+voidsetUiTableParentjintjintID=NULL; 
+voidremoveUiTableFromParentjintjintID=NULL; 
+voidsetUiDisplayTreeParentjintjintID=NULL; 
+voidremoveUiDisplayTreeFromParentjintjintID=NULL; 
 voidsetSliderParentjintjintID=NULL; 
 voidremoveSliderFromParentjintjintID=NULL; 
 voidsetPopupMenuParentjintjintID=NULL; 
@@ -494,6 +519,13 @@ voidraiseWindowjintID=NULL;
 voiduseCanvasForDisplayjbooleanID=NULL; 
 jbooleanuseCanvasForDisplayID=NULL; 
 voidscilabAboutBoxID=NULL; 
+voidsetImageRendererRotatejintjobjectArray_ID=NULL; 
+voidsetImageRendererShearjintjobjectArray_ID=NULL; 
+voidsetImageRendererScalejintjobjectArray_ID=NULL; 
+voidsetUiTableColnamesjintjstringID=NULL; 
+voidsetUiTableRownamesjintjstringID=NULL; 
+voidsetUiTableDatajintjstringID=NULL; 
+voidsetUiTreeDatajintjobjectArray_ID=NULL; 
 
 
 }
@@ -735,6 +767,60 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "newFrame");
 
                         jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewFrameID ));
                         if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newImageRenderer (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewImageRendererID = curEnv->GetStaticMethodID(cls, "newImageRenderer", "()I" ) ;
+if (jintnewImageRendererID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newImageRenderer");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewImageRendererID ));if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newUiTable (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewUiTableID = curEnv->GetStaticMethodID(cls, "newUiTable", "()I" ) ;
+if (jintnewUiTableID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newUiTable");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewUiTableID ));if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+return res;
+
+}
+
+int CallScilabBridge::newUiDisplayTree (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID jintnewUiDisplayTreeID = curEnv->GetStaticMethodID(cls, "newUiDisplayTree", "()I" ) ;
+if (jintnewUiDisplayTreeID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "newUiDisplayTree");
+}
+
+                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintnewUiDisplayTreeID ));if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 return res;
@@ -1100,6 +1186,102 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "removeRadioButtonFromPa
 
                          curEnv->CallStaticVoidMethod(cls, voidremoveRadioButtonFromParentjintjintID ,parentID, objID);
                         if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRendererParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRendererParentjintjintID = curEnv->GetStaticMethodID(cls, "setImageRendererParent", "(II)V" ) ;
+if (voidsetImageRendererParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::removeImageRendererFromParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveImageRendererFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeImageRendererFromParent", "(II)V" ) ;
+if (voidremoveImageRendererFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeImageRendererFromParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveImageRendererFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTableParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTableParentjintjintID = curEnv->GetStaticMethodID(cls, "setUiTableParent", "(II)V" ) ;
+if (voidsetUiTableParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTableParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTableParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::removeUiTableFromParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveUiTableFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeUiTableFromParent", "(II)V" ) ;
+if (voidremoveUiTableFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeUiTableFromParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveUiTableFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiDisplayTreeParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiDisplayTreeParentjintjintID = curEnv->GetStaticMethodID(cls, "setUiDisplayTreeParent", "(II)V" ) ;
+if (voidsetUiDisplayTreeParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiDisplayTreeParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiDisplayTreeParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::removeUiDisplayTreeFromParent (JavaVM * jvm_, int parentID, int objID){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidremoveUiDisplayTreeFromParentjintjintID = curEnv->GetStaticMethodID(cls, "removeUiDisplayTreeFromParent", "(II)V" ) ;
+if (voidremoveUiDisplayTreeFromParentjintjintID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "removeUiDisplayTreeFromParent");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidremoveUiDisplayTreeFromParentjintjintID ,parentID, objID);if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }
@@ -4531,6 +4713,184 @@ throw GiwsException::JniMethodNotFoundException(curEnv, "scilabAboutBox");
 
                          curEnv->CallStaticVoidMethod(cls, voidscilabAboutBoxID );
                         if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRendererRotate (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRendererRotatejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererRotate", "(I[D)V" ) ;
+if (voidsetImageRendererRotatejintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererRotate");
+}
+
+jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
+
+if (indices_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererRotatejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRendererShear (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRendererShearjintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererShear", "(I[D)V" ) ;
+if (voidsetImageRendererShearjintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererShear");
+}
+
+jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
+
+if (indices_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererShearjintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setImageRendererScale (JavaVM * jvm_, int objID, double* indices, int indicesSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetImageRendererScalejintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setImageRendererScale", "(I[D)V" ) ;
+if (voidsetImageRendererScalejintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setImageRendererScale");
+}
+
+jdoubleArray indices_ = curEnv->NewDoubleArray( indicesSize ) ;
+
+if (indices_ == NULL)
+{
+// check that allocation succeed
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetDoubleArrayRegion( indices_, 0, indicesSize, (jdouble*)(indices) ) ;
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetImageRendererScalejintjobjectArray_ID ,objID, indices_);curEnv->DeleteLocalRef(indices_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTableColnames (JavaVM * jvm_, int objID, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTableColnamesjintjstringID = curEnv->GetStaticMethodID(cls, "setUiTableColnames", "(ILjava/lang/String;)V" ) ;
+if (voidsetUiTableColnamesjintjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTableColnames");
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTableColnamesjintjstringID ,objID, text_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTableRownames (JavaVM * jvm_, int objID, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTableRownamesjintjstringID = curEnv->GetStaticMethodID(cls, "setUiTableRownames", "(ILjava/lang/String;)V" ) ;
+if (voidsetUiTableRownamesjintjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTableRownames");
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTableRownamesjintjstringID ,objID, text_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTableData (JavaVM * jvm_, int objID, char * text){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTableDatajintjstringID = curEnv->GetStaticMethodID(cls, "setUiTableData", "(ILjava/lang/String;)V" ) ;
+if (voidsetUiTableDatajintjstringID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTableData");
+}
+
+jstring text_ = curEnv->NewStringUTF( text );
+
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTableDatajintjstringID ,objID, text_);if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void CallScilabBridge::setUiTreeData (JavaVM * jvm_, int objID, char ** tData, int tDataSize){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidsetUiTreeDatajintjobjectArray_ID = curEnv->GetStaticMethodID(cls, "setUiTreeData", "(I[Ljava/lang/String;)V" ) ;
+if (voidsetUiTreeDatajintjobjectArray_ID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "setUiTreeData");
+}
+jclass stringArrayClass = curEnv->FindClass("java/lang/String");
+
+// create java array of strings.
+jobjectArray tData_ = curEnv->NewObjectArray( tDataSize, stringArrayClass, NULL);
+if (tData_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+// convert each char * to java strings and fill the java array.
+for ( int i = 0; i < tDataSize; i++)
+{
+jstring TempString = curEnv->NewStringUTF( tData[i] );
+if (TempString == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+curEnv->SetObjectArrayElement( tData_, i, TempString);
+
+// avoid keeping reference on to many strings
+curEnv->DeleteLocalRef(TempString);
+}
+                         curEnv->CallStaticVoidMethod(cls, voidsetUiTreeDatajintjobjectArray_ID ,objID, tData_);curEnv->DeleteLocalRef(stringArrayClass);
+curEnv->DeleteLocalRef(tData_);
+if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 }

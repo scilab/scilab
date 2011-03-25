@@ -122,6 +122,15 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
                 case SCI_UIFRAME:
                   CallScilabBridge::removeFrameFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
                   break;
+		case SCI_IMAGERENDERER:
+                  CallScilabBridge::removeImageRendererFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+                case SCI_UITABLE:
+                  CallScilabBridge::removeUiTableFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
+		case SCI_UIDISPLAYTREE:
+                  CallScilabBridge::removeUiDisplayTreeFromParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+                  break;
                 default:
                   Scierror(999, const_cast<char*>(_("No '%s' property for uicontrols of style: %s.\n")), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));
 				  delete [] returnValues;
@@ -163,6 +172,15 @@ int SetUicontrolParent(sciPointObj* sciObj, size_t stackPointer, int valueType, 
               break;
             case SCI_UIFRAME:
               CallScilabBridge::setFrameParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
+	    case SCI_IMAGERENDERER:
+              CallScilabBridge::setImageRendererParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
+            case SCI_UITABLE:
+              CallScilabBridge::setUiTableParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
+              break;
+	    case SCI_UIDISPLAYTREE:
+              CallScilabBridge::setUiDisplayTreeParent(getScilabJavaVM(), parentFigureIndex, pUICONTROL_FEATURE(sciObj)->hashMapIndex);
               break;
             default:
               Scierror(999, const_cast<char*>(_("No '%s' property for uicontrols of style: %s.\n")), "Parent", UicontrolStyleToString(pUICONTROL_FEATURE(sciObj)->style));

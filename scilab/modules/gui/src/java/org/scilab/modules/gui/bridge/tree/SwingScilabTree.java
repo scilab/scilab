@@ -159,6 +159,26 @@ public class SwingScilabTree extends DefaultMutableTreeNode implements SimpleTre
 		scrollPane.getViewport().add(jtree);
 		return scrollPane;
 	}
+
+	public JTree getJTree() {
+		// Tree Model
+		DefaultTreeModel model = new DefaultTreeModel(this);		
+		// Renderer
+		ScilabTreeCellRenderer renderer = new ScilabTreeCellRenderer();
+		// Swing tree component
+		JTree jtree = new JTree();	
+		// Show Root Handles
+		jtree.setShowsRootHandles(true);
+		// Set model to the JTree
+		jtree.setModel(model);		
+		// Set renderer
+		jtree.setCellRenderer(renderer);
+
+		jtree.addMouseListener(new ClickListener(jtree));
+		jtree.setVisible(true);
+
+		return jtree;
+	}
 	
 	/**
 	 * Display the tree

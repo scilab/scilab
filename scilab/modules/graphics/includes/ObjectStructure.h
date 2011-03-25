@@ -563,6 +563,7 @@ typedef struct
   /* Value property */
   int * value;
   int valueSize;
+  double * doubleValue;
 
   /* Style property: Must be a value from UicontrolStyle enum */
   int style;
@@ -612,7 +613,10 @@ typedef enum {
   SCI_SLIDER,
   SCI_UIFRAME,
   SCI_LISTBOX,
-  SCI_POPUPMENU
+  SCI_POPUPMENU,
+  SCI_IMAGERENDERER,
+  SCI_UITABLE,
+  SCI_UIDISPLAYTREE
 } UicontrolStyle ;
 /* uicontrol units */
 typedef enum {POINTS_UNITS, NORMALIZED_UNITS, INCHES_UNITS, CENTIMETERS_UNITS, PIXELS_UNITS} UicontrolUnits ;

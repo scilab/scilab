@@ -76,6 +76,9 @@ jmethodID jintnewSliderID; // cache method id
 jmethodID jintnewPopupMenuID; // cache method id
 jmethodID jintnewListBoxID; // cache method id
 jmethodID jintnewFrameID; // cache method id
+jmethodID jintnewImageRendererID; // cache method id
+jmethodID jintnewUiTableID; // cache method id
+jmethodID jintnewUiDisplayTreeID; // cache method id
 jmethodID jstringnewContextMenujobjectArray_ID; // cache method id
 jclass stringArrayClass;
 jmethodID jintnewContextMenuID; // cache method id
@@ -96,6 +99,12 @@ jmethodID voidsetCheckBoxParentjintjintID; // cache method id
 jmethodID voidremoveCheckBoxFromParentjintjintID; // cache method id
 jmethodID voidsetRadioButtonParentjintjintID; // cache method id
 jmethodID voidremoveRadioButtonFromParentjintjintID; // cache method id
+jmethodID voidsetImageRendererParentjintjintID; // cache method id
+jmethodID voidremoveImageRendererFromParentjintjintID; // cache method id
+jmethodID voidsetUiTableParentjintjintID; // cache method id
+jmethodID voidremoveUiTableFromParentjintjintID; // cache method id
+jmethodID voidsetUiDisplayTreeParentjintjintID; // cache method id
+jmethodID voidremoveUiDisplayTreeFromParentjintjintID; // cache method id
 jmethodID voidsetSliderParentjintjintID; // cache method id
 jmethodID voidremoveSliderFromParentjintjintID; // cache method id
 jmethodID voidsetPopupMenuParentjintjintID; // cache method id
@@ -249,6 +258,13 @@ jmethodID voidraiseWindowjintID; // cache method id
 jmethodID voiduseCanvasForDisplayjbooleanID; // cache method id
 jmethodID jbooleanuseCanvasForDisplayID; // cache method id
 jmethodID voidscilabAboutBoxID; // cache method id
+jmethodID voidsetImageRendererRotatejintjobjectArray_ID; // cache method id
+jmethodID voidsetImageRendererShearjintjobjectArray_ID; // cache method id
+jmethodID voidsetImageRendererScalejintjobjectArray_ID; // cache method id
+jmethodID voidsetUiTableColnamesjintjstringID; // cache method id
+jmethodID voidsetUiTableRownamesjintjstringID; // cache method id
+jmethodID voidsetUiTableDatajintjstringID; // cache method id
+jmethodID voidsetUiTreeDatajintjobjectArray_ID; // cache method id
 
 
 
@@ -329,6 +345,12 @@ static int newListBox(JavaVM * jvm_);
 
 static int newFrame(JavaVM * jvm_);
 
+static int newImageRenderer(JavaVM * jvm_);
+
+static int newUiTable(JavaVM * jvm_);
+
+static int newUiDisplayTree(JavaVM * jvm_);
+
 static char * newContextMenu(JavaVM * jvm_, char ** menuLabels, int menuLabelsSize);
 
 static int newContextMenu(JavaVM * jvm_);
@@ -366,6 +388,18 @@ static void removeCheckBoxFromParent(JavaVM * jvm_, int parentID, int objID);
 static void setRadioButtonParent(JavaVM * jvm_, int parentID, int objID);
 
 static void removeRadioButtonFromParent(JavaVM * jvm_, int parentID, int objID);
+
+static void setImageRendererParent(JavaVM * jvm_, int parentID, int objID);
+
+static void removeImageRendererFromParent(JavaVM * jvm_, int parentID, int objID);
+
+static void setUiTableParent(JavaVM * jvm_, int parentID, int objID);
+
+static void removeUiTableFromParent(JavaVM * jvm_, int parentID, int objID);
+
+static void setUiDisplayTreeParent(JavaVM * jvm_, int parentID, int objID);
+
+static void removeUiDisplayTreeFromParent(JavaVM * jvm_, int parentID, int objID);
 
 static void setSliderParent(JavaVM * jvm_, int parentID, int objID);
 
@@ -672,6 +706,20 @@ static void useCanvasForDisplay(JavaVM * jvm_, bool onOrOff);
 static bool useCanvasForDisplay(JavaVM * jvm_);
 
 static void scilabAboutBox(JavaVM * jvm_);
+
+static void setImageRendererRotate(JavaVM * jvm_, int objID, double* indices, int indicesSize);
+
+static void setImageRendererShear(JavaVM * jvm_, int objID, double* indices, int indicesSize);
+
+static void setImageRendererScale(JavaVM * jvm_, int objID, double* indices, int indicesSize);
+
+static void setUiTableColnames(JavaVM * jvm_, int objID, char * text);
+
+static void setUiTableRownames(JavaVM * jvm_, int objID, char * text);
+
+static void setUiTableData(JavaVM * jvm_, int objID, char * text);
+
+static void setUiTreeData(JavaVM * jvm_, int objID, char ** tData, int tDataSize);
 
 
                         /**

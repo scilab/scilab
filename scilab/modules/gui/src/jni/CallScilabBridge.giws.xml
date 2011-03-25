@@ -12,7 +12,9 @@
       	<method name="newSlider" returnType="int" modifier="static"/>        
 	<method name="newPopupMenu" returnType="int" modifier="static"/>
         <method name="newListBox" returnType="int" modifier="static"/>        
-        <method name="newFrame" returnType="int" modifier="static"/>        
+        <method name="newFrame" returnType="int" modifier="static"/>  
+        <method name="newImageRenderer" returnType="int" modifier="static"/>
+	<method name="newUiTable" returnType="int" modifier="static"/>                            
 	<method name="newContextMenu" returnType="String" modifier="static">
           <parameter type="String[]" name="menuLabels"/>
         </method>
@@ -79,6 +81,22 @@
 	  <parameter type="int" name="objID"/>
 	</method>
 	<method name="removeRadioButtonFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setImageRendererParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeImageRendererFromParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="setUiTableParent" returnType="void" modifier="static">
+	  <parameter type="int" name="parentID"/>
+	  <parameter type="int" name="objID"/>
+	</method>
+	<method name="removeUiTableFromParent" returnType="void" modifier="static">
 	  <parameter type="int" name="parentID"/>
 	  <parameter type="int" name="objID"/>
 	</method>
@@ -620,7 +638,7 @@
         </method>      
 	<method name="copyFigureToClipBoard" returnType="void" modifier="static">
           <parameter type="int" name="figID"/>
-        </method>      
+        </method>  
 <!-- Misc -->
 	<method name="getScreenResolution" returnType="int" modifier="static">
         </method>      
@@ -658,5 +676,29 @@
         </method>      
 	<method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
 	<method name="scilabAboutBox" returnType="void" modifier="static"/>
+    <method name="setImageRendererRotate" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="double[]" name="indices"/>
+	</method>
+	<method name="setImageRendererShear" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="double[]" name="indices"/>
+	</method>
+	<method name="setImageRendererScale" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="double[]" name="indices"/>
+	</method>
+	<method name="setUiTableColnames" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
+	<method name="setUiTableRownames" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
+	<method name="setUiTableData" returnType="void" modifier="static">
+	  <parameter type="int" name="objID"/>
+	  <parameter type="String" name="text"/>
+	</method>
   </object>
 </package>

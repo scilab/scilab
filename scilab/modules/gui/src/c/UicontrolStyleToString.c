@@ -36,6 +36,12 @@ char * UicontrolStyleToString(int style)
       return "listbox";
     case SCI_POPUPMENU:
       return "popupmenu";
+    case SCI_IMAGERENDERER:
+      return "imagerenderer";
+    case SCI_UITABLE:
+      return "uitable";
+    case SCI_UIDISPLAYTREE:
+      return "uidisplaytree";
     default:
       return "Unknown";
     }

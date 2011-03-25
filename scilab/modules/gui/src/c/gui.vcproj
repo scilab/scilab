@@ -612,6 +612,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\ImageRender.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\InitializeGUI.c"
 				>
 			</File>
@@ -961,6 +965,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\CallClipboard.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\CallClipboard.hxx"
 				>
 			</File>
@@ -998,6 +1006,14 @@
 			</File>
 			<File
 				RelativePath="..\cpp\CallHelpBrowser.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallJuigetfile.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\CallJuigetfile.hxx"
 				>
 			</File>
 			<File
@@ -1082,6 +1098,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\DestroyJavaUiobject.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\DestroyUicontrol.h"
 				>
 			</File>
 			<File
@@ -1305,6 +1325,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\includes\GetUiobjectEnable.h"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\GetUiobjectEnable.hxx"
 				>
 			</File>
@@ -1346,6 +1370,14 @@
 			</File>
 			<File
 				RelativePath=".\iconifyMainWindow.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\ImageRender.h"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\ImageRender.hxx"
 				>
 			</File>
 			<File
@@ -1602,6 +1634,10 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectCallback.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\SetUiobjectEnable.h"
 				>
 			</File>
 			<File

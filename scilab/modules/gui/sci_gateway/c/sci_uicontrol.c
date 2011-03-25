@@ -32,13 +32,16 @@
 #include "PopupMenu.h" /* setCurentFigureAsPopupMenuParent */
 #include "ListBox.h" /* setCurentFigureAsListBoxParent */
 #include "Frame.h" /* setCurentFigureAsFrameParent */
+#include "ImageRenderer.h" /* setCurentFigureAsImageRendererParent */
+#include "UiTable.h" /* setCurentFigureAsUiTableParent */
+#include "UiDisplayTree.h" /* setCurentFigureAsUiDisplayTreeParent */
 #include "Scierror.h"
 #include "WindowList.h" /* getFigureFromIndex */
 #include "Widget.h" /* requestWidgetFocus */
 #include "SetUicontrolPosition.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-#define NBPROPERTIES 27
+#define NBPROPERTIES 28
 #define MAXPROPERTYNAMELENGTH 20
 /*--------------------------------------------------------------------------*/
 int sci_uicontrol(char *fname, unsigned long fname_len)
@@ -61,14 +64,18 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
   unsigned long GraphicHandle = 0;
 
   int found = 0; /* Does the property exists ? */
+  int treeFound = 0; /* boolean to keep track of displaytree has been set in style */
 
   /* @TODO remove this crappy initialization */
   /* DO NOT CHANGE ORDER !! */
-  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type"};
+  char propertiesNames[NBPROPERTIES][MAXPROPERTYNAMELENGTH] = {"style", "parent", "backgroundcolor", "foregroundcolor","string", "units", "fontweight", "min", "max", "tag", "position", "relief", "horizontalalignment", "verticalalignment", "sliderstep", "fontname", "callback", "fontangle", "fontunits", "fontsize", "listboxtop", "user_data", "value", "userdata", "visible", "enable", "callback_type", "treedata"};
   int *propertiesValuesIndices = NULL;
   int lw = 0;
   char *propertyPart = NULL;
 
+  		      int iItemCount = 0;
+		      int *piCurrentItem = NULL;
+		      int *piItemType = NULL;
   CheckLhs(0,1);
 
   if (Rhs==0)
@@ -335,12 +342,22 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
             case SCI_UIFRAME:
               setCurentFigureAsFrameParent(graphicObject);
               break;
+            case SCI_IMAGERENDERER:
+              setCurentFigureAsImageRendererParent(graphicObject);
+              break;
+            case SCI_UITABLE:
+              setCurentFigureAsUiTableParent(graphicObject);
+              break;
+            case SCI_UIDISPLAYTREE:
+              setCurentFigureAsUiDisplayTreeParent(graphicObject);
+              break;
            default:
               break;
             }
         }
 
       /* If no position given then set the default position */
+      /* If user decides to show a tree, no need to set position property */
       if(propertiesValuesIndices[10]==NOT_FOUND)
         {
           /* See SetUicontrolPosition for the use of -1 as stackPointer */
@@ -365,30 +382,37 @@ int sci_uicontrol(char *fname, unsigned long fname_len)
                   switch (VarType(propertiesValuesIndices[inputIndex]))
                     {
                     case sci_matrix:
-                      GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                      setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                         GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_DOUBLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                         setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_matrix, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
                     case sci_strings:
-                      if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
-                        {
-                          GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
-                          setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                          freeArrayOfString(stkAdrForStrings, nbRow*nbCol);
-                        }
-                      else
-                        {
-                          GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
-                          setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
-                        }
+                         if (inputIndex == 4) /* Index for String property: Can be mon than one character string */
+                           {
+                             GetRhsVar(propertiesValuesIndices[inputIndex],MATRIX_OF_STRING_DATATYPE,&nbRow,&nbCol,&stkAdrForStrings);
+                             setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), (size_t)stkAdrForStrings, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                             freeArrayOfString(stkAdrForStrings, nbRow*nbCol);
+                           }
+                         else
+                           {
+                             GetRhsVar(propertiesValuesIndices[inputIndex],STRING_DATATYPE,&nbRow,&nbCol,&stkAdr);
+                             setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_strings, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
+                           }
                       break;
                     case sci_handles:
                       GetRhsVar(propertiesValuesIndices[inputIndex],GRAPHICAL_HANDLE_DATATYPE,&nbRow,&nbCol,&stkAdr);
                       setStatus = callSetProperty(sciGetPointerFromHandle(GraphicHandle), stkAdr, sci_handles, nbRow, nbCol, (char*)propertiesNames[inputIndex]);
                       break;
+		    case sci_tlist:
+		         if(displayUiTree(pUICONTROL_FEATURE(sciGetPointerFromHandle(GraphicHandle))->hashMapIndex, 
+				propertiesValuesIndices[inputIndex]) != 0)
+	                 {
+                            setStatus = SET_PROPERTY_ERROR;
+                         }
+		      break;
                     default:
                       setStatus = SET_PROPERTY_ERROR;
                       break;
-                    }
+                   }
                 }
               if (setStatus == SET_PROPERTY_ERROR)
                 {

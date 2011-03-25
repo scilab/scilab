@@ -94,6 +94,12 @@ import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
 import org.scilab.modules.gui.radiobutton.ScilabRadioButton;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.imagerenderer.ScilabImageRenderer;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uitable.ScilabUiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
+import org.scilab.modules.gui.uidisplaytree.ScilabUiDisplayTree;
 import org.scilab.modules.gui.slider.ScilabSlider;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tab.ScilabTab;
@@ -427,6 +433,69 @@ public class CallScilabBridge {
     public static int newRadioButton() {
         RadioButton radioButton = ScilabRadioButton.createRadioButton();
         int id = UIElementMapper.add(radioButton);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new ImageRenderer in Scilab GUIs
+     * @return the ID of the ImageRenderer in the UIElementMapper
+     */
+    public static int newImageRenderer() {
+        ImageRenderer imageRenderer = ScilabImageRenderer.createImageRenderer();
+        int id = UIElementMapper.add(imageRenderer);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiTable in Scilab GUIs
+     * @return the ID of the UiTable in the UIElementMapper
+     */
+    public static int newUiTable() {
+        UiTable uiTable = ScilabUiTable.createUiTable();
+        int id = UIElementMapper.add(uiTable);
+
+        /* Default font */
+        setWidgetFontName(id, DEFAULTFONTNAME);
+        setWidgetFontWeight(id, NORMALFONT);
+        setWidgetFontSize(id, DEFAULTFONTSIZE);
+
+        setWidgetRelief(id, ScilabRelief.FLAT);
+
+        /* Default colors */
+        setWidgetBackgroundColor(id, (int) DEFAULT_RED_BACKGROUND, (int) DEFAULT_GREEN_BACKGROUND, (int) DEFAULT_BLUE_BACKGROUND);
+        setWidgetForegroundColor(id, (int) DEFAULT_RED_FOREGROUND, (int) DEFAULT_GREEN_FOREGROUND, (int) DEFAULT_BLUE_FOREGROUND);
+        return id;
+    }
+
+    /**
+     * Create a new UiDisplayTree in Scilab GUIs
+     * @return the ID of the UiDisplayTree in the UIElementMapper
+     */
+    public static int newUiDisplayTree() {
+        UiDisplayTree uiTree = ScilabUiDisplayTree.createUiDisplayTree();
+        int id = UIElementMapper.add(uiTree);
 
         /* Default font */
         setWidgetFontName(id, DEFAULTFONTNAME);
@@ -821,6 +890,61 @@ public class CallScilabBridge {
         Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
         RadioButton radioButton = (RadioButton) UIElementMapper.getCorrespondingUIElement(objID);
         ScilabBridge.removeMember(parentTab, radioButton);
+    }
+
+    /**
+     * Set a figure as parent for a ImageRenderer
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void setImageRendererParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, imageRenderer);
+    }
+
+    /**
+     * Remove a ImageRenderer from its parent figure
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void removeImageRendererFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        ImageRenderer imageRenderer = (ImageRenderer) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, imageRenderer);
+    }
+
+    /**
+     * Set a figure as parent for a UiTable
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void setUiTableParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTable);
+    }
+
+    /**
+     * Remove a UiTable from its parent figure
+     * @param figureID the ID of the figure in the FigureMapper
+     * @param objID the ID of the PushButton in the UIElementMapper
+     */
+    public static void removeUiTableFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiTable uiTable = (UiTable) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTable);
+    }
+
+    public static void setUiDisplayTreeParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.addMember(parentTab, uiTree);
+    }
+    public static void removeUiDisplayTreeFromParent(int figureID, int objID) {
+        Tab parentTab = ((ScilabRendererProperties) FigureMapper.getCorrespondingFigure(figureID).getRendererProperties()).getParentTab();
+        UiDisplayTree uiTree = (UiDisplayTree) UIElementMapper.getCorrespondingUIElement(objID);
+        ScilabBridge.removeMember(parentTab, uiTree);
     }
 
     /**
@@ -2978,5 +3102,68 @@ public class CallScilabBridge {
      */
     public static void scilabAboutBox() {
         ScilabAboutBox.displayAndWait();
+    }
+
+    /**********************/
+    /*                    */
+    /* IMAGERENDERER BRIDGE */
+    /*                    */
+    /**********************/
+
+    /**
+     * Rotates an image by certain degrees
+     */
+    public static void setImageRendererRotate(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setRotate(indices);
+    }
+
+    /**
+     * Shears an image by x, y values
+     */
+    public static void setImageRendererShear(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setShear(indices);
+    }
+
+    /**
+     * Scales an image by x, y values
+     */
+    public static void setImageRendererScale(int id, double[] indices) {
+	((ImageRenderer) UIElementMapper.getCorrespondingUIElement(id)).setScale(indices);
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+
+    /**
+     * Sets the column names for the uitable
+     */
+    public static void setUiTableColnames(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setColnames(text);
+    }
+
+    /**
+     * Sets the row names for the uitable
+     */
+    public static void setUiTableRownames(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setRownames(text);
+    }
+
+    /**
+     * Sets the data for the uitable
+     */
+    public static void setUiTableData(int id, String text) {
+	((UiTable) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
+    }
+
+    /******************/
+    /*                */
+    /* UITABLE BRIDGE */
+    /*                */
+    /******************/
+    public static void setUiTreeData(int id, String[] text) {
+        ((UiDisplayTree) UIElementMapper.getCorrespondingUIElement(id)).setData(text);
     }
 }

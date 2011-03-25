@@ -27,6 +27,9 @@ import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.popupmenu.PopupMenu;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.radiobutton.RadioButton;
+import org.scilab.modules.gui.imagerenderer.ImageRenderer;
+import org.scilab.modules.gui.uitable.UiTable;
+import org.scilab.modules.gui.uidisplaytree.UiDisplayTree;
 import org.scilab.modules.gui.slider.Slider;
 import org.scilab.modules.gui.tree.Tree;
 import org.scilab.modules.gui.utils.Position;
@@ -285,6 +288,51 @@ public class ScilabTabBridge {
 	 * @param member the RadioButton to add
 	 */
 	public static void removeMember(Tab tab, RadioButton member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the ImageRenderer to
+	 * @param member the ImageRenderer to add
+	 * @return the position of the ImageRenderer in the member list.
+	 */
+	public static int addMember(Tab tab, ImageRenderer member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Remove a ImageRenderer member from a tab
+	 * @param tab the tab which we want to remove the ImageRenderer from
+	 * @param member the ImageRenderer to add
+	 */
+	public static void removeMember(Tab tab, ImageRenderer member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	/**
+	 * Add a member (dockable element) to a tab and returns the index of this member
+	 * @param tab the tab which we want to add the UiTable to
+	 * @param member the UiTable to add
+	 * @return the position of the UiTable in the member list.
+	 */
+	public static int addMember(Tab tab, UiTable member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+
+	/**
+	 * Remove a UiTable member from a tab
+	 * @param tab the tab which we want to remove the UiTable from
+	 * @param member the UiTable to add
+	 */
+	public static void removeMember(Tab tab, UiTable member) {
+		tab.getAsSimpleTab().removeMember(member);
+	}
+
+	public static int addMember(Tab tab, UiDisplayTree member) {
+		return (tab.getAsSimpleTab().addMember(member));
+	}
+	public static void removeMember(Tab tab, UiDisplayTree member) {
 		tab.getAsSimpleTab().removeMember(member);
 	}
 

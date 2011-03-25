@@ -51,7 +51,7 @@ typedef struct
 * don't forget to modify it each time the propertyTable
 * is modified.
 */
-#define NB_PROPERTIES 155
+#define NB_PROPERTIES 161
 
 /**
 * list of all property names and associated functions in scilab
@@ -205,6 +205,12 @@ static setHashTableCouple propertyTable[NB_PROPERTIES] =
 { "fontname"            , SetUicontrolFontName              },
 { "sliderstep"          , SetUicontrolSliderStep            },
 { "checked"             , SetUimenuChecked                  },
+{ "rotate"              , SetUiobjectRotate                 },
+{ "shear"               , SetUiobjectShear                  },
+{ "scale"               , SetUiobjectScale                  },
+{ "colnames"            , SetUiobjectColnames               },
+{ "rownames"            , SetUiobjectRownames               },
+{ "tabledata"           , SetUiobjectTabledata              },
 { "arc_drawing_method"  , set_arc_drawing_method_property   },
 { "fractional_font"     , set_fractional_font_property      },
 { "links"               , set_links_property                },
