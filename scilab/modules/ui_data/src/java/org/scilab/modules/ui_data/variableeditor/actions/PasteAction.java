@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.ui_data.variableeditor.action;
+package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;

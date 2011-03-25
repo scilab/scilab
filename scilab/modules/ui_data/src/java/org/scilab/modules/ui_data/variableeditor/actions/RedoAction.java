@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.ui_data.variableeditor.action;
+package org.scilab.modules.ui_data.variableeditor.actions;
 
 import javax.swing.KeyStroke;
 import javax.swing.ImageIcon;
@@ -24,13 +24,13 @@ import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
 /**
- * UndoAction class
+ * RedoAction class
  * @author Calixte DENIZET
  */
-public final class UndoAction extends CallBack {
+public final class RedoAction extends CallBack {
 
-    private static final String KEY = "ctrl Z";
-    private static final String UNDO = "Undo";
+    private static final String KEY = "ctrl Y";
+    private static final String REDO = "Redo";
 
     private SwingScilabVariableEditor editor;
 
@@ -39,7 +39,7 @@ public final class UndoAction extends CallBack {
      * @param editor the editor
      * @param name the name of the action
      */
-    public UndoAction(SwingScilabVariableEditor editor, String name) {
+    public RedoAction(SwingScilabVariableEditor editor, String name) {
         super(name);
         this.editor = editor;
     }
@@ -49,8 +49,8 @@ public final class UndoAction extends CallBack {
      * @param table where to put the action
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
-        table.getActionMap().put(UNDO, new UndoAction(editor, UNDO));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), UNDO);
+        table.getActionMap().put(REDO, new RedoAction(editor, REDO));
+        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), REDO);
     }
 
     /**
@@ -58,7 +58,7 @@ public final class UndoAction extends CallBack {
      */
     public void callBack() {
         JTable table = editor.getCurrentTable();
-        ((SwingEditvarTableModel) table.getModel()).getUndoManager().undo();
+        ((SwingEditvarTableModel) table.getModel()).getUndoManager().redo();
     }
 
     /**
@@ -69,9 +69,9 @@ public final class UndoAction extends CallBack {
      */
     public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
         PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new UndoAction(editor, title));
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new RedoAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-undo.png");
+        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-redo.png");
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;

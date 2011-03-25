@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.ui_data.variableeditor.action;
+package org.scilab.modules.ui_data.variableeditor.actions;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
@@ -30,10 +30,10 @@ import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
  * RefreshAction class
  * @author Calixte DENIZET
  */
-public final class CutAction extends CallBack {
+public final class CopyAction extends CallBack {
 
-    private static final String KEY = "ctrl X";
-    private static final String CUT = "Cut";
+    private static final String KEY = "ctrl C";
+    private static final String COPY = "Copy";
 
     private SwingScilabVariableEditor editor;
 
@@ -42,7 +42,7 @@ public final class CutAction extends CallBack {
      * @param editor the editor
      * @param name the name of the action
      */
-    public CutAction(SwingScilabVariableEditor editor, String name) {
+    private CopyAction(SwingScilabVariableEditor editor, String name) {
         super(name);
         this.editor = editor;
     }
@@ -52,8 +52,8 @@ public final class CutAction extends CallBack {
      * @param table where to put the action
      */
     public static void registerAction(SwingScilabVariableEditor editor, JTable table) {
-        table.getActionMap().put(CUT, new CutAction(editor, CUT));
-        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), CUT);
+        table.getActionMap().put(COPY, new CopyAction(editor, COPY));
+        table.getInputMap().put(KeyStroke.getKeyStroke(KEY), COPY);
     }
 
     /**
@@ -79,20 +79,12 @@ public final class CutAction extends CallBack {
                             buf.append(val);
                         }
                     }
-                    model.emptyValueAt(i, j);
                     if (j < cols[cols.length - 1]) {
                         buf.append("\t");
                     }
                 }
                 buf.append("\n");
             }
-            for (int i = rows[rows.length - 1]; i >= rows[0]; i--) {
-                model.removeRow(i, cols[0], cols[cols.length - 1]);
-            }
-            for (int j = cols[cols.length - 1]; j >= cols[0]; j--) {
-                model.removeCol(table, j, rows[0], rows[rows.length - 1]);
-            }
-            model.updateMatrix();
             StringSelection sel  = new StringSelection(buf.toString());
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(sel, sel);
         }
@@ -106,9 +98,9 @@ public final class CutAction extends CallBack {
      */
     public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
         PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CutAction(editor, title));
+        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new CopyAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-cut.png");
+        ImageIcon imageIcon = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/edit-copy.png");
         ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
 
         return button;
