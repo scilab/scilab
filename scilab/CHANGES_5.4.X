@@ -1,6 +1,11 @@
             Changes between version 5.3.X and 5.4.0 of Scilab
             =================================================
 
+GUI:
+====
+
+* New uicontrols added: TODO
+
 File input/output:
 ==================
 
