@@ -190,6 +190,9 @@ Bug fixes:
 * bug 9264 fixed - Big loss of performance on some string management functions
                    in api_scilab (example: on mputl).
 
+* bug 9232 fixed - Play the example in 'help about' in NW mode led to an
+                   exception.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
