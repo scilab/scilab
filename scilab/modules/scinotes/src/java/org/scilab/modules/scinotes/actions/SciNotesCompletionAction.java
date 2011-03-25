@@ -36,9 +36,9 @@ import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 import com.artenum.rosetta.interfaces.core.CompletionManager;
 
 import org.scilab.modules.completion.Completion;
-import org.scilab.modules.console.CompletionAction;
-import org.scilab.modules.console.SciCompletionManager;
-import org.scilab.modules.console.SciInputParsingManager;
+import org.scilab.modules.completion.CompletionAction;
+import org.scilab.modules.completion.SciCompletionManager;
+import org.scilab.modules.completion.SciInputParsingManager;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;

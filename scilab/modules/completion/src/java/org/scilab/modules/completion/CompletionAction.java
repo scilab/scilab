@@ -11,14 +11,12 @@
  *
  */
 
-package org.scilab.modules.console;
+package org.scilab.modules.completion;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
 import java.util.List;
-
-import org.scilab.modules.completion.Completion;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.CompletionItem;

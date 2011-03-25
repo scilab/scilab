@@ -26,6 +26,8 @@ Scinotes:
 
 * bug 9189 fixed - Certains keywords were not helpable.
 
+* bug 9257 fixed - SciNotes could not be started from NW / adv-cli mode.
+
 
 Xcos:
 =====

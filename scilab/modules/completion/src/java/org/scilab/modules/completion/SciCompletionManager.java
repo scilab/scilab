@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.console;
+package org.scilab.modules.completion;
 
 import java.util.ArrayList;
 import java.util.List;

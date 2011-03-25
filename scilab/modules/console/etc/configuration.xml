@@ -40,9 +40,9 @@
                 <!-- Core part -->
                 <OutputViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
                 <InputCommandViewStyledDocument useCache="true" value="javax.swing.text.DefaultStyledDocument"/>
-                <InputParsingManager useCache="true" value="org.scilab.modules.console.SciInputParsingManager"/>
+                <InputParsingManager useCache="true" value="org.scilab.modules.completion.SciInputParsingManager"/>
                 <GenericInterpreter useCache="true" value="org.scilab.modules.console.SciInterpreter"/>
-                <CompletionManager useCache="true" value="org.scilab.modules.console.SciCompletionManager"/>
+                <CompletionManager useCache="true" value="org.scilab.modules.completion.SciCompletionManager"/>
                 <CompletionWindow useCache="true" value="org.scilab.modules.console.SciCompletionWindow"/>
                 <HistoryManager useCache="true" value="org.scilab.modules.console.SciHistoryManager"/>
                 <MaxOutputSize useCache="true" value="10000"/>
@@ -84,7 +84,7 @@
                         <Action name="CONSOLEBOX" className="org.scilab.modules.console.ConsoleboxAction"/>
                         <Action name="HELP" className="org.scilab.modules.console.HelpAction"/>
                         <Action name="VALIDATE" className="org.scilab.modules.console.ValidationAction"/>
-                        <Action name="COMPLETION" className="org.scilab.modules.console.CompletionAction"/>
+                        <Action name="COMPLETION" className="org.scilab.modules.completion.CompletionAction"/>
                         <Action name="LINE_BEGINNING" className="org.scilab.modules.console.LineBeginningAction"/>
                         <Action name="PREVIOUS_HISTORY_LINE" className="org.scilab.modules.console.GetPreviousAction"/>
                         <Action name="NEXT_HISTORY_LINE" className="org.scilab.modules.console.GetNextAction"/>
