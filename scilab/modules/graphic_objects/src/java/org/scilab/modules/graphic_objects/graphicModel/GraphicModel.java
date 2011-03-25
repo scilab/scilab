@@ -32,12 +32,9 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
-import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
+import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
-
-//import demo.mvc.model.INetworkObject.Type;
-
 
 /**
  * GraphicModel class
@@ -59,11 +56,11 @@ public class GraphicModel {
      * @return the model
      */
     public static GraphicModel getModel() {
-    	if (me == null) {
-    		me = new GraphicModel();
-    	}
+        if (me == null) {
+            me = new GraphicModel();
+        }
 
-    	return me;
+        return me;
     }
 
     /**
@@ -71,7 +68,7 @@ public class GraphicModel {
      * @return the object
      */
     public GraphicObject getObjectFromId(String id) {
-    	return allObjects.get(id);
+        return allObjects.get(id);
     }
 
     /**
@@ -81,8 +78,8 @@ public class GraphicModel {
      * @return the property
      */
     public Object getNullProperty(String id, String property){
-    	GraphicObject object = allObjects.get(id);
-    	return object.getNullProperty(property);
+        GraphicObject object = allObjects.get(id);
+        return object.getNullProperty(property);
     }
 
     /**
@@ -92,9 +89,10 @@ public class GraphicModel {
      * @return property value
      */
     public Object getProperty(String id, String property) {
-    	GraphicObject object = allObjects.get(id);
-    	Object propertyType = object.getPropertyFromName(property);
-    	return object.getProperty(propertyType);
+        GraphicObject object = allObjects.get(id);
+        Object propertyType = object.getPropertyFromName(property);
+
+        return object.getProperty(propertyType);
     }
 
     /**
@@ -105,9 +103,9 @@ public class GraphicModel {
      * @return true if the property has been set, false otherwise
      */
     public boolean setProperty(String id, String property, Object value) {
-    	GraphicObject object = allObjects.get(id);
-    	Object propertyType = object.getPropertyFromName(property);
-    	return object.setProperty(propertyType, value);
+        GraphicObject object = allObjects.get(id);
+        Object propertyType = object.getPropertyFromName(property);
+        return object.setProperty(propertyType, value);
     }
 
     /**
@@ -117,16 +115,16 @@ public class GraphicModel {
      * @return the created object's id
      */
     public String createObject(String id, GraphicObject.Type type) {
-    	GraphicObject object = createTypedObject(type);
+        GraphicObject object = createTypedObject(type);
 
-    	if (object != null) {
-    		allObjects.put(id, object);
-    		object.setIdentifier(id);
-    		
-    		return id;
-    	} else {
-    		return null;
-    	}
+        if (object != null) {
+            allObjects.put(id, object);
+            object.setIdentifier(id);
+
+            return id;
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -139,12 +137,12 @@ public class GraphicModel {
         GraphicObject object = allObjects.get(id);
         GraphicObject objectClone = object.clone();
         objectClone.setIdentifier(newId);
-        
+
         allObjects.put(newId, objectClone);
-        
+
         return newId;
     }
-    
+
     /**
      * Creates a typed object
      * @param type the object type
@@ -152,49 +150,49 @@ public class GraphicModel {
      */
     private GraphicObject createTypedObject(Type type) {
         try {
-		switch (type) {
+            switch (type) {
 
-		case ARC:
-			return new Arc();
-		case AXES:
-			return new Axes();
-		case AXIS:
-			return new Axis();
-		case CHAMP:
-			return new Champ();
-		case COMPOUND:
-			return new Compound();
-		case FAC3D:
-			return new Fac3d();
-		case FEC:
-			return new Fec();
-		case FIGURE:
-			return new Figure();
-		case GRAYPLOT:
-			return new Grayplot();
-		case LABEL:
-			return new Label();
-		case LEGEND:
-			return new Legend();
-		case MATPLOT:
-			return new Matplot();
-		case PLOT3D:
-			return new Plot3d();
-		case POLYLINE:
-			return new Polyline();
-		case RECTANGLE:
-			return new Rectangle();
-		case SEGS:
-			return new Segs();
-		case TEXT:
-			return new Text();
-		case UICONTROL:
-		    return new Uicontrol();
-		case UNKNOWNOBJECT:
-			return null;
-		default:
-		    return null;
-		}
+            case ARC:
+                return new Arc();
+            case AXES:
+                return new Axes();
+            case AXIS:
+                return new Axis();
+            case CHAMP:
+                return new Champ();
+            case COMPOUND:
+                return new Compound();
+            case FAC3D:
+                return new Fac3d();
+            case FEC:
+                return new Fec();
+            case FIGURE:
+                return new Figure();
+            case GRAYPLOT:
+                return new Grayplot();
+            case LABEL:
+                return new Label();
+            case LEGEND:
+                return new Legend();
+            case MATPLOT:
+                return new Matplot();
+            case PLOT3D:
+                return new Plot3d();
+            case POLYLINE:
+                return new Polyline();
+            case RECTANGLE:
+                return new Rectangle();
+            case SEGS:
+                return new Segs();
+            case TEXT:
+                return new Text();
+            case PUSHBUTTON:
+                return new PushButton();
+            case UNKNOWNOBJECT:
+                return null;
+            default:
+                return null;
+            }
         } catch (Throwable t) {
             t.printStackTrace();
             return null;
@@ -206,7 +204,7 @@ public class GraphicModel {
      * @param id object id
      */
     public void deleteObject(String id) {
-    	allObjects.remove(id);
+        allObjects.remove(id);
     }
 
 }

@@ -694,9 +694,9 @@ public class CallScilabBridge {
         newWindow.addTab(graphicTab);
 
         // link the tab and canvas with their figure
-        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
+//        DrawableFigureGL associatedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
         //associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, graphicCanvas));
-        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
+//        associatedFigure.setRendererProperties(new ScilabRendererProperties(graphicTab, null, figureIndex));
         // don't draw now, figure will show itself when all its parameters will be set
 
         return 0;

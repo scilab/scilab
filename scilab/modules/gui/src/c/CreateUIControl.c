@@ -31,6 +31,7 @@
 
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
+#include "setGraphicObjectProperty.h"
 
 /**CreateUIControl
  * This function creates Uicontrol structure.
@@ -47,8 +48,13 @@ sciPointObj * CreateUIControl(char *style)
       return NULL;
   }
 
-  pobj->UID = createGraphicObject(__GO_UICONTROL__);
-  sciAddNewHandle(pobj);
+  if (style == NULL || strcmp(style,"pushbutton")==0)
+  {
+      pobj->UID = createGraphicObject(__GO_UI_PUSHBUTTON__);
+      sciAddNewHandle(pobj);
+      //pUICONTROL_FEATURE(pobj)->relief = RAISED_RELIEF;
+  }
+
 
 #if 0
   if ((pobj = MALLOC (sizeof (sciPointObj))) == NULL)	return (sciPointObj *) NULL;

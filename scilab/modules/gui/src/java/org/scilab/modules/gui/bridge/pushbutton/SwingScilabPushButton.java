@@ -13,6 +13,9 @@
 
 package org.scilab.modules.gui.bridge.pushbutton;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
+
 import java.awt.Dimension;
 import java.awt.Font;
 import java.beans.PropertyChangeEvent;
@@ -22,6 +25,8 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
+import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.pushbutton.SimplePushButton;
@@ -33,14 +38,13 @@ import org.scilab.modules.gui.utils.ScilabAlignment;
 import org.scilab.modules.gui.utils.ScilabRelief;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.console.utils.ScilabSpecialTextUtilities;
 
 /**
  * Swing implementation for Scilab PushButtons in GUIs
  * @author Vincent COUVERT
  * @author Marouane BEN JELLOUL
  */
-public class SwingScilabPushButton extends JButton implements SimplePushButton {
+public class SwingScilabPushButton extends JButton implements SwingViewObject, SimplePushButton {
 
         private static final long serialVersionUID = 2277539556048935959L;
 
@@ -290,5 +294,18 @@ public class SwingScilabPushButton extends JButton implements SimplePushButton {
                 /* Unimplemented for PushButtons */
                 throw new UnsupportedOperationException();
         }
+
+    @Override
+    public void update(String property, Object value) {
+        //System.err.println("*********** [DEBUG] SwingScilabPushButton : update("+property+")");
+        if (property.equals(__GO_UI_STRING__)) {
+            //System.err.println("*********** [DEBUG] SwingScilabPushButton : Text("+((String[]) value)[0]+")");
+            setText(((String[]) value)[0]);
+        } else if(property.equals(__GO_POSITION__)) {
+            Double[] dblValues = (Double[]) value;
+            setPosition(new Position(dblValues[0].intValue(), dblValues[1].intValue()));
+            setDims(new Size(dblValues[2].intValue(), dblValues[3].intValue()));
+        }
+    }
 
 }

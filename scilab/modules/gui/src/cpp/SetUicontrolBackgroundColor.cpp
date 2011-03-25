@@ -14,6 +14,12 @@
 
 #include "SetUicontrolBackgroundColor.hxx"
 
+extern "C"
+{
+#include "setGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+}
+
 using namespace org_scilab_modules_gui_bridge;
 
 int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int valueType, int nbRow, int nbCol)
@@ -29,11 +35,11 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int va
   /*
   **  No backgroundcolor property except on UICONTROL
   */
-  if(sciGetEntityType(sciObj) != SCI_UICONTROL)
-    {
-      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
-      return SET_PROPERTY_ERROR;
-    }
+  //if(sciGetEntityType(sciObj) != SCI_UICONTROL)
+  //{
+  //    Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
+  //    return SET_PROPERTY_ERROR;
+  //}
 
   if (valueType == sci_strings)
     {
@@ -64,13 +70,13 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int va
       blueInt = (int) (blueDouble * 255);
 
       /* Store the values in Scilab */
-      if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
-        {
-          pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
-        }
-      pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = redDouble;
-      pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = greenDouble;
-      pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = blueDouble;
+      //if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
+      //  {
+      //    pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
+      //  }
+      //pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = redDouble;
+      //pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = greenDouble;
+      //pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = blueDouble;
     }
   else if (valueType == sci_matrix)
     {
@@ -94,13 +100,13 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int va
        blueInt = (int) (allcolors[2] * 255);
 
        /* Store the values in Scilab */
-       if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
-         {
-           pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
-         }
-       pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = allcolors[0];
-       pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = allcolors[1];
-       pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = allcolors[2];
+       //if (pUICONTROL_FEATURE(sciObj)->backgroundcolor == NULL)
+       //  {
+       //    pUICONTROL_FEATURE(sciObj)->backgroundcolor = new double[3];
+       //  }
+       //pUICONTROL_FEATURE(sciObj)->backgroundcolor[0] = allcolors[0];
+       //pUICONTROL_FEATURE(sciObj)->backgroundcolor[1] = allcolors[1];
+       //pUICONTROL_FEATURE(sciObj)->backgroundcolor[2] = allcolors[2];
     }
   else
     {
@@ -109,18 +115,21 @@ int SetUicontrolBackgroundColor(sciPointObj* sciObj, size_t stackPointer, int va
       return SET_PROPERTY_ERROR;
     }
 
-  if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
-    {
-      CallScilabBridge::setFrameBackgroundColor(getScilabJavaVM(),
-                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                 redInt, greenInt, blueInt);
-    }
-  else /* All other uicontrol styles */
-    {
-      CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(),
-                                                 pUICONTROL_FEATURE(sciObj)->hashMapIndex,
-                                                 redInt, greenInt, blueInt);
-    }
+  //if (pUICONTROL_FEATURE(sciObj)->style == SCI_UIFRAME) /* Frame style uicontrol */
+  //  {
+  //    CallScilabBridge::setFrameBackgroundColor(getScilabJavaVM(),
+  //                                              pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+  //                                               redInt, greenInt, blueInt);
+  //  }
+  //else /* All other uicontrol styles */
+  //  {
+  //    CallScilabBridge::setWidgetBackgroundColor(getScilabJavaVM(),
+  //                                               pUICONTROL_FEATURE(sciObj)->hashMapIndex,
+  //                                               redInt, greenInt, blueInt);
+  //  }
+
+  return setGraphicObjectProperty(sciObj->UID, __GO_UI_BACKGROUND_COLOR__, allcolors, jni_double_vector, 3);
+
   return SET_PROPERTY_SUCCEED;
 }
 

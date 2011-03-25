@@ -14,6 +14,7 @@ package org.scilab.modules.gui.graphicWindow;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.jvm.LoadClassPath;
 
 /**
@@ -34,5 +35,10 @@ public final class CallGraphicJoGLView {
         if (controller != null && controller instanceof Figure) {
             FigureBridge.createFigure(id);
         }
+    }
+    
+    public static void createSwingView() {
+        load();
+        SwingView.registerSwingView();
     }
 }

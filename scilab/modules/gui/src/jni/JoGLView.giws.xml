@@ -3,5 +3,6 @@
     <method name="createJoGLView" returnType="void" modifier="static">
       <parameter name="id" type="String" />
     </method>
+    <method name="createSwingView" returnType="void" modifier="static"/>
   </object>
 </package>

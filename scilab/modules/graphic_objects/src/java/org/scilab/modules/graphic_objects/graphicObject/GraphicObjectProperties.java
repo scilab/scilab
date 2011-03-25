@@ -37,7 +37,7 @@ public static final String __GO_POLYLINE__ =               "Polyline";
 public static final String __GO_RECTANGLE__ =              "Rectangle";
 public static final String __GO_SEGS__ =                   "Segs";
 public static final String __GO_TEXT__ =                   "Text";
-public static final String __GO_UICONTROL__ =              "Uicontrol";
+public static final String __GO_UICONTROL__ =              "uicontrol";
 
 
 public static final String __GO_CHILDREN__ =               "Children";
@@ -286,5 +286,12 @@ public static final String __GO_BOUNDING_BOX__ =           "BoundingBox";
 
 public static final String __GO_HIDDEN_COLOR__ =           "HiddenColor";
 
+public static final String __GO_STYLE__ =                  "Style";
+public static final String __GO_UI_PUSHBUTTON__ =          "pushbutton";
+public static final String __GO_UI_TEXT__ =                "text";
+
+public static final String __GO_UI_BACKGROUND_COLOR__ =    "UIBackgroundColor";
+public static final String __GO_UI_STRING__ =              "UIString";
+public static final String __GO_UI_NB_STRING__ =           "UINbString";
 
 }

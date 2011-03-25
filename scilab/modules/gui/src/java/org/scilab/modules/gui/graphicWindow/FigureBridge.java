@@ -15,6 +15,9 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TYPE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UICONTROL__;
 
+import static org.scilab.modules.gui.utils.Debug.DEBUG;
+
+import java.awt.Component;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -29,6 +32,7 @@ import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicView.GraphicView;
+import org.scilab.modules.gui.SwingView;
 import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.events.callback.ScilabCloseCallBack;
@@ -66,10 +70,6 @@ public class FigureBridge implements GraphicView {
     private final String id;
 
     private final HashMap<String,SwingScilabPushButton> children = new HashMap<String, SwingScilabPushButton>();
-    
-    private final void DEBUG(String message) {
-        //System.err.println("<FigureBridge>: "+message);
-    }
     
     /**
      * Default constructor.
@@ -139,7 +139,7 @@ public class FigureBridge implements GraphicView {
                     @Override
                     public void mousePressed(MouseEvent e) {
                         if (e.getButton() == MouseEvent.BUTTON1) {
-                            DEBUG("Begin");
+                            DEBUG("FigureBridge", "Begin");
                             glpanel.addMouseMotionListener(mouseMotionListener);
                             beginEvent = e;
                         }
@@ -148,7 +148,7 @@ public class FigureBridge implements GraphicView {
                     @Override
                     public void mouseReleased(MouseEvent e) {
                         if (e.getButton() == MouseEvent.BUTTON1) {
-                            DEBUG("End");
+                            DEBUG("FigureBridge","End");
                             glpanel.removeMouseMotionListener(mouseMotionListener);
                         }
                     }
@@ -228,7 +228,7 @@ public class FigureBridge implements GraphicView {
 
     @Override
     public void updateObject(String id, String property) {
-        DEBUG("[UPDATE] "+id+ ((String) GraphicController.getController().getProperty(id, __GO_TYPE__))+" Property = "+property);       
+        DEBUG("FigureBridge", "[UPDATE] "+id+ ((String) GraphicController.getController().getProperty(id, __GO_TYPE__))+" Property = "+property);       
         
         /*
          * Check if someone is not adding me a child
@@ -240,18 +240,21 @@ public class FigureBridge implements GraphicView {
             
             for (int i = 0; i < allChildren.length ; ++i) {
                    if (!children.containsKey(allChildren[i])) {                        
-                       String childType = (String) GraphicController.getController().getProperty(allChildren[i],__GO_TYPE__);
-                       if (childType.equals(__GO_UICONTROL__)) {
-                           DEBUG("[!!!!!] I Have a new Uicontrol Child !!!");
-                           SwingScilabPushButton button = new SwingScilabPushButton();
-                           button.setText("Hello...");
-                           button.setVisible(true);
-                           button.setDims(new Size(200, 200));
-                           button.setPosition(new Position(0, 0));
                        
-                           children.put(allChildren[i], button);
+                       String childType = (String) GraphicController.getController().getProperty(allChildren[i],__GO_TYPE__);
+                       
+                       if (childType.equals(__GO_UICONTROL__)) {
+                           DEBUG("FigureBridge", "[!!!!!] I Have a new Uicontrol Child !!!");
+                           //SwingScilabPushButton button = new SwingScilabPushButton();
+                           //button.setText("Hello...");
+                           //button.setVisible(true);
+                           //button.setDims(new Size(200, 200));
+                           //button.setPosition(new Position(0, 0));
+                       
+                           //children.put(allChildren[i], button);
                            //((SwingScilabTab) tab.getAsSimpleTab()).addMember(button);
-                           glpanel.add(button);
+                           glpanel.setLayout(null);
+                           glpanel.add((Component) SwingView.getFromId(allChildren[i]));
                        }
                        else {
                           children.put(allChildren[i],null);
@@ -268,12 +271,12 @@ public class FigureBridge implements GraphicView {
 
     @Override
     public void createObject(String id) {
-        DEBUG("[CREATE] " + id + " "+((String) GraphicController.getController().getProperty(id, __GO_TYPE__)));
+        DEBUG("FigureBridge", "[CREATE] " + id + " "+((String) GraphicController.getController().getProperty(id, __GO_TYPE__)));
     }
 
     @Override
     public void deleteObject(String id) {
-        DEBUG("[DELETE] " + id + " " + ((String) GraphicController.getController().getProperty(id, __GO_TYPE__)));
+        DEBUG("FigureBridge", "[DELETE] " + id + " " + ((String) GraphicController.getController().getProperty(id, __GO_TYPE__)));
     }
 
     public static FigureBridge createFigure(String id) {

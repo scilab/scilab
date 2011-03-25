@@ -32,7 +32,7 @@ public abstract class GraphicObject implements Cloneable {
 
     /** Graphic objects types */
 	public enum Type { ARC, AXES, AXIS, CHAMP, COMPOUND, FAC3D, FEC, FIGURE, GRAYPLOT,
-		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, UICONTROL, UNKNOWNOBJECT };
+		LABEL, LEGEND, MATPLOT, PLOT3D, POLYLINE, RECTANGLE, SEGS, TEXT, PUSHBUTTON, UNKNOWNOBJECT };
 	
 	/** GraphicObject properties */
 	public enum GraphicObjectPropertyType { PARENT, CHILDREN, CHILDREN_COUNT, VISIBLE, USERDATA, USERDATASIZE, TYPE, REFERENCED, VALID, DATA,
@@ -151,8 +151,8 @@ public abstract class GraphicObject implements Cloneable {
             return Type.SEGS;
         } else if (typeName.equals(__GO_TEXT__)) {
             return Type.TEXT;
-        } else if (typeName.equals(__GO_UICONTROL__)) {
-            return Type.UICONTROL;
+        } else if (typeName.equals(__GO_UI_PUSHBUTTON__)) {
+            return Type.PUSHBUTTON;
         } else {
             return Type.UNKNOWNOBJECT;
         }

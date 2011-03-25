@@ -847,31 +847,31 @@ function %h_p(h)
             "Parent: "+h.parent.type
             "Children: "+fmtchildren(h.children)
             "BackgroundColor = "+sci2exp(h.backgroundcolor,0)
-            "Enable = "+sci2exp(h.enable)
-            "FontAngle = "+h.fontangle
-            "FontName = "+h.fontname
-            "FontSize = "+sci2exp(h.fontsize)
-            "FontUnits = "+h.fontunits
-            "FontWeight = "+h.fontweight
-            "ForegroundColor = "+sci2exp(h.foregroundcolor,0)
-            "HorizontalAlignment = "+h.horizontalalignment
-            "ListboxTop = "+sci2exp(h.listboxtop,0)
-            "Max = "+sci2exp(h.max)
-            "Min = "+sci2exp(h.min)
+            //"Enable = "+sci2exp(h.enable)
+            //"FontAngle = "+h.fontangle
+            //"FontName = "+h.fontname
+            //"FontSize = "+sci2exp(h.fontsize)
+            //"FontUnits = "+h.fontunits
+            //"FontWeight = "+h.fontweight
+            //"ForegroundColor = "+sci2exp(h.foregroundcolor,0)
+            //"HorizontalAlignment = "+h.horizontalalignment
+            //"ListboxTop = "+sci2exp(h.listboxtop,0)
+            //"Max = "+sci2exp(h.max)
+            //"Min = "+sci2exp(h.min)
             "Position = "+sci2exp(h.position,0)
-            "Relief = "+h.relief
-            "SliderStep = "+sci2exp(h.sliderstep)
+            //"Relief = "+h.relief
+            //"SliderStep = "+sci2exp(h.sliderstep)
             "String = "+fmtuser_data(h.string)
             "Style = "+h.style
-            "Units = "+h.units
-            "Value = "+sci2exp(h.value,0)
-            "VerticalAlignment = "+h.verticalalignment
-            "Visible = "+sci2exp(h.visible)
-            "Callback = "+h.callback
-            "CallbackType = "+sci2exp(h.callback_type,0)
+            //"Units = "+h.units
+            //"Value = "+sci2exp(h.value,0)
+            //"VerticalAlignment = "+h.verticalalignment
+            //"Visible = "+sci2exp(h.visible)
+            //"Callback = "+h.callback
+            //"CallbackType = "+sci2exp(h.callback_type,0)
             //"Handle_visible = "+sci2exp(h.handle_visible)
-            "Userdata = "+fmtuser_data(u)
-            "Tag = "+h.tag
+            //"Userdata = "+fmtuser_data(u)
+            //"Tag = "+h.tag
             ]
 
         end

@@ -17,4 +17,6 @@
 
 GUI_IMPEXP void createJoGLView(char* id);
 
+GUI_IMPEXP void createSwingView(void);
+
 #endif

@@ -25,9 +25,14 @@ using namespace org_scilab_modules_gui_graphicWindow;
 
 extern "C" {
 
-void createJoGLView(char* id)
-{
-    return CallGraphicJoGLView::createJoGLView(getScilabJavaVM(), id);
-}
+    void createJoGLView(char* id)
+    {
+        return CallGraphicJoGLView::createJoGLView(getScilabJavaVM(), id);
+    }
+
+    void createSwingView(void)
+    {
+        return CallGraphicJoGLView::createSwingView(getScilabJavaVM());
+    }
 
 }

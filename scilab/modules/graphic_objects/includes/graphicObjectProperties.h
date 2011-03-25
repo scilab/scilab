@@ -36,7 +36,7 @@
 #define __GO_RECTANGLE__                   "Rectangle"
 #define __GO_SEGS__                        "Segs"
 #define __GO_TEXT__                        "Text"
-#define __GO_UICONTROL__                   "Uicontrol"
+#define __GO_UICONTROL__                   "uicontrol"
 
 
 #define __GO_CHILDREN__                    "Children"
@@ -285,5 +285,12 @@
 
 #define __GO_HIDDEN_COLOR__                "HiddenColor"
 
+#define __GO_STYLE__                       "Style"
+#define __GO_UI_PUSHBUTTON__               "pushbutton"
+#define __GO_UI_TEXT__                     "text"
+
+#define __GO_UI_BACKGROUND_COLOR__         "UIBackgroundColor"
+#define __GO_UI_STRING__                   "UIString"
+#define __GO_UI_NB_STRING__                "UINbString"
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

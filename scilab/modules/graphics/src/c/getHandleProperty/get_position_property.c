@@ -49,6 +49,7 @@ int get_position_property( sciPointObj * pobj )
 
     getGraphicObjectProperty(pobj->UID, __GO_TYPE__, jni_string, &type);
 
+    /* Special figure case */
     if (strcmp(type, __GO_FIGURE__) == 0)
     {
         int* figurePosition;
@@ -72,7 +73,9 @@ int get_position_property( sciPointObj * pobj )
 
         return sciReturnRowVector(position, 4);
     }
-    else
+
+    /* Special label and legend case : only 2 values for position */
+    if (strcmp(type, __GO_LABEL__) == 0 || strcmp(type, __GO_LEGEND__) == 0)
     {
         double* position;
 
@@ -86,6 +89,19 @@ int get_position_property( sciPointObj * pobj )
 
         return sciReturnRowVector(position, 2);
     }
+
+    /* Generic case : position is a 4 row vector */
+    double* position;
+
+    getGraphicObjectProperty(pobj->UID, __GO_POSITION__, jni_double_vector, &position);
+
+    if (position == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+        return -1;
+    }
+
+    return sciReturnRowVector(position, 4);
 
 }
 /*------------------------------------------------------------------------*/

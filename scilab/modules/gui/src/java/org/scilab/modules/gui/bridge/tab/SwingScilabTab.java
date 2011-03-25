@@ -36,6 +36,7 @@ import org.flexdock.docking.event.DockingEvent;
 import org.flexdock.docking.activation.ActiveDockableTracker;
 import org.flexdock.docking.props.PropertyChangeListenerFactory;
 import org.flexdock.view.View;
+import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvasImpl;
 import org.scilab.modules.gui.bridge.checkbox.SwingScilabCheckBox;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
@@ -89,7 +90,7 @@ import org.scilab.modules.gui.utils.Size;
  * @author Marouane BEN JELLOUL
  * @author Jean-Baptiste SILVY
  */
-public class SwingScilabTab extends View implements SimpleTab, FocusListener {
+public class SwingScilabTab extends View implements SwingViewObject, SimpleTab, FocusListener {
 
     private static final Image SCILAB_ICON = new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/scilab.png").getImage();
 
@@ -1162,5 +1163,9 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
             }
         }
         super.paintChildren(g);
+    }
+
+    public void update(String property, Object value) {
+        //TODO : Some parameters can be update from MVC. 
     }
 }

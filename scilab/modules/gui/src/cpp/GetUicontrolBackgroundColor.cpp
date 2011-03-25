@@ -2,16 +2,22 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Vincent COUVERT
  * Get the background color of an uicontrol
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
 
 #include "GetUicontrolBackgroundColor.hxx"
+
+extern "C"
+{
+#include "getGraphicObjectProperty.h"
+#include "graphicObjectProperties.h"
+}
 
 using namespace org_scilab_modules_gui_bridge;
 
@@ -19,8 +25,23 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
 {
   int returnFlag = FALSE;
   int * returnValues = NULL;
-  double * tmp = NULL;
+  double *tmp;
 
+
+  getGraphicObjectProperty(sciObj->UID, __GO_UI_BACKGROUND_COLOR__, jni_double_vector, (void **) &tmp);
+
+  if (tmp != NULL)
+  {
+      returnFlag =  sciReturnRowVector(tmp, 3);
+      return returnFlag;
+  }
+  else
+  {
+      Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
+      return FALSE;
+  }
+
+#if 0
   if (sciGetEntityType( sciObj ) == SCI_UICONTROL)
     {
       // Get the color from Java
@@ -36,7 +57,7 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
 
         }
       tmp = new double[3];
-      
+
       /* If values are stored in Scilab then they are read */
       /* else they are writen */
       if (pUICONTROL_FEATURE(sciObj)->backgroundcolor != NULL)
@@ -58,10 +79,10 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
         }
 
       returnFlag =  sciReturnRowVector(tmp, 3);
-      
+
       delete [] tmp;
 	  delete [] returnValues;
-      
+
       return returnFlag;
     }
   else
@@ -69,5 +90,6 @@ int GetUicontrolBackgroundColor(sciPointObj* sciObj)
       Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "BackgroundColor");
       return FALSE;
     }
+#endif
 }
 
