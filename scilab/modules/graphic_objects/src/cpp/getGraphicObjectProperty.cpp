@@ -27,7 +27,6 @@ using namespace org_scilab_modules_graphic_objects;
 
 void getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _returnType, void **_pvData)
 {
-    int lenRow;
 
     /* All the Data model properties have the DATA_MODEL prefix */
     if (strncmp(_pstName, __GO_DATA_MODEL__, strlen(__GO_DATA_MODEL__)) == 0)
@@ -46,7 +45,7 @@ void getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _return
         }
         case jni_string_vector :
         {
-            *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsStringVector(getScilabJavaVM(), _pstID, _pstName);
             return;
         }
         case jni_double :
@@ -56,7 +55,7 @@ void getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _return
         }
         case jni_double_vector :
         {
-            *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsDoubleVector(getScilabJavaVM(), _pstID, _pstName);
             return;
         }
         case jni_bool :
@@ -66,7 +65,7 @@ void getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _return
         }
         case jni_bool_vector :
         {
-            *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsBooleanVector(getScilabJavaVM(), _pstID, _pstName);
             return;
         }
         case jni_int :
@@ -76,7 +75,7 @@ void getGraphicObjectProperty(char *_pstID, char *_pstName, _ReturnType_ _return
         }
         case jni_int_vector :
         {
-            *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName, &lenRow);
+            *_pvData = CallGraphicController::getGraphicObjectPropertyAsIntegerVector(getScilabJavaVM(), _pstID, _pstName);
             return;
         }
         default :
