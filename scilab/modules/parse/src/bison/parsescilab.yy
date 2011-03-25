@@ -1605,11 +1605,8 @@ TRY catchBody CATCH catchBody END                 { $$ =new ast::TryCatchExp(@$,
 */
 /* Wich instructions can be used in a catch control. */
 catchBody :
-EOL expressions                 { $$ = $2; }
-| COMMENT EOL expressions       {
-                                  $3->exps_get().push_front(new ast::CommentExp(@1, $1));
-                                  $$ = $3;
-                                }
+expressions                     { $$ = $1; }
+| EOL expressions               { $$ = $2; }
 | EOL                           {
                                   ast::exps_t *tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
