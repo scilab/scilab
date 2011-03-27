@@ -51,7 +51,7 @@ public class PatternElement {
 	private TraceElement traceElement = null;
 	private JAXBContext jc = null;
 	private Unmarshaller u = null;
-	private BlockPalette blocks = null;
+	private BlockPalette blockPalette = null;
 
 	final String file = "simulinkImportBlocks.xml";
 	final String homePath = ScilabConstants.SCIHOME.getAbsolutePath();
@@ -64,13 +64,13 @@ public class PatternElement {
 		/*
 		 * Copy the base patternsheet into the user dir when it doesn't exist.
 		 */
-		if (!userPatternSheet.exists()) {
-			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-
-			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
-			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Initializing compatibility patterns");
 		}
-		bindPatterns(blocks, userPatternSheet);
+		
+		getPatternSheet();
+		blockPalette = bindPatterns(userPatternSheet);
 	}
 	/*
 	 * block that compatibility patterns are being processed for
@@ -93,20 +93,15 @@ public class PatternElement {
 		if(LOG.isTraceEnabled()) {
 			LOG.trace("Initializing compatibility pattern for " + simulinkBlockName + " block." );
 		}
-		if(!userPatternSheet.exists()) {
-			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
-
-			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
-			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
-		}
-		bindPatterns(blocks, userPatternSheet);
+		getPatternSheet();
+		blockPalette = bindPatterns(userPatternSheet);
 		traceElement = trace;
 		/*
 		 * Initialize patterns for specific block
 		 * TODO: this is very uncool.
 		 */
-		if(blocks != null) {
-			Iterator<Block> blockIter = blocks.getBlock().iterator();
+		if(blockPalette != null) {
+			Iterator<Block> blockIter = blockPalette.getBlock().iterator();
 			while (blockIter.hasNext()){
 				Block block = blockIter.next();
 				if(block.getSim().contentEquals(simulinkBlockName)){
@@ -123,23 +118,36 @@ public class PatternElement {
 		}
 	}
 
-	public PatternElement(String simulinkBlockName) throws PatternBindingException{
-		/*
-		 * Copy the base patternsheet into the user dir when it doesn't exist.
-		 */
-		if(!userPatternSheet.exists()) {
+	private void getPatternSheet() {
+		/* FIXME: 
+		 * this caused some errors when you already had old pattern sheet
+		 * so I removed it just to be sure it's not causing any unpredicable 
+		 * errors during development. Later I'll add only warning about different
+		 * pattern sheet.
+		*/
+		//if(!userPatternSheet.exists()) {
 			final String sciPath = ScilabConstants.SCI.getAbsolutePath();
 
 			File baseStyleSheet = new File(sciPath + "/modules/xcos/etc/" + file);
 			FileUtils.forceCopy(baseStyleSheet, userPatternSheet);
+		//} else {
+			// LOG.info("Existing stylesheet may differ from );
+		//}
+	}
+
+	public PatternElement(String simulinkBlockName) throws PatternBindingException{
+		
+		if(LOG.isTraceEnabled()) {
+			LOG.trace("Initializing compatibility pattern for " + simulinkBlockName + " block." );
 		}
-		bindPatterns(blocks, userPatternSheet);
+		getPatternSheet();
+		blockPalette = bindPatterns(userPatternSheet);
 		/*
 		 * Initialize patterns for specific block
 		 * TODO: this is very uncool.
 		 */
-		if(blocks != null) {
-			Iterator<Block> blockIter = blocks.getBlock().iterator();
+		if(blockPalette != null) {
+			Iterator<Block> blockIter = blockPalette.getBlock().iterator();
 			while (blockIter.hasNext()){
 				Block block = blockIter.next();
 				if(block.getSim().contentEquals(simulinkBlockName)){
@@ -153,10 +161,15 @@ public class PatternElement {
 				LOG.trace("Missing compatibility pattern!");
 				traceElement.addUnknownBlock(simulinkBlockName);
 			}
-		} 
+		} else {
+			throw new PatternBindingException("Binding return null blocks structure");
+		}
 	}
 
-	private void bindPatterns(BlockPalette blocks,File patternsheet) throws PatternBindingException{
+	private BlockPalette bindPatterns(File patternsheet) throws PatternBindingException{
+		
+		LOG.debug("Binding patterns from: [" + patternsheet.toString() + "]");
+		
 		try{
 			JAXBContext jc = JAXBContext.newInstance( "org.scilab.modules.xcos.simulink.patterns" );
 			Unmarshaller u = jc.createUnmarshaller();
@@ -164,15 +177,20 @@ public class PatternElement {
 			JAXBElement<BlockPalette> element = u.unmarshal(
 					new StreamSource(patternsheet),
 					BlockPalette.class );
-			blocks = element.getValue();
+			
+			if(element.getValue() == null) {
+				LOG.error("Binded pattern pallete is null");
+				throw new PatternBindingException("Binded pattern pallete is null");
+			}
+			return element.getValue();
 
 		} catch( UnmarshalException ue ) {
-			LogFactory.getLog(PatternElement.class).error(ue);
+			LOG.error(ue);
 			throw new PatternBindingException(ue.getMessage());
 		} catch( JAXBException je ) {
-			LogFactory.getLog(PatternElement.class).error(je);
+			LOG.error(je);
 			throw new PatternBindingException(je.getMessage());
-		}
+		} 
 	}
 
 
@@ -624,7 +642,7 @@ public class PatternElement {
 	@Deprecated
 	public String decode(String simulinkBlockName, String paramName, String simulinkValue){
 		try{
-			Iterator<Block> blockIter = blocks.getBlock().iterator();
+			Iterator<Block> blockIter = blockPalette.getBlock().iterator();
 			while (blockIter.hasNext()){
 				Block block = blockIter.next();
 				if(block.getSim().contentEquals(simulinkBlockName)){
@@ -709,7 +727,7 @@ public class PatternElement {
 	public void printPattern() {
 		if (LOG.isTraceEnabled()) {
 			try{
-				Iterator<Block> blockIter = blocks.getBlock().iterator();
+				Iterator<Block> blockIter = blockPalette.getBlock().iterator();
 				while (blockIter.hasNext()){
 					Block block = blockIter.next();
 					if(LOG.isTraceEnabled()){
