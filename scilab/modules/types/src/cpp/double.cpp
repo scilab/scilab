@@ -18,6 +18,7 @@
 
 extern "C"
 {
+#include <stdio.h>
 #include "elem_common.h"
 #include "localization.h"
 #include "charEncoding.h"
