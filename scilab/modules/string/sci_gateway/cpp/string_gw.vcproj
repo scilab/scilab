@@ -357,6 +357,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_strchr.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_strindex.cpp"
 				>
 			</File>
@@ -369,7 +373,27 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_strncpy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strrchr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strrev.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strstr.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_strsubst.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strtod.cpp"
 				>
 			</File>
 			<File

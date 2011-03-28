@@ -24,30 +24,30 @@ static gw_generic_table Tab[] =
 	{NULL,""}, //string
 	{NULL,""}, //convstr
 	{NULL, ""}, //emptystr
-	{sci_str2code,"str2code"},
-	{sci_code2str,"code2str"},
+	{NULL,""}, //str2code
+	{sci_code2str,"code2str"}, //5
 	{NULL ,""}, //strcat
 	{NULL, ""}, //strindex
 	{NULL, ""}, //strsubst
 	{NULL, ""}, //ascii
 	{NULL, ""}, //grep
-	{sci_tokens,"tokens"},
+	{sci_tokens,"tokens"}, //2
 	{NULL, ""}, //strsplit
 	{NULL, ""}, //stripblank
-	{sci_strcmp,"strcmp"},
-	{sci_isletter,"isletter"},
+	{sci_strcmp,"strcmp"}, //3
+	{sci_isletter,"isletter"}, //4
 	{NULL, ""}, //isdigit
 	{NULL ,""}, //isalphanum
 	{NULL, ""}, //isascii
-	{sci_strcspn,"strcspn"},
-	{sci_strncpy,"strncpy"},
-	{sci_strchr,"strrchr"},
-	{sci_strchr,"strchr"},
-	{sci_strstr,"strstr"},
-	{sci_strrev,"strrev"},
-	{sci_strtok,"strtok"},
-	{sci_strspn,"strspn"},
-	{sci_strtod,"strtod"},
+	{sci_strcspn,"strcspn"}, //4
+	{NULL, ""}, //strncpy
+	{NULL,""}, //1 strrchr
+	{NULL,""}, //1 strchr
+	{NULL,""}, //1 strstr
+	{NULL,""}, //1 strrev
+	{sci_strtok,"strtok"}, //2
+	{sci_strspn,"strspn"}, //4
+	{NULL,""}, //1 strtod
 	{NULL, ""} //regexp
 };
 /*--------------------------------------------------------------------------*/

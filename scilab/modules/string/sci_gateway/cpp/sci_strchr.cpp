@@ -1,0 +1,130 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Digiteo 2011 - Cedric DELAMARRE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+
+#include "function.hxx"
+#include "string.hxx"
+#include "list.hxx"
+#include "funcmanager.hxx"
+#include "string_gw.hxx"
+
+extern "C"
+{
+#include "os_wcsdup.h"
+#include "core_math.h"
+#include "localization.h"
+#include "Scierror.h"
+}
+
+
+types::Function::ReturnValue sci_strchr(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    types::String* pOutString   = NULL;
+    types::String* pString      = NULL;
+    types::String* pCharSample  = NULL;
+       
+    if(in.size() != 2)
+    {
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strchr", 2);
+        return types::Function::Error;
+    }    
+    if(_iRetCount != 1)
+    {
+        ScierrorW(78, _W("%ls: Wrong number of output argument(s): %d expected.\n"), L"strchr", 1);
+        return types::Function::Error;
+    }
+	if(in[0]->isString() == false)
+	{
+		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strchr", 1);
+		return types::Function::Error;
+	}
+	if(in[1]->isString() == false)
+	{
+		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: String expected.\n"),L"strchr", 2);
+		return types::Function::Error;
+	}
+
+    pString      = in[0]->getAs<types::String>();
+    pCharSample  = in[1]->getAs<types::String>();
+
+    if(pString->getSize() == 0)
+    {
+        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"),L"strchr",1);
+        return types::Function::Error;
+    }
+
+    if(pCharSample->getSize() == 0)
+    {
+        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: Non-empty matrix of strings expected.\n"),L"strchr",2);
+        return types::Function::Error;
+    }
+    
+    if(pString->getSize() != pCharSample->getSize() && pCharSample->isScalar() == false)
+    {
+        ScierrorW(999,_W("%ls: Wrong size for input argument #%d.\n"),L"strchr", 2);
+        return types::Function::Error;
+    }
+    
+    pOutString  = new types::String(pString->getDims(), pString->getDimsArray());
+
+    int j = 0; /* Input parameter two is dimension one */
+    for(int i=0 ; i < pString->getSize() ; i++)
+    {
+        if(pCharSample->isScalar() == false) 
+        {
+            j = i; /* Input parameter One & two have same dimension */
+        }
+        int iLen = wcslen(pCharSample->get(j));
+        if(iLen != 1)
+        {
+    		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: Char(s) expected.\n"),L"strchr", 2);
+    		delete pOutString;
+            return types::Function::Error;
+        }
+        
+        if(wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
+        {
+            pOutString->set(i,os_wcsdup(L""));
+        }
+        else
+        {
+    		wchar_t* ptrwstrstr = wcschr(pString->get(i),pCharSample->get(j)[0]);
+
+            if (ptrwstrstr)
+            {
+                pOutString->set(i,os_wcsdup(ptrwstrstr));
+                if (pOutString->get(i) == NULL)
+                {
+                    delete pOutString;
+                    FREE(ptrwstrstr);
+                    ScierrorW(999,_W("%ls: No more memory.\n"),L"strchr");
+                    return types::Function::Error;
+                }
+            }
+            else
+            {
+                pOutString->set(i,os_wcsdup(L""));
+                if (pOutString->get(i) == NULL)
+                {
+                    delete pOutString;
+                    FREE(ptrwstrstr);
+                    ScierrorW(999,_W("%ls: No more memory.\n"),L"strchr");
+                    return types::Function::Error;
+                }
+            }
+        }
+    }
+    
+    out.push_back(pOutString);
+    return types::Function::OK;
+}
+

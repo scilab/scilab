@@ -32,5 +32,11 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcat", &sci_strcat, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"string", &sci_string, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"convstr", &sci_convstr, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strncpy", &sci_strncpy, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strrchr", &sci_strrchr, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strchr", &sci_strchr, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strstr", &sci_strstr, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strrev", &sci_strrev, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strtod", &sci_strtod, MODULE_NAME));
     return true;
 }
