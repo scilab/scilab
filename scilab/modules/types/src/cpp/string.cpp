@@ -408,7 +408,9 @@ namespace types
 
     wchar_t** String::allocData(int _iSize)
     {
-        return new wchar_t*[_iSize];
+        wchar_t** pStr = new wchar_t*[_iSize];
+        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+        return pStr;
     }
 }
 
