@@ -108,7 +108,8 @@ namespace types
                 if(pFD) // &&	pFD->name_get() == m_stName
                 {
                     symbol::Context* pContext = symbol::Context::getInstance();
-                    if(pContext->get_fun(pFD->name_get())->isMacroFile())
+                    types::InternalType* pFunc = pContext->get_fun(pFD->name_get());
+                    if(pFunc && pFunc->isMacroFile())
                     {
                         MacroFile* pMacro = pContext->get_fun(pFD->name_get())->getAsMacroFile();
                         if(pMacro->m_pMacro == NULL)
