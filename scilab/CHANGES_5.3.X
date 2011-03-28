@@ -166,6 +166,10 @@ Compilation:
 * Bug 9018 fixed - --without-xcos disabled the detection of jhdf5 but was still
                    building xcos.
 
+Documentation:
+==============
+
+* Created a "complex" sub-section of "Elementary Functions"
 
 Bug fixes:
 ==========
@@ -187,6 +191,8 @@ Bug fixes:
 
 * Bug 8423 fixed - With certain options of the configure, the build process
                    failed.
+
+* bug 8675 fixed - The complex function was undocumented.
 
 * bug 9070 fixed - The demonstration "Simulation/Wheel Simulation/Simulation with
                    ode" displayed a warning about an obsolete use of ilib_for_link.
@@ -248,6 +254,7 @@ Bug fixes:
 * bug 9300 fixed - Scilab crashed when one tryed to complete an empty mlist.
 
 * bug 9270 fixed - The contour function was broken.
+
 
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
