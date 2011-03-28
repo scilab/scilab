@@ -195,7 +195,7 @@ namespace types
                 }
             }
         }
-        catch(ast::ScilabException se)
+        catch(ast::ScilabMessage se)
         {
             //close the current scope
             pContext->scope_end();

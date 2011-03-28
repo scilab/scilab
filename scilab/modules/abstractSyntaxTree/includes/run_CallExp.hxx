@@ -136,17 +136,17 @@ void visitprivate(const CallExp &e)
                 }
             }
         }
-        catch(ScilabException se)
+        catch(ScilabMessage sm)
         {
             if(pCall->isMacro() || pCall->isMacroFile())
             {
                 wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), se.GetErrorLocation().first_line, pCall->getName().c_str());
+                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
                 throw ScilabMessage(szError);
             }
             else
             {
-                throw se;
+                throw sm;
             }
         }
     }

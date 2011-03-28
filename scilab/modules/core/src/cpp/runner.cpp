@@ -38,7 +38,7 @@ void *Runner::launch(void *args)
     }
     catch(ScilabException se)
     {
-        YaspWriteW(se.GetErrorMessage().c_str());
+        YaspErrorW(se.GetErrorMessage().c_str());
     }
 
 

@@ -628,25 +628,25 @@ namespace ast
         void visitprivate(const TryCatchExp  &e)
         {
             //save current prompt mode
-            int oldVal = ConfigVariable::getPromptMode();
+            int oldVal = ConfigVariable::getSilentError();
             //set mode silent for errors
-            ConfigVariable::setPromptMode(-1);
+            ConfigVariable::setSilentError(1);
             try
             {
                 T execMe;
                 e.try_get().accept(execMe);
+                //restore previous prompt mode
+                ConfigVariable::setSilentError(oldVal);
             }
             catch(ScilabMessage sm)
             {
                 T execMe;
-
+                //restore previous prompt mode
+                ConfigVariable::setSilentError(oldVal);
                 //to lock lasterror
                 ConfigVariable::setLastErrorCall();
                 e.catch_get().accept(execMe);
             }
-
-            //restore previous prompt mode
-            ConfigVariable::setPromptMode(oldVal);
         }
 
 
@@ -1003,33 +1003,59 @@ namespace ast
                             types::typed_list out;
                             types::typed_list in;
 
-                            T execCall;
-                            Function::ReturnValue Ret = pCall->call(in, expected_getSize(), out, &execCall);
-
-                            if(Ret == Callable::OK)
+                            try
                             {
-                                if(out.size() == 0)
+                                T execCall;
+                                Function::ReturnValue Ret = pCall->call(in, expected_getSize(), out, &execCall);
+
+                                if(Ret == Callable::OK)
                                 {
-                                    execMe.result_set(NULL);
-                                }
-                                else if(out.size() == 1)
-                                {
-                                    out[0]->DecreaseRef();
-                                    execMe.result_set(out[0]);
-                                }
-                                else
-                                {
-                                    for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                    if(out.size() == 0)
                                     {
-                                        out[i]->DecreaseRef();
-                                        execMe.result_set(i, out[i]);
+                                        execMe.result_set(NULL);
+                                    }
+                                    else if(out.size() == 1)
+                                    {
+                                        out[0]->DecreaseRef();
+                                        execMe.result_set(out[0]);
+                                    }
+                                    else
+                                    {
+                                        for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                                        {
+                                            out[i]->DecreaseRef();
+                                            execMe.result_set(i, out[i]);
+                                        }
+                                    }
+
+                                    bImplicitCall = true;
+                                }
+                                else if(Ret == Callable::Error)
+                                {
+                                    if(ConfigVariable::getLastErrorFunction() == L"")
+                                    {
+                                        ConfigVariable::setLastErrorFunction(pCall->getName());
+                                        ConfigVariable::setLastErrorLine(e.location_get().first_line);
+                                    }
+
+                                    if(pCall->isMacro() || pCall->isMacroFile())
+                                    {
+                                        wchar_t szError[bsiz];
+                                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
+                                        throw ScilabMessage(szError);
+                                    }
+                                    else
+                                    {
+                                        throw ScilabMessage();
                                     }
                                 }
-
-                                bImplicitCall = true;
                             }
-                            else if(Ret == Callable::Error)
+                            catch(ScilabMessage sm)
                             {
+                                wostringstream os;
+                                PrintVisitor printMe(os);
+                                (*itExp)->accept(printMe);
+                                os << std::endl << std::endl;
                                 if(ConfigVariable::getLastErrorFunction() == L"")
                                 {
                                     ConfigVariable::setLastErrorFunction(pCall->getName());
@@ -1038,16 +1064,16 @@ namespace ast
                                 if(pCall->isMacro() || pCall->isMacroFile())
                                 {
                                     wchar_t szError[bsiz];
-                                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*itExp)->location_get().first_line, pCall->getName().c_str());
-                                    throw ScilabMessage(szError);
+                                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                                    throw ScilabMessage(szError + os.str());
                                 }
                                 else
                                 {
-                                    throw ScilabMessage();
+                                    sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
+                                    throw sm;
                                 }
                             }
                         }
-
 
                         SimpleVar* pVar = dynamic_cast<SimpleVar*>(*itExp);
                         //don't output Simplevar and empty result
@@ -1087,7 +1113,7 @@ namespace ast
                 }
                 catch(ScilabMessage sm)
                 {
-                    YaspWriteW(sm.GetErrorMessage().c_str());
+                    YaspErrorW(sm.GetErrorMessage().c_str());
 
                     CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
                     if(pCall != NULL)
@@ -1137,7 +1163,7 @@ namespace ast
                                 pCall->accept(printMe);
                                 os << std::endl << std::endl;
                                 ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
-                                YaspWriteW(se.GetErrorMessage().c_str());
+                                YaspErrorW(se.GetErrorMessage().c_str());
                                 throw ScilabMessage(os.str(), 0, (*itExp)->location_get());
                             }
                         }
@@ -1146,7 +1172,7 @@ namespace ast
                         }
                     }
 
-                    YaspWriteW(se.GetErrorMessage().c_str());
+                    YaspErrorW(se.GetErrorMessage().c_str());
                     throw ScilabMessage((*itExp)->location_get());
                 }
             }

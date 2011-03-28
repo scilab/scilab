@@ -11,13 +11,23 @@
  */
 
 #include "scilabexception.hxx"
+
+extern "C"
+{
 #include "lasterror.h"
+#include "charEncoding.h"
+}
 
 namespace ast
 {
     ScilabException::ScilabException(std::wstring _wstErrorMesssage)
     {
         m_wstErrorMessage = _wstErrorMesssage;
+    }
+
+    ScilabException::ScilabException(std::string _stErrorMesssage)
+    {
+        m_wstErrorMessage = to_wide_string(_stErrorMesssage.c_str());
     }
 
     void ScilabException::SetErrorMessage(std::wstring _wstErrorMesssage)

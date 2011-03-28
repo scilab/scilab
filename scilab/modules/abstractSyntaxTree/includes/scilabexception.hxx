@@ -25,6 +25,7 @@ namespace ast
     public :
         ScilabException();
         ScilabException(std::wstring _wstErrorMesssage);
+        ScilabException(std::string _stErrorMesssage);
         ScilabException(const Location& _ErrorLocation);
         ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation);
         virtual ~ScilabException() throw() {};
@@ -49,6 +50,7 @@ namespace ast
     public :
         ScilabError() : ScilabException(){}
         ScilabError(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage){}
+        ScilabError(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage){}
         ScilabError(const Location& _ErrorLocation) : ScilabException(_ErrorLocation){}
         ScilabError(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation){}
     };
@@ -64,6 +66,7 @@ namespace ast
     public :
         ScilabMessage() : ScilabException(){}
         ScilabMessage(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage){}
+        ScilabMessage(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage){}
         ScilabMessage(const Location& _ErrorLocation) : ScilabException(_ErrorLocation){}
         ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation){}
     };

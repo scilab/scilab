@@ -133,9 +133,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="scilocalization.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -342,6 +344,14 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
+		</Filter>
+		<Filter
+			Name="Libraries Dependencies"
+			>
+			<File
+				RelativePath=".\Localization_Import.def"
+				>
+			</File>
 		</Filter>
 		<File
 			RelativePath="..\..\bin\blasplus.lib"

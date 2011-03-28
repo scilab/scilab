@@ -310,6 +310,9 @@ static int interactiveMain (void)
         commentbeginsession=NULL;
     }
 
+    //before calling reader, try to call %onprompt function
+    callOnPrompt();
+
     while (!ConfigVariable::getForceQuit())
     {
         // Show Parser Sate before prompt
@@ -327,6 +330,9 @@ static int interactiveMain (void)
                 FREE(command);
                 command = NULL;
             }
+            //before calling YaspReader, try to call %onprompt function
+            callOnPrompt();
+
             command = YaspRead();
         }
         else
@@ -537,7 +543,7 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
     }
     catch(ScilabException se)
     {
-        YaspWriteW(se.GetErrorMessage().c_str());
+        YaspErrorW(se.GetErrorMessage().c_str());
     }
 
     ConfigVariable::setPromptMode(2);

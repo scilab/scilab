@@ -41,4 +41,6 @@ EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
 EXTERN_AST types::Struct* getStructFromExp(const ast::Exp* _pExp);
 
+EXTERN_AST void callOnPrompt(void);
+
 #endif //!AST_VISITOR_COMMON_HXX

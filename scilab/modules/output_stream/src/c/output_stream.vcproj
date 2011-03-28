@@ -639,6 +639,10 @@
 					RelativePath=".\String_Import.def"
 					>
 				</File>
+				<File
+					RelativePath=".\System_env_Import.def"
+					>
+				</File>
 			</Filter>
 			<Filter
 				Name="Export"

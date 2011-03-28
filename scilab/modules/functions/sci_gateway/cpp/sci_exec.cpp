@@ -49,7 +49,7 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int promptMode  = 2;
+    int promptMode  = 1;
     int iErr        = 0;
 	bool bErrCatch	= false;
 	Exp* pExp		= NULL;
@@ -190,8 +190,6 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             ExecVisitor execMe;
             (*j)->accept(execMe);
 
-            bool bImplicitCall = false;
-
             //to manage call without ()
             if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
             {
@@ -199,33 +197,56 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
                 types::typed_list out;
                 types::typed_list in;
 
-                ExecVisitor execCall;
-                Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
-
-                if(Ret == Callable::OK)
+                try
                 {
-                    if(out.size() == 0)
+                    ExecVisitor execCall;
+                    Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+
+                    if(Ret == Callable::OK)
                     {
-                        execMe.result_set(NULL);
-                    }
-                    else if(out.size() == 1)
-                    {
-                        out[0]->DecreaseRef();
-                        execMe.result_set(out[0]);
-                    }
-                    else
-                    {
-                        for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                        if(out.size() == 0)
                         {
-                            out[i]->DecreaseRef();
-                            execMe.result_set(i, out[i]);
+                            execMe.result_set(NULL);
+                        }
+                        else if(out.size() == 1)
+                        {
+                            out[0]->DecreaseRef();
+                            execMe.result_set(out[0]);
+                        }
+                        else
+                        {
+                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            {
+                                out[i]->DecreaseRef();
+                                execMe.result_set(i, out[i]);
+                            }
                         }
                     }
+                    else if(Ret == Callable::Error)
+                    {
+                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        {
+                            ConfigVariable::setLastErrorFunction(pCall->getName());
+                        }
 
-                    bImplicitCall = true;
+                        if(pCall->isMacro() || pCall->isMacroFile())
+                        {
+                            wchar_t szError[bsiz];
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+                            throw ScilabMessage(szError);
+                        }
+                        else
+                        {
+                            throw ScilabMessage();
+                        }
+                    }
                 }
-                else if(Ret == Callable::Error)
+                catch(ScilabMessage sm)
                 {
+                    wostringstream os;
+                    PrintVisitor printMe(os);
+                    (*j)->accept(printMe);
+                    os << std::endl << std::endl;
                     if(ConfigVariable::getLastErrorFunction() == L"")
                     {
                         ConfigVariable::setLastErrorFunction(pCall->getName());
@@ -233,13 +254,18 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
                     if(pCall->isMacro() || pCall->isMacroFile())
                     {
+                        wstring szAllError;
                         wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
-                        throw ScilabMessage(szError);
+                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                        szAllError = szError + os.str();
+                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                        szAllError += szError;
+                        throw ScilabMessage(szAllError);
                     }
                     else
                     {
-                        throw ScilabMessage();
+                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
+                        throw sm;
                     }
                 }
             }
@@ -267,7 +293,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 		}
         catch(ScilabMessage sm)
         {
-            YaspWriteW(sm.GetErrorMessage().c_str());
+            YaspErrorW(sm.GetErrorMessage().c_str());
 
             CallExp* pCall = dynamic_cast<CallExp*>(*j);
             if(pCall != NULL)
@@ -320,11 +346,9 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
-                //in case of error, change mode to 2 ( prompt )
-                ConfigVariable::setPromptMode(2);
                 //write error
-                YaspWriteW(se.GetErrorMessage().c_str());
-                YaspWriteW(L"\n");
+                YaspErrorW(se.GetErrorMessage().c_str());
+                YaspErrorW(L"\n");
 
                 //write positino
                 wchar_t szError[bsiz];

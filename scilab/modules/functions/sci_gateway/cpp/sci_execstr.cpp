@@ -158,25 +158,182 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	{
 		try
 		{
-			//excecute script
-			ExecVisitor execMe;
-			(*j)->accept(execMe);
+            //excecute script
+            ExecVisitor execMe;
+            (*j)->accept(execMe);
+
+            //to manage call without ()
+            if(execMe.result_get() != NULL && execMe.result_get()->getAsCallable())
+            {
+                Callable *pCall = execMe.result_get()->getAsCallable();
+                types::typed_list out;
+                types::typed_list in;
+
+                try
+                {
+                    ExecVisitor execCall;
+                    Function::ReturnValue Ret = pCall->call(in, 1, out, &execCall);
+
+                    if(Ret == Callable::OK)
+                    {
+                        if(out.size() == 0)
+                        {
+                            execMe.result_set(NULL);
+                        }
+                        else if(out.size() == 1)
+                        {
+                            out[0]->DecreaseRef();
+                            execMe.result_set(out[0]);
+                        }
+                        else
+                        {
+                            for(int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            {
+                                out[i]->DecreaseRef();
+                                execMe.result_set(i, out[i]);
+                            }
+                        }
+                    }
+                    else if(Ret == Callable::Error)
+                    {
+                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        {
+                            ConfigVariable::setLastErrorFunction(pCall->getName());
+                        }
+
+                        if(pCall->isMacro() || pCall->isMacroFile())
+                        {
+                            wchar_t szError[bsiz];
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), (*j)->location_get().first_line, pCall->getName().c_str());
+                            throw ScilabMessage(szError);
+                        }
+                        else
+                        {
+                            throw ScilabMessage();
+                        }
+                    }
+                }
+                catch(ScilabMessage sm)
+                {
+                    wostringstream os;
+                    PrintVisitor printMe(os);
+                    (*j)->accept(printMe);
+                    os << std::endl << std::endl;
+                    if(ConfigVariable::getLastErrorFunction() == L"")
+                    {
+                        ConfigVariable::setLastErrorFunction(pCall->getName());
+                    }
+
+                    if(pCall->isMacro() || pCall->isMacroFile())
+                    {
+                        wstring szAllError;
+                        wchar_t szError[bsiz];
+                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n"), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                        szAllError = szError + os.str();
+                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n"));
+                        szAllError += szError;
+                        throw ScilabMessage(szAllError);
+                    }
+                    else
+                    {
+                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
+                        throw sm;
+                    }
+                }
+            }
+
+            //update ans variable.
+			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
+			{
+				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
+				if( (*j)->is_verbose() && 
+                    bErrCatch == false)
+				{
+					std::wostringstream ostr;
+					ostr << L"ans = " << std::endl;
+					ostr << std::endl;
+					ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+					YaspWriteW(ostr.str().c_str());
+				}
+			}
+
+			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
+   //             bErrCatch == false)
+			//{
+			//	YaspWriteW(L"\n");
+			//}
 		}
+        catch(ScilabMessage sm)
+        {
+            if(bErrCatch  == false && bMute == false)
+            {
+                YaspErrorW(sm.GetErrorMessage().c_str());
+
+                CallExp* pCall = dynamic_cast<CallExp*>(*j);
+                if(pCall != NULL)
+                {//to print call expression only of it is a macro
+                    ExecVisitor execFunc;
+                    pCall->name_get().accept(execFunc);
+
+                    if(execFunc.result_get() != NULL &&
+                        (execFunc.result_get()->isMacro() || execFunc.result_get()->isMacroFile()))
+                    {
+                        wostringstream os;
+
+                        //add function failed
+                        PrintVisitor printMe(os);
+                        pCall->accept(printMe);
+                        os << std::endl;
+
+                        //add info on file failed
+                        wchar_t szError[bsiz];
+                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                        os << szError;
+
+                        if(ConfigVariable::getLastErrorFunction() == L"")
+                        {
+                            ConfigVariable::setLastErrorFunction(execFunc.result_get()->getAsCallable()->getName());
+                        }
+
+                        //restore previous prompt mode
+                        ConfigVariable::setPromptMode(oldVal);
+                        throw ScilabMessage(os.str(), 0, (*j)->location_get());
+                    }
+                }
+                throw ScilabMessage((*j)->location_get());
+            }
+            else
+            {
+                iErr = ConfigVariable::getLastErrorNumber();
+                break;
+            }
+        }
 		catch(ScilabError se)
 		{
-            if(bErrCatch && bMute == true)
+            if(ConfigVariable::getLastErrorMessage() == L"")
             {
-                //set mode silent for errors
-                ConfigVariable::setPromptMode(-1);
+                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
+                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
+                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
+                ConfigVariable::setLastErrorFunction(wstring(L""));
             }
 
             //store message
-            ScierrorW(ConfigVariable::getLastErrorNumber(), L"%ls", ConfigVariable::getLastErrorMessage().c_str());
             iErr = ConfigVariable::getLastErrorNumber();
             if(bErrCatch == false)
             {
-            	delete parser.getTree();
-			    return Function::Error;
+                //in case of error, change mode to 2 ( prompt )
+                ConfigVariable::setPromptMode(2);
+                //write error
+                YaspErrorW(se.GetErrorMessage().c_str());
+                YaspErrorW(L"\n");
+
+                //write positino
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n"), (*j)->location_get().first_line);
+                //restore previous prompt mode
+                ConfigVariable::setPromptMode(oldVal);
+                throw ScilabMessage(szError, 1, (*j)->location_get());
             }
             break;
 		}
@@ -196,3 +353,27 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 	return Function::OK;
 }
 /*--------------------------------------------------------------------------*/
+
+/*
+		catch(ScilabError se)
+		{
+            if(bErrCatch && bMute == true)
+            {
+                //set mode silent for errors
+                ConfigVariable::setPromptMode(-1);
+            }
+
+            //store message
+            ScierrorW(ConfigVariable::getLastErrorNumber(), L"%ls", ConfigVariable::getLastErrorMessage().c_str());
+            iErr = ConfigVariable::getLastErrorNumber();
+            if(bErrCatch == false)
+            {
+            	delete parser.getTree();
+			    return Function::Error;
+            }
+            break;
+		}
+*/
+
+/*
+*/

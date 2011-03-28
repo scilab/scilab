@@ -12,11 +12,12 @@
 
 #include <stdlib.h>
 
-#include "promptmode.h"
 #include "configvariable.hxx"
 #include "setenvvar.hxx"
 #include "arrayof.hxx"
 #include "context.hxx"
+#include "promptmode.h"
+
 
 int getPromptMode(void)
 {
@@ -26,4 +27,14 @@ int getPromptMode(void)
 void setPromptMode(int _iMode)
 {
     ConfigVariable::setPromptMode(_iMode);
+}
+
+int getSilentError(void)
+{
+    return static_cast<int>(ConfigVariable::getSilentError());
+}
+
+void setSilentError(int _iSilent)
+{
+    ConfigVariable::setSilentError(_iSilent);
 }

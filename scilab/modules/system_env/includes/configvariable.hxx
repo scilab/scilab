@@ -160,9 +160,10 @@ public :
     static void setLastErrorFunction(std::wstring _wstFunction);
     static std::wstring getLastErrorFunction();
 
-    //Prompt Mode
+    //Prompt Mode and Silent error
 public :
     /*
+    Prompt mode
     normal = 0,
     silent = -1,
     prompt = 2,
@@ -171,12 +172,20 @@ public :
     step = 4,
     step7 = 7
     */
+
+    /*
+       show = 0
+       silent = 1
+    */
 private :
     static int m_iPromptMode;
+    static int m_iSilentError;
 
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
+    static void setSilentError(int _iSilentError);
+    static int getSilentError(void);
 
     //Thread List
 

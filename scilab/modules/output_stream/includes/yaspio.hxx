@@ -30,9 +30,12 @@ OUTPUT_STREAM_IMPEXP void setYaspInputMethod(YASP_INPUT reader);
 
 OUTPUT_STREAM_IMPEXP char *YaspRead();
 
-OUTPUT_STREAM_IMPEXP void YaspWrite(const char* text);
+OUTPUT_STREAM_IMPEXP void YaspWrite(const char* _pstText);
 
-OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* text);
+OUTPUT_STREAM_IMPEXP void YaspWriteW(const wchar_t* _pwstText);
+
+OUTPUT_STREAM_IMPEXP void YaspError(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void YaspErrorW(const wchar_t* _pwstText);
 
 #ifdef __cplusplus
 }

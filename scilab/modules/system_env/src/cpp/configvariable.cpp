@@ -352,6 +352,7 @@ std::wstring ConfigVariable::getLastErrorFunction()
 */
 
 int ConfigVariable::m_iPromptMode = 0;
+int ConfigVariable::m_iSilentError = 0;
 
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
@@ -361,6 +362,16 @@ void ConfigVariable::setPromptMode(int _iPromptMode)
 int ConfigVariable::getPromptMode(void)
 {
     return m_iPromptMode;
+}
+
+void ConfigVariable::setSilentError(int _iSilentError)
+{
+    m_iSilentError = _iSilentError;
+}
+
+int ConfigVariable::getSilentError(void)
+{
+    return m_iSilentError;
 }
 
 /*

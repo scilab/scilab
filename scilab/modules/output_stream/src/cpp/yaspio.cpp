@@ -12,10 +12,10 @@
 
 
 #include "yaspio.hxx"
-#include "promptmode.h"
 
 extern "C"
 {
+#include "promptmode.h"
 #include <stdio.h>
 #include "charEncoding.h"
 #include "MALLOC.h"
@@ -36,8 +36,17 @@ void setYaspInputMethod(YASP_INPUT reader)
     _reader = reader;
 }
 
+static void YaspPrint(const char* _pstText)
+{
+    wchar_t* pwstTemp = to_wide_string(_pstText);
+    diaryWrite(pwstTemp, FALSE);
+    FREE(pwstTemp);
+    (*_writer)(const_cast<char*>(_pstText));
+}
+
 char *YaspRead()
 {
+    //call reader
     char* pstTemp = (*_reader)();
 
     //add prompt to diary
@@ -55,26 +64,38 @@ char *YaspRead()
     return pstTemp;
 }
 
-void YaspWrite(const char* text)
+void YaspWrite(const char* _pstText)
 {
-    int iMode =  getPromptMode();
-    char sz[256];
-
-    //sprintf(sz, "getPromptMode() -> %d", iMode);
-    //MessageBoxA(NULL, sz, NULL, 0);
-
-    if(iMode != PROMPTMODE_SILENT)
+    if(getPromptMode() != PROMPTMODE_SILENT)
     {
-        wchar_t* pwstTemp = to_wide_string(text);
-        diaryWrite(pwstTemp, FALSE);
-        FREE(pwstTemp);
-        (*_writer)(const_cast<char*>(text));
+        YaspPrint(const_cast<char*>(_pstText));
     }
 }
 
-void YaspWriteW(const wchar_t* text)
+void YaspWriteW(const wchar_t* _pwsText)
 {
-    char* pstTemp = wide_string_to_UTF8(text);
-    YaspWrite(pstTemp);
-    FREE(pstTemp);
+    if(getPromptMode() != PROMPTMODE_SILENT)
+    {
+        char* pstTemp = wide_string_to_UTF8(_pwsText);
+        YaspWrite(pstTemp);
+        FREE(pstTemp);
+    }
+}
+
+void YaspError(const char* _pstText)
+{
+    if(getSilentError() == VERBOSE_ERROR)
+    {
+        YaspPrint(const_cast<char*>(_pstText));
+    }
+}
+
+void YaspErrorW(const wchar_t* _pwsText)
+{
+    if(getSilentError() == VERBOSE_ERROR)
+    {
+        char* pstTemp = wide_string_to_UTF8(_pwsText);
+        YaspPrint(pstTemp);
+        FREE(pstTemp);
+    }
 }

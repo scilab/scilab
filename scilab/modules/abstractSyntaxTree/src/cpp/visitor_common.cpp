@@ -19,6 +19,7 @@
 #include "callexp.hxx"
 #include "struct.hxx"
 #include "context.hxx"
+#include "execvisitor.hxx"
 
 #include "alltypes.hxx"
 
@@ -28,8 +29,12 @@ bool bConditionState(types::InternalType *_pITResult)
         _pITResult->getAs<types::Double>()->isComplex() == false)
 	{
 		types::Double *pR = _pITResult->getAs<types::Double>();
-		double *pReal = pR->getReal();
+        if(pR->isEmpty())
+        {//[]
+            return false;
+        }
 
+		double *pReal = pR->getReal();
 		for(int i = 0 ; i < pR->getSize() ; i++)
 		{
 			if(pReal[i] == 0)
@@ -530,4 +535,17 @@ types::Struct* getStructFromExp(const Exp* _pExp)
     }
     // FIXME
     return NULL;
+}
+
+void callOnPrompt(void)
+{
+    types::InternalType* pOnPrompt = NULL;
+    pOnPrompt = symbol::Context::getInstance()->get(symbol::Symbol(L"%onprompt"));
+    if(pOnPrompt != NULL && pOnPrompt->isCallable())
+    {
+        types::typed_list in;
+        types::typed_list out;
+        ExecVisitor execCall;
+        pOnPrompt->getAs<types::Callable>()->call(in, 1, out, &execCall);
+    }
 }

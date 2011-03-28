@@ -6,3 +6,4 @@ getScilabMode
 getWarningMode
 setLastError
 getPromptMode
+getSilentError

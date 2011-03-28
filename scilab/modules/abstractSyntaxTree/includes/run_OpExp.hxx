@@ -40,9 +40,8 @@ void visitprivate(const OpExp &e)
             ImplicitList* pIL = pITL->getAsImplicitList();
             if(pIL->isComputable())
             {
-                InternalType *pIT = pIL->extractFullMatrix();
-                execMeL.result_set(pIT);
-                TypeL = pIT->getType();
+                pITL = pIL->extractFullMatrix();
+                TypeL = pITL->getType();
             }
         }
 
@@ -51,9 +50,8 @@ void visitprivate(const OpExp &e)
             ImplicitList* pIL = pITR->getAsImplicitList();
             if(pIL->isComputable())
             {
-                InternalType *pIT = pIL->extractFullMatrix();
-                execMeR.result_set(pIT);
-                TypeR = pIT->getType();
+                pITR = pIL->extractFullMatrix();
+                TypeR = pITR->getType();
             }
         }
 
