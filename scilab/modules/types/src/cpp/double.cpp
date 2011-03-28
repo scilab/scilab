@@ -14,10 +14,14 @@
 #include <math.h>
 #include "double.hxx"
 #include "tostring_common.hxx"
+#include "scilabexception.hxx"
 
 extern "C"
 {
-	#include "elem_common.h"
+#include "elem_common.h"
+#include "localization.h"
+#include "charEncoding.h"
+#include "os_swprintf.h"
 }
 
 using namespace std;
@@ -708,7 +712,28 @@ namespace types
 
     double* Double::allocData(int _iSize)
     {
-        return new double[_iSize];
+        double* pDbl = NULL;
+        try
+        {
+            if(_iSize < 0)
+            {
+                m_pRealData = NULL;m_pImgData = NULL;
+                char message[bsiz];
+                sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
+                throw(ast::ScilabError(message));
+            }
+            else
+            {
+                pDbl = new double[_iSize];
+            }
+        }
+        catch (std::bad_alloc &e)
+        {
+            char message[bsiz];
+            sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
+            throw(ast::ScilabError(message));
+        }
+        return pDbl;
     }
 
 	bool Double::append(int _iRows, int _iCols, Double *_poSource)
