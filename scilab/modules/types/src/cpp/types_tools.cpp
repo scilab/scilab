@@ -75,7 +75,12 @@ namespace types
             else if(pIT->getAs<types::Polynom>())
             {//$
                 Polynom* pMP = pIT->getAs<types::Polynom>();
-                int iMaxDim     = _pRef->getAsGenericType()->getVarMaxDim(i, iDims);
+                int iMaxDim     = 0;
+                //if pRef == NULL, use 0 insteadof, to allow a($+1) on new variable
+                if(_pRef)
+                {
+                    iMaxDim     = _pRef->getAsGenericType()->getVarMaxDim(i, iDims);
+                }
                 Double dbl(iMaxDim); // $
                 pCurrentArg = pMP->evaluate(&dbl);
             }
