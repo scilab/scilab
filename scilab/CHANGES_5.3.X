@@ -182,7 +182,9 @@ Bug fixes:
 * bug 9250 fixed - mkdir used to display a wrong message when called with
                    2 inputs arguments.
 
-* bug 9264 fixed - Big loss of performance on mputl.
+* bug 9264 fixed - Big loss of performance on some string management functions
+                   in api_scilab (example: on mputl).
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
