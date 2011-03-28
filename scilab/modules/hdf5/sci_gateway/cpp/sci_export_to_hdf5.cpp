@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
 
     if(in.size() < 2)
     {
-        //error
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): At least %d expected.\n"), L"export_to_hdf5", 2);
         return types::Function::Error;
     }
 

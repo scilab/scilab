@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_import_from_hdf5(types::typed_list &in, int _iR
 
     if(in.size() != 1)
     {
-        //error
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"import_from_hdf5", 1);
         return types::Function::Error;
     }
 
