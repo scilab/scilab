@@ -709,8 +709,8 @@ namespace types
         {
             wstring szExp, szCoef;
 
-            _piDims[0] = 0;
-            _piDims[1] = i;
+            _piDims[0] = i;
+            _piDims[1] = 0;
             int iPos = getIndex(_piDims);
             if(_bComplex)
             {
@@ -836,6 +836,10 @@ namespace types
 
     SinglePoly* Polynom::copyValue(SinglePoly* _pData)
     {
+        if(_pData == NULL)
+        {
+            return NULL;
+        }
         return _pData->clone();
     }
 
