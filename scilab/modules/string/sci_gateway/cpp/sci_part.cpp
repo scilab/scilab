@@ -78,7 +78,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
-    if(!((pD->getRows() == 1 && pD->getCols() >= 1) || (pD->getRows() >= 1 && pD->getCols() == 1)))
+    if(pD->isVector() == false)
     {//non vector
         ScierrorW(999, _W("%ls: Wrong size for input argument #%d: A vector expected.\n"), L"part", 2);
         return Function::Error;
