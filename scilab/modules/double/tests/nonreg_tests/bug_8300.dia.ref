@@ -20,5 +20,3 @@ if execstr("a(48400, 48400) = 0;", "errcatch") == 0 then bugmes();quit;end
 X = 10;
 if execstr("a(48400, 48400) = X;", "errcatch") == 0 then bugmes();quit;end
 clear X;
-stacksize('max');
-<--Error on the test script file
