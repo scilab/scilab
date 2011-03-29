@@ -76,22 +76,31 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        if(iRhs == 1)
-        {
+        if(iRhs == 0 && _iRetCount == 1)
+        {//arng() returns lhs
+            out.push_back(pOut);
+        }
+        else if(iRhs == 0 && _iRetCount == 2)
+        {//[a,b] = arng() returns lhs and rhs
+            out.push_back(pOut);
+            out.push_back(pIn);
+        }
+        else if(iRhs == 1)
+        {//argn(x)
             double dblVal = in[0]->getAs<Double>()->getReal(0,0);
             if(dblVal == 1)
-            {
+            {//x == 1 returns lhs
                 out.push_back(pOut);
             }
             else if(dblVal == 2)
-            {
+            {//x == 2returns rhs
                 out.push_back(pIn);
             }
             else if(dblVal == 0)
-            {
+            {//x == 0 returns lhs
                 out.push_back(pOut);
                 if(_iRetCount == 2)
-                {
+                {//[a,b] = argn(0) returns lhs ans rhs
                     out.push_back(pIn);
                 }
             }
@@ -100,11 +109,6 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"), "argn", 1, "0", "1", "2");
                 return Function::Error;
             }
-        }
-        else
-        {
-            out.push_back(pOut);
-            out.push_back(pIn);
         }
     }
 
