@@ -19,35 +19,34 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
 
-import javax.swing.text.Caret;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.View;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
@@ -66,6 +65,8 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                                              CaretListener, MouseListener,
                                                              MouseMotionListener, Cloneable,
                                                              KeyListener {
+
+    private static final long serialVersionUID = 4322071415211939097L;
 
     private static final String TIRET = " - ";
     private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
@@ -104,7 +105,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean suppressCom = true;
 
     private SciNotesLineNumberPanel xln;
-    private JSplitPane split;
     private ScilabEditorPane rightTextPane;
     private UUID uuid;
 
@@ -1300,7 +1300,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
 
             int pos = text.indexOf(word, 0);
-            int end = text.length();
             int len = word.length();
             Highlighter highlighter = getHighlighter();
             while (pos != -1) {

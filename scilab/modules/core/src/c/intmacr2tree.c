@@ -472,7 +472,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     switch(data[*index2]) {
     case 0: /* Deleted operation */
         /* This code is ignored */
-        *index2 += data[*index2+1]-1;;
+        *index2 += data[*index2+1]-1;
         break;
     case 1: /* Stack put (Obsolete) */
         CreateEqualTList("code1",data,index2);

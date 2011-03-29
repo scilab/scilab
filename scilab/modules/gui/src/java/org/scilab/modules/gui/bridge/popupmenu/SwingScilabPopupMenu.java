@@ -36,7 +36,6 @@ import org.scilab.modules.gui.utils.Size;
 public class SwingScilabPopupMenu extends JComboBox implements SimplePopupMenu {
 
 	private static final long serialVersionUID = -4366581303317502544L;
-
 	private CallBack callback;
 	
 	/**

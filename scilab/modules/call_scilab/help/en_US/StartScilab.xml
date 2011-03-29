@@ -29,8 +29,7 @@
   </refnamediv>
 
   <refsynopsisdiv>
-    <synopsis>BOOL StartScilab(char *SCIpath, char *ScilabStartup, int
-    *Stacksize);</synopsis>
+    <synopsis>BOOL StartScilab(char *SCIpath, char *ScilabStartup, int *Stacksize);</synopsis>
   </refsynopsisdiv>
 
   <refsection>

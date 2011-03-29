@@ -190,7 +190,7 @@ public abstract class ExportRenderer implements GLEventListener {
 			/* Transform the array to vector to have access to search methods*/
 
 			ArrayList<String> extensionsAllowedV = new ArrayList<String>(Arrays.asList(extensionsAllowed));
-			ArrayList<Integer> fileTypeAllowedV = new ArrayList(Arrays.asList(fileTypeAllowed));
+			ArrayList<Integer> fileTypeAllowedV = new ArrayList<Integer>(Arrays.asList(fileTypeAllowed));
 
 			if (extensionsAllowedV.contains(suffix) && fileTypeAllowedV.contains(this.fileType)){
 				this.fileName = this.fileName.substring(0, pos); /* Physically removed the extension */

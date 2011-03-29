@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),Y
-(,U,tol,printw,ldwork))</synopsis>
+    <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>

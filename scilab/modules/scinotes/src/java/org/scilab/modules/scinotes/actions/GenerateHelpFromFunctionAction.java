@@ -33,6 +33,8 @@ import org.scilab.modules.scinotes.FunctionScanner;
  */
 public class GenerateHelpFromFunctionAction extends DefaultAction {
 
+    private static final long serialVersionUID = 5008914832562621484L;
+
     /**
      * The help template
      */

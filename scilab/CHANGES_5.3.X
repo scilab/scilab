@@ -42,10 +42,15 @@ Xcos:
   - GENSIM_f - Sine wave generator
   - STEP_FUNCTION - Step Function
   - SAWTOOTH_f - Sawtooth generator
+  - TEXT_f - Free annotation
   - Counter
   - RAMP
 
+* bug 5605 fixed - REGISTER block was not present into the discrete palette.
+
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
+
+* bug 7479 fixed - The diagram did not update its origin on block moving.
 
 * bug 8692 fixed - Null block parameters was not checked before encoding.
 
@@ -120,6 +125,9 @@ Bug fixes:
 * bug 5687 fixed - The window title of a figure was not immediately updated when
                    figure_name was changed.
 
+* bug 6945 fixed - Conflicting options were confusing Scilab argument processing
+                   (example: scilab-cli with the -nw option)
+
 * bug 7954 fixed - Using TCL_EvalStr randomly froze Scilab.
 
 * bug 7976 fixed - help/cleaner_help.sce was not called when cleaning a toolbox.
@@ -170,6 +178,15 @@ Bug fixes:
 * bug 9200 fixed - perl.sci script crashed on Windows with a wrong error message.
 
 * bug 9211 fixed - set("userdata", list()) crashed Scilab.
+
+* bug 9246 fixed - It was not possible to insert an integer in an integer array
+                   with a different integer type
+
+* bug 9250 fixed - mkdir used to display a wrong message when called with
+                   2 inputs arguments.
+
+* bug 9264 fixed - Big loss of performance on some string management functions
+                   in api_scilab (example: on mputl).
 
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
@@ -503,6 +520,7 @@ GUI:
 
 * bug 8838 fixed - uimenu without input argument crashed Scilab.
 
+* bug 9044 fixed - Updating a LaTeXed label of uimenu() misworked.
 
 Statistics:
 ==========

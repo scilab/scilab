@@ -780,7 +780,6 @@ public final class FindAction extends DefaultAction {
      */
     protected void updateFindReplaceButtonStatus() {
         String textFind = (String) comboFind.getEditor().getItem();
-        String textReplace = (String) comboReplace.getEditor().getItem();
         if (textFind.compareTo("") != 0) {
             buttonFind.setEnabled(true);
             buttonReplace.setEnabled(true);
@@ -989,7 +988,6 @@ public final class FindAction extends DefaultAction {
         setPreviousSearch(wordToFind);
 
         JEditorPane scinotesTextPane = getEditor().getTextPane();
-        Document doc = scinotesTextPane.getDocument();
 
         if (generateOffsets()) {
             addHighlighters(false);
@@ -1085,8 +1083,6 @@ public final class FindAction extends DefaultAction {
      * replaceText
      */
     private void replaceText() {
-        boolean forwardSearch = radioForward.isSelected();
-        boolean backwardSearch = radioBackward.isSelected();
         boolean caseSensitive = checkCase.isSelected();
         boolean wholeWord = checkWhole.isSelected() && checkWhole.isEnabled();
         boolean useRegexp = checkRegular.isSelected();
