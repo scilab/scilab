@@ -721,7 +721,9 @@ namespace types
                 m_pRealData = NULL;m_pImgData = NULL;
                 char message[bsiz];
                 sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
-                throw(ast::ScilabError(message));
+                ast::ScilabError se(message);
+                se.SetErrorNumber(999);
+                throw(se);
             }
             else
             {
@@ -732,7 +734,9 @@ namespace types
         {
             char message[bsiz];
             sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
-            throw(ast::ScilabError(message));
+            ast::ScilabError se(message);
+            se.SetErrorNumber(999);
+            throw(se);
         }
         return pDbl;
     }
