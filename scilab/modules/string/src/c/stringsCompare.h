@@ -16,6 +16,8 @@
 #define __STRINGSCOMPARE_H__
 
 #include "BOOL.h"
+#include <wchar.h>
+#include "dynlib_string.h"
 
 /** 
 * Compare strings matrix
@@ -26,7 +28,7 @@
 * @param[in] BOOL to do stricmp
 * @return a int matrix (result of strcmp)
 */
-int * stringsCompare(char **Input_String_One,int dim_One,char **Input_String_Two,int dim_Two,BOOL dostricmp);
+STRING_IMPEXP int * stringsCompare(wchar_t **Input_String_One,int dim_One,wchar_t **Input_String_Two,int dim_Two,BOOL dostricmp);
 
 #endif /* __STRINGSCOMPARE_H__ */
 /*--------------------------------------------------------------------------*/

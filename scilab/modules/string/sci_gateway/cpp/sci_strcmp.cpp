@@ -22,18 +22,24 @@ extern "C"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "BOOL.h"
+#include "stringsCompare.h"
 }
 
+#define CHAR_I 'i'
+#define CHAR_S 's'
 
 types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::String* pOutString   = NULL;
-    types::String* pString      = NULL;
-    types::String* pStrSample   = NULL;
-       
-    if(in.size() != 2)
+    types::Double* pOutDouble   = NULL;
+    types::String* pString1     = NULL;
+    types::String* pString2     = NULL;
+    wchar_t* pwcChar3           = NULL;
+    BOOL do_stricmp             = FALSE;
+    
+    if(in.size() < 2 || in.size() > 3)
     {
-        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d expected.\n"), L"strcmp", 2);
+        ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"strcmp", 2, 3);
         return types::Function::Error;
     }    
     if(_iRetCount != 1)
@@ -52,22 +58,49 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
 		return types::Function::Error;
 	}
 
-    pString     = in[0]->getAs<types::String>();
-    pStrSample  = in[1]->getAs<types::String>();
+    pString1 = in[0]->getAs<types::String>();
+    pString2 = in[1]->getAs<types::String>();
 
-  
+
     
-    if(pString->getSize() != pStrSample->getSize() && pStrSample->isScalar() == false)
+    if(pString1->getSize() != pString2->getSize() && pString2->isScalar() == false)
     {
         ScierrorW(999,_W("%ls: Wrong size for input argument #%d.\n"),L"strcmp", 2);
         return types::Function::Error;
     }
     
-    pOutString  = new types::String(pString->getDims(), pString->getDimsArray());
-
+    if(in.size() == 3)   
+    {
+        if(in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false || wcslen(in[2]->getAs<types::String>()->get(0)) != 1)
+	    {
+		    ScierrorW(999,_W("%ls: Wrong type for input argument #%d: Char expected.\n"),L"strcmp", 3);
+		    return types::Function::Error;
+	    }
+	    
+	    pwcChar3 = in[2]->getAs<types::String>()->get(0);
+	    if ( (pwcChar3[0] != CHAR_I) && (pwcChar3[0] != CHAR_S))
+		{
+			ScierrorW(999,_W("%ls: Wrong value for input argument #%d: %s or %s expected.\n"),L"strcmp", 3,"'i' (stricmp)","'s' (strcmp)");
+			return types::Function::Error;	
+		}
+		
+        if (pwcChar3[0] == CHAR_I) do_stricmp = TRUE;
+    }
+    
+	int *values = stringsCompare(pString1->get(),pString1->getSize(),pString2->get(),pString2->getSize(),do_stricmp);
+	
+	if (values)
+	{
+        pOutDouble  = new types::Double(pString1->getDims(), pString1->getDimsArray());
+        pOutDouble->setInt(values);
+    }
+    else
+    {
+        ScierrorW(999,_W("%ls : No more memory.\n"),L"strcmp");
+    }
 
     
-    out.push_back(pOutString);
+    out.push_back(pOutDouble);
     return types::Function::OK;
 }
 

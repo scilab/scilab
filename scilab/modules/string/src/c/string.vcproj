@@ -376,10 +376,6 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 			>
 			<File
-				RelativePath=".\code2str.c"
-				>
-			</File>
-			<File
 				RelativePath=".\convstr.c"
 				>
 			</File>
@@ -488,10 +484,6 @@
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl"
 			>
-			<File
-				RelativePath=".\code2str.h"
-				>
-			</File>
 			<File
 				RelativePath=".\convstr.h"
 				>

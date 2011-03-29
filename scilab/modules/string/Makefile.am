@@ -5,7 +5,7 @@
 
 STRING_CPP_SOURCES = src/cpp/stripblanks.cpp
 
-STRING_C_SOURCES = src/c/code2str.c \
+STRING_C_SOURCES = \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \

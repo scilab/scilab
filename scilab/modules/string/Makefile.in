@@ -109,8 +109,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscistring_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscistring_algo_la_LIBADD =
-am__objects_1 = libscistring_algo_la-code2str.lo \
-	libscistring_algo_la-convstr.lo \
+am__objects_1 = libscistring_algo_la-convstr.lo \
 	libscistring_algo_la-men_Sutils.lo \
 	libscistring_algo_la-tokens.lo \
 	libscistring_algo_la-strcatfunction.lo \
@@ -460,7 +459,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 STRING_CPP_SOURCES = src/cpp/stripblanks.cpp
-STRING_C_SOURCES = src/c/code2str.c \
+STRING_C_SOURCES = \
 src/c/convstr.c \
 src/c/men_Sutils.c \
 src/c/tokens.c \
@@ -726,7 +725,6 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-InitializeString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-StringConvert.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-code2str.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-convstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-cvstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscistring_algo_la-getfastcode.Plo@am__quote@
@@ -797,13 +795,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
-
-libscistring_algo_la-code2str.lo: src/c/code2str.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-code2str.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-code2str.Tpo -c -o libscistring_algo_la-code2str.lo `test -f 'src/c/code2str.c' || echo '$(srcdir)/'`src/c/code2str.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscistring_algo_la-code2str.Tpo $(DEPDIR)/libscistring_algo_la-code2str.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/code2str.c' object='libscistring_algo_la-code2str.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -c -o libscistring_algo_la-code2str.lo `test -f 'src/c/code2str.c' || echo '$(srcdir)/'`src/c/code2str.c
 
 libscistring_algo_la-convstr.lo: src/c/convstr.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscistring_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscistring_algo_la_CFLAGS) $(CFLAGS) -MT libscistring_algo_la-convstr.lo -MD -MP -MF $(DEPDIR)/libscistring_algo_la-convstr.Tpo -c -o libscistring_algo_la-convstr.lo `test -f 'src/c/convstr.c' || echo '$(srcdir)/'`src/c/convstr.c
