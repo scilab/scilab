@@ -112,6 +112,8 @@ Compilation:
 
 * g77 is no longer supported. gfortran is replacing it.
 
+* Explicit check Java version (at least 1.6)
+
 * Bug 7049 fixed - jgraphx version was checked even if the --without-xcos
                    flag is set.
 

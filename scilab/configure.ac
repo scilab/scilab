@@ -765,6 +765,14 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
      # by the above --with options
      AC_JAVA_WITH_JDK
      AC_JAVA_DETECT_JVM
+     case "$ac_java_jvm_version" in
+        1.6 | 1.7)
+        ;;
+        *)
+            AC_MSG_ERROR([Wrong version of Java. Expected at least 1.6. Found $ac_java_jvm_version])
+        ;;
+     esac
+
    if test "$ac_java_jvm_name" = "jdk"; then
         JAVA_HOME=$ac_java_jvm_dir
         JAVA_VERSION=$ac_java_jvm_version

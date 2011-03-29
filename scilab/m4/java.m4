@@ -202,7 +202,7 @@ EOF
 #
 # VARIABLES SET:
 #	JAVAC
-#	ac_java_jvm_version can be set to 1.4, or 1.5
+#	ac_java_jvm_version can be set to 1.4, 1.5 or 1.6
 #	ac_java_jvm_dir can be set to the jvm's root directory
 #
 # DEPENDS ON:
@@ -281,6 +281,10 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
     # The class java.lang.StringBuilder is new to 1.5
 
     AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , "no", ac_java_jvm_version=1.5)
+
+    # The class java.util.ArrayDeque is new to 1.6
+
+    AC_JAVA_TRY_COMPILE([import java.util.ArrayDeque;], , "no", ac_java_jvm_version=1.6)
 
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
