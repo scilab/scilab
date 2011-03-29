@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
         {
             j = i; /* Input parameter One & two have same dimension */
         }
-        int iLen = wcslen(pCharSample->get(j));
+        int iLen = (int)wcslen(pCharSample->get(j));
         if(iLen != 1)
         {
     		ScierrorW(999,_W("%ls: Wrong type for input argument #%d: Char(s) expected.\n"),L"strrchr", 2);

@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
 
         if(pDouble->get(j) < wcslen(pString->get(i)))
         {
-            int iLen = pDouble->get(j);
+            int iLen = (int)pDouble->get(j);
             if(iLen < 0)
             {
                 iLen = 0;
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_strncpy(types::typed_list &in, int _iRetCount, 
         }
         else
         {
-            int iLen = wcslen(pString->get(i));
+            int iLen = (int)wcslen(pString->get(i));
             wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * (iLen + 1));
             sizeOfCopy = iLen;
         }

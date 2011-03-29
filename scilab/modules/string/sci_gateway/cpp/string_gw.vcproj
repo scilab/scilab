@@ -341,6 +341,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_isletter.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_length.cpp"
 				>
 			</File>
@@ -358,6 +362,14 @@
 			</File>
 			<File
 				RelativePath=".\sci_strchr.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strcmp.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strcspn.cpp"
 				>
 			</File>
 			<File
@@ -385,6 +397,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_strspn.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_strstr.cpp"
 				>
 			</File>
@@ -394,6 +410,14 @@
 			</File>
 			<File
 				RelativePath=".\sci_strtod.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_strtok.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\sci_tokens.cpp"
 				>
 			</File>
 			<File

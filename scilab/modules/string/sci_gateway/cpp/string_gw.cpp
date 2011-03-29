@@ -38,5 +38,12 @@ bool StringModule::Load()
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strstr", &sci_strstr, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strrev", &sci_strrev, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strtod", &sci_strtod, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"tokens", &sci_tokens, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcmp", &sci_strcmp, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"isletter", &sci_isletter, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strcspn", &sci_strcspn, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strtok", &sci_strtok, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(types::Function::createFunction(L"strspn", &sci_strspn, MODULE_NAME));
+                
     return true;
 }

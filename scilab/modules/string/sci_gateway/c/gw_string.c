@@ -21,34 +21,34 @@ static gw_generic_table Tab[] =
 {
 	{NULL, ""}, //length
 	{NULL, ""}, //part
-	{NULL,""}, //string
-	{NULL,""}, //convstr
+	{NULL, ""}, //string
+	{NULL, ""}, //convstr
 	{NULL, ""}, //emptystr
-	{NULL,""}, //str2code
-	{sci_code2str,"code2str"}, //5
-	{NULL ,""}, //strcat
+	{NULL, ""}, //str2code
+	{NULL, ""}, //5 code2str
+	{NULL, ""}, //strcat
 	{NULL, ""}, //strindex
 	{NULL, ""}, //strsubst
 	{NULL, ""}, //ascii
 	{NULL, ""}, //grep
-	{sci_tokens,"tokens"}, //2
+	{NULL, ""}, //2 tokens
 	{NULL, ""}, //strsplit
 	{NULL, ""}, //stripblank
-	{sci_strcmp,"strcmp"}, //3
-	{sci_isletter,"isletter"}, //4
+	{NULL, ""}, //3 strcmp
+	{NULL, ""}, //4 isletter
 	{NULL, ""}, //isdigit
-	{NULL ,""}, //isalphanum
+	{NULL, ""}, //isalphanum
 	{NULL, ""}, //isascii
-	{sci_strcspn,"strcspn"}, //4
+	{NULL, ""}, //4 strcspn
 	{NULL, ""}, //strncpy
-	{NULL,""}, //1 strrchr
-	{NULL,""}, //1 strchr
-	{NULL,""}, //1 strstr
-	{NULL,""}, //1 strrev
-	{sci_strtok,"strtok"}, //2
-	{sci_strspn,"strspn"}, //4
-	{NULL,""}, //1 strtod
-	{NULL, ""} //regexp
+	{NULL, ""}, //1 strrchr
+	{NULL, ""}, //1 strchr
+	{NULL, ""}, //1 strstr
+	{NULL, ""}, //1 strrev
+	{NULL, ""}, //2 strtok
+	{NULL, ""}, //4 strspn
+	{NULL, ""}, //1 strtod
+	{NULL, ""}  //regexp
 };
 /*--------------------------------------------------------------------------*/
 int gw_string(void)

@@ -18,20 +18,21 @@
 
 #include <wchar.h>
 #include "BOOL.h"
+#include "dynlib_string.h"
 
 /**
 * array elements that are alphabetic letters
 * @param[in] a string
 * @return BOOL array 
 */
-BOOL *isletter(char *input_string, int *sizeArray);
+STRING_IMPEXP BOOL *isletter(char *input_string, int *sizeArray);
 
 /**
 * array elements that are alphabetic letters
 * @param[in] a string
 * @return BOOL array 
 */
-BOOL *isletterW(wchar_t *wcInput_string, int *sizeArray);
+STRING_IMPEXP BOOL *isletterW(wchar_t *wcInput_string, int *sizeArray);
 
 #endif /* __ISLETTER_H__ */
 /*--------------------------------------------------------------------------*/

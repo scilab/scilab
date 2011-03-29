@@ -432,10 +432,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_code2str.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_isalphanum.c"
 				>
 			</File>
@@ -448,35 +444,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\c\sci_isletter.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_str2code.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_strcmp.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_strcspn.c"
-				>
-			</File>
-			<File
 				RelativePath="..\..\sci_gateway\c\sci_strsplit.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_strspn.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_strtok.c"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\c\sci_tokens.c"
 				>
 			</File>
 			<File
@@ -493,10 +461,6 @@
 			</File>
 			<File
 				RelativePath=".\stringsCompare.c"
-				>
-			</File>
-			<File
-				RelativePath=".\stringsstrrchr.c"
 				>
 			</File>
 			<File
@@ -618,10 +582,6 @@
 			</File>
 			<File
 				RelativePath=".\stringsCompare.h"
-				>
-			</File>
-			<File
-				RelativePath=".\stringsstrrchr.h"
 				>
 			</File>
 			<File
