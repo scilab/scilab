@@ -38,7 +38,12 @@ wchar_t* getSCIHOMEW(void)
 /*--------------------------------------------------------------------------*/
 char* getSCIHOME(void)
 {
-    return wide_string_to_UTF8(ConfigVariable::getSCIHOME().c_str());
+    wstring tmpSCIHOME = ConfigVariable::getSCIHOME();
+    if (tmpSCIHOME == L"")
+    {
+        tmpSCIHOME = L"empty_SCIHOME";
+    }
+    return wide_string_to_UTF8(tmpSCIHOME.c_str());
 }
 /*--------------------------------------------------------------------------*/
 void setSCIHOME(const char* _sci_home)
