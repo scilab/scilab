@@ -35,7 +35,7 @@
       <ExplicitOutputPort dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:-7fe6" ordering="1" parent="-7c2c4ba2:128254540b8:-7fe9" style="ExplicitOutputPort;rotation=0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
-      <BasicBlock dependsOnU="1" id="2" interfaceFunctionName="BIGSOM_f" parent="-7c2c4ba2:128254540b8:-8000" simulationFunctionName="sum" simulationFunctionType="TYPE_2" style="BIGSOM_f" value="BIGSOM_f">
+      <BasicBlock dependsOnU="1" id="-7c2c4ba2:128254540b8:2" interfaceFunctionName="BIGSOM_f" parent="-7c2c4ba2:128254540b8:-8000" simulationFunctionName="sum" simulationFunctionType="TYPE_2" style="BIGSOM_f" value="BIGSOM_f">
         <ScilabString as="exprs" height="1" width="1">
           <data column="0" line="0" value="[1;1]"/>
         </ScilabString>
@@ -57,13 +57,13 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="40.0" width="40.0" x="320.0" y="130.0"/>
       </BasicBlock>
-      <ExplicitInputPort dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="3" ordering="1" parent="2" style="ExplicitInputPort;rotation=0">
+      <ExplicitInputPort dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:3" ordering="1" parent="-7c2c4ba2:128254540b8:2" style="ExplicitInputPort;rotation=0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
       </ExplicitInputPort>
-      <ExplicitInputPort dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="4" ordering="2" parent="2" style="ExplicitInputPort;rotation=0">
+      <ExplicitInputPort dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:4" ordering="2" parent="-7c2c4ba2:128254540b8:2" style="ExplicitInputPort;rotation=0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
       </ExplicitInputPort>
-      <ExplicitOutputPort dataLines="-1" dataType="REAL_MATRIX" id="5" ordering="1" parent="2" style="ExplicitOutputPort;rotation=0">
+      <ExplicitOutputPort dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:5" ordering="1" parent="-7c2c4ba2:128254540b8:2" style="ExplicitOutputPort;rotation=0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
       <ExplicitLink id="-7c2c4ba2:128254540b8:-7fe5">
@@ -79,7 +79,7 @@
         <ExplicitOutputPort as="source" dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:-7fe6" ordering="1" parent="-7c2c4ba2:128254540b8:-7fe9" style="ExplicitOutputPort;rotation=0">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
         </ExplicitOutputPort>
-        <ExplicitInputPort as="target" dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="3" ordering="1" parent="2" style="ExplicitInputPort;rotation=0">
+        <ExplicitInputPort as="target" dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="-7c2c4ba2:128254540b8:3" ordering="1" parent="-7c2c4ba2:128254540b8:2" style="ExplicitInputPort;rotation=0">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="6.0"/>
         </ExplicitInputPort>
       </ExplicitLink>

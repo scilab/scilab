@@ -514,7 +514,7 @@
       <ExplicitOutputPort connectedLinkId="6" dataLines="-1" dataType="REAL_MATRIX" id="599d3b18:1285e22c00f:-7f34" ordering="1" parent="599d3b18:1285e22c00f:-7f35" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
-      <BasicBlock blockType="h" id="2" interfaceFunctionName="STEP_FUNCTION" ordering="2" parent="599d3b18:1285e22c00f:-7f38" simulationFunctionName="csuper" simulationFunctionType="DEFAULT" style="mirror=false;STEP_FUNCTION;flip=false" value="STEP_FUNCTION">
+      <BasicBlock blockType="h" id="599d3b18:1285e22c00f:2" interfaceFunctionName="STEP_FUNCTION" ordering="2" parent="599d3b18:1285e22c00f:-7f38" simulationFunctionName="csuper" simulationFunctionType="DEFAULT" style="mirror=false;STEP_FUNCTION;flip=false" value="STEP_FUNCTION">
         <ScilabDouble as="exprs" height="0" width="0"/>
         <Array as="realParameters" scilabClass="ScilabMList">
           <ScilabString height="1" width="4">
@@ -1021,7 +1021,7 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="40.0" width="40.0" x="200.0" y="160.0"/>
       </BasicBlock>
-      <ExplicitOutputPort connectedLinkId="7" dataLines="-1" dataType="REAL_MATRIX" id="3" ordering="1" parent="2" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false">
+      <ExplicitOutputPort connectedLinkId="7" dataLines="-1" dataType="REAL_MATRIX" id="599d3b18:1285e22c00f:3" ordering="1" parent="599d3b18:1285e22c00f:2" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
       <BasicBlock dependsOnU="1" id="599d3b18:1285e22c00f:-7f32" interfaceFunctionName="LOGICAL_OP" ordering="3" parent="599d3b18:1285e22c00f:-7f38" simulationFunctionName="logicalop" simulationFunctionType="C_OR_FORTRAN" style="mirror=false;LOGICAL_OP;flip=false" value="&lt;html&gt;&lt;body&gt; Logical op :&lt;BR&gt;         AND &lt;/body&gt;&lt;/html&gt;">
@@ -1078,7 +1078,7 @@
           </Array>
         </mxGeometry>
         <mxCell as="parent" id="599d3b18:1285e22c00f:-7f38" parent="599d3b18:1285e22c00f:-7f37"/>
-        <ExplicitOutputPort as="source" connectedLinkId="7" dataLines="-1" dataType="REAL_MATRIX" id="3" ordering="1" parent="2" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false">
+        <ExplicitOutputPort as="source" connectedLinkId="7" dataLines="-1" dataType="REAL_MATRIX" id="599d3b18:1285e22c00f:3" ordering="1" parent="599d3b18:1285e22c00f:2" style="mirror=false;ExplicitOutputPort;rotation=0;flip=false">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
         </ExplicitOutputPort>
         <ExplicitInputPort as="target" connectedLinkId="7" dataColumns="1" dataLines="-1" dataType="REAL_MATRIX" id="599d3b18:1285e22c00f:-7f30" ordering="2" parent="599d3b18:1285e22c00f:-7f32" style="mirror=false;ExplicitInputPort;rotation=0;flip=false">

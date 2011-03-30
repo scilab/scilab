@@ -3158,7 +3158,7 @@
       <CommandPort connectedLinkId="20" dataType="REAL_MATRIX" id="-7ea004eb:12577f592d7:-6f34" ordering="2" parent="fa5a0fb:12507670d3c:-7b79" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="0.666666666666667" y="7.0"/>
       </CommandPort>
-      <CommandPort connectedLinkId="19" dataType="REAL_MATRIX" id="0" ordering="1" parent="fa5a0fb:12507670d3c:-7b79" visible="0">
+      <CommandPort connectedLinkId="19" dataType="REAL_MATRIX" id="fa5a0fb:12507670d3c:-7b790" ordering="1" parent="fa5a0fb:12507670d3c:-7b79" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-1.6666666666666665" y="7.0"/>
       </CommandPort>
       <SplitBlock connectable="0" dependsOnU="1" id="fa5a0fb:12507670d3c:-7b78" interfaceFunctionName="SPLIT_f" ordering="10" parent="fa5a0fb:12507670d3c:-7bd2" simulationFunctionName="lsplit" simulationFunctionType="DEFAULT" style="SPLIT_f;direction=east" value="SPLIT_f" vertex="1" visible="1">

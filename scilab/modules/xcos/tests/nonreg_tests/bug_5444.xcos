@@ -989,7 +989,7 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="40.0" width="40.0" x="80.0" y="130.0"/>
       </ConstBlock>
-      <ExplicitOutputPort connectedLinkId="11" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="2" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6a" style="ExplicitOutputPort;direction=east">
+      <ExplicitOutputPort connectedLinkId="11" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:2" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6a" style="ExplicitOutputPort;direction=east">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
       <ConstBlock blockType="d" connectable="0" id="364ddb07:1250d7c0d3b:-7b69" interfaceFunctionName="CONST_m" ordering="4" parent="364ddb07:1250d7c0d3b:-7bdb" simulationFunctionName="cstblk4" simulationFunctionType="C_OR_FORTRAN" style="CONST_m;direction=east" value="3" vertex="1" visible="1">
@@ -1015,7 +1015,7 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="40.0" width="40.0" x="80.0" y="200.0"/>
       </ConstBlock>
-      <ExplicitOutputPort connectedLinkId="12" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="4" ordering="1" parent="364ddb07:1250d7c0d3b:-7b69" style="ExplicitOutputPort;direction=east">
+      <ExplicitOutputPort connectedLinkId="12" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:4" ordering="1" parent="364ddb07:1250d7c0d3b:-7b69" style="ExplicitOutputPort;direction=east">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
       </ExplicitOutputPort>
       <AfficheBlock connectable="0" dependsOnU="1" hashCode="537213931" id="364ddb07:1250d7c0d3b:-7b68" interfaceFunctionName="AFFICH_m" ordering="5" parent="364ddb07:1250d7c0d3b:-7bdb" simulationFunctionName="affich2" simulationFunctionType="C_OR_FORTRAN" style="AFFICH_m;direction=east" value="0.00" vertex="1" visible="1">
@@ -1101,13 +1101,13 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="90.0" width="20.0" x="180.0" y="120.0"/>
       </BasicBlock>
-      <ExplicitInputPort connectedLinkId="10" dataLines="-1" dataType="REAL_MATRIX" id="6" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
+      <ExplicitInputPort connectedLinkId="10" dataLines="-1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:6" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="18.5"/>
       </ExplicitInputPort>
-      <ExplicitInputPort connectedLinkId="11" dataLines="-2" dataType="REAL_MATRIX" id="7" ordering="2" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
+      <ExplicitInputPort connectedLinkId="11" dataLines="-2" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:7" ordering="2" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="41.0"/>
       </ExplicitInputPort>
-      <ExplicitOutputPort connectedLinkId="9" dataType="REAL_MATRIX" id="8" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitOutputPort;direction=east">
+      <ExplicitOutputPort connectedLinkId="9" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:8" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitOutputPort;direction=east">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="20.0" y="41.0"/>
       </ExplicitOutputPort>
       <ExplicitInputPort connectedLinkId="12" dataLines="-3" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:-7b5c" ordering="3" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
@@ -1116,7 +1116,7 @@
       <ExplicitLink id="364ddb07:1250d7c0d3b:-7b63">
         <mxGeometry as="geometry" relative="1"/>
         <mxCell as="parent" id="364ddb07:1250d7c0d3b:-7bdb" parent="364ddb07:1250d7c0d3b:-7bda"/>
-        <ExplicitOutputPort as="source" connectedLinkId="9" dataType="REAL_MATRIX" id="8" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitOutputPort;direction=east">
+        <ExplicitOutputPort as="source" connectedLinkId="9" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:8" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitOutputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="20.0" y="41.0"/>
         </ExplicitOutputPort>
         <ExplicitInputPort as="target" connectedLinkId="9" dataColumns="-2" dataLines="-1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:-7b6d" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6e" style="ExplicitInputPort;direction=east">
@@ -1129,24 +1129,24 @@
         <ExplicitOutputPort as="source" connectedLinkId="10" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:-7fd4" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6b" style="ExplicitOutputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
         </ExplicitOutputPort>
-        <ExplicitInputPort as="target" connectedLinkId="10" dataLines="-1" dataType="REAL_MATRIX" id="6" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
+        <ExplicitInputPort as="target" connectedLinkId="10" dataLines="-1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:6" ordering="1" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="18.5"/>
         </ExplicitInputPort>
       </ExplicitLink>
       <ExplicitLink id="364ddb07:1250d7c0d3b:-7b57">
         <mxGeometry as="geometry" relative="1"/>
         <mxCell as="parent" id="364ddb07:1250d7c0d3b:-7bdb" parent="364ddb07:1250d7c0d3b:-7bda"/>
-        <ExplicitOutputPort as="source" connectedLinkId="11" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="2" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6a" style="ExplicitOutputPort;direction=east">
+        <ExplicitOutputPort as="source" connectedLinkId="11" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:2" ordering="1" parent="364ddb07:1250d7c0d3b:-7b6a" style="ExplicitOutputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
         </ExplicitOutputPort>
-        <ExplicitInputPort as="target" connectedLinkId="11" dataLines="-2" dataType="REAL_MATRIX" id="7" ordering="2" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
+        <ExplicitInputPort as="target" connectedLinkId="11" dataLines="-2" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:7" ordering="2" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="41.0"/>
         </ExplicitInputPort>
       </ExplicitLink>
       <ExplicitLink id="364ddb07:1250d7c0d3b:-7b55">
         <mxGeometry as="geometry" relative="1"/>
         <mxCell as="parent" id="364ddb07:1250d7c0d3b:-7bdb" parent="364ddb07:1250d7c0d3b:-7bda"/>
-        <ExplicitOutputPort as="source" connectedLinkId="12" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="4" ordering="1" parent="364ddb07:1250d7c0d3b:-7b69" style="ExplicitOutputPort;direction=east">
+        <ExplicitOutputPort as="source" connectedLinkId="12" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:4" ordering="1" parent="364ddb07:1250d7c0d3b:-7b69" style="ExplicitOutputPort;direction=east">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="40.0" y="16.0"/>
         </ExplicitOutputPort>
         <ExplicitInputPort as="target" connectedLinkId="12" dataLines="-3" dataType="REAL_MATRIX" id="364ddb07:1250d7c0d3b:-7b5c" ordering="3" parent="364ddb07:1250d7c0d3b:-7b65" style="ExplicitInputPort;direction=east">
