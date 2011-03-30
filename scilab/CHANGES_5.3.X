@@ -343,6 +343,8 @@ Documentation:
 
 * bug 9019 fixed - dsearch help page was unaccurate.
 
+* Improved the help page of ode.
+
 
 Xcos:
 =====
