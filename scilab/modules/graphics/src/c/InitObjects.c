@@ -160,8 +160,12 @@ int C2F(graphicsmodels) (void)
   setGraphicObjectProperty(pfiguremdl->UID, __GO_IMMEDIATE_DRAWING__, &bTrue, jni_bool, 1);
   // background
   setGraphicObjectProperty(pfiguremdl->UID, __GO_BACKGROUND__, &defaultBackground, jni_int, 1);
-  // user data
-  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA__, NULL, jni_string, 0);
+  /*
+   * user data
+   * NULL has been replaced by the empty string as the third argument in order to
+   * avoid a crash due to giws 1.2.4
+   */
+  setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA__, "", jni_string, 0);
   // Size of user data
   setGraphicObjectProperty(pfiguremdl->UID, __GO_USER_DATA_SIZE__, &iZero, jni_int, 1);
   // Pixmap Mode
