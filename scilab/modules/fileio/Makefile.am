@@ -16,12 +16,9 @@ src/c/getfiledesc.c \
 src/c/getfileinfo.c \
 src/c/getfiletype.c \
 src/c/mclearerr.c \
-src/c/meof.c \
 src/c/merror.c \
 src/c/mgeti.c \
-src/c/mgetstr.c \
 src/c/mputi.c \
-src/c/mputstr.c \
 src/c/mseek.c \
 src/c/mtell.c \
 src/c/readline.c \
@@ -62,14 +59,10 @@ sci_gateway/c/sci_fscanfMat.c \
 sci_gateway/c/sci_maxfiles.c \
 sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_pathsep.c \
-sci_gateway/c/sci_removedir.c \
 sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_merror.c \
-sci_gateway/c/sci_mgetstr.c \
-sci_gateway/c/sci_moef.c \
-sci_gateway/c/sci_mputstr.c \
 sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
 sci_gateway/c/sci_newest.c \
@@ -99,9 +92,12 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getlongpathname.cpp \
 	sci_gateway/cpp/sci_fileext.cpp \
 	sci_gateway/cpp/sci_createdir.cpp \
-	sci_gateway/cpp/sci_fullpath.cpp
-
-
+	sci_gateway/cpp/sci_fullpath.cpp \
+	sci_gateway/cpp/sci_removedir.cpp \
+	sci_gateway/cpp/sci_meof.cpp \
+	sci_gateway/cpp/sci_mputstr.cpp \
+	sci_gateway/cpp/sci_mgetstr.cpp
+		
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/mopen.cpp \
@@ -110,6 +106,7 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mget.cpp \
 	src/cpp/mputl.cpp \
 	src/cpp/mgetl.cpp \
+	src/cpp/mgetstr.cpp \
 	src/cpp/filemanager.cpp
 
 

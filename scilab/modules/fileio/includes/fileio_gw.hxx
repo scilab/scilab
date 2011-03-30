@@ -56,5 +56,9 @@ CPP_GATEWAY_PROTOTYPE(sci_getlongpathname);
 CPP_GATEWAY_PROTOTYPE(sci_fileext);
 CPP_GATEWAY_PROTOTYPE(sci_createdir);
 CPP_GATEWAY_PROTOTYPE(sci_fullpath);
+CPP_GATEWAY_PROTOTYPE(sci_removedir);
+CPP_GATEWAY_PROTOTYPE(sci_meof);
+CPP_GATEWAY_PROTOTYPE(sci_mputstr);
+CPP_GATEWAY_PROTOTYPE(sci_mgetstr);
 
 #endif /* !__FILEIO_GW_HXX__ */

@@ -47,5 +47,9 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"createdir", &sci_createdir, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"fullpath", &sci_fullpath, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"copyfile", &sci_copyfile, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"removedir", &sci_removedir, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"meof", &sci_meof, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mputstr", &sci_mputstr, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mgetstr", &sci_mgetstr, MODULE_NAME));
     return true;
 }

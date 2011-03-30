@@ -20,48 +20,48 @@
 /*--------------------------------------------------------------------------*/
 static gw_generic_table Tab[]={
 	{NULL, ""}, //mopen
-	{sci_mputstr, "mputstr"},
+	{NULL, ""}, //mputstr
 	{NULL, ""}, //mclose
 	{NULL, ""}, //mput
 	{NULL, ""}, //mget
-	{sci_mgetstr, "mgetstr"},
-	{sci_meof, "meof"},
-	{sci_mseek, "mseek"},
-	{sci_mtell, "mtell"},
+	{NULL, ""}, //mgetstr
+	{NULL, ""}, //meof
+	{sci_mseek, "mseek"}, //
+	{sci_mtell, "mtell"}, //
 	{sci_mclearerr, "mclearerr"},
-	{sci_mfprintf,"mfprintf"},
-	{sci_scanf,"mscanf"},
-	{sci_fscanf,"mfscanf"},
-	{sci_sscanf,"msscanf"},
+	{sci_mfprintf,"mfprintf"}, //
+	{sci_scanf,"mscanf"}, //
+	{sci_fscanf,"mfscanf"}, //
+	{sci_sscanf,"msscanf"}, //
 	{sci_fscanfMat,"fscanfMat"},
 	{sci_fprintfMat,"fprintfMat"},
 	{sci_merror, "merror"},
 	{NULL, ""}, //findfiles
 	{sci_maxfiles,"maxfiles"},
 	{sci_getdrives,"getdrives"},
-	{NULL, ""}, // fullpath
+	{NULL, ""}, //fullpath
 	{NULL, ""}, //deletefile
 	{sci_pathsep,"pathsep"},
 	{NULL, ""}, //filesep
-	{NULL, ""}, // getlongpathname
-	{NULL ,""}, //getshortpathname
+	{NULL, ""}, //getlongpathname
+	{NULL, ""}, //getshortpathname
 	{NULL, ""}, //fileext
 	{NULL, ""}, //isdir
-	{sci_removedir,"removedir"},
-	{NULL,""}, //createdir
-	{NULL, ""}, // pwd
+	{NULL, ""}, //removedir
+	{NULL, ""}, //createdir
+	{NULL, ""}, //pwd
 	{NULL, ""}, //chdir
 	{NULL, ""}, //fileinfo
 	{sci_newest,"newest"},
 	{sci_getrelativefilename,"getrelativefilename"},
 	{sci_get_absolute_file_path,"get_absolute_file_path"},
-	{NULL ,""}, //copyfile
+	{NULL, ""}, //copyfile
 	{NULL, ""}, //isfile
 	{NULL, ""}, //fileparts
 	{NULL, ""}, //movefile
 	{NULL, ""}, //basename
 	{NULL, ""}, //pathconvert
-	{NULL, ""} //cd
+	{NULL, ""}  //cd
 	};
 /*--------------------------------------------------------------------------*/
 int gw_fileio(void)

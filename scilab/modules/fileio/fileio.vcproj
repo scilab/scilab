@@ -505,10 +505,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\meof.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\merror.c"
 				>
 			</File>
@@ -525,7 +521,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mgetstr.c"
+				RelativePath=".\src\cpp\mgetstr.cpp"
 				>
 			</File>
 			<File
@@ -546,10 +542,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\mputl.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\mputstr.c"
 				>
 			</File>
 			<File
@@ -637,19 +629,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mgetstr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_moef.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_movefile.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_mputstr.c"
 				>
 			</File>
 			<File
@@ -827,10 +807,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\meof.h"
-				>
-			</File>
-			<File
 				RelativePath=".\src\c\merror.h"
 				>
 			</File>
@@ -847,7 +823,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mgetstr.h"
+				RelativePath=".\src\cpp\mgetstr.h"
 				>
 			</File>
 			<File
@@ -868,10 +844,6 @@
 			</File>
 			<File
 				RelativePath=".\src\cpp\mputl.h"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\mputstr.h"
 				>
 			</File>
 			<File
