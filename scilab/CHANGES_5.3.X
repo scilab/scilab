@@ -601,6 +601,16 @@ Optimization:
   * Documentation provided for the stopping rule.
   * More examples provided.
 
+* bug 7164 fixed - The help for neldermead does not give examples of 
+                   constrained optimization.
+                   Added an example of bound constrained optimization and 
+                   and example of nonlinearily constrained optimization.
+
+* bug 7165 fixed - The neldermead help page stated that the constraint 
+                   is negative, while it is positive.
+
+* bug 7166 fixed - The second example in neldermead's help was wrong.
+
 * bug 7193 fixed - The karmarkar help page did not document the
                    eps, gamma, and crit arguments.
 
@@ -613,7 +623,6 @@ Optimization:
 * bug 8727 fixed - The karmarkar function required the initial guess x0.
 
 * bug 8775 fixed - The karmarkar function did not detect unbounded problems.
-
 
 File I/O:
 =========
