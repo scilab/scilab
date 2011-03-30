@@ -266,6 +266,8 @@ Bug fixes:
 * bug 8959 fixed - winqueryreg returned an incorrect value if the value name was
                    false.
 
+* bug 8971 fixed - The termination rule of optim was unclear.
+
 * bug 9070 fixed - The demonstration "Simulation/Wheel Simulation/Simulation with
                    ode" displayed a warning about an obsolete use of ilib_for_link.
 
