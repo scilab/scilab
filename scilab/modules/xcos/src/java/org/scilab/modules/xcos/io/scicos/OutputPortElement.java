@@ -21,6 +21,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
@@ -244,21 +245,6 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	}
 	
 	/**
-	 * If not connected, set the connected link id to 0.
-	 * 
-	 * @param from the bloc to encode
-	 * @param element the element to encode into
-	 * @return the updated element
-	 */
-	@Override
-	public ScilabType beforeEncode(OutputPort from, ScilabType element) {
-		if (from.getEdgeCount() == 0) {
-			from.setConnectedLinkId(0);
-		}
-		return super.beforeEncode(from, element);
-	}
-	
-	/**
 	 * Encode the instance into the element
 	 * 
 	 * @param from the source instance
@@ -346,7 +332,12 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 		// pout
 		sciValues = (ScilabDouble) graphics.get(GRAPHICS_POUT_INDEX);
 		values = sciValues.getRealPart();
-		values[alreadyDecodedCount][0] = from.getConnectedLinkId();
+		if (from.getEdgeCount() == 1) {
+			// only set on valid connection
+			values[alreadyDecodedCount][0] = ((BasicLink) from.getEdgeAt(0)).getOrdering();
+		} else {
+			values[alreadyDecodedCount][0] = 0.0;
+		}
 		
 		// out_implicit
 		sciStrings = (ScilabString) graphics.get(GRAPHICS_OUTIMPL_INDEX);

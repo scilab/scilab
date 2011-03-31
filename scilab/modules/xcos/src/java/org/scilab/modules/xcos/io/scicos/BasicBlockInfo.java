@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -50,10 +51,10 @@ public final class BasicBlockInfo {
 		for (int i = 0; i < ports.size(); ++i) {
 			final BasicPort p = (BasicPort) ports.get(i);
 			
-			if (p.getEdgeCount() == 0) {
-				data[i][0] = 0;
+			if (p.getEdgeCount() == 1) {
+				data[i][0] = ((BasicLink) p.getEdgeAt(0)).getOrdering();
 			} else {
-				data[i][0] = p.getConnectedLinkId();
+				data[i][0] = 0;
 			}
 		}
 

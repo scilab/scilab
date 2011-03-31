@@ -23,6 +23,7 @@
 function [scs_m] = prt_align(scs_m)
   // any old scicos macros, will be removed on 5.4.0
   warnobsolete(scilabRemovedVersion="5.4.0")
+  return
 
 //** 25/07/07: Al@n's patch for rotation of blocks
   

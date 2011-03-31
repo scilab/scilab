@@ -20,9 +20,9 @@
 //
 
 function hilite_obj(k,win)
-
-    xcosShowBlockWarning(k); //** new
-	return;
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+  return;
 
 //
 //** WARNING: I changed mechanism AND input values:

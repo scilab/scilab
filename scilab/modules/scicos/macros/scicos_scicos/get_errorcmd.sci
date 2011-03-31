@@ -99,49 +99,8 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
   //** all other type of blocks
   //** ************************
   else
-    obj_path=path(1:$-1)
-    spec_err='block'
-    blk=path($)
-    scs_m_n=scs_m;
-    //** check if we can open a window
-    //** Alan: we can improve that piece of code
-    //**       to also returns the name of the comput. func.
-    for i=1:size(path,'*')
-      if scs_m_n.objs(path(i)).model.sim=='super' then
-         scs_m_n=scs_m_n.objs(path(i)).model.rpar;
-      elseif scs_m_n.objs(path(i)).model.sim=='csuper' then
-        obj_path=path(1:i-1);
-        blk=path(i);
-        //spec_err='csuper block (block '+string(path(i+1))+')'
-        spec_err='csuper block'
-        break;
-      end
-    end
-
-    if spec_err=='csuper block' then
-        //** update spec_err
-        spec_err='The highlighted '+spec_err+' returns the error :';
-        //**
-        scf(curwin)
-        //** call bad_connection
-        bad_connection(path,...
-                      [title_err;spec_err;mess_err],0,1,0,-1,0,1)
-        //** create cmd
-        cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
-             'hilite_obj('+string(blk)+');'+...
-             'unhilite_obj('+string(blk)+');']
-    else
-      //** update spec_err
-      spec_err='The highlighted '+spec_err+' returns the error :';
-      //** create cmd
-      cmd=['%diagram_path_objective='+sci2exp(obj_path)+';%scicos_navig=1;'
-           'hilite_obj('+string(blk)+');'+...
-           'messagebox(['''+title_err+''';'+...
-              ''''+spec_err+''';'+...
-              strcat(''''+mess_err+'''',";")+'],''modal'');'+...
-           'unhilite_obj('+string(blk)+');']
-    end
-
+    msg = title_err + ": " + mess_err;
+    hilite_path(path, msg);
   end
 
 endfunction
