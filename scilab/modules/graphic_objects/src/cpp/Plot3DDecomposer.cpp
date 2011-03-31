@@ -211,8 +211,6 @@ int Plot3DDecomposer::getWireIndicesSize(char* id)
  * To be optimized:
  * -a lot of work performed redundantly with NgonGridDataDecomposer::fillIndices, ought to be merged
  *  with it.
- * -edges shared by two adjacent faces whose opposite edges have invalid x or y coordinate values
- *  are drawn, though they shouldn't be.
  */
 int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
 {
@@ -224,33 +222,45 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     int* piNumX = &numX;
     int numY = 0;
     int* piNumY = &numY;
-    int colorMode = 0;
-    int* piColorMode = &colorMode;
 
+    /* x-axis and y-axis indices (respectively) */
     int i;
     int j;
 
+    int previousRowValid;
     int currentRowValid;
     int nextRowValid;
 
-    int currentLineValid;
-    int nextLineValid;
+    int previousColumnValid;
+    int currentColumnValid;
+    int nextColumnValid;
 
     int lowerLeftZValid;
     int lowerRightZValid;
     int upperLeftZValid;
+    int upperRightZValid;
+
+    int jm1HorizontalEdgeZValid;
+    int im1VerticalEdgeZValid;
+    int jHorizontalEdgeZValid;
+    int iVerticalEdgeZValid;
+    int jp1HorizontalEdgeZValid;
+    int ip1VerticalEdgeZValid;
 
     int ij;
     int ip1j;
     int ijp1;
+    int ip1jp1;
+    int ijm1;
+    int ip1jm1;
 
     int bufferOffset = 0;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
 
-    /* 0 indices if 0 points */
-    if (numX == 0 || numY == 0)
+    /* 0 indices if less than 2 points along either dimension */
+    if (numX < 2 || numY < 2)
     {
         return 0;
     }
@@ -260,12 +270,16 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
     getGraphicObjectProperty(id, __GO_DATA_MODEL_Z__, jni_double_vector, (void**) &z);
 
     /* First row */
+    previousRowValid = 0;
     currentRowValid = DecompositionUtils::isValid(y[0]);
 
     if (logMask & 0x2)
     {
         currentRowValid &= DecompositionUtils::isLogValid(y[0]);
     }
+
+    /* Set to 0 as it is not relevant for the first row iteration */
+    jm1HorizontalEdgeZValid = 0;
 
     for (j = 0; j < numY-1; j++)
     {
@@ -276,48 +290,82 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             nextRowValid &= DecompositionUtils::isLogValid(y[j+1]);
         }
 
-        currentLineValid = DecompositionUtils::isValid(x[0]);
+        if (!currentRowValid)
+        {
+            previousRowValid = currentRowValid;
+            currentRowValid = nextRowValid;
+            continue;
+        }
+
+        previousColumnValid = 0;
+        currentColumnValid = DecompositionUtils::isValid(x[0]);
 
         if (logMask & 0x1)
         {
-            currentLineValid &= DecompositionUtils::isLogValid(x[0]);
-        }
-
-        lowerLeftZValid = DecompositionUtils::isValid(z[j*numX]);
-
-        if (logMask & 0x4)
-        {
-            lowerLeftZValid &= DecompositionUtils::isLogValid(z[j*numX]);
+            currentColumnValid &= DecompositionUtils::isLogValid(x[0]);
         }
 
         ij = getPointIndex(numX, numY, 0, j);
+        ijp1 = getPointIndex(numX, numY, 0, j+1);
+
+        lowerLeftZValid = DecompositionUtils::isValid(z[ij]);
+        upperLeftZValid = DecompositionUtils::isValid(z[ijp1]);
+
+        if (logMask & 0x4)
+        {
+            lowerLeftZValid &= DecompositionUtils::isLogValid(z[ij]);
+            upperLeftZValid &= DecompositionUtils::isLogValid(z[ijp1]);
+        }
+
+        iVerticalEdgeZValid = lowerLeftZValid && upperLeftZValid;
+
+        /* Set to 0 as not relevant for the first column iteration */
+        im1VerticalEdgeZValid = 0;
 
         for (i = 0; i < numX-1; i++)
         {
             ip1j = getPointIndex(numX, numY, i+1, j);
-            ijp1 = getPointIndex(numX, numY, i, j+1);
+            ip1jp1 = getPointIndex(numX, numY, i+1, j+1);
 
-            nextLineValid = DecompositionUtils::isValid(x[i+1]);
+            nextColumnValid = DecompositionUtils::isValid(x[i+1]);
 
             if (logMask & 0x1)
             {
-                nextLineValid &= DecompositionUtils::isLogValid(x[i+1]);
+                nextColumnValid &= DecompositionUtils::isLogValid(x[i+1]);
             }
 
             lowerRightZValid = DecompositionUtils::isValid(z[ip1j]);
-            upperLeftZValid = DecompositionUtils::isValid(z[ijp1]);
+            upperRightZValid = DecompositionUtils::isValid(z[ip1jp1]);
 
             if (logMask & 0x4)
             {
                 lowerRightZValid &= DecompositionUtils::isLogValid(z[ip1j]);
-                upperLeftZValid &= DecompositionUtils::isLogValid(z[ijp1]);
+                upperRightZValid &= DecompositionUtils::isLogValid(z[ip1jp1]);
             }
 
+            if (j > 0)
+            {
+                ijm1 = getPointIndex(numX, numY, i, j-1);
+                ip1jm1 = getPointIndex(numX, numY, i+1, j-1);
+
+                jm1HorizontalEdgeZValid = DecompositionUtils::isValid(z[ijm1]) && DecompositionUtils::isValid(z[ip1jm1]);
+
+                if (logMask & 0x4)
+                {
+                    jm1HorizontalEdgeZValid &= (DecompositionUtils::isLogValid(z[ijm1]) && DecompositionUtils::isLogValid(z[ip1jm1]));
+                }
+            }
+
+            jHorizontalEdgeZValid = lowerLeftZValid && lowerRightZValid;
+
+            jp1HorizontalEdgeZValid = upperLeftZValid && upperRightZValid;
+            ip1VerticalEdgeZValid = lowerRightZValid && upperRightZValid;
+
             /*
-             * Two segments: from the lower-left to the lower-right corner
-             * and from the lower-left to the upper-left corner.
+             * Two segments: between points (i,j) and (i+1,j)
+             * and points (i,j) and (i,j+1) .
              */
-            if (currentRowValid && (currentLineValid && nextLineValid) && (lowerLeftZValid && lowerRightZValid))
+            if ((currentColumnValid && nextColumnValid) && jHorizontalEdgeZValid && ((previousRowValid && jm1HorizontalEdgeZValid) || (nextRowValid && jp1HorizontalEdgeZValid)))
             {
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ip1j;
@@ -325,7 +373,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
                 bufferOffset += 2;
             }
 
-            if (currentLineValid && (currentRowValid && nextRowValid) && (lowerLeftZValid && upperLeftZValid))
+            if (currentColumnValid && nextRowValid && iVerticalEdgeZValid && ((previousColumnValid && im1VerticalEdgeZValid) || (nextColumnValid && ip1VerticalEdgeZValid)))
             {
                 buffer[bufferOffset] = ij;
                 buffer[bufferOffset+1] = ijp1;
@@ -333,33 +381,28 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
                 bufferOffset += 2;
             }
 
-            currentLineValid = nextLineValid;
+            previousColumnValid = currentColumnValid;
+            currentColumnValid = nextColumnValid;
             lowerLeftZValid = lowerRightZValid;
+            upperLeftZValid = upperRightZValid;
+
+            im1VerticalEdgeZValid = iVerticalEdgeZValid;
+            iVerticalEdgeZValid = ip1VerticalEdgeZValid;
 
             ij = ip1j;
+            ijp1 = ip1jp1;
         }
 
         /* Rightmost vertical line */
-        if (currentLineValid && (currentRowValid && nextRowValid))
+        if (currentColumnValid && nextRowValid && iVerticalEdgeZValid && (previousColumnValid && im1VerticalEdgeZValid))
         {
-            ijp1 = getPointIndex(numX, numY, numX-1, j+1);
+            buffer[bufferOffset] = ij;
+            buffer[bufferOffset+1] = ijp1;
 
-            upperLeftZValid = DecompositionUtils::isValid(z[ijp1]);
-
-            if (logMask & 0x4)
-            {
-                upperLeftZValid &= DecompositionUtils::isLogValid(z[ijp1]);
-            }
-
-            if (lowerLeftZValid && upperLeftZValid)
-            {
-                buffer[bufferOffset] = ij;
-                buffer[bufferOffset+1] = ijp1;
-
-                bufferOffset += 2;
-            }
+            bufferOffset += 2;
         }
 
+        previousRowValid = currentRowValid;
         currentRowValid = nextRowValid;
     }
 
@@ -371,11 +414,11 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
         currentRowValid &= DecompositionUtils::isLogValid(y[numY-1]);
     }
 
-    currentLineValid = DecompositionUtils::isValid(x[0]);
+    currentColumnValid = DecompositionUtils::isValid(x[0]);
 
     if (logMask & 0x1)
     {
-        currentLineValid = DecompositionUtils::isValid(x[0]);
+        currentColumnValid = DecompositionUtils::isValid(x[0]);
     }
 
     ij = getPointIndex(numX, numY, 0, numY-1);
@@ -391,11 +434,11 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
 
     for (i = 0; i < numX-1; i++)
     {
-        nextLineValid = DecompositionUtils::isValid(x[i+1]);
+        nextColumnValid = DecompositionUtils::isValid(x[i+1]);
 
         if (logMask & 0x1)
         {
-            nextLineValid &= DecompositionUtils::isLogValid(x[i+1]);
+            nextColumnValid &= DecompositionUtils::isLogValid(x[i+1]);
         }
 
         ip1j = getPointIndex(numX, numY, i+1, numY-1);
@@ -407,7 +450,19 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             lowerRightZValid &= DecompositionUtils::isLogValid(z[ip1j]);
         }
 
-        if (currentRowValid && (currentLineValid && nextLineValid) && (lowerLeftZValid && lowerRightZValid))
+        ijm1 = getPointIndex(numX, numY, i, numY-2);
+        ip1jm1 = getPointIndex(numX, numY, i+1, numY-2);
+
+        jm1HorizontalEdgeZValid = DecompositionUtils::isValid(z[ijm1]) && DecompositionUtils::isValid(z[ip1jm1]);
+
+        if (logMask & 0x4)
+        {
+            jm1HorizontalEdgeZValid &= (DecompositionUtils::isLogValid(z[ijm1]) && DecompositionUtils::isLogValid(z[ip1jm1]));
+        }
+
+        jHorizontalEdgeZValid = lowerLeftZValid && lowerRightZValid;
+
+        if (currentRowValid && (currentColumnValid && nextColumnValid) && jHorizontalEdgeZValid && (previousRowValid && jm1HorizontalEdgeZValid))
         {
             buffer[bufferOffset] = ij;
             buffer[bufferOffset+1] = ip1j;
@@ -415,7 +470,7 @@ int Plot3DDecomposer::fillWireIndices(char* id, int* buffer, int bufferLength, i
             bufferOffset += 2;
         }
 
-        currentLineValid = nextLineValid;
+        currentColumnValid = nextColumnValid;
         lowerLeftZValid = lowerRightZValid;
 
         ij = ip1j;
