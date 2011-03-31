@@ -70,6 +70,7 @@ Xcos:
   - Counter
   - RAMP
   - INTRPLBLK_f (english update only)
+  - TKSCALE (english update only)
   - DELAY_f
   - RFILE_f Read from input file
 
