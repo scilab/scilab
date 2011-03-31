@@ -173,7 +173,7 @@ c     oldload (file opened by fortran returns a error)
       endif
 c     test for compatibility
       endian=getendian()
-      call mtell(fd,offset,ierr)
+c      call mtell(fd,offset,ierr)
       call mgetnc (fd,it,1,'il'//char(0),ierr)
       if(endian.eq.1.and.it.eq.28.or.
      $     endian.eq.0.and.it.eq.469762048) then

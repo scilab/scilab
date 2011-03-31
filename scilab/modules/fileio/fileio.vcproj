@@ -551,7 +551,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mtell.c"
+				RelativePath=".\src\cpp\mtell.cpp"
 				>
 			</File>
 			<File
@@ -643,10 +643,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mtell.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_newest.c"
 				>
 			</File>
@@ -656,10 +652,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_pwd.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_removedir.c"
 				>
 			</File>
 			<File

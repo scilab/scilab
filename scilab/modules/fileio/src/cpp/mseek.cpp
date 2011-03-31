@@ -61,25 +61,22 @@ int mseek(int fd, int offset, int iflag)
 		return 0;
 	}
 #else
-	#ifdef _MSC_VER
-		#if _WIN64
-			if(_fseeki64(fa,(long) offset,iflag) == -1 )
-		#else
-			if(fseek(fa,(long) offset,iflag) == -1 )
-		#endif
-	#else
-	if(fseek(fa,(long) offset,iflag) == -1)
-	#endif
-	{
-		return errno; // global variable produced by fseek
-	}
-	else
-	{
-		return 0;
-	}
+#ifdef _MSC_VER
+#if _WIN64
+    if(_fseeki64(fa,(long) offset,iflag) == -1 )
+#else
+    if(fseek(fa,(long) offset,iflag) == -1 )
 #endif
-
-    FREE(pF);
-    FREE(fa);
+#else
+    if(fseek(fa,(long) offset,iflag) == -1)
+#endif
+    {
+        return errno; // global variable produced by fseek
+    }
+    else
+    {
+        return 0;
+    }
+#endif
 }
 /*--------------------------------------------------------------------------*/

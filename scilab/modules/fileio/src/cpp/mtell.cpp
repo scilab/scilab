@@ -1,8 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA
- * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * 
+ * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -11,39 +10,39 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include "filemanager.hxx"
+
+extern "C"
+{
 #include <stdio.h>
 #include "mtell.h"
 #include "filesmanagement.h"
-#include "sciprint.h"
 #include "localization.h"
+#include "MALLOC.h"
+}
+
 /*--------------------------------------------------------------------------*/
-void C2F(mtell) (int *fd, double *offset, int *err)
-{     
-	FILE *fa= GetFileOpenedInScilab(*fd);
-	if ( fa == (FILE *) 0 ) 
+long int mtell(int fd)
+{    
+    File* pF        = FileManager::getFile(fd);
+    long int offset = -1;
+    
+	if(pF == NULL) 
 	{
-		char *filename = GetFileNameOpenedInScilab(*fd);
-		if (filename)
-		{
-			sciprint(_("%s: Error while opening, reading or writing '%s'.\n"),"mtell",filename);
-		}
-		else
-		{
-			sciprint(_("%s: Error while opening, reading or writing.\n"),"mtell");
-		}
-		
-		*err=1;
-		return;
+		return offset;
 	}
-	*err = 0;
+	
 	#ifdef _MSC_VER
 		#if _WIN64 
-			*offset = (double) _ftelli64(fa) ;
+			offset = _ftelli64(pF->getFiledesc()) ;
 		#else
-			*offset = (double) ftell(fa) ;
+			offset = ftell(pF->getFiledesc()) ;
 		#endif
 	#else
-	*offset = (double) ftell(fa) ;
+	offset = ftell(pF->getFiledesc()) ;
 	#endif
+	
+	return offset;
 }
 /*--------------------------------------------------------------------------*/

@@ -425,6 +425,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\sci_mtell.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\sci_pathconvert.cpp"
 				>
 			</File>

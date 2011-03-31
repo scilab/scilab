@@ -18,7 +18,6 @@
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/
 FILEIO_IMPEXP int sci_merror(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_mtell(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mclearerr(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_mfprintf(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_scanf(char *fname,unsigned long fname_len);

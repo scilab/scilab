@@ -27,7 +27,7 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //mgetstr
 	{NULL, ""}, //meof
 	{NULL, ""}, //mseek
-	{sci_mtell, "mtell"}, //
+	{NULL, ""}, //mtell
 	{sci_mclearerr, "mclearerr"},
 	{sci_mfprintf,"mfprintf"}, //
 	{sci_scanf,"mscanf"}, //

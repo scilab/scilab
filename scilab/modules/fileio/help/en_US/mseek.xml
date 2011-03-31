@@ -21,7 +21,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>mseek(n [,fd, flag])</synopsis>
+    <synopsis>mseek(n [[,fd], flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -84,6 +84,22 @@ if res1<>res ;write(%io(2),'Bug');end;
 meof(fd1)
 mclearerr(fd1)
 mclose(fd1);
+
+
+file='test.bin'
+file2='test2.bin'
+
+fd1= mopen(file,'rb');
+fd2= mopen(file2,'rb');
+
+mseek(0);           // Go to the begin of the last file open (file 2). Equal to mseek(0,fd2,'set')
+mseek(0,'end');     // Go to the end of the last file open (file 2). Equal to mseek(0,fd2,'end')
+mseek(0,fd1);       // Go to the begin of file 1. Equal to mseek(0,fd1,'set')
+mseek(2,fd1,'cur'); // Set the position to the current position offset to 2.
+
+mclose(fd1);
+mclose(fd2);
+
  ]]></programlisting>
   </refsection>
   <refsection role="see also">

@@ -50,7 +50,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   /*---------------D�claration Des Variables*--------------------*/
   unsigned short Opcode, Len;   /*Code Operationnel et Longueur du tag a lire*/
   double *valeur;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
-  double pos;
+  double pos = 0;
 
   int one=1;
   int three=3;
@@ -101,7 +101,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
     return;
   }
 
-  C2F(mtell) (fd, &pos, err);
+  mtell(*fd);
   if (*err > 0) goto ErrL;
   *cur_pos=(int)pos;
 
@@ -263,7 +263,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
   /*---------------D�claration Des Variables*--------------------*/
   int k,one=1;
   int cur_pos, init_pos;
-  double pos;
+  double pos = 0;
   unsigned short Opcode, Len;
   /*BOF data*/
   int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
@@ -276,7 +276,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     *err=1;
     return;
     }*/
-  C2F(mtell) (fd, &pos, err);
+  mtell(*fd);
   cur_pos=(int)pos;
   init_pos=cur_pos;
 
@@ -293,7 +293,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     return;
   }
 
-  C2F(mtell) (fd, &pos, err);
+  mtell(*fd);
   if (*err > 0) goto Err2;
   cur_pos=(int)pos;
 

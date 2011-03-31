@@ -22,7 +22,6 @@
 extern "C"
 {
 #include <stdio.h>
-#include <errno.h>
 #include "localization.h"
 #include "Scierror.h"
 #include "mseek.h"
