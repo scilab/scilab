@@ -19,7 +19,6 @@ src/c/mclearerr.c \
 src/c/merror.c \
 src/c/mgeti.c \
 src/c/mputi.c \
-src/c/mseek.c \
 src/c/mtell.c \
 src/c/readline.c \
 src/c/getdrives.c \
@@ -63,7 +62,6 @@ sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_mclearerr.c \
 sci_gateway/c/sci_merror.c \
-sci_gateway/c/sci_mseek.c \
 sci_gateway/c/sci_mtell.c \
 sci_gateway/c/sci_newest.c \
 sci_gateway/c/sci_get_absolute_file_path.c  \
@@ -96,8 +94,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_removedir.cpp \
 	sci_gateway/cpp/sci_meof.cpp \
 	sci_gateway/cpp/sci_mputstr.cpp \
-	sci_gateway/cpp/sci_mgetstr.cpp
-		
+	sci_gateway/cpp/sci_mgetstr.cpp \
+	sci_gateway/cpp/sci_mseek.cpp
+	
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/mopen.cpp \
@@ -107,8 +106,8 @@ FILEIO_CPP_SOURCES = \
 	src/cpp/mputl.cpp \
 	src/cpp/mgetl.cpp \
 	src/cpp/mgetstr.cpp \
-	src/cpp/filemanager.cpp
-
+	src/cpp/filemanager.cpp \
+	src/cpp/mseek.cpp
 
 libscifileio_la_CPPFLAGS=	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \

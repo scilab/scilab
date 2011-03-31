@@ -85,7 +85,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
   *err=0;
 
   *cur_pos=*cur_pos;
-  C2F(mseek) (fd, cur_pos, "set", err);
+  mseek(*fd, *cur_pos, SEEK_SET);
   if (*err > 0) goto ErrL;
 
   /* first record should be a BOF */
@@ -107,7 +107,7 @@ void xls_read(int *fd, int *cur_pos,double **data, int **chainesind, int *N, int
 
   while(1)
     {
-      C2F(mseek) (fd, cur_pos, "set", err);
+      mseek(*fd, *cur_pos, SEEK_SET);
       if (*err > 0) goto ErrL;
       /*Enregistrement de l'Opcode et de la Len du tag*/
       C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
@@ -299,7 +299,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
 
   /* loops on records till an EOF is found */
   while(1) {
-    C2F(mseek) (fd, &cur_pos, "set", err);
+    mseek(*fd, cur_pos, SEEK_SET);
     if (*err > 0) goto Err2;
     /*Enregistrement de l'Opcode et de la Len du tag*/
     C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
@@ -621,8 +621,17 @@ static void getString(int *fd,short *PosInRecord, short *RecordLen, int flag,cha
   /* For extended strings, skip over the extended string data*/
   /* may continuation records appear here? */
   l1=4*rt;
-  if (richString) {C2F(mseek) (fd, &l1, "cur", err);*PosInRecord+=l1;}
-  if (extendedString) {C2F(mseek) (fd, &sz, "cur", err);*PosInRecord+=sz;}
+  if (richString) 
+  {
+      mseek(*fd, l1, SEEK_CUR);
+      *PosInRecord += l1;
+  }
+  
+  if (extendedString)
+  {
+      mseek(*fd, sz, SEEK_CUR);
+      *PosInRecord += sz;
+  }
 
   /* add string terminaison */
   if (UTFEncoding) {
@@ -667,7 +676,7 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
   /* Count number of boundsheets */
   ns=0;
   while(1) {
-    C2F(mseek) (fd, cur_pos, "set", err);
+    mseek(*fd, *cur_pos, SEEK_SET);
     if (*err > 0) goto ErrL;
     C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
     if (*err > 0) goto ErrL;
@@ -698,7 +707,7 @@ static void getBoundsheets(int * fd,char ***Sheetnames, int** Abspos, int *nshee
    *cur_pos=pos;
    i=-1;
    while(1) {
-     C2F(mseek) (fd, cur_pos, "set", err);
+     mseek(*fd, *cur_pos, SEEK_SET);
      if (*err > 0) goto ErrL;
      C2F(mgetnc) (fd, &Opcode, &one, typ_ushort, err);
      C2F(mgetnc) (fd, &Len, &one, typ_ushort, err);

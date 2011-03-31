@@ -547,7 +547,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mseek.c"
+				RelativePath=".\src\cpp\mseek.cpp"
 				>
 			</File>
 			<File
@@ -636,10 +636,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_mscanf.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_mseek.c"
 				>
 			</File>
 			<File

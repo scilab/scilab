@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA
+ * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,7 +18,8 @@
 /**
 * seek function 
 */
-FILEIO_IMPEXP void C2F(mseek) (int *fd, int *offset, char *flag, int *err);
+
+FILEIO_IMPEXP int mseek(int fd, int offset, int flag);
 
 #endif /* __MSEEK_H__ */
 /*--------------------------------------------------------------------------*/

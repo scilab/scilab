@@ -60,5 +60,8 @@ CPP_GATEWAY_PROTOTYPE(sci_removedir);
 CPP_GATEWAY_PROTOTYPE(sci_meof);
 CPP_GATEWAY_PROTOTYPE(sci_mputstr);
 CPP_GATEWAY_PROTOTYPE(sci_mgetstr);
+CPP_GATEWAY_PROTOTYPE(sci_mseek);
+
+
 
 #endif /* !__FILEIO_GW_HXX__ */

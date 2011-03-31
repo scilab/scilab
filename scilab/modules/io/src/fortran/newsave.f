@@ -1,12 +1,12 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-      
+
       subroutine intsave
       include 'stack.h'
       logical opened,ptover,cremat
@@ -15,7 +15,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       logical eqid
       integer iadr,sadr
       data bl/nsiz*673720360/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -31,7 +31,7 @@ c
       top0=top-rhs
 
 
-      call v2cunit(top0+1,'wb',fd,opened,ierr) 
+      call v2cunit(top0+1,'wb',fd,opened,ierr)
       if(ierr.gt.0) return
       if(ierr.lt.0) then
 c     file has been opened by fortran, oldsave (return a error)
@@ -106,7 +106,7 @@ c     create a variable with fd
 c     *call* parse
  24   continue
       ilrec=pstk(pt)
-      lstk(top+1)= istk(ilrec)  
+      lstk(top+1)= istk(ilrec)
       fd         = istk(ilrec+1)
       kmin       = istk(ilrec+2)
       kmax       = istk(ilrec+3)
@@ -114,7 +114,7 @@ c     *call* parse
       top0       = istk(ilrec+5)
       vol        = istk(ilrec+6)
       opened     = (istk(ilrec+7).eq.1)
-      pt=pt-1 
+      pt=pt-1
       if(rstk(pt).eq.911) goto 21
 
  25   if(k.lt.kmax) goto 20
@@ -144,7 +144,7 @@ c
       double precision res,offset
       integer iadr,sadr
       data semi/43/,blank/40/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
@@ -161,7 +161,7 @@ c
       endif
       top0=top
       top=top-rhs+1
-      
+
       call v2cunit(top,'rb',fd,opened,ierr)
       if(ierr.gt.0) return
       if(ierr.lt.0) then
@@ -183,10 +183,10 @@ c     .  old mode (returns a error)
          call error(43)
          return
       else
-         call mseek(fd,int(offset),'set'//char(0),ierr)
+c         call mseek(fd,int(offset),'set'//char(0),ierr)
       endif
 
-      
+
       if(rhs.gt.1) then
          ilt=iadr(lstk(top0+1))
          err=sadr(ilt+nsiz*rhs-1)-lstk(bot)
@@ -243,7 +243,7 @@ c     store it into ids (used by the function called)
       ids(2,pt)=ilv
 c     preserve variable type
       ids(3,pt)=istk(ilv)
-c     set the end of the variable temporarily 
+c     set the end of the variable temporarily
       lstk(top+1)=sadr(ilv)
 c     preserve value of top
       ids(5,pt)=top
@@ -285,7 +285,7 @@ c     .  load has been done by a scilab function
       endif
       ilv=ids(2,pt)
       istk(ilv)=ids(3,pt)
-      pt=pt-1 
+      pt=pt-1
       ilt=pstk(pt)
       call putid(id,ids(1,pt))
       pt=pt-1
@@ -306,13 +306,13 @@ c     .  check if loaded variable is required
 c     .        yes, remove it out of the table and save it
                istk(ilt+(i-1)*nsiz)=0
 c     .        rewind the file
-               if(.not.opened)  call mseek(fd,0,'set'//char(0),ierr)
+c               if(.not.opened)  call mseek(fd,0,'set'//char(0),ierr)
                goto 30
             endif
  27      continue
 c     .  no skip it
          goto 10
-      endif  
+      endif
 
  30   ssym=sym
       sym = semi
@@ -393,13 +393,13 @@ c     write id and type
          call savefun(fd,il1,ierr)
       elseif(istk(il1).eq.13) then
          call savecfun(fd,il1,ierr)
-      elseif(istk(il1).eq.14) then 
+      elseif(istk(il1).eq.14) then
          call savelib(fd,il1,ierr)
       elseif(istk(il1).ge.15.and.istk(il1).le.17) then
  10      call savelist(fd,il1,ierr)
-      elseif(istk(il1).eq.128) then 
+      elseif(istk(il1).eq.128) then
          call saveptr(fd,il1,ierr)
-      elseif(istk(il1).eq.130) then 
+      elseif(istk(il1).eq.130) then
          call savefptr(fd,il1,ierr)
       else
 c     .  call an external function
@@ -455,13 +455,13 @@ c     read id and type
          call loadfun(fd,il1,nn,ierr)
       elseif(istk(il1).eq.13) then
          call loadcfun(fd,il1,nn,ierr)
-      elseif(istk(il1).eq.14) then 
+      elseif(istk(il1).eq.14) then
          call loadlib(fd,il1,nn,ierr)
-      elseif(istk(il1).ge.15.and.istk(il1).le.17) then   
+      elseif(istk(il1).ge.15.and.istk(il1).le.17) then
          call loadlist(fd,il1,nn,ierr)
-      elseif(istk(il1).eq.128) then 
+      elseif(istk(il1).eq.128) then
          call loadptr(fd,il1,nn,ierr)
-      elseif(istk(il1).eq.130) then 
+      elseif(istk(il1).eq.130) then
          call loadfptr(fd,il1,nn,ierr)
       else
          fun=-il1
@@ -535,9 +535,9 @@ c     write type
          call savefun(fd,il1,ierr)
       elseif(istk(il1).eq.13) then
          call savecfun(fd,il1,ierr)
-      elseif(istk(il1).eq.14) then 
+      elseif(istk(il1).eq.14) then
          call savelib(fd,il1,ierr)
-      elseif(istk(il1).ge.15.and.istk(il1).le.17) then   
+      elseif(istk(il1).ge.15.and.istk(il1).le.17) then
 c     .  a sublist
          if(istk(il1).lt.0) il1=iadr(istk(il1+1))
          if (ptover(1,psiz)) return
@@ -547,9 +547,9 @@ c     .  a sublist
          ids(3,pt)=i
          il=il1
          goto 10
-      elseif(istk(il1).eq.128) then 
+      elseif(istk(il1).eq.128) then
          call saveptr(fd,il1,ierr)
-      elseif(istk(il1).eq.130) then 
+      elseif(istk(il1).eq.130) then
          call savefptr(fd,il1,ierr)
       else
 c     .  call an external function
@@ -565,7 +565,7 @@ c     .  call an external function
       endif
       if(ierr.ne.0) return
       goto 20
-c     
+c
  30   continue
 c     end of current list reached
       if(rstk(pt).ne.408) goto 40
@@ -614,7 +614,7 @@ c     .  manage recursion
          top=top-1
          goto 20
       endif
-      
+
  10   il0=il
 c     read list header without type
       err=sadr(il+3)-lstk(bot)
@@ -667,10 +667,10 @@ c     read  type
          call loadfun(fd,il1,nne,ierr)
       elseif(istk(il1).eq.13) then
          call loadcfun(fd,il1,nne,ierr)
-      elseif(istk(il1).eq.14) then 
+      elseif(istk(il1).eq.14) then
          call loadlib(fd,il1,nne,ierr)
-      elseif(istk(il1).ge.15.and.istk(il1).le.17) then   
-c     .  a sublist 
+      elseif(istk(il1).ge.15.and.istk(il1).le.17) then
+c     .  a sublist
          if (ptover(1,psiz)) return
          rstk(pt)=408
          ids(1,pt)=n
@@ -679,9 +679,9 @@ c     .  a sublist
          ids(4,pt)=il0
          il=il1
          goto 10
-      elseif(istk(il1).eq.128) then 
+      elseif(istk(il1).eq.128) then
          call loadptr(fd,il1,nne,ierr)
-      elseif(istk(il1).eq.130) then 
+      elseif(istk(il1).eq.130) then
          call loadfptr(fd,il1,nne,ierr)
       else
 c     .  call an external function
@@ -702,7 +702,7 @@ c     *call* parse
       if(err.gt.0) ierr=1
       if(ierr.ne.0) return
       goto 20
-c     
+c
  30   continue
 c     end of current list reached
       if(rstk(pt).ne.408) goto 40
@@ -897,7 +897,7 @@ c      iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 c
       fmti='il'//char(0)
-c     
+c
 c     read matrix header without type
       err=sadr(il+4)-lstk(bot)
       if(err.gt.0) then
@@ -1255,7 +1255,7 @@ c     Load a sparse matrix of boolean
       include 'stack.h'
       integer fd
       character*3 fmti,fmtd
-      integer sadr 
+      integer sadr
 
 c
 c      iadr(l)=l+l-1
@@ -1439,7 +1439,7 @@ c     Save a pointer on sparse lu factorization
 c
       integer fd
       character*3 fmti,fmtd
-c      
+c
       fmti='il'//char(0)
       fmtd='dl'//char(0)
 c
@@ -1478,7 +1478,7 @@ c     read pointer
 c      n=4+2*1
       return
       end
-      
+
       subroutine savefptr(fd,il,ierr)
 c     Copyright INRIA
 c     Save a pointer on  a primitive
