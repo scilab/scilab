@@ -26,11 +26,12 @@ Bug Fixes:
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
-* bug 8608 - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
-             and optimized.
+* bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
+                   and optimized.
 
-* bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
+* bug 8608 fixed - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
 
+* bug 9249 fixed - The assert_checkerror did not localize the message.
 
 Removed functions (previously declared as obsolete):
 ====================================================
