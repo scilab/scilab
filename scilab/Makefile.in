@@ -61,14 +61,15 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
-@IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
+@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_2 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_3 = localization
-@COMPILATION_TESTS_TRUE@am__append_4 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
+@COMPILATION_TESTS_TRUE@am__append_5 = check-java
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -587,8 +588,9 @@ SUBDIRS = libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X
-bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
-scilab_bin_LDFLAGS = $(am__append_1)
+bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+	$(am__append_1)
+scilab_bin_LDFLAGS = $(am__append_2)
 scilab_cli_bin_LDFLAGS = 
 scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
@@ -617,7 +619,7 @@ scilab_cli_bin_LDADD = $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_3) $(am__append_4)
+TARGETS_ALL = macros $(am__append_4) $(am__append_5)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \

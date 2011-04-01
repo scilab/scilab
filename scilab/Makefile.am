@@ -26,6 +26,10 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
+if IS_MACOSX
+bin_SCRIPTS 		+= bin/checkmacosx.applescript
+endif
+
 scilab_bin_LDFLAGS 		=
 scilab_cli_bin_LDFLAGS		=
 
