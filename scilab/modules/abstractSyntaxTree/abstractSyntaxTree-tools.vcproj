@@ -61,6 +61,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -207,6 +208,7 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
@@ -279,9 +281,11 @@
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
+				CommandLine="lib /DEF:&quot;$(InputDir)Localization_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)scilocalization.lib&quot; 1&gt;NUL 2&gt;NUL"
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="scilocalization.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
