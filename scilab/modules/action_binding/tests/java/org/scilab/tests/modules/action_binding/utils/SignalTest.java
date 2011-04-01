@@ -39,12 +39,13 @@ public class SignalTest {
 	@Test(timeOut=10000)
 	public void simpleNotify() throws InterruptedException {
 		Thread tWaiter = new Thread(waiter);
+		Thread tNotifier = new Thread(notifier);
 		
 		// wait
 		tWaiter.start();
 		
 		// then notify
-		notifier.start();
+		tNotifier.start();
 		
 		tWaiter.join();
 		tNotifier.join();
