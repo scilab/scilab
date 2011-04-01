@@ -40,13 +40,17 @@ public class SignalTest {
 	public void simpleNotify() throws InterruptedException {
 		Thread tWaiter = new Thread(waiter);
 		
+		// wait
 		tWaiter.start();
 		
-		notifier.run();
+		// then notify
+		notifier.start();
+		
 		tWaiter.join();
+		tNotifier.join();
 	}
 	
-	@Test
+	@Test(timeOut=10000)
 	public void notifyBeforeWait() throws InterruptedException {
 		Thread tWaiter = new Thread(waiter);
 		Thread tNotifier = new Thread(notifier);
@@ -58,7 +62,6 @@ public class SignalTest {
 		tWaiter.start();
 		
 		tWaiter.join();
-		assert !tNotifier.isAlive();
-		assert !tWaiter.isAlive();
+		tNotifier.join();
 	}
 }
