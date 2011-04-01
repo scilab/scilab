@@ -1,6 +1,12 @@
             Changes between version 5.3.1 and 5.3.2 of Scilab
             =================================================
 
+Scilab:
+=======
+
+* The Mac OS X version is checked to avoid errors on unsupported versions
+  of Mac OS X. As a remider, Scilab is supported under Mac OS X 10.6.
+
 
 Scinotes:
 =========

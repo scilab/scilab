@@ -643,6 +643,10 @@ case $OS in
             DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
         fi
         export DYLD_LIBRARY_PATH
+        # Now, check that I can run Scilab on this version of Mac OS X and
+        # display a standard window
+        BINPATH=$(dirname $0)
+        osascript $BINPATH/checkmacosx.applescript || exit 128
         ;;
     *)
 esac
