@@ -4,7 +4,6 @@
  * 
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Michael Baudin
- * Copyright (C) 2008 - INRIA
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,67 +13,64 @@
  * 
  -->
 
-<refentry version="5.0-subset Scilab" xml:id="bitand" xml:lang="ja"
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitcmp" 
+          xml:lang="ja"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate$</pubdate>
-  </info>
+
 
   <refnamediv>
-    <refname>bitand</refname>
-
-    <refpurpose>ビット単位の論理積(AND)</refpurpose>
+    <refname>bitcmp</refname>
+    <refpurpose>ビット毎の補数</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>呼び出し手順</title>
     <synopsis>
-      z = bitand(x,y)
-
+      y = bitcmp(x,n)
     </synopsis>
   </refsynopsisdiv>
 
   <refsection>
     <title>パラメータ</title>
-
     <variablelist>
       <varlistentry>
         <term>x :</term>
-
         <listitem>
           <para>
 	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
 	    または符合なし整数(uint8, uint16 または uint32)の
 	    m行n列行列.値は正の整数値である必要があります.
-	  </para>
+          </para>
         </listitem>
       </varlistentry>
-
+      <varlistentry>
+        <term>n :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数(uint8, uint16 または uint32)の
+	    m行n列行列.
+	    入力<literal>n</literal>は 1,2,...,bitmax の範囲であることが
+	    必要です.
+	    ただし,bitmax は x の最大ビット数です.
+	    値は正の整数値である必要があります.
+          </para>
+        </listitem>
+      </varlistentry>
       <varlistentry>
         <term>y :</term>
-
         <listitem>
           <para>
 	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-	    または符合なし整数(uint8, uint16 または uint32)の
-	    m行n列行列.値は正の整数値である必要があります.
-	  </para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>z :</term>
-
-        <listitem>
-          <para>
-	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
-	    または符合なし整数.
-	  </para>
+	    または符合なし整数のm行n列行列.
+          </para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -83,55 +79,37 @@
   <refsection>
     <title>説明</title>
     <para>
-	2つの正の整数 x および y を指定すると,この関数は2進形式が
-	x および y の2進形式の論理積となるような10進数を返します.
+      符合なし整数<literal>x</literal>を指定すると, この関数は
+      <literal>x</literal>の2進数形式の補数を値とする
+      符合なし整数を返します.
     </para>
+
     <para>
-      <literal>x</literal>,
-      <literal>y</literal>, <literal>z</literal> の大きさは同じです. 
+      整数 <literal>n</literal> は最大ビット数を指定します.
+    </para>
+
+    <para>
+      <literal>x</literal>の2進数表現のビット数が bitmax の値 (8, 16 または 32)
+      よりも小さい場合, bitmax ビット (8, 16 または 32)の補数とするために
+      ビット '1' がこの補数に付加されます.
     </para>
   </refsection>
 
   <refsection>
     <title>例</title>
-
     <programlisting role="example">
       <![CDATA[
-// '1010110' : is the binary representation of 86 
-// '1011011' : is the binary representation of 91   
-// '1010010' : is the binary representation for the AND of binary representation 86 and 91 
-// so the decimal number corresponding to the AND  applied to binary forms 86 and 91 is : 82
-x=86; 
-y=91;
-z=bitand(x,y)
+// 13 is (1101)_2
+// We insert zeros in the begining to get a 8-bit number:
+// (00001101)_2
+// The 8-bits complement is then (11110010)_2
+// which is 242
+bitcmp(13,8)
+expected = 242
 
-// Compute the bitwise AND of two matrices of doubles.
-x=[12,45];
-y=[25,49];
-z=bitand(x,y)
-
-// Compute the bitwise AND of two matrices of doubles.
-x = [0 1 0 1];
-y = [0 0 1 1];
-z = bitand(x, y)
-expected = [0 0 0 1];
-
-// Compute the bitwise AND of two matrices of integers.
-x = uint8([0 1 0 1]);
-y = uint8([0 0 1 1]);
-z = bitand(x, y)
-
-// The types of x and y cannot be mixed (error).
-x = [0 1 0 1];
-y = uint8([0 0 1 1]);
-z = bitand(x, y)
-
-//  13 is (01101)_2
-//  27 is (11011)_2
-// AND is (01001)_2 which is 9.
-bitand(uint8(13), uint8(27))
-bitand(13, 27)
-
+// The input argument can be an unsigned int
+bitcmp(uint8(99),8)
+expected = 156
    ]]>
     </programlisting>
   </refsection>
@@ -145,15 +123,4 @@ bitand(13, 27)
     </simplelist>
   </refsection>
 
-  <refsection role="see also">
-    <title>参照</title>
-
-    <simplelist type="inline">
-      <member><link linkend="bitor">bitor</link></member>
-
-      <member><link linkend="bin2dec">bin2dec</link></member>
-
-      <member><link linkend="dec2bin">dec2bin</link></member>
-    </simplelist>
-  </refsection>
 </refentry>
