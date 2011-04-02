@@ -213,6 +213,8 @@ Bug fixes:
 * bug 9232 fixed - Play the example in 'help about' in NW mode led to an
                    exception.
 
+* bug 9300 fixed - Scilab crashed when one tryed to complete an empty mlist.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
