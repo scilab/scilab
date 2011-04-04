@@ -19,7 +19,7 @@ __threadSignalLock Runner::m_awakeScilabLock;
 void Runner::init()
 {
     __InitSignal(&m_awakeScilab);
-    __InitSignalLock(&m_awakeScilabLock); 
+    __InitSignalLock(&m_awakeScilabLock);
 }
 
 void *Runner::launch(void *args)
@@ -62,6 +62,8 @@ void *Runner::launch(void *args)
 void Runner::LockPrompt()
 {
     __LockSignal(&m_awakeScilabLock);
+    //free locker to release thread
+    __UnLock(&m_lock);
     __Wait(&m_awakeScilab, &m_awakeScilabLock);
     __UnLockSignal(&m_awakeScilabLock);
 }
@@ -93,9 +95,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
 
         //register thread
         ConfigVariable::addThread(new ThreadId(threadId, threadKey));
-        //free locker to release thread
-        __UnLock(&m_lock);
-        //wait and of thread execution
+        //free locker to release thread && wait and of thread execution
         LockPrompt();
     }
     catch(ScilabException se)
