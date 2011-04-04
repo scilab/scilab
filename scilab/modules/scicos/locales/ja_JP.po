@@ -856,7 +856,7 @@ msgstr "スーパ・ブロックをクリックして(活動化出力無しで)�
 msgid "Click on a block to set or get its documentation"
 msgstr "文書を設定または取得するブロックをクリックしてください"
 
-msgid "Click on a port, click on a port of object to be moved"
+msgid "Click on a port of object to be moved"
 msgstr "ポートをクリックし, 移動するオブジェクトのポートをクリック"
 
 msgid "Click on a super block"

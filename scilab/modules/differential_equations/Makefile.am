@@ -91,13 +91,13 @@ sci_gateway/c/sci_bvode.c \
 sci_gateway/c/gw_differential_equations6.c
 
 GATEWAY_FORTRAN_SOURCES = \
-sci_gateway/fortran/sci_dasrt.f \
-sci_gateway/fortran/sci_feval.f \
-sci_gateway/fortran/sci_odedc.f \
-sci_gateway/fortran/sci_bvode.f \
-sci_gateway/fortran/sci_impl.f \
-sci_gateway/fortran/sci_dassl.f \
-sci_gateway/fortran/sci_ode.f \
+sci_gateway/fortran/sci_f_dasrt.f \
+sci_gateway/fortran/sci_f_feval.f \
+sci_gateway/fortran/sci_f_odedc.f \
+sci_gateway/fortran/sci_f_bvode.f \
+sci_gateway/fortran/sci_f_impl.f \
+sci_gateway/fortran/sci_f_dassl.f \
+sci_gateway/fortran/sci_f_ode.f \
 sci_gateway/fortran/bsurf.f \
 sci_gateway/fortran/bsurfd.f \
 sci_gateway/fortran/bydot.f \
@@ -134,16 +134,19 @@ libscidifferential_equations_la_CFLAGS=  	-I$(srcdir)/includes/ \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libscidifferential_equations.la
+noinst_LTLIBRARIES = libscidifferential_equations-algo.la
 
 libscidifferential_equations_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscidifferential_equations_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_algo_la_SOURCES = $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES)
+libscidifferential_equations_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidifferential_equations_algo_la_CFLAGS = $(libscidifferential_equations_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(DIFFERENTIAL_EQUATIONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidifferential_equations_la_CFLAGS)
 
-libscidifferential_equations_la_LIBADD =   $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscidifferential_equations_la_LIBADD = libscidifferential_equations-algo.la  $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/dynamic_link/libscidynamic_link.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 
 
 #### Target ######

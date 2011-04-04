@@ -90,8 +90,8 @@ lib /DEF:&quot;$(InputDir)Elementary_functions_Import.def&quot; /SUBSYSTEM:WINDO
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\find.f"/>
 		<File RelativePath=".\logic.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_bool2s.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_find.f"/></Filter>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bool2s.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_find.f"/></Filter>
 		<File RelativePath="..\..\..\..\bin\blasplus.lib"/>
 		<File RelativePath="..\..\..\..\bin\lapack.lib"/>
 		<File RelativePath="..\..\Makefile.am"/></Files>

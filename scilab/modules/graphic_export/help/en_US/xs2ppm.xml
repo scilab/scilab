@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2ppm</refname>
 
-    <refpurpose>send graphics to a PPM file.</refpurpose>
+    <refpurpose>Export graphics to PPM.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

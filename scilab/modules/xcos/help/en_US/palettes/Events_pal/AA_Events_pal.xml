@@ -150,11 +150,6 @@
     </inlinemediaobject>
     <inlinemediaobject>
       <imageobject>
-        <imagedata linkend="REGISTER" fileref="../../../../../../modules/xcos/images/palettes/REGISTER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
-      </imageobject>
-    </inlinemediaobject>
-    <inlinemediaobject>
-      <imageobject>
         <imagedata linkend="SampleCLK" fileref="../../../../../../modules/xcos/images/palettes/SampleCLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
@@ -324,12 +319,6 @@
 	  <listitem>
         <para>
           <link linkend="MFCLCK_f">MFCLCK_f — Clock Multiple Frequencies</link>
-        </para>
-      </listitem>
-	  
-	  <listitem>
-        <para>
-          <link linkend="REGISTER">REGISTER — Shift Register</link>
         </para>
       </listitem>
 

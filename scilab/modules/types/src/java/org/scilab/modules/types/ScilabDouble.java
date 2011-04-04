@@ -36,6 +36,7 @@ import java.util.Arrays;
  */
 public class ScilabDouble implements ScilabType {
 
+	private static final long serialVersionUID = 879624048944109684L;
 	private double[][] realPart;
 	private double[][] imaginaryPart;
 

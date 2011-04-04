@@ -274,6 +274,14 @@ copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_amell.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_corr.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_delip.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fft.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fiir.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_remez.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rpem.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_syredi.c" />
     <ClCompile Include="amell.c" />
     <ClCompile Include="belan.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bgetx.c" />
@@ -329,15 +337,6 @@ copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_
     <ClCompile Include="remez.c" />
     <ClCompile Include="romeg.c" />
     <ClCompile Include="rpem.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_amell.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_corr.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_delip.c" />
-    <ClCompile Include="sci_ffir.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_fft.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_fiir.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_remez.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_rpem.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_syredi.c" />
     <ClCompile Include="sn.c" />
     <ClCompile Include="snell.c" />
     <ClCompile Include="syredi.c" />
@@ -350,6 +349,14 @@ copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_
     <ClCompile Include="tscccf.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_amell.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_corr.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_delip.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fft.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fiir.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_remez.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rpem.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_syredi.f" />
     <f2c_rule Include="amell.f" />
     <f2c_rule Include="belan.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bgetx.f" />
@@ -405,15 +412,6 @@ copy signal_processing_f_header.def+signal_processing_f.vcdef signal_processing_
     <f2c_rule Include="remez.f" />
     <f2c_rule Include="romeg.f" />
     <f2c_rule Include="rpem.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_amell.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_corr.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_delip.f" />
-    <f2c_rule Include="sci_ffir.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_fft.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_fiir.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_remez.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_rpem.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_syredi.f" />
     <f2c_rule Include="sn.f" />
     <f2c_rule Include="snell.f" />
     <f2c_rule Include="syredi.f" />

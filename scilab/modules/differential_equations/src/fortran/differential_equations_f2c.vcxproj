@@ -282,6 +282,13 @@ copy differential_equations_f_header.def+differential_equations_f.vcdef differen
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bvode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dasrt.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dassl.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_feval.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_impl.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ode.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_odedc.c" />
     <ClCompile Include="ainvg.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\badd.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\bbvode.c" />
@@ -353,13 +360,6 @@ copy differential_equations_f_header.def+differential_equations_f.vcdef differen
     <ClCompile Include="rscar1.c" />
     <ClCompile Include="rscma1.c" />
     <ClCompile Include="rscom1.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_bvode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_dasrt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_dassl.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_feval.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_impl.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_ode.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_odedc.c" />
     <ClCompile Include="solsy.c" />
     <ClCompile Include="stoda.c" />
     <ClCompile Include="stode.c" />
@@ -376,6 +376,13 @@ copy differential_equations_f_header.def+differential_equations_f.vcdef differen
     <ClCompile Include="xsetun.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bvode.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dasrt.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dassl.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_feval.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_impl.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ode.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_odedc.f" />
     <f2c_rule Include="ainvg.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\badd.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\bbvode.f" />
@@ -446,13 +453,6 @@ copy differential_equations_f_header.def+differential_equations_f.vcdef differen
     <f2c_rule Include="rscar1.f" />
     <f2c_rule Include="rscma1.f" />
     <f2c_rule Include="rscom1.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_bvode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_dasrt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_dassl.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_feval.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_impl.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_ode.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_odedc.f" />
     <f2c_rule Include="solsy.f" />
     <f2c_rule Include="stoda.f" />
     <f2c_rule Include="stode.f" />

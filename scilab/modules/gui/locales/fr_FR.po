@@ -1024,7 +1024,7 @@ msgid "JPEG image"
 msgstr "Image JPEG"
 
 msgid "Launch SciNotes"
-msgstr "Démarrer ScNotes"
+msgstr "Démarrer SciNotes"
 
 msgid "Launch plot2d"
 msgstr "Lancer plot2d"

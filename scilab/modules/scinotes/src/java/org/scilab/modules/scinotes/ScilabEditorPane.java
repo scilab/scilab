@@ -19,34 +19,34 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
 
-import javax.swing.text.Caret;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
+import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.View;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
@@ -66,9 +66,12 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                                                              MouseMotionListener, Cloneable,
                                                              KeyListener {
 
+    private static final long serialVersionUID = 4322071415211939097L;
+
     private static final String TIRET = " - ";
     private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
     private static final Cursor TEXTCURSOR = Cursor.getPredefinedCursor(Cursor.TEXT_CURSOR);
+    private static final DefaultHighlighter.DefaultHighlightPainter HIGHLIGHTER = new DefaultHighlighter.DefaultHighlightPainter(Color.YELLOW);
 
     private static ScilabEditorPane focused;
 
@@ -102,7 +105,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean suppressCom = true;
 
     private SciNotesLineNumberPanel xln;
-    private JSplitPane split;
     private ScilabEditorPane rightTextPane;
     private UUID uuid;
 
@@ -117,7 +119,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean hasBeenSaved;
     private boolean saveHighlightEnable;
 
-    private List<KeywordListener> kwListeners = new ArrayList();
+    private List<KeywordListener> kwListeners = new ArrayList<KeywordListener>();
+    private List<Object> highlightedWords = new ArrayList<Object>();
+    private List<Integer> highlightedWordsBegin = new ArrayList<Integer>();
 
     /**
      * Constructor
@@ -130,7 +134,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
         this.editor = editor;
         this.uuid = UUID.randomUUID();
-        updateCaret();
         edComponent = new EditorComponent(this);
 
         addCaretListener(this);
@@ -769,12 +772,15 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public String getCodeToExecute() {
         String selection;
+        int start, end;
+        start = getSelectionStart();
+        end = getSelectionEnd();
+
         if (((SciNotesCaret) getCaret()).isEmptySelection()) {
-            int start = getSelectionStart();
-            int end = getSelectionEnd();
             try {
                 if (start == end) {
                     selection = getDocument().getText(0, start);
+                    start = 0;
                 } else {
                     selection = getSelectedText();
                 }
@@ -786,7 +792,21 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
 
         if (suppressCom) {
-            selection = selection.replaceAll("[ \t]*//[^\n]*", "");
+            StringBuffer buf = new StringBuffer(selection.length());
+            int sstart = start;
+            int tok = lexer.getKeyword(start, false);
+            int len = selection.length();
+            while (start < end) {
+                int pos = lexer.start + lexer.yychar() + lexer.yylength();
+                String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
+                if (tok != ScilabLexerConstants.COMMENT || str.equals("\n")) {
+                    buf.append(str);
+                }
+                start = pos;
+                tok = lexer.getKeyword(start, false);
+            }
+
+            return buf.toString();
         }
 
         return selection;
@@ -898,6 +918,16 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     public void caretUpdate(CaretEvent e) {
         if (hasBeenSaved) {
             removeHighlightForLine();
+        }
+
+        if (hasFocus()) {
+            String str = getSelectedText();
+            if (str != null && str.length() != 0) {
+                highlightWords(str, true);
+                removeHighlightOnPosition(getSelectionStart());
+            } else {
+                removeHighlightedWords();
+            }
         }
 
         if (highlightEnable) {
@@ -1082,6 +1112,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
+
+        removeHighlightedWords();
+
         if (highlightEnable) {
             repaint();
         }
@@ -1110,6 +1143,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         if (hasBeenSaved) {
             removeHighlightForLine();
         }
+
+        removeHighlightedWords();
+
         if (highlightEnable) {
             repaint();
         }
@@ -1223,13 +1259,66 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * Add a the ScilabCaret
+     * {@inheritDoc}
      */
-    private void updateCaret() {
-        Caret caret = new SciNotesCaret(this);
-        caret.setBlinkRate(getCaret().getBlinkRate());
-        setCaretColor(getCaretColor());
-        setCaret(caret);
+    public void setCaret(Caret c) {
+        if (!(c instanceof ScilabCaret)) {
+            final Caret cc = c;
+            final Caret caret = new SciNotesCaret(this);
+            setCaretColor(getCaretColor());
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        caret.setBlinkRate(cc.getBlinkRate());
+                    }
+                });
+            super.setCaret(caret);
+        } else {
+            super.setCaret(c);
+        }
+    }
+
+    public void select(int start, int end) {
+        removeHighlightOnPosition(start);
+        super.select(start, end);
+    }
+
+    public void removeHighlightOnPosition(int start) {
+        int pos = highlightedWordsBegin.indexOf(start);
+        if (pos != -1) {
+            getHighlighter().removeHighlight(highlightedWords.remove(pos));
+            highlightedWordsBegin.remove(pos);
+        }
+    }
+
+    public void highlightWords(String word, boolean exact) {
+        if (word != null && word.length() != 0) {
+            removeHighlightedWords();
+            String text = getText();
+            if (!exact) {
+                text = text.toLowerCase();
+                word = word.toLowerCase();
+            }
+
+            int pos = text.indexOf(word, 0);
+            int len = word.length();
+            Highlighter highlighter = getHighlighter();
+            while (pos != -1) {
+                try {
+                    highlightedWords.add(highlighter.addHighlight(pos, pos + len, HIGHLIGHTER));
+                    highlightedWordsBegin.add(pos);
+                } catch (BadLocationException e) { }
+                pos = text.indexOf(word, pos + len);
+            }
+        }
+    }
+
+    public void removeHighlightedWords() {
+        Highlighter highlighter = getHighlighter();
+        for (Object obj : highlightedWords) {
+            highlighter.removeHighlight(obj);
+        }
+        highlightedWords.clear();
+        highlightedWordsBegin.clear();
     }
 
     /**

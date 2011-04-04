@@ -17,8 +17,8 @@ sci_gateway/c/sci_find.c \
 sci_gateway/c/sci_bool2s.c \
 sci_gateway/c/gw_boolean.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_bool2s.f \
-sci_gateway/fortran/sci_find.f
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_f_bool2s.f \
+sci_gateway/fortran/sci_f_find.f
 
 libsciboolean_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -26,16 +26,19 @@ libsciboolean_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libsciboolean.la
+noinst_LTLIBRARIES = libsciboolean-algo.la
 
 libsciboolean_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libsciboolean_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES)
+libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_algo_la_CFLAGS = $(libsciboolean_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(BOOLEAN_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libsciboolean_la_CFLAGS)
 
-libsciboolean_la_LIBADD = \
+libsciboolean_la_LIBADD = libsciboolean-algo.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 

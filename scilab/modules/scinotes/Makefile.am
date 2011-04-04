@@ -83,11 +83,15 @@ pkglib_LTLIBRARIES = libsciscinotes-disable.la
 
 if GUI
     pkglib_LTLIBRARIES += libsciscinotes.la 
+    noinst_LTLIBRARIES = libsciscinotes-algo.la 
 endif
 
 libsciscinotes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libsciscinotes_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(SCINOTES_CPP_SOURCES)
+libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CPP_SOURCES)
+libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libsciscinotes_algo_la_CFLAGS = $(libsciscinotes_la_CFLAGS)
+libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SCINOTES_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -101,7 +105,7 @@ if SWIG
     BUILT_SOURCES=swig
 endif
 
-libsciscinotes_la_LIBADD =  \
+libsciscinotes_la_LIBADD = libsciscinotes-algo.la \
     $(top_builddir)/libs/MALLOC/libscimalloc.la \
     $(top_builddir)/modules/jvm/libscijvm.la \
     $(top_builddir)/modules/output_stream/libscioutput_stream.la

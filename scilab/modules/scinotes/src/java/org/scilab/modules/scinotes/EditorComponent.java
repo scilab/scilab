@@ -24,6 +24,8 @@ import javax.swing.JSplitPane;
  */
 public class EditorComponent extends JPanel {
 
+    private static final long serialVersionUID = -1466505151043279504L;
+
     private ScilabEditorPane editor;
     private JScrollPane scroll;
     private JSplitPane split;

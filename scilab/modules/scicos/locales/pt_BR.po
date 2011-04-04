@@ -781,7 +781,7 @@ msgstr ""
 msgid "Click on a block to set or get its documentation"
 msgstr ""
 
-msgid "Click on a port, click on a port of object to be moved"
+msgid "Click on a port of object to be moved"
 msgstr ""
 
 msgid "Click on a super block"

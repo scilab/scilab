@@ -46,11 +46,14 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
+noinst_LTLIBRARIES = libscicompletion-algo.la
 
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
-libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES)
+libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -58,7 +61,7 @@ INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscicompletion_la_LIBADD = libscicompletion-algo.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 #$(top_builddir)/modules/graphics/libscigraphics.la
 #### Name of the module and the path ######
 modulename=completion

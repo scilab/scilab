@@ -278,6 +278,12 @@ copy data_structures_f_header.def+data_structures_f.vcdef data_structures_f.def 
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_definedfields.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getfield.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_list.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lstcat.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_lstsize.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_setfield.c" />
     <ClCompile Include="extractfields.c" />
     <ClCompile Include="followpath.c" />
     <ClCompile Include="forcerhs.c" />
@@ -289,15 +295,15 @@ copy data_structures_f_header.def+data_structures_f.vcdef data_structures_f.def 
     <ClCompile Include="lstops.c" />
     <ClCompile Include="mlist.c" />
     <ClCompile Include="rattyp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_definedfields.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_getfield.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_list.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_lstcat.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_lstsize.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_setfield.c" />
     <ClCompile Include="udptr.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_definedfields.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getfield.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_list.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lstcat.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_lstsize.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_setfield.f" />
     <f2c_rule Include="extractfields.f" />
     <f2c_rule Include="followpath.f" />
     <f2c_rule Include="forcerhs.f" />
@@ -309,12 +315,6 @@ copy data_structures_f_header.def+data_structures_f.vcdef data_structures_f.def 
     <f2c_rule Include="lstops.f" />
     <f2c_rule Include="mlist.f" />
     <f2c_rule Include="rattyp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_definedfields.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_getfield.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_list.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_lstcat.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_lstsize.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_setfield.f" />
     <f2c_rule Include="udptr.f" />
   </ItemGroup>
   <ItemGroup>

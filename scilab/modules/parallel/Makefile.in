@@ -120,15 +120,13 @@ am__libsciparallel_la_SOURCES_DIST = src/noparallel/noparallel.h \
 	src/noparallel/noparallel.c sci_gateway/c/gw_parallel.c \
 	sci_gateway/c/sci_parallel_concurrency.c \
 	sci_gateway/cpp/sci_parallel_run.cpp
-am__objects_1 =
-am__objects_2 = libsciparallel_la-gw_parallel.lo \
+am__objects_1 = libsciparallel_la-gw_parallel.lo \
 	libsciparallel_la-sci_parallel_concurrency.lo
-am__objects_3 = libsciparallel_la-sci_parallel_run.lo
+am__objects_2 = libsciparallel_la-sci_parallel_run.lo
 @OPENMP_FALSE@am_libsciparallel_la_OBJECTS =  \
 @OPENMP_FALSE@	libsciparallel_la-noparallel.lo
 @OPENMP_TRUE@am_libsciparallel_la_OBJECTS = $(am__objects_1) \
-@OPENMP_TRUE@	$(am__objects_1) $(am__objects_2) \
-@OPENMP_TRUE@	$(am__objects_3)
+@OPENMP_TRUE@	$(am__objects_2)
 libsciparallel_la_OBJECTS = $(am_libsciparallel_la_OBJECTS)
 libsciparallel_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
@@ -439,11 +437,18 @@ libsciparallel_la_CPPFLAGS = $(OPENMP_CXXFLAGS) \
 -I$(top_srcdir)/modules/dynamic_link/includes
 
 pkglib_LTLIBRARIES = libsciparallel.la
+#noinst_LTLIBRARIES = libsciparallel-algo.la
 libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERSION)
+#libsciparallel_algo_la_CFLAGS = $(libsciparallel_la_CFLAGS)
+#libsciparallel_algo_la_CPPFLAGS = $(libsciparallel_la_CPPFLAGS)
 @OPENMP_FALSE@libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
 @OPENMP_FALSE@src/noparallel/noparallel.c
 
-@OPENMP_TRUE@libsciparallel_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+
+#libsciparallel_la_LIBADD = libsciparallel-algo.la
+
+#libsciparallel_algo_la_SOURCES = $(PARALLEL_C_SOURCES) $(PARALLEL_CPP_SOURCES)
+@OPENMP_TRUE@libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)

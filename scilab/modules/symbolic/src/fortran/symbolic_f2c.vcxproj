@@ -262,18 +262,6 @@ copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_addsubf.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_ldivf.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_mulf.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_rdivf.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_addsubf.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_ldivf.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_mulf.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_rdivf.f" />
-  </ItemGroup>
-  <ItemGroup>
     <Library Include="..\..\..\..\bin\libf2c.lib" />
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +277,18 @@ copy symbolic_f_header.def+symbolic_f.vcdef symbolic_f.def &gt;nul
       <Project>{f0f55692-0355-4bc3-be9d-552c8aac5238}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_addsubf.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ldivf.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_mulf.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rdivf.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_addsubf.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ldivf.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_mulf.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rdivf.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

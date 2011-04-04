@@ -11,14 +11,14 @@
 // Blocks must have valid dimensions for their settings.
 // Some dimensions were not coherents between theirs "set" and "define" method.
 
-loadScicosLibs();
+loadXcosLibs();
 
 defaultlibs = ["Branching",
                "Electrical",
                "Hydraulics",
                "Linear",
-               "Misc",
                "Sources",
+               "Misc",
                "Events",
                "Integerop",
                "Matrixop",

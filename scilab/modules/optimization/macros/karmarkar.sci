@@ -208,7 +208,7 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     end
     if ( lb <> [] & ub <> [] ) then 
     if ( or ( ub < lb ) ) then 
-        error(msprintf(gettext("%s: Wrong value for input argument #%d. One entry of the upper bound ub is greater than the lower bound lb."),"karmarkar",12));
+        error(msprintf(gettext("%s: Wrong value for input argument #%d. One entry of the upper bound ub is lower than the lower bound lb."),"karmarkar",12));
     end
     end
     if ( lb <> [] & x0 <> [] ) then

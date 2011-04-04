@@ -276,16 +276,16 @@ copy boolean_f_header.def+boolean_f.vcdef boolean_f.def &gt;nul
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_bool2s.c" />
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_find.c" />
     <ClCompile Include="find.c" />
     <ClCompile Include="logic.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_bool2s.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_find.c" />
   </ItemGroup>
   <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_bool2s.f" />
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_find.f" />
     <f2c_rule Include="find.f" />
     <f2c_rule Include="logic.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_bool2s.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_find.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="boolean_Import.def" />

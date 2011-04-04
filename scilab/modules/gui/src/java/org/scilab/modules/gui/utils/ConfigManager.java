@@ -21,8 +21,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import org.scilab.modules.commons.ScilabCommons;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -30,11 +28,12 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.TransformerFactoryConfigurationError;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -635,7 +634,7 @@ public final class ConfigManager {
         private static void writeDocument() {
                 Transformer transformer = null;
                 try {
-                        transformer = TransformerFactory.newInstance().newTransformer();
+                        transformer = ScilabTransformerFactory.newInstance().newTransformer();
                 } catch (TransformerConfigurationException e1) {
                         System.out.println(ERROR_WRITE + USER_CONFIG_FILE);
                 } catch (TransformerFactoryConfigurationError e1) {

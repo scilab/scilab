@@ -24,14 +24,17 @@ public class BitmapRenderer  extends ExportRenderer {
 
 	private static String fileName;
 
+        private float jpegCompressionQuality;
+
 	/**
 	 * Default constructor
 	 * @param fileName name of the figure to render
 	 * @param fileType type of the figure to render
 	 * @param fileOrientation orientation of the figure to render
 	 */
-	public BitmapRenderer(String fileName, int fileType, int fileOrientation) {
+	public BitmapRenderer(String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
 		super(fileName, fileType, fileOrientation);
+		this.jpegCompressionQuality = jpegCompressionQuality;
 	}
 	
 	/**
@@ -82,7 +85,7 @@ public class BitmapRenderer  extends ExportRenderer {
 		gl.glReadBuffer(GL.GL_FRONT);
 		
 		
-		ExportToFile export = ExportToFile.createExporter(super.getFileName(), super.getFileType());
+		ExportToFile export = ExportToFile.createExporter(super.getFileName(), super.getFileType(), jpegCompressionQuality);
 		export.setFileSize(gLDrawable.getWidth(), gLDrawable.getHeight());
 		export.exportToBitmap();
 		

@@ -200,7 +200,7 @@ public class ScilabLexerConstants {
     /**
      * TOKENS : A Map which contains the names of keywords (useful in scinotesConfiguration.xml)
      */
-    public static final Map<String, Integer> TOKENS = new HashMap(27);
+    public static final Map<String, Integer> TOKENS = new HashMap<String, Integer>(27);
 
     private static Map<Integer, String> idTokens;
 
@@ -241,7 +241,7 @@ public class ScilabLexerConstants {
      */
     public static String getStringRep(int id) {
         if (idTokens == null) {
-            idTokens = new HashMap(TOKENS.size());
+            idTokens = new HashMap<Integer, String>(TOKENS.size());
             Iterator<String> iterator = TOKENS.keySet().iterator();
             while (iterator.hasNext()) {
                 String key = iterator.next();
@@ -282,7 +282,10 @@ public class ScilabLexerConstants {
             || type == CKEYWORD
             || type == OSKEYWORD
             || type == SKEYWORD
-            || type == CONSTANTES;
+            || type == ELSEIF
+            || type == CONSTANTES
+            || type == VARIABLES
+            || type == FIELD;
     }
 
     /**
