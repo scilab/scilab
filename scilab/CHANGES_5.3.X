@@ -69,6 +69,7 @@ Xcos:
   - TEXT_f - Free annotation
   - Counter
   - RAMP
+  - INTRPLBLK_f (english update only)
   - DELAY_f
   - RFILE_f Read from input file
 
