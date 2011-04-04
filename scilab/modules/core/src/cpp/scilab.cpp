@@ -108,6 +108,7 @@ bool noStart = false;
 bool noBanner = false;
 bool execCommand = false;
 bool execFile = false;
+bool parseFile = false;
 
 using symbol::Context;
 using std::string;
@@ -203,6 +204,11 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
             std::cout << "Timed execution" << std::endl;
             ASTtimed = true;
         }
+        else if (!strcmp("--parse-file", argv[i])) {
+            i++;
+            parseFile = true;
+            *_piFileIndex = i;
+        }
         else if (!strcmp("-f", argv[i])) {
             i++;
             execFile = true;
@@ -235,7 +241,7 @@ static int get_option (const int argc, char *argv[], int *_piFileIndex, int *_pi
     }
 
 #ifdef DEBUG
-    std::cerr << "File : " << argv[good] << std::endl;
+    std::cerr << "File : " << argv[ *_piFileIndex] << std::endl;
 #endif
 
     return 0;
@@ -434,6 +440,13 @@ int main(int argc, char *argv[])
     setScilabMode(SCILAB_STD);
     get_option(argc, argv, &iFileIndex, &iLangIndex);
 
+    if (iFileIndex >= argc || iLangIndex >= argc)
+    {
+        // we used -l, -e or -f without another argument
+        usage();
+        return -1;
+    }
+
 // if WITHOUT_GUI is defined
 // force Terminal IO -> Terminal IO + StartScilabEngine
 
@@ -471,11 +484,60 @@ int main(int argc, char *argv[])
 #endif // defined(WITHOUT_GUI)
 }
 
+/*
+** -*- Batch Main -*-
+*/
+static int batchMain(char *pstFileName)
+{
+    /*
+    ** -*- PARSING -*-
+    */
+    Parser *parser = new Parser();
+    parser->setParseTrace(parseTrace);
+
+
+    wchar_t* pwstFileName = to_wide_string(pstFileName);
+    /*
+    ** -*- PARSING -*-
+    */
+    parseFileTask(parser, timed, pwstFileName, L"YaSp");
+
+    /*
+    ** -*- DUMPING TREE -*-
+    */
+    if (dumpAst == true)
+    {
+        dumpAstTask(parser->getTree(), timed);
+    }
+
+    if (parser->getExitStatus() == Parser::Succeded)
+    {
+        /*
+        ** -*- PRETTY PRINT TREE -*-
+        */
+        if (printAst == true)
+        {
+            printAstTask(parser->getTree(), timed);
+        }
+
+    }
+    else
+    {
+        YaspWriteW(parser->getErrorMessage());
+    }
+
+#ifdef DEBUG
+    std::cerr << "To end program press [ENTER]" << std::endl;
+#endif
+    return parser->getExitStatus();
+}
+
+
 int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 {
     int iMainRet = 0;
     Runner::init();
-    
+
     /* Scilab Startup */
     InitializeEnvironnement();
 
@@ -548,9 +610,17 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
 
     ConfigVariable::setPromptMode(2);
 
-    //always run as interactiveMain even after -e or -f option
-    file_name = L"prompt";
-    iMainRet = interactiveMain();
+    if (!parseFile)
+    {
+        //always run as interactiveMain even after -e or -f option
+        file_name = L"prompt";
+        iMainRet = interactiveMain();
+    }
+    else
+    {
+        // Only for parsing test, won't execute anything.
+        iMainRet = batchMain(argv[iFileIndex]);
+    }
 
     //close main scope
     symbol::Context::getInstance()->scope_end();
