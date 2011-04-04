@@ -562,6 +562,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\hel
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parallel", "modules\parallel\src\c\parallel.vcxproj", "{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-settings\ant-all\ant-all.vcxproj", "{A9A2020D-5541-44F2-B080-DF3C9426C409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1794,6 +1796,10 @@ Global
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|Win32.Build.0 = Release|Win32
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|x64.ActiveCfg = Release|x64
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Release|x64.Build.0 = Release|x64
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|x64.ActiveCfg = Debug|x64
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|Win32.ActiveCfg = Release|Win32
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

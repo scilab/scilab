@@ -57,13 +57,13 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
 </NMakeCleanCommandLine>
@@ -75,13 +75,13 @@ javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/jav
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
 </NMakeCleanCommandLine>
@@ -93,13 +93,13 @@ javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/jav
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
 </NMakeCleanCommandLine>
@@ -111,13 +111,13 @@ javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/jav
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set PATH=%3b$(SolutionDir)java\jdk\bin%3b%PATH%%3b
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set PATH=;$(SolutionDir)java\jdk\bin;%PATH%;
 IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
-javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java%3b$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
+javadoc -noindex -nohelp -nonavbar -notree -d "$(SolutionDir)modules/javasci/javadoc" -sourcepath "$(SolutionDir)modules/javasci/src/java;$(SolutionDir)modules/types/src/java" org.scilab.modules.javasci org.scilab.modules.types
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\javasci\javadoc" rmdir /s /q "$(SolutionDir)modules\javasci\javadoc"
 </NMakeCleanCommandLine>

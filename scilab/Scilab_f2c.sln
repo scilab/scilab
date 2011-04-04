@@ -339,6 +339,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "javasci-JAVA-tests", "modul
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildJavadoc", "modules\helptools\src\javadoc\javadoc.vcxproj", "{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-settings\ant-all\ant-all.vcxproj", "{A9A2020D-5541-44F2-B080-DF3C9426C409}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1563,6 +1565,10 @@ Global
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.Build.0 = Release|Win32
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.Build.0 = Release|x64
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|x64.ActiveCfg = Debug|x64
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|Win32.ActiveCfg = Release|Win32
+		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
