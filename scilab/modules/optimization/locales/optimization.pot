@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
 
 # File: src/c/sp.c, line: 468
 msgid ""
@@ -104,30 +104,30 @@ msgid "%s: Empty function (use -function option)."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 248
-# File: macros/optimbase/optimbase_configure.sci, line: 140
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 604
+# File: macros/optimbase/optimbase_configure.sci, line: 140
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 241
-# File: macros/optimbase/optimbase_configure.sci, line: 133
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 597
+# File: macros/optimbase/optimbase_configure.sci, line: 133
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 227
-# File: macros/optimbase/optimbase_configure.sci, line: 119
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 583
+# File: macros/optimbase/optimbase_configure.sci, line: 119
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 234
-# File: macros/optimbase/optimbase_configure.sci, line: 126
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 590
+# File: macros/optimbase/optimbase_configure.sci, line: 126
 #, c-format
 msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
@@ -147,10 +147,10 @@ msgid "%s: History disabled ; enable -storehistory option."
 msgstr ""
 #
 # File: macros/neldermead/neldermead_get.sci, line: 22
-# File: macros/optimbase/optimbase_histget.sci, line: 22
-# File: macros/optimbase/optimbase_histset.sci, line: 23
 # File: macros/optimbase/optimbase_set.sci, line: 27
 # File: macros/optimbase/optimbase_set.sci, line: 34
+# File: macros/optimbase/optimbase_histget.sci, line: 22
+# File: macros/optimbase/optimbase_histset.sci, line: 23
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
@@ -579,13 +579,13 @@ msgid "%s: Unknown -method %s"
 msgstr ""
 #
 # File: macros/neldermead/nmplot_configure.sci, line: 26
-# File: macros/optimbase/optimbase_histget.sci, line: 35
-# File: macros/optimbase/optimbase_histset.sci, line: 36
-# File: macros/optimbase/optimbase_get.sci, line: 50
-# File: macros/optimbase/optimbase_configure.sci, line: 112
-# File: macros/optimbase/optimbase_cget.sci, line: 66
-# File: macros/optimbase/optimbase_set.sci, line: 44
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 194
+# File: macros/optimbase/optimbase_set.sci, line: 44
+# File: macros/optimbase/optimbase_histget.sci, line: 35
+# File: macros/optimbase/optimbase_cget.sci, line: 66
+# File: macros/optimbase/optimbase_configure.sci, line: 112
+# File: macros/optimbase/optimbase_get.sci, line: 50
+# File: macros/optimbase/optimbase_histset.sci, line: 36
 #, c-format
 msgid "%s: Unknown key %s"
 msgstr ""
@@ -621,8 +621,8 @@ msgid "%s: Unknown step %s"
 msgstr ""
 #
 # File: macros/neldermead/neldermead_configure.sci, line: 258
-# File: macros/optimbase/optimbase_configure.sci, line: 147
 # File: macros/optimsimplex/optimsimplex_new.sci, line: 611
+# File: macros/optimbase/optimbase_configure.sci, line: 147
 #, c-format
 msgid "%s: Unknown value %s for %s option"
 msgstr ""
@@ -751,7 +751,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
-"greater than the lower bound lb."
+"lower than the lower bound lb."
 msgstr ""
 #
 # File: macros/karmarkar.sci, line: 194
@@ -805,13 +805,13 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxbounds.sce, line: 60
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 179
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 60
 msgid "...Done\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 23
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 23
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 23
 msgid "A new method of constrained optimization \n"
 msgstr ""
 #
@@ -839,16 +839,16 @@ msgstr ""
 msgid "Configuring nmplot object...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 20
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 20
 # File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 21
 # File: demos/neldermead/nmplot_han2.sce, line: 42
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 20
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 20
 msgid "Creating nmplot object ...\n"
 msgstr ""
 #
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 19
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 20
 # File: demos/neldermead/nmplot_han1.sce, line: 40
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 20
 msgid "Creating nmplot object...\n"
 msgstr ""
 #
@@ -864,8 +864,8 @@ msgstr ""
 msgid "Defining Han function...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 13
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 14
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 13
 msgid "Defining McKinnon function...\n"
 msgstr ""
 #
@@ -885,9 +885,9 @@ msgstr ""
 msgid "Defining initial simplex coordinates...\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 14
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 14
 # File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 14
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 14
 msgid "Defining quadratic function ...\n"
 msgstr ""
 #
@@ -903,20 +903,20 @@ msgstr ""
 msgid "End of Optimization\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxpost.sce, line: 137
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 157
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 146
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 85
-# File: demos/neldermead/neldermead_dimension.sce, line: 89
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 161
-# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 72
-# File: demos/neldermead/neldermead_boxbounds.sce, line: 89
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 38
 # File: demos/neldermead/neldermead_outputcmd.sce, line: 66
-# File: demos/neldermead/nmplot_han2.sce, line: 80
-# File: demos/neldermead/neldermead_rosenbrock.sce, line: 35
-# File: demos/neldermead/nmplot_han1.sce, line: 93
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 85
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 192
+# File: demos/neldermead/nmplot_han1.sce, line: 93
+# File: demos/neldermead/neldermead_boxpost.sce, line: 137
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 161
+# File: demos/neldermead/nmplot_han2.sce, line: 80
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 157
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 35
+# File: demos/neldermead/neldermead_dimension.sce, line: 89
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 146
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 89
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 72
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 38
 msgid "End of demo.\n"
 msgstr ""
 #
@@ -950,11 +950,11 @@ msgstr ""
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 54
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 54
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 51
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 151
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 60
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 54
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 54
 msgid "Function Value Average"
 msgstr ""
 #
@@ -1032,6 +1032,12 @@ msgstr ""
 msgid "Initialization\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 54
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 57
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 67
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 54
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 57
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 67
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 51
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 54
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 64
@@ -1041,12 +1047,6 @@ msgstr ""
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 60
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 63
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 66
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 54
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 57
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 67
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 54
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 57
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 67
 msgid "Iterations"
 msgstr ""
 #
@@ -1058,15 +1058,15 @@ msgstr ""
 msgid "LQV"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 64
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 67
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 67
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 67
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 64
 msgid "Logarithm Maximum Oriented length"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 54
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 57
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 57
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 57
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 54
 msgid "Logarithm Minimum Function Value"
 msgstr ""
 #
@@ -1119,8 +1119,8 @@ msgstr ""
 msgid "Plot"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 138
 # File: demos/neldermead/nmplot_mckinnon2.sce, line: 142
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 138
 msgid "Plot contour (please wait) ...\n"
 msgstr ""
 #
@@ -1128,11 +1128,11 @@ msgstr ""
 msgid "Plot contour (please wait)...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 70
-# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 51
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 73
-# File: demos/neldermead/nmplot_han2.sce, line: 70
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 74
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 73
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 70
+# File: demos/neldermead/nmplot_han2.sce, line: 70
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 51
 msgid "Plotting contour (please wait) ...\n"
 msgstr ""
 #
@@ -1140,24 +1140,24 @@ msgstr ""
 msgid "Plotting contour (please wait)...\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 52
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 52
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 49
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 58
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 52
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 52
 msgid "Plotting history of fbar ...\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 55
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 55
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 52
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 61
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 55
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 55
 msgid "Plotting history of fopt ...\n"
 msgstr ""
 #
+# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 65
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 65
 # File: demos/neldermead/nmplot_quadratic.variable.sce, line: 62
 # File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 64
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 65
-# File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 65
 msgid "Plotting history of sigma ...\n"
 msgstr ""
 #
@@ -1173,9 +1173,9 @@ msgstr ""
 msgid "Rate of convergence"
 msgstr ""
 #
+# File: demos/neldermead/neldermead_boxproblemA.sce, line: 185
 # File: demos/neldermead/neldermead_boxproblemB.sce, line: 139
 # File: demos/neldermead/neldermead_boxproblemB.sce, line: 144
-# File: demos/neldermead/neldermead_boxproblemA.sce, line: 185
 #, c-format
 msgid "Relative error = %e\n"
 msgstr ""
@@ -1184,37 +1184,37 @@ msgstr ""
 msgid "Rosenbrock"
 msgstr ""
 #
-# File: demos/optim/optim_plot.sce, line: 13
-# File: demos/optim/optim_withderivative.sce, line: 13
-# File: demos/optim/optim_output.sce, line: 13
-# File: demos/optim/optim_rosenbrock.sce, line: 13
-# File: demos/neldermead/fminsearch_display.sce, line: 13
+# File: demos/neldermead/fminsearch_optimplotx.sce, line: 14
 # File: demos/neldermead/fminsearch_rosenbrock.sce, line: 12
+# File: demos/neldermead/fminsearch_outputfunction.sce, line: 13
+# File: demos/neldermead/fminsearch_display.sce, line: 13
 # File: demos/neldermead/fminsearch_optimplotfval.sce, line: 14
 # File: demos/neldermead/fminsearch_optimplotfunccount.sce, line: 13
-# File: demos/neldermead/fminsearch_optimplotx.sce, line: 14
 # File: demos/neldermead/fminsearch_tolx.sce, line: 14
-# File: demos/neldermead/fminsearch_outputfunction.sce, line: 13
+# File: demos/optim/optim_withderivative.sce, line: 13
+# File: demos/optim/optim_plot.sce, line: 13
+# File: demos/optim/optim_output.sce, line: 13
+# File: demos/optim/optim_rosenbrock.sce, line: 13
 msgid "Running optimization ...\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxpost.sce, line: 122
-# File: demos/neldermead/nmplot_mckinnon.sce, line: 132
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 132
-# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 45
-# File: demos/neldermead/nmplot_mckinnon2.sce, line: 135
-# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 46
-# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 48
-# File: demos/neldermead/neldermead_boxbounds.sce, line: 58
-# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 34
-# File: demos/neldermead/nmplot_han2.sce, line: 63
-# File: demos/neldermead/neldermead_rosenbrock.sce, line: 26
 # File: demos/neldermead/nmplot_quadratic.fixed.sce, line: 48
+# File: demos/neldermead/nmplot_quadratic.fixed2.sce, line: 48
+# File: demos/neldermead/nmplot_quadratic.variable.sce, line: 45
+# File: demos/neldermead/neldermead_boxpost.sce, line: 122
+# File: demos/neldermead/nmplot_mckinnon2.sce, line: 135
+# File: demos/neldermead/nmplot_han2.sce, line: 63
+# File: demos/neldermead/nmplot_mckinnon.sce, line: 132
+# File: demos/neldermead/neldermead_rosenbrock.sce, line: 26
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 132
+# File: demos/neldermead/neldermead_boxbounds.sce, line: 58
+# File: demos/neldermead/nmplot_rosenbrock.fixed.sce, line: 46
+# File: demos/neldermead/nmplot_quadratic.variable2.sce, line: 34
 msgid "Searching (please wait) ...\n"
 msgstr ""
 #
-# File: demos/neldermead/nmplot_han1.sce, line: 69
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 177
+# File: demos/neldermead/nmplot_han1.sce, line: 69
 msgid "Searching (please wait)...\n"
 msgstr ""
 #
@@ -1249,8 +1249,8 @@ msgstr ""
 msgid "Z0 is not positive definite.\n"
 msgstr ""
 #
-# File: demos/neldermead/neldermead_boxproblemB.sce, line: 24
 # File: demos/neldermead/neldermead_boxproblemA.sce, line: 24
+# File: demos/neldermead/neldermead_boxproblemB.sce, line: 24
 msgid "and a comparison with other methods.\n"
 msgstr ""
 #

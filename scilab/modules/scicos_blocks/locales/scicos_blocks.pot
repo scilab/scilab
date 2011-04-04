@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
 
 # File: macros/Sources/tkscaleblk.sci, line: 52
 msgid "&?"
@@ -86,6 +86,11 @@ msgstr ""
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 43
 # File: macros/IntegerOp/JKFLIPFLOP.sci, line: 45
 msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 52
+#, c-format
+msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
 msgstr ""
 #
 # File: macros/Sources/Counter.sci, line: 60
@@ -160,8 +165,8 @@ msgstr ""
 msgid "Could not open /dev/audio!\n"
 msgstr ""
 #
-# File: src/c/readau.c, line: 159
 # File: src/c/writec.c, line: 90
+# File: src/c/readau.c, line: 159
 # File: src/c/readc.c, line: 149
 msgid "Could not open the file!\n"
 msgstr ""
@@ -170,10 +175,10 @@ msgstr ""
 msgid "Data Type"
 msgstr ""
 #
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
 # File: macros/IntegerOp/BITCLEAR.sci, line: 42
 # File: macros/IntegerOp/SHIFT.sci, line: 44
 # File: macros/IntegerOp/BITSET.sci, line: 40
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 51
 msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
 msgstr ""
 #
@@ -227,12 +232,20 @@ msgstr ""
 msgid "Expression ="
 msgstr ""
 #
+# File: macros/Sources/STEP.sci, line: 42
+msgid "Final Value"
+msgstr ""
+#
 # File: macros/PDE/IHM_EDP.sci, line: 59
 msgid "Finite differences"
 msgstr ""
 #
 # File: macros/PDE/IHM_EDP.sci, line: 59
 msgid "Finite elements"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Frequency (rad/s)"
 msgstr ""
 #
 # File: macros/Sources/INIMPL_f.sci, line: 41
@@ -259,6 +272,7 @@ msgstr ""
 msgid "Initial State (zero or positive number)"
 msgstr ""
 #
+# File: macros/Sources/STEP.sci, line: 42
 # File: macros/Sources/RAMP.sci, line: 40
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 44
 # File: macros/IntegerOp/JKFLIPFLOP.sci, line: 46
@@ -296,6 +310,10 @@ msgstr ""
 msgid "JK flip-flop"
 msgstr ""
 #
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Magnitude"
+msgstr ""
+#
 # File: macros/PDE/IHM_EDP.sci, line: 263
 msgid "Manual"
 msgstr ""
@@ -321,18 +339,12 @@ msgid "Must be a single value."
 msgstr ""
 #
 # File: macros/Sources/Counter.sci, line: 63
-# File: macros/IntegerOp/INTMUL.sci, line: 51
-# File: macros/IntegerOp/INTMUL.sci, line: 103
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 59
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 63
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 212
 # File: macros/IntegerOp/BITCLEAR.sci, line: 56
 # File: macros/IntegerOp/BITCLEAR.sci, line: 67
 # File: macros/IntegerOp/BITCLEAR.sci, line: 78
 # File: macros/IntegerOp/BITCLEAR.sci, line: 88
-# File: macros/IntegerOp/CONVERT.sci, line: 54
-# File: macros/IntegerOp/CONVERT.sci, line: 58
-# File: macros/IntegerOp/CONVERT.sci, line: 62
+# File: macros/IntegerOp/INTMUL.sci, line: 51
+# File: macros/IntegerOp/INTMUL.sci, line: 103
 # File: macros/IntegerOp/SHIFT.sci, line: 51
 # File: macros/IntegerOp/SHIFT.sci, line: 107
 # File: macros/IntegerOp/LOGIC.sci, line: 56
@@ -341,6 +353,12 @@ msgstr ""
 # File: macros/IntegerOp/BITSET.sci, line: 64
 # File: macros/IntegerOp/BITSET.sci, line: 75
 # File: macros/IntegerOp/BITSET.sci, line: 84
+# File: macros/IntegerOp/CONVERT.sci, line: 54
+# File: macros/IntegerOp/CONVERT.sci, line: 58
+# File: macros/IntegerOp/CONVERT.sci, line: 62
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 59
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 63
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 212
 #, c-format
 msgid "Must be in the interval %s."
 msgstr ""
@@ -427,9 +445,13 @@ msgstr ""
 msgid "PDE block"
 msgstr ""
 #
-# File: macros/Sinks/OUT_f.sci, line: 108
-# File: macros/Sinks/CLKOUTV_f.sci, line: 88
+# File: macros/Sources/GENSIN_f.sci, line: 41
+msgid "Phase (rad)"
+msgstr ""
+#
 # File: macros/Sinks/OUTIMPL_f.sci, line: 41
+# File: macros/Sinks/CLKOUTV_f.sci, line: 88
+# File: macros/Sinks/OUT_f.sci, line: 108
 msgid "Port number"
 msgstr ""
 #
@@ -509,24 +531,30 @@ msgstr ""
 msgid "SR flip-flop"
 msgstr ""
 #
+# File: macros/Sources/STEP.sci, line: 52
+msgid "Same sizes expected."
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 39
+# File: macros/Sources/Counter.sci, line: 49
+# File: macros/Sources/STEP.sci, line: 40
+# File: macros/Sources/IN_f.sci, line: 95
 # File: macros/Sources/CLKINV_f.sci, line: 81
 # File: macros/Sources/RAMP.sci, line: 39
-# File: macros/Sources/INIMPL_f.sci, line: 40
-# File: macros/Sources/Counter.sci, line: 49
-# File: macros/Sources/IN_f.sci, line: 95
 # File: macros/Sources/Modulo_Count.sci, line: 40
+# File: macros/Sources/INIMPL_f.sci, line: 40
+# File: macros/Sinks/OUTIMPL_f.sci, line: 40
+# File: macros/Sinks/CLKOUTV_f.sci, line: 87
+# File: macros/Sinks/OUT_f.sci, line: 107
+# File: macros/IntegerOp/BITCLEAR.sci, line: 41
 # File: macros/IntegerOp/INTMUL.sci, line: 42
+# File: macros/IntegerOp/SHIFT.sci, line: 43
 # File: macros/IntegerOp/SRFLIPFLOP.sci, line: 41
 # File: macros/IntegerOp/JKFLIPFLOP.sci, line: 43
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
-# File: macros/IntegerOp/BITCLEAR.sci, line: 41
-# File: macros/IntegerOp/CONVERT.sci, line: 43
-# File: macros/IntegerOp/SHIFT.sci, line: 43
 # File: macros/IntegerOp/LOGIC.sci, line: 39
 # File: macros/IntegerOp/BITSET.sci, line: 39
-# File: macros/Sinks/OUT_f.sci, line: 107
-# File: macros/Sinks/CLKOUTV_f.sci, line: 87
-# File: macros/Sinks/OUTIMPL_f.sci, line: 40
+# File: macros/IntegerOp/CONVERT.sci, line: 43
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 45
 #, c-format
 msgid "Set %s block parameters"
 msgstr ""
@@ -541,6 +569,10 @@ msgstr ""
 #
 # File: macros/IntegerOp/SHIFT.sci, line: 43
 msgid "Shift/Rotates bits"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 40
+msgid "Sine wave generator"
 msgstr ""
 #
 # File: src/c/tows_c.c, line: 1532
@@ -560,13 +592,22 @@ msgstr ""
 msgid "Start Time"
 msgstr ""
 #
-# File: macros/Sources/CLKINV_f.sci, line: 88
-# File: macros/Sources/INIMPL_f.sci, line: 46
+# File: macros/Sources/STEP.sci, line: 41
+msgid "Step Function"
+msgstr ""
+#
+# File: macros/Sources/STEP.sci, line: 42
+msgid "Step Time"
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 46
 # File: macros/Sources/IN_f.sci, line: 102
+# File: macros/Sources/CLKINV_f.sci, line: 88
 # File: macros/Sources/Modulo_Count.sci, line: 52
-# File: macros/Sinks/OUT_f.sci, line: 113
-# File: macros/Sinks/CLKOUTV_f.sci, line: 93
+# File: macros/Sources/INIMPL_f.sci, line: 46
 # File: macros/Sinks/OUTIMPL_f.sci, line: 46
+# File: macros/Sinks/CLKOUTV_f.sci, line: 93
+# File: macros/Sinks/OUT_f.sci, line: 113
 msgid "Strictly positive integer expected."
 msgstr ""
 #
@@ -597,7 +638,7 @@ msgstr ""
 #, c-format
 msgid ""
 "This Scope (block number : %d) has same number than another. It has been "
-"desactivated !\n"
+"deactivated!\n"
 msgstr ""
 #
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 52
@@ -678,11 +719,11 @@ msgstr ""
 msgid "Wrong value for ''Bits to Extract'' parameter: %s."
 msgstr ""
 #
-# File: macros/IntegerOp/INTMUL.sci, line: 102
-# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
 # File: macros/IntegerOp/BITCLEAR.sci, line: 87
+# File: macros/IntegerOp/INTMUL.sci, line: 102
 # File: macros/IntegerOp/SHIFT.sci, line: 106
 # File: macros/IntegerOp/BITSET.sci, line: 83
+# File: macros/IntegerOp/EXTRACTBITS.sci, line: 211
 #, c-format
 msgid "Wrong value for ''Data Type'' parameter: %d."
 msgstr ""
@@ -691,6 +732,11 @@ msgstr ""
 # File: macros/IntegerOp/CONVERT.sci, line: 53
 #, c-format
 msgid "Wrong value for ''Do on Overflow'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sources/GENSIN_f.sci, line: 45
+#, c-format
+msgid "Wrong value for ''Frequency'' parameter: %e."
 msgstr ""
 #
 # File: macros/IntegerOp/BITCLEAR.sci, line: 55
@@ -718,11 +764,11 @@ msgstr ""
 msgid "Wrong value for ''Output Type'' parameter: %d."
 msgstr ""
 #
-# File: macros/Sources/INIMPL_f.sci, line: 45
 # File: macros/Sources/IN_f.sci, line: 101
-# File: macros/Sinks/OUT_f.sci, line: 112
-# File: macros/Sinks/CLKOUTV_f.sci, line: 92
+# File: macros/Sources/INIMPL_f.sci, line: 45
 # File: macros/Sinks/OUTIMPL_f.sci, line: 45
+# File: macros/Sinks/CLKOUTV_f.sci, line: 92
+# File: macros/Sinks/OUT_f.sci, line: 112
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr ""
@@ -788,39 +834,6 @@ msgstr ""
 msgid "null"
 msgstr ""
 #
-# File: src/c/summation_ui32e.c, line: 61
-# File: src/c/summation_ui32e.c, line: 85
-# File: src/c/gainblk_i16e.c, line: 51
-# File: src/c/gainblk_i16e.c, line: 68
-# File: src/c/gainblk_ui16e.c, line: 53
-# File: src/c/gainblk_ui16e.c, line: 70
-# File: src/c/matmul_i32e.c, line: 63
-# File: src/c/matmul_ui8e.c, line: 61
-# File: src/c/matbyscal_e.c, line: 50
-# File: src/c/matbyscal_e.c, line: 64
-# File: src/c/matbyscal_e.c, line: 78
-# File: src/c/matbyscal_e.c, line: 92
-# File: src/c/matbyscal_e.c, line: 106
-# File: src/c/matbyscal_e.c, line: 120
-# File: src/c/gainblk_i32e.c, line: 53
-# File: src/c/gainblk_i32e.c, line: 70
-# File: src/c/summation_i16e.c, line: 55
-# File: src/c/summation_i16e.c, line: 80
-# File: src/c/matmul_ui16e.c, line: 58
-# File: src/c/gainblk_i8e.c, line: 53
-# File: src/c/gainblk_i8e.c, line: 70
-# File: src/c/matmul2_e.c, line: 50
-# File: src/c/matmul2_e.c, line: 64
-# File: src/c/matmul2_e.c, line: 78
-# File: src/c/matmul2_e.c, line: 92
-# File: src/c/matmul2_e.c, line: 106
-# File: src/c/matmul2_e.c, line: 120
-# File: src/c/summation_ui16e.c, line: 61
-# File: src/c/summation_ui16e.c, line: 85
-# File: src/c/summation_i32e.c, line: 61
-# File: src/c/summation_i32e.c, line: 85
-# File: src/c/gainblk_ui32e.c, line: 53
-# File: src/c/gainblk_ui32e.c, line: 70
 # File: src/c/convert.c, line: 769
 # File: src/c/convert.c, line: 784
 # File: src/c/convert.c, line: 799
@@ -848,15 +861,48 @@ msgstr ""
 # File: src/c/convert.c, line: 1121
 # File: src/c/convert.c, line: 1136
 # File: src/c/convert.c, line: 1151
-# File: src/c/matmul_i16e.c, line: 62
-# File: src/c/summation_ui8e.c, line: 61
-# File: src/c/summation_ui8e.c, line: 85
-# File: src/c/summation_i8e.c, line: 60
-# File: src/c/summation_i8e.c, line: 85
+# File: src/c/matmul_i32e.c, line: 63
+# File: src/c/summation_ui16e.c, line: 61
+# File: src/c/summation_ui16e.c, line: 85
 # File: src/c/matmul_ui32e.c, line: 58
+# File: src/c/matmul_i16e.c, line: 62
+# File: src/c/gainblk_i16e.c, line: 51
+# File: src/c/gainblk_i16e.c, line: 68
 # File: src/c/matmul_i8e.c, line: 58
+# File: src/c/matmul_ui16e.c, line: 58
+# File: src/c/matmul_ui8e.c, line: 61
+# File: src/c/summation_i16e.c, line: 55
+# File: src/c/summation_i16e.c, line: 80
+# File: src/c/matmul2_e.c, line: 50
+# File: src/c/matmul2_e.c, line: 64
+# File: src/c/matmul2_e.c, line: 78
+# File: src/c/matmul2_e.c, line: 92
+# File: src/c/matmul2_e.c, line: 106
+# File: src/c/matmul2_e.c, line: 120
+# File: src/c/gainblk_ui16e.c, line: 53
+# File: src/c/gainblk_ui16e.c, line: 70
+# File: src/c/matbyscal_e.c, line: 50
+# File: src/c/matbyscal_e.c, line: 64
+# File: src/c/matbyscal_e.c, line: 78
+# File: src/c/matbyscal_e.c, line: 92
+# File: src/c/matbyscal_e.c, line: 106
+# File: src/c/matbyscal_e.c, line: 120
+# File: src/c/summation_ui32e.c, line: 61
+# File: src/c/summation_ui32e.c, line: 85
+# File: src/c/summation_i32e.c, line: 61
+# File: src/c/summation_i32e.c, line: 85
+# File: src/c/gainblk_ui32e.c, line: 53
+# File: src/c/gainblk_ui32e.c, line: 70
 # File: src/c/gainblk_ui8e.c, line: 53
 # File: src/c/gainblk_ui8e.c, line: 70
+# File: src/c/gainblk_i8e.c, line: 53
+# File: src/c/gainblk_i8e.c, line: 70
+# File: src/c/summation_ui8e.c, line: 61
+# File: src/c/summation_ui8e.c, line: 85
+# File: src/c/gainblk_i32e.c, line: 53
+# File: src/c/gainblk_i32e.c, line: 70
+# File: src/c/summation_i8e.c, line: 60
+# File: src/c/summation_i8e.c, line: 85
 msgid "overflow error"
 msgstr ""
 #
