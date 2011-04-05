@@ -163,6 +163,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scilex", "modules\windows_t
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildHelp", "modules\helptools\src\BuildHelp.vcxproj", "{BFE3C796-D755-4BB2-840A-89A98D2A4AC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0} = {F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "libmex", "modules\mexlib\src\libmex\libmex.vcxproj", "{0AEC8745-BB5B-4E66-A59A-7251412C3605}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -563,6 +566,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "parallel", "modules\parallel\src\c\parallel.vcxproj", "{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-settings\ant-all\ant-all.vcxproj", "{A9A2020D-5541-44F2-B080-DF3C9426C409}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "swig-all", "Visual-Studio-settings\swig-all\swig-all.vcxproj", "{85303A11-CF6B-432F-B3FD-24DEFFB51025}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1781,13 +1786,9 @@ Global
 		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|Win32.ActiveCfg = Release|Win32
 		{9BE8D73A-7E83-46ED-A9E2-1E3472F52AE5}.Release|x64.ActiveCfg = Release|x64
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.ActiveCfg = Debug|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|Win32.Build.0 = Debug|Win32
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.ActiveCfg = Debug|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Debug|x64.Build.0 = Debug|x64
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.ActiveCfg = Release|Win32
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|Win32.Build.0 = Release|Win32
 		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.ActiveCfg = Release|x64
-		{F1D56B26-F11F-4ECE-AB82-127B5E1C58E0}.Release|x64.Build.0 = Release|x64
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|Win32.ActiveCfg = Debug|Win32
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|Win32.Build.0 = Debug|Win32
 		{56A2E2F3-26CF-45D5-BE7A-534C39CD7003}.Debug|x64.ActiveCfg = Debug|x64
@@ -1800,6 +1801,10 @@ Global
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Debug|x64.ActiveCfg = Debug|x64
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|Win32.ActiveCfg = Release|Win32
 		{A9A2020D-5541-44F2-B080-DF3C9426C409}.Release|x64.ActiveCfg = Release|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|Win32.ActiveCfg = Debug|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|x64.ActiveCfg = Debug|x64
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|Win32.ActiveCfg = Release|Win32
+		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

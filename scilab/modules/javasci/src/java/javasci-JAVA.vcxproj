@@ -173,10 +173,6 @@ call ant clean
     <None Include="..\..\build.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\helptools\src\javadoc\javadoc.vcxproj">
-      <Project>{f1d56b26-f11f-4ece-ab82-127b5e1c58e0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\types\src\java\types-JAVA.vcxproj">
       <Project>{abcb724e-8534-4420-ac12-7c33a606aba3}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
