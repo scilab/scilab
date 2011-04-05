@@ -7,14 +7,24 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-07-09 14:43+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-27 07:23+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
+
+#, c-format
+msgid ""
+"%s : Wrong number of output matrix dimensions required: %d expected for "
+"sparse matrices"
+msgstr ""
+
+#, c-format
+msgid "%s : Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same type expected.\n"
@@ -95,6 +105,11 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se no máximo "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se ao menos %d.\n"
 
 #, c-format
 msgid ""
@@ -253,12 +268,6 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de números reais.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Cell expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma célula.\n"
@@ -334,6 +343,13 @@ msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid ""
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\" or \"%s\" expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
+"\"%s\" ou \"%s\".\n"
+
+#, c-format
+msgid ""
 "%s: Wrong value for input argument #%d: %d,''%s'',%d or ''%s'' expected\n"
 msgstr ""
 "%s: Valor  incorreto para o argumento de entrada #%d: esperava-se %d, "
@@ -401,6 +417,13 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
 "%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar no intervalo "
+"[%s,%s].\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Non-hermitian matrix.\n"
@@ -500,16 +523,117 @@ msgstr ""
 "igual a r(1).\n"
 
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "A função %s está obsoleta."
+#~ msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+#~ msgstr ""
+#~ "%s: Quantidade errada de argumentos de entrada: Deve estar enre %d e %d.\n"
 
 #, c-format
-msgid "Please use %s instead."
-msgstr "Por favor, utilize %s no lugar."
+#~ msgid ""
+#~ "%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Erro de sintaxe na "
+#~ "expressão fornecida.\n"
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "Esta função será permanentemente removida no Scilab %s"
+#~ msgid ""
+#~ "%s: Wrong input argument #%d: Scalar/matrix/hypermatrix of unsigned integers "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Erro no argumento de entrada #%d: Esperava-se "
+#~ "escalares/matrizes/hipermatrizes de números inteiros sem sinal.\n"
 
-msgid "Warning: "
-msgstr "Aviso: "
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se um vetor ou "
+#~ "uma matriz.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+#~ "integers expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo errado para o argumento de entrada #%d: Esperava-se "
+#~ "escalar/matriz/hipermatriz de inteiros sem sinais.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Esperava-se reais, mas "
+#~ "foram encontrados alguns NaN.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+#~ "real.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s'' ou "
+#~ "''%s'' ou ''%s''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
+#~ "tamanhos iguais.\n"
+
+#, c-format
+#~ msgid "%s: Unexpected value of n: %d. Expected value is greater than %d.\n"
+#~ msgstr ""
+#~ "%s: Valor inesperado de n: %d. Esperava-se um valor maior do que %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: ''%s'' expexted.\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Esperava-se ''%s''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' expected .\n"
+#~ msgstr ""
+#~ "%s: Valor errado para o argumento de entrada #%d: Esperava-se '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+#~ "de números reais.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: [''g'' ''r'' ''c''] expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se [\"g\" "
+#~ "\"r\" \"c\"].\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "AVISO: A função %s está obsoleta.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "AVISO: Esta função será removida permanentemente no Scilab %s.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "AVISO: Por favor, use %s no lugar.\n"
+
+#~ msgid "Warning: "
+#~ msgstr "Aviso: "
+
+#, c-format
+#~ msgid "Please use %s instead."
+#~ msgstr "Por favor, utilize %s no lugar."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Esta função será permanentemente removida no Scilab %s"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "A função %s está obsoleta."

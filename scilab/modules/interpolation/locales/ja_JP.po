@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-04 14:42+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -208,3 +208,9 @@ msgstr "入力引数 #%d の型が間違っています: 実数ハイパー行�
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"
 msgstr "入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_lsq_splin.c, line: 83
+#, c-format
+#~ msgid "%s: Not enought points for the fit.\n"
+#~ msgstr "%s: 適合のための十分な地点ではありません。\n"

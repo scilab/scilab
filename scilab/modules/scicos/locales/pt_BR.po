@@ -7,24 +7,28 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-07-16 04:06+0000\n"
-"Last-Translator: Albuquerque <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:49+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
+"\n"
+"         evento (já programado). Pode haver um erro em"
 
 msgid ""
 "\n"
 "         your model. Please check your model\n"
 msgstr ""
+"\n"
+"         seu modelo. Por favor, verifique seu modelo\n"
 
 msgid ""
 "\n"
@@ -42,11 +46,15 @@ msgid ""
 "\n"
 " Warning: an event is reprogrammed at t=%g by removing another"
 msgstr ""
+"\n"
+" Atenção: um evento é reprogramado para t=%g removendo outro"
 
 msgid ""
 "\n"
 " error in Jacobian"
 msgstr ""
+"\n"
+" erro no Jacobiano"
 
 #, c-format
 msgid ""
@@ -74,12 +82,16 @@ msgid ""
 "\n"
 "Warning: The computing function #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Aviso: A função computada #%d devolve um NaN/Inf"
 
 #, c-format
 msgid ""
 "\n"
 "Warning: The initialization system #%d returns a NaN/Inf"
 msgstr ""
+"\n"
+"Aviso: O sistema de iniciação #%d devolve um NaN/Inf"
 
 #, c-format
 msgid ""
@@ -384,6 +396,18 @@ msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: As portas de saída não estão numeradas apropriadamente.\n"
 
 #, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: deve estar entre %d e "
@@ -392,6 +416,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -414,15 +442,35 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
 "inteiro.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -467,6 +515,30 @@ msgstr "&Arquivo"
 
 msgid "&Tools"
 msgstr "&Ferramentas"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
@@ -759,6 +831,9 @@ msgstr ""
 msgid "Calc"
 msgstr ""
 
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
@@ -836,6 +911,9 @@ msgstr ""
 msgid "Compile"
 msgstr ""
 
+msgid "Connection error"
+msgstr ""
+
 msgid "Context"
 msgstr ""
 
@@ -890,6 +968,16 @@ msgstr ""
 msgid "Diagram"
 msgstr ""
 
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
 msgid "Done\n"
 msgstr ""
 
@@ -906,6 +994,9 @@ msgid "End of activation"
 msgstr ""
 
 msgid "End of activation\n"
+msgstr ""
+
+msgid "End problem: "
 msgstr ""
 
 msgid "Entering the block \n"
@@ -976,6 +1067,20 @@ msgid "Get Info"
 msgstr ""
 
 msgid "Help"
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
 msgstr ""
 
 msgid "ID font definitions"
@@ -1191,6 +1296,9 @@ msgstr ""
 msgid "Identification"
 msgstr ""
 
+msgid "Initialisation problem:"
+msgstr ""
+
 msgid "It is impossible to set ID for this type of object"
 msgstr ""
 
@@ -1398,6 +1506,9 @@ msgstr ""
 msgid "Problem while building library %s\n"
 msgstr "Problema na construção da biblioteca %s\n"
 
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
 msgid "Properties"
 msgstr ""
 
@@ -1515,6 +1626,12 @@ msgstr ""
 msgid "Simulate"
 msgstr ""
 
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr ""
@@ -1559,6 +1676,10 @@ msgstr ""
 msgid ""
 "The parameter(s) %s \n"
 "must be defined in the"
+msgstr ""
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""
 
 msgid "Thickness"
@@ -1623,6 +1744,15 @@ msgstr ""
 
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
 msgstr ""
 
 msgid "Yes"
@@ -1726,3 +1856,32 @@ msgstr "largura"
 #, c-format
 msgid "with flag %d "
 msgstr ""
+
+#~ msgid "Scicos"
+#~ msgstr "Scicos"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: O diagrama não compila na passagem %d.\n"
+#~ "'),"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr "%s: Ocorreu um erro durante a compilação do bloco Modelica."
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr "%s: Erro: O compilador Modelica (MODELICAC) não está disponível.\n"
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Desculpe, problema de compilação"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr "%s: Erro: a seguinte linha de comando não pôde ser executada: %s.\n"
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "É necessário um compilador C compatível."

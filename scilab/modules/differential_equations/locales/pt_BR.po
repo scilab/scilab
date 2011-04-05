@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-04-17 11:27+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:10+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -153,11 +153,17 @@ msgstr "Significado de ml, mu:"
 msgid "ODE 1D vector field"
 msgstr "Campo vetorial da EDO de primeira ordem"
 
+msgid "Reading a precomputed trajectory"
+msgstr ""
+
 msgid "Simulation"
 msgstr "Simulação"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "Simulação de sistema mecânico com restrições holonômico"
+
+msgid "Simulation with ode (needs a Fortran compiler)"
+msgstr ""
 
 msgid "Sphere"
 msgstr "Esfera"
@@ -193,3 +199,16 @@ msgstr "Simulação do pêndulo esférico"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "tal que a coluna 1 de J é feita de mu zeros seguidos por"
+
+#~ msgid "Cylindre"
+#~ msgstr "Cilindro"
+
+#~ msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-banwidths"
+#~ msgstr ""
+#~ "Se jactype = 4 ou 5 ml e mu são as larguras das semi-faixas superiores e "
+#~ "inferiores"
+
+#, c-format
+#~ msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+#~ msgstr ""
+#~ "%s: A opção %s é inválida: esperava-se %d ou matriz de números reais.\n"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-13 14:56+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-12 00:13+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -150,8 +150,20 @@ msgid "%s is not an entry point.\n"
 msgstr "%s はエントリポイントではありません.\n"
 
 #, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr "%s: %s は Scilabにロード済みです."
+
+#, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s: Fortran または Cコンパイラが必要です.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Already loaded from library %s\n"
@@ -184,6 +196,14 @@ msgstr "%s: ファイル %s を開けません.\n"
 #, c-format
 msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d に達しました.\n"
+
+#, c-format
+msgid "%s: Could not find the built library ''%s''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr "%s: %s を実行中にエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
@@ -313,8 +333,8 @@ msgid "%s: Wrong type for input arguments: Strings expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '''' または ''[]'' を指定してください.\n"
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: [] を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -323,6 +343,10 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定し�
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: [既存のファイルを指定してください.\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
@@ -361,6 +385,9 @@ msgstr "エラー: 有効な内部 ルーチン番号 %d ではありません.\
 
 msgid "F2C cannot build fortran 90"
 msgstr "F２Cはfortran 90を構築できません"
+
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
 
 #
 # File: src/c/addinter.c, line: 237
@@ -408,6 +435,9 @@ msgstr "ユニークなダイナミックライブラリ名を指定してくだ
 msgid "Unique id of a shared library expected."
 msgstr "共有ライブラリのユニークなIDを"
 
+msgid "You need to unload this library before."
+msgstr "このライブラリを事前にアンロードしておく必要があります."
+
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr "] : %d ライブラリ。\n"
@@ -421,3 +451,88 @@ msgstr "] : %d ライブラリ。\n"
 #, c-format
 msgid "stderr: %s\n"
 msgstr "標準エラー: %s\n"
+
+#
+# File: macros/ilib_build.sci, line: 35
+#~ msgid "   Generate a gateway file"
+#~ msgstr "   ゲートウェイファイルの生成"
+
+#
+# File: macros/ilib_build.sci, line: 41
+# File: macros/ilib_for_link.sci, line: 34
+#~ msgid "   Generate a loader file"
+#~ msgstr "   ローダファイルの生成"
+
+#
+# File: macros/ilib_build.sci, line: 52
+#, c-format
+#~ msgid "   Generate a Makefile: %s"
+#~ msgstr "   Makefileの生成: %s"
+
+#
+# File: macros/ilib_build.sci, line: 54
+# File: macros/ilib_for_link.sci, line: 38
+#~ msgid "   Generate a Makefile"
+#~ msgstr "   Makefileの生成"
+
+#
+# File: macros/ilib_build.sci, line: 66
+#~ msgid "   Running the makefile"
+#~ msgstr "   makefileの実行"
+
+#
+# File: macros/ilib_compile.sci, line: 62
+#~ msgid "   Building shared library (be patient)"
+#~ msgstr "   共有ライブラリの構築(我慢して下さい)"
+
+#
+# File: macros/ilib_compile.sci, line: 116
+#, c-format
+#~ msgid "%s: An error occured during the compilation:\n"
+#~ msgstr "%s: コンパイル中にエラーが起きました:\n"
+
+#
+# File: macros/ilib_for_link.sci, line: 52
+#~ msgid "   Running the Makefile"
+#~ msgstr "   Makefileの実行"
+
+#
+# File: macros/ilib_gen_Make_unix.sci, line: 164
+#, c-format
+#~ msgid "%s: Error while modifing the reference Makefile:\n"
+#~ msgstr "%s: Makefile参照エラーを修正しました:\n"
+
+#
+# File: src/c/addinter.c, line: 211
+#, c-format
+#~ msgid " results may be inaccurate. rcond = %s\n"
+#~ msgstr " 結果は不正確かもしれません。rcond = %s\n"
+
+#
+# File: macros/dllinfo.sci, line: 106
+# File: macros/dllinfo.sci, line: 119
+# File: macros/ilib_compile.sci, line: 29
+# File: sci_gateway/c/sci_c_link.c, line: 101
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 文字配列を想定します。\n"
+
+#
+# File: macros/dllinfo.sci, line: 106
+# File: macros/dllinfo.sci, line: 119
+# File: macros/ilib_compile.sci, line: 29
+# File: sci_gateway/c/sci_c_link.c, line: 101
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: '''' または ''[]'' を指定してください.\n"
+
+#~ msgid "Intel Fortran Comiler 9, 10, 11 or 12 Compiler not found."
+#~ msgstr "Intel Fortran Comiler 9, 10, 11 または12 コンパイラが見つかりません."
+
+#, c-format
+#~ msgid "A managed file extension for input argument #%d"
+#~ msgstr "入力引数 #%d のマネージドファイル拡張子"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-16 14:10+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-14 13:07+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -198,11 +198,56 @@ msgstr ""
 "%s: Mauvaise valeur pour l'argument d'entrée n°%d: Le degré doit être dans "
 "l'ensemble {%s}.\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr "Arma, estimation de puissance spectrale:"
+
 msgid "Arma identification"
 msgstr "Identification d'Arma"
 
+msgid "Arma simulation and identification"
+msgstr "Arma, simulation et identification"
+
+msgid "Arma, Spectral power estimation"
+msgstr "Arma, estimation de puissance spectrale"
+
+msgid "Arma, bidimensional version"
+msgstr "Arma, version bidimensionnelle"
+
+msgid "Bode plots"
+msgstr "Diagramme de Bode"
+
+msgid "Discrete IIR filter"
+msgstr "filtres Discret  RII"
+
+msgid "IIR filter design"
+msgstr "conception de filtres IIR"
+
+msgid "Identification ARX (least square):"
+msgstr "Identification ARX (moindres carrés):"
+
+msgid "Identification ARX (least square): "
+msgstr "Identification ARX (moindres carrés): "
+
+msgid "Minimax FIR filter"
+msgstr "Filtre Minimax FIR"
+
+msgid "Minimax FIR filter design"
+msgstr "Conception de filtre Minimax FIR"
+
+msgid "Press Return to continue ... \n"
+msgstr "Appuyez sur Entrée pour continuer ... \n"
+
 msgid "Signal Processing"
 msgstr "Traitement du signal"
+
+msgid "Simulation of an ARMAX process:"
+msgstr "Simulation d'un processus ARMAX:"
+
+msgid "Simulation of an ARMAX process: "
+msgstr "Simulation d'un processus ARMAX: "
+
+msgid "Spectral Estimation"
+msgstr "Estimation spectrale"
 
 msgid "Spectral power"
 msgstr "Puissance spectrale"
@@ -213,6 +258,12 @@ msgstr "Valeur théorique"
 msgid "Using macro mese"
 msgstr "Utilise la macro mese"
 
+msgid "Wiegner filter"
+msgstr "Wiegner filtre"
+
+msgid "Window FIR filters"
+msgstr "Fenêtre des filtres FIR"
+
 msgid "estimates xf"
 msgstr "Estime xf"
 
@@ -222,8 +273,20 @@ msgstr "Estime xs"
 msgid "frequency"
 msgstr "fréquence"
 
+msgid "length 33"
+msgstr "longueur 33"
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr ""
+
 msgid "real state"
 msgstr "état réel"
 
 msgid "spectral estimate"
 msgstr "estimation spectrale"
+
+#~ msgid "Theoritical value"
+#~ msgstr "Valeur théorique"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "Identification ARMA"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-04 15:55+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-12-04 11:01+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -115,6 +115,9 @@ msgstr ".wavファイルにRIFF識別子が含まれていません."
 msgid ".wav file does not contain the wave identifier."
 msgstr ".wavファイルにwave 識別子が含まれていません."
 
+msgid "A complete picture of the sound."
+msgstr "音の完全な図"
+
 msgid "Cannot play file."
 msgstr "ファイルを再生できません."
 
@@ -146,6 +149,9 @@ msgstr "wavファイルの読み込みエラーです。"
 # File: macros/auwrite.sci, line: 88
 msgid "Error while writing sound file."
 msgstr "サウンド・ファイルの書き込み中にエラー。"
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr "soundパラメータの0.5秒間のフーリエ解析"
 
 #
 # File: macros/wavread.sci, line: 137
@@ -187,3 +193,23 @@ msgstr "データ形式を認識できません."
 
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "対応する符号化は 8/16/24/32 ビットのみです."
+
+msgid "see ''mapsound'' function"
+msgstr "\"mapsound\"関数参照"
+
+#
+# File: macros/playsnd.sci, line: 32
+#~ msgid "Audio capabilities not available."
+#~ msgstr "オーディオの能力は利用できません。"
+
+#
+# File: macros/wavread.sci, line: 60
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
+#~ "vector of %d integers.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な値: %s または %s でなければなりません、整数 または、 %d 整数のベクトル\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: メモリの割り当てに失敗しました。\n"

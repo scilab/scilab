@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-10 09:04+0000\n"
-"Last-Translator: Sylvestre Ledru <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-14 12:50+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr " Commence à vider les commandes de la queue.\n"
@@ -110,23 +110,14 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : '%s' attendu.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "&Edition"
-
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Tools"
-msgstr "&Outils"
-
 msgid "Alpha Release"
 msgstr "Release Alpha"
 
 msgid "Beta Release"
 msgstr "Release Beta"
+
+msgid "Color"
+msgstr "Couleur"
 
 #, c-format
 msgid "Error %s while loading library %s"
@@ -164,8 +155,17 @@ msgstr "Impossible de définir la variable d'environnement."
 msgid "Impossible to set system encoding."
 msgstr "Impossible de définir l'encodage système."
 
+msgid "Puzzle"
+msgstr "Puzzle"
+
+msgid "Scale"
+msgstr "Échelle"
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Le module TCL/TK de Scilab n'est pas installé.\n"
+
+msgid "Scroll"
+msgstr "Défilement"
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -252,3 +252,31 @@ msgstr "Attention: trop de callbacks dans la queue!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] ne marchent pas avec Tcl/Tk.\n"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#~ msgid "&Tools"
+#~ msgstr "&Outils"
+
+#~ msgid "&File"
+#~ msgstr "&Fichier"
+
+#~ msgid "Updating, please wait"
+#~ msgstr "Mise à jour, patientez s'il vous plait"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Interface TCL/TK n'est pas chargée."
+
+#~ msgid "&Edit"
+#~ msgstr "&Edition"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvais type pour l'argument d'entrée n° %d: Un réel ou une matrice de "
+#~ "chaîne de caractères attendue.\n"
+
+#~ msgid "Open"
+#~ msgstr "Ouvrir"

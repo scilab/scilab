@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-08-20 13:06+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid " An hypermatrix extraction must have at least 2 arguments. "
 msgstr ""
@@ -85,3 +85,21 @@ msgstr "Помилковий (%d-ий) індекс під час видобув
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
 msgstr ""
 "Занадто багато параметрів у стеці, збільшіть значення intersiz у stack.h.\n"
+
+#~ msgid " An hypermatrix insertion must have at least 3 arguments "
+#~ msgstr " Команда вставлення гіперматриці має містити принаймні 3 параметри "
+
+#~ msgid " Argument is not an hypermatrix "
+#~ msgstr " Параметр не є гіперматрицею "
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s) : an even number is expected."
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: слід використовувати парну "
+#~ "кількість параметрів."
+
+#, c-format
+#~ msgid "%s: Wrong values for input argument #%d: Elements"
+#~ msgstr ""
+#~ "%s: помилкові значення вхідного параметра №%d: елементи мають бути "
+#~ "невід’ємними."

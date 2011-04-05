@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 16:29+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-29 16:41+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -36,6 +36,10 @@ msgid ""
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
 "tenir les mateixes dimensions.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A single string.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -78,6 +82,12 @@ msgstr "Tot"
 msgid "Alphabetic order"
 msgstr ""
 
+msgid "An error occured when exporting the code using FOP"
+msgstr ""
+
+msgid "An error occured when printing"
+msgstr ""
+
 msgid "Anchor's name: "
 msgstr ""
 
@@ -85,6 +95,9 @@ msgid "Anchor: "
 msgstr ""
 
 msgid "Anchors"
+msgstr ""
+
+msgid "Apply & Reindent"
 msgstr ""
 
 msgid "Are you sure that you want to close SciNotes ?"
@@ -114,8 +127,14 @@ msgstr "Negreta"
 msgid "Cancel"
 msgstr "Cancel·la"
 
+msgid "Cannot guess the file encoding."
+msgstr ""
+
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "No s'ha pogut carregar el \"scinotesConfiguration.xml\""
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr ""
 
 msgid "Case sensitive"
 msgstr "Distingix majúscules i minúscules"
@@ -156,17 +175,26 @@ msgstr "S'ha cancel·lat l'acoloriment"
 msgid "Colorize"
 msgstr "Acoloreix"
 
+msgid "Columns actions"
+msgstr ""
+
 msgid "Comment Selection"
 msgstr "Comenta la selecció"
 
 msgid "Complete"
 msgstr "Finalitzat"
 
+msgid "Configure Tabulation"
+msgstr ""
+
 msgid "Continue ?"
 msgstr ""
 
 msgid "Copy"
 msgstr "Copia"
+
+msgid "Copy as HTML with line number"
+msgstr ""
 
 msgid "Copy selection in a new tab"
 msgstr ""
@@ -186,6 +214,9 @@ msgstr "No s'ha trobat la consola ni l'intèrpret de comandes."
 msgid "Could not find the temporary file."
 msgstr "No s'ha trobat el fitxer temporal"
 
+msgid "Current file encoding"
+msgstr ""
+
 msgid "Cursor Color"
 msgstr ""
 
@@ -194,6 +225,9 @@ msgstr "Retalla"
 
 msgid "Default"
 msgstr "Predeterminat"
+
+msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+msgstr ""
 
 msgid "Delete"
 msgstr "Elimina"
@@ -207,6 +241,9 @@ msgstr "Direcció"
 msgid "Document"
 msgstr "Document"
 
+msgid "Double chevrons"
+msgstr ""
+
 msgid "Edit"
 msgstr "Edita"
 
@@ -215,6 +252,9 @@ msgstr "Habilita el format automàtic"
 
 msgid "Encoding"
 msgstr "Codificació"
+
+msgid "Encoding problems"
+msgstr ""
 
 msgid "Enter line number"
 msgstr "Entreu el número de línia"
@@ -231,6 +271,9 @@ msgstr ""
 msgid "Evaluate from beginning..."
 msgstr "Avalua des del principi..."
 
+msgid "Exact"
+msgstr ""
+
 msgid "Execute"
 msgstr "Executa"
 
@@ -239,6 +282,9 @@ msgstr "Executa el fitxer a l'Scilab"
 
 msgid "Exit"
 msgstr "Surt"
+
+msgid "Export"
+msgstr ""
 
 msgid "File"
 msgstr "Fitxer"
@@ -306,14 +352,32 @@ msgstr "Ajuda a l'escriptura"
 msgid "Highlight current line"
 msgstr "Ressalta la línia actual"
 
+msgid "Horizontal rule"
+msgstr ""
+
+msgid "Horizontal wrapping"
+msgstr ""
+
 msgid "Ignore"
 msgstr "Ignora"
+
+msgid "Incremental Search"
+msgstr ""
 
 msgid "Invalid regular expression : %s"
 msgstr "Expressió regular invàlida: %s"
 
 msgid "Italic"
 msgstr "Cursiva"
+
+msgid "Length"
+msgstr ""
+
+msgid "Line %s, Column %s."
+msgstr ""
+
+msgid "Line %s, Column %s. Function '%s' at Line %s."
+msgstr ""
 
 msgid "Line Endings"
 msgstr "Finals de línia"
@@ -331,6 +395,12 @@ msgid "Mac Classic (CR)"
 msgstr "Mac Classic (CR)"
 
 msgid "Mail to "
+msgstr ""
+
+msgid "Make Selection Lowercase"
+msgstr ""
+
+msgid "Make Selection Uppercase"
 msgstr ""
 
 msgid "Natural order"
@@ -357,7 +427,7 @@ msgstr ""
 msgid "Normal Line Numbering"
 msgstr "Números de línia normals"
 
-msgid "Numerotation"
+msgid "Numeration"
 msgstr ""
 
 msgid "Ok"
@@ -369,7 +439,7 @@ msgstr "Obre"
 msgid "Open URL"
 msgstr ""
 
-msgid "Open file in ...;Add a directory;Remove last directory"
+msgid "Open file in ..."
 msgstr ""
 
 msgid "Open function source file"
@@ -401,6 +471,9 @@ msgstr "Configuració de pàgina"
 
 msgid "Paste"
 msgstr "Enganxa"
+
+msgid "Paste Column"
+msgstr ""
 
 msgid "Preferences"
 msgstr ""
@@ -447,6 +520,9 @@ msgstr ""
 msgid "Remove trailing whitespaces"
 msgstr "Elimina els espais del darrere"
 
+msgid "Repeat on the Column"
+msgstr ""
+
 msgid "Replace"
 msgstr "Reemplaça"
 
@@ -486,6 +562,9 @@ msgstr "Desa-ho tot"
 msgid "Save as"
 msgstr "Anomena i desa"
 
+msgid "Save file in ..."
+msgstr ""
+
 msgid "SciNotes"
 msgstr "SciNotes"
 
@@ -524,6 +603,9 @@ msgstr "Línies seleccionades"
 
 msgid "Set Colors"
 msgstr "Determina els colors"
+
+msgid "Set Colors ..."
+msgstr ""
 
 msgid "Set Font"
 msgstr "Determina la font"
@@ -567,15 +649,22 @@ msgstr "Tatxat"
 msgid "String %s not found"
 msgstr "No s'ha trobat la cadena %s"
 
+msgid "Suppress comments when executing selection"
+msgstr ""
+
 msgid "Syntax Type"
 msgstr "Tipus de sintaxi"
 
-msgid ""
-"The file %s doesn't exist\n"
-" Do you want to create it?"
+msgid "Tab representation"
 msgstr ""
-"El fitxer %s no existeix\n"
-" El voleu crear?"
+
+msgid "Tab style"
+msgstr ""
+
+msgid ""
+"The file %s does not exist\n"
+"Do you want to create it?"
+msgstr ""
 
 msgid ""
 "The file %s has been modified by another program !\n"
@@ -587,8 +676,18 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "No s'ha pogut convertir el text."
 
+msgid "The file could not be created, check the path"
+msgstr ""
+
 msgid "The file could not be saved."
 msgstr "No s'ha pogut desar el text."
+
+msgid ""
+"The file encoding is actually %s and it will be saved in using %s. Continue ?"
+msgstr ""
+
+msgid "The file is not writable so it is opened in read-only mode"
+msgstr ""
 
 msgid "This file"
 msgstr "Aquest fitxer"
@@ -622,6 +721,12 @@ msgstr "Unix (LF)"
 msgid "Untitled "
 msgstr "Sense títol "
 
+msgid "Use spaces"
+msgstr ""
+
+msgid "Vertical rule"
+msgstr ""
+
 msgid "View"
 msgstr "Visualitza"
 
@@ -642,6 +747,15 @@ msgstr "Windows/DOS (CR + LF)"
 
 msgid "Word Wrap"
 msgstr "Ajust de paraula"
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr ""
+
+msgid "You do not have the permissions to read this file"
+msgstr ""
+
+msgid "You do not have the permissions to write this file"
+msgstr ""
 
 msgid "You have passed the beginning of the document"
 msgstr "Heu passat l'inici del document"
@@ -665,3 +779,25 @@ msgstr "Perdreu les modificacions. Tot i així, voleu canviar la codificació?"
 
 msgid "close this tab"
 msgstr "Tanca aquesta pestanya"
+
+#~ msgid "Continue?"
+#~ msgstr "Voleu continuar?"
+
+#~ msgid "Edit selection in a new tab"
+#~ msgstr "Edita la selecció en una nova pestanya"
+
+#~ msgid "No text selected"
+#~ msgstr "No heu seleccionat cap text"
+
+#~ msgid ""
+#~ "The file %s doesn't exist\n"
+#~ " Do you want to create it?"
+#~ msgstr ""
+#~ "El fitxer %s no existeix\n"
+#~ " El voleu crear?"
+
+#~ msgid "Wrap search"
+#~ msgstr "Ajusta la cerca"
+
+#~ msgid "No text to execute"
+#~ msgstr "No hi ha text a executar"

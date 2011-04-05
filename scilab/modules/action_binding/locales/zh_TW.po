@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-06-30 02:01+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -33,3 +33,11 @@ msgstr "Scilab '%s' 模組尚未安裝.\n"
 
 msgid "Unable to communicate with the interpreter"
 msgstr "無法聯繫上interpreter"
+
+#, c-format
+#~ msgid "Unqueuing %s - No option.\n"
+#~ msgstr "移除 (Unqueuing) %s - 無選項.\n"
+
+#, c-format
+#~ msgid "Unqueuing %s - seq.\n"
+#~ msgstr "移除 (Unqueuing) %s - seq(選項).\n"

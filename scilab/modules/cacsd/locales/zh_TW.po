@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-18 17:20+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-29 14:40+0000\n"
+"Last-Translator: Alvin Tseng <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "Revision-Date: 2010-08-18 15:26+0100\n"
 
 #, c-format
@@ -45,18 +45,13 @@ msgstr "%s: %s 有純虛數之特徵值.\n"
 msgid "%s: %s has zero(s) near the imaginary axis.\n"
 msgstr "%s: %s 接近虛軸處有零點.\n"
 
-#
-# File: macros/h_inf.sci, line: 109
 #, c-format
 msgid "%s: %s is detectable.\n"
-msgstr "%s: %s 可測(detectable).\n"
+msgstr "%s: %s 是可被偵測的。\n"
 
-#
-# File: macros/gamitg.sci, line: 277
-# File: macros/gamitg.sci, line: 301
 #, c-format
 msgid "%s: %s is indefinite.\n"
-msgstr "%s: %s 不定值.\n"
+msgstr "%s: %s 爲不定值。\n"
 
 #
 # File: macros/gamitg.sci, line: 95
@@ -935,3 +930,16 @@ msgstr ""
 
 msgid "rad/sec"
 msgstr ""
+
+#
+# File: macros/kpure.sci, line: 31
+#, c-format
+#~ msgid "%s: Infinite solution.\n"
+#~ msgstr "%s: 無限解.\n"
+
+#
+# File: macros/obsvss.sci, line: 19
+# File: macros/obsvss.sci, line: 28
+#, c-format
+#~ msgid "%s Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s 輸入參數之數目錯誤: 應為 %d 或 %d.\n"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-29 10:02+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -230,16 +230,14 @@ msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser de %d a %d"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Hi pot haver %d com a "
 "màxim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -898,9 +896,8 @@ msgstr "No s'ha implementat al Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar cap variable nul·la.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
 msgstr ""
-"Els operants de les operacions / i \\ no poden contenir NaN de inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -1525,3 +1522,108 @@ msgstr "no s'ha definit el domini temporal de l'argument %d.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar la paraula varargout.\n"
+
+#~ msgid "Incorrect # of outputs in the function\n"
+#~ msgstr "El nombre de sortides de la funció és incorrecte\n"
+
+#~ msgid "Function has no output.\n"
+#~ msgstr "La funció no té cap sortida.\n"
+
+#~ msgid "Wrong number of arguments in function call...\n"
+#~ msgstr "El nombre d'arguments a la crida a la funció és incorrecte...\n"
+
+#~ msgid "Function has no input argument...\n"
+#~ msgstr "La funció no té cap argument d'entrada...\n"
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Error fatal!!! S'ha desat les vostres variables al fitxer: %s\n"
+#~ "Hi ha hagut una crida incorrecta a una funció del Scilab?\n"
+#~ "En cas contrari, envieu un informe d'error a:\n"
+
+#~ msgid "No more logical units available!\n"
+#~ msgstr "No hi ha més unitats lògiques disponibles!\n"
+
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: El problema és singular o assimètric.\n"
+
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: Aquest mètode no està implementat.\n"
+
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr "Els operands d'operacions / i \\ no poden contenir el NaN de Inf.\n"
+
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr "S'ha definit una matriu dispersa amb dos valors diferents.\n"
+
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr "Heu d'obrir els fitxers d'accés directe binari amb 'file'.\n"
+
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: La matriu de col·locació és singular.\n"
+
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "Hi ha massa variables globals, el nombre màxim és %d.\n"
+
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr ""
+#~ "Error d'escriptura al fitxer (el disc és ple o s'ha eliminat el fitxer).\n"
+
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "El rang és deficient. rank = %d\n"
+
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr "A l'hora: %s ,Massa iteracions per a assolir la precisió demanada.\n"
+
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "Avís: S'ha donat una Jacobiana externa, però\n"
+#~ " no s'ha utilitzat. Veieu %ODEOPTIONS(6).\n"
+
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr ""
+#~ "Avís: No s'ha completat la integració. Comproveu els paràmetres de "
+#~ "tolerància o la mida del pas.\n"
+
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "Hi ha massa entrades d'entrada/sortida per al bloc marcat.\n"
+
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "Hi ha massa blocs d'entrada/sortida per al bloc marcat.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Error d'assignació de memòria.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+#~ msgstr "%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser > 0.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "El format 'o' no està permès."
+
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "Avís: Utilització obsoleta d'identitat aleatòria, o uns.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr ""
+#~ "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
+#~ "%d.\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr ""
+#~ "Els operants de les operacions / i \\ no poden contenir NaN de inf.\n"

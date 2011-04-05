@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-18 21:23+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-03 09:46+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -75,6 +75,10 @@ msgstr "%s: Файлы с расширением %s не найдены в %s\n"
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: Проверьте: %s\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr "%s: Частная функция: невозможен прямой доступ к данной функции.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -242,3 +246,69 @@ msgstr "строка %s [%s вызов, %s с] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "строка %s [%s вызовов, %s с] :: "
+
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr "%s: Файл %s.sci не найден в каталоге библиотеки %s.\n"
+
+#~ msgid "Insert"
+#~ msgstr "Вставка"
+
+#~ msgid "&Insert"
+#~ msgstr "&Вставить"
+
+#~ msgid "&Edit"
+#~ msgstr "&Правка"
+
+#~ msgid "&File"
+#~ msgstr "&Файл"
+
+#~ msgid "&Tools"
+#~ msgstr "&Инструменты"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "Функция %s устарела."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Эта функция будет окончательно удалена в Scilab %s"
+
+#~ msgid "Editer"
+#~ msgstr "&Редактор"
+
+#~ msgid "3D &Rot."
+#~ msgstr "2D/3D &Вращение"
+
+#~ msgid "3D Rot."
+#~ msgstr "2D/3D &Вращение"
+
+#~ msgid "UnZoom"
+#~ msgstr "&Исходный масштаб"
+
+#~ msgid "File"
+#~ msgstr "&Файл"
+
+#~ msgid "Zoom"
+#~ msgstr "&Увеличить область"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
+#~ msgstr "%s: Неверный размер входного параметра №%d: ожидалось имя функции.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "Внимание: используйте %s вместо неё.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "Внимание: эта функция будет полностью удалена в Scilab %s.\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "Внимание: функция %s устарела.\n"

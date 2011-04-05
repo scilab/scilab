@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-08-01 02:42+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-04 10:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -199,11 +199,56 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなりません。\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr "ARMAスペクトルパワー推定"
+
 msgid "Arma identification"
 msgstr "ARMA同定"
 
+msgid "Arma simulation and identification"
+msgstr "ARMAシミュレーションおよび同定"
+
+msgid "Arma, Spectral power estimation"
+msgstr "ARMA, スペクトルパワー推定"
+
+msgid "Arma, bidimensional version"
+msgstr "ARMA, 二次元版"
+
+msgid "Bode plots"
+msgstr "ボード線図"
+
+msgid "Discrete IIR filter"
+msgstr "離散IIRフィルタ"
+
+msgid "IIR filter design"
+msgstr "IIRフィルタ設計"
+
+msgid "Identification ARX (least square):"
+msgstr "同定ARX (最小二乗):"
+
+msgid "Identification ARX (least square): "
+msgstr "同定ARX (最小二乗): "
+
+msgid "Minimax FIR filter"
+msgstr "ミニマックスFIRフィルタ"
+
+msgid "Minimax FIR filter design"
+msgstr "ミニマックスFIRフィルタ設計"
+
+msgid "Press Return to continue ... \n"
+msgstr "続けるにはリターンを入力してください ... \n"
+
 msgid "Signal Processing"
 msgstr "信号処理"
+
+msgid "Simulation of an ARMAX process:"
+msgstr "ARMAX過程のシミュレーション:"
+
+msgid "Simulation of an ARMAX process: "
+msgstr "ARMAX過程のシミュレーション: "
+
+msgid "Spectral Estimation"
+msgstr "スペクトル推定"
 
 msgid "Spectral power"
 msgstr "パワースペクトル"
@@ -214,6 +259,12 @@ msgstr "理論値"
 msgid "Using macro mese"
 msgstr "MESEマクロを使う"
 
+msgid "Wiegner filter"
+msgstr "ウイナーフィルタ"
+
+msgid "Window FIR filters"
+msgstr "ウインドウFIRフィルタ"
+
 msgid "estimates xf"
 msgstr "推定 xf"
 
@@ -223,8 +274,20 @@ msgstr "推定 xs"
 msgid "frequency"
 msgstr "周波数"
 
+msgid "length 33"
+msgstr "長さ33"
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr "範囲[.23,.27]にローパスカットオフ"
+
 msgid "real state"
 msgstr "実状態"
 
 msgid "spectral estimate"
 msgstr "スペクトル推定法"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "ARMA 識別"
+
+#~ msgid "Theoritical value"
+#~ msgstr "理論値"

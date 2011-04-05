@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-01 21:47+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 08:36+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -123,6 +123,9 @@ msgstr "il file .wav non contiene l'identificatore RIFF."
 msgid ".wav file does not contain the wave identifier."
 msgstr "il file .wav non contiene l'identificatore dell'onda."
 
+msgid "A complete picture of the sound."
+msgstr "Un'immagine completa del suono."
+
 msgid "Cannot play file."
 msgstr "Non è possibile eseguire il file."
 
@@ -144,6 +147,9 @@ msgstr "Errore durante la lettura del file wav."
 
 msgid "Error while writing sound file."
 msgstr "Errore durante la scrittura del file di suono."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr "Analisi di Fourier di 0,5 secondi di parametri sonori"
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr ""
@@ -187,3 +193,21 @@ msgstr "Formato di dati non riconosciuto."
 
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "solo 8/16/24/32 bit per la codifica"
+
+msgid "see ''mapsound'' function"
+msgstr "mostra la funzione \"mappa del suono\""
+
+#~ msgid "Audio capabilities not available."
+#~ msgstr "Le capacità audio non sono disponibili."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
+#~ "vector of %d integers.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: deve essere %s o %s, un "
+#~ "intero o un vettore di %d interi.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Errore di allocazione della memoria\n"

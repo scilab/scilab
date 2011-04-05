@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-19 02:53+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-09 14:31+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -514,9 +514,6 @@ msgstr "颜色(&C)"
 msgid "&Command History"
 msgstr ""
 
-msgid "&Contributions"
-msgstr "贡献(&C)"
-
 msgid "&Control"
 msgstr "控制(&C)"
 
@@ -525,6 +522,9 @@ msgstr "复制(&C)"
 
 msgid "&Copy to clipboard"
 msgstr "复制到剪切板(&C)"
+
+msgid "&Decrease font size"
+msgstr ""
 
 msgid "&Display current directory"
 msgstr "显示当前目录(&D)"
@@ -556,17 +556,29 @@ msgstr "Figure属性(&F)"
 msgid "&File"
 msgstr "文件(&F)"
 
+msgid "&File Exchange"
+msgstr ""
+
 msgid "&Font..."
 msgstr "字体...(&F)"
 
+msgid "&Forge"
+msgstr ""
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr ""
 
 msgid "&Interrupt"
 msgstr "中断(&I)"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "网页链接(&W)"
 
 msgid "&Load environment..."
 msgstr "装载运行环境...(&L)"
@@ -649,9 +661,6 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "导出为矢量图(&V)"
 
-msgid "&Links"
-msgstr "网页链接(&W)"
-
 msgid "&Xcos"
 msgstr "Xcos(&X)"
 
@@ -680,6 +689,21 @@ msgstr "在listbox中添加颜色"
 
 msgid "All %s files"
 msgstr "所有 %s 文件"
+
+msgid "All Encapsulated PS files"
+msgstr ""
+
+msgid "All PDF files"
+msgstr ""
+
+msgid "All PNG image files"
+msgstr ""
+
+msgid "All Postscript files"
+msgstr ""
+
+msgid "All RTF (Rich Text Format) files"
+msgstr ""
 
 msgid "All Scilab files"
 msgstr "所有Scilab文件"
@@ -794,8 +818,11 @@ msgstr "复制"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "版权所有 (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "版权所有 (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
 
 msgid "Could not open: "
 msgstr ""
@@ -832,6 +859,12 @@ msgstr "导出时发生错误"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "错误。已产生一个信号。\n"
+
+msgid "Evaluate selection with echo"
+msgstr ""
+
+msgid "Evaluate selection with no echo"
+msgstr ""
 
 msgid "Execute into Scilab"
 msgstr "载入Scilab执行"
@@ -892,6 +925,9 @@ msgstr "选定关键词的帮助"
 
 msgid "Impossible to get current look and feel"
 msgstr "不能得到目前的界面风格"
+
+msgid "In&crease font size"
+msgstr ""
 
 msgid "Italic"
 msgstr ""
@@ -1038,8 +1074,14 @@ msgstr "Scilab &Demos"
 msgid "Scilab &Help"
 msgstr "Scilab帮助(&H)"
 
+msgid "Scilab &Online Help"
+msgstr ""
+
 msgid "Scilab &Web Site"
 msgstr "Scilab网站(&W)"
+
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1375,6 +1417,10 @@ msgid ""
 "expected.\n"
 msgstr "属性'%s'的值错误：应该为一个字符串或者 1x%d 的实数行向量。\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1444,3 +1490,55 @@ msgstr "未选中"
 
 msgid "yellow"
 msgstr "黄"
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "选择一个文件用Scipad打开"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "启动Scipad"
+
+#~ msgid "&Editor"
+#~ msgstr "编辑器(&E)"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "新闻组(&N)"
+
+#~ msgid "&Contributions"
+#~ msgstr "贡献(&C)"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "错误和新功能需求数据库(&B)"
+
+#~ msgid "&Web links"
+#~ msgstr "网页链接(&W)"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "在-nogui或-nwni模式下Scilab的'%s'模块被禁用。"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"警告尽管我们以前的警告：你选择使用具有先进的图形能力的Scilab。键入\"\"help usecanvas\"\"获取更多信息。\")"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s：属性‘’%s‘’和值‘’%s''无结果。\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s：无结果。\n"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "启动Scilab文本编辑器"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "选择一个文件用Scilab文本编辑器打开"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "版权所有 (c) 1989-2010 (INRIA)"

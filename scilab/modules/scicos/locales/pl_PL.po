@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-29 12:41+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:46+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
@@ -419,6 +419,18 @@ msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: Porty wyjściowe nie są poprawnie ponumerowane.\n"
 
 #, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych. Musi być między %d i %d.\n"
@@ -426,6 +438,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -448,15 +464,35 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentów wejściowych nr %d i nr %d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano wartości "
 "całkowitej.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -501,6 +537,30 @@ msgstr "&Plik"
 
 msgid "&Tools"
 msgstr "&Narzędzia"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr "''scicos'' nie jest już dostępny, proszę użyć ''xcos'' zamiast.\n"
@@ -813,6 +873,9 @@ msgstr "CV_YOUT_NULL: ''yout'' = NULL jest niedopuszczalne."
 msgid "Calc"
 msgstr ""
 
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
@@ -890,6 +953,9 @@ msgstr "Kolor"
 msgid "Compile"
 msgstr "Skompiluj"
 
+msgid "Connection error"
+msgstr ""
+
 msgid "Context"
 msgstr ""
 
@@ -944,6 +1010,16 @@ msgstr "Szczegóły"
 msgid "Diagram"
 msgstr "Schemat"
 
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
 msgid "Done\n"
 msgstr "Wykonano\n"
 
@@ -961,6 +1037,9 @@ msgstr "Koniec aktywacji"
 
 msgid "End of activation\n"
 msgstr "Koniec aktywacji\n"
+
+msgid "End problem: "
+msgstr ""
 
 msgid "Entering the block \n"
 msgstr "Wprowadzenie bloku \n"
@@ -1032,6 +1111,20 @@ msgstr "Pobierz info"
 
 msgid "Help"
 msgstr "Pomoc"
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
 
 msgid "ID font definitions"
 msgstr "Definicje czcionek ID"
@@ -1276,6 +1369,9 @@ msgstr "Edytor ikonek"
 msgid "Identification"
 msgstr "Identyfikacja"
 
+msgid "Initialisation problem:"
+msgstr ""
+
 msgid "It is impossible to set ID for this type of object"
 msgstr "Ustawienie ID dla obiektu tego typu jest niemożliwe"
 
@@ -1495,6 +1591,9 @@ msgstr "Problem z zapisem backupa; nie mogę aktywować Scilab\n"
 msgid "Problem while building library %s\n"
 msgstr "Problem przy budowie biblioteki %s\n"
 
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
 msgid "Properties"
 msgstr "Właściwości"
 
@@ -1612,6 +1711,12 @@ msgstr "Włącz cień dla bloków"
 msgid "Simulate"
 msgstr "Symuluj"
 
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr "Suwak t=%10.3f, flag=%d \n"
@@ -1664,6 +1769,10 @@ msgid ""
 msgstr ""
 "Parametr(y) %s \n"
 "muszą być zdefiniowane w"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
 
 msgid "Thickness"
 msgstr "Grubość"
@@ -1731,6 +1840,15 @@ msgstr "Widok"
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
 msgstr "Ostrzeżenie: %d menu ma identyczną nazwę %s\n"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
+msgstr ""
 
 msgid "Yes"
 msgstr "Tak"
@@ -1837,3 +1955,65 @@ msgstr "szerokość"
 #, c-format
 msgid "with flag %d "
 msgstr "z flagiem %d "
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr "%s: Wystąpił błąd podczas kompilacji bloku Modelica."
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "Wymagany zgodny kompilator C."
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Przepraszamy problem kompilacji"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr "%s: Błąd : nie wykonano następujących poleceń wiersza: %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ " Warning:an event is reprogrammed at t=%g by removing another"
+#~ msgstr ""
+#~ "\n"
+#~ " Ostrzeżenie: zdarzenie zostało is przeprogramowane dla t=%g poprzez "
+#~ "usunięcie innego zdarzenia"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a scalar.\n"
+#~ msgstr "%s : Drugi parametr ma być skalarem.\n"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a real.\n"
+#~ msgstr "%s : Drugi parametr ma być liczbą rzeczywistą.\n"
+
+#~ msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+#~ msgstr "**** SUNDIALS.IDA zainicjalizowano *****\n"
+
+#, c-format
+#~ msgid ""
+#~ "An unexpected  error occured while executing the menu\n"
+#~ "%s:\n"
+#~ msgstr ""
+#~ "Nieoczekiwany błąd w czasie wywołania menu\n"
+#~ "%s:\n"
+
+#~ msgid ""
+#~ "CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+#~ "CV_WF."
+#~ msgstr ""
+#~ "CV_BAD_ITOL:  Niepoprawna wartość dla itol. Poprawnymi są: CV_SS, CV_SV, i "
+#~ "CV_WF."
+
+#~ msgid ""
+#~ "IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+#~ "and IDA_WF."
+#~ msgstr ""
+#~ "IDA_BAD_ITOL: Niedopuszczalna wartość dla itol. Dopuszczalne wartości: "
+#~ "IDA_SS, IDA_SV, i IDA_WF."
+
+#~ msgid "Click on a block to set or get it''s documentation"
+#~ msgstr "Kliknij na blok, zeby wprowadzić lub zobaczyć jego dokumentację"
+
+#~ msgid "scicos unexpected error,please report..."
+#~ msgstr "Nieoczekiwany błąd Scicos. Proszę poinformować ..."

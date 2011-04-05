@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-12 11:12+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 08:39+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "\t%s\n"
@@ -42,22 +42,18 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-"Building the manual file [%s] in %s. (Please wait building ... this can take "
-"a while)\n"
+"Building the manual file [%s] in %s.\n"
 msgstr ""
 "\n"
-"Creazione del file [%s] del manuale in %s. (Creazione in corso,attendere ... "
-"potrebbe volerci un po')\n"
+"Costruzione in corso del file [%s] del manuale in %s.\n"
 
 #, c-format
 msgid ""
 "\n"
-"Building the manual file [%s]. (Please wait building ... this can take a "
-"while)\n"
+"Building the manual file [%s].\n"
 msgstr ""
 "\n"
-"Creazione del file [%s] del manuale.(Creazione in corso,attendere ... "
-"potrebbe volerci un po')\n"
+"Costruzione in corso del file [%s] del manuale\n"
 
 msgid ""
 "\n"
@@ -99,6 +95,10 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: Esecuzione dello stack Java %s.\n"
 
 #, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s Esecuzione dello stack Java :%s.\n"
+
+#, c-format
 msgid "%s: File skipped %s."
 msgstr "%s: Il file %s è stato saltato."
 
@@ -107,6 +107,10 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d sono incompatibili: erano attese le "
 "stesse dimensioni.\n"
+
+#, c-format
+msgid "%s: Please check %s, number of modules is invalid.\n"
+msgstr "%s: Controllare %s, il numero dei moduli non è valido.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -146,11 +150,6 @@ msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr "%s: Questa funzione è supportata solo su piattaforme Windows.\n"
 
 #, c-format
-msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
@@ -179,16 +178,16 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"intero.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"intero.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -203,15 +202,15 @@ msgstr ""
 "booleano.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -224,12 +223,6 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid ""
@@ -313,3 +306,227 @@ msgstr "Il modulo '%s' di Scilab non è installato.\n"
 #, c-format
 msgid "Warning %s does not follow the dtd"
 msgstr "Attenzione %s non segue il dtd"
+
+#, c-format
+#~ msgid "%s: help module is not installed.\n"
+#~ msgstr "%s: il modulo di aiuto non è installato.\n"
+
+#, c-format
+#~ msgid "Processing %s to %s"
+#~ msgstr "Elaborazione da %s a %s"
+
+#~ msgid "...demodir must be a directory."
+#~ msgstr "...demodir deve essere una directory."
+
+#~ msgid "Scilab 5.0 or more is required."
+#~ msgstr "È richiesto Scilab 5.0 o superiore."
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing from %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Copia in corso dei file mancanti da %s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing files copied from\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Copia in corso dei file mancanti copiati da\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing help files copied from the default language\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Copia in corso dei file di aiuto mancanti dalla lingua predefinita\n"
+
+#, c-format
+#~ msgid "%s: The %s files are up-to-date."
+#~ msgstr "%s: I file %s sono aggiornati."
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document: %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Creazione in corso del documento principale: %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document in %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Creazione del documento principale in %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Deleting files copied from %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Eliminazione in corso dei file copiati da %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Deleting files copied from\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Eliminazione in corso dei file copiati da\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
+#~ "a while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Creazione del file [%s] del manuale in %s. (Creazione in corso,attendere ... "
+#~ "potrebbe volerci un po')\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document for %s.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Creazione in corso del documento principale per %s.\n"
+
+#~ msgid "Editor"
+#~ msgstr "Editor"
+
+#~ msgid "About Scicos"
+#~ msgstr "Riguardo a Scicos"
+
+#~ msgid "Scicos Manual"
+#~ msgstr "Manuale di Scicos"
+
+#~ msgid "Batch functions"
+#~ msgstr "Funzioni batch"
+
+#~ msgid "Scilab manual"
+#~ msgstr "Manuale di Scilab"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s]. (Please wait building ... this can take a "
+#~ "while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Creazione del file [%s] del manuale.(Creazione in corso,attendere ... "
+#~ "potrebbe volerci un po')\n"
+
+#~ msgid "Sources Palette"
+#~ msgstr "Pannello delle sorgenti"
+
+#~ msgid "Linear Palette"
+#~ msgstr "Pannello lineare"
+
+#~ msgid "Non-linear Palette"
+#~ msgstr "Pannello non-lineare"
+
+#~ msgid "Branching Palette"
+#~ msgstr "Pannello secondario"
+
+#~ msgid "Others Palettes"
+#~ msgstr "Altri pannelli"
+
+#~ msgid "Matrix Palette"
+#~ msgstr "Pannello delle matrici"
+
+#~ msgid "Electrical Palette"
+#~ msgstr "Pannello elettrico"
+
+#~ msgid "Events Palette"
+#~ msgstr "Pannello degli eventi"
+
+#~ msgid "Sinks Palette"
+#~ msgstr "Pannello degli stabilizzatori"
+
+#~ msgid "Threshold Palette"
+#~ msgstr "Pannello di inizio"
+
+#~ msgid "Demoblocks Palette"
+#~ msgstr "Pannello dei demoblock"
+
+#~ msgid "Thermohydraulics Palette"
+#~ msgstr "Pannello di termoidraulica"
+
+#~ msgid "C Computational Functions"
+#~ msgstr "Funzioni di calcolo del C"
+
+#~ msgid "ABCD Blocks"
+#~ msgstr "Blocchi ABCD"
+
+#~ msgid "Integer Palette"
+#~ msgstr "Pannello degli interi"
+
+#~ msgid "Palettes"
+#~ msgstr "Pannelli"
+
+#~ msgid "Scilab Data Structures"
+#~ msgstr "Strutture dati di Scilab"
+
+#~ msgid "Scilab Utilities Functions"
+#~ msgstr "Funzioni accessorie di Scilab"
+
+#~ msgid "Programming Scicos Blocks"
+#~ msgstr "Blocchi di programmazine di Scicos"
+
+#~ msgid "Utilities Functions"
+#~ msgstr "Funzioni accessorie"
+
+#~ msgid "Scilab Computational Functions"
+#~ msgstr "Funzioni di calcolo di Scilab"
+
+#~ msgid "Compilation/Simulation"
+#~ msgstr "Compilazione/Simulazione"
+
+#~ msgid "Links"
+#~ msgstr "Collegamenti"
+
+#~ msgid "Diagram"
+#~ msgstr "Diagramma"
+
+#, c-format
+#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa\n"
+
+#~ msgid "Old Blocks Palette"
+#~ msgstr "Pannello dei vecchi blocchi"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr ""
+#~ "Il modulo \"%s\" di Scilab è disabilitato nelle modalità -nogui o nwni."
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+#~ "stringa.\n"
+
+#~ msgid "Blocks"
+#~ msgstr "Blocchi"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+#~ "intero.\n"
+
+#, c-format
+#~ msgid "%s: Scilab 5.0 or more is required.\n"
+#~ msgstr "%s: È richiesto Scilab 5.0 o superiore.\n"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-27 16:04+0100\n"
-"PO-Revision-Date: 2010-04-16 10:17+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:37+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -185,8 +185,8 @@ msgstr "%s:%d:OLE_open_directory:ERRO: %s"
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
 msgstr ""
-"%s:%d:OLE_open_file:ERROR: Não é possível localizar o arquivo '%s' para "
-"abri-lo (%s)"
+"%s:%d:OLE_open_file:ERROR: Não é possível localizar o arquivo '%s' para abri-"
+"lo (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
@@ -301,3 +301,7 @@ msgstr "ripOLE: A decodificação de %s resultou no erro %d\n"
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: A decodificação de %s resultou no erro %d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: ''%s'' or ''%s'' expected.\n"
+#~ msgstr "%s: Argumento de entrada errado #%d: Esperava-se ''%s'' ou ''%s''.\n"

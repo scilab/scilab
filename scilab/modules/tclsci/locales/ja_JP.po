@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-10-23 00:41+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-04 11:03+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -135,25 +135,6 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
 
 #
-# File: demos/tk/uicontrol.sci, line: 31
-msgid "&?"
-msgstr "その他(&?)"
-
-#
-# File: demos/tk/uicontrol.sci, line: 30
-msgid "&Edit"
-msgstr "編集(&E)"
-
-# File: demos/tk/uicontrol.sci, line: 28
-msgid "&File"
-msgstr "ファイル(&F)"
-
-#
-# File: demos/tk/uicontrol.sci, line: 29
-msgid "&Tools"
-msgstr "ツール(&T)"
-
-#
 # File: sci_gateway/c/sci_TCL_GetVersion.c, line: 43
 msgid "Alpha Release"
 msgstr "アルファリリース"
@@ -162,6 +143,9 @@ msgstr "アルファリリース"
 # File: sci_gateway/c/sci_TCL_GetVersion.c, line: 46
 msgid "Beta Release"
 msgstr "ベータリリース"
+
+msgid "Color"
+msgstr "色"
 
 #
 # File: macros/gettklib.sci, line: 45
@@ -222,10 +206,19 @@ msgstr "環境変数の設定ができません。"
 msgid "Impossible to set system encoding."
 msgstr "システムエンコーディングを設定できません。"
 
+msgid "Puzzle"
+msgstr "パズル"
+
+msgid "Scale"
+msgstr "拡大縮小"
+
 #
 # File: src/notclsci/notclsci.c, line: 52
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab TCL/TK モジュールはインストールされていません。\n"
+
+msgid "Scroll"
+msgstr "スクロール"
 
 #
 # File: src/c/ScilabEval.c, line: 50
@@ -323,3 +316,45 @@ msgstr "警告: 待ち行列内のコールバックの数が多すぎます!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] は Tcl/Tk では使用できません.\n"
+
+# File: demos/tk/uicontrol.sci, line: 28
+#~ msgid "&File"
+#~ msgstr "ファイル(&F)"
+
+#
+# File: demos/tk/uicontrol.sci, line: 29
+#~ msgid "&Tools"
+#~ msgstr "ツール(&T)"
+
+#
+# File: demos/tk/uicontrol.sci, line: 30
+#~ msgid "&Edit"
+#~ msgstr "編集(&E)"
+
+#
+# File: macros/TCL_SetVar.sci, line: 34
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 実数、または文字行列を想定します。\n"
+
+#
+# File: macros/editvar_get.sci, line: 27
+#~ msgid "Updating, please wait"
+#~ msgstr "変更中、しばらくお待ちください"
+
+#
+# File: macros/tk_getdir.sci, line: 12
+# File: macros/tk_savefile.sci, line: 12
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Tcl/Tk インターフェースがロードできません。"
+
+#
+# File: macros/tk_getfile.sci, line: 33
+#~ msgid "Open"
+#~ msgstr "開く"
+
+#
+# File: demos/tk/uicontrol.sci, line: 31
+#~ msgid "&?"
+#~ msgstr "その他(&?)"

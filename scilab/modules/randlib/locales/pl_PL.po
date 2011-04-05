@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-06-04 22:06+0000\n"
 "Last-Translator: ErnestŻyciński <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
@@ -330,6 +330,15 @@ msgstr "DF < 1.0 lub DF <= 0.0 lub Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Ujemne stopnie swobody\n"
 
+msgid "Erlang random variable"
+msgstr ""
+
+msgid "Exponential random variable"
+msgstr ""
+
+msgid "Hyper geometric random variable"
+msgstr ""
+
 msgid "Low > High\n"
 msgstr "Niski > Wysoki\n"
 
@@ -409,6 +418,9 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
+msgid "Poisson random variable"
+msgstr ""
+
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A lub B < %f\n"
@@ -424,6 +436,15 @@ msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Scilab randlib interfejs nie jest zainstalowany\n"
+
+msgid "Simulation"
+msgstr ""
+
+msgid "Simulation of a binomial random variable"
+msgstr ""
+
+msgid "Simulation of a discrete random variable"
+msgstr ""
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -443,14 +464,32 @@ msgstr "%s opcja dotyczy tylko generatora clcg4\n"
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "Pierwszy składnik z mt ustroju mt, musi być liczbą w [1, 624]\n"
 
+msgid "Theory"
+msgstr ""
+
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Ta informacja dotyczy tylko generatora clcg4\n"
+
+msgid "Weibull random variable"
+msgstr ""
 
 msgid "X0 is empty\n"
 msgstr "X0 jest pusty\n"
 
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a i b muszą być liczbami całkowitymi z (b-a+1) <= 2147483561"
+
+msgid "binomial random variable"
+msgstr ""
+
+msgid "discrete random variable"
+msgstr ""
+
+msgid "discrete uniform random variable"
+msgstr ""
+
+msgid "geometric random variable"
+msgstr ""
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 lub R <= 0.0\n"

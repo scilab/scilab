@@ -7,23 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-11-17 23:08+0000\n"
-"Last-Translator: Ascurion <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:56+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Consortium Scilab (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid "  loading initial environment"
 msgstr "  lade Startumgebung"
@@ -556,9 +547,18 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: Falscher Typ des Eingangsarguments #%d: Ein Integer-Wert wird erwartet.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: kompiliertes Makro erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
@@ -655,6 +655,12 @@ msgstr "%s: falscher Wert für Eingangsargument #%d: 1, 2 oder 3 erwartet.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+"%s: Falscher Wert des Eingangsarguments #%d: Ein Integer-Wert wird "
+"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -810,6 +816,15 @@ msgstr "Überprüfe: %s\n"
 msgid "Commands:\n"
 msgstr "Befehle:\n"
 
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Consortium Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
+
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Willst du die Berechnung wirklich abbrechen (y or n ?) \n"
 
@@ -945,7 +960,7 @@ msgid "List full.\n"
 msgstr "Liste voll.\n"
 
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Es kann kein Platz im Scilab Stapel belegt werden.\n"
@@ -1010,11 +1025,11 @@ msgstr "Unerwarteter Opcode, starten Sie den Scilab Fehlersucher."
 
 #, c-format
 msgid "Unqueuing %s - No option.\n"
-msgstr ""
+msgstr "Aufheben der Warteschlangenbildung %s - Keine Option.\n"
 
 #, c-format
 msgid "Unqueuing %s - seq.\n"
-msgstr ""
+msgstr "Aufheben der Warteschlangenbildung %s sequentiell.\n"
 
 msgid "User variables are:"
 msgstr "Benutzervariablen:"
@@ -1035,16 +1050,12 @@ msgid "Warning"
 msgstr "Warnung"
 
 #, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+
+#, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Warnung: Problem mit %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Warnung: das operative Team des Scilab Konsortiums\n"
-"bietet keinen und unterstützt diese Version von Scilab nicht, die mit "
-"gebaut\n"
 
 msgid "Your global variables are:"
 msgstr "Ihre globalen Variablen sind:"
@@ -1111,3 +1122,245 @@ msgstr "dritte"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist nicht vollständig gefüllt.\n"
+
+#~ msgid " is already compiled.\n"
+#~ msgstr " ist bereits übersetzt.\n"
+
+#~ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+#~ msgstr "Obsolet: SCIHOME and HOME vor dem Scilab-Start angeben."
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell nicht gefunden."
+
+#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr "Fehler : Hilfe benützen'';''Überprüfe dein Script ohne Scilab"
+
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: Ein Fehler ist aufgetreten.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: Falsche Dateiversion %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: Falsche Dateiversion in %s.\n"
+
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: benötigt Scipad.\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Nur für Microsoft Windows"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: ungültiger '%s' Wert.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: Skalar, '%s' oder '%s' "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+#~ msgstr "%s: falscher Typ für Eingangsargument #%d oder #%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Kann keinen zusätzlichen Speicher belegen.\n"
+#~ "Versuchen Sie Stapelgröße ('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Kann Speicher nicht belegen.\n"
+#~ "Versuchen Sie gstacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Invalid library %s.\n"
+#~ msgstr "%s: ungültige Bibliothek %s.\n"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Version: %s"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Datum des Kompilats: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Zeit für Kompilat: %s"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Argument #%d: Skalar, '%s' oder '%s' erwartet.\n"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Architektur für Kompilat: %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "Verzeichnis Unterteiler: %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "PCRE Version: %d.%d"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "kompiliert mit %s"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "XML Version: %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#~ msgid "Enable"
+#~ msgstr "Einschalten"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "TCL Version: %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "TK Version: %s"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "Pfad Unterteiler: %s"
+
+#~ msgid "Cannot find Windows temporary directory."
+#~ msgstr "Kann das temporäre Verzeichnis von Windows nicht finden."
+
+#~ msgid "Can't get current directory.\n"
+#~ msgstr "Kann das aktuelle Verzeichnis nicht erreichen.\n"
+
+#, c-format
+#~ msgid "Can't go to directory %s.\n"
+#~ msgstr "Kann in Verzeichnis nicht wechseln %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "Fehler: keine gültige Dateiversion %s (sollte mit <MODULE_VERSION> beginnen "
+#~ "und VERSION major='' minor='' maintenance='' revision='' "
+#~ "string=''>enthalten)\n"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "Warnung: das operative Team des Scilab Konsortiums\n"
+#~ "bietet keinen und unterstützt diese Version von Scilab nicht, die mit "
+#~ "gebaut\n"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+
+#, c-format
+#~ msgid ""
+#~ "Type '%s' or '%s' to return to standard level prompt.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "Geben Sie '%s' oder '%s', um zur Standarteingabe-Aufforderung "
+#~ "zurückzukehren.\n"
+#~ "\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Consortium Scilab (DIGITEO)\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: benannte Variable erwartet.\n"
+
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "verwendeter Speicher: %*ld%%"
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "Grafikkarte: %s"
+
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "Anzahl der Prozessoren: %d"
+
+#~ msgid "Operating System: "
+#~ msgstr "Betriebssystem: "
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "freier virtueller Speicher (KB): %*I64d"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "freier erweiterter Speicher (KB): %*I64d"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "totaler virtueller Speicher (KB): %*I64d"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "freier physikalischer Speicher (KB): %*I64d"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "gesamte Seitenspeicher (KB): %*I64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "freier Seitenspeicher (KB): %*I64d"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "gesamter physikalischer Speicher (KB): %*I64d"
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2009 (INRIA)\n"
+
+#~ msgid "Unknown error.\n"
+#~ msgstr "Unbekannter Fehler.\n"
+
+#~ msgid "Invalid buffer.\n"
+#~ msgstr "Falscher Puffer.\n"
+
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "Grafikkartentreiberversion: %s"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "Bildschirmgröße: %d x %d %d Bits"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Fehler bei der Speicherbelegung.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: falscher Wert für Eingangsargument #%d: ein Integer erwartet.\n"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)\n"

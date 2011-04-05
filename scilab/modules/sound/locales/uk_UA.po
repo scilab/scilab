@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-29 12:41+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-12-03 05:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -120,6 +120,9 @@ msgstr "Файл .wav не містить ідентифікатора RIFF."
 msgid ".wav file does not contain the wave identifier."
 msgstr "Файл .wav не містить ідентифікатора wave."
 
+msgid "A complete picture of the sound."
+msgstr "Повний образ звукових даних"
+
 msgid "Cannot play file."
 msgstr "Не вдалося відтворити файл."
 
@@ -140,6 +143,9 @@ msgstr "Помилка читання файла wav."
 
 msgid "Error while writing sound file."
 msgstr "Помилка під час спроби запису звукового файла."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr "Аналіз за допомогою перетворення Фурьє 0,5 секунд звукових даних."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Помилкові дані щодо розмірів фрагмента у файлі RIFF."
@@ -180,3 +186,18 @@ msgstr "Не вдалося визначити формат даних."
 
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "лише 8/16/24/32 бітів для кодування."
+
+msgid "see ''mapsound'' function"
+msgstr "див. функцію «mapsound»"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
+#~ "vector of %d integers.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати %s або "
+#~ "%s, ціле число або вектор з %d цілих чисел.\n"

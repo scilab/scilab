@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-08-01 03:12+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -147,6 +147,9 @@ msgstr "ml,mu の意味:"
 msgid "ODE 1D vector field"
 msgstr "ODE 1D ベクトル・フィールド"
 
+msgid "Reading a precomputed trajectory"
+msgstr ""
+
 #
 # File: etc/differential_equations.start, line: 14
 msgid "Simulation"
@@ -154,6 +157,9 @@ msgstr "シミュレーション"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "ホロノミック拘束を有する機械システムのシミュレーション"
+
+msgid "Simulation with ode (needs a Fortran compiler)"
+msgstr ""
 
 msgid "Sphere"
 msgstr "球体"
@@ -187,3 +193,24 @@ msgstr "球形の振り子シミュレーション"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "Jの1列目では mu 個のゼロの後に以下の要素が続いています"
+
+#
+# File: demos/flow/cylinder_interface.sci, line: 52
+#~ msgid "Cylindre"
+#~ msgstr "円柱"
+
+#
+# File: macros/dae.sci, line: 360
+#, c-format
+#~ msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+#~ msgstr "%s: オプション %s の間違い: %d または 実行列を想定します。\n"
+
+#
+# File: macros/dae.sci, line: 17
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+#~ msgstr "%s: 入力引数 #%d で不正な値: 与えられた表現の構文エラー\n"
+
+#~ msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-banwidths"
+#~ msgstr "もし、jactype = 4 または 5 ml と mu では、半-帯域は上下します"

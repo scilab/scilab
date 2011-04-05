@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-29 13:16+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-04 16:36+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -313,7 +313,7 @@ msgstr "%s: Obliczona wartość || G || może być niedokładna.\n"
 
 #, c-format
 msgid "%s: The given system has no poles and no zeros.\n"
-msgstr ""
+msgstr "%s: Ten system nie ma biegunów i zer.\n"
 
 #, c-format
 msgid "%s: Undefined type ''%s''.\n"
@@ -447,6 +447,8 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
+"%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano tablicę "
+"wartości rzeczywistych.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
@@ -779,7 +781,7 @@ msgid "Im(h(exp(2if*dt)))"
 msgstr "Im(h(exp(2if*dt)))"
 
 msgid "Imaginary Axis"
-msgstr ""
+msgstr "Oś urojona"
 
 msgid "Imaginary axis"
 msgstr "Oś urojona"
@@ -822,7 +824,7 @@ msgid "Re(h(exp(2if*dt)))"
 msgstr "Re(h(exp(2if*dt)))"
 
 msgid "Real Axis"
-msgstr ""
+msgstr "Oś rzeczywista"
 
 msgid "Real axis"
 msgstr "Oś rzeczywista"
@@ -869,4 +871,11 @@ msgid "phase(y) (degree)"
 msgstr "faza(y) (stopnie)"
 
 msgid "rad/sec"
-msgstr ""
+msgstr "rad/sec"
+
+#, c-format
+#~ msgid "%s: Infinite solution.\n"
+#~ msgstr "%s: Nieskończone rozwiązanie.\n"
+
+#~ msgid "Magnitude (Db)"
+#~ msgstr "Amplituda (Db)"

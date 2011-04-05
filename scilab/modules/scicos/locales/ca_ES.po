@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-30 12:38+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
@@ -422,6 +422,18 @@ msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: Els ports de sortida no s'han numerat correctament.\n"
 
 #, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada. Ha de ser entre %d i %d.\n"
@@ -429,6 +441,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -449,12 +465,32 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: Mida incorrecta per als arguments d'entrada #%d i #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -499,6 +535,30 @@ msgstr "&Fitxer"
 
 msgid "&Tools"
 msgstr "&Eines"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr "El ''scicos'' ja no està disponible. Utilitzeu el ''xcos''.\n"
@@ -839,6 +899,9 @@ msgstr "CV_YOUT_NULL: ''yout'' = NULL il·legal."
 msgid "Calc"
 msgstr "Calc"
 
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 "No s'ha pogut trobar el mode inicial. Potser hi ha una condició de mode "
@@ -925,6 +988,9 @@ msgstr "Color"
 msgid "Compile"
 msgstr "Compila"
 
+msgid "Connection error"
+msgstr ""
+
 msgid "Context"
 msgstr "Context"
 
@@ -979,6 +1045,16 @@ msgstr "Detalls"
 msgid "Diagram"
 msgstr "Diagrama"
 
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
 msgid "Done\n"
 msgstr "Fet\n"
 
@@ -998,6 +1074,9 @@ msgstr "Final d'activació"
 
 msgid "End of activation\n"
 msgstr "Final d'activació\n"
+
+msgid "End problem: "
+msgstr ""
 
 msgid "Entering the block \n"
 msgstr "S'està entrant al bloc \n"
@@ -1069,6 +1148,20 @@ msgstr "Obté informació"
 
 msgid "Help"
 msgstr "Ajuda"
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
 
 msgid "ID font definitions"
 msgstr "Definicions de font d'identificació"
@@ -1338,6 +1431,9 @@ msgstr "Editor d'icones"
 msgid "Identification"
 msgstr "Identificació"
 
+msgid "Initialisation problem:"
+msgstr ""
+
 msgid "It is impossible to set ID for this type of object"
 msgstr "No es poden establir identificadors per a aquest tipus d'objecte"
 
@@ -1585,6 +1681,9 @@ msgstr ""
 msgid "Problem while building library %s\n"
 msgstr "S'ha trobat un problema creant la llibreria %s\n"
 
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
 msgid "Properties"
 msgstr "Propietats"
 
@@ -1702,6 +1801,12 @@ msgstr "Mostra l'ombra dels blocs"
 msgid "Simulate"
 msgstr "Simula"
 
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr "Diapositives t=%10.3f, flag=%d \n"
@@ -1753,6 +1858,10 @@ msgid ""
 msgstr ""
 "El paràmetre %s \n"
 "s'ha de definir a"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
 
 msgid "Thickness"
 msgstr "Gruix"
@@ -1820,6 +1929,15 @@ msgstr "Visualitza"
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
 msgstr "Avís: %d menús tenen el mateix nom %s\n"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
+msgstr ""
 
 msgid "Yes"
 msgstr "Sí"
@@ -1926,3 +2044,123 @@ msgstr "amplada"
 #, c-format
 msgid "with flag %d "
 msgstr "amb senyal %d "
+
+#~ msgid "Scicos"
+#~ msgstr "Scicos"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: El diagrama no compila al pas %d.\n"
+#~ "'),"
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr "%s: Error: El compilador Modelica (MODELICAC) no està disponible.\n"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr "%s: Error : La següent línia d'ordre ha fallat en l'execució: %s.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr "%s: S'ha produït un error a la compilació del bloc Modelica."
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Error en la compilació"
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "Es necessita un compilador C compatible."
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ " Warning:an event is reprogrammed at t=%g by removing another"
+#~ msgstr ""
+#~ "\n"
+#~ " Avís: s'ha reprogramat un esdeveniment a t=%g eliminant-ne un altre"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a scalar.\n"
+#~ msgstr "%s : El segon argument ha de ser un escalar.\n"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a real.\n"
+#~ msgstr "%s : El segon argument ha de ser un nombre real.\n"
+
+#~ msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+#~ msgstr "**** S'ha inicialitzat correctament el SUNDIALS.IDA *****\n"
+
+#, c-format
+#~ msgid ""
+#~ "An unexpected  error occured while executing the menu\n"
+#~ "%s:\n"
+#~ msgstr ""
+#~ "S'ha produït un error inesperat en executar el menú\n"
+#~ "%s:\n"
+
+#~ msgid ""
+#~ "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+#~ "[((d/dy)^k)y](t)."
+#~ msgstr ""
+#~ "CV_BAD_DKY:  L'argument dky és NULL. dky és el vector derivat de sortida "
+#~ "[((d/dy)^k)y](t)."
+
+#~ msgid ""
+#~ "CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+#~ "CV_WF."
+#~ msgstr ""
+#~ "CV_BAD_ITOL: El valor d'itol és il·legal. Ha de ser CV_SS, CV_SV o CV_WF."
+
+#~ msgid ""
+#~ "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+#~ "recoverable error at th efirst call"
+#~ msgstr ""
+#~ "CV_FIRST_RHSFUNC_ERR: La funció de mà dreta (proporcionada per l'usuari ODE) "
+#~ "té un error recuperable a la primera crida"
+
+#~ msgid ""
+#~ "CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+#~ msgstr ""
+#~ "CV_RTFUNC_FAIL: La rutina per trobar arrels ha fallat de manera "
+#~ "irrecuperable."
+
+#~ msgid "Click on an a port, click on a port of object to be moved"
+#~ msgstr "Feu clic en un port d'objecte per moure'l"
+
+#~ msgid "Click on a block to set or get it''s documentation"
+#~ msgstr "Feu clic en un bloc per establir o obtenir la seva documentació"
+
+#~ msgid ""
+#~ "IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+#~ "and IDA_WF."
+#~ msgstr ""
+#~ "IDA_BAD_ITOL: Valor il·legal per a itol. Els valors legals són IDA_SS, "
+#~ "IDA_SV i IDA_WF."
+
+#~ msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+#~ msgstr "IDA_RES_NULL: th ha retornat un residu res = NULL incorrecte."
+
+#~ msgid ""
+#~ "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
+#~ "the preconditioned linear system) encountered an unrecoverable error, or the "
+#~ "linear solver routine  (lsolve) encountered an error condition."
+#~ msgstr ""
+#~ "KIN_LSOLVE_FAIL: O bé la rutina psolve (utilitzada per solucionar la el "
+#~ "sistema lineal amb precondició ) ha trobat un error irrecuperable, o la "
+#~ "rutina lineal del programa de solució (lsolve) ha trobat una condició "
+#~ "d'error."
+
+#~ msgid ""
+#~ "Press lef mouse button, drag region and release (right button to cancel)"
+#~ msgstr ""
+#~ "Premeu el botó esquerre del ratolí, arrossegueu la regió i deixeu anar (botó "
+#~ "dret per a cancel·lar)"
+
+#~ msgid "algrebraic loop detected"
+#~ msgstr "S'ha detectat un bucle algebraic"
+
+#~ msgid "scicos unexpected error,please report..."
+#~ msgstr "Error inesperat d'Scicos, informeu-ne..."

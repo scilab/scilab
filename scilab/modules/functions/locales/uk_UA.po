@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-15 15:34+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-10 05:30+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -78,6 +78,12 @@ msgstr "%s: файлів з суфіксом назви %s у %s не знайд
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: будь ласка, перевірте: %s\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
+"%s: функція є закритою (private): не можна звертатися до цієї функції "
+"безпосередньо.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -220,7 +226,7 @@ msgid "Complexity"
 msgstr "Складність"
 
 msgid "Edit"
-msgstr "Правка"
+msgstr "Зміни"
 
 msgid "Exit"
 msgstr "Вийти"
@@ -262,3 +268,48 @@ msgstr "рядок %s [%s виклик, %s с] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "рядок %s [%s викликів, %s с] :: "
+
+#~ msgid "3D Rot."
+#~ msgstr "3D-поворот"
+
+#~ msgid "Insert"
+#~ msgstr "Вставити"
+
+#~ msgid "&Insert"
+#~ msgstr "&Вставити"
+
+#~ msgid "&File"
+#~ msgstr "&Файл"
+
+#~ msgid "&Tools"
+#~ msgstr "&Інструменти"
+
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr "%s: файла з назвою %s.sci у каталозі бібліотеки %s не виявлено.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+#~ "значення.\n"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "Функція %s вважається застарілою."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Цю функцію буде назавжди вилучено у Scilab %s"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "ПОПЕРЕДЖЕННЯ: функція %s вважається застарілою.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "ПОПЕРЕДЖЕННЯ: будь ласка, скористайтеся %s.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "ПОПЕРЕДЖЕННЯ: цю функцію буде назавжди вилучено у Scilab %s.\n"

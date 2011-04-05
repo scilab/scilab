@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2010-06-30 02:05+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -103,6 +103,9 @@ msgstr ".wav檔裏沒有 RIFF 指示符號."
 msgid ".wav file does not contain the wave identifier."
 msgstr ".wav檔裏沒有wave  指示符號."
 
+msgid "A complete picture of the sound."
+msgstr ""
+
 msgid "Cannot play file."
 msgstr "無法使用檔案."
 
@@ -123,6 +126,9 @@ msgstr "讀取.wav 檔有誤."
 
 msgid "Error while writing sound file."
 msgstr "寫入聲音檔時有誤."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr ""
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "RIFF 檔案中有不正確的區塊大小資訊"
@@ -160,3 +166,10 @@ msgstr "無法理解的資料格式"
 
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr "只有8/16/24/32 位元 可以用作編碼."
+
+msgid "see ''mapsound'' function"
+msgstr ""
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: 配置記憶體發生錯誤.\n"

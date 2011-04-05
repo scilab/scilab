@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-06-02 10:00+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-03 00:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -101,3 +101,13 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %f\n"
 #, c-format
 msgid "%s: wrong value for parameter %s: value %s\n"
 msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"
+
+# File: macros/add_param.sci, line: 20
+# File: macros/get_param.sci, line: 35
+# File: macros/is_param.sci, line: 20
+# File: macros/list_param.sci, line: 20
+# File: macros/remove_param.sci, line: 39
+# File: macros/set_param.sci, line: 25
+#, c-format
+#~ msgid "%s: not a plist"
+#~ msgstr "%s: plistではありません"

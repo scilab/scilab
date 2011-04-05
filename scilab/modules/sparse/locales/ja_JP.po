@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-17 13:06+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-12 00:42+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -190,6 +190,15 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 入力引数で不正な数: 最低でも %d を想定します。\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr "%s: 出力引数#%dの大きさが間違っています: %sの大きさは %d ですが, %d とする必要があります.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr "%s: 入力引数  #%d の大きさが間違っています: 列ベクトルを指定してください.\n"
 
@@ -272,6 +281,29 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 関数 %s の置き換えを想定します。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr "%s: 出力引数#%dの値が間違っています: %s=%d ですが, 正の値を指定する必要があります.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr "%s: 出力引数#%dの値が間違っています: %s=%d は %sと互換性がありません: %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr "%s: 出力引数#%dの値が間違っています: %s=%d は %sの大きさと互換性がありません: %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr "%s: 出力引数#%dの値が間違っています: %s=%s ですが, 浮動小数点の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -441,3 +473,35 @@ msgstr "スパース: 線 %2$d で ファイル `%1$s' はパニックです。\
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  新しい行列を開始  |||\n"
+
+#
+# File: macros/gmres.sci, line: 75
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
+# File: macros/gmres.sci, line: 145
+# File: macros/qmr.sci, line: 118
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 入力引数 #%d として同じサイズを想定します。\n"
+
+#
+# File: macros/qmr.sci, line: 143
+# File: macros/qmr.sci, line: 194
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr "%s: 入力引数 #%d で不正なサイズ: 入力引数 #%d と同じサイズでなくてはいけません"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for size argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 入力引数  #%d の大きさが間違っています: 入力引数 #%d と同じ大きさを指定してください.\n"

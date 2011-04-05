@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 17:45+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-08-29 12:12+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "Revision-Date: 2010-08-18 15:26+0100\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -55,6 +55,10 @@ msgstr "%s 必須為實數向量.\n"
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' 代碼 (handle) 不存在或已刪除.\n"
+
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -311,6 +315,10 @@ msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 長度不相容.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d < %d expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該滿足 %d < %d .\n"
 
@@ -345,10 +353,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為 '%s' 代碼 (handle) 或一實數純量.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
-msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一 ''%s'' 代碼 (handle).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -504,6 +508,10 @@ msgid ""
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一 '%s' 代碼 (handle) 或實純量.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一 'Text' 代碼 (handle).\n"
 
@@ -556,6 +564,10 @@ msgid ""
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是代碼 (handle) 或實數向量.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是矩陣.\n"
 
@@ -566,6 +578,10 @@ msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是代碼 (handle)所形�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是非負整數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -695,6 +711,10 @@ msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 數值不正確.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 [%s, %s].內\n"
@@ -713,6 +733,22 @@ msgid ""
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 給定的範圍有誤.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr "%s: 第 #%d 和第 #%d 個輸入參數數值錯誤: 長度不相容.\n"
@@ -729,6 +765,12 @@ msgstr "%s: 數值錯誤: 不是一個單調向量.\n"
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該是 ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -766,8 +808,14 @@ msgstr "'%s' 代碼 (handle) 不存在或不再存在.\n"
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "此代碼 (handle) 之 '%s' 屬性不存在.\n"
 
+msgid "... as well as very tiny radii"
+msgstr ""
+
 msgid "A Label object cannot be deleted.\n"
 msgstr "Label 物件無法被刪除.\n"
+
+msgid "A partial viewport may be set with clipping"
+msgstr ""
 
 #, c-format
 msgid "Argument #%d must have %d elements.\n"
@@ -779,6 +827,9 @@ msgstr "秋"
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr "%s 的大小錯誤: 你必須增加 %s 的大小.\n"
+
+msgid "Big radii are supported..."
+msgstr ""
 
 msgid "Bone"
 msgstr ""
@@ -804,9 +855,6 @@ msgstr ""
 msgid "Color number"
 msgstr ""
 
-msgid "Colormap"
-msgstr ""
-
 msgid "Common X axis"
 msgstr ""
 
@@ -817,6 +865,9 @@ msgid "Copper"
 msgstr ""
 
 msgid "Customize your complex function"
+msgstr ""
+
+msgid "Data on the full circle ..."
 msgstr ""
 
 msgid ""
@@ -876,8 +927,14 @@ msgid ""
 "logarithmic mode.\n"
 msgstr ""
 
+msgid "Exact gaussian density"
+msgstr ""
+
 #, c-format
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
+msgstr ""
+
+msgid "Gaussian random sample histogram"
 msgstr ""
 
 #, c-format
@@ -958,6 +1015,9 @@ msgstr ""
 msgid "Name"
 msgstr ""
 
+msgid "Negative radii are supported:"
+msgstr ""
+
 msgid "No Callback is associated with this Entity.\n"
 msgstr ""
 
@@ -1003,10 +1063,17 @@ msgstr ""
 msgid "Pink"
 msgstr ""
 
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 
 msgid "Plot with 3 different Y scales at shared X"
+msgstr ""
+
+msgid "Press enter to go on..."
 msgstr ""
 
 msgid "Problem with sciInitFontContext\n"
@@ -1030,7 +1097,13 @@ msgstr ""
 msgid "Select tip orientation"
 msgstr ""
 
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
 msgid "Spring"
+msgstr ""
+
+msgid "Still a single quadrant..."
 msgstr ""
 
 msgid "Summer"
@@ -1332,10 +1405,22 @@ msgstr ""
 msgid "automatic"
 msgstr ""
 
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
 msgid "lower left"
 msgstr ""
 
 msgid "lower right"
+msgstr ""
+
+msgid "on 2 quadrants..."
+msgstr ""
+
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 msgstr ""
 
 msgid "select the curve tip display function"
@@ -1346,3 +1431,7 @@ msgstr ""
 
 msgid "upper right"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+#~ msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一 ''%s'' 代碼 (handle).\n"

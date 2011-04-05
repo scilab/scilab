@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-10-08 09:42+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 15:16+0000\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -195,11 +195,56 @@ msgstr ""
 "%s: Valores incorrectos del argumento de entrada #%d: el grado debe estar en "
 "el conjunto {%s}.\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
 msgid "Arma identification"
 msgstr "Identificación Arma"
 
+msgid "Arma simulation and identification"
+msgstr ""
+
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+msgid "Arma, bidimensional version"
+msgstr ""
+
+msgid "Bode plots"
+msgstr ""
+
+msgid "Discrete IIR filter"
+msgstr ""
+
+msgid "IIR filter design"
+msgstr ""
+
+msgid "Identification ARX (least square):"
+msgstr ""
+
+msgid "Identification ARX (least square): "
+msgstr ""
+
+msgid "Minimax FIR filter"
+msgstr ""
+
+msgid "Minimax FIR filter design"
+msgstr ""
+
+msgid "Press Return to continue ... \n"
+msgstr "Presione Enter para continuar... \n"
+
 msgid "Signal Processing"
 msgstr "Procesamiento de Señales"
+
+msgid "Simulation of an ARMAX process:"
+msgstr ""
+
+msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+msgid "Spectral Estimation"
+msgstr "Estimación espectral"
 
 msgid "Spectral power"
 msgstr "Potencia del espectro"
@@ -210,6 +255,12 @@ msgstr "Valor teórico"
 msgid "Using macro mese"
 msgstr "Usando un macro mese"
 
+msgid "Wiegner filter"
+msgstr "Filtro Wiegner"
+
+msgid "Window FIR filters"
+msgstr ""
+
 msgid "estimates xf"
 msgstr "xf estimado"
 
@@ -219,8 +270,20 @@ msgstr "xs estimado"
 msgid "frequency"
 msgstr "frecuencia"
 
+msgid "length 33"
+msgstr ""
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr ""
+
 msgid "real state"
 msgstr "estado real"
 
 msgid "spectral estimate"
 msgstr "espectro estimado"
+
+#~ msgid "Theoritical value"
+#~ msgstr "Valor teórico"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "Identificación de Arma"

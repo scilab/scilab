@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-11-17 23:13+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-11 18:04+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
@@ -327,6 +327,15 @@ msgstr "DF < 1.0 или DF <= 0.0 или Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Степени свободы не положительны\n"
 
+msgid "Erlang random variable"
+msgstr "Случайная переменная Эрланга"
+
+msgid "Exponential random variable"
+msgstr "Экспоненциальная случайная переменная"
+
+msgid "Hyper geometric random variable"
+msgstr "Гипергеометрическая случайная переменная"
+
 msgid "Low > High\n"
 msgstr "Low > High\n"
 
@@ -407,6 +416,9 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
+msgid "Poisson random variable"
+msgstr "Случайная переменная Пуассона"
+
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A или B < %f\n"
@@ -422,6 +434,15 @@ msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Интерфейс Scilab randlib не установлен.\n"
+
+msgid "Simulation"
+msgstr "Моделирование"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Моделирование биномиальное случайной переменной"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Моделирование дискретной случайной переменой"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -441,14 +462,32 @@ msgstr "Параметр %s влияет только на генератор cl
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "Первый элемент вектора mt, должен быть целым в диапазоне [1, 624]\n"
 
+msgid "Theory"
+msgstr "Теория"
+
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Эта информация относится только к генератору clcg4\n"
+
+msgid "Weibull random variable"
+msgstr "Случайная переменная Вейбулла"
 
 msgid "X0 is empty\n"
 msgstr "X0 пуст\n"
 
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a и b должны быть целыми, (b-a+1) <= 2147483561"
+
+msgid "binomial random variable"
+msgstr "Биномиальная случайная переменная"
+
+msgid "discrete random variable"
+msgstr "Дискретная случайная переменная"
+
+msgid "discrete uniform random variable"
+msgstr "Дискретная равномерная случайная переменная"
+
+msgid "geometric random variable"
+msgstr "Геометрическая случайная переменная"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 или R <= 0.0\n"

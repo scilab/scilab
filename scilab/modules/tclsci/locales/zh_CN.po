@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2009-04-12 07:19+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr ""
@@ -101,23 +101,14 @@ msgstr "%s：输入参数#%d的类型错误：应该为字符串或者字符串�
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'。\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "编辑(&E)"
-
-msgid "&File"
-msgstr "文件(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
 msgid "Alpha Release"
 msgstr "Alpha版本"
 
 msgid "Beta Release"
 msgstr "Beta版本"
+
+msgid "Color"
+msgstr ""
 
 #, c-format
 msgid "Error %s while loading library %s"
@@ -155,8 +146,17 @@ msgstr "不可能设置环境变量。"
 msgid "Impossible to set system encoding."
 msgstr "不可能设置系统编码。"
 
+msgid "Puzzle"
+msgstr ""
+
+msgid "Scale"
+msgstr ""
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Scilab Tcl/Tk 模块没有安装。\n"
+
+msgid "Scroll"
+msgstr ""
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -236,3 +236,29 @@ msgstr "警告：队列中太多回调。\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] 无法与 Tcl/Tk 使用。\n"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#~ msgid "&Tools"
+#~ msgstr "工具(&T)"
+
+#~ msgid "&Edit"
+#~ msgstr "编辑(&E)"
+
+#~ msgid "&File"
+#~ msgstr "文件(&F)"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Tcl/Tk界面没有载入。"
+
+#~ msgid "Updating, please wait"
+#~ msgstr "更新中，请等待"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为实数或字符串矩阵。\n"
+
+#~ msgid "Open"
+#~ msgstr "打开"

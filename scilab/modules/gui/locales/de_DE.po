@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-10-23 20:14+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-09 13:28+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -84,7 +84,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s: Kein Ergebnis gefunden.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -278,7 +278,8 @@ msgstr "%s: falscher Typ für %s: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
-msgstr "%s: falscher Typ für ''%s'' Eigenschaft: eine Zeichenkette erwartet.\n"
+msgstr ""
+"%s: falscher Typ für ''%s'' Eigenschaft: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -475,8 +476,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
 "''callback''.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: muß eine ''Beschriftung'', ''Bild'' "
-"oder ''Rückruf'' sein.\n"
+"%s: falscher Typ für Eingangsargument #%d: muß eine ''Beschriftung'', "
+"''Bild'' oder ''Rückruf'' sein.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
@@ -518,7 +519,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'' oder ''%s'' erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: ''%s'', ''%s'' oder ''%s'' "
+"erwartet.\n"
 
 #, c-format
 msgid ""
@@ -602,19 +604,19 @@ msgid "&Colors"
 msgstr "&Farben"
 
 msgid "&Command History"
-msgstr ""
-
-msgid "&Contributions"
-msgstr "&Beiträge"
+msgstr "&Befehlsspeicher"
 
 msgid "&Control"
 msgstr "&Kontrolle"
 
 msgid "&Copy"
-msgstr ""
+msgstr "&Kopieren"
 
 msgid "&Copy to clipboard"
 msgstr "&In die Zwischenablage kopieren"
+
+msgid "&Decrease font size"
+msgstr ""
 
 msgid "&Display current directory"
 msgstr "&Aktuelles Verzeichnis anzeigen"
@@ -646,17 +648,29 @@ msgstr "&Voreinstellungen der Darstellung"
 msgid "&File"
 msgstr "&Datei"
 
+msgid "&File Exchange"
+msgstr ""
+
 msgid "&Font..."
 msgstr "&Zeichensatz ..."
 
+msgid "&Forge"
+msgstr ""
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr ""
 
 msgid "&Interrupt"
 msgstr "&Unterbrechen"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Web Verweise"
 
 msgid "&Load environment..."
 msgstr "&Umgebung laden..."
@@ -739,9 +753,6 @@ msgstr "&Variablen-Browser"
 msgid "&Vectorial export"
 msgstr "&Vektorielles Exportieren"
 
-msgid "&Links"
-msgstr "&Web Verweise"
-
 msgid "&Xcos"
 msgstr "&Xcos"
 
@@ -773,6 +784,21 @@ msgstr "Füge eine Farbe in der Listbox hinzu"
 msgid "All %s files"
 msgstr "Alle %s Dateien"
 
+msgid "All Encapsulated PS files"
+msgstr ""
+
+msgid "All PDF files"
+msgstr ""
+
+msgid "All PNG image files"
+msgstr ""
+
+msgid "All Postscript files"
+msgstr ""
+
+msgid "All RTF (Rich Text Format) files"
+msgstr ""
+
 msgid "All Scilab files"
 msgstr "Alle Scilab Dateien"
 
@@ -780,7 +806,7 @@ msgid "All files"
 msgstr "Alle Dateien"
 
 msgid "An error occured: "
-msgstr ""
+msgstr "Ein Fehler ist aufgetreten: "
 
 #, c-format
 msgid ""
@@ -812,7 +838,7 @@ msgid "Application"
 msgstr "Anwendung"
 
 msgid "Attributes"
-msgstr ""
+msgstr "Attribute"
 
 msgid ""
 "Authors:\n"
@@ -886,8 +912,11 @@ msgstr "Kopieren"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
 
 msgid "Could not open: "
 msgstr ""
@@ -925,6 +954,12 @@ msgstr "Fehler beim Exportieren"
 msgid "Error. A signal has been caught.\n"
 msgstr "Fehler. Ein Signal wurde aufgehalten.\n"
 
+msgid "Evaluate selection with echo"
+msgstr ""
+
+msgid "Evaluate selection with no echo"
+msgstr ""
+
 msgid "Execute into Scilab"
 msgstr "In Scilab ausführen"
 
@@ -956,7 +991,7 @@ msgid "File already exists"
 msgstr "Datei existiert bereits"
 
 msgid "Font"
-msgstr ""
+msgstr "Schrift"
 
 msgid "Font Chooser"
 msgstr ""
@@ -985,8 +1020,11 @@ msgstr "Hilfe zum ausgewählten Stichwort"
 msgid "Impossible to get current look and feel"
 msgstr "Es ist unmöglich das aktuelle Design zu erhalten."
 
-msgid "Italic"
+msgid "In&crease font size"
 msgstr ""
+
+msgid "Italic"
+msgstr "Kursiv"
 
 msgid "JPEG image"
 msgstr "JPEG-Bild"
@@ -1133,8 +1171,14 @@ msgstr "Sciliab &Demonstrationen"
 msgid "Scilab &Help"
 msgstr "Scilab &Help"
 
+msgid "Scilab &Online Help"
+msgstr ""
+
 msgid "Scilab &Web Site"
 msgstr "Scilab &Web Seite"
+
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1256,7 +1300,7 @@ msgid "Sub-menu 2-2"
 msgstr "Submenü 2-2"
 
 msgid "Test files"
-msgstr ""
+msgstr "Dateien testen"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Das Scilab Konsortium (DIGITEO)"
@@ -1516,6 +1560,10 @@ msgstr ""
 "Falscher Wert für Eigenschaft '%s': eine Zeichenkette oder ein 1 x %d "
 "reeller Zeilenvektor erwartet.\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1593,3 +1641,80 @@ msgstr "nicht ausgewählt"
 
 msgid "yellow"
 msgstr "gelb"
+
+#~ msgid "&Contributions"
+#~ msgstr "&Beiträge"
+
+#~ msgid "&Editor"
+#~ msgstr "&Editor"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "Scipad starten"
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "&Archive für die Nachrichtengruppen"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&Fehler und Anfrage Datenbank"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "Scilab '%s' Modul im -nogui oder .nwmi Modus deaktiviert."
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "Eine Datei zum Öffnen mit Scipad auswählen"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"Warnung: entgegen der vorherigen Warnung, haben Sie Scilab mit "
+#~ "fortschrittlichen Grafikeigenschaften ausgewählt. Geben Sie \"Help "
+#~ "Usecanvas\" für weitere Information ein.\")"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Scilab Editor starten"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr ""
+#~ "Wählen Sie eine Datei aus, die mit Scilab Editor geöffnet werden soll"
+
+#~ msgid "All rights reserved"
+#~ msgstr "Alle Rechte vorbehalten"
+
+#~ msgid "INRIA / ENPC / Contributors"
+#~ msgstr "INRIA / ENPC / Mitwirkende"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Wollen Sie Scilab wirklich verlassen?"
+
+#~ msgid "Copyright 1989 - 2009"
+#~ msgstr "Copyright 1989 - 2009"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Das Scilab Konsortium / DIGITEO"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2009 (INRIA)"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: Ein Ausnahmefehler ist aufgetreten: %s"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: Keine Ergebnisse gefunden.\n"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: Keine Ergebnisse für Eigenschaft '%s' und Wert '%s'.\n"
+
+#~ msgid "&Web links"
+#~ msgstr "&Web-Verweise"

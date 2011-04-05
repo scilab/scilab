@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-20 00:10+0000\n"
-"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-02-14 04:11+0000\n"
+"Last-Translator: Kate Anderson <katelovegod@msn.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid ""
@@ -178,6 +178,16 @@ msgstr "JNI: 資憶體不足"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM 介面在-nogui or -nwni模式下不作用.\n"
 
+#, c-format
+msgid "Options:\n"
+msgstr "選項\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab java模組未安裝.\n"
 
@@ -218,3 +228,9 @@ msgstr "警告:找不到類別路徑宣告檔%s.\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "錯誤的格式%s.\n"
+
+#~ msgid "Console"
+#~ msgstr "主控台"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Scilab  主控台"

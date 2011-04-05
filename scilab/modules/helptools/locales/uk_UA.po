@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-06-29 12:24+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-10 05:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "\t%s\n"
@@ -43,22 +43,18 @@ msgstr ""
 #, c-format
 msgid ""
 "\n"
-"Building the manual file [%s] in %s. (Please wait building ... this can take "
-"a while)\n"
+"Building the manual file [%s] in %s.\n"
 msgstr ""
 "\n"
-"Збирання файла підручника [%s] у %s. (Будь ласка, зачекайте — це доволі "
-"тривала дія)\n"
+"Збирання файла підручника [%s] у %s.\n"
 
 #, c-format
 msgid ""
 "\n"
-"Building the manual file [%s]. (Please wait building ... this can take a "
-"while)\n"
+"Building the manual file [%s].\n"
 msgstr ""
 "\n"
-"Збирання файла підручника [%s]. (Будь ласка, зачекайте — це доволі тривала "
-"дія)\n"
+"Збирання файла підручника [%s].\n"
 
 msgid ""
 "\n"
@@ -102,6 +98,10 @@ msgid "%s: Execution Java stack %s.\n"
 msgstr "%s: виконання стосу команд Java %s.\n"
 
 #, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr "%s: виконання стосу команд Java: %s.\n"
+
+#, c-format
 msgid "%s: File skipped %s."
 msgstr "%s: файл пропущено %s."
 
@@ -110,6 +110,10 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: несумісні вхідні параметри №%d і №%d: слід використовувати однакову "
 "розмірність.\n"
+
+#, c-format
+msgid "%s: Please check %s, number of modules is invalid.\n"
+msgstr "%s: перевірте %s, значення кількості модулів є некоректним.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -148,12 +152,6 @@ msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr "%s: ця можливість підтримується лише на платформі Windows.\n"
 
 #, c-format
-msgid "%s: Wrong for type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
@@ -181,14 +179,14 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
@@ -203,14 +201,14 @@ msgstr ""
 "«boolean».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
@@ -223,12 +221,6 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
 "значень типу «string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
 
 #, c-format
 msgid ""
@@ -311,3 +303,52 @@ msgstr "Модуль «%s» Scilab не встановлено.\n"
 #, c-format
 msgid "Warning %s does not follow the dtd"
 msgstr "Попередження: %s не відповідає dtd"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
+#~ "a while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Збирання файла підручника [%s] у %s. (Будь ласка, зачекайте — це доволі "
+#~ "тривала дія)\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s]. (Please wait building ... this can take a "
+#~ "while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Збирання файла підручника [%s]. (Будь ласка, зачекайте — це доволі тривала "
+#~ "дія)\n"
+
+#, c-format
+#~ msgid "%s: Scilab 5.0 or more is required.\n"
+#~ msgstr "%s: потрібен Scilab 5.0 або новіша версія.\n"
+
+#, c-format
+#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+#~ "«string».\n"
+
+#, c-format
+#~ msgid "%s: help module is not installed.\n"
+#~ msgstr "%s: модуль довідки не встановлено.\n"

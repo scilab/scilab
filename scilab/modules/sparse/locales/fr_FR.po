@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-20 06:33+0000\n"
-"Last-Translator: ycollet <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-24 11:15+0000\n"
+"Last-Translator: Michaël Baudin <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid ""
@@ -144,6 +144,17 @@ msgstr ""
 "%s : Nombre d'arguments d'entrée incorrect : %d au moins sont attendus.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr "%s : Mauvais nombre d'argument de sortie : %d à %d attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+"%s: Mauvaise taille de l'argument d'entrée n°%d: %s est de taille %d, mais "
+"%d est attendu.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 "%s : Taille incorrecte pour l'argument d'entrée #%d : Vecteur de colonne "
@@ -200,6 +211,37 @@ msgid ""
 msgstr ""
 "%s: Mauvais type pour l'argument d'entrée n° #%d: Transpose de la fonction "
 "%s attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n°%d: %s=%d, mais une valeur "
+"positive est attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n°%d: %s=%d, qui ne correspond "
+"pas à %s: %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n°%d: %s=%d, qui ne correspond "
+"pas à la taille de %s: %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n°%d: %s=%s, mais une valeur "
+"entière est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -330,3 +372,35 @@ msgstr "creuse: panique dans le fichier `%s' à la ligne %d.\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "||| Début d'une nouvelle matrice |||\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr ""
+#~ "%s: Mauvaise dimension pour l'argument d'entrée n° #%d: Doit être de la même "
+#~ "dimension que l'argument d'entrée n° #%d"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvais type pour l'argument d'entrée n° #%d: Même dimension que "
+#~ "l'argument d'entrée n° #%d attendue.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Mauvais type pour l'argument d'entrée n° #%d:  Même dimension que "
+#~ "l'argument d'entrée n° #%d attendue.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for size argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s : Type inapproprié pour l'argument de taille #%d : La taille attendue "
+#~ "doit être identique à celle de l'argument d'entrée #%d.\n"

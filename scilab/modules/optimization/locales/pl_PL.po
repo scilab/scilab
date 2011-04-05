@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-08 10:54+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:44+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid ""
 "\n"
@@ -77,6 +77,10 @@ msgid "%s: Cannot evaluate cost function from costf(x0,6)."
 msgstr "%s: Nie można ocenić funkcji kosztów z costf(x0,6)."
 
 #, c-format
+msgid "%s: Either one of Aeq, A, lb or ub must be non-empty."
+msgstr ""
+
+#, c-format
 msgid "%s: Empty function (use -function option)."
 msgstr "%s: Funkcja pusta (urzyj opcje -function)."
 
@@ -108,6 +112,11 @@ msgid ""
 msgstr ""
 "%s: Oczekiwano wartości typu string dla zmiennej %s (parametr wejściowy nr "
 "%d), zamiast tego otrzymano %s"
+
+#, c-format
+msgid ""
+"%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
+msgstr ""
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -224,6 +233,10 @@ msgstr ""
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q nie jest symetryczna dodatnio określona.\n"
+
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr "%s: Q musi być ortogonalny.\n"
 
 #, c-format
 msgid ""
@@ -429,10 +442,6 @@ msgid "%s: Too many iterations (more than %d).\n"
 msgstr "%s: Za dużo powtórzeń (więcej niż %d).\n"
 
 #, c-format
-msgid "%s: Unbounded problem!"
-msgstr "%s: Brak ograniczeń dla zagadnienia!"
-
-#, c-format
 msgid "%s: Unexpected maximum number of function evaluations %s."
 msgstr "%s: Nieprawidłowa maksymalna liczba obliczeń funkcji %s."
 
@@ -583,6 +592,12 @@ msgid "%s: Wrong number of arguments : %d expected while %d given"
 msgstr "%s: Nieprawidłowa liczba argumentów : oczekiwano %d, jest %d"
 
 #, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
 
@@ -609,6 +624,16 @@ msgstr ""
 "kolumn %d.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for element #%d in input argument #%d: A function is "
+"expected, but current type is %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
 "%s:  Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano funkcji.\n"
@@ -621,14 +646,133 @@ msgstr ""
 "wymiarowa.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %s: oczekiwano funkcję "
 "zewnętrzną.\n"
 
 #, c-format
-msgid "%s: x0 is not feasible."
-msgstr "%s: niedopuszczlny x0."
+msgid ""
+"%s: Wrong value for input argument #%d. One entry of the upper bound ub is "
+"lower than the lower bound lb."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be a floating point "
+"integer."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
+"constraints."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
+"constraints."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 is not positive."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
+msgstr ""
+
+msgid "...Done\n"
+msgstr "...Wykonane\n"
+
+msgid "A new method of constrained optimization \n"
+msgstr ""
+
+msgid "Column #1: number of dimensions\n"
+msgstr ""
+
+msgid "Column #2: number of function evaluations\n"
+msgstr ""
+
+msgid "Column #3: number of iterations\n"
+msgstr ""
+
+msgid "Column #4: convergence rate (lower is better)\n"
+msgstr ""
+
+msgid "Computation of optimal parameters"
+msgstr ""
+
+msgid "Configuring nmplot object...\n"
+msgstr ""
+
+msgid "Creating nmplot object ...\n"
+msgstr ""
+
+msgid "Creating nmplot object...\n"
+msgstr ""
+
+msgid "Creating object ...\n"
+msgstr ""
+
+msgid "Creating object...\n"
+msgstr ""
+
+msgid "Defining Han function...\n"
+msgstr ""
+
+msgid "Defining McKinnon function...\n"
+msgstr ""
+
+msgid "Defining Rosenbrock Post Office function...\n"
+msgstr ""
+
+msgid "Defining Rosenbrock function ...\n"
+msgstr ""
+
+msgid "Defining Rosenbrock function...\n"
+msgstr ""
+
+msgid "Defining initial simplex coordinates...\n"
+msgstr ""
+
+msgid "Defining quadratic function ...\n"
+msgstr ""
+
+msgid "Defining quadratic function...\n"
+msgstr ""
+
+msgid "Derivative"
+msgstr ""
+
+msgid "End of Optimization\n"
+msgstr ""
+
+msgid "End of demo.\n"
+msgstr ""
 
 #, c-format
 msgid "Error in dgels, info = %d.\n"
@@ -653,14 +797,172 @@ msgstr "Błąd w dtrcon, info = %d.\n"
 msgid "F(x)*Z has a negative eigenvalue.\n"
 msgstr "F(x)*Z ma ujemną wartość własną.\n"
 
+msgid "Function Value Average"
+msgstr ""
+
+msgid "Genetic algorithms"
+msgstr ""
+
+msgid ""
+"Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
+"Optimization Methods and Software, 2006.\n"
+msgstr ""
+
+msgid "Illustrates Box'' algorithm on Box problem A.\n"
+msgstr ""
+
+msgid "Illustrates Box'' algorithm on Box problem B.\n"
+msgstr ""
+
+msgid "Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"
+msgstr ""
+
+msgid ""
+"Illustrates Box'' algorithm on a simply bounds-constrained optimization "
+"problem.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
+"quadratic test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
+"well on Rosenbrock test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
+"a badly quadratic test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
+"a quadratic test case.\n"
+msgstr ""
+
+msgid ""
+"Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
+"quadratic test case.\n"
+msgstr ""
+
+msgid "Illustrates the 1st counter example given by Han et al.\n"
+msgstr ""
+
+msgid "Illustrates the 2nd counter example given by Han et al.\n"
+msgstr ""
+
+msgid ""
+"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr ""
+
+msgid "Initialization\n"
+msgstr ""
+
+msgid "Iterations"
+msgstr ""
+
 msgid "L must be at least one.\n"
 msgstr "L musi być nie mniej niż jeden.\n"
+
+msgid "LQV"
+msgstr ""
+
+msgid "Logarithm Maximum Oriented length"
+msgstr ""
+
+msgid "Logarithm Minimum Function Value"
+msgstr ""
 
 msgid "Matrices Fi, i=1,...,m are linearly dependent.\n"
 msgstr "Macierze Fi, i=1,...,m są liniowo zależne.\n"
 
+msgid "Maximum Oriented length"
+msgstr ""
+
+#, c-format
+msgid "Maximum dimension:%d\n"
+msgstr ""
+
+msgid "Minimum Function Value"
+msgstr ""
+
+msgid "Non linear data fitting"
+msgstr ""
+
+msgid "Number of function evaluations"
+msgstr ""
+
+msgid "Number of parameters"
+msgstr ""
+
+msgid "Optimisation"
+msgstr ""
+
 msgid "Optimization and Simulation"
 msgstr "Optymalizacja i Symulacja"
+
+msgid "Output"
+msgstr ""
+
+msgid "Plot"
+msgstr ""
+
+msgid "Plot contour (please wait) ...\n"
+msgstr ""
+
+msgid "Plot contour (please wait)...\n"
+msgstr ""
+
+msgid "Plotting contour (please wait) ...\n"
+msgstr ""
+
+msgid "Plotting contour (please wait)...\n"
+msgstr ""
+
+msgid "Plotting history of fbar ...\n"
+msgstr ""
+
+msgid "Plotting history of fopt ...\n"
+msgstr ""
+
+msgid "Plotting history of sigma ...\n"
+msgstr ""
+
+msgid "Problem A\n"
+msgstr ""
+
+msgid "Problem B\n"
+msgstr ""
+
+msgid "Rate of convergence"
+msgstr ""
+
+#, c-format
+msgid "Relative error = %e\n"
+msgstr ""
+
+msgid "Rosenbrock"
+msgstr ""
+
+msgid "Running optimization ...\n"
+msgstr ""
+
+msgid "Searching (please wait) ...\n"
+msgstr ""
+
+msgid "Searching (please wait)...\n"
+msgstr ""
+
+msgid "Setup output files...\n"
+msgstr ""
+
+msgid "Simulated Annealing"
+msgstr ""
+
+msgid "Spaceship landing trajectory"
+msgstr ""
 
 msgid ""
 "The matrices F_i, i=1,...,m are linearly dependent (or the initial points "
@@ -681,15 +983,111 @@ msgstr "Z0 nie spełnia warunków równości dla dwóch możliwości.\n"
 msgid "Z0 is not positive definite.\n"
 msgstr "Z0 nie jest dodatnio określony.\n"
 
+msgid "and a comparison with other methods.\n"
+msgstr ""
+
 #, c-format
 msgid "blck_szs[%d] must be at least one.\n"
 msgstr "blck_szs[%d]  musi być przynajmniej jeden.\n"
 
+#, c-format
+msgid "f computed = %f\n"
+msgstr ""
+
+#, c-format
+msgid "f expected = %f\n"
+msgstr ""
+
+msgid "fminsearch"
+msgstr ""
+
+msgid "fminsearch - Option Display"
+msgstr ""
+
+msgid "fminsearch - Output Function"
+msgstr ""
+
+msgid "fminsearch - Plot F"
+msgstr ""
+
+msgid "fminsearch - Plot Func Count"
+msgstr ""
+
+msgid "fminsearch - Plot X"
+msgstr ""
+
+msgid "fminsearch - Rosenbrock"
+msgstr ""
+
+msgid "fminsearch - tolx"
+msgstr ""
+
 msgid "m must be at least one.\n"
 msgstr "m musi być co najmniej jeden.\n"
+
+msgid "neldermead - Box A"
+msgstr ""
+
+msgid "neldermead - Box B"
+msgstr ""
+
+msgid "neldermead - Box Bounds"
+msgstr ""
+
+msgid "neldermead - Box Post"
+msgstr ""
+
+msgid "neldermead - Dimensionnality"
+msgstr ""
+
+msgid "neldermead - Output Command"
+msgstr ""
+
+msgid "neldermead - Rosenbrock Variable"
+msgstr ""
+
+msgid "nmplot - Han #1"
+msgstr ""
+
+msgid "nmplot - Han #2"
+msgstr ""
+
+msgid "nmplot - McKinnon #1"
+msgstr ""
+
+msgid "nmplot - McKinnon #2"
+msgstr ""
+
+msgid "nmplot - Quadratic Fixed #1"
+msgstr ""
+
+msgid "nmplot - Quadratic Fixed #2"
+msgstr ""
+
+msgid "nmplot - Rosenbrock Fixed"
+msgstr ""
+
+msgid "nmplot - Rosenbrock Variable"
+msgstr ""
 
 msgid "nu must be at least 1.0.\n"
 msgstr "nu musi być co najmniej  1.0.\n"
 
+#, c-format
+msgid "x0 = %s\n"
+msgstr ""
+
 msgid "x0 is not strictly primal feasible.\n"
 msgstr "x0 nie jest możliwie ściśle pierwotne.\n"
+
+#, c-format
+msgid "x0=%s\n"
+msgstr ""
+
+#, c-format
+#~ msgid "%s: Unbounded problem!"
+#~ msgstr "%s: Brak ograniczeń dla zagadnienia!"
+
+#, c-format
+#~ msgid "%s: x0 is not feasible."
+#~ msgstr "%s: niedopuszczlny x0."

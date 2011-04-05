@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-07-08 11:29+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-05 10:12+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -231,15 +231,15 @@ msgstr ""
 "%s: Niewłaściwa liczba parametrów wejściowych: oczekiwana jest od %d do %d."
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwane jest "
-"przynajmniej %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano najwyżej %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+"%s: Nieodpowiednia ilość parametrów wejściowych: dane nie pasują do "
+"formatu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -649,6 +649,10 @@ msgid ""
 "                                   Bad call to a scilab function ?\n"
 "                                   Otherwise, send a bug report to :\n"
 msgstr ""
+"Błąd krytyczny!!! Wartości zmiennych zostały zapisane do pliku : %s\n"
+"                                   Źle wywołanie funkcji Scilab ?\n"
+"                                   W przeciwnym razie wyszli informacje o "
+"błędzie do :\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
@@ -896,8 +900,8 @@ msgstr "Nie realizowane w Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Zmienna zero nie może być tutaj użyta.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-msgstr "Operator z / i \\ operacje nie mogą zawierać NaN z Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr "Operandy operacji / i \\ nie mogą zawierać NaN albo Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr "Optim zatrzymane: osiągnięto maksymalną liczbę połączeń do f.\n"
@@ -1104,7 +1108,7 @@ msgid "Undefined operation for the given operands.\n"
 msgstr "Niezdefiniowana operacja dla podanych argumentów.\n"
 
 msgid "Undefined variable.\n"
-msgstr ""
+msgstr "Zmienna nie zdefiniowana.\n"
 
 #, c-format
 msgid "Undefined variable: %s\n"
@@ -1150,7 +1154,7 @@ msgid "Waiting for end of command.\n"
 msgstr "Czekam na koniec polecenia.\n"
 
 msgid "Waiting for right parenthesis.\n"
-msgstr "Czekan na prawy nawias.\n"
+msgstr "Czekam na prawy nawias.\n"
 
 msgid "Warning :\n"
 msgstr "Ostrzeżenie:\n"
@@ -1509,3 +1513,29 @@ msgstr "czas domeny z argumentu %d nie jest zdefiniowany.\n"
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "słowo kluczowe varargout nie może być tu użyte.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Błąd alokacji pamięci.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "format 'o' jest niedozwolony."
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Błąd krytyczny!!! Twoje zmienne zostały zapisane w pliku: %s.\n"
+#~ "Błędne wywołanie funkcji Scilab?\n"
+#~ "W przeciwnym razie, wyślij raport o błędzie do:\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwane jest "
+#~ "przynajmniej %d.\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr "Operator z / i \\ operacje nie mogą zawierać NaN z Inf.\n"

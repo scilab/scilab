@@ -9,14 +9,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-21 20:07+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-02 21:19+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -84,11 +84,11 @@ msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-msgstr ""
+msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s: Нет найденных результатов.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -591,9 +591,6 @@ msgstr "&Цвета"
 msgid "&Command History"
 msgstr "&Журнал команд"
 
-msgid "&Contributions"
-msgstr "&Принять участие"
-
 msgid "&Control"
 msgstr "&Управление"
 
@@ -602,6 +599,9 @@ msgstr "&Копировать"
 
 msgid "&Copy to clipboard"
 msgstr "&Копировать в буфер обмена"
+
+msgid "&Decrease font size"
+msgstr "У&меньшить размер шрифта"
 
 msgid "&Display current directory"
 msgstr "О&тобразить текущий каталог"
@@ -633,17 +633,29 @@ msgstr "&Свойства графического окна..."
 msgid "&File"
 msgstr "&Файл"
 
+msgid "&File Exchange"
+msgstr "&Обмен файлами"
+
 msgid "&Font..."
 msgstr "&Шрифт..."
 
+msgid "&Forge"
+msgstr "Веб-сайт &Forge"
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr "&Пошаговый поиск"
 
 msgid "&Interrupt"
 msgstr "&Приостановить"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Веб-ресурсы"
 
 msgid "&Load environment..."
 msgstr "&Загрузить окружение..."
@@ -721,13 +733,10 @@ msgid "&UnZoom"
 msgstr "&Исходный масштаб"
 
 msgid "&Variable Browser"
-msgstr "&Окно обзора переменных"
+msgstr "&Обозреватель переменных"
 
 msgid "&Vectorial export"
 msgstr "&Векторный экспорт"
-
-msgid "&Links"
-msgstr "&Веб-ресурсы"
 
 msgid "&Xcos"
 msgstr "&Визуальное моделирование Xcos"
@@ -759,6 +768,21 @@ msgstr "Добавить цвет в список"
 
 msgid "All %s files"
 msgstr "Все файлы %s"
+
+msgid "All Encapsulated PS files"
+msgstr "Все файлы EPS (Encapsulated PS)"
+
+msgid "All PDF files"
+msgstr "Все файлы PDF"
+
+msgid "All PNG image files"
+msgstr "Все изображения PNG"
+
+msgid "All Postscript files"
+msgstr "Все файлы PS (Postscript)"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "Все файлы RTF (Rich Text Format)"
 
 msgid "All Scilab files"
 msgstr "Все файлы Scilab"
@@ -873,8 +897,11 @@ msgstr "Копировать"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторское право (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Авторское право (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr "Авторское право (c) 1989-2011 (INRIA)"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Не удалось найти командное окно или InterpreterManagement."
 
 msgid "Could not open: "
 msgstr "Не удалось открыть: "
@@ -911,6 +938,12 @@ msgstr "Ошибка при экспорте"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Ошибка. Был получен сигнал.\n"
+
+msgid "Evaluate selection with echo"
+msgstr "Вычислить выделенное с отображением команд"
+
+msgid "Evaluate selection with no echo"
+msgstr "Вычислить выделенное без отображения команд"
 
 msgid "Execute into Scilab"
 msgstr "Выполнить в Scilab"
@@ -971,6 +1004,9 @@ msgstr "Справка по выделенной команде"
 
 msgid "Impossible to get current look and feel"
 msgstr "Текущий внешний вид получить невозможно"
+
+msgid "In&crease font size"
+msgstr "У&величить размер шрифта"
 
 msgid "Italic"
 msgstr "Курсив"
@@ -1112,7 +1148,7 @@ msgid "Scicos files"
 msgstr "Файлы Scicos"
 
 msgid "Scilab &ATOMS Web Site"
-msgstr "&Веб-сайт Atoms"
+msgstr "Веб-сайт &Atoms"
 
 msgid "Scilab &Demonstrations"
 msgstr "&Примеры"
@@ -1120,8 +1156,14 @@ msgstr "&Примеры"
 msgid "Scilab &Help"
 msgstr "&Содержание"
 
+msgid "Scilab &Online Help"
+msgstr "&Интерактивная справка Scilab"
+
 msgid "Scilab &Web Site"
-msgstr "&Официальный сайт"
+msgstr "Веб-сайт &Scilab"
+
+msgid "Scilab &Wiki"
+msgstr "&Вики-сайт Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1493,6 +1535,10 @@ msgstr ""
 "Неверное значение свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
 "вещественных чисел.\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидались числа между 0 и 1.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1569,3 +1615,79 @@ msgstr "не помечено"
 
 msgid "yellow"
 msgstr "жёлтый"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&Сообщить об ошибке"
+
+#~ msgid "&Contributions"
+#~ msgstr "&Принять участие"
+
+#~ msgid "&Web links"
+#~ msgstr "&Веб-ресурсы"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "Запустить редактор"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"ВНИМАНИЕ: Несмотря на предыдущее предупреждение Вы выбрали "
+#~ "использование Scilab с улучшенными графическими возможностями. Введите  "
+#~ "\"\"help usecanvas\"\" для получения дополнительной информации.\")"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "Модуль «%s» выключен в режимах  -nogui и -nwni."
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "&Архив группы новостей"
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "Выберите файл для открытия в редакторе"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: Нет найденных результатов для свойства «%s» и значения «%s».\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: Нет найденных результатов.\n"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Запустить текстовый редактор"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "Выберите файл для открытия в текстовом редакторе"
+
+#~ msgid "All rights reserved"
+#~ msgstr "Все права защищены"
+
+#~ msgid "Copyright 1989 - 2009"
+#~ msgstr "Авторское право 1989 - 2009"
+
+#~ msgid "INRIA / ENPC / Contributors"
+#~ msgstr "INRIA / ENPC / Участники"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Вы действительно желаете выйти из Scilab?"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Консорциум Scilab (DIGITEO)"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Авторское право (c) 1989-2009 (INRIA)"
+
+#~ msgid "&Editor"
+#~ msgstr "&Текстовый редактор"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Авторское право (c) 1989-2010 (INRIA)"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: Произошло исключение: %s"

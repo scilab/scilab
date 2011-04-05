@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-10-07 11:49+0000\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -110,3 +110,12 @@ msgstr "Mer"
 
 msgid "filename not defined."
 msgstr "nom de fichier non défini."
+
+#~ msgid "Scilab history_manager module not installed.\n"
+#~ msgstr "Module Scilab history_manager non installé.\n"
+
+#~ msgid "// End Session   : "
+#~ msgstr "// Fin de la Session : "
+
+#~ msgid "// Begin Session : "
+#~ msgstr "// Début de  la Session : "

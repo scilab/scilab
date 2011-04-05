@@ -7,22 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-29 14:56+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-08-18 19:44+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
-
-#, c-format
-msgid "%s : Wrong size for input argument #%d.\n"
-msgstr "%s: Неверный размер входного параметра №%d.\n"
 
 #, c-format
 msgid "%s : Wrong size for input argument(s).\n"
@@ -208,10 +204,6 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A character expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался символ.\n"
 
 #, c-format
 msgid ""
@@ -408,3 +400,39 @@ msgstr "%s: не удалось получить размерность этой
 
 msgid "WARNING : \n"
 msgstr "ВНИМАНИЕ: \n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "Внимание: функция %s устарела.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "Внимание: эта функция будет полностью удалена в Scilab %s.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Ошибка выделения памяти.\n"
+
+#, c-format
+#~ msgid "%s : Wrong size for input argument #%d.\n"
+#~ msgstr "%s: Неверный размер входного параметра №%d.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась матрица символьных "
+#~ "строк.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидался символ.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "Внимание: используйте %s вместо неё.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалось «r», «l» или «c».\n"

@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-05-27 18:59+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2010-06-19 13:57+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "Revision-Date: 2008-05-27 18:59+0100\n"
 
 #
@@ -422,3 +422,14 @@ msgstr "condestsp 之小型測試"
 # File: sci_gateway/c/sci_umf_lufact.c, line: 120
 msgid "symbolic factorization"
 msgstr "符號運算分解"
+
+# File: macros/scisptdemo.sci, line: 37
+#~ msgid " For this demo the current stack size is not enought "
+#~ msgstr " 對此範例而言目前之堆疊大小不夠 "
+
+#
+# File: sci_gateway/c/sci_taucs_chfact.c, line: 88
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be symetric positive definite"
+#~ msgstr "%s: 第 %d 個輸入參數數值錯誤: 須為對稱正定"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-07-29 09:49+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:18+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -75,6 +75,10 @@ msgstr "%s: No s'ha trobat cap fitxer amb extensió %s a %s\n"
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: Comproveu: %s\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -254,3 +258,72 @@ msgstr "línia %s [crida %s, %s seg] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "línia %s [%s crides, %s seg] :: "
+
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr ""
+#~ "%s: No hi ha cap fitxer anomenat %s.sci al directori de llibreries %s.\n"
+
+#~ msgid "Editer"
+#~ msgstr "Editor"
+
+#~ msgid "Insert"
+#~ msgstr "Insereix"
+
+#~ msgid "3D &Rot."
+#~ msgstr "&Rotació 3D."
+
+#~ msgid "3D Rot."
+#~ msgstr "Rotació 3D."
+
+#~ msgid "&Insert"
+#~ msgstr "&Insereix"
+
+#~ msgid "&Edit"
+#~ msgstr "&Edita"
+
+#~ msgid "UnZoom"
+#~ msgstr "Redueix"
+
+#~ msgid "&File"
+#~ msgstr "&Fitxer"
+
+#~ msgid "File"
+#~ msgstr "Fitxer"
+
+#~ msgid "Zoom"
+#~ msgstr "Amplia"
+
+#~ msgid "&Tools"
+#~ msgstr "&Eines"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "La funcció %s és obsoleta."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "S'eliminarà permanentment aquesta funció del Scilab %s"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "Avís: Aquesta funció s'eliminarà de forma permanent a Scilab %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nom de "
+#~ "funció.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "Avís: Utilitzeu %s.\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "Avís: La funció %s és obsoleta.\n"

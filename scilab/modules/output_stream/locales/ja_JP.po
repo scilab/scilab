@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-08-13 15:55+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-12 00:34+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -255,15 +255,15 @@ msgstr "%s: 入力引数の数が不正です。\n"
 msgid "%s: Wrong number of input arguments: %d to %d expected"
 msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください."
 
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d  個以上の引数を指定してください.\n"
-
 #
 # File: src/c/errmsg.c, line: 559
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr "%s: 入力引数の数が不正です: 最大で %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr "%s: 入力引数の数が間違っています: フォーマットにデータが整合していません.\n"
 
 #
 # File: src/c/errmsg.c, line: 559
@@ -1069,8 +1069,8 @@ msgstr "Scilab で実施されませんでした...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL 変数は、ここで使うことはできません。\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-msgstr "/ のオペランドと \\ の操作 で Inf の NaN を含んではいけません。\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr "/ および \\ 演算子のオペランドに NaN または Inf を含めることはできません.\n"
 
 #
 # File: src/c/msgs.c, line: 638
@@ -1932,3 +1932,146 @@ msgstr "引数 %d の時間領域は、定義されていません。\n"
 # File: src/c/errmsg.c, line: 1516
 msgid "varargout keyword cannot be used here.\n"
 msgstr "可変の入力引数キーワードはここで使うことはできません。\n"
+
+#
+# File: src/c/errmsg.c, line: 433
+#~ msgid "Function has no input argument...\n"
+#~ msgstr "関数はどのような入力引数もありません...\n"
+
+#
+# File: src/c/errmsg.c, line: 437
+#~ msgid "Wrong number of arguments in function call...\n"
+#~ msgstr "関数呼び出しで引数の数が不正です...\n"
+
+#
+# File: src/c/errmsg.c, line: 449
+#~ msgid "Function has no output.\n"
+#~ msgstr "関数は出力がありません。\n"
+
+#
+# File: src/c/errmsg.c, line: 453
+#~ msgid "Incorrect # of outputs in the function\n"
+#~ msgstr "関数出力の 正しくない # です。\n"
+
+#
+# File: src/c/errmsg.c, line: 492
+#~ msgid "No more logical units available!\n"
+#~ msgstr "これ以上のロジカルユニットは可能ではありません!\n"
+
+#
+# File: src/c/errmsg.c, line: 502
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "致命的エラー!!!あなたの変数は、ファイル %s で保存されました。\n"
+#~ "scilab関数の悪い呼び出し?\n"
+#~ "別として、バグ・レポートを送って下さい。\n"
+
+#
+# File: src/c/errmsg.c, line: 648
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: 特異または非対称問題です。\n"
+
+#
+# File: src/c/errmsg.c, line: 944
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%s: この方法は装備されていません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1219
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr "疎行列入力は、２つの違った値で定義されています。\n"
+
+#
+# File: src/c/errmsg.c, line: 1271
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr "/ のオペレータ、または、\\ オペレータ は　InfのNaNを含んではいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1348
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr "バイナリーの直接参照ファイルは、「ファイル」によって開かれなくてはいけません。\n"
+
+#
+# File: src/c/errmsg.c, line: 1440
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: 関連度行列は単独です。\n"
+
+#
+# File: src/c/errmsg.c, line: 1456
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr "ファイルの書き込み中にエラー、(ディスクが一杯か、または、ファイル削除)\n"
+
+#
+# File: src/c/msgs.c, line: 584
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "警告: 乱数行列単位は、使われなくなった使用です。\n"
+
+#
+# File: src/c/msgs.c, line: 591
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "階数落ち、階級 = %d\n"
+
+#
+# File: src/c/msgs.c, line: 1081
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr "現在: %s , 正確に成し遂げるためには多すぎる繰り返しです。\n"
+
+#
+# File: src/c/msgs.c, line: 1105
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr "警告: 統合は完成できませんでした! 許容パラメーターまたはステップ・サイズをチェックしてください。\n"
+
+#
+# File: src/c/msgs.c, line: 1111
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "警告: 外部の与えられたヤコビアン、しかし、\n"
+#~ "使われていません、%ODEOPTIONS(６)を見てください!\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: メモリの割り当てに失敗しました。\n"
+
+#
+# File: src/c/errmsg.c, line: 559
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+#~ msgstr "%s: 入力引数で不正な数: > 0 でなくてはなりません。\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "'o' フォーマットは許されませんでした。"
+
+#
+# File: src/c/errmsg.c, line: 1451
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "グローバル変数が多すぎます! 最大数は %d です。\n"
+
+#
+# File: src/c/msgs.c, line: 1207
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "勾配ブロックの入出力へ投入が多すぎます。\n"
+
+#
+# File: src/c/msgs.c, line: 1201
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "勾配ブロックの入出力で部品が多すぎます。\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr "/ のオペランドと \\ の操作 で Inf の NaN を含んではいけません。\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr "%s: 入力引数の数が間違っています: %d  個以上の引数を指定してください.\n"

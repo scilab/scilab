@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2009-10-26 13:30+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr " Inicia el purgat per a les comandes encuades.\n"
@@ -114,23 +114,14 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Wrong value for input argument #%d: '%s' expected.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "&Edita"
-
-msgid "&File"
-msgstr "&Fitxer"
-
-msgid "&Tools"
-msgstr "&Eines"
-
 msgid "Alpha Release"
 msgstr "Versió alfa"
 
 msgid "Beta Release"
 msgstr "Versió beta"
+
+msgid "Color"
+msgstr ""
 
 #, c-format
 msgid "Error %s while loading library %s"
@@ -168,8 +159,17 @@ msgstr "No s'ha pogut definir la variable d'entorn."
 msgid "Impossible to set system encoding."
 msgstr "No s'ha pogut establir la codificació del sistema."
 
+msgid "Puzzle"
+msgstr ""
+
+msgid "Scale"
+msgstr ""
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "El mòdul TCL/TK del Scilab no està instal·lat.\n"
+
+msgid "Scroll"
+msgstr ""
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -260,3 +260,31 @@ msgstr "Avís: Hi ha massa crides encuades!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] no funciona amb Tcl/Tk.\n"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+#~ "real o de cadenes de text.\n"
+
+#~ msgid "&Tools"
+#~ msgstr "&Eines"
+
+#~ msgid "&Edit"
+#~ msgstr "&Edita"
+
+#~ msgid "&File"
+#~ msgstr "&Fitxer"
+
+#~ msgid "Open"
+#~ msgstr "Obre"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "No s'ha carregat la interfície Tcl/Tk."
+
+#~ msgid "Updating, please wait"
+#~ msgstr "S'està actualitzant, espereu"

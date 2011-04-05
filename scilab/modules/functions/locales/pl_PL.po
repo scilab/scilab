@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-29 13:14+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:22+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -75,6 +75,10 @@ msgstr "%s: Pliki z rozszerzeniem %s nie zostały znalezione w %s\n"
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: Proszę sprawdzić: %s\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -258,3 +262,39 @@ msgstr "linia %s [%s wywołanie, %s sekunda] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "linia %s [wywołana przez %s, %s sekunda] :: "
+
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr "%s: Brak pliku o nazwie %s.sci w katalogu biblioteki %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwana nazwa "
+#~ "funkcji.\n"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "Funkcja %s jest zdezaktualizowana."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Ta funkcja zostanie na stałe usunięta w Scilab %s"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "UWAGA: Proszę w zamian użyć %s.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "UWAGA: Ta funkcja zostanie na stałe usunięta w Scilab %s.\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "UWAGA: Funkcja %s jest zdezaktualizowana.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
+#~ "wartości całkowitej.\n"

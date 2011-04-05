@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-05-27 10:03+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -83,7 +83,7 @@ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
 msgstr ""
 
 #, c-format
@@ -203,6 +203,12 @@ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 
@@ -230,7 +236,16 @@ msgstr ""
 msgid "Annotations"
 msgstr ""
 
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr ""
+
 msgid "Based on Scicos"
+msgstr ""
+
+msgid "Basic controller"
 msgstr ""
 
 msgid "Block Help"
@@ -248,6 +263,15 @@ msgstr ""
 msgid "Bottom"
 msgstr "底对齐"
 
+msgid "Bouncing Ball"
+msgstr ""
+
+msgid "Bouncing Balls"
+msgstr ""
+
+msgid "Bridge Rectifer"
+msgstr ""
+
 msgid "CVODE"
 msgstr ""
 
@@ -260,6 +284,9 @@ msgstr ""
 msgid "Center"
 msgstr "居中"
 
+msgid "Chaos Modelica"
+msgstr ""
+
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
@@ -269,6 +296,9 @@ msgstr "关闭"
 
 msgid "Code generation"
 msgstr "代码生成"
+
+msgid "Colpitts oscillator"
+msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "命令端口必须跟控制端口相连"
@@ -289,7 +319,13 @@ msgstr ""
 msgid "Computing"
 msgstr ""
 
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
 msgid "Continuous time systems"
+msgstr ""
+
+msgid "Control Systems"
 msgstr ""
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
@@ -306,6 +342,12 @@ msgstr ""
 
 msgid "Customize"
 msgstr "自定义"
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr ""
@@ -338,10 +380,19 @@ msgstr ""
 msgid "Diff. States"
 msgstr ""
 
+msgid "Differential amplifier"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr ""
 
 msgid "Discrete"
+msgstr ""
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
 msgstr ""
 
 msgid "Discrete time systems"
@@ -365,6 +416,9 @@ msgstr ""
 msgid "Electrical"
 msgstr ""
 
+msgid "Electrical Systems"
+msgstr ""
+
 msgid "Enable"
 msgstr ""
 
@@ -372,6 +426,9 @@ msgid "Equations"
 msgstr ""
 
 msgid "Error"
+msgstr ""
+
+msgid "Error on export"
 msgstr ""
 
 msgid "Event handling"
@@ -402,6 +459,9 @@ msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "载入图表失败"
+
+msgid "Fibonacci Numbers"
+msgstr ""
 
 msgid "File"
 msgstr "文件"
@@ -463,10 +523,16 @@ msgstr ""
 msgid "Goto %s"
 msgstr ""
 
+msgid "Goto/From blocks"
+msgstr ""
+
 msgid "Grid"
 msgstr "网格"
 
 msgid "Horizontal"
+msgstr ""
+
+msgid "Hydraulics blocks"
 msgstr ""
 
 msgid "IDA"
@@ -474,6 +540,9 @@ msgstr ""
 
 msgid "Image contains no data."
 msgstr "图像中没有数据。"
+
+msgid "Image path"
+msgstr ""
 
 msgid "Implicit"
 msgstr ""
@@ -488,6 +557,9 @@ msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Import from XML"
 msgstr "从XML导入"
+
+msgid "Incompatibility detected"
+msgstr ""
 
 msgid "Initial computing method"
 msgstr ""
@@ -507,7 +579,13 @@ msgstr ""
 msgid "Integrator relative tolerance"
 msgstr ""
 
+msgid "Inverted Pendulum"
+msgstr ""
+
 msgid "Italic"
+msgstr ""
+
+msgid "Kalman Filter"
 msgstr ""
 
 msgid "Left"
@@ -534,7 +612,16 @@ msgstr ""
 msgid "Loading user defined palettes"
 msgstr ""
 
+msgid "Logic AND gate"
+msgstr ""
+
+msgid "Logic NOR gate"
+msgstr ""
+
 msgid "Lookup Tables"
+msgstr ""
+
+msgid "Lorentz butterfly"
 msgstr ""
 
 msgid "Masked SuperBlock editor"
@@ -549,10 +636,16 @@ msgstr ""
 msgid "Max integration time interval"
 msgstr ""
 
+msgid "Mechanical Systems"
+msgstr ""
+
 msgid "Middle"
 msgstr "垂直居中"
 
 msgid "Mirror"
+msgstr ""
+
+msgid "Modelica demos"
 msgstr ""
 
 msgid "Modelica initialize"
@@ -588,6 +681,15 @@ msgstr "普通 100%"
 msgid "Ok"
 msgstr "确定"
 
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Old demos"
+msgstr ""
+
+msgid "OpAmp amplifier"
+msgstr ""
+
 msgid "Open"
 msgstr "打开"
 
@@ -606,6 +708,12 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
+msgid "Please check the diagram, before trying to simulate it."
+msgstr ""
+
+msgid "Please specify a file format"
+msgstr ""
+
 msgid "Please take a look into the Scilab console"
 msgstr ""
 
@@ -616,10 +724,19 @@ msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr ""
 
+msgid "Preview"
+msgstr ""
+
 msgid "Print"
 msgstr "打印"
 
 msgid "Quit Xcos"
+msgstr ""
+
+msgid "RLC Circuit"
+msgstr ""
+
+msgid "RLC circuit"
 msgstr ""
 
 msgid "Real time scaling"
@@ -681,6 +798,9 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
+msgid "Scilab block"
+msgstr ""
+
 msgid "Scilab file"
 msgstr ""
 
@@ -708,10 +828,19 @@ msgstr ""
 msgid "Show/Hide shadow"
 msgstr "显示/隐藏阴影"
 
+msgid "Signal Builder"
+msgstr ""
+
 msgid "Signal Processing"
 msgstr "信号处理"
 
 msgid "Signal Routing"
+msgstr ""
+
+msgid "Simple Demo"
+msgstr ""
+
+msgid "Simple Thermostat"
 msgstr ""
 
 msgid "Simulation"
@@ -732,8 +861,14 @@ msgstr ""
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr ""
 
+msgid "Some blocks have been removed to ensure compatibility."
+msgstr ""
+
 msgid "Sources"
 msgstr "信号源"
+
+msgid "Standard demos"
+msgstr ""
 
 msgid "Start"
 msgstr "启动"
@@ -745,6 +880,15 @@ msgid "Straight"
 msgstr ""
 
 msgid "Superblock mask"
+msgstr ""
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr ""
+
+msgid "Temperature Controller"
 msgstr ""
 
 msgid "Text Color"
@@ -787,6 +931,15 @@ msgstr "工具"
 
 msgid "Top"
 msgstr "顶对齐"
+
+msgid "Transformer"
+msgstr ""
+
+msgid "Unable to decode \"%s\" : invalid data."
+msgstr ""
+
+msgid "Unable to decode \"%s.%s\" : invalid field."
+msgstr ""
 
 msgid "Unable to delete "
 msgstr ""
@@ -865,6 +1018,9 @@ msgstr "在Scicos中查看"
 msgid "Viewport"
 msgstr "视图区"
 
+msgid "Water tank"
+msgstr ""
+
 msgid "Will try to continue..."
 msgstr ""
 
@@ -890,6 +1046,9 @@ msgstr "Xcos Demos"
 msgid "Xcos Help"
 msgstr "Xcos帮助"
 
+msgid "Xcos data types"
+msgstr ""
+
 msgid "Xcos error"
 msgstr "Xcos错误"
 
@@ -903,7 +1062,13 @@ msgid ""
 "diagram is loaded.)"
 msgstr ""
 
+msgid "Zero Crossing"
+msgstr ""
+
 msgid "Zero crossing detection"
+msgstr ""
+
+msgid "_IF_ Xcos block"
 msgstr ""
 
 msgid "comment"
@@ -952,3 +1117,71 @@ msgstr ""
 
 msgid "weight"
 msgstr ""
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "在-nogui或-nwni模式下Scilab的'%s'模块被禁用。"
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "导出失败：%s\n"
+
+#~ msgid "Cut"
+#~ msgstr "剪切"
+
+#~ msgid "Copy"
+#~ msgstr "复制"
+
+#~ msgid "Zoom Out"
+#~ msgstr "缩小"
+
+#~ msgid "Undo"
+#~ msgstr "撤销"
+
+#~ msgid "Zoom In"
+#~ msgstr "放大"
+
+#~ msgid "Paste"
+#~ msgstr "粘贴"
+
+#~ msgid "Redo"
+#~ msgstr "重做"
+
+#~ msgid "Group"
+#~ msgstr "分组"
+
+#~ msgid "Select all"
+#~ msgstr "全选"
+
+#~ msgid "UnGroup"
+#~ msgstr "取消分组"
+
+#~ msgid "Invert selection"
+#~ msgstr "反转选择"
+
+#~ msgid "Quit"
+#~ msgstr "退出"
+
+#~ msgid "Browser"
+#~ msgstr "浏览器"
+
+#~ msgid "Help"
+#~ msgstr "帮助"
+
+#~ msgid "Threshold"
+#~ msgstr "阈值"
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Xcos版本1.0"
+
+#~ msgid "Continuous"
+#~ msgstr "连续信号"
+
+#~ msgid "Discontinuous"
+#~ msgstr "不连续信号"
+
+#~ msgid "Math Operations"
+#~ msgstr "数学操作"
+
+#~ msgid "Line Color"
+#~ msgstr "线条颜色"

@@ -7,22 +7,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-29 14:56+0100\n"
-"PO-Revision-Date: 2009-10-24 15:20+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:13+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12734)\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
 msgstr "%s：无更多内存。\n"
-
-#, c-format
-msgid "%s : Wrong size for input argument #%d.\n"
-msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
 msgid "%s : Wrong size for input argument(s).\n"
@@ -192,10 +188,6 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个布尔值。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A character expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A character or a vector of single "
 "characters expected.\n"
@@ -357,3 +349,36 @@ msgstr "%s：无法得到这个矩阵的维数。\n"
 
 msgid "WARNING : \n"
 msgstr "警告： \n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
+#~ msgstr "%s：输入参数#%d的值错误：应该为''r''、''l''或''c''。\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s：内存申请错误。\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A character expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为一个字符。\n"
+
+#, c-format
+#~ msgid "%s : Wrong size for input argument #%d.\n"
+#~ msgstr "%s：输入参数#%d的大小错误。\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "警告：请用%s代替。\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "警告：函数%s已废弃。\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "警告：这个函数将从Scilab %s中永久地移除。\n"
