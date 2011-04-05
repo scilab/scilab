@@ -36,17 +36,17 @@
 
 on run()
     -- Check for the required version of Mac OS X
-    if (not atLeastOSXVersion(10, 6, 4)) then
-                tell application  "System Events" -- Mandatory to use tell application otherwis, osascript complains
-                activate
-        display dialog  "This version of Scilab will probably fail on this system: requires MacOSX 10.6.5 (Snow Leopard) or newer system" buttons {"Try anyway", "Quit"} default button "Try anyway"
-        if the button returned of the result is "Quit" then
+    if (not atLeastOSXVersion(10, 6, 4) and not atLeastOSXVersion(10, 5, 8)) then
+        tell application  "System Events" -- Mandatory to use tell application otherwis, osascript complains
+          activate
+          display dialog  "This version of Scilab will probably fail on this system: requires MacOSX 10.5.8 (Leopard) or 10.6.5 (Snow Leopard) or newer system" buttons {"Try anyway", "Quit"} default button "Try anyway"
+          if the button returned of the result is "Quit" then
             error number 128 
             return false
-        else
+          else
             return true
-        end if
-                end tell
+          end if
+        end tell
     end if
 end run
 

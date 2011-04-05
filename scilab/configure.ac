@@ -1,7 +1,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL <pierre.marechal@scilab.org>
 #
 # This file must be used under the terms of the CeCILL.
@@ -780,9 +780,18 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
         AC_JAVA_JNI_INCLUDE
         JAVA_JNI_INCLUDE=$ac_java_jvm_jni_include_flags
 
-        AC_JAVA_JNI_LIBS
-        JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
-        JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
+        case "$host_os" in
+             *Darwin* | *darwin*) 
+               # Mac OS X does not link against the lib but uses -framework
+               JAVA_JNI_LIBS="-framework JavaVM"
+             ;;
+             *)
+               AC_JAVA_JNI_LIBS
+               JAVA_JNI_LIBS=$ac_java_jvm_jni_lib_flags
+               JAVA_JNI_LIBS_PRELOAD=$ac_java_jvm_ld_preload
+             ;;
+        esac
+
         AC_JAVA_CLASSPATH
         JAVA_CLASSPATH=$ac_java_classpath
         AC_JAVA_TOOLS
