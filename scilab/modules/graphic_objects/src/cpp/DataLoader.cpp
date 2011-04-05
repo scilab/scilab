@@ -15,6 +15,7 @@
 
 #include "DataLoader.hxx"
 
+#include "NgonGridGrayplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
 
@@ -31,7 +32,11 @@ int getDataSize(char* id)
     char* type;
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        return NgonGridGrayplotDataDecomposer::getDataSize(id);
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         return Plot3DDecomposer::getDataSize(id);
     }
@@ -52,7 +57,11 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        return NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
@@ -68,7 +77,11 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
     }
@@ -81,7 +94,11 @@ int getIndicesSize(char* id)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         return Plot3DDecomposer::getIndicesSize(id);
     }
@@ -100,7 +117,11 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
 
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
-    if (strcmp(type, __GO_PLOT3D__) == 0)
+    if (strcmp(type, __GO_GRAYPLOT__) == 0)
+    {
+        return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+    }
+    else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         return Plot3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
     }
