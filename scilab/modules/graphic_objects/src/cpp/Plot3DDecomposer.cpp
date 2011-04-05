@@ -99,6 +99,8 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
 
     int bufferOffset = 0;
 
+    Plot3DDecomposer* decomposer = get();
+
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_X__, jni_int, (void**) &piNumX);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_Y__, jni_int, (void**) &piNumY);
 
@@ -123,37 +125,7 @@ void Plot3DDecomposer::fillColors(char* id, float* buffer, int bufferLength, int
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
     getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
 
-    computeMinMaxZValues(z, numX, numY, &zMin, &zMax);
-
-    minDoubleValue = DecompositionUtils::getMinDoubleValue();
-
-    /* To be verified */
-    if ((zMax - zMin) < minDoubleValue)
-    {
-        zRange = 1.0;
-    }
-    else
-    {
-        zRange = zMax - zMin;
-    }
-
-    for (j = 0; j < numY; j++)
-    {
-        for (i = 0; i < numX; i++)
-        {
-            int currentPointIndex = getPointIndex(numX, numY, i, j);
-
-            ColorComputer::getColor(z[currentPointIndex], zMin, zRange, colormap, colormapSize, &buffer[bufferOffset]);
-
-            if (elementsSize == 4)
-            {
-                buffer[bufferOffset +3] = 1.0;
-            }
-
-            bufferOffset += elementsSize;
-        }
-    }
-
+    decomposer->fillNormalizedZGridColors(buffer, bufferLength, elementsSize, colormap, colormapSize, z, numX, numY);
 }
 
 int Plot3DDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)

@@ -10,6 +10,7 @@
  *
  */
 
+#include "ColorComputer.hxx"
 #include "DecompositionUtils.hxx"
 #include "NgonGridDataDecomposer.hxx"
 
@@ -117,6 +118,78 @@ void NgonGridDataDecomposer::fillGridVertices(float* buffer, int bufferLength, i
 
 }
 
+void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+    double* z, int numX, int numY)
+{
+    double zMin;
+    double zMax;
+    double zRange;
+    double minDoubleValue;
+
+    int i;
+    int j;
+
+    int bufferOffset = 0;
+
+    computeMinMaxZValues(z, numX, numY, &zMin, &zMax);
+
+    minDoubleValue = DecompositionUtils::getMinDoubleValue();
+
+    /* To be verified */
+    if ((zMax - zMin) < minDoubleValue)
+    {
+        zRange = 1.0;
+    }
+    else
+    {
+        zRange = zMax - zMin;
+    }
+
+    for (j = 0; j < numY; j++)
+    {
+        for (i = 0; i < numX; i++)
+        {
+            int currentPointIndex = getPointIndex(numX, numY, i, j);
+
+            ColorComputer::getColor(z[currentPointIndex], zMin, zRange, colormap, colormapSize, &buffer[bufferOffset]);
+
+            if (elementsSize == 4)
+            {
+                buffer[bufferOffset +3] = 1.0;
+            }
+
+            bufferOffset += elementsSize;
+        }
+    }
+
+}
+
+void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+    double* z, int numX, int numY)
+{
+    int i;
+    int j;
+
+    int bufferOffset = 0;
+
+    for (j = 0; j < numY; j++)
+    {
+        for (i = 0; i < numX; i++)
+        {
+            int currentPointIndex = getPointIndex(numX, numY, i, j);
+
+            ColorComputer::getDirectColor(z[currentPointIndex], colormap, colormapSize, &buffer[bufferOffset]);
+
+            if (elementsSize == 4)
+            {
+                buffer[bufferOffset +3] = 1.0;
+            }
+
+            bufferOffset += elementsSize;
+        }
+    }
+
+}
 
 double NgonGridDataDecomposer::getZCoordinate(double* z, int numX, int numY, int i, int j)
 {

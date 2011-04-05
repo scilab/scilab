@@ -88,7 +88,7 @@ public :
      * @param[in] the id of the given object.
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
-     * @param[in] the number of coordinates taken by one element in the buffer.
+     * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
     static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
 
