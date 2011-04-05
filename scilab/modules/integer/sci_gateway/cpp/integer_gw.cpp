@@ -32,6 +32,7 @@ bool IntegerModule::Load()
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"int64", &sci_int64, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"uint64", &sci_uint64, MODULE_NAME));
 	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"inttype", &sci_inttype, MODULE_NAME));
+	symbol::Context::getInstance()->AddFunction(Function::createFunction(L"double", &sci_double, MODULE_NAME));
 	return true;
 }
 

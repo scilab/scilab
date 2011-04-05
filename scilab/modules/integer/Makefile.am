@@ -92,7 +92,8 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_CPP_SOURCES = \
 				sci_gateway/cpp/integer_gw.cpp \
-				sci_gateway/cpp/sci_inttype.cpp
+				sci_gateway/cpp/sci_inttype.cpp \
+				sci_gateway/cpp/sci_double.cpp
 
 # List of the cpp files
 INTEGER_CPP_SOURCES =
@@ -107,7 +108,6 @@ sci_gateway/fortran/sci_mgeti.f \
 sci_gateway/fortran/sci_i_maxi.f \
 sci_gateway/fortran/sci_i_p.f \
 sci_gateway/fortran/sci_uint8.f \
-sci_gateway/fortran/sci_double.f \
 sci_gateway/fortran/sci_i_sum.f \
 sci_gateway/fortran/sci_i_prod.f \
 sci_gateway/fortran/sci_i_cumsum.f \
@@ -137,7 +137,8 @@ libsciinteger_la_CPPFLAGS= \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 				-I$(top_srcdir)/modules/types/includes/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/
+				-I$(top_srcdir)/modules/api_scilab/includes/ \
+				-I$(top_srcdir)/modules/output_stream/includes/
 
 pkglib_LTLIBRARIES = libsciinteger.la
 noinst_LTLIBRARIES = libsciinteger-algo.la

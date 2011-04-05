@@ -17,6 +17,8 @@
 #include "yaspio.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -47,10 +49,9 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     {
         if(in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            //TODO: Overload
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"), L"mprintf", i + 1);
-            return types::Function::Error;
-        }
+            std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_mprintf";
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
+        }            
     }
 
     wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
@@ -125,6 +126,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         fflush(NULL);
         FREE(pwstOutput[i]);
     }
+    YaspWriteW(L"\n");
     FREE(pwstOutput);
     return types::Function::OK;
 }

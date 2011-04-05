@@ -21,7 +21,6 @@
 INTEGER_IMPEXP int gw_integer(void);
 /*--------------------------------------------------------------------------*/ 
 INTEGER_IMPEXP int C2F(sciinttype)(char *fname,unsigned long fname_len);
-INTEGER_IMPEXP int C2F(scidouble)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(scimgeti)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciimput)(char *fname,unsigned long fname_len);
 INTEGER_IMPEXP int C2F(sciiconvert)(char *fname,unsigned long fname_len);
