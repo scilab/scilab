@@ -379,6 +379,19 @@ public final class SuperBlock extends BasicBlock {
 	}
 	
 	/**
+	 * @param <T> The type to work on
+	 * @param klass the class instance list to work on
+	 * @return list of typed block
+	 */
+	protected < T extends BasicBlock> List<T> getAllTypedBlock(Class<T>[] klasses) {
+		final List<T> list = new ArrayList<T>();
+		for (Class<T> klass : klasses) {
+			list.addAll(getAllTypedBlock(klass));
+		}
+		return list;
+	}
+	
+	/**
 	 * @return list of input explicit block
 	 */
 	@Deprecated
@@ -467,10 +480,14 @@ public final class SuperBlock extends BasicBlock {
 	/**
 	 * force blocks update
 	 */
+	@SuppressWarnings("unchecked")
 	public void updateAllBlocksColor() {
-		for (IOBlocks block : IOBlocks.values()) {
-			updateBlocksColor(getAllTypedBlock(block.getReferencedClass()));
-		}
+		updateBlocksColor(getAllTypedBlock(new Class[] {ExplicitInBlock.class, ImplicitInBlock.class}));
+		updateBlocksColor(getAllTypedBlock(new Class[] {ExplicitOutBlock.class, ImplicitOutBlock.class}));
+		
+		updateBlocksColor(getAllTypedBlock(EventInBlock.class));
+		updateBlocksColor(getAllTypedBlock(EventOutBlock.class));
+		
 	}
 
 	/**
@@ -495,7 +512,7 @@ public final class SuperBlock extends BasicBlock {
 				final int index = (int) data.getRealPart()[0][0];
 				if (index > countUnique || isDone[index - 1]) {
 					child.getAsComponent().setCellWarning(blocks.get(i),
-							"Wrong port number");
+							XcosMessages.WRONG_PORT_NUMBER);
 				} else {
 					isDone[index - 1] = true;
 					child.getAsComponent().setCellWarning(blocks.get(i), null);
