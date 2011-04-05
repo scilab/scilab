@@ -25,7 +25,7 @@ public :
 
     /**
      * Ouputs an RGB color mapped to a scalar value s belonging to an [smin, smax] interval.
-     * The output color is looked up into an RGB colormap, using a linear mapping between the latter and s.
+     * The output color is looked up in an RGB colormap, using a linear mapping between the latter and s.
      * It does not currently check whether srange is greater than 0, nor that s belongs to the [smin, smax]
      * interval.
      * @param[in] the scalar value.
@@ -37,6 +37,15 @@ public :
      */
     static void getColor(double s, double smin, double srange, double* colormap, int colormapSize, float* returnedColor);
 
+    /**
+     * Outputs an RGB color directly mapped to a scalar value s.
+     * The output color is looked up in an RGB colormap, using s as a direct index.
+     * @param[in] the scalar value used as an index.
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     */
+    static void getDirectColor(double s, double* colorMap, int colorMapSize, float* returnedColor);
 };
 
 #endif

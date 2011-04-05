@@ -31,3 +31,24 @@ void ColorComputer::getColor(double s, double smin, double srange, double* color
     returnedColor[2] = colorMap[2*colormapSize+index];
 }
 
+void ColorComputer::getDirectColor(double s, double* colorMap, int colormapSize, float* returnedColor)
+{
+    int index;
+
+    index = (int) s;
+
+    /* Clamp */
+    if (index < 0)
+    {
+        index = 0;
+    }
+    else if (index > colormapSize - 1)
+    {
+        index = colormapSize - 1;
+    }
+
+    returnedColor[0] = colorMap[index];
+    returnedColor[1] = colorMap[colormapSize+index];
+    returnedColor[2] = colorMap[2*colormapSize+index];
+}
+
