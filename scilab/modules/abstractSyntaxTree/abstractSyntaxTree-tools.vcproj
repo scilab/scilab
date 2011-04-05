@@ -65,6 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="scilocalization.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				GenerateDebugInformation="true"
 				ImportLibrary="../../bin/$(ProjectName).lib"
@@ -212,6 +213,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="scilocalization.lib"
 				OutputFile="&quot;$(SolutionDir)bin\$(ProjectName).dll&quot;"
 				ImportLibrary="../../bin/$(ProjectName).lib"
 			/>
