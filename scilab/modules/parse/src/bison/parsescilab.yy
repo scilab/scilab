@@ -1598,6 +1598,13 @@ COMMA                   { /* !! Do Nothing !! */ }
 /* try ... catch ... end control block. */
 tryControl :
 TRY catchBody CATCH catchBody END                 { $$ =new ast::TryCatchExp(@$, *$2, *$4); }
+| TRY catchBody END                               {
+                                                    ast::exps_t *tmp = new ast::exps_t;
+                                                    #ifdef BUILD_DEBUG_AST
+                                                      tmp->push_front(new ast::CommentExp(@$, new std::wstring(L"Empty catch body")));
+                                                    #endif
+                                                    $$ =new ast::TryCatchExp(@$, *$2, *new ast::SeqExp(@$, *tmp));
+                                                  }
 ;
 
 /*
