@@ -346,6 +346,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ant-all", "Visual-Studio-se
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "swig-all", "Visual-Studio-settings\swig-all\swig-all.vcxproj", "{85303A11-CF6B-432F-B3FD-24DEFFB51025}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "giws-all", "Visual-Studio-settings\giws-all\giws-all.vcxproj", "{88E95224-A931-4B3E-AC6C-5A40B3961421}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1578,6 +1580,10 @@ Global
 		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Debug|x64.ActiveCfg = Debug|x64
 		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|Win32.ActiveCfg = Release|Win32
 		{85303A11-CF6B-432F-B3FD-24DEFFB51025}.Release|x64.ActiveCfg = Release|x64
+		{88E95224-A931-4B3E-AC6C-5A40B3961421}.Debug|Win32.ActiveCfg = Debug|Win32
+		{88E95224-A931-4B3E-AC6C-5A40B3961421}.Debug|x64.ActiveCfg = Debug|x64
+		{88E95224-A931-4B3E-AC6C-5A40B3961421}.Release|Win32.ActiveCfg = Release|Win32
+		{88E95224-A931-4B3E-AC6C-5A40B3961421}.Release|x64.ActiveCfg = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
