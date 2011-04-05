@@ -106,6 +106,9 @@ Xcos:
 
 * bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
 
+* bug 9307 fixed - AFFICH_m block only printed the first column for an input
+                   matrix.
+
 * bug 9369 fixed - Diagrams with an origin did not pass validation.
 
 Packaging:

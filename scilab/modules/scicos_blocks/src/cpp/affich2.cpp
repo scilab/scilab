@@ -21,6 +21,7 @@ extern "C"
 #include "dynlib_scicos_blocks.h"
 #include "MALLOC.h"
 #include "scicos_block4.h"
+#include "scicos.h"
 #include "core_math.h"
 #include "getScilabJavaVM.h"
 #ifdef _MSC_VER
@@ -28,8 +29,6 @@ extern "C"
 #endif
 
     double C2F (sciround) (double *x);
-    void
-    set_block_error(int);
     SCICOS_BLOCKS_IMPEXP void
     affich2(scicos_block * block, int flag);
 }
@@ -80,7 +79,7 @@ affich2(scicos_block * block, int flag)
             {
                 int iPrec = GetIparPtrs(block)[5];
                 double dblScale = pow((double) 10, iPrec);
-                double dblTemp = pdblReal[i] * dblScale;
+                double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
                 double dblValue = C2F(sciround)(&dblTemp) / dblScale;
                 char pstFormat[10];
 
@@ -101,13 +100,12 @@ affich2(scicos_block * block, int flag)
             AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
                     iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniMethodNotFoundException & exception)
+        catch (const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
-             * the corresponding message is "block produces an internal error" (see sci_scicossim.c)
              */
-            set_block_error(-3);
+            Coserror(exception.what());
         }
         break;
 
@@ -134,13 +132,12 @@ affich2(scicos_block * block, int flag)
             AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
                     iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniMethodNotFoundException & exception)
+        catch (const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
-             * the corresponding message is "block produces an internal error" (see sci_scicossim.c)
              */
-            set_block_error(-3);
+            Coserror(exception.what());
         }
 
         // storing the allocated area on the block work field.
