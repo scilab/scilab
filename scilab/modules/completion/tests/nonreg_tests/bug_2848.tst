@@ -17,7 +17,6 @@
 //    macro, its name appears twice in the completion list: as a macro and as a variable.
 
 
-with_atlas();
 [a,b,c,d]=completion("with");
 if c <> [] then pause,end
 
@@ -30,7 +29,6 @@ clear with_tk
 [a,b,c,d]=completion("with");
 if c <> [] then pause,end
 
-with_atlas();
 with_tk();
 deff("[x] = with_foo(y,z)","x=y+z");
 [a,b,c,d] = completion("with");
@@ -40,7 +38,6 @@ ref_c = [];
 ref_d = ["with_atlas"; ..
          "with_foo"; ..
          "with_javasci"; ..
-         "with_lcc"; ..
          "with_macros_source"; ..
          "with_modelica_compiler"; ..
          "with_pvm"; ..
