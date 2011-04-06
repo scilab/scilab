@@ -1078,25 +1078,26 @@ variableFields COMMA variable		{
 */
 cell :
 LBRACE matrixOrCellLines RBRACE					{ $$ = new ast::CellExp(@$, *$2); }
-//| LBRACE lineEnd matrixOrCellLines RBRACE				{ $$ = new ast::CellExp(@$, *$3); }
+| LBRACE EOL matrixOrCellLines RBRACE			{ $$ = new ast::CellExp(@$, *$3); }
 | LBRACE matrixOrCellLines matrixOrCellColumns RBRACE			{
 								  $2->push_back(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::CellExp(@$, *$2);
 								}
-//| LBRACE lineEnd matrixOrCellLines matrixOrCellColumns RBRACE		{
-//								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
-//								  $$ = new ast::CellExp(@$, *$3);
-//								}
+| LBRACE EOL matrixOrCellLines matrixOrCellColumns RBRACE		{
+								  $3->push_back(new ast::MatrixLineExp(@4, *$4));
+								  $$ = new ast::CellExp(@$, *$3);
+								}
 | LBRACE matrixOrCellColumns RBRACE					{
 								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
 								  tmp->push_front(new ast::MatrixLineExp(@2, *$2));
 								  $$ = new ast::CellExp(@$, *tmp);
 								}
-//| LBRACE lineEnd matrixOrCellColumns RBRACE				{
-//								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
-//								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
-//								  $$ = new ast::CellExp(@$, *tmp);
-//}
+| LBRACE EOL matrixOrCellColumns RBRACE				{
+								  std::list<ast::MatrixLineExp *> *tmp = new std::list<ast::MatrixLineExp *>;
+								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
+								  $$ = new ast::CellExp(@$, *tmp);
+                                }
+| LBRACE EOL RBRACE						{ $$ = new ast::CellExp(@$, *new std::list<ast::MatrixLineExp *>); }
 | LBRACE RBRACE							{ $$ = new ast::CellExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 
@@ -1126,6 +1127,7 @@ LBRACK matrixOrCellLines RBRACK					{ $$ = new ast::MatrixExp(@$, *$2); }
 								  tmp->push_front(new ast::MatrixLineExp(@3, *$3));
 								  $$ = new ast::MatrixExp(@$, *tmp);
 								}
+| LBRACK EOL RBRACK						{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
 | LBRACK RBRACK							{ $$ = new ast::MatrixExp(@$, *new std::list<ast::MatrixLineExp *>); }
 ;
 

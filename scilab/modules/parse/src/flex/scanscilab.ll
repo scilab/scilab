@@ -680,7 +680,7 @@ assign			"="
   {newline} {
       yylloc.last_line += 1;
       yylloc.last_column = 1;
-      if(last_token != DOTS)
+      if(last_token != DOTS && last_token != EOL)
       {
           return scan_throw(EOL);
       }
