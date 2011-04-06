@@ -229,7 +229,8 @@ am__objects_2 = libscigui_algo_la-callJoGLView.lo \
 	libscigui_algo_la-Juigetfile.lo \
 	libscigui_algo_la-CallJuigetfile.lo \
 	libscigui_algo_la-displaytree.lo \
-	libscigui_algo_la-ScilabDisplayTree.lo
+	libscigui_algo_la-ScilabDisplayTree.lo \
+	libscigui_algo_la-displayUiTree.lo
 am_libscigui_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscigui_algo_la_OBJECTS = $(am_libscigui_algo_la_OBJECTS)
 @GUI_TRUE@am_libscigui_algo_la_rpath =
@@ -267,8 +268,8 @@ am__objects_5 = libscigui_la-sci_printsetupbox.lo \
 	libscigui_la-sci_getlookandfeel.lo \
 	libscigui_la-sci_uigetdir.lo libscigui_la-sci_uigetfile.lo \
 	libscigui_la-sci_displaytree.lo libscigui_la-sci_uiputfile.lo \
-	libscigui_la-displayUiTree.lo libscigui_la-sci_about.lo \
-	libscigui_la-sci_raise_window.lo libscigui_la-sci_usecanvas.lo
+	libscigui_la-sci_about.lo libscigui_la-sci_raise_window.lo \
+	libscigui_la-sci_usecanvas.lo
 am_libscigui_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscigui_la_OBJECTS = $(am_libscigui_la_OBJECTS)
 libscigui_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -760,7 +761,8 @@ src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/cpp/displayUiTree.cpp
 
 GIWS_WRAPPERS = \
 src/jni/JoGLView.giws.xml \
@@ -809,7 +811,6 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
-sci_gateway/cpp/displayUiTree.cpp \
 sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp
@@ -1141,13 +1142,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-buildMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-callJoGLView.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-checkColorRange.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-displayUiTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-displaytree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-exportUserInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-getMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-messageboxoptions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_algo_la-setMainWindowTitle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_disable_la-nogui.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-displayUiTree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigui_la-sci_about.Plo@am__quote@
@@ -2201,6 +2202,13 @@ libscigui_algo_la-ScilabDisplayTree.lo: src/jni/ScilabDisplayTree.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-ScilabDisplayTree.lo `test -f 'src/jni/ScilabDisplayTree.cpp' || echo '$(srcdir)/'`src/jni/ScilabDisplayTree.cpp
 
+libscigui_algo_la-displayUiTree.lo: src/cpp/displayUiTree.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_algo_la-displayUiTree.lo -MD -MP -MF $(DEPDIR)/libscigui_algo_la-displayUiTree.Tpo -c -o libscigui_algo_la-displayUiTree.lo `test -f 'src/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`src/cpp/displayUiTree.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_algo_la-displayUiTree.Tpo $(DEPDIR)/libscigui_algo_la-displayUiTree.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/displayUiTree.cpp' object='libscigui_algo_la-displayUiTree.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_algo_la-displayUiTree.lo `test -f 'src/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`src/cpp/displayUiTree.cpp
+
 libscigui_la-sci_printsetupbox.lo: sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_printsetupbox.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo -c -o libscigui_la-sci_printsetupbox.lo `test -f 'sci_gateway/cpp/sci_printsetupbox.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_printsetupbox.cpp
 @am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-sci_printsetupbox.Tpo $(DEPDIR)/libscigui_la-sci_printsetupbox.Plo
@@ -2270,13 +2278,6 @@ libscigui_la-sci_uiputfile.lo: sci_gateway/cpp/sci_uiputfile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/sci_uiputfile.cpp' object='libscigui_la-sci_uiputfile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-sci_uiputfile.lo `test -f 'sci_gateway/cpp/sci_uiputfile.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_uiputfile.cpp
-
-libscigui_la-displayUiTree.lo: sci_gateway/cpp/displayUiTree.cpp
-@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-displayUiTree.lo -MD -MP -MF $(DEPDIR)/libscigui_la-displayUiTree.Tpo -c -o libscigui_la-displayUiTree.lo `test -f 'sci_gateway/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/displayUiTree.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigui_la-displayUiTree.Tpo $(DEPDIR)/libscigui_la-displayUiTree.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='sci_gateway/cpp/displayUiTree.cpp' object='libscigui_la-displayUiTree.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigui_la-displayUiTree.lo `test -f 'sci_gateway/cpp/displayUiTree.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/displayUiTree.cpp
 
 libscigui_la-sci_about.lo: sci_gateway/cpp/sci_about.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigui_la-sci_about.lo -MD -MP -MF $(DEPDIR)/libscigui_la-sci_about.Tpo -c -o libscigui_la-sci_about.lo `test -f 'sci_gateway/cpp/sci_about.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_about.cpp

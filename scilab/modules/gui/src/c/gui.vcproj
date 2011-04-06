@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -476,6 +476,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\displayUiTree.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainGUI.c"
 				>
 			</File>
@@ -612,7 +616,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\cpp\ImageRender.cpp"
+				RelativePath="..\cpp\ImageRenderer.cpp"
 				>
 			</File>
 			<File
@@ -908,11 +912,35 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUiobjectColnames.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\SetUiobjectEnable.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectForegroundColor.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectRotate.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectRownames.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectScale.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectShear.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectTabledata.cpp"
 				>
 			</File>
 			<File
@@ -944,7 +972,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\UiDisplayTree.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\UIElementMapper.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\UiTable.cpp"
 				>
 			</File>
 			<File
@@ -1013,11 +1049,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\CallJuigetfile.hxx"
+				RelativePath=".\CallJuigetfile.hxx"
 				>
 			</File>
 			<File
-				RelativePath=".\CallJuigetfile.hxx"
+				RelativePath="..\..\includes\CallJuigetfile.hxx"
 				>
 			</File>
 			<File
@@ -1637,6 +1673,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\SetUiobjectColnames.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\..\includes\SetUiobjectEnable.h"
 				>
 			</File>
@@ -1650,6 +1690,26 @@
 			</File>
 			<File
 				RelativePath="..\cpp\SetUiobjectForegroundColor.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectRotate.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectRownames.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectScale.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectShear.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\SetUiobjectTabledata.hxx"
 				>
 			</File>
 			<File
@@ -1697,7 +1757,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\UiDisplayTree.hxx"
+				>
+			</File>
+			<File
 				RelativePath="..\jni\UIElementMapper.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\cpp\UiTable.hxx"
 				>
 			</File>
 			<File

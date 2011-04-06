@@ -71,6 +71,12 @@ SetUicontrolBackgroundColor
 SetUicontrolString
 SetUimenuLabel
 SetUiobjectEnable
+SetUiobjectTabledata
+SetUiobjectRownames
+SetUiobjectColnames
+SetUiobjectScale
+SetUiobjectShear
+SetUiobjectRotate
 SetUimenuChecked
 setFigureEventHandler
 setFigureEventHandlerEnabled

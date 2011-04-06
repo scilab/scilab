@@ -154,7 +154,8 @@ src/jni/GiwsException.cpp \
 src/jni/Juigetfile.cpp \
 src/cpp/CallJuigetfile.cpp \
 src/cpp/displaytree.cpp \
-src/jni/ScilabDisplayTree.cpp
+src/jni/ScilabDisplayTree.cpp \
+src/cpp/displayUiTree.cpp
 
 
 GIWS_WRAPPERS = \
@@ -209,7 +210,6 @@ sci_gateway/cpp/sci_uigetdir.cpp \
 sci_gateway/cpp/sci_uigetfile.cpp \
 sci_gateway/cpp/sci_displaytree.cpp \
 sci_gateway/cpp/sci_uiputfile.cpp \
-sci_gateway/cpp/displayUiTree.cpp \
 sci_gateway/cpp/sci_about.cpp \
 sci_gateway/cpp/sci_raise_window.cpp \
 sci_gateway/cpp/sci_usecanvas.cpp
