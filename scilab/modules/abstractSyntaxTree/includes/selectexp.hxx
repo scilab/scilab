@@ -1,13 +1,13 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
- * 
+ *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- * 
+ *
  */
 
 /**
@@ -30,8 +30,8 @@ namespace ast
     public :
         SelectExp(const Location& location,
             Exp& select,
-            cases_t& cases, 
-            SeqExp& defaultCase) 
+            cases_t& cases,
+            SeqExp& defaultCase)
             : ControlExp (location),
             _selectme (&select),
             _cases (&cases),
@@ -41,7 +41,7 @@ namespace ast
 
         SelectExp(const Location& location,
             Exp& select,
-            cases_t& cases) 
+            cases_t& cases)
             : ControlExp (location),
             _selectme (&select),
             _cases (&cases)
@@ -53,7 +53,7 @@ namespace ast
         {
             delete _selectme;
             delete _cases;
-            if (_default != NULL) 
+            if (_default != NULL)
             {
                 delete _default;
             }
@@ -68,7 +68,14 @@ namespace ast
             {
                 cases->push_back((*it)->clone());
             }
-            return new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
+            if (_default != NULL)
+            {
+                return new SelectExp(*newloc, *select_get()->clone(), *cases, *default_case_get()->clone());
+            }
+            else
+            {
+                return new SelectExp(*newloc, *select_get()->clone(), *cases);
+            }
         }
 
     public :
