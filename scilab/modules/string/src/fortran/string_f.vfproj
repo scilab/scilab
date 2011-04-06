@@ -80,7 +80,7 @@ lib /DEF:&quot;$(InputDir)string_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X6
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\string_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="..\..\sci_gateway\fortran\sci_string.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_string.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\strops.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\string_gateway.xml"/></Files>

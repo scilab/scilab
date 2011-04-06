@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -20,20 +20,20 @@ SUBDIRS= libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 
-changelogs = CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X
+changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
 
 bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
-scilab_bin_LDFLAGS 		= 
+scilab_bin_LDFLAGS 		=
 scilab_cli_bin_LDFLAGS		=
 
 if IS_MACOSX
 scilab_bin_LDFLAGS 		+= -framework Cocoa
 endif
 
-scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes	
+scilab_bin_CFLAGS 		= -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
 
 # libshell is mandatory here since main_linux.c depends on it.
@@ -57,12 +57,12 @@ scilab_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_LIB)
 # Match scilab -nwni (ie command line without graphics)
 scilab_cli_bin_SOURCES	= $(top_srcdir)/modules/shell/src/c/others/mainscic.c
 
-scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes	
+scilab_cli_bin_CFLAGS 		= -DWITHOUT_GUI -I$(top_srcdir)/modules/io/includes
 scilab_cli_bin_LDADD 		= $(COMMON_LIBS) $(SCILAB_CLI_LIB)
 
 
 if NEED_JAVA
-# Don't do it for scilab_cli_bin. We want to be able to call it without 
+# Don't do it for scilab_cli_bin. We want to be able to call it without
 # the java libs
 	scilab_bin_LDADD += $(JAVA_JNI_LIBS)
 endif
@@ -116,6 +116,7 @@ $(top_srcdir)/CHANGES_5.0.X \
 $(top_srcdir)/CHANGES_5.1.X \
 $(top_srcdir)/CHANGES_5.2.X \
 $(top_srcdir)/CHANGES_5.3.X \
+$(top_srcdir)/CHANGES_5.4.X \
 $(top_srcdir)/ACKNOWLEDGEMENTS \
 $(top_srcdir)/COPYING \
 $(top_srcdir)/COPYING-BSD \
@@ -145,7 +146,7 @@ valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
@@ -161,12 +162,13 @@ LANGDOC=en_US fr_FR pt_BR ja_JP
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
-	-@if test -x $(top_builddir)/scilab-bin; then \
+	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		for l in $(LANGDOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'$$l');exit;\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltojar([],[],'$$l');exit;";\
+			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
@@ -177,12 +179,13 @@ endif
 
 doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
-	-@if test -x $(top_builddir)/scilab-bin; then \
+	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		for l in $(LANGDOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 			if test ! -d $$JAVADOC_TARGET; then \
 				mkdir $$JAVADOC_TARGET; \
@@ -200,7 +203,9 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(LANGDOC); do \
 			echo "-- Checking documentation ($$l) --"; \
-			$(top_builddir)/bin/scilab-cli -nb -l $$l -e 'check_help();exit;';\
+			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e \"$$COMMAND\"";\
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -209,7 +214,7 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 check-recursive: check-local
 check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="test_run();quit";\
+		COMMAND="try test_run();catch exit(-1);end;exit(0)";\
 		export LANG=C;\
 		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
@@ -231,7 +236,7 @@ endif
 
 distclean-recursive: distclean-generated clean-recursive
 
-clean-recursive: clean-doc clean-localization clean-macros clean-generated
+clean-recursive: clean-help clean-localization clean-macros clean-generated
 
 clean-macros:
 # Find is necessary because of subdirs...
@@ -242,13 +247,16 @@ clean-macros:
 	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
+# To ensure previous compatibility
+clean-doc: clean-help
 
-clean-doc:
-	-@if test -x $(top_builddir)/scilab-cli-bin; then \
-		echo "$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'; \
-		echo "$(top_builddir)/bin/scilab-cli  -nb -l en -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l en -e 'clean_help();exit;'; \
+clean-help:
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
+		for l in $(LANGDOC); do \
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1; \
+		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi; \
@@ -265,7 +273,7 @@ clean-doc:
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'test_clean();exit;'; \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi
@@ -276,7 +284,7 @@ clean-localization:
 clean-generated:
 	rm -rf $(top_builddir)/modules/scicos_blocks/build/ 2> /dev/null
 
-distclean-generated: 
+distclean-generated:
 	rm -f $(top_builddir)/modules/core/includes/stack.h 2> /dev/null
 
 
@@ -304,11 +312,11 @@ localization:
 	MASK="modules/*/locales/"; \
 	LC="LC_MESSAGES"; \
 	MSGFMT_OPTS="$MSGFMT_OPTS --check"; \
-	FILENAME="*.po*"; \
-	rm modules/*/locales/*/*~ 2> /dev/null; \
+	EXTENSION="*.po"; \
+	rm modules/*/locales/*~ 2> /dev/null; \
 	for LOCALE in $(ALL_LINGUAS); do \
 		echo "        -- Building for $$LOCALE --"; \
-		FILES=`ls $$MASK/$$LOCALE/$$FILENAME`; \
+		FILES=`ls $$MASK/$$LOCALE$$EXTENSION`; \
 		PATHTO=$(top_builddir)/locale/$$LOCALE/$$LC/; \
 		if test ! -d $$PATHTO; then \
 			echo "        Creating $$PATHTO"; \

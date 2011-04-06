@@ -96,7 +96,7 @@ history_browser
 #SUBDIRS += mpi
 #endif
 
-if SCICOS
+if XCOS
 SUBDIRS += scicos_blocks
 endif
 

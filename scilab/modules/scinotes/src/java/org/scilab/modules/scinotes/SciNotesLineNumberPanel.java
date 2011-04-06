@@ -54,6 +54,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class SciNotesLineNumberPanel extends JPanel implements CaretListener, DocumentListener, MouseMotionListener {
 
+    private static final long serialVersionUID = -5302189665896954438L;
     private static final int PANELGAPSIZE = 10;
     private static final Border OUTER = new MatteBorder(0, 0, 0, 2, Color.GRAY);
     private static final int HEIGHT = Integer.MAX_VALUE - 1000000;
@@ -61,8 +62,6 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
 
     private ScilabEditorPane textPane;
 
-    private int borderGap;
-    private boolean isHighlighted;
     private Color currentLineForeground;
     private Color foreground = Color.BLACK;
     private Color anchorColor = new Color(250, 251, 164);
@@ -241,7 +240,6 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
             pt.y += clip.height;
             int endOffset = textPane.viewToModel(pt);
             int lineEnd = root.getElementIndex(endOffset);
-            int red = getBackground().getRed();
             boolean colorChanged;
 
             for (int line = root.getElementIndex(rowStartOffset); line <= lineEnd; line++) {
@@ -319,7 +317,7 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      */
     private void updateLineNumber() {
         synchronized (doc) {
-            Stack<Integer> stk = new Stack();
+            Stack<Integer> stk = new Stack<Integer>();
             Element root = doc.getDefaultRootElement();
             int nlines = root.getElementCount();
             lineNumber = new int[nlines + 1];
@@ -425,7 +423,6 @@ public class SciNotesLineNumberPanel extends JPanel implements CaretListener, Do
      *  @param borderGap  the gap in pixels
      */
     private void setBorderGap(int borderGap) {
-        this.borderGap = borderGap;
         Border inner = new EmptyBorder(0, borderGap, 0, borderGap);
         setBorder(new CompoundBorder(OUTER, inner));
     }

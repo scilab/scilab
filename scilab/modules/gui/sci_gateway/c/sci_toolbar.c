@@ -36,7 +36,7 @@ int sci_toolbar(char *fname,unsigned long l)
   
   int figNum = -2;
 
-  sciPointObj *pObj = NULL;;
+  sciPointObj *pObj = NULL;
 
   CheckRhs(1,2);
   CheckLhs(0,1);

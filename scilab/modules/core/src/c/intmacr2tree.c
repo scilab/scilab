@@ -472,7 +472,7 @@ static int GetInstruction(int *data,int *index2,int *nblines,int *addinstr)
     switch(data[*index2]) {
     case 0: /* Deleted operation */
         /* This code is ignored */
-        *index2 += data[*index2+1]-1;;
+        *index2 += data[*index2+1]-1;
         break;
     case 1: /* Stack put (Obsolete) */
         CreateEqualTList("code1",data,index2);
@@ -1066,7 +1066,7 @@ static int CreateCsteTList(char *type,int *data,int *index2)
         int_str=NULL;
     }
 
-    else if(!strncmp(type,"code23",5))
+    else if(!strncmp(type,"code23",6))
     {
         strlgth=nlgh;
         /* Memory allocation */

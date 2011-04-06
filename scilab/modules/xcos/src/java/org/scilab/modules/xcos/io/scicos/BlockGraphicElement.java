@@ -40,6 +40,10 @@ import com.mxgraph.model.mxGeometry;
  */
 //CSOFF: ClassDataAbstractionCoupling
 class BlockGraphicElement extends BlockPartsElement {
+	/*
+	 * "in_style", "out_style" have been added on the 5.3-5.4 dev. cycle
+	 * they are not checked to be compatible with older versions.
+	 */
 	private static final List<String> DATA_FIELD_NAMES = asList(
 			"graphics", "orig", "sz", "flip", "theta", "exprs", "pin", "pout",
 			"pein", "peout", "gr_i", "id", "in_implicit", "out_implicit");
@@ -131,7 +135,7 @@ class BlockGraphicElement extends BlockPartsElement {
 		int field = 0;
 
 		// we test if the structure as enough field
-		if (data.size() != DATA_FIELD_NAMES.size()) {
+		if (data.size() < DATA_FIELD_NAMES.size()) {
 			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
 
@@ -146,10 +150,10 @@ class BlockGraphicElement extends BlockPartsElement {
 		final String[] header = ((ScilabString) data.get(field)).getData()[0];
 
 		// Checking for the field names
-		if (header.length != DATA_FIELD_NAMES.size()) {
+		if (header.length < DATA_FIELD_NAMES.size()) {
 			throw new WrongStructureException(DATA_FIELD_NAMES);
 		}
-		for (int i = 0; i < header.length; i++) {
+		for (int i = 0; i < DATA_FIELD_NAMES.size(); i++) {
 			if (!header[i].equals(DATA_FIELD_NAMES.get(i))) {
 				throw new WrongStructureException(DATA_FIELD_NAMES);
 			}
@@ -240,6 +244,11 @@ class BlockGraphicElement extends BlockPartsElement {
 				&& !isEmptyField(data.get(field))) {
 			throw new WrongTypeException(DATA_FIELD_NAMES, field);
 		}
+		
+		// field added on the 5.3-5.4 dev. cycle
+		// not checked due to compatibility
+		// in_style
+		// out_style
 	}
 	// CSON: CyclomaticComplexity
 	// CSON: NPathComplexity
@@ -428,6 +437,8 @@ class BlockGraphicElement extends BlockPartsElement {
 		 */
 		field++; // in_implicit
 		field++; // out_implicit
+		field++; // in_style
+		field++; // out_style
 		
 		data = (ScilabMList) afterEncode(from, data);
 		
@@ -474,6 +485,8 @@ class BlockGraphicElement extends BlockPartsElement {
 		element.add(new ScilabString("")); // id
 		addSizedPortVector(element, ScilabString.class, getInSize()); // in_implicit
 		addSizedPortVector(element, ScilabString.class, getOutSize()); // out_implicit
+		addSizedPortVector(element, ScilabString.class, getInSize()); // in_style
+		addSizedPortVector(element, ScilabString.class, getOutSize()); // out_style
 		return element;
 	}
 }

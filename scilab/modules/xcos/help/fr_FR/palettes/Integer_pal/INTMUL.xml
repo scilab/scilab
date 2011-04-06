@@ -159,8 +159,6 @@
       L'utilisateur peut sélectionner l'une de ces trois formes en mettant le champ
       <emphasis role="bold">Do on Overflow</emphasis> à 0,1 ou 2.
     </para>
-
-    <para />
   </refsection>
 
   <refsection id="Data_Type_INTMUL">
@@ -174,8 +172,8 @@
         <para>
           Entrées : matrices, vecteurs ou scalaires. Type entiers de Scilab
           (paramètre <emphasis role="bold">Data Type</emphasis>).
-        </para>
-	<para />
+        </para >
+      	<para />
       </listitem>
       <listitem>
         <para>

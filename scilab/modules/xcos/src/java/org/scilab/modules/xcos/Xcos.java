@@ -27,7 +27,6 @@ import java.util.Vector;
 import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
-import javax.xml.transform.TransformerFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -75,8 +74,6 @@ public final class Xcos {
 		Messages.gettext("Unable to load the native HDF5 library.");
 	private static final String UNABLE_TO_LOAD_BATIK = 
 		Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
-	private static final String UNABLE_TO_USE_DOM = 
-		Messages.gettext("Saxon provides only an immutable DOM, please configure another implementation");
 	
 	private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
 	private static final Log LOG = LogFactory.getLog(Xcos.class);
@@ -213,12 +210,6 @@ public final class Xcos {
 			throw new RuntimeException(String.format(UNABLE_TO_LOAD_BATIK,
 					BATIK_VERSIONS.get(0), batikVersion), e);
 		}
-		
-		/* DOM implementation must be writable */
-		final String title = TransformerFactory.newInstance().getClass().getName();
-		if (title.contains("saxon")) {
-			throw new RuntimeException(UNABLE_TO_USE_DOM);
-		}
 	}
 	// CSON: MagicNumber
 	// CSON: IllegalCatch
@@ -299,13 +290,15 @@ public final class Xcos {
 
 			if (filename != null) {
 				// wait the end of the load before displaying the tab.
-				diag.openDiagramFromFile(filename);
+				diag = diag.openDiagramFromFile(filename);
 			} else {
 				// empty tab, display it
 				tab.setVisible(true);
 			}
-
-			diagrams.add(diag);
+			
+			if (diag != null) {
+				diagrams.add(diag);
+			}
 		} else {
 
 			/*

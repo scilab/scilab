@@ -33,7 +33,7 @@ function [status, msg]=mkdir(varargin)
     end
 
     if size(NewDirName, "*") <> 1 then
-      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")), "mkdir", 1);
+      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 1));
     end
 
     NewDirName   = stripblanks(NewDirName, %T);
@@ -51,7 +51,7 @@ function [status, msg]=mkdir(varargin)
     end
 
     if size(DirName, "*") <> 1 then
-      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")), "mkdir", 1);
+      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 1));
     end
 
     NewDirName   = varargin(2);
@@ -60,7 +60,7 @@ function [status, msg]=mkdir(varargin)
     end
 
     if size(NewDirName, "*") <> 1 then
-      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n")), "mkdir", 2);
+      error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "mkdir", 2));
     end
 
     NewDirName   = stripblanks(NewDirName, %T);
@@ -74,7 +74,7 @@ function [status, msg]=mkdir(varargin)
 
   NewDirectory = fullpath(NewDirectory);
 
-  if fileinfo(NewDirectory) == [] then
+  if ~isdir(NewDirectory) & ~isfile(NewDirectory) then
     // The directory does not exist
     status = 1;
   else
@@ -94,7 +94,7 @@ function [status, msg]=mkdir(varargin)
     break
 
   case 1
-    bAddFirstDirSep = %f;  
+    bAddFirstDirSep = %f;
     subdirs = strsplit(NewDirectory, ["/" "\"]);
     if subdirs(1) == "" then
       subdirs(1) = [];
@@ -105,13 +105,13 @@ function [status, msg]=mkdir(varargin)
       if bAddFirstDirSep then
         currentsubdir = filesep() + currentsubdir;
       end
-      if fileinfo(currentsubdir) == [] then
+      if ~isfile(currentsubdir) & ~isdir(currentsubdir) then
         status = createdir(currentsubdir);
         if ~status then break, end
       end
     end
 
-    if fileinfo(NewDirectory) == [] then
+    if ~isdir(NewDirectory) & ~isfile(NewDirectory) then
       status = createdir(NewDirectory);
     end
 

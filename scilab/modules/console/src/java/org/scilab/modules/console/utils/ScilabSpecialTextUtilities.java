@@ -12,8 +12,10 @@
 
 package org.scilab.modules.console.utils;
 
-import java.awt.Graphics2D;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -22,25 +24,19 @@ import java.lang.reflect.Method;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
-import javax.swing.SwingUtilities;
-
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.scilab.modules.jvm.LoadClassPath;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
-import org.scilab.forge.jlatexmath.ParseException;
-
 import net.sourceforge.jeuclid.MathMLParserSupport;
-import net.sourceforge.jeuclid.MutableLayoutContext;
-import net.sourceforge.jeuclid.layout.JEuclidView;
 import net.sourceforge.jeuclid.context.LayoutContextImpl;
 import net.sourceforge.jeuclid.context.Parameter;
+import net.sourceforge.jeuclid.layout.JEuclidView;
 
-import org.w3c.dom.Node;
+import org.scilab.forge.jlatexmath.ParseException;
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.modules.jvm.LoadClassPath;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
@@ -68,12 +64,10 @@ public final class ScilabSpecialTextUtilities {
             }
         }
 
-        if (icon != null) {
-            try {
-                setIcon(component, icon);
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+        try {
+            setIcon(component, icon);
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
         }
 
         return icon != null;
@@ -104,7 +98,7 @@ public final class ScilabSpecialTextUtilities {
         if (!loadedLaTeX) {
             if (loadJLM == null) {
                 loadJLM = new Thread(new Runnable() {
-/* Create a thread in the background to avoid a lag in the loading of jar */
+                        /* Create a thread in the background to avoid a lag in the loading of jar */
                         public void run() {
                             LoadClassPath.loadOnUse("graphics_latex_textrendering");
                             LaTeXCompiler.compilePartial("", 0);
@@ -143,8 +137,12 @@ public final class ScilabSpecialTextUtilities {
     private static void setIcon(JComponent component, Icon icon) throws InvocationTargetException {
         try {
             Class clazz = component.getClass();
-            Method method = clazz.getMethod("setIcon", new Class[]{Icon.class});
-            method.invoke(component, new Object[]{icon});
+            Method method = clazz.getMethod("getIcon", new Class[]{});
+            Object obj = method.invoke(component, new Object[]{});
+            if (icon != null || (obj != null && (obj instanceof SpecialIcon))) {
+                method = clazz.getMethod("setIcon", new Class[]{Icon.class});
+                method.invoke(component, new Object[]{icon});
+            }
         } catch (NoSuchMethodException e) {
             throw new InvocationTargetException(e, "No valid method setIcon");
         } catch (IllegalAccessException e) {
@@ -172,7 +170,7 @@ public final class ScilabSpecialTextUtilities {
                 icon = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
             } catch (ParseException e) { }
 
-            return icon;
+            return new SpecialIcon(icon);
         }
 
         /**
@@ -237,7 +235,43 @@ public final class ScilabSpecialTextUtilities {
             jev.draw(g2d, 0, ascent);
             g2d.dispose();
 
-            return new ImageIcon(bimg);
+            return new SpecialIcon(new ImageIcon(bimg));
+        }
+    }
+
+    /**
+     * Inner class to distinguish normal icons and icons coming from a LaTeX or a MathML compilation
+     */
+    private static class SpecialIcon implements Icon {
+
+        Icon icon;
+
+        /**
+         * @param icon the Icon to wrap
+         */
+        SpecialIcon(Icon icon) {
+            this.icon = icon;
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public int getIconHeight() {
+            return icon.getIconHeight();
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public int getIconWidth() {
+            return icon.getIconWidth();
+        }
+
+        /**
+         * {@inheritedDoc}
+         */
+        public void paintIcon(Component c, Graphics g, int x, int y) {
+            icon.paintIcon(c, g, x, y);
         }
     }
 }

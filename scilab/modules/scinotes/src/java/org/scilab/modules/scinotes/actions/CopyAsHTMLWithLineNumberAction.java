@@ -24,6 +24,8 @@ import org.scilab.modules.scinotes.SciNotes;
  */
 public class CopyAsHTMLWithLineNumberAction extends CopyAsHTMLAction {
 
+    private static final long serialVersionUID = -8643739654819519110L;
+
     /**
      * Constructor
      * @param name the name of the action

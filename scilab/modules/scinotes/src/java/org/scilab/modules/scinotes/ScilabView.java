@@ -71,7 +71,6 @@ public class ScilabView extends WrappedPlainView {
 
     private ScilabContext context;
     private ScilabLexer lexer;
-    private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
     private boolean isTabViewable = true;
@@ -109,7 +108,6 @@ public class ScilabView extends WrappedPlainView {
         }
         doc.setView(this);
         lexer = doc.createLexer();
-        lexerValid = false;
         setTabRepresentation(TABVERTICAL);
     }
 
@@ -276,7 +274,7 @@ public class ScilabView extends WrappedPlainView {
             lexer.setRange(start, endL);
         }
 
-        while (start < p1) {
+        while (start < p1 && tok != ScilabLexerConstants.EOF) {
             try {
                 if (!isBroken) {
                     tok = lexer.scan();
@@ -330,7 +328,11 @@ public class ScilabView extends WrappedPlainView {
                     }
                     break;
                 case ScilabLexerConstants.ERROR :
-                    g.setColor(Color.RED);
+                    if (unselected) {
+                        g.setColor(Color.RED);
+                    } else {
+                        g.setColor(Color.WHITE);
+                    }
                     w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
                     for (int i = 0; i < w; i +=4) {
                         g.drawLine(x + i, y + 2, x + i + 1, y + 2);

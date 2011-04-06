@@ -17,14 +17,13 @@ import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.Shape;
 
-import javax.swing.SwingUtilities;
-import javax.swing.text.JTextComponent;
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
-import javax.swing.text.Highlighter;
 import javax.swing.text.Element;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
 import javax.swing.text.Position;
 import javax.swing.text.View;
-import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 

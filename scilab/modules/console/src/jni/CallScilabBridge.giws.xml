@@ -14,7 +14,7 @@
 	<method name="display" returnType="void" modifier="static">
 	  <parameter type="String" name="dataToDisplay" />
 	</method>
-	<method name="readLine" returnType="String" modifier="static">
+	<method name="readLine" returnType="String" modifier="static" detachThread="true">
 	</method>
 	<method name="clear" returnType="void" modifier="static">
 	</method>

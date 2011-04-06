@@ -25,36 +25,14 @@ libscicommons_la_etc_DATA = etc/commons.quit \
 
 include $(top_srcdir)/Makefile.incl.am
 
-
-COMMONS_JNI_SOURCES = 
-
 COMMONS_C_SOURCES =  src/jni/ScilabCommons_wrap.c
-
-COMMONS_CPP_SOURCES =
 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 
-GIWS_WRAPPERS = 
-
-if GIWS
-BUILT_SOURCES=giws
-endif
-
-
-GATEWAY_C_SOURCES = 
-
-GATEWAY_CPP_SOURCES = 
-
 libscicommons_la_CFLAGS= $(JAVA_JNI_INCLUDE)
 
-
-libscicommons_la_CPPFLAGS = 
-
-# Without the commons module 
-libscicommons_disable_la_CFLAGS = 
-
-COMMONS_DISABLE_C_SOURCES = 
 libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscicommons-disable.la
@@ -65,10 +43,10 @@ endif
 
 libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
-libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(COMMONS_CPP_SOURCES)
+libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(COMMONS_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(COMMONS_C_SOURCES)
 INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 
 

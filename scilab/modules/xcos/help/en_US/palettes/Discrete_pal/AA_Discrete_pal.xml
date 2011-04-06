@@ -83,6 +83,11 @@
         <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
       </imageobject>
     </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="REGISTER" fileref="../../../../../../modules/xcos/images/palettes/REGISTER.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
     </para>
   </refsection>
 

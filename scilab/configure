@@ -691,19 +691,6 @@ FFTW_FALSE
 FFTW_TRUE
 FFTW_ENABLE
 FFTW3_LIB
-SCICOS_FALSE
-SCICOS_TRUE
-OCAML_FALSE
-OCAML_TRUE
-SCICOS_ENABLE
-JHDF5
-WITH_OCAML
-OCAMLLEX
-OCAMLYACC
-OCAMLDEP
-OCAMLOPT
-OCAMLC
-RT_LIB
 POSUB
 LTLIBINTL
 LIBINTL
@@ -740,7 +727,7 @@ PYTHON
 SWIG_JAVA
 SWIG_RUNTIME_LIBS_DIR
 SWIG_BIN
-JAVA_DEBUG_OPTIONS
+JAVAC_DEBUG
 JAVA_HOME
 JAVA_JNI_LIBS
 JAVA_JNI_INCLUDE
@@ -768,6 +755,7 @@ JOGL
 SKINLF
 LOOKS
 FLEXDOCK
+JHDF5
 JGRAPHX
 ANT
 JDB
@@ -777,6 +765,18 @@ JAVAH
 JAVA_G
 JAVA
 JAVAC
+XCOS_FALSE
+XCOS_TRUE
+OCAML_FALSE
+OCAML_TRUE
+XCOS_ENABLE
+WITH_OCAML
+OCAMLLEX
+OCAMLYACC
+OCAMLDEP
+OCAMLOPT
+OCAMLC
+RT_LIB
 HDF5_FALSE
 HDF5_TRUE
 HDF5_ENABLE
@@ -932,7 +932,6 @@ enable_debug_linker
 enable_code_coverage
 enable_stopOnWarning
 with_gcc
-with_g77
 with_gfortran
 with_intelcompilers
 with_tk
@@ -945,13 +944,13 @@ with_fink_prefix
 with_hdf5
 with_hdf5_include
 with_hdf5_library
+with_xcos
+with_modelica
 with_jdk
 with_ant
 enable_nls
 with_libiconv_prefix
 with_libintl_prefix
-with_scicos
-with_ocaml
 with_fftw
 with_fftw_include
 with_fftw_library
@@ -1636,7 +1635,7 @@ Optional Features:
   --disable-dependency-tracking  speeds up one-time build
   --enable-dependency-tracking   do not reject slow dependency extractors
   --enable-debug          Do not optimize and print warning messages
-                          (C/C++/Fortran code)
+                          (C/C++/Fortran/Java code)
   --enable-debug-C        Do not optimize and print warning messages (C code)
   --enable-debug-CXX      Do not optimize and print warning messages (C++
                           code)
@@ -1673,7 +1672,6 @@ Optional Packages:
   --without-PACKAGE       do not use PACKAGE (same as --with-PACKAGE=no)
   --with-gnu-ld           assume the C compiler uses GNU ld default=no
   --with-gcc              Use gcc C compiler
-  --with-g77              Use g77, GNU Fortran 77 compiler
   --with-gfortran         Use gfortran, GNU Fortran 95 compiler
   --with-intelcompilers   Use Intel C (icc) and Fortran (ifort) proprietary
                           compilers (GNU/Linux only)
@@ -1685,14 +1683,14 @@ Optional Packages:
   --without-hdf5          Disable the interface to the HDF5 library
   --with-hdf5-include=DIR Set the path to the HDF5 headers
   --with-hdf5-library=DIR Set the path to the HDF5 libraries
+  --without-xcos          Disable Xcos
+  --without-modelica      Disable the OCaml module (modelica)
   --with-jdk=DIR          use JDK from DIR
   --with-ant=DIR          Use ant from DIR
   --with-libiconv-prefix[=DIR]  search for libiconv in DIR/include and DIR/lib
   --without-libiconv-prefix     don't search for libiconv in includedir and libdir
   --with-libintl-prefix[=DIR]  search for libintl in DIR/include and DIR/lib
   --without-libintl-prefix     don't search for libintl in includedir and libdir
-  --without-scicos        Disable Scicos
-  --without-ocaml         Disable the OCaml modules (modelica)
   --without-fftw          Disable the interface to the FFTW 3 library
   --with-fftw-include=DIR Set the path to the FFTW headers
   --with-fftw-library=DIR Set the path to the FFTW libraries
@@ -2985,8 +2983,8 @@ SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
 SCILAB_VERSION_MAJOR=5
-SCILAB_VERSION_MINOR=3
-SCILAB_VERSION_MAINTENANCE=1
+SCILAB_VERSION_MINOR=4
+SCILAB_VERSION_MAINTENANCE=0
 
 
 
@@ -5669,13 +5667,6 @@ fi
 
 
 
-# Check whether --with-g77 was given.
-if test "${with_g77+set}" = set; then :
-  withval=$with_g77;
-fi
-
-
-
 # Check whether --with-gfortran was given.
 if test "${with_gfortran+set}" = set; then :
   withval=$with_gfortran;
@@ -6091,231 +6082,11 @@ fi
 ## check if options are correct (or not)
 #####################################################
 
-if test "$with_g77" = yes -a "$with_gfortran" = yes; then
-    as_fn_error $? "Conflicting options : you specified two fortran compilers" "$LINENO" 5
-fi
-
 if test "$with_intelcompilers" = yes -a "$with_gcc" = yes; then
     as_fn_error $? "Conflicting options : you specified two compiler series" "$LINENO" 5
 fi
 
 ######## fortran ########
-if test "$with_g77" = yes; then
-   ac_ext=f
-ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
-ac_link='$F77 -o conftest$ac_exeext $FFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_f77_compiler_gnu
-if test -n "$ac_tool_prefix"; then
-  for ac_prog in g77
-  do
-    # Extract the first word of "$ac_tool_prefix$ac_prog", so it can be a program name with args.
-set dummy $ac_tool_prefix$ac_prog; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_F77+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$F77"; then
-  ac_cv_prog_F77="$F77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_F77="$ac_tool_prefix$ac_prog"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-F77=$ac_cv_prog_F77
-if test -n "$F77"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $F77" >&5
-$as_echo "$F77" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-    test -n "$F77" && break
-  done
-fi
-if test -z "$F77"; then
-  ac_ct_F77=$F77
-  for ac_prog in g77
-do
-  # Extract the first word of "$ac_prog", so it can be a program name with args.
-set dummy $ac_prog; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_ac_ct_F77+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$ac_ct_F77"; then
-  ac_cv_prog_ac_ct_F77="$ac_ct_F77" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_ac_ct_F77="$ac_prog"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-fi
-fi
-ac_ct_F77=$ac_cv_prog_ac_ct_F77
-if test -n "$ac_ct_F77"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_ct_F77" >&5
-$as_echo "$ac_ct_F77" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-  test -n "$ac_ct_F77" && break
-done
-
-  if test "x$ac_ct_F77" = x; then
-    F77=""
-  else
-    case $cross_compiling:$ac_tool_warned in
-yes:)
-{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: using cross tools not prefixed with host triplet" >&5
-$as_echo "$as_me: WARNING: using cross tools not prefixed with host triplet" >&2;}
-ac_tool_warned=yes ;;
-esac
-    F77=$ac_ct_F77
-  fi
-fi
-
-
-# Provide some information about the compiler.
-$as_echo "$as_me:${as_lineno-$LINENO}: checking for Fortran 77 compiler version" >&5
-set X $ac_compile
-ac_compiler=$2
-for ac_option in --version -v -V -qversion; do
-  { { ac_try="$ac_compiler $ac_option >&5"
-case "(($ac_try" in
-  *\"* | *\`* | *\\*) ac_try_echo=\$ac_try;;
-  *) ac_try_echo=$ac_try;;
-esac
-eval ac_try_echo="\"\$as_me:${as_lineno-$LINENO}: $ac_try_echo\""
-$as_echo "$ac_try_echo"; } >&5
-  (eval "$ac_compiler $ac_option >&5") 2>conftest.err
-  ac_status=$?
-  if test -s conftest.err; then
-    sed '10a\
-... rest of stderr output deleted ...
-         10q' conftest.err >conftest.er1
-    cat conftest.er1 >&5
-  fi
-  rm -f conftest.er1 conftest.err
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }
-done
-rm -f a.out
-
-# If we don't use `.F' as extension, the preprocessor is not run on the
-# input file.  (Note that this only needs to work for GNU compilers.)
-ac_save_ext=$ac_ext
-ac_ext=F
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether we are using the GNU Fortran 77 compiler" >&5
-$as_echo_n "checking whether we are using the GNU Fortran 77 compiler... " >&6; }
-if test "${ac_cv_f77_compiler_gnu+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  cat > conftest.$ac_ext <<_ACEOF
-      program main
-#ifndef __GNUC__
-       choke me
-#endif
-
-      end
-_ACEOF
-if ac_fn_f77_try_compile "$LINENO"; then :
-  ac_compiler_gnu=yes
-else
-  ac_compiler_gnu=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-ac_cv_f77_compiler_gnu=$ac_compiler_gnu
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_f77_compiler_gnu" >&5
-$as_echo "$ac_cv_f77_compiler_gnu" >&6; }
-ac_ext=$ac_save_ext
-ac_test_FFLAGS=${FFLAGS+set}
-ac_save_FFLAGS=$FFLAGS
-FFLAGS=
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking whether $F77 accepts -g" >&5
-$as_echo_n "checking whether $F77 accepts -g... " >&6; }
-if test "${ac_cv_prog_f77_g+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  FFLAGS=-g
-cat > conftest.$ac_ext <<_ACEOF
-      program main
-
-      end
-_ACEOF
-if ac_fn_f77_try_compile "$LINENO"; then :
-  ac_cv_prog_f77_g=yes
-else
-  ac_cv_prog_f77_g=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_prog_f77_g" >&5
-$as_echo "$ac_cv_prog_f77_g" >&6; }
-if test "$ac_test_FFLAGS" = set; then
-  FFLAGS=$ac_save_FFLAGS
-elif test $ac_cv_prog_f77_g = yes; then
-  if test "x$ac_cv_f77_compiler_gnu" = xyes; then
-    FFLAGS="-g -O2"
-  else
-    FFLAGS="-g"
-  fi
-else
-  if test "x$ac_cv_f77_compiler_gnu" = xyes; then
-    FFLAGS="-O2"
-  else
-    FFLAGS=
-  fi
-fi
-
-if test $ac_compiler_gnu = yes; then
-  G77=yes
-else
-  G77=
-fi
-ac_ext=c
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_c_compiler_gnu
-
-   if test -z "$F77"; then
-     as_fn_error $? "You asked me to use g77 but i haven't been able to find it" "$LINENO" 5
-    fi
-fi
 
 if test "$with_gfortran" = yes; then
    ac_ext=f
@@ -8970,6 +8741,7 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
+
 # If this option is provided, enable the debug on C & C++
 if test "$enable_stop_on_warning" = yes; then
    enable_debug_C=yes
@@ -8980,6 +8752,7 @@ if test "$enable_debug" = yes; then
    enable_debug_fortran=yes
    enable_debug_C=yes
    enable_debug_CXX=yes
+   enable_debug_java=yes
 else
    enable_debug=no
 fi
@@ -8997,7 +8770,7 @@ else
 fi
 
 if test "$enable_debug_CXX" = yes; then
-   CPPFLAGS="`echo "$CPPFLAGS"| sed -e 's|-O0-9+|-O0|'`"
+   CXXFLAGS="`echo "$CXXFLAGS"| sed -e 's|-O0-9+|-O0|'`"
 else
    enable_debug_CXX=no
 fi
@@ -9009,7 +8782,7 @@ fi
 
 if test "$enable_largefile" = "yes"; then
    CFLAGS="$CFLAGS $LARGEFILE_CFLAGS"
-   CPPFLAGS="$CPPFLAGS $LARGEFILE_CFLAGS"
+   CXXFLAGS="$CXXFLAGS $LARGEFILE_CFLAGS"
    FFLAGS="$FFLAGS $LARGEFILE_CFLAGS"
 fi
 
@@ -9064,7 +8837,7 @@ fi
 
 
 ######################
-######## With F77 / G77 / GFortran ...
+######## With gfortran ...
 ######################
 if test -n "$F77"; then
    case "$F77" in
@@ -9073,6 +8846,9 @@ if test -n "$F77"; then
         if test "$enable_code_coverage" = yes; then
             FFLAGS="$FFLAGS -fprofile-arcs -ftest-coverage"
         fi
+     ;;
+     g77*)
+        as_fn_error $? "g77 is no longer supported. Please consider switching to gfortran" "$LINENO" 5
      ;;
    esac
 
@@ -9243,21 +9019,21 @@ case "$CXX" in
 
    # enable the code coverage
    if test "$enable_code_coverage" = yes; then
-    CPPFLAGS="$CPPFLAGS -fprofile-arcs -ftest-coverage"
+    CXXFLAGS="$CXXFLAGS -fprofile-arcs -ftest-coverage"
    fi
 
    if test "$enable_debug_CXX" = yes; then
-      CPPFLAGS="$CPPFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
+      CXXFLAGS="$CXXFLAGS -pipe -Wshadow -Wpointer-arith -Wcast-align -Wreturn-type -Wswitch -Wtrigraphs -Wcomment -W -Wchar-subscripts -Wformat -Wparentheses -Wsign-compare -Wwrite-strings -Wunused -Wno-strict-aliasing -Wextra -Wall -g3"
           case "$host" in
           *-linux-gnu )
           # Only doing that under Linux
-                  CPPFLAGS="$CPPFLAGS -fdiagnostics-show-option -Werror=format-security"
+                  CXXFLAGS="$CXXFLAGS -fdiagnostics-show-option -Werror=format-security"
           ;;
       esac
    else
-      CPPFLAGS="$CPPFLAGS -DNDEBUG"
+      CXXFLAGS="$CXXFLAGS -DNDEBUG"
    fi
-   CPPFLAGS="$CPPFLAGS -fno-stack-protector" # bug 3131
+   CXXFLAGS="$CXXFLAGS -fno-stack-protector" # bug 3131
    ;;
    clang-* | clang)
            # clang expect an explict declaration
@@ -9329,11 +9105,7 @@ case "$CC" in
         CFLAGS="$CFLAGS -D_GNU_SOURCE"
     ;;
      *-*-solaris*)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
-        else
-             CFLAGS="-O2 -DNDEBUG -DSVR4 -DSYSV -Dsolaris"
-        fi
+        CFLAGS="$CFLAGS -DSVR4 -DSYSV -Dsolaris"
     ;;
    *-*-freebsd*)
      CFLAGS="$CFLAGS -Dfreebsd"
@@ -9365,16 +9137,14 @@ $as_echo "$as_me: WARNING: gfortran not used. Could not detect the architecture.
     CXX="$CXX -arch $MAC_DETECTED_ARCH"
     LDFLAGS="-L$FINK_PREFIX/lib/ $LDFLAGS"
     CFLAGS=" $CFLAGS -I$FINK_PREFIX/include "
-    CPPFLAGS=" $CPPFLAGS -I$FINK_PREFIX/include "
+    CXXFLAGS=" $CXXFLAGS -I$FINK_PREFIX/include "
     ;;
 esac
 ;; # end of the gcc case on the $CC
    *)
 
         ## CC compiler (not GCC)
-        if test "$enable_debug_C" = yes; then
-             CFLAGS="$CFLAGS -g"
-        else
+        if test "$enable_debug_C" != yes; then
              CFLAGS="$CFLAGS -DNDEBUG"
         fi
 
@@ -9517,7 +9287,7 @@ fi
 
 # flag for possible compilations in configure
 CFLAGS="$CFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
-CPPFLAGS="$CPPFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
+CXXFLAGS="$CXXFLAGS "'-I$(top_srcdir)/modules/core/includes/ -I$(top_srcdir)/libs/MALLOC/includes/ -I$(top_srcdir)/modules/localization/includes/'
 FFLAGS="$FFLAGS "'-I$(top_srcdir)/modules/core/includes/'
 
 if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
@@ -9545,6 +9315,21 @@ else
   USE_DYNAMIC_STACK_FALSE=
 fi
 
+
+################
+## SSE
+## By default, for x86 CPU, enable the SSE.
+## Note that it is already the case with 64 bits CPU
+## (these extensions are enabled by default by gcc)
+################
+
+case "$host" in
+     i*86-linux-gnu|i*86-*-linux-gnu)
+        CFLAGS="$CFLAGS -msse"
+        FFLAGS="$FFLAGS -msse"
+        CPPFLAGS="$CPPFLAGS -msse"
+     ;;
+esac
 
 #######################
 ## test for underscores (name mangling issues between C and fortran)
@@ -9918,6 +9703,340 @@ else
 fi
 
 
+#################
+## XCOS
+#################
+
+
+# Check whether --with-xcos was given.
+if test "${with_xcos+set}" = set; then :
+  withval=$with_xcos;
+fi
+
+
+
+# Check whether --with-modelica was given.
+if test "${with_modelica+set}" = set; then :
+  withval=$with_modelica;
+fi
+
+
+
+XCOS_ENABLE=no
+
+if test "$with_xcos" != no -a "$GUI_ENABLE" != no; then
+
+$as_echo "#define WITH_XCOS /**/" >>confdefs.h
+
+
+   save_LIBS="$LIBS"
+
+   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for clock_gettime in -lrt" >&5
+$as_echo_n "checking for clock_gettime in -lrt... " >&6; }
+if test "${ac_cv_lib_rt_clock_gettime+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-lrt  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char clock_gettime ();
+int
+main ()
+{
+return clock_gettime ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_rt_clock_gettime=yes
+else
+  ac_cv_lib_rt_clock_gettime=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_rt_clock_gettime" >&5
+$as_echo "$ac_cv_lib_rt_clock_gettime" >&6; }
+if test "x$ac_cv_lib_rt_clock_gettime" = x""yes; then :
+  RT_LIB="-lrt";
+
+$as_echo "#define HAVE_CLOCK_GETTIME 1" >>confdefs.h
+
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&5
+$as_echo "$as_me: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&2;}
+
+fi
+
+   LIBS="$save_LIBS"
+
+
+
+#################
+## ocaml which only called when using Xcos
+#################
+
+   if test "$with_modelica" != no; then
+
+# checking for ocamlc
+	OCAMLC=
+	OCAMLOPT=
+	OCAMLDEP=
+	# Extract the first word of "ocamlc", so it can be a program name with args.
+set dummy ocamlc; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OCAMLC+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OCAMLC"; then
+  ac_cv_prog_OCAMLC="$OCAMLC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OCAMLC="ocamlc"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_OCAMLC" && ac_cv_prog_OCAMLC="no"
+fi
+fi
+OCAMLC=$ac_cv_prog_OCAMLC
+if test -n "$OCAMLC"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLC" >&5
+$as_echo "$OCAMLC" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+	if test "$OCAMLC" = no; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&5
+$as_echo "$as_me: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&2;}
+	fi
+	# Extract the first word of "ocamlopt", so it can be a program name with args.
+set dummy ocamlopt; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OCAMLOPT+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OCAMLOPT"; then
+  ac_cv_prog_OCAMLOPT="$OCAMLOPT" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OCAMLOPT="ocamlopt"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_OCAMLOPT" && ac_cv_prog_OCAMLOPT="no"
+fi
+fi
+OCAMLOPT=$ac_cv_prog_OCAMLOPT
+if test -n "$OCAMLOPT"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLOPT" >&5
+$as_echo "$OCAMLOPT" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+	if test "$OCAMLOPT" = no; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&2;}
+	fi
+	# Extract the first word of "ocamldep", so it can be a program name with args.
+set dummy ocamldep; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OCAMLDEP+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OCAMLDEP"; then
+  ac_cv_prog_OCAMLDEP="$OCAMLDEP" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OCAMLDEP="ocamldep"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_OCAMLDEP" && ac_cv_prog_OCAMLDEP="no"
+fi
+fi
+OCAMLDEP=$ac_cv_prog_OCAMLDEP
+if test -n "$OCAMLDEP"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLDEP" >&5
+$as_echo "$OCAMLDEP" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+	if test "$OCAMLDEP" = no; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&2;}
+	fi
+	# Extract the first word of "ocamlyacc", so it can be a program name with args.
+set dummy ocamlyacc; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OCAMLYACC+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OCAMLYACC"; then
+  ac_cv_prog_OCAMLYACC="$OCAMLYACC" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OCAMLYACC="ocamlyacc"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_OCAMLYACC" && ac_cv_prog_OCAMLYACC="no"
+fi
+fi
+OCAMLYACC=$ac_cv_prog_OCAMLYACC
+if test -n "$OCAMLYACC"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLYACC" >&5
+$as_echo "$OCAMLYACC" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+	if test "$OCAMLYACC" = no; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&2;}
+	fi
+	# Extract the first word of "ocamllex", so it can be a program name with args.
+set dummy ocamllex; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if test "${ac_cv_prog_OCAMLLEX+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  if test -n "$OCAMLLEX"; then
+  ac_cv_prog_OCAMLLEX="$OCAMLLEX" # Let the user override the test.
+else
+as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
+    ac_cv_prog_OCAMLLEX="ocamllex"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  test -z "$ac_cv_prog_OCAMLLEX" && ac_cv_prog_OCAMLLEX="no"
+fi
+fi
+OCAMLLEX=$ac_cv_prog_OCAMLLEX
+if test -n "$OCAMLLEX"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLLEX" >&5
+$as_echo "$OCAMLLEX" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+	if test "$OCAMLLEX" = no; then
+		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&5
+$as_echo "$as_me: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&2;}
+	fi
+
+$as_echo "#define WITH_OCAML /**/" >>confdefs.h
+
+
+
+
+
+
+
+
+
+
+   fi
+   XCOS_ENABLE=yes
+
+fi
+
+
+
+ if test "$with_modelica" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+  OCAML_TRUE=
+  OCAML_FALSE='#'
+else
+  OCAML_TRUE='#'
+  OCAML_FALSE=
+fi
+
+ if test "$XCOS_ENABLE" != no; then
+  XCOS_TRUE=
+  XCOS_FALSE='#'
+else
+  XCOS_TRUE='#'
+  XCOS_FALSE=
+fi
+
 
 ###########################
 ## test for JAVA compiler
@@ -10163,7 +10282,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 10166 "configure"
+// #line 10285 "configure"
 
 
 public class conftest {
@@ -10229,7 +10348,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 10232 "configure"
+// #line 10351 "configure"
 import gnu.java.io.EncodingManager;
 
 public class conftest {
@@ -10293,7 +10412,7 @@ $as_echo_n "checking java API version... " >&6; }
 
 
     cat << \EOF > conftest.java
-// #line 10296 "configure"
+// #line 10415 "configure"
 import java.nio.charset.Charset;
 
 public class conftest {
@@ -10338,7 +10457,7 @@ EOF
 
 
     cat << \EOF > conftest.java
-// #line 10341 "configure"
+// #line 10460 "configure"
 import java.lang.StringBuilder;
 
 public class conftest {
@@ -11679,14 +11798,16 @@ fi
 
 
         case "$host_os" in
-                     *Darwin* | *darwin*)
-                JAVA_HOME="";;
+             *Darwin* | *darwin*)
+                  JAVA_HOME=""
+             ;;
         esac
 
 
         if test "$with_gui" != no; then
 
-                # jgraphx
+                if test $XCOS_ENABLE = yes; then
+                   # jgraphx
 
 	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jgraphx" >&5
 $as_echo_n "checking jgraphx... " >&6; }
@@ -11707,7 +11828,7 @@ $as_echo_n "checking jgraphx... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11710 "configure"
+// #line 11831 "configure"
 import com.mxgraph.model.mxCell;
 
 public class conftest {
@@ -11790,11 +11911,303 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgraphx us
 	  fi
     fi
 
-                JGRAPHX=$PACKAGE_JAR_FILE
+                   JGRAPHX=$PACKAGE_JAR_FILE
 
 
-                # Please enable  with the right version before the merge
-                # AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+                   # Please enable  with the right version before the merge
+                   # AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[1.4.1.0],[mxGraph.VERSION],[],[=])
+
+                   # Java HDF5 is only needed for Xcos
+                   if test $HDF5_ENABLE = yes -a "$with_xcos" != no -a "$with_gui" != no;  then
+
+
+     # HDF5 java lib
+
+	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jhdf5" >&5
+$as_echo_n "checking jhdf5... " >&6; }
+	PACKAGE_JAR_FILE=
+	found_jar=no
+	saved_ac_java_classpath=$ac_java_classpath
+	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
+      for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
+#	jar=`echo $jar|sed -e 's/ /\\ /'`
+#	echo "protected $jar"
+#	jar_resolved=`ls $jar 2>/dev/null`
+#	echo "looking for $jar_resolved"
+# TODO check the behaviour when spaces
+	jars_resolved=`ls $jar 2>/dev/null`
+	for jar_resolved in $jars_resolved; do # If several jars matches
+        if test -e "$jar_resolved"; then
+          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
+
+    cat << \EOF > conftest.java
+// #line 11945 "configure"
+import ncsa.hdf.hdf5lib.HDF5Constants;
+
+public class conftest {
+    public static void main(String[] argv) {
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""no"" = "no"; then
+           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
+$as_echo "$jar_resolved" >&6; }
+            found_jar=yes
+            PACKAGE_JAR_FILE=$jar_resolved
+            break
+
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+
+            ac_java_classpath=$saved_ac_java_classpath
+
+
+            fi
+
+        fi
+	  done
+	  # If ls returns several results and the first one is OK, stop the search
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+      done
+	  # If found, no need to search in other directory
+      if test "$found_jar" = "yes"; then
+        break
+      fi
+    done
+    if test "$found_jar" = "no"; then
+      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	  if test "" = "yes"; then
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&2;}
+	  else
+		  as_fn_error $? "Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" "$LINENO" 5
+	  fi
+    fi
+
+     JHDF5=$PACKAGE_JAR_FILE
+
+
+                      if test "$MACOSX" = 1; then
+                         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
+                      else
+
+     LDFLAGS_save=$LDFLAGS
+   # Provide known paths where distribs/OS can store JNI libs
+        LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
+   # -lpthread because of packaging bug in jhdf5
+      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for h5JNIFatalError in -ljhdf5" >&5
+$as_echo_n "checking for h5JNIFatalError in -ljhdf5... " >&6; }
+if test "${ac_cv_lib_jhdf5_h5JNIFatalError+set}" = set; then :
+  $as_echo_n "(cached) " >&6
+else
+  ac_check_lib_save_LIBS=$LIBS
+LIBS="-ljhdf5  $LIBS"
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+/* Override any GCC internal prototype to avoid an error.
+   Use char because int might match the return type of a GCC
+   builtin and then its argument prototype would still apply.  */
+#ifdef __cplusplus
+extern "C"
+#endif
+char h5JNIFatalError ();
+int
+main ()
+{
+return h5JNIFatalError ();
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_link "$LINENO"; then :
+  ac_cv_lib_jhdf5_h5JNIFatalError=yes
+else
+  ac_cv_lib_jhdf5_h5JNIFatalError=no
+fi
+rm -f core conftest.err conftest.$ac_objext \
+    conftest$ac_exeext conftest.$ac_ext
+LIBS=$ac_check_lib_save_LIBS
+fi
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_jhdf5_h5JNIFatalError" >&5
+$as_echo "$ac_cv_lib_jhdf5_h5JNIFatalError" >&6; }
+if test "x$ac_cv_lib_jhdf5_h5JNIFatalError" = x""yes; then :
+  JHDF5_LIBS="-ljhdf5"
+else
+  as_fn_error $? "libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries." "$LINENO" 5
+fi
+
+      LDFLAGS=$LDFLAGS_save
+
+      LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
+      LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
+      export LD_LIBRARY_PATH
+
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.8.4) of hdf5" >&5
+$as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
+   saved_ac_java_classpath=$ac_java_classpath
+   export ac_java_classpath="$JHDF5:$ac_java_classpath"
+   if test "x" == "x"; then
+
+    cat << \EOF > conftest.java
+// #line 12094 "configure"
+import ncsa.hdf.hdf5lib.H5;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.8.4";
+                            int[] vers = new int[3];
+                try { H5.H5get_libversion(vers); }
+                catch (Throwable ex) {System.exit(-1);}
+                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
+
+                            System.out.println(ver);
+                                  if (minVersion.compareTo(ver) > 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
+            fi
+
+   else
+
+    cat << \EOF > conftest.java
+// #line 12149 "configure"
+import ncsa.hdf.hdf5lib.H5;
+
+public class conftest {
+    public static void main(String[] argv) {
+        String minVersion="1.8.4";
+                            int[] vers = new int[3];
+                try { H5.H5get_libversion(vers); }
+                catch (Throwable ex) {System.exit(-1);}
+                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
+
+                            System.out.println(ver);
+                                  if (minVersion.compareTo(ver) != 0) {
+                                   System.exit(-1);
+                                }
+
+    }
+}
+EOF
+
+    CLASSPATH=$ac_java_classpath
+    export CLASSPATH
+    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
+    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
+       if test ""yes"" = "no"; then
+           echo "yes" >&5
+   		   echo "yes"
+	   else
+	   	   cmd="$JAVA conftest"
+	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
+	           echo "yes" >&5
+       		   echo "yes"
+			else
+		        echo "configure: failed program was:" >&5
+				cat conftest.java >&5
+                if test -s conftest.java.output; then
+                   STDOUT=`cat conftest.java.output`
+                fi
+        		echo "configure: CLASSPATH was $CLASSPATH" >&5
+        		  as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+        					fi
+		fi
+        if test -f conftest.java.output; then
+           rm conftest.java.output
+        fi
+    else
+        echo "configure: failed program was:" >&5
+        cat conftest.java >&5
+        echo "configure: CLASSPATH was $CLASSPATH" >&5
+          as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
+            fi
+
+    fi
+   ac_java_classpath=$saved_ac_java_classpath
+
+      unset LD_LIBRARY_PATH
+      LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
+
+                      fi
+                   fi #HDF5_ENABLE
+
+                fi
 
                 # Docking system
 
@@ -11817,7 +12230,7 @@ $as_echo_n "checking flexdock... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 11820 "configure"
+// #line 12233 "configure"
 import org.flexdock.docking.DockingManager;
 
 public class conftest {
@@ -11911,7 +12324,7 @@ $as_echo_n "checking minimal version (0.5.2) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 11914 "configure"
+// #line 12327 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -11962,7 +12375,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 11965 "configure"
+// #line 12378 "configure"
 import org.flexdock.util.Utilities;
 
 public class conftest {
@@ -12035,8 +12448,8 @@ $as_echo_n "checking looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12038 "configure"
-import com.jgoodies.looks.common.RenderingUtils;
+// #line 12451 "configure"
+import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -12111,10 +12524,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 	  if test ""yes"" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&2;}
 	  else
-		  as_fn_error $? "Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" "$LINENO" 5
+		  as_fn_error $? "Could not find or use the Java package/jar looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" "$LINENO" 5
 	  fi
     fi
 
@@ -12142,8 +12555,8 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12145 "configure"
-import com.jgoodies.looks.common.RenderingUtils;
+// #line 12558 "configure"
+import com.jgoodies.looks.common.MenuItemRenderer;
 
 public class conftest {
     public static void main(String[] argv) {
@@ -12218,10 +12631,10 @@ $as_echo "$jar_resolved" >&6; }
       { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
 	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" >&2;}
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&5
+$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" >&2;}
 	  else
-		  as_fn_error $? "Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.RenderingUtils)" "$LINENO" 5
+		  as_fn_error $? "Could not find or use the Java package/jar jgoodies-looks used by Scilab Gui - Look and feel (looking for package com.jgoodies.looks.common.MenuItemRenderer)" "$LINENO" 5
 	  fi
     fi
 
@@ -12250,7 +12663,7 @@ $as_echo_n "checking skinlf... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12253 "configure"
+// #line 12666 "configure"
 import com.l2fprod.util.AccessUtils;
 
 public class conftest {
@@ -12357,7 +12770,7 @@ $as_echo_n "checking jogl... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12360 "configure"
+// #line 12773 "configure"
 import javax.media.opengl.glu.GLUnurbs;
 
 public class conftest {
@@ -12569,7 +12982,7 @@ $as_echo_n "checking gluegen-rt... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12572 "configure"
+// #line 12985 "configure"
 import com.sun.gluegen.runtime.CPU;
 
 public class conftest {
@@ -12730,7 +13143,7 @@ $as_echo_n "checking jhall... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12733 "configure"
+// #line 13146 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12837,7 +13250,7 @@ $as_echo_n "checking javahelp2... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12840 "configure"
+// #line 13253 "configure"
 import javax.help.JHelp;
 
 public class conftest {
@@ -12945,7 +13358,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 12948 "configure"
+// #line 13361 "configure"
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 
 public class conftest {
@@ -13052,7 +13465,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13055 "configure"
+// #line 13468 "configure"
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 
 public class conftest {
@@ -13161,7 +13574,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13164 "configure"
+// #line 13577 "configure"
 import net.sourceforge.jeuclid.LayoutContext;
 
 public class conftest {
@@ -13270,7 +13683,7 @@ $as_echo_n "checking fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13273 "configure"
+// #line 13686 "configure"
 import org.apache.fop.pdf.PDFInfo;
 
 public class conftest {
@@ -13377,7 +13790,7 @@ $as_echo_n "checking batik-all... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13380 "configure"
+// #line 13793 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13484,7 +13897,7 @@ $as_echo_n "checking batik... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13487 "configure"
+// #line 13900 "configure"
 import org.apache.batik.parser.Parser;
 
 public class conftest {
@@ -13578,7 +13991,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13581 "configure"
+// #line 13994 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -13629,7 +14042,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 13632 "configure"
+// #line 14045 "configure"
 import org.apache.batik.Version;
 
 public class conftest {
@@ -13702,7 +14115,7 @@ $as_echo_n "checking commons-io... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13705 "configure"
+// #line 14118 "configure"
 import org.apache.commons.io.output.CountingOutputStream;
 
 public class conftest {
@@ -13809,7 +14222,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13812 "configure"
+// #line 14225 "configure"
 import org.apache.xmlgraphics.util.Service;
 
 public class conftest {
@@ -13916,7 +14329,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13919 "configure"
+// #line 14332 "configure"
 import org.apache.avalon.framework.configuration.ConfigurationException;
 
 public class conftest {
@@ -14023,7 +14436,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14026 "configure"
+// #line 14439 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14130,7 +14543,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14133 "configure"
+// #line 14546 "configure"
 import org.w3c.dom.svg.SVGDocument;
 
 public class conftest {
@@ -14241,7 +14654,7 @@ $as_echo_n "checking commons-logging... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14244 "configure"
+// #line 14657 "configure"
 import org.apache.commons.logging.LogFactory;
 
 public class conftest {
@@ -14348,7 +14761,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14351 "configure"
+// #line 14764 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14442,7 +14855,7 @@ $as_echo_n "checking minimal version (0.9.4) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14445 "configure"
+// #line 14858 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14493,7 +14906,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14496 "configure"
+// #line 14909 "configure"
 import org.scilab.forge.jlatexmath.TeXFormula;
 
 public class conftest {
@@ -14572,7 +14985,7 @@ $as_echo_n "checking checkstyle... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14575 "configure"
+// #line 14988 "configure"
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
 
 public class conftest {
@@ -14679,7 +15092,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14682 "configure"
+// #line 15095 "configure"
 import org.apache.commons.beanutils.Converter;
 
 public class conftest {
@@ -14786,7 +15199,7 @@ $as_echo_n "checking antlr... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14789 "configure"
+// #line 15202 "configure"
 import antlr.TokenStreamException;
 
 public class conftest {
@@ -14893,7 +15306,7 @@ $as_echo_n "checking testng... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14896 "configure"
+// #line 15309 "configure"
 import org.testng.TestNG;
 
 public class conftest {
@@ -15000,7 +15413,7 @@ $as_echo_n "checking qdox... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15003 "configure"
+// #line 15416 "configure"
 import com.thoughtworks.qdox.tools.QDoxTester;
 
 public class conftest {
@@ -15107,7 +15520,7 @@ $as_echo_n "checking bsh... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15110 "configure"
+// #line 15523 "configure"
 import bsh.Console;
 
 public class conftest {
@@ -15214,7 +15627,7 @@ $as_echo_n "checking junit... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15217 "configure"
+// #line 15630 "configure"
 import junit.framework.Assert;
 
 public class conftest {
@@ -15315,10 +15728,11 @@ $as_echo "$as_me: WARNING: We do not support $ac_java_jvm_name yet" >&2;}
 
 
     if test "$enable_debug_java" = yes; then
-       JAVA_DEBUG_OPTIONS="<option value='-verbose:jni'/>
-       <option value='-Xcheck:jni'/>"
-
+        JAVAC_DEBUG="on"
+    else
+        JAVAC_DEBUG="off"
     fi
+
 
     if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
 
@@ -15532,6 +15946,7 @@ fi
 
 
 
+# Xcos is not checked here because gui=no disables it
  if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no; then
   NEED_JAVA_TRUE=
   NEED_JAVA_FALSE='#'
@@ -18896,871 +19311,6 @@ fi
 
 
 #################
-## SCICOS
-#################
-
-
-# Check whether --with-scicos was given.
-if test "${with_scicos+set}" = set; then :
-  withval=$with_scicos;
-fi
-
-
-
-# Check whether --with-ocaml was given.
-if test "${with_ocaml+set}" = set; then :
-  withval=$with_ocaml;
-fi
-
-
-
-SCICOS_ENABLE=no
-
-if test "$with_scicos" != no -a "$GUI_ENABLE" != no; then
-
-$as_echo "#define WITH_SCICOS /**/" >>confdefs.h
-
-
-   save_LIBS="$LIBS"
-
-   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for clock_gettime in -lrt" >&5
-$as_echo_n "checking for clock_gettime in -lrt... " >&6; }
-if test "${ac_cv_lib_rt_clock_gettime+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-lrt  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char clock_gettime ();
-int
-main ()
-{
-return clock_gettime ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_rt_clock_gettime=yes
-else
-  ac_cv_lib_rt_clock_gettime=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_rt_clock_gettime" >&5
-$as_echo "$ac_cv_lib_rt_clock_gettime" >&6; }
-if test "x$ac_cv_lib_rt_clock_gettime" = x""yes; then :
-  RT_LIB="-lrt";
-
-$as_echo "#define HAVE_CLOCK_GETTIME 1" >>confdefs.h
-
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&5
-$as_echo "$as_me: WARNING: librt: library missing (Cannot find symbol clock_gettime). Check if librt is installed (it is usually provided by the libc) and if the version is correct" >&2;}
-
-fi
-
-   LIBS="$save_LIBS"
-
-
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-   if test "$with_ocaml" != no; then
-
-# checking for ocamlc
-	OCAMLC=
-	OCAMLOPT=
-	OCAMLDEP=
-	# Extract the first word of "ocamlc", so it can be a program name with args.
-set dummy ocamlc; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLC+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLC"; then
-  ac_cv_prog_OCAMLC="$OCAMLC" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLC="ocamlc"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLC" && ac_cv_prog_OCAMLC="no"
-fi
-fi
-OCAMLC=$ac_cv_prog_OCAMLC
-if test -n "$OCAMLC"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLC" >&5
-$as_echo "$OCAMLC" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLC" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&5
-$as_echo "$as_me: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&2;}
-	fi
-	# Extract the first word of "ocamlopt", so it can be a program name with args.
-set dummy ocamlopt; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLOPT+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLOPT"; then
-  ac_cv_prog_OCAMLOPT="$OCAMLOPT" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLOPT="ocamlopt"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLOPT" && ac_cv_prog_OCAMLOPT="no"
-fi
-fi
-OCAMLOPT=$ac_cv_prog_OCAMLOPT
-if test -n "$OCAMLOPT"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLOPT" >&5
-$as_echo "$OCAMLOPT" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLOPT" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamldep", so it can be a program name with args.
-set dummy ocamldep; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLDEP+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLDEP"; then
-  ac_cv_prog_OCAMLDEP="$OCAMLDEP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLDEP="ocamldep"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLDEP" && ac_cv_prog_OCAMLDEP="no"
-fi
-fi
-OCAMLDEP=$ac_cv_prog_OCAMLDEP
-if test -n "$OCAMLDEP"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLDEP" >&5
-$as_echo "$OCAMLDEP" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLDEP" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamlyacc", so it can be a program name with args.
-set dummy ocamlyacc; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLYACC+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLYACC"; then
-  ac_cv_prog_OCAMLYACC="$OCAMLYACC" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLYACC="ocamlyacc"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLYACC" && ac_cv_prog_OCAMLYACC="no"
-fi
-fi
-OCAMLYACC=$ac_cv_prog_OCAMLYACC
-if test -n "$OCAMLYACC"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLYACC" >&5
-$as_echo "$OCAMLYACC" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLYACC" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamllex", so it can be a program name with args.
-set dummy ocamllex; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLLEX+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLLEX"; then
-  ac_cv_prog_OCAMLLEX="$OCAMLLEX" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLLEX="ocamllex"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLLEX" && ac_cv_prog_OCAMLLEX="no"
-fi
-fi
-OCAMLLEX=$ac_cv_prog_OCAMLLEX
-if test -n "$OCAMLLEX"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLLEX" >&5
-$as_echo "$OCAMLLEX" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLLEX" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-
-$as_echo "#define WITH_OCAML /**/" >>confdefs.h
-
-
-
-
-
-
-
-
-
-
-   fi
-   SCICOS_ENABLE=yes
-
-# Java HDF5 is only needed for Xcos
-if test $HDF5_ENABLE = yes -a "$with_scicos" != no -a "$with_gui" != no;  then
-
-
-     # HDF5 java lib
-
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking jhdf5" >&5
-$as_echo_n "checking jhdf5... " >&6; }
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
-    for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
-      for jar in "$jardir/jhdf5.jar" "$jardir/libjhdf5.jar" "$jardir/libjhdf5-java.jar" "$jardir/jhdf5*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
-# TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
-        if test -e "$jar_resolved"; then
-          export ac_java_classpath="$jar_resolved:$ac_java_classpath"
-
-    cat << \EOF > conftest.java
-// #line 19237 "configure"
-import ncsa.hdf.hdf5lib.HDF5Constants;
-
-public class conftest {
-    public static void main(String[] argv) {
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""no"" = "no"; then
-           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-	           echo "yes" >&5
-
-            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $jar_resolved" >&5
-$as_echo "$jar_resolved" >&6; }
-            found_jar=yes
-            PACKAGE_JAR_FILE=$jar_resolved
-            break
-
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-        					fi
-		fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-
-            ac_java_classpath=$saved_ac_java_classpath
-
-
-            fi
-
-        fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-      done
-	  # If found, no need to search in other directory
-      if test "$found_jar" = "yes"; then
-        break
-      fi
-    done
-    if test "$found_jar" = "no"; then
-      { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-	  if test "" = "yes"; then
- 		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&5
-$as_echo "$as_me: WARNING: Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" >&2;}
-	  else
-		  as_fn_error $? "Could not find or use the Java package/jar jhdf5 used by HDF5 Java library (looking for package ncsa.hdf.hdf5lib.HDF5Constants)" "$LINENO" 5
-	  fi
-    fi
-
-     JHDF5=$PACKAGE_JAR_FILE
-
-
-   if test "$MACOSX" = 1; then
-         echo "Check of the presence of libjhdf5.jnilib disabled under Mac OS X"
-   else
-
-     LDFLAGS_save=$LDFLAGS
-   # Provide known paths where distribs/OS can store JNI libs
-        LDFLAGS="-L/usr/lib/jni -L/usr/lib64/jni/ -L$SCI_SRCDIR/bin/ -L$SCI_SRCDIR/thirdparty/  -lpthread $HDF5_LIBS"
-   # -lpthread because of packaging bug in jhdf5
-      { $as_echo "$as_me:${as_lineno-$LINENO}: checking for h5JNIFatalError in -ljhdf5" >&5
-$as_echo_n "checking for h5JNIFatalError in -ljhdf5... " >&6; }
-if test "${ac_cv_lib_jhdf5_h5JNIFatalError+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  ac_check_lib_save_LIBS=$LIBS
-LIBS="-ljhdf5  $LIBS"
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-
-/* Override any GCC internal prototype to avoid an error.
-   Use char because int might match the return type of a GCC
-   builtin and then its argument prototype would still apply.  */
-#ifdef __cplusplus
-extern "C"
-#endif
-char h5JNIFatalError ();
-int
-main ()
-{
-return h5JNIFatalError ();
-  ;
-  return 0;
-}
-_ACEOF
-if ac_fn_c_try_link "$LINENO"; then :
-  ac_cv_lib_jhdf5_h5JNIFatalError=yes
-else
-  ac_cv_lib_jhdf5_h5JNIFatalError=no
-fi
-rm -f core conftest.err conftest.$ac_objext \
-    conftest$ac_exeext conftest.$ac_ext
-LIBS=$ac_check_lib_save_LIBS
-fi
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_jhdf5_h5JNIFatalError" >&5
-$as_echo "$ac_cv_lib_jhdf5_h5JNIFatalError" >&6; }
-if test "x$ac_cv_lib_jhdf5_h5JNIFatalError" = x""yes; then :
-  JHDF5_LIBS="-ljhdf5"
-else
-  as_fn_error $? "libjhdf5: Library missing (Cannot find symbol h5JNIFatalError). Check if libjhdf5 - C/Java (JNI) interface for HDF5 - is installed and if the version is correct. Note that you might have to update etc/librarypath.xml to provide the actual path the the JNI libraries." "$LINENO" 5
-fi
-
-      LDFLAGS=$LDFLAGS_save
-
-      LD_LIBRARY_PATH_save=$LD_LIBRARY_PATH
-      LD_LIBRARY_PATH="/usr/lib/jni:/usr/lib64/jni/:$SCI_SRCDIR/bin/:$SCI_SRCDIR/thirdparty/:$with_hdf5_library"
-      export LD_LIBRARY_PATH
-
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking minimal version (1.8.4) of hdf5" >&5
-$as_echo_n "checking minimal version (1.8.4) of hdf5... " >&6; }
-   saved_ac_java_classpath=$ac_java_classpath
-   export ac_java_classpath="$JHDF5:$ac_java_classpath"
-   if test "x" == "x"; then
-
-    cat << \EOF > conftest.java
-// #line 19386 "configure"
-import ncsa.hdf.hdf5lib.H5;
-
-public class conftest {
-    public static void main(String[] argv) {
-        String minVersion="1.8.4";
-                            int[] vers = new int[3];
-                try { H5.H5get_libversion(vers); }
-                catch (Throwable ex) {System.exit(-1);}
-                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
-
-                            System.out.println(ver);
-                                  if (minVersion.compareTo(ver) > 0) {
-                                   System.exit(-1);
-                                }
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""yes"" = "no"; then
-           echo "yes" >&5
-   		   echo "yes"
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-	           echo "yes" >&5
-       		   echo "yes"
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error $? "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
-        					fi
-		fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of hdf5. Expected at least 1.8.4. Found $STDOUT" "$LINENO" 5
-            fi
-
-   else
-
-    cat << \EOF > conftest.java
-// #line 19441 "configure"
-import ncsa.hdf.hdf5lib.H5;
-
-public class conftest {
-    public static void main(String[] argv) {
-        String minVersion="1.8.4";
-                            int[] vers = new int[3];
-                try { H5.H5get_libversion(vers); }
-                catch (Throwable ex) {System.exit(-1);}
-                String ver = vers[0] + "."+ vers[1] +"."+vers[2];
-
-                            System.out.println(ver);
-                                  if (minVersion.compareTo(ver) != 0) {
-                                   System.exit(-1);
-                                }
-
-    }
-}
-EOF
-
-    CLASSPATH=$ac_java_classpath
-    export CLASSPATH
-    cmd="$JAVAC ${JAVAC_FLAGS} conftest.java"
-    if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5) ; then
-       if test ""yes"" = "no"; then
-           echo "yes" >&5
-   		   echo "yes"
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&5 ; eval $cmd >conftest.java.output 2>&5); then
-	           echo "yes" >&5
-       		   echo "yes"
-			else
-		        echo "configure: failed program was:" >&5
-				cat conftest.java >&5
-                if test -s conftest.java.output; then
-                   STDOUT=`cat conftest.java.output`
-                fi
-        		echo "configure: CLASSPATH was $CLASSPATH" >&5
-        		  as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
-        					fi
-		fi
-        if test -f conftest.java.output; then
-           rm conftest.java.output
-        fi
-    else
-        echo "configure: failed program was:" >&5
-        cat conftest.java >&5
-        echo "configure: CLASSPATH was $CLASSPATH" >&5
-          as_fn_error $? "Wrong version of hdf5. Expected exact version 1.8.4. Found $STDOUT" "$LINENO" 5
-            fi
-
-    fi
-   ac_java_classpath=$saved_ac_java_classpath
-
-      unset LD_LIBRARY_PATH
-      LD_LIBRARY_PATH=$LD_LIBRARY_PATH_save
-
-   fi
-fi #HDF5_ENABLE
-
-#################
-## ocaml which only called when using Scicos
-#################
-
-        if test "$with_ocaml" != no; then
-
-# checking for ocamlc
-	OCAMLC=
-	OCAMLOPT=
-	OCAMLDEP=
-	# Extract the first word of "ocamlc", so it can be a program name with args.
-set dummy ocamlc; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLC+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLC"; then
-  ac_cv_prog_OCAMLC="$OCAMLC" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLC="ocamlc"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLC" && ac_cv_prog_OCAMLC="no"
-fi
-fi
-OCAMLC=$ac_cv_prog_OCAMLC
-if test -n "$OCAMLC"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLC" >&5
-$as_echo "$OCAMLC" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLC" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&5
-$as_echo "$as_me: WARNING: ocamlc not found. Mandatory to build the Scicos modelica compiler (Use --without-ocaml to disable the Modelica compiler)." >&2;}
-	fi
-	# Extract the first word of "ocamlopt", so it can be a program name with args.
-set dummy ocamlopt; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLOPT+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLOPT"; then
-  ac_cv_prog_OCAMLOPT="$OCAMLOPT" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLOPT="ocamlopt"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLOPT" && ac_cv_prog_OCAMLOPT="no"
-fi
-fi
-OCAMLOPT=$ac_cv_prog_OCAMLOPT
-if test -n "$OCAMLOPT"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLOPT" >&5
-$as_echo "$OCAMLOPT" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLOPT" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamlopt not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamldep", so it can be a program name with args.
-set dummy ocamldep; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLDEP+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLDEP"; then
-  ac_cv_prog_OCAMLDEP="$OCAMLDEP" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLDEP="ocamldep"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLDEP" && ac_cv_prog_OCAMLDEP="no"
-fi
-fi
-OCAMLDEP=$ac_cv_prog_OCAMLDEP
-if test -n "$OCAMLDEP"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLDEP" >&5
-$as_echo "$OCAMLDEP" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLDEP" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamldep not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamlyacc", so it can be a program name with args.
-set dummy ocamlyacc; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLYACC+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLYACC"; then
-  ac_cv_prog_OCAMLYACC="$OCAMLYACC" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLYACC="ocamlyacc"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLYACC" && ac_cv_prog_OCAMLYACC="no"
-fi
-fi
-OCAMLYACC=$ac_cv_prog_OCAMLYACC
-if test -n "$OCAMLYACC"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLYACC" >&5
-$as_echo "$OCAMLYACC" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLYACC" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamlyacc not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-	# Extract the first word of "ocamllex", so it can be a program name with args.
-set dummy ocamllex; ac_word=$2
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
-$as_echo_n "checking for $ac_word... " >&6; }
-if test "${ac_cv_prog_OCAMLLEX+set}" = set; then :
-  $as_echo_n "(cached) " >&6
-else
-  if test -n "$OCAMLLEX"; then
-  ac_cv_prog_OCAMLLEX="$OCAMLLEX" # Let the user override the test.
-else
-as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-for as_dir in $PATH
-do
-  IFS=$as_save_IFS
-  test -z "$as_dir" && as_dir=.
-    for ac_exec_ext in '' $ac_executable_extensions; do
-  if { test -f "$as_dir/$ac_word$ac_exec_ext" && $as_test_x "$as_dir/$ac_word$ac_exec_ext"; }; then
-    ac_cv_prog_OCAMLLEX="ocamllex"
-    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
-    break 2
-  fi
-done
-  done
-IFS=$as_save_IFS
-
-  test -z "$ac_cv_prog_OCAMLLEX" && ac_cv_prog_OCAMLLEX="no"
-fi
-fi
-OCAMLLEX=$ac_cv_prog_OCAMLLEX
-if test -n "$OCAMLLEX"; then
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $OCAMLLEX" >&5
-$as_echo "$OCAMLLEX" >&6; }
-else
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
-$as_echo "no" >&6; }
-fi
-
-
-	if test "$OCAMLLEX" = no; then
-		{ $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&5
-$as_echo "$as_me: WARNING: ocamllex not found. Mandatory to build the Scicos modelica compiler." >&2;}
-	fi
-
-$as_echo "#define WITH_OCAML /**/" >>confdefs.h
-
-
-
-
-
-
-
-
-
-
-        fi
-        SCICOS_ENABLE=yes
-fi
-
-
-
-
-
-
-
-
- if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
-  OCAML_TRUE=
-  OCAML_FALSE='#'
-else
-  OCAML_TRUE='#'
-  OCAML_FALSE=
-fi
-
- if test "$SCICOS_ENABLE" != no; then
-  SCICOS_TRUE=
-  SCICOS_FALSE='#'
-else
-  SCICOS_TRUE='#'
-  SCICOS_FALSE=
-fi
-
-
-
-#################
 ## FFTW
 #################
 
@@ -20683,7 +20233,7 @@ _ACEOF
 ## Test for gettext
 #######################
 
-ALL_LINGUAS="en_US fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
+ALL_LINGUAS="fr_FR zh_CN zh_TW ru_RU ca_ES de_DE es_ES pt_BR ja_JP it_IT uk_UA pl_PL"
 
 # Check whether --enable-build-localization was given.
 if test "${enable_build_localization+set}" = set; then :
@@ -24028,7 +23578,7 @@ fi
 
     saved_cflags="$CFLAGS"
     saved_ldflags="$LDFLAGS"
-    saved_cppflags="$CPPFLAGS"
+    saved_cppflags="$CXXFLAGS"
 
     { $as_echo "$as_me:${as_lineno-$LINENO}: checking for main in -ldl" >&5
 $as_echo_n "checking for main in -ldl... " >&6; }
@@ -24099,7 +23649,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 24102 "configure"
+#line 23652 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -24409,7 +23959,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 24412 "configure"
+#line 23962 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -24990,7 +24540,7 @@ $as_echo_n "checking saxon... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 24993 "configure"
+// #line 24543 "configure"
 import com.icl.saxon.Loader;
 
 public class conftest {
@@ -25097,7 +24647,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 25100 "configure"
+// #line 24650 "configure"
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
 
 public class conftest {
@@ -31404,7 +30954,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31407 "configure"
+#line 30957 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -31510,7 +31060,7 @@ else
   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
   lt_status=$lt_dlunknown
   cat > conftest.$ac_ext <<_LT_EOF
-#line 31513 "configure"
+#line 31063 "configure"
 #include "confdefs.h"
 
 #if HAVE_DLFCN_H
@@ -37535,10 +37085,10 @@ _ACEOF
 #
 if test "$enable_stop_on_warning" = yes; then
    CFLAGS="$CFLAGS -Werror -O0"
-   CPPFLAGS="$CPPFLAGS -Werror -O0"
+   CXXFLAGS="$CXXFLAGS -Werror -O0"
 fi
 
-ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/commons/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/jvm_options.xml etc/Info.plist scilab-lib.properties scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml modules/core/includes/version.h"
+ac_config_files="$ac_config_files libs/MALLOC/Makefile libs/dynamiclibrary/Makefile libs/doublylinkedlist/Makefile libs/hashtable/Makefile libs/libst/Makefile contrib/Makefile modules/helptools/Makefile modules/helptools/macros/xmlfiletohtml.sci modules/data_structures/Makefile modules/differential_equations/Makefile modules/optimization/Makefile modules/elementary_functions/Makefile modules/special_functions/Makefile modules/io/Makefile modules/shell/Makefile modules/completion/Makefile modules/history_manager/Makefile modules/jvm/Makefile modules/commons/Makefile modules/sound/Makefile modules/statistics/Makefile modules/mexlib/Makefile modules/sparse/Makefile modules/linear_algebra/Makefile modules/polynomials/Makefile modules/symbolic/Makefile modules/signal_processing/Makefile modules/arnoldi/Makefile modules/interpolation/Makefile modules/intersci/Makefile modules/localization/Makefile modules/cacsd/Makefile modules/boolean/Makefile modules/integer/Makefile modules/double/Makefile modules/fileio/Makefile modules/spreadsheet/Makefile modules/string/Makefile modules/time/Makefile modules/graphics/Makefile modules/graphic_export/Makefile modules/renderer/Makefile modules/action_binding/Makefile modules/gui/Makefile modules/pvm/Makefile modules/randlib/Makefile modules/tclsci/Makefile modules/windows_tools/Makefile modules/core/Makefile modules/api_scilab/Makefile modules/call_scilab/Makefile modules/types/Makefile modules/hdf5/Makefile modules/fftw/Makefile modules/umfpack/Makefile modules/scicos/Makefile modules/scicos_blocks/Makefile modules/functions/Makefile modules/dynamic_link/Makefile modules/overloading/Makefile modules/javasci/Makefile modules/maple2scilab/Makefile modules/m2sci/Makefile modules/compatibility_functions/Makefile modules/texmacs/Makefile modules/development_tools/Makefile modules/output_stream/Makefile modules/console/Makefile modules/demo_tools/Makefile modules/genetic_algorithms/Makefile modules/simulated_annealing/Makefile modules/parameters/Makefile modules/matio/Makefile modules/atoms/Makefile modules/xcos/Makefile modules/scinotes/Makefile modules/ui_data/Makefile modules/graph/Makefile modules/parallel/Makefile modules/modules_manager/Makefile modules/history_browser/Makefile modules/Makefile libs/Makefile Makefile scilab.pc etc/modules.xml etc/classpath.xml etc/Info.plist scilab.properties scilab-lib.properties scilab-lib-doc.properties modules/helptools/etc/SciDocConf.xml modules/core/includes/version.h"
 
 
 # Detection of the module for the future version of Scilab 6
@@ -37549,7 +37099,7 @@ if test "$enable_yasp" = yes; then
 
 fi
 
-# This script is used by Scicos in order to regenerate the function/block list
+# This script is used by Xcos in order to regenerate the function/block list
 
 
 
@@ -37736,6 +37286,14 @@ if test -z "${HDF5_TRUE}" && test -z "${HDF5_FALSE}"; then
   as_fn_error $? "conditional \"HDF5\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
+if test -z "${OCAML_TRUE}" && test -z "${OCAML_FALSE}"; then
+  as_fn_error $? "conditional \"OCAML\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${XCOS_TRUE}" && test -z "${XCOS_FALSE}"; then
+  as_fn_error $? "conditional \"XCOS\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
 if test -z "${NEED_JAVA_TRUE}" && test -z "${NEED_JAVA_FALSE}"; then
   as_fn_error $? "conditional \"NEED_JAVA\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
@@ -37754,14 +37312,6 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${GIWS_TRUE}" && test -z "${GIWS_FALSE}"; then
   as_fn_error $? "conditional \"GIWS\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${OCAML_TRUE}" && test -z "${OCAML_FALSE}"; then
-  as_fn_error $? "conditional \"OCAML\" was never defined.
-Usually this means the macro was only invoked conditionally." "$LINENO" 5
-fi
-if test -z "${SCICOS_TRUE}" && test -z "${SCICOS_FALSE}"; then
-  as_fn_error $? "conditional \"SCICOS\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${FFTW_TRUE}" && test -z "${FFTW_FALSE}"; then
@@ -38955,8 +38505,8 @@ do
     "scilab.pc") CONFIG_FILES="$CONFIG_FILES scilab.pc" ;;
     "etc/modules.xml") CONFIG_FILES="$CONFIG_FILES etc/modules.xml" ;;
     "etc/classpath.xml") CONFIG_FILES="$CONFIG_FILES etc/classpath.xml" ;;
-    "etc/jvm_options.xml") CONFIG_FILES="$CONFIG_FILES etc/jvm_options.xml" ;;
     "etc/Info.plist") CONFIG_FILES="$CONFIG_FILES etc/Info.plist" ;;
+    "scilab.properties") CONFIG_FILES="$CONFIG_FILES scilab.properties" ;;
     "scilab-lib.properties") CONFIG_FILES="$CONFIG_FILES scilab-lib.properties" ;;
     "scilab-lib-doc.properties") CONFIG_FILES="$CONFIG_FILES scilab-lib-doc.properties" ;;
     "modules/helptools/etc/SciDocConf.xml") CONFIG_FILES="$CONFIG_FILES modules/helptools/etc/SciDocConf.xml" ;;
@@ -40803,28 +40353,26 @@ echo "Host system type : $host"
 echo ""
 echo "                  Option                        Value"
 echo "-------------------------------------------------------------------------"
-echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs    $libtool_build_shared_libs"
-echo "Static libraries.......      --enable-static=$libtool_build_static_libs    $libtool_build_static_libs"
-echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld        $lt_cv_prog_gnu_ld"
-echo "Enable debug ..........      --enable-debug=$enable_debug    $enable_debug"
-echo "Enable debug C.........      --enable-debug-C=$enable_debug_C    $enable_debug_C"
-echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX    $enable_debug_CXX"
-echo "Enable debug Java......      --enable-debug-java=$enable_debug_java    $enable_debug_java"
-echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran    $enable_debug_fortran"
-echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning    $enable_stop_on_warning"
+echo "Shared libraries.......      --enable-shared=$libtool_build_shared_libs"
+echo "Static libraries.......      --enable-static=$libtool_build_static_libs"
+echo "GNU ld.................      --with-gnu-ld=$with_gnu_ld"
+echo "Enable debug ..........      --enable-debug=$enable_debug"
+echo "Enable debug C.........      --enable-debug-C=$enable_debug_C"
+echo "Enable debug C++.......      --enable-debug-CXX=$enable_debug_CXX"
+echo "Enable debug Java......      --enable-debug-java=$enable_debug_java"
+echo "Enable debug Fortran...      --enable-debug-fortran=$enable_debug_fortran"
+echo "Enable stop on warning.      --enable-stop-on-warning=$enable_stop_on_warning"
 
 echo ""
 echo "Compiler Configuration:"
 echo "  Intel (--with-intelcompilers) .... =        $with_intelcompilers"
 echo "  GNU gcc (--with-gcc) ............. =        $with_gcc"
-echo "  GNU Fortran 77 (--with-g77) ...... =        $with_g77"
 echo "  GNU Fortran 95 (--with-gfortran) . =        $with_gfortran"
 echo ""
 echo "Options:"
 echo "  Use PVM (--without-pvm) .......................... = $with_pvm"
 echo "  PVM include (--with-pvm-include) ................. = $PVMINCLUDE"
 echo "  PVM library (--with-pvm-library) ................. = $PVMLIBDIR"
-echo "  Compile with Ocaml (--without-ocaml) ............. = $with_ocaml"
 echo "  Do not use TCL/TK (--without-tk) ................. = $with_tk"
 echo "  TCL include (--with-tcl-include) ................. = $USER_TCL_INC_PATH"
 echo "  TCL library (--with-tcl-library) ................. = $USER_TCL_LIB_PATH"
@@ -40838,21 +40386,22 @@ echo "  Use MATIO (--without-matio) ...................... = $with_matio"
 
 echo ""
 if test "$with_gui" = no; then
-   echo "Not using Scicos because of the option --without-gui"
+   echo "Not using Xcos because of the option --without-gui"
 else
-if test $SCICOS_ENABLE = yes; then
-   echo "Scicos enable"
+if test $XCOS_ENABLE = yes; then
+   echo "Xcos enable"
+   echo "Build modelica compiler (--without-modelica) ....... = $with_modelica"
    echo ""
-if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
-   echo "Ocaml Configuration (for Modelica compiler):"
-   echo "  OCAMLC ............. = $OCAMLC"
-   echo "  OCAMLOPT ........... = $OCAMLOPT"
-   echo "  OCAMLDEP ........... = $OCAMLDEP"
+   if test "$with_ocaml" != no -a "$OCAMLC" != no -a "$OCAMLOPT" != no; then
+     echo "Ocaml Configuration (for Modelica compiler):"
+     echo "  OCAMLC ............. = $OCAMLC"
+     echo "  OCAMLOPT ........... = $OCAMLOPT"
+     echo "  OCAMLDEP ........... = $OCAMLDEP"
+   else
+     echo "Will not build Modelica compiler"
+   fi
 else
-    echo "Will not build Modelica compiler"
-fi
-else
-   echo "Not using Scicos"
+   echo "Not using Xcos"
 fi
 fi
 
@@ -41117,7 +40666,7 @@ echo "  LD ............. = $LD"
 echo "  LDFLAGS ........ = $LDFLAGS"
 echo "  LIBS ........... = $LIBS"
 echo "  CXX ............ = $CXX"
-echo "  CPPFLAGS ....... = $CPPFLAGS"
+echo "  CXXFLAGS ....... = $CXXFLAGS"
 echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"

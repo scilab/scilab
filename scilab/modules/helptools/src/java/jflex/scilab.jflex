@@ -1,6 +1,6 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.scilab;
+package org.scilab.modules.helptools.scilab;
 
 import java.util.Arrays;
 import java.util.Set;
@@ -170,7 +170,7 @@ structureKwds = "if" | "for" | "while" | "try" | "select" | "end" | "then" | "do
 controlKwds = "abort" | "break" | "quit" | "return" | "resume" | "pause" | "continue" | "exit"
 
 break = ".."(".")*
-breakinstring = {break}[ \t]*
+breakinstring = {break}[ \t]*{comment}
 
 special = "$" | ":" | {break}
 

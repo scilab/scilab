@@ -142,7 +142,6 @@
       <literal>1</literal> pour le bit à modifier et une valeur <literal>0</literal>
       pour les autres bits.
     </para>
-    <para />
   </refsection>
 
   <refsection id="Data_Type_BITSET">
@@ -289,7 +288,7 @@
   </refsection>
 
   <refsection id="Example_BITSET">
-    <title>Example</title>
+    <title>Exemple</title>
 
     <para>
       Ci-dessous un cas simple d'utilisation du bloc.

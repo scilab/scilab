@@ -1,6 +1,6 @@
 //CHECKSTYLE:OFF
 
-package org.scilab.forge.scidoc.XML;
+package org.scilab.modules.helptools.XML;
 
 import java.io.Reader;
 import java.io.StringReader;

@@ -20,7 +20,6 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.SwingUtilities;
@@ -43,13 +42,13 @@ import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.rowheader.RowHeader;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
-import org.scilab.modules.ui_data.variableeditor.action.CopyAction;
-import org.scilab.modules.ui_data.variableeditor.action.CutAction;
-import org.scilab.modules.ui_data.variableeditor.action.PasteAction;
-import org.scilab.modules.ui_data.variableeditor.action.RefreshAction;
-import org.scilab.modules.ui_data.variableeditor.action.SupprAction;
-import org.scilab.modules.ui_data.variableeditor.action.UndoAction;
-import org.scilab.modules.ui_data.variableeditor.action.RedoAction;
+import org.scilab.modules.ui_data.variableeditor.actions.CopyAction;
+import org.scilab.modules.ui_data.variableeditor.actions.CutAction;
+import org.scilab.modules.ui_data.variableeditor.actions.PasteAction;
+import org.scilab.modules.ui_data.variableeditor.actions.RedoAction;
+import org.scilab.modules.ui_data.variableeditor.actions.RefreshAction;
+import org.scilab.modules.ui_data.variableeditor.actions.SupprAction;
+import org.scilab.modules.ui_data.variableeditor.actions.UndoAction;
 import org.scilab.modules.ui_data.variableeditor.renderers.RendererFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.CellEditorFactory;
 import org.scilab.modules.ui_data.variableeditor.celleditor.ScilabGenericCellEditor;
@@ -72,7 +71,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     private static final long serialVersionUID = 1L;
 
     private SwingEditvarTableModel dataModel;
-    private JTabbedPane tabPane;
+    private ScilabTabbedPane tabPane;
     private JScrollPane scrollPane;
     private PushButton refreshButton;
     private PushButton undoButton;
@@ -95,7 +94,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
         tabPane = new ScilabTabbedPane(this);
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    String name = tabPane.getTitleAt(tabPane.getSelectedIndex());
+                    String name = tabPane.getScilabTitleAt(tabPane.getSelectedIndex());
                     if (name.length() != 0) {
                         name = name.substring(PREFIX.length());
                         String tooltip = "";
@@ -154,7 +153,7 @@ public class SwingScilabVariableEditor extends SwingScilabTab implements Tab, Si
     /**
      * @return the TabbedPane used in this window
      */
-    public JTabbedPane getTabPane() {
+    public ScilabTabbedPane getTabPane() {
         return tabPane;
     }
 

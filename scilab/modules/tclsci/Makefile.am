@@ -45,6 +45,7 @@ GATEWAY_C_SOURCES =
 endif
 
 pkglib_LTLIBRARIES = libscitclsci.la
+noinst_LTLIBRARIES = libscitclsci-algo.la
 
 libscitclsci_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS)
 
@@ -61,13 +62,15 @@ libscitclsci_la_CFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/localization/includes
 
-libscitclsci_la_SOURCES = $(TCLSCI_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
+libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscitclsci_algo_la_CFLAGS = $(libscitclsci_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CFLAGS)
 
-libscitclsci_la_LIBADD = 	$(top_builddir)/modules/fileio/libscifileio.la \
+libscitclsci_la_LIBADD = libscitclsci-algo.la $(top_builddir)/modules/fileio/libscifileio.la \
 							$(top_builddir)/libs/MALLOC/libscimalloc.la \
 							$(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######

@@ -29,16 +29,19 @@ libscispreadsheet_la_CFLAGS=  	-I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes
 
 pkglib_LTLIBRARIES = libscispreadsheet.la
+noinst_LTLIBRARIES = libscispreadsheet-algo.la
 
 libscispreadsheet_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
-libscispreadsheet_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
+libscispreadsheet_algo_la_SOURCES = $(SPREADSHEET_C_SOURCES) $(RIPOLE_SOURCES)
+libscispreadsheet_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscispreadsheet_algo_la_CFLAGS = $(libscispreadsheet_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(SPREADSHEET_C_SOURCES) $(GATEWAY_C_SOURCES) $(RIPOLE_SOURCES)
 INCLUDE_FLAGS = $(libscispreadsheet_la_CFLAGS)
 
-libscispreadsheet_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscispreadsheet_la_LIBADD = libscispreadsheet-algo.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 #### Target ######
 modulename=spreadsheet
 

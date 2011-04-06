@@ -23,6 +23,8 @@ import org.scilab.modules.scinotes.SciNotes;
  */
 public final class CCloseTabInNewWindowAction extends DefaultAction {
 
+    private static final long serialVersionUID = 5238253626333724452L;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -47,6 +49,6 @@ public final class CCloseTabInNewWindowAction extends DefaultAction {
      * Action
      */
     public void doAction() {
-        getEditor().cloneAndCloseCurrentTab(getEditor(), true);
+        SciNotes.cloneAndCloseCurrentTab(getEditor(), true);
     }
 }

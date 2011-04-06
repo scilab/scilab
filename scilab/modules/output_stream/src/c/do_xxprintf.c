@@ -542,7 +542,7 @@ static char* readNextUTFChar(char* utfstream,int* size)
 	{/* three bytes UTF-8*/
 		UTFChar[0]=*utfstream;
 		UTFChar[1]=*(utfstream+1);
-		UTFChar[2]=*(utfstream+2);;
+		UTFChar[2]=*(utfstream+2);
 		UTFChar[3]='\0';
 		*size=3;
 	}

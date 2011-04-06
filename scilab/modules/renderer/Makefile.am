@@ -300,12 +300,11 @@ libscirenderer_la_CPPFLAGS =  	$(JAVA_JNI_INCLUDE) \
 libscirenderer_la_CFLAGS=	-I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
-CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 ## Libraries necessary
@@ -375,9 +374,5 @@ pkglib_LTLIBRARIES = libscirenderer.la
 endif
 
 libscirenderer_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-
-#### renderer : gateway declaration ####
-#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 include $(top_srcdir)/Makefile.incl.am

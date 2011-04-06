@@ -475,10 +475,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -562,7 +562,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -588,6 +587,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -945,11 +945,10 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 libscirenderer_la_CFLAGS = -I$(srcdir)/includes/
 
 # All the sources needed by libscirenderer.la
-libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES) $(GATEWAY_C_SOURCES)
+libscirenderer_la_SOURCES = $(RENDERER_CPP_SOURCES)
 SWIG_WRAPPERS = src/jni/FigureScilabCall.i
 
 # For the code check (splint)
-CHECK_SRC = $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscirenderer_la_CFLAGS)
 
 # cyclic $(top_builddir)/modules/graphics/libscigraphics.la 
@@ -3689,10 +3688,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-
-#### renderer : gateway declaration ####
-#libscirenderer_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-#libscirenderer_la_sci_gateway_DATA = sci_gateway/renderer_gateway.xml
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.
 # Otherwise a system limit (for SysV at least) may be exceeded.

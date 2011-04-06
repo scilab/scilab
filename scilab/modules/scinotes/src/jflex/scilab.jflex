@@ -39,6 +39,10 @@ import javax.swing.text.Element;
         this.doc = doc;
         this.elem = doc.getDefaultRootElement();
         this.infile = doc.getFunctionsInDoc();
+	update();
+    }
+
+    public void update() {
         variables.clear();
         commands.clear();
         macros.clear();
@@ -139,7 +143,7 @@ id = ([a-zA-Z%_#!?][a-zA-Z0-9_#!$?]*)|("$"[a-zA-Z0-9_#!$?]+)
 
 badid = ([0-9$][a-zA-Z0-9_#!$?]+)
 whitabs = (" "+"\t" | "\t"+" ")[ \t]*
-badop = [+-]([\*\/\\\^] | "."[\*\+\-\/\\\^]) | ":=" | "->" | " !=" | ([*+-/\\\^]"=")
+badop = [+-]([\*\/\\\^] | "."[\*\+\-\/\\\^]) | ":=" | "->" | " !=" | "&&" | "||" | ([*+-/\\\^]"=")
 
 dot = "."
 

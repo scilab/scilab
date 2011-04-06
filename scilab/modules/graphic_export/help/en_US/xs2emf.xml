@@ -24,8 +24,7 @@
   <refnamediv>
     <refname>xs2emf</refname>
 
-    <refpurpose>send graphics to an EMF file (Only for
-    Windows).</refpurpose>
+    <refpurpose>Export graphics to EMF (Only under Windows).</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

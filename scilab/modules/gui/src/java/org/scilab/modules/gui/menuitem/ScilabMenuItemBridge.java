@@ -103,7 +103,7 @@ public class ScilabMenuItemBridge {
 	 * @return the text of the menu
 	 */
 	public static String getText(MenuItem menuItem) {
-		return menuItem.getAsSimpleMenuItem().getText();
+		return menuItem.getAsSimpleMenuItem().getBaseText();
 	}
 	
 	/**

@@ -32,6 +32,8 @@ import org.scilab.modules.scinotes.ScilabDocument;
  */
 public final class CapitalizeAction extends DefaultAction {
 
+    private static final long serialVersionUID = 1531881688147993338L;
+
     /**
      * Constructor
      * @param name the name of the action

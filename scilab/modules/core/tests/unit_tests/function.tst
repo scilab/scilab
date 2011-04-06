@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
+// Copyright (C) 2008-2011 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -45,6 +46,11 @@ function foo
  y=resume(3)
 endfunction
 foo();if y<>3  then pause,end
+//
+function result=foo(a,b)
+result = [(a+b) (a-b) (a*a + b*b)];
+endfunction
+result=foo(32,64); if or(result <> [96. -32. 5120.]) then pause, end
 
 //
 //               Various line splits

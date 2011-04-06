@@ -34,7 +34,7 @@
       <varlistentry>
         <term>files</term>
         <listitem>
-          <para>string matrix giving source files needed for shared library creation. Since Scilab 5.3.1, object files are deprecated.</para>
+          <para>string matrix giving source files needed for shared library creation.</para>
         </listitem>
       </varlistentry>
       <varlistentry>

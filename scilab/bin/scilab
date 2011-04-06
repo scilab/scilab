@@ -3,7 +3,7 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
-# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2010 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -151,10 +151,10 @@ detect_type_of_scilab(){
 detect_os() {
 
     if test "${OS}" = ""; then
-        OS=`uname -s` # Retrieve the Operating System
+        OS=$(uname -s) # Retrieve the Operating System
     fi
     if test "${MODEL}" = ""; then
-        MODEL=`uname -m` # Retrieve the model
+        MODEL=$(uname -m) # Retrieve the model
     fi
 
     if test $SCIVERBOSE -ne 0; then
@@ -169,10 +169,29 @@ detect_os
 
 detect_scilab_path() {
 
-    LOCALOLDPWD=`pwd`
+    LOCALOLDPWD=$(pwd)
 
     # If we are running Scilab binary, it is trivial to set paths.
-    curdir=`dirname "$progname"`
+    curdir=$(dirname "$progname")
+
+    # If the script is a symlink, it might be a symlink to the Scilab binary
+    # We could run into the bug #9125
+    if test -h $progname; then
+        while test -h "$progname"; do
+            bn=$(basename "$progname")
+            cd $(dirname "$progname")
+
+            # Browse the symlink to the real one
+            progname=$(/bin/ls -l "$bn" | sed -e 's/^.* -> //' )
+
+            if test ! -x "$progname"; then
+                break
+            fi
+        done
+        cd $(dirname "$progname")
+        curdir=$(pwd)
+    fi
+
     if test -d $curdir/../thirdparty/ -a -d $curdir/../share/scilab; then
         # We are in the Scilab binary
         IS_SCILAB_BINARY=1
@@ -188,15 +207,14 @@ detect_scilab_path() {
     # Use scilab-bin in the current dir if it exists
     # If not, then start resolving symlinks until we find scilab-bin
     found=0
-    progname="$0"
-    curdir=`dirname "$progname"`
+    curdir=$(dirname "$progname")
     PATH="$curdir:$PATH"
 
-    progbase=`basename "$progname"`
+    progbase=$(basename "$progname")
     run_sci="$curdir/$SCILABBIN"
     if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
         cd "$curdir/../"
-        SCI=`pwd`
+        SCI=$(pwd)
         SCIBIN=$run_sci
         found=1
     else
@@ -204,25 +222,26 @@ detect_scilab_path() {
         if test -x "$run_sci"; then # scilab-bin is in the / directory
         # which is the case in a dev env
             cd "$curdir/../"
-            SCI=`pwd`
+            SCI=$(pwd)
             SCIBIN=$run_sci
             found=1
         else
-            here=`/bin/pwd`
+            here=$(/bin/pwd)
             while test -h "$progname"; do
-                bn=`basename "$progname"`
-                cd `dirname "$progname"`
+                bn=$(basename "$progname")
+                cd $(dirname "$progname")
             # Browse the symlink to the real one
-                progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
+                progname=$(/bin/ls -l "$bn" | sed -e 's/^.* -> //' )
                 if test ! -x "$progname"; then
                     break
                 fi
-                curdir=`dirname "$progname"`
+                curdir=$(dirname "$progname")
                 if test -x "$curdir"; then
                     cd "$curdir/../"
-                    SCI=`pwd`
+                    SCI=$(pwd)
                     SCIBIN="$curdir/$SCILABBIN"
                     found=1
+
                     break
                 fi
             # The current file ($0), probably scilab is a symlink to the
@@ -230,7 +249,7 @@ detect_scilab_path() {
                 run_sci="$curdir/../$SCILABBIN"
                 if test -x "$run_sci"; then
                     cd "$curdir/../"
-                    SCI=`pwd`
+                    SCI=$(pwd)
                     SCIBIN=$run_sci
                     found=1
                     break
@@ -392,13 +411,13 @@ detect_java_vm() {
             # resolve symlink
             # Will probably bug if a file contains -> in the name
                     while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-                        _cur=`ls -ld "$_cur" | sed 's/.* -> //'`
+                        _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
                     done
             # symlink resolved to the real file
 
             # Now, create JAVA_HOME
-                    TMP=`dirname $_cur`
-                    JAVA_HOME=`dirname $TMP`
+                    TMP=$(dirname $_cur)
+                    JAVA_HOME=$(dirname $TMP)
                     if test ! -z "$JAVA_HOME"; then
                         break;
                     fi
@@ -428,8 +447,8 @@ detect_java_vm() {
                             ;;
                         i?86)
 
-                            if test -d ${JRE_HOME}/lib/`uname -m` ; then
-                                proc=`uname -m`
+                            if test -d ${JRE_HOME}/lib/$(uname -m) ; then
+                                proc=$(uname -m)
                             else
                                 proc="i386"
                             fi
@@ -532,6 +551,9 @@ detect_java_vm() {
 }
 
 detect_scilab_path
+if test $SCIVERBOSE -ne 0; then
+    echo "IS_SCILAB_BINARY : $IS_SCILAB_BINARY"
+fi
 
 # If we are calling scilab-cli, no need to detect java.
 if test $DISABLE_JAVA_DETECTION -ne 1; then
@@ -572,7 +594,7 @@ fi
 # desactivate bug-buddy.
 # See also https://bugzilla.novell.com/show_bug.cgi?id=331618
 # and: http://bugzilla.gnome.org/show_bug.cgi?id=479929
-GTK_MODULES=`echo $GTK_MODULES | sed s/gnomebreakpad//g`
+GTK_MODULES=$(echo $GTK_MODULES | sed s/gnomebreakpad//g)
 export GTK_MODULES
 
 if test $SCIVERBOSE -ne 0; then
@@ -596,7 +618,7 @@ cd "$LOCALOLDPWD"
 #export PVM_ROOT
 
 #if test "$PVM_ARCH" = ""; then
-#  PVM_ARCH=`$PVM_ROOT/lib/pvmgetarch`
+#  PVM_ARCH=$($PVM_ROOT/lib/pvmgetarch)
 #fi
 #export PVM_ARCH
 
@@ -694,13 +716,13 @@ do_compile()
 {
     umask 002
     rm -f report
-    name=`basename $1 .sci`
+    name=$(basename $1 .sci)
     echo generating $name.bin
     echo "predef();exec('$name.sci');save('$name.bin');quit"\
           | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
     if (grep error report 1> /dev/null  2>&1);
     then cat report;echo " "
-        echo see `pwd`/report for more information
+        echo see $(pwd)/report for more information
         grep libok report>/dev/null;
     else rm -f report;
     fi
@@ -716,7 +738,7 @@ do_lib()
           | $SCILABBIN -ns -nwni |sed 1,/--\>/d 1>report 2>&1
     if (grep error report 1> /dev/null  2>&1);
     then cat report;echo " "
-        echo see `pwd`/report for more information
+        echo see $(pwd)/report for more information
         grep libok report>/dev/null;
     else rm -f report;
     fi
@@ -783,7 +805,19 @@ if test "$rest" = "yes"; then
         fi
 
         case $sciarg in
-            -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
+            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+                ;;
+            -nw)
+                if test "$SCILAB_MODE" = "nwni"; then
+                    echo "Cannot use scilab-cli with option -nw"
+                    exit 5
+                fi
+                ;;
+            -nwni)
+                if test "$SCILAB_MODE" = "nw"; then
+                    echo "Cannot use scilab-adv-cli with option -nwni"
+                    exit 5
+                fi
                 ;;
             -psn_*)
         # Under Mac OS X, .app is adding the arg -psn_0_xxxx

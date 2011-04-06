@@ -18,12 +18,6 @@ import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.UnsupportedFlavorException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.ContainerEvent;
-import java.awt.event.ContainerListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.beans.PropertyChangeEvent;
@@ -31,13 +25,12 @@ import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-import javax.swing.JPanel;
 import javax.swing.JEditorPane;
+import javax.swing.JPanel;
 import javax.swing.JTextPane;
 import javax.swing.SwingUtilities;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
 
@@ -48,15 +41,14 @@ import org.scilab.modules.console.SciHistoryManager;
 import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.console.SimpleConsole;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
-import org.scilab.modules.gui.helpbrowser.ScilabHelpBrowser;
 import org.scilab.modules.gui.utils.ConfigManager;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
+
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
 import com.artenum.rosetta.util.StringConstants;
 
@@ -215,30 +207,28 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
      * This method is used to display the prompt
      */
     public void displayPrompt() {
-
-        final InputCommandView inputCmdView = this.getConfiguration().getInputCommandView();
-        // Show the prompt
-        this.getConfiguration().getPromptView().setVisible(true);
-
-        // Show the input command view and its hidden components
-        inputCmdView.setEditable(true);
-
-        ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
-
         SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
+                    InputCommandView inputCmdView = SwingScilabConsole.this.getConfiguration().getInputCommandView();
+
+                    // Show the prompt
+                    SwingScilabConsole.this.getConfiguration().getPromptView().setVisible(true);
+
+                    // Show the input command view and its hidden components
+                    inputCmdView.setEditable(true);
+                    ((JTextPane) inputCmdView).setCaretColor(((JTextPane) inputCmdView).getForeground());
                     ((JTextPane) inputCmdView).getCaret().setVisible(true);
                 }
             });
 
         // Remove last line returned given by Scilab (carriage return)
         try {
-            StyledDocument outputStyledDoc = this.getConfiguration().getOutputViewStyledDocument();
-            int lastEOL = outputStyledDoc.getText(0, outputStyledDoc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
+            Document doc = ((JEditorPane) this.getConfiguration().getOutputView()).getDocument();
+            int lastEOL = doc.getText(0, doc.getLength()).lastIndexOf(StringConstants.NEW_LINE);
 
             // Condition added to avoid a "javax.swing.text.BadLocationException: Invalid remove" exception
-            if (lastEOL > 1 && (outputStyledDoc.getLength() - lastEOL) == 1) {
-                outputStyledDoc.remove(lastEOL, outputStyledDoc.getLength() - lastEOL);
+            if (lastEOL > 1 && (doc.getLength() - lastEOL) == 1) {
+                doc.remove(lastEOL, doc.getLength() - lastEOL);
             }
         } catch (BadLocationException e) {
             e.printStackTrace();

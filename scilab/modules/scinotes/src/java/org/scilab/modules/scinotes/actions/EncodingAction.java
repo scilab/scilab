@@ -26,11 +26,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.ButtonGroup;
@@ -49,7 +49,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -67,8 +66,8 @@ public class EncodingAction extends DefaultCheckAction {
 
     private static final String CHECKICON = ScilabConstants.SCI.getPath() + "/modules/gui/images/icons/check-icon.png";
 
-    private static Map<String, String> encodings = new HashMap();
-    private static Map<String, List<String>> language = new HashMap();
+    private static Map<String, String> encodings = new HashMap<String, String>();
+    private static Map<String, List<String>> language = new HashMap<String, List<String>>();
     private static JRadioButtonMenuItem[] radioTypes;
     private static Menu[] menuLang;
 
@@ -246,7 +245,7 @@ public class EncodingAction extends DefaultCheckAction {
                 Charset.forName(enc);
                 String lang = encodings.get(enc);
                 if (!language.containsKey(lang)) {
-                    language.put(lang, new ArrayList());
+                    language.put(lang, new ArrayList<String>());
                 }
 
                 language.get(lang).add(enc);
@@ -257,7 +256,7 @@ public class EncodingAction extends DefaultCheckAction {
             }
         }
 
-        language = new TreeMap(language);
+        language = new TreeMap<String, List<String>>(language);
         return language;
     }
 

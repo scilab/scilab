@@ -107,13 +107,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_etcdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_rootdir)" \
 	"$(DESTDIR)$(libscipolynomials_la_sci_gatewaydir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscipolynomials_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/cacsd/libscicacsd.la \
-	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
-	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
-	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscipolynomials_algo_la_LIBADD =
 am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	wprxc.lo dmpcnc.lo wmpmu.lo mpinsp.lo impext.lo bezout.lo \
 	recbez.lo sfact1.lo dmptld.lo dpodiv.lo dmptra.lo dmpins.lo \
@@ -125,6 +120,15 @@ am__objects_1 = residu.lo imptra.lo dmpadj.lo impins.lo dpmul1.lo \
 	nextk.lo blktit.lo dimin.lo newest.lo dwmpmu.lo impcnc.lo \
 	wdmpad.lo wmpcle.lo quadit.lo quad.lo calcsc.lo \
 	writebufsfact.lo
+am_libscipolynomials_algo_la_OBJECTS = $(am__objects_1)
+libscipolynomials_algo_la_OBJECTS =  \
+	$(am_libscipolynomials_algo_la_OBJECTS)
+libscipolynomials_la_DEPENDENCIES = libscipolynomials-algo.la \
+	$(top_builddir)/modules/cacsd/libscicacsd.la \
+	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
+	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
+	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__objects_2 = sci_f_simp.lo sci_f_poly.lo sci_f_varn.lo sci_f_sum.lo \
 	sci_f_div.lo sci_f_diag.lo sci_f_prod.lo polops.lo \
 	sci_f_bezout.lo sci_f_triu_tril.lo sci_f_roots.lo \
@@ -147,8 +151,7 @@ am__objects_3 = libscipolynomials_la-gw_polynomials.lo \
 	libscipolynomials_la-sci_poly.lo \
 	libscipolynomials_la-sci_triu.lo \
 	libscipolynomials_la-sci_degree.lo
-am_libscipolynomials_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
+am_libscipolynomials_la_OBJECTS = $(am__objects_2) $(am__objects_3)
 libscipolynomials_la_OBJECTS = $(am_libscipolynomials_la_OBJECTS)
 libscipolynomials_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
@@ -173,8 +176,10 @@ F77LD = $(F77)
 F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscipolynomials_la_SOURCES)
-DIST_SOURCES = $(libscipolynomials_la_SOURCES)
+SOURCES = $(libscipolynomials_algo_la_SOURCES) \
+	$(libscipolynomials_la_SOURCES)
+DIST_SOURCES = $(libscipolynomials_algo_la_SOURCES) \
+	$(libscipolynomials_la_SOURCES)
 DATA = $(libscipolynomials_la_etc_DATA) \
 	$(libscipolynomials_la_root_DATA) \
 	$(libscipolynomials_la_sci_gateway_DATA)
@@ -251,10 +256,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -338,7 +343,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -364,6 +368,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -534,13 +539,16 @@ libscipolynomials_la_CFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscipolynomials.la
+noinst_LTLIBRARIES = libscipolynomials-algo.la
 libscipolynomials_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscipolynomials_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_algo_la_SOURCES = $(POLYNOMIALS_FORTRAN_SOURCES)
+libscipolynomials_la_SOURCES = $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES)
+libscipolynomials_algo_la_CFLAGS = $(libscipolynomials_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = ) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscipolynomials_la_CFLAGS)
-libscipolynomials_la_LIBADD = $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscipolynomials_la_LIBADD = libscipolynomials-algo.la $(top_builddir)/modules/cacsd/libscicacsd.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = polynomials
@@ -653,6 +661,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -684,6 +701,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscipolynomials-algo.la: $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_DEPENDENCIES) 
+	$(F77LINK)  $(libscipolynomials_algo_la_OBJECTS) $(libscipolynomials_algo_la_LIBADD) $(LIBS)
 libscipolynomials.la: $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_DEPENDENCIES) 
 	$(libscipolynomials_la_LINK) -rpath $(pkglibdir) $(libscipolynomials_la_OBJECTS) $(libscipolynomials_la_LIBADD) $(LIBS)
 
@@ -1275,7 +1294,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -1353,14 +1372,14 @@ uninstall-am: uninstall-libscipolynomials_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscipolynomials_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscipolynomials_la_etcDATA \
 	install-libscipolynomials_la_rootDATA \
 	install-libscipolynomials_la_sci_gatewayDATA install-man \
 	install-pdf install-pdf-am install-pkglibLTLIBRARIES \

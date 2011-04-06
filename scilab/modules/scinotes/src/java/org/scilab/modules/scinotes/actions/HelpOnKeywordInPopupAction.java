@@ -26,6 +26,8 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public class HelpOnKeywordInPopupAction extends HelpOnKeywordAction {
 
+    private static final long serialVersionUID = -7189187227299495917L;
+
     /**
      * Constructor
      * @param name the name of the action

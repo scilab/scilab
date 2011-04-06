@@ -15,14 +15,13 @@ package org.scilab.modules.console;
 
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.util.List;
 import java.util.Iterator;
+import java.util.List;
+
+import org.scilab.modules.completion.Completion;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
-
-import org.scilab.modules.completion.Completion;
-import org.scilab.modules.localization.Messages;
 
 /**
  * Class used when Scilab user asks for completion on the current edited line

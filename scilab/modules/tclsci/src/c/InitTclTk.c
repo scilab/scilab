@@ -35,14 +35,6 @@
 /*--------------------------------------------------------------------------*/
 BOOL TK_Started=FALSE;
 
-/* The tclLoop thread Id
-in order to wait it ends when closing Scilab */
-__threadId TclThread;
-
-__threadSignal InterpReady;
-__threadSignalLock InterpReadyLock;
-
-
 /*--------------------------------------------------------------------------*/
 static char *GetSciPath(void);
 /*--------------------------------------------------------------------------*/
@@ -201,11 +193,6 @@ static void *DaemonOpenTCLsci(void* in)
 		TkScriptpathShort = NULL;
 	}
 
-	__LockSignal(&InterpReadyLock);
-	// Signal TclInterpreter init is now over.
-	__Signal(&InterpReady);
-	__UnLockSignal(&InterpReadyLock);
-
 	// This start a periodic and endless call to "update"
 	// TCL command. This causes any TCL application to start
 	// and run as if it's in the main program thread.
@@ -226,8 +213,9 @@ int OpenTCLsci(void)
 	__CreateThread(&TclThread, &DaemonOpenTCLsci);
 	// Wait to be sure initialisation is complete.
 	__LockSignal(&InterpReadyLock);
-	__Wait(&InterpReady, &InterpReadyLock);
+    __Wait(&InterpReady, &InterpReadyLock);
 	__UnLockSignal(&InterpReadyLock);
+
 	return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -80,7 +80,7 @@ function edit(macroname,linenumber)
 
     // call the editor with the filename
     if (rhs == 2) then
-        editor(fname, linenumber);
+        editor(fname, linenumber, macroname);
     else
         editor(fname);
     end

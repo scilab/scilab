@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -45,17 +46,23 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,minim,maxim,rule,exprs]=scicos_getvalue('Set Counter  block parameters',..
-	['Minimum';'Maximum';'Rule (1=Increment 2=Decrement)'],..
-          list('vec',1,'vec',1,'vec',1),exprs)
+    [ok,minim,maxim,rule,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "Counter"); " "; ..
+        gettext("Integer counter generator");" "], ..
+        [gettext("Minimum"); gettext("Maximum"); ..
+          gettext("Rule (1:Increment, 2:Decrement)");], ..
+        list('vec',1,'vec',1,'vec',1),exprs);
+
     if ~ok then break,end
     maxim=int(maxim);minim=int(minim);
-    if maxim<minim then
-      message('Maximum value must be greater than the minimum value')
-    elseif (rule<>1 & rule <> 2) then 
-      message ('Rule can only be 1 or 2') 
+
+    if maxim < minim then
+        block_parameter_error(msprintf(gettext("Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"), minim, maxim), ..
+            msprintf(gettext("''Minimum'' must be less than ''Maximum''.")));
+    elseif (rule <> 1 & rule <> 2) then
+        block_parameter_error(msprintf(gettext("Wrong value for  ''Rule'' parameter: %d"), rule), ..
+            msprintf(gettext("Must be in the interval %s."), "[1,2]"));
     else
-      graphics.exprs=exprs 
+      graphics.exprs=exprs
       model.dstate=0
       model.ipar=[rule;maxim;minim]
       x.graphics=graphics;x.model=model

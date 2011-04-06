@@ -84,7 +84,7 @@ public abstract class ExportRenderer implements GLEventListener {
 	 * @param fileOrientation orientation of the file
 	 * @return GL2PSRenderer export a postscript screen-shot
 	 */
-	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType, int fileOrientation) {
+	public static ExportRenderer createExporter(int figureIndex, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
 		
 		GL2PS gl2ps = new GL2PS();
 		
@@ -95,7 +95,7 @@ public abstract class ExportRenderer implements GLEventListener {
 		case JPG_EXPORT:
 		case PNG_EXPORT:
 		case PPM_EXPORT:
-			return new BitmapRenderer(fileName, fileType, fileOrientation);
+			return new BitmapRenderer(fileName, fileType, jpegCompressionQuality, fileOrientation);
 		case EPS_EXPORT:
 		case PDF_EXPORT:
 		case SVG_EXPORT:
@@ -190,7 +190,7 @@ public abstract class ExportRenderer implements GLEventListener {
 			/* Transform the array to vector to have access to search methods*/
 
 			ArrayList<String> extensionsAllowedV = new ArrayList<String>(Arrays.asList(extensionsAllowed));
-			ArrayList<Integer> fileTypeAllowedV = new ArrayList(Arrays.asList(fileTypeAllowed));
+			ArrayList<Integer> fileTypeAllowedV = new ArrayList<Integer>(Arrays.asList(fileTypeAllowed));
 
 			if (extensionsAllowedV.contains(suffix) && fileTypeAllowedV.contains(this.fileType)){
 				this.fileName = this.fileName.substring(0, pos); /* Physically removed the extension */

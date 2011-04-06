@@ -34,7 +34,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_file.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_file.png" />
       </imageobject>
     </mediaobject>
 
@@ -137,7 +137,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_edit.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_edit.png" />
       </imageobject>
     </mediaobject>
 
@@ -222,7 +222,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_view.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_view.png" />
       </imageobject>
     </mediaobject>
 
@@ -280,7 +280,7 @@
         <mediaobject>
           <imageobject>
             <imagedata align="center"
-                       fileref="../images/xcos_viewport_example.png" />
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_viewport.png" />
           </imageobject>
         </mediaobject>
 
@@ -303,7 +303,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_simulation.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_simulation.png" />
       </imageobject>
     </mediaobject>
 
@@ -409,7 +409,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_format.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format.png" />
       </imageobject>
     </mediaobject>
 
@@ -449,7 +449,7 @@
         <mediaobject>
           <imageobject>
             <imagedata align="center"
-                       fileref="../images/xcos_menu_format_align.png" />
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_align.png" />
           </imageobject>
         </mediaobject>
       </listitem>
@@ -472,7 +472,7 @@
         <mediaobject>
           <imageobject>
             <imagedata align="center"
-                       fileref="../images/xcos_menu_format_link_style.png" />
+                       fileref="../gui/xcos_menu_entries/en_US/xcos_menu_format_link_style.png" />
           </imageobject>
         </mediaobject>
 
@@ -513,7 +513,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_tools.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_tools.png" />
       </imageobject>
     </mediaobject>
 
@@ -545,7 +545,7 @@
 
     <mediaobject>
       <imageobject>
-        <imagedata align="center" fileref="../images/xcos_menu_help.png" />
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/en_US/xcos_menu_help.png" />
       </imageobject>
     </mediaobject>
 

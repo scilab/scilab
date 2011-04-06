@@ -192,6 +192,10 @@
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/TCLSS.h5"/>
                 <icon variable="SCI" path="/modules/xcos/images/palettes/TCLSS.png"/>
             </block>
+            <block name="REGISTER">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/REGISTER.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/REGISTER.png"/>
+            </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Lookup Tables">
             <block name="INTRP2BLK_f">
@@ -295,10 +299,6 @@
             <block name="MFCLCK_f">
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/MFCLCK_f.h5"/>
                 <icon variable="SCI" path="/modules/xcos/images/palettes/MFCLCK_f.png"/>
-            </block>
-            <block name="REGISTER">
-                <data variable="SCI" path="/modules/scicos_blocks/blocks/REGISTER.h5"/>
-                <icon variable="SCI" path="/modules/xcos/images/palettes/REGISTER.png"/>
             </block>
             <block name="SampleCLK">
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/SampleCLK.h5"/>

@@ -434,13 +434,15 @@ libscigraphics_la_CPPFLAGS =  	-Iincludes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 			 	-I$(top_srcdir)/modules/graphic_export/includes/
 
-libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CPP_SOURCES)
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) 
+libscigraphics_algo_la_CFLAGS = $(libscigraphics_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
 
-libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/jvm/libscijvm.la
+libscigraphics_la_LIBADD = libscigraphics-algo.la $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/jvm/libscijvm.la
 
 
 
@@ -510,6 +512,7 @@ pkglib_LTLIBRARIES = libscigraphics-disable.la
 if GUI
 USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
+noinst_LTLIBRARIES = libscigraphics-algo.la
 endif
 
 libscigraphics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)

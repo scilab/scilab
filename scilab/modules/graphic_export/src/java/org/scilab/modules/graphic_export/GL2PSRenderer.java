@@ -13,7 +13,6 @@
  package org.scilab.modules.graphic_export;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;
@@ -103,7 +102,7 @@ public class GL2PSRenderer extends ExportRenderer {
 				
 		//Check if we have the permission to export
 		File filePermission = new File(ExportRenderer.getFileName());
-		if (checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
+		if (Utils.checkWritePermission(filePermission) == ExportRenderer.SUCCESS) {
 			
 			DrawableFigureGL exportedFigure = FigureMapper.getCorrespondingFigure(figureIndex);
 			
@@ -223,24 +222,4 @@ public class GL2PSRenderer extends ExportRenderer {
 			setErrorNumber(GL2PS_ERROR);			
 		}
 	}
-	
-	/**
-	 * Check if we have the permission to export on this file
-	 * @param file exported file
-	 * @return permission status
-	 */
-	public static int checkWritePermission(File file) {
-		try {
-			file.createNewFile();			
-			if (!file.canWrite()) {
-				return ExportRenderer.INVALID_FILE;
-			}
-			return ExportRenderer.SUCCESS;
-		} catch (IOException e1) {
-			return ExportRenderer.IOEXCEPTION_ERROR;
-		} catch (SecurityException e2) {
-			return ExportRenderer.INVALID_FILE;
-		}
-	}
-	
 }

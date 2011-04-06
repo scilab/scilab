@@ -109,17 +109,24 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitime_la_rootdir)" \
 	"$(DESTDIR)$(libscitime_la_sci_gatewaydir)" \
 	"$(DESTDIR)$(libscitime_la_includedir)"
-LTLIBRARIES = $(pkglib_LTLIBRARIES)
-libscitime_la_DEPENDENCIES =  \
+LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
+libscitime_algo_la_LIBADD =
+am__objects_1 = libscitime_algo_la-realtime.lo \
+	libscitime_algo_la-timer.lo libscitime_algo_la-getdate.lo
+am_libscitime_algo_la_OBJECTS = $(am__objects_1)
+libscitime_algo_la_OBJECTS = $(am_libscitime_algo_la_OBJECTS)
+libscitime_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
+	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libscitime_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+libscitime_la_DEPENDENCIES = libscitime-algo.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_1 = libscitime_la-realtime.lo libscitime_la-timer.lo \
-	libscitime_la-getdate.lo
 am__objects_2 = libscitime_la-sci_realtime.lo \
 	libscitime_la-sci_timer.lo libscitime_la-sci_calendar.lo \
 	libscitime_la-sci_xpause.lo libscitime_la-sci_sleep.lo \
 	libscitime_la-sci_getdate.lo libscitime_la-gw_time.lo
-am_libscitime_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscitime_la_OBJECTS = $(am__objects_2)
 libscitime_la_OBJECTS = $(am_libscitime_la_OBJECTS)
 libscitime_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(libscitime_la_CFLAGS) \
@@ -137,8 +144,8 @@ CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
-SOURCES = $(libscitime_la_SOURCES)
-DIST_SOURCES = $(libscitime_la_SOURCES)
+SOURCES = $(libscitime_algo_la_SOURCES) $(libscitime_la_SOURCES)
+DIST_SOURCES = $(libscitime_algo_la_SOURCES) $(libscitime_la_SOURCES)
 DATA = $(libscitime_la_etc_DATA) $(libscitime_la_root_DATA) \
 	$(libscitime_la_sci_gateway_DATA)
 HEADERS = $(libscitime_la_include_HEADERS)
@@ -215,10 +222,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
 JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -302,7 +309,6 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
 SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
 SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
@@ -328,6 +334,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -417,13 +424,16 @@ libscitime_la_CFLAGS = -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 pkglib_LTLIBRARIES = libscitime.la
+noinst_LTLIBRARIES = libscitime-algo.la
 libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
-libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
+libscitime_algo_la_SOURCES = $(TIME_C_SOURCES)
+libscitime_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscitime_algo_la_CFLAGS = $(libscitime_la_CFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
-libscitime_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_LIBADD = libscitime-algo.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### Target ######
 modulename = time
@@ -542,6 +552,15 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
+
+clean-noinstLTLIBRARIES:
+	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
+	@list='$(noinst_LTLIBRARIES)'; for p in $$list; do \
+	  dir="`echo $$p | sed -e 's|/[^/]*$$||'`"; \
+	  test "$$dir" != "$$p" || dir=.; \
+	  echo "rm -f \"$${dir}/so_locations\""; \
+	  rm -f "$${dir}/so_locations"; \
+	done
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
 	test -z "$(pkglibdir)" || $(MKDIR_P) "$(DESTDIR)$(pkglibdir)"
@@ -573,6 +592,8 @@ clean-pkglibLTLIBRARIES:
 	  echo "rm -f \"$${dir}/so_locations\""; \
 	  rm -f "$${dir}/so_locations"; \
 	done
+libscitime-algo.la: $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_DEPENDENCIES) 
+	$(libscitime_algo_la_LINK)  $(libscitime_algo_la_OBJECTS) $(libscitime_algo_la_LIBADD) $(LIBS)
 libscitime.la: $(libscitime_la_OBJECTS) $(libscitime_la_DEPENDENCIES) 
 	$(libscitime_la_LINK) -rpath $(pkglibdir) $(libscitime_la_OBJECTS) $(libscitime_la_LIBADD) $(LIBS)
 
@@ -582,16 +603,16 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-getdate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-getdate.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-realtime.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_algo_la-timer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-gw_time.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-realtime.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_calendar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_getdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_realtime.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_sleep.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_timer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-sci_xpause.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitime_la-timer.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -614,26 +635,26 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
 
-libscitime_la-realtime.lo: src/c/realtime.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_la-realtime.Tpo -c -o libscitime_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_la-realtime.Tpo $(DEPDIR)/libscitime_la-realtime.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/realtime.c' object='libscitime_la-realtime.lo' libtool=yes @AMDEPBACKSLASH@
+libscitime_algo_la-realtime.lo: src/c/realtime.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-realtime.Tpo -c -o libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_algo_la-realtime.Tpo $(DEPDIR)/libscitime_algo_la-realtime.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/realtime.c' object='libscitime_algo_la-realtime.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -c -o libscitime_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-realtime.lo `test -f 'src/c/realtime.c' || echo '$(srcdir)/'`src/c/realtime.c
 
-libscitime_la-timer.lo: src/c/timer.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-timer.lo -MD -MP -MF $(DEPDIR)/libscitime_la-timer.Tpo -c -o libscitime_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_la-timer.Tpo $(DEPDIR)/libscitime_la-timer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/timer.c' object='libscitime_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
+libscitime_algo_la-timer.lo: src/c/timer.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-timer.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-timer.Tpo -c -o libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_algo_la-timer.Tpo $(DEPDIR)/libscitime_algo_la-timer.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/timer.c' object='libscitime_algo_la-timer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -c -o libscitime_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-timer.lo `test -f 'src/c/timer.c' || echo '$(srcdir)/'`src/c/timer.c
 
-libscitime_la-getdate.lo: src/c/getdate.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-getdate.lo -MD -MP -MF $(DEPDIR)/libscitime_la-getdate.Tpo -c -o libscitime_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_la-getdate.Tpo $(DEPDIR)/libscitime_la-getdate.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getdate.c' object='libscitime_la-getdate.lo' libtool=yes @AMDEPBACKSLASH@
+libscitime_algo_la-getdate.lo: src/c/getdate.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -MT libscitime_algo_la-getdate.lo -MD -MP -MF $(DEPDIR)/libscitime_algo_la-getdate.Tpo -c -o libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscitime_algo_la-getdate.Tpo $(DEPDIR)/libscitime_algo_la-getdate.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getdate.c' object='libscitime_algo_la-getdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -c -o libscitime_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_algo_la_CFLAGS) $(CFLAGS) -c -o libscitime_algo_la-getdate.lo `test -f 'src/c/getdate.c' || echo '$(srcdir)/'`src/c/getdate.c
 
 libscitime_la-sci_realtime.lo: sci_gateway/c/sci_realtime.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscitime_la_CFLAGS) $(CFLAGS) -MT libscitime_la-sci_realtime.lo -MD -MP -MF $(DEPDIR)/libscitime_la-sci_realtime.Tpo -c -o libscitime_la-sci_realtime.lo `test -f 'sci_gateway/c/sci_realtime.c' || echo '$(srcdir)/'`sci_gateway/c/sci_realtime.c
@@ -888,7 +909,7 @@ maintainer-clean-generic:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES mostlyclean-am
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
 	-rm -rf ./$(DEPDIR)
@@ -967,14 +988,14 @@ uninstall-am: uninstall-libscitime_la_etcDATA \
 
 .PHONY: CTAGS GTAGS all all-am all-local check check-am check-local \
 	clean clean-generic clean-libtool clean-local \
-	clean-pkglibLTLIBRARIES ctags distclean distclean-compile \
-	distclean-generic distclean-libtool distclean-local \
-	distclean-tags distdir dvi dvi-am html html-am info info-am \
-	install install-am install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am \
-	install-html-local install-info install-info-am \
-	install-libscitime_la_etcDATA \
+	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES ctags \
+	distclean distclean-compile distclean-generic \
+	distclean-libtool distclean-local distclean-tags distdir dvi \
+	dvi-am html html-am info info-am install install-am \
+	install-data install-data-am install-data-local install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-html-local install-info \
+	install-info-am install-libscitime_la_etcDATA \
 	install-libscitime_la_includeHEADERS \
 	install-libscitime_la_rootDATA \
 	install-libscitime_la_sci_gatewayDATA install-man install-pdf \

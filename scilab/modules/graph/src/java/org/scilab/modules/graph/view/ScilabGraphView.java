@@ -34,10 +34,6 @@ import com.mxgraph.view.mxGraphView;
  * Implement specific method to render a graph
  */
 public class ScilabGraphView extends mxGraphView {
-	/**
-	 * Empty area real size between bounding-box and paint area. 
-	 */
-	private static final double LABEL_BORDER = 8.0;
 
 	/**
 	 * Default constructor
