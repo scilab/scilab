@@ -191,6 +191,10 @@ public class GraphicController {
      * @param childId id of the child object.
      */
     public void setGraphicObjectRelationship(String parentId, String childId) {
+        /*
+         * All the parent and children get/set calls must be performed first,
+         * and only then the corresponding object updates.
+         */
         Object oldParent = getProperty(childId, GraphicObjectProperties.__GO_PARENT__);
 
         if (oldParent != null && oldParent instanceof String) {
@@ -202,16 +206,25 @@ public class GraphicController {
 
             if (!oldParentId.equals("")) {
                 getObjectFromId(oldParentId).removeChild(childId);
-                objectUpdate(oldParentId, GraphicObjectProperties.__GO_CHILDREN__);
             }
         }
 
-        /* Insertion occurs at the head of the children list */
+        /* Insertion occurs at the head of the children list. */
         if (parentId != null && !parentId.equals("")) {
             getObjectFromId(parentId).addChild(childId);
-            objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
         }
 
         setProperty(childId, GraphicObjectProperties.__GO_PARENT__, parentId);
+
+        /* Object updates can now be performed. */
+        if (oldParent != null && oldParent instanceof String && !((String)oldParent).equals("")) {
+            objectUpdate((String)oldParent, GraphicObjectProperties.__GO_CHILDREN__);
+        }
+
+        if (parentId != null && !parentId.equals("")) {
+            objectUpdate(parentId, GraphicObjectProperties.__GO_CHILDREN__);
+        }
+
+        objectUpdate(childId, GraphicObjectProperties.__GO_PARENT__);
     }
 }
