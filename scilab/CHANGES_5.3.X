@@ -216,6 +216,8 @@ Bug fixes:
 * bug 9232 fixed - Play the example in 'help about' in NW mode led to an
                    exception.
 
+* bug 9280 fixed - wavread failed to read PCM 32 bit float file format.
+
 * bug 9300 fixed - Scilab crashed when one tryed to complete an empty mlist.
 
 
