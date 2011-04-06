@@ -77,7 +77,9 @@ affich2(scicos_block * block, int flag)
         {
             for (j = 0; j < iColsIn; j++)
             {
-                int iPrec = GetIparPtrs(block)[5];
+                int iDigit = GetIparPtrs(block)[3];
+                int iPrec = GetIparPtrs(block)[4];
+                
                 double dblScale = pow((double) 10, iPrec);
                 double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
                 double dblValue = C2F(sciround)(&dblTemp) / dblScale;
@@ -85,10 +87,10 @@ affich2(scicos_block * block, int flag)
 
 #if _MSC_VER
                 //"%0.2f"
-                sprintf_s (pstFormat, 10, "%%0.%df", iPrec);
+                sprintf_s (pstFormat, 10, "%%%d.%df", iDigit, iPrec);
                 sprintf_s (pstConv, 128, pstFormat, dblValue);
 #else
-                sprintf(pstFormat, "%%0.%df", iPrec);
+                sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
                 sprintf(pstConv, pstFormat, dblValue);
 #endif
                 pstValue[i][j] = strdup(pstConv);
