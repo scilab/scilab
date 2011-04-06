@@ -32,6 +32,14 @@ import java.util.Set;
 public class DataManager {
 
     /**
+     * Set of properties that affect Grayplot data.
+     */
+    private static final Set<String> GRAYPLOT_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_DATA_MODEL__,
+            GraphicObjectProperties.__GO_DATA_MAPPING__
+    ));
+
+    /**
      * Set of properties that affect polyline data.
      */
     private static final Set<String> POLYLINE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
