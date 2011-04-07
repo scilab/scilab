@@ -673,6 +673,15 @@ assign			"="
 
 <MATRIX>
 {
+  {spaces}*{lparen} {
+      unput(yytext[yyleng -1]);
+      if (last_token == ID
+          || last_token == RPAREN)
+      {
+          return scan_throw(COMMA);
+      }
+  }
+
   {spaces}*{colon}{spaces}* {
       return scan_throw(COLON);
   }
