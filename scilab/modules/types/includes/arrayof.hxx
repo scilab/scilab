@@ -45,7 +45,7 @@ namespace types
         T*                      m_pImgData;
 
                                 ArrayOf() : GenericType(), m_bComplex(false), m_pRealData(NULL), m_pImgData(NULL) {}
-        virtual                 ~ArrayOf() 
+        virtual                 ~ArrayOf()
         {
             delete[] m_piDims;
         }
@@ -665,7 +665,7 @@ namespace types
             {//no Seq, no change but no error.
                 return this;
             }
-            
+
             bool* pbFull = new bool[iDims];
             //coord must represent all values on a dimension
             for(int i = 0 ; i < iDims ; i++)
@@ -675,7 +675,7 @@ namespace types
                 int iIndexSize  = pArg[i]->getAsGenericType()->getSize();
 
                 //we can have index more than once
-                if(iIndexSize >= iDimToCheck) 
+                if(iIndexSize >= iDimToCheck)
                 {
                     //size is good, now check datas
                     double* pIndexes = getDoubleArrayFromDouble(pArg[i]);
@@ -893,7 +893,7 @@ namespace types
                 {
                     if(piMaxDim[i] > 1)
                     {
-                        return false;
+                        return NULL;
                     }
                 }
             }
@@ -904,7 +904,7 @@ namespace types
                 {
                     if(piMaxDim[i] > m_piDims[i])
                     {//exrtact must be in dimension limits
-                        return false;
+                        return NULL;
                     }
                 }
             }
@@ -981,6 +981,18 @@ namespace types
                     //InternalType* pVar = pArg[i];
                     //piCoord[j] = static_cast<int>(pVar->getAs<Double>()->get(piIndex[j]) - 1);
                     //std::cout << piCoord[j] << " ";
+
+                    // try to access somewhere wrong.
+                    if (piCoord[j] < 0)
+                    {
+                        delete[] piIndex;
+                        delete[] piCoord;
+                        delete[] piViewDims;
+                        delete[] piMaxDim;
+                        delete[] piCountDim;
+
+                        return NULL;
+                    }
                 }
 
                 //std::cout << "]" << std::endl;
