@@ -612,13 +612,19 @@ assign			"="
   if (last_token == ID
       || last_token == RBRACK
       || last_token == RPAREN
-      || last_token == RBRACE)
-    {
+      || last_token == RBRACE
+      || last_token == VARINT
+      || last_token == VARFLOAT
+      || last_token == NUM
+      || last_token == BOOLTRUE
+      || last_token == BOOLFALSE)
+  {
       return scan_throw(QUOTE);
-    }
-  else {
-    pstBuffer = new std::string();
-    yy_push_state(SIMPLESTRING);
+  }
+  else
+  {
+      pstBuffer = new std::string();
+      yy_push_state(SIMPLESTRING);
   }
 }
 
