@@ -215,7 +215,7 @@ cen = optimsimplex_xbar ( this , iexcl )</synopsis>
 
     <variablelist>
       <varlistentry>
-        <term>newobj = optimsimplex_new ( )</term>
+        <term xml:id="optimsimplex_new">newobj = optimsimplex_new ( )</term>
         <listitem>
           <para>
 	  Creates a new simplex object. All input arguments are
@@ -752,7 +752,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>this = optimsimplex_destroy (this)</term>
+        <term xml:id="optimsimplex_destroy">this = optimsimplex_destroy (this)</term>
 
         <listitem>
           <para>Destroy the given object.</para>
@@ -1105,7 +1105,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>x = optimsimplex_getallx ( this )</term>
+        <term xml:id="optimsimplex_getallx">x = optimsimplex_getallx ( this )</term>
 
         <listitem>
           <para>Returns all the coordinates of all the vertices.</para>
@@ -1160,7 +1160,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>n = optimsimplex_getn ( this )</term>
+        <term xml:id="optimsimplex_getn">n = optimsimplex_getn ( this )</term>
 
         <listitem>
           <para>Returns the dimension of the space of the simplex</para>
@@ -1178,7 +1178,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>nbve = optimsimplex_getnbve ( this )</term>
+        <term xml:id="optimsimplex_getnbve">nbve = optimsimplex_getnbve ( this )</term>
 
         <listitem>
           <para>Returns the number of vertices in the simplex.</para>
@@ -1462,7 +1462,7 @@ function [ y , data ] = myfunction ( x , data )
       </varlistentry>
 
       <varlistentry>
-        <term>g = optimsimplex_gradientfv ( this , fun , method )</term>
+        <term xml:id="optimsimplex_gradientfv">g = optimsimplex_gradientfv ( this , fun , method )</term>
 
         <listitem>
           <para>Returns the simplex gradient of the function.</para>
