@@ -157,9 +157,39 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
     }
 
     @Override
-    public void visit(Grayplot grayplot) {
-        // TODO
-        System.out.println("How can I draw a grayplot ?");
+    public void visit(final Grayplot grayplot) {
+        if (grayplot.getVisible()) {
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(grayplot.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return dataManager.getColorBuffer(grayplot.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(grayplot.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Appearance trianglesAppearance = new Appearance();
+            drawingTools.draw(triangles, trianglesAppearance);
+        }
     }
 
     @Override
