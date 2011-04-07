@@ -17,6 +17,7 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.DataLoader;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 
 import java.nio.FloatBuffer;
 import java.nio.IntBuffer;
@@ -150,8 +151,13 @@ public class DataManager {
      * @param property the changed property.
      */
     public void update(String id, String property) {
-        if (POLYLINE_DATA_PROPERTIES.contains(property) && vertexBufferMap.containsKey(id)) {
-            fillBuffers(id);
+        String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (vertexBufferMap.containsKey(id)) {
+            if ((type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property)) ||
+                (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))) {
+                fillBuffers(id);
+            }
         }
     }
 
