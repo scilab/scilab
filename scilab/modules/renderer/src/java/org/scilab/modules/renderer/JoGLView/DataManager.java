@@ -151,25 +151,7 @@ public class DataManager {
      */
     public void update(String id, String property) {
         if (POLYLINE_DATA_PROPERTIES.contains(property) && vertexBufferMap.containsKey(id)) {
-            ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
-            if (vertexBuffer != null) {
-                fillVertexBuffer(vertexBuffer, id);
-            }
-
-            ElementsBuffer colorBuffer = colorBufferMap.get(id);
-            if (colorBuffer != null) {
-                fillColorBuffer(colorBuffer, id);
-            }
-
-            IndicesBuffer indexBuffer = indexBufferMap.get(id);
-            if (indexBuffer != null) {
-                fillIndexBuffer(indexBuffer, id);
-            }
-
-            IndicesBuffer wireIndexBuffer = wireIndexBufferMap.get(id);
-            if (wireIndexBuffer != null) {
-                fillWireIndexBuffer(wireIndexBuffer, id);
-            }
+            fillBuffers(id);
         }
     }
 
@@ -199,6 +181,32 @@ public class DataManager {
         }
     }
 
+    /**
+     * Fill the vertex, color, index and wire index buffers
+     * of a given object.
+     * @param id the object id.
+     */
+    private void fillBuffers(String id) {
+        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
+        if (vertexBuffer != null) {
+            fillVertexBuffer(vertexBuffer, id);
+        }
+
+        ElementsBuffer colorBuffer = colorBufferMap.get(id);
+        if (colorBuffer != null) {
+            fillColorBuffer(colorBuffer, id);
+        }
+
+        IndicesBuffer indexBuffer = indexBufferMap.get(id);
+        if (indexBuffer != null) {
+            fillIndexBuffer(indexBuffer, id);
+        }
+
+        IndicesBuffer wireIndexBuffer = wireIndexBufferMap.get(id);
+        if (wireIndexBuffer != null) {
+            fillWireIndexBuffer(wireIndexBuffer, id);
+        }
+    }
 
     private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) {
             int length = DataLoader.getDataSize(id);
