@@ -171,6 +171,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\scilab.properties.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\modules\core\includes\stack.h.vc"
 				>
 			</File>
