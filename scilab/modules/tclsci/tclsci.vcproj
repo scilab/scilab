@@ -209,6 +209,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
+				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
@@ -298,6 +299,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				Optimization="2"
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
