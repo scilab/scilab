@@ -51,6 +51,12 @@ public class DataManager {
             GraphicObjectProperties.__GO_FILL_MODE__
     ));
 
+    /**
+     * Set of properties that affect Plot3d data.
+     */
+    private static final Set<String> PLOT3D_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_DATA_MODEL__
+    ));
 
     private static final double[] DEFAULT_SCALE     = new double[] {1, 1, 1};
     private static final double[] DEFAULT_TRANSLATE = new double[] {0, 0, 0};
