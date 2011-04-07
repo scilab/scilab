@@ -5,6 +5,10 @@
 Xcos
 ====
 
+* Documentation updated with examples of the blocks and their translations
+  into French:
+  - WFILE_f - Write to output file.
+
 * Bug #8510 fixed - The message "Diagram contains implicit blocks..." stopped
                     all process.
 
