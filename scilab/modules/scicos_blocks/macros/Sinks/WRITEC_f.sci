@@ -75,8 +75,8 @@ case 'set' then
         if ~isdir(pa) then
           block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Output File Name")), ..
             msprintf(gettext("Directory ''%s'' does not exist"), pa ));
+          ok=%f
         end
-      ok=%f
     elseif N < 1 then
       block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
         gettext("Strictly positive integer expected."));
