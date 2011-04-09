@@ -14,6 +14,8 @@ Scilab:
 Scinotes:
 =========
 
+* Add the possibility to replace single quoted by double quoted strings.
+
 * Add the possibility to save and execute the code with F5 key.
 
 * Add the possibility to remove the comments when executing the code in the

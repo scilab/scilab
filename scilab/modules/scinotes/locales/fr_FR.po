@@ -133,7 +133,7 @@ msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "Ne peut pas charger \"scinotesConfiguration.xml\""
 
 msgid "Capitalize Selection;Capitalize character"
-msgstr "Capitaliser sélection; caractère majuscule"
+msgstr "Capitaliser sélection;Caractère majuscule"
 
 msgid "Case sensitive"
 msgstr "Tenir compte de la casse"
