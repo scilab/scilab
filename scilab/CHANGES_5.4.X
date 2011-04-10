@@ -111,6 +111,9 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 9129 fixed - Completion on field did not propose graphics handle fields
+                   by default.
+
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
@@ -122,9 +125,5 @@ Bug fixes:
 
 * bug 9479 fixed - Typo fixed (intput => input).
 
-<<<<<<< HEAD
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
-
-=======
->>>>>>> 440d98e... TEST only: add an autorefresh to BrowseVar (RETRY)
