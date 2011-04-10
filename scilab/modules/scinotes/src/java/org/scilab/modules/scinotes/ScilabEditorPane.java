@@ -37,6 +37,7 @@ import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 import javax.swing.event.CaretEvent;
 import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
@@ -62,9 +63,9 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
-                                                             CaretListener, MouseListener,
-                                                             MouseMotionListener, Cloneable,
-                                                             KeyListener {
+                                                  CaretListener, MouseListener,
+                                                  MouseMotionListener, Cloneable,
+                                                  KeyListener {
 
     private static final long serialVersionUID = 4322071415211939097L;
 
@@ -1263,12 +1264,18 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void setCaret(Caret c) {
         if (!(c instanceof ScilabCaret)) {
-            final Caret cc = c;
             final Caret caret = new SciNotesCaret(this);
             setCaretColor(getCaretColor());
             SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        caret.setBlinkRate(cc.getBlinkRate());
+                        int blinkRate = 500;
+                        Object o = UIManager.get("TextComponent.caretBlinkRate");
+                        if ((o != null) && (o instanceof Integer)) {
+                            Integer rate = (Integer) o;
+                            blinkRate = rate.intValue();
+                        }
+                        caret.setBlinkRate(blinkRate);
+                        caret.setVisible(true);
                     }
                 });
             super.setCaret(caret);
