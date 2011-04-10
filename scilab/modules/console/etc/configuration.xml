@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<Setting>
+<Setting version="0.01">
         <!-- Scilab configuration -->
         <Profile name="scilab">
                 <!-- Welcome line -->

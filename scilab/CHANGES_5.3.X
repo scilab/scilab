@@ -213,6 +213,9 @@ Bug fixes:
 
 * bug 9211 fixed - set("userdata", list()) crashed Scilab.
 
+* bug 9232 fixed - Play the example in 'help about' in NW mode led to an
+                   exception.
+
 * bug 9246 fixed - It was not possible to insert an integer in an integer array
                    with a different integer type
 
@@ -222,8 +225,7 @@ Bug fixes:
 * bug 9264 fixed - Big loss of performance on some string management functions
                    in api_scilab (example: on mputl).
 
-* bug 9232 fixed - Play the example in 'help about' in NW mode led to an
-                   exception.
+* bug 9279 fixed - Add a version number in configuration.xml.
 
 * bug 9280 fixed - wavread failed to read PCM 32 bit float file format.
 
