@@ -273,6 +273,9 @@ Bug fixes:
 * bug 8423 fixed - With certain options of the configure, the build process
                    failed.
 
+* Bug 8595 fixed - The Options Dialogbox when exporting did not appear to front
+                   with several screens.
+
 * bug 8675 fixed - The complex function was undocumented.
 
 * bug 8959 fixed - winqueryreg returned an incorrect value if the value name was
