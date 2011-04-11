@@ -7,6 +7,9 @@ Scilab:
 * The Mac OS X version is checked to avoid errors on unsupported versions
   of Mac OS X. As a remider, Scilab is supported under Mac OS X 10.6.
 
+* Under GNU/Linux, in case of an internal (C, C++ or fortran) programming error
+  of Scilab or an extension, the full error stack is displayed and Scilab no
+  longer crashes.
 
 Scinotes:
 =========

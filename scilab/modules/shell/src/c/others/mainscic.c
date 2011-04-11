@@ -26,6 +26,7 @@
 #include "setgetlanguage.h"
 #include "LaunchScilabSignal.h"
 #include "setenvc.h"
+#include "signal_mgmt.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -67,6 +68,9 @@ int main(int argc, char **argv)
 #endif
 
   InitializeLaunchScilabSignal();
+
+/* Management of the signals (seg fault, floating point exception, etc) */
+  base_error_init();
 
 #if defined(netbsd) || defined(freebsd)
 /* floating point exceptions */

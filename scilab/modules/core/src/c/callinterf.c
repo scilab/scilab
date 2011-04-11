@@ -27,7 +27,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-static jmp_buf jmp_env;
+jmp_buf jmp_env;
 /*--------------------------------------------------------------------------*/
 static void sci_sigint_addinter(int n);
 /*--------------------------------------------------------------------------*/
@@ -135,7 +135,7 @@ int C2F(callinterf) (int *k)
             {
                 C2F(csignal)();
             }
-            Scierror(999,_("SIGSTP: aborting current computation\n"));
+            Scierror(999,_("Aborting current computation\n"));
             count = 0;
             return 0;
         }

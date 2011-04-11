@@ -1130,6 +1130,9 @@ AC_CHECK_FUNCS([mkdir])
 # Provided by mman.h
 AC_CHECK_FUNCS([munmap])
 
+# Provided by signal.h
+AC_CHECK_FUNCS([strsignal])
+
 
 # Check of the libm (lib math). Macro provided by libtool.
 save_LDFLAGS="$LDFLAGS"
@@ -1646,6 +1649,7 @@ AM_CONDITIONAL(ENABLE_STATIC, test "$libtool_build_static_libs" = xxxx)
 AC_C_CONST()
 AC_C_INLINE()
 
+AC_BACKTRACE()
 
 ##########
 ##### Code quality
