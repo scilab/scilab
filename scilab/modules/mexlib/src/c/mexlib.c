@@ -911,7 +911,7 @@ void *mxGetImagData(const mxArray *ptr)
 void mexErrMsgTxt(const char *error_msg)
 {
   cerro((char *)error_msg);
-  errjump(0);
+  errjump();
 }
 
 void mxAssert(int expr, char *error_message)
@@ -2149,7 +2149,7 @@ int mexEvalString(const char *name)
   mxFreeMatrix(ppr[0]);
   if ( rep == 1 || (int) (*val) != 0 )
     {
-      errjump(0);
+      errjump();
     }
   return rep;
 }
@@ -2689,7 +2689,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
 void C2F(mexerrmsgtxt)(char *error_msg, int len)
 {
   C2F(erro)(error_msg,len);
-  errjump(0);
+  errjump();
 }
 
 mxArray *C2F(mxcreatefull)(int *m, int *n, int *it)

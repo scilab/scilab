@@ -23,7 +23,7 @@ void controlC_handler (int sig)
 
 int C2F(csignal)(void)
 {
-	if (signal (SIGINT, controlC_handler) == SIG_ERR) {
+	if (signal(SIGINT, controlC_handler) == SIG_ERR) {
 		fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
 	}
 	return(0);
