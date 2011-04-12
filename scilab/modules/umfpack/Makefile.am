@@ -11,7 +11,10 @@
 modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
+
+if UMFPACK
 noinst_LTLIBRARIES = libsciumfpack-algo.la
+endif
 
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 

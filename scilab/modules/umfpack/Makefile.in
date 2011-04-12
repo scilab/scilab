@@ -128,6 +128,7 @@ libsciumfpack_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@UMFPACK_TRUE@am_libsciumfpack_algo_la_rpath =
 @UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES =  \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
@@ -443,7 +444,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
-noinst_LTLIBRARIES = libsciumfpack-algo.la
+@UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
 	$(am__append_1)
 
@@ -646,7 +647,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciumfpack-algo.la: $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_DEPENDENCIES) 
-	$(libsciumfpack_algo_la_LINK)  $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
+	$(libsciumfpack_algo_la_LINK) $(am_libsciumfpack_algo_la_rpath) $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
 libsciumfpack.la: $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_DEPENDENCIES) 
 	$(libsciumfpack_la_LINK) -rpath $(pkglibdir) $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_LIBADD) $(LIBS)
 
