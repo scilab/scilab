@@ -9,6 +9,11 @@ if isdef("xcos_toolbox_skeletonlib") then
 	return;
 end
 
+if or(v < [5 3 2 0]) then
+    // new API in scilab 5.3.2
+    error(gettext('Scilab 5.3.2 or more is required.'));
+end
+
 etc_tlbx  = get_absolute_file_path("xcos_toolbox_skeleton.start");
 etc_tlbx  = getshortpathname(etc_tlbx);
 root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );

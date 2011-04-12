@@ -16,12 +16,12 @@ toolbox_dir   = get_absolute_file_path("builder.sce");
 try
     v = getversion("scilab");
 catch
-    error(gettext("Scilab 5.3 or more is required."));
+    error(gettext("Scilab 5.3.2 or more is required."));
 end
 
-if v(2) < 3 then
-    // new API in scilab 5.3
-    error(gettext('Scilab 5.3 or more is required.'));
+if or(v < [5 3 2 0]) then
+    // new API in scilab 5.3.2
+    error(gettext('Scilab 5.3.2 or more is required.'));
 end
 clear v;
 

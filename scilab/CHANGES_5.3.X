@@ -42,6 +42,9 @@ Xcos:
 
 * Some blocks parameters dialog now support the translation system.
 
+* A skeleton of an Xcos module has been introduced and should help the user
+  to design its own palette.
+
 * Update the documentation with examples of the blocks and their translations to
   French:
   - OUT_f - Regular Output Port
