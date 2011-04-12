@@ -106,7 +106,6 @@ Javasci:
                    version 2.
 
 
-<<<<<<< HEAD
 Dynamic link:
 =============
 
