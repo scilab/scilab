@@ -2399,7 +2399,7 @@ public class CallScilabBridge {
      */
     public static boolean printString(String theString, String pageHeader) {
         /* TODO use pageHeader */
-        return PrinterHelper.printString(theString);
+        return PrinterHelper.printString(theString, pageHeader);
     }
 
     /**

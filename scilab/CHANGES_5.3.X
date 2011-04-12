@@ -192,6 +192,9 @@ Bug fixes:
 * bug 5687 fixed - The window title of a figure was not immediately updated when
                    figure_name was changed.
 
+* bug 6789 fixed - toprint(["line 1" "line 2"],"Page header"), the page header
+                   was not printed.
+
 * bug 6945 fixed - Conflicting options were confusing Scilab argument processing
                    (example: scilab-cli with the -nw option)
 
