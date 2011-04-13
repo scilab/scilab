@@ -22,6 +22,8 @@ import javax.swing.text.JTextComponent;
 
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 
+import org.scilab.modules.completion.AbstractSciCompletionWindow;
+
 /**
  * Scilab completion window main class
  * @author Vincent COUVERT

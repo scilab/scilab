@@ -1,0 +1,43 @@
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
+
+// This macro compiles the files
+
+function perform()
+    src_c_path = get_absolute_file_path("builder_c.sce");
+
+    CFLAGS = "-I" + src_c_path;
+    LDFLAGS = "";
+    if (getos()<>"Windows") then
+        if ~isdir(SCI+"/../../share") then
+            // Source version
+            CFLAGS = CFLAGS + " -I" + SCI + "/modules/scicos_blocks/includes" ;
+            CFLAGS = CFLAGS + " -I" + SCI + "/modules/scicos/includes" ;
+        else
+            // Release version
+            CFLAGS = CFLAGS + " -I" + SCI + "/../../include/scilab/scicos_blocks";
+            CFLAGS = CFLAGS + " -I" + SCI + "/../../include/scilab/scicos";
+        end
+    else
+        CFLAGS = CFLAGS + " -I" + SCI + "/modules/scicos_blocks/includes";
+        CFLAGS = CFLAGS + " -I" + SCI + "/modules/scicos/includes";
+
+        // Getting symbols
+        if findmsvccompiler() <> "unknown" & haveacompiler() then
+            LDFLAGS = LDFLAGS + " """ + SCI + "/bin/scicos.lib""";
+            LDFLAGS = LDFLAGS + " """ + SCI + "/bin/scicos_f.lib""";
+        end
+    end
+
+    tbx_build_src(["block_sum", "business_sum"],        ..
+                  ["block_sum.c", "business_sum.c"],    ..
+                  "c",                                  ..
+                  src_c_path,                           ..
+                  "",                                   ..
+                  LDFLAGS,                              ..
+                  CFLAGS,                               ..
+                  "",                                   ..
+                  "",                                   ..
+                  "xcos_tbx_skel");
+endfunction
+perform();
+clear perform;

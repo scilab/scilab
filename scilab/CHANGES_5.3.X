@@ -1,9 +1,17 @@
             Changes between version 5.3.1 and 5.3.2 of Scilab
             =================================================
 
+Scilab:
+=======
+
+* The Mac OS X version is checked to avoid errors on unsupported versions
+  of Mac OS X. As a remider, Scilab is supported under Mac OS X 10.6.
+
 
 Scinotes:
 =========
+
+* Add the possibility to save and execute the code with F5 key.
 
 * Add the possibility to remove the comments when executing the code in the
   console.
@@ -26,9 +34,16 @@ Scinotes:
 
 * bug 9189 fixed - Certains keywords were not helpable.
 
+* bug 9257 fixed - SciNotes could not be started from NW / adv-cli mode.
+
 
 Xcos:
 =====
+
+* Some blocks parameters dialog now support the translation system.
+
+* A skeleton of an Xcos module has been introduced and should help the user
+  to design its own palette.
 
 * Update the documentation with examples of the blocks and their translations to
   French:
@@ -45,6 +60,7 @@ Xcos:
   - TEXT_f - Free annotation
   - Counter
   - RAMP
+  - DELAY_f
 
 * bug 5605 fixed - REGISTER block was not present into the discrete palette.
 
@@ -66,6 +82,16 @@ Xcos:
 * bug 9122 fixed - Java check failed on diagram validation.
 
 * bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
+
+Packaging:
+==========
+
+* In the source tree, Scilab's icons moved from icons/ to desktop/
+
+* In the source tree, scilab-adv-cli.desktop, scilab-cli.desktop,
+  scilab.desktop can be found desktop/. This follows the FreeDesktop Standards:
+  "Desktop Entry Specification".
+
 
 Javasci:
 ========
@@ -101,6 +127,12 @@ Localization:
 * bug 8994 fixed - Some localization templates were not included and
                    translated.
 
+Documentation:
+==============
+
+* Bug 7072 fixed - Fix various issues in the documentation. 
+                   Thanks to Yves Barois.
+
 Compilation:
 ============
 
@@ -111,6 +143,8 @@ Compilation:
 * Update the detection of Jgoodies / looks under GNU/Linux and Mac OS X.
 
 * g77 is no longer supported. gfortran is replacing it.
+
+* Explicit check Java version (at least 1.6)
 
 * Bug 7049 fixed - jgraphx version was checked even if the --without-xcos
                    flag is set.
@@ -167,6 +201,8 @@ Bug fixes:
 * bug 9147 fixed - Javasci v1 was broken since the introduction of the
                    version 2.
 
+* bug 9159 fixed - grand(1,3,'uin',1,0) crashed scilab.
+
 * bug 9168 fixed - Bad command line width when completion window was shew at
                    the console bottom.
 
@@ -179,6 +215,9 @@ Bug fixes:
 
 * bug 9211 fixed - set("userdata", list()) crashed Scilab.
 
+* bug 9232 fixed - Play the example in 'help about' in NW mode led to an
+                   exception.
+
 * bug 9246 fixed - It was not possible to insert an integer in an integer array
                    with a different integer type
 
@@ -187,6 +226,12 @@ Bug fixes:
 
 * bug 9264 fixed - Big loss of performance on some string management functions
                    in api_scilab (example: on mputl).
+
+* bug 9279 fixed - Add a version number in configuration.xml.
+
+* bug 9280 fixed - wavread failed to read PCM 32 bit float file format.
+
+* bug 9300 fixed - Scilab crashed when one tryed to complete an empty mlist.
 
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
@@ -301,6 +346,8 @@ Documentation:
 * bug 8937 fixed - The tag <screenshot> was not handled.
 
 * bug 9019 fixed - dsearch help page was unaccurate.
+
+* Improved the help page of ode.
 
 
 Xcos:

@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -36,12 +37,13 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
 while %t do
-    [ok,C,exprs]=scicos_getvalue('Set Contant Block',..
-	    ['Constant'],list('vec',-1),exprs)
+    [ok, C, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CONST_m");" "; ..
+        gettext("Constant value generator");" "], gettext("Constant Value"), list("vec", -1), exprs)
+
     if ~ok then break,end
     nout=size(C)
     if find(nout==0)<>[] then
-      message('C must have at least one element')
+        block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter"), gettext("Constant Value")), gettext("Constant value must have at least one element."));
     else
 	model.sim=list('cstblk4_m',4)
 	model.opar=list(C)
@@ -63,7 +65,10 @@ while %t do
 	ot=7
 	elseif (typeof(C)=="uint8") then
 	ot=8
-	else message("type not recognized");ok=%f;
+	else
+      block_parameter_error(msprintf(gettext("Wrong type for ''%s'' parameter"), gettext("Constant Value")), ..
+          gettext("Value type must be a numeric type (double, complex, int, int8, ...)."));
+ok=%f;
 	end
 
 	if ok then

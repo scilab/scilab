@@ -120,6 +120,8 @@
       <menuitem action="ExecuteFileIntoScilabAction" label="... file with no echo"/>
       <menuitem action="LoadIntoScilabAction" label="... file with echo"/>
       <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
+      <separator/>
+      <menuitem action="SaveAndExecuteFileAction" label="Save and execute"/>
     </menu>
 
     <menu label="?">
@@ -174,6 +176,7 @@
     <button action="IncrementalSearchAction" tooltip="Incremental Search" icon="16x16/actions/go-bottom.png"/>
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
+    <button action="SaveAndExecuteFileAction" tooltip="Execute" icon="16x16/actions/save-and-execute.png"/>
   </ToolBar>
 
 </Configuration>

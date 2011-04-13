@@ -93,8 +93,9 @@ import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
+import org.scilab.modules.scinotes.utils.SciNotesContents;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * Main SciNotes class.
@@ -132,6 +133,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private UUID uuid;
 
     private ScilabTabbedPane tabPane;
+    private SciNotesContents contentPane;
+
     private int numberOfUntitled;
     private EditorKit editorKit;
 
@@ -163,13 +166,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
         Size size = ConfigSciNotesManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
         protectOpenFileList = false;
-        tabPane = new ScilabTabbedPane(this);
+        contentPane = new SciNotesContents(this);
+        tabPane = contentPane.getScilabTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
                     if (getTextPane() != null) {
                         updateUI();
                         getTextPane().updateInfosWhenFocused();
                         getTextPane().requestFocus();
+                        getTextPane().highlightWords(IncrementalSearchAction.getWord(SciNotes.this), IncrementalSearchAction.getExact(SciNotes.this));
 
                         // Update encoding menu
                         EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
@@ -180,7 +185,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     }
                 }
             });
-        this.setContentPane(tabPane);
+        this.setContentPane(contentPane);
     }
 
     /**
@@ -192,6 +197,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (window != null) {
             window.setTitle(title);
         }
+    }
+
+    public void insertBottomComponent(Component c) {
+        contentPane.insertBottomComponent(c);
     }
 
     /**
@@ -791,7 +800,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         String initialDirectoryPath = path;
         if (initialDirectoryPath == null) {
-           initialDirectoryPath = getTextPane().getName();
+            initialDirectoryPath = getTextPane().getName();
         }
         if (initialDirectoryPath == null) {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
@@ -965,7 +974,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
         tabPane.insertTab(title, null, sep.getEditorComponent(), "", ind);
         tabPane.setSelectedIndex(ind);
-        setContentPane(tabPane);
+        setContentPane(contentPane);
         initInputMap(sep);
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
@@ -1057,7 +1066,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
 
-        setContentPane(tabPane);
+        setContentPane(contentPane);
         activateHelpOnTyping(leftPane);
         activateHelpOnTyping(rightPane);
         initInputMap(leftPane);
@@ -1090,7 +1099,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             pane.setCaretPosition(0);
             activateHelpOnTyping(pane);
             tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getEditorComponent());
-            setContentPane(tabPane);
+            setContentPane(contentPane);
             initInputMap(pane);
             if (doc.getBinary()) {
                 pane.setBinary(true);
