@@ -41,6 +41,8 @@ Scinotes:
 
 * bug 9257 fixed - SciNotes could not be started from NW / adv-cli mode.
 
+* bug 9348 fixed - Miscolorization of a transposed field.
+
 
 Xcos:
 =====
