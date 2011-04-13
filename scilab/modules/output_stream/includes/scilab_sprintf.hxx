@@ -31,7 +31,7 @@ typedef struct
     types::InternalType::RealType type;
 }ArgumentPosition;
 
-wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows);
+OUTPUT_STREAM_IMPEXP wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows);
 
 
 #endif /* !__SCILAB_SPRINTF_HXX__ */

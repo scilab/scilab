@@ -8,11 +8,14 @@
 
 // <-- JVM NOT MANDATORY -->
 
-deff('[n,a,b,c,d,e]=Fscanf(str,f)',['fd=mopen(TMPDIR+''/fscanf.rep'',''w'');';
-	'mputstr(str,fd);mclose(fd);';
-	'fd=mopen(TMPDIR+''/fscanf.rep'',''r'');';
-	'[n,a,b,c,d,e]=mfscanf(fd,f);mclose(fd);']);
-
+function [n,a,b,c,d,e]=Fscanf(str ,f)
+     fd = mopen(TMPDIR + '/fscanf.rep', 'w');
+     mputstr(str, fd);
+     mclose(fd);
+     fd = mopen(TMPDIR + '/fscanf.rep', 'r');
+     [n,a,b,c,d,e] = mfscanf(fd, f);
+     mclose(fd);
+endfunction
 
 //--------------test format %i
 [n,a]=Fscanf('123','%i');

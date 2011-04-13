@@ -15,11 +15,11 @@
 #define __SCAN_FUNCTIONS_H__
 
 #include "do_xxscanf.h"
-
+#include "dynlib_fileio.h"
 /**
 * @TODO add comments
 */
-void Free_Scan (int rowcount,
+FILEIO_IMPEXP void Free_Scan (int rowcount,
 				int ncol,
 				sfdir *type_s,
 				entry **data);
@@ -27,16 +27,7 @@ void Free_Scan (int rowcount,
 /**
 * @TODO add comments
 */
-int Sci_Store (int nrow,
-			   int ncol,
-			   entry* data,
-			   sfdir *type,
-			   int retval);
-
-/**
-* @TODO add comments
-*/
-int Store_Scan (int *nrow,
+FILEIO_IMPEXP int Store_Scan (int *nrow,
 				int *ncol,
 				sfdir *type_s,
 				sfdir *type,

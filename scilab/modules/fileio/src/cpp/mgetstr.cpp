@@ -31,7 +31,6 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
     {
         if(static_cast<int>(pF->getFileModeAsDouble()) % 2 == 1)
         {
-            printf("Binary mode\n");
             pwstOut = (wchar_t*)MALLOC(iSizeToRead * sizeof(wchar_t));
             memset(pwstOut, 0x00, iSizeToRead * sizeof(wchar_t));
             wchar_t* pwstRes = fgetws(pwstOut, iSizeToRead, pF->getFiledesc());
@@ -43,7 +42,6 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
         }
         else
         {
-            printf("Text mode\n");
             char* buffer = (char*)MALLOC(iSizeToRead * sizeof(char));
             memset(buffer, 0x00, iSizeToRead * sizeof(char));
 

@@ -26,6 +26,8 @@ extern "C"
 #include "os_wcsdup.h"
 }
 
+#include <stdio.h>
+
 wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows)
 {
     wchar_t** pwstOutput        = NULL;
@@ -215,23 +217,50 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 else if(_pArgs[i - 1].type == InternalType::RealString)
                 {
                     wchar_t* pwstStr = in[_pArgs[i - 1].iArg]->getAs<types::String>()->get(j, _pArgs[i - 1].iPos);
-
-#ifdef _MSC_VER
-                    swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);
-#else
-                    if(pToken[i].bLengthFlag == false)
+                    int posC = wcscspn(pToken[i].pwstToken,L"c");
+                    int posS = wcscspn(pToken[i].pwstToken,L"s");
+                    if(!posS || !posC)
                     {
-                        //replace %s by %ls to wide char compatibility
-                        wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (wcslen(pToken[i].pwstToken) + 2));
-                        swprintf(pwstToken, wcslen(pToken[i].pwstToken) + 2, pToken[i].pwstToken, "%ls");
-                        swprintf(pwstTemp, bsiz, pwstToken, pwstStr);
-                        FREE(pwstToken);
+                        return NULL;
                     }
-                    else
+                    if(posC < posS)
                     {
-                        swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);
+                        if(pToken[i].bLengthFlag == false)
+                        {
+                            //replace %c by %lc to wide char compatibility
+                            int sizeTotal = wcslen(pToken[i].pwstToken);
+                            wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
+                            wcsncpy(pwstToken, pToken[i].pwstToken, posC);
+                            pwstToken[posC] = L'l';
+                            wcsncpy(&pwstToken[posC + 1], &pToken[i].pwstToken[posC], sizeTotal - posC);
+                            pwstToken[sizeTotal + 1]  = L'\0';
+                            swprintf(pwstTemp, bsiz, pwstToken, pwstStr[0]);
+                            FREE(pwstToken);
+                        }
+                        else
+                        {
+                            swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr[0]);
+                        }
                     }
-#endif
+                    else //'s'
+                    {
+                        if(pToken[i].bLengthFlag == false)
+                        {
+                            //replace %s by %ls to wide char compatibility
+                            int sizeTotal = wcslen(pToken[i].pwstToken);
+                            wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
+                            wcsncpy(pwstToken, pToken[i].pwstToken, posS);
+                            pwstToken[posS] = L'l';
+                            wcsncpy(&pwstToken[posS + 1], &pToken[i].pwstToken[posS], sizeTotal - posS);
+                            pwstToken[sizeTotal + 1]  = L'\0';
+                            swprintf(pwstTemp, bsiz, pwstToken, pwstStr);
+                            FREE(pwstToken);
+                        }
+                        else
+                        {
+                            swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);
+                        }
+                    }
                 }
                 else
                 {//impossible but maybe in the futur

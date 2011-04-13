@@ -26,24 +26,24 @@
 #include "do_xxprintf.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
-typedef int (*XXSCANF)(FILE *, char *,...);
+typedef int (*XXSCANF)(FILE *, wchar_t *,...);
 typedef int (*FLUSH)(FILE *);
 /*--------------------------------------------------------------------------*/
-static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,char **target,char **strv)
+static void set_xxscanf(FILE *fp,XXSCANF *xxscanf,wchar_t **target,wchar_t **strv)
 {
 	if (fp == (FILE *) 0)
 	{
 		*target = *strv;
-		*xxscanf = (XXSCANF) sscanf;
+		*xxscanf = (XXSCANF) swscanf;
 	}
 	else
 	{
-		*target = (char *) fp;
-		*xxscanf = (XXSCANF) fscanf;
+		*target = (wchar_t *) fp;
+		*xxscanf = (XXSCANF) fwscanf;
 	}
 }
 /*--------------------------------------------------------------------------*/
-int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type)
+int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
 {
 	int nc[MAXSCAN];
 	int n_directive_count=0;
@@ -56,14 +56,14 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 	int str_width_flag=0;
 	int num_conversion = -1;
 	void *ptrtab[MAXSCAN];
-	char sformat[MAX_STR];
-	char backupcurrrentchar;
-	char directive;
-	char *p=NULL;
-	char *p1=NULL;
-	char *target=NULL;
-	char *sval=NULL;
-	register char *currentchar=NULL;
+	wchar_t sformat[MAX_STR];
+	wchar_t backupcurrrentchar;
+	wchar_t directive;
+	wchar_t *p=NULL;
+	wchar_t *p1=NULL;
+	wchar_t *target=NULL;
+	wchar_t *sval=NULL;
+	register wchar_t *currentchar=NULL;
 
 	XXSCANF xxscanf;
 
@@ -96,10 +96,10 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 		if ( p1+1 != currentchar )
 		{
-			char w= *currentchar;
+			wchar_t w= *currentchar;
 			*currentchar='\0';
 			width_flag = 1;
-			sscanf(p1+1,"%d",&width_val);
+			swscanf(p1+1,L"%d",&width_val);
 			*currentchar=w;
 		}
 
@@ -132,7 +132,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 		if ( directive == '[' )
 		{
-			char *currentchar1=currentchar--;
+			wchar_t *currentchar1=currentchar--;
 			while ( *currentchar1 != '\0' && *currentchar1 != ']') currentchar1++;
 
 			if ( *currentchar1 == '\0')
@@ -141,7 +141,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				return DO_XXPRINTF_RET_BUG;
 			}
 
-			if ( currentchar1 == currentchar +1 || strncmp(currentchar,"[^]",3)==0 )
+			if ( currentchar1 == currentchar +1 || wcsncmp(currentchar,"[^]",3)==0 )
 			{
 				currentchar1++;
 				while ( *currentchar1 != '\0' && *currentchar1 != ']') currentchar1++;
@@ -172,7 +172,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 			switch (directive )
 			{
 			case ']':
-				if (width_flag == 0 ) str_width_flag = 1;
+				/*if (width_flag == 0 )*/ str_width_flag = 1;
 
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
@@ -186,13 +186,13 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				break;
 
 			case 's':
-				if (l_flag + h_flag)
+				if (/*l_flag +*/ h_flag)
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
 					return DO_XXPRINTF_RET_BUG;
 				}
 
-				if (width_flag == 0 ) str_width_flag = 1;
+				/*if (width_flag == 0 )*/ str_width_flag = 1;
 				if (width_flag == 1 && width_val > MAX_STR-1 )
 				{
 					Scierror(998,_("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"),fname,width_val,MAX_STR-1);
@@ -206,12 +206,12 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 				break;
 
 			case 'c':
-				if (l_flag + h_flag)
+				if (/*l_flag +*/ h_flag)
 				{
 					Scierror(998,_("%s: An error occurred: %s\n"),fname,_("Bad conversion."));
 					return DO_XXPRINTF_RET_BUG;
 				}
-
+                str_width_flag = 1;
 				if ( width_flag == 1 ) nc[num_conversion ] = width_val;
 				else nc[num_conversion ] = 1;
 
@@ -300,18 +300,37 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 
 	if ( str_width_flag == 1)
 	{
-		char *f1=format;
-		char *f2=sformat;
-		char *slast = sformat + MAX_STR - 1 - 4;
+		wchar_t *f1=format;
+		wchar_t *f2=sformat;
+		wchar_t *slast = sformat + MAX_STR - 1 - 4;
 
+        int bFirst = 1;
 		while ( *f1 != '\0'  )
 		{
 			int n;
-			*f2++ = *f1++;
-
-			if ( *(f1-1) == '%' && ( *(f1) == 's'  || *(f1) == '['))
+			if(*(f1) == '%')
 			{
-				n=sprintf(f2,"%d",MAX_STR-1);
+                bFirst = 1;
+			}
+			*f2++ = *f1++;
+            if(bFirst && ( *(f1) == 's'  || *(f1) == '[' || *(f1) == 'c'))
+            {
+                bFirst = 0;
+                if(*(f1-1) != 'l' && *(f1-1) != 'L')
+                {
+                    *f2++  = L'l';
+                }
+            }
+			if( (*(f1) == 's' || *(f1) == '[') 
+			    && 
+			    (   (*(f1-1) == '%') 
+			        || 
+                    ((*(f1-1) == 'l' || *(f1-1) == 'L') && (*(f1-2) == '%'))
+                )
+              )
+			{
+			    f2--;
+				n=swprintf(f2,MAX_STR-1,L"%d%c",MAX_STR-1,L'l');
 				f2 += n;
 				*f2++ = *f1++;
 			}
@@ -345,7 +364,7 @@ int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int
 	{
 		if ( type[i-1]  == SF_C )
 		{
-			sval=(char *) ptrtab[i-1];
+			sval=(wchar_t *) ptrtab[i-1];
 			sval[nc[i-1]]='\0';
 		}
 	}

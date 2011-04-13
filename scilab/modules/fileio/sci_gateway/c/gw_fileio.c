@@ -29,12 +29,12 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //mseek
 	{NULL, ""}, //mtell
 	{NULL, ""}, //mclearerr
-	{sci_mfprintf,"mfprintf"}, //
-	{sci_scanf,"mscanf"}, //
-	{sci_fscanf,"mfscanf"}, //
-	{sci_sscanf,"msscanf"}, //
-	{sci_fscanfMat,"fscanfMat"},
-	{sci_fprintfMat,"fprintfMat"},
+	{NULL, ""}, //mfprintf *
+	{NULL, ""}, //mscanf *
+	{NULL, ""}, //mfscanf *
+	{NULL, ""}, //msscanf *
+	{NULL,""}, //fscanfMat
+	{NULL,""}, //fprintfMat
 	{NULL, ""}, //merror
 	{NULL, ""}, //findfiles
 	{sci_maxfiles,"maxfiles"},

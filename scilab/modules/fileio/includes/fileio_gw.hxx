@@ -68,6 +68,9 @@ CPP_GATEWAY_PROTOTYPE(sci_mclearerr);
 CPP_GATEWAY_PROTOTYPE(sci_get_absolute_file_path);
 CPP_GATEWAY_PROTOTYPE(sci_getrelativefilename);
 CPP_GATEWAY_PROTOTYPE(sci_pathsep);
-
+CPP_GATEWAY_PROTOTYPE(sci_mfprintf);
+CPP_GATEWAY_PROTOTYPE(sci_mscanf);
+CPP_GATEWAY_PROTOTYPE(sci_mfscanf);
+CPP_GATEWAY_PROTOTYPE(sci_msscanf);
 
 #endif /* !__FILEIO_GW_HXX__ */

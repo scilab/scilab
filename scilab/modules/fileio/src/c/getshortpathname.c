@@ -123,7 +123,7 @@ wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
             }
             else
             {
-                FREE(_pwstLongPathName);
+                FREE(pwstOutput);
                 pwstOutput = os_wcsdup(_pwstLongPathName);
                 *_pbOK = FALSE;
             }

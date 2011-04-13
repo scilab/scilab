@@ -24,7 +24,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 #define MPUTL_FORMAT "%s\n"
 /*--------------------------------------------------------------------------*/
-mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings)
+mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings, BOOL _CR)
 {
     int i = 0;
     File* pF = NULL;
@@ -54,7 +54,6 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings)
         }
     }
 
-
     //export in UTF-8 if file is not open in binary mode
     if(static_cast<int>(pF->getFileModeAsDouble()) % 2 == 1)
     {//binary mode
@@ -64,10 +63,12 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings)
             {
                 return MPUTL_ERROR;
             }
-
-            if(fputws(L"\n", pF->getFiledesc()) == -1)
+            if(_CR)
             {
-                return MPUTL_ERROR;
+                if(fputws(L"\n", pF->getFiledesc()) == -1)
+                {
+                    return MPUTL_ERROR;
+                }
             }
         }
     }
@@ -75,18 +76,21 @@ mputlError mputl(int _iFileId, wchar_t **pstStrings, int _iSizeStrings)
     {//text mode
         for (i = 0; i < _iSizeStrings; i++)
         {
-            char* pstTemp = wide_string_to_UTF8(pstStrings[i]);
+            char* pstTemp = NULL;
+            pstTemp = wide_string_to_UTF8(pstStrings[i]);
             int iRet = fputs(pstTemp, pF->getFiledesc());
             FREE(pstTemp);
             if(iRet == -1)
             {
                 return MPUTL_ERROR;
             }
-
-            iRet = fputs("\n", pF->getFiledesc());
-            if(iRet == -1)
+            if(_CR)
             {
-                return MPUTL_ERROR;
+                iRet = fputs("\n", pF->getFiledesc());
+                if(iRet == -1)
+                {
+                    return MPUTL_ERROR;
+                }
             }
         }
     }

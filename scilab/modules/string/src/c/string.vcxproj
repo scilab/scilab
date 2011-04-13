@@ -262,6 +262,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /O
     <ClCompile Include="isdigit.c" />
     <ClCompile Include="isletter.c" />
     <ClCompile Include="men_Sutils.c" />
+    <ClCompile Include="os_wcstok.c" />
     <ClCompile Include="partfunction.c" />
     <ClCompile Include="pcre_error.c" />
     <ClCompile Include="pcre_private.c" />
@@ -280,6 +281,7 @@ lib /DEF:"$(ProjectDir)System_env_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:X64 /O
     <ClCompile Include="tokens.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\os_wcstok.h" />
     <ClInclude Include="convstr.h" />
     <ClInclude Include="..\..\includes\cvstr.h" />
     <ClInclude Include="..\..\includes\dynlib_string.h" />

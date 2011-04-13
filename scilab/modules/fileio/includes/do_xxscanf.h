@@ -14,6 +14,7 @@
 #define __DO_XXSCANF_H__
 
 #include <stdio.h>
+#include "dynlib_fileio.h"
 
 /*if maxscan is increased don't forget to change the (*xxscanf)(......) 
 in do_xxscanf procedure */
@@ -22,7 +23,7 @@ in do_xxscanf procedure */
 
 typedef union 
 {
-	char * c;
+	wchar_t * c;
 	long unsigned int lui;
 	short unsigned int sui;
 	unsigned int ui;
@@ -36,10 +37,10 @@ typedef union
 typedef union 
 {
 	double d;
-	char * s;
+	wchar_t * s;
 } entry;
 typedef enum {SF_C,SF_S,SF_LUI,SF_SUI,SF_UI,SF_LI,SF_SI,SF_I,SF_LF,SF_F} sfdir;
 
-int do_xxscanf (char *fname, FILE *fp, char *format, int *nargs, char *strv, int *retval, rec_entry *buf, sfdir *type);
+FILEIO_IMPEXP int do_xxscanf (wchar_t *fname, FILE *fp, wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type);
 #endif /* __DO_XXSCANF_H__ */
 

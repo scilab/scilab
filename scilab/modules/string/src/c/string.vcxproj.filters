@@ -101,6 +101,9 @@
     <ClCompile Include="tokens.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="os_wcstok.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="convstr.h">
@@ -185,6 +188,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tokens.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\os_wcstok.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

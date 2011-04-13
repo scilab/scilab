@@ -285,7 +285,7 @@ char *normalizeFileSeparator(const char *path)
 wchar_t *normalizeFileSeparatorW(const wchar_t *path)
 {
     // TODO : Implement strsubW to have same behaviour.
-    return path;
+    return (wchar_t*)path;
 }
 /* ================================================================================== */
 

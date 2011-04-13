@@ -60,44 +60,9 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
         pdFileId = in[1]->getAs<types::Double>();
     }
 
-    int iErr = mputl(iFile, pString->get(), 1);
+    int iErr = mputl(iFile, pString->get(), 1, FALSE); // FALSE = don't add the "\n" at the end.
     out.push_back(new Bool(!iErr));
 
-/*
-    if(pdFileId != NULL)
-    {
-        iFile = static_cast<int>(pdFileId->getReal()[0]);
-        pF = FileManager::getFile(iFile);
-    }
-    else
-    {
-        pF = FileManager::getFile(iFile);
-    }
-        
-    if(pF != NULL)
-    {
-
-        if(fwprintf(pF->getFiledesc(),L"%ls",pString->get(0)) >= 0)
-        {
-            iRet = 1;
-        }
-        else
-        {
-            ScierrorW(999, _W("%ls: Error while writing.\n"), L"mputstr");
-        }
-    }
-    else
-    {
-        if (getWarningMode()) 
-        {
-            ScierrorW(999,_W("%ls: Cannot write in file whose descriptor is %d: File is not active.\n"), L"mputstr", iFile);
-        }
-        return types::Function::OK;
-    }
-    
-    Bool* pOut = new Bool(iRet);
-    out.push_back(pOut);
-*/
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

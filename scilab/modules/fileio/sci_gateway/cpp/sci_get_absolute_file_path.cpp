@@ -79,5 +79,7 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
         ScierrorW(999,_W("%ls: The file %ls is not opened in scilab.\n"), L"get_absolute_file_path", wcsFileName);
         return types::Function::Error;
     }
+
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
