@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
- * 
+ *
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -38,7 +38,7 @@ Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typ
 {
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
-    
+
     if(in.size() > 1)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"meof", 0, 1);
@@ -46,7 +46,7 @@ Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typ
     }
     if(in.size() == 1)
     {
-        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
+        if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
         {
             ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"meof", 1);
             return types::Function::Error;
@@ -54,7 +54,7 @@ Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typ
 
         iFile = (int)in[0]->getAs<types::Double>()->get(0);
     }
-    
+
     File* pF = FileManager::getFile(iFile);
     if(pF != NULL)
     {
@@ -62,13 +62,13 @@ Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typ
     }
     else
     {
-        if (getWarningMode()) 
+        if (getWarningMode())
         {
             sciprintW(_W("%ls: Cannot check the end of file whose descriptor is %d: File is not active.\n"), L"meof", iFile);
         }
         return types::Function::OK;
     }
-    
+
     Bool* pOut = new Bool(iRet);
     out.push_back(pOut);
     return types::Function::OK;
