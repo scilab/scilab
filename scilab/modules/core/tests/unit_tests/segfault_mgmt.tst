@@ -8,7 +8,8 @@
 // <-- ENGLISH IMPOSED -->
 // <-- JVM NOT MANDATORY -->
 ilib_verbose(0);
-cd  TMPDIR;
+curDir=pwd();
+cd TMPDIR;
 f1=["int ext1c(int *n, double *a_, double *b, double *c)"
     "{"
     "char *a;"
@@ -27,3 +28,4 @@ expression="call(''ext1c'',n,1,''i'',a,2,''d'',b,3,''d'',''out'',[1,3],4,''d'')"
 if execstr(expression,'errcatch')==0 then pause,end
 // if we are here, that means that the seg fault did not kill Scilab
 if lasterror()==[] then pause,end
+cd(curDir);

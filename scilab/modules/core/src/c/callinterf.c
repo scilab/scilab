@@ -29,8 +29,6 @@
 /*--------------------------------------------------------------------------*/
 jmp_buf jmp_env;
 /*--------------------------------------------------------------------------*/
-static void sci_sigint_addinter(int n);
-/*--------------------------------------------------------------------------*/
 /**
  ** Static function table
  ** Watch out the positions are crutial !!!
@@ -111,25 +109,16 @@ static int sig_ok = 0;
 /*--------------------------------------------------------------------------*/
 /**
  * call the apropriate interface according to the value of k
- * iflagint is no more used here ....
  * @param k the number of the interface
  * @return 0
  */
 int C2F(callinterf) (int *k)
 {
-    int returned_from_longjump ;
     static int count = 0;
 
     if ( count == 0)
     {
-        if (sig_ok)
-        {
-            if (signal(SIGINT,sci_sigint_addinter) == SIG_ERR)
-            {
-                fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
-            }
-        }
-        if (( returned_from_longjump = setjmp(jmp_env)) != 0 )
+        if ( setjmp(jmp_env) != 0 )
         {
             if (sig_ok)
             {
@@ -159,29 +148,8 @@ int C2F(callinterf) (int *k)
         }
     }
     count--;
-    if (count == 0)
-    {
-        if (sig_ok)
-        {
-            if (signal(SIGINT, controlC_handler) == SIG_ERR)
-            {
-                fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
-            }
-        }
-    }
+
     return 0;
-}
-/*--------------------------------------------------------------------------*/
-static void sci_sigint_addinter(int n)
-{
-    int c = 0;
-    sciprint(_("Trying to stop scilab in the middle of an interface.\n"));
-    sciprint(_("Do you really want to abort computation (y or n ?) \n"));
-    c = getchar();
-    if ( c == 'y' )
-    {
-        errjump();
-    }
 }
 /*--------------------------------------------------------------------------*/
 /**

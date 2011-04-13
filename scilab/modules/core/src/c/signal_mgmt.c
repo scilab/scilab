@@ -27,13 +27,13 @@
 #include <sys/types.h> /* getpid */
 #include <unistd.h> /* gethostname */
 
+#include "csignal.h"
 #include "localization.h"
 #include "backtrace.h"
 #include "signal_mgmt.h"
 #include "machine.h"
 #include "Scierror.h"
 extern jmp_buf jmp_env;
-
 /*----------------------------------------------------------------------------
  * Print a stack trace
  *----------------------------------------------------------------------------*/
@@ -484,6 +484,7 @@ void base_error_init(void)
     int sig, j;
 
     /* Signal handlers */
+    csignal();
 
     memset(&act, 0, sizeof(act));
     act.sa_sigaction = sig_fatal;
@@ -526,3 +527,6 @@ void base_error_init(void)
         }
     }
 }
+
+
+/*--------------------------------------------------------------------------*/

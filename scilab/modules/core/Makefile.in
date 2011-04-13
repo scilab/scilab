@@ -165,10 +165,10 @@ am__libscicore_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
 	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
 	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
-	src/fortran/inibrk.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
+	src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
@@ -295,14 +295,14 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
 	chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo \
 	logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo \
-	cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo \
-	intstr.lo createref.lo btof.lo matzs.lo getnum.lo btofm.lo \
-	getsym.lo findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo \
-	stackgl.lo allops.lo mname.lo command.lo ref2val.lo stack.lo \
-	isbrk.lo majmin.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo \
-	getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
-	whatln.lo errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo \
-	matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
+	cvname.lo funs.lo fact.lo typ2cod.lo prompt.lo intstr.lo \
+	createref.lo btof.lo matzs.lo getnum.lo btofm.lo getsym.lo \
+	findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo stackgl.lo \
+	allops.lo mname.lo command.lo ref2val.lo stack.lo isbrk.lo \
+	majmin.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo \
+	savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo \
+	errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo matz.lo \
+	istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
 	dbasin.lo macro.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
 	lst2vars.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
 	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
@@ -684,10 +684,10 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
 	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
 	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
-	src/fortran/inibrk.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
+	src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
@@ -2270,9 +2270,6 @@ funs.lo: src/fortran/funs.f
 
 fact.lo: src/fortran/fact.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fact.lo `test -f 'src/fortran/fact.f' || echo '$(srcdir)/'`src/fortran/fact.f
-
-inibrk.lo: src/fortran/inibrk.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o inibrk.lo `test -f 'src/fortran/inibrk.f' || echo '$(srcdir)/'`src/fortran/inibrk.f
 
 typ2cod.lo: src/fortran/typ2cod.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o typ2cod.lo `test -f 'src/fortran/typ2cod.f' || echo '$(srcdir)/'`src/fortran/typ2cod.f

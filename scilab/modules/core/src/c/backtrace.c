@@ -22,17 +22,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <execinfo.h>
+
+#include "machine.h"
 
 #if defined(HAVE_GLIBC_BACKTRACE)
 #include <memory.h>
+#include <execinfo.h>
 #endif
 
 #if defined(HAVE_GLIBC_BACKTRACE) && defined(HAVE_CPLUS_DEMANGLE)
 #include <demangle.h>
 #endif
 
-#include "machine.h"
 #if defined(HAVE_GLIBC_BACKTRACE) && defined(__GNUC__)
 #define _GNU_SOURCE
 #endif

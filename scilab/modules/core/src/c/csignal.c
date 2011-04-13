@@ -21,10 +21,25 @@ void controlC_handler (int sig)
   C2F(sigbas)(&j);
 }
 
-int C2F(csignal)(void)
+int csignal(void)
 {
-	if (signal(SIGINT, controlC_handler) == SIG_ERR) {
-		fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
-	}
-	return(0);
+
+#ifdef _MSC_VER
+    if (signal(SIGINT, controlC_handler) == SIG_ERR) {
+        fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+        return -1;
+    }
+#else
+    struct sigaction act_controlC;
+
+    memset(&act_controlC, 0, sizeof(act_controlC));
+    act_controlC.sa_sigaction = controlC_handler;
+    if (sigaction(SIGINT, &act_controlC, NULL) != 0)
+    {
+        fprintf(stderr,"Could not set the signal SIGINT to the handler.\n");
+        return -1;
+    }
+#endif
+
+	return 0;
 }

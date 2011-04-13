@@ -124,7 +124,6 @@ src/fortran/folhp.f \
 src/fortran/cvname.f \
 src/fortran/funs.f \
 src/fortran/fact.f \
-src/fortran/inibrk.f \
 src/fortran/typ2cod.f \
 src/fortran/prompt.f \
 src/fortran/intstr.f \
