@@ -5,15 +5,24 @@
 mprintf("Start Xcos toolbox skeleton\n");
 
 if isdef("xcos_toolbox_skeletonlib") then
-	warning("Xcos toolbox skeleton library is already loaded");
-	return;
+    warning("Xcos toolbox skeleton library is already loaded");
+    return;
+end
+
+// Check Scilab's version
+// =============================================================================
+try
+    v = getversion("scilab");
+catch
+    error(gettext("Scilab 5.3.2 or more is required."));
 end
 
 if or(v < [5 3 2 0]) then
     // new API in scilab 5.3.2
-    error(gettext('Scilab 5.3.2 or more is required.'));
+    error(gettext("Scilab 5.3.2 or more is required."));
 end
-
+clear v;
+// =============================================================================
 etc_tlbx  = get_absolute_file_path("xcos_toolbox_skeleton.start");
 etc_tlbx  = getshortpathname(etc_tlbx);
 root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
@@ -22,24 +31,28 @@ root_tlbx = strncpy( etc_tlbx, length(etc_tlbx)-length("\etc\") );
 // =============================================================================
 mprintf("\tLoad macros\n");
 pathmacros = pathconvert( root_tlbx ) + "macros" + filesep();
-toolbox_skeletonlib = lib(pathmacros);
+xcos_skeletonlib = lib(pathmacros);
 clear pathmacros;
 
 // Add blocks to the Xcos palette
 // =============================================================================
 mprintf("\tLoad palette\n");
 pal = xcosPal("Xcos toolbox blocks");
+clear xcosPal;
 
 h5Files = gsort(ls(root_tlbx + "/images/h5/*.h5"));
 gifFiles = gsort(ls(root_tlbx + "/images/gif/*.gif"));
 svgFiles = gsort(ls(root_tlbx + "/images/svg/*.svg"));
+clear ls;
 
-for i=1:size(h5Files, '*')
+for i=1:size(h5Files, "*")
     pal = xcosPalAddBlock(pal, h5Files(i), gifFiles(i), svgFiles(i));
 end
+clear xcosPalAddBlock i;
 if ~xcosPalAdd(pal) then
     error(msprintf(gettext("%s: Unable to export %s.\n"),"xcos_toolbox_skeleton.start","pal")));
 end
+clear xcosPalAdd;
 
 clear pal h5Files gifFiles svgFiles
 
@@ -64,22 +77,22 @@ clear verboseMode;
 // Load and add help chapter
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
- 	mprintf("\tLoad help\n");
- 	path_addchapter = pathconvert(root_tlbx+"/jar");
- 	if ( isdir(path_addchapter) <> [] ) then
- 		add_help_chapter("Xcos toolbox skeleton", path_addchapter, %F);
- 		clear add_help_chapter;
- 	end
- 	clear path_addchapter;
+    mprintf("\tLoad help\n");
+    path_addchapter = pathconvert(root_tlbx+"/jar");
+    if ( isdir(path_addchapter) <> [] ) then
+        add_help_chapter("Xcos toolbox skeleton", path_addchapter, %F);
+        clear add_help_chapter;
+    end
+    clear path_addchapter;
 end
 
 // Load demos
 // =============================================================================
 if or(getscilabmode() == ["NW";"STD"]) then
-	mprintf("\tLoad demos\n");
-	pathdemos = pathconvert(root_tlbx+"/demos/xcos_toolbox_skeleton.dem.gateway.sce",%F,%T);
-	add_demo("Xcos toolbox skeleton",pathdemos);
-	clear pathdemos add_demo;
+    mprintf("\tLoad demos\n");
+    pathdemos = pathconvert(root_tlbx+"/demos/xcos_toolbox_skeleton.dem.gateway.sce",%F,%T);
+    add_demo("Xcos toolbox skeleton",pathdemos);
+    clear pathdemos add_demo;
 end
 
 clear root_tlbx;
