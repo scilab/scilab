@@ -195,16 +195,14 @@ assert_checkerror ( "y=f()" , "f: Wrong number of input argument: 1 expected." )
    ]]>
     </programlisting>
     <para>
-      Indeed, if we make the assumption that the current locale language
-      is english, we could as well use the following statement.
-      But this is not a recommended practice, since the test will
-      fail if the current locale is french, for example.
+      In the following test, we also check the error number.
     </para>
     <programlisting role="example">
       <![CDATA[
-// Also check the error number
-assert_checkerror ( "y=f()" , msg1 , 10000 );
-assert_checkerror ( "y=f(""a"")" , msg2 , 123456789 );
+lcl1="%s: Wrong number of input argument: %d expected.\n";
+lcl2="%s: Wrong type for argument %d: Matrix expected.\n";
+assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
+assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);
    ]]>
     </programlisting>
     <para>
