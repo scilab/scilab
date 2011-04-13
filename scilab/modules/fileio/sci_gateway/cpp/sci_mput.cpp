@@ -42,7 +42,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     //check parameter 1
-    if(in[0]->isDouble() && in[0]->isInt() == false)
+    if((in[0]->isDouble() == false) && (in[0]->isInt() == false))
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mput", 1);
         return Function::Error;
