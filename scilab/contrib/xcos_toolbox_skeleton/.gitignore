@@ -5,3 +5,4 @@ jar/
 *.lib
 *.def
 *.mak
+sci_gateway/c/xcos_toolbox_skeleton_c.c
