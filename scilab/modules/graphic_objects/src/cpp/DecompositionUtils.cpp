@@ -94,6 +94,11 @@ double DecompositionUtils::getMinDoubleValue(void)
     return DBL_MIN;
 }
 
+double DecompositionUtils::getAbsoluteValue(double value)
+{
+    return fabs(value);
+}
+
 /*
  * Decomposes a rectangle into two adjacent triangles.
  * The rectangle's vertices are supposed to be specified in

@@ -79,6 +79,13 @@ public :
     static double getMinDoubleValue(void);
 
     /**
+     * Returns the absolute value of its input value.
+     * @param[in] the value.
+     * @return the absolute value.
+     */
+    static double getAbsoluteValue(double value);
+
+    /**
      * Utility function which outputs the triangle indices of a rectangle decomposed
      * into 2 adjacent triangles. Decomposition is always performed the same way as it does not
      * depend on input vertex values. This function should therefore be used only for rectangles.
