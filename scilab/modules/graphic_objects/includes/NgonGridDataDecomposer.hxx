@@ -59,7 +59,9 @@ protected :
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by a color element (3 or 4).
-     * @param[in] the grid z-coordinate array
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the grid z-coordinate array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      */
@@ -72,7 +74,9 @@ protected :
      * @param[out] the buffer to fill.
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by a color element (3 or 4).
-     * @param[in] the grid z-coordinate array
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the grid z-coordinate array.
      * @param[in] the grid's number of vertices along the x-axis.
      * @param[in] the grid's number of vertices along the y-axis.
      */
