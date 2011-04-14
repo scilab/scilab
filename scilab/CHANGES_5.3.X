@@ -62,6 +62,9 @@ Xcos:
   - RAMP
   - DELAY_f
 
+* bug 5425 fixed - Drag and drop of blocks between different scilab versions
+                   produced an exception
+
 * bug 5605 fixed - REGISTER block was not present into the discrete palette.
 
 * bug 6416 fixed - GENSQR_f block documentation was not complete.
