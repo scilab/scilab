@@ -499,15 +499,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\mclearerr.c"
-				>
-			</File>
-			<File
 				RelativePath=".\src\cpp\mclose.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\src\c\merror.c"
 				>
 			</File>
 			<File
@@ -619,14 +611,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_mclearerr.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_merror.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_mfprintf.c"
 				>
 			</File>
@@ -648,10 +632,6 @@
 			</File>
 			<File
 				RelativePath=".\sci_gateway\c\sci_newest.c"
-				>
-			</File>
-			<File
-				RelativePath=".\sci_gateway\c\sci_pathsep.c"
 				>
 			</File>
 			<File

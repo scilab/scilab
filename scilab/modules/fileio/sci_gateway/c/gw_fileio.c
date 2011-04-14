@@ -28,20 +28,20 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //meof
 	{NULL, ""}, //mseek
 	{NULL, ""}, //mtell
-	{sci_mclearerr, "mclearerr"},
+	{NULL, ""}, //mclearerr
 	{sci_mfprintf,"mfprintf"}, //
 	{sci_scanf,"mscanf"}, //
 	{sci_fscanf,"mfscanf"}, //
 	{sci_sscanf,"msscanf"}, //
 	{sci_fscanfMat,"fscanfMat"},
 	{sci_fprintfMat,"fprintfMat"},
-	{sci_merror, "merror"},
+	{NULL, ""}, //merror
 	{NULL, ""}, //findfiles
 	{sci_maxfiles,"maxfiles"},
 	{sci_getdrives,"getdrives"},
 	{NULL, ""}, //fullpath
 	{NULL, ""}, //deletefile
-	{sci_pathsep,"pathsep"},
+	{NULL, ""}, //pathsep
 	{NULL, ""}, //filesep
 	{NULL, ""}, //getlongpathname
 	{NULL, ""}, //getshortpathname
@@ -53,8 +53,8 @@ static gw_generic_table Tab[]={
 	{NULL, ""}, //chdir
 	{NULL, ""}, //fileinfo
 	{NULL, ""}, //newest
-	{sci_getrelativefilename,"getrelativefilename"},
-	{sci_get_absolute_file_path,"get_absolute_file_path"},
+	{NULL, ""}, //getrelativefilename
+	{NULL, ""}, //get_absolute_file_path
 	{NULL, ""}, //copyfile
 	{NULL, ""}, //isfile
 	{NULL, ""}, //fileparts

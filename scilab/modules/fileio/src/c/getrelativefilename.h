@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2006 - INRIA - Pierre MARECHAL
+* Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
 * 
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -34,6 +35,9 @@
 // GetRelativeFilename will return ..\whee\text.txt.
 /* ================================================================================== */
 
-char* getrelativefilename(char *currentDirectory, char *absoluteFilename);
+#include "wchar.h"
+#include "dynlib_fileio.h"
 
+char* getrelativefilename(char *currentDirectory, char *absoluteFilename);
+FILEIO_IMPEXP wchar_t* getrelativefilenameW(wchar_t *currentDirectory, wchar_t *absoluteFilename);
 #endif /* __GETRELATIVEFILENAME_H__ */
