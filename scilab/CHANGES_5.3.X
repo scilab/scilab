@@ -70,6 +70,7 @@ Xcos:
   - Counter
   - RAMP
   - DELAY_f
+  - RFILE_f Read from input file
 
 * bug 5425 fixed - Drag and drop of blocks between different scilab versions
                    produced an exception
