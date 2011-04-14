@@ -21,9 +21,9 @@ function ret = ilib_include_flag(path_strings)
       error(msprintf(gettext("%s: Failed to add include path : %s"), "ilib_include_flag", path));
     end
     if (getos() == "Windows") then
-      ret = ret + " -I""" + fullpath(path) + """";
+      ret = ret + " -I""" + pathconvert(fullpath(path), %f) + """";
     else
-      ret = ret + " -I" + fullpath(path);
+      ret = ret + " -I" + pathconvert(fullpath(path), %f);
     end
   end
 endfunction

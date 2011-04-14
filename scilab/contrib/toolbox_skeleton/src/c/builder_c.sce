@@ -4,7 +4,7 @@
 
 src_c_path = get_absolute_file_path("builder_c.sce");
 
-CFLAGS = "-I" + src_c_path;
+CFLAGS = ilib_include_flag(src_c_path);
 
 tbx_build_src(["csum","csub","multiplybypi"],    ..
               ["csum.c","csub.c","multiplybypi.c"],..

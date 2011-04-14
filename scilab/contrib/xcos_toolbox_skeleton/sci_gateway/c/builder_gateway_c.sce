@@ -1,11 +1,6 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-if getos() == "Windows" then
-    // to manage long pathname
-    includes_src_c = "-I""" + get_absolute_file_path("builder_gateway_c.sce") + "../../src/c""";
-else
-    includes_src_c = "-I" + get_absolute_file_path("builder_gateway_c.sce") + "../../src/c";
-end
+includes_src_c = ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce") + "../../src/c");
 
 tbx_build_gateway("xcos_toolbox_skeleton_c",                        ..
                   ["tbx_sum", "sci_tbx_sum"],                       ..

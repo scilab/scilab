@@ -5,7 +5,7 @@
 function perform()
     src_c_path = get_absolute_file_path("builder_c.sce");
 
-    CFLAGS = "-I" + src_c_path;
+    CFLAGS = ilib_include_flag(src_c_path);
     LDFLAGS = "";
     if (getos()<>"Windows") then
         if ~isdir(SCI+"/../../share") then

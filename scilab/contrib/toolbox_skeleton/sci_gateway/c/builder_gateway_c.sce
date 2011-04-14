@@ -1,11 +1,6 @@
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-if getos() == "Windows" then
-    // to manage long pathname
-    includes_src_c = "-I""" + get_absolute_file_path("builder_gateway_c.sce") + "../../src/c""";
-else
-    includes_src_c = "-I" + get_absolute_file_path("builder_gateway_c.sce") + "../../src/c";
-end
+includes_src_c = ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce") + "../../src/c");
 
 // PutLhsVar managed by user in sci_sum and in sci_sub
 // if you do not this variable, PutLhsVar is added
