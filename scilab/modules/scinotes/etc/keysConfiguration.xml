@@ -61,6 +61,8 @@
   <entry key="GotoNextAnchorAction">OSSCKEY shift LESS</entry>
   <entry key="GotoPreviousAnchorAction">OSSCKEY LESS</entry>
   <entry key="CodeNavigatorAction">OSSCKEY G</entry>
+  <entry key="SearchWordInFilesAction">OSSCKEY shift F</entry>
+  <entry key="SearchFilesAction">OSSCKEY shift B</entry>
 
   <entry key="SciNotesCompletionAction">OSSCKEY SPACE</entry>
 
