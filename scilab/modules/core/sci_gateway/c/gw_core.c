@@ -47,7 +47,7 @@ static gw_generic_table Tab[]=
 {NULL,""},//funcprot
 {C2F(sci_where),"where"},
 {C2F(sci_havewindow),"havewindow"},
-{C2F(sci_stacksize),"stacksize"},
+{NULL, ""},//stacksize
 {C2F(sci_mtlb_mode),"mtlb_mode"},
 {NULL,""}, // clear
 {C2F(sci_what),"what"},

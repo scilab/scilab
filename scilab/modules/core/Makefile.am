@@ -195,8 +195,7 @@ if USE_DYNAMIC_STACK
 CORE_FORTRAN_SOURCES += src/fortran/relocstack.f
 endif
 
-GATEWAY_C_SOURCES = sci_gateway/c/sci_stacksize.c \
-sci_gateway/c/sci_mtlb_mode.c \
+GATEWAY_C_SOURCES = sci_gateway/c/sci_mtlb_mode.c \
 sci_gateway/c/sci_where.c \
 sci_gateway/c/sci_errcatch.c \
 sci_gateway/c/sci_format.c \
@@ -269,7 +268,8 @@ GATEWAY_CPP_SOURCES = 	\
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_resume.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
-	sci_gateway/cpp/sci_who.cpp
+	sci_gateway/cpp/sci_who.cpp \
+	sci_gateway/cpp/sci_stacksize.cpp
 
 
 libscicore_la_CFLAGS = -I$(srcdir)/includes/ \
