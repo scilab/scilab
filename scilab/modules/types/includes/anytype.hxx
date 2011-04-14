@@ -44,6 +44,7 @@ namespace types
     class Container;
     class List;
     class Struct;
+    class SingleStruct;
     class ListOperation;
     class ListDelete;
     class ListInsert;

@@ -186,9 +186,6 @@
     <ClCompile Include="sci_gateway\c\sci_get_absolute_file_path.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_getdrives.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_getlongpathname.c">
       <Filter>Source Files</Filter>
     </ClCompile>

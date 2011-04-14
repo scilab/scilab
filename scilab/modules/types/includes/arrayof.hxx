@@ -1404,4 +1404,19 @@ namespace types
     };
 }
 
+#ifdef _MSC_VER
+template class TYPES_IMPEXP types::ArrayOf<int>;//Bool, Int32
+template class TYPES_IMPEXP types::ArrayOf<types::InternalType*>; //Cell
+template class TYPES_IMPEXP types::ArrayOf<double>; //Double
+template class TYPES_IMPEXP types::ArrayOf<short>; //Int16
+template class TYPES_IMPEXP types::ArrayOf<long long>; //Int64
+template class TYPES_IMPEXP types::ArrayOf<char>; //Int8
+template class TYPES_IMPEXP types::ArrayOf<types::SinglePoly*>; //Polynom
+template class TYPES_IMPEXP types::ArrayOf<wchar_t*>; //String
+template class TYPES_IMPEXP types::ArrayOf<types::SingleStruct*>; //Struct
+template class TYPES_IMPEXP types::ArrayOf<unsigned int>;//UInt32
+template class TYPES_IMPEXP types::ArrayOf<unsigned short>; //UInt16
+template class TYPES_IMPEXP types::ArrayOf<unsigned long long>; //UInt64
+template class TYPES_IMPEXP types::ArrayOf<unsigned char>; //UInt8
+#endif
 #endif /* !__ARRAYOF_HXX__ */

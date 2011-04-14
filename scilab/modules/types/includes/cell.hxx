@@ -85,5 +85,4 @@ namespace types
     };
 }
 
-template class TYPES_IMPEXP types::ArrayOf<types::InternalType*>;
 #endif /* !__CELL_HXX__ */

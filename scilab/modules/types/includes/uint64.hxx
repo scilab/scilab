@@ -68,5 +68,4 @@ namespace types
     };
 }
 
-template class TYPES_IMPEXP types::ArrayOf<unsigned long long>;
 #endif /* !__UINT64_HXX__ */

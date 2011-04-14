@@ -79,5 +79,4 @@ namespace types
     };
 }
 
-template class TYPES_IMPEXP types::ArrayOf<types::SingleStruct*>;
 #endif /* !__STRUCT_HXX__ */

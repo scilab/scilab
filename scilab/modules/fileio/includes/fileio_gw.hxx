@@ -71,5 +71,6 @@ CPP_GATEWAY_PROTOTYPE(sci_mfprintf);
 CPP_GATEWAY_PROTOTYPE(sci_mscanf);
 CPP_GATEWAY_PROTOTYPE(sci_mfscanf);
 CPP_GATEWAY_PROTOTYPE(sci_msscanf);
+CPP_GATEWAY_PROTOTYPE(sci_getdrives);
 
 #endif /* !__FILEIO_GW_HXX__ */

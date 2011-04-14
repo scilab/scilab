@@ -13,10 +13,10 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "function.hxx"
+#include "double.hxx"
 #include "string.hxx"
 #include "scilab_sprintf.hxx"
 #include "overload.hxx"
@@ -57,13 +57,27 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         return types::Function::Error;
     }
 
-    if(in[0]->isDouble() == false || in[0]->getAs<types::Double>()->isScalar() == false || in[0]->getAs<types::Double>()->isComplex())
+    if(in[0]->isDouble() == false)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfprintf", 1);
         return types::Function::Error;
     }
 
-    if(in[1]->isString() == false || in[1]->getAs<types::String>()->isScalar() == false)
+    types::Double* pFileId = in[0]->getAs<types::Double>();
+    if(pFileId->isScalar() == false || pFileId->isComplex())
+    {
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"mfprintf", 1);
+        return types::Function::Error;
+    }
+
+    if(in[1]->isString() == false)
+    {
+        ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mfprintf", 2);
+        return types::Function::Error;
+    }
+
+    types::String* pFileStr = in[1]->getAs<types::String>();
+    if(pFileStr->isScalar() == false)
     {
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mfprintf", 2);
         return types::Function::Error;
@@ -79,7 +93,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
 // checking ID of file
-    iFile = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+    iFile = static_cast<int>(pFileId->get(0));
 
 	if(FileManager::getFile(iFile) == NULL)
 	{           
@@ -121,7 +135,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
 // Checking input string to write in file
-    wcsInput = in[1]->getAs<types::String>()->get(0);
+    wcsInput = pFileStr->get(0);
 
     for(int i = 0; i < (int)wcslen(wcsInput); i++)
     {

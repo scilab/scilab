@@ -48,8 +48,6 @@ GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_fileio.c \
 sci_gateway/c/sci_fprintfMat.c \
 sci_gateway/c/sci_fscanfMat.c \
-sci_gateway/c/sci_maxfiles.c \
-sci_gateway/c/sci_getdrives.c \
 sci_gateway/c/sci_chdir.c \
 sci_gateway/c/sci_pwd.c \
 sci_gateway/c/sci_copyfile.c \
@@ -92,8 +90,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_mfprintf.cpp \
 	sci_gateway/cpp/sci_mfscanf.cpp \
 	sci_gateway/cpp/sci_mscanf.cpp \
-	sci_gateway/cpp/sci_msscanf.cpp 
-		
+	sci_gateway/cpp/sci_msscanf.cpp \
+	sci_gateway/cpp/sci_getdrives.cpp
+
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
 	src/cpp/mopen.cpp \

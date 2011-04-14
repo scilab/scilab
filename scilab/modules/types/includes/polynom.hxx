@@ -89,5 +89,4 @@ namespace types
     };
 }
 
-template class TYPES_IMPEXP types::ArrayOf<types::SinglePoly*>;
 #endif /* !__POLYNOM_HXX__ */

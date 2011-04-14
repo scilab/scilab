@@ -176,6 +176,7 @@
     <ClCompile Include="sci_filesep.cpp" />
     <ClCompile Include="sci_findfiles.cpp" />
     <ClCompile Include="sci_fullpath.cpp" />
+    <ClCompile Include="sci_getdrives.cpp" />
     <ClCompile Include="sci_get_absolute_file_path.cpp" />
     <ClCompile Include="sci_getlongpathname.cpp" />
     <ClCompile Include="sci_getrelativefilename.cpp" />

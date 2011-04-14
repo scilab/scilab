@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * 
+ * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
@@ -18,6 +19,9 @@
 * @param[out] nbDrives
 * @return List of Drives
 */
-char **getdrives(int *nbDrives);
+#include <wchar.h>
+#include "dynlib_fileio.h"
 
+FILEIO_IMPEXP char **getdrives(int *nbDrives);
+FILEIO_IMPEXP wchar_t **getdrivesW(int *nbDrives);
 #endif /* __GETDRIVES_H__ */

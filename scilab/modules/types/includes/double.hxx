@@ -84,5 +84,4 @@ namespace types
     };
 }
 
-template class TYPES_IMPEXP types::ArrayOf<double>;
 #endif /* !__DOUBLE_HXX__ */
