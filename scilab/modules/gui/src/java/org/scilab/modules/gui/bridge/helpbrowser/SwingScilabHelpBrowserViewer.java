@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 import javax.help.DefaultHelpHistoryModel;
-import javax.help.JHelpContentViewer;
 import javax.help.HelpSet;
+import javax.help.JHelpContentViewer;
 import javax.help.plaf.basic.BasicContentViewerUI;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -45,14 +45,11 @@ import javax.swing.event.HyperlinkEvent;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.Document;
-import javax.swing.text.EditorKit;
 import javax.swing.text.Element;
 import javax.swing.text.MutableAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
-import javax.swing.text.html.HTML;
 import javax.swing.text.html.HTMLDocument;
-import javax.swing.text.html.HTMLEditorKit;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
@@ -287,9 +284,13 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * Execute the code in example
      * @param pre the preformatted Element containing Scilab's code
      */
-    public static void execExample(Element pre) {
+    public void execExample(Element pre) {
         String code = getCode(pre);
-        ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, true /* store in history */);
+        try {
+            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, false /* store in history */);
+        } catch (NoClassDefFoundError e) {
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
+        }
     }
 
     /**
@@ -368,7 +369,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         try {
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, true, false);
         } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
         }
     }
 
@@ -382,7 +383,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         try {
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, false, false);
         } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
         }
     }
 

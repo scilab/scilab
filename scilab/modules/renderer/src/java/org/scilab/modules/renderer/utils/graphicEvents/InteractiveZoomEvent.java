@@ -12,9 +12,8 @@
 
 package org.scilab.modules.renderer.utils.graphicEvents;
 
-import org.scilab.modules.localization.Messages;
-import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 import org.scilab.modules.renderer.FigureScilabCall;
+import org.scilab.modules.renderer.figureDrawing.DrawableFigureGL;
 
 /**
  *  A graphic event designed to use zoom with an area selection 

@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be 
+ * However, the API (profile of the functions in the header files) will be
  * still available and supported in Scilab 6.
  */
 
@@ -43,13 +43,13 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 		addErrorMessage(&sciErr, API_ERROR_GET_POINTER, _("%s: Unable to get argument #%d"), "getPointer", getRhsFromAddress(_pvCtx, _piAddress));
 		return sciErr;
 	}
-	
+
 	if(iType != sci_pointer)
 	{
 		addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s excepted"), "getPointer", _("pointer"));
 		return sciErr;
 	}
-	
+
 	pdblTmp = (double*)(_piAddress + 4);
 
 	*_pvPtr = (void*)((unsigned long int)(*pdblTmp));
@@ -187,7 +187,7 @@ SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)
 		addErrorMessage(&sciErr, API_ERROR_READ_POINTER, _("%s: Unable to get variable \"%s\""), "readNamedMatrixOfBoolean", _pstName);
 		return sciErr;
 	}
-	
+
 	*_pvPtr = pvPtr;
 
 	return sciErr;

@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2009-2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -43,14 +43,14 @@ int SendScilabJob(char *job)
 	command = os_strdup(job);
 	lencommand = (int)strlen(command);
 
-    if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STOP) 
+    if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STOP)
     {
         fprintf(stderr, "Error: SendScilabJob call_scilab engine not started.\n");
         return retCode;
     }
 
     if (command)
-    { 
+    {
         double Err_Job = 0.;
         int m = 0, n = 0;
 
@@ -82,7 +82,7 @@ int SendScilabJob(char *job)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            fprintf(stderr,"Error : SendScilabJob (2) 'Err_Job'.\n");	
+            fprintf(stderr,"Error : SendScilabJob (2) 'Err_Job'.\n");
             retCode = -2;
 
             if (command) {FREE(command);command=NULL;}
@@ -93,7 +93,7 @@ int SendScilabJob(char *job)
 
         if ( (m != 1) && (n != 1) )
         {
-            fprintf(stderr,"Error : SendScilabJob (3) 'Err_Job'.\n");	
+            fprintf(stderr,"Error : SendScilabJob (3) 'Err_Job'.\n");
             retCode = -3;
 
             if (command) {FREE(command);command=NULL;}
@@ -106,7 +106,7 @@ int SendScilabJob(char *job)
         if(sciErr.iErr)
         {
             printError(&sciErr, 0);
-            fprintf(stderr,"Error : SendScilabJob (4) 'Err_Job'.\n");	
+            fprintf(stderr,"Error : SendScilabJob (4) 'Err_Job'.\n");
             retCode = -4;
 
             if (command) {FREE(command);command=NULL;}
@@ -122,7 +122,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun)(COMMAND_CLEAR,(long int)strlen(COMMAND_CLEAR));;
+        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
     }
     else
     {
@@ -194,13 +194,13 @@ int SendScilabJobs(char **jobs,int numberjobs)
                     else
                     {
                         CleanBuffers(bufCommands, LOCALJOBS, numberjobs);
-                        fprintf(stderr,"Error: SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);	
+                        fprintf(stderr,"Error: SendScilabJobs (1) 'LOCALJOBS[%d] MALLOC'.\n",i);
                         return retcode;
                     }
                 }
                 else
                 {
-                    fprintf(stderr,"Error: SendScilabJobs (2) 'jobs[%d] == NULL'.\n",i);	
+                    fprintf(stderr,"Error: SendScilabJobs (2) 'jobs[%d] == NULL'.\n",i);
                     return retcode;
                 }
             }
@@ -259,20 +259,20 @@ DOTDOTLOOP:
             else
             {
                 CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
-                fprintf(stderr,"Error: SendScilabJobs (3) 'bufCommands MALLOC'.\n");	
+                fprintf(stderr,"Error: SendScilabJobs (3) 'bufCommands MALLOC'.\n");
                 return retcode;
             }
         }
         else
         {
             CleanBuffers(bufCommands,LOCALJOBS,numberjobs);
-            fprintf(stderr,"Error: SendScilabJobs (4) 'LOCALJOBS == NULL'.\n");	
+            fprintf(stderr,"Error: SendScilabJobs (4) 'LOCALJOBS == NULL'.\n");
             return retcode;
         }
     }
     else
     {
-        fprintf(stderr,"Error: SendScilabJobs (5) 'jobs == NULL'.\n");	
+        fprintf(stderr,"Error: SendScilabJobs (5) 'jobs == NULL'.\n");
         retcode = -10;
     }
 
@@ -307,11 +307,11 @@ static BOOL RemoveComments(char *line)
     len=(int)strlen(line);
     for (l=len-1 ; l > 0 ; l--)
     {
-        if (line[l] == '/') 
+        if (line[l] == '/')
         {
             if (l-1 >= 0)
             {
-                if (line[l-1] == '/') 
+                if (line[l-1] == '/')
                 {
                     idx = l-1;
                     l = l-2;

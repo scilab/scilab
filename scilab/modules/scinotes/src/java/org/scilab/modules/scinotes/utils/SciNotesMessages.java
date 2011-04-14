@@ -299,4 +299,30 @@ public class SciNotesMessages {
      * Incremental search
      */
     public static final String EXACT = Messages.gettext("Exact");
+
+    /**
+     * Find in files
+     */
+    public static final String SEARCHFILES = Messages.gettext("Search Files...");
+    public static final String SEARCHINFILES = Messages.gettext("Search in Files...");
+    public static final String MATCHES = Messages.gettext("<html>%s <i>(%s matches)</i></html>");
+    public static final String MATCH = Messages.gettext("<html>%s <i>(%s match)</i></html>");
+    public static final String ELAPSEDTIME = Messages.gettext("Elapsed time: %s seconds.");
+    public static final String ELAPSEDTIMELESSONESEC = Messages.gettext("Elapsed time: %s second.");
+    public static final String BASEDIRECTORY = Messages.gettext("Base directory:");
+    public static final String RECURSIVE = Messages.gettext("Recursive");
+    public static final String FILEPATTERN = Messages.gettext("File pattern");
+    public static final String FILEPATTERNEXP = Messages.gettext("(* for any string and ? for any character)");
+    public static final String WORDPATTERN = Messages.gettext("Word pattern");
+    public static final String FILELINEBYLINE = Messages.gettext("Read file line by line");
+    public static final String CHOOSEDIR = Messages.gettext("Choose...");
+    public static final String STOPBUTTON = Messages.gettext("Stop");
+    public static final String REGEXPATTERN = Messages.gettext("Regex");
+    public static final String WORD = Messages.gettext("Word");
+    public static final String WORDCASESENSITIVE = Messages.gettext("Case-sensitivity (Word)");
+    public static final String FILECASESENSITIVE = Messages.gettext("Case-sensitivity (File name)");
+    public static final String RECURSIVESEARCH = Messages.gettext("Recursive search");
+    public static final String LINEBYLINE = Messages.gettext("Line by line");
+    public static final String WORDREGEX = Messages.gettext("Regular expression (Word)");
+    public static final String CHOOSEBASEDIR = Messages.gettext("Choose the search base directory");
 }

@@ -12,10 +12,6 @@
 
 package org.scilab.modules.graph.utils;
 
-import java.io.File;
-
-import org.scilab.modules.console.GuiManagement;
-
 import com.mxgraph.util.mxConstants;
 
 /**

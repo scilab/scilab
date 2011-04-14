@@ -33,7 +33,7 @@
 
     <synopsis>zoom_rect()
 zoom_rect(rect)
-zooom_rect(h)
+zoom_rect(h)
 zoom_rect(h,rect)
     </synopsis>
   </refsynopsisdiv>

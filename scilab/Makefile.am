@@ -26,6 +26,9 @@ bin_PROGRAMS		= scilab-bin scilab-cli-bin
 
 bin_SCRIPTS			= bin/scilab bin/scilab-adv-cli bin/scilab-cli
 
+if IS_MACOSX
+bin_SCRIPTS 		+= bin/checkmacosx.applescript
+endif
 
 scilab_bin_LDFLAGS 		=
 scilab_cli_bin_LDFLAGS		=
@@ -157,22 +160,29 @@ $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
 iconsdir=$(pkgdatadir)/icons/
-icons_DATA = $(top_srcdir)/icons/scilab.xpm \
-$(top_srcdir)/icons/puffin_128.xpm \
-$(top_srcdir)/icons/puffin_256.xpm \
-$(top_srcdir)/icons/puffin_32.xpm \
-$(top_srcdir)/icons/puffin_48.xpm \
-$(top_srcdir)/icons/puffin.png \
-$(top_srcdir)/icons/puffin.icns \
-$(top_srcdir)/icons/scilab.icns
+icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
+$(top_srcdir)/desktop/puffin_128.xpm \
+$(top_srcdir)/desktop/puffin_256.xpm \
+$(top_srcdir)/desktop/puffin_32.xpm \
+$(top_srcdir)/desktop/puffin_48.xpm \
+$(top_srcdir)/desktop/puffin.png \
+$(top_srcdir)/desktop/puffin.icns \
+$(top_srcdir)/desktop/scilab.icns
 
 valgrinddir=$(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
 
+# Desktop file
+# Note that here, it is datadir and NOT pkgdatadir
+desktopdir = $(datadir)/applications
+desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
+$(top_srcdir)/desktop/scilab-cli.desktop \
+$(top_srcdir)/desktop/scilab.desktop
+
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"
@@ -187,12 +197,13 @@ LANGDOC=en_US fr_FR pt_BR ja_JP
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
-	-@if test -x $(top_builddir)/scilab-bin; then \
+	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		for l in $(LANGDOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'$$l');exit;\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltojar([],[],'$$l');exit;";\
+			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab-adv-cli binary"; \
@@ -203,12 +214,13 @@ endif
 
 doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 if BUILD_HELP
-	-@if test -x $(top_builddir)/scilab-bin; then \
+	@if test -x $(top_builddir)/scilab-bin; then \
 		cd $(top_builddir);\
 		for l in $(LANGDOC); do \
 			echo "-- Building documentation ($$l) --"; \
-			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
-			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
+			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 			if test ! -d $$JAVADOC_TARGET; then \
 				mkdir $$JAVADOC_TARGET; \
@@ -226,7 +238,9 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(LANGDOC); do \
 			echo "-- Checking documentation ($$l) --"; \
-			$(top_builddir)/bin/scilab-cli -nb -l $$l -e 'check_help();exit;';\
+			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e \"$$COMMAND\"";\
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -235,7 +249,7 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 check-recursive: check-local
 check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="test_run();quit";\
+		COMMAND="try test_run();catch exit(-1);end;exit(0)";\
 		export LANG=C;\
 		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
@@ -257,7 +271,7 @@ endif
 
 distclean-recursive: distclean-generated clean-recursive
 
-clean-recursive: clean-doc clean-localization clean-macros clean-generated
+clean-recursive: clean-help clean-localization clean-macros clean-generated
 
 clean-macros:
 # Find is necessary because of subdirs...
@@ -268,13 +282,16 @@ clean-macros:
 	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
+# To ensure previous compatibility
+clean-doc: clean-help
 
-clean-doc:
-	-@if test -x $(top_builddir)/scilab-cli-bin; then \
-		echo "$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'; \
-		echo "$(top_builddir)/bin/scilab-cli  -nb -l en -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l en -e 'clean_help();exit;'; \
+clean-help:
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
+		for l in $(LANGDOC); do \
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1; \
+		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi; \
@@ -291,7 +308,7 @@ clean-doc:
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'test_clean();exit;'; \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

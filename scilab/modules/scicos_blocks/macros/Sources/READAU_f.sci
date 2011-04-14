@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -44,28 +45,28 @@ case 'set' then
   fname=exprs(1)
 
   while %t do
-    [ok,fname1,N,swap,exprs]=scicos_getvalue(..
-	['Set READAU block parameters';
-	 'Read is done on a binary .au file'],..
-	['Input file name';
-	 'Buffer size';
-	 'Swap mode 0/1'],..
-	 list('str',1,'vec',1,'vec',1),..
-	 exprs)
+      [ok,fname1,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "READAU_f"); " "; ..
+            gettext("(Read Audio File)");" "; gettext("Read is done on a binary ''.au'' file")], ..
+          [gettext("Input File Name"); gettext("Buffer size"); gettext("Swap Mode (0:No 1:Yes)")], ..
+          list("str",1,"vec",1,"vec",1), exprs);
      tmask1=[];outmask=1;frmt1='uc';M=1;offset=1;
     if ~ok then break,end //user cancel modification
     fname1=stripblanks(fname1)
     frmt1=stripblanks(frmt1)
     if alreadyran&fname1<>fname then
-      message(['You cannot modify Output file name when running';'End current simulation first'])
-    elseif alreadyran&size(tmask1)<>size(tmask) then
-      message(['You cannot modify time management when running';'End current simulation first'])
-    elseif N<1 then
-      message('Buffer size must be at least 1')
-    elseif alreadyran&(N<>ipar(6)) then
-      message(['You cannot modify buffer size when running';'End current simulation first'])
-    elseif swap<>0&swap<>1 then
-      message('Swap mode must be 0 or 1')
+        block_parameter_error(gettext("Simulation running !!! You cannot modify Input file name"), ..
+          gettext("End current simulation first."));
+// Remove this test user can't modify time in dialog
+//     elseif alreadyran&size(tmask1)<>size(tmask) then
+//       message(['You cannot modify time management when running';'End current simulation first'])
+    elseif fname1 == "" then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter"), gettext("Input File Name")), gettext("You must provide a filename."));
+    elseif N < 1 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer size"), N), msprintf(gettext("Must be greater than %d."), 1));
+    elseif alreadyran & (N <> ipar(6)) then
+        block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running."), gettext("Buffer Size")), gettext("End current simulation first."));
+    elseif swap <> 0 & swap <> 1 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Swap Mode"), swap), msprintf(gettext("Must be in the interval %s."),"[0, 1]"));
     else
       [model,graphics,ok]=check_io(model,graphics,[],1,1,[])
       frmt1=part(frmt1,1:3);

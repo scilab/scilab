@@ -16,28 +16,22 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.UUID;
 
 import javax.swing.BorderFactory;
@@ -45,14 +39,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.EditorKit;
 import javax.swing.text.View;
 import javax.swing.undo.UndoManager;
@@ -83,23 +75,26 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
-import org.scilab.modules.scinotes.actions.ExitAction;
-import org.scilab.modules.scinotes.actions.FindAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
-import org.scilab.modules.scinotes.actions.LineBeautifierAction;
-import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
-import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
-import org.scilab.modules.scinotes.actions.RecentFileAction;
-import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
 import org.scilab.modules.scinotes.actions.EncodingAction;
 import org.scilab.modules.scinotes.actions.EndOfLineAction;
+import org.scilab.modules.scinotes.actions.ExitAction;
+import org.scilab.modules.scinotes.actions.FindAction;
 import org.scilab.modules.scinotes.actions.IncrementalSearchAction;
+import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
+import org.scilab.modules.scinotes.actions.LineBeautifierAction;
+import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
+import org.scilab.modules.scinotes.actions.RecentFileAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
+import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
+import org.scilab.modules.scinotes.actions.SetColorsAction;
+import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
 import org.scilab.modules.scinotes.utils.NavigatorWindow;
+import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
 import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
+import org.scilab.modules.scinotes.utils.SciNotesContents;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -131,32 +126,25 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-
-    private static List<SciNotes> scinotesList = new ArrayList();
+    private static List<SciNotes> scinotesList = new ArrayList<SciNotes>();
     private static SciNotes editor;
 
     private final Window parentWindow;
     private UUID uuid;
 
     private ScilabTabbedPane tabPane;
+    private SciNotesContents contentPane;
+
     private int numberOfUntitled;
     private EditorKit editorKit;
 
     private PushButton undoButton;
     private PushButton redoButton;
 
-    private Color highlightColor;
-    private Color highlightContourColor;
-
     private boolean protectOpenFileList;
 
-    private List<Integer> tabList = new ArrayList();
-    private List<Integer> closedTabList = new ArrayList();
+    private List<Integer> tabList = new ArrayList<Integer>();
+    private List<Integer> closedTabList = new ArrayList<Integer>();
 
     private String fileFullPath = "";
 
@@ -178,14 +166,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
         Size size = ConfigSciNotesManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
         protectOpenFileList = false;
-        tabPane = new ScilabTabbedPane(this);
+        contentPane = new SciNotesContents(this);
+        tabPane = contentPane.getScilabTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    String path = new String("");
                     if (getTextPane() != null) {
                         updateUI();
                         getTextPane().updateInfosWhenFocused();
                         getTextPane().requestFocus();
+                        getTextPane().highlightWords(IncrementalSearchAction.getWord(SciNotes.this), IncrementalSearchAction.getExact(SciNotes.this));
 
                         // Update encoding menu
                         EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
@@ -196,7 +185,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     }
                 }
             });
-        this.setContentPane(tabPane);
+        this.setContentPane(contentPane);
     }
 
     /**
@@ -204,11 +193,21 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void setTitle(String title) {
         super.setTitle(title);
-        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities
-            .getAncestorOfClass(SwingScilabWindow.class, tabPane);
+        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
         if (window != null) {
             window.setTitle(title);
         }
+    }
+
+    public void insertBottomComponent(Component c) {
+        contentPane.insertBottomComponent(c);
+    }
+
+    /**
+     * @return the SwingScilabWindow containing this editor
+     */
+    public SwingScilabWindow getSwingParentWindow() {
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
     /**
@@ -474,6 +473,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
         ConfigTabulationsAction.closeConfTabWindow();
+        SearchWordInFilesAction.closeWindow();
 
         while (getTabPane().getTabCount() > 0) {
             closeTabAt(0, true);
@@ -481,6 +481,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         scinotesList.remove(this);
         if (scinotesList.size() == 0) {
             NavigatorWindow.closeCurrent();
+            SearchFile.closeCurrent();
         }
         editor = null;
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
@@ -799,7 +800,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         String initialDirectoryPath = path;
         if (initialDirectoryPath == null) {
-           initialDirectoryPath = getTextPane().getName();
+            initialDirectoryPath = getTextPane().getName();
         }
         if (initialDirectoryPath == null) {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
@@ -973,7 +974,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
         tabPane.insertTab(title, null, sep.getEditorComponent(), "", ind);
         tabPane.setSelectedIndex(ind);
-        setContentPane(tabPane);
+        setContentPane(contentPane);
         initInputMap(sep);
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
@@ -1065,7 +1066,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
         leftPane.setSplitPane(split);
         rightPane.setSplitPane(split);
 
-        setContentPane(tabPane);
+        setContentPane(contentPane);
         activateHelpOnTyping(leftPane);
         activateHelpOnTyping(rightPane);
         initInputMap(leftPane);
@@ -1098,7 +1099,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             pane.setCaretPosition(0);
             activateHelpOnTyping(pane);
             tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getEditorComponent());
-            setContentPane(tabPane);
+            setContentPane(contentPane);
             initInputMap(pane);
             if (doc.getBinary()) {
                 pane.setBinary(true);
@@ -1828,6 +1829,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
                         }
                         scinotesList.clear();
                         NavigatorWindow.closeCurrent();
+                        SearchFile.closeCurrent();
                     }
                 });
         } catch (InterruptedException e) {
@@ -1856,7 +1858,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param ed the SciNotes editor
      */
     private static void setKeyStrokeAction(ScilabEditorPane sep, SciNotes ed) {
-        Map<String, KeyStroke> map = new HashMap();
+        Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
         ConfigSciNotesManager.addMapActionNameKeys(map);
 
         ClassLoader loader = ClassLoader.getSystemClassLoader();

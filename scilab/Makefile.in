@@ -61,15 +61,16 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT) \
 	$(am__EXEEXT_1)
-@IS_MACOSX_TRUE@am__append_1 = -framework Cocoa
-@IS_MACOSX_TRUE@am__append_2 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
+@IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
+@IS_MACOSX_TRUE@am__append_2 = -framework Cocoa
+@IS_MACOSX_TRUE@am__append_3 = $(top_srcdir)/modules/core/src/c/initMacOSXEnv.c
 
 #-static
-@ENABLE_STATIC_TRUE@am__append_3 = scilab-static-bin
+@ENABLE_STATIC_TRUE@am__append_4 = scilab-static-bin
 
 #  The user wants to compile the localization files
-@GENERATE_LOCALIZATION_FILES_TRUE@am__append_4 = localization
-@COMPILATION_TESTS_TRUE@am__append_5 = check-java
+@GENERATE_LOCALIZATION_FILES_TRUE@am__append_5 = localization
+@COMPILATION_TESTS_TRUE@am__append_6 = check-java
 DIST_COMMON = $(am__configure_deps) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(srcdir)/scilab-lib-doc.properties.in \
 	$(srcdir)/scilab-lib.properties.in $(srcdir)/scilab.pc.in \
@@ -123,9 +124,9 @@ CONFIG_CLEAN_FILES = modules/helptools/macros/xmlfiletohtml.sci \
 CONFIG_CLEAN_VPATH_FILES =
 @ENABLE_STATIC_TRUE@am__EXEEXT_1 = scilab-static-bin$(EXEEXT)
 am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" \
-	"$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" \
-	"$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)" \
-	"$(DESTDIR)$(valgrinddir)"
+	"$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(iconsdir)" \
+	"$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" \
+	"$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_call_scilab_c_OBJECTS = call_scilab_c-myprog.$(OBJEXT)
 call_scilab_c_OBJECTS = $(am_call_scilab_c_OBJECTS)
@@ -306,8 +307,8 @@ RECURSIVE_TARGETS = all-recursive check-recursive dvi-recursive \
 	install-pdf-recursive install-ps-recursive install-recursive \
 	installcheck-recursive installdirs-recursive pdf-recursive \
 	ps-recursive uninstall-recursive
-DATA = $(icons_DATA) $(infofiles_DATA) $(pkgconfig_DATA) $(root_DATA) \
-	$(valgrind_DATA)
+DATA = $(desktop_DATA) $(icons_DATA) $(infofiles_DATA) \
+	$(pkgconfig_DATA) $(root_DATA) $(valgrind_DATA)
 RECURSIVE_CLEAN_TARGETS = mostlyclean-recursive clean-recursive	\
   distclean-recursive maintainer-clean-recursive
 AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGETS:-recursive=) \
@@ -616,8 +617,9 @@ SUBDIRS = libs \
 
 ACLOCAL_AMFLAGS = -I m4/
 changelogs = CHANGES CHANGES_5.1.X CHANGES_5.2.X CHANGES_5.3.X CHANGES_5.4.X
-bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli
-scilab_bin_LDFLAGS = $(am__append_1)
+bin_SCRIPTS = bin/scilab bin/scilab-adv-cli bin/scilab-cli \
+	$(am__append_1)
+scilab_bin_LDFLAGS = $(am__append_2)
 scilab_cli_bin_LDFLAGS = 
 scilab_bin_CFLAGS = -I$(top_srcdir)/modules/io/includes
 # --no-undefined --relax
@@ -653,7 +655,7 @@ COMMON_CPPFLAGS = -I$(top_srcdir)/modules/shell/includes/ \
 						-I$(top_srcdir)/modules/api_scilab/includes/
 
 scilab_bin_SOURCES = $(top_srcdir)/modules/core/src/cpp/scilab.cpp \
-	$(top_srcdir)/modules/core/src/cpp/tasks.cpp $(am__append_2)
+	$(top_srcdir)/modules/core/src/cpp/tasks.cpp $(am__append_3)
 scilab_bin_LDADD = $(COMMON_LIBS) $(SCILAB_LIB)
 scilab_bin_CPPFLAGS = $(COMMON_CPPFLAGS)
 
@@ -669,7 +671,7 @@ scilab_cli_bin_CPPFLAGS = -DWITHOUT_GUI $(COMMON_CPPFLAGS)
 @ENABLE_STATIC_TRUE@scilab_static_bin_LDADD = $(top_builddir)/modules/libscilab.la
 @ENABLE_STATIC_TRUE@scilab_static_bin_SOURCES = $(scilab_bin_SOURCES)
 LANG_DOMAIN = scilab
-TARGETS_ALL = macros $(am__append_4) $(am__append_5)
+TARGETS_ALL = macros $(am__append_5) $(am__append_6)
 rootdir = $(pkgdatadir)/etc/
 root_DATA = $(top_srcdir)/etc/scilab.start \
 $(top_srcdir)/etc/scilab.quit \
@@ -703,17 +705,25 @@ $(top_srcdir)/README_Windows.txt \
 $(top_builddir)/Version.incl
 
 iconsdir = $(pkgdatadir)/icons/
-icons_DATA = $(top_srcdir)/icons/scilab.xpm \
-$(top_srcdir)/icons/puffin_128.xpm \
-$(top_srcdir)/icons/puffin_256.xpm \
-$(top_srcdir)/icons/puffin_32.xpm \
-$(top_srcdir)/icons/puffin_48.xpm \
-$(top_srcdir)/icons/puffin.png \
-$(top_srcdir)/icons/puffin.icns \
-$(top_srcdir)/icons/scilab.icns
+icons_DATA = $(top_srcdir)/desktop/scilab.xpm \
+$(top_srcdir)/desktop/puffin_128.xpm \
+$(top_srcdir)/desktop/puffin_256.xpm \
+$(top_srcdir)/desktop/puffin_32.xpm \
+$(top_srcdir)/desktop/puffin_48.xpm \
+$(top_srcdir)/desktop/puffin.png \
+$(top_srcdir)/desktop/puffin.icns \
+$(top_srcdir)/desktop/scilab.icns
 
 valgrinddir = $(pkgdatadir)/tools/profiling
 valgrind_DATA = $(top_srcdir)/tools/profiling/valgrind.supp
+
+# Desktop file
+# Note that here, it is datadir and NOT pkgdatadir
+desktopdir = $(datadir)/applications
+desktop_DATA = $(top_srcdir)/desktop/scilab-adv-cli.desktop \
+$(top_srcdir)/desktop/scilab-cli.desktop \
+$(top_srcdir)/desktop/scilab.desktop
+
 LANGDOC = en_US fr_FR pt_BR ja_JP
 
 # Used for mac os x because it needs to remove the charset=UTF-8 because it is breaking the accents.
@@ -1257,6 +1267,26 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
+install-desktopDATA: $(desktop_DATA)
+	@$(NORMAL_INSTALL)
+	test -z "$(desktopdir)" || $(MKDIR_P) "$(DESTDIR)$(desktopdir)"
+	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(desktopdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(desktopdir)" || exit $$?; \
+	done
+
+uninstall-desktopDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(desktop_DATA)'; test -n "$(desktopdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	test -n "$$files" || exit 0; \
+	echo " ( cd '$(DESTDIR)$(desktopdir)' && rm -f" $$files ")"; \
+	cd "$(DESTDIR)$(desktopdir)" && rm -f $$files
 install-iconsDATA: $(icons_DATA)
 	@$(NORMAL_INSTALL)
 	test -z "$(iconsdir)" || $(MKDIR_P) "$(DESTDIR)$(iconsdir)"
@@ -1676,7 +1706,7 @@ check: check-recursive
 all-am: Makefile $(PROGRAMS) $(SCRIPTS) $(DATA) all-local
 installdirs: installdirs-recursive
 installdirs-am:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(bindir)" "$(DESTDIR)$(desktopdir)" "$(DESTDIR)$(iconsdir)" "$(DESTDIR)$(infofilesdir)" "$(DESTDIR)$(pkgconfigdir)" "$(DESTDIR)$(rootdir)" "$(DESTDIR)$(valgrinddir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-recursive
@@ -1729,9 +1759,9 @@ info: info-recursive
 
 info-am:
 
-install-data-am: install-data-local install-iconsDATA \
-	install-infofilesDATA install-pkgconfigDATA install-rootDATA \
-	install-valgrindDATA
+install-data-am: install-data-local install-desktopDATA \
+	install-iconsDATA install-infofilesDATA install-pkgconfigDATA \
+	install-rootDATA install-valgrindDATA
 
 install-dvi: install-dvi-recursive
 
@@ -1780,9 +1810,9 @@ ps: ps-recursive
 ps-am:
 
 uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
-	uninstall-iconsDATA uninstall-infofilesDATA \
-	uninstall-pkgconfigDATA uninstall-rootDATA \
-	uninstall-valgrindDATA
+	uninstall-desktopDATA uninstall-iconsDATA \
+	uninstall-infofilesDATA uninstall-pkgconfigDATA \
+	uninstall-rootDATA uninstall-valgrindDATA
 
 .MAKE: $(RECURSIVE_CLEAN_TARGETS) $(RECURSIVE_TARGETS) check-am \
 	ctags-recursive install-am install-strip tags-recursive
@@ -1797,17 +1827,18 @@ uninstall-am: uninstall-binPROGRAMS uninstall-binSCRIPTS \
 	distdir distuninstallcheck dvi dvi-am html html-am info \
 	info-am install install-am install-binPROGRAMS \
 	install-binSCRIPTS install-data install-data-am \
-	install-data-local install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-iconsDATA \
-	install-info install-info-am install-infofilesDATA install-man \
-	install-pdf install-pdf-am install-pkgconfigDATA install-ps \
-	install-ps-am install-rootDATA install-strip \
-	install-valgrindDATA installcheck installcheck-am installdirs \
-	installdirs-am maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-recursive \
-	uninstall uninstall-am uninstall-binPROGRAMS \
-	uninstall-binSCRIPTS uninstall-iconsDATA \
+	install-data-local install-desktopDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-iconsDATA install-info install-info-am \
+	install-infofilesDATA install-man install-pdf install-pdf-am \
+	install-pkgconfigDATA install-ps install-ps-am \
+	install-rootDATA install-strip install-valgrindDATA \
+	installcheck installcheck-am installdirs installdirs-am \
+	maintainer-clean maintainer-clean-generic mostlyclean \
+	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
+	pdf pdf-am ps ps-am tags tags-recursive uninstall uninstall-am \
+	uninstall-binPROGRAMS uninstall-binSCRIPTS \
+	uninstall-desktopDATA uninstall-iconsDATA \
 	uninstall-infofilesDATA uninstall-pkgconfigDATA \
 	uninstall-rootDATA uninstall-valgrindDATA
 
@@ -1824,7 +1855,7 @@ all-local: $(TARGETS_ALL)
 macros:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	-@( cd $(top_builddir) ; \
 	echo "$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce" ; \
-	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce)
+	$(top_builddir)/bin/scilab-cli -ns -f modules/functions/scripts/buildmacros/buildmacros.sce) || exit 1
 
 # Build the public Javadoc (javasci v2 and Java/Scilab types)
 # This is not done in the module itself because its needs also the "types"
@@ -1836,12 +1867,13 @@ javadoc:
 	org.scilab.modules.javasci org.scilab.modules.types
 
 doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
-@BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
+@BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		for l in $(LANGDOC); do \
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
-@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltojar([],[],'$$l');exit;\"";\
-@BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltojar([],[],'$$l');exit;";\
+@BUILD_HELP_TRUE@			COMMAND="try xmltojar([],[],'$$l');catch exit(-1);end;exit(0);"; \
+@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 @BUILD_HELP_TRUE@		done; \
 @BUILD_HELP_TRUE@	else \
 @BUILD_HELP_TRUE@		echo "Cannot find Scilab-adv-cli binary"; \
@@ -1849,12 +1881,13 @@ doc: javadoc $(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
 @BUILD_HELP_FALSE@	@echo "Cannot buid help. Add --enable-build-help to the ./configure if you want to build it."
 
 doc-web:$(top_builddir)/scilab-bin $(top_builddir)/bin/scilab-adv-cli
-@BUILD_HELP_TRUE@	-@if test -x $(top_builddir)/scilab-bin; then \
+@BUILD_HELP_TRUE@	@if test -x $(top_builddir)/scilab-bin; then \
 @BUILD_HELP_TRUE@		cd $(top_builddir);\
 @BUILD_HELP_TRUE@		for l in $(LANGDOC); do \
 @BUILD_HELP_TRUE@			echo "-- Building documentation ($$l) --"; \
-@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"xmltoweb([],[],'$$l');exit;\"";\
-@BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "xmltoweb([],[],'$$l');exit;";\
+@BUILD_HELP_TRUE@			COMMAND="try xmltoweb([],[],'$$l');catch exit(-1);end;exit(0);";\
+@BUILD_HELP_TRUE@			echo "LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -nouserstartup -e \"$$COMMAND\"";\
+@BUILD_HELP_TRUE@			LANG=C SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1 $(top_builddir)/bin/scilab-adv-cli -nb -l $$l -nouserstartup -e "$$COMMAND" || exit 1;\
 @BUILD_HELP_TRUE@			JAVADOC_TARGET=$(top_builddir)/modules/helptools/web/$$l/javasci; \
 @BUILD_HELP_TRUE@			if test ! -d $$JAVADOC_TARGET; then \
 @BUILD_HELP_TRUE@				mkdir $$JAVADOC_TARGET; \
@@ -1870,7 +1903,9 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
 		for l in $(LANGDOC); do \
 			echo "-- Checking documentation ($$l) --"; \
-			$(top_builddir)/bin/scilab-cli -nb -l $$l -e 'check_help();exit;';\
+			COMMAND="try check_help();catch exit(-1);end;exit(0);";\
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e \"$$COMMAND\"";\
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1;\
 		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
@@ -1879,7 +1914,7 @@ check-help:$(top_builddir)/scilab-cli-bin $(top_builddir)/bin/scilab-cli
 check-recursive: check-local
 check-local:
 	@if test -x $(top_builddir)/scilab-bin; then \
-		COMMAND="test_run();quit";\
+		COMMAND="try test_run();catch exit(-1);end;exit(0)";\
 		export LANG=C;\
 		$(top_builddir)/bin/scilab-adv-cli -nb -e "$$COMMAND"; \
 	else \
@@ -1898,7 +1933,7 @@ code-coverage:
 
 distclean-recursive: distclean-generated clean-recursive
 
-clean-recursive: clean-doc clean-localization clean-macros clean-generated
+clean-recursive: clean-help clean-localization clean-macros clean-generated
 
 clean-macros:
 # Find is necessary because of subdirs...
@@ -1909,12 +1944,16 @@ clean-macros:
 	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 
-clean-doc:
-	-@if test -x $(top_builddir)/scilab-cli-bin; then \
-		echo "$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'clean_help();exit;'; \
-		echo "$(top_builddir)/bin/scilab-cli  -nb -l en -e 'clean_help();exit;'"; \
-		$(top_builddir)/bin/scilab-cli -nb -l en -e 'clean_help();exit;'; \
+# To ensure previous compatibility
+clean-doc: clean-help
+
+clean-help:
+	@if test -x $(top_builddir)/scilab-cli-bin; then \
+		COMMAND="try clean_help();catch exit(-1);end;exit(0)"; \
+		for l in $(LANGDOC); do \
+			echo "$(top_builddir)/bin/scilab-cli -nb -l $$l -e '$$COMMAND'"; \
+			$(top_builddir)/bin/scilab-cli -nb -l $$l -e "$$COMMAND" || exit 1; \
+		done; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi; \
@@ -1931,7 +1970,7 @@ clean-doc:
 
 clean-tests:
 	@if test -x $(top_builddir)/scilab-cli-bin; then \
-		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'test_clean();exit;'; \
+		$(top_builddir)/bin/scilab-cli -nb -l fr -e 'try test_clean();catch exit(-1);end;exit(0);' || exit 1; \
 	else \
 		echo "Cannot find Scilab binary"; \
 	fi

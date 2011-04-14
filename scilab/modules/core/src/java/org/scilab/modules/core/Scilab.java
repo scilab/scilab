@@ -5,11 +5,11 @@
  * Copyright (C) 2007-2008 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007-2008 - INRIA - Jean-Baptiste SILVY
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -19,6 +19,9 @@ package org.scilab.modules.core;
 import javax.swing.JPopupMenu;
 
 import org.flexdock.docking.DockingConstants;
+
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,7 +36,6 @@ import org.scilab.modules.gui.utils.MenuBarBuilder;
 import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
-import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.localization.Messages;
 
 /**
@@ -80,13 +82,13 @@ public class Scilab {
          */
         try {
             SCIDIR = System.getenv("SCI");
-            
+
             /*
-             * Set Java directories to Scilab ones 
+             * Set Java directories to Scilab ones
              */
             System.setProperty("java.io.tmpdir", ScilabConstants.TMPDIR.getCanonicalPath());
             System.setProperty("user.home", ScilabConstants.SCIHOME.getCanonicalPath());
-            
+
         } catch (Exception e) {
             System.err.println("Cannot retrieve the variable SCI. Please report on http://bugzilla.scilab.org/");
             System.err.println(e.getLocalizedMessage());
@@ -177,6 +179,7 @@ public class Scilab {
             try {
                 /* CONSOLE */
                 /* Create a tab to put console into */
+                LoadClassPath.loadOnUse("Console");
                 consoleTab = ScilabTab.createTab(Messages.gettext("Scilab Console"));
                 /* Exit Scilab when the console is closed */
                 consoleTab.setCallback(CallBack.createCallback("exit();", CallBack.SCILAB_INSTRUCTION));
@@ -200,7 +203,7 @@ public class Scilab {
             consoleTab.addMember(ScilabConsole.getConsole());
             mainView.addTab(consoleTab);
             mainView.draw();
-        } 
+        }
 
     }
 
@@ -262,4 +265,3 @@ public class Scilab {
 
 }
 /*--------------------------------------------------------------------------*/
-

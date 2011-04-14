@@ -351,7 +351,7 @@ function status = test_module(_params)
 
     name = splitModule(_params.moduleName);
     
-    if with_module(_params.moduleName) then
+    if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
     elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
@@ -374,7 +374,7 @@ function status = test_module(_params)
             directory_path = module.path + "/tests/" + my_types(i);
 
             for j=2:size(name,"*")
-                directory_path = directory_path + filesep() + module_items(j);
+                directory_path = directory_path + filesep() + name(j);
             end
 
             if isdir(directory_path) then
@@ -427,14 +427,13 @@ function status = test_module(_params)
     //don't test only return list of tests.
     if _params.reference == "list" then
         for i = 1:test_count
-            path = getPath(tests(i,1), my_types);
-            if ~isempty(path) then
-                displayModuleName = sprintf("%s", moduleName);
-                for j=1:size(path, "*")
-                    displayModuleName = displayModuleName + sprintf("|%s", path(j));
+            if size(name, "*") > 1 then
+                displayModuleName = sprintf("%s", name(1));
+                for j=2:size(name, "*")
+                    displayModuleName = displayModuleName + sprintf("|%s", name(j));
                 end
             else
-                displayModuleName = sprintf("%s", moduleName);
+                displayModuleName = sprintf("%s", name(1));
             end
             tests(i,1) = displayModuleName;
         end
@@ -446,16 +445,17 @@ function status = test_module(_params)
     tic();
     for i = 1:test_count
         printf("   %03d/%03d - ",i, test_count);
-        path = getPath(tests(i,1), my_types);
-        if ~isempty(path) then
-            displayModuleName = sprintf("[%s", moduleName);
-            for j=1:size(path, "*")
-                displayModuleName = displayModuleName + sprintf("|%s", path(j));
+
+        if size(name, "*") > 1 then
+            displayModuleName = sprintf("[%s", name(1));
+            for j=2:size(name, "*")
+                displayModuleName = displayModuleName + sprintf("|%s", name(j));
             end
             displayModuleName = displayModuleName + sprintf("] %s", tests(i,2));
         else
-            displayModuleName = sprintf("[%s] %s", moduleName, tests(i,2));
+            displayModuleName = sprintf("[%s] %s", name(1), tests(i,2));
         end
+
         printf("%s", displayModuleName);
         for j = length(displayModuleName):50
             printf(".");
@@ -1033,16 +1033,6 @@ function directories = getDirectories(directory)
     for i=1:size(items,"*")
         if isdir(directory + items(i)) then
             directories = [directories; getDirectories(directory + items(i) + filesep())];
-        end
-    end
-endfunction
-
-function path = getPath(directory, ref_dir)
-    path = strsplit(directory, ["\","/"]);
-    path(path == "") = [];
-    for i = 1:size(ref_dir, "*")
-        if find(path == ref_dir(i)) then
-            path(1:find(path == ref_dir(i))) = [];
         end
     end
 endfunction

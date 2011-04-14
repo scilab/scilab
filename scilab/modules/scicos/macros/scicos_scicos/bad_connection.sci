@@ -1,7 +1,8 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
 //                      - Alan Layec <alan.layec@inria.fr>
+//  Copyright (C) 2011 <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -78,9 +79,10 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
     //** hilite_obj(scs_m.objs(path_out)); //**
     hilite_obj(path_out); //** new
     if typ==0 then
-      messagebox(['Highlighted block has connected ports ';'with  incompatible sizes'],"modal")
+      messagebox([gettext("Highlighted block has connected ports<br />with incompatible sizes.")], gettext("Connection error"), "warning", "modal")
+
     else
-      messagebox(['Highlighted block has connected ports ';'with  incompatible types'],"modal")
+      messagebox([gettext("Highlighted block has connected ports<br />with  incompatible types.")], gettext("Connection error"), "warning", "modal")
     end
     unhilite_obj(path_out); //** new
     return;
@@ -103,15 +105,13 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 
       if typ==0 then
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 ' output port '+string(prt_out)+' size is :'+sci2exp(nout);
-                 ' input port '+string(prt_in)+' size is  :'+sci2exp(nin)],"modal");
+        messagebox([gettext("Highlighted block(s) have connected ports<br />with  incompatible sizes.");" "; ..
+          msprintf(gettext("&nbsp;Output port %s size is: %s"), string(prt_out), sci2exp(nout)); ..
+          msprintf(gettext("&nbsp;Input port %s size is: %s"), string(prt_in), sci2exp(nin))], gettext("Connection error"), "warning", "modal");
       else
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
+        messagebox([gettext("Highlighted block(s) have connected ports<br />with  incompatible types.");" "; ..
+          msprintf(gettext("&nbsp;Output port %s type is: %s"),string(prt_out), sci2exp(outtyp)); ..
+          msprintf(gettext("&nbsp;Input port %s type is: %s"), string(prt_in), sci2exp(intyp))], gettext("Connection error"), "warning", "modal");
 
       end
       unhilite_obj(path_out);
@@ -135,15 +135,13 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
       end
 //*****************************************
       if typ==0 then
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible sizes';
-                 string(prt_out)+' output port size is :'+sci2exp(nout);
-                 string(prt_in)+' input port size is  :'+sci2exp(nin)],"modal");
+        messagebox([gettext("Highlighted block(s) have connected ports<br />with  incompatible sizes.");" "; ..
+          msprintf(gettext("&nbsp; %s output port size is: %s"), string(prt_out), sci2exp(nout)); ..
+          msprintf(gettext("&nbsp; %s input port size is: %s"), string(prt_in), sci2exp(nin))], gettext("Connection error"), "warning", "modal");
       else
-        messagebox(['Highlighted block(s) have connected ports ';
-                 'with  incompatible type';
-                 ' output port '+string(prt_out)+' type is :'+sci2exp(outtyp);
-                 ' input port '+string(prt_in)+' type is  :'+sci2exp(intyp)],"modal");
+        messagebox([gettext("Highlighted block(s) have connected ports<br />with  incompatible types.");" "; ..
+          msprintf(gettext("&nbsp;Output port %s type is: %s"), string(prt_out), sci2exp(outtyp)); ..
+          msprintf(gettext("&nbsp;Input port %s type is: %s"), string(prt_in), sci2exp(intyp))], gettext("Connection error"), "warning", "modal");
       end
       for k=size(path,'*'):-1:1
         //** select the mxwin+k window and get the handle
@@ -163,7 +161,7 @@ function bad_connection(path_out,prt_out,nout,outtyp,path_in,prt_in,nin,intyp,ty
   else // connected links do not verify block contraints
     mess=prt_out;
     if type(path_out)==15 then //problem with implicit block
-      messagebox('Problem with the block generated from modelica blocks','modal')
+      messagebox([gettext("Problem with the block generated from modelica blocks.")],"warning", "modal")
     else
       path=path_out(1:$-1) // superbloc path
       path_out=path_out($) //  block number

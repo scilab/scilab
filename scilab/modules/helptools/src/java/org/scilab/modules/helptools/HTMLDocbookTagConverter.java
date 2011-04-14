@@ -1000,7 +1000,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTerm(Map<String, String> attributes, String contents) throws SAXException {
-        return encloseContents("span", "term", contents);
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("span", "term", contents);
+        } else {
+            return encloseContents("span", "term", contents);
+        }
     }
 
     /**

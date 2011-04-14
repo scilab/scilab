@@ -69,6 +69,14 @@ import org.xml.sax.SAXException;
  * Configuration class which interacts with the file etc/scinotesConfiguration.xml
  */
 public final class ConfigSciNotesManager {
+
+    public static final String RECENTBASEDIR = "recentBaseDir";
+    public static final String BASEDIR = "baseDir";
+    public static final String RECENTFILEPATTERN = "recentFilePattern";
+    public static final String FILEPATTERN = "filePattern";
+    public static final String RECENTWORDPATTERN = "recentWordPattern";
+    public static final String WORDPATTERN = "wordPattern";
+
     private static final int BUFSIZE = 1024;
 
     private static final int MARGIN = 20;
@@ -119,6 +127,10 @@ public final class ConfigSciNotesManager {
     private static final String SEARCH = "search";
     private static final String RECENT_REPLACE = "recentReplace";
     private static final String REPLACE = "replace";
+    private static final String RECURSIVE = "recursiveSearch";
+    private static final String LINEBYLINE = "readLineByLine";
+    private static final String FILECASE = "fileCase";
+
     private static final String EXPRESSION = "exp";
     private static final String REGULAR_EXPRESION = "regularExp";
     private static final String CIRCULAR = "circularSearch";
@@ -164,9 +176,7 @@ public final class ConfigSciNotesManager {
     private static final int DEFAULT_WIDTH = 650;
     private static final int DEFAULT_HEIGHT = 550;
 
-    private static final int MAX_RECENT_FILES = 10;
-    private static final int MAX_RECENT_SEARCH = 20;
-    private static final int MAX_RECENT_REPLACE = 20;
+    private static final int MAXRECENT = 20;
 
     private static Document document;
     private static Properties keysMap;
@@ -1681,7 +1691,7 @@ public final class ConfigSciNotesManager {
         }
 
         // if we have reached the maximun , we remove the oldest files
-        while (recentFiles.getLength() >= MAX_RECENT_FILES) {
+        while (recentFiles.getLength() >= MAXRECENT) {
             root.removeChild(root.getFirstChild());
         }
 
@@ -2144,7 +2154,7 @@ public final class ConfigSciNotesManager {
 
         List<Node> search = getNodeChildren(recents, SEARCH);
 
-        while (search.size() >= MAX_RECENT_SEARCH) {
+        while (search.size() >= MAXRECENT) {
             removeRecentSearch(((Element) search.get(0)).getAttribute(EXPRESSION));
             search = getNodeChildren(recents, SEARCH);
         }
@@ -2212,6 +2222,91 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Add a file to recent Opened Files
+     * @param exp the path of the files to add
+     */
+    public static void saveRecent(String exp, String nodeName, String childNodeName) {
+        Node root = getXcosRoot();
+        if (root == null || exp == null || exp.compareTo("") == 0) {
+            return;
+        }
+
+        Node recents = getNodeChild(root, nodeName);
+        if (recents == null) {
+            recents = document.createElement(nodeName);
+            root.appendChild(recents);
+        }
+
+        List<Node> list = getNodeChildren(recents, childNodeName);
+
+        while (list.size() >= MAXRECENT) {
+            removeRecent(((Element) list.get(0)).getAttribute(EXPRESSION), nodeName, childNodeName);
+            list = getNodeChildren(recents, childNodeName);
+        }
+        //if path already in file no need to add it
+        for (Node item : list) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
+                return;
+            }
+        }
+
+        Element newNode = document.createElement(childNodeName);
+        newNode.setAttribute(EXPRESSION, exp);
+        recents.appendChild((Node) newNode);
+
+        clean(recents);
+        writeDocument();
+    }
+
+    /**
+     * @param exp the expression to remove
+     */
+    public static void removeRecent(String exp, String nodeName, String childNodeName) {
+        Node root = getXcosRoot();
+        if (root == null) {
+            return;
+        }
+
+        Node recent = getNodeChild(root, nodeName);
+        List<Node> list = getNodeChildren(recent, childNodeName);
+
+        // remove node if exists
+        for (Node item : list) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
+                recent.removeChild(item);
+                break;
+            }
+        }
+
+        clean(recent);
+        writeDocument();
+    }
+
+    /**
+     * @return a list of the recent searches
+     */
+    public static List<String> getRecent(String nodeName, String childNodeName) {
+        List<String> files = new ArrayList<String>();
+
+        Node root = getXcosRoot();
+        if (root == null) {
+            return files;
+        }
+
+        Node recent = getNodeChild(root, nodeName);
+        List<Node> list = getNodeChildren(recent, childNodeName);
+        for (Node node : list) {
+            String exp = ((Element) node).getAttribute(EXPRESSION);
+            if (exp != null && exp.compareTo("") != 0) {
+                files.add(exp);
+            }
+        }
+
+        return files;
+    }
+
+
+    /**
      * @param exp the recent expression for a replacement
      */
     public static void saveRecentReplace(String exp) {
@@ -2228,7 +2323,7 @@ public final class ConfigSciNotesManager {
 
         List<Node> replace = getNodeChildren(recent, REPLACE);
 
-        while (replace.size() >= MAX_RECENT_REPLACE) {
+        while (replace.size() >= MAXRECENT) {
             removeRecentReplace(((Element) replace.get(0)).getAttribute(EXPRESSION));
             replace = getNodeChildren(recent, REPLACE);
         }
@@ -2323,6 +2418,48 @@ public final class ConfigSciNotesManager {
      */
     public static void saveWholeWord(boolean wholeWord) {
         saveBooleanAttribute(WHOLE_WORD, STATE_FLAG, wholeWord);
+    }
+
+    /**
+     * @return true for a recursive search
+     */
+    public static boolean getRecursive() {
+        return getBooleanAttribute(RECURSIVE, STATE_FLAG, true);
+    }
+
+    /**
+     * @param recursive for a recursive search
+     */
+    public static void saveRecursive(boolean recursive) {
+        saveBooleanAttribute(RECURSIVE, STATE_FLAG, recursive);
+    }
+
+    /**
+     * @return true for a line by line search
+     */
+    public static boolean getLineByLine() {
+        return getBooleanAttribute(LINEBYLINE, STATE_FLAG, true);
+    }
+
+    /**
+     * @param lineByLine for a line by line search
+     */
+    public static void saveLineByLine(boolean lineByLine) {
+        saveBooleanAttribute(LINEBYLINE, STATE_FLAG, lineByLine);
+    }
+
+    /**
+     * @return true for a case sensitive file name
+     */
+    public static boolean getFileCase() {
+        return getBooleanAttribute(FILECASE, STATE_FLAG, false);
+    }
+
+    /**
+     * @param fileCase for a case sensitive file name
+     */
+    public static void saveFileCase(boolean fileCase) {
+        saveBooleanAttribute(FILECASE, STATE_FLAG, fileCase);
     }
 
     /**

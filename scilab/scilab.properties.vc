@@ -1,0 +1,3 @@
+; Definition ANT flags for Scilab
+
+build.debug=off

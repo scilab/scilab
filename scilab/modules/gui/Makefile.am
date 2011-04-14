@@ -254,7 +254,8 @@ libscigui_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
 			-I$(top_srcdir)/modules/system_env/includes/ \
 			-I$(top_srcdir)/modules/symbol/includes/ \
-			-I$(top_srcdir)/modules/types/includes/
+			-I$(top_srcdir)/modules/types/includes/ \
+			-I$(top_srcdir)/modules/string/includes/
 
 # Without the GUI module
 libscigui_disable_la_CFLAGS = -Iincludes/ \
@@ -307,9 +308,15 @@ libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/32x32/apps/system-search.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \
 images/icons/16x16/actions/view-refresh.png \
+images/icons/16x16/search/folder.png \
+images/icons/16x16/search/file.png \
+images/icons/16x16/search/line-found.png \
+images/icons/16x16/search/scilab-file.png \
+images/icons/16x16/actions/save-and-execute.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \

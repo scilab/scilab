@@ -10,8 +10,8 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     //  Check that an instruction produces the expected error.
 
     [lhs,rhs]=argn()
-    if ( and(rhs <> [2 3] ) ) then
-        errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d to %d expected.") , "assert_checkerror" , 2 , 3 )
+    if ( rhs < 2 ) then
+        errmsg = sprintf ( gettext ( "%s: Wrong number of input argument: At least %d expected.\n") , "assert_checkerror" , 2 )
         error(errmsg)
     end
     //
@@ -74,6 +74,19 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     // Initialize output arguments
     flag = %t
     errmsg = ""
+    //
+    // Localize the message, if necessary.
+    if ( rhs >= 4 ) then
+      localmsg = gettext(expectedmsg)
+      instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
+      ierr = execstr(instr,"errcatch")
+      if ( ierr <> 0 ) then
+        fmterrmsg = lasterror()
+        localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
+        errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
+        error(errmsg)
+      end
+    end
     //
     // Check the error message
     if ( expectedmsg <> compmsg ) then

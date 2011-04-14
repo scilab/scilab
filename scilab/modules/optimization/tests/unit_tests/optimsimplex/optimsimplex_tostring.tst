@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -9,42 +10,6 @@
 
 // <-- JVM NOT MANDATORY -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // Test with 3 vertices
 s1 = optimsimplex_new ();
@@ -54,7 +19,7 @@ simplex = [
 36. -3.0 2.0
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
-str = optimsimplex_tostring ( s1 );
+str = string ( s1 );
 if getos() == 'Windows' then
 expected = [
 "Optim Simplex Object:"
@@ -72,7 +37,7 @@ expected = [
 "Vertex #3/3 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00"
 ];
 end
-assert_equal ( str , expected );
+assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 
 // Test with 4 vertices
@@ -84,7 +49,7 @@ simplex = [
 36. -3.0 2.0
 ];
 s1 = optimsimplex_setall ( s1 , simplex );
-str = optimsimplex_tostring ( s1 );
+str = string ( s1 );
 if getos() == 'Windows' then
 expected = [
 "Optim Simplex Object:"
@@ -104,6 +69,6 @@ expected = [
 "Vertex #4/4 : fv=3.600000e+01, x=-3.000000e+00 2.000000e+00" 
 ];
 end
-assert_equal ( str , expected );
+assert_checkequal ( str , expected );
 s1 = optimsimplex_destroy ( s1 );
 

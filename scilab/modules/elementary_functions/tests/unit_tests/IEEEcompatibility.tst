@@ -2,7 +2,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Allan CORNET
 // Copyright (C) 2009 - INRIA - Michael Baudin, Antoine Elias
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -12,55 +12,6 @@
 // <-- Bugzilla URL -->
 //
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if ( type(computed) == 1 & type(expected) == 1 ) then
-    csize = size (computed,"*")
-    esize = size (expected,"*")
-    cnonan = find(~isnan(computed))
-    enonan = find(~isnan(computed))
-    if ( and(cnonan == enonan) & and(computed(enonan) == expected(cnonan)) ) then
-      flag = 1;
-    else
-      flag = 0;
-    end
-  else
-    if computed==expected then
-      flag = 1;
-    else
-      flag = 0;
-    end
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // Bibliography :
 // "IEEE Standard for Floating-Point Arithmetic"
@@ -72,24 +23,24 @@ endfunction
 // are the one which are expected.
 // Strict equality is required here.
 radix = number_properties("radix");
-assert_equal ( radix , 2 );
+assert_checkequal ( radix , 2 );
 p = number_properties("digits");
-assert_equal ( p , 53 );
+assert_checkequal ( p , 53 );
 eps = number_properties("eps");
-assert_equal ( eps , 1.11022302462515650e-016 );
-assert_equal ( %eps , 2.22044604925031310e-016 );
+assert_checkequal ( eps , 1.11022302462515650e-016 );
+assert_checkequal ( %eps , 2.22044604925031310e-016 );
 huge = number_properties("huge");
-assert_equal ( huge , 1.797693134862315708e+308 );
+assert_checkequal ( huge , 1.797693134862315708e+308 );
 tiny = number_properties("tiny");
-assert_equal ( tiny , 2.22507385850720140e-308 );
+assert_checkequal ( tiny , 2.22507385850720140e-308 );
 denorm = number_properties("denorm");
-assert_equal ( denorm , %t );
+assert_checkequal ( denorm , %t );
 tiniest = number_properties("tiniest");
-assert_equal ( tiniest , 4.94065645841246540e-324 );
+assert_checkequal ( tiniest , 4.94065645841246540e-324 );
 minexp = number_properties("minexp");
-assert_equal ( minexp , -1021 );
+assert_checkequal ( minexp , -1021 );
 maxexp = number_properties("maxexp");
-assert_equal ( maxexp , 1024 );
+assert_checkequal ( maxexp , 1024 );
 
 // Check that elementary operators +,-,*,/,sqrt and modulo
 // satisfy basic IEEE requirements.
@@ -177,11 +128,11 @@ for i=1:n
   end
 end
 
-assert_equal ( computedadd    , expectedadd );
-assert_equal ( computedminus  , expectedminus );
-assert_equal ( computedmult   , expectedmult );
-assert_equal ( computeddiv    , expecteddiv );
-assert_equal ( computedsqrt   , expectedsqrt );
-assert_equal ( computedmodulo , expectedmodulo );
+assert_checkequal ( computedadd    , expectedadd );
+assert_checkequal ( computedminus  , expectedminus );
+assert_checkequal ( computedmult   , expectedmult );
+assert_checkequal ( computeddiv    , expecteddiv );
+assert_checkequal ( computedsqrt   , expectedsqrt );
+assert_checkequal ( computedmodulo , expectedmodulo );
 
 

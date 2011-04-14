@@ -19,35 +19,37 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.Shape;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.EventObject;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import javax.swing.text.Caret;
-import javax.swing.JComponent;
 import javax.swing.JEditorPane;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.text.BadLocationException;
+import javax.swing.text.Caret;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.Element;
 import javax.swing.text.Highlighter;
 import javax.swing.text.JTextComponent;
 import javax.swing.text.View;
-import javax.swing.event.CaretEvent;
-import javax.swing.event.CaretListener;
 
 import org.scilab.modules.commons.gui.ScilabCaret;
 import org.scilab.modules.console.utils.ScilabLaTeXViewer;
@@ -63,9 +65,11 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  *
  */
 public class ScilabEditorPane extends JEditorPane implements Highlighter.HighlightPainter,
-                                                             CaretListener, MouseListener,
-                                                             MouseMotionListener, Cloneable,
-                                                             KeyListener {
+                                                  CaretListener, MouseListener,
+                                                  MouseMotionListener, Cloneable,
+                                                  KeyListener {
+
+    private static final long serialVersionUID = 4322071415211939097L;
 
     private static final String TIRET = " - ";
     private static final Cursor HANDCURSOR = Cursor.getPredefinedCursor(Cursor.HAND_CURSOR);
@@ -104,7 +108,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     private boolean suppressCom = true;
 
     private SciNotesLineNumberPanel xln;
-    private JSplitPane split;
     private ScilabEditorPane rightTextPane;
     private UUID uuid;
 
@@ -634,15 +637,39 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param pos the position in the document
      */
     public void scrollTextToPos(int pos) {
-        try {
-            setCaretPosition(pos);
-            JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
-            int value = modelToView(pos).y;
-            if (modelToView(pos).y > scrollbar.getMaximum()) {
-                scrollbar.setMaximum(value);
-            }
-            scrollbar.setValue(value);
-        } catch (BadLocationException e) { }
+        scrollTextToPos(pos, true, false);
+    }
+
+    /**
+     * Scroll the pane to have the line containing pos on the top or centered on the pane
+     * @param pos the position in the document
+     * @param setCaret, if true the caret is set at the given position
+     * @param centered, if true the line is centered
+     */
+    public void scrollTextToPos(final int pos, final boolean setCaret, final boolean centered) {
+        SwingUtilities.invokeLater(new Runnable() {
+                public void run() {
+                    try {
+                        if (setCaret) {
+                            setCaretPosition(pos);
+                        }
+                        JScrollBar scrollbar = edComponent.getScrollPane().getVerticalScrollBar();
+                        Rectangle rect = modelToView(pos);
+                        if (centered) {
+                            int value = scrollbar.getValue();
+                            int h = scrollbar.getHeight();
+                            if (rect.y < value || rect.y > value + h) {
+                                scrollbar.setValue(Math.max(0, rect.y - h / 2));
+                            }
+                        } else {
+                            if (rect.y > scrollbar.getMaximum()) {
+                                scrollbar.setMaximum(rect.y);
+                            }
+                            scrollbar.setValue(rect.y);
+                        }
+                    } catch (BadLocationException e) { }
+                }
+            });
     }
 
     /**
@@ -650,13 +677,24 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param lineNumber the number of the line
      * @param highlight true to highlight the line
      */
-    public void scrollTextToLineNumber(int lineNumber, final boolean highlight) {
+    public void scrollTextToLineNumber(int lineNumber, boolean highlight) {
+        scrollTextToLineNumber(lineNumber, highlight, true, false);
+    }
+
+    /**
+     * Scroll the pane to have the line lineNumber on the top or centered on the pane
+     * @param lineNumber the number of the line
+     * @param highlight true to highlight the line
+     * @param setCaret, if true the caret is set at the given line
+     * @param centered, if true the line is centered
+     */
+    public void scrollTextToLineNumber(int lineNumber, final boolean highlight, final boolean setCaret, final boolean centered) {
         Element root = getDocument().getDefaultRootElement();
         if (lineNumber >= 1 && lineNumber <= root.getElementCount()) {
             final int pos = root.getElement(lineNumber - 1).getStartOffset();
             SwingUtilities.invokeLater(new Runnable() {
                     public void run() {
-                        scrollTextToPos(pos);
+                        scrollTextToPos(pos, setCaret, centered);
                         if (highlight) {
                             saveHighlightContourColor = highlightContourColor;
                             highlightContourColor = null;
@@ -680,6 +718,19 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * @param highlight true to highlight the line
      */
     public void scrollTextToLineNumberInWhereami(int lineNumber, String funname, boolean highlight) {
+        scrollTextToLineNumberInWhereami(lineNumber, funname, highlight, true, false);
+    }
+
+    /**
+     * Scroll the pane to have the line lineNumber on the top of the pane in whereami mode
+     * The line number is computed regarding the function named funname.
+     * @param lineNumber the number of the line
+     * @param funname the function name
+     * @param highlight true to highlight the line
+     * @param setCaret, if true the caret is set at the given line
+     * @param centered, if true the line is centered
+     */
+    public void scrollTextToLineNumberInWhereami(int lineNumber, String funname, boolean highlight, boolean setCaret, boolean centered) {
         if (funname != null) {
             Element root = getDocument().getDefaultRootElement();
             int nlines = root.getElementCount();
@@ -692,7 +743,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
                 }
             }
         }
-        scrollTextToLineNumber(lineNumber, highlight);
+        scrollTextToLineNumber(lineNumber, highlight, setCaret, centered);
     }
 
     /**
@@ -1246,6 +1297,39 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public void setCaret(Caret c) {
+        if (!(c instanceof ScilabCaret)) {
+            final Caret caret = new SciNotesCaret(this);
+            setCaretColor(getCaretColor());
+            SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        int blinkRate = 500;
+                        Object o = UIManager.get("TextComponent.caretBlinkRate");
+                        if ((o != null) && (o instanceof Integer)) {
+                            Integer rate = (Integer) o;
+                            blinkRate = rate.intValue();
+                        }
+                        caret.setBlinkRate(blinkRate);
+                        caret.setVisible(true);
+                    }
+                });
+            super.setCaret(caret);
+        } else {
+            super.setCaret(c);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void select(int start, int end) {
+        removeHighlightOnPosition(start);
+        super.select(start, end);
+    }
+
+    /**
      * Remove the highlight putted to show the line (for editor('foo',123))
      */
     private void removeHighlightForLine() {
@@ -1259,29 +1343,9 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
     }
 
     /**
-     * {@inheritDoc}
+     * Remove the highlight at position start
+     * @param start the beginning of the highlight
      */
-    public void setCaret(Caret c) {
-        if (!(c instanceof ScilabCaret)) {
-            final Caret cc = c;
-            final Caret caret = new SciNotesCaret(this);
-            setCaretColor(getCaretColor());
-            SwingUtilities.invokeLater(new Runnable() {
-                    public void run() {
-                        caret.setBlinkRate(cc.getBlinkRate());
-                    }
-                });
-            super.setCaret(caret);
-        } else {
-            super.setCaret(c);
-        }
-    }
-
-    public void select(int start, int end) {
-        removeHighlightOnPosition(start);
-        super.select(start, end);
-    }
-
     public void removeHighlightOnPosition(int start) {
         int pos = highlightedWordsBegin.indexOf(start);
         if (pos != -1) {
@@ -1290,9 +1354,14 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
     }
 
+    /**
+     * Highlight a word in this textpane.
+     * @param word the word to highlight
+     * @param exact if true the search is case sensitive
+     */
     public void highlightWords(String word, boolean exact) {
+        removeHighlightedWords();
         if (word != null && word.length() != 0) {
-            removeHighlightedWords();
             String text = getText();
             if (!exact) {
                 text = text.toLowerCase();
@@ -1300,7 +1369,6 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             }
 
             int pos = text.indexOf(word, 0);
-            int end = text.length();
             int len = word.length();
             Highlighter highlighter = getHighlighter();
             while (pos != -1) {
@@ -1313,6 +1381,38 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         }
     }
 
+    /**
+     * Highlight a word according to a pattern in this textpane.
+     * @param pattern the pattern to highlight
+     * @param centered, if true the pane is centered on the first occurence
+     */
+    public void highlightWords(Pattern pattern, boolean centered) {
+        if (pattern != null) {
+            removeHighlightedWords();
+            int first = -1;
+            String text = getText();
+            Matcher matcher = pattern.matcher(text);
+
+            Highlighter highlighter = getHighlighter();
+            while (matcher.find()) {
+                if (first == -1) {
+                    first = matcher.start();
+                }
+                try {
+                    highlightedWords.add(highlighter.addHighlight(matcher.start(), matcher.end(), HIGHLIGHTER));
+                    highlightedWordsBegin.add(matcher.start());
+                } catch (BadLocationException e) { }
+            }
+
+            if (centered && first != -1) {
+                scrollTextToPos(first, false, true);
+            }
+        }
+    }
+
+    /**
+     * Remove all the highlighted words
+     */
     public void removeHighlightedWords() {
         Highlighter highlighter = getHighlighter();
         for (Object obj : highlightedWords) {

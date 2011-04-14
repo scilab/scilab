@@ -71,7 +71,6 @@ public class ScilabView extends WrappedPlainView {
 
     private ScilabContext context;
     private ScilabLexer lexer;
-    private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
     private boolean isTabViewable = true;
@@ -109,7 +108,6 @@ public class ScilabView extends WrappedPlainView {
         }
         doc.setView(this);
         lexer = doc.createLexer();
-        lexerValid = false;
         setTabRepresentation(TABVERTICAL);
     }
 

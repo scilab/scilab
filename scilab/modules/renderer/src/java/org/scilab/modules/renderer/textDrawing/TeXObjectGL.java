@@ -12,24 +12,21 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Component;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Insets;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.awt.geom.AffineTransform;
-
 import java.nio.ByteBuffer;
 
-import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
-
+import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
-import org.scilab.forge.jlatexmath.ParseException;
+import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
 
 /**
  * LaTeX object

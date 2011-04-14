@@ -13,7 +13,6 @@
  package org.scilab.modules.graphic_export;
 
 import java.io.File;
-import java.io.IOException;
 
 import javax.media.opengl.GL;
 import javax.media.opengl.GLAutoDrawable;

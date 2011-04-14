@@ -2,8 +2,15 @@
 
 <!--
  * 
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 
 <refentry version="5.0-subset Scilab" xml:id="assert_generror" xml:lang="en"
@@ -16,50 +23,60 @@
 
 
   <refnamediv>
-    <refname>assert_generror</refname><refpurpose>Generates an error.</refpurpose>
+    <refname>assert_generror</refname>
+    <refpurpose>Generates an error.</refpurpose>
   </refnamediv>
 
 
 
-<refsynopsisdiv>
-   <title>Calling Sequence</title>
-   <synopsis>
-   assert_generror ( errormsg )
-   assert_generror ( errormsg , errornb )
-   
-   </synopsis>
-</refsynopsisdiv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      assert_generror ( errormsg )
+      assert_generror ( errormsg , errornb )
 
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-   <varlistentry><term>expectedmsg :</term>
-      <listitem><para> a 1x1 matrix of strings, the error message to be produced</para></listitem></varlistentry>
-   <varlistentry><term>expectederrnb :</term>
-      <listitem><para> a 1x1 matrix of floating point integers, the error number (default expectederrnb=[]).</para></listitem></varlistentry>
-   </variablelist>
-</refsection>
+    </synopsis>
+  </refsynopsisdiv>
 
-<refsection>
-   <title>Description</title>
-   <para>
-Calls the error function, with the given arguments.
-   </para>
-   <para>
-This function is called by the assert_check* function each time an error
-produced by the wrong match between expected and computed outputs is generated.
-In the case where a assert_check* function receives a wrong number of input arguments,
-a wrong number of ouput arguments, a wrong type of input argument or a wrong content
-of input arguments, the regular error function is called.
-This function can be customized to modify the behaviour of the assert_check* functions.
-   </para>
-   <para>
-</para>
-</refsection>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>expectedmsg :</term>
+        <listitem>
+          <para> a 1-by-1 matrix of strings, the error message to be produced</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>expectederrnb :</term>
+        <listitem>
+          <para> a 1-by-1 matrix of doubles, integer values,  the error number (default expectederrnb=[]).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Description</title>
+    <para>
+      Calls the error function, with the given arguments.
+    </para>
+    <para>
+      This function is called by the assert_check* function each time an error
+      produced by the wrong match between expected and computed outputs is generated.
+      In the case where a assert_check* function receives a wrong number of input arguments,
+      a wrong number of ouput arguments, a wrong type of input argument or a wrong content
+      of input arguments, the regular error function is called.
+      This function can be customized to modify the behaviour of the assert_check* functions.
+    </para>
+    <para>
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
 // Both these calls generate an error
 assert_generror ( "oups" );
 assert_generror ( "oups" , 123456789 );
@@ -69,14 +86,14 @@ assert_checktrue ( [%t %f] );
 //
 // Define our own error handler
 function myerror ( varargin )
-[lhs,rhs]=argn()
-errormsg = varargin(1)
-if ( rhs == 1 ) then
-mprintf( "myerror: %s\n", errormsg )
-else
-errornb = varargin(2)
-mprintf( "myerror: %s (%d)\n", errormsg , errornb )
-end
+    [lhs,rhs]=argn()
+    errormsg = varargin(1)
+    if ( rhs == 1 ) then
+        mprintf( "myerror: %s\n", errormsg )
+    else
+        errornb = varargin(2)
+        mprintf( "myerror: %s (%d)\n", errormsg , errornb )
+    end
 endfunction
 //
 // Configure the new error handler
@@ -95,13 +112,14 @@ funcprot(0);
 assert_generror = olderrorfunction;
 funcprot(back);
 
-   ]]></programlisting>
-</refsection>
+   ]]>
+    </programlisting>
+  </refsection>
 
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</member>
-   </simplelist>
-</refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin</member>
+    </simplelist>
+  </refsection>
 </refentry>

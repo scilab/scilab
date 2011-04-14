@@ -28,7 +28,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
+    <synopsis>scicos_debug(level)
+level = scicos_debug()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos_debug">
     <title>Module</title>

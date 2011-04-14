@@ -51,3 +51,4 @@ SEP #51 : Linear Programming
 SEP #52 : Assert
 SEP #54 : Quality argument added to xs2jpg
 SEP #55 : add timeout option to host function
+SEP #56 : CSV read/write

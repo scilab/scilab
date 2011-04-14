@@ -1,131 +1,116 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) ????-2008 - INRIA Michael Baudin
+// Copyright (C) 2008 - INRIA Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // TODO : use relative error criteria instead of absolute error
 eps=100*%eps;
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed , expected , epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 
 // inf 
-if norm([1,2,3,-1,-2,-3],0)<>%inf then pause,end 
-if ~isnan(norm([1,2,3,-1,-2,-3],%nan)) then pause,end 
-if norm([])<>0 then pause,end
+assert_checkequal ( norm([1,2,3,-1,-2,-3],0) , %inf );
+assert_checkequal ( norm([1,2,3,-1,-2,-3],%nan) , %nan );
+assert_checkequal ( norm([]) , 0 );
 // vector
 x=[1,2,3,-4];
-if abs(norm(x,1) - sum(abs(x))) > eps then pause,end
-if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then pause,end
-if abs(norm(x,2) - norm(x)) > eps then pause,end
+assert_checkalmostequal ( norm(x,1) , sum(abs(x))               , eps );
+assert_checkalmostequal ( norm(x,2) , sqrt(sum(abs(x).*abs(x))) , eps );
+assert_checkalmostequal ( norm(x,2) , norm(x)                   , eps );
 p=0.5;
-if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then pause,end
+assert_checkalmostequal ( norm(x,p) , sum(abs(x)^p)^(1/p)       , eps );
 p=2.5;
-if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then pause,end
-if abs(norm(x,'inf') -max(abs(x))) > eps then pause,end
-if abs(norm(x,'inf') -norm(x,%inf)) > eps then pause,end
-if abs(norm(x,'fro') -norm(x,2)) > eps then pause,end
+assert_checkalmostequal ( norm(x,p) ,     sum(abs(x)^p)^(1/p)   , eps );
+assert_checkalmostequal ( norm(x,'inf') , max(abs(x))           , eps );
+assert_checkalmostequal ( norm(x,'inf') , norm(x,%inf)          , eps );
+assert_checkalmostequal ( norm(x,'fro') , norm(x,2)             , eps );
 // complex 
 x=x+%i*x;
-if abs(norm(x,1) - sum(abs(x))) > eps then pause,end
-if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then pause,end
-if abs(norm(x,2) - norm(x)) > eps then pause,end
+assert_checkalmostequal ( norm(x,1) , sum(abs(x))               , eps );
+assert_checkalmostequal ( norm(x,2) , sqrt(sum(abs(x).*abs(x))) , eps );
+assert_checkalmostequal ( norm(x,2) , norm(x)                   , eps );
 p=0.5;
 // 100*%eps is needed for linux 
-if abs(norm(x,p) - max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p))> 100*%eps then pause,end
+assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p) , 100*%eps );
 p=2.5;
-if abs(norm(x,p) - max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p))> 100*%eps then pause,end
-if abs(norm(x,'inf') -max(abs(x)))> eps then pause,end
-if abs(norm(x,'inf') -norm(x,%inf)) > eps then pause,end
-if abs(norm(x,'fro') -norm(x,2))> eps then pause,end
+assert_checkalmostequal ( norm(x,p) , max(abs(x))*sum((abs(x)/max(abs(x)))^p)^(1/p) , 100*%eps );
+assert_checkalmostequal ( norm(x,'inf') , max(abs(x))   , 100*%eps);
+assert_checkalmostequal ( norm(x,'inf') , norm(x,%inf)  , 100*%eps);
+// The Frobenius norm of this complex input x can be numerically complex,
+// e.g. 7.7459667 - 1.147D-16i
+// see http://bugzilla.scilab.org/show_bug.cgi?id=9204
+// assert_checkalmostequal ( norm(x,'fro') , norm(x,2)     , 100*%eps  , %eps );
 
 // scalar 
 
 x=[1.23];
-if abs(norm(x,1) - sum(abs(x))) > eps then pause,end
-if abs(norm(x,2) - sqrt(sum(abs(x).*abs(x)))) > eps then pause,end
-if abs(norm(x,2) - norm(x)) > eps then pause,end
+assert_checkalmostequal ( norm(x,1) , sum(abs(x))               , 100*%eps );
+assert_checkalmostequal ( norm(x,2) , sqrt(sum(abs(x).*abs(x))) , 100*%eps );
+assert_checkalmostequal ( norm(x,2) , norm(x)                   , 100*%eps ); 
 p=0.5;
-if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then pause,end
+assert_checkalmostequal ( norm(x,p) , sum(abs(x)^p)^(1/p) ,  100*%eps );
 p=2.5;
-if abs(norm(x,p) - sum(abs(x)^p)^(1/p)) > eps then pause,end
-if abs(norm(x,'inf') -max(abs(x))) > eps then pause,end
-if abs(norm(x,'inf') -norm(x,%inf)) > eps then pause,end
-if abs(norm(x,'fro') -norm(x,2)) > eps then pause,end
+assert_checkalmostequal ( norm(x,p) ,     sum(abs(x)^p)^(1/p) , 100*%eps );
+assert_checkalmostequal ( norm(x,'inf') , max(abs(x))         , 100*%eps);
+assert_checkalmostequal ( norm(x,'inf') , norm(x,%inf)        , 100*%eps );
+assert_checkalmostequal ( norm(x,'fro') , norm(x,2)           , 100*%eps );
 
 // Matrices 
 a=rand(10,10,'g');
-if abs(norm(a,1) - max(sum(abs(a),'r'))) > eps then pause,end
-if abs(norm(a,'inf') - max(sum(abs(a),'c'))) > eps then pause,end
-if abs(norm(a,%inf) - max(sum(abs(a),'c'))) > eps then pause,end
-if abs(norm(a,2) - max(svd(a))) > eps then pause,end
-if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then pause,end
+assert_checkalmostequal ( norm(a,1) , max(sum(abs(a),'r')),                100*%eps );
+assert_checkalmostequal ( norm(a,'inf') , max(sum(abs(a),'c')),            100*%eps );
+assert_checkalmostequal ( norm(a,%inf) , max(sum(abs(a),'c')),             100*%eps );
+assert_checkalmostequal ( norm(a,2) , max(svd(a)),                         100*%eps );
+assert_checkalmostequal ( norm(a,'fro') , norm(matrix(a,1,size(a,'*')),2), 100*%eps );
 
 a=a+%i*a;
-if abs(norm(a,1) - max(sum(abs(a),'r'))) > eps then pause,end
-if abs(norm(a,'inf') - max(sum(abs(a),'c'))) > eps then pause,end
-if abs(norm(a,%inf) - max(sum(abs(a),'c'))) > eps then pause,end
-if abs(norm(a,2) - max(svd(a))) > eps then pause,end
-if abs(norm(a,'fro') - norm(matrix(a,1,size(a,'*')),2)) > eps then pause,end
+assert_checkalmostequal ( norm(a,1) , max(sum(abs(a),'r')),                100*%eps );
+assert_checkalmostequal ( norm(a,'inf') , max(sum(abs(a),'c')),            100*%eps );
+assert_checkalmostequal ( norm(a,%inf) , max(sum(abs(a),'c')),             100*%eps );
+assert_checkalmostequal ( norm(a,2) , max(svd(a)),                         100*%eps );
+// see http://bugzilla.scilab.org/show_bug.cgi?id=9204
+// assert_checkalmostequal ( norm(a,'fro') , norm(matrix(a,1,size(a,'*')),2), 100*%eps );
 
 //
 // Difficult cases for large/small vectors
 //
 //norm 2
 x = 1.e307 * [1 1];
-assert_close ( norm(x) , sqrt(2) * 1.e307 , %eps );
+assert_checkequal ( norm(x) , sqrt(2) * 1.e307 );
 x = 1.e-307 * [1 1];
-assert_close ( norm(x) , sqrt(2) * 1.e-307 , %eps );
+assert_checkequal ( norm(x) , sqrt(2) * 1.e-307 );
 // norm f
 x = 1.e307 * [1 1];
-assert_close ( norm(x,"f") , sqrt(2) * 1.e307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(2) * 1.e307 );
 x = 1.e-307 * [1 1];
-assert_close ( norm(x,"f") , sqrt(2) * 1.e-307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(2) * 1.e-307 );
 //
 // Difficult cases for large/small matrices
 //
 // norm f - case 1 : n < m
 x = 1.e307 * ones(10,20);
-assert_close ( norm(x,"f") , sqrt(200) * 1.e307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(200) * 1.e307 );
 x = 1.e-307 * ones(10,20);
-assert_close ( norm(x,"f") , sqrt(200) * 1.e-307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(200) * 1.e-307 );
 // norm f - case 2 : n > m
 x = 1.e307 * ones(20,10);
-assert_close ( norm(x,"f") , sqrt(200) * 1.e307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(200) * 1.e307 );
 x = 1.e-307 * ones(20,10);
-assert_close ( norm(x,"f") , sqrt(200) * 1.e-307 , %eps );
+assert_checkequal ( norm(x,"f") , sqrt(200) * 1.e-307 );
 //
 // Special cases for zero vectors
 //
 // 2-norm of a zero vector
 x=[0 0 0];
-assert_close ( norm(x,2) , 0.0 , %eps );
+assert_checkequal ( norm(x,2) , 0.0 );
 // f-norm of a zero vector
 x=zeros(4,1);
-assert_close ( norm(x,"f") , 0.0 , %eps );
+assert_checkequal ( norm(x,"f") , 0.0 );
 // f-norm of a zero matrix, case 1 n>m
 x=zeros(4,2);
-assert_close ( norm(x,"f") , 0.0 , %eps );
+assert_checkequal ( norm(x,"f") , 0.0 );
 // f-norm of a zero matrix, case 2 m>n
 x=zeros(2,4);
-assert_close ( norm(x,"f") , 0.0 , %eps );
+assert_checkequal ( norm(x,"f") , 0.0 );
 
