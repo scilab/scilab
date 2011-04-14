@@ -254,10 +254,13 @@ Bug fixes:
 * bug 8371 fixed - Each thread used to get the command line was not detached
                    from the JVM.
 
-* Bug 8423 fixed - With certain options of the configure, the build process
+* bug 8423 fixed - With certain options of the configure, the build process
                    failed.
 
 * bug 8675 fixed - The complex function was undocumented.
+
+* bug 8959 fixed - winqueryreg returned an incorrect value if the value name was
+                   false.
 
 * bug 9070 fixed - The demonstration "Simulation/Wheel Simulation/Simulation with
                    ode" displayed a warning about an obsolete use of ilib_for_link.
