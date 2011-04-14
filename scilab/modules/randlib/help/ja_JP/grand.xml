@@ -124,7 +124,7 @@
     <title>指定された分布から乱数を取得する</title>
     <variablelist>
       <varlistentry>
-        <term>beta</term>
+        <term>ベータ分布</term>
         <listitem>
           <para><literal>Y=grand(m,n,'bet',A,B)</literal> は
 		パラメータ<literal>A</literal> およびd <literal>B</literal>
@@ -141,15 +141,15 @@ x   (1-x)   / beta(A,B)
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>binomial</term>
+        <term>二項分布</term>
         <listitem>
           <para>
 	    <literal>Y=grand(m,n,'bin',N,p)</literal> は
 		パラメータ<literal>N</literal> (正の整数) および <literal>p</literal>
 	    ([0,1]の範囲の実数)を指定した二項分布に基づきランダム変量を生成します.
-		成功する確率が<literal>p</literal>の
+		この分布では,成功する確率が<literal>p</literal>の
 		<literal>N</literal>回の独立なベルヌーイ試行における
-		成功回数.
+		成功回数となります.
 		関係する関数: <link linkend="binomial">binomial</link>,
 	    <link  linkend="cdfbin">cdfbin</link>.
           </para>
@@ -170,7 +170,7 @@ x   (1-x)   / beta(A,B)
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>カイ二乗分布e</term>
+        <term>カイ二乗分布</term>
         <listitem>
           <para>
 	    <literal>Y=grand(m,n,'chi', Df)</literal> は,自由度
@@ -201,7 +201,7 @@ x   (1-x)   / beta(A,B)
         </listitem>
       </varlistentry>
       <varlistentry>
-        <term>F分布o</term>
+        <term>F分布</term>
         <listitem>
           <para>
 	    <literal>Y=grand(m,n,'f',Dfn,Dfd)</literal> は,
@@ -709,7 +709,7 @@ scale       x          e          /  gamma(shape)
 	コードはdef, unf, lgi, uin および geom 以外の分布の系列を生成し,
 	Barry W. Brown 
             およびJames Lovato, Department of Biomathematics, The University of Texas, Houstonによる
-	"Library of Fortran Routines for Random Number  Generation".
+	"Library of Fortran Routines for Random Number  Generation"
 	に基づきます.
           </para>
         </listitem>
@@ -772,7 +772,7 @@ scale       x          e          /  gamma(shape)
         <term>scilabパッケージ化</term>
         <listitem>
           <para>
-            Jean-Philippe Chancelier および Bruno Pincon  によります
+            Jean-Philippe Chancelier および Bruno Pincon  によります.
           </para>
         </listitem>
       </varlistentry>

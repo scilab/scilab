@@ -27,8 +27,5 @@
     <rename_vc_extension_files Include="..\..\modules\core\includes\stack.h.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>
-    <rename_vc_extension_files Include="..\..\modules\helptools\macros\xmlfiletohtml.sci.vc">
-      <Filter>Rename Header Files</Filter>
-    </rename_vc_extension_files>
   </ItemGroup>
 </Project>

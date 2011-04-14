@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -38,38 +39,35 @@ case 'set' then
   dstate=model.dstate
   lunit=dstate(2)
   while %t do
-    [ok,N,swap,exprs]=scicos_getvalue(..
-	'Set WRITEAU block parameters',..
-	['Buffer size';
-	'Swap mode 0/1'],..
-	 list('vec',1,'vec',1),exprs)
+    [ok,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "WRITEAU_f");" "; ..
+        gettext("Write ''.au'' sound file on audio device")],[gettext("Buffer Size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
+        list('vec',1,'vec',1),exprs)
     if ~ok then break,end //user cancel modification
 
     nin=1
 
     fname1='/dev/audio'
     frmt1='uc '
-    mess=[]
-    if alreadyran&(N<>ipar(5)) then
-      mess=[mess;['You cannot modify buffer size when running';'End current simulation first']];
+
+    if alreadyran & (N <> ipar(5)) then
+      block_parameter_error(msprintf(gettext("You cannot modify ''%s'' when running."), gettext("Buffer Size")), ..
+        gettext("End current simulation first"));
+      ok=%f
+    elseif N < 1 then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
+        gettext("Strictly positive integer expected."));
       ok=%f
     end
-    if N<1 then
-      mess=[mess;'Buffer size must be at least 1';' ']
+    if swap <> 0 & swap <> 1 then
+      block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
+        msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
       ok=%f
-    end
-    if swap<>0&swap<>1 then
-      mess=[mess;'Swap mode must be 0 or 1'];ok=%f
-    end
-    if ~ok then
-      message(['Some specified values are inconsistent:';
-	  ' ';mess])
     end
 
     if ok then
       ipar=[length(fname1);str2code(frmt1);N;swap;str2code(fname1)]
       if prod(size(dstate))<>(nin+1)*N+2 then
-	dstate=[-1;lunit;zeros((nin+1)*N,1)]
+  dstate=[-1;lunit;zeros((nin+1)*N,1)]
       end
       model.in=1
       model.dstate=dstate;model.ipar=ipar

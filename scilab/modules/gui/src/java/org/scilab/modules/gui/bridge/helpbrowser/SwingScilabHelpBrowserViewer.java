@@ -284,9 +284,13 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
      * Execute the code in example
      * @param pre the preformatted Element containing Scilab's code
      */
-    public static void execExample(Element pre) {
+    public void execExample(Element pre) {
         String code = getCode(pre);
-        ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, true /* store in history */);
+        try {
+            ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(code, true /* display */, false /* store in history */);
+        } catch (NoClassDefFoundError e) {
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
+        }
     }
 
     /**
@@ -365,7 +369,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         try {
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, true, false);
         } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
         }
     }
 
@@ -379,7 +383,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
         try {
             ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(cmd, false, false);
         } catch (NoClassDefFoundError e) {
-            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Could not find the console nor the InterpreterManagement."));
+            ScilabModalDialog.show((Tab) SwingUtilities.getAncestorOfClass(Tab.class, x), Messages.gettext("Feature not available in this mode..."));
         }
     }
 

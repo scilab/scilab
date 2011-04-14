@@ -14,6 +14,10 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "statistics", "modules\statistics\src\c\statistics.vcxproj", "{FE9EB721-B3C1-41D8-B585-3FB3A0083CEC}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LibScilab", "libs\LibScilab\LibScilab_f2c.vcxproj", "{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E6552427-01DD-4C12-823C-09AD46F77FAD} = {E6552427-01DD-4C12-823C-09AD46F77FAD}
+		{53A01263-92BE-4C87-AA9A-79297F882310} = {53A01263-92BE-4C87-AA9A-79297F882310}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "modules\core\src\c\core.vcxproj", "{C6E2BC17-34D8-46E4-85F3-6293CB21ADCD}"
 EndProject

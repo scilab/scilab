@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -23,7 +23,7 @@
 function [x,fval,exitflag,output] = fminsearch ( varargin )
   [lhs,rhs]=argn();
   if rhs<>2 & rhs<>3 then
-    errmsg = msprintf(gettext("%s: Unexpected number of input arguments : %d provided while 2 or 3 are expected."), "fminsearch", rhs);
+    errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "fminsearch", 2,3);
     error(errmsg)
   end
   fun = varargin(1);

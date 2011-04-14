@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,48 +9,11 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 
 //
 // Check behaviour with default settings.
 //
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -61,7 +25,7 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [1.0;1.0], 1e-4 );
+assert_checkalmostequal ( xopt , [1.0;1.0], 1e-4 );
 // Cleanup
 nm = neldermead_destroy(nm);
 clear nm;
@@ -175,11 +139,5 @@ nm = neldermead_configure(nm,"-restartdetection","foo");
 nm = neldermead_configure(nm,"-restartsimplexmethod","spendley");
 nm = neldermead_configure(nm,"-kelleystagnationalpha0",1.e-2);
 cmd = "nm = neldermead_search(nm)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "neldermead_istorestart: Unknown restart detection foo";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Unknown restart detection %s",[],"neldermead_istorestart","foo");
 nm = neldermead_destroy(nm);
-
-
-

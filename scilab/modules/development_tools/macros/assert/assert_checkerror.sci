@@ -74,18 +74,18 @@ function [flag,errmsg] = assert_checkerror ( varargin )
     // Initialize output arguments
     flag = %t
     errmsg = ""
-	//
-	// Localize the message, if necessary.
-	if ( rhs >= 4 ) then
-	    localmsg = gettext(expectedmsg)
-	    instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
-		ierr = execstr(instr,"errcatch")
-		if ( ierr <> 0 ) then
-		    fmterrmsg = lasterror()
-			localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
-			errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
-			error(errmsg)			
-		end
+    //
+    // Localize the message, if necessary.
+    if ( rhs >= 4 ) then
+      localmsg = gettext(expectedmsg)
+      instr = "expectedmsg = msprintf(localmsg, varargin(4:$))"
+      ierr = execstr(instr,"errcatch")
+      if ( ierr <> 0 ) then
+        fmterrmsg = lasterror()
+        localstr = gettext ( "%s: Error while formatting the error message: ""%s""")
+        errmsg = sprintf ( localstr , "assert_checkerror" , fmterrmsg )
+        error(errmsg)
+      end
     end
     //
     // Check the error message

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,42 +11,7 @@
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 function [ y , index ] = myquad ( x , index )
   y = x(1)^2 + x(2)^2
 endfunction
@@ -103,7 +69,7 @@ nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 // We are here, that means that the output command has been correctly
 // called
-assert_equal ( _OUTPUCMDFLAG_ , 1 );
+assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
 nm = neldermead_destroy(nm);
 
 // Test the fixed algorithm
@@ -125,7 +91,7 @@ nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 // We are here, that means that the output command has been correctly
 // called
-assert_equal ( _OUTPUCMDFLAG_ , 1 );
+assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
 nm = neldermead_destroy(nm);
 
 // Test the Box algorithm
@@ -149,7 +115,7 @@ nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
 nm = neldermead_search(nm);
 // We are here, that means that the output command has been correctly
 // called
-assert_equal ( _OUTPUCMDFLAG_ , 1 );
+assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
 nm = neldermead_destroy(nm);
 
 

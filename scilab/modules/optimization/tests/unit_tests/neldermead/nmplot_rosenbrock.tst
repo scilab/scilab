@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -7,44 +8,8 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-// <-- ENGLISH IMPOSED -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -69,10 +34,10 @@ nm = nmplot_configure(nm,"-method","variable");
 //
 // Setup output files
 //
-nm = nmplot_configure(nm,"-simplexfn","rosenbrock.history.simplex.txt");
-nm = nmplot_configure(nm,"-fbarfn","rosenbrock.history.fbar.txt");
-nm = nmplot_configure(nm,"-foptfn","rosenbrock.history.fopt.txt");
-nm = nmplot_configure(nm,"-sigmafn","rosenbrock.history.sigma.txt");
+nm = nmplot_configure(nm,"-simplexfn",fullfile(TMPDIR,"rosenbrock.history.simplex.txt"));
+nm = nmplot_configure(nm,"-fbarfn",fullfile(TMPDIR,"rosenbrock.history.fbar.txt"));
+nm = nmplot_configure(nm,"-foptfn",fullfile(TMPDIR,"rosenbrock.history.fopt.txt"));
+nm = nmplot_configure(nm,"-sigmafn",fullfile(TMPDIR,"rosenbrock.history.sigma.txt"));
 //
 // Perform optimization
 //
@@ -87,21 +52,21 @@ nmplot_simplexhistory ( nm );
 drawnow();
 close(f);
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.history.fbar.txt" , ...
+nmplot_historyplot ( nm , fullfile(TMPDIR,"rosenbrock.history.fbar.txt") , ...
   mytitle = "Function Value Average" , myxlabel = "Iterations" );
 close(f);
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.history.fopt.txt" , ...
+nmplot_historyplot ( nm , fullfile(TMPDIR,"rosenbrock.history.fopt.txt") , ...
   mytitle = "Minimum Function Value" , myxlabel = "Iterations" );
 close(f);
 f = scf();
-nmplot_historyplot ( nm , "rosenbrock.history.sigma.txt" , ...
+nmplot_historyplot ( nm , fullfile(TMPDIR,"rosenbrock.history.sigma.txt") , ...
   mytitle = "Maximum Oriented length" , myxlabel = "Iterations" );
 close(f);
-deletefile("rosenbrock.history.simplex.txt");
-deletefile("rosenbrock.history.fbar.txt");
-deletefile("rosenbrock.history.fopt.txt");
-deletefile("rosenbrock.history.sigma.txt");
+deletefile(fullfile(TMPDIR,"rosenbrock.history.simplex.txt"));
+deletefile(fullfile(TMPDIR,"rosenbrock.history.fbar.txt"));
+deletefile(fullfile(TMPDIR,"rosenbrock.history.fopt.txt"));
+deletefile(fullfile(TMPDIR,"rosenbrock.history.sigma.txt"));
 nm = nmplot_destroy(nm);
 
 

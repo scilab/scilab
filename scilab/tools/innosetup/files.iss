@@ -18,7 +18,7 @@
 #include BinariesSourcePath + "\tools\innosetup\atlas.iss"
 #endif
 #include BinariesSourcePath + "\tools\tools.iss"
-#include BinariesSourcePath + "\contrib\toolbox_skeleton\toolbox_skeleton.iss"
+#include BinariesSourcePath + "\contrib\toolbox_skeleton.iss"
 #include BinariesSourcePath + "\modules\core\core.iss"
 #include BinariesSourcePath + "\modules\helptools\helptools.iss"
 #include BinariesSourcePath + "\modules\demo_tools\demo_tools.iss"
