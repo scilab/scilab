@@ -151,7 +151,7 @@ void NgonGridDataDecomposer::fillNormalizedZGridColors(float* buffer, int buffer
         {
             int currentPointIndex = getPointIndex(numX, numY, i, j);
 
-            ColorComputer::getColor(z[currentPointIndex], zMin, zRange, colormap, colormapSize, &buffer[bufferOffset]);
+            ColorComputer::getColor(z[currentPointIndex], zMin, zRange, Z_COLOR_OFFSET, colormap, colormapSize, &buffer[bufferOffset]);
 
             if (elementsSize == 4)
             {

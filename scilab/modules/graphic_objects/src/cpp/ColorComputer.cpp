@@ -18,13 +18,23 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-void ColorComputer::getColor(double s, double smin, double srange, double* colorMap, int colormapSize, float* returnedColor)
+void ColorComputer::getColor(double s, double smin, double srange, double indexOffset, double* colorMap, int colormapSize, float* returnedColor)
 {
     double value;
     int index;
 
     value = (s - smin) / (srange);
-    index = (int) ((double)(colormapSize-1)*value);
+    index = (int) ((double)(colormapSize-1)*value + indexOffset);
+
+    /* Clamp */
+    if (index < 0)
+    {
+        index = 0;
+    }
+    else if (index > colormapSize - 1)
+    {
+        index = colormapSize - 1;
+    }
 
     returnedColor[0] = colorMap[index];
     returnedColor[1] = colorMap[colormapSize+index];

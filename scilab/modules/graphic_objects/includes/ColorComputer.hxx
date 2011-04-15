@@ -26,16 +26,16 @@ public :
     /**
      * Ouputs an RGB color mapped to a scalar value s belonging to an [smin, smax] interval.
      * The output color is looked up in an RGB colormap, using a linear mapping between the latter and s.
-     * It does not currently check whether srange is greater than 0, nor that s belongs to the [smin, smax]
-     * interval.
+     * It does not currently check whether srange is greater than 0.
      * @param[in] the scalar value.
      * @param[in] the interval's minimum value.
-     * @param[in] the interval's range (smin-smax).
+     * @param[in] the interval's range (smax-smin).
+     * @param[in] an offset added to the index computed from s.
      * @param[in] a pointer to the colormap used.
      * @param[in] the colormap's size.
      * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
      */
-    static void getColor(double s, double smin, double srange, double* colormap, int colormapSize, float* returnedColor);
+    static void getColor(double s, double smin, double srange, double indexOffset, double* colormap, int colormapSize, float* returnedColor);
 
     /**
      * Outputs an RGB color directly mapped to a scalar value s.
@@ -47,5 +47,15 @@ public :
      */
     static void getDirectColor(double s, double* colorMap, int colorMapSize, float* returnedColor);
 };
+
+/**
+ * Offset passed to the getColor function for colors mapped to z values.
+ */
+#define Z_COLOR_OFFSET    0.5
+
+/**
+ * Offset passed to the getColor function for linearly mapped colors.
+ */
+#define COLOR_OFFSET      0.1
 
 #endif
