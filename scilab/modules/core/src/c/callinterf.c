@@ -105,8 +105,6 @@ static OpTab Interfaces[INTERFACES_MAX] = {
     /* 67  */ {gw_dynamic_ui_data}
 };
 /*--------------------------------------------------------------------------*/
-static int sig_ok = 0;
-/*--------------------------------------------------------------------------*/
 /**
  * call the apropriate interface according to the value of k
  * @param k the number of the interface
@@ -120,10 +118,6 @@ int C2F(callinterf) (int *k)
     {
         if ( setjmp(jmp_env) != 0 )
         {
-            if (sig_ok)
-            {
-                C2F(csignal)();
-            }
             Scierror(999,_("Aborting current computation\n"));
             count = 0;
             return 0;
