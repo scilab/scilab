@@ -336,7 +336,7 @@ g_i(x) &gt;= 0, i = 1,nbineq
                     <listitem>
                       <para>
                         the relative tolerance on x (default is
-                        %eps).
+                        sqrt(%eps)).
                       </para>
                     </listitem>
                   </varlistentry>

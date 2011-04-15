@@ -169,7 +169,7 @@ nm = neldermead_destroy(nm);
 //
 // Test with auto-restart, Kelley stagnation detection and Kelley restart method
 // Uses oriented simplex for restart.
-// There are 3 restarts and final status is "maxrestart".
+// There are 2 restarts and final status is "tolx".
 //
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
@@ -178,7 +178,6 @@ nm = neldermead_configure(nm,"-x0",[1.0 1.0]');
 nm = neldermead_configure(nm,"-maxiter",300);
 nm = neldermead_configure(nm,"-maxfunevals",500);
 nm = neldermead_configure(nm,"-simplex0method","given");
-nm = neldermead_configure(nm,"-tolsimplexizerelative",1.e-6);
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-kelleystagnationflag",%t);
@@ -186,7 +185,7 @@ nm = neldermead_configure(nm,"-restartflag",%t);
 nm = neldermead_configure(nm,"-restartdetection","kelley");
 nm = neldermead_search(nm);
 status = neldermead_get(nm,"-status");
-assert_checkequal ( status , "maxrestart" );
+assert_checkequal ( status , "tolx" );
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0;-0.5], 1e-5 );
 fopt = neldermead_get(nm,"-fopt");
@@ -194,7 +193,7 @@ assert_checkalmostequal ( fopt , -0.25 , 1e-6 );
 iterations = neldermead_get(nm,"-iterations");
 assert_checkequal ( ( iterations > 100 ) , %t );
 restartnb = neldermead_get ( nm , "-restartnb" );
-assert_checkequal ( restartnb , 3 );
+assert_checkequal ( restartnb , 2 );
 nm = neldermead_destroy(nm);
 //
 // Test with auto-restart, low precision on simplex size and O'Neill restart method.

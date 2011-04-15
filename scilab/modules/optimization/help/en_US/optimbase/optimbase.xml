@@ -224,7 +224,7 @@
     <programlisting role="example">
       min f(x)
       l_i &lt;= x_i &lt;= h_i, i = 1,n
-      g_i(x) &lt;= 0, i = 1,nbineq
+      g_i(x) &gt;= 0, i = 1,nbineq
     </programlisting>
 
     <para>where</para>
@@ -429,7 +429,7 @@
                     <listitem>
                       <para>
                         the relative tolerance on x (default is
-                        %eps).
+                        sqrt(%eps)).
                       </para>
                     </listitem>
                   </varlistentry>

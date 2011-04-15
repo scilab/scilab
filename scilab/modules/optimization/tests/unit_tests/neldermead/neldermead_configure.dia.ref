@@ -185,7 +185,7 @@ Termination Absolute Tolerance on function value : 0
 Termination Relative Tolerance on function value : 2.220D-16
 Termination Method on x : T
 Termination Absolute Tolerance on x : 0
-Termination Relative Tolerance on x : 2.220D-16
+Termination Relative Tolerance on x : 1.490D-08
 Optimization Status : 
 Verbose logging : 0
 Verbose Termination : 0
