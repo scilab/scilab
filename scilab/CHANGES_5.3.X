@@ -242,6 +242,8 @@ Bug fixes:
 
 * bug 9300 fixed - Scilab crashed when one tryed to complete an empty mlist.
 
+* bug 9270 fixed - The contour function was broken.
+
 
             Changes between version 5.3.0 and 5.3.1 of Scilab
             =================================================
