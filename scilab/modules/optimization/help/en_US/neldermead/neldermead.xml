@@ -1962,15 +1962,10 @@ g_i(x) &gt;= 0, i = 1,nbineq
             <listitem>
               <para>if the following condition</para>
 
-<<<<<<< HEAD
-              <programlisting role="example">
-                norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
-              </programlisting>
-=======
               <programlisting role="example"> 
 norm(xopt - previousxopt) &lt; tolxrelative * norm(xopt) + tolxabsolute
  </programlisting>
->>>>>>> 830cbca... Optimization: fixed bugs #7164, 7165 and 7166: the neldermead help page was improved
+
 
               <para>
                 is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
@@ -2616,12 +2611,7 @@ nm = neldermead_destroy(nm);
     </para>
 
     <programlisting role="example">
-<<<<<<< HEAD
-      <![CDATA[ 
-mprintf("Defining Rosenbrock function...\n");
-=======
 <![CDATA[ 
->>>>>>> 830cbca... Optimization: fixed bugs #7164, 7165 and 7166: the neldermead help page was improved
 function [ f , index ] = rosenbrock ( x , index )
   f = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
@@ -2668,14 +2658,9 @@ plot(xopt(1),xopt(2),"r*");
       used.
     </para>
 
-<<<<<<< HEAD
-    <programlisting role="example">
-      <![CDATA[ 
-=======
     <screen>
 <![CDATA[ 
 [...]
->>>>>>> 830cbca... Optimization: fixed bugs #7164, 7165 and 7166: the neldermead help page was improved
 =================================================================
 Iteration #156 (total = 156)
 Function Eval #297
@@ -2699,13 +2684,8 @@ xc=1 1, f(xc)=0.000000
 Sort
 [...]
  ]]>
-<<<<<<< HEAD
-    </programlisting>
-  </refsection>
-=======
 </screen>
 </refsection>
->>>>>>> 830cbca... Optimization: fixed bugs #7164, 7165 and 7166: the neldermead help page was improved
 
   <refsection>
     <title>Example #3: use output function</title>
