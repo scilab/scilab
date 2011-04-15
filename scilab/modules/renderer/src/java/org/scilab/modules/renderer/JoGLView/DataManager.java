@@ -33,6 +33,16 @@ import java.util.Set;
 public class DataManager {
 
     /**
+     * Set of properties that affect Fac3d data.
+     */
+    private static final Set<String> FAC3D_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_DATA_MODEL__,
+            GraphicObjectProperties.__GO_COLOR_FLAG__,
+            GraphicObjectProperties.__GO_COLOR_MODE__,
+            GraphicObjectProperties.__GO_DATA_MAPPING__
+    ));
+
+    /**
      * Set of properties that affect Grayplot data.
      */
     private static final Set<String> GRAYPLOT_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
@@ -154,7 +164,8 @@ public class DataManager {
         String type = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (vertexBufferMap.containsKey(id)) {
-            if ((type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property)) ||
+            if ((type.equals(GraphicObjectProperties.__GO_FAC3D__) && FAC3D_DATA_PROPERTIES.contains(property)) ||
+                (type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))) {
                 fillBuffers(id);

@@ -300,10 +300,106 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         System.out.println("How can I draw a rectangle ?");
     }
 
+    /*
+     * To do:
+     * -back faces rendering.
+     * -use polygon offset for wireframe rendering.
+     * -take into account colormap updates.
+     * -use common code for both the Fac3d and Plot3d visit methods
+     *  as they are mostly similar.
+     */
     @Override
-    public void visit(Fac3d fac3d) {
-        // TODO
-        System.out.println("How can I draw a fac3d ?");
+    public void visit(final Fac3d fac3d) {
+        if (fac3d.getVisible()) {
+
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(fac3d.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    if (fac3d.getColorFlag() >= 1) {
+                        return dataManager.getColorBuffer(fac3d.getIdentifier());
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(fac3d.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Geometry wireframe = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(fac3d.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(fac3d.getIdentifier());
+                    return indices;
+                }
+            };
+
+            if (fac3d.getSurfaceMode()) {
+                if (fac3d.getColorMode() != 0) {
+                    Appearance trianglesAppearance = new Appearance();
+
+                    if (fac3d.getColorFlag() == 0) {
+                        trianglesAppearance.setFillColor(ColorFactory.createColor(colorMap, Math.abs(fac3d.getColorMode())));
+                    }
+
+                    drawingTools.draw(triangles, trianglesAppearance);
+                }
+
+                if (fac3d.getColorMode() >= 0) {
+                    Appearance wireframeAppearance = new Appearance();
+                    wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                    drawingTools.draw(wireframe, wireframeAppearance);
+                }
+            }
+
+            if (fac3d.getMarkMode()) {
+                Sprite sprite = markManager.getMarkSprite(fac3d, colorMap);
+                ElementsBuffer positions = dataManager.getVertexBuffer(fac3d.getIdentifier());  // TODO : getMarkVertexBuffer
+                drawingTools.draw(sprite, SpriteAnchorPosition.CENTER, positions);
+            }
+
+        }
+
     }
 
     /*
