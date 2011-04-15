@@ -120,6 +120,13 @@ Packaging:
 * Scilab's icons updated.
 
 
+toolbox_skeleton:
+=================
+
+* removal of temporary variables created on the stack by the build and load of
+  the toolbox_skeleton.
+
+
 Javasci:
 ========
 
@@ -165,7 +172,7 @@ Documentation:
 
 * bug 6975 fixed - xlabel(), ylabel() and zlabel() functions were undocumented.
 
-* bug 7072 fixed - Fix various issues in the documentation.
+* Bug 7072 fixed - Fix various issues in the documentation.
                    Thanks to Yves Barois.
 
 * bug 7305 fixed - issparse was not documented.
