@@ -51,7 +51,7 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         {
             std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_mprintf";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
-        }            
+        }
     }
 
     wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
@@ -126,7 +126,6 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         fflush(NULL);
         FREE(pwstOutput[i]);
     }
-    YaspWriteW(L"\n");
     FREE(pwstOutput);
     return types::Function::OK;
 }
