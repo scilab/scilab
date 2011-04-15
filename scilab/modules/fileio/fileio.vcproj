@@ -555,6 +555,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\newest.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\c\os_wfopen.c"
 				>
 			</File>
@@ -842,6 +846,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\mtell.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\newest.h"
 				>
 			</File>
 			<File

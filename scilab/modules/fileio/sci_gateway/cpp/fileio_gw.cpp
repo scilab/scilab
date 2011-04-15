@@ -52,7 +52,8 @@ bool FileioModule::Load()
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mputstr", &sci_mputstr, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mgetstr", &sci_mgetstr, MODULE_NAME));
     symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mseek", &sci_mseek, MODULE_NAME));
-    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mtell", &sci_mtell, MODULE_NAME));    
-    
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"mtell", &sci_mtell, MODULE_NAME));
+    symbol::Context::getInstance()->AddFunction(Function::createFunction(L"newest", &sci_newest, MODULE_NAME));
+
     return true;
 }

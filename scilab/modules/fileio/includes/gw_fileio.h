@@ -26,7 +26,6 @@ FILEIO_IMPEXP int sci_fscanf(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_maxfiles(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getdrives(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_pathsep(char *fname,unsigned long fname_len);
-FILEIO_IMPEXP int sci_newest(char *fname,unsigned long fname_len);
 FILEIO_IMPEXP int sci_getrelativefilename(char *fname, unsigned long l);
 FILEIO_IMPEXP int sci_get_absolute_file_path(char *fname,unsigned long fname_len);
 
