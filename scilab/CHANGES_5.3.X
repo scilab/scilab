@@ -83,7 +83,7 @@ Xcos:
 
 * bug 8692 fixed - Null block parameters was not checked before encoding.
 
-* bug 8735 fixed - Mixed (Implicit-Explicit) superblocks I/O blocks produced 
+* bug 8735 fixed - Mixed (Implicit-Explicit) superblocks I/O blocks produced
                    warnings.
 
 * bug 9024 fixed - Opening a non existing file lead to palette closing issues.
@@ -149,7 +149,7 @@ Localization:
 Documentation:
 ==============
 
-* Bug 7072 fixed - Fix various issues in the documentation. 
+* Bug 7072 fixed - Fix various issues in the documentation.
                    Thanks to Yves Barois.
 
 Compilation:
@@ -171,10 +171,18 @@ Compilation:
 * Bug 9018 fixed - --without-xcos disabled the detection of jhdf5 but was still
                    building xcos.
 
+
 Documentation:
 ==============
 
 * Created a "complex" sub-section of "Elementary Functions"
+
+
+Numerical Maths:
+================
+
+* Bug 9350 fixed - abs(complex(%nan,0)) returned zero instead of nan.
+
 
 Bug fixes:
 ==========
@@ -618,12 +626,12 @@ Optimization:
   * Documentation provided for the stopping rule.
   * More examples provided.
 
-* bug 7164 fixed - The help for neldermead does not give examples of 
+* bug 7164 fixed - The help for neldermead does not give examples of
                    constrained optimization.
-                   Added an example of bound constrained optimization and 
+                   Added an example of bound constrained optimization and
                    and example of nonlinearily constrained optimization.
 
-* bug 7165 fixed - The neldermead help page stated that the constraint 
+* bug 7165 fixed - The neldermead help page stated that the constraint
                    is negative, while it is positive.
 
 * bug 7166 fixed - The second example in neldermead's help was wrong.
