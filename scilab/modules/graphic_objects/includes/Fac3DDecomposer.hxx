@@ -1,0 +1,175 @@
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2011 - DIGITEO - Manuel Juliachs
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+#ifndef NGONGENERALDATA_DECOMPOSER_H
+#define NGONGENERALDATA_DECOMPOSER_H
+
+#include <string>
+
+extern "C" {
+#include <stdlib.h>
+}
+
+/**
+ * Fac3D decomposer class
+ * Determines the vertices and the segments indices to be rendered
+ * as a function of the decomposed Fac3D object's properties.
+ * Fac3D data is represented by an N-gon set, as referred by the
+ * various comments.
+ * To do: implement fillColors for the second per-facet shading mode (colorFlag == 4)
+ */
+
+class Fac3DDecomposer
+{
+
+private :
+
+    /**
+     * Fills a buffer with colors computed from z values.
+     * Colors are looked up in a color map, which is linearly mapped to the N-gon set's normalized z values.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of components taken by a color element (3 or 4).
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the z coordinate array.
+     * @param[in] the number of N-gons.
+     * @param[in] the number of vertices per N-gon.
+     */
+    static void fillNormalizedZColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+        double* z, int numGons, int numVerticesPerGon);
+
+    /**
+     * Fills a buffer with a single color.
+     * The color buffer is filled with a single color value, looked up in a color map.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of components taken by a color element (3 or 4).
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the single color value used to fill the buffer.
+     * @param[in] the number of N-gons.
+     * @param[in] the number of vertices per N-gon.
+     */
+    static void fillConstantColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+        double colorValue, int numGons, int numVerticesPerGon);
+
+    /**
+     * Fills a buffer with color data.
+     * Colors are looked up in a color map, using the N-gon set's color data array as an input.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of components taken by a color element (3 or 4).
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the N-gon set's color values array.
+     * @param[in] the color flag value.
+     * @param[in] a flag specifying whether color values are defined per-vertex (1) or per-facet (0).
+     * @param[in] a flag specifying whether color values are linearly mapped to the color map (0) or a direct mapping is used (1).
+     * @param[in] the number of N-gons.
+     * @param[in] the number of vertices per N-gon.
+     */
+    static void fillDataColors(float* buffer, int bufferLength, int elementsSize, double* colormap, int colormapSize,
+        double* colors, int colorFlag, int perVertex, int dataMapping, int numGons, int numVerticesPerGon);
+
+    /**
+     * Computes the average value of an N-gon's vertex values.
+     * @param[in] a pointer to the N-gon's first vertex value.
+     * @param[in] the number of vertices.
+     * @return the average value.
+     */
+    static double computeAverageValue(double* values, int numVertices);
+
+    /**
+     * Computes and returns an N-gon set's minimum and maximum values.
+     * @param[in] the N-gon set's value array.
+     * @param[in] the number of values
+     * @param[in] the number of N-gons.
+     * @param[in] the number of vertices per N-gon.
+     * @param[in] a flag specifying whether per-vertex (0) or per-face averaged (1) values are considered.
+     * @param[out] a pointer to the returned minimum value.
+     * @param[out] a pointer to the returned maximum value.
+     */
+    static void computeMinMaxValues(double* values, int numValues, int numGons, int numVerticesPerGon, int average, double* valueMin, double* valueMax);
+
+public :
+
+    /**
+     * Returns the number of data elements for the given object.
+     * @param[in] the given object id.
+     * @return the number of data elements.
+     */
+    static int getDataSize(char* id);
+
+    /**
+     * Fills the given buffer with vertex data from the given object.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of coordinates taken by one element in the buffer.
+     * @param[in] the byte mask specifying which coordinates are filled (1 for X, 2 for Y, 4 for Z).
+     * @param[in] the transformation to apply to data.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     */
+    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+
+    /**
+     * Fills the given buffer with color data from the given object.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length in number of elements.
+     * @param[in] the number of components taken by one element in the buffer (3 or 4).
+     */
+    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+
+    /**
+     * Returns the number of indices for the given object.
+     * @param[in] the given object id.
+     * @return the object's number of indices.
+     */
+    static int getIndicesSize(char* id);
+
+    /**
+     * Fills the given buffer with indices data of the given object.
+     * @param[in] the given object id.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @return the number of indices actually written.
+     */
+    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+
+    /**
+     * Returns the number of wireframe indices for the given object.
+     * It is equal to twice the number of segments that can be at most
+     * drawn according to the Fac3d object's properties and therefore does not
+     * take non-representable points into account.
+     * @param[in] the given object id.
+     * @return the object's number of indices.
+     */
+    static int getWireIndicesSize(char* id);
+
+    /**
+     * Fills the given buffer with wireframe indices data of the given object.
+     * The number of indices actually written is equal to or less than
+     * the buffer length, which is the object's maximum number of indices.
+     * @param[in] the id of the given object.
+     * @param[out] the buffer to fill.
+     * @param[in] the buffer length.
+     * @param[in] the bit mask specifying whether logarithmic coordinates are used.
+     * @return the number of indices actually written.
+     */
+    static int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask);
+
+};
+
+#endif

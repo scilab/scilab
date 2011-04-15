@@ -412,6 +412,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\cpp\Fac3DDecomposer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\cpp\getGraphicObjectProperty.cpp"
 				>
 			</File>
@@ -510,6 +514,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\dynlib_graphic_objects.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\Fac3DDecomposer.hxx"
 				>
 			</File>
 			<File
