@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -45,7 +46,7 @@ function demo_nmplot_rosen()
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
-  nmplot_display(nm);
+  disp(nm);
   
   // Plot the contours of the cost function and the simplex history
   mprintf(_("Plotting contour (please wait) ...\n"));
