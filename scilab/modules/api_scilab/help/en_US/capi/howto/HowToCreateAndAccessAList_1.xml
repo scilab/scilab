@@ -34,7 +34,7 @@
 
     <para>Let's initialize a mlist in Scilab.</para>
 
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role = "code_gateway"><![CDATA[ 
 A = mlist(['mytype','var1','var2'],'a string',[1 2; 3 4]);
  ]]></programlisting>
 
@@ -176,7 +176,7 @@ disp(A);
 
     <para>First, let's write the C function:</para>
 
-    <programlisting role = ""><![CDATA[  
+    <programlisting role = "code_gateway"><![CDATA[  
 #include <stack-c.h>
 #include <string.h>
 

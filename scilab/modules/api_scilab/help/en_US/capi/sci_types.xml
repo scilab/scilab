@@ -110,7 +110,7 @@
     a switch case structure, we display the type of the variable sent as a
     parameter.</para>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include <stack-c.h>
 #include <sciprint.h>
 

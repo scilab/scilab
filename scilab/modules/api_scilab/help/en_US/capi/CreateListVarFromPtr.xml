@@ -153,7 +153,7 @@
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="code_gateway"><![CDATA[ 
 #include <stack-c.h>
 #include <string.h>
 

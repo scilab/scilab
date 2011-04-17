@@ -59,7 +59,7 @@
     and prints the integer corresponding to the type of the variable sent as
     parameter in the Scilab console.</para>
 
-    <programlisting role = "example"><![CDATA[  
+    <programlisting role = "code_gateway"><![CDATA[  
 #include <stack-c.h>
 #include <sciprint.h>
 
