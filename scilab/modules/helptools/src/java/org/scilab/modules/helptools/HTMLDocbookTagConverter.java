@@ -753,14 +753,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String role = attributes.get("role");
         String str;
         if (role == null) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
-                if (prependToProgramListing != null) {
-                    code = prependToProgramListing + code;
-                }
-                if (appendToProgramListing != null) {
-                    code += appendToProgramListing;
-                }
-                str = encloseContents("div", "programlisting", code);
+            String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
+            if (prependToProgramListing != null) {
+                code = prependToProgramListing + code;
+            }
+            if (appendToProgramListing != null) {
+                code += appendToProgramListing;
+            }
+            str = encloseContents("div", "programlisting", code);
         } else {
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
@@ -769,7 +769,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             } else if (role.equals("java")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
@@ -778,7 +778,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
