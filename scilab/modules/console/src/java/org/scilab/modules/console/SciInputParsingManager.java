@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.completion;
+package org.scilab.modules.console;
 
 import java.awt.Point;
 
