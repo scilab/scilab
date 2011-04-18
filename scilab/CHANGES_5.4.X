@@ -41,6 +41,8 @@ Bug Fixes:
 
 * bug 9164 - The unit tests now use the new assert functions.
 
+* bug 9277 - escape character "\" did not work with msprintf.
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
