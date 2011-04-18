@@ -230,6 +230,11 @@ Numerical Maths:
 
 * Bug 9350 fixed - abs(complex(%nan,0)) returned zero instead of nan.
 
+CACSD module:
+============
+
+* Bug 9205 fixed - Optional argument added to nyquist to control the drawing of the 
+                   symetric part and new a function added for high definition zoom
 
 Bug fixes:
 ==========

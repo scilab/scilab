@@ -51,4 +51,6 @@ SEP #049: repmat function
 SEP #050: Xcos Help Folders
 SEP #051: Linear Programming
 SEP #054: Quality argument added to xs2jpg
+SEP #056: Add symetry option to nyquist function
+SEP #059: nyquistfrequencybounds
 SEP #060: CACSD frequency tools
