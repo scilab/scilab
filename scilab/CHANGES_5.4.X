@@ -37,7 +37,10 @@ Bug Fixes:
 
 * bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
 
+* bug 9156 - mgetl.c compilation failed on some Windows.
+
 * bug 9164 - The unit tests now use the new assert functions.
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
