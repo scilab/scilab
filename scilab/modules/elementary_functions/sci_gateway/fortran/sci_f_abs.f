@@ -83,7 +83,7 @@ c
          do 13 i = 1, mn
               x = stk(l1+i)
               y = stk(k1+i)
-              if ( isanan(x) .or. isanan(y) ) then
+              if ( (isanan(x).eq.1).or. (isanan(y).eq.1) ) then
                   z = mynan
               else
                   z = dlapy2(x, y)
