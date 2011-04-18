@@ -23,7 +23,12 @@
 #include <signal.h>
 #include <string.h>
 #include <libintl.h>
-#include <setjmp.h>
+
+#if defined(__linux__)
+#define __USE_FORTIFY_LEVEL 0 /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
+#endif
+#include <setjmp.h> /* this declaration should remain close the __USE_FORTIFY_LEVEL define */
+
 #include <sys/types.h> /* getpid */
 #include <unistd.h> /* gethostname */
 
