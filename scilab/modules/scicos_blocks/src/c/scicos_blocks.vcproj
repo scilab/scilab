@@ -1783,10 +1783,6 @@
 			RelativePath="..\..\scicos_blocks.iss"
 			>
 		</File>
-		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

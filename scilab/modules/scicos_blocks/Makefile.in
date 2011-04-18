@@ -1417,7 +1417,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### scicos_blocks : Conf files ####
 @XCOS_TRUE@libsciscicos_blocks_la_rootdir = $(mydatadir)
-@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt version.xml
+@XCOS_TRUE@libsciscicos_blocks_la_root_DATA = license.txt 
 
 #### scicos_blocks : init scripts ####
 @XCOS_TRUE@libsciscicos_blocks_la_etcdir = $(mydatadir)/etc

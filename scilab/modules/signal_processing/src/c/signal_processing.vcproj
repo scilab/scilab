@@ -473,10 +473,6 @@
 			RelativePath="..\..\sci_gateway\signal_processing_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

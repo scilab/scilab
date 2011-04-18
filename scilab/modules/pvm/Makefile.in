@@ -572,7 +572,7 @@ top_srcdir = @top_srcdir@
 
 #### pvm : Conf files ####
 @PVM_TRUE@libscipvm_la_rootdir = $(mydatadir)
-@PVM_TRUE@libscipvm_la_root_DATA = license.txt version.xml
+@PVM_TRUE@libscipvm_la_root_DATA = license.txt 
 
 #### pvm : init scripts ####
 @PVM_FALSE@libscipvm_la_etcdir = $(mydatadir)/etc

@@ -481,10 +481,6 @@
 			RelativePath="..\..\sci_gateway\scinotes_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

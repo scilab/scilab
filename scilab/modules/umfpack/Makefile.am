@@ -23,7 +23,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA =  \
 license.txt \
  \
-version.xml \
+ \
 TAUCS_license.txt \
 UMFPACK_license.txt
 

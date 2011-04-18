@@ -23,7 +23,6 @@ Source: bin\{#ARNOLDI}.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI};
 ;
 Source: bin\Arpack.dll; DestDir: {app}\bin; Components: {#COMPN_ARNOLDI}
 ;
-Source: modules\{#ARNOLDI}\VERSION.xml; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
 Source: modules\{#ARNOLDI}\license.txt; DestDir: {app}\modules\{#ARNOLDI}; Components: {#COMPN_ARNOLDI}
 ;
 Source: modules\{#ARNOLDI}\sci_gateway\{#ARNOLDI}_gateway.xml; DestDir: {app}\modules\{#ARNOLDI}\sci_gateway; Components: {#COMPN_ARNOLDI}

@@ -479,10 +479,6 @@
 			RelativePath=".\sci_gateway\time_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
