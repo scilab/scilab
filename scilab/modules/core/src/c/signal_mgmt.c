@@ -47,7 +47,7 @@ static char *backtrace_print(int niv_debut)
 {
     size_t ind;
     sci_backtrace_t *tr = NULL;
-    char print_buffer[1024];
+    char print_buffer[4096]; /* TODO: make it dynamic */
 
     int size = sizeof(print_buffer);
     char *tmp = print_buffer;
