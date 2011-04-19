@@ -28,9 +28,7 @@
       </tr>
       <tr>
         <td>
-          <programlisting role="example"><![CDATA[
-helpbrowser
-]]></programlisting>
+          <para>helpbrowser</para>
         </td>
         <td>
           <programlisting role="example"><![CDATA[
