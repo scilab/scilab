@@ -138,8 +138,11 @@ Dynamic link:
 Graphics:
 =========
 
-* It was not possible to set the compression quality when exporting into jpeg.
-  See bug 5573 and SEP 52.
+* JPG compression level is now set to 95 by default.
+
+* Extends the xs2jpg function with a compression argument to set the quality of
+  the exported JPG.
+  See bug 5573 and SEP 54.
 
 
 Localization:
