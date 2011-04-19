@@ -174,6 +174,7 @@ Graphics:
   the exported JPG.
   See bug 5573 and SEP 54.
 
+* New functions 'comet' and 'comet3d' have been added.
 
 Localization:
 =============
