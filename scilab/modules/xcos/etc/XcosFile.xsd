@@ -854,6 +854,7 @@
       <xs:element type="mxUndoManagerType" name="mxUndoManager" minOccurs="0"/>
       <xs:element type="mxGraphModelType" name="mxGraphModel"/>
       <xs:element type="mxCellType" name="mxCell"/>
+    <xs:element type="mxPointType" name="mxPoint" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute type="xs:byte" name="background" use="optional"/>
     <xs:attribute type="xs:float" name="finalIntegrationTime" use="optional"/>

@@ -99,6 +99,8 @@ Xcos:
 
 * bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
 
+* bug 9369 fixed - Diagrams with an origin did not pass validation.
+
 Packaging:
 ==========
 
