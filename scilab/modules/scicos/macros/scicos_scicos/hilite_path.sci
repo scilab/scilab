@@ -52,7 +52,7 @@ function hilite_path(path,mess,with_intermediates)
     end
 
     if uid <> [] then
-      warnBlockByUID(uid, mess);
+      warnBlockByUID(uid, strcat(mess, " "));
     end
 endfunction
 

@@ -99,7 +99,9 @@ function cmd=get_errorcmd(path,scs_m_in,title_err,mess_err)
   //** all other type of blocks
   //** ************************
   else
-    msg = title_err + ": " + mess_err;
+    msg = "<html><body>" + title_err + ": <br/>";
+    msg = msg + strcat(mess_err, "<br/>");
+    msg = msg + "</body></html>";
     hilite_path(path, msg);
   end
 
