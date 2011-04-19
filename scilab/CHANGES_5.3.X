@@ -54,6 +54,8 @@ Xcos:
 * A skeleton of an Xcos module has been introduced and should help the user
   to design its own palette.
 
+* Duplicate tests have been removed.
+
 * Update the documentation with examples of the blocks and their translations to
   French:
   - OUT_f - Regular Output Port
