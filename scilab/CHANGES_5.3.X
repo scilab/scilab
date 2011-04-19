@@ -86,6 +86,9 @@ Xcos:
 
 * bug 7479 fixed - The diagram did not update its origin on block moving.
 
+* bug 8630 fixed - Scopes crashed Scilab on simulation when they had the same
+                   window id.
+
 * bug 8692 fixed - Null block parameters was not checked before encoding.
 
 * bug 8735 fixed - Mixed (Implicit-Explicit) superblocks I/O blocks produced

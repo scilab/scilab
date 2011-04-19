@@ -214,9 +214,11 @@ SCICOS_BLOCKS_IMPEXP void cscope(scicos_block * block,int flag)
 			if (figure != NULL)
 			{
 				clearUserData(figure);
+				
 				/* restore double buffering */
-				sciSetJavaUseSingleBuffer(figure, FALSE);
-				scoDelCoupleOfPolylines(pScopeMemory);
+				if (figure) {
+                    sciSetJavaUseSingleBuffer(figure, FALSE);
+                }
 			}
 
 	  }
