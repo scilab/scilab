@@ -111,6 +111,8 @@ Xcos:
 * bug 9307 fixed - AFFICH_m block only printed the first column for an input
                    matrix.
 
+* bug 9346 fixed - FROMWS_c block had functional regression since scilab-5.3.1
+
 * bug 9369 fixed - Diagrams with an origin did not pass validation.
 
 
