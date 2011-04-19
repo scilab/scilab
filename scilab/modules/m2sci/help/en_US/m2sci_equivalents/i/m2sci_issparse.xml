@@ -34,16 +34,10 @@ issparse(S)
         </td>
         <td>
           <programlisting role="example"><![CDATA[
-No equivalent
+issparse(S)
 ]]></programlisting>
         </td>
       </tr>
     </informaltable>
-  </refsection>
-  <refsection>
-    <title>Particular cases</title>
-    <para>
-There is no equivalent function for Matlab <emphasis role="bold">issparse</emphasis> function in Scilab but it can be emuled by: <emphasis role="bold">or(type(S)==[5,6])</emphasis>.
-</para>
   </refsection>
 </refentry>
