@@ -115,6 +115,8 @@ Packaging:
   scilab.desktop can be found desktop/. This follows the FreeDesktop Standards:
   "Desktop Entry Specification".
 
+* Scilab's icons updated.
+
 
 Javasci:
 ========
