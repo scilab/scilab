@@ -16,3 +16,10 @@ if ierr <> 999 then pause,end
 
 ierr = execstr('mclose([1,2])','errcatch');
 if ierr <> 999 then pause,end
+
+ierr = execstr('mclose(0)','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('mclose(5)','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('mclose(6)','errcatch');
+if ierr <> 999 then pause,end

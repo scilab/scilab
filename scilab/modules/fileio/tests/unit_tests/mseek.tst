@@ -29,3 +29,11 @@ if res1 <> res then pause,end;
 meof(fd1);
 mclearerr(fd1);
 mclose(fd1);
+
+ierr = execstr('mseek(0,0,""set"")','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('mseek(0,5,""set"")','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('mseek(0,6,""set"")','errcatch');
+if ierr <> 999 then pause,end
+

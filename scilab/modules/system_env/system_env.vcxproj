@@ -228,6 +228,9 @@
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\string\src\c\string.vcxproj">
+      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\symbol\symbol.vcxproj">
       <Project>{2c60033b-0dbd-4ca4-80d3-176c9be9ce2f}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

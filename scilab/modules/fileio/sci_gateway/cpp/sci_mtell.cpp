@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
     long int offset = mtell(iFile);
     if(offset < 0)
     {
-        ScierrorW(999, _W("%ls: Error while opening, reading or writing.\n"), L"mtell", iFile);
+        ScierrorW(999, _W("%ls: Error while opening, reading or writing.\n"), L"mtell");
         return types::Function::Error;
     }
 

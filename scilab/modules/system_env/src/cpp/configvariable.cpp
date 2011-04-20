@@ -12,6 +12,11 @@
 #include <list>
 #include "configvariable.hxx"
 
+extern "C"
+{
+#include "strsubst.h"
+#include "os_wcsdup.h"
+}
 /*
 ** Module List
 ** \{
@@ -276,7 +281,10 @@ std::wstring ConfigVariable::m_wstError;
 
 void ConfigVariable::setLastErrorMessage(std::wstring _wstError)
 {
-    m_wstError = _wstError;
+    wchar_t* pwstTemp1 = os_wcsdup(_wstError.c_str());
+    wchar_t* pwstTemp2 = wcssub(pwstTemp1, L"\n", L"");
+    wchar_t* pwstTemp3 = wcssub(pwstTemp2, L"\n", L"");
+    m_wstError = pwstTemp3;
 }
 
 std::wstring ConfigVariable::getLastErrorMessage()

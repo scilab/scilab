@@ -50,3 +50,7 @@ str = mgetstr(REF_NB_CHARS,fd);
 mclose(fd);
 if length(str) <> REF_NB_CHARS then pause,end
 
+ierr = execstr('mgetstr(REF_NB_CHARS,0)','errcatch');
+if ierr <> 999 then pause,end
+ierr = execstr('mgetstr(REF_NB_CHARS,6)','errcatch');
+if ierr <> 999 then pause,end

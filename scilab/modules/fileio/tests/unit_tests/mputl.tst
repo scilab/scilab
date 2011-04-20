@@ -41,3 +41,7 @@ if lsResult == []      then pause,end
 // Now delete it
 mdelete("dummyFile.dummy")
 // =============================================================================
+
+ierr = execstr('mputl(TXT, 5)','errcatch');
+if ierr <> 999 then pause,end
+

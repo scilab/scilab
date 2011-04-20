@@ -25,7 +25,7 @@ try
 catch
     errorMessage = sprintf(gettext("%s: Error while opening, reading or writing.\n"), "mtell");
     [message, ierr]=lasterror();
-    if message <> errorMessage then disp(errorMessage);disp(message);bugmes();quit;end
+    if message <> errorMessage then bugmes();quit;end
 end
 
 fd = mopen(testFile,'wb');
