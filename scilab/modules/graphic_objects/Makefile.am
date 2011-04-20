@@ -31,7 +31,8 @@ BUILT_SOURCES = 	includes/graphicObjectsProperties.h
 
 GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp
 
-GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c
+GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
+							src/jni/ScilabNativeView_wrap.c
 
 GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/getGraphicObjectProperty.cpp \
@@ -55,7 +56,8 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/NgonGridMatplotDataDecomposer.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
 								src/cpp/PolylineDecomposer.cpp \
-								src/cpp/TriangleMeshFecDataDecomposer.cpp
+								src/cpp/TriangleMeshFecDataDecomposer.cpp \
+								src/cpp/ScilabView.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 
@@ -111,8 +113,8 @@ INCLUDE_FLAGS = $(libscigraphic_objects_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/DataLoader.i
-
+SWIG_WRAPPERS = src/jni/DataLoader.i \
+				src/jni/ScilabNativeView.i
 if SWIG
   BUILT_SOURCES += swig
 endif

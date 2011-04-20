@@ -229,6 +229,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
+    <ClCompile Include="..\cpp\ScilabView.cpp" />
     <ClCompile Include="..\jni\CallGraphicController.cpp" />
     <ClCompile Include="..\cpp\ColorComputer.cpp" />
     <ClCompile Include="..\cpp\createGraphicObject.cpp" />
@@ -238,6 +239,7 @@
     <ClCompile Include="..\cpp\dataModel.cpp" />
     <ClCompile Include="..\cpp\DecompositionUtils.cpp" />
     <ClCompile Include="..\cpp\deleteGraphicObject.cpp" />
+    <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
     <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\getGraphicObjectProperty.cpp" />
@@ -259,7 +261,9 @@
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\FigureList.h" />
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx" />
+    <ClInclude Include="..\..\includes\ScilabView.hxx" />
     <ClInclude Include="..\jni\CallGraphicController.hxx" />
     <ClInclude Include="..\..\includes\createGraphicObject.h" />
     <ClInclude Include="..\..\includes\Data3D.hxx" />
@@ -285,6 +289,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\en_US\messages.pot" />
+    <None Include="..\jni\ScilabNativeView.i" />
     <None Include="LibScilab_Import.def" />
     <None Include="..\jni\DataLoader.i" />
     <None Include="..\..\graphic_objects.iss" />

@@ -124,6 +124,7 @@ jintgetGraphicObjectPropertyAsBooleanjstringjstringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanID=NULL; 
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanArray_ID=NULL; 
+voidregisterScilabViewID=NULL; 
 
 
 }
@@ -166,6 +167,7 @@ jintgetGraphicObjectPropertyAsBooleanjstringjstringID=NULL;
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanID=NULL; 
 jintArray_getGraphicObjectPropertyAsBooleanVectorjstringjstringID=NULL; 
 jbooleansetGraphicObjectPropertyjstringjstringjbooleanArray_ID=NULL; 
+voidregisterScilabViewID=NULL; 
 
 
 }
@@ -1039,6 +1041,24 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 return (res == JNI_TRUE);
 
+}
+
+void CallGraphicController::registerScilabView (JavaVM * jvm_){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = curEnv->FindClass( className().c_str() );
+
+jmethodID voidregisterScilabViewID = curEnv->GetStaticMethodID(cls, "registerScilabView", "()V" ) ;
+if (voidregisterScilabViewID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "registerScilabView");
+}
+
+                         curEnv->CallStaticVoidMethod(cls, voidregisterScilabViewID );
+                        curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
 }
 
 }

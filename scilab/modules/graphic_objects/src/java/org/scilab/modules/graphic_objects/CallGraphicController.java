@@ -14,6 +14,7 @@ package org.scilab.modules.graphic_objects;
 
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicView.ScilabView;
 
 /**
  * This is a static class to access all controller capabilities
@@ -169,6 +170,10 @@ public final class CallGraphicController {
         }
 
         return result;
+    }
+    
+    public static void registerScilabView() {
+        GraphicController.getController().register(new ScilabView());
     }
 
 }

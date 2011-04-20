@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - ENPC - Jean-Philipe Chancelier
  * Copyright (C) 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -34,6 +35,7 @@
 #include "DestroyWaitBar.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
+#include "deleteGraphicObject.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname,unsigned long fname_len)
 {
@@ -106,6 +108,9 @@ int sci_delete(char *fname,unsigned long fname_len)
             return 0;
         }
 
+        deleteGraphicObject(pobj->UID);
+
+#if 0
         parentFigure = sciGetParentFigure(pobj);
 
         num = sciGetNumFigure( pobj ) ;
@@ -164,6 +169,7 @@ int sci_delete(char *fname,unsigned long fname_len)
                 sciDeleteWindow( num );
             }
         }
+#endif
     }
 
     if (!dont_overload)
