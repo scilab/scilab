@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A Real expected.\n"), L"msscanf", 1);
             return types::Function::Error;
         }
-        iNiter = static_cast<int>(in[0]->getAs<types::Double>()->getReal()[0]);
+        iNiter = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
     }
 
     if(in[size-2]->isString() == false)

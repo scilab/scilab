@@ -291,8 +291,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 				}
 			}
 
-			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
-   //             bErrCatch == false)
+			//if( !checkPrompt(iMode, EXEC_MODE_MUTE) && bErrCatch == false)
 			//{
 			//	YaspWriteW(L"\n");
 			//}
@@ -430,56 +429,80 @@ void printExp(std::ifstream* _pFile, Exp* _pExp, char* _pstPrompt, int* _piLine 
 		strncpy(strLastLine, _pstPreviousBuffer + (loc.first_column - 1), loc.last_column - (loc.first_column - 1));
 		strLastLine[loc.last_column - (loc.first_column - 1)] = 0;
         int iExpLen = (int)strlen(strLastLine);
-        int iLineLen = (int)strlen(_pstPreviousBuffer) - (loc.first_column - 1);
-        if(iExpLen == iLineLen)
-        {
-            if(loc.first_column == 1)
-            {
-                printLine(_pstPrompt, strLastLine, true);
-            }
-            else
-            {
-                printLine("", strLastLine, true);
-            }
+        int iLineLen = (int)strlen(_pstPreviousBuffer);
+//printLine(_pstPrompt, strLastLine, true, false);
+
+
+        if(loc.first_column == 1 && iExpLen == iLineLen)
+        {//entire line
+            printLine("", "", true);
+            printLine(_pstPrompt, strLastLine, true);
         }
         else
         {
             if(loc.first_column == 1)
-            {
+            {//begin of line
+                printLine("", "", true);
                 printLine(_pstPrompt, strLastLine, false);
             }
             else
             {
-                printLine("", strLastLine, false);
+                if(loc.last_column == iLineLen)
+                {
+                    printLine("", strLastLine, true);
+                }
+                else
+                {
+                    printLine("", strLastLine, false);
+                }
             }
         }
-	}
-	else
-	{//multiline
-		printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
+    }
+    else
+    {//multiline
 
-		//print other full lines
-		for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
-		{
-			(*_piLine)++;
-			_pFile->getline(_pstPreviousBuffer, 1024);
-			printLine(_pstPrompt, _pstPreviousBuffer, true);
-		}
+        if(loc.first_column == 1)
+        {
+            printLine("", "", true);
+            printLine(_pstPrompt, _pstPreviousBuffer + (loc.first_column - 1), true);
+        }
+        else
+        {
+            printLine("", _pstPreviousBuffer + (loc.first_column - 1), true);
+        }
 
-		//last line
-		_pFile->getline(_pstPreviousBuffer, 1024);
-		(*_piLine)++;
 
-		strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
-		strLastLine[loc.last_column] = 0;
-		printLine(_pstPrompt, strLastLine, true);
-	}
+        //print other full lines
+        for(int i = loc.first_line; i < (loc.last_line - 1) ; i++)
+        {
+            (*_piLine)++;
+            _pFile->getline(_pstPreviousBuffer, 1024);
+            printLine(_pstPrompt, _pstPreviousBuffer, true);
+        }
+
+        //last line
+        _pFile->getline(_pstPreviousBuffer, 1024);
+        (*_piLine)++;
+
+        strncpy(strLastLine, _pstPreviousBuffer, loc.last_column);
+        strLastLine[loc.last_column] = 0;
+        int iLineLen = (int)strlen(_pstPreviousBuffer);
+        if(iLineLen == loc.last_column)
+        {
+            printLine(_pstPrompt, strLastLine, true);
+        }
+        else
+        {
+            printLine(_pstPrompt, strLastLine, false);
+        }
+    }
 }
 
 void printLine(char* _stPrompt, char* _stLine, bool _bLF)
 {
     char* sz = (char*)MALLOC(sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
     memset(sz, 0x00, sizeof(char) * (strlen(_stPrompt) + strlen(_stLine) + 2));
+
     if(strlen(_stPrompt) != 0)
     {
         strcat(sz, _stPrompt);

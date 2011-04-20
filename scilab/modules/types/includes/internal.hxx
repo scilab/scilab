@@ -90,7 +90,7 @@ namespace types
         virtual InternalType*           clone(void) = 0;
 
 
-        void IncreaseRef()
+        virtual void IncreaseRef()
         {
             m_iRef++;
         }
@@ -252,7 +252,7 @@ namespace types
         ** \}
         */
 
-    private :
+    protected :
         int                             m_iRef;
         //use to know if we can delete this variables or if it's link to a scilab variable.
         bool                            m_bAllowDelete;

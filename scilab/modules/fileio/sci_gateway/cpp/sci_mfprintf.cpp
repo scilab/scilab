@@ -79,7 +79,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
 // checking ID of file
-    iFile = static_cast<int>(in[0]->getAs<types::Double>()->getReal()[0]);
+    iFile = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
 
 	if(FileManager::getFile(iFile) == NULL)
 	{           
@@ -181,7 +181,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
         }
     }
 
-    wcsStringToWrite = scilab_sprintf(L"mfprintf", wcsInput, in, pArgs, iNumberPercent, &nbrOfLines);
+    wcsStringToWrite = scilab_sprintf(L"mfprintf", wcsInput, in, pArgs, false, iNumberPercent, &nbrOfLines);
 
     if(isSTD)
     {

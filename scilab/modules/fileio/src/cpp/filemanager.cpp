@@ -23,7 +23,7 @@ int FileManager::getFileID(wstring _stFilename)
     {
         if(m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
-            return i + 1;
+            return i;
         }
     }
     return -1;
@@ -50,12 +50,12 @@ types::File* FileManager::getFile(int _iID)
 {
     if(_iID == -1 && m_iCurrentFile != -1)
     {
-        return m_fileList[m_iCurrentFile - 1];
+        return m_fileList[m_iCurrentFile];
     }
 
     if(_iID <= m_fileList.size())
     {//1-indexed
-        return m_fileList[_iID - 1];
+        return m_fileList[_iID];
     }
 
     return NULL;
@@ -77,9 +77,8 @@ int FileManager::addFile(types::File* _file)
         if(m_fileList[i] == NULL)
         {
             m_fileList[i] = _file;
-            int iNewId = i + 1;
-            m_iCurrentFile = iNewId;
-            return iNewId;
+            m_iCurrentFile = i;
+            return i;
         }
     }
 
@@ -96,7 +95,7 @@ void FileManager::deleteFile(int _iID)
     {//1-indexed
         //do not delete File object !!!
         //delete m_fileList[_iID - 1];
-        m_fileList[_iID - 1] = NULL;
+        m_fileList[_iID] = NULL;
         if(m_iCurrentFile == _iID)
         {
             m_iCurrentFile = -1;
@@ -125,7 +124,7 @@ int* FileManager::getIDs()
     {
         if(m_fileList[i] != NULL)
         {
-            piIds[iFileIndex++] = i + 1;
+            piIds[iFileIndex++] = i;
         }
     }
 
@@ -215,6 +214,13 @@ double* FileManager::getSwaps()
 
 void FileManager::initialize()
 {
+    File* pErr = new File();
+    pErr->setFileMode(L"wb");
+    pErr->setFileDesc(stderr);
+    pErr->setFileSwap(0);
+    pErr->setFileType(1);
+    pErr->setFilename(L"stderr");
+
     File* pIn = new File();
     pIn->setFileMode(L"rb");
     pIn->setFileDesc(stdin);
@@ -228,6 +234,9 @@ void FileManager::initialize()
     pOut->setFileSwap(0);
     pOut->setFileType(1);
     pOut->setFilename(L"stdout");
+
+    //put pErr at position 0
+    m_fileList.push_back(pErr);
 
     //insert free space
     m_fileList.push_back(NULL);

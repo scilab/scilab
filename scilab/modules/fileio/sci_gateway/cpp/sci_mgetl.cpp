@@ -11,10 +11,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "function.hxx"
 #include "string.hxx"
 
 extern "C"
@@ -30,15 +28,16 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
 {
-    int iFileID         = 0;
-    int iErr            = 0;
-    bool bCloseFile     = false;
-    int iLinesExcepted  = -1;
-    int iLinesRead      = -1;
+    int iFileID                 = 0;
+    int iErr                    = 0;
+    bool bCloseFile             = false;
+    int iLinesExcepted          = -1;
+    int iLinesRead              = -1;
+    wchar_t** wcReadedStrings   = NULL;
 
     if(in.size() < 1 || in.size() > 2)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
+        Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
         return Function::OK;
     }
 
@@ -49,13 +48,12 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
             Scierror(999,_("%s: Wrong type for input argument #%d: A scalar expected.\n"), "mgetl", 2);
             return Function::Error;
         }
-
-        iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->getReal()[0]);
+        iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->get(0));
     }
 
     if(in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[0]->getAs<Double>()->getReal()[0]);
+        iFileID = static_cast<int>(in[0]->getAs<Double>()->get(0));
     }
     else if(in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
@@ -86,7 +84,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
             return Function::Error;
         }
         FREE(expandedFileName);
-       bCloseFile = true;
+        bCloseFile = true;
     }
     else
     {//Error
@@ -94,17 +92,35 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    wchar_t** wcReadedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
-
-    switch(iErr)
+    switch (iFileID)
     {
-    case MGETL_MEMORY_ALLOCATION_ERROR :
-        break;
+        case 0: // stderr
+        case 6: // stdout
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetl", iFileID);
+            return types::Function::Error;
+        default :
+        {
+            wcReadedStrings = mgetl(iFileID, iLinesExcepted, &iLinesRead, &iErr);
 
+            switch(iErr)
+            {
+            case MGETL_MEMORY_ALLOCATION_ERROR :
+                break;
+
+            }
+        }
     }
-    String *pS = new String(iLinesRead, 1);
-    pS->set(wcReadedStrings);
-    out.push_back(pS);
+
+    if(wcReadedStrings && iLinesRead > 0)
+    {
+        String *pS = new String(iLinesRead, 1);
+        pS->set(wcReadedStrings);
+        out.push_back(pS);
+    }
+    else
+    {
+        out.push_back(types::Double::Empty());
+    }
 
     if(bCloseFile)
     {

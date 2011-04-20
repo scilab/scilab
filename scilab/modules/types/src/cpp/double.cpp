@@ -242,6 +242,7 @@ namespace types
                 bool bFP = false; // FloatingPoint
                 getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
                 addDoubleValue(&ostr, (m_pRealData[iPos]), iWidth, iPrec);
+                ostr << endl;
             }
             else
             {//complex value

@@ -13,10 +13,8 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "function.hxx"
 #include "string.hxx"
 
 extern "C"
@@ -25,16 +23,13 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#include "sci_warning.h"
 }
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile               = -1; //default file : last opened file
-    int iRet                = 0;
     types::String* pString  = NULL;
-    types::Double* pdFileId = NULL;
-    File* pF                = NULL;
+    int iErr                = 1;
     
     if(in.size() < 1 || in.size() > 2)
     {
@@ -47,7 +42,7 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mputstr", 1);
         return types::Function::Error;
     }
-    
+
     pString = in[0]->getAs<types::String>();
 
     if(in.size() == 2)
@@ -57,10 +52,18 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mputstr", 2);
             return types::Function::Error;
         }
-        pdFileId = in[1]->getAs<types::Double>();
+        iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
     }
 
-    int iErr = mputl(iFile, pString->get(), 1, FALSE); // FALSE = don't add the "\n" at the end.
+    switch (iFile)
+    {
+        case 5: // stdin
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mputstr", iFile);
+            return types::Function::Error;
+        default :
+            iErr = mputl(iFile, pString->get(), 1);
+    }
+
     out.push_back(new Bool(!iErr));
 
     return Function::OK;

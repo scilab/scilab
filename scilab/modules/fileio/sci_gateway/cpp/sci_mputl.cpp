@@ -10,10 +10,8 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "function.hxx"
 #include "string.hxx"
 
 extern "C"
@@ -34,19 +32,19 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
 
     if(in.size() != 2)
     {
-        Scierror(77,_("%s: Wrong number of input argument(s): %d expected.\n"),"mputl", 2);
+        ScierrorW(999,_W("%ls: Wrong number of input argument(s): %d expected.\n"),L"mputl", 2);
         return Function::Error;
     }
 
     if(_iRetCount != 1)
     {
-        Scierror(78,_("%s: Wrong number of output argument(s): %d expected.\n"), "mputl", 1);
+        ScierrorW(999,_W("%ls: Wrong number of output argument(s): %d expected.\n"), L"mputl", 1);
         return Function::Error;
     }
 
     if(in[1]->isDouble() && in[1]->getAs<Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[1]->getAs<Double>()->getReal()[0]);
+        iFileID = static_cast<int>(in[1]->getAs<Double>()->get(0));
     }
     else if(in[1]->isString() && in[1]->getAs<types::String>()->getSize() == 1)
     {
@@ -88,13 +86,19 @@ Function::ReturnValue sci_mputl(typed_list &in, int _iRetCount, typed_list &out)
     //String vextor, row or col
     if(in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
-        Scierror(999,_("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), "mputl", 1);
+        ScierrorW(999,_W("%ls: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"), L"mputl", 1);
         return Function::Error;
     }
 
     String* pS = in[0]->getAs<types::String>();
 
-    iErr = mputl(iFileID, pS->get(), pS->getSize());
+	switch (iFileID)
+	{
+        case 5: // stdin
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mputl", iFileID);
+            return types::Function::Error;
+        default : iErr = mputl(iFileID, pS->get(), pS->getSize());
+    }
 
     out.push_back(new Bool(!iErr));
 

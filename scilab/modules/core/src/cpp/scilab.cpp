@@ -60,6 +60,7 @@ extern "C"
 #include "PATH_MAX.h"
 #include "sci_tmpdir.h"
 #include "deleteafile.h"
+#include "setgetlanguage.h"
 
 #ifdef __APPLE__
 #include "initMacOSXEnv.h"
@@ -132,7 +133,7 @@ void Add_String_Constant(wstring _szName, const char* _pstString);
 int InitializeEnvironnement(void);
 bool execScilabStart(void);
 
-int StartScilabEngine(int argc, char*argv[], int iFileIndex);
+int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex);
 static Parser::ControlStatus processCommand(char* _pstCommand);
 
 /*
@@ -336,9 +337,7 @@ static int interactiveMain (void)
                 FREE(command);
                 command = NULL;
             }
-            //before calling YaspReader, try to call %onprompt function
-            callOnPrompt();
-
+            YaspWriteW(L"\n");
             command = YaspRead();
         }
         else
@@ -400,6 +399,8 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
             */
             if(execAst == true)
             {
+                //before calling YaspReader, try to call %onprompt function
+                callOnPrompt();
                 execAstTask(parser->getTree(), timed, ASTtimed);
             }
 
@@ -413,10 +414,24 @@ static Parser::ControlStatus processCommand(char* _pstCommand)
         }
         else if(parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
         {
+            if(execAst == true)
+            {
+                //before calling YaspReader, try to call %onprompt function
+                callOnPrompt();
+            }
+
             YaspWriteW(parser->getErrorMessage());
         }
 
         FREE(pwstCommand);
+    }
+    else
+    {
+        if(execAst == true)
+        {
+            //before calling YaspReader, try to call %onprompt function
+            callOnPrompt();
+        }
     }
     return parser->getControlStatus();
 }
@@ -465,7 +480,7 @@ int main(int argc, char *argv[])
             return initMacOSXEnv(argc, argv, iFileIndex);
         }
   #endif // !defined(__APPLE__)
-        return StartScilabEngine(argc, argv, iFileIndex);
+        return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
     }
     else
     {
@@ -474,13 +489,13 @@ int main(int argc, char *argv[])
   #if defined(__APPLE__)
         return initMacOSXEnv(argc, argv, iFileIndex);
   #else
-        return StartScilabEngine(argc, argv, iFileIndex);
+        return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
   #endif // !defined(__APPLE__)
     }
 #else
         setYaspInputMethod(&TermReadAndProcess);
         setYaspOutputMethod(&TermPrintf);
-        return StartScilabEngine(argc, argv, iFileIndex);
+        return StartScilabEngine(argc, argv, iFileIndex, iLangIndex);
 #endif // defined(WITHOUT_GUI)
 }
 
@@ -533,13 +548,21 @@ static int batchMain(char *pstFileName)
 }
 
 
-int StartScilabEngine(int argc, char*argv[], int iFileIndex)
+int StartScilabEngine(int argc, char*argv[], int iFileIndex, int iLangIndex)
 {
     int iMainRet = 0;
     Runner::init();
 
     /* Scilab Startup */
     InitializeEnvironnement();
+
+    if(iLangIndex)
+    {
+        wchar_t* pwstLang = to_wide_string(argv[iLangIndex]);
+        setlanguage(pwstLang);
+        FREE(pwstLang);
+    }
+
 
     InitializeString();
 

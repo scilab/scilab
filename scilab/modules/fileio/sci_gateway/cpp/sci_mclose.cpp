@@ -22,10 +22,9 @@ extern "C"
 #include "mclose.h"
 #include "os_wcsicmp.h"
 }
+#include "stdio.h"
 
-using namespace types;
-
-Function::ReturnValue sci_mclose(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mclose(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRet = 0;
     if(in.size() == 0)
@@ -36,47 +35,67 @@ Function::ReturnValue sci_mclose(typed_list &in, int _iRetCount, typed_list &out
     {
         if(in[0]->isString())
         {
-            String *pS = in[0]->getAs<types::String>();
+            types::String *pS = in[0]->getAs<types::String>();
             if(pS->getSize() != 1)
             {
                 ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A String expected.\n"), L"mclose", 1);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            if(os_wcsicmp(pS->get(0), L"all") != 0)
+            if(FileManager::isOpened(pS->get(0)))
+            {
+                int iFileID = FileManager::getFileID(pS->get(0));
+                if(iFileID == -1)
+                {
+                    ScierrorW(999, _W("%ls: File not found: '%ls'.\n"), L"mclose", pS->get(0));
+                    return types::Function::Error;
+                }
+                iRet = mclose(iFileID);
+            }
+            else if(os_wcsicmp(pS->get(0), L"all") == 0)
+            {
+                iRet = mcloseAll();
+            }
+            else
             {
                 ScierrorW(999, _W("%ls: Wrong input arguments: '%ls' expected.\n"), L"mclose", L"all");
-                return Function::Error;
+                return types::Function::Error;
             }
-
-            iRet = mcloseAll();
         }
         else if(in[0]->isDouble())
         {
-            Double* pD = in[0]->getAs<Double>();
+            types::Double* pD = in[0]->getAs<types::Double>();
             if(pD->getSize() != 1 || pD->isComplex())
             {
                 ScierrorW(999,_W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mclose", 1);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            int iVal = static_cast<int>(pD->getReal()[0]);
+            int iVal = static_cast<int>(pD->get(0));
+            switch (iVal)
+            {
+            case 0: // stderr
+            case 5: // stdin
+            case 6: // stdout
+                ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mclose", iVal);
+                return types::Function::Error;
+            }
             iRet = mclose(iVal);
         }
         else
         {
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer or string expected.\n"), L"mclose", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
     else
     {
         ScierrorW(999, _W("%ls: Wrong number of input arguments: %d or %d expected.\n"), L"mclose", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Double* pD = new Double(static_cast<double>(iRet));
+    types::Double* pD = new types::Double(static_cast<double>(iRet));
     out.push_back(pD);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

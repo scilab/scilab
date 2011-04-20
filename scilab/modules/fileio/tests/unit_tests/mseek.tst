@@ -6,25 +6,26 @@
 // =============================================================================
 
 file3=TMPDIR + '/test3.bin';
-fd1= mopen(file3,'wb');
+fd1= mopen(file3, 'wb');
 for i=1:10
-  mput(i,'d');
+    mput(i, 'd');
 end 
 
 mseek(0);
-mput(678,'d');
-mseek(0,fd1,'end');
-mput(932,'d');
-mclose(fd1)
-fd1= mopen(file3,'rb');
-res=mget(11,'d')
-res1=[1:11];
-res1(1)=678;
-res1($)=932;
-if res1<>res then pause,end;
-mseek(0,fd1,'set');
-res1 = mget(100,'d',fd1);
-if res1<>res then pause,end;
+mput(678, 'd');
+mseek(0, fd1, 'end');
+mput(932, 'd');
+mclose(fd1);
+fd1 = mopen(file3, 'rb');
+res = mget(11, 'd');
+res1 = [1:11];
+res1(1) = 678;
+res1($) = 932;
+if res1 <> res then pause,end;
+
+mseek(0, fd1, 'set');
+res1 = mget(100, 'd', fd1);
+if res1 <> res then pause,end;
 meof(fd1);
 mclearerr(fd1);
 mclose(fd1);

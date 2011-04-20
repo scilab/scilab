@@ -458,15 +458,28 @@ namespace types
         return pIT;
     }
 
+    void ImplicitList::extractFullMatrix(double *_pdbl)
+    {
+        double dblStart = m_poStart->getAs<Double>()->get(0);
+        double dblStep  = m_poStep->getAs<Double>()->get(0);
+
+        _pdbl[0] = dblStart;
+        for(int i = 1 ; i < m_iSize ; i++)
+        {
+            _pdbl[i] = _pdbl[i - 1] + dblStep;
+        }
+    }
+
     template<typename T>
     void ImplicitList::extractFullMatrix(T *_pT)
     {
         T tStart = static_cast<T>(convert_input(m_poStart));
         T tStep	= static_cast<T>(convert_input(m_poStep));
 
-        for(int i = 0 ; i < m_iSize ; i++)
+        _pT[0] = tStart;
+        for(int i = 1 ; i < m_iSize ; i++)
         {
-            _pT[i] = tStart + tStep * i;
+            _pT[i] = _pT[i - 1] + tStep;
         }
     }
 }

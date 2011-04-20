@@ -182,4 +182,28 @@ namespace types
         (*m_pData)[_sKey] = Double::Empty();
         return true;
     }
+
+    void SingleStruct::IncreaseRef()
+    {
+        std::map<std::wstring, InternalType *>::iterator it;
+
+        for (it = m_pData->begin() ; it != m_pData->end() ; it++)
+        {
+            it->second->IncreaseRef();
+        }
+    }
+
+    void SingleStruct::DecreaseRef()
+    {
+        std::map<std::wstring, InternalType *>::iterator it;
+
+        for (it = m_pData->begin() ; it != m_pData->end() ; it++)
+        {
+            it->second->DecreaseRef();
+            if(it->second->isDeletable())
+            {
+                delete it->second;
+            }
+        }
+    }
 }

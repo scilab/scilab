@@ -130,7 +130,7 @@ void visitprivate(const AssignExp  &e)
                         ostr << L"???" << L" = " << std::endl;
                     }
                     ostr << std::endl;
-                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());
                 }
             }
@@ -184,7 +184,8 @@ void visitprivate(const AssignExp  &e)
             {
                 if(pIT->isRef(1) == true)
                 {
-                    pIT = pIT->clone();
+                    InternalType* pITTemp = pIT->clone();
+                    pIT = pITTemp;
                     bNew = true;
                 }
             }
@@ -489,7 +490,21 @@ void visitprivate(const AssignExp  &e)
             {
                 if(bNew)
                 {
-                    symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
+                    if(pVar == NULL)
+                    {
+                        //is not a(x) = y but something like a.b(x) = y
+                        //so we have to retrieve struct and children to assign new value
+                        InternalType *pHead = NULL;
+                        Struct* pMain       = NULL;
+                        Struct* pCurrent    = NULL;
+                        bool bOK = getStructFromExp(&pCall->name_get(), &pMain, &pCurrent, NULL, pOut);
+                        //change pOut only to toString call
+                        pOut = pMain;
+                    }
+                    else
+                    {
+                        symbol::Context::getInstance()->put(pVar->name_get(), *((GenericType*)pOut));
+                    }
                 }
 
                 if(e.is_verbose())
@@ -501,10 +516,10 @@ void visitprivate(const AssignExp  &e)
                     }
                     else
                     {
-                        ostr << L"???" << L" = " << std::endl;
+                        ostr << *getStructNameFromExp(&pCall->name_get()) << L" = " << std::endl;
                     }
                     ostr << std::endl;
-                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                    ostr << pOut->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());
                 }
             }
@@ -560,7 +575,7 @@ void visitprivate(const AssignExp  &e)
             {
                 std::wostringstream ostr;
                 ostr << pVar->name_get().name_get() << L" = " << std::endl << std::endl;
-                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                ostr << pIT->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 YaspWriteW(ostr.str().c_str());
             }
         }
@@ -593,7 +608,7 @@ void visitprivate(const AssignExp  &e)
                     std::wostringstream ostr;
                     ostr << pListVar->name_get().name_get() << L" = " << std::endl;
                     ostr << std::endl;
-                    ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                    ostr << execMeR.result_get(i)->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());
                 }
                 i--;
@@ -693,7 +708,7 @@ void visitprivate(const AssignExp  &e)
 
                 std::wostringstream ostr;
                 ostr << *pstName << L" = " << std::endl << std::endl;
-                ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                ostr << symbol::Context::getInstance()->get(symbol::Symbol(*pstName))->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                 YaspWriteW(ostr.str().c_str());
             }
         }

@@ -295,7 +295,8 @@ namespace types
                 std::wstring wstField(pwstFields->get(i));
                 InternalType* pIT = pSS->get(wstField);
 
-                ostr << L"  " << wstField << ": ";
+//                ostr << L"  " << wstField << ": ";
+                ostr << L"  " << wstField << "[" << pIT->getRef() << "]: ";
                 ostr << pIT->toStringInLine(_iPrecision, _iLineLen);
                 ostr << std::endl;
             }
@@ -342,5 +343,25 @@ namespace types
             }
         }
         return ResultList;
+    }
+
+    void Struct::IncreaseRef()
+    {
+        m_iRef++;
+        //increaseRef of children too
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            get(i)->IncreaseRef();
+        }
+    }
+
+    void Struct::DecreaseRef()
+    {
+        m_iRef--;
+        //increaseRef of children too
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            get(i)->DecreaseRef();
+        }
     }
 }

@@ -28,7 +28,7 @@ extern "C"
 
 #include <stdio.h>
 
-wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows)
+wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, bool _bKeepEOL, int _iArgsCount, int* _piOutputRows)
 {
     wchar_t** pwstOutput        = NULL;
     wchar_t* pwstFirstOutput    = NULL;
@@ -189,7 +189,16 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             iToken++;
         }
 
-        int iLoop = in[1]->getAsGenericType()->getRows();
+        int iLoop = 1;
+        if(in.size() > 1)
+        {
+            iLoop = in[1]->getAsGenericType()->getRows();
+            for(int i = 2 ; i < in.size() ; i++)
+            {
+                iLoop = Min(iLoop, in[i]->getAsGenericType()->getRows());
+            }
+        }
+
         pwstFirstOutput = (wchar_t*)MALLOC(sizeof(wchar_t*) * iLoop * bsiz);
         memset(pwstFirstOutput, 0x00, sizeof(wchar_t*) * iLoop * bsiz);
         for(int j = 0 ; j < iLoop ; j++)
@@ -204,7 +213,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 void* pvVal = NULL;
                 if(_pArgs[i - 1].type == InternalType::RealDouble)
                 {
-                    double dblVal = in[_pArgs[i - 1].iArg]->getAs<Double>()->getReal(j, _pArgs[i - 1].iPos);
+                    double dblVal = in[_pArgs[i - 1].iArg]->getAs<Double>()->get(j, _pArgs[i - 1].iPos);
                     if(pToken[i].outputType == InternalType::RealDouble)
                     {
                         swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
@@ -217,8 +226,8 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                 else if(_pArgs[i - 1].type == InternalType::RealString)
                 {
                     wchar_t* pwstStr = in[_pArgs[i - 1].iArg]->getAs<types::String>()->get(j, _pArgs[i - 1].iPos);
-                    int posC = wcscspn(pToken[i].pwstToken,L"c");
-                    int posS = wcscspn(pToken[i].pwstToken,L"s");
+                    int posC = (int)wcscspn(pToken[i].pwstToken,L"c");
+                    int posS = (int)wcscspn(pToken[i].pwstToken,L"s");
                     if(!posS || !posC)
                     {
                         return NULL;
@@ -228,7 +237,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                         if(pToken[i].bLengthFlag == false)
                         {
                             //replace %c by %lc to wide char compatibility
-                            int sizeTotal = wcslen(pToken[i].pwstToken);
+                            int sizeTotal = (int)wcslen(pToken[i].pwstToken);
                             wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
                             wcsncpy(pwstToken, pToken[i].pwstToken, posC);
                             pwstToken[posC] = L'l';
@@ -247,7 +256,7 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
                         if(pToken[i].bLengthFlag == false)
                         {
                             //replace %s by %ls to wide char compatibility
-                            int sizeTotal = wcslen(pToken[i].pwstToken);
+                            int sizeTotal = (int)wcslen(pToken[i].pwstToken);
                             wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
                             wcsncpy(pwstToken, pToken[i].pwstToken, posS);
                             pwstToken[posS] = L'l';
@@ -279,20 +288,41 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
     wchar_t* pwstTemp = NULL;
     while(pwstSlash != NULL)
     {
-        if((pwstTemp = wcsstr(pwstSlash, L"\\r\\n")) != NULL && pwstTemp[4] != '\0')
+        if((pwstTemp = wcsstr(pwstSlash, L"\\r\\n")) != NULL)
         {
-            (*_piOutputRows)++;
-            pwstSlash = pwstTemp + 4;
+            if(pwstTemp[4] != '\0')
+            {
+                (*_piOutputRows)++;
+                pwstSlash = pwstTemp + 4;
+            }
+            else
+            {//end of string, so don't need to increament nulber of lines
+                pwstSlash = NULL;
+            }
         }
-        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL && pwstTemp[2] != '\0')
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\r")) != NULL)
         {
-            (*_piOutputRows)++;
-            pwstSlash = pwstTemp + 2;
+            if(pwstTemp[2] != '\0')
+            {
+                (*_piOutputRows)++;
+                pwstSlash = pwstTemp + 2;
+            }
+            else
+            {//end of string, so don't need to increament nulber of lines
+                pwstSlash = NULL;
+            }
         }
-        else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL && pwstTemp[2] != '\0')
+        else if((pwstTemp = wcsstr(pwstSlash, L"\\n")) != NULL)
         {
-            (*_piOutputRows)++;
-            pwstSlash = pwstTemp + 2;
+            if(pwstTemp[2] != '\0')
+            {
+                (*_piOutputRows)++;
+                pwstSlash = pwstTemp + 2;
+            }
+            else
+            {//end of string, so don't need to increament nulber of lines
+                pwstSlash = NULL;
+            }
         }
         else
         {
@@ -381,15 +411,15 @@ wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, typed_list &in
             pwstTemp = NULL;
         }
 
-        if(bNewLine)
-        {//to insert '\0'
+        if(bNewLine && _bKeepEOL)
+        {//to insert '\n'
             idx++;
         }
 
         pwstOutput[iRows] = (wchar_t*)MALLOC(sizeof(wchar_t) * (idx + 1));
         wcsncpy(pwstOutput[iRows], pwstSlash, idx);
 
-        if(bNewLine)
+        if(bNewLine && _bKeepEOL)
         {
             pwstOutput[iRows][idx - 1] = L'\n';
         }

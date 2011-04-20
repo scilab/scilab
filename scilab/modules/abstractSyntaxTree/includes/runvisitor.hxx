@@ -357,7 +357,7 @@ namespace ast
                     std::wostringstream ostr;
                     ostr << e.name_get().name_get() << L" = " << L"(" << pI->getRef() << L")"<< std::endl;
                     ostr << std::endl;
-                    ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                    ostr << pI->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                     YaspWriteW(ostr.str().c_str());
                 }
             }
@@ -1050,7 +1050,7 @@ namespace ast
                                 //TODO manage multiple returns
                                 std::wostringstream ostr;
                                 ostr << L"ans = " << std::endl << std::endl;
-                                ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth()) << std::endl;
+                                ostr << execMe.result_get()->toString(ConfigVariable::getFormat(), ConfigVariable::getConsoleWidth());
                                 YaspWriteW(ostr.str().c_str());
                             }
                         }

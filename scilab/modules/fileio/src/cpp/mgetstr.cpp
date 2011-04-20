@@ -25,31 +25,50 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
 {
     wchar_t* pwstOut = NULL;
     File* pF = FileManager::getFile(_iFileId);
-    int iSizeToRead = _iSizeToRead + 1; //fgetws and fgets need length to read + 1
-    
+
     if(pF != NULL)
     {
-        if(static_cast<int>(pF->getFileModeAsDouble()) % 2 == 1)
+        if(static_cast<int>(pF->getFileModeAsDouble()) % 2 == 1)//to determine if the file have been opened with binary or text mode
         {
-            pwstOut = (wchar_t*)MALLOC(iSizeToRead * sizeof(wchar_t));
-            memset(pwstOut, 0x00, iSizeToRead * sizeof(wchar_t));
-            wchar_t* pwstRes = fgetws(pwstOut, iSizeToRead, pF->getFiledesc());
-            if(pwstRes == NULL)
+            int iSizeRead = 0;
+            pwstOut = (wchar_t*)MALLOC((_iSizeToRead + 1) * sizeof(wchar_t));
+            memset(pwstOut, 0x00, (_iSizeToRead + 1) * sizeof(wchar_t));
+
+            while(_iSizeToRead > iSizeRead)
             {
-                FREE(pwstOut);
-                return NULL;
+                wchar_t* pwstRes = fgetws(&pwstOut[iSizeRead], _iSizeToRead - iSizeRead + 1, pF->getFiledesc());//fgetws need length to read + 1
+                if(feof(pF->getFiledesc()))
+                {
+                    return pwstOut;
+                }
+                if(pwstRes == NULL)
+                {
+                    FREE(pwstOut);
+                    return NULL;
+                }
+                iSizeRead += (int)wcslen(pwstRes);
             }
         }
         else
         {
-            char* buffer = (char*)MALLOC(iSizeToRead * sizeof(char));
-            memset(buffer, 0x00, iSizeToRead * sizeof(char));
+            int iSizeRead = 0;
+            char* buffer = (char*)MALLOC((_iSizeToRead + 1) * sizeof(char));
+            memset(buffer, 0x00, (_iSizeToRead + 1) * sizeof(char));
 
-            char* pstRes = fgets(buffer, iSizeToRead, pF->getFiledesc());
-            if(pstRes == NULL)
+            while(_iSizeToRead > iSizeRead)
             {
-                FREE(buffer);
-                return NULL;
+                char* pstRes = fgets(&buffer[iSizeRead], _iSizeToRead - iSizeRead + 1, pF->getFiledesc());//fgets need length to read + 1
+                if(feof(pF->getFiledesc()))
+                {
+                    pwstOut = to_wide_string(buffer);
+                    return pwstOut;
+                }
+                if(pstRes == NULL)
+                {
+                    FREE(buffer);
+                    return NULL;
+                }
+                iSizeRead += (int)strlen(pstRes);
             }
             
             pwstOut = to_wide_string(buffer);

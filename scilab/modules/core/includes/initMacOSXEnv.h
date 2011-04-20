@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - DIGITEO - Sylvestre LEDRU
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,6 +26,6 @@
 
 int initMacOSXEnv(int argc, char *argv[], int iFileIndex);
 
-int StartScilabEngine(int argc, char *argv[], int iFileIndex);
+int StartScilabEngine(int argc, char *argv[], int iFileIndex, int iLangIndex);
 
 #endif /* !__INITMACOSXENV_H__ */

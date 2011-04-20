@@ -166,7 +166,6 @@ namespace types
 
         try
         {
-
             m_body->mute();
             MuteVisitor mute;
             m_body->accept(mute);

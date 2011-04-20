@@ -33,6 +33,8 @@ extern "C"
 static wchar_t *removeEOL(wchar_t *_inString);
 static char *convertAnsiToUtf(char *_inString);
 static wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile);
+/*--------------------------------------------------------------------------*/  
+#define UTF_16BE_BOM 0xFEFF // 0xFEFF = to_wide_string(0xEFBBBF)
 /*--------------------------------------------------------------------------*/
 wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {
@@ -43,6 +45,11 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
     *nbLinesOut = 0;
 
     pFile = FileManager::getFile(fd);
+
+    if(nbLinesIn < 0 && fd == 5)
+    {
+        nbLinesIn = 1;
+    }
 
     if (pFile)
     {
@@ -61,6 +68,14 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
             while ( getLine ( Line, sizeof(Line), pFile ) != NULL )
             {
+                /* UTF-16 BOM */
+                if ((nbLines == 0) && (Line[0] == UTF_16BE_BOM))
+                {
+                    wchar_t* tmpLine = os_wcsdup(Line);
+                    memset(Line, 0x00, LINE_MAX * 2);
+                    wcscpy(Line, &tmpLine[1]);
+                }
+
                 nbLines++;
                 strLines = (wchar_t **)REALLOC(strLines, nbLines * sizeof(wchar_t *));
                 if (strLines == NULL)
@@ -110,8 +125,21 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                 {
                     if (nbLines < nbLinesIn)
                     {
+                        bool header = false;
+                        /* UTF-16 BOM */
+                        if ((ftell(pFile->getFiledesc()) == 0) && (nbLines == 0))
+                        {
+                            header = true;
+                        }
+
                         if ( getLine ( Line, sizeof(Line), pFile) != NULL)
                         {
+                            if(header && (Line[0] == UTF_16BE_BOM))
+                            {
+                                wchar_t* tmpLine = os_wcsdup(Line);
+                                memset(Line, 0x00, LINE_MAX * 2);
+                                wcscpy(Line, &tmpLine[1]);
+                            }
                             nbLines++;
                             strLines[nbLines - 1] = os_wcsdup(removeEOL(Line));
                             if (strLines[nbLines - 1] == NULL)
@@ -161,7 +189,7 @@ wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, File* _pFile)
     }
     else
     {
-        char* pstTemp = (char*)MALLOC(sizeof(char*) * _iLineSize);
+        char* pstTemp = (char*)MALLOC(sizeof(char) * _iLineSize);
         if(fgets(pstTemp, _iLineSize, _pFile->getFiledesc()) == NULL)
         {
             FREE(pstTemp);
@@ -263,13 +291,13 @@ char *convertAnsiToUtf(char *_inString)
                 unsigned char inAnsiChar = 0;
 
                 if (_inString[i] < 0)
-		{
-			 inAnsiChar = 256 + _inString[i];
-		}
+                {
+                    inAnsiChar = 256 + _inString[i];
+                }
                 else
-		{
-			 inAnsiChar = _inString[i];
-		}
+                {
+                    inAnsiChar = _inString[i];
+                }
 
                 if(inAnsiChar < 128)
                 {

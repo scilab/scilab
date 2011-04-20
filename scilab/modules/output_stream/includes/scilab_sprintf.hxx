@@ -13,7 +13,7 @@
 #ifndef __SCILAB_SPRINTF_HXX__
 #define __SCILAB_SPRINTF_HXX__
 
-#include "dynlib_output_stream.h"
+#include "dynlib_output_stream_gw.h"
 #include "internal.hxx"
 
 typedef struct
@@ -31,7 +31,7 @@ typedef struct
     types::InternalType::RealType type;
 }ArgumentPosition;
 
-OUTPUT_STREAM_IMPEXP wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows);
+OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(wchar_t* _pwstName, wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, bool _bKeepEOL, int _iArgsCount, int* _piOutputRows);
 
 
 #endif /* !__SCILAB_SPRINTF_HXX__ */

@@ -297,9 +297,8 @@ if execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);","errcatch")
 if execstr("msprintf();","errcatch")     == 0 then, pause, end
 
 // overload: Arg not managed
-s=poly(0,"s");
-p=1+s+2*s^2;
-if execstr("msprintf(""plop"",p);","errcatch") <> 246 then, pause, end
+p=1+%s+2*%s*%s;
+if execstr("msprintf(""plop"",p);","errcatch") == 0 then, pause, end
 
 
-if execstr("msprintf(""%s %s"",""plop"");","errcatch") <> 999 then, pause, end
+if execstr("msprintf(""%s %s"",""plop"");","errcatch") == 0 then, pause, end

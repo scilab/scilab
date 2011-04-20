@@ -40,7 +40,7 @@ long int mtell(int fd)
 			offset = ftell(pF->getFiledesc()) ;
 		#endif
 	#else
-	offset = ftell(pF->getFiledesc()) ;
+	    offset = ftell(pF->getFiledesc()) ;
 	#endif
 	
 	return offset;

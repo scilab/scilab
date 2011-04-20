@@ -32,16 +32,22 @@ int mcloseCurrentFile()
 
 int mcloseAll()
 {
-    while(FileManager::getFileMaxID() != 0)
-    {
-        int iRet = mclose(FileManager::getFileMaxID());
-        if(iRet)
-        {
-            return iRet;
-        }
-    }
-    
-    return 0;
+     int iFileCount = FileManager::getFileMaxID();
+     for(int i = iFileCount ; i > 0 ; i--)
+     {
+         //stdin and stdout
+         if(i != 0 && i != 5 && i != 6 && FileManager::getFile(i) != NULL)
+         {
+             int iRet = mclose(i);
+             if(iRet)
+             {
+                 return iRet;
+             }
+             FileManager::deleteFile(i);
+         }
+     }
+
+     return 0;
 }
 
 int mclose(int _iID)
@@ -50,11 +56,11 @@ int mclose(int _iID)
     if(pF != NULL)
     {
         int iRet = fclose(pF->getFiledesc());
- 
+
         // this function previously called ferror on a just before fclosed FILE* that could lead to crash at exit, depending on libc implementation.
         if(iRet != 0)
         {
-            iRet = 1;
+            return 1;
         }
 
         FileManager::deleteFile(_iID);

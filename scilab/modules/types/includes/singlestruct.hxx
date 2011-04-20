@@ -51,6 +51,9 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring                    getShortTypeStr() {return L"";}
 
+        virtual void                            IncreaseRef();
+        virtual void                            DecreaseRef();
+
     private :
         std::map<std::wstring, InternalType *>* m_pData;
     };

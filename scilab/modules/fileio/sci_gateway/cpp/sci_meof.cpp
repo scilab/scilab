@@ -11,19 +11,13 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "fileio_gw.hxx"
-#include "function.hxx"
 #include "string.hxx"
 #include "filemanager.hxx"
 
 extern "C"
 {
 #include <stdio.h>
-#include <string.h>
-#include "MALLOC.h"
-#include "removedir.h"
-#include "isdir.h"
 #include "expandPathVariable.h"
 #include "sci_warning.h"
 #include "sciprint.h"
@@ -53,6 +47,14 @@ Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typ
         }
 
         iFile = (int)in[0]->getAs<types::Double>()->get(0);
+        switch (iFile)
+	    {
+        case 0: // stderr
+        case 5: // stdin
+        case 6: // stdout
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"meof", iFile);
+            return types::Function::Error;
+        }
     }
 
     File* pF = FileManager::getFile(iFile);

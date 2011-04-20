@@ -13,15 +13,12 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
-#include "function.hxx"
 #include "string.hxx"
 
 extern "C"
 {
-#include <stdio.h>
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
@@ -35,8 +32,8 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
     int iFile                   = -1; //default file : last opened file
     types::String* pOutString   = NULL;
     int iSizeToRead             = 0;
-    types::Double* pdFileId     = NULL;
-    
+    wchar_t* pwstOut            = NULL;
+
     if(in.size() < 1 || in.size() > 2)
     {
         ScierrorW(77, _W("%ls: Wrong number of input argument(s): %d to %d expected.\n"), L"mgetstr", 1, 2);
@@ -48,9 +45,9 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
         ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mgetstr", 1);
         return types::Function::Error;
     }
-    
-    iSizeToRead = static_cast<int>(in[0]->getAs<types::Double>()->getReal()[0]);
-    
+
+    iSizeToRead = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
+
     if(in.size() == 2)
     {
         if(in[1]->isDouble() == false || in[1]->getAs<types::Double>()->isScalar() == false || in[1]->getAs<types::Double>()->isComplex())
@@ -58,27 +55,29 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
             ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A real expected.\n"), L"mgetstr", 2);
             return types::Function::Error;
         }
-        pdFileId = in[1]->getAs<types::Double>();
+        iFile = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
     }
-
+    switch (iFile)
+    {
+        case 0: // stderr
+        case 6: // stdout
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mgetstr", iFile);
+            return types::Function::Error;
+        default :
+            pwstOut = mgetstr(iFile, iSizeToRead);
+    }
     pOutString = new types::String(iDims,iDimsArray);
 
-    if(pdFileId != NULL)
-    {
-        iFile = static_cast<int>(pdFileId->getReal()[0]);
-    }
-    
-    wchar_t* pwstOut = mgetstr(iFile, iSizeToRead);
     if(pwstOut == NULL)
     {
- //       ScierrorW(999, _W("%ls: Unable to read file %d.\n"), L"mgetstr", iFile);
-//        return types::Function::Error;
+        ScierrorW(999, _W("%ls: Unable to read file %d.\n"), L"mgetstr", iFile);
+        return types::Function::Error;
     }
     else
     {
         pOutString->set(0, pwstOut);
     }
-    
+
     FREE(pwstOut);
     out.push_back(pOutString);
     return Function::OK;

@@ -101,6 +101,7 @@ namespace types
         // double / char / short / int / long long / unsigned ...
         template<typename T>
         void					extractFullMatrix(T *_pT);
+        void                    extractFullMatrix(double *_pdbl);
     };
 }
 

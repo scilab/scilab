@@ -166,7 +166,7 @@ static int launchMacOSXEnv(thread_parm_t *param){
 
   if (ret==0) {
     /* Call the actual startup script of Scilab */
-    ret=StartScilabEngine(p->argc, p->argv, p->iFileIndex);
+    ret=StartScilabEngine(p->argc, p->argv, p->iFileIndex, 0);
 	free(p);
 	exit(ret);
   }

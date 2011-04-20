@@ -12,12 +12,10 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "funcmanager.hxx"
 #include "filemanager.hxx"
 #include "fileio_gw.hxx"
 #include "string.hxx"
 #include "file.hxx"
-#include "function.hxx"
 
 extern "C"
 {
@@ -49,36 +47,41 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         return Function::Error;
     }
 
-    iSize = static_cast<int>(in[0]->getAs<Double>()->getReal()[0]);
+    iSize = static_cast<int>(in[0]->getAs<Double>()->get(0));
 
     if(in.size() >= 2)
     {//export format
         if(in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mput", 2);
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A string expected.\n"), L"mget", 2);
             return Function::Error;
         }
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
-
     }
 
     if(in.size() == 3)
     {
         if(in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
         {
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mput", 3);
+            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: A integer expected.\n"), L"mget", 3);
             return Function::Error;
         }
-
-        iFile = static_cast<int>(in[2]->getAs<Double>()->getReal()[0]);
+        iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
     }
 
     Double* pD = new Double(1, iSize);
     pData = pD->getReal();
 
+    switch (iFile)
+    {
+        case 0: // stderr
+        case 6: // stdout
+            ScierrorW(999, _W("%ls: Wrong file descriptor: %d.\n"), L"mget", iFile);
+            return types::Function::Error;
+    }
+
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
 
-    File* pFile = FileManager::getFile(iFile);
     if(iErr > 0)
     {
         return Function::Error;

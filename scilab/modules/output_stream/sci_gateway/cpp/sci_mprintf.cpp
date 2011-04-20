@@ -118,11 +118,15 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     }
 
     int iOutputRows = 0;
-    wchar_t** pwstOutput = scilab_sprintf(L"mprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows);
+    wchar_t** pwstOutput = scilab_sprintf(L"mprintf", pwstInput, in, pArgs, true, iNumberPercent, &iOutputRows);
 
     for(int i = 0 ; i < iOutputRows ; i++)
     {
         YaspWriteW(pwstOutput[i]);
+        if(iOutputRows != 1)
+        {
+            //YaspWriteW(L"\n");
+        }
         fflush(NULL);
         FREE(pwstOutput[i]);
     }

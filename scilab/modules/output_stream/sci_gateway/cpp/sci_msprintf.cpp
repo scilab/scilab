@@ -16,6 +16,8 @@
 #include "scilab_sprintf.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -24,7 +26,7 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     //Structure to store, link between % and input value
     ArgumentPosition* pArgs = NULL;
@@ -45,9 +47,8 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
     {
         if(in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            //TODO: Overload
-            ScierrorW(999, _W("%ls: Wrong type for input argument #%d: Real matrix or matrix of strings expected.\n"), L"msprintf", i + 1);
-            return types::Function::Error;
+            std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_msprintf";
+            return Overload::call(wstFuncName, in, _iRetCount, out, new ExecVisitor());
         }
     }
 
@@ -115,7 +116,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _piRetCount
     }
 
     int iOutputRows = 0;
-    wchar_t** pwstOutput = scilab_sprintf(L"msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows);
+    wchar_t** pwstOutput = scilab_sprintf(L"msprintf", pwstInput, in, pArgs, false, iNumberPercent, &iOutputRows);
 
     types::String* pOut = new types::String(iOutputRows, 1);
     pOut->set(pwstOutput);
