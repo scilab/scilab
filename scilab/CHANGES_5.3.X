@@ -109,6 +109,8 @@ Xcos:
 
 * bug 9175 fixed - Xcos: Sigbuilder, modify "Data bounds" in curve editor fails
 
+* bug 9237 fixed - Labels were not editable after a block copy.
+
 * bug 9219 fixed - AFFICH_m format was not the parameterized one.
 
 * bug 9307 fixed - AFFICH_m block only printed the first column for an input

@@ -1649,6 +1649,23 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * Sync the specific child {@link EditFormatAction#HASH_IDENTIFIER}
+	 */
+	@Override
+	public mxICell insert(mxICell child, int index) {
+		/*
+		 * Update the id if this is an identifier cell (herited identifier)
+		 */
+		if (child.getId().endsWith(EditFormatAction.HASH_IDENTIFIER)) {
+			child.setId(getId() + EditFormatAction.HASH_IDENTIFIER);
+		}
+		
+		return super.insert(child, index);
+	}
+	
+	/**
 	 * Overriden to correct jgraphx bug fixed in 1.4.0.4
 	 * 
 	 * @param child the child to insert
