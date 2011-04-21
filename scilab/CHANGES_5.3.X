@@ -43,6 +43,8 @@ Scinotes:
 
 * bug 9257 fixed - SciNotes could not be started from NW / adv-cli mode.
 
+* bug 9340 fixed - Bad name was proposed when export to PDF.
+
 * bug 9348 fixed - Miscolorization of a transposed field.
 
 
