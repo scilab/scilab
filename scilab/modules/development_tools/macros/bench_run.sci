@@ -19,7 +19,6 @@ function bench_run(varargin)
 
     global test_list;
     global test_count;
-    global boucle_for_time;
 
     test_list          = [];
     test_count         = 0;
@@ -325,7 +324,7 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     tst_str = [ context ;
                 "nb_run = "+nb_run+";";
                 "tic();";
-                "for i = 1:nb_run";
+                "for __loop_iterator__ = 1:nb_run";
                 bench;
                 "end";
                 "timing = toc();";
