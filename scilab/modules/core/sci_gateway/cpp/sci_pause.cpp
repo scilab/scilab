@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     ConfigVariable::DecreasePauseLevel();
     if (pThread->getStatus() == types::ThreadId::Aborted)
     {
-        throw ScilabMessage(L"");
+        throw InternalAbort();
     }
 
     return types::Function::OK;
