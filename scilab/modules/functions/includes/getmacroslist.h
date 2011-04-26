@@ -22,5 +22,5 @@
 */
 FUNCTIONS_SCILAB_IMPEXP char **getmacroslist(int *sizearray);
 
-#endif /* __GETMACROSDICTIONARY_H__ */
+#endif /* __GETMACROSLIST_H__ */
 /*--------------------------------------------------------------------------*/ 

@@ -15,26 +15,32 @@ USEANT=1
 endif
 
 # List of the c files
-COMPLETION_C_SOURCES = src/c/completion.c \
-src/c/completion_generic.c \
-src/c/getfilesdictionary.c \
-src/c/getmacrosdictionary.c \
-src/c/getfieldsdictionary.c \
-src/c/toolsdictionary.c \
-src/c/completion_wrap_java.c \
-src/c/getPartLine.c \
-src/c/getCommonPart.c \
-src/c/completeLine.c \
-src/c/completeLine_wrap_java.c
+COMPLETION_C_SOURCES = \
+    src/c/completion.c \
+    src/c/completion_generic.c \
+    src/c/getfilesdictionary.c \
+    src/c/getfieldsdictionary.c \
+    src/c/toolsdictionary.c \
+    src/c/completion_wrap_java.c \
+    src/c/getPartLine.c \
+    src/c/getCommonPart.c \
+    src/c/completeLine.c \
+    src/c/completeLine_wrap_java.c
+
+# List of the c++ file
+COMPLETION_CPP_SOURCES = \
+    src/cpp/completionDictionary.cpp
 
 # List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/sci_completion.c \
-sci_gateway/c/gw_completion.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_completion.c \
+    sci_gateway/c/gw_completion.c
 
 # Includes need for the compilation
 libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
+                -I$(srcdir)/src/cpp/ \
 				-I$(top_srcdir)/libs/MALLOC/includes/ \
 				-I$(top_srcdir)/modules/graphics/includes/ \
 				-I$(top_srcdir)/modules/fileio/includes/ \
@@ -43,6 +49,22 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/output_stream/includes \
 				-I$(top_srcdir)/modules/string/includes \
 				-I$(top_srcdir)/modules/operations/includes
+				
+libscicompletion_la_CPPFLAGS=  	$(JAVA_JNI_INCLUDE) \
+				-I$(srcdir)/includes/ \
+				-I$(srcdir)/src/c/ \
+				-I$(srcdir)/src/cpp/ \
+				-I$(top_srcdir)/libs/MALLOC/includes/ \
+				-I$(top_srcdir)/modules/symbol/includes/ \
+				-I$(top_srcdir)/modules/abstractSyntaxTree/includes/ \
+				-I$(top_srcdir)/modules/types/includes/ \
+				-I$(top_srcdir)/modules/graphics/includes/ \
+				-I$(top_srcdir)/modules/fileio/includes/ \
+				-I$(top_srcdir)/modules/functions/includes/ \
+				-I$(top_srcdir)/modules/api_scilab/includes \
+				-I$(top_srcdir)/modules/output_stream/includes \
+				-I$(top_srcdir)/modules/string/includes \
+				-I$(top_srcdir)/modules/operations/includes				
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
@@ -52,13 +74,14 @@ noinst_LTLIBRARIES = libscicompletion-algo.la
 libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
-libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES)
+libscicompletion_algo_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(COMPLETION_CPP_SOURCES)
 libscicompletion_la_SOURCES = $(GATEWAY_C_SOURCES)
 libscicompletion_algo_la_CFLAGS = $(libscicompletion_la_CFLAGS)
+libscicompletion_algo_la_CPPFLAGS = $(libscicompletion_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
-INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
+INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS) $(libscicompletion_la_CPPFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib

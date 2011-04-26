@@ -57,6 +57,20 @@ namespace symbol
     {
         return ostr << the.name_get();
     }
+
+    wchar_t **Symbol::get_all()
+    {
+        string_set_type::const_iterator it;
+        wchar_t **resultVector = new wchar_t*[map_size()];
+        int i = 0;
+
+        for(it = _set.begin() ; it != _set.end() ; ++it, ++i)
+        {
+            resultVector[i] = const_cast<wchar_t*>(it->c_str());
+        }
+
+        return resultVector;
+    }
 }
 
 #endif // !SYMBOL_SYMBOL_HXX

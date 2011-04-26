@@ -101,7 +101,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
         }
 
 
-        #pragma message "!! WARNING !! : getfielddictionnary may crash YaSp."
+        #pragma message("!! WARNING !! : getfielddictionnary may crash YaSp.")
         sciErr = getMatrixOfStringInList(NULL, piAddr, 1, &rows, &cols, piLen, pstData);
         if (sciErr.iErr)
         {

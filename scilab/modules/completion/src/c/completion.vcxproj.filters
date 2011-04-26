@@ -56,9 +56,6 @@
     <ClCompile Include="getfilesdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getmacrosdictionary.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getPartLine.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -69,6 +66,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="toolsdictionary.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\completionDictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -100,9 +100,6 @@
     <ClInclude Include="getfilesdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\getmacrosdictionary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\getPartLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -110,6 +107,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="toolsdictionary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\completionDictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -56,6 +56,8 @@ namespace symbol
     const std::wstring& name_get () const;
     /** \brief Return the number of referenced strings. */
     static size_type map_size ();
+    /** \brief Return all symbols. */
+    static wchar_t** get_all ();
     /** \} */
 
 
@@ -72,7 +74,7 @@ namespace symbol
      ** \param rhs Symbol to compare with. */
     bool operator<  (const Symbol &rhs) const;
     /** \} */
-    
+
     const string_set_type::const_iterator get_node() const {return _set_node;}
 
   private:
