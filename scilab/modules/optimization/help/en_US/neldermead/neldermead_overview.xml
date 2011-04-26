@@ -261,7 +261,7 @@
     retrieved with quiery features.</para>
 
     <programlisting role="example"><![CDATA[ 
-function y = rosenbrock (x)
+function [f, index]=rosenbrock(x, index)
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 

@@ -11,6 +11,9 @@
 
 
 function demo_nmplot_2()
+  filename = 'nmplot_han2.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates the 2nd counter example given by Han et al.\n"));
 
   //
@@ -32,6 +35,9 @@ function demo_nmplot_2()
       rho = -x(2) - 1
     end
     f = x(1)^2 + rho;
+  endfunction
+  function y = han2C ( x1 , x2 )
+    y = han2 ( [x1 , x2] , 2 )
   endfunction
 
 
@@ -63,19 +69,32 @@ function demo_nmplot_2()
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
-  disp(nm);
+    //
+    // Print a summary
+    //
+    exec(fullfile(dname,"nmplot_summary.sci"),-1);
+    nmplot_summary(nm)
   
   //
   // Plot
   //
   mprintf(_("Plotting contour (please wait) ...\n"));
-  [nm , xdata , ydata , zdata ] = nmplot_contour ( nm , xmin = -0.2 , xmax = 1.2 , ymin = -1.5 , ymax = 1.5 , nx = 50 , ny = 50 );
-  f = scf(100001);
+  xmin = -0.2 ; 
+  xmax = 1.2 ; 
+  ymin = -1.5 ; 
+  ymax = 1.5 ; 
+  nx = 50 ; 
+  ny = 50;
+  scf();
   xset("fpf"," ")
   drawlater();
-  contour ( xdata , ydata , zdata , [0.1 0.2 0.5 1.0 1.5 1.9] )
+  xdata=linspace(xmin,xmax,nx);
+  ydata=linspace(ymin,ymax,ny);
+  contour ( xdata , ydata , han2C , [0.1 0.2 0.5 1.0 1.5 1.9] )
   nmplot_simplexhistory ( nm );
   drawnow();
+  //
+  // Cleanup
   deletefile(simplexfn);
   nm = nmplot_destroy(nm);
   mprintf(_("End of demo.\n"));
@@ -83,8 +102,6 @@ function demo_nmplot_2()
   //
   // Load this script into the editor
   //
-  filename = 'nmplot_han2.sce';
-  dname = get_absolute_file_path(filename);
   editor (dname + filename, 'readonly');
 
 endfunction

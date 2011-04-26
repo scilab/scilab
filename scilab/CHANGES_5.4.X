@@ -45,7 +45,33 @@ New functions
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
 
+Optimization:
+=============
 
+* bug 7891 fixed - The neldermead component had too many options.
+  Tagged -costfargument option of optimbase as obsolete: will be 
+  maintained for backward compatibility until 5.4.1.
+  The -fun option can now be a list, where the element #1 is a 
+  function, and the elements #2 to the end are automatically appended to 
+  the calling sequence.
+  Tagged -outputcommandarg option of optimbase as obsolete: will be 
+  maintained for backward compatibility until 5.4.1.
+  The -outputcommand option can now be a list, where the element #1 is 
+  a function, and the elements #2 to the end are automatically appended 
+  to the calling sequence.
+  Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch 
+  as obsolete: will be maintained for backward compatibility until 
+  5.4.1.
+  The new calling sequence is "stop=outputfun(x,optimValues,state)"
+  Tagged "myoutputfun(state,data)" calling sequence of neldermead 
+  as obsolete: will be maintained for backward compatibility until 
+  5.4.1.
+  The new calling sequence is "stop=myoutputfun(state,data)"
+  Tagged "-myterminateflag" and "-myterminate" options as obsolete: 
+  will be maintained for backward compatibility until 5.4.1.
+  See the help page of neldermead for details to update your 
+  code, if required.
+  
 Xcos:
 =====
 

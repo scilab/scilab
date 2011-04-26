@@ -43,7 +43,7 @@ assert_checkequal ( computed , 13.0 );
 computed = optimsimplex_getfv( s1 , 3);
 assert_checkequal ( computed , 14.0 );
 // Print the simplex
-optimsimplex_print ( s1 );
+disp ( s1 );
 // We are done !
 s1 = optimsimplex_destroy(s1);
 

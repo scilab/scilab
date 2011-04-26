@@ -30,9 +30,10 @@ function demo_outputcmd()
   //    * simplex : the simplex, as a simplex object
   //    * iteration : the number of iterations performed
   //    * funccount : the number of function evaluations
+  // stop : set to %t to interrupt the algorithm
   //
   
-  function myoutputcmd ( state , data )
+  function stop = myoutputcmd ( state , data )
     iter = data.iteration
     if ( state == "init" ) then
       mprintf ( "=================================\n");
@@ -49,6 +50,7 @@ function demo_outputcmd()
     // by the optimsimplex class.
     ssize = optimsimplex_size ( simplex )
     mprintf ( "Iteration #%d, Feval #%d, Fval = %e, x = %s, Size = %e\n", iter, fc, fval, strcat(string(x)," "), ssize);
+	stop = %f
   endfunction
 
 

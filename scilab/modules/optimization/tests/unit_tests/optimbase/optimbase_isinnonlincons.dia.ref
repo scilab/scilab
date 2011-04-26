@@ -121,8 +121,7 @@ opt = optimbase_new ();
 opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
 opt = optimbase_configure ( opt , "-nbineqconst",4);
-opt = optimbase_configure ( opt , "-function" , gouldnonconvex2 );
-opt = optimbase_configure ( opt , "-costfargument" , mystuff );
+opt = optimbase_configure ( opt , "-function" , list(gouldnonconvex2,mystuff) );
 [ opt , isfeasible ] = optimbase_isinnonlincons ( opt ,  [ 14.0950013 , 0.8429636 ] );
 Function Evaluation #1 at [14.095001 0.8429636]
 assert_checkequal ( isfeasible , %t );

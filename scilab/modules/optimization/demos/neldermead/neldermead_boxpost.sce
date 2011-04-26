@@ -18,6 +18,9 @@
 
 function demo_boxpost()
 
+  filename = 'neldermead_boxpost.sce';
+  dname = get_absolute_file_path(filename);
+
   mprintf(_("Illustrates Box'' algorithm on Rosenbrock''s Post Office Problem.\n"));
   mprintf(_("Defining Rosenbrock Post Office function...\n"));
 
@@ -67,7 +70,6 @@ function demo_boxpost()
       c = [c1 c2]
     end
   endfunction
-
   //
   // Initialize the random number generator, so that the results are always the
   // same.
@@ -121,14 +123,17 @@ function demo_boxpost()
   //
   mprintf(_("Searching (please wait) ...\n"));
   nm = neldermead_search(nm);
+  //
+  // Print a summary
+  //
+  exec(fullfile(dname,"neldermead_summary.sci"),-1);
+  neldermead_summary(nm)
   mprintf("==========================\n");
   xcomp = neldermead_get(nm,"-xopt");
-  mprintf("x computed = [%s]\n",strcat(string(xcomp)," "));
   mprintf("x expected = [%s]\n",strcat(string(xopt)," "));
   shift = norm(xcomp-xopt)/norm(xopt);
   mprintf("Shift = %f\n",shift);
   fcomp = neldermead_get(nm,"-fopt");
-  mprintf("f computed = %f\n",fcomp);
   mprintf("f expected = %f\n",fopt);
   shift = abs(fcomp-fopt)/abs(fopt);
   mprintf("Shift = %f\n",shift);
@@ -139,8 +144,6 @@ function demo_boxpost()
   //
   // Load this script into the editor
   //
-  filename = 'neldermead_boxpost.sce';
-  dname = get_absolute_file_path(filename);
   editor ( dname + filename, "readonly" );
 
 endfunction

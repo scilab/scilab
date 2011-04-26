@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -15,6 +15,11 @@
 //   If the key is unknown, generates an error.
 //
 function this = optimbase_set ( this , key , value )
+    [lhs,rhs]=argn();
+    if ( rhs <> 3 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_set", 3);
+        error(errmsg)
+    end
   select key
   case "-iterations" then
     this.iterations = value;

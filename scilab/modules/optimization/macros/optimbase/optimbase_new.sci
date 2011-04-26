@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -13,6 +13,11 @@
 //   Creates a new Optimization object.
 //
 function newobj = optimbase_new ()
+    [lhs,rhs]=argn();
+    if ( rhs <> 0 ) then
+        errmsg = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "optimbase_new", 0);
+        error(errmsg)
+    end
   newobj = tlist(["TOPTIM"
     "verbose"
     "x0"
@@ -35,10 +40,8 @@ function newobj = optimbase_new ()
     "historyxopt"
     "verbosetermination"
     "outputcommand"
-    "outputcommandarg"
     "numberofvariables"
     "storehistory"
-    "costfargument"
     "boundsmin"
     "boundsmax"
     "nbineqconst"
@@ -46,6 +49,11 @@ function newobj = optimbase_new ()
     "logfilehandle"
     "logstartup"
     "withderivatives"
+//
+// Obsolete options.
+//
+    "costfargument"
+    "outputcommandarg"
     ]);
   // The number of variables to optimize
   newobj.numberofvariables = 0
@@ -87,20 +95,8 @@ function newobj = optimbase_new ()
   newobj.status = "";
   // The command called back for output
   newobj.outputcommand = "";
-  // The outputcommand argument is initialized as a string.
-  // If the user configure this option, it is expected
-  // that a matrix of values or a list, tlist, mlist is 
-  // passed so that the argument is appended to the name of the 
-  // function.
-  newobj.outputcommandarg = ""
   // The cost function
   newobj.fun = "";
-  // The costf argument is initialized as a string.
-  // If the user configure this option, it is expected
-  // that a matrix of values or a list, tlist, mlist is 
-  // passed so that the argument is appended to the name of the 
-  // function.
-  newobj.costfargument = "";
   // The flag which enables/disables the storing of the history
   newobj.storehistory = %f;
   // The array to store the history for xopt
@@ -121,5 +117,20 @@ function newobj = optimbase_new ()
   newobj.logstartup = %f;
   // Set to %t when the method uses derivatives
   newobj.withderivatives = %f
+  //
+  // Obsolete options
+  //
+  // The costf argument is initialized as a string.
+  // If the user configure this option, it is expected
+  // that a matrix of values or a list, tlist, mlist is 
+  // passed so that the argument is appended to the name of the 
+  // function.
+  newobj.costfargument = "";
+  // The outputcommand argument is initialized as a string.
+  // If the user configure this option, it is expected
+  // that a matrix of values or a list, tlist, mlist is 
+  // passed so that the argument is appended to the name of the 
+  // function.
+  newobj.outputcommandarg = ""
 endfunction
 

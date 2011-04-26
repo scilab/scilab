@@ -10,7 +10,18 @@
 
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
+// This test is designed to produce a warning:
+// this warning is localized.
+// This is why we do not check the ref.
+// Checking the ref file under Linux fails, because
+// <-- ENGLISH IMPOSED --> has no effect there.
+// See : http://bugzilla.scilab.org/show_bug.cgi?id=9284
+
+
+
+x0 = [11.0 140.0]';
 
 
 //
@@ -19,34 +30,25 @@
 // So the actual name "mydata" does not matter
 // and whatever variable name can be used.
 //
-function [ y , index , mydata ] = rosenbrock ( x , index , mydata )
+function [ y , index ] = rosenbrock2 ( x , index , mydata )
   a = mydata.a
   y = 100*(x(2)-x(1)^2)^2 + ( a - x(1))^2;
 endfunction
 
 //
-// Test with an additional argument
+// Check backward compatibility with the "-costfargument" option.
 //
 mystuff = tlist(["T_MYSTUFF","a"]);
 mystuff.a = 12.0;
-
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",400);
-nm = neldermead_configure(nm,"-maxfunevals",800);
-nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
-nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
-nm = neldermead_configure(nm,"-simplex0method","axes");
-nm = neldermead_configure(nm,"-simplex0length",1.0);
-nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-storehistory",%t);
+nm = neldermead_configure(nm,"-function",rosenbrock2);
 nm = neldermead_configure(nm,"-costfargument",mystuff);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-maxfunevals",%inf);
+nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_search(nm);
-// Check optimum point
-xopt = neldermead_get(nm,"-xopt");
-assert_checkalmostequal ( xopt , [12.0 144.0]', 1e-6 );
+iter = neldermead_get(nm,"-iterations");
+assert_checkequal ( iter , 10 );
 nm = neldermead_destroy(nm);
-
 

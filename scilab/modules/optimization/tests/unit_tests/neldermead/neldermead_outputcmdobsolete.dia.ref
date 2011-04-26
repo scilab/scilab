@@ -7,34 +7,23 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-
-
-function [ y , index ] = myquad ( x , index )
-  y = x(1)^2 + x(2)^2
+// <-- NO CHECK REF -->
+// This test is designed to produce a warning:
+// this warning is localized.
+// This is why we do not check the ref.
+// Checking the ref file under Linux fails, because
+// <-- ENGLISH IMPOSED --> has no effect there.
+// See : http://bugzilla.scilab.org/show_bug.cgi?id=9284
+function [ y , index ] = rosenbrock ( x , index )
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
-
-
 //
-// myoutputcmd --
-//  This command is called back by the Nelder-Mead
-//  algorithm.
-// Arguments
-//  state : the current state of the algorithm
-//    "init", "iter", "done"
-//  data : the data at the current state
-//    This is a tlist with the following entries:
-//    * x : the optimal vector of parameters
-//    * fval : the minimum function value
-//    * simplex : the simplex, as a simplex object
-//    * iteration : the number of iterations performed
-//    * funccount : the number of function evaluations
-//    * step : the type of step in the previous iteration
-// stop: set to true to stop algorithm
+// Check backward-compatibility #1:
+// without stop output argument.
 //
-function stop = myoutputcmd ( state , data )
+function myoutputcmd3 ( state , data , mystuff )
   global _OUTPUCMDFLAG_
   // Unload the array, just to make sure that the minimum is there
   iter = data.iteration
@@ -42,88 +31,36 @@ function stop = myoutputcmd ( state , data )
   fval = data.fval
   x = data.x
   simplex = data.simplex
-  step = data.step
   // Simplex is a data structure, which can be managed
   // by the simplex class.
   v = optimsimplex_dirmat ( simplex )
   condv = cond ( v )
-  _OUTPUCMDFLAG_ = 1
-  stop = %f
+  _OUTPUCMDFLAG_ = mystuff.myarg
 endfunction
-
-
-//
-// Test the variable algorithm
-//
 global _OUTPUCMDFLAG_;
 _OUTPUCMDFLAG_ = 0;
-
+myobj = tlist(["T_MYSTUFF","myarg"]);
+myobj.myarg = 12;
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_configure(nm,"-outputcommand",list(myoutputcmd3,myobj));
 nm = neldermead_search(nm);
+AVERTISSEMENT : Calling sequence outputfun(state,data) is obsolete.
+AVERTISSEMENT : Utilisez plutôt stop=outputfun(state,data) s'il vous plait.
+AVERTISSEMENT : Cette fonctionnalité va être définitivement enlevée dans Scilab 5.4.1
+
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
-// We are here, that means that the output command has been correctly
-// called
-assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
+assert_checkequal ( _OUTPUCMDFLAG_ , 12 );
 nm = neldermead_destroy(nm);
-
-
 //
-// Test the fixed algorithm
+// Check backward-compatibility #2:
+// obsolete use of -outputcommandarg option.
 //
-global _OUTPUCMDFLAG_;
-_OUTPUCMDFLAG_ = 0;
-
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",myquad);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_configure(nm,"-method","fixed");
-nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
-nm = neldermead_search(nm);
-iter = neldermead_get(nm,"-iterations");
-assert_checkequal ( iter , 10 );
-// We are here, that means that the output command has been correctly
-// called
-assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
-nm = neldermead_destroy(nm);
-
-
-//
-// Test the Box algorithm
-//
-global _OUTPUCMDFLAG_;
-_OUTPUCMDFLAG_ = 0;
-
-nm = neldermead_new ();
-nm = neldermead_configure(nm,"-numberofvariables",2);
-nm = neldermead_configure(nm,"-function",myquad);
-nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
-nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
-nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
-nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
-nm = neldermead_search(nm);
-iter = neldermead_get(nm,"-iterations");
-assert_checkequal ( iter , 10 );
-// We are here, that means that the output command has been correctly
-// called
-assert_checkequal ( _OUTPUCMDFLAG_ , 1 );
-nm = neldermead_destroy(nm);
-
-
-function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
-endfunction
-
 //
 // myoutputcmd2 --
 //  This command is called back by the Nelder-Mead
@@ -156,25 +93,24 @@ function stop = myoutputcmd2 ( state , data , myobj )
   _OUTPUCMDFLAG_ = myobj.myarg
   stop = %f
 endfunction
-
 global _OUTPUCMDFLAG_;
 _OUTPUCMDFLAG_ = 0;
-
 myobj = tlist(["T_MYSTUFF","myarg"]);
 myobj.myarg = 12;
-
 nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
 nm = neldermead_configure(nm,"-maxiter",10);
 nm = neldermead_configure(nm,"-method","variable");
-nm = neldermead_configure(nm,"-outputcommand",list(myoutputcmd2,myobj));
+nm = neldermead_configure(nm,"-outputcommand",myoutputcmd2);
+nm = neldermead_configure(nm,"-outputcommandarg",myobj);
+AVERTISSEMENT : La fonctionnalité optimbase_configure est obsolète.
+AVERTISSEMENT : Utilisez plutôt -outputcommand s'il vous plait.
+AVERTISSEMENT : Cette fonctionnalité va être définitivement enlevée dans Scilab 5.4.1
+
 nm = neldermead_search(nm);
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 assert_checkequal ( _OUTPUCMDFLAG_ , 12 );
 nm = neldermead_destroy(nm);
-
-
-

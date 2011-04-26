@@ -1,5 +1,4 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008-2009 - INRIA - Michael Baudin
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
@@ -10,26 +9,34 @@
 
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
+// <-- NO CHECK REF -->
 
+// This test is designed to produce a warning:
+// this warning is localized.
+// This is why we do not check the ref.
+// Checking the ref file under Linux fails, because
+// <-- ENGLISH IMPOSED --> has no effect there.
+// See : http://bugzilla.scilab.org/show_bug.cgi?id=9284
 
-
-
-
-function stop = myoutputcmd ( state , data )
-  simplex = data.simplex
-  ssize = optimsimplex_size ( simplex , "sigmaplus" );
-  if ( ssize < 1.e-2 ) then
-    stop = %t;
-    status = "mysize";
-  else
-    stop = %f
-  end
-endfunction
 
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
+//
+// Check backward compatibility:
+// check obsolete options "-myterminateflag" and "-myterminate".
+//
+function [ this , terminate , status ] = mystoppingrule2 ( this , simplex )
+  ssize = optimsimplex_size ( simplex , "sigmaplus" );
+  if ( ssize < 1.e-2 ) then
+    terminate = %t;
+    status = "mysize";
+  else
+    terminate = %f
+  end
+
+endfunction
 
 
 
@@ -46,7 +53,8 @@ nm = neldermead_configure(nm,"-method","variable");
 // Disable default terminations
 nm = neldermead_configure(nm,"-tolxmethod",%f);
 nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
-nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);
+nm = neldermead_configure(nm,"-myterminateflag",%t);
+nm = neldermead_configure(nm,"-myterminate",mystoppingrule2);
 nm = neldermead_search(nm);
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -56,14 +64,6 @@ fopt = neldermead_get(nm,"-fopt");
 assert_checkalmostequal ( fopt , 0.0 , [] , 1e-4 );
 // Check status
 status = neldermead_get(nm,"-status");
-assert_checkequal ( status , "userstop" );
-// Check simplex size
-simplex = neldermead_get(nm,"-simplexopt");
-ssize = optimsimplex_size ( simplex , "sigmaplus" );
-assert_checkequal ( ssize<1.e-1 , %t );
-// Check function evaluations
-funevals = neldermead_get(nm,"-funevals");
-assert_checkequal ( funevals<200 , %t );
+assert_checkequal ( status , "mysize" );
 nm = neldermead_destroy(nm);
-
 
