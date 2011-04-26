@@ -105,7 +105,7 @@ static char *backtrace_print(int niv_debut)
                 s_addr = s_unknown;
             }
 
-            ret = snprintf(tmp, size, "%s%4lu: %-12s %-32s (%s)\n", s_prefix, ind - niv_debut + 1, s_addr, s_func_buf, s_file);
+            ret = snprintf(tmp, size, "%s%4lu: %-16s %-32s (%s)\n", s_prefix, ind - niv_debut + 1, s_addr, s_func_buf, s_file);
             size -= ret;
             tmp += ret;
         }

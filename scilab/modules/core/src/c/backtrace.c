@@ -1,6 +1,7 @@
 /*
   Copyright (C) 2006  EDF - Code Saturne
   Copyright (C) 2011 - DIGITEO - Sylvestre LEDRU. Adapted for Scilab
+  Copyright (C) 2011 - DIGITEO - Bruno JOFRET. Trace parse algorithm rewrite.
 
   This library is free software; you can redistribute it and/or
   modify it under the terms of the GNU Lesser General Public
@@ -81,6 +82,14 @@ sci_backtrace_t *sci_backtrace_create(void)
 
     sci_backtrace_t *bt = NULL;
 
+    /*
+    ** nbIgnoreCall
+    ** When signal is trapped, catching functions will be present
+    ** within call stack so we shift to remove them.
+    **
+    */
+    int nbIgnoredCall = 3;
+
     /* Create backtrace structure */
 
     bt = malloc(sizeof(sci_backtrace_t));
@@ -92,7 +101,7 @@ sci_backtrace_t *sci_backtrace_create(void)
         int tr_size = backtrace(tr_array, 200);
         char **tr_strings = backtrace_symbols(tr_array, tr_size);
 
-        /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
+       /* Create arrays; we use malloc() here instead of BFT_MALLOC, as a
          * backtrace is useful mainly in case of severe errors, so we avoid
          * higher level constructs as much as possible at this stage. */
 
@@ -102,7 +111,7 @@ sci_backtrace_t *sci_backtrace_create(void)
             return NULL;
         }
 
-        bt->size = tr_size - 1;
+        bt->size = tr_size - nbIgnoredCall;
 
         bt->s_file = malloc(tr_size * sizeof(char *));
         bt->s_func = malloc(tr_size * sizeof(char *));
@@ -143,90 +152,42 @@ sci_backtrace_t *sci_backtrace_create(void)
         for (i = 0; i < bt->size; i++)
         {
 
-            char *s = tr_strings[i + 1];    /* Shift by 1 to ignore current function */
+            char *s = tr_strings[i+nbIgnoredCall];    /* Shift by nbIgnoredCall to ignore functions */
 
-            const char *s_addr = NULL;
-            const char *s_func = NULL;
-            const char *s_file = NULL;
+            char *sLibName = NULL;
+            char *sAddr = NULL;
+            char *sFunName = NULL;
 
-            for (l = 0; s[l] != '\0'; l++) ;
-
-            /* Remove brackets around adress */
-            for (j = l; j > 0 && s[j] != ']'; j--) ;
-            if (s[j] == ']')
-            {
-                s[j] = '\0';
-                l = j;
-                for (j = l - 1; j > 0 && s[j] != '['; j--) ;
-                if (s[j] == '[')
-                {
-                    s_addr = s + j + 1;
-                    bt->s_addr[i] = malloc((strlen(s_addr) + 1) * sizeof(char));
-                    if (bt->s_addr[i] != NULL)
-                    {
-                        strcpy(bt->s_addr[i], s_addr);
-                    }
-                }
-            }
-            if (j == 0)
-            {
-                continue;
-            }
-
-            /* Find function name and position (in parentheses) */
-            while (j > 0 && s[j] != ')')
-                j--;
-            if (s[j] == ')')
-            {
-                s[j] = '\0';
-                while (j > 0 && s[j] != '(')
-                {
-                    j--;
-                }
-                if (j > 0 && s[j] == '(')
-                {
-                    s_func = s + j + 1;
-                    while (j > 0 && (s[j] == '(' || s[j] == ' '))
-                    {
-                        s[j--] = '\0';
-                    }
-                    bt->s_func[i] = malloc((strlen(s_func) + 1) * sizeof(char));
-                    if (bt->s_func[i] != NULL)
-                    {
-                        strcpy(bt->s_func[i], s_func);
-                    }
-                }
-            }
-            if (j == 0)
-            {
-                continue;
-            }
-
+            /*
+            ** Mac OS Backtrace are formated using spaces :
+            ** 0   my_backtrace                        0x0000000100001d79 bft_backtrace_create + 61
+            ** 1   my_backtrace                        0x0000000100000fc8 _cs_base_backtrace_print + 46
+            ** 2   my_backtrace                        0x0000000100002386 bft_backtrace_print + 35
+            **
+            ** Linux does it with special characters : [] ()
+            ** ./my_backtrace(bft_backtrace_create+0x41) [0x402055]
+            ** ./my_backtrace() [0x401474]
+            ** ./my_backtrace(bft_backtrace_print+0x25) [0x402645]
+            */
+#ifdef __APPLE__
             /* Find executable or library name */
+            strtok(s, " "); // Will find first occurence
+            sLibName = strtok(NULL, " "); // retrieve second occurence.
+            /* Find adress */
+            sAddr = strtok(NULL, " "); // retrieve third occurence.
+            /* Find function name */
+            sFunName = strtok(NULL, " "); // retrieve fourth occurence.
+#else
+            strtok(s, "[]"); // Will find first occurence
+            sAddr = strtok(NULL, "[]"); // retrieve second occurence.
+            strtok(s, "()"); // Will find first occurence
+            sFunName = strtok(NULL, "()"); // retrieve second occurence.
+            sLibName = strtok(s, "("); // Will find first occurence
+#endif
 
-            if (s_func == NULL)
-            {               /* With no function name found */
-                for (j = 0; j < l && s[j] != ' '; j++) ;
-                if (s[j] == ' ')
-                {
-                    s[j] = '\0';
-                }
-            }
-
-            while (j > 0 && s[j] != '/')
-            {
-                j--;
-            }
-            if (j < l)
-            {
-                s_file = s + j + 1;
-                bt->s_file[i] = malloc((strlen(s_file) + 1) * sizeof(char));
-                if (bt->s_file[i] != NULL)
-                {
-                    strcpy(bt->s_file[i], s_file);
-                }
-            }
-
+            bt->s_func[i] = (sFunName != NULL ? strdup(sFunName) : NULL);
+            bt->s_file[i] = (sLibName != NULL ? strdup(sLibName) : NULL);
+            bt->s_addr[i] = (sAddr != NULL ? strdup(sAddr) : NULL);
         }
 
         /* Free temporary memory
