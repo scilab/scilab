@@ -205,6 +205,16 @@ namespace types
             }
             throw se;
         }
+        catch(ast::InternalAbort sa)
+        {
+           //close the current scope
+            pContext->scope_end();
+            for (int j = 0; j < out.size(); ++j)
+            {
+                out[j]->DecreaseRef();
+            }
+            throw sa;
+        }
 
         //close the current scope
         pContext->scope_end();
