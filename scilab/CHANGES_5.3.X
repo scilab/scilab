@@ -3,7 +3,6 @@
 
 Scilab:
 =======
-* Blouno inside
 
 * The Mac OS X version is checked to avoid errors on unsupported versions
   of Mac OS X. As a reminder, Scilab is supported under Mac OS X 10.6.
