@@ -150,8 +150,8 @@ public class GraphicController {
      * @param id the deleted object's id
      */
     public void deleteObject(String id) {
-        GraphicModel.getModel().deleteObject(id);
         objectDeleted(id);
+        GraphicModel.getModel().deleteObject(id);
     }
 
     /**
