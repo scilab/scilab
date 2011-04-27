@@ -781,10 +781,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SetScilabEnvironment.c"
-				>
-			</File>
-			<File
 				RelativePath=".\stack1.c"
 				>
 			</File>
@@ -1159,10 +1155,6 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\scisparse.h"
-				>
-			</File>
-			<File
-				RelativePath="..\..\includes\SetScilabEnvironment.h"
 				>
 			</File>
 			<File

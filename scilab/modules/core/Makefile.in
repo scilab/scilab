@@ -131,10 +131,10 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/getmodules.c src/c/getmemory.c src/c/Funtab.c \
 	src/c/csignal.c src/c/callinterf.c src/c/scimem.c \
 	src/c/isanan.c src/c/parse.c src/c/timer.c src/c/stack2.c \
-	src/c/xscion.c src/c/SetScilabEnvironment.c src/c/returnanan.c \
-	src/c/LoadFunctionsTab.c src/c/loadversion.c src/c/version.c \
-	src/c/stackinfo.c src/c/scirun.c src/c/InitializeCore.c \
-	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
+	src/c/xscion.c src/c/returnanan.c src/c/LoadFunctionsTab.c \
+	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
+	src/c/scirun.c src/c/InitializeCore.c src/c/TerminateCore.c \
+	src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
 	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
 	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
@@ -208,7 +208,6 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-scimem.lo libscicore_algo_la-isanan.lo \
 	libscicore_algo_la-parse.lo libscicore_algo_la-timer.lo \
 	libscicore_algo_la-stack2.lo libscicore_algo_la-xscion.lo \
-	libscicore_algo_la-SetScilabEnvironment.lo \
 	libscicore_algo_la-returnanan.lo \
 	libscicore_algo_la-LoadFunctionsTab.lo \
 	libscicore_algo_la-loadversion.lo \
@@ -621,11 +620,10 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/str2sci.c src/c/getmodules.c src/c/getmemory.c \
 	src/c/Funtab.c src/c/csignal.c src/c/callinterf.c \
 	src/c/scimem.c src/c/isanan.c src/c/parse.c src/c/timer.c \
-	src/c/stack2.c src/c/xscion.c src/c/SetScilabEnvironment.c \
-	src/c/returnanan.c src/c/LoadFunctionsTab.c \
-	src/c/loadversion.c src/c/version.c src/c/stackinfo.c \
-	src/c/scirun.c src/c/InitializeCore.c src/c/TerminateCore.c \
-	src/c/coretable.c src/c/returnProperty.c \
+	src/c/stack2.c src/c/xscion.c src/c/returnanan.c \
+	src/c/LoadFunctionsTab.c src/c/loadversion.c src/c/version.c \
+	src/c/stackinfo.c src/c/scirun.c src/c/InitializeCore.c \
+	src/c/TerminateCore.c src/c/coretable.c src/c/returnProperty.c \
 	src/c/returnPropertyList.c src/c/GetXmlFileEncoding.c \
 	src/c/islittleendian.c src/c/terme.c src/c/ifexpr.c \
 	src/c/expr.c src/c/getcommandlineargs.c src/c/syncexec.c \
@@ -1026,7 +1024,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-IsAScalar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-LaunchScilabSignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-LoadFunctionsTab.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-SetScilabEnvironment.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-TerminateCore.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-callDynamicGateway.Plo@am__quote@
@@ -1359,13 +1356,6 @@ libscicore_algo_la-xscion.lo: src/c/xscion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/xscion.c' object='libscicore_algo_la-xscion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-xscion.lo `test -f 'src/c/xscion.c' || echo '$(srcdir)/'`src/c/xscion.c
-
-libscicore_algo_la-SetScilabEnvironment.lo: src/c/SetScilabEnvironment.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-SetScilabEnvironment.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-SetScilabEnvironment.Tpo -c -o libscicore_algo_la-SetScilabEnvironment.lo `test -f 'src/c/SetScilabEnvironment.c' || echo '$(srcdir)/'`src/c/SetScilabEnvironment.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-SetScilabEnvironment.Tpo $(DEPDIR)/libscicore_algo_la-SetScilabEnvironment.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/SetScilabEnvironment.c' object='libscicore_algo_la-SetScilabEnvironment.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-SetScilabEnvironment.lo `test -f 'src/c/SetScilabEnvironment.c' || echo '$(srcdir)/'`src/c/SetScilabEnvironment.c
 
 libscicore_algo_la-returnanan.lo: src/c/returnanan.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-returnanan.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-returnanan.Tpo -c -o libscicore_algo_la-returnanan.lo `test -f 'src/c/returnanan.c' || echo '$(srcdir)/'`src/c/returnanan.c

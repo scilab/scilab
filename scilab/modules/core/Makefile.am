@@ -35,7 +35,6 @@ src/c/parse.c \
 src/c/timer.c \
 src/c/stack2.c \
 src/c/xscion.c \
-src/c/SetScilabEnvironment.c \
 src/c/returnanan.c \
 src/c/LoadFunctionsTab.c \
 src/c/loadversion.c \
