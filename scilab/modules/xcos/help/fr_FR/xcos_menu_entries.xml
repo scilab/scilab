@@ -1013,7 +1013,7 @@
 
   <refsection role="see also" id="Seealso_Menu_entries">
     <title>See Also</title>
-    <simplelist>
+    <itemizedlist>
        <listitem>
            <link linkend="scicos_debug">scicos_debug</link>
        </listitem>
@@ -1023,7 +1023,7 @@
        <listitem>
            <link linkend="dassl">dassl</link>
        </listitem>
-    </simplelist>
+    </itemizedlist>
   </refsection>
 
   <refsection id="Authors_Menu_entries">

@@ -193,6 +193,7 @@ Documentation:
 
 * bug 7305 fixed - issparse was not documented.
 
+* bug 9362 fixed - An exception was thrown on the pdf doc generation.
 
 Compilation:
 ============
