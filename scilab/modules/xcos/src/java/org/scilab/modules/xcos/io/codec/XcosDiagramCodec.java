@@ -14,8 +14,8 @@ package org.scilab.modules.xcos.io.codec;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
 
 import org.apache.commons.logging.LogFactory;
@@ -27,13 +27,13 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGraphModel;
 
 /**
@@ -190,6 +190,47 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	}
 	
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * Strip out any node with an invalid parent id. 
+	 * (5.3.1 diagrams may contains invalid default parents, remove them.)
+	 */
+	@Override
+	public Node beforeDecode(mxCodec dec, Node node, Object obj) {
+		final HashSet<String> ids = new HashSet<String>();
+		final ArrayList<Node> trash = new ArrayList<Node>();
+		
+		if (node instanceof Element) {
+			final Node model = ((Element) node).getElementsByTagName("mxGraphModel").item(0);
+			if (model instanceof Element) {
+				final Node root = ((Element) model).getElementsByTagName("root").item(0);
+				if (root != null) {
+					for (Node cell = root.getFirstChild(); cell != null; cell = cell.getNextSibling()) {
+						
+						if (cell instanceof Element && cell.getLocalName().contentEquals("mxCell")) {
+							final Node id = cell.getAttributes().getNamedItem("id");
+							final Node parent = cell.getAttributes().getNamedItem("parent");
+							
+							if (id instanceof Element) {
+								ids.add(id.getNodeValue());
+							}
+							if (parent instanceof Element && !ids.contains(parent.getNodeValue())) {
+								trash.add(parent);
+							}
+						}
+					}
+					
+					for (Node cell : trash) {
+						root.removeChild(cell);
+					}
+				}
+			}
+		}
+		
+		return super.beforeDecode(dec, node, obj);
+	}
+	
+	/**
 	 * Apply compatibility pattern to the decoded object
 	 * @param dec Codec that controls the decoding process.
 	 * @param node XML node to decode the object from.
@@ -200,10 +241,11 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 	@Override
 	public Object afterDecode(mxCodec dec, Node node, Object obj) {
 		final XcosDiagram diag = (XcosDiagram) obj;
-		
-		// main update loop 
+
 		final mxGraphModel model = (mxGraphModel) diag.getModel();
 		final Object parent = diag.getDefaultParent();
+		
+		// main update loop 
 		final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
 			@Override
 			public boolean filter(Object cell) {
@@ -220,25 +262,20 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 			}
 		};
 		final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
-		diag.addCells(blocks.toArray());
+		if (!blocks.isEmpty()) {
+			diag.addCells(blocks.toArray());
+		}
 		
 		// pre-5.3 diagram may be saved in a locked state
 		// unlock it
 		diag.setReadOnly(false);
 		
-		// 5.3.0-beta diagrams may contains invalid default parents, remove them.
+		// 5.3.1 diagrams may contains invalid default parents, remove them.
 		{
-			final mxCell root = (mxCell) diag.getModel().getRoot();
-			final ArrayList<Object> parents = new ArrayList<Object>(
-					Arrays.asList(mxGraphModel.getChildren(model, root)));
-			
-			if (parents.size() > 1) {
+			final Object root = model.getParent(parent);
+			if (root != model.getRoot() && root != null) {
 				LogFactory.getLog(XcosDiagramCodec.class).debug("Removing misplaced cells");
-				showUpdateDialog();
-				// the last is always the right one so keep it
-				parents.remove(parents.size() - 1);
-				// remove the others
-				diag.removeCells(parents.toArray(), true);
+				model.setRoot(root);
 			}
 		}
 		
