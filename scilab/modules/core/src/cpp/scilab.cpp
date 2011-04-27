@@ -625,6 +625,10 @@ int StartScilabEngine(int argc, char*argv[], int iFileIndex)
     //close main scope
     symbol::Context::getInstance()->scope_end();
     delete pFM;
+
+    /* Remove TMPDIR before exit */
+    clearTMPDIR();
+
     return iMainRet;
 }
 
