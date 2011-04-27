@@ -276,9 +276,12 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
     double colRange;
     double color;
 
+    int colorRangeValid;
     int i;
     int j;
     int bufferOffset = 0;
+
+    colorRangeValid = 1;
 
     /* 0: colors are scaled */
     if (dataMapping == 0)
@@ -310,26 +313,44 @@ void Fac3DDecomposer::fillDataColors(float* buffer, int bufferLength, int elemen
 
         colRange = colMax - colMin;
 
+        /* To be verified */
+        if (colRange < DecompositionUtils::getMinDoubleValue())
+        {
+            /*
+             * The color range is invalid only if the minimum and maximum color values
+             * are equal (for scaled colors only). In this case, the colormap's
+             * middle color is used.
+             */
+            colorRangeValid = 0;
+
+            colMin = 1.0;
+            colRange = (double) (colormapSize-1);
+            color = 0.5*(colRange);
+        }
+
         colMax -= 1.0;
         colMin -= 1.0;
     }
 
     for (i = 0; i < numGons; i++)
     {
-        /* Per-face average */
-        if (perVertex == 1 && colorFlag == 2)
+        if (colorRangeValid)
         {
-            color = computeAverageValue(&colors[i*numVerticesPerGon], numVerticesPerGon);
-            color -= 1.0;
-        }
-        else if (perVertex == 0)
-        {
-            color = colors[i] - 1.0;
+            /* Per-face average */
+            if (perVertex == 1 && colorFlag == 2)
+            {
+                color = computeAverageValue(&colors[i*numVerticesPerGon], numVerticesPerGon);
+                color -= 1.0;
+            }
+            else if (perVertex == 0)
+            {
+                color = colors[i] - 1.0;
+            }
         }
 
         for (j = 0; j < numVerticesPerGon; j++)
         {
-            if (perVertex == 1)
+            if (colorRangeValid && perVertex == 1)
             {
                 if (colorFlag == 3)
                 {
