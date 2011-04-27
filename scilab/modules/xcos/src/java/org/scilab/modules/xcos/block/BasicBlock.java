@@ -1150,13 +1150,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 					LOG.trace("No needs to update data.");
 				}
 				
-			    setLocked(false);
 			    delete(tempOutput);
 			    delete(tempContext);
+			    setLocked(false);
 			}
 		};
 		
 	    try {
+	    	setLocked(true);
 			ScilabInterpreterManagement.asynchronousScilabExec(action, 
 				"xcosBlockInterface", 
 				tempOutput.getAbsolutePath(),
@@ -1166,8 +1167,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 				tempContext.getAbsolutePath());
 		} catch (InterpreterException e) {
 			LOG.error(e);
+			setLocked(false);
 		}
-	    setLocked(true);
 
 	} catch (IOException e) {
 	    LOG.error(e);

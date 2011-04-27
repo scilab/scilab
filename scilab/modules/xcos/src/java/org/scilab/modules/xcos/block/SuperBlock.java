@@ -185,53 +185,56 @@ public final class SuperBlock extends BasicBlock {
 			return;
 		}
 		
-		// Lock the block because we are really performing actions
-		setLocked(true);
+		try {
+			// Lock the block because we are really performing actions
+			setLocked(true);
+			
+			/*
+			 * Compatibility with older diagrams.
+			 * 
+			 * Before Scilab 5.2.2, saved diagrams don't contains XML children but
+			 * use a pseudo scs_m structure instead.
+			 * 
+			 * In this case child was null and we need to reconstruct child diagram
+			 * from scs_m.
+			 */
+			if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
+				child = null;
+				createChildDiagram();
+			} else {
+				// reassociate (useful on clone and load operation)
+				getChild().setContainer(this);
+				getChild().setComponent(new GraphComponent(getChild()));
+				
+				getChild().initComponent();
+				getChild().installStylesheet();
+				
+				getChild().installListeners();
+				getChild().installSuperBlockListeners();
+			}
+			
+			/*
+			 * Construct the view or set it visible.
+			 */
+			if (!getChild().isVisible()) {
+				updateAllBlocksColor();
+				getChild().setModifiedNonRecursively(false);
+				
+				new XcosTab(getChild()).setVisible(true);
+				getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
+				getChild().getView().invalidate();
+			}
+			
+			/*
+			 * Update the cells from the context values.
+			 */
+			getChild().updateCellsContext();
+			
+			Xcos.getInstance().getDiagrams().add(getChild());
 		
-		/*
-		 * Compatibility with older diagrams.
-		 * 
-		 * Before Scilab 5.2.2, saved diagrams don't contains XML children but
-		 * use a pseudo scs_m structure instead.
-		 * 
-		 * In this case child was null and we need to reconstruct child diagram
-		 * from scs_m.
-		 */
-		if (getChild() == null || getChild().getChildVertices(getChild().getDefaultParent()).length == 0) {
-			child = null;
-			createChildDiagram();
-		} else {
-			// reassociate (useful on clone and load operation)
-			getChild().setContainer(this);
-			getChild().setComponent(new GraphComponent(getChild()));
-			
-			getChild().initComponent();
-			getChild().installStylesheet();
-			
-			getChild().installListeners();
-			getChild().installSuperBlockListeners();
+		} finally {
+			setLocked(false);
 		}
-		
-		/*
-		 * Construct the view or set it visible.
-		 */
-		if (!getChild().isVisible()) {
-			updateAllBlocksColor();
-			getChild().setModifiedNonRecursively(false);
-			
-			new XcosTab(getChild()).setVisible(true);
-			getChild().fireEvent(new mxEventObject(mxEvent.ROOT));
-			getChild().getView().invalidate();
-		}
-		
-		/*
-		 * Update the cells from the context values.
-		 */
-		getChild().updateCellsContext();
-		
-		Xcos.getInstance().getDiagrams().add(getChild());
-		
-		setLocked(false);
 	}
 
 	/**
