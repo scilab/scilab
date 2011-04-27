@@ -270,6 +270,8 @@ namespace types
             _pSource->IncreaseRef();
             (*m_plData)[idx - 1] = _pSource;
         }
+
+        m_iSize = (int)m_plData->size();
         return this;
     }
 
