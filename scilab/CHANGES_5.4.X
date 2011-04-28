@@ -176,6 +176,19 @@ File input/output:
 * tempname function added (SEP 68).
 
 
+Graphics:
+=========
+
+* datatips tool improved on several aspects:
+  - It is now possible to manage directional arrows as well as
+    square marks markers.
+  - The automatic label placement has been improved to avoid avoid the
+    overlapping with the curve.
+  - It is now possible to have  painted box or box free labels.
+  - Markers can now be selected and moved using the arrow keys
+    or deleted with the "Del" key.
+
+
 New functions
 =============
 
@@ -711,4 +724,3 @@ Bug fixes:
 
 * bug 10073 fixed - Use the new Scilab icon for GNU/Linux installations.
                     Icons renamed from XPM to PNG.
-

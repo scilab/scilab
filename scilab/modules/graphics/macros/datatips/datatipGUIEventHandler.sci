@@ -6,18 +6,8 @@
 // you should have received as part of this distribution.  The terms
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-
-function datatipToggle(fig)
-//Toggles activation of the datatip edition mode for the given or current
-//figure
-  if argn(2)<1 then
-    fig=gcf();
-  else
-    if type(fig)<>9|size(fig,'*')<>1|or(fig.type<>"Figure") then
-      error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
-                     "datatipToggle",1,"Figure"))
-    end
+function datatipGUIEventHandler(win,x,y,ibut)
+  if ibut==-1000 then
+    clearglobal datatipGUIHandles datatipGUICurve datatipGUIwin
   end
-  datatipManagerMode(fig)
 endfunction
-

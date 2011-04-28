@@ -9,7 +9,7 @@
 
 function %datatips_p(d)
   fun=fun2string(d.formatfunction)
-  
+
   F=getfield(1,d);
   txt=[];
   L=max(length(F(2:$)))
@@ -19,10 +19,10 @@ function %datatips_p(d)
       txt=[txt;
            part(f,1:L+1)+'= '+sci2exp(d.interpolate)]
     elseif  f=="replace" then
-       txt=[txt;
+      txt=[txt;
            part(f,1:L+1)+'= '+sci2exp(d.replace)]
     elseif  f=="formatfunction" then
-       txt=[txt;
+      txt=[txt;
            part(f,1:L+1)+': '
            '  '+fun2string(d.formatfunction)]
     elseif f=="tips" then

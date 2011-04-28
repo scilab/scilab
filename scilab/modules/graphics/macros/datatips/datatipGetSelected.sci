@@ -7,17 +7,16 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function datatipToggle(fig)
-//Toggles activation of the datatip edition mode for the given or current
-//figure
-  if argn(2)<1 then
-    fig=gcf();
-  else
-    if type(fig)<>9|size(fig,'*')<>1|or(fig.type<>"Figure") then
-      error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
-                     "datatipToggle",1,"Figure"))
-    end
+function [curve,ind]=datatipGetSelected(curve_handles)
+//datatip utility function
+//get the selected datatip(s)
+  ind=[]
+  for kc=1:size(curve_handles,'*')
+    curve=curve_handles(kc);
+    ud=datatipGetStruct(curve);
+    sel=ud.selected
+    if sel>0 then ind=sel,break,end
   end
-  datatipManagerMode(fig)
+  if ind==[] then curve=[],end
 endfunction
 

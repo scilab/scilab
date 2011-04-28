@@ -7,17 +7,21 @@
 // are also available at;
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function datatipToggle(fig)
-//Toggles activation of the datatip edition mode for the given or current
-//figure
-  if argn(2)<1 then
-    fig=gcf();
-  else
-    if type(fig)<>9|size(fig,'*')<>1|or(fig.type<>"Figure") then
-      error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),...
-                     "datatipToggle",1,"Figure"))
+function datatipRemoveNearest(curve,pt)
+//datatip utility function
+  ud=datatipGetStruct(curve)
+  if typeof(ud)=='datatips' then
+    tips=ud.tips.children
+    dmin=%inf;l=[];
+    pt=pt(:);
+    for tip_index=1:size(tips,'*')
+      d=norm(tips(tip_index).children(1).data(1:2)-pt(1:2))
+      if d<dmin then
+        l=tip_index;dmin=d;
+      end
+    end
+    if l<>[] then
+      datatipRemove(curve,l);
     end
   end
-  datatipManagerMode(fig)
 endfunction
-
