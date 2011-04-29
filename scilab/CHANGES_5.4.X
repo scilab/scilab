@@ -74,18 +74,19 @@ a sparse but not to send it to Scilab).
 able to retrieve a struct but not to send it to Scilab).
 
 
-Signal Processing
-=================
+CACSD & Signal Processing
+=========================
 
 * New functions:
   - conv - discrete 1-D convolution.
   - conv2 - discrete 2-D convolution.
   - convol2d - discrete 2-D convolution, using fft.
+  - phaseplot - frequency phase plot.
 
 * Bug #6009 fixed - conv, conv2 and convol2d and conv functions were missing.
 
 
-Compatibility functions
+Compatibility Functions
 =======================
 
 * 'mtlb_conv' obsolete. Please use 'conv' instead.
