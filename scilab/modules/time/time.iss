@@ -18,6 +18,7 @@
 ;
 #define TIME "time"
 ;
+Source: bin\{#TIME}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TIME}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TIME}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
