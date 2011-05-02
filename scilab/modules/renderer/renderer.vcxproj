@@ -801,7 +801,6 @@ lib /DEF:"$(ProjectDir)gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
     <None Include="sci_gateway\renderer_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\doublylinkedlist\doublylinkedlist.vcxproj">

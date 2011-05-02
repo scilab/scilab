@@ -98,6 +98,9 @@
     <ClCompile Include="WndThread.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="getBlasType.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle_Windows.h">
@@ -185,6 +188,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WndThread.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="getBlasType.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

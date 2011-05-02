@@ -266,7 +266,6 @@
     <None Include="Makefile.am" />
     <None Include="spreadsheet.iss" />
     <None Include="sci_gateway\spreadsheet_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

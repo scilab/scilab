@@ -255,7 +255,6 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="Makefile.am" />
     <None Include="sound.iss" />
     <None Include="sci_gateway\sound_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

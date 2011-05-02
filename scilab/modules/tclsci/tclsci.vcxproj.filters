@@ -186,6 +186,5 @@
     <None Include="Makefile.am" />
     <None Include="tclsci.iss" />
     <None Include="sci_gateway\tclsci_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
 </Project>

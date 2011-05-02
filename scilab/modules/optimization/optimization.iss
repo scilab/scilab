@@ -22,7 +22,6 @@ Source: bin\{#OPTIMIZATION}_f.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM
 Source: bin\{#OPTIMIZATION}_f.lib; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 Source: bin\{#OPTIMIZATION}.dll; DestDir: {app}\bin; Components: {#COMPN_OPTIM}
 ;
-Source: modules\{#OPTIMIZATION}\VERSION.xml; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 Source: modules\{#OPTIMIZATION}\license.txt; DestDir: {app}\modules\{#OPTIMIZATION}; Components: {#COMPN_OPTIM}
 ;
 Source: modules\{#OPTIMIZATION}\sci_gateway\{#OPTIMIZATION}_gateway.xml; DestDir: {app}\modules\{#OPTIMIZATION}\sci_gateway; Components: {#COMPN_OPTIM}

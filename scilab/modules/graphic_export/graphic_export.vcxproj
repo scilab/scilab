@@ -289,7 +289,6 @@ lib /DEF:"$(ProjectDir)renderer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <None Include="graphic_export.iss" />
     <None Include="sci_gateway\graphic_export_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

@@ -300,7 +300,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="Makefile.am" />
     <None Include="tclsci.iss" />
     <None Include="sci_gateway\tclsci_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

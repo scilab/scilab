@@ -18,11 +18,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Sylvestre LEDRU
 # Copyright (C) 2007 - INRIA - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -128,6 +128,7 @@ libscifftw_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscifftw_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@FFTW_TRUE@am_libscifftw_algo_la_rpath =
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
@@ -437,7 +438,7 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 modulename = fftw
 pkglib_LTLIBRARIES = libscifftw.la
-noinst_LTLIBRARIES = libscifftw-algo.la
+@FFTW_TRUE@noinst_LTLIBRARIES = libscifftw-algo.la
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
@@ -464,7 +465,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 
 #### fftw : Conf files ####
-@FFTW_TRUE@libscifftw_la_root_DATA = license.txt version.xml
+@FFTW_TRUE@libscifftw_la_root_DATA = license.txt 
 
 #### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -629,7 +630,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscifftw-algo.la: $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_DEPENDENCIES) 
-	$(libscifftw_algo_la_LINK)  $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
+	$(libscifftw_algo_la_LINK) $(am_libscifftw_algo_la_rpath) $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
 libscifftw.la: $(libscifftw_la_OBJECTS) $(libscifftw_la_DEPENDENCIES) 
 	$(libscifftw_la_LINK) -rpath $(pkglibdir) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
 

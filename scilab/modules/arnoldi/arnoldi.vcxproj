@@ -252,7 +252,6 @@
     <None Include="arnoldi.iss" />
     <None Include="sci_gateway\arnoldi_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\MALLOC\MALLOC.vcxproj">

@@ -56,9 +56,6 @@
     <ClCompile Include="getfilesdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getfulldictionary.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getmacrosdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,9 +98,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="getfilesdictionary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getfulldictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmacrosdictionary.h">

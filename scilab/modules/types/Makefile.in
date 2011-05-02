@@ -406,7 +406,7 @@ modulename = types
 
 #### types : Conf files ####
 libscitypes_la_rootdir = $(mydatadir)
-libscitypes_la_root_DATA = license.txt version.xml
+libscitypes_la_root_DATA = license.txt 
 
 #### types : init scripts ####
 libscitypes_la_etcdir = $(mydatadir)/etc
@@ -482,8 +482,10 @@ TYPES_CPP_SOURCES =
 GIWS_WRAPPERS = 
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
-GATEWAY_C_SOURCES = 
-GATEWAY_CPP_SOURCES = 
+
+#GATEWAY_C_SOURCES =
+
+#GATEWAY_CPP_SOURCES =
 libscitypes_la_CFLAGS = 
 libscitypes_la_CPPFLAGS = 
 
@@ -496,7 +498,7 @@ pkglib_LTLIBRARIES = libscitypes-disable.la $(am__append_2)
 # noinst_LTLIBRARIES = libscitypes-algo.la
 libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
-libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+#libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)

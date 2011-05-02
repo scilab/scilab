@@ -1770,6 +1770,5 @@
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
     <None Include="sci_gateway\renderer_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
 </Project>

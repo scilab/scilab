@@ -681,7 +681,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic.rc" />

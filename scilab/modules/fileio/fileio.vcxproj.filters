@@ -492,6 +492,5 @@
     <None Include="fileio.iss" />
     <None Include="sci_gateway\fileio_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
 </Project>

@@ -129,7 +129,6 @@
     <None Include="Makefile.am" />
     <None Include="matio.iss" />
     <None Include="sci_gateway\matio_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\sparse_f.lib" />

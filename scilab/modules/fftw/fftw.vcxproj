@@ -270,7 +270,6 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">

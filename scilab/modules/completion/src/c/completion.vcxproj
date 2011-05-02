@@ -246,7 +246,6 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="getCommonPart.c" />
     <ClCompile Include="getfieldsdictionary.c" />
     <ClCompile Include="getfilesdictionary.c" />
-    <ClCompile Include="getfulldictionary.c" />
     <ClCompile Include="getmacrosdictionary.c" />
     <ClCompile Include="getPartLine.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_completion.c" />
@@ -263,7 +262,6 @@ lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClInclude Include="..\..\includes\getCommonPart.h" />
     <ClInclude Include="..\..\includes\getfieldsdictionary.h" />
     <ClInclude Include="getfilesdictionary.h" />
-    <ClInclude Include="getfulldictionary.h" />
     <ClInclude Include="..\..\includes\getmacrosdictionary.h" />
     <ClInclude Include="..\..\includes\getPartLine.h" />
     <ClInclude Include="..\..\includes\gw_completion.h" />

@@ -158,7 +158,6 @@
     </None>
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

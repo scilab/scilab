@@ -87,6 +87,5 @@
     <None Include="call_scilab.iss" />
     <None Include="sci_gateway\call_scilab_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
 </Project>

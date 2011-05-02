@@ -320,7 +320,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="jvm.iss" />
     <None Include="sci_gateway\jvm_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\libs\dynamiclibrary\dynamiclibrary.vcxproj">

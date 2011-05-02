@@ -177,7 +177,6 @@
     <None Include="Makefile.am" />
     <None Include="pvm.iss" />
     <None Include="sci_gateway\pvm_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\sparse_f.lib" />

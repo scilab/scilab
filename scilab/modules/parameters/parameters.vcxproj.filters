@@ -65,7 +65,6 @@
     </None>
     <None Include="Makefile.am" />
     <None Include="parameters.iss" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />

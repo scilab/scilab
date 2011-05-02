@@ -108,7 +108,6 @@
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />
     <None Include="Makefile.am" />
-    <None Include="version.xml" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\elementary_functions_f.lib" />

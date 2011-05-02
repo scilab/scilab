@@ -63,6 +63,5 @@
     <None Include="Makefile.am" />
     <None Include="sound.iss" />
     <None Include="sci_gateway\sound_gateway.xml" />
-    <None Include="version.xml" />
   </ItemGroup>
 </Project>
