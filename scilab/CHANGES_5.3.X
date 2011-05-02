@@ -229,6 +229,10 @@ Optimization:
 Numerical Maths:
 ================
 
+* Bug 7101 fixed - the roots had convergence problems for some polynomials.
+                   The default algorithm has been changed to the eigenvalue 
+                   of the companion matrix.
+
 * Bug 9350 fixed - abs(complex(%nan,0)) returned zero instead of nan.
 
 
