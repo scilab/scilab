@@ -184,6 +184,8 @@ Localization:
 Documentation:
 ==============
 
+* Created a "complex" sub-section of "Elementary Functions"
+
 * bug 6975 fixed - xlabel(), ylabel() and zlabel() functions were undocumented.
 
 * Bug 7072 fixed - Fix various issues in the documentation.
@@ -216,19 +218,10 @@ Optimization:
 
 * Updated the help page of semidef.
 
-Optimization:
-=============
-
 * Updated formatting of the leastsq help page.
 
 * bug 7723 fixed - The demonstrations of the nmplot functions generated
                    warnings.
-
-
-Documentation:
-==============
-
-* Created a "complex" sub-section of "Elementary Functions"
 
 
 Numerical Maths:
