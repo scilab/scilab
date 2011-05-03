@@ -123,7 +123,9 @@
     <title>See also</title>
     <itemizedlist>
       <listitem>
-        <link linkend="x_mdialog">x_mdialog</link>
+        <para>
+          <link linkend="x_mdialog">x_mdialog</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
