@@ -50,6 +50,9 @@ Xcos:
 * bug 9336 fixed - SuperBlock with non connected ports produced an invalid
                    index error.
 
+* bug 9390 fixed - FROMWSB_c block does not reset to the default values on 
+                   ReInitialization execution.
+
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
