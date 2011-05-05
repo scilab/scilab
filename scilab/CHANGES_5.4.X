@@ -95,6 +95,8 @@ New functions
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
 
+* The damp function in CACSD modules computes the natural pulsation
+  and damping factor of linear dynamical systems.
 
 Optimization:
 =============
