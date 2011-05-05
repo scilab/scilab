@@ -417,41 +417,25 @@ public final class Xcos {
 	 */
 	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
 	public static void xcos() {
-		final Xcos instance = getInstance();
-		
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
-
-		SwingUtilities.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				instance.open(null);
-				PaletteManager.setVisible(true);
-			}
-		});
-	}
-
-	/**
-	 * Entry point with filename
-	 * 
-	 * This method invoke Xcos operation on the EDT thread.
-	 * 
-	 * @param fileName
-	 *            The filename
-	 */
-	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-	public static void xcos(final String fileName) {
-		final Xcos instance = getInstance();
-		final File filename = new File(fileName);
-		
-		/* load scicos libraries (macros) */
-		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
-		
 		try {
 			SwingUtilities.invokeAndWait(new Runnable() {
 				@Override
 				public void run() {
-					instance.open(filename);
+					/*
+					 * The global Xcos instance should be allocated on the EDT
+					 * Thread in order to use the application ClassLoader and
+					 * not sometimes the BootClassLoader.
+					 */
+					final Xcos instance = getInstance();
+					
+					// Dispatch later on the EDT Thread
+					SwingUtilities.invokeLater(new Runnable() {
+						@Override
+						public void run() {
+							instance.open(null);
+							PaletteManager.setVisible(true);
+						}
+					});
 				}
 			});
 		} catch (final InterruptedException e) {
@@ -466,6 +450,50 @@ public final class Xcos {
 			
 			throw new RuntimeException(firstMessage, e);
 		}
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
+	}
+
+	/**
+	 * Entry point with filename
+	 * 
+	 * This method invoke Xcos operation on the EDT thread.
+	 * 
+	 * @param fileName
+	 *            The filename
+	 */
+	@ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+	public static void xcos(final String fileName) {
+		try {
+			SwingUtilities.invokeAndWait(new Runnable() {
+				@Override
+				public void run() {
+					/*
+					 * The global Xcos instance should be allocated on the EDT
+					 * Thread in order to use the application ClassLoader and
+					 * not sometimes the BootClassLoader.
+					 */
+					final Xcos instance = getInstance();
+					
+					instance.open(new File(fileName));
+				}
+			});
+		} catch (final InterruptedException e) {
+			LOG.error(e);
+		} catch (final InvocationTargetException e) {
+			Throwable throwable = e;
+			String firstMessage = null;
+			while (throwable != null) {
+				firstMessage = throwable.getLocalizedMessage();
+				throwable = throwable.getCause();
+			}
+			
+			throw new RuntimeException(firstMessage, e);
+		}
+		
+		/* load scicos libraries (macros) */
+		InterpreterManagement.requestScilabExec("loadXcosLibs(); loadScicos();");
 	}
 
 	/**
