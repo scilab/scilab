@@ -38,6 +38,11 @@ import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.localization.Messages;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Main Class for Scilab
  * @author Allan CORNET
@@ -68,7 +73,10 @@ public class Scilab {
 
     private static String TOOLBARXMLFILE;
 
+    private static List<Runnable> hooks = new ArrayList<Runnable>();
+
     private Window mainView;
+
 
     /**
      * Constructor Scilab Class.
@@ -119,8 +127,8 @@ public class Scilab {
                 if (isWindowsPlateform()) {
                     scilabLookAndFeel = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
                 } else if (System.getProperty(OSNAME).toLowerCase().indexOf(MACOS) != -1) {
-                                        /** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
-                                        System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
+                    /** OPTION ADDED TO ALLOW DOCKING UNDER MACOSX */
+                    System.setProperty(DockingConstants.HEAVYWEIGHT_DOCKABLES, ENABLE);
                     scilabLookAndFeel = "apple.laf.AquaLookAndFeel";
                 } else {
                     scilabLookAndFeel = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
@@ -153,7 +161,7 @@ public class Scilab {
                 mainView = ScilabWindow.createWindow();
             } catch (NoClassDefFoundError exception) {
                 System.err.println("Cannot create Scilab Window.\n"
-                        + "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
+                                   + "Check if the thirdparties are available (Flexdock, JOGL...).\n" + SEE_DEFAULT_PATHS);
                 System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
                 System.exit(-1);
             } catch (java.awt.HeadlessException exception) {
@@ -187,7 +195,7 @@ public class Scilab {
                 ScilabConsole.createConsole();
             } catch (NoClassDefFoundError exception) {
                 System.err.println("Cannot create Scilab Console.\nCheck if the thirdparties are available (JoGL/JRosetta...).\n"
-                        + SEE_DEFAULT_PATHS);
+                                   + SEE_DEFAULT_PATHS);
                 System.err.println(CLASS_NOT_FOUND + exception.getLocalizedMessage());
                 System.exit(-1);
             }
@@ -204,7 +212,6 @@ public class Scilab {
             mainView.addTab(consoleTab);
             mainView.draw();
         }
-
     }
 
     /**
@@ -236,7 +243,6 @@ public class Scilab {
             // desactivate direct3d and direct draw under windows
             System.setProperty(DISABLE_DDRAW, ENABLE);
         }
-
     }
 
     /**
@@ -263,5 +269,28 @@ public class Scilab {
         return windowsVersion;
     }
 
+    /**
+     * Register a hook to execute just before the JVM shutdown.
+     * A hook should not contain threads, there is no warranty that they will be fully executed.
+     */
+    public static void registerHook(Runnable hook) {
+        hooks.add(hook);
+    }
+
+    /**
+     * Remove a hook
+     */
+    public static void removeHook(Runnable hook) {
+        hooks.remove(hook);
+    }
+
+    /**
+     * This method should be called from jni (finishMainScilabObject())
+     */
+    public static void executeFinalHooks() {
+        for (Runnable hook : hooks) {
+            hook.run();
+        }
+    }
 }
 /*--------------------------------------------------------------------------*/
