@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <XcosDiagram background="-1" finalIntegrationTime="15000.0" gridEnabled="0" savedFile="/home/collette/repositories/master/scilab/modules/xcos/demos/Thermique_bloc.xcos" solver="100.0" title="Thermique_bloc">
   <Array as="context" scilabClass="String[]">
     <add value=";"/>

@@ -469,9 +469,6 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="60.0" width="130.0" x="320.0" y="300.0"/>
       </BasicBlock>
-      <mxCell connectable="0" id="2" parent="441ab243:12e7c1b889d:-7ddd" style="noLabel=0;opacity=0;" vertex="1">
-        <mxGeometry as="geometry" relative="1" x="0.5" y="1.1"/>
-      </mxCell>
       <ExplicitOutputPort connectable="0" connectedLinkId="29" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="441ab243:12e7c1b889d:-7ddc" ordering="1" parent="441ab243:12e7c1b889d:-7ddd" style="ExplicitOutputPort;align=right;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="130.0" y="26.0"/>
       </ExplicitOutputPort>
@@ -534,9 +531,6 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="60.0" width="130.0" x="340.0" y="400.0"/>
       </BasicBlock>
-      <mxCell connectable="0" id="3" parent="441ab243:12e7c1b889d:-75e4" style="noLabel=0;opacity=0;" vertex="1">
-        <mxGeometry as="geometry" relative="1" x="0.5" y="1.1"/>
-      </mxCell>
       <ExplicitInputPort connectable="0" connectedLinkId="42" dataColumns="1" dataLines="1" dataType="REAL_MATRIX" id="441ab243:12e7c1b889d:-75df" ordering="2" parent="441ab243:12e7c1b889d:-75e4" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
       </ExplicitInputPort>

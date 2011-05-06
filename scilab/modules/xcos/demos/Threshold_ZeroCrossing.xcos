@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <XcosDiagram background="-1" finalIntegrationTime="29.0" title="Threshold_ZeroCrossing">
   <Array as="context" scilabClass="String[]">
     <add value=";"/>

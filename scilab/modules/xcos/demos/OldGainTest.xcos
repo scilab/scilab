@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <XcosDiagram background="-1" finalIntegrationTime="49.9" title="OldGainTest">
   <Array as="context" scilabClass="String[]">
     <add value="A=[-.17,.03,.1;0,0,.2;0,0,.05];B=[1;2;3];C=[1,1,2;0,2,3];"/>

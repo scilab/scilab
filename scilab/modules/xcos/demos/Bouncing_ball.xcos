@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <XcosDiagram background="-1" finalIntegrationTime="145.0" maxIntegrationTimeinterval="136.0" realTimeScaling="0.5" savedFile="/home/collette/repositories/master/scilab/modules/xcos/demos/Bouncing_ball.xcos" title="Bouncing_ball">
   <Array as="context" scilabClass="String[]">
     <add value=";"/>
