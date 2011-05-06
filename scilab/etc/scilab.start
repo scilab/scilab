@@ -51,7 +51,6 @@ ieee(0);
 // boolean variables
 %T = %t;
 %F = %f;
-MSDOS = (getos() == "Windows");
 %pvm = with_module("pvm");
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
 

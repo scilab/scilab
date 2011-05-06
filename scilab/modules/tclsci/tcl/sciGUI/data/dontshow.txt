@@ -21,7 +21,6 @@ $
 LANGUAGE
 WSCI
 SCI
-MSDOS
 %F
 %T
 %z

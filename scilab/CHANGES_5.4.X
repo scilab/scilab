@@ -138,6 +138,8 @@ Removed functions (previously declared as obsolete):
 
 * C API function Error(x) has been removed. Please use SciError.
 
+* 'MSDOS' removed. Please use 'getos' instead.
+
 
 Performance:
 ============
