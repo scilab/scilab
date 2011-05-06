@@ -26,14 +26,14 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   warnobsolete(scilabRemovedVersion="5.4.0")
 
 //** Edition of a link from an output block to an input  block
-//** using "Simulink like" orthogonal links only 
-//** oblique links are not accepted ! 
+//** using "Simulink like" orthogonal links only
+//** oblique links are not accepted !
 
 //** 28/11/08: Preparation of the "SL" operation
 //** 24/07/07: Al@n's patch for rotation of blocks
 
-//** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode 
-  %scicos_debug_gr = %f; 
+//** N.B : Please set %scicos_debug_gr="%t" to activate the debug mode
+  %scicos_debug_gr = %f;
 
   outin = ['out','in']
   //----------- get link origin --------------------------------------
@@ -42,18 +42,18 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   xc1 = %pt(1);
   yc1 = %pt(2);
 
-  [kfrom, wh] = getblocklink(scs_m,[xc1;yc1]); //** recover information 
+  [kfrom, wh] = getblocklink(scs_m,[xc1;yc1]); //** recover information
                                                //** about the starting point
-  //** kfrom is the id of the selected block or link 
+  //** kfrom is the id of the selected block or link
 
-  if kfrom<>[] then //** check for the presence of a valid output 
-    o1 = scs_m.objs(kfrom) ; //** acquire the object 
+  if kfrom<>[] then //** check for the presence of a valid output
+    o1 = scs_m.objs(kfrom) ; //** acquire the object
   else
-    return ; //** EXIT if no valid output is found 
+    return ; //** EXIT if no valid output is found
   end
 
   scs_m_save = scs_m;
-  nc_save    = needcompile; 
+  nc_save    = needcompile;
 
   //** new graphics
   gh_curwin = scf(%win) ;
@@ -63,18 +63,18 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   if typeof(o1)=="Link" then  //** add a split block
     //** ------------------- start from a LINK ------------------------------
 
-    pt = [xc1;yc1] ; 
+    pt = [xc1;yc1] ;
     [xx,yy,ct,from,to] = (o1.xx,o1.yy,o1.ct,o1.from,o1.to);
     if (-wh==size(xx,'*')) then
       wh = -(wh+1) //** avoid with clicking at the end-point of link
     end
 
     //** get split type
-    [xout,yout,typout] = getoutputports(scs_m.objs(from(1))); 
-    clr = ct(1); 
-    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2); 
-    k = kp1 ; 
-    typo = ct(2) ; 
+    [xout,yout,typout] = getoutputports(scs_m.objs(from(1)));
+    clr = ct(1);
+    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2);
+    k = kp1 ;
+    typo = ct(2) ;
 
     if typo==-1 then //** old link comes from an event output port
       typp = "evtout"
@@ -93,30 +93,30 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     wh = wh(1)
     if wh>0 then
       //** this function is used to compute the projection of the point
-      //** on the link segment 
+      //** on the link segment
       d = projaff(xx(wh:wh+1), yy(wh:wh+1),pt); //** module/graphics/macro/
-      
-      //** orthogonal link logic 
-      if xx(wh)==xx(wh+1) //** this is a vertical link  
+
+      //** orthogonal link logic
+      if xx(wh)==xx(wh+1) //** this is a vertical link
         link_dir = "h" ; //** go horizontal from the split
-      elseif yy(wh)==yy(wh+1) //** this is an horizontal link 
+      elseif yy(wh)==yy(wh+1) //** this is an horizontal link
         link_dir = "v" ; //** go vertical from the split
-      else //** this is an oblique link 
+      else //** this is an oblique link
         if typo==-1 then //** old link comes from an event output port
-          link_dir = "v" ; //** go vertical for event link 
+          link_dir = "v" ; //** go vertical for event link
         else //** old link comes from an regular output or input (implicit) port
-          link_dir = "h"; //** go horizontal for "normal" link 
+          link_dir = "h"; //** go horizontal for "normal" link
         end
-      end 
+      end
 
     else //** the split is on a corner
       wh = -wh ;
       d  = [xx(wh);yy(wh)] ;
-        //** ortogonal link logic    
+        //** ortogonal link logic
         if typo==-1 then //** old link comes from an event output port
-          link_dir = "v" ; //** go vertical for event link 
+          link_dir = "v" ; //** go vertical for event link
         else //** old link comes from an regular output or input (implicit) port
-         link_dir = "h"; //** go horizontal for "normal" link 
+         link_dir = "h"; //** go horizontal for "normal" link
         end
     end
 
@@ -127,13 +127,13 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
     kfrom = size(scs_m.objs)+1;
     port_number = 2; // to be created split block number
 
-    fromsplit = %t; 
+    fromsplit = %t;
     // to be created link from origin
 
-    from = [kfrom,port_number,0] 
+    from = [kfrom,port_number,0]
     xo = d(1);yo=d(2)
     xl = d(1);yl=d(2)
-    //** --------------------- "Link" case end here -------------------------- 
+    //** --------------------- "Link" case end here --------------------------
   else // connection comes from a block
     //** ------------------- start from a BLOCK ------------------------------
     graphics1 = o1.graphics
@@ -150,25 +150,25 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
     if xout==[] then
         hilite_obj(kfrom);
-        messagebox("This block has no output port",'modal'); 
+        messagebox("This block has no output port",'modal');
         unhilite_obj(kfrom);
-      return ; //** EXIT 
+      return ; //** EXIT
     end
 
-    //** geometrical conversion for rotated block 
+    //** geometrical conversion for rotated block
     xxx = rotate([xout;yout],...
                  theta*%pi/180,...
                  [orig(1)+sz(1)/2; orig(2)+sz(2)/2]);
     xout= xxx(1,:);
     yout= xxx(2,:);
 
-    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2) ; 
-    k = kp1 ; 
-    xo = xout(k); yo = yout(k); 
-    typo = typout(k) ; 
+    [m,kp1] = min((yc1-yout)^2+(xc1-xout)^2) ;
+    k = kp1 ;
+    xo = xout(k); yo = yout(k);
+    typo = typout(k) ;
 
-    //** ---------------------- Checking ------------------------------------------- 
-    //** Check if the new requested link creation is compatible with the diagram 
+    //** ---------------------- Checking -------------------------------------------
+    //** Check if the new requested link creation is compatible with the diagram
     // Check if selected port is already connected and get port type ('in' or 'out')
 
     if typo==1  then //** Regular output port
@@ -179,31 +179,31 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
            messagebox(["Selected port is already connected.";..
                     "To start a link off another link, place the cursor";..
                     "on the split point and double click, or type l."],'modal')
-          unhilite_obj(kfrom); 
+          unhilite_obj(kfrom);
         return
       end
       typpfrom='out'
     elseif (typo==2 & k<=size(op,'*')) then //** Implicit output port (Modelica)
       port_number = k ;
-      //** TODO : in case of Modelica port the choice is not yet clear :(  
-      link_dir = "h" ; //** use the default 
+      //** TODO : in case of Modelica port the choice is not yet clear :(
+      link_dir = "h" ; //** use the default
       if op(port_number)<>0 then
           hilite_obj(kfrom);
           messagebox(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."],'modal')
-          unhilite_obj(kfrom); 
+          unhilite_obj(kfrom);
         return
       end
       typpfrom='out'
     elseif (typo==2 & k>size(op,'*')+size(cop,'*')) then //** Implicit  input port
-      typpfrom = 'in' ; 
-      k = k-size(op,'*')-size(cop,'*'); 
+      typpfrom = 'in' ;
+      k = k-size(op,'*')-size(cop,'*');
       port_number = i_ImplIndx(k)
-      //** TODO : in case of Modelica port the choice is not yet clear :(  
+      //** TODO : in case of Modelica port the choice is not yet clear :(
       link_dir = "h" ; //** use the default
       if impi(port_number)<>0 then
-          hilite_obj(kfrom) ; 
+          hilite_obj(kfrom) ;
           messagebox(["Selected port is already connected.";..
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."],"modal")
@@ -213,8 +213,8 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       typpfrom='in'
     else //** Event output port
       port_number = k - size(op,'*') ;
-      //** In case of Event port the direction is strictly vertical  
-      link_dir = "v" ; //** 
+      //** In case of Event port the direction is strictly vertical
+      link_dir = "v" ; //**
 
       if cop(port_number)<>0 then
           hilite_obj(kfrom);
@@ -222,48 +222,48 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
                    "To start a link off another link, place the cursor";..
                    "on the split point and double click, or type l."],"modal")
           unhilite_obj(kfrom);
-        return ; 
+        return ;
       end
       typpfrom = 'evtout' ;
     end
-    fromsplit = %f ; 
+    fromsplit = %f ;
     clr = default_color(typo) ;
 
     //** get port size
     szout = getportsiz(o1,port_number,typpfrom)
     //** get port data type
     if typpfrom=='out'|typpfrom=='in' then
-      szouttyp = getporttyp(o1,port_number,typpfrom); 
+      szouttyp = getporttyp(o1,port_number,typpfrom);
     end
 
-    // to be created link from origin 
+    // to be created link from origin
     from = [kfrom,port_number, bool2s(typpfrom=='in'|typpfrom=='evtin')] ;
     xl = xo ;
-    yl = yo ; 
+    yl = yo ;
 
   end
   //** ---------------------- Checking Ends ----------------------------------------
-  
+
   //----------- get link path ----------------------------------------
   //------------------------------------------------------------------
 
   drawlater(); //** draw later mode
-  
+
   //** These indexes will be used to destroy the intermediate objects created below
-  //** during the "interactive" section 
+  //** during the "interactive" section
 
   o_size = size(gh_axes.children) ; //** o_size(1) is the number of compound object
   p_size = o_size ;
 
   //** there are two nested infinite while(%t) loops:
-  //** the outher loop control the sequence of segment 
+  //** the outher loop control the sequence of segment
   //**   the inner loop handle the interactive operation on the single link segment
 
   //**------------------- OUTHER LOOP -----------------------------------------------------------
   while %t do // loop on link segments
     xe = xo; ye = yo ; //** o > origin ---- e > end
     //** the first step is the the creation of a dummy graphic object (a link of ZERO leght)
-    //** and store this handler to modify it later 
+    //** and store this handler to modify it later
     xpoly([xo;xe] , [yo;ye], 'lines') ; //** create the first 'dummy' object
     gh_link = gh_axes.children(1) ; //** the last object is the above link :)
 
@@ -285,12 +285,12 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       gh_figure = gcf();
       //** focus has changed OR active window has been closed
       if gh_figure.figure_id<>curwin | rep(3)==-1000 then
-        [%win, Cmenu] = resume(curwin,'XcosMenuQuit'); 
+        [%win, Cmenu] = resume(curwin,'XcosMenuQuit');
       end
 
       //** any rigth mouse event OR [Esc] OR [d] key : I want to disengage the current Link action
       if or(rep(3)==[2 5 12 27 100]) then
-          p_size = size(gh_axes.children); 
+          p_size = size(gh_axes.children);
           d_size = p_size(1)-o_size(1);
           if d_size > 0 then
             gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -304,17 +304,17 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
           return; //** -----> Exit from the function
       end //**
 
-      //** plot new link polyline 
+      //** plot new link polyline
       xe = rep(1); ye = rep(2) ;
 
       //** Now there are two cases (at least); split link and Modelica are not handled ....
       if link_dir=="h" then
-        //** horizontal orthogonal link 
+        //** horizontal orthogonal link
         hdx = xo + (xe-xo)/2 ;
-        gh_link.data =  [xo yo ; hdx yo ; hdx ye ; xe ye ]; 
+        gh_link.data =  [xo yo ; hdx yo ; hdx ye ; xe ye ];
       elseif link_dir=="v" then
-        //** vertical orthogonal link 
-        vdy = yo + (ye-yo)/2 ; 
+        //** vertical orthogonal link
+        vdy = yo + (ye-yo)/2 ;
         gh_link.data =  [xo yo ; xo vdy ; xe vdy ; xe ye ];
       end
 
@@ -344,7 +344,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       cip   = graphics2.pein
       [xin,yin,typin] = getinputports(o2)
 
-      o_ImplIndx = find(graphics2.out_implicit=='I'); 
+      o_ImplIndx = find(graphics2.out_implicit=='I');
 
       //** check connection
       if xin==[] then
@@ -360,11 +360,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
            disp("d2");   //** Debug
          end
          unhilite_obj(kto);
-         drawnow(); //** update the diagram 
-         return;      //** EXIT point : link failed ! 
+         drawnow(); //** update the diagram
+         return;      //** EXIT point : link failed !
       end
 
-      //** Connection is OK : compensate for block's rotation 
+      //** Connection is OK : compensate for block's rotation
 
       xxx = rotate([xin;yin],...
                    theta*%pi/180,...
@@ -372,7 +372,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       xin = xxx(1,:); yin = xxx(2,:);
       [m,kp2] = min((ye-yin)^2+(xe-xin)^2);
       k = kp2 ;
-      xc2 = xin(k); yc2 = yin(k); 
+      xc2 = xin(k); yc2 = yin(k);
       typi = typin(k);
 
       //** check connection for "type"
@@ -391,7 +391,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
              disp("d3"); //** Debug
           end
           unhilite_obj(kto)
-          drawnow(); 
+          drawnow();
           return; //** EXIT point from the function
       end
 
@@ -403,7 +403,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
              messagebox(["Selected port is already connected.";..
                       "To start a link off another link, place the cursor";..
                       "on the split point and double click, or type l."],'modal'),
-             p_size = size(gh_axes.children); 
+             p_size = size(gh_axes.children);
              d_size = p_size(1)-o_size(1);
              if d_size > 0 then
                gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -417,13 +417,13 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
            return
         end
 
-        typpto = 'in' ; 
+        typpto = 'in' ;
         szin = getportsiz(o2,port_number,'in')
-        
-        //** further check for warning message about "size" 
-        need_warning = %f ; //** flag initialization 
+
+        //** further check for warning message about "size"
+        need_warning = %f ; //** flag initialization
         if (szin(1)<>szout(1)) & min([szin(1) szout(1)])>0 then
-          need_warning = %t ; 
+          need_warning = %t ;
         end
 
         // check for different number of dimension
@@ -494,7 +494,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
         szin = getportsiz(o2,port_number,'in')
 
         if szin<>szout & min([szin szout])>0 then
-          messagebox(["Warning :';
+          messagebox(["Warning :";
                    "Selected ports don''t have the same size";
                    "The port at the origin of the link has size "+string(szout);
                    "the port at the end has size "+string(szin)],"modal")
@@ -502,7 +502,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
       elseif (typi==2 & k>size(ip,'*')+size(cip,'*')) then // implicit "output" port
         k = k-size(ip,'*')-size(cip,'*')
-        typpto='out'; 
+        typpto='out';
         port_number = o_ImplIndx(k)  //RN: explicit outputs are excluded
                                      //    in the computation of k
         if impo(port_number)<>0 then
@@ -541,7 +541,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
             messagebox(["Selected port is already connected.";..
                      "To start a link off another link, place the cursor";..
                      "on the split point and double click."],"modal"),
-            p_size = size(gh_axes.children); 
+            p_size = size(gh_axes.children);
             d_size = p_size(1)-o_size(1);
             if d_size > 0 then
               gh_compound_delete = glue(gh_axes.children(1:d_size) );
@@ -555,8 +555,8 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
             return; //** Exit point
         end
 
-        typpto = 'evtin'; 
-        szin = getportsiz(o2,port_number,'evtin'); 
+        typpto = 'evtin';
+        szin = getportsiz(o2,port_number,'evtin');
         if szin<>szout & min([szin szout])>0 then
           messagebox(["Warning :";
                    "Selected ports don''t have the same  size"
@@ -566,20 +566,20 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 
       end
       //** "fin" : this end a very long list of check on the final destination of the link *****
-   
+
       if %scicos_debug_gr then
         disp("|->>")
       end
-  
-      //** update the link data vector for the phinal phase       
-        cmx = gh_link.data; //** recover the coordinates
-        //** add the coordinate at the vectors for the final link 
-        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element 
-        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     " 
-      
-      break; //** this BREAK the outher loop and go at the final phase 
 
-    else // (kto==[]) new point ends current line segment: you remain in the outher loop 
+      //** update the link data vector for the phinal phase
+        cmx = gh_link.data; //** recover the coordinates
+        //** add the coordinate at the vectors for the final link
+        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element
+        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     "
+
+      break; //** this BREAK the outher loop and go at the final phase
+
+    else // (kto==[]) new point ends current line segment: you remain in the outher loop
 
       if %scicos_debug_gr then
           disp("d8"); //** Debug
@@ -588,12 +588,12 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       if xe<>xo|ye<>yo then // to avoid null length segments
 
         cmx = gh_link.data; //** recover the coordinates
-        //** add the coordinate at the vectors for the final link 
-        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element 
-        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     " 
+        //** add the coordinate at the vectors for the final link
+        xl = [xl; cmx(2:4,1) ]; //** "x" colum, excluding the first element
+        yl = [yl; cmx(2:4,2) ]; //** "y" colum,     "      "    "     "
 
         //** new "zero" coordinate for the next "poly"
-        xo = cmx(4,1) ; //** "xe" the final point is the new starting point 
+        xo = cmx(4,1) ; //** "xe" the final point is the new starting point
         yo = cmx(4,2) ; //** "ye"  "    "      "   "  "   "      "      "
       end
 
@@ -633,11 +633,11 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   //**-----------------------------------------------------------------------------------
   //** the link is a valid link
 
-  //** from here the data strucures are update BUT not draw !  
-  drawlater(); //** DO NOT UPDATE THE CANVAS ! 
- 
+  //** from here the data strucures are update BUT not draw !
+  drawlater(); //** DO NOT UPDATE THE CANVAS !
+
 //   if nx==1 then // 1 segment link
-// 
+//
 //     if fromsplit&(xl<>xc2|yl<>yc2) then
 //       // try to move split point
 //       if xx(wh)==xx(wh+1) then // split is on a vertical link
@@ -675,7 +675,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 //       gh_link.foreground = clr
 //       // form link datas
 //       xl = [xl;xc2]; yl = [yl(1:nx-1);yc2;yc2]
-// 
+//
 //     //** ---- Previous segment is horizontal
 //     elseif yl(nx)==yl(nx-1) then
 //       // previous segment is horizontal
@@ -687,17 +687,17 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
 //       xpoly([xl(nx-1);xc2;xc2],[yl(nx-1);yl(nx);yc2],'lines')
 //       gh_link = gh_axes.children(1) ;
 //       gh_link.foreground = clr
-// 
+//
 //       // form link datas
 //       xl = [xl(1:nx-1);xc2;xc2]; yl = [yl;yc2]
-//     else 
+//     else
 //       // previous segment is oblique
 //       // nothing particular is done
 //       xl = [xl;xc2]; yl = [yl;yc2]
 //     end
 //   end
 
-  lk = scicos_link(xx=xl, yy=yl, ct=[clr,typ], from=from, to=to) ; 
+  lk = scicos_link(xx=xl, yy=yl, ct=[clr,typ], from=from, to=to) ;
 
   //**---- Mr. Clean :) -----------------------------------------------------------------------
   p_size = size(gh_axes.children) ; //** p_size(1) is the number of compound object
@@ -740,7 +740,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       sp.graphics.orig = d;
       sp.graphics.pin  = ks;
       sp.graphics.pout = [nx+1;nx+2];
-      inoutfrom='out' 
+      inoutfrom='out'
       IMPSPLIT_f('plot',sp)
     else
       sp=CLKSPLIT_f('define')
@@ -773,7 +773,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
       gh_axes.children(1).foreground = link1_color ;
       glue(gh_axes.children(1) ); //** create the compound :)
 
-    //** update the diagram 
+    //** update the diagram
     scs_m.objs(to1(1)) = mark_prt(scs_m.objs(to1(1)),to1(2),outin(to1(3)+1),typ,nx+1)
 
   end
@@ -784,7 +784,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   nx = size(scs_m.objs)+1 ;
   scs_m.objs($+1) = lk ;
 
-  drawlater(); 
+  drawlater();
     drawobj(lk) ;
   drawnow();
 
@@ -792,7 +792,7 @@ function [scs_m, needcompile] = getlink_qd(%pt, scs_m, needcompile)
   scs_m.objs(kfrom) = mark_prt(scs_m.objs(kfrom),from(2),outin(from(3)+1),typ,nx)
   scs_m.objs(kto)   = mark_prt(scs_m.objs(kto),to(2),outin(to(3)+1),typ,nx)
 
-  needcompile = 4; 
+  needcompile = 4;
 
   [scs_m_save,nc_save,enable_undo,edited] = resume(scs_m_save,nc_save,%t,%t)
 

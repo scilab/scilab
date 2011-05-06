@@ -24,10 +24,10 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   warnobsolete(scilabRemovedVersion="5.4.0")
 
 //**
-//** Load a Scicos diagram 
+//** Load a Scicos diagram
 //**
 
-  global %scicos_demo_mode ; 
+  global %scicos_demo_mode ;
 
   [lhs,rhs] = argn(0) ;
   edited = %f         ;
@@ -50,19 +50,19 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
   if winsid()<>[] then
     xpause(100)  // quick and dirty fix for windows bug on fast
                  // computers
-  end		 
+  end
 
   file_is_given=fname<>[]
 
   if ~ file_is_given then //opening a dialog for  path acquisition
     mask  = ['*.xml',_('Scicos XML format (.xml)')
 	     '*.cos*',_('Scicos binary files (.cos) or formatted files (.cosf)')]
-      
-    if %scicos_demo_mode==1 then //** open a demo file 
-      path  =  SCI+"/modules/scicos/demos/" ; //** force the demos/scicos path 
+
+    if %scicos_demo_mode==1 then //** open a demo file
+      path  =  SCI+"/modules/scicos/demos/" ; //** force the demos/scicos path
       mess  = _("Open a Scicos demonstration diagram")
-      %scicos_demo_mode = []; //** reset the gobal variable  
-    else //** conventional Open 
+      %scicos_demo_mode = []; //** reset the gobal variable
+    else //** conventional Open
       path = ''
       mess = _("Open a Scicos diagram")
     end
@@ -72,37 +72,37 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
       ok = %f;return
     end
     [path,name,ext]=splitfilepath_cos(fname)
- 
+
   else //used when scicos is called with a file path
     fname = stripblanks(fname)
-    [path,name,ext]=splitfilepath_cos(fname)	     
+    [path,name,ext]=splitfilepath_cos(fname)
     if ext=='' then  // to allow user not to enter necessarily the extension
       fname=fname+'.cos'
       ext='cos'
     end
   end
-  
+
   //check extensions
   ext=convstr(ext)
   if and(ext<>['cos','cosf','xml']) then
     messagebox(_('Only *.cos (binary),  *.cosf or *.xml (formatted) files\n'+'are allowed'),'modal')
-    if file_is_given then 
+    if file_is_given then
       //open an empty diagram
       scs_m = get_new_scs_m();
     end
     ok = %f
     return
   end
-  
+
   %cpr=list() //reset %cpr
   scs_m=[]
-   
+
   //try to resize the stack for huge diagram
   [x,ierr]=fileinfo(fname)
   if ierr==0 then //file exists
     ww=stacksize()
     if ww(1)<2*x(1) then
-      mprintf(_('stacksize increased to %d.\n"),2*x(1))
+      mprintf(_("stacksize increased to %d.\n"),2*x(1))
       stacksize(2*x(1))
     end
   else
@@ -127,7 +127,7 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
     scs_m=scicos_diagram(version=current_version)
     scs_m.props.title=name
   end
-  
+
   if ierr<>0 then
     if ext=='xml' then
       messagebox([msprintf(_('An error has occurred during parsing of file %s.\n'+..
@@ -138,18 +138,18 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 		  lasterror()],"modal")
     end
     ok=%f
-    scs_m=get_new_scs_m();     
+    scs_m=get_new_scs_m();
     return
   end
-  
-  
+
+
   if ext=='xml' then
     needcompile=4;%cpr=list();
     [ok,scs_m]=do_define_and_set(scs_m);
     if ~ok then mprintf(_("Error\n"));return;end
     mprintf(_("Done\n"));
   end
-  
+
   //for compatibility
   scicos_ver=find_scicos_version(scs_m)
   if scicos_ver=='scicos2.2' then
@@ -175,14 +175,14 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 
   //memorizing name and path
   scs_m.props.title=[scs_m.props.title(1),path]
-  
+
   if ext=='xml' then //?
     [scs_m,ok]=generating_atomic_code(scs_m)
     if ~ok then scs_m = get_new_scs_m();return;end
   end
-  
-  
-  
+
+
+
   if typ=='diagram' then
     if %cpr<>list() then
 
@@ -229,10 +229,10 @@ function [ok, scs_m, %cpr, edited] = do_load(fname,typ)
 	        scs_string='scs_m.objs('+sci2exp(pp(1))+')'
  	      end
 	      execstr('fnam='+scs_string+'.model.sim(1)');
-	      if fnam=='asuper' then 
+	      if fnam=='asuper' then
 	        execstr('[modeli,ok,libsvectori]=recur_scicos_block_link('+scs_string+',''c'')')
-		clear modeli libsvectori fnam pp scs_string        
-	      else 
+		clear modeli libsvectori fnam pp scs_string
+	      else
 	        [ok]=scicos_block_link(funam,tt,'c')
 	      end
 	    else
@@ -265,7 +265,7 @@ function [ok,scs_m]=do_define_and_set(scs_m,flg)
 
 
 %mprt=funcprot()
-funcprot(0) 
+funcprot(0)
 scicos_getvalue=setvalue;
 deff('scicosmessage(txt)',['messagebox(''In block ''+o.gui+'': ''+txt,''Warning'',''info'',''modal'');'
 		    'global %scicos_prob;'

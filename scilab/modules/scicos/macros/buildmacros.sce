@@ -9,7 +9,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-lines(0);
+//lines(0);
 CurrentDirScicos = get_absolute_file_path("buildmacros.sce");
 macrosdirs       = ["scicos_auto","scicos_utils","scicos_scicos","scicos_menus"];
 
