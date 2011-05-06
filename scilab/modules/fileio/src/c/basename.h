@@ -18,15 +18,6 @@
 #include "dynlib_fileio.h"
 
 /**
-* strip directory and suffix from filenames
-* @param[in] filename
-* @param[in] BOOL flagexpand
-* @return basename
-*/
-FILEIO_IMPEXP char *basename(char *fullfilename, BOOL bExpand);
-
-
-/**
 * strip directory and suffix from filenames (wide string)
 * @param[in] filename
 * @param[in] BOOL flagexpand
