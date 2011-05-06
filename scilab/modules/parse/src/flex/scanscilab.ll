@@ -1093,6 +1093,10 @@ assign			"="
     yyterminate();
   }
 
+  {next}{newline}           {
+      /* Do nothing... Just skip */
+  }
+
   {newline}					{
     std::string str = "unexpected end of line in a string.";
     exit_status = SCAN_ERROR;
@@ -1161,6 +1165,10 @@ assign			"="
     scan_error(str);
     yy_pop_state();
     yyterminate();
+  }
+
+  {next}{newline}           {
+      /* Do nothing... Just skip */
   }
 
   {newline} {
