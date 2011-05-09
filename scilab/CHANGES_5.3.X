@@ -185,6 +185,8 @@ Graphics:
 
 * New functions 'comet' and 'comet3d' have been added.
 
+* Bug 9428 fixed - A Java exception was displayed in some cases when using event handlers.
+
 
 Localization:
 =============
@@ -194,12 +196,12 @@ Localization:
 
 
 Help:
-==============
+=====
 
 * Creation of a "complex" sub-section of "Elementary Functions".
 
-* Bug 6975 partially-fixed - Beginning of the documentation of xlabel(), 
-                   		  ylabel() and zlabel() functions.
+* Bug 6975 partially-fixed - Beginning of the documentation of xlabel(),
+                             ylabel() and zlabel() functions.
 
 * Bug 7072 fixed - Fix various issues in the documentation.
                    Thanks to Yves Barois.
@@ -244,7 +246,7 @@ Numerical Maths:
 ================
 
 * Bug 7101 fixed - The roots had convergence problems for some polynomials.
-                   The default algorithm has been changed to the eigenvalue 
+                   The default algorithm has been changed to the eigenvalue
                    of the companion matrix.
 
 * Bug 9350 fixed - abs(complex(%nan,0)) returned zero instead of nan.
@@ -256,7 +258,7 @@ CACSD Module:
 
 * Bug 6744 fixed - p_margin() returned an erroneous result (new fix).
 
-* Bug 9205 fixed - Optional argument added to nyquist to control the drawing of                    
+* Bug 9205 fixed - Optional argument added to nyquist to control the drawing of
                    the symetric part and a new function added for high
                    definition zoom.
 
@@ -267,7 +269,7 @@ Bug Fixes:
 * Bug 5687 fixed - The window title of a figure was not immediately updated when
                    figure_name was changed.
 
-* Bug 6789 fixed - The page header was not printed with 
+* Bug 6789 fixed - The page header was not printed with
                    toprint(["line 1" "line 2"],"Page header").
 
 * Bug 6945 fixed - Conflicting options were confusing Scilab argument processing
