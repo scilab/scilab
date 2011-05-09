@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-03-17 00:52+0000\n"
-"Last-Translator: Nikolay Fedosov <Unknown>\n"
+"PO-Revision-Date: 2011-04-05 21:31+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid ""
@@ -145,12 +145,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: %d ожидалось %d.\n"
+msgstr ""
+"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: %s имеет размер %d, ожидался "
+"размер %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
@@ -208,23 +211,31 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
 "expected.\n"
 msgstr ""
+"%s: Неверное значение входного параметра №%d: %s=%d, а ожидалось "
+"положительное значение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
 msgstr ""
+"%s: Неверное значение входного параметра №%d: %s=%d, которое не "
+"соответствует %s: %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
 msgstr ""
+"%s:Неверное значение входного параметра №%d: %s=%d, которое не соответствует "
+"размеру %s: %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
 "is expected.\n"
 msgstr ""
+"%s:кНеверное значение входного параметра №%d: %s=%s, а ожидалось число с "
+"плавающей точкой.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

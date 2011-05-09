@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 13:57+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-05-07 12:58+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid "  loading initial environment"
 msgstr "  ładowanie środowiska początkowego"
@@ -809,7 +809,7 @@ msgid "&?"
 msgstr "&?"
 
 msgid "&Applications"
-msgstr "&Aplikacje"
+msgstr "Narzędzia"
 
 msgid "&Control"
 msgstr "&Sterowanie"
@@ -853,7 +853,7 @@ msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Copyright (c) 1989-2007 (ENPC)\n"
 
 msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr ""
+msgstr "Copyright (c) 1989-2011 (INRIA)\n"
 
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Czy na pewno chcesz przerwać obliczenia (y(tak) lub n ?) \n"
@@ -1083,7 +1083,7 @@ msgstr "Ostrzeżenie"
 
 #, c-format
 msgid "Warning: Could not find %s\n"
-msgstr ""
+msgstr "Ostrzeżenie: Nie można znaleźć %s\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"

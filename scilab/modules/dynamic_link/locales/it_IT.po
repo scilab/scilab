@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 08:38+0000\n"
+"PO-Revision-Date: 2011-04-11 13:48+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -125,7 +125,7 @@ msgstr "%s non è un punto di ingresso.\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr ""
+msgstr "%s: %s già caricato in scilab."
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"

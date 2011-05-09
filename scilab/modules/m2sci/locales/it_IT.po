@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-04 08:37+0000\n"
+"PO-Revision-Date: 2011-04-11 13:44+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
@@ -713,7 +713,9 @@ msgid "dims must be a list instead of a: %s."
 msgstr "dims deve essere una lista invece di un: %s."
 
 msgid "eig() with 2 inputs: consider generalized eigen. Check."
-msgstr "funzione eig() con due input:"
+msgstr ""
+"eig() with 2 valori in ingresso: considerare l'autovalore generalizzato. "
+"Controllare"
 
 #, c-format
 msgid "endsymbol should be a character string and not a: %s."

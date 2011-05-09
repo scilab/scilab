@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-03 22:41+0000\n"
+"PO-Revision-Date: 2011-04-10 22:33+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: %s format not recognized.\n"
@@ -481,6 +481,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A string expected.\n"
 msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid ""
@@ -563,7 +564,7 @@ msgid "%s: unknown format %s.\n"
 msgstr "%s: O formato %s é desconhecido.\n"
 
 msgid "A file with the same name already exists in "
-msgstr ""
+msgstr "Um arquivo com o mesmo nome já existe em "
 
 msgid "Bad conversion."
 msgstr "Conversão ruim."
@@ -580,7 +581,7 @@ msgid "Can't go to directory %s: %s\n"
 msgstr "Não é possível ir ao diretório %s: %s\n"
 
 msgid "Impossible to create directory "
-msgstr ""
+msgstr "É impossível criar diretório "
 
 msgid "Invalid buffer.\n"
 msgstr "Buffer inválido.\n"
@@ -592,7 +593,7 @@ msgid "Not enough entries."
 msgstr "Não há entradas suficientes."
 
 msgid "This directory already exists in "
-msgstr ""
+msgstr "Este diretório já existe em "
 
 msgid "Unknown error.\n"
 msgstr "Erro desconhecido.\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-24 09:56+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2011-04-27 03:16+0000\n"
+"Last-Translator: Onlycparra <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -101,7 +101,7 @@ msgid "Apply & Reindent"
 msgstr "Aplicar y reidentar"
 
 msgid "Are you sure that you want to close SciNotes ?"
-msgstr "¿Está seguro que quiere cerrar SciNotes?"
+msgstr "¿Está seguro que desea cerrar SciNotes?"
 
 msgid "Auto (Default)"
 msgstr "Auto (Predeterminada)"
@@ -110,7 +110,7 @@ msgid "Auto-completion on (,&quot;,..."
 msgstr "Auto-completar encendido (,&quot;,..."
 
 msgid "Auto-completion on if,function,..."
-msgstr ""
+msgstr "Auto-completación activada si, función,..."
 
 msgid "Background Color"
 msgstr "Color de fondo"
@@ -140,7 +140,7 @@ msgid "Case sensitive"
 msgstr "Distinguir mayúsculas"
 
 msgid "Change Color"
-msgstr "Cambiar color"
+msgstr "Cambiar Color"
 
 msgid "Change Colors"
 msgstr "Cambiar Colores"
@@ -179,7 +179,7 @@ msgid "Columns actions"
 msgstr "Aciones de columnas"
 
 msgid "Comment Selection"
-msgstr "Comentar selección"
+msgstr "Comentar Selección"
 
 msgid "Complete"
 msgstr "Completo"
@@ -197,7 +197,7 @@ msgid "Copy as HTML with line number"
 msgstr "Copiar como HTML con número de línea"
 
 msgid "Copy selection in a new tab"
-msgstr "Copiar la selección a una nueva pestaña"
+msgstr "Copyar la selección a una nueva pestaña"
 
 msgid "Copy tab in new window"
 msgstr "Copiar la pestaña en una nueva ventana"
@@ -265,7 +265,7 @@ msgid "Error while reading the String"
 msgstr "Error leyendo el String"
 
 msgid "Evaluate Selection"
-msgstr "Evaluar selección"
+msgstr "Evaluar Selección"
 
 msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
 msgstr "Evaluar la selección con eco;Evaluar hasta el cursor, con eco"
@@ -274,7 +274,7 @@ msgid "Evaluate from beginning..."
 msgstr "Evaluar desde el principio..."
 
 msgid "Exact"
-msgstr ""
+msgstr "Exacto"
 
 msgid "Execute"
 msgstr "Ejecutar"
@@ -469,7 +469,7 @@ msgid "Overwrite"
 msgstr "Sobrescribir"
 
 msgid "Page Setup"
-msgstr "Configuración de la página"
+msgstr "Configuración de la Página"
 
 msgid "Paste"
 msgstr "Pegar"
@@ -499,7 +499,7 @@ msgid "Read-only mode"
 msgstr "Modo de sólo lectura"
 
 msgid "Recent Files"
-msgstr "Archivos recientes"
+msgstr "Archivos Recientes"
 
 msgid "Redo"
 msgstr "Rehacer"
@@ -532,7 +532,7 @@ msgid "Replace All"
 msgstr "Reemplazar todos"
 
 msgid "Replace File?"
-msgstr "¿Reemplazar archivo?"
+msgstr "¿Reemplazar Archivo?"
 
 msgid "Replace With :"
 msgstr "Reemplazar con :"
@@ -541,7 +541,7 @@ msgid "Replace/Find"
 msgstr "Reemplazar/Buscar"
 
 msgid "Reset default font"
-msgstr "Restablecer la tipografía predeterminada"
+msgstr "Volver a la fuente predeterminada"
 
 msgid "Restart the search from the beginning"
 msgstr "Reiniciar la búsqueda desde el principio"
@@ -603,13 +603,13 @@ msgid "Selected lines"
 msgstr "Líneas seleccionadas"
 
 msgid "Set Colors"
-msgstr "Establecer colores"
+msgstr "Establecer Colores"
 
 msgid "Set Colors ..."
 msgstr "Asignar colores ..."
 
 msgid "Set Font"
-msgstr "Configurar tipografía"
+msgstr "Configurar Tipografía"
 
 msgid "Set an anchor"
 msgstr "Establecer un anclaje"
@@ -624,13 +624,13 @@ msgid "Shift Left"
 msgstr "Desplazar a la Izquierda"
 
 msgid "Shift Right"
-msgstr "Desplazar a la derecha"
+msgstr "Desplazar a la Derecha"
 
 msgid "Show the definition of the macro "
-msgstr "Mostrar la definición del macro "
+msgstr "Mostrar la definición del Macro "
 
 msgid "Show/Hide ToolBar"
-msgstr "Mostrar/Ocultar la barra de herramientas"
+msgstr "Mostrar/Ocultar Barra de Herramientas"
 
 msgid "Source of '"
 msgstr "Fuente de '"
@@ -651,10 +651,10 @@ msgid "String %s not found"
 msgstr "No se encontró la cadena %s"
 
 msgid "Suppress comments when executing selection"
-msgstr ""
+msgstr "Suprimir comentarios al ejecutar selección"
 
 msgid "Syntax Type"
-msgstr "Tipo de sintaxis"
+msgstr "Tipo de Sintaxis"
 
 msgid "Tab representation"
 msgstr "Representación de la tabulación"
@@ -715,7 +715,7 @@ msgid "Tools"
 msgstr "Herramientas"
 
 msgid "Uncomment Selection"
-msgstr "Descomentar selección"
+msgstr "Descomentar Selección"
 
 msgid "Underline"
 msgstr "Subrayar"
@@ -727,7 +727,7 @@ msgid "Unix (LF)"
 msgstr "Unix (LF)"
 
 msgid "Untitled "
-msgstr "Sin título "
+msgstr "Sin Título "
 
 msgid "Use spaces"
 msgstr "Usar espacios"

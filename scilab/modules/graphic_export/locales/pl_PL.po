@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-10 00:03+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-05-07 13:24+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
@@ -35,10 +35,12 @@ msgstr "%s: Błąd OpenGL podczas eksportu.\n"
 #, c-format
 msgid "%s: Unable to create export file, figure is too big.\n"
 msgstr ""
+"%s: Brak możliwości utworzenia pliku do wyeksportowania, rysunek zbyt duży.\n"
 
 #, c-format
 msgid "%s: Unable to create export file, invalid file.\n"
 msgstr ""
+"%s: Brak możliwości utworzenia pliku do wyeksportowania, niepoprawny plik.\n"
 
 #, c-format
 msgid "%s: Unable to create export file, permission denied.\n"
@@ -50,7 +52,7 @@ msgstr "%s: Nie można wykonać polecenia pstoedit.\n"
 
 #, c-format
 msgid "%s: Unable to find pstoedit.\n"
-msgstr ""
+msgstr "%s: Nie mogę znaleźć pstoedit.\n"
 
 #, c-format
 msgid ""
@@ -84,10 +86,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano uchwytu "
+"(handle) graficznego.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwany "
+"skalar.\n"
 
 #, c-format
 msgid ""
@@ -143,19 +149,19 @@ msgstr ""
 "''%s'', ''%s'', ''%s'', ''%s'' lub ''%s''.\n"
 
 msgid "Please install Ghostscript 32 bits to export an .FIG file."
-msgstr ""
+msgstr "Zainstalu Ghostscript, wersja 32 bit do eksportu do pliku an .FIG."
 
 msgid "Scilab Graphic export module not installed.\n"
 msgstr "Scilab nie zainstalowany moduł eksportu grafiki.\n"
 
 msgid "Scilab error"
-msgstr ""
+msgstr "Błąd Scilab"
 
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
 msgstr "Moduł graficzny Scilab niedostępny w trybie -nogui lub  -nwni.\n"
 
 msgid "error"
-msgstr ""
+msgstr "błąd"
 
 #, c-format
 #~ msgid "%s has been replaced by %s"

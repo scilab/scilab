@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-12 00:13+0000\n"
+"PO-Revision-Date: 2011-04-09 16:29+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -159,11 +159,11 @@ msgstr "%s: Fortran または Cコンパイラが必要です.\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
+msgstr "%s: マネージドファイル拡張子を入力引数 #%d に指定してください."
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr ""
+msgstr "%s: マネージドファイル拡張子を入力引数 #%d に指定してください.\n"
 
 #, c-format
 msgid "%s: Already loaded from library %s\n"
@@ -199,7 +199,7 @@ msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d
 
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
-msgstr ""
+msgstr "%s: 構築用ライブラリ \"%s\" が見つかりません.\n"
 
 #, c-format
 msgid "%s: Error while executing %s.\n"
@@ -387,7 +387,7 @@ msgid "F2C cannot build fortran 90"
 msgstr "F２Cはfortran 90を構築できません"
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
-msgstr ""
+msgstr "インテルFortranコンパイラ 9, 10, 11または12が見つかりません."
 
 #
 # File: src/c/addinter.c, line: 237

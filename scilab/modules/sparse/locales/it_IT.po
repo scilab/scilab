@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-04 08:38+0000\n"
+"PO-Revision-Date: 2011-04-11 13:40+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid ""
@@ -153,16 +153,20 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in uscita è sbagliato: era atteso da  %d  a "
+"%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: %s ha "
+"dimensione %d, ma era attesa %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore colonna.\n"
 
 #, c-format
@@ -226,23 +230,31 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
 "expected.\n"
 msgstr ""
+"%s:L'argomento in ingresso #%d ha un valore sbagliato: %s=%d, ma era atteso "
+"un valore positivo.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
 msgstr ""
+"%s:L'argomento in ingresso #%d ha un valore sbagliato: %s=%d, che non "
+"corrisponde ad %s: %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
 msgstr ""
+"%s:L'argomento in ingresso #%d ha un valore sbagliato: %s=%d, che non "
+"coincide con la dimensione di %s: %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
 "is expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: %s=%s, ma era atteso "
+"un intero a virgola mobile.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"

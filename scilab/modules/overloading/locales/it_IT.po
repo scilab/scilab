@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-09-01 21:39+0000\n"
+"PO-Revision-Date: 2011-04-12 16:22+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s is not a valid field name."
@@ -35,10 +35,14 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso uno scalare "
+"reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso %d è di tipo sbagliato: era atteso un vettore "
+"reale.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -56,12 +60,15 @@ msgstr ""
 msgid ""
 "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
+"%s: le matrici di ingresso e di uscita devono avere lo stesso numero di "
+"elementi.\n"
 
 msgid "A null assignment can have only one non-colon index"
 msgstr "Un'assegnazione può avere solo un indice senza virgola"
 
 msgid "Affection of a string in a matrix of numbers is not implemented."
-msgstr "L'aggiunta di una stringa in una matrice di numeri non è sviluppata."
+msgstr ""
+"L'aggiunta di una stringa in una matrice di numeri non è implementata."
 
 msgid "Incorrect assignment.\n"
 msgstr "Assegnazione sbagliata.\n"

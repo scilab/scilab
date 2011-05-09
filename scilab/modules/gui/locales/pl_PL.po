@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:37+0100\n"
-"PO-Revision-Date: 2011-04-05 10:20+0000\n"
+"PO-Revision-Date: 2011-05-07 12:23+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -622,7 +622,7 @@ msgid "&About Scilab..."
 msgstr "&Informacje o Scilab..."
 
 msgid "&Applications"
-msgstr "&Programy"
+msgstr "Narzędzia"
 
 msgid "&Axes properties"
 msgstr "&Właściwości osi"
@@ -658,7 +658,7 @@ msgid "&Copy to clipboard"
 msgstr "&Kopiuj do schowka"
 
 msgid "&Decrease font size"
-msgstr ""
+msgstr "Zmiejsz czcionkę"
 
 msgid "&Display current directory"
 msgstr "&Wyświetl katalog bierzący"
@@ -691,19 +691,19 @@ msgid "&File"
 msgstr "&Plik"
 
 msgid "&File Exchange"
-msgstr ""
+msgstr "&File Exchange"
 
 msgid "&Font..."
 msgstr "&Czcionka..."
 
 msgid "&Forge"
-msgstr ""
+msgstr "&Forge"
 
 msgid "&GIF"
 msgstr "&GIF"
 
 msgid "&Incremental Search"
-msgstr ""
+msgstr "Poszukiwanie przyrostowe"
 
 msgid "&Interrupt"
 msgstr "&Zatrzymaj"
@@ -827,19 +827,19 @@ msgid "All %s files"
 msgstr "Wszystkie %s pliki"
 
 msgid "All Encapsulated PS files"
-msgstr ""
+msgstr "Wszystkie pliki EPS"
 
 msgid "All PDF files"
-msgstr ""
+msgstr "Wszystkie pliki PDF"
 
 msgid "All PNG image files"
-msgstr ""
+msgstr "Wszystkie pliki PNG"
 
 msgid "All Postscript files"
-msgstr ""
+msgstr "Wszystkie pliki PS"
 
 msgid "All RTF (Rich Text Format) files"
-msgstr ""
+msgstr "Wszystkie pliki RTF"
 
 msgid "All Scilab files"
 msgstr "Wszystkie pliki Scilab"
@@ -955,10 +955,10 @@ msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
 msgid "Copyright (c) 1989-2011 (INRIA)"
-msgstr ""
+msgstr "Copyright (c) 1989-2011 (INRIA)"
 
 msgid "Could not find the console nor the InterpreterManagement."
-msgstr ""
+msgstr "Nie udało się znaleść ani konsoli ani InterpreterManagement"
 
 msgid "Could not open: "
 msgstr "Nie mogę otworzyć: "
@@ -997,10 +997,10 @@ msgid "Error. A signal has been caught.\n"
 msgstr "Błąd. Sygnał został złapany.\n"
 
 msgid "Evaluate selection with echo"
-msgstr ""
+msgstr "Wykonaj zaznaczenie, z echem"
 
 msgid "Evaluate selection with no echo"
-msgstr ""
+msgstr "Wykonaj zaznaczenie, bez echa"
 
 msgid "Execute into Scilab"
 msgstr "Wykonaj w Scilab"
@@ -1063,7 +1063,7 @@ msgid "Impossible to get current look and feel"
 msgstr "Nie można uzyskać bieżącego wyglądu i czucia"
 
 msgid "In&crease font size"
-msgstr ""
+msgstr "Zwiększ czcionkę"
 
 msgid "Italic"
 msgstr "Kursywa"
@@ -1095,7 +1095,7 @@ msgid "Loading help browser..."
 msgstr "Ładowanie przeglądarki pomocy..."
 
 msgid "M&odule manager - ATOMS"
-msgstr "ATOMS - menadżer M&odule"
+msgstr "&ATOMS - menadżer modułów zewn."
 
 msgid "Menu"
 msgstr "Menu"
@@ -1108,7 +1108,7 @@ msgid "Menu status"
 msgstr "Status menu"
 
 msgid "Module manager - ATOMS"
-msgstr "Moduł zarządzania - ATOMS"
+msgstr "ATOMS - menadżer modułów zewn."
 
 msgid "Monospaced"
 msgstr "Maszynowa"
@@ -1216,13 +1216,13 @@ msgid "Scilab &Help"
 msgstr "&Pomoc Scilab"
 
 msgid "Scilab &Online Help"
-msgstr ""
+msgstr "Pomoc on-line Scilab"
 
 msgid "Scilab &Web Site"
 msgstr "&Strona internetowa Scilab"
 
 msgid "Scilab &Wiki"
-msgstr ""
+msgstr "Wiki Scilaba"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1230,7 +1230,7 @@ msgstr "Moduł '%s' Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Moduł %s programu Scilab nie jest zainstalowany.\n"
+msgstr "Moduł %s Scilab nie jest zainstalowany.\n"
 
 msgid ""
 "Scilab 5.0 and future versions are released under the terms of the CeCILL "

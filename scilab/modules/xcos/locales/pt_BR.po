@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 13:18+0000\n"
+"PO-Revision-Date: 2011-04-10 22:26+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -770,7 +770,7 @@ msgid "Per block execution trace and Debug block calls"
 msgstr "Rastreio da execução de bloco e chamadas de depuração por bloco"
 
 msgid "Please check the diagram, before trying to simulate it."
-msgstr ""
+msgstr "Por favor, confira o diagrama antes de tentar simulá-lo."
 
 msgid "Please specify a file format"
 msgstr "Especifique um formato de arquivo"
@@ -788,7 +788,7 @@ msgstr ""
 "vínculo válido."
 
 msgid "Preview"
-msgstr ""
+msgstr "Pré-visualização"
 
 msgid "Print"
 msgstr "Imprimir"
@@ -926,7 +926,7 @@ msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solucionador 0 (CVODE) - 100 (IDA)"
 
 msgid "Some blocks have been removed to ensure compatibility."
-msgstr ""
+msgstr "Alguns blocos foram removidos para garantir compatibilidade."
 
 msgid "Sources"
 msgstr "Fontes"
@@ -1007,7 +1007,7 @@ msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
 msgid "Unable to decode \"%s.%s\" : invalid field."
-msgstr ""
+msgstr "Não foi capaz de decodificar \"%s.%s\": campo inválido."
 
 msgid "Unable to delete "
 msgstr "Não é possível excluir "
@@ -1124,7 +1124,7 @@ msgid "Xcos Help"
 msgstr "Ajuda do Xcos"
 
 msgid "Xcos data types"
-msgstr ""
+msgstr "Tipos de dados do Xcos"
 
 msgid "Xcos error"
 msgstr "Erro do Xcos"
@@ -1150,7 +1150,7 @@ msgid "Zero crossing detection"
 msgstr "Detecção de cruzamento no zero"
 
 msgid "_IF_ Xcos block"
-msgstr ""
+msgstr "Bloco _SE_ do Xcos"
 
 msgid "comment"
 msgstr "comentário"
@@ -1178,28 +1178,28 @@ msgstr ""
 "código."
 
 msgid "max"
-msgstr ""
+msgstr "máx"
 
 msgid "maximum step size (0 means no limit)"
 msgstr "tamanho máximo de passo (0 significa ilimitado)"
 
 msgid "min"
-msgstr ""
+msgstr "mín"
 
 msgid "model is not valid"
-msgstr ""
+msgstr "o modelo não é válido"
 
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 msgid "nominal"
 msgstr ""
 
 msgid "selected"
-msgstr ""
+msgstr "selecionado"
 
 msgid "weight"
-msgstr ""
+msgstr "peso"
 
 #~ msgid "Copy"
 #~ msgstr "Copiar"
