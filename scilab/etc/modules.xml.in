@@ -37,6 +37,6 @@
     <module name="hdf5" activate="yes"/>
     <module name="xcos" activate="@GUI_ENABLE@"/>
     <!-- comments -->
-    <module name="scicos" activate="@XCOS_ENABLE@"/>
+<!--    <module name="scicos" activate="@XCOS_ENABLE@"/> -->
 </modules>
 
