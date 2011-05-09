@@ -729,7 +729,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\fullpath.h"
+				RelativePath=".\includes\fullpath.h"
 				>
 			</File>
 			<File

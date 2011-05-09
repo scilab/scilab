@@ -35,6 +35,8 @@ extern "C"
 #include "os_swprintf.h"
 #include "mopen.h"
 #include "mclose.h"
+#include "fullpath.h"
+#include "PATH_MAX.h"
 }
 
 
@@ -107,16 +109,20 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 
         wchar_t* pstFile = pS->get(0);
         wchar_t *expandedPath = expandPathVariableW(pstFile);
+        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+        get_full_pathW(pwstTemp, (const wchar_t*)expandedPath, PATH_MAX * 2);
 
         /*fake call to mopen to show file within file()*/
-        if(mopen(expandedPath, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        if(mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
+            FREE(pwstTemp);
             ScierrorW(999, _W("%ls: Cannot open file %ls.\n"), L"exec", expandedPath);
             return Function::Error;
         }
 
-        parser.parseFile(expandedPath, L"exec");
+        parser.parseFile(pwstTemp, L"exec");
         FREE(expandedPath);
+        FREE(pwstTemp);
 		if(parser.getExitStatus() !=  Parser::Succeded)
 		{
 			YaspWriteW(parser.getErrorMessage());
@@ -274,7 +280,7 @@ Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typ
 			if(execMe.result_get() != NULL && execMe.result_get()->isDeletable())
 			{
 				symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.result_get());
-				if( (*j)->is_verbose() && 
+				if( (*j)->is_verbose() &&
                     bErrCatch == false)
 				{
 					std::wostringstream ostr;
