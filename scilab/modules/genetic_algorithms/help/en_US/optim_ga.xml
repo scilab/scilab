@@ -2,7 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
- * Copyright (C) 2010 - DIGITEO - Michael Baudin
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -253,7 +253,6 @@ PopSize     = 100;
 Proba_cross = 0.7;
 Proba_mut   = 0.1;
 NbGen       = 10;
-NbCouples   = 110;
 Log         = %T;
 
 ga_params = init_param();
@@ -327,6 +326,12 @@ ga_params = add_param(ga_params,"pressure",pressure);
   optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
  ]]>
     </programlisting>
+
+  </refsection>
+
+  <refsection>
+    <title>Customizing the initial population</title>
+    
 
     <para>
     In the following example, we customize the init function, 
@@ -469,8 +474,8 @@ myobjfun = list(f,a1,a2);
 
   <refsection>
     <title>Authors</title>
-    <para>2008, Yann COLLETTE, ycollet@freesurf.fr</para>
-    <para>2010 - DIGITEO - Michael Baudin (updated this help page)</para>
+    <para>2008 - Yann Collette</para>
+    <para>2010 - 2011 - DIGITEO - Michael Baudin</para>
   </refsection>
 
 </refentry>
