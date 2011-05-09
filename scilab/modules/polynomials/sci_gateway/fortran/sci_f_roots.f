@@ -17,8 +17,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer fail
       logical ref,eigen
       integer algo_eig
-      data algo_eig/14/
       integer algo_fast
+      data algo_eig/14/
       data algo_fast/15/
 c
       iadr(l)=l+l-1
