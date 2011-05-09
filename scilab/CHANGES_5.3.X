@@ -347,13 +347,14 @@ Bug Fixes:
 * Bug 9264 fixed - Important loss of performance on some string management
                    functions in api_scilab (example: on mputl).
 
+* Bug 9270 fixed - The contour function was broken.
+
 * Bug 9279 fixed - Add a version number in configuration.xml.
 
 * Bug 9280 fixed - wavread failed to read PCM 32 bit float file format.
 
 * Bug 9300 fixed - Scilab crashed when one tried to complete an empty mlist.
 
-* Bug 9270 fixed - The contour function was broken.
 
 
 
