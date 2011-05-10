@@ -41,10 +41,10 @@
     <ClCompile Include="..\jni\InterpreterManagement_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_notify.cpp">
+    <ClCompile Include="..\jni\Signal.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\jni\Signal.cpp">
+    <ClCompile Include="..\cpp\action_binding_GiwsExports.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,6 +59,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\jni\Signal.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\action_binding_GiwsExports.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

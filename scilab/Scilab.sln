@@ -632,6 +632,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "dynamic_link_gw", "modules\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "typesmacro", "modules\types\typesmacro\typesmacro.vcxproj", "{9252A034-7F22-4CB1-A634-4577DA69F2D0}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "action_binding_gw", "modules\action_binding\sci_gateway\cpp\action_binding_gw.vcxproj", "{3419B733-85A2-4F66-BC04-A5A8DC8FA057}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -2024,6 +2026,14 @@ Global
 		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|Win32.Build.0 = Release|Win32
 		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|x64.ActiveCfg = Release|x64
 		{9252A034-7F22-4CB1-A634-4577DA69F2D0}.Release|x64.Build.0 = Release|x64
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Debug|Win32.Build.0 = Debug|Win32
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Debug|x64.ActiveCfg = Debug|x64
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Debug|x64.Build.0 = Debug|x64
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Release|Win32.ActiveCfg = Release|Win32
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Release|Win32.Build.0 = Release|Win32
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Release|x64.ActiveCfg = Release|x64
+		{3419B733-85A2-4F66-BC04-A5A8DC8FA057}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

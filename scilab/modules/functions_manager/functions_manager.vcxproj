@@ -183,6 +183,9 @@
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\action_binding\sci_gateway\cpp\action_binding_gw.vcxproj">
+      <Project>{3419b733-85a2-4f66-bc04-a5a8dc8fa057}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

@@ -10,11 +10,9 @@
  *
  */
 
-#include "Scierror.h"
-#include "localization.h"
+#include "action_binding_gw.hxx"
 
-int gw_action_binding()
+bool ActionBindingModule::Load()
 {
-	Scierror(999,_("Scilab '%s' module not installed.\n"), "action_binding");
-	return 0;
+	return true;
 }
