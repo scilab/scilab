@@ -48,8 +48,6 @@ import com.artenum.rosetta.util.ConfigurationBuilder;
 import com.artenum.rosetta.util.ConsoleBuilder;
 import com.artenum.rosetta.util.StringConstants;
 
-import org.scilab.modules.completion.SciInputParsingManager;
-
 /**
  * Main class for Scilab Console based on Generic Console from Artenum
  * @author Vincent COUVERT

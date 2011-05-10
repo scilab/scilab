@@ -111,8 +111,10 @@ SCICOS_BLOCKS_IMPEXP void cevscpe_draw(scicos_block * block, ScopeMemory ** pSco
     }
   scicos_free(colors);
 
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    /* use only single buffering to be sure to draw on the screen */
+    if (scoGetPointerScopeWindow(*pScopeMemory) != NULL) {
+        sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    }
 }
 /*--------------------------------------------------------------------------*/ 
 /** \fn void cevscpe(scicos_block * block, int flag)
@@ -207,8 +209,9 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, int flag)
 						/* pFIGURE_FEATURE(pShortDraw)->user_data = NULL; */
 						/* pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0; */
 						/* restore double buffering */
-						sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
-						scoDelCoupleOfSegments(pScopeMemory);
+                        if (pShortDraw) {
+                            sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
+                        }
 					}
 				}
 				scoFreeScopeMemory(block->work,&pScopeMemory);

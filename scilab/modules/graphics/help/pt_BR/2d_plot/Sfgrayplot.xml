@@ -95,13 +95,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
     esboçada assumindo-se que é linear em um conjunto de triângulos
     construídos a partir do grid (aqui, com n1=5, n2=3):</para>
 
-    <programlisting role = ""><![CDATA[ 
+    <screen><![CDATA[ 
 _____________
 | /| /| /| /|
 |/_|/_|/_|/_| 
 | /| /| /| /| 
 |/_|/_|/_|/_|
- ]]></programlisting>
+ ]]></screen>
 
     <para>A função <link linkend="colorbar">colorbar</link> pode ser utilizada
     para se visualizar a escala de cores (mas você deve saber (ou computar) os

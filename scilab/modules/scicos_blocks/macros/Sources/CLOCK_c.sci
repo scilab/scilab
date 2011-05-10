@@ -46,7 +46,7 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
 
       if ~ok then break,end
       if dt <= 0 then
-          block_parameter_error(msprintf(gettext("Wrong values for ''Period'' parameter: %5.1e."), dt), gettext("Strictly positive number expected."));
+          block_parameter_error(msprintf(gettext("Wrong values for ''%s'' parameter: %5.1e."), gettext("Period"), dt), gettext("Strictly positive number expected."));
         ok=%f
       end
       if ok then

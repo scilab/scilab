@@ -323,6 +323,7 @@ set_embedded_java_vm () {
             proc=$MODEL
             ;;
     esac
+    JRE_HOME="$SCIBINARYBASE/thirdparty/java/"
 
 }
 
@@ -646,7 +647,10 @@ case $OS in
         # Now, check that I can run Scilab on this version of Mac OS X and
         # display a standard window
         BINPATH=$(dirname $0)
-        osascript $BINPATH/checkmacosx.applescript || exit 128
+        # Do not perform the check with Scilab is started in CLI mode
+        if test "$SCILAB_MODE" = "gui"; then
+               osascript $BINPATH/checkmacosx.applescript || exit 128
+        fi
         ;;
     *)
 esac

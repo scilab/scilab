@@ -42,15 +42,15 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
     file=`echo $file|awk -F / '{print $NF}'` # get only the filename
     LOC=`echo $file|cut -d. -f1|awk -F - '{print $NF}'` # Get the locale (fr_FR, en_US ...)
 
-    if test "$LOC" == "fr"; then LOC="fr_FR"; fi # Retrieve real format
-    if test "$LOC" == "ru"; then LOC="ru_RU"; fi
-    if test "$LOC" == "de"; then LOC="de_DE"; fi
-    if test "$LOC" == "ca"; then LOC="ca_ES"; fi
-    if test "$LOC" == "es"; then LOC="es_ES"; fi
-    if test "$LOC" == "ja"; then LOC="ja_JP"; fi
-    if test "$LOC" == "it"; then LOC="it_IT"; fi
-    if test "$LOC" == "uk"; then LOC="uk_UA"; fi
-    if test "$LOC" == "pl"; then LOC="pl_PL"; fi
+    if test "$LOC" = "fr"; then LOC="fr_FR"; fi # Retrieve real format
+    if test "$LOC" = "ru"; then LOC="ru_RU"; fi
+    if test "$LOC" = "de"; then LOC="de_DE"; fi
+    if test "$LOC" = "ca"; then LOC="ca_ES"; fi
+    if test "$LOC" = "es"; then LOC="es_ES"; fi
+    if test "$LOC" = "ja"; then LOC="ja_JP"; fi
+    if test "$LOC" = "it"; then LOC="it_IT"; fi
+    if test "$LOC" = "uk"; then LOC="uk_UA"; fi
+    if test "$LOC" = "pl"; then LOC="pl_PL"; fi
 
     # check that it is the right format
     echo "$LOC"|grep -E "(.*_.*)" > /dev/null # it is a real localization name xx_YY

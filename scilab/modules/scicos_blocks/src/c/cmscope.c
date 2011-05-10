@@ -153,7 +153,9 @@ SCICOS_BLOCKS_IMPEXP void cmscope_draw(scicos_block * block, ScopeMemory ** pSco
   scicos_free(xmax);
 
   /* use only single buffering to be sure to draw on the screen */
-  sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+  if (scoGetPointerScopeWindow(*pScopeMemory) != NULL) {
+    sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+  }
 }
 /*--------------------------------------------------------------------------*/ 
 /** \fn void cmscope(scicos_block * block, int flag)
@@ -253,8 +255,10 @@ SCICOS_BLOCKS_IMPEXP cmscope(scicos_block * block, int flag)
 				/*pShortDraw = scoGetPointerScopeWindow(pScopeMemory);*/
 				clearUserData(figure);
 
-				sciSetJavaUseSingleBuffer(figure, FALSE);
-			  scoDelCoupleOfPolylines(pScopeMemory);
+				/* restore double buffering */
+				if (figure) {
+                    sciSetJavaUseSingleBuffer(figure, FALSE);
+                }
 			}
 
 	  }

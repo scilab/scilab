@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO - 2011 - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xlabel" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xlabel</refname>
+    <refpurpose>label x-axis</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="ylabel">
+    <refname>ylabel</refname>
+    <refpurpose>label y-axis</refpurpose>
+  </refnamediv>
+  <refnamediv xml:id="zlabel">
+    <refname>zlabel</refname>
+    <refpurpose>label z-axis</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>xlabel("string label")</synopsis>
+
+    <synopsis>xlabel("string label", "PropertyName", PropertyValue)</synopsis>
+
+    <synopsis>ylabel("string label")</synopsis>
+
+    <synopsis>ylabel("string label", "PropertyName", PropertyValue)</synopsis>
+
+    <synopsis>zlabel("string label")</synopsis>
+
+    <synopsis>zlabel("string label", "PropertyName", PropertyValue)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>"string label"</term>
+        <listitem>
+          <para>a string: labels the axis of the current axes</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"PropertyName"</term>
+        <listitem>
+          <para>a string: a property name</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>PropertyValue</term>
+        <listitem>
+          <para>a property value</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Each axes graphics object can have one label for the x-, y-, and
+    z-axis.</para>
+
+    <para>The label appears beneath its respective axis in a two-dimensional
+    plot and to the side or beneath the axis in a three-dimensional
+    plot.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">xlabel(["first line";"second line"])
+ylabel("A label on y axis", "fontsize", 6)</programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="title">title</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

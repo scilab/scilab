@@ -57,8 +57,34 @@ function loadXcosLibs()
   listlibsname(listlibsname == 'IntegerOp') = 'Integerop';
   
   if listlibsname <> [] then
-    execline = '[' + strcat(listlibsname + 'lib',', ') + '] = resume(' + strcat(listlibsname + 'lib',', ')+ ');'
-    execstr(execline);
+    resumedLibs = listlibsname + 'lib';
+  else
+    resumedLibs = string([]);
   end
 
+  // Compatibility interface functions
+  function [x,y,typ]=COMPAT_BLOCK(job,arg1,arg2)
+  // Throw an error on block access
+      x=[];y=[];typ=[]
+      if ~exists("arg1") then
+          arg1 = mlist(['Block', "gui"], "COMPAT_BLOCK");
+      end
+      error(msprintf(gettext("%s: the block ""%s"" is no more available, please update the diagram with a compatible one."), "loadXcosLibs", arg1.gui));
+  endfunction
+
+  // removed blocks
+  removed = [
+"AFFICH_f"
+"RFILE"
+"WFILE"];
+  prot = funcprot();
+  funcprot(0);
+  execstr(strcat(removed + "=COMPAT_BLOCK; "));
+  funcprot(prot);
+  
+  resumedBlocks = removed';
+
+  // put all resumed symbols into the parent scope
+  execstr("[" + strcat([resumedLibs resumedBlocks], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks], ", ") + ");");
 endfunction
+

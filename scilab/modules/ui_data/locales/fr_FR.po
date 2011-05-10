@@ -1,0 +1,174 @@
+# French translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-07 15:36+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr "%s : Problème de mémoire au niveau de Java, impossible d'éditer %s\n"
+
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr "%s: Ce type n'est pas encore pris en charge."
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s : Variable %s non définie.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre incorrect d'argument(s) d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Taille incorrecte de l'argument d'entrée #%d : Chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr "%s: ans ne peut être édité.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&About Scilab..."
+msgstr "&À propos de Scilab..."
+
+msgid "&Close"
+msgstr "&Fermer"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "Boolean"
+msgstr "Booléen"
+
+msgid "Bytes"
+msgstr "Octets"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Compiled function"
+msgstr "Fonction compilée"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Cut"
+msgstr "Couper"
+
+msgid "Double"
+msgstr "Double"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Filter"
+msgstr "Filtre"
+
+msgid "Function library"
+msgstr "Librairie de fonctions"
+
+msgid "Global variables can not be edited."
+msgstr "Les variables globales ne peuvent être éditées."
+
+msgid "Graphic handles"
+msgstr "Handles graphiques"
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "Implicit polynomial"
+msgstr "Polynôme implicite"
+
+msgid "Integer"
+msgstr "Entier"
+
+msgid "Intrinsic function"
+msgstr "Fonction intrinsèque"
+
+msgid "List"
+msgstr "Liste"
+
+msgid "Matlab sparse"
+msgstr "creuse Matlab"
+
+msgid "Mlist"
+msgstr "Mlist"
+
+msgid "Name"
+msgstr "Nom"
+
+msgid "Paste"
+msgstr "Coller"
+
+msgid "Pointer"
+msgstr "Pointeur"
+
+msgid "Polynomial"
+msgstr "Polynôme"
+
+msgid "Redo"
+msgstr "Rétablir"
+
+msgid "Refresh the variable "
+msgstr "Actualiser la variable "
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui or -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Le module Scilab '%s' n'est pas installé.\n"
+
+msgid "Sparse"
+msgstr "Creuse"
+
+msgid "Sparse boolean"
+msgstr "Booléenne creuse"
+
+msgid "String"
+msgstr "Chaîne"
+
+msgid "Tlist"
+msgstr "Tlist"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Un-compiled function"
+msgstr "Fonction non compilée"
+
+msgid "Undo"
+msgstr "Annuler"
+
+msgid "Variable Browser"
+msgstr "Explorateur de Variables"
+
+msgid "Variable Editor"
+msgstr "Éditeur de Variables"
+
+msgid "Visibility"
+msgstr "Visibilité"

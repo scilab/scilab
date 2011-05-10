@@ -41,13 +41,13 @@ case 'set' then
   exprs=graphics.exprs
   while %t do
     [ok,Datatype,nb,np,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "SHIFT");" "; gettext("Shift/Rotates bits")], ..
-        [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)"); gettext("Number of Bits to Shift Left (Negative number to shift right)"); ..
+        [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Number of Bits to Shift Left (Negative number to shift right)"); ..
         gettext("Shift Type (0:Arithmetic, 1:Circular)")], ..
         list('vec',1,'vec',1,'vec',1), exprs);
 
     if ~ok then break,end
       if (np ~= 0 & np ~= 1) then
-          block_parameter_error(msprintf( gettext("Wrong value for ''Shift Type'' parameter: %d"), np), ..
+          block_parameter_error(msprintf( gettext("Wrong value for ''%s'' parameter: %d"), gettext("Shift Type"), np), ..
             msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
           ok=%f;
     end
@@ -103,7 +103,7 @@ case 'set' then
        end
     end
     else
-        block_parameter_error(msprintf( gettext( "Wrong value for ''Data Type'' parameter: %d."), Datatype), ..
+        block_parameter_error(msprintf( gettext( "Wrong value for ''%s'' parameter: %d."), gettext("Data Type"), Datatype), ..
           msprintf(gettext( "Must be in the interval %s."), "[3, 8]" ));
         ok=%f;
     end

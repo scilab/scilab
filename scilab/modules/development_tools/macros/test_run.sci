@@ -625,8 +625,15 @@ function status = test_single(_module, _testPath, _testName)
         language = "fr_FR";
     end
 
+
     if ~isempty(grep(sciFile, "<-- ENGLISH IMPOSED -->")) then
         language = "en_US";
+    end
+    
+    if (st.platform=="linux") & (~LINUX) then
+        st.status = status_set_id(st.status,10);
+        st.status = status_set_message(st.status,"skipped : Linux only");
+        return;
     end
 
     // Test building
