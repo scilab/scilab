@@ -68,10 +68,10 @@ DIST_COMMON = $(am__libsciscicos_blocks_la_include_HEADERS_DIST) \
 @GIWS_TRUE@@XCOS_TRUE@am__append_2 = giws
 subdir = modules/scicos_blocks
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -243,9 +243,9 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/c/tanh_blk.c src/c/tcslti4.c src/c/tcsltj4.c \
 	src/c/time_delay.c src/c/tows_c.c src/c/variable_delay.c \
 	src/c/whileiterator.c src/c/writeau.c src/c/writec.c \
-	src/c/zcross2.c src/fortran/affich.f src/fortran/csslti.f \
-	src/fortran/cstblk.f src/fortran/delay.f src/fortran/delayv.f \
-	src/fortran/demux.f src/fortran/diffblk.f src/fortran/dlradp.f \
+	src/c/zcross2.c src/fortran/csslti.f src/fortran/cstblk.f \
+	src/fortran/delay.f src/fortran/delayv.f src/fortran/demux.f \
+	src/fortran/diffblk.f src/fortran/dlradp.f \
 	src/fortran/dollar.f src/fortran/dsslti.f \
 	src/fortran/eselect.f src/fortran/evtdly.f \
 	src/fortran/expblk.f src/fortran/forblk.f src/fortran/fsv.f \
@@ -265,7 +265,7 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 	src/fortran/tcsltj.f src/fortran/timblk.f src/fortran/trash.f \
 	src/fortran/writef.f src/fortran/zcross.f \
 	src/c/scoGetProperty.c src/c/scoSetProperty.c src/c/scoMisc.c \
-	src/c/scoMemoryScope.c src/c/scoWindowScope.c src/c/affich.c \
+	src/c/scoMemoryScope.c src/c/scoWindowScope.c \
 	src/c/scicos_evalhermite.c src/c/scicos_indexfinder.c \
 	src/jni/GiwsException.cpp src/jni/AfficheBlock.cpp \
 	src/cpp/affich2.cpp
@@ -580,24 +580,23 @@ am__libsciscicos_blocks_la_SOURCES_DIST = src/c/absblk.c \
 @XCOS_TRUE@	libsciscicos_blocks_la-writeau.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-writec.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-zcross2.lo
-@XCOS_TRUE@am__objects_2 = affich.lo csslti.lo cstblk.lo delay.lo \
-@XCOS_TRUE@	delayv.lo demux.lo diffblk.lo dlradp.lo dollar.lo \
-@XCOS_TRUE@	dsslti.lo eselect.lo evtdly.lo expblk.lo forblk.lo \
-@XCOS_TRUE@	fsv.lo gensin.lo gensqr.lo hltblk.lo ifthel.lo \
-@XCOS_TRUE@	integr.lo intplt.lo intpol.lo intrp2.lo intrpl.lo \
-@XCOS_TRUE@	invblk.lo iocopy.lo logblk.lo lookup.lo lsplit.lo \
-@XCOS_TRUE@	lusat.lo maxblk.lo memo.lo mfclck.lo minblk.lo \
-@XCOS_TRUE@	mux.lo pload.lo powblk.lo qzcel.lo qzflr.lo \
-@XCOS_TRUE@	qzrnd.lo qztrn.lo readf.lo rndblk.lo samphold.lo \
-@XCOS_TRUE@	sawtth.lo sciblk.lo selblk.lo sinblk.lo sqrblk.lo \
-@XCOS_TRUE@	sum2.lo sum3.lo tanblk.lo tcslti.lo tcsltj.lo \
-@XCOS_TRUE@	timblk.lo trash.lo writef.lo zcross.lo
+@XCOS_TRUE@am__objects_2 = csslti.lo cstblk.lo delay.lo delayv.lo \
+@XCOS_TRUE@	demux.lo diffblk.lo dlradp.lo dollar.lo dsslti.lo \
+@XCOS_TRUE@	eselect.lo evtdly.lo expblk.lo forblk.lo fsv.lo \
+@XCOS_TRUE@	gensin.lo gensqr.lo hltblk.lo ifthel.lo integr.lo \
+@XCOS_TRUE@	intplt.lo intpol.lo intrp2.lo intrpl.lo invblk.lo \
+@XCOS_TRUE@	iocopy.lo logblk.lo lookup.lo lsplit.lo lusat.lo \
+@XCOS_TRUE@	maxblk.lo memo.lo mfclck.lo minblk.lo mux.lo \
+@XCOS_TRUE@	pload.lo powblk.lo qzcel.lo qzflr.lo qzrnd.lo \
+@XCOS_TRUE@	qztrn.lo readf.lo rndblk.lo samphold.lo sawtth.lo \
+@XCOS_TRUE@	sciblk.lo selblk.lo sinblk.lo sqrblk.lo sum2.lo \
+@XCOS_TRUE@	sum3.lo tanblk.lo tcslti.lo tcsltj.lo timblk.lo \
+@XCOS_TRUE@	trash.lo writef.lo zcross.lo
 @XCOS_TRUE@am__objects_3 = libsciscicos_blocks_la-scoGetProperty.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoSetProperty.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoMisc.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoMemoryScope.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scoWindowScope.lo \
-@XCOS_TRUE@	libsciscicos_blocks_la-affich.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_evalhermite.lo \
 @XCOS_TRUE@	libsciscicos_blocks_la-scicos_indexfinder.lo
 @XCOS_TRUE@am__objects_4 = libsciscicos_blocks_la-GiwsException.lo \
@@ -1294,7 +1293,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/c/scoMisc.c \
 @XCOS_TRUE@src/c/scoMemoryScope.c\
 @XCOS_TRUE@src/c/scoWindowScope.c \
-@XCOS_TRUE@src/c/affich.c \
 @XCOS_TRUE@src/c/scicos_evalhermite.c \
 @XCOS_TRUE@src/c/scicos_indexfinder.c
 
@@ -1306,7 +1304,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@src/jni/Blocks.giws.xml
 
 @XCOS_TRUE@SCICOS_BLOCKS_FORTRAN_SOURCES = \
-@XCOS_TRUE@src/fortran/affich.f \
 @XCOS_TRUE@src/fortran/csslti.f \
 @XCOS_TRUE@src/fortran/cstblk.f \
 @XCOS_TRUE@src/fortran/delay.f \
@@ -1493,7 +1490,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @XCOS_TRUE@blocks/CMSCOPE.h5 \
 @XCOS_TRUE@blocks/CONST_m.h5 \
 @XCOS_TRUE@blocks/ConstantVoltage.h5 \
-@XCOS_TRUE@blocks/CONSTRAINT_f.h5 \
+@XCOS_TRUE@blocks/CONSTRAINT_c.h5 \
 @XCOS_TRUE@blocks/CONVERT.h5 \
 @XCOS_TRUE@blocks/COSBLK_f.h5 \
 @XCOS_TRUE@blocks/Counter.h5 \
@@ -1761,7 +1758,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-absolute_value.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acos_blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-acosh_blk.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-affich2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-andlog.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libsciscicos_blocks_la-asin_blk.Plo@am__quote@
@@ -4311,13 +4307,6 @@ libsciscicos_blocks_la-scoWindowScope.lo: src/c/scoWindowScope.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-scoWindowScope.lo `test -f 'src/c/scoWindowScope.c' || echo '$(srcdir)/'`src/c/scoWindowScope.c
 
-libsciscicos_blocks_la-affich.lo: src/c/affich.c
-@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-affich.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-affich.Tpo -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
-@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-affich.Tpo $(DEPDIR)/libsciscicos_blocks_la-affich.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/affich.c' object='libsciscicos_blocks_la-affich.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -c -o libsciscicos_blocks_la-affich.lo `test -f 'src/c/affich.c' || echo '$(srcdir)/'`src/c/affich.c
-
 libsciscicos_blocks_la-scicos_evalhermite.lo: src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_la_CPPFLAGS) $(CPPFLAGS) $(libsciscicos_blocks_la_CFLAGS) $(CFLAGS) -MT libsciscicos_blocks_la-scicos_evalhermite.lo -MD -MP -MF $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo -c -o libsciscicos_blocks_la-scicos_evalhermite.lo `test -f 'src/c/scicos_evalhermite.c' || echo '$(srcdir)/'`src/c/scicos_evalhermite.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Tpo $(DEPDIR)/libsciscicos_blocks_la-scicos_evalhermite.Plo
@@ -4382,9 +4371,6 @@ libsciscicos_blocks_la-affich2.lo: src/cpp/affich2.cpp
 
 .f.lo:
 	$(LTF77COMPILE) -c -o $@ $<
-
-affich.lo: src/fortran/affich.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o affich.lo `test -f 'src/fortran/affich.f' || echo '$(srcdir)/'`src/fortran/affich.f
 
 csslti.lo: src/fortran/csslti.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o csslti.lo `test -f 'src/fortran/csslti.f' || echo '$(srcdir)/'`src/fortran/csslti.f

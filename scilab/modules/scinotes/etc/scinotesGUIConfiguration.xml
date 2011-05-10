@@ -65,6 +65,7 @@
       <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
       <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
       <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
+      <menuitem action="DoubleQuoteStringAction" label="Single to double quote strings"/>
     </menu>
 
     <menu label="Search" mnemonic="H">

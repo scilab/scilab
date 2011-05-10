@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-12 01:30+0000\n"
+"PO-Revision-Date: 2011-04-13 13:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid "&?"
 msgstr "&?"
@@ -71,7 +71,7 @@ msgstr "&nbsp;- 正の値は int8(1) とみなされます"
 
 #, c-format
 msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
-msgstr ""
+msgstr "\"初期値\"と\"終端値\": 大きさに互換性がありません: %d および %d."
 
 msgid "''Minimum'' must be less than ''Maximum''."
 msgstr "'Minimum'' は ''Maximum''よりも小さくする必要があります."
@@ -178,7 +178,7 @@ msgid "Expression ="
 msgstr "式 ="
 
 msgid "Final Value"
-msgstr ""
+msgstr "最終地"
 
 msgid "Finite differences"
 msgstr "有限差分"
@@ -187,7 +187,7 @@ msgid "Finite elements"
 msgstr "有限要素"
 
 msgid "Frequency (rad/s)"
-msgstr ""
+msgstr "周波数 (rad/s)"
 
 msgid "Implicit input port"
 msgstr "陰的入力ポート"
@@ -230,7 +230,7 @@ msgid "JK flip-flop"
 msgstr "JK フリップ-フロップ"
 
 msgid "Magnitude"
-msgstr ""
+msgstr "ゲイン"
 
 msgid "Manual"
 msgstr "マニュアル"
@@ -315,7 +315,7 @@ msgid "PDE block"
 msgstr "PDEブロック"
 
 msgid "Phase (rad)"
-msgstr ""
+msgstr "位相 (rad)"
 
 msgid "Port number"
 msgstr "ポート番号"
@@ -373,7 +373,7 @@ msgid "SR flip-flop"
 msgstr "SR フリップ-フロップ"
 
 msgid "Same sizes expected."
-msgstr ""
+msgstr "同じ大きさを指定してください."
 
 #, c-format
 msgid "Set %s block parameters"
@@ -389,7 +389,7 @@ msgid "Shift/Rotates bits"
 msgstr "シフト/回転 ビット"
 
 msgid "Sine wave generator"
-msgstr ""
+msgstr "サイン波ジェネレータ"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "バッファの大きさまたは入力の大きさが変更されています!\n"
@@ -404,10 +404,10 @@ msgid "Start Time"
 msgstr "開始時刻"
 
 msgid "Step Function"
-msgstr ""
+msgstr "ステップ関数"
 
 msgid "Step Time"
-msgstr ""
+msgstr "ステップ時間"
 
 msgid "Strictly positive integer expected."
 msgstr "厳密に正の整数を指定してください."
@@ -432,7 +432,7 @@ msgstr "timeベクトルは単調増加するベクトルとする必要があ�
 msgid ""
 "This Scope (block number : %d) has same number than another. It has been "
 "deactivated!\n"
-msgstr ""
+msgstr "スコープ (ブロック番号 : %d) は他のスコープと数が異なります. アクティブでないとされました!\n"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "ビットフィールドを整数として扱う (0: いいえ, 1:はい)"
@@ -496,7 +496,7 @@ msgstr "\"オーバーフロー時の動作\"パラメータの値が間違っ�
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
-msgstr ""
+msgstr "\"周波数\"パラメータに間違った値が使用されました %e."
 
 #, c-format
 msgid "Wrong value for ''Index of Bit'' parameter: %d."

@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="affich.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="csslti.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -197,9 +194,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="affich.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="csslti.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>

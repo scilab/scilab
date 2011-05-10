@@ -223,7 +223,7 @@ extern "C"
             {
                 doc->setWorkingLanguage((char *) language.c_str());
                 doc->setExportFormat((char *) exportFormat.c_str());
-		doc->setIsToolbox(Rhs == 4);
+                doc->setIsToolbox(Rhs == 4);
                 doc->process((char *) masterXML.c_str(), (char *) styleSheet.c_str());
             }
             else
@@ -236,6 +236,7 @@ extern "C"
         {
             Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999,_("%s: Execution Java stack: %s.\n"), fname, ex.getJavaStackTrace().c_str());
+            Scierror(999,_("If Scilab is started in a chroot, you might want to try to set the two environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"));
             return FALSE;
         }
 

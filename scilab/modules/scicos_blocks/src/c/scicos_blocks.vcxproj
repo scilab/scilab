@@ -274,7 +274,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="absolute_value.c" />
     <ClCompile Include="acos_blk.c" />
     <ClCompile Include="acosh_blk.c" />
-    <ClCompile Include="affich.c" />
     <ClCompile Include="..\cpp\affich2.cpp" />
     <ClCompile Include="..\jni\AfficheBlock.cpp" />
     <ClCompile Include="andlog.c" />
@@ -595,7 +594,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="zcross2.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\affich.h" />
     <ClInclude Include="..\jni\AfficheBlock.hxx" />
     <ClInclude Include="..\..\includes\blocks.h" />
     <ClInclude Include="..\jni\GiwsException.hxx" />

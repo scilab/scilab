@@ -84,7 +84,13 @@ public final class SuperBlockDiagram extends XcosDiagram implements Serializable
 			LogFactory.getLog(getClass()).error("Parent diagram was null");
 		}
 		
-    	final String[] parent = graph.getContext();
+		final String[] parent;
+		if (graph == null) {
+			parent = new String[] {};
+		} else {
+			parent = graph.getContext();
+		}
+		
     	final String[] current = super.getContext();
     	
     	String[] full = new String[current.length + parent.length];

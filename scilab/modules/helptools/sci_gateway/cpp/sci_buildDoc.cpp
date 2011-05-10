@@ -240,6 +240,7 @@ extern "C"
         {
             Scierror(999,_("%s: Error while building documentation: %s.\n"), fname, ex.getJavaDescription().c_str());
             Scierror(999,_("%s: Execution Java stack %s.\n"), fname, ex.getJavaStackTrace().c_str());
+            Scierror(999,_("If Scilab is started in a chroot, you might want to try to set the two environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"));
             return FALSE;
         }
 

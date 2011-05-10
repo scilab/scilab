@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-04-04 22:09+0100\n"
+"Revision-Date: 2011-05-10 11:48+0100\n"
 
 # File: src/cpp/api_error.cpp, line: 112
 # File: src/cpp/api_error.cpp, line: 122
@@ -34,34 +34,35 @@ msgstr ""
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
 msgstr ""
 #
+# File: src/cpp/api_pointer.cpp, line: 33
+# File: src/cpp/api_pointer.cpp, line: 61
+# File: src/cpp/api_double.cpp, line: 63
+# File: src/cpp/api_boolean_sparse.cpp, line: 34
+# File: src/cpp/api_boolean_sparse.cpp, line: 105
+# File: src/cpp/api_boolean.cpp, line: 38
 # File: src/cpp/api_string.cpp, line: 50
 # File: src/cpp/api_string.cpp, line: 99
 # File: src/cpp/api_string.cpp, line: 149
 # File: src/cpp/api_string.cpp, line: 157
 # File: src/cpp/api_string.cpp, line: 240
-# File: src/cpp/api_double.cpp, line: 63
 # File: src/cpp/api_sparse.cpp, line: 45
 # File: src/cpp/api_sparse.cpp, line: 156
-# File: src/cpp/api_boolean.cpp, line: 38
-# File: src/cpp/api_boolean_sparse.cpp, line: 34
-# File: src/cpp/api_boolean_sparse.cpp, line: 105
-# File: src/cpp/api_common.cpp, line: 65
-# File: src/cpp/api_common.cpp, line: 191
 # File: src/cpp/api_poly.cpp, line: 36
 # File: src/cpp/api_poly.cpp, line: 91
 # File: src/cpp/api_int.cpp, line: 30
 # File: src/cpp/api_int.cpp, line: 81
-# File: src/cpp/api_pointer.cpp, line: 33
-# File: src/cpp/api_pointer.cpp, line: 61
+# File: src/cpp/api_common.cpp, line: 65
+# File: src/cpp/api_common.cpp, line: 191
 #, c-format
 msgid "%s: Invalid argument address"
 msgstr ""
 #
+# File: src/cpp/api_pointer.cpp, line: 46
+# File: src/cpp/api_double.cpp, line: 70
+# File: src/cpp/api_boolean.cpp, line: 45
 # File: src/cpp/api_string.cpp, line: 63
 # File: src/cpp/api_string.cpp, line: 253
-# File: src/cpp/api_double.cpp, line: 70
 # File: src/cpp/api_sparse.cpp, line: 58
-# File: src/cpp/api_boolean.cpp, line: 45
 # File: src/cpp/api_poly.cpp, line: 42
 # File: src/cpp/api_poly.cpp, line: 104
 # File: src/cpp/api_list.cpp, line: 110
@@ -70,7 +71,6 @@ msgstr ""
 # File: src/cpp/api_list.cpp, line: 371
 # File: src/cpp/api_int.cpp, line: 36
 # File: src/cpp/api_int.cpp, line: 528
-# File: src/cpp/api_pointer.cpp, line: 46
 #, c-format
 msgid "%s: Invalid argument type, %s excepted"
 msgstr ""
@@ -86,14 +86,14 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
+# File: src/cpp/api_pointer.cpp, line: 150
+# File: src/cpp/api_boolean_sparse.cpp, line: 166
+# File: src/cpp/api_boolean.cpp, line: 140
 # File: src/cpp/api_string.cpp, line: 191
 # File: src/cpp/api_string.cpp, line: 400
 # File: src/cpp/api_sparse.cpp, line: 262
-# File: src/cpp/api_boolean.cpp, line: 140
-# File: src/cpp/api_boolean_sparse.cpp, line: 166
 # File: src/cpp/api_poly.cpp, line: 276
 # File: src/cpp/api_list.cpp, line: 198
-# File: src/cpp/api_pointer.cpp, line: 150
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
 msgstr ""
@@ -175,8 +175,8 @@ msgstr ""
 msgid "%s: Unable to create list item #%d in variable \"%s\""
 msgstr ""
 #
-# File: src/cpp/api_string.cpp, line: 122
-# File: src/cpp/api_string.cpp, line: 377
+# File: src/cpp/api_pointer.cpp, line: 96
+# File: src/cpp/api_pointer.cpp, line: 115
 # File: src/cpp/api_double.cpp, line: 106
 # File: src/cpp/api_double.cpp, line: 124
 # File: src/cpp/api_double.cpp, line: 188
@@ -184,15 +184,15 @@ msgstr ""
 # File: src/cpp/api_double.cpp, line: 227
 # File: src/cpp/api_double.cpp, line: 501
 # File: src/cpp/api_double.cpp, line: 531
-# File: src/cpp/api_sparse.cpp, line: 139
-# File: src/cpp/api_sparse.cpp, line: 202
+# File: src/cpp/api_boolean_sparse.cpp, line: 89
+# File: src/cpp/api_boolean_sparse.cpp, line: 130
 # File: src/cpp/api_boolean.cpp, line: 106
 # File: src/cpp/api_boolean.cpp, line: 269
 # File: src/cpp/api_boolean.cpp, line: 285
-# File: src/cpp/api_boolean_sparse.cpp, line: 89
-# File: src/cpp/api_boolean_sparse.cpp, line: 130
-# File: src/cpp/api_common.cpp, line: 987
-# File: src/cpp/api_common.cpp, line: 1003
+# File: src/cpp/api_string.cpp, line: 122
+# File: src/cpp/api_string.cpp, line: 377
+# File: src/cpp/api_sparse.cpp, line: 139
+# File: src/cpp/api_sparse.cpp, line: 202
 # File: src/cpp/api_poly.cpp, line: 179
 # File: src/cpp/api_list.cpp, line: 232
 # File: src/cpp/api_int.cpp, line: 114
@@ -226,8 +226,8 @@ msgstr ""
 # File: src/cpp/api_int.cpp, line: 1105
 # File: src/cpp/api_int.cpp, line: 1120
 # File: src/cpp/api_int.cpp, line: 1136
-# File: src/cpp/api_pointer.cpp, line: 96
-# File: src/cpp/api_pointer.cpp, line: 115
+# File: src/cpp/api_common.cpp, line: 987
+# File: src/cpp/api_common.cpp, line: 1003
 #, c-format
 msgid "%s: Unable to create variable in Scilab memory"
 msgstr ""
@@ -297,11 +297,11 @@ msgid "%s: Unable to get address of variable \"%s\""
 msgstr ""
 #
 # File: src/cpp/api_double.cpp, line: 464
-# File: src/cpp/api_sparse.cpp, line: 439
-# File: src/cpp/api_sparse.cpp, line: 456
-# File: src/cpp/api_boolean.cpp, line: 241
 # File: src/cpp/api_boolean_sparse.cpp, line: 266
 # File: src/cpp/api_boolean_sparse.cpp, line: 277
+# File: src/cpp/api_boolean.cpp, line: 241
+# File: src/cpp/api_sparse.cpp, line: 439
+# File: src/cpp/api_sparse.cpp, line: 456
 # File: src/cpp/api_poly.cpp, line: 428
 # File: src/cpp/api_poly.cpp, line: 528
 # File: src/cpp/api_poly.cpp, line: 538
@@ -311,23 +311,24 @@ msgstr ""
 msgid "%s: Unable to get argument \"%s\""
 msgstr ""
 #
+# File: src/cpp/api_pointer.cpp, line: 40
+# File: src/cpp/api_double.cpp, line: 49
+# File: src/cpp/api_double.cpp, line: 83
+# File: src/cpp/api_double.cpp, line: 410
+# File: src/cpp/api_boolean_sparse.cpp, line: 41
+# File: src/cpp/api_boolean_sparse.cpp, line: 48
+# File: src/cpp/api_boolean_sparse.cpp, line: 245
+# File: src/cpp/api_boolean.cpp, line: 52
+# File: src/cpp/api_boolean.cpp, line: 210
 # File: src/cpp/api_string.cpp, line: 57
 # File: src/cpp/api_string.cpp, line: 70
 # File: src/cpp/api_string.cpp, line: 247
 # File: src/cpp/api_string.cpp, line: 260
 # File: src/cpp/api_string.cpp, line: 276
 # File: src/cpp/api_string.cpp, line: 292
-# File: src/cpp/api_double.cpp, line: 49
-# File: src/cpp/api_double.cpp, line: 83
-# File: src/cpp/api_double.cpp, line: 410
 # File: src/cpp/api_sparse.cpp, line: 52
 # File: src/cpp/api_sparse.cpp, line: 72
 # File: src/cpp/api_sparse.cpp, line: 399
-# File: src/cpp/api_boolean.cpp, line: 52
-# File: src/cpp/api_boolean.cpp, line: 210
-# File: src/cpp/api_boolean_sparse.cpp, line: 41
-# File: src/cpp/api_boolean_sparse.cpp, line: 48
-# File: src/cpp/api_boolean_sparse.cpp, line: 245
 # File: src/cpp/api_poly.cpp, line: 98
 # File: src/cpp/api_poly.cpp, line: 117
 # File: src/cpp/api_poly.cpp, line: 376
@@ -338,7 +339,6 @@ msgstr ""
 # File: src/cpp/api_int.cpp, line: 88
 # File: src/cpp/api_int.cpp, line: 94
 # File: src/cpp/api_int.cpp, line: 748
-# File: src/cpp/api_pointer.cpp, line: 40
 #, c-format
 msgid "%s: Unable to get argument #%d"
 msgstr ""
@@ -441,26 +441,26 @@ msgstr ""
 msgid "%s: Unable to get type of variable \"%s\""
 msgstr ""
 #
+# File: src/cpp/api_pointer.cpp, line: 177
+# File: src/cpp/api_pointer.cpp, line: 184
+# File: src/cpp/api_double.cpp, line: 349
+# File: src/cpp/api_double.cpp, line: 356
+# File: src/cpp/api_boolean_sparse.cpp, line: 199
+# File: src/cpp/api_boolean.cpp, line: 167
+# File: src/cpp/api_boolean.cpp, line: 174
 # File: src/cpp/api_string.cpp, line: 216
 # File: src/cpp/api_string.cpp, line: 223
 # File: src/cpp/api_string.cpp, line: 417
 # File: src/cpp/api_string.cpp, line: 424
-# File: src/cpp/api_double.cpp, line: 349
-# File: src/cpp/api_double.cpp, line: 356
 # File: src/cpp/api_sparse.cpp, line: 315
 # File: src/cpp/api_sparse.cpp, line: 330
-# File: src/cpp/api_boolean.cpp, line: 167
-# File: src/cpp/api_boolean.cpp, line: 174
-# File: src/cpp/api_boolean_sparse.cpp, line: 199
-# File: src/cpp/api_common.cpp, line: 207
 # File: src/cpp/api_poly.cpp, line: 312
 # File: src/cpp/api_poly.cpp, line: 327
 # File: src/cpp/api_list.cpp, line: 285
 # File: src/cpp/api_list.cpp, line: 298
 # File: src/cpp/api_int.cpp, line: 583
 # File: src/cpp/api_int.cpp, line: 590
-# File: src/cpp/api_pointer.cpp, line: 177
-# File: src/cpp/api_pointer.cpp, line: 184
+# File: src/cpp/api_common.cpp, line: 207
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
 msgstr ""

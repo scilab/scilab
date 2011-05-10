@@ -290,7 +290,6 @@ copy scicos_blocks_f_header.def+scicos_blocks_f.vcdef scicos_blocks_f.def &gt;nu
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="affich.c" />
     <ClCompile Include="csslti.c" />
     <ClCompile Include="cstblk.c" />
     <ClCompile Include="delay.c" />
@@ -350,7 +349,6 @@ copy scicos_blocks_f_header.def+scicos_blocks_f.vcdef scicos_blocks_f.def &gt;nu
     <ClCompile Include="zcross.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="affich.f" />
     <f2c_rule Include="csslti.f" />
     <f2c_rule Include="cstblk.f" />
     <f2c_rule Include="delay.f" />

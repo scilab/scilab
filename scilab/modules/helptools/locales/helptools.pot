@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-04-04 22:09+0100\n"
+"Revision-Date: 2011-05-10 11:48+0100\n"
 
 # File: macros/xmltoformat.sci, line: 389
 # File: macros/xmltoformat.sci, line: 416
@@ -94,6 +94,9 @@ msgstr ""
 msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 #
+# File: macros/clean_help.sci, line: 72
+# File: macros/clean_help.sci, line: 87
+# File: macros/clean_help.sci, line: 100
 # File: macros/xmltoformat.sci, line: 233
 # File: macros/xmltoformat.sci, line: 243
 # File: macros/xmltoformat.sci, line: 250
@@ -104,9 +107,6 @@ msgstr ""
 # File: macros/xmltoformat.sci, line: 692
 # File: macros/xmltoformat.sci, line: 736
 # File: macros/xmltoformat.sci, line: 769
-# File: macros/clean_help.sci, line: 72
-# File: macros/clean_help.sci, line: 87
-# File: macros/clean_help.sci, line: 100
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr ""
@@ -190,12 +190,12 @@ msgstr ""
 msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr ""
 #
-# File: macros/xmltohtml.sci, line: 28
-# File: macros/xmltops.sci, line: 28
-# File: macros/xmltoweb.sci, line: 28
 # File: macros/xmltopdf.sci, line: 28
 # File: macros/xmltojar.sci, line: 28
+# File: macros/xmltops.sci, line: 28
 # File: macros/xmltochm.sci, line: 42
+# File: macros/xmltoweb.sci, line: 28
+# File: macros/xmltohtml.sci, line: 28
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
@@ -226,8 +226,8 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/xmltoformat.sci, line: 65
 # File: macros/clean_help.sci, line: 44
+# File: macros/xmltoformat.sci, line: 65
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -254,8 +254,8 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: macros/help.sci, line: 32
 # File: macros/help_skeleton.sci, line: 20
+# File: macros/help.sci, line: 32
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
@@ -315,10 +315,10 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
+# File: macros/help_from_sci.sci, line: 147
 # File: macros/xmltoformat.sci, line: 938
 # File: macros/xmltoformat.sci, line: 1058
 # File: macros/xmltoformat.sci, line: 1147
-# File: macros/help_from_sci.sci, line: 147
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
@@ -368,6 +368,13 @@ msgstr ""
 #
 # File: macros/xmltoformat.sci, line: 162
 msgid "Help chapter"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 247
+# File: sci_gateway/cpp/sci_buildDocv2.cpp, line: 243
+msgid ""
+"If Scilab is started in a chroot, you might want to try to set the two "
+"environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
 #
 # File: sci_gateway/c/gw_helptools.c, line: 38

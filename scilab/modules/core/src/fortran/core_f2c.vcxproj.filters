@@ -153,9 +153,6 @@
     <ClCompile Include="indxg.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="inibrk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="inisci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -512,9 +509,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="indxg.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="inibrk.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="inisci.f">

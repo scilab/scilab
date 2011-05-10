@@ -59,7 +59,7 @@ public class ExportBitmap extends ExportToFile {
      */
     public ExportBitmap(String filename, int filetype, float jpegCompressionQuality) {
         super(filename, filetype);
-	this.jpegCompressionQuality = jpegCompressionQuality;
+        this.jpegCompressionQuality = jpegCompressionQuality;
     }
 
     /**
@@ -136,13 +136,13 @@ public class ExportBitmap extends ExportToFile {
             ImageUtil.flipImageVertically(dump);
         }
         try {
-	    if (jpegCompressionQuality != -1) {
-		if (!writeJPEG(dump, jpegCompressionQuality, file)) {
-		    return ExportRenderer.IOEXCEPTION_ERROR;
-		}
-	    } else {
-		ImageIO.write(dump, getFileExtension(), file);
-	    }
+            if (jpegCompressionQuality != -1) {
+                if (!writeJPEG(dump, jpegCompressionQuality, file)) {
+                    return ExportRenderer.IOEXCEPTION_ERROR;
+                }
+            } else {
+                ImageIO.write(dump, getFileExtension(), file);
+            }
         } catch (IOException e) {
             return ExportRenderer.IOEXCEPTION_ERROR;
         }
@@ -165,20 +165,20 @@ public class ExportBitmap extends ExportToFile {
      * @param file the output file
      */
     private boolean writeJPEG(BufferedImage image, float compressionQuality, File file) throws IOException {
-	Iterator iter = ImageIO.getImageWritersByFormatName("jpeg");
-	ImageWriter writer;
-	if (iter.hasNext()) {
-	     writer = (ImageWriter) iter.next();
-	} else {
-	    return false;
-	}
-	ImageWriteParam param = writer.getDefaultWriteParam();
-	param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
-	param.setCompressionQuality(compressionQuality);
-	FileImageOutputStream output = new FileImageOutputStream(file);
-	writer.setOutput(output);
-	writer.write(null, new IIOImage(image, null, null), param);
-	writer.dispose();
-	return true;
+        Iterator iter = ImageIO.getImageWritersByFormatName("jpeg");
+        ImageWriter writer;
+        if (iter.hasNext()) {
+            writer = (ImageWriter) iter.next();
+        } else {
+            return false;
+        }
+        ImageWriteParam param = writer.getDefaultWriteParam();
+        param.setCompressionMode(ImageWriteParam.MODE_EXPLICIT);
+        param.setCompressionQuality(compressionQuality);
+        FileImageOutputStream output = new FileImageOutputStream(file);
+        writer.setOutput(output);
+        writer.write(null, new IIOImage(image, null, null), param);
+        writer.dispose();
+        return true;
     }
 }

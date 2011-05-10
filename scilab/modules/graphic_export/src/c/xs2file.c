@@ -60,14 +60,14 @@ int xs2file(char * fname, ExportFileType fileType )
     {	
       char **fileName = NULL;
       char *real_filename = NULL;
-      float jpegCompressionQuality = 0.75f;
+      float jpegCompressionQuality = 0.95f;
       ExportOrientation orientation = EXPORT_PORTRAIT; /* default orientation */
       long int lout = 0;
       int out_n = 0;
       int m1 = 0, n1 = 0, l1 = 0;
       int figurenum = -1;
       sciPointObj* figurePtr = NULL;
-      int status = 0;
+      char *status = NULL;
 
       /* get handle by figure number */
       if(GetType(1) == sci_matrix)
@@ -203,30 +203,11 @@ int xs2file(char * fname, ExportFileType fileType )
 	  freeArrayOfString(fileName,m1*n1);
 
 	  /* treat errors */
-	  switch(status)
-	    {
-	    case EXPORT_UNKNOWN_GLEXCEPTION_ERROR :
-	      Scierror(999,_("%s: OpenGL error during export.\n"),fname);
+	  if (strlen(status) != 0)
+	  { 
+	      Scierror(999,_("%s: %s\n"), fname, status);
 	      return 0;
-	    case EXPORT_IOEXCEPTION_ERROR :
-	      Scierror(999,_("%s: Unable to create export file, permission denied.\n"),fname);
-	      return 0;
-	    case EXPORT_INVALID_FILE :
-	      Scierror(999,_("%s: Unable to create export file, invalid file.\n"),fname);
-	      return 0;
-	    case EXPORT_GL2PS_ERROR :
-	      Scierror(999,_("%s: GL2PS error during export.\n"),fname);
-	      return 0;
-	    case EXPORT_GL2PS_OVERFLOW :
-	      Scierror(999,_("%s: Unable to create export file, figure is too big.\n"),fname);
-	      return 0;
-	    case EXPORT_GL2PS_UNINITIALIZED :
-	      Scierror(999,_("%s: GL2PS error during export.\n"),fname);
-	      return 0;
-	    default :
-	      // NO ERROR
-	      break;
-	    }
+	  }
 	}
       else
 	{

@@ -81,6 +81,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "intersci-n", "modules\intersci\src\exe\interscin\interscin.vcxproj", "{53AAB5BC-2C08-4BBA-9793-C36140A404F8}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "gui", "modules\gui\src\c\gui.vcxproj", "{45CA5B12-7601-4968-AE16-16069FD1A152}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "optimization", "modules\optimization\src\c\optimization.vcxproj", "{425B887B-9FC5-4CD2-B632-DBFC000E3E25}"
 	ProjectSection(ProjectDependencies) = postProject

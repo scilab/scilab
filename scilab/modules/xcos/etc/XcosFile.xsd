@@ -1,7 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="XcosDiagram" type="XcosDiagramType"/>
-  <xs:element name="SuperBlockDiagram" type="SuperBlockDiagramType"/>
+  <xs:element name="XcosDiagram" type="XcosDiagramType">
+      <xs:key name="mxGraphId">
+        <xs:selector xpath="./mxGraphModel/root/*"/>
+        <xs:field xpath="@id"/>
+      </xs:key>
+      <xs:keyref name="mxGraphIdRef" refer="mxGraphId">
+        <xs:selector xpath="*"/>
+        <xs:field xpath="@parent"/>
+      </xs:keyref>
+  </xs:element>
+  <xs:element name="SuperBlockDiagram" type="SuperBlockDiagramType">
+        <xs:key name="mxGraphCellId">
+        <xs:selector xpath="./mxGraphModel/root/*"/>
+        <xs:field xpath="@id"/>
+      </xs:key>
+      <xs:keyref name="mxGraphCellIdRef" refer="mxGraphCellId">
+        <xs:selector xpath="*"/>
+        <xs:field xpath="@parent"/>
+      </xs:keyref>
+  </xs:element>
+  <xs:simpleType name="uidType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="(-)?[a-z0-9]+:(-)?[a-z0-9]+:(-)?[a-z0-9]+(#identifier)?"/>
+    </xs:restriction>
+  </xs:simpleType>
   <xs:complexType name="addType">
     <xs:simpleContent>
       <xs:extension base="xs:string">
@@ -41,8 +64,8 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="edge" use="optional"/>
     <xs:attribute type="xs:string" name="source" use="optional"/>
@@ -137,10 +160,10 @@
     </xs:choice>
     <xs:attribute type="xs:short" name="angle" use="optional"/>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -178,9 +201,9 @@
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:short" name="connectedLinkId" use="optional"/>
     <xs:attribute type="xs:byte" name="dataColumns" use="optional"/>
@@ -218,9 +241,9 @@
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:short" name="connectedLinkId" use="optional"/>
     <xs:attribute type="xs:byte" name="dataColumns" use="optional"/>
@@ -255,9 +278,9 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:string" name="value" use="optional"/>
@@ -294,9 +317,9 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
@@ -333,9 +356,9 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
@@ -373,10 +396,10 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
@@ -495,9 +518,9 @@
       <xs:element type="CommandPortType" name="CommandPort"/>
       <xs:element type="ControlPortType" name="ControlPort"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:string" name="value" use="optional"/>
@@ -537,9 +560,9 @@
     </xs:choice>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
@@ -577,9 +600,9 @@
     </xs:choice>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="dataColumns" use="optional"/>
@@ -618,9 +641,9 @@
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:short" name="angle" use="optional"/>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
@@ -658,9 +681,9 @@
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:short" name="angle" use="optional"/>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
@@ -696,10 +719,10 @@
       <xs:element type="ExplicitInputPortType" name="ExplicitInputPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
@@ -736,13 +759,13 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:short" name="angle" use="optional"/>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="value" use="optional"/>
@@ -776,9 +799,9 @@
       <xs:element type="ExplicitInputPortType" name="ExplicitInputPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -817,9 +840,9 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -854,6 +877,7 @@
       <xs:element type="mxUndoManagerType" name="mxUndoManager" minOccurs="0"/>
       <xs:element type="mxGraphModelType" name="mxGraphModel"/>
       <xs:element type="mxCellType" name="mxCell"/>
+    <xs:element type="mxPointType" name="mxPoint" minOccurs="0"/>
     </xs:sequence>
     <xs:attribute type="xs:byte" name="background" use="optional"/>
     <xs:attribute type="xs:float" name="finalIntegrationTime" use="optional"/>
@@ -897,7 +921,7 @@
     </xs:choice>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -906,7 +930,7 @@
     <xs:attribute type="xs:byte" name="visible" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="dataColumns" use="optional"/>
@@ -936,7 +960,7 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
@@ -945,7 +969,7 @@
     <xs:attribute type="xs:byte" name="vertex" use="optional"/>
     <xs:attribute type="xs:byte" name="visible" use="optional"/>
     <xs:attribute type="xs:string" name="dataType" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:byte" name="dataLines" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>
     <xs:attribute type="xs:byte" name="dataColumns" use="optional"/>
@@ -977,10 +1001,10 @@
     </xs:choice>
     <xs:attribute type="xs:string" name="blockType" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1016,10 +1040,10 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1057,9 +1081,9 @@
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
     <xs:attribute type="xs:int" name="hashCode" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1095,9 +1119,9 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="value" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
@@ -1136,10 +1160,10 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1184,10 +1208,10 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1221,10 +1245,10 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1261,10 +1285,10 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:byte" name="dependsOnU" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1301,9 +1325,9 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:string" name="blockType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
     <xs:attribute type="xs:byte" name="connectable" use="optional"/>
@@ -1339,10 +1363,10 @@
       <xs:element type="ControlPortType" name="ControlPort"/>
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:string" name="interfaceFunctionName" use="optional"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionName" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="style" use="optional"/>
@@ -1380,9 +1404,9 @@
       <xs:element type="SuperBlockDiagramType" name="SuperBlockDiagram"/>
     </xs:choice>
     <xs:attribute type="xs:string" name="blockType" use="optional"/>
-    <xs:attribute type="xs:string" name="id" use="optional"/>
+    <xs:attribute type="uidType" name="id" use="required"/>
     <xs:attribute type="xs:byte" name="ordering" use="optional"/>
-    <xs:attribute type="xs:string" name="parent" use="optional"/>
+    <xs:attribute type="uidType" name="parent" use="optional"/>
     <xs:attribute type="xs:string" name="simulationFunctionType" use="optional"/>
     <xs:attribute type="xs:string" name="value" use="optional"/>
     <xs:attribute type="xs:string" name="as" use="optional"/>

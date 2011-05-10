@@ -35,9 +35,6 @@
     <ClCompile Include="acosh_blk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="affich.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\affich2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -994,9 +991,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\affich.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\jni\AfficheBlock.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

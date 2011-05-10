@@ -52,11 +52,11 @@ typedef enum
   EXPORT_LANDSCAPE = 1
 } ExportOrientation;
 
-int exportToFile(sciPointObj * pFigure,
-                 const char * fileName,
-                 ExportFileType fileType,
-		 const float jpegCompressionQuality,
-                 ExportOrientation orientation);
+char * exportToFile(sciPointObj * pFigure,
+		    const char * fileName,
+		    ExportFileType fileType,
+		    const float jpegCompressionQuality,
+		    ExportOrientation orientation);
 
 #ifdef __cplusplus
 }

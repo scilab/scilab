@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2008-2009 - INRIA - Michael Baudin
- * Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
+ * Copyright (C) 2008 - 2009 - INRIA - Michael Baudin
+ * Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,8 +13,8 @@
  -->
 <refentry
           version="5.0-subset Scilab"
-	        xml:id="neldermead"
-	        xml:lang="fr"
+          xml:id="neldermead"
+          xml:lang="fr"
           xmlns="http://docbook.org/ns/docbook"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           xmlns:svg="http://www.w3.org/2000/svg"
@@ -59,11 +59,11 @@
       function, with bounds and nonlinear constraints
     </para>
 
-    <programlisting role="example">
-      min f(x)
-      l_i &lt;= x_i &lt;= h_i, i = 1,n
-      g_i(x) &lt;= 0, i = 1,nbineq
-    </programlisting>
+    <programlisting role="example"> 
+min f(x)
+l_i &lt;= x_i &lt;= h_i, i = 1,n
+g_i(x) &gt;= 0, i = 1,nbineq
+ </programlisting>
 
     <para>where</para>
 
@@ -1962,9 +1962,10 @@
             <listitem>
               <para>if the following condition</para>
 
-              <programlisting role="example">
-                norm(currentxopt - previousxopt) &lt; tolxrelative * norm(currentxopt) + tolxabsolute
-              </programlisting>
+              <programlisting role="example"> 
+norm(xopt - previousxopt) &lt; tolxrelative * norm(xopt) + tolxabsolute
+ </programlisting>
+
 
               <para>
                 is true, then the status is set to <literal>"tolx"</literal> and <literal>terminate</literal> is
@@ -2553,7 +2554,7 @@ endfunction
   </refsection>
 
   <refsection>
-    <title>Example #1 : basic use</title>
+    <title>Example #1: basic use</title>
 
     <para>
       In the following example, we solve a simple quadratic test case. We
@@ -2586,7 +2587,7 @@ nm = neldermead_destroy(nm);
   </refsection>
 
   <refsection>
-    <title>Example #2 : customized use</title>
+    <title>Example #2: customized use</title>
 
     <para>
       In the following example, we solve the Rosenbrock test case. We
@@ -2610,16 +2611,12 @@ nm = neldermead_destroy(nm);
     </para>
 
     <programlisting role="example">
-      <![CDATA[ 
-mprintf("Defining Rosenbrock function...\n");
+<![CDATA[ 
 function [ f , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
+  f = 100*(x(2)-x(1)^2)^2+(1-x(1))^2;
 endfunction
-x0 = [-1.2 1.0]';
-mprintf("x0=%s\n",strcat(string(x0)," "));
-mprintf("Creating object...\n");
+x0 = [-1.2 1.0]'
 nm = neldermead_new ();
-mprintf("Configuring object...\n");
 nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",x0);
@@ -2632,38 +2629,22 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",0);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-mprintf("Searching for minimum...\n");
 nm = neldermead_search(nm);
-mprintf("Plot contour...\n");
-xmin = -2.0 ; xmax = 2.0 ; ymin = -2.0 ; ymax = 2.0 ; nx = 100 ; ny = 100;
-stepx = (xmax - xmin)/nx
-xdata = xmin:stepx:xmax;
-stepy = (ymax - ymin)/ny
-ydata = ymin:stepy:ymax;
-for ix = 1:length(xdata)
-  for iy = 1:length(ydata)
-    experiment = [xdata(ix) ydata(iy)];
-    [ nm , fiexp ] = neldermead_function ( nm , experiment );
-    zdata ( ix , iy ) = fiexp;
-  end
-end
-wnum = 100001;
-my_handle             = scf(wnum);
-contour ( xdata , ydata , zdata , [1 10 100 500 1000 2000] )
-// Plot starting point
-mprintf("x0 : blue dot\n");
-plot(x0(1),x0(2));
-my_handle.children.children(1).children.mark_mode="on";
-my_handle.children.children(1).children.mark_size = 5;
-my_handle.children.children(1).children.mark_foreground = 2;
-mprintf("xopt : red dot\n");
-xopt = neldermead_get(nm,"-xopt");
-plot(xopt(1),xopt(2));
-my_handle.children.children(1).children.mark_mode="on";
-my_handle.children.children(1).children.mark_size = 5;
-my_handle.children.children(1).children.mark_foreground = 5;
-
+xopt = neldermead_get(nm,"-xopt")
 nm = neldermead_destroy(nm);
+// Contouring the function.
+function f = rosenbrockC ( x1 , x2 )
+  index = 2
+  [ f , index ] = rosenbrock ( [x1,x2]' , index )
+endfunction
+xdata = linspace ( -2 , 2 , 100 );
+ydata = linspace ( -1 , 2 , 100 );
+h = scf();
+contour ( xdata , ydata , rosenbrockC , [2 10 100 500 1000 2000] )
+// Plot starting point: x0 : blue dot
+plot(x0(1),x0(2),"bo");
+// xopt : red star
+plot(xopt(1),xopt(2),"r*");
  ]]>
     </programlisting>
 
@@ -2677,8 +2658,9 @@ nm = neldermead_destroy(nm);
       used.
     </para>
 
-    <programlisting role="example">
-      <![CDATA[ 
+    <screen>
+<![CDATA[ 
+[...]
 =================================================================
 Iteration #156 (total = 156)
 Function Eval #297
@@ -2700,12 +2682,13 @@ Function Evaluation #299 is [6.023D-27] at [1 1]
 xc=1 1, f(xc)=0.000000
   > Perform Inside Contraction
 Sort
+[...]
  ]]>
-    </programlisting>
-  </refsection>
+</screen>
+</refsection>
 
   <refsection>
-    <title>Example #3 : use output function</title>
+    <title>Example #3: use output function</title>
 
     <para>
       In the following example, we show how to use the output command to
@@ -2729,7 +2712,6 @@ Sort
 function [ f , index ] = rosenbrock ( x , index )
   f = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
-
 
 //
 // myoutputcmd --
@@ -2763,7 +2745,8 @@ function myoutputcmd ( state , data )
   // Simplex is a data structure, which can be managed
   // by the optimsimplex class.
   ssize = optimsimplex_size ( simplex )
-  mprintf ( "Iteration #%d, Feval #%d, Fval = %e, x = %s, Size = %e\n", iter, fc, fval, strcat(string(x)," "), ssize);
+  mprintf ( "Iter. #%3d, Feval #%3d, Fval = %.1e, x = %s, S = %.1e\n", ..
+    iter, fc, fval, strcat(string(x)," "), ssize);
 endfunction
 
 
@@ -2792,21 +2775,182 @@ nm = neldermead_destroy(nm);
       <![CDATA[ 
 =================================
 Initialization
-Iteration #0, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
-Iteration #1, Feval #4, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
-Iteration #2, Feval #6, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
-Iteration #3, Feval #8, Fval = 2.420000e+001, x = -1.2 1, Size = 1.000000e+000
-Iteration #4, Feval #10, Fval = 9.999182e+000, x = -1.0125 0.78125, Size = 5.970304e-001
+Iter. #  0, Feval #  5, Fval = 2.4e+001, x = -1.2 1, S = 1.0e+000
+Iter. #  1, Feval #  5, Fval = 2.4e+001, x = -1.2 1, S = 1.0e+000
+Iter. #  2, Feval #  7, Fval = 2.4e+001, x = -1.2 1, S = 1.0e+000
+Iter. #  3, Feval #  9, Fval = 2.4e+001, x = -1.2 1, S = 1.0e+000
+Iter. #  4, Feval # 11, Fval = 1.0e+001, x = -1.0125 0.78125, S = 6.0e-001
+Iter. #  5, Feval # 13, Fval = 4.7e+000, x = -1.028125 1.1328125, S = 3.5e-001
 ...
-Iteration #155, Feval #296, Fval = 2.024754e-026, x = 1 1, Size = 4.601219e-013
-Iteration #156, Feval #298, Fval = 6.871176e-027, x = 1 1, Size = 2.548515e-013
-Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
+Iter. #155, Feval #297, Fval = 2.0e-026, x = 1 1, S = 4.6e-013
+Iter. #156, Feval #299, Fval = 6.9e-027, x = 1 1, S = 2.5e-013
+Iter. #157, Feval #301, Fval = 6.0e-027, x = 1 1, S = 2.8e-013
 =================================
 End of Optimization
-Iteration #157, Feval #300, Fval = 6.023002e-027, x = 1 1, Size = 2.814328e-013
+Iter. #157, Feval #301, Fval = 6.0e-027, x = 1 1, S = 2.8e-013
+ ]]>
+</programlisting>
+</refsection>
+
+  <refsection>
+    <title>Example #4: Optimization with bounds</title>
+
+    <para>
+	The <literal>neldermead</literal> solver can optimize problems with 
+	bounds. 
+	To do this, we can use Box's algorithm, which projects the simplex 
+	into the bounds during the optimization. 
+	In this case, the initial guess must be located within the bounds. 
+	</para>
+	
+    <para>
+	In the following example, we find the minimum of a quadratic function 
+	within given bounds. 
+	In order to compute the initial simplex, we use randomized bounds, that is,
+	we compute k random vertices uniformly distributed within the bounds. 
+	The default value is so that the number of points is twice the number of 
+	variables of the problem. 
+	In this particular case, we have n=2 variables and k=4 vertices.
+	</para>
+
+    <programlisting role="example">
+<![CDATA[ 
+function [ f , index ] = myquad ( x , index )
+    f = x(1)^2 + x(2)^2
+endfunction
+rand("seed" , 0)
+x0 = [1.3 1.8].';
+nm = neldermead_new ();
+nm = neldermead_configure(nm,"-numberofvariables",2);
+nm = neldermead_configure(nm,"-function",myquad);
+nm = neldermead_configure(nm,"-x0",x0);
+nm = neldermead_configure(nm,"-method","box");
+nm = neldermead_configure(nm,"-boundsmin",[1 1]);
+nm = neldermead_configure(nm,"-boundsmax",[2 2]);
+nm = neldermead_configure(nm,"-simplex0method","randbounds");
+nm = neldermead_search(nm);
+xopt = neldermead_get(nm,"-xopt") // Should be [1 1]
+fopt = neldermead_get(nm,"-fopt") // Should be 2
+nm = neldermead_destroy(nm);
  ]]>
     </programlisting>
   </refsection>
+
+  <refsection>
+    <title>Example #5: Optimization with nonlinear constraints</title>
+
+    <para>
+	The <literal>neldermead</literal> solver can optimize problems with 
+	nonlinear constraints. 
+	In the following example, we solve Rosenbrock's Post Office problem, which 
+	has both bounds and linear constraints. 
+	In our example, we will manage the linear constraints as general non-linear 
+	constraints (i.e. the solver does not make a difference if the constraints are 
+	linear or non-linear).
+	This example was first 
+	presented in "An automatic method for finding the greatest or least value of a function", 
+    Rosenbrock, 1960. 
+	This example was first used with the complex method of Box in 
+	"Algorithm 454: The complex method for constrained optimization" by 
+    Richardson, Kuester, 1971. 
+	Richardson and Kuester found the minimum function value 
+    F=-3456, with X1 = 24.01, X2 = 12.00, X3 = 12.00 and 
+    72 Iterations were necessary for them to get this result.
+	</para>
+
+    <para>
+	In the following function, we define the function <literal>fpostoffice</literal>, 
+	which returns both the objective function <literal>f</literal> and the 
+	constraint value <literal>c</literal>. 
+	The original constraint is the "double" inequality constraint 
+	<literal>0&lt;=x(1) + 2 * x(2) + 2 * x(3) &lt;=72</literal>.
+	To take this constraint into account, we turn it into two separate, positive, 
+	constraints and set <literal>c</literal> as a 1-by-2 matrix of doubles. 
+	</para>
+	
+    <programlisting role="example">
+<![CDATA[ 
+  function [ f , c , index ] = fpostoffice ( x , index )
+    f = []
+    c = []
+    if ( index==2 | index==6 ) then
+      f = -x(1) * x(2) * x(3)
+    end
+    
+    if ( index==5 | index==6 ) then
+      c1 = x(1) + 2 * x(2) + 2 * x(3)
+      c2 = 72 - c1
+      c = [c1 c2]
+    end
+  endfunction
+ ]]>
+</programlisting>
+
+    <para>
+	In the following script, we solve Rosenbrock's Post Office problem. 
+	First, we initialize the random number generator, so that the results are always the
+    same. 
+	Then, we check that the cost function is correctly defined and that the 
+	constraints are satisfied at the initial guess.
+	Then we configure the algorithm so that Box's algorithm is used and 
+	setup the bounds of the problem. 
+	We configure the parameters of the algorithm as suggested by Box. 
+	</para>
+
+    <programlisting role="example">
+<![CDATA[ 
+  rand("seed" , 0);
+  x0 = [1.0 1.0 1.0].';
+  // Compute f(x0) : should be close to -1
+  fx0 = fpostoffice ( x0 , 2 )
+  // Compute the constraints: cx0 should be [5 67]
+  [ fx0 , cx0, index ] = fpostoffice ( x0 , 6 )
+  // Compute f(xopt) : fopt should be -3456
+  xopt = [24 12 12].';
+  fopt = fpostoffice ( xopt );
+  // Setup optimization
+  nm = neldermead_new ();
+  nm = neldermead_configure(nm,"-numberofvariables",3);
+  nm = neldermead_configure(nm,"-function",fpostoffice);
+  nm = neldermead_configure(nm,"-x0",x0);
+  nm = neldermead_configure(nm,"-maxiter",300);
+  nm = neldermead_configure(nm,"-maxfunevals",300);
+  nm = neldermead_configure(nm,"-method","box");
+  nm = neldermead_configure(nm,"-boundsmin",[0.0 0.0 0.0]);
+  nm = neldermead_configure(nm,"-boundsmax",[42.0 42.0 42.0]);
+  // Configure like Box
+  nm = neldermead_configure(nm,"-simplex0method","randbounds");
+  nm = neldermead_configure(nm,"-nbineqconst",2);
+  nm = neldermead_configure(nm,"-tolxmethod" , %f );
+  nm = neldermead_configure(nm,"-tolsimplexizemethod",%f);
+  nm = neldermead_configure(nm,"-boxtermination" , %t );
+  nm = neldermead_configure(nm,"-boxtolf" , 0.001 );
+  nm = neldermead_configure(nm,"-boxboundsalpha" , 0.0001 );
+  //
+  // Check that the cost function is correctly connected.
+  [ nm , result ] = neldermead_function ( nm , x0 );
+  //
+  // Perform optimization
+  nm = neldermead_search(nm);
+  xcomp = neldermead_get(nm,"-xopt")
+  // Compare with the exact optimum:
+  xopt
+  fcomp = neldermead_get(nm,"-fopt")
+  // Compare with the exact function value:
+  fopt
+  nm = neldermead_destroy(nm);
+ ]]>
+</programlisting>
+
+    <para>
+	In general, we should not expect too much from this algorithm with 
+	nonlinear constraints. 
+	Indeed, some cases require thousands of iterations to converge to 
+	an optimum, because the nonlinear constraints leave a too small 
+	space for the simplex to evolve.
+	</para>
+</refsection>
+
 
   <refsection>
     <title>Bibliography</title>

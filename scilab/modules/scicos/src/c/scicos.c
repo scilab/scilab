@@ -4490,7 +4490,7 @@ void set_block_error(int err)
 #endif
 
 
-void Coserror(char *fmt,...) 
+void Coserror(const char *fmt,...) 
 {
 	int retval;
 	va_list ap;

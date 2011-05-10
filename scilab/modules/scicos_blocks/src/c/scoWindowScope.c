@@ -169,7 +169,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 				pSUBWIN_FEATURE(pTemp2)->SRect[1] = xmax[i];
 				break;
 			default:
-				sciprint(_("SCOPE ERROR : scoInitOfWindow incorrect value for dimension argument.\n"));
+				Coserror(_("Incorrect value for dimension argument."));
 				break;
 			}
 			forceRedraw(pTemp2);
@@ -193,7 +193,7 @@ void scoInitOfWindow(ScopeMemory * pScopeMemory, int dimension, int win_id, int 
 	}
 	else
 	{
-		sciprint(_("This Scope (block number : %d) has same number than another. It has been deactivated!\n"),block_number);
+		Coserror(_("This scope has the same window id than another."));
 	}
 }
 /*--------------------------------------------------------------------------*/ 
@@ -284,7 +284,7 @@ void scoRefreshDataBoundsX(ScopeMemory * pScopeMemory, double t)
 					break;
 				}
 			default:
-				sciprint(_("SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n"));
+				Coserror(_("Cannot use %s with this type of object."), "scoRefreshDataBoundsX");
 				break;
 			}
 			/* Dont forget to reinit it */
@@ -386,7 +386,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 			break;
 
 		default:
-			sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+			Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 			break;
 		}
 
@@ -419,7 +419,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 			break;
 
 		default:
-			sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+			Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 			break;
 		}
 
@@ -438,7 +438,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 				NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
 				break;
 			default:
-				sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+				Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 				break;
 			}
 
@@ -497,7 +497,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 			NbrPtsShort = pSEGS_FEATURE(pShortDraw)->Nbr1;
 			break;
 		default:
-			sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+			Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 			break;
 		}
 		if (force_update[i] == 1) //** scope need a redraw 
@@ -513,7 +513,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 				NbrPtsLong = pSEGS_FEATURE(pLongDraw)->Nbr1;
 				break;
 			default:
-				sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+				Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 				break;
 			}
 
@@ -545,7 +545,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 					pSEGS_FEATURE(pLongDraw)->Nbr2 = NbrPtsLong+NbrPtsShort;
 					break;
 				default:
-					sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+					Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 					break;
 				}
 				/*End of Block for Memory*/
@@ -576,7 +576,7 @@ void scoDrawScopeAmplitudeTimeStyle(ScopeMemory * pScopeMemory, double t)
 						/* Do Nothing */
 						break;
 					default:
-						sciprint(_("SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of object\n"));
+						Coserror(_("Cannot use %s with this type of object."), "scoDrawScopeAmplitudeTimeStyle");
 						break;
 					}
 				}

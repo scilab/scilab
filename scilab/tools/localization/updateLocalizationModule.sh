@@ -41,7 +41,6 @@ fi
 
 
 XGETTEXT=/usr/bin/xgettext
-MSGMERGE=/usr/bin/msgmerge
 FROM_CODE=ISO-8859-1
 EXTENSIONS=( c h cpp hxx java sci sce start quit )
 TARGETDIR=locales/

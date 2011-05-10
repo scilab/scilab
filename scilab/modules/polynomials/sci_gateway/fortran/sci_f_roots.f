@@ -1,5 +1,6 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) ????-2008 - INRIA
+c Copyright (C) ????-2008 - INRIA - Serge Steer
+c Copyright (C) 2011 - DIGITEO - Michael Baudin
 c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -15,8 +16,10 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer vol
       integer fail
       logical ref,eigen
-      integer eig
-      data eig/14/
+      integer algo_eig
+      integer algo_fast
+      data algo_eig/14/
+      data algo_fast/15/
 c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -31,7 +34,11 @@ c
          return
       endif
 c
-      eigen=.false.
+c if algo=="e", then eigen = .true.
+c if algo=="f", then eigen = .false.
+c
+      eigen=.true.
+c Read the algo option
       if (rhs.eq.2) then
          ilopt=iadr(lstk(top))
          if(istk(ilopt).lt.0) ilopt=iadr(istk(ilopt+1))
@@ -45,12 +52,21 @@ c
             call error(89)
             return
          endif
-         if(istk(ilopt+5).ne.2.or.istk(ilopt+6).ne.eig) then
+         if(istk(ilopt+5).ne.2) then
             err=2
             call error(116)
             return
+         else
+            if (istk(ilopt+6)==algo_eig) then
+              eigen=.true.
+            elseif (istk(ilopt+6)==algo_fast) then
+              eigen=.false.
+            else
+              err=2
+              call error(116)
+              return
+            endif
          endif
-         eigen=.true.
          rhs=rhs-1
          top=top-1
       endif
@@ -68,9 +84,18 @@ c
       m1=istk(il1+1)
       n1=istk(il1+2)
       mn1=m1*n1
-      if(m1*n1.eq.0) return
+      if(m1*n1.eq.0) then
+        return
+      endif
 
       it1=istk(il1+3)
+c If "fast" algo was chosen and polynomial is complex, 
+c then produce an error.
+      if ( .not.eigen  .and. it1 .eq. 1 ) then
+        err=2
+        call error(116)
+        return
+      endif
 
       if(istk(il1).eq.1) then
 c     for Matlab compatibility root of the vector of coefficients
@@ -109,12 +134,26 @@ c     for Matlab compatibility root of the vector of coefficients
       endif
       l1=sadr(ilr+4)
  21   n=n-1
-      if(n.lt.0) goto 24
+      if(n.lt.0) then
+        goto 24
+      endif
       t=abs(stk(lc+n))
-      if(it1.eq.1) t=t+abs(stk(lc+n+vol))
-      if(t.eq.0.0d+0) goto 21
+      if(it1.eq.1) then
+        t=t+abs(stk(lc+n+vol))
+      endif
+      if(t.eq.0.0d+0) then
+        goto 21
+      endif
 
-      if (eigen) goto 22
+      if ( .not.eigen  .and.n.gt.100) then
+c If "fast" algo was chosen and polynomial has degree greater than 100, 
+c then produce an error.
+        err=2
+        call error(116)
+        return
+      endif
+
+      if (.not.eigen) then
 c
 c     real polynomial: rpoly algorithm
 c     this alg is much more speedy, but it may happens that it gives
@@ -124,7 +163,6 @@ C     1.355 and 6.65 and the other ones inside a circle centered in 0
 C     with radius 1
 C
 
-      if(it1.eq.0.and.n.le.100) then
          lp=max(lw,l1+2*n)
          err=lp+n+1-lstk(bot)
          if(err.gt.0) then
@@ -151,50 +189,52 @@ C
          if(n.eq.0) istk(ilr+2)=0
          istk(ilr+3)=1
          lstk(top+1)=l1+2*n
-         goto 999
-      endif
-
- 22   continue
+         return
+      else
 c
 c     Companion matrix method
-      lw=lw+n*n*(it1+1)
-      err=lw+n*(it1+1)-lstk(bot)
-      if(err.gt.0) then
-         call error(17)
-         return
-      endif
-      sr=stk(lc+n)
-      call unsfdcopy(n,stk(lc),-1,stk(lw),1)
-      if(it1.eq.0) then
-         call dscal(n,-1.0d+0/sr,stk(lw),1)
-      else
-         si=stk(lc+vol+n)
-         t=sr*sr+si*si
-         sr=-sr/t
-         si=si/t
-         call unsfdcopy(n,stk(lc+vol),-1,stk(lw+n),1)
-         call wscal(n,sr,si,stk(lw),stk(lw+n),1)
-      endif
-      call dset(n*n*(it1+1),0.0d+0,stk(l1),1)
-      call dset(n-1,1.0d+0,stk(l1+n),n+1)
-      call unsfdcopy(n,stk(lw),1,stk(l1),1)
-      if(it1.eq.1) call unsfdcopy(n,stk(lw+n),1,stk(l1+n*n),1)
-      lstk(top+1)=l1+n*n*(it1+1)
-      istk(ilr)=1
-      istk(ilr+1)=n
-      istk(ilr+2)=n
-      istk(ilr+3)=it1
-      fin=3
-      fun=2
+        lw=lw+n*n*(it1+1)
+        err=lw+n*(it1+1)-lstk(bot)
+        if(err.gt.0) then
+           call error(17)
+           return
+        endif
+        sr=stk(lc+n)
+        call unsfdcopy(n,stk(lc),-1,stk(lw),1)
+        if(it1.eq.0) then
+           call dscal(n,-1.0d+0/sr,stk(lw),1)
+        else
+           si=stk(lc+vol+n)
+           t=sr*sr+si*si
+           sr=-sr/t
+           si=si/t
+           call unsfdcopy(n,stk(lc+vol),-1,stk(lw+n),1)
+           call wscal(n,sr,si,stk(lw),stk(lw+n),1)
+        endif
+        call dset(n*n*(it1+1),0.0d+0,stk(l1),1)
+        call dset(n-1,1.0d+0,stk(l1+n),n+1)
+        call unsfdcopy(n,stk(lw),1,stk(l1),1)
+        if(it1.eq.1) then
+          call unsfdcopy(n,stk(lw+n),1,stk(l1+n*n),1)
+        endif
+        lstk(top+1)=l1+n*n*(it1+1)
+        istk(ilr)=1
+        istk(ilr+1)=n
+        istk(ilr+2)=n
+        istk(ilr+3)=it1
+        fin=3
+        fun=2
 c     *call* matds(r c)
-      goto 999
+        return
+      endif
+
 c     polynome de degre 0
  24   istk(ilr)=1
       istk(ilr+1)=0
       istk(ilr+2)=0
       istk(ilr+3)=0
       lstk(top+1)=sadr(ilr+4)
-      goto 999
- 999  return
+	  
+      return
       end
 c			=======================================

@@ -250,7 +250,6 @@ cd ..
     <ClCompile Include="hmcreate.c" />
     <ClCompile Include="hndlops.c" />
     <ClCompile Include="indxg.c" />
-    <ClCompile Include="inibrk.c" />
     <ClCompile Include="inisci.c" />
     <ClCompile Include="intstr.c" />
     <ClCompile Include="isany.c" />
@@ -373,7 +372,6 @@ cd ..
     <f2c_rule Include="hmcreate.f" />
     <f2c_rule Include="hndlops.f" />
     <f2c_rule Include="indxg.f" />
-    <f2c_rule Include="inibrk.f" />
     <f2c_rule Include="inisci.f" />
     <f2c_rule Include="intstr.f" />
     <f2c_rule Include="isany.f" />
