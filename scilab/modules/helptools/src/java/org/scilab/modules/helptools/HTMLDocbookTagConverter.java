@@ -91,6 +91,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
+    protected boolean isToolbox;
+
     /**
      * Constructor
      * @param inName the name of the input stream
@@ -118,6 +120,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         scilabLexer = new ScilabLexer(primConf, macroConf);
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
+        this.isToolbox = isToolbox;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                     public String getLink(String id) {

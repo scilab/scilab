@@ -210,6 +210,8 @@ Help:
 
 * Bug 9362 fixed - An exception was thrown on the pdf doc generation.
 
+* Bug 9439 fixed - There was no entry "Scilab Home" in help toc list.
+
 
 Compilation:
 ============
