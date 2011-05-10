@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
@@ -14,12 +13,14 @@
 #ifndef __GETCLASSPATH_H__
 #define __GETCLASSPATH_H__
 
+#include "dynlib_jvm.h"
+
 /**
 * get classpath
 * @param return size of Classpath Array
 * @return char ** Classpath Array
 */
-char **getClasspath(int *sizeClasspathArray);
+JVM_IMPEXP char **getClasspath(int *sizeClasspathArray);
 
 #endif /* __GETCLASSPATH_H__ */
 /*--------------------------------------------------------------------------*/ 

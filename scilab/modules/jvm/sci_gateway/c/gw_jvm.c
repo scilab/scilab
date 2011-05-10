@@ -24,7 +24,7 @@ static gw_generic_table  Tab[]=
 	{sci_with_embedded_jre,"with_embedded_jre"},
 	{sci_system_setproperty,"system_setproperty"},
 	{NULL, ""}, //system_getproperty
-	{sci_javaclasspath,"javaclasspath"},
+	{NULL, ""}, //javaclasspath
 	{sci_javalibrarypath,"javalibrarypath"}
 };
 /*--------------------------------------------------------------------------*/

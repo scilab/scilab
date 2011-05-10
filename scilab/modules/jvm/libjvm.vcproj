@@ -447,10 +447,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\sci_gateway\c\sci_javaclasspath.c"
-				>
-			</File>
-			<File
 				RelativePath=".\sci_gateway\c\sci_javalibrarypath.c"
 				>
 			</File>
@@ -501,7 +497,7 @@
 				>
 			</File>
 			<File
-				RelativePath=".\src\c\getClasspath.h"
+				RelativePath=".\includes\getClasspath.h"
 				>
 			</File>
 			<File

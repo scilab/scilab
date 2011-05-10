@@ -17,7 +17,7 @@
 #ifdef _MSC_VER
 	#ifdef LIBJVM_GW_EXPORTS
 		#define JVM_GW_IMPEXP __declspec(dllexport)
-	#else
+    #else
 		#define JVM_GW_IMPEXP __declspec(dllimport)
 	#endif
 #else
