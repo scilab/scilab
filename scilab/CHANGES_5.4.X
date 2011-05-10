@@ -93,7 +93,11 @@ Bug fixes:
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
+* bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
+                   a wrong error message on Windows.
+
 * bug 9479 fixed - Typo fixed (intput => input).
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
+
