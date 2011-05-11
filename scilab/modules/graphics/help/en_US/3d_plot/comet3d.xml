@@ -148,6 +148,7 @@ t = linspace(-%pi,%pi,500)';
 clf();comet3d(sin(5*t),sin(t),[t^2,ones(t)])
     ]]></programlisting>
     <programlisting role="example"><![CDATA[
+t = linspace(-%pi,%pi,500)';
 function z=traj(x,y),z=1.5*sin(x^2)*cos(y),endfunction
 clf();comet3d(cos(t),sin(t),traj)
     ]]></programlisting>
