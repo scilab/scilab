@@ -38,6 +38,24 @@ public :
     static void getColor(double s, double smin, double srange, double indexOffset, double* colormap, int colormapSize, float* returnedColor);
 
     /**
+     * Outputs an RGB color mapped to a scalar value s belonging to an [smin, smax] interval.
+     * The output color is looked up in an RGB colormap, using a linear mapping between a sub-interval of the latter and s.
+     * It neither checks whether srange is greater than 0 nor verifies that the sub-interval is included within the colormap's
+     * range (which must be ensured when specifying the sub-interval's bounds).
+     * @param[in] the scalar value.
+     * @param[in] the interval's minimum value.
+     * @param[in] the interval's range (smax-smin).
+     * @param[in] an offset added to the index computed from s.
+     * @param[in] a pointer to the colormap used.
+     * @param[in] the colormap's size.
+     * @param[in] the index specifying the colormap sub-interval's lower bound.
+     * @param[in] the index specifying the colormap sub-interval's upper bound.
+     * @param[out] a pointer to the array into which the resulting color is output (its R, G, B components are written consecutively).
+     */
+    static void getColor(double s, double smin, double srange, double indexOffset, double* colorMap, int minIndex, int maxIndex,
+        int colormapSize, float* returnedColor);
+
+    /**
      * Outputs an RGB color directly mapped to a scalar value s.
      * The output color is looked up in an RGB colormap, using s as a direct index.
      * @param[in] the scalar value used as an index.
