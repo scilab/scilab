@@ -361,6 +361,8 @@ Bug Fixes:
 
 * Bug 9442 fixed - Sometimes, an exception could be thrown in the console.
 
+* Bug 9457 fixed - set("figure_style", "new") returned a error message.
+
 
             Changes between versions 5.3.0 and 5.3.1 of Scilab
             =================================================
