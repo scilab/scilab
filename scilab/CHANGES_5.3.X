@@ -173,6 +173,12 @@ Dynamic Link:
 * Added 'ilib_include_path' macro to handle includes flag for platform
   compiler. See SEP 55.
 
+* bug 7887 fixed - Under some GNU/Linux distributions (like Ubuntu or Mageia), 
+                   the dynamic link process was using the libstdc++ embedded
+                   into the Scilab distribution. Now, if the compiler is gcc,
+                   the dynamic link guesses the libstdc++ path and use it 
+                   uppermost.
+
 
 Graphics:
 =========
