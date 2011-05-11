@@ -36,6 +36,7 @@
 #include "types_substraction.hxx"
 #include "types_divide.hxx"
 #include "types_power.hxx"
+#include "types_comparison_equal.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"

@@ -1,5 +1,5 @@
 // operations.cpp : Defines the exported functions for the DLL application.
 //
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 

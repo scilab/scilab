@@ -10,8 +10,8 @@
 *
 */
 
-#ifndef __OPERATION_H__
-#define __OPERATION_H__
+#ifndef __DYNLIB_OPERATIONS_HXX__
+#define __DYNLIB_OPERATIONS_HXX__
 
 #ifdef _MSC_VER
 	#if OPERATIONS_EXPORTS
@@ -20,7 +20,7 @@
 		#define EXTERN_OP __declspec (dllimport)
 	#endif
 #else
-	#define EXTERN_OP 
+	#define EXTERN_OP
 #endif
 
-#endif /* __OPERATION_H__ */
+#endif /* __DYNLIB_OPERATIONS_HXX__ */

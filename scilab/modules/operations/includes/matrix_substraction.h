@@ -13,7 +13,7 @@
 #ifndef __MATRIX_SUBSTRACT_H__
 #define __MATRIX_SUBSTRACT_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 
 EXTERN_OP int iSubstractRealIdentityToRealMatrix(double _dblReal1, double* _pdblReal2, int _iRows2, int _iCols2, double* _pdblRealOut);
 EXTERN_OP int iSubstractRealIdentityToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2, double* _pdblRealOut, double* _pdblImgOut);

@@ -13,7 +13,7 @@
 #ifndef __TYPES_FINITE__
 #define __TYPES_FINITE__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "double.hxx"
 
 extern "C"

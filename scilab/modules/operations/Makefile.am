@@ -18,7 +18,8 @@ OPERATIONS_CPP_SOURCES =  src/cpp/operations.cpp \
 			src/cpp/types_divide.cpp \
 			src/cpp/types_addition.cpp \
 			src/cpp/types_power.cpp \
-			src/cpp/types_finite.cpp
+			src/cpp/types_finite.cpp \
+			src/cpp/types_comparison_equal.cpp
 
 pkglib_LTLIBRARIES = libscioperations.la
 

@@ -13,7 +13,7 @@
 #ifndef __MATRIX_DIV_H__
 #define __MATRIX_DIV_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "basic_functions.h"
 #include "doublecomplex.h"
 #include "matrix_transpose.h"

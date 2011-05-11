@@ -13,7 +13,7 @@
 #ifndef __MATRIX_ADD_H__
 #define __MATRIX_ADD_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 
 EXTERN_OP int iAddRealScalarToRealMatrix(double _dblReal1, double* _pdblReal2, int* _piDims2, int _iDims2, double* _pdblOut);
 EXTERN_OP int iAddRealScalarToComplexMatrix(double _dblReal1, double* _pdblReal2, double* _pdblImg2, int* _piDims2, int _iDims2, double* _pdblRealOut, double *_pdblImgOut);

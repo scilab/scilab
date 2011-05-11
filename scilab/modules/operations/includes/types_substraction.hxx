@@ -14,7 +14,7 @@
 #ifndef __TYPES_SUB_H__
 #define __TYPES_SUB_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 
@@ -29,9 +29,9 @@ using namespace types;
 */
 EXTERN_OP InternalType* GenericMinus(InternalType *_pLeftOperand, InternalType *_pRightOperand);
 
-EXTERN_OP int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
-EXTERN_OP int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);
-EXTERN_OP int SubstractDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom **_pPolyOut);
-EXTERN_OP int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut);
+int SubstractDoubleToDouble(Double* _pDouble1, Double* _pDouble2, Double **_pDoubleOut);
+int SubstractPolyToDouble(Double *_pDouble, Polynom *_pPoly, Polynom **_pPolyOut);
+int SubstractDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom **_pPolyOut);
+int SubstractPolyToPoly(Polynom *_pPoly1, Polynom *_pPoly2, Polynom **_pPolyOut);
 
 #endif /* __TYPES_SUB_H__ */

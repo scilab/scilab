@@ -13,7 +13,7 @@
 #ifndef __DOUBLECOMPLEX_H__
 #define __DOUBLECOMPLEX_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 /**
 * structure double complex
 * r real part

@@ -25,6 +25,8 @@ extern "C"
     #include "os_swprintf.h"
 }
 
+using namespace types;
+
 InternalType *GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;

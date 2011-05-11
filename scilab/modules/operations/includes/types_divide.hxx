@@ -13,15 +13,15 @@
 #ifndef __TYPES_DIVIDE_HXX__
 #define __TYPES_DIVIDE_HXX__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 
 EXTERN_OP types::InternalType *GenericRDivide(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
-EXTERN_OP int DivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
-EXTERN_OP int DividePolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom** _pPolyOut);
-EXTERN_OP int DivideDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
+int DivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
+int DividePolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom** _pPolyOut);
+int DivideDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
 
 
 #endif /* !__TYPES_DIVIDE_HXX__ */

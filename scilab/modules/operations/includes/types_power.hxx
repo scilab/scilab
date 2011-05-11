@@ -13,7 +13,7 @@
 #ifndef __TYPES_POWER_HXX__
 #define __TYPES_POWER_HXX__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 

@@ -318,7 +318,7 @@ bool FuncManager::LoadFuncByModule(void)
     //load gateways
 	for(itName = m_ModuleName.begin() ; itName != m_ModuleName.end() ; itName++)
 	{
-		map<wstring, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
+        std::map<wstring, GW_MOD>::iterator itModule = m_ModuleMap.find(*itName);
 		if(itModule != m_ModuleMap.end())
 		{
             //check if module have gateways

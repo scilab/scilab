@@ -13,26 +13,26 @@
 #ifndef __MATRIC_POWER_H__
 #define __MATRIC_POWER_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 
 //Scalar ^ Scalar
 EXTERN_OP int iPowerRealScalarByRealScalar(
-		double _dblReal1, 
-		double _dblReal2, 
+		double _dblReal1,
+		double _dblReal2,
 		double* _pdblRealOut, double* _pdblImgOut, int *_piComplex);
 
 EXTERN_OP int iPowerRealScalarByComplexScalar(
-		double _dblReal1, 
-		double _dblReal2, double _dblImg2, 
+		double _dblReal1,
+		double _dblReal2, double _dblImg2,
 		double* _pdblRealOut, double* _pdblImgOut);
 
 EXTERN_OP int iPowerComplexScalarByRealScalar(
-		double _dblReal1, double _dblImg1, 
-		double _dblReal2, 
+		double _dblReal1, double _dblImg1,
+		double _dblReal2,
 		double* _pdblRealOut, double* _pdblImgOut);
 
 EXTERN_OP int iPowerComplexScalarByComplexScalar(
-		double _dblReal1, double _dblImg1, 
+		double _dblReal1, double _dblImg1,
 		double _dblReal2, double _dblImg2, double* _pdblRealOut, double* _pdblImgOut);
 
 //Scalar ^ Matrix
@@ -56,7 +56,7 @@ EXTERN_OP int iPowerComplexScalarByComplexMatrix(
 		double* _pdblReal2, double* _pdblImg2, int _iRows2, int _iCols2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
-//Square Matrix ^ Scalar 
+//Square Matrix ^ Scalar
 EXTERN_OP int iPowerRealSquareMatrixByRealScalar(
 		double* _pdblReal1, int _iRows1, int _iCols1,
 		double _dblReal2,
@@ -85,17 +85,17 @@ EXTERN_OP int iPowerRealMatrixByRealMatrix(
 
 EXTERN_OP int iPowerRealMatrixByComplexMatrix(
 		double* _pdblReal1, int _iRows1, int _iCols1,
-		double* _pdblReal2, double* _pdblImg2, 
+		double* _pdblReal2, double* _pdblImg2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
 EXTERN_OP int iPowerComplexMatrixByRealMatrix(
 		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
-		double* _pdblReal2, 
+		double* _pdblReal2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
 EXTERN_OP int iPowerComplexMatrixByComplexMatrix(
 		double* _pdblReal1, double* _pdblImg1, int _iRows1, int _iCols1,
-		double* _pdblReal2, double* _pdblImg2, 
+		double* _pdblReal2, double* _pdblImg2,
 		double* _pdblRealOut,	double* _pdblImgOut);
 
 

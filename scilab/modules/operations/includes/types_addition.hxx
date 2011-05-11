@@ -14,13 +14,11 @@
 #ifndef __TYPES_ADD_H__
 #define __TYPES_ADD_H__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 #include "internal.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
-
-using namespace types;
 
 /*
 ** Try to find a good algorithm to perform addition between those 2 datatypes.
@@ -30,11 +28,11 @@ using namespace types;
 ** @return addition result
 **
 */
-EXTERN_OP InternalType* GenericPlus(InternalType *_pLeftOperand, InternalType *_pRightOperand);
+EXTERN_OP types::InternalType* GenericPlus(types::InternalType *_pLeftOperand, types::InternalType *_pRightOperand);
 
-EXTERN_OP int AddDoubleToDouble(Double *_pDouble1, Double *_pDouble2, Double** _pDoubleOut);
-EXTERN_OP int AddDoubleToPoly(Polynom *_pPoly, Double *_pDouble, Polynom ** _pPolyOut);
-EXTERN_OP int AddPolyToPoly(Polynom* pPoly1, Polynom* _pPoly2, Polynom ** _pPolyOut);
-EXTERN_OP int AddStringToString(String *_pString1, String *_pString2, String** _pStringOut);
+int AddDoubleToDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double** _pDoubleOut);
+int AddDoubleToPoly(types::Polynom *_pPoly, types::Double *_pDouble, types::Polynom ** _pPolyOut);
+int AddPolyToPoly(types::Polynom* pPoly1, types::Polynom* _pPoly2, types::Polynom ** _pPolyOut);
+int AddStringToString(types::String *_pString1, types::String *_pString2, types::String** _pStringOut);
 
 #endif /* __TYPES_ADD_H__ */

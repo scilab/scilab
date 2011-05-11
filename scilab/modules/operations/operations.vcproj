@@ -385,6 +385,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\types_comparison_equal.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\types_divide.cpp"
 				>
 			</File>
@@ -412,6 +416,10 @@
 			>
 			<File
 				RelativePath=".\includes\doublecomplex.h"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\dynlib_operations.hxx"
 				>
 			</File>
 			<File
@@ -451,15 +459,15 @@
 				>
 			</File>
 			<File
-				RelativePath=".\includes\operation.hxx"
-				>
-			</File>
-			<File
 				RelativePath=".\includes\operations_tools.h"
 				>
 			</File>
 			<File
 				RelativePath=".\includes\types_addition.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\types_comparison_equal.hxx"
 				>
 			</File>
 			<File

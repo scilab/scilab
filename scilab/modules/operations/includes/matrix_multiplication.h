@@ -13,7 +13,7 @@
 #ifndef __MATRIX_MULT__
 #define __MATRIX_MULT__
 
-#include "operation.hxx"
+#include "dynlib_operations.hxx"
 
 EXTERN_OP int iMultiComplexMatrixByComplexMatrix(
 		double *_pdblReal1,		double *_pdblImg1, int _iRows1, int _iCols1,
@@ -61,7 +61,7 @@ EXTERN_OP int iMultiRealPolyByRealPoly(
 		double *_pdblReal1,	int _iRank1,
 		double *_pdblReal2,	int _iRank2,
 		double *_pdblRealOut, int _iRankOut);
-		
+
 EXTERN_OP int iMultiComplexPolyByRealPoly(
 		double *_pdblReal1,	double *_pdblImg1, int _iRank1,
 		double *_pdblReal2,	int _iRank2,
@@ -78,18 +78,18 @@ EXTERN_OP int iMultiComplexPolyByComplexPoly(
 		double *_pdblRealOut, double *_pdblImgOut, int _iRankOut);
 
 EXTERN_OP int iDotMultiplyRealMatrixByRealMatrix(
-		double* _pdblReal1, 
-		double* _pdblReal2, 
+		double* _pdblReal1,
+		double* _pdblReal2,
 		double* _pdblRealOut, int _iRowsOut, int _iColsOut);
 
 EXTERN_OP int iDotMultiplyRealMatrixByComplexMatrix(
-		double* _pdblReal1, 
+		double* _pdblReal1,
 		double* _pdblReal2, double* _pdblImg2,
 		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
 
 EXTERN_OP int iDotMultiplyComplexMatrixByRealMatrix(
-		double* _pdblReal1, double* _pdblImg1, 
-		double* _pdblReal2, 
+		double* _pdblReal1, double* _pdblImg1,
+		double* _pdblReal2,
 		double* _pdblRealOut, double* _pdblImgOut, int _iRowsOut, int _iColsOut);
 
 EXTERN_OP int iDotMultiplyComplexMatrixByComplexMatrix(
