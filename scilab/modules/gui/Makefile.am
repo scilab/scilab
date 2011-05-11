@@ -302,10 +302,6 @@ images/icons/16x16/search/file.png \
 images/icons/16x16/search/line-found.png \
 images/icons/16x16/search/scilab-file.png \
 images/icons/16x16/actions/save-and-execute.png \
-images/icons/16x16/search/folder.png \
-images/icons/16x16/search/file.png \
-images/icons/16x16/search/line-found.png \
-images/icons/16x16/search/scilab-file.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \
