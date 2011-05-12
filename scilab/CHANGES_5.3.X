@@ -173,6 +173,12 @@ Dynamic Link:
 * Added 'ilib_include_path' macro to handle includes flag for platform
   compiler. See SEP 55.
 
+* bug 7887 fixed - Under some GNU/Linux distributions (like Ubuntu or Mageia), 
+                   the dynamic link process was using the libstdc++ embedded
+                   into the Scilab distribution. Now, if the compiler is gcc,
+                   the dynamic link guesses the libstdc++ path and use it 
+                   uppermost.
+
 
 Graphics:
 =========
@@ -209,6 +215,8 @@ Help:
 * Bug 7305 fixed - issparse was not documented.
 
 * Bug 9362 fixed - An exception was thrown on the pdf doc generation.
+
+* Bug 9439 fixed - There was no entry "Scilab Home" in help toc list.
 
 
 Compilation:
@@ -357,7 +365,9 @@ Bug Fixes:
 
 * Bug 9300 fixed - Scilab crashed when one tried to complete an empty mlist.
 
+* Bug 9442 fixed - Sometimes, an exception could be thrown in the console.
 
+* Bug 9457 fixed - set("figure_style", "new") returned a error message.
 
 
             Changes between versions 5.3.0 and 5.3.1 of Scilab

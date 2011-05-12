@@ -85,6 +85,7 @@ function loadXcosLibs()
   resumedBlocks = removed';
 
   // put all resumed symbols into the parent scope
-  execstr("[" + strcat([resumedLibs resumedBlocks], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks], ", ") + ");");
+  prot = funcprot();
+  execstr("funcprot(0); [" + strcat([resumedLibs resumedBlocks], ", ") + "] = resume(" + strcat([resumedLibs resumedBlocks], ", ") + "); funcprot(" + string(prot) + ");");
 endfunction
 
