@@ -56,33 +56,33 @@ Optimization:
 * neldermead: Added a demo - search for largest smallest polygon.
 
 * bug 7891 fixed - The neldermead component had too many options.
-  Tagged -costfargument option of optimbase as obsolete: will be 
+  Tagged -costfargument option of optimbase as obsolete: will be
   maintained for backward compatibility until 5.4.1.
-  The -fun option can now be a list, where the element #1 is a 
-  function, and the elements #2 to the end are automatically appended to 
+  The -fun option can now be a list, where the element #1 is a
+  function, and the elements #2 to the end are automatically appended to
   the calling sequence.
-  Tagged -outputcommandarg option of optimbase as obsolete: will be 
+  Tagged -outputcommandarg option of optimbase as obsolete: will be
   maintained for backward compatibility until 5.4.1.
-  The -outputcommand option can now be a list, where the element #1 is 
-  a function, and the elements #2 to the end are automatically appended 
+  The -outputcommand option can now be a list, where the element #1 is
+  a function, and the elements #2 to the end are automatically appended
   to the calling sequence.
-  Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch 
-  as obsolete: will be maintained for backward compatibility until 
+  Tagged "outputfun(x,optimValues,state)" calling sequence of fminsearch
+  as obsolete: will be maintained for backward compatibility until
   5.4.1.
   The new calling sequence is "stop=outputfun(x,optimValues,state)"
-  Tagged "myoutputfun(state,data)" calling sequence of neldermead 
-  as obsolete: will be maintained for backward compatibility until 
+  Tagged "myoutputfun(state,data)" calling sequence of neldermead
+  as obsolete: will be maintained for backward compatibility until
   5.4.1.
   The new calling sequence is "stop=myoutputfun(state,data)"
-  Tagged "-myterminateflag" and "-myterminate" options as obsolete: 
+  Tagged "-myterminateflag" and "-myterminate" options as obsolete:
   will be maintained for backward compatibility until 5.4.1.
-  See the help page of neldermead for details to update your 
+  See the help page of neldermead for details to update your
   code, if required.
 
 * Bug 7889 fixed - The tolerance on x for neldermead was too small.
                    Updated -tolxrelative default value from %eps to sqrt(%eps).
 
-* Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used 
+* Bug 8805 fixed - The 'neldermead' function, algorithm box, wrongly used
                    the output function.
 
 * Bug 9567 fixed - The neldermead Overview had a TODO section.
@@ -155,6 +155,7 @@ Bug fixes:
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
+
 * bug 4847 fixed - In uigetfile, there was no way to select files with a given
                    pattern.
 
@@ -165,6 +166,8 @@ Bug fixes:
 
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
+
+* bug 8684 fixed - 'wfir' function produced an error message when used interactively.
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
