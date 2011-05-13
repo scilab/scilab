@@ -7,8 +7,13 @@ SciNotes:
 * In the find/grep tools, add the possibility to use ~ as a joker for user home
   dir. and SCI for Scilab data base dir.
 
+* bug 9334 fixed - Extra lines was added when code was exported into PDF under
+                   Windows.
+
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
                    'seconds'.
+
+* bug 9480 fixed - Highlighted words after selection were wrong under Windows.
 
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
 
