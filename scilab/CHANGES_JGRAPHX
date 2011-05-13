@@ -8,6 +8,8 @@ version.
 Xcos:
 =====
 
+* Update Xcos-style.xml to reflect the change on SvgShape.
+
 Graph:
 ======
 
@@ -19,7 +21,15 @@ JGraphX:
 Reported bugs: 
  * HTML labels bounds are wrong when zoom != 1
    http://www.jgraph.org/bugzilla/show_bug.cgi?id=75
-   
+
+11-MAY-2011: 1.7.0.0
+
+- Fixes clearSelection for toggle events in mxGraphHandler [Java]
+- Adds optional addOffset argument in mxGraph.getPointForEvent [Java,JavaScript]
+
+29-APR-2011: 1.6.1.3
+
+- Adds maximum repulsion distance to organic layout [Java, JavaScript]
 
 05-Apr-2001: 1.6.1.0
 
