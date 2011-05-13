@@ -5,8 +5,119 @@ On the merge commit please remove this file and uncomment the
 "AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx]" line on configure.ac with the right
 version.
 
+Xcos:
+=====
+
+Graph:
+======
+
+* Re-parent SvgShape to mxLabelShape to support gradient and glass features.
+
 JGraphX:
 ========
+
+Reported bugs: 
+ * HTML labels bounds are wrong when zoom != 1
+   http://www.jgraph.org/bugzilla/show_bug.cgi?id=75
+   
+
+05-Apr-2001: 1.6.1.0
+
+- Adds new orthogonal routing option [JavaScript,Java]
+
+01-Apr-2011: 1.6.0.0 beta
+
+- Adds mxGraph.isTerminalPointMovable hook [JavaScript,Java]
+- Disables in-place editing if graph component is disabled [Java]
+- Fixes scrollbars in mxGraphComponet.extendComponent [Java]
+- Uses cached label in mxDefaultTextShape [Java]
+- Removes mxGraphControl.getDisplayLabelForCell [Java]
+- Changes signature of mxGraph.drawState [Java]
+- Adds mxGraphView.getWordWrapWidth hook for word wrapping [Java]
+- Adds mxGraphView.updateLabel for word wrapping and update of the cached label [Java]
+- Adds mxCellState.label with accessors for caching the label [Java]
+- Moves word wrapping into mxGraphView, caches label in mxCellState [Java]
+- Uses unscaled font, removes word wrap in mxUtils.getSizeForString [Java]
+- Adds mxConstants.STYLE_FOLDABLE to control folding icons [Java,JavaScript]
+- Adds mxConstants.STYLE_AUTOSIZE to control automatic sizing [Java,JavaScript]
+- Fixes mxGraphModel.updateEdgeParent for edge-to-edge connections [JavaScript,Java,Dotnet,Php]
+
+17-Mar-2011: 1.5.1.11
+
+- Fixes possible NPE in mxMovePreview.repaint [Java]
+- Fixes font measuring in mxUtils, adds scale parameters [Java]
+
+14-Mar-2011: 1.5.1.10
+
+- Fixes encoding of XML for image export in mxEditor, decoding in backends [JavaScript,Dotnet,Java]
+- Fixes mxGraphModel.updateEdgeParent for relative terminals [JavaScript,Java,Dotnet,Php]
+- mxGraphComponent.setGraph fires property change event [Java]
+- Uses STYLE_DASH_PATTERN in mxSvgCanvas [Java]
+
+07-MAR-2011: 1.5.1.9
+
+- mxGraph(Component) returns null if foldingEnabled is false [JavaScript,Java]
+- Adds support for serialization in mxGraphModel [Java]
+
+28-FEB-2011: 1.5.1.8
+
+
+22-FEB-2011: 1.5.1.7
+
+- Adds mxConstants.STYLE_EDITABLE to control in-place editing [Java,JavaScript]
+- Adds mxConstants.STYLE_BENDABLE to control changing bends of edges [Java,JavaScript]
+- Adds mxConstants.STYLE_MOVABLE to control moving of cells [Java,JavaScript]
+- Adds mxConstants.STYLE_RESIZABLE to control resizing of cells [Java,JavaScript]
+- Adds mxConstants.STYLE_CLONEABLE to control cloning of cells [Java,JavaScript]
+- Adds mxConstants.STYLE_DELETABLE to control deleting of cells [Java,JavaScript]
+- Uses opaque viewport background color for background painting [Java]
+- Updates origin after scale and translate events in mxGraph [Java]
+
+11-FEB-2011: 1.5.1.6 beta
+
+- Fixes toggle selection trigger for right-clicks on Macs [Java]
+
+02-FEB-2011: 1.5.1.5
+
+- Fixes image ID counter starts at 2 in mxSvgCanvas [Java]
+- Fires mxEvent.CONNECT in mxConnectionHandler.connect/mouseReleased [JavaScript,Java]
+- Adds cell argument for STOP event in mxConnectPreview [Java]
+- Updates initialImportCount in mxGraphTransferHandler.exportDone [Java]
+- Updates importCount, lastImported in mxGraphTransferHandler.importData [Java]
+- Refactors mxGraphTransferable for subclassing and custom data [Java]
+- Clones cells in last mxGraphTransferHandler.createGraphTransferable [Java]
+- Adds mxSvgCanvas.isImageResource [Java]
+- Renames mxSvgCanvas.getResourceAsStream to getResource [Java]
+
+24-JAN-2011: 1.5.1.4
+
+- Fixes gradient painting for swimlane titles in mSwimlaneShape [Java]
+- Adds mxBasicShape.getGradientBounds, overrides in mxSwimlaneShape [Java]
+- Fixes parsing of PNG text chunks in mxPngTextDecoder [Java]
+- Adds label borders, transparent swimlanes, font styles in mxSvgCanvas [Java]
+- Uses embedded images in exported SVG files in GraphEditor example [Java]
+- Adds label images, rounded edges, gradients, glass effects in mxSvgCanvas [Java]
+- Improves performance in mxGraphics2DCanvas.drawImage [Java]
+- Fixes mxGraph.cellsResized for relative children [Java]
+- Fixes mxCellStatePreview for relative edge children [JavaScript,Java]
+- Fixes possible NPE in mxImageBundle.getImage [JavaScript,Java,Dotnet,Php]
+- Uses command key in mxGraphComponent.isToggleEvent on Mac [Java]
+- Adds mxUtils.IS_MAC constant [Java]
+- Changes getSelectionColor/Stroke to public in all handlers [Java]
+- Adds public getSelectionColor/Stroke in mxCellHandler [Java]
+- Checks valid image width and height in mxGraphics2DCanvas [Java] 
+- Fixes selection border artifacts in mxSelectionCellsHandler [Java] 
+
+14-JAN-2011: 1.5.1.3
+
+- Refactors mxSwimlaneManager and adds recursion [JavaScript,Java]  
+- Improves alignment for zoomed glass effects [JavaScript,Java,Dotnet]
+- Fixes update of font style in mxLeightweightLabel [Java]
+
+12-JAN-2011: 1.5.1.2
+
+- Fixes possible NPE in mxSvgCanvas [Java]
+- Fixes possible NPE in mxConnectPreview [Java]
 
 05-JAN-2011: 1.5.1.1
 
