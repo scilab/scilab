@@ -1,0 +1,800 @@
+# Japanese translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-13 13:38+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr " は 直近の保存の後で修正されました. 保存しますか?"
+
+msgid "%s is a directory."
+msgstr "%s はディレクトリです"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A single string.\n"
+msgstr "%s: 引数 %d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数行列または 'readonly' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　文字列行列を指定してください.\n"
+
+msgid "... file with echo"
+msgstr ".. エコーバック付きのファイル"
+
+msgid "... file with no echo"
+msgstr ".. エコーバックなしのファイル"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ".. エコーバックありを選択; ..キャレットまでエコーあり"
+
+msgid "?"
+msgstr "?"
+
+msgid "About"
+msgstr "このソフトウェアについて"
+
+msgid "Absolute"
+msgstr "絶対位置"
+
+msgid "All"
+msgstr "全て"
+
+msgid "Alphabetic order"
+msgstr "アルファベット順"
+
+msgid "An error occured when exporting the code using FOP"
+msgstr "FOPによりコードをエクスポートする際にエラーが発生しました"
+
+msgid "An error occured when printing"
+msgstr "印刷時にエラーが発生しました"
+
+msgid "Anchor's name: "
+msgstr "アンカーの名前: "
+
+msgid "Anchor: "
+msgstr "アンカー: "
+
+msgid "Anchors"
+msgstr "アンカー"
+
+msgid "Apply & Reindent"
+msgstr "適用 & 再インデント"
+
+msgid "Are you sure that you want to close SciNotes ?"
+msgstr "本当に SciNotes を閉じてよいですか ?"
+
+msgid "Auto (Default)"
+msgstr "自動(デフォルト)"
+
+msgid "Auto-completion on (,&quot;,..."
+msgstr "自動補完 (,&quot;,..."
+
+msgid "Auto-completion on if,function,..."
+msgstr "if, function, ... について自動補完"
+
+msgid "Background Color"
+msgstr "背景色"
+
+msgid "Backward"
+msgstr "戻る"
+
+msgid "Binary file: read-only mode"
+msgstr "バイナリファイル: 読み出し専用モード"
+
+msgid "Bold"
+msgstr "ボールド体"
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Cannot guess the file encoding."
+msgstr "ファイルのエンコーディングを推定できません."
+
+msgid "Cannot load \"scinotesConfiguration.xml\""
+msgstr "\"scinotesConfiguration.xml\"を読み込めません"
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr "セレクションの先頭を大文字にします; 文字の先頭を大文字にします"
+
+msgid "Case sensitive"
+msgstr "大文字/小文字を区別"
+
+msgid "Change Color"
+msgstr "色を変更"
+
+msgid "Change Colors"
+msgstr "色を変更"
+
+msgid "Circular search"
+msgstr "環状探索"
+
+msgid "Clone and close tab in a new window"
+msgstr "新規ウインドウに複製し, タブを閉じる"
+
+msgid "Clone tab in a new window"
+msgstr "新規ウインドウにタブを複製"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Close All"
+msgstr "全て閉じる"
+
+msgid "Close All But This"
+msgstr "これを除きすべてを閉じる"
+
+msgid "Code Navigator"
+msgstr "コードナビゲータ"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Colorization canceled"
+msgstr "色付けは取り消されました"
+
+msgid "Colorize"
+msgstr "色付け"
+
+msgid "Columns actions"
+msgstr "カラム処理"
+
+msgid "Comment Selection"
+msgstr "コメント選択"
+
+msgid "Complete"
+msgstr "完了"
+
+msgid "Configure Tabulation"
+msgstr "設定の一覧表化"
+
+msgid "Continue ?"
+msgstr "続けますか?"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Copy as HTML with line number"
+msgstr "行番号付きのHTMLとしてコピー"
+
+msgid "Copy selection in a new tab"
+msgstr "選択部を新規タブにコピー"
+
+msgid "Copy tab in new window"
+msgstr "新規ウインドウにタブをコピー"
+
+msgid "Copyright (c)"
+msgstr "Copyright (c)"
+
+msgid "Correct Indentation"
+msgstr "インデントを修正"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "インタープリタ・マネージメントもコンソールも見つけることができません。"
+
+msgid "Could not find the temporary file."
+msgstr "一時ファイルを見つけることができません。"
+
+msgid "Current file encoding"
+msgstr "カレントのファイルエンコーディング"
+
+msgid "Cursor Color"
+msgstr "カーソルの色"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Default"
+msgstr "デフォルト"
+
+msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+msgstr "デフォルトのSciNotesファイルエンコーディング; UTF-8; Windows 1252 (ANSI);ISO-8859-1"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Detach tab in new window"
+msgstr "タブを新規ウインドウに切り離す"
+
+msgid "Direction"
+msgstr "方向"
+
+msgid "Document"
+msgstr "文書"
+
+msgid "Double chevrons"
+msgstr "二重逆V字型"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Enable Auto Reformat"
+msgstr "自動再フォーマットを有効"
+
+msgid "Encoding"
+msgstr "エンコーディング"
+
+msgid "Encoding problems"
+msgstr "エンコーディングの問題"
+
+msgid "Enter line number"
+msgstr "行番号を入力してください"
+
+msgid "Error while reading the String"
+msgstr "文字列を読み込む際にエラーが発生しました"
+
+msgid "Evaluate Selection"
+msgstr "選択部を評価"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr "エコーバックありで選択部を評価;エコーバックありでカーソル位置まで評価"
+
+msgid "Evaluate from beginning..."
+msgstr "先頭から評価..."
+
+msgid "Exact"
+msgstr "完全一致"
+
+msgid "Execute"
+msgstr "実行"
+
+msgid "Execute File Into Scilab"
+msgstr "Scilabへ取り込んで実行"
+
+msgid "Exit"
+msgstr "終了"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "File already exists"
+msgstr "ファイルが既に存在します"
+
+msgid "Find"
+msgstr "検索"
+
+msgid "Find Next"
+msgstr "次を検索"
+
+msgid "Find Previous"
+msgstr "前を検索"
+
+msgid "Find/Replace"
+msgstr "検索/置換"
+
+msgid "Find:"
+msgstr "検索:"
+
+msgid "Forward"
+msgstr "前へ"
+
+msgid "Functions"
+msgstr "関数"
+
+msgid "Generate comments for help_from_sci"
+msgstr "help_from_sci 用のコメントを生成"
+
+msgid "Generate help from function"
+msgstr "関数からヘルプを生成"
+
+msgid "Go to line: "
+msgstr "指定行に移動: "
+
+msgid "Go to next anchor"
+msgstr "次のアンカーに移動"
+
+msgid "Go to previous anchor"
+msgstr "前のアンカーに移動"
+
+msgid "Goto line"
+msgstr "指定行へ移動"
+
+msgid "Help about '"
+msgstr "ヘルプ ’"
+
+msgid "Help on ;Help on selection"
+msgstr "ヘルプ; 選択部に関するヘルプ"
+
+msgid "Help on selected text or keyword"
+msgstr "選択されたテキストまたはキーワードのヘルプ"
+
+msgid "Help on the current keyword"
+msgstr "カレントのキーワードのヘルプ"
+
+msgid "Help on the selected text"
+msgstr "選択されたテキストに関するヘルプ"
+
+msgid "Help on typing"
+msgstr "入力に関するヘルプ"
+
+msgid "Highlight current line"
+msgstr "現在行をハイライト"
+
+msgid "Horizontal rule"
+msgstr "水平方向の罫線"
+
+msgid "Horizontal wrapping"
+msgstr "水平方向のラッピング"
+
+msgid "Ignore"
+msgstr "無視する"
+
+msgid "Incremental Search"
+msgstr "インクリメンタルサーチ"
+
+msgid "Invalid regular expression : %s"
+msgstr "正規表現が不正です: %s"
+
+msgid "Italic"
+msgstr "イタリック体"
+
+msgid "Length"
+msgstr "長さ"
+
+msgid "Line %s, Column %s."
+msgstr "%s 行, %s 列目."
+
+msgid "Line %s, Column %s. Function '%s' at Line %s."
+msgstr "%s 行, %s 列. 関数 '%s' (%s 行目)."
+
+msgid "Line Endings"
+msgstr "行末コード"
+
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr "行番号付け; オフ;通常; whereami 互換"
+
+msgid "Load Into Scilab"
+msgstr "Scilabへロード"
+
+msgid "Loading"
+msgstr "読み込み中"
+
+msgid "Mac Classic (CR)"
+msgstr "Macクラシック(CR)"
+
+msgid "Mail to "
+msgstr "メール送信 "
+
+msgid "Make Selection Lowercase"
+msgstr "選択部を小文字にする"
+
+msgid "Make Selection Uppercase"
+msgstr "選択部を大文字にする"
+
+msgid "Natural order"
+msgstr "自然順序"
+
+msgid "New"
+msgstr "新規"
+
+msgid "Next tab"
+msgstr "次のタブ"
+
+msgid "No Line Numbering"
+msgstr "行番号を付けない"
+
+msgid "No split"
+msgstr "分割しない"
+
+msgid "No text selected."
+msgstr "テキストが選択されていません."
+
+msgid "No text to execute."
+msgstr "実行するテキストがありません."
+
+msgid "Normal Line Numbering"
+msgstr "通常の行番号付け"
+
+msgid "Numeration"
+msgstr "計算"
+
+msgid "Ok"
+msgstr "OK"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Open URL"
+msgstr "URLを開く"
+
+msgid "Open file in ..."
+msgstr "ファイルをオープン ..."
+
+msgid "Open function source file"
+msgstr "関数のソースファイルを開く"
+
+msgid "Open in the navigator the URL "
+msgstr "URLをナビゲータで開く "
+
+msgid "Open source"
+msgstr "ソースを開く"
+
+msgid "Open source file of the function:"
+msgstr "関数のソースファイルを開く"
+
+msgid "Open the source of the macro "
+msgstr "マクロのソースを開く "
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Order"
+msgstr "順番"
+
+msgid "Overwrite"
+msgstr "上書き"
+
+msgid "Page Setup"
+msgstr "ページ設定"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Paste Column"
+msgstr "カラムを貼付け"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr "CTRLキーを押しながらマウスでリンクの上を移動させるとアクティブ化されます"
+
+msgid "Preview"
+msgstr "プレビュー"
+
+msgid "Previous tab"
+msgstr "前のタブ"
+
+msgid "Print"
+msgstr "印刷"
+
+msgid "Print Preview"
+msgstr "印刷プレビュー"
+
+msgid "Read-only mode"
+msgstr "読み込み専用モード"
+
+msgid "Recent Files"
+msgstr "最近使ったファイル"
+
+msgid "Redo"
+msgstr "やり直す"
+
+msgid "Regular expressions"
+msgstr "正規表現"
+
+msgid "Relative"
+msgstr "相対"
+
+msgid "Reload"
+msgstr "再読み込み"
+
+msgid "Remove anchor"
+msgstr "アンカーを削除"
+
+msgid "Remove trailing spaces"
+msgstr "末尾の空白を削除する"
+
+msgid "Remove trailing whitespaces"
+msgstr "末尾の空白文字を削除する"
+
+msgid "Repeat on the Column"
+msgstr "カラムに繰り返す"
+
+msgid "Replace"
+msgstr "置換"
+
+msgid "Replace All"
+msgstr "全て置換"
+
+msgid "Replace File?"
+msgstr "ファイルを置換しますか?"
+
+msgid "Replace With :"
+msgstr "置換:"
+
+msgid "Replace/Find"
+msgstr "置換/検索"
+
+msgid "Reset default font"
+msgstr "デフォルトフォントにリセット"
+
+msgid "Restart the search from the beginning"
+msgstr "先頭から再検索する"
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr "直近のSciNotesセッションからファイルを復元しますか?"
+
+msgid "Restore opened files on start-up"
+msgstr "起動時にオープンされたファイルを復元する"
+
+msgid "Restore the last sessions"
+msgstr "直近のセッションを復元する"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save All"
+msgstr "全て保存"
+
+msgid "Save as"
+msgstr "名前を付けて保存"
+
+msgid "Save file in ..."
+msgstr "ファイルを保存 ..."
+
+msgid "SciNotes"
+msgstr "SciNotes"
+
+msgid "SciNotes error"
+msgstr "SciNotesエラー"
+
+msgid "SciNotes help"
+msgstr "SciNotesヘルプ"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Scilabモジュール '%s' はインストールされていません.\n"
+
+msgid "Scope"
+msgstr "範囲"
+
+msgid "Search"
+msgstr "検索"
+
+msgid "Select All"
+msgstr "全て選択"
+
+msgid "Select current block"
+msgstr "カレントのブロックを選択"
+
+msgid "Selected lines"
+msgstr "選択された行"
+
+msgid "Set Colors"
+msgstr "色設定"
+
+msgid "Set Colors ..."
+msgstr "色を設定 ..."
+
+msgid "Set Font"
+msgstr "フォントを指定"
+
+msgid "Set an anchor"
+msgstr "アンカーを設定"
+
+msgid "Set anchor"
+msgstr "アンカーを設定"
+
+msgid "Settings"
+msgstr "設定"
+
+msgid "Shift Left"
+msgstr "左シフト"
+
+msgid "Shift Right"
+msgstr "右シフト"
+
+msgid "Show the definition of the macro "
+msgstr "マクロの定義を表示する "
+
+msgid "Show/Hide ToolBar"
+msgstr "ツールバーの表示/非表示"
+
+msgid "Source of '"
+msgstr "ソースコード '"
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr "分割ビュー;ofu"
+
+msgid "Split horizontally"
+msgstr "水平方向に分割"
+
+msgid "Split vertically"
+msgstr "垂直方向に分割"
+
+msgid "Strike Through"
+msgstr "削除"
+
+msgid "String %s not found"
+msgstr "文字列 %s は見つかりません"
+
+msgid "Suppress comments when executing selection"
+msgstr "選択部を実行する際にコメントを非表示にする"
+
+msgid "Syntax Type"
+msgstr "構文の型"
+
+msgid "Tab representation"
+msgstr "タブ形式"
+
+msgid "Tab style"
+msgstr "タブ形式"
+
+msgid ""
+"The file %s does not exist\n"
+"Do you want to create it?"
+msgstr "ファイル %s が存在しません"
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"ファイル %s は別のプログラムで修正されました !\n"
+"上書きしますか?"
+
+msgid "The file could not be converted."
+msgstr "ファイルは変換できませんでした."
+
+msgid "The file could not be created, check the path"
+msgstr "ファイルを作成できません, パスを確認してください"
+
+msgid "The file could not be saved."
+msgstr "ファイルは保存できませんでした."
+
+msgid ""
+"The file encoding is actually %s and it will be saved in using %s. Continue ?"
+msgstr "ファイルエンコーディングは実際には %s で、 %s により保存されます. 続けますか ?"
+
+msgid "The file is not writable so it is opened in read-only mode"
+msgstr "このファイルは書込み不可のため,読み込み専用モードでオープンします"
+
+msgid "This file"
+msgstr "このファイル"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr "このファイルはバイナリ形式です, このファイルに保存するとファイルを壊す可能性があります."
+
+msgid ""
+"This file is very long. \"Execute File Into Scilab\" could be better.\n"
+"Are you sure to continue ?"
+msgstr ""
+"このファイルはとても長いです。\"Scilabにファイルをロードして実行\" の方が適している可能性があります.\n"
+"本当に続けますか?"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Uncomment Selection"
+msgstr "選択部のコメントを外す"
+
+msgid "Underline"
+msgstr "下線"
+
+msgid "Undo"
+msgstr "取り消す"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "無題 "
+
+msgid "Use spaces"
+msgstr "空白を使用"
+
+msgid "Vertical rule"
+msgstr "縦罫線"
+
+msgid "View"
+msgstr "表示"
+
+msgid "Warning: the file has been modified by another program !"
+msgstr "警告: このファイルは他のプログラムで修正されています!"
+
+msgid "Whereami Line Numbering"
+msgstr "whereami 行番号付け"
+
+msgid "Whole word"
+msgstr "単語全体"
+
+msgid "Window"
+msgstr "ウィンドウ"
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "ワードラップ"
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr "ワーキングディレクトリ;ディレクトリを追加;直近のディレクトリを削除"
+
+msgid "You do not have the permissions to read this file"
+msgstr "このファイルの読み込みが許可されていません"
+
+msgid "You do not have the permissions to write this file"
+msgstr "このファイルへの書込みが許可されていません"
+
+msgid "You have passed the beginning of the document"
+msgstr "文書の先頭を通過しました"
+
+msgid "You have passed the end of the document"
+msgstr "文書の終端を通り過ぎました"
+
+msgid "You have reached the beginning of the document"
+msgstr "文書の先頭に達しました"
+
+msgid "You have reached the end of the document"
+msgstr "文書の終端に達しました"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr "このファイルをScilabへ取り込んで実行する前に修正部を保存する必要があります。"
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "変更内容を失うかもしれません, それでもエンコーディングを変えますか?"
+
+msgid "close this tab"
+msgstr "このタブを閉じる"
+
+#~ msgid "Continue?"
+#~ msgstr "続けますか?"
+
+#~ msgid "Edit selection in a new tab"
+#~ msgstr "新規タブで編集"
+
+#~ msgid "No text to execute"
+#~ msgstr "実行するテキストがありません."
+
+#~ msgid "No text selected"
+#~ msgstr "テキストは選択されていません"
+
+#~ msgid ""
+#~ "The file %s doesn't exist\n"
+#~ " Do you want to create it?"
+#~ msgstr ""
+#~ "ファイル %s は存在しません\n"
+#~ "作成しますか?"
+
+#~ msgid "Wrap search"
+#~ msgstr "折り返し検索"
+
+#~ msgid "Edition"
+#~ msgstr "エディション"
+
+#~ msgid "Open file in ...;Add a directory;Remove last directory"
+#~ msgstr "ファイルを開く ...;ディレクトリを追加;直近のディレクトリを削除"
+
+#~ msgid "Numerotation"
+#~ msgstr "数値循環"

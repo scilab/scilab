@@ -2,12 +2,15 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  */
 
 import java.awt.event.*;
-//import java.awt.*;
+
+/**
+ * @deprecated
+ */
 public class WCloser implements WindowListener
 {
 	public void windowOpened(WindowEvent e){}

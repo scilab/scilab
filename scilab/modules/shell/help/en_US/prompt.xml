@@ -39,7 +39,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -78,8 +78,8 @@
     <para><literal>prompt(userprompt)</literal> sets the prompt.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="pause">pause</link></member>

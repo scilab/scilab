@@ -34,7 +34,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -86,8 +86,8 @@ plot2d1('onn',t,[2*sin(t),1.5*squarewave(t),squarewave(t,10)])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sin">sin</link></member>

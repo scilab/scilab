@@ -29,13 +29,13 @@
     <para>Retorna o modo do Scilab. Quatro são os possíveis modos : STD , API
     , NW , NWNI .</para>
 
-    <para><literal>API </literal>o Scilab é lançado como um API.</para>
+    <para><literal>API</literal> o Scilab é lançado como um API.</para>
 
     <para><literal>STD</literal> o Scilab padrão (gui, plot ...)</para>
 
     <para><literal>NW</literal> Scilab em linha de comando com esboços.</para>
 
-    <para><literal>NWNI </literal>Scilab em linha de comando sem quaisquer
+    <para><literal>NWNI</literal> Scilab em linha de comando sem quaisquer
     gráficos.</para>
   </refsection>
 
@@ -47,8 +47,8 @@ getscilabmode()
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="scilab">scilab</link></member>

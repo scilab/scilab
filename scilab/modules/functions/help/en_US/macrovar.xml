@@ -23,7 +23,7 @@
     <synopsis>vars=macrovar(function)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>vars</term>
@@ -57,8 +57,8 @@ deff('y=f(x1,x2)','loc=1;y=a*x1+x2-loc')
 vars=macrovar(f)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="string">string</link>

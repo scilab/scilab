@@ -118,6 +118,8 @@ transp = ({spec} | ")" | "]" | "}") "'"
 openK = ("if" | "for" | "while" | "select" | "try" | "function")
 openKx = {openK}{spec}+
 
+elseif = "elseif" | "else"
+
 openS = "(" | "[" | "{"
 closeK = ("end" | "endfunction")
 closeKx = {closeK}{spec}+
@@ -217,6 +219,7 @@ nepoKx = {spec}{nepoK}
                                    return 0;
                                  }
 
+  {elseif}                       |
   {openS}                        |
   {openK}                        {
                                    return 1;

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="getenv">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>getenv</refname>
+    <refpurpose> 環境変数の値を取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>env=getenv(str [, rep] )</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+        <listitem>
+          <para>環境変数の名前を指定する文字列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rep</term>
+        <listitem>
+          <para>
+            オプションの文字列. このオプションの値を使用する時,
+	関数 <literal>getenv</literal> は,環境変数 <literal>str</literal>
+	が見つからない場合に値 <literal>rep</literal> を返します.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>env</term>
+        <listitem>
+          <para>環境変数の値を有する文字列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	指定した環境変数が存在する場合,その値を返します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+getenv('SCI')
+getenv('FOO','foo') 
+ ]]></programlisting>
+  </refsection>
+</refentry>

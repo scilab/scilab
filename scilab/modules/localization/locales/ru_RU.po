@@ -1,0 +1,47 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-26 10:37+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: This feature is only used on Windows.\n"
+msgstr "%s: Данная функциональность используется только в Windows.\n"
+
+#, c-format
+msgid "%s: Unsupported language '%s'.\n"
+msgstr "%s: Язык «%s» не поддерживается.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №1: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+msgid "Restart Scilab to apply to menus.\n"
+msgstr "Перезапустите Scilab для обновления меню.\n"
+
+#, c-format
+msgid "Switching to default language : '%s'.\n"
+msgstr "Переключение на язык по умолчанию: «%s».\n"
+
+msgid "The language for menus cannot be changed on a running console.\n"
+msgstr "Не удалось сменить язык для меню в запущенном командном окне.\n"
+
+#, c-format
+msgid "Unsupported language '%s'.\n"
+msgstr "Язык «%s» не поддерживается.\n"

@@ -38,11 +38,7 @@
     are set with the corresponding values. It is equivalent to create the
     uicontrol, and then set its properties with the <literal>set()</literal>
     command. Nevertheless, it generally more efficient to set the properties
-    in the call to <literal>uicontrol()</literal>. This is particularly true
-    concerning the "Style" property. Indeed, the default value for this
-    property is "Pushbutton". So if you do not set it at creation time, a
-    button will be created, and will be transformed to another uicontrol when
-    you call the <literal>set(h, "Style", ... )</literal> instruction. Scilab
+    in the call to <literal>uicontrol()</literal>. Scilab
     and all the graphic objects communicate through the property mechanism.
     Thus, to create adapted uicontrol, one has to know the use of the property
     fields.</para>
@@ -189,7 +185,7 @@
       </varlistentry>
 
       <varlistentry>
-        <term>HorizontAlalignment</term>
+        <term>HorizontalAlignment</term>
 
         <listitem>
           <para>left | {center} | right</para>
@@ -351,6 +347,9 @@
           (Except for Frame and Slider styles). For ListBoxes and PopupMenus,
           the value can be a vector of string or a string where the items are
           separated by a "|". For Text uicontrols, this string can contain HTML code to format the text.</para>
+	  <para>For Pushbutton or Text uicontrols, if the text is enclosed between two $ (dollar sign), then it will be 
+	  considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
+	  as a MathML one.</para>
         </listitem>
       </varlistentry>
 
@@ -361,7 +360,7 @@
           <para>{pushbutton} | radiobutton | checkbox | edit | text | slider |
           frame | listbox | popupmenu</para>
 
-          <para>Style of the uicontrol. Here is a short description of each
+          <para>Style of the uicontrol. This property has to be set at creation time and can not be changed once the uicontrol is created. Here is a short description of each
           one:</para>
 
           <itemizedlist>
@@ -532,10 +531,23 @@ endfunction
 res = uicontrol(mymlist,'property');
  ]]></programlisting>
 
+    <para>Pushbuttons or Text can have LaTeX or MathML label</para>
+    <programlisting role="example"><![CDATA[ 
+// LaTeX
+f=figure();
+h=uicontrol(f,"style","pushbutton","string","$x^2$");
+// MathML
+hh=uicontrol(f,"style","pushbutton","string","<msup><mi>x</mi><mn>2</mn></msup>");
+hh.Position = h.Position + [50, 0, 0, 0];
+// Text
+h=uicontrol(f,"Style","text","string","$\Gamma(s)=\int_0^\infty t^{s-1}\mathrm{e}^{-t}\,\mathrm{d}t$");
+// If it is too little
+h.fontsize=20
+ ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="figure">figure</link></member>
@@ -545,6 +557,8 @@ res = uicontrol(mymlist,'property');
       <member><link linkend="get">get</link></member>
 
       <member><link linkend="uimenu">uimenu</link></member>
+
+      <member><link linkend="math_rendering_features_in_graphic">LaTeX and MathML</link></member>
     </simplelist>
   </refsection>
 

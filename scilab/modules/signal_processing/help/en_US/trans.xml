@@ -15,7 +15,7 @@
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hz</term>
@@ -119,8 +119,8 @@ l.legend_location="in_lower_left";
     <title>Authors</title>
     <para>Carey Bunks ;   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="iir">iir</link></member>
        <member><link linkend="bilt">bilt</link></member>

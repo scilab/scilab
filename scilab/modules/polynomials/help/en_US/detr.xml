@@ -23,7 +23,7 @@
     <synopsis>d=detr(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -38,8 +38,8 @@
     <para><literal>d=detr(h)</literal> returns the determinant <literal>d</literal> of the polynomial or
     rational function matrix <literal>h</literal>. Based on Leverrier's algorithm.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="det">det</link>

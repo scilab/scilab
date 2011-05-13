@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="newaxes">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>newaxes</refname>
+    <refpurpose> Creates a new Axes entity</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>a=newaxes()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>a</term>
+        <listitem>
+          <para>a handle, the handle on the newly created Axes entity</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>newaxes()</literal> is used to create a new <literal>Axes</literal> entity (see
+      <link linkend="graphics_entities">graphics_entities</link>) in the current figure. The properties of
+      this entity are inherited from the <literal>default_axes</literal> entity (see
+      <link linkend="gda">gda</link>) </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+clf()
+a1=newaxes(); 
+a1.axes_bounds=[0,0,1.0,0.5];
+t=0:0.1:20;
+plot(t,acosh(t),'r')
+a2=newaxes();
+a2.axes_bounds=[0,0.5,1.0,0.5];
+x=0:0.1:4;
+plot(x,sinh(x))
+legend('sinh')
+
+sca(a1); //make first axes current
+plot(t,asinh(t),'g')
+legend(['acosh','asinh'])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="subplot">subplot</link>
+      </member>
+      <member>
+        <link linkend="gda">gda</link>
+      </member>
+      <member>
+        <link linkend="sca">sca</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>S. Steer, INRIA</para>
+  </refsection>
+</refentry>

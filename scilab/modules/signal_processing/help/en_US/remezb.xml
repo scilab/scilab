@@ -12,7 +12,7 @@
     <synopsis>[an]=remezb(nc,fg,ds,wt)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>nc</term>
@@ -111,8 +111,8 @@ hn(nc+1:2*nc-1)=an(2:nc)/2;
 plot(.5*(0:255)/256,frmag(hn,256));
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="eqfir">eqfir</link>

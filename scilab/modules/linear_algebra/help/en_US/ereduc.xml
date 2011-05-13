@@ -23,7 +23,7 @@
     <synopsis>[E,Q,Z [,stair [,rk]]]=ereduc(X,tol)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -101,8 +101,8 @@ X=[1 2 3;4 5 6]
 [E,Q,Z ,stair ,rk]=ereduc(X,1.d-15)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fstair">fstair</link>

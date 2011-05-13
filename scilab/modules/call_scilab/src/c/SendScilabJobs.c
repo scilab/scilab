@@ -29,7 +29,7 @@ static BOOL CleanBuffers(char *bufCommands,char **LOCALJOBS,int numberjobs);
 static BOOL SetLastJob(char *JOB);
 static char *lastjob = NULL;
 /*--------------------------------------------------------------------------*/
-/* see call_scilab.h more informations*/
+/* see call_scilab.h more information */
 /*--------------------------------------------------------------------------*/
 int SendScilabJob(char *job)
 {
@@ -121,7 +121,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));;
+        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
     }
     else
     {

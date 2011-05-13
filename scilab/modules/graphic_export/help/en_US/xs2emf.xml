@@ -24,8 +24,7 @@
   <refnamediv>
     <refname>xs2emf</refname>
 
-    <refpurpose>send graphics to an EMF file (Only for
-    Windows).</refpurpose>
+    <refpurpose>Export graphics to EMF (Only under Windows).</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -36,7 +35,7 @@ xs2emf(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -95,8 +94,8 @@ end
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="xs2bmp">xs2bmp</link></member>

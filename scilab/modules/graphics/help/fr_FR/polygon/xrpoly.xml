@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xrpoly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xrpoly</refname>
+    <refpurpose>  dessine un polygone régulier  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xrpoly(orig,n,r,[theta])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>orig  </term>
+        <listitem>
+          <para>vecteur de taille 2.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n  </term>
+        <listitem>
+          <para>entier, nombre de faces.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r  </term>
+        <listitem>
+          <para>scalaire.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>theta  </term>
+        <listitem>
+          <para>réel, angle en radians (0 par défaut).
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xrpoly</literal> dessine un polygone régulier à <literal>n</literal> faces contenu dans le disque de 
+    diamètre <literal>r</literal> et avec l'origine au point <literal>orig</literal>. 
+    <literal>theta</literal>  spécifie un angle de rotation en radians. Cette fonction utilise
+    l'échelle graphique courante. 
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d(0,0,-1,"012"," ",[0,0,10,10])
+xrpoly([5,5],5,5)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xrect">xrect</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

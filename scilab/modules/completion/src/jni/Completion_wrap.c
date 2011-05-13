@@ -444,6 +444,54 @@ SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI
 }
 
 
+SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI_searchFieldsDictionary(JNIEnv *jenv, jclass jcls, jstring jarg1, jstring jarg2) {
+  jobjectArray jresult = 0 ;
+  char *arg1 = (char *) 0 ;
+  char *arg2 = (char *) 0 ;
+  char **result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = 0;
+  if (jarg1) {
+    arg1 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg1, 0);
+    if (!arg1) return 0;
+  }
+  arg2 = 0;
+  if (jarg2) {
+    arg2 = (char *)(*jenv)->GetStringUTFChars(jenv, jarg2, 0);
+    if (!arg2) return 0;
+  }
+  result = (char **)searchFieldsDictionary(arg1,arg2);
+  {
+    if (result != NULL)
+    {
+      int i;
+      int len=0;
+      jstring temp_string;
+      const jclass clazz = (*jenv)->FindClass(jenv, "java/lang/String");
+      
+      while (result[len]) len++;    
+      jresult = (*jenv)->NewObjectArray(jenv, len, clazz, NULL);
+      /* exception checking omitted */
+      
+      for (i=0; i<len; i++) {
+        temp_string = (*jenv)->NewStringUTF(jenv, result[i]);
+        (*jenv)->SetObjectArrayElement(jenv, jresult, i, temp_string);
+        (*jenv)->DeleteLocalRef(jenv, temp_string);
+        FREE(result[i]);
+        result[i] = NULL;
+      }
+      FREE(result);
+      result = NULL;
+    }       
+  }
+  if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
+  if (arg2) (*jenv)->ReleaseStringUTFChars(jenv, jarg2, (const char *)arg2);
+  return jresult;
+}
+
+
 SWIGEXPORT jobjectArray JNICALL Java_org_scilab_modules_completion_CompletionJNI_searchHandleGraphicsPropertiesDictionary(JNIEnv *jenv, jclass jcls, jstring jarg1) {
   jobjectArray jresult = 0 ;
   char *arg1 = (char *) 0 ;
@@ -573,9 +621,12 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_completion_CompletionJNI_getC
   }
   {
     int i;
-    for (i=0; i<size1-1; i++)
-    FREE(arg1[i]);
+    for (i=0; i<size1-1; i++) {
+      FREE(arg1[i]);
+      arg1[i] = NULL;
+    }
     FREE(arg1);
+    arg1 = NULL;
   }
   return jresult;
 }

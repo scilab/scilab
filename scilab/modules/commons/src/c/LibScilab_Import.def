@@ -5,3 +5,5 @@ EXPORTS
 ;
 ;core
 ;
+getSCIHOME
+getTMPDIR

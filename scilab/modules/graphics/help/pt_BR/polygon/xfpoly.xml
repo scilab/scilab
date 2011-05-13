@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="xfpoly" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>xfpoly</refname>
+
+    <refpurpose>preenche um polígono</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>xfpoly(xv,yv,[close])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xv,yv</term>
+
+        <listitem>
+          <para>dois vetores de mesmo tamanho (os pontos do polígono). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>close</term>
+
+        <listitem>
+          <para>inteiro. Se close= 1, a linha poligonal é fechada; o valor
+          padrão é 0.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>xfpoly</literal> preenche um polígono com a cor corrente.
+    Se <literal>close</literal> é igual a 1 um ponto é adicionado à poligonal
+    <literal>xv,yv</literal> para definir o polígono.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=sin(2*%pi*(0:4)/5);
+y=cos(2*%pi*(0:4)/5);
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("color",5)
+xfpoly(x,y)
+
+// apenas para novo estilo de gráficos
+e=gce(); // retorna a última entidade corrente (a última criada aqui é a poligonal)
+e.fill_mode='off';
+e.closed = 'off' // a poligonal está aberta agora
+  
+xset("default")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xfpolys">xfpolys</link></member>
+
+      <member><link linkend="xpoly">xpoly</link></member>
+
+      <member><link linkend="xpolys">xpolys</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

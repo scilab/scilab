@@ -16,13 +16,10 @@ import java.io.File;
 import java.util.List;
 import java.util.StringTokenizer;
 
-import javax.swing.JFileChooser;
 import javax.swing.KeyStroke;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 
-import org.scilab.modules.gui.filechooser.ScilabFileChooser;
-import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
@@ -39,10 +36,6 @@ public final class OpenFileInAction extends OpenAction {
 
     private static final long serialVersionUID = 1L;
     private static final String SCI = "SCI";
-    private static final String SEP = ";";
-
-    private static MenuItem addDir;
-    private static MenuItem rmDir;
 
     /**
      * Constructor
@@ -51,36 +44,6 @@ public final class OpenFileInAction extends OpenAction {
      */
     public OpenFileInAction(String name, SciNotes editor) {
         super(name, editor, name);
-    }
-
-    /**
-     * Create a menu to add to SciNotes menu bar
-     * @param label label of the menu
-     * @param editor associated SciNotes instance
-     * @param key KeyStroke
-     * @return the menu
-     */
-    public static Object createMenu(String label, final SciNotes editor, KeyStroke key) {
-        StringTokenizer token = new StringTokenizer(label, SEP);
-        String label1 = token.nextToken();
-        String label2 = token.nextToken();
-        String label3 = token.nextToken();
-
-        final Menu favoriteDirs = ScilabMenu.createMenu();
-        ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).addMenuListener(new MenuListener() {
-
-                public void menuCanceled(MenuEvent e) { }
-                public void menuDeselected(MenuEvent e) { }
-                public void menuSelected(MenuEvent e) {
-                    updateFavoriteDirsMenu(favoriteDirs, editor);
-                }
-            });
-
-        favoriteDirs.setText(label1);
-        addDir = AddDirectoryAction.createMenu(favoriteDirs, label2, editor, null);
-        rmDir = RmDirectoryAction.createMenu(favoriteDirs, label3, editor, null);
-        updateFavoriteDirsMenu(favoriteDirs, editor);
-        return favoriteDirs;
     }
 
     /**
@@ -94,6 +57,29 @@ public final class OpenFileInAction extends OpenAction {
     }
 
     /**
+     * Create a menu to add to SciNotes menu bar
+     * @param label label of the menu
+     * @param editor associated SciNotes instance
+     * @param key KeyStroke
+     * @return the menu
+     */
+    public static Object createMenu(String label, final SciNotes editor, KeyStroke key) {
+        final Menu favoriteDirs = ScilabMenu.createMenu();
+        ((SwingScilabMenu) favoriteDirs.getAsSimpleMenu()).addMenuListener(new MenuListener() {
+
+                public void menuCanceled(MenuEvent e) { }
+                public void menuDeselected(MenuEvent e) { }
+                public void menuSelected(MenuEvent e) {
+                    updateFavoriteDirsMenu(favoriteDirs, editor);
+                }
+            });
+
+        favoriteDirs.setText(label);
+        updateFavoriteDirsMenu(favoriteDirs, editor);
+        return favoriteDirs;
+    }
+
+    /**
      * createButton
      * @param tooltip the tooltip
      * @param icon an icon name searched in SCI/modules/gui/images/icons/
@@ -101,7 +87,7 @@ public final class OpenFileInAction extends OpenAction {
      * @return PushButton
      */
     public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
-        StringTokenizer token = new StringTokenizer(tooltip, SEP);
+        StringTokenizer token = new StringTokenizer(tooltip, ";");
         String tt = token.nextToken();
         String path = token.nextToken();
         if (path.equals(SCI)) {
@@ -109,6 +95,7 @@ public final class OpenFileInAction extends OpenAction {
         } else if (path.equals("MODULES")) {
             path = System.getenv(SCI) + "/modules";
         }
+
         return createButton(tt + path, icon, new OpenFileInAction(path, editor));
     }
 
@@ -119,107 +106,10 @@ public final class OpenFileInAction extends OpenAction {
      */
     public static void updateFavoriteDirsMenu(Menu menu, SciNotes editor) {
         ((SwingScilabMenu) menu.getAsSimpleMenu()).removeAll();
-        menu.add(addDir);
-        menu.add(rmDir);
-
         List<File> dirs = ConfigSciNotesManager.getAllFavoriteDirs();
-
-        if (dirs.size() != 0) {
-            menu.addSeparator();
-        }
 
         for (int i = 0; i < dirs.size(); i++) {
             menu.add(createMenu(editor, dirs.get(i).getPath()));
-        }
-    }
-
-    /**
-     * Inner class to handle the action which consists to add a new directory
-     */
-    static class AddDirectoryAction extends DefaultAction {
-
-        private Menu menu;
-
-        /**
-         * Constructor
-         * @param menu the menu associated with this action
-         * @param name the name of the action
-         * @param editor associated SciNotes instance
-         */
-        public AddDirectoryAction(Menu menu, String name, SciNotes editor) {
-            super(name, editor);
-            this.menu = menu;
-        }
-
-        /**
-         * Open file action
-         * @see org.scilab.modules.scinotes.actions.DefaultAction#doAction()
-         */
-        public void doAction() {
-            SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
-            fileChooser.setDialogTitle(getCommand());
-            fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-            fileChooser.setAcceptAllFileFilterUsed(false);
-            if (fileChooser.showOpenDialog(getEditor()) == JFileChooser.APPROVE_OPTION) {
-                 File path = fileChooser.getSelectedFile();
-                 if (path == null || path.isFile()) {
-                     path = fileChooser.getCurrentDirectory();
-                 }
-                 ConfigSciNotesManager.saveFavoriteDirectory(path.getPath());
-                 updateFavoriteDirsMenu(menu, getEditor());
-            }
-        }
-
-        /**
-         * Create a menu to add to SciNotes menu bar
-         * @param menu the menu associated with this action
-         * @param label label of the menu
-         * @param editor associated SciNotes instance
-         * @param key KeyStroke
-         * @return the menu
-         */
-        public static MenuItem createMenu(Menu menu, String label, SciNotes editor, KeyStroke key) {
-            return createMenu(label, null, new AddDirectoryAction(menu, label, editor), key);
-        }
-    }
-
-    /**
-     * Inner class to handle the action which consists to remove a directory
-     */
-    static class RmDirectoryAction extends DefaultAction {
-
-        private Menu menu;
-
-        /**
-         * Constructor
-         * @param menu the menu associated with this action
-         * @param name the name of the action
-         * @param editor associated SciNotes instance
-         */
-        public RmDirectoryAction(Menu menu, String name, SciNotes editor) {
-            super(name, editor);
-            this.menu = menu;
-        }
-
-        /**
-         * Open file action
-         * @see org.scilab.modules.scinotes.actions.DefaultAction#doAction()
-         */
-        public void doAction() {
-            ConfigSciNotesManager.rmLastFavoriteDirectory();
-            updateFavoriteDirsMenu(menu, getEditor());
-        }
-
-        /**
-         * Create a menu to add to SciNotes menu bar
-         * @param menu the menu associated with this action
-         * @param label label of the menu
-         * @param editor associated SciNotes instance
-         * @param key KeyStroke
-         * @return the menu
-         */
-        public static MenuItem createMenu(Menu menu, String label, SciNotes editor, KeyStroke key) {
-            return createMenu(label, null, new RmDirectoryAction(menu, label, editor), key);
         }
     }
 }

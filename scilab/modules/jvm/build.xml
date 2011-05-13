@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET , Sylvestre LEDRU
@@ -14,11 +12,9 @@
  -->
 <project name="jvm" default="jar">
   <import file="../../build.incl.xml"/>
-
-  <property name="library.name" value="${library.jvm.name}" />
-
+  <property name="library.name" value="${library.jvm.name}"/>
+  <property name="library.title" value="JVM helpers"/>
   <description>
 	Build the JVM Scilab module
   </description>
-
 </project>

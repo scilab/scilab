@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="linear_interpn" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>linear_interpn</refname>
+
+    <refpurpose>n 次元線形補間</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>vp = linear_interpn(xp1,xp2,..,xpn, x1, ..., xn, v [,out_mode])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>xp1, xp2, .., xpn</term>
+
+        <listitem>
+          <para>同じ大きさの実数ベクトル (または行列)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x1 ,x2, ..., xn</term>
+
+        <listitem>
+          <para>
+	n次元の補間グリッドを定義する
+	(最低でも2つの要素を有する)単調増加の行ベクトル 
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>ベクトル ( n=1の場合), 行列 (n=2の場合) またはハイパー行列 ( n
+          &gt; 2の場合) で,
+		グリッド点における補間関数の基準値を指定します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>out_mode</term>
+
+        <listitem>
+          <para>(オプションの) 文字列で,
+	グリッド外の評価方法(捕外)を定義します.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>vp</term>
+
+        <listitem>
+          <para><literal>xp1, ...,
+          xpn</literal>と同じ大きさのベクトルまたは行列</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	n個のベクトル<literal>x1 ,x2,..., xn</literal>で定義された n次元グリッド
+	とそのグリッドにおける関数(例えば <emphasis>f</emphasis>)の値を次のように指定すると:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation1.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>
+	この関数は, ベクトル<literal>xp1, xp2, ..., xpn</literal>(または行列)により定義された座標にある
+	(以下 <emphasis>s</emphasis> と呼ぶ)グリッドから次のように
+	<emphasis>f</emphasis>の線形補間を計算します:
+	</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation2.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>
+	<literal>out_mode</literal> パラメータは捕外の評価規則を設定します:
+    <emphasis>Pi=(xp1(i),xp2(i),...,xpn(i))</emphasis> とすると,
+    <literal>out_mode</literal> は次の場合に評価規則を定義します:</para>
+
+    <informalequation>
+      <mediaobject>
+        <imageobject>
+          <imagedata align="center"
+                     fileref="../mml/linear_interpn_equation3.mml" />
+        </imageobject>
+      </mediaobject>
+    </informalequation>
+
+    <para>その他の選択肢は以下があります:</para>
+
+    <variablelist>
+      <varlistentry>
+        <term>"by_zero"</term>
+
+        <listitem>
+          <para>ゼロによる捕外が行われますa</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"by_nan"</term>
+
+        <listitem>
+          <para>Nanによる捕外</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"C0"</term>
+
+        <listitem>
+          <para>捕外が以下のように定義されます:</para>
+
+          <programlisting role = ""><![CDATA[ 
+s(P) = s(proj(P)) where proj(P) is nearest point from P 
+                  located on the grid boundary.
+ ]]></programlisting>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"natural"</term>
+
+        <listitem>
+          <para>捕外はその点に最も近いn線形パッチにより行われます.
+	</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>"periodic"</term>
+
+        <listitem>
+          <para> <literal>s</literal> は周期的に拡張されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 : 1d linear interpolation
+x = linspace(0,2*%pi,11);
+y = sin(x);
+xx = linspace(-2*%pi,4*%pi,400)';
+yy = linear_interpn(xx, x, y, "periodic");
+clf()
+plot2d(xx,yy,style=2)
+plot2d(x,y,style=-9, strf="000")
+xtitle("linear interpolation of sin(x) with 11 interpolation points")
+
+// example 2 : bilinear interpolation
+n = 8;
+x = linspace(0,2*%pi,n); y = x;
+z = 2*sin(x')*sin(y);
+xx = linspace(0,2*%pi, 40);
+[xp,yp] = ndgrid(xx,xx);
+zp = linear_interpn(xp,yp, x, y, z);
+clf()
+plot3d(xx, xx, zp, flag=[2 6 4])
+[xg,yg] = ndgrid(x,x);
+param3d1(xg,yg, list(z,-9*ones(1,n)), flag=[0 0])
+xtitle("Bilinear interpolation of 2sin(x)sin(y)")
+legends("interpolation points",-9,1)
+xselect()
+
+// example 3 : bilinear interpolation and experimentation
+//             with all the outmode features
+nx = 20; ny = 30;
+x = linspace(0,1,nx);
+y = linspace(0,2, ny);
+[X,Y] = ndgrid(x,y);
+z = 0.4*cos(2*%pi*X).*cos(%pi*Y);
+nxp = 60 ; nyp = 120;
+xp = linspace(-0.5,1.5, nxp);
+yp = linspace(-0.5,2.5, nyp);
+[XP,YP] = ndgrid(xp,yp);
+zp1 = linear_interpn(XP, YP, x, y, z, "natural");
+zp2 = linear_interpn(XP, YP, x, y, z, "periodic");
+zp3 = linear_interpn(XP, YP, x, y, z, "C0");
+zp4 = linear_interpn(XP, YP, x, y, z, "by_zero");
+zp5 = linear_interpn(XP, YP, x, y, z, "by_nan");
+clf()
+subplot(2,3,1)
+plot3d(x, y, z, leg="x@y@z", flag = [2 4 4])
+xtitle("initial function 0.4 cos(2 pi x) cos(pi y)")
+subplot(2,3,2)
+plot3d(xp, yp, zp1, leg="x@y@z", flag = [2 4 4])
+xtitle("Natural")
+subplot(2,3,3)
+plot3d(xp, yp, zp2, leg="x@y@z", flag = [2 4 4])
+xtitle("Periodic")
+subplot(2,3,4)
+plot3d(xp, yp, zp3, leg="x@y@z", flag = [2 4 4])
+xtitle("C0")
+subplot(2,3,5)
+plot3d(xp, yp, zp4, leg="x@y@z", flag = [2 4 4])
+xtitle("by_zero")
+subplot(2,3,6)
+plot3d(xp, yp, zp5, leg="x@y@z", flag = [2 4 4])
+xtitle("by_nan")
+xselect()
+
+// example 4 : trilinear interpolation (see splin3d help
+//             page which have the same example with
+//             tricubic spline interpolation)
+exec("SCI/demos/interp/interp_demo.sci") 
+func =  "v=(x-0.5).^2 + (y-0.5).^3 + (z-0.5).^2";
+deff("v=f(x,y,z)",func);
+n = 5; 
+x = linspace(0,1,n); y=x; z=x;
+[X,Y,Z] = ndgrid(x,y,z);
+V = f(X,Y,Z);
+// compute (and display) the linear interpolant on some slices
+m = 41;
+dir = ["z="  "z="  "z="  "x="  "y="];
+val = [ 0.1   0.5   0.9   0.5   0.5];
+ebox = [0 1 0 1 0 1];
+
+XF=[]; YF=[]; ZF=[]; VF=[];
+for i = 1:length(val)
+  [Xm,Xp,Ym,Yp,Zm,Zp] = slice_parallelepiped(dir(i), val(i), ebox, m, m, m);
+  Vm = linear_interpn(Xm,Ym,Zm, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xm,Ym,Zm,Vm,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+  Vp =  linear_interpn(Xp,Yp,Zp, x, y, z, V);
+  [xf,yf,zf,vf] = nf3dq(Xp,Yp,Zp,Vp,1);
+  XF = [XF xf]; YF = [YF yf]; ZF = [ZF zf]; VF = [VF vf]; 
+end
+nb_col = 128;
+vmin = min(VF); vmax = max(VF);
+color = dsearch(VF,linspace(vmin,vmax,nb_col+1));
+xset("colormap",jetcolormap(nb_col));
+clf()
+xset("hidden3d",xget("background"))
+colorbar(vmin,vmax)
+plot3d(XF, YF, list(ZF,color), flag=[-1 6 4])
+xtitle("tri-linear interpolation of "+func)
+xselect()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="interpln">interpln</link></member>
+
+      <member><link linkend="splin">splin</link></member>
+
+      <member><link linkend="splin2d">splin2d</link></member>
+
+      <member><link linkend="splin3d">splin3d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <para>B. Pincon</para>
+  </refsection>
+</refentry>

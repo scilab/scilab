@@ -256,13 +256,13 @@ taucs_ccs_create(int m, int n, int nnz)
 	sciprint(_("%s: No more memory.\n"),"taucs_ccs_create");
     return NULL; 
   }
-  matrix->flags = 0;;
+  matrix->flags = 0;
   matrix->n = n;
   matrix->m = m;
   matrix->colptr = (int*)    MALLOC((n+1) * sizeof(int));
   matrix->rowind = (int*)    MALLOC(nnz   * sizeof(int));
   matrix->values = (double*) MALLOC(nnz   * sizeof(double));
-  if (!(matrix->colptr) || !(matrix->rowind) || !(matrix->rowind)) 
+  if (!(matrix->colptr) || !(matrix->rowind)) 
   {
     sciprint(_("%s: No more memory (n=%d, nnz=%d).\n"),"taucs_ccs_create",n,nnz);
     FREE(matrix->colptr); FREE(matrix->rowind); FREE(matrix->values);
@@ -547,7 +547,7 @@ multifrontal_supernodal_front_factor(int sn,
   int i,j;
   int* ind;
   double* re;
-  int INFO;
+  int INFO = -1;
   double done      =  1.0;
   double dminusone = -1.0;
 
@@ -584,7 +584,7 @@ multifrontal_supernodal_front_factor(int sn,
 		&INFO);
   }
 
-  if (INFO) 
+  if (INFO && INFO != -1)  /* INFO = -1 if not initialized */ 
   {
 	sciprint(_("    CC^T Factorization: Matrix is not positive definite.\n"));
     sciprint(_("                        nonpositive pivot in column %d\n"),mtr->sn_vertices[INFO-1]);

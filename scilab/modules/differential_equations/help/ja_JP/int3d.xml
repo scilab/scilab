@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="int3d" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>int3d</refname>
+
+    <refpurpose>求積法および立体求積法により3次元積分を定義</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[result,err]=int3d(X,Y,Z,f [,nf[,params]])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>X</term>
+
+        <listitem>
+          <para>
+	<literal>NUMTET</literal>個の4面体の頂点の横座標軸の値を有する
+	4行<literal>NUMTET</literal>列の配列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Y</term>
+
+        <listitem>
+          <para>
+	<literal>NUMTET</literal>個の4面体の頂点の縦座標軸の値を有する
+	4行<literal>NUMTET</literal>列の配列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Z</term>
+
+        <listitem>
+          <para>
+	<literal>NUMTET</literal>個の4面体の頂点の第三座標軸の値を有する
+	4行<literal>NUMTET</literal>列の配列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>被積分関数 <literal>f(xyz,nf)</literal>を定義する
+		外部 (関数またはリストまたは文字列) ,
+		ただし <literal>xyz</literal> は点の座標のベクトル,
+		nf は関数の数</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>nf</term>
+
+        <listitem>
+          <para>成分する関数の数 (デフォルトは 1)</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>params</term>
+
+        <listitem>
+          <para>実数ベクトル <literal>[minpts, maxpts, epsabs,
+          epsrel]</literal>. デフォルト値は <literal>[0, 1000, 0.0,
+          1.d-5]</literal>.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>epsabs</term>
+
+              <listitem>
+                <para>絶対誤差の指定値.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>epsrel</term>
+
+              <listitem>
+                <para>相対誤差の指定値.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>minpts</term>
+
+              <listitem>
+                <para>関数評価の最小値.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>maxpts</term>
+
+              <listitem>
+                <para>関数評価の最大値. 
+		各サブ領域における関数評価の最大値は 43 回です</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>result</term>
+
+        <listitem>
+          <para>積分値,または積分値のベクトル.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+          <para>絶対誤差の推定値.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	この関数は指定したベクトルの定積分に関する近似値を計算します.</para>
+
+    <programlisting role = ""><![CDATA[ 
+I  I  I (F ,F ,...,F )      dx(3)dx(2)dx(1),
+          1  2      numfun
+ ]]></programlisting>
+
+    <para>ただし,積分区間は  NUMTET個の4面体で以下のように定義されます</para>
+
+    <programlisting role = ""><![CDATA[ 
+F = F (X(1),X(2),X(3)), J = 1,2,...,NUMFUN.
+ J   J
+ ]]></programlisting>
+
+    <para>
+	近似値<literal>result(k)</literal> を計算する際に,
+	I の各要素が以下の精度指標を満たすことが期待されるような
+	グローバルな適用型ストラテジが適用されます:
+    <literal>ABS(I(K)-RESULT(K))&lt;=MAX(EPSABS,EPSREL*ABS(I(K)))</literal></para>
+
+    <para><literal>int3d</literal> は,
+	推定誤差が最大となる4面体を分割し,
+	積分値と誤差を分割後の新しい4面体で積分値と誤差を評価し続ける処理を
+	指定された誤差を満たすか,
+	<literal>MAXPTS</literal>回の関数評価が行われるまで反復します.</para>
+
+    <para>すべての点が4面体の内側となる43 点の積分則が
+	適用されます.この積分則は8次の多項式を有します.</para>
+
+    <para>
+	入力パラメータ <literal>EPSABS</literal> または	
+	<literal>EPSREL</literal> として十分に大きな値が選択された場合,
+	ある積分則が複数の各4面体をまたがって適用され,
+	その結果の合算値が近似値<literal>RESULT(K)</literal>を計算する際に使用
+	されます.この場合,4面体の更なる分割は行われません.</para>
+
+    <para>
+	<literal>int3d</literal> が積分値ベクトルの指定値を計算する場合,
+	ベクトルの全要素に同じ処理が行われます.</para>
+	<para>
+	<literal>j</literal> と <literal>k</literal>が等しくない
+	<literal>I(Fj)</literal> および <literal>I(Fk)</literal>
+	が積分区間の同じ分割領域で積分されます.
+	十分な類似性がある積分の場合,
+	<literal>int3d</literal>を1回のコールですべての被積分関数に
+	適用することで時間を節約することができます.
+	なんらかのパラメータの関数として積分値が変化する場合,
+	すべての要素に同じ分割が適用されるとすると，
+	<literal>int3d</literal>により計算される推定値も
+	これは,異なる要素に指定した処理の適用が指定される場合には
+	あてはまりません.</para>
+
+    <para>一方, 積分の異なる要素が明確に異なる分割を必要とする場合には
+	この機能を注意して使用する必要があります.</para>
+  </refsection>
+
+  <refsection>
+    <title>参考</title>
+
+    <para>Fortran ルーチン dcutet.f</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+X=[0;1;0;0];
+Y=[0;0;1;0];
+Z=[0;0;0;1];
+[RESULT,ERROR]=int3d(X,Y,Z,'int3dex')
+// computes the integrand exp(x*x+y*y+z*z) over the 
+//tetrahedron (0.,0.,0.),(1.,0.,0.),(0.,1.,0.),(0.,0.,1.)
+
+//integration over a cube  -1<;=x<=1;-1<=y<=1;-1<=z<=1
+
+//  bottom  -top-     right    -left-   front   -rear- 
+X=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;          
+   -1,-1,   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1,-1; 
+    1,-1,    1,-1,    1, 1,   -1,-1,    1,-1,    1,-1;     
+    1, 1,    1, 1,    1, 1,   -1,-1,    1, 1,    1, 1];         
+Y=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0; 
+   -1,-1,   -1,-1,   -1, 1,   -1, 1,   -1,-1,    1, 1;
+   -1, 1,   -1, 1,    1, 1,    1, 1,   -1,-1,    1, 1;   
+    1, 1,    1, 1,   -1,-1,   -1,-1,   -1,-1,    1, 1]; 
+Z=[ 0, 0,    0, 0,    0, 0,    0, 0,    0, 0,    0, 0;
+   -1,-1,    1, 1,   -1, 1,   -1, 1,   -1,-1,   -1,-1; 
+   -1,-1,    1, 1,   -1,-1,   -1,-1,   -1, 1,   -1, 1;  
+   -1,-1,    1, 1,    1, 1,    1, 1,    1, 1,    1, 1];      
+
+function v=f(xyz,numfun),v=exp(xyz'*xyz),endfunction
+[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
+
+function v=f(xyz,numfun),v=1,endfunction
+[result,err]=int3d(X,Y,Z,f,1,[0,100000,1.d-5,1.d-7])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="intc">intc</link></member>
+
+      <member><link linkend="intl">intl</link></member>
+
+      <member><link linkend="int2d">int2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>Jarle Berntsen</term>
+
+        <listitem>
+          <para>The Computing Centre, University of Bergen, Thormohlens gt.
+          55, N-5008 Bergen, Norway Phone.. 47-5-544055 Email..
+          jarle@eik.ii.uib.no,</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Ronald Cools</term>
+
+        <listitem>
+          <para>Dept. of Computer Science, Katholieke Universiteit Leuven,
+          Celestijnenlaan 200A, B-3030 Heverlee, Belgium Phone.. 32-16-201015
+          (3562) Email.. ronald@cs.kuleuven.ac.be,</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>Terje O. Espelid</term>
+
+        <listitem>
+          <para>Department of Informatics, University of Bergen, Thormohlens
+          gt. 55, N-5008 Bergen, Norway Phone.. 47-5-544180 Email..
+          terje@eik.ii.uib.no</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+</refentry>

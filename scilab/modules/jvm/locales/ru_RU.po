@@ -1,0 +1,262 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-05 21:25+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"Не удалось загрузить динамическую библиотеку JVM (libjava).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+msgstr ""
+"\n"
+"Ошибка: невозможно возвратить окружение Scilab Java (JNIEnv_SCILAB).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
+msgstr ""
+"\n"
+"Ошибка: не удалось вернуть Java-окружение Scilab (jvm_SCILAB): проверьте что "
+"Scilab загрузил JVM до вызова этой функции.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+"\n"
+"Невозможно прочитать %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+"\n"
+"Неподходящая версия JNI (требуется как минимум JDK 1.4).\n"
+
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
+msgstr ""
+"\n"
+"Ошибка JVM в AttachCurrentThread: не удалось подключиться к текущему "
+"потоку.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab не может создать Scilab Java Main-Class (не удалось найти главный "
+"класс Scilab. Проверьте доступны ли Scilab и сторонние пакеты).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab не может открыть библиотеку JVM.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Странная ошибка. Вызову из Java не удалось найти существующую JVM.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr ""
+"%s: Не удалось добавить URL к системному загрузчику классов (system "
+"classloader) : %s.\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s: Не удалось добавить путь в java.library.path: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Не удалось получить доступ к главному классу Scilab:\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "Не удалось получить доступ к конструктору главного класса Scilab:\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Не удалось создать главный класс Scilab. Ошибка:\n"
+
+msgid "Error"
+msgstr "Ошибка"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Ошибка: некорректный classpath-файл %s (кодировка не «utf-8»). Найдена "
+"кодировка «%s»\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Ошибка: неправильный path-файл %s (кодировка не «utf-8»). Найдена кодировка "
+"«%s»\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Ошибка создания Java VM: %s\n"
+
+#, c-format
+msgid "Error: %s\n"
+msgstr "Ошибка: %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Ошибка: не удалось сделать грамматический разбор файла %s.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"Ошибка: неверный конфигурационный файл %s (кодировка должна быть «%s»). "
+"Найдена кодировка «%s».\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Ошибка: не удалось сделать грамматический разбор файла %s\n"
+
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr ""
+"Если вы используете бинарную версию Scilab, сообщите об ошибке на "
+"http://bugzilla.scilab.org/.\n"
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
+msgstr ""
+"Если вы используете самостоятельно собранную версию Scilab, укажите путь к "
+"JVM в сценарии bin/scilab.\n"
+
+msgid "JNI version error"
+msgstr "Ошибка версии JNI"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: некорректные аргументы"
+
+msgid "JNI: not enough memory"
+msgstr "JNI: недостаточно памяти"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "Параметры:\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+"Также проверьте, что вы не пытаетесь запустить 64-битую версию Scilab на 32-"
+"битной ОС (или наоборот).\n"
+
+msgid "Scilab Java module not installed.\n"
+msgstr "Модуль Java не установлен.\n"
+
+#, c-format
+msgid ""
+"Some problems during the loading of the Java libraries occured.\n"
+"This could lead to inconsistent behaviours.\n"
+"Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+"При загрузке библиотек Java были некоторые проблемы.\n"
+"Это может привести к неожиданному поведению.\n"
+"Проверьте SCI/etc/classpath.xml.\n"
+
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr ""
+"Проблема может быть связана с системой принудительного контроля доступа "
+"SELinux. Попробуйте отключить её.\n"
+
+msgid "Thread detached from the VM"
+msgstr "Поток отделён от VM"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "Неопределённый код ошибки в JNI. Странная проблема"
+
+msgid "Unknown JNI error"
+msgstr "Неизвестная ошибка JNI"
+
+msgid "VM already created"
+msgstr "VM уже создана"
+
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Внимание: не удалось найти пакет Java «%s».\n"
+
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "Внимание: не удалось найти файл объявления classpath %s.\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Неверный формат для %s.\n"
+
+#~ msgid "Console"
+#~ msgstr "Командное окно"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Командное окно Scilab"
+
+#, c-format
+#~ msgid ""
+#~ "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+#~ "system (and vice versa).\n"
+#~ msgstr ""
+#~ "Также проверьте, что вы не запускаете 64-битую версию Scilab  на 32-битной "
+#~ "ОС (и наоборот).\n"

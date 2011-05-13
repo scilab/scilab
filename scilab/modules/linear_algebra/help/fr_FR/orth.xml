@@ -60,8 +60,8 @@ A=rand(5,3)*rand(3,4);
 svd([orth(A),X(:,1:dim)])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

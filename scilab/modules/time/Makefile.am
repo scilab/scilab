@@ -24,7 +24,7 @@ libscitime_la_CFLAGS=  	-I$(srcdir)/includes/ \
 
 pkglib_LTLIBRARIES = libscitime.la
 
-libscitime_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscitime_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 
@@ -32,7 +32,7 @@ libscitime_la_SOURCES = $(TIME_C_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(libscitime_la_SOURCES)
 INCLUDE_FLAGS = $(libscitime_la_CFLAGS)
 
-libscitime_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscitime_la_LIBADD =   $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 
@@ -43,7 +43,7 @@ modulename=time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
-libscitime_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscitime_la_root_DATA =  license.txt version.xml
 
 
 #### time : init scripts ####

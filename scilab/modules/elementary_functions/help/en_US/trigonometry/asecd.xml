@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="asecd" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>asecd</refname>
+
+    <refpurpose>computes the element-wise inverse secant of the argument,
+    results in degree.</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>y = asecd(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>Real or complex array</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>Real or complex array</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Computes the element-wise inverse secant of the argument, results in
+    degree. For real input data with absolute value greater than
+    <literal>1</literal> the results are real and in <literal>[-90
+    90]</literal>.</para>
+
+    <para><literal>asecd(x)</literal> is equal to
+    <literal>asec(x)*180/%pi</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[1 2 -2 sqrt(2) -sqrt(2) 2/sqrt(3) -2/sqrt(3) -1];
+asecd(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="asec">asec</link></member>
+
+      <member><link linkend="secd">secd</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>References</title>
+
+    <simplelist type="vert">
+      <member>Kahan, W., "Branch cuts for complex elementary functions, or,
+      Much ado about nothing's sign bit", Proceedings of the joing IMA/SIAM
+      conference on The State of the Art in Numerical Analysis, University of
+      Birmingham, A. Iserles and M.J.D. Powell, eds, Clarendon Press, Oxford,
+      1987, 165-210.</member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

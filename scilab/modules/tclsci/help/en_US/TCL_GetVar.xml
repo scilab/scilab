@@ -24,7 +24,7 @@
     <synopsis>value=TCL_GetVar(Varname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>
@@ -127,8 +127,8 @@ ScalarFromTCL_slave=TCL_GetVar("ScalarTCL_slave",'SlaveInterp3')
 TCL_DeleteInterp('SlaveInterp3')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

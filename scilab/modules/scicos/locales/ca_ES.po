@@ -1,0 +1,2166 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-07-30 12:38+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+"\n"
+"         (already programmed) event. There may be an error in"
+msgstr ""
+"\n"
+"         esdeveniment (que ja s'ha programat). Pot haver-hi un error a"
+
+msgid ""
+"\n"
+"         your model. Please check your model\n"
+msgstr ""
+"\n"
+"         el vostre model. Comproveu-lo\n"
+
+msgid ""
+"\n"
+" The residual function returns NAN/Inf. \n"
+" Please verify your model:\n"
+" some functions might be called with illegal inputs."
+msgstr ""
+"\n"
+" La funció residual retorna NAN/Inf. \n"
+" Verifiqueu el vostre model:\n"
+" pot ser que crideu algunes funcions amb entrades incorrectes."
+
+#, c-format
+msgid ""
+"\n"
+" Warning: an event is reprogrammed at t=%g by removing another"
+msgstr ""
+
+msgid ""
+"\n"
+" error in Jacobian"
+msgstr ""
+"\n"
+" error a la Jacobiana"
+
+#, c-format
+msgid ""
+"\n"
+"MEMORY_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"MEMORY_ERROR: Ha fallat %s() - Ha retornat un punter NULL\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR: Ha fallat %s() - Ha retornat un punter NULL\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed with flag = %d\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR: Ha fallat %s() amb l'indicador %d\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The computing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avís: La funció de computació #%d retorna un NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The initialization system #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avís: El sistema d'inicialització #%d retorna un NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avís: La funció residual #%d retorna un NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero-crossing function #%d returns a NaN"
+msgstr ""
+"\n"
+"Avís: La funcio zero-crossing #%d retorna un NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero_crossing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avís: La funció zero_crossing #%d retorna un NaN/Inf"
+
+msgid ""
+"\n"
+"getscicosvars : utility function to retrieve\n"
+msgstr ""
+"\n"
+"getscicosvars : La funció d'utilitat obtindrà\n"
+
+msgid ""
+"                scicos arrays during simulation.\n"
+"\n"
+msgstr ""
+"                vectors de scicos durant la simulació.\n"
+"\n"
+
+msgid "  that must be informed with the following values :\n"
+msgstr "  que han de venir informats amb els següents valors:\n"
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " No es pot compilar el %s.mo\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " S'ha forçat la compilació de %s.mo\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " S'ha de recompilar el %s.mo\n"
+
+msgid " Scilab is in no gui mode : Scicos is unavailable"
+msgstr " L'Scilab està en mode consola: L'Scicos no és disponible"
+
+#, c-format
+msgid "%s : Allocation error.\n"
+msgstr "%s : Error d'al·locació.\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(1).\n"
+msgstr "%s : La mida de Rhs(1) és incorrecta.\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(2).\n"
+msgstr "%s : La mida de Rhs(2) és incorrecta.\n"
+
+#, c-format
+msgid "%s : Error.\n"
+msgstr "%s : Error.\n"
+
+#, c-format
+msgid "%s : First argument must be a Typed list.\n"
+msgstr "%s : El primer argument ha de ser una llista.\n"
+
+#, c-format
+msgid ""
+"%s : First argument must be a matrix or an hypermatrix\n"
+"of real, complex or integer numbers.\n"
+msgstr ""
+"%s : El primer argument ha de ser una matriu o una hipermatriu\n"
+"de números reals, complexos o enters.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos model.\n"
+msgstr "%s : El primer argument ha de ser un model de scicos.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos signal structure.\n"
+msgstr ""
+"%s : El primer argument ha de ser una estructura de senyal de scicos.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos_block typed list.\n"
+msgstr "%s : El primer argument ha de ser una llista de scicos_block.\n"
+
+#, c-format
+msgid "%s : First argument must be a string.\n"
+msgstr "%s : El primer argument ha de ser un text.\n"
+
+#, c-format
+msgid "%s : First argument must be a structure.\n"
+msgstr "%s : El primer argument ha de ser una estructura.\n"
+
+#, c-format
+msgid "%s : First argument must be a valid scicos_block typed list.\n"
+msgstr ""
+"%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
+
+#, c-format
+msgid "%s : Fourth argument must be a Tlist.\n"
+msgstr "%s : El quart argument ha de ser un Tlist.\n"
+
+#, c-format
+msgid "%s : Function not found\n"
+msgstr "%s : No s'ha trobat la funció\n"
+
+#, c-format
+msgid "%s : Incompatible sim.nb RHS parameter.\n"
+msgstr "%s : El paràmetre sim.nb RHS és incompatible.\n"
+
+#, c-format
+msgid "%s : No more free memory.\n"
+msgstr "%s : No hi ha més memòria lliure.\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s : No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
+msgstr "%s : Només estan permeses les hipermatrius de 3 dimensions.\n"
+
+#, c-format
+msgid "%s : Second argument must be a real.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Second argument must be a scalar.\n"
+msgstr "%s : El segon argument ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s : Second argument must be scalar.\n"
+msgstr "%s : El segon argument ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s : Second element of sim must be a list.\n"
+msgstr "%s : El segon element de sim ha de ser una llista.\n"
+
+#, c-format
+msgid "%s : Sixth argument must have a maximum of seven elements.\n"
+msgstr "%s : El sisè argument ha de tenir com a molt set elements.\n"
+
+#, c-format
+msgid "%s : Sixth argument must have at least four elements.\n"
+msgstr "%s : El sisè argument ha de tenir com a molt quatre elements.\n"
+
+#, c-format
+msgid "%s : Third argument must be a scalar.\n"
+msgstr "%s : El tercer argument ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s : Third argument must be scalar.\n"
+msgstr "%s : El tercer argument ha de ser escalar.\n"
+
+#, c-format
+msgid "%s : Undefined Function type\n"
+msgstr "%s : El tipus de funció no està definit\n"
+
+#, c-format
+msgid "%s : Undefined field in string matrix position : %d.\n"
+msgstr "%s : El camp de la posició %d de la matriu no està definit.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Mida indeterminada. in(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Mida indeterminada. in2(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Mida indeterminada. out(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Mida indeterminada. out2(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Tipus indeterminat. intyp(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Tipus indeterminat. outtyp(%d)=%d. Ajusteu el vostre model.\n"
+
+#, c-format
+msgid "%s : bad dimension for lnksz argument.\n"
+msgstr "%s : La dimensió de l'argument lnksz és incorrecte.\n"
+
+#, c-format
+msgid "%s : bad dimension for lnktyp argument.\n"
+msgstr "%s : La dimensió de l'argument lnktyp és incorrecte.\n"
+
+#, c-format
+msgid "%s : error\n"
+msgstr "%s : error\n"
+
+#, c-format
+msgid "%s : error in cross variable size checking : %d\n"
+msgstr "%s : error en la comprovació de la mida de la variable: %d\n"
+
+#, c-format
+msgid "%s : error. Type %d not yet supported for outtb.\n"
+msgstr "%s : error. El tipus %d no està suportat per a outtb.\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
+msgstr ""
+"%s : error. El tipus %d de la matriu de nombres decimals no està suportat "
+"per a outtb.\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgstr ""
+"%s : error. El tipus %d de la matriu d'enters no està suportat per a outtb.\n"
+
+#, c-format
+msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
+msgstr "%s : Les dimensions de lnksz i lnktyp són inconsistents.\n"
+
+#, c-format
+msgid "%s : lnksz and lnktyp argument must have the same length.\n"
+msgstr "%s : L'argument lnksz i lnktyp ha de tenir la mateixa mida.\n"
+
+#, c-format
+msgid "%s : lnksz argument must be double or integer.\n"
+msgstr "%s : L'argument lnksz ha de ser enter o decimal.\n"
+
+#, c-format
+msgid "%s : lnktyp argument must be double or integer.\n"
+msgstr "%s : L'argument lnktyp ha de ser enter o decimal.\n"
+
+#, c-format
+msgid "%s : outtb element of state must be a list.\n"
+msgstr "%s : L'element outtb de l'estat ha de ser una llista.\n"
+
+#, c-format
+msgid "%s : oz element of state must be a list.\n"
+msgstr "%s : L'element oz de l'estat ha de ser una llista.\n"
+
+#, c-format
+msgid "%s : sim.opar must be a list.\n"
+msgstr "%s : sim.opar ha de ser una llista.\n"
+
+#, c-format
+msgid "%s : type 1 function not allowed for scilab blocks\n"
+msgstr "%s : La funció de tipus 1 no està permesa per a blocs de Scilab\n"
+
+#, c-format
+msgid "%s : type 2 function not allowed for scilab blocks\n"
+msgstr "%s : La funció de tipus 2 no està permesa per a blocs de Scilab\n"
+
+#, c-format
+msgid "%s : unknown block : %s\n"
+msgstr "%s : Bloc desconegut: %s\n"
+
+#, c-format
+msgid "%s :the handle is not or no more valid.\n"
+msgstr "%s : El tractament ja no és vàlid.\n"
+
+#, c-format
+msgid "%s is not a valid directory\n"
+msgstr "%s no és un directori vàlid\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s no és un nom vàlid, canvieu el nom del diagrama."
+
+#, c-format
+msgid "%s: 1st and 2nd argument must have equal size\n"
+msgstr "%s: El primer i el segon argument han de tenir la mateixa mida.\n"
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: No s'ha pogut trobar cap fitxer MO a la següent ubicació: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: El diagrama no compila al pas %d.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Error: No s'ha definit un bloc scifunc."
+
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: Error: El compilador Modelica (MODELICAC) no està disponible."
+
+#, c-format
+msgid "%s: First argument must be a Scicos diagram data structure\n"
+msgstr ""
+"%s: El primer argument ha de ser un diagrama d'estructura de dades de "
+"Scicos\n"
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Els ports d'entrada no s'han numerat correctament.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Els ports de sortida no s'han numerat correctament.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada. Ha de ser entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un nombre simple.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: Mida incorrecta per als arguments d'entrada #%d i #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. A type of a scilab object has changed.\n"
+msgstr "%s: error %d. S'ha modificat el tipus d'un objecte de Scilab.\n"
+
+#, c-format
+msgid "%s: error %d. Bad double object sub_type.\n"
+msgstr "%s: error %d. El subtipus d'objecte decimal és incorrecte.\n"
+
+#, c-format
+msgid "%s: error %d. Bad int object sub_type.\n"
+msgstr "%s: error %d. El subtipus d'objecte enter és incorrecte.\n"
+
+#, c-format
+msgid "%s: error %d. No more space on the stack for new data.\n"
+msgstr "%s: error %d. No hi ha més espai a la pila.\n"
+
+#, c-format
+msgid "%s: error %d. Only int or double object are accepted.\n"
+msgstr "%s: error %d. Només s'accepten objectes enters o decimals.\n"
+
+#, c-format
+msgid "%s: error %d. Stack is full.\n"
+msgstr "%s: error %d. La pila és plena.\n"
+
+#, c-format
+msgid "%s: error %d. Undefined error.\n"
+msgstr "%s: error %d. Error indefinit.\n"
+
+#, c-format
+msgid "%s: scicosim is not running.\n"
+msgstr "%s: No s'està executant l'scicosim.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Edita"
+
+msgid "&File"
+msgstr "&Fitxer"
+
+msgid "&Tools"
+msgstr "&Eines"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr "El ''scicos'' ja no està disponible. Utilitzeu el ''xcos''.\n"
+
+msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
+msgstr ""
+"**** No s'ha pogut inicialitzar el SUNDIALS.IDA  ->torneu-ho a intentar "
+"*****\n"
+
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+"**** SUNDIALS.Ida: hi ha massa feina en el moment=%g (regió stiff, canvia "
+"RTOL i ATOL)\n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
+msgstr "****SUNDIALS.Cvode de: %f a%f hot= %d  \n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode reached: %f\n"
+msgstr "****SUNDIALS.Cvode assolits: %f\n"
+
+#, c-format
+msgid ""
+"****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+
+#, c-format
+msgid "****SUNDIALS.Ida reached: %f\n"
+msgstr "****SUNDIALS.Ida assolits: %f\n"
+
+#, c-format
+msgid "****daskr from: %f to %f hot= %d  \n"
+msgstr "****daskr de: %f a %f hot= %d  \n"
+
+msgid "**mod**\n"
+msgstr "**mod**\n"
+
+msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
+msgstr "- [\"str1\";\"str2\",...] és una matriu de text\n"
+
+msgid "- myvar : an int32 or double matrix or a Tlist.\n"
+msgstr "- myvar : una matriu d'enters, de decimals o una Tlist.\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "About Scicos"
+msgstr "Quant al Scicos"
+
+msgid "Activate Scilab Window"
+msgstr "Activa la finestra d'Scilab"
+
+msgid "Add a new color at the Scicos palette"
+msgstr "Afegeix un color nou a la paleta d'Scicos"
+
+msgid "Add color"
+msgstr "Afegeix un color"
+
+msgid "Add new block"
+msgstr "Afegeix un nou bloc"
+
+msgid "Align"
+msgstr "Alinea"
+
+msgid "An Atomic Superblock cannot contain sample clocks"
+msgstr "Un superbloc atòmic no pot contenir mostres de rellotge"
+
+msgid "An error occur when evaluating context:"
+msgstr "S'ha produït un error en avaluar el context:"
+
+#, c-format
+msgid ""
+"An unexpected  error occurred while executing the menu\n"
+"%s:\n"
+msgstr ""
+
+msgid "Analyze Diagram"
+msgstr "Analitza el diagrama"
+
+msgid "Atomic"
+msgstr "Atòmic"
+
+msgid "Available Parameters"
+msgstr "Paràmetres disponibles"
+
+msgid "Background color"
+msgstr "Color de fons"
+
+msgid "Background color ? :"
+msgstr "Color de fons? :"
+
+msgid "Block Documentation"
+msgstr "Documentació del bloc"
+
+msgid "Block ID font name"
+msgstr "Nom de lletra de l'identificador de bloc"
+
+msgid "Block ID font size"
+msgstr "Mida de lletra de l'identificador de bloc"
+
+msgid "BrowseTo"
+msgstr "Navega A"
+
+msgid "Browser"
+msgstr "Navegador"
+
+msgid "C Code Generation"
+msgstr "Generació de codi C"
+
+msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "CV_BAD_ABSTOL: abstol té components negatius (il·legal)."
+
+msgid ""
+"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+"[((d/dt)^k)y](t)."
+msgstr ""
+
+msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
+msgstr "CV_BAD_EWT: L'ewt inicial té components iguals a zero (il·legal)."
+
+msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "CV_BAD_H0: h0 i tout - t0 inconsistents."
+
+msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "CV_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
+
+msgid "CV_BAD_ITASK: Illegal value for itask."
+msgstr "CV_BAD_ITASK: El valor d'itask és il·legal."
+
+msgid ""
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_WF."
+msgstr ""
+
+msgid ""
+"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
+"range 0, 1, ..., qu, where qu is the order last used"
+msgstr ""
+"CV_BAD_K: k (l'ordre de la derivada d'y que s'ha de calcular) no és en el "
+"rang  0, 1, ..., qu, on qu és el darrer ordre utilitzat"
+
+msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+"CV_BAD_NVECTOR: No s'ha implementat una operació que requereix un vector."
+
+msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "CV_BAD_RELTOL: Les toleràncies relatives reltol < 0 són il·legals."
+
+msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "CV_BAD_T: t no és a l'intèrval [tn-hu,tn]."
+
+msgid ""
+"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+"CV_BAD_TOUT: Problemes d'interpolació. ''tout'' és molt lluny enrere en la "
+"direcció de la integració"
+
+msgid ""
+"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+"CV_BAD_TSTOP: tstop està més enllà del temps de la simulació actual en la "
+"direcció de la integració."
+
+msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr "CV_CLOSE_ROOTS: S'ha trobat una arrel en el temps inicial."
+
+msgid ""
+"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
+"= 10) during one internal time step or occurred with |h| = hmin."
+msgstr ""
+"CV_CONV_FAILURE: S'han produït massa errors en les proves (= MXNCF = 10) "
+"durant un pas de temps intern o ha passat amb |h| = hmin."
+
+msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
+msgstr "CV_Derivative_NAN: Les derivades retornades pels blocs són NAN."
+
+msgid ""
+"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
+"during one internal step or occurred with |h|=h_min "
+msgstr ""
+"CV_ERR_FAILURE: S'ha produït massa errors durant les proves (=MXETF = 7) o "
+"s'han produït amb |h|=h_min "
+
+msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "CV_EWT_FAIL: Ha fallat la funció EwtSet proporcionada per l'usuari."
+
+msgid ""
+"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error at the first call"
+msgstr ""
+
+msgid ""
+"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
+"situation where a component of the error weight vector becomes negative "
+"during internal time-stepping. This also includes if the linear solver "
+"function initialization (called by the user after calling CVodeCreat) failed "
+"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
+"happens if number of root functions is positive but the return surface value "
+"is NULL. "
+msgstr ""
+"CV_ILL_INPUT: No es pot indicar un argument d'entrada. Això inclou la "
+"situació on un component del vector de pes es torna negatiu durant els "
+"passos de temps interns. Això també inclou si la inicialització de la funció "
+"de resolució lineal (cridada per l'usuari després de la CVodeCreat) no ha "
+"pogut establir el camp ''lsolve'' a cvode_mem. Aquest error passa si el "
+"número de funcions arrel és positiu, però el valor de la superfície "
+"retornada és NULL. "
+
+msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
+msgstr ""
+"CV_LINIT_FAIL: La funció d'inicialització lineal de resolució ha fallat."
+
+msgid ""
+"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
+"unrecoverable manner."
+msgstr ""
+"CV_LSETUP_FAIL: La rutina de configuració lineal de resolució ha fallat de "
+"manera irrecuperable."
+
+msgid ""
+"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
+"unrecoverable manner."
+msgstr ""
+"CV_LSOLVE_FAIL: La rutina lineal de resolució ha fallat de forma "
+"irrecuperable."
+
+msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr "CV_LSOLVE_NULL: La rutinalineal de resolució és NULL."
+
+msgid ""
+"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
+"maxord"
+msgstr ""
+"CV_MEM_FAIL: Ha fallat l'al·locació de memòria, incloent un intent "
+"d'incrementar el maxord"
+
+msgid "CV_MEM_NULL: the cvode memory was NULL"
+msgstr "CV_MEM_NULL: La memòria de cvode era NULL"
+
+msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
+msgstr "CV_NO_EFUN: itol = CV_WF però no s'ha proporcionat la funció EwtSet."
+
+msgid ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
+"was not set"
+msgstr ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP o itask = CV_ONE_STEP_TSTOP però no "
+"s'ha determinat el tstop"
+
+msgid ""
+"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
+"CVodeMalloc has not been called)."
+msgstr ""
+"CV_NO_MALLOC: indicant que no s'ha al·locat el cvode_mem (per exemple, no "
+"s'ha cridat CVodeMalloc)."
+
+msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "CV_NULL_ABSTOL: La tolerància absoluta = NULL il·legal."
+
+msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr ""
+"CV_NULL_F: La rutina ODE proporcionada per l'usuari és (NULL) il·legal."
+
+msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+"CV_NULL_G: La rutina zero-crossing proporcionada per l'usuari és (NULL) "
+"il·legal."
+
+msgid "CV_NULL_Y0: y0 = NULL illegal."
+msgstr "CV_NULL_Y0: y0 = NULL il·legal."
+
+msgid ""
+"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
+"repeated recoverable errors in the right-hand side function (user supplied "
+"ODE). This error may be raised due to repeated  recoverable errors during "
+"the estimation of an initial step size."
+msgstr ""
+"CV_REPTD_RHSFUNC_ERR: Les proves de convergència han tingut massa errors "
+"degut a errors recuperables repetits a la funció de ma dreta (ODE "
+"proporcionada per l'usuari). Aquest error s'ha pogut produir per errors "
+"recuperables repetits durant l'estimació de la mida inicial del pas."
+
+msgid ""
+"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
+"an unrecoverable manner"
+msgstr ""
+"CV_RHSFUNC_FAIL: La funció de mà dreta (ODE proporcionada per l'usuari) ha "
+"fallat de manera irrecuperable"
+
+msgid ""
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
+msgstr ""
+
+msgid "CV_Rootfunction_NAN: The Root function returns NAN."
+msgstr "CV_Rootfunction_NAN: La funció Root retorna NAN."
+
+msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+"CV_TOO_CLOSE: ''tout'' és massa prop de ''t0'' per fer la integració."
+
+msgid ""
+"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step"
+msgstr ""
+"CV_TOO_MUCH_ACC: No s'ha pogut satisfer la precisió demanada per l'usuari "
+"per a alguns passos interns"
+
+msgid ""
+"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"CV_TOO_MUCH_WORK: S'han fet mxstep passos inters però no s'ha pogut assolir "
+"''tout''. El valor predeterminat per a mxstep és MXSTEP_DEFAULT = 500."
+
+msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "CV_TRET_NULL: ''tret'' = NULL il·legal."
+
+msgid ""
+"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error, but no recovery was possible."
+msgstr ""
+"CV_UNREC_RHSFUNC_ERR: La funció de mà dreta (ODE proporcionada per l'usuari) "
+"ha tingut un error recuperable, però no s'ha pogut recuperar."
+
+msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "CV_YOUT_NULL: ''yout'' = NULL il·legal."
+
+msgid "Calc"
+msgstr "Calc"
+
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
+msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
+msgstr ""
+"No s'ha pogut trobar el mode inicial. Potser hi ha una condició de mode "
+"lliscant"
+
+msgid "Choose export format:"
+msgstr "Escolliu el format d'exportació:"
+
+msgid "Click block to label"
+msgstr "Feu clic al bloc per etiquetar"
+
+msgid "Click block to resize"
+msgstr "Feu clic al bloc per redimensionar"
+
+msgid "Click object to move, drag and click (left to fix, right to cancel)"
+msgstr ""
+"Feu clic a l'objecte per moure, arrossegar (esquerre per fixar, dret per "
+"cancel·lar)"
+
+msgid ""
+"Click on a Super Block (without activation output) to obtain a coded block!"
+msgstr ""
+"Feu clic en un super bloc (sense activar la sortida) per obtenir un bloc "
+"codificat."
+
+msgid "Click on a block to set or get its documentation"
+msgstr ""
+
+msgid "Click on a port of object to be moved"
+msgstr ""
+
+msgid "Click on a super block"
+msgstr "Feu clic en un super bloc"
+
+msgid "Click on an object to set or get identification"
+msgstr "Feu clic en un objecte per establir o obtenir la identificació"
+
+msgid "Click on block to  open graphic icon editor"
+msgstr "Feu clic en un bloc per obrir l'editor gràfic d'icones"
+
+msgid "Click on block to be flipped"
+msgstr "Feu clic al bloc que s'ha de capgirar"
+
+msgid "Click on block to be turned left"
+msgstr "Feu clic al bloc que s'ha de girar a l'esquerra"
+
+msgid "Click on block to be turned right"
+msgstr "Feu clic al bloc que s'ha de girar a la dreta"
+
+msgid "Click on block to edit its icon"
+msgstr "Feu clic al bloc per editar la seva icona"
+
+msgid "Click on object  to get information on it"
+msgstr "Feu clic a l'objecte per veure la seva informació"
+
+msgid "Click on object to choose its color"
+msgstr "Feu clic a l'objecte per escollir el seu color"
+
+msgid ""
+"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgstr ""
+"Feu clic a l'objecte per duplicar-lo (esquerre per copiar, dret per "
+"cancel·lar)"
+
+msgid "Click to open block or make a link"
+msgstr "Feu clic per obrir el bloc o fer-ne un enllaç"
+
+msgid "Click where you want object to be placed (right-click to cancel)"
+msgstr ""
+"Feu clic on vulgueu posar l'objecte (amb el botó dret per cancel·lar)"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Code Generation only works for a Superblock !\n"
+msgstr "La generació de codi només funciona per a un superbloc.\n"
+
+msgid "Code generation applies only to Super Blocks."
+msgstr "La generació de codi només s'aplica a un superbloc."
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Compile"
+msgstr "Compila"
+
+msgid "Connection error"
+msgstr ""
+
+msgid "Context"
+msgstr "Context"
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid "Create Atomic"
+msgstr "Crea un Atomic"
+
+msgid "Create Mask"
+msgstr "Crea una màscara"
+
+msgid "CtrlSelect"
+msgstr "CtrlSelect"
+
+msgid "Customize Mask"
+msgstr "Personalitza una màscara"
+
+msgid "Customize block GUI:"
+msgstr "Personalitza el bloc:"
+
+msgid "Cut"
+msgstr "Retalla"
+
+msgid "Cut: Click on the object to cut"
+msgstr "Retalla: Feu clic a l'objecte per retallar-lo"
+
+msgid "Debug Level"
+msgstr "Nivell de depuració"
+
+msgid "Default link colors"
+msgstr "Color predeterminat dels enllaços"
+
+msgid "Default window parameters"
+msgstr "Paràmetres predeterminats de finestra"
+
+msgid "Defined shortcuts"
+msgstr "Dreceres de teclat definides"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Delete: Click on the object to delete"
+msgstr "Elimina: Feu clic a l'objecte a eliminar"
+
+msgid "Demos"
+msgstr "Demos"
+
+msgid "Details"
+msgstr "Detalls"
+
+msgid "Diagram"
+msgstr "Diagrama"
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
+msgid "Done\n"
+msgstr "Fet\n"
+
+msgid "Drag, click left for final or intermediate points or right to cancel"
+msgstr ""
+"Arrossega, clic amb el botó esquerre per posar punts intermedis o final, amb "
+"el botó dret per cancel·lar"
+
+msgid "Duplicate"
+msgstr "Duplica"
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "End of activation"
+msgstr "Final d'activació"
+
+msgid "End of activation\n"
+msgstr "Final d'activació\n"
+
+msgid "End problem: "
+msgstr ""
+
+msgid "Entering the block \n"
+msgstr "S'està entrant al bloc \n"
+
+msgid "Error\n"
+msgstr "Error\n"
+
+msgid "Error in the Debug block \n"
+msgstr "Error en el bloc de depuració \n"
+
+#, c-format
+msgid "Error: cannot find '%s'  \n"
+msgstr "Error: No s'ha pogut trobar '%s'  \n"
+
+#, c-format
+msgid "Error: cannot write to  '%s'  \n"
+msgstr "Error: No s'ha pogut escriure a '%s'  \n"
+
+msgid "Eval"
+msgstr "Eval"
+
+msgid "Event links color? :"
+msgstr "Color dels enllaços a esdeveniments:"
+
+#, c-format
+msgid "Event: %d activated at t=%f\n"
+msgstr "Esdeveniment: %d activat a t=%f\n"
+
+msgid "Exit"
+msgstr "Surt"
+
+msgid "Export"
+msgstr "Exporta"
+
+msgid "Export All"
+msgstr "Exporta-ho tot"
+
+#, c-format
+msgid "Export in file %s failed\n"
+msgstr "Ha fallat l'exportació al fitxer %s\n"
+
+msgid "File"
+msgstr "Fitxer"
+
+msgid "Fit diagram to figure"
+msgstr "Encaixa el diagrama a la figura"
+
+msgid "Flip"
+msgstr "Capgira"
+
+msgid "Following palette(s) ignored (associated file(s) no more exist):"
+msgstr ""
+"S'ha ignorat les següents paletes (ja no existeix el seu fitxer associat):"
+
+msgid "Foreground color ? :"
+msgstr "Color de primer pla:"
+
+msgid "Format"
+msgstr "Formata"
+
+msgid "Free"
+msgstr "Lliure"
+
+msgid "Function not found\n"
+msgstr "No s'ha trobat la funció\n"
+
+msgid "Get Info"
+msgstr "Obté informació"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "ID font definitions"
+msgstr "Definicions de font d'identificació"
+
+msgid "ID fonts"
+msgstr "Fonts d'identificació"
+
+msgid ""
+"IDACalc cannot find the initial condition at this point. If you are using a "
+"Modelica model, you can try with the initialization GUI to try with other "
+"nonlinear solvers."
+msgstr ""
+"IDACalc no ha pogut trobar la condició inicial d'aquest punt. Si esteu "
+"utilitzant un model de Modelica, podeu provar la interfície d'inicialització "
+"o amb altres programes de solució."
+
+msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "IDA_BAD_ABSTOL: abstol té components negatius (il·legal)."
+
+msgid ""
+"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
+"either for the input value of y0 or a corrected value."
+msgstr ""
+"IDA_BAD_EWT: Algun component del vector d'errors de pes és zero (il·legal), "
+"o bé per al valor d'entrada de y0 o un valor corregit."
+
+msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "IDA_BAD_H0: h0 i tout - t0 inconsistent."
+
+msgid "IDA_BAD_HINIT: yret = NULL illegal.."
+msgstr "IDA_BAD_HINIT: yret = NULL il·legal."
+
+msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "IDA_BAD_INIT_ROOT: S'ha trobat una arrel a l'inici de t."
+
+msgid "IDA_BAD_ITASK: Illegal value for itask."
+msgstr "IDA_BAD_ITASK: Valor il·legal per a itask."
+
+msgid ""
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"and IDA_WF."
+msgstr ""
+
+msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+"IDA_BAD_NVECTOR: No s'ha implementat una operació de vector necessària."
+
+msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "IDA_BAD_RELTOL: Les toleràncies relatives són reltol < 0 il·legal."
+
+msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "IDA_BAD_T: t no és a l'intèrval [tn-hu,tn]."
+
+msgid ""
+"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+"IDA_BAD_TOUT: Problema d'interpolació. ''tout'' és massa lluny enrere en el "
+"sentit de la integració"
+
+msgid ""
+"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+"IDA_BAD_TSTOP: tstop és menor que el temps de simulació actual en el sentit "
+"de la integració."
+
+msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr "IDA_CLOSE_ROOTS: S'ha trobat una arrel a l'inici del temps."
+
+msgid ""
+"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
+"inequality constraints."
+msgstr ""
+"IDA_CONSTR_FAIL: IDACalcIC no ha pogut trobar una solució que satisfaci les "
+"restriccions de desigualtat."
+
+msgid ""
+"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
+"iterations. or IDA_solve->Convergence test failures occurred too many times "
+"(= MXNCF = 10) during one internal step. "
+msgstr ""
+"IDA_CONV_FAIL: IDACalcIC-> No ha pogut arribar a la convergència de les "
+"iteracions de Newton. O bé IDA_solve-> Hi ha hagut massa error en les proves "
+"de convergència (= MXNCF = 10) en un interval de temps. "
+
+msgid ""
+"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
+"during one internal step or occurred with |h|=h_min"
+msgstr ""
+"IDA_ERR_FAIL: Hi ha hagut massa errors en les proves (=MXETF = 10) en un "
+"interval de temps, o han passat amb |h|=h_min"
+
+msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "IDA_EWT_FAIL: Ha fallat la funció EwtSet proporcionada per l'usuari."
+
+msgid ""
+"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
+"error flag on the first call, but IDACalcIC was unable to recover."
+msgstr ""
+"IDA_FIRST_RES_FAIL: La rutina residual d'usuari ha retornat un senyal "
+"d'error recuperable a la primera crida, però el IDACalcIC no s'ha pogut "
+"recuperar."
+
+msgid ""
+"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
+"may be returned if the linear solver function initialization (called by the "
+"user after calling IDACreate) failed to set the linear solver-specific "
+"lsolve field in ida_mem."
+msgstr ""
+"IDA_ILL_INPUT: Un dels arguments d'entrada és incorrecte. Aquest missatge "
+"d'error es pot produir si la inicialització de la funció lineal de solució "
+"(cridada per l'usuari després de IDACreate) no ha pogut establir el camp "
+"lsolve a ida_mem."
+
+msgid ""
+"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
+"a step larger than steptol in weighted RMS norm."
+msgstr ""
+"IDA_LINESEARCH_FAIL: L'algoritme Linesearch no ha pogut trobar una solució "
+"en un interval supoerir a steptol al RMS norm."
+
+msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
+msgstr ""
+"IDA_LINIT_FAIL: Ha fallat la rutina d'inicialització lineal del programa de "
+"solució."
+
+msgid ""
+"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
+"error."
+msgstr ""
+"IDA_LSETUP_FAIL: Ha fallat la rutina de configuració lineal del programa de "
+"solució."
+
+msgid ""
+"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
+"error."
+msgstr ""
+"IDA_LSOLVE_FAIL: Ha fallat la rutina de solució lineal del programa de "
+"solució."
+
+msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr ""
+"IDA_LSOLVE_NULL: La rutina de solució lineal del programa de solució és NULL."
+
+msgid "IDA_MEM_FAIL: A memory allocation failed."
+msgstr "IDA_MEM_FAIL: No s'ha pogut reservar memòria."
+
+msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
+msgstr "IDA_MEM_NULL: L'argument ida_mem era NULL"
+
+msgid ""
+"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
+"but suppressalg option on."
+msgstr ""
+"IDA_MISSING_ID :id = NULL (''id'' defineix estats algebraics i diferencials) "
+"però l'opció suppressalg està activada."
+
+msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
+msgstr ""
+"IDA_NO_EFUN: itol = IDA_WF però no s'ha proporcionat cap funció EwtSet."
+
+msgid ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
+"tstop was not set"
+msgstr ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP o itask = IDA_ONE_STEP_TSTOP però no "
+"s'ha indicat el tstop"
+
+msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
+msgstr "IDA_NO_MALLOC: No s'ha pogut reservar la ida_mem."
+
+msgid ""
+"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
+"or solve routine had a  recoverable error, but IDACalcIC was unable to "
+"recover."
+msgstr ""
+"IDA_NO_RECOVERY: La rutina residual d'usuari, o la configuració del programa "
+"de solució o la rutina de solució han tingut un error recuperable, però el "
+"IDACalcIC no s'ha pogut recuperar."
+
+msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "IDA_NULL_ABSTOL: La tolerància absoluta és = NULL incorrecta."
+
+msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr ""
+"IDA_NULL_F: La rutina ODE proporcionada per l'usuari és (NULL) incorrecta."
+
+msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+"IDA_NULL_G: La rutina zero-crossing proporcionada per l'usuari és (NULL) "
+"incorrecta."
+
+msgid "IDA_NULL_Y0: y0 = NULL illegal."
+msgstr "IDA_NULL_Y0: y0 = NULL incorrecte."
+
+msgid ""
+"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
+"recoverable error flag, but the solver was unable to recover."
+msgstr ""
+"IDA_REP_RES_ERR: La funció residual d'usuari ha retornat diversos cops un "
+"senyal d'error recuperable, però el programa de solució no s'ha pogut "
+"recuperar."
+
+msgid ""
+"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
+"flag."
+msgstr ""
+"IDA_RES_FAIL: La rutina residual d'usuari ha retornat un senyal d'error "
+"irrecuperable."
+
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
+msgstr ""
+
+msgid "IDA_RTFUNC_FAIL: The root founding function failed."
+msgstr "IDA_RTFUNC_FAIL: Ha fallat a funció root founding."
+
+msgid "IDA_Residual_NAN: The residual function returns NAN."
+msgstr "IDA_Residual_NAN: La funció residual ha retornat NAN."
+
+msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
+msgstr "IDA_Rootfunction_NAN: La funció Root ha retornat NAN."
+
+msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+"IDA_TOO_CLOSE: ''tout'' és massa proper a ''t0'' per iniciar la integració."
+
+msgid ""
+"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step."
+msgstr ""
+"IDA_TOO_MUCH_ACC: El programa de solució no ha pogut satisfer precisió "
+"demanada per l'usuari per a alguns passos interns."
+
+msgid ""
+"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"IDA_TOO_MUCH_WORK: El programa de solució ha fet mxstep passos interns però "
+"no ha pogut arribar a tout. El valor predeterminat per a mxstep és "
+"MXSTEP_DEFAULT = 500."
+
+msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "IDA_TRET_NULL: ''tret'' = NULL incorrecte."
+
+msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
+msgstr "IDA_Y0_FAIL_CONSTR: y0 no ha pogut satisfer les restriccions."
+
+msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "IDA_YOUT_NULL: ''yout'' = NULL incorrecte."
+
+msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
+msgstr "IDA_YP0_NULL: la derivada yp0 = NULL és incorrecta."
+
+msgid "IDA_YPRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YPRET_NULL: yret = NULL incorrecte."
+
+msgid "IDA_YRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YRET_NULL: yret = NULL incorrecte."
+
+msgid "Icon"
+msgstr "Icona"
+
+msgid "Icon Editor"
+msgstr "Editor d'icones"
+
+msgid "Identification"
+msgstr "Identificació"
+
+msgid "Initialisation problem:"
+msgstr ""
+
+msgid "It is impossible to set ID for this type of object"
+msgstr "No es poden establir identificadors per a aquest tipus d'objecte"
+
+msgid ""
+"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
+"verify your model. There might be an error in the computing function, for "
+"example a function may be called with illegal inputs."
+msgstr ""
+"KIN_FIRST_SYSFUNC_ERR: La funció de sistema ha fallat a la primera crida. "
+"Verifiqueu el vostre model. Pot haver-hi un error a la funció de càlcul, per "
+"exemple una funció pot ser cridada amb entrades incorrectes."
+
+msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
+msgstr ""
+"KIN_ILL_INPUT: Hi ha un paràmetre invàlid (comproveu el missatge d'error)."
+
+msgid ""
+"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
+"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
+"nonlinear iterations (not necessarily consecutive), which may indicate the "
+"algorithm is making  poor progress "
+msgstr ""
+"KIN_LINESEARCH_BCFAI: L'algoritme de cerca de línia (implementat a "
+"KINLineSearch) no ha pogut satisfer la condició beta per a MXNBCF + 1 "
+"iteracions no lineals (no necessàriament consecutives). Això pot indicar que "
+"l'algoritme està tenint un progrés pobre "
+
+msgid ""
+"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
+"iterate sufficiently distinct  from the current iterate failure to satisfy "
+"the sufficient decrease condition could mean the current iterate is close to "
+"an approximate solution of the given nonlinear system, the finite-difference "
+" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
+"real scalar scsteptol is too large "
+msgstr ""
+"KIN_LINESEARCH_NONCONV:  L'algoritme de cerca de línia no ha pogut trobar "
+"una iteració prou diferent de l'errada actual per satisfer la condició de "
+"decreixement. Això pot indicar que la iteració és propera a una solució "
+"aproximada per al sistema no lineal donat. L'aproximació de diferència "
+"finita del producte de J(u)*v no és prou acurada, o l'escalar real scsteptol "
+"és massa gran "
+
+msgid ""
+"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
+"an error."
+msgstr ""
+"KIN_LINIT_FAIL: La rutina d'inicialització lineal del programa de solució "
+"(linit) ha trobat un error."
+
+msgid ""
+"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
+"recoverable error, but the preconditioner is already current"
+msgstr ""
+"KIN_LINSOLV_NO_RECOVERY: La rutina psolve proporcionada per l'usuari ha "
+"trobat un error recuperable, però la precondició ja és actual"
+
+msgid ""
+"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
+"preconditioner) encountered an unrecoverable error ."
+msgstr ""
+"KIN_LSETUP_FAIL: La rutina pset proporcionada per l'usuari (utilitzada per "
+"calcular la precondició) ha trobat un error irrecuperable."
+
+msgid ""
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
+msgstr ""
+
+msgid ""
+"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
+"reached "
+msgstr ""
+"KIN_MAXITER_REACHED: S'ha assolit el número màxim d'iteracions no lineals "
+
+msgid ""
+"KIN_MEM_FAIL: An error occurred during memory allocation (either "
+"insufficient system resources are available or the vector kernel has not yet "
+"been initialized "
+msgstr ""
+"KIN_MEM_FAIL: S'ha produït un error d'assignació de memòria (o bé no hi ha "
+"prou recursos de sistema disponibles o el nucli del vector encara no s'ha "
+"inicialitzat "
+
+msgid ""
+"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
+msgstr ""
+"KIN_MEM_NULL: S'ha produït un error d'assignació de memòria a KINCreate o "
+"KINMalloc."
+
+msgid ""
+"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
+"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
+"the current step and mxnewtstep is a real scalar upper bound on the scaled "
+"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
+"above to a finite value, or the real scalar mxnewtstep is too small "
+msgstr ""
+"KIN_MXNEWT_5X_EXCEEDE: S'ha fet cinc passos consecutius per resoldre la "
+"desigualtat:  ||uscale*p||_L2 > 0.99*mxnewtstep on p és el pas actual i "
+"mxnewtstep és el límit superior en de la mida del pas. Aquest error pot "
+"significar que ||fscale*func(u)||_L2 té assímptotes des de dal fins a un "
+"valor finit, o que mxnewtstep és massa petit "
+
+msgid ""
+"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
+"some functions might be called with illegal inputs."
+msgstr ""
+"KIN_NAN_ERR: La funció residual retorna NAN. Verifiqueu el vostre model: "
+"potser tenir crides a algunes funcions amb entrades invàlides."
+
+msgid ""
+"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
+"vector storage (forgot to call the  KINMalloc routine)"
+msgstr ""
+"KIN_NO_MALLOC: No s'ha pogut assignar més memòria per al vector (no heu "
+"cridat la rutina KINMalloc)"
+
+msgid ""
+"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
+"your model. There might be an error in the computing function, for example a "
+"function may be called with illegal inputs"
+msgstr ""
+"KIN_REPTD_SYSFUNC_ERR: La funció de sistema ha fallat diversos cops. "
+"Verifiqueu el vostre model. Pot haver-hi un error a la funció de càlcul, per "
+"exemple pot haver-hi una crida a una funció amb entrades invàlides"
+
+msgid ""
+"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
+msgstr ""
+"KIN_SYSFUNC_FAIL: Error en la funció de càlcul. Verifiqueu el vostre model."
+
+msgid "Label"
+msgstr "Etiqueta"
+
+#, c-format
+msgid "Leaving block %d \n"
+msgstr "Deixant el bloc %d \n"
+
+msgid "Link"
+msgstr "Enllaç"
+
+msgid "Link ID font name"
+msgstr "Nom de lletra de l'identificador d'enllaç"
+
+msgid "Link ID font size"
+msgstr "Mida de lletra de l'identificador d'enllaç"
+
+msgid "Link parameters"
+msgstr "Paràmetres d'enllaç"
+
+msgid "Load as Palette"
+msgstr "Carrega com una paleta"
+
+msgid "Mask"
+msgstr "Màscara"
+
+msgid "Mask can only be created for Super Blocks."
+msgstr "Només podeu crear una màscara per a superblocs."
+
+msgid "Modelica initialize"
+msgstr "Inicialitza la Modelica"
+
+msgid "Modify title and menu labels."
+msgstr "Modifica el títol i les etiquetes del menú."
+
+msgid "Move"
+msgstr "Mou"
+
+msgid "MoveLink "
+msgstr "MoveLink "
+
+msgid "Multiple selection cannot be used here"
+msgstr "No podeu seleccionar més d'un element"
+
+msgid "Navigator window"
+msgstr "Finestra del navegador"
+
+msgid "New"
+msgstr "Nou"
+
+msgid "No"
+msgstr "No"
+
+msgid "No selected block in the current Scicos window."
+msgstr "No heu seleccionat cap bloc a la finestra d'Scicos actual."
+
+msgid "Only  blocks can be selected for this operation."
+msgstr "Per a aquesta operació només podeu seleccionar blocs."
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+"Només podeu seleccionar un bloc a la finetra actual per a aquesta operació."
+
+msgid "Open"
+msgstr "Obre"
+
+msgid "Open a Scicos demonstration diagram"
+msgstr "Obre un diagrama de demostració d'Scicos"
+
+msgid "Open a Scicos diagram"
+msgstr "Obre un diagrama d'Scicos"
+
+msgid "Open/Set"
+msgstr "Obre/Estableix"
+
+msgid "Pal editor"
+msgstr "Editor Pal"
+
+msgid "Palette"
+msgstr "Paleta"
+
+msgid "Palettes"
+msgstr "Paletes"
+
+msgid "Palettes Tree"
+msgstr "Arbre de paletes"
+
+msgid "Paste"
+msgstr "Enganxa"
+
+msgid "Place in Diagram"
+msgstr "Posa al diagrama"
+
+msgid "PlaceinBrowser"
+msgstr "Posa al navegador"
+
+msgid "PlaceinDiagram"
+msgstr "Posa al diagrama"
+
+msgid "Please report"
+msgstr "Informeu"
+
+msgid "Popup"
+msgstr "Finestra emergent"
+
+msgid ""
+"Press left mouse button, drag region and release (right button to cancel)"
+msgstr ""
+
+msgid "Problem saving a backup; I cannot activate Scilab\n"
+msgstr ""
+"S'ha produït un error en la còpia de seguretat. No es pot activar l'Scilab\n"
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "S'ha trobat un problema creant la llibreria %s\n"
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
+msgid "Properties"
+msgstr "Propietats"
+
+msgid "Purge"
+msgstr "Neteja"
+
+msgid "Region to Palette"
+msgstr "Passa la regió a una paleta"
+
+msgid "Region to Super Block"
+msgstr "Passa la regió a un superbloc"
+
+msgid "Regular links color ? :"
+msgstr "Color dels enllaços:"
+
+msgid "Remove Atomic"
+msgstr "Elimina l'Atomic"
+
+msgid "Remove Mask"
+msgstr "Elimina la màscara"
+
+msgid "Rename"
+msgstr "Canvia el nom"
+
+msgid "Replot"
+msgstr "Torna a dibuixar"
+
+#, c-format
+msgid "Requested action: %s is not available"
+msgstr "L'acció demanada: %s no és disponible"
+
+msgid "Resize"
+msgstr "Redimensiona"
+
+msgid "Resize is allowed only for Blocks or Links."
+msgstr "Només podeu redimensionar blocs o enllaços."
+
+msgid "Rotate Left"
+msgstr "Gira a l'esquerra"
+
+msgid "Rotate Right"
+msgstr "Gira a la dreta"
+
+msgid "Run"
+msgstr "Executa"
+
+msgid "Save"
+msgstr "Desa"
+
+msgid "Save As"
+msgstr "Anomena i desa"
+
+msgid "Save Block GUI"
+msgstr "Desa la interfície del bloc"
+
+msgid "Save as Interf Func"
+msgstr "Desa com a Interf Func"
+
+msgid "Save as Palette"
+msgstr "Desa com a paleta"
+
+msgid "Scicos Documentation"
+msgstr "Documentació d'Scicos"
+
+#, c-format
+msgid "Scicos version %s\n"
+msgstr "Versió d'Scicos %s\n"
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "Gràfics d'Scilab de %s"
+
+msgid "Select a block."
+msgstr "Seleccioneu un bloc."
+
+msgid "Select a directory path"
+msgstr "Seleccioneu el camí a un directori"
+
+msgid "SelectAll"
+msgstr "Selecciona-ho tot"
+
+msgid "SelectLink  "
+msgstr "Selecciona un enllaç  "
+
+msgid "SelectRegion"
+msgstr "Selecciona una regió"
+
+msgid "Set Block identification"
+msgstr "Indiqueu una identificació del bloc"
+
+msgid "Set Block sizes"
+msgstr "Indiqueu les mides del bloc"
+
+msgid "Set Diagram Info"
+msgstr "Indiqueu la informació del diagrama"
+
+msgid "Set grid"
+msgstr "Indiqueu la graella"
+
+msgid "Set link Identification"
+msgstr "Indiqueu la identificació de l'enllaç"
+
+msgid "Set link edition mode"
+msgstr "Indiqueu el mode d'edició de l'enllaç"
+
+msgid "Setup"
+msgstr "Configura"
+
+msgid "Shortcuts"
+msgstr "Dreceres de teclat"
+
+msgid "Show Block Shadow"
+msgstr "Mostra l'ombra dels blocs"
+
+msgid "Simulate"
+msgstr "Simula"
+
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
+#, c-format
+msgid "Slider t=%10.3f, flag=%d \n"
+msgstr "Diapositives t=%10.3f, flag=%d \n"
+
+msgid "Smart"
+msgstr "Intel·ligent"
+
+msgid "Smart Move"
+msgstr "Moviment intel·ligent"
+
+msgid "Smart move does not work yet with multiple selection"
+msgstr "El moviment intel·ligent encara no funciona amb seleccions múltiples"
+
+msgid "Sorry file name not defined in "
+msgstr "El nom de fitxer no està definit a "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Només estan suportats els llenguatges C o FORTRAN"
+
+msgid "Stop"
+msgstr "Atura"
+
+msgid "The current icon depends on block parameter\n"
+msgstr "La icona actual depèn del paràmetre de bloc.\n"
+
+#, c-format
+msgid "The key %s is already in use for %s"
+msgstr "La clau %s ja s'utilitza per a %s"
+
+#, c-format
+msgid "The key %s is not a valid letter"
+msgstr "La clau %s no és una lletra vàlida"
+
+msgid ""
+"The number of parameter provided by Scicos blocks is different from what "
+"expected by the code generated by the Modelica compiler. You might have "
+"relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
+"model. This will be corrected in the next version"
+msgstr ""
+"El número de paràmetres proporcionat pels blocs d'Scicos és diferent de "
+"l'esperat pel codi generat pel compilador de Modelica. Potser no heu indicat "
+"un paràmetre utilitzant la propietat FIXED (per exemple, fixed=false) en un "
+"model de Modelica. Això s'arreglarà a la propera versió"
+
+#, c-format
+msgid ""
+"The parameter(s) %s \n"
+"must be defined in the"
+msgstr ""
+"El paràmetre %s \n"
+"s'ha de definir a"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+
+msgid "Thickness"
+msgstr "Gruix"
+
+msgid "This block is not masked."
+msgstr "Aquest bloc no té màscara."
+
+msgid "This window is not an active palette"
+msgstr "Aquesta finestra no és una paleta activa"
+
+msgid "This window is not an active scicos window"
+msgstr "Aquesta finestra no és una finestra activa d'Scicos"
+
+msgid "Title of the GUI"
+msgstr "Títol de la interfície"
+
+msgid "TkPopup "
+msgstr "TkPopup "
+
+#, c-format
+msgid "To avoid this message, please update the %s.scicos_pal file."
+msgstr "Per evitar aquest missatge, actualitzeu el fitxer %s.scicos_pal."
+
+msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
+msgstr ""
+"Per reactivar l'Scicos, feu clic en un diagrama o escriviu scicos();\n"
+
+msgid "Toggle grid"
+msgstr "Intercanvia la reixa"
+
+msgid "Tools"
+msgstr "Eines"
+
+msgid "Type"
+msgstr "Tipus"
+
+msgid "Type not recognized"
+msgstr "Aquest tipus és desconegut"
+
+msgid "Undefined Function type\n"
+msgstr "Tipus de funció no definit\n"
+
+msgid "Undefined data type."
+msgstr "Tipus de dada no definida."
+
+msgid "Undo"
+msgstr "Desfés"
+
+msgid "Up To Main Diagram"
+msgstr "Ves al diagrama principal"
+
+msgid ""
+"Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
+msgstr ""
+"Utilització: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
+
+msgid "Use 3D aspect?"
+msgstr "Utilitzar aspecte en 3D?"
+
+msgid "View"
+msgstr "Visualitza"
+
+#, c-format
+msgid "Warning %d menus have identical name %s\n"
+msgstr "Avís: %d menús tenen el mateix nom %s\n"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
+msgstr ""
+
+msgid "Yes"
+msgstr "Sí"
+
+msgid ""
+"You have changed a parameter in your model, but the model has been compiled "
+"to use an XML file containing initial values and parameters. So you should "
+"either recompile your Scicos diagram or [re]launch the initialization "
+"interface to regenerate the XML file  with new parameters."
+msgstr ""
+"Heu canviat un paràmetre en el vostre model, però el model s'ha compilat per "
+"a utilitzar un fitxer XML que conté els valors inicials i els paràmetres. "
+"Heu de recompilar el diagram o reiniciar la interfície d'inicialització per "
+"a regenerar el fitxer XML amb els nous paràmetres."
+
+msgid "Your diagram is not saved. Do not quit Scilab or "
+msgstr "No heu desat el diagrama. No tanqueu l'Scilab o "
+
+msgid "Zoom in"
+msgstr "Apropa"
+
+msgid "Zoom out"
+msgstr "Allunya"
+
+msgid "algebraic loop detected"
+msgstr ""
+
+#, c-format
+msgid "at time %f \n"
+msgstr "en l'instant %f \n"
+
+#, c-format
+msgid "block %d is called "
+msgstr "s'ha cridat al bloc %d "
+
+msgid "block produces an internal error"
+msgstr "el bloc produeix un error intern"
+
+msgid "cannot allocate memory"
+msgstr "no s'ha pogut assignar més memòria"
+
+#, c-format
+msgid "cannot allocate memory in block=%d"
+msgstr "no s'ha pogut assignar més memòria al bloc = %d"
+
+msgid "current choice is "
+msgstr "l'elecció actual és "
+
+msgid "event conflict"
+msgstr "conflicte d'esdeveniment"
+
+msgid "height"
+msgstr "alçada"
+
+msgid "initial conditions not converging"
+msgstr "les condicions inicials no convergeixen"
+
+msgid "input to zero-crossing stuck on zero"
+msgstr "l'entrada a zero-crossing està en zero"
+
+#, c-format
+msgid "integration problem istate=%d"
+msgstr "problema d'integració istate=%d"
+
+#, c-format
+msgid "mode of block %d=%d, "
+msgstr "mode del bloc %d=%d, "
+
+#, c-format
+msgid "root found at t=: %f\n"
+msgstr "s'ha trobat una arrel a t=: %f\n"
+
+msgid "scheduling problem"
+msgstr "problema de planificació"
+
+msgid "scicos unexpected error, please report..."
+msgstr ""
+
+msgid "scs_show active..."
+msgstr "scs_show està actiu..."
+
+msgid "singularity in a block"
+msgstr "singularitat en un bloc"
+
+msgid "sliding mode condition, cannot integrate"
+msgstr "condició lliscant de mode, no es pot integrar"
+
+#, c-format
+msgid "the block %d has been called with input out of its domain"
+msgstr "s'ha cridat al bloc %d amb una entrada fora del seu domini"
+
+msgid "type 1 function not allowed for scilab blocks\n"
+msgstr "les funcions de tipus 1 no estan permeses per a blocs d'Scilab\n"
+
+msgid "type 2 function not allowed for scilab blocks\n"
+msgstr "les funcions de tipus 2 no estan permeses per a blocs d'Scilab\n"
+
+msgid "unknown or erroneous block"
+msgstr "bloc desconegut o erroni"
+
+msgid "width"
+msgstr "amplada"
+
+#, c-format
+msgid "with flag %d "
+msgstr "amb senyal %d "
+
+#~ msgid "Scicos"
+#~ msgstr "Scicos"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: El diagrama no compila al pas %d.\n"
+#~ "'),"
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr "%s: Error: El compilador Modelica (MODELICAC) no està disponible.\n"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr "%s: Error : La següent línia d'ordre ha fallat en l'execució: %s.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr "%s: S'ha produït un error a la compilació del bloc Modelica."
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Error en la compilació"
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "Es necessita un compilador C compatible."
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ " Warning:an event is reprogrammed at t=%g by removing another"
+#~ msgstr ""
+#~ "\n"
+#~ " Avís: s'ha reprogramat un esdeveniment a t=%g eliminant-ne un altre"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a scalar.\n"
+#~ msgstr "%s : El segon argument ha de ser un escalar.\n"
+
+#, c-format
+#~ msgid "%s : Secong argument must be a real.\n"
+#~ msgstr "%s : El segon argument ha de ser un nombre real.\n"
+
+#~ msgid "**** SUNDIALS.IDA succesfully initialized *****\n"
+#~ msgstr "**** S'ha inicialitzat correctament el SUNDIALS.IDA *****\n"
+
+#, c-format
+#~ msgid ""
+#~ "An unexpected  error occured while executing the menu\n"
+#~ "%s:\n"
+#~ msgstr ""
+#~ "S'ha produït un error inesperat en executar el menú\n"
+#~ "%s:\n"
+
+#~ msgid ""
+#~ "CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+#~ "[((d/dy)^k)y](t)."
+#~ msgstr ""
+#~ "CV_BAD_DKY:  L'argument dky és NULL. dky és el vector derivat de sortida "
+#~ "[((d/dy)^k)y](t)."
+
+#~ msgid ""
+#~ "CV_BAD_ITOL:Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+#~ "CV_WF."
+#~ msgstr ""
+#~ "CV_BAD_ITOL: El valor d'itol és il·legal. Ha de ser CV_SS, CV_SV o CV_WF."
+
+#~ msgid ""
+#~ "CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+#~ "recoverable error at th efirst call"
+#~ msgstr ""
+#~ "CV_FIRST_RHSFUNC_ERR: La funció de mà dreta (proporcionada per l'usuari ODE) "
+#~ "té un error recuperable a la primera crida"
+
+#~ msgid ""
+#~ "CV_RTFUNC_FAIL: The rootfinding routine failed in an unrecoverable manner."
+#~ msgstr ""
+#~ "CV_RTFUNC_FAIL: La rutina per trobar arrels ha fallat de manera "
+#~ "irrecuperable."
+
+#~ msgid "Click on an a port, click on a port of object to be moved"
+#~ msgstr "Feu clic en un port d'objecte per moure'l"
+
+#~ msgid "Click on a block to set or get it''s documentation"
+#~ msgstr "Feu clic en un bloc per establir o obtenir la seva documentació"
+
+#~ msgid ""
+#~ "IDA_BAD_ITOL:Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+#~ "and IDA_WF."
+#~ msgstr ""
+#~ "IDA_BAD_ITOL: Valor il·legal per a itol. Els valors legals són IDA_SS, "
+#~ "IDA_SV i IDA_WF."
+
+#~ msgid "IDA_RES_NULL: th returned residual res = NULL is illegal."
+#~ msgstr "IDA_RES_NULL: th ha retornat un residu res = NULL incorrecte."
+
+#~ msgid ""
+#~ "KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to to solve "
+#~ "the preconditioned linear system) encountered an unrecoverable error, or the "
+#~ "linear solver routine  (lsolve) encountered an error condition."
+#~ msgstr ""
+#~ "KIN_LSOLVE_FAIL: O bé la rutina psolve (utilitzada per solucionar la el "
+#~ "sistema lineal amb precondició ) ha trobat un error irrecuperable, o la "
+#~ "rutina lineal del programa de solució (lsolve) ha trobat una condició "
+#~ "d'error."
+
+#~ msgid ""
+#~ "Press lef mouse button, drag region and release (right button to cancel)"
+#~ msgstr ""
+#~ "Premeu el botó esquerre del ratolí, arrossegueu la regió i deixeu anar (botó "
+#~ "dret per a cancel·lar)"
+
+#~ msgid "algrebraic loop detected"
+#~ msgstr "S'ha detectat un bucle algebraic"
+
+#~ msgid "scicos unexpected error,please report..."
+#~ msgstr "Error inesperat d'Scicos, informeu-ne..."

@@ -1,0 +1,231 @@
+# French translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-08-20 12:06+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s : Une erreur s'est produite : %s\n"
+
+#, c-format
+msgid "%s: Error while creating processes: %s.\n"
+msgstr "%s: Erreur pendant la création des processus: %s.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: No such file or directory.\n"
+msgstr "%s: Fichier ou répertoire inconnu.\n"
+
+#, c-format
+msgid "%s: Unknown or not yet implemented type.\n"
+msgstr "%s : Type inconnu ou non encore implémenté.\n"
+
+#, c-format
+msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
+msgstr "%s: Mauvais premier argument d'entrée: '%s' ou '%s' attendu.\n"
+
+#, c-format
+msgid "%s: workspace (stacksize) is too small.\n"
+msgstr "%s : la zone de travail (taille de pile) est trop petite.\n"
+
+msgid "(group,instance) already exists"
+msgstr "(groupe, instance) existe déjà"
+
+msgid "Already doing operation"
+msgstr "Opération déjà en cours"
+
+msgid "Already in group"
+msgstr "Déjà dans le groupe"
+
+msgid "Bad message id"
+msgstr "Mauvais ID pour le message"
+
+msgid "Bad parameter"
+msgstr "Paramètre erroné"
+
+msgid "Barrier count mismatch"
+msgstr "Erreur dans le décompte de barrière"
+
+msgid "Can not decode received msg"
+msgstr "Impossible de décoder le message reçu"
+
+msgid "Can not get memory"
+msgstr "Impossible de récupérer la mémoire"
+
+msgid "Daemon pvmd is not responding"
+msgstr "Le démon pvmd ne répond pas"
+
+msgid "Error MALLOC in pvm_error\n"
+msgstr "Erreur MALLOC dans pvm_error\n"
+
+msgid "Error pvm_halt - signal\n"
+msgstr "Erreur pvm_halt - signal\n"
+
+msgid "Error pvm_reduce: Not scalar type\n"
+msgstr "Erreur pvm_reduce: Pas un type scalaire\n"
+
+#, c-format
+msgid "Error pvm_reduce: Unknown reduction operation %s\n"
+msgstr "Erreur pvm_reduce: Opération de réduction %s inconnue\n"
+
+msgid "Failed to exec new slave pvmd"
+msgstr "Echec de l'exécution d'un nouveau pvmd esclave"
+
+msgid "Function not implemented"
+msgstr "Fonction non implémentée"
+
+msgid "Host already configured (Duplicate host)"
+msgstr "Hôte déja configuré (hôte dupliqué)"
+
+msgid "Host failed"
+msgstr "Echec de l'hôte"
+
+msgid "No current buffer"
+msgstr "Pas de buffer courant"
+
+msgid "No group with that name"
+msgstr "Aucun groupe avec ce nom"
+
+msgid "No parent task"
+msgstr "Pas de tâche parente"
+
+msgid "No such (group,instance)"
+msgstr "(groupe, instance) inconnue"
+
+msgid "No such executable"
+msgstr "Executable inconnu"
+
+msgid "No such host"
+msgstr "Hôte inconnu"
+
+msgid "No such instance in group"
+msgstr "Cette instance n'est pas dans le groupe"
+
+msgid "No such task"
+msgstr "Tâche inconnue"
+
+msgid "Not in group"
+msgstr "Pas dans le groupe"
+
+msgid "Null group name is illegal"
+msgstr "Le nom de groupe Null est illégal"
+
+msgid "OK"
+msgstr "Ok"
+
+msgid "Out of resources"
+msgstr "Ressources insuffisantes"
+
+msgid "PVM exists"
+msgstr "PVM existe"
+
+msgid "PVM not found"
+msgstr "PVM non trouvé"
+
+msgid "PVM parallel Toolbox"
+msgstr "Boite à outils parallèle PVM"
+
+msgid "Pvmd system error"
+msgstr "Erreur système pvmd"
+
+msgid "Pvmd-pvmd protocol mismatch"
+msgstr "Pvmd-pvmd protocol incohérent"
+
+msgid "Read past end of buffer"
+msgstr "Lecture au delà de la fin du buffer"
+
+msgid "Scilab PVM module not installed.\n"
+msgstr "Le module Scilab PVM n'est pas installé.\n"
+
+#, c-format
+msgid "The configuration file %s is used.\n"
+msgstr "Le fichier de configuration %s est utilisé.\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s will be used.\n"
+"With SCI=%s\n"
+"SCI will have to be set on remote hosts\n"
+"in order to spawn scilab\n"
+msgstr ""
+"Le fichier de configuration standard $SCI%s sera utilisé.\n"
+"Avec SCI=%s\n"
+"SCI devra être réglé sur les hôtes distantes\n"
+"de façon à 'spawn'er Scilab\n"
+
+#, c-format
+msgid ""
+"The standard configuration file $SCI%s%s needs the environment variables %s, "
+"%s, %s to be set. PVM can not be started.\n"
+msgstr ""
+"Le fichier de configuration standard $SCI%s%s a besoin que les variables "
+"d'environnement %s, %s, %s soient réglées. PVM ne peut pas être démarré.\n"
+
+msgid "Unknown Error"
+msgstr "Erreur inconnue"
+
+msgid "Warning: PVM_ROOT is not set.\n"
+msgstr "Attention: PVM_ROOT n'est pas réglé.\n"
+
+#, c-format
+msgid "Warning: PVM_ROOT is set to %s\n"
+msgstr "Attention: PVM_ROOT est réglé sur %s\n"
+
+#, c-format
+msgid ""
+"Warning: The standard configuration file $SCI%s was not found.\n"
+"We supposed that PVM and scilab are in standard place on your net\n"
+" (Cf. man pvmd3)\n"
+msgstr ""
+"Attention: Le fichier de configuration standard $SCI%s na pas été trouvé.\n"
+"On suppose que PVM et Scilab sont à des endroits standards sur votre réseau\n"
+"(Cf. man pvmd3)\n"
+
+msgid "but there exists no configuration file:\n"
+msgstr "mais aucun fichier de configuration n'existe:\n"
+
+#, c-format
+#~ msgid "%s: work space (stacksize) is too small d\n"
+#~ msgstr "%s: l'espace de travail (stacksize) est trop petit d\n"
+
+#, c-format
+#~ msgid "%s: Unknow type or not yet implemented\n"
+#~ msgstr "%s: Type inconnu ou par encore implémenté\n"
+
+#, c-format
+#~ msgid "Error pvm_reduce: Unknow reduction operation %s\n"
+#~ msgstr "Erreur pvm_reduce: Opération de réduction %s inconnue\n"
+
+#~ msgid "Out of ressources"
+#~ msgstr "A cours de ressources"
+
+#~ msgid "Already oing operation"
+#~ msgstr "Opération déjà exécutée"
+
+#, c-format
+#~ msgid "%s: Unknown type or not yet implemented\n"
+#~ msgstr "%s: type inconnu ou pas encore implémenté\n"
+
+#, c-format
+#~ msgid "%s: work space (stacksize) is too small.\n"
+#~ msgstr "%s: l'espace de travail (stacksize) est trop petit.\n"
+
+#, c-format
+#~ msgid "%s: Unknown type or not yet implemented.\n"
+#~ msgstr "%s: type inconnu ou pas encore implémenté.\n"

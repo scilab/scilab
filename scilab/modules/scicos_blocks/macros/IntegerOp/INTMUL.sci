@@ -1,6 +1,7 @@
 //  Scicos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -37,63 +38,71 @@ case 'set' then
   model=arg1.model
   exprs=graphics.exprs
   while %t do
-    [ok,Datatype,np,exprs]=scicos_getvalue('Set INTMUL block parameters',..
-			    ['Datatype (3=int32  4=int16 5=int8 ...)';..
-                             'Do on Overflow(0=Nothing 1=Saturate 2=Error)'],..
-                             list('vec',1,'vec',1),exprs)
+    [ok,Datatype,np,exprs]=scicos_getvalue( ..
+        [msprintf(gettext("Set %s block parameters"),"INTMUL"); " "; gettext("Integer matrix multiplication");" ";],..
+        [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],..
+        list('vec',1,'vec',1), exprs)
     if ~ok then break,end
-    if (np~=0 & np~=1 & np~=2) then message ("type is not supported");ok=%f;end
+
     it=Datatype*ones(1,2);
     ot=Datatype;
-    if Datatype==3 then
-	if np==0 then
+    if (np~=0 & np~=1 & np~=2) then
+        block_parameter_error(msprintf( gettext("Wrong value for ''%s'' parameter: %d."), gettext("Do on Overflow"), np), ..
+           msprintf( gettext("Must be in the interval %s."), "[0, 2]"));
+        ok=%f;
+    elseif Datatype==3 then
+    if np==0 then
            model.sim=list('matmul_i32n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_i32s',4)
-	else 
-	   model.sim=list('matmul_i32e',4)
-	end
+    else 
+       model.sim=list('matmul_i32e',4)
+    end
     elseif Datatype==4 then
-	if np==0 then
+    if np==0 then
            model.sim=list('matmul_i16n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_i16s',4)
-	else 
-	   model.sim=list('matmul_i16e',4)
-	end
+    else 
+       model.sim=list('matmul_i16e',4)
+    end
     elseif Datatype==5 then
-	if np==0 then
+    if np==0 then
            model.sim=list('matmul_i8n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_i8s',4)
-	else 
-	   model.sim=list('matmul_i8e',4)
-	end
+    else 
+       model.sim=list('matmul_i8e',4)
+    end
     elseif Datatype==6 then
-	if np==0 then
+    if np==0 then
            model.sim=list('matmul_ui32n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_ui32s',4)
-	else 
-	   model.sim=list('matmul_ui32e',4)
-	end
+    else 
+       model.sim=list('matmul_ui32e',4)
+    end
     elseif Datatype==7 then
-	if np==0 then
+    if np==0 then
            model.sim=list('matmul_ui16n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_ui16s',4)
-	else 
-	   model.sim=list('matmul_ui16e',4)
-	end
+    else 
+       model.sim=list('matmul_ui16e',4)
+    end
     elseif Datatype==8 then
-	if np==0 then
+    if np==0 then
            model.sim=list('matmul_ui8n',4)
-	elseif np==1 then
+    elseif np==1 then
            model.sim=list('matmul_ui8s',4)
-	else 
-	   model.sim=list('matmul_ui8e',4)
-	end
-    else message("Datatype is not supported");ok=%f;
+    else 
+       model.sim=list('matmul_ui8e',4)
+    end
+    else
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Data Type"), ot), ..
+           msprintf(gettext("Must be in the interval %s."), "[3, 8]"));
+        ok=%f;
+
     end
     in=[model.in model.in2]
     out=[model.out model.out2]

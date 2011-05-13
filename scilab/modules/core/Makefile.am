@@ -86,7 +86,10 @@ src/c/eqid.c \
 src/c/exitCodeValue.c \
 src/c/getversion.c \
 src/c/dynamic_tclsci.c \
-src/c/storeCommand.c
+src/c/dynamic_parallel.c \
+src/c/storeCommand.c \
+src/c/backtrace.c \
+src/c/signal_mgmt.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -121,7 +124,6 @@ src/fortran/folhp.f \
 src/fortran/cvname.f \
 src/fortran/funs.f \
 src/fortran/fact.f \
-src/fortran/inibrk.f \
 src/fortran/typ2cod.f \
 src/fortran/prompt.f \
 src/fortran/intstr.f \
@@ -247,15 +249,13 @@ sci_gateway/c/gw_user2.c \
 sci_gateway/c/sci_error.c \
 sci_gateway/c/sci_sciargs.c \
 sci_gateway/c/sci_with_module.c \
-sci_gateway/c/sci_islittleendian.c \
 sci_gateway/c/sci_getscilabmode.c \
 sci_gateway/c/sci_getvariablesonstack.c \
 sci_gateway/c/sci_readgateway.c \
 sci_gateway/c/sci_comp.c \
 sci_gateway/c/sci_exit.c
 
-GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_errclear.f \
-sci_gateway/fortran/sci_global.f \
+GATEWAY_FORTRAN_SOURCES =  sci_gateway/fortran/sci_global.f \
 sci_gateway/fortran/sci_mtlb_mode.f \
 sci_gateway/fortran/sci_resume.f \
 sci_gateway/fortran/sci_dispbpt.f \
@@ -311,7 +311,7 @@ endif
 
 pkglib_LTLIBRARIES = libscicore.la
 
-libscicore_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
+libscicore_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(XML_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(CORE_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -327,7 +327,7 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicore_la_root_DATA =  license.txt version.xml
 
 
 #### core : init scripts ####
@@ -374,5 +374,10 @@ includes/version.h \
 includes/getversion.h \
 includes/warningmode.h \
 includes/Thread_Wrapper.h
+
+if GUI
+USEANT=1
+endif
+
 
 include $(top_srcdir)/Makefile.incl.am

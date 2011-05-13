@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="lex_sort" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>lex_sort</refname>
+
+    <refpurpose>行列の行の辞書式ソート</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[N, [k]]=lex_sort(M [,sel] [,'unique'])
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>M</term>
+
+        <listitem>
+          <para>実数行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>N</term>
+
+        <listitem>
+          <para>実数行列</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>k</term>
+
+        <listitem>
+          <para>整数の列ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para><literal>lex_sort</literal> 関数は現在では古い関数となっています. 
+	関数 <link linkend="gsort">gsort</link> および <link
+    linkend="unique">unique</link>で置き換えることが可能です.</para>
+
+    <para><literal>N=lex_sort(M)</literal> は行列<literal>M</literal>
+	の行(グループとして)を昇順にソートします.
+	以下のように出力引数 <literal>k</literal> を指定した場合
+	順番が含まれます:
+    <literal>[N,k]=lex_sort(M)</literal> は 
+    <literal>N</literal> が <literal>M(k,:)</literal> に等しいような
+	<literal>k</literal> を返します.</para>
+
+    <para><literal>N=lex_sort(M,sel [,'unique'])</literal> は
+	以下の一連の命令と同じ結果を出力します:</para>
+
+    <programlisting role = ""><![CDATA[ 
+[N,k]=lex_sort(M(:,sel) [,'unique']);
+N=M(k,:)
+ ]]></programlisting>
+
+    <para>結果にユニークな行のみを保持させたい場合,
+	<literal>'unique'</literal> フラグを指定する必要があります.
+    <literal>lex_sort(M,sel,'unique')</literal> は,
+    M(:,sel) がユニークとなるような行のみを
+	保持することに注意してください.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+M=round(2*rand(20,3));
+
+lex_sort(M)
+lex_sort(M,'unique')
+[N,k]=lex_sort(M,[1 3],'unique')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="gsort">gsort</link></member>
+
+      <member><link linkend="unique">unique</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

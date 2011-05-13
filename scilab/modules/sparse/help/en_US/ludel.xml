@@ -23,7 +23,7 @@
     <synopsis>ludel(hand)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hand</term>
@@ -42,8 +42,8 @@
     The sequence of commands <literal>[p,r]=lufact(A);x=lusolve(p,b);ludel(p);</literal>
     solves the sparse linear system  <literal>A*x = b</literal> and clears <literal>p</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

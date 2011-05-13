@@ -20,6 +20,9 @@
 //
 
 function restore_scs_gc(scs_gc)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // restore the current scicos graphic context
   xset('window',scs_gc(1))
 xsetech(scs_gc(2)(1),scs_gc(2)(2))

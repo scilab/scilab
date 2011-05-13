@@ -1,0 +1,1007 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-10 21:57+0000\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "\t - ''%s - %s''\n"
+msgstr "\t - ''%s - %s''\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is already loaded\n"
+msgstr "\t - ''%s - %s'' já está carregado\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s - %s''\n"
+msgstr "\t - ''%s - %s'' é exigido por ''%s - %s''\n"
+
+#, c-format
+msgid "\t - ''%s - %s'' is needed by ''%s''\n"
+msgstr "\t - ''%s - %s'' é exigido por ''%s''\n"
+
+#, c-format
+msgid "\t - Local location : ''%s''\n"
+msgstr "\t - Endereço local: ''%s''\n"
+
+#, c-format
+msgid "\t - MD5SUM expected : ''%s''\n"
+msgstr "\t - MD5SUM esperado: ''%s''\n"
+
+#, c-format
+msgid "\t - MD5SUM watched  : ''%s''\n"
+msgstr "\t - MD5SUM calculado  : ''%s''\n"
+
+#, c-format
+msgid "\t - URL            : ''%s''\n"
+msgstr "\t - URL: ''%s''\n"
+
+#, c-format
+msgid "\t - You''ve asked ''%s - %s''\n"
+msgstr "\t - Você solicitou ''%s - %s''\n"
+
+#, c-format
+msgid "\t - destination : ''%s''\n"
+msgstr "\t - destino     : ''%s''\n"
+
+#, c-format
+msgid "\t - file            : ''%s''\n"
+msgstr "\t - arquivo         : ''%s''\n"
+
+#, c-format
+msgid "\t - source      : ''%s''\n"
+msgstr "\t - origem      : ''%s''\n"
+
+#, c-format
+msgid "%s: %s (%s) isn''t installed.\n"
+msgstr "%s: %s (%s) não está instalado.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' (''%s'' section) is not installed.\n"
+msgstr "%s: ''%s - %s'' (seção ''%s'') não está instalado.\n"
+
+#, c-format
+msgid "%s: ''%s - %s'' is not installed.\n"
+msgstr "%s: ''%s - %s'' não está instalado.\n"
+
+#, c-format
+msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
+msgstr "%s: ''%s'' (seção ''%s'') não está instalado.\n"
+
+#, c-format
+msgid "%s: ''%s'' isn''t installed.\n"
+msgstr "%s: ''%s'' não está instalado.\n"
+
+#, c-format
+msgid "%s: An error occurred while loading ''%s-%s'':\n"
+msgstr "%s: Ocorreu um erro durante o carregamento de \"%s-%s\":\n"
+
+#, c-format
+msgid "%s: Another version of the package %s is already loaded : %s\n"
+msgstr "%s: Uma outra versão do pacote %s já está carregada : %s\n"
+
+#, c-format
+msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
+msgstr "%s: o arquivo de descrição não foi encontrado no pacote ''%s''\n"
+
+#, c-format
+msgid "%s: Error while copying the file ''%s'' to the directory ''%s''.\n"
+msgstr "%s: Erro ao copiar o arquivo ''%s'' para o diretório ''%s''.\n"
+
+#, c-format
+msgid "%s: Error while creating the directory ''%s''.\n"
+msgstr "%s: Erro ao criar o diretório ''%s''.\n"
+
+#, c-format
+msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
+msgstr "%s: Falha na extraçãodo arquivo DESCRIPTION (''%s'').\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: esperava-se as mesmas "
+"dimensões.\n"
+
+#, c-format
+msgid "%s: Module ''%s - %s'' is not installed.\n"
+msgstr "%s: O módulo ''%s - %s'' não está instalado.\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
+msgstr "%s: O módulo ''%s'' não está instalado (seção ''%s'').\n"
+
+#, c-format
+msgid "%s: Module ''%s'' is not installed.\n"
+msgstr "%s: O módulo ''%s'' não está instalado.\n"
+
+#, c-format
+msgid "%s: Neither Wget or Curl found: Please install one of them\n"
+msgstr ""
+"%s: Nem Wget nem Curl foram localizados: por favor, instale um deles\n"
+
+#, c-format
+msgid ""
+"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
+"session :\n"
+msgstr ""
+"%s: Muitas versões de um mesmo pacote (%s) não podem ser carregadas na mesma "
+"sessão do scilab :\n"
+
+#, c-format
+msgid "%s: The config file (''%s'') is not well formated at line %d\n"
+msgstr ""
+"%s: O arquivo de configuração (''%s'') não está formatado adequadamente na "
+"linha %d\n"
+
+#, c-format
+msgid "%s: The dependency tree cannot be resolved.\n"
+msgstr "%s: A árvore de dependência não pode ser resolvida.\n"
+
+#, c-format
+msgid "%s: The description is not well formated at line %d\n"
+msgstr "%s: A descrição não está no formato adequado na linha %d\n"
+
+#, c-format
+msgid ""
+"%s: The directory %s cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: O diretório %s não pode ser criado. Por favor, confira se você tem "
+"permissão de escrita neste diretório.\n"
+
+#, c-format
+msgid "%s: The directory %s doesn''t exist.\n"
+msgstr "%s: O diretório %s não existe.\n"
+
+#, c-format
+msgid ""
+"%s: The directory ''%s'' cannot been created, please check if you have write "
+"access on this directory.\n"
+msgstr ""
+"%s: O diretório ''%s'' não pode ser criado. Por favor, confira se você tem "
+"permissão de escrita neste diretório.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) cannot been deleted, please check "
+"if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: O diretório deste pacote (%s-%s) não pode ser excluído. Por favor, "
+"confira se você tem permissão de escrita neste diretório : %s.\n"
+
+#, c-format
+msgid ""
+"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
+"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+msgstr ""
+"%s: O diretório deste pacote (%s-%s) não está localizado nem no SCI nem no "
+"SCIHOME. Por motivos de segurança, ATOMS se recusa a excluir esse "
+"diretório.\n"
+
+#, c-format
+msgid "%s: The downloaded file doesn''t check the MD5SUM:\n"
+msgstr "%s: O arquivo baixado não tem a soma de verificação coincidente:\n"
+
+#, c-format
+msgid "%s: The extraction of the archive ''%s'' has failed.\n"
+msgstr "%s: Falha na extração do arquivo ''%s''.\n"
+
+#, c-format
+msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
+msgstr "%s: O arquivo %s não existe ou não tem permissão de leitura.\n"
+
+#, c-format
+msgid ""
+"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+"the %s field\n"
+msgstr ""
+"%s: O arquivo %s não está formatado apropriadamente: a caixa de ferramentas "
+"%s - %s não contém o campo %s\n"
+
+#, c-format
+msgid "%s: The file ''%s'' cannot be written.\n"
+msgstr "%s: O arquivo \"%s\" não pode ser escrito.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible\n"
+msgstr "%s: O arquivo \"%s\" não existe ou não está acessível para leitura\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+"%s: O arquivo \"%s\" não existe ou não está acessível para leitura.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' is not well formated at line %d\n"
+msgstr ""
+"%s: O arquivo \"%s\" não está formatado apropriadamente na linha %d\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been copied:\n"
+msgstr "%s: O seguinte arquivo não foi copiado:\n"
+
+#, c-format
+msgid "%s: The following file hasn''t been downloaded:\n"
+msgstr "%s: O seguinte arquivo não foi baixado:\n"
+
+#, c-format
+msgid ""
+"%s: The following module is installed in the user section, you cannot add it "
+"to the autoload list for all users:\n"
+msgstr ""
+"%s: O seguinte módulo está instalado na seção do usuário. Você não pode "
+"adicioná-lo à lista de autocarregamento para todos os usuários:\n"
+
+#, c-format
+msgid "%s: The following module is not installed:\n"
+msgstr "%s: O seguinte módulo não está instalado:\n"
+
+#, c-format
+msgid "%s: The following modules are not installed:\n"
+msgstr "%s: Os seguintes módulos não estão instalados:\n"
+
+#, c-format
+msgid "%s: The package %s is not available.\n"
+msgstr "%s: O pacote %s não está disponível.\n"
+
+#, c-format
+msgid "%s: The package ''%s'' is not present in the struct.\n"
+msgstr "%s: O pacote ''%s'' não está presente na estrutura.\n"
+
+#, c-format
+msgid ""
+"%s: The root directory of this package (%s-%s) cannot been deleted, please "
+"check if you have write access on this directory : %s.\n"
+msgstr ""
+"%s: O diretório raiz deste pacote (%s-%s) não pode ser excluído. Por favor, "
+"verifique se você tem permissão de escrita neste diretório : %s.\n"
+
+#, c-format
+msgid ""
+"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+msgstr ""
+"%s: A versão ''%s'' do pacote ''%s'' não está presente na estrutura.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong length for input argument #%d: String which has 32-characters "
+"length expected.\n"
+msgstr ""
+"%s: Comprimento incorreto para o argumento de entrada #%d:  esperava-se um "
+"texto com comprimento de 32 caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: at most %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se no máximo "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se no máximo "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de texto 1x1 ou 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de texto 1x2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de texto 1x1 ou 1x2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx1 ou mx2.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx1, mx2 ou mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx1, mx2 ou mx3.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx2 ou mx3.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx2.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de textos mx3.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d:  esperava-se um valor "
+"booleano.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um valor "
+"booleano ou um único texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma "
+"estrutura.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma lista "
+"com tipos orientada matricialmente.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma mlist.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: ''%s'' não é uma "
+"categoria registrada"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: ''%s'' não é um URL "
+"válido.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''all'' ou "
+"''main''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
+"''session'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''all'', "
+"''allusers'' ou ''session''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
+"''official'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''all'', "
+"''user'', ''allusers'' ou ''official''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
+"valid main category expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se "
+"''filter:all'', ''filter:main'' ou uma categoria principal válida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''system'' "
+"ou ''install''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''user'' ou "
+"''allusers''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''user'', "
+"''allusers'' ou ''all''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''user'', "
+"''allusers'' ou ''all''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''user'', "
+"''allusers'' ou ''all''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se uma "
+"categoria válida.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ASC ou "
+"DESC.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: as versões de todos os "
+"módulos devem ser definidas.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It should have a field named "
+"''%s''.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deveria ter um campo "
+"chamado ''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se a letra "
+"''A'' ou ''I''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser um nome de "
+"pacote atoms.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto terminado com .tar.gz, .tgz ou .zip.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
+"or ''DESCRIPTION'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+"contendo ''TOOLBOXES'' ou ''DESCRIPTION''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+"terminado com DESCRIPTION.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: String that start with "
+"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+"que iniciasse com ''http://'', ''ftp://'' ou com ''file://''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The matrix oriented typed list is "
+"not well formatted.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: lista com tipos "
+"orientada matricialmente não está formatada adequadamente.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: This ("
+msgstr "%s: Valor incorreto para o argumento de entrada #%d: isto ("
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: não é uma versão "
+"válida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: não é uma versão ou "
+"dependência válida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''error'' "
+"(erro) ou ''warning'' (aviso).\n"
+
+#, c-format
+msgid ""
+"%s: You have not enough rights to remove any version of the package %s.\n"
+msgstr ""
+"%s: Você não tem permissões suficientes para remover qualquer versão do "
+"pacote %s.\n"
+
+#, c-format
+msgid "%s: You have not enough rights to remove the package %s (%s).\n"
+msgstr ""
+"%s: Você não tem permissões suficientes para remover o pacote %s (%s).\n"
+
+#, c-format
+msgid "%s: You haven''t write access on this directory : %s.\n"
+msgstr "%s: Você não tem permissão de escrita neste diretório : %s.\n"
+
+#, c-format
+msgid "%s: name and version are not both defined\n"
+msgstr "%s: nem o nome nem a versão foram definidos\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t contain the field ''%s''.\n"
+msgstr "%s: o pacote ''%s'' não contém o campo ''%s''.\n"
+
+#, c-format
+msgid "%s: the package ''%s'' doesn''t exist.\n"
+msgstr "%s: o pacote ''%s'' não existe.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editar"
+
+msgid "&File"
+msgstr "&Arquivo"
+
+msgid "&Tools"
+msgstr "&Ferramentas"
+
+msgid "?"
+msgstr "?"
+
+#, c-format
+msgid "A new version (''%s'') of ''%s'' is available"
+msgstr "Está disponível uma nova versão (''%s'') de ''%s''"
+
+msgid "ATOMS"
+msgstr "ATOMS"
+
+msgid "ATOMS error"
+msgstr "Erro no ATOMS"
+
+msgid "All modules"
+msgstr "Todos os módulos"
+
+msgid "Atoms Help..."
+msgstr "Ajuda do Atoms..."
+
+msgid "Author(s)"
+msgstr "Autor(es)"
+
+msgid "Automatically Installed"
+msgstr "Instalado automaticamente"
+
+msgid "Bytes"
+msgstr "Bytes"
+
+msgid "Category(ies)"
+msgstr "Categoria(s)"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Depend"
+msgstr "Depende"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Download size"
+msgstr "Tamanho a baixar"
+
+msgid "Entity"
+msgstr "Entidade"
+
+msgid "File"
+msgstr "Arquivo"
+
+msgid "Home"
+msgstr "Início"
+
+msgid "Install"
+msgstr "Instalar"
+
+msgid "Install Directory"
+msgstr "Diretório de instalação"
+
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr ""
+"Instalação concluída! Por favor, reinicie o Scilab para que as alterações "
+"tenham efeito."
+
+msgid "Installation failed!"
+msgstr "Falha na instalação!"
+
+msgid "Installing"
+msgstr "Instalando"
+
+msgid "KB"
+msgstr "KiB"
+
+msgid "License"
+msgstr "Licença"
+
+msgid "List of installed modules"
+msgstr "Lista dos módulos instalados"
+
+msgid "MB"
+msgstr "MiB"
+
+msgid "Main categories"
+msgstr "Categorias principais"
+
+msgid "Maintainer(s)"
+msgstr "Mantenedor(es)"
+
+msgid "No ATOMS module is available. Please, check your Internet connection."
+msgstr ""
+"Nenhum módulo do ATOMS está disponível. Verifique sua conexão com a Internet."
+
+msgid "No ATOMS module is available: your repository list is empty."
+msgstr ""
+"Nenhum módulo do ATOMS está disponível: sua lista de repositório está vazia."
+
+msgid "Package"
+msgstr "Pacote"
+
+msgid "Release date"
+msgstr "Data de lançamento"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Remoção concluída! Por favor, reinicie o Scilab para que as alterações "
+"tenham efeito. "
+
+msgid "Remove failed!"
+msgstr "Falha na remoção!"
+
+msgid "Removing"
+msgstr "Removendo"
+
+msgid "Scilab Version"
+msgstr "Versão do Scilab"
+
+msgid "See also"
+msgstr "Veja também"
+
+msgid "Status"
+msgstr "Estado"
+
+msgid "Summary"
+msgstr "Sumário"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Update"
+msgstr "Atualizar"
+
+msgid "Update done! Please restart Scilab to take changes into account."
+msgstr ""
+"Atualização concluída! Por favor, reinicie o Scilab para que as alterações "
+"tenham efeito."
+
+msgid "Update failed!"
+msgstr "Falha na atualização!"
+
+msgid "Updating"
+msgstr "Atualizando"
+
+msgid "Version"
+msgstr "Versão"
+
+msgid "WebSite"
+msgstr "WebSite"
+
+#, c-format
+#~ msgid "%s: An error occurred while loading ''%s-%s''.\n"
+#~ msgstr "%s: Ocorreu um erro ao carregar ''%s-%s''.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+#~ "the ScilabVersion field\n"
+#~ msgstr ""
+#~ "%s: O arquivo %s não está formatado adequadamente; a caixa de ferramentas %s "
+#~ "- %s não contém o campo ScilabVersion\n"
+
+#, c-format
+#~ msgid "%s: The file %s is not well formated at line %d\n"
+#~ msgstr "%s: O arquivo %s não está com o formato adequado na linha %d\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
+#~ "length expected.\n"
+#~ msgstr ""
+#~ "%s: Comprimento incorreto para o argumento de entrada #%d: esperava-se um "
+#~ "texto com 32 caracteres.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um booleano "
+#~ "ou um único texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma "
+#~ "estrutura.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+#~ "or ''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+#~ "contendo \"TOOLBOXES\" ou \"DESCRIPTION\".\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that start with "
+#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+#~ "começando com \"http://\", \"ftp://\" ou \"file://\".\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+#~ "terminando com DESCRIPTION.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+#~ ".tgz or .zip expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto terminando com .tar.gz, .tgz ou .zip.\n"
+
+#~ msgid "Atoms"
+#~ msgstr "Atoms"
+
+#~ msgid "Installing..."
+#~ msgstr "Instalando..."
+
+#~ msgid "Removing..."
+#~ msgstr "Removendo..."
+
+#~ msgid "No Atoms module is available: your repository list is empty."
+#~ msgstr ""
+#~ "Nenhum módulo Atoms está disponível: sua lista de repositórios está vazia."
+
+#~ msgid "No module selected"
+#~ msgstr "Nenhum módulo selecionado"
+
+#~ msgid "Modules"
+#~ msgstr "Módulos"
+
+#~ msgid "No Atoms module is available. Please, check your Internet connection."
+#~ msgstr ""
+#~ "Nenhum módulo Atoms está disponível. Por favor, verifique sua conexão à "
+#~ "Internet."
+
+#~ msgid "Updating..."
+#~ msgstr "Atualizando..."
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
+#~ "texto.\n"
+
+#~ msgid "Atoms error"
+#~ msgstr "Erro do Atoms"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: String that contain ''TOOLBOXES'' or "
+#~ "''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d:  esperava-se um texto "
+#~ "que contivesse \"TOOLBOXES\" ou \"DESCRIPTION\".\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: String that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
+#~ "que finalizasse com DESCRIPTION.\n"

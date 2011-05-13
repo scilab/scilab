@@ -24,8 +24,8 @@ result = perl(...)</synopsis>
     <para>result = perl(...) returns the results of attempted Perl call to
     result.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="unix">unix</link>

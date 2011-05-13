@@ -16,10 +16,10 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.port.BasicPort.DataType;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
@@ -84,7 +84,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * @return the modified into block.
 	 * @throws ScicosFormatException
 	 *             on error.
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -209,7 +209,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * 
 	 * @param element the current element
 	 * @return true, if the element can be decoded, false otherwise
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
@@ -225,7 +225,7 @@ public class OutputPortElement extends AbstractElement<OutputPort> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(OutputPort from, ScilabType element) {

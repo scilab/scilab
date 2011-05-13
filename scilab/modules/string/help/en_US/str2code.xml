@@ -36,7 +36,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -73,8 +73,8 @@ code2str([-28 12 18 21 10 11])
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="code2str">code2str</link></member>

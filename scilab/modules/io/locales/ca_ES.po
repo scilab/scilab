@@ -1,0 +1,213 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:57+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "\"%s\" directory write access denied.\n"
+msgstr "\"%s\" no teniu accés d'escriptura al directori.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid "%s: The file \"%s\" does not exist.\n"
+msgstr "%s: El fitxer \"%s\" no existeix.\n"
+
+#, c-format
+msgid "%s: The file does not exist.\n"
+msgstr "%s: El fitxer no existeix.\n"
+
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: L'intèrpret del sistema no respon..."
+
+#, c-format
+msgid "%s: Undefined environment variable %s.\n"
+msgstr "%s: La variable d'entorn %s no està definida.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: Error durant l'execució %s"
+
+#, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Ja existeix el fitxer \"%s\".\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "No existeix el fitxer \"%s\".\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "No teniu accés de lectura al fitxer \"%s\".\n"
+
+msgid "Too many files opened!\n"
+msgstr "Hi ha massa fitxers oberts.\n"
+
+#, c-format
+msgid "Undefined environment variable %s.\n"
+msgstr "Variable d'entorn %s no definida.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "Error no gestionat de v2cunit.\n"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un descriptor "
+#~ "de fitxer vàlid.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+#~ "descriptor de fitxer.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un descriptor "
+#~ "de fitxer.\n"
+
+#, c-format
+#~ msgid "%s: Invalid conversion.\n"
+#~ msgstr "%s: La conversió és incorrecta.\n"
+
+#, c-format
+#~ msgid "%s: Incorrect format.\n"
+#~ msgstr "%s: El format és incorrecte.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+#~ "de cadenes de text.\n"
+
+#, c-format
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: El fitxer %s no existeix.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: no empty string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada té un valor incorrecte: No pot ser una cadena de "
+#~ "text buida.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Una cadena de text.\n"
+
+#, c-format
+#~ msgid "%s: end of input reached before final conversion.\n"
+#~ msgstr ""
+#~ "%s: S'ha arribat al final de l'entrada abans d'acabar la conversió.\n"
+
+#, c-format
+#~ msgid "%s: system cannot be displayed in this page.\n"
+#~ msgstr "%s: No es pot mostrar el sistema en aquesta pàgina.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
+#~ "enter.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir menys de %d "
+#~ "caràcters.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Error d'assignació de memòria.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"

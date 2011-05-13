@@ -35,7 +35,7 @@ function [status, msg] = xcosPalExport(pal, path)
 // Export Scilab palette instance to a file.
 // 
 // Examples
-//   loadScicosLibs();
+//   loadXcosLibs();
 //   pal = xcosPal();
 //   
 //   sumPath = TMPDIR + "/sum.h5";
@@ -88,8 +88,10 @@ function [status, msg] = xcosPalExport(pal, path)
     path = fullpath(path);
     mclose(fd);
     
+    // workaround bug 7242
+    pal = pal;
+    
     // export the data to the temp file
-    pal = pal; // #7242 workaround
     status = export_to_hdf5(path, "pal");
     if ~status then
         msg = msprintf(gettext("%s: Unable to export the palette to hdf5.\n"), "xcosPalExport");

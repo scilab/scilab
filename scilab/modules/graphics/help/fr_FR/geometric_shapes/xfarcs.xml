@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xfarcs">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xfarcs</refname>
+    <refpurpose> remplit des secteurs angulaires d'ellipses  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xfarcs(arcs,[style])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>arcs  </term>
+        <listitem>
+          <para>matrice de taille (6,n) décrivant les ellipses.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>style  </term>
+        <listitem>
+          <para>vecteur ligne de taille n donnant les couleurs à utiliser
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xarcs</literal> remplit des secteurs angulaires d'un ensemble d'ellipses décrites par <literal>arcs</literal> : 
+    <literal>arcs=[x y w h a1 a2;x y w h a1 a2;...]'</literal> où chaque ellipse est définie 
+    par les 6 paramètres <literal>(x,y,w,h,a1,a2)</literal> (voir <literal>xarc</literal>).
+  </para>
+  <para>Les paramètres <literal>x, y, w, h</literal> sont spécifiés en coordonnées utilisateur.</para>
+    <para><literal>style(i)</literal> donne la couleur utilisée pour remplir l'ellipse <literal>i</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+plot2d(0,0,-1,"031"," ",[-1,-1,1,1])
+arcs=[-1.0 0.0 0.5; // abscisse du coin superieur gauche
+       1.0 0.0 0.5; // ordonnée du coin superieur gauche
+       0.5 1.0 0.5; // longueur
+       0.5 0.5 1.0; // hauteur
+       0.0 0.0 0.0; // angle 1
+       180*64 360*64 90*64]; // angle 2
+xfarcs(arcs,[1,2,3])
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xarc">xarc</link>
+      </member>
+      <member>
+        <link linkend="xfarc">xfarc</link>
+      </member>
+      <member>
+        <link linkend="xfarc">xfarc</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

@@ -16,8 +16,10 @@ Makefile
 #
 # Java compilation output dir
 #
-build
-jar
+modules/*/build
+modules/jar
+modules/*/jar
+modules/*/test-output
 
 #
 # Documentation generation output files
@@ -61,6 +63,7 @@ Scilab.sln_old
 *.lib
 *.exp
 *.vcdef
+*.pdb
 Scilab.suo
 Scilab.ncb
 Release
@@ -98,6 +101,15 @@ Visual-Studio-settings/f2c.props
 Visual-Studio-settings/f2c.targets
 Visual-Studio-settings/f2c.xml
 
+# eclipse temp files
+workspace/
+.checkstyle
+.classpath
+.project
+
+# MacOS files
+.DS_Store
+
 #
 # scilab/ specific files
 #
@@ -125,6 +137,7 @@ mainsci.o
 autom4te.cache
 .deps
 /locale
+scilab.properties
 scilab-lib.properties
 scilab-lib-doc.properties
 scilab.pc
@@ -147,7 +160,11 @@ pvm3
 contrib/archives
 
 # SWIG generated files which are not used
-modules/types/src/java/org/scilab/modules/types/scilabTypes/types.java
-modules/types/src/java/org/scilab/modules/types/scilabTypes/typesJNI.java
+modules/types/src/java/org/scilab/modules/types/types.java
+modules/types/src/java/org/scilab/modules/types/typesJNI.java
 modules/types/src/jni/sci_types_wrap.c
 
+# Code coverage generated files
+*.gcov
+*.gcno
+*.gcda

@@ -36,50 +36,65 @@ case 'set' then
   graphics=arg1.graphics;exprs=graphics.exprs
   model=arg1.model;
   while %t do
-    [ok,Datatype,bit,exprs]=scicos_getvalue('Set parameters',..
-	['Datatype(3=int32 4=int16 5=int8 ...)';..
-	 'index of bit (0 is leat significant)'],..
-	list('vec',1,'vec',1),exprs)
+    [ok,Datatype,bit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "BITSET");" "; gettext("Set a bit");" "],..
+        [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Index of Bit (0 is least significant)")],..
+        list('vec',1,'vec',1), exprs);
+
     if ~ok then break,end
     in=[model.in model.in2];
-    if (bit<0) then
-      message('Incorrect index '+string(bit)+' ; must be >0.');ok=%f;
+
+    if floor(bit) <> bit then
+      block_parameter_error(msprintf(gettext("Wrong type for ''%s'' parameter: %5.1f."), gettext("Index of Bit"), bit), ..
+        gettext("Must be integer."));
+      ok=%f;
     end
-    if floor(bit)<>bit then message("index of bit must be integer");ok=%f;end
-    if (Datatype==3)|(Datatype==6) then
-	if bit > 31 then message ('Incorrect index '+string(bit)+' ; must be <32.');ok=%f;
-	end
-	bit=uint32(bit)
-	n=2^bit;
-	n=uint32(n)
-	model.sim=list('bit_set_32',4)
+    if (Datatype == 3)|(Datatype == 6) then
+        if bit > 31 | bit < 0 then
+            block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Index of Bit"), bit), ..
+              msprintf(gettext("Must be in the interval %s."), "[0, 31]"));
+            ok=%f;
+        end
+    bit=uint32(bit)
+    n=2^bit;
+    n=uint32(n)
+    model.sim=list('bit_set_32',4)
     elseif (Datatype==4)|(Datatype==7) then
-	if bit > 15 then message ('Incorrect index '+string(bit)+' ; must be <16.');ok=%f;
-	end
-	bit=uint16(bit)
-	n=2^bit;
-	n=uint16(n)
-	model.sim=list('bit_set_16',4)
+        if bit > 15 | bit < 0 then
+              block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Index of Bit"), bit), ..
+                msprintf(gettext("Must be in the interval %s."), "[0, 15]"));
+        ok=%f;
+    end
+    bit=uint16(bit)
+    n=2^bit;
+    n=uint16(n)
+    model.sim=list('bit_set_16',4)
     elseif (Datatype==5)|(Datatype==8) then
-	if bit > 7 then message ('Incorrect index '+string(bit)+' ; must be <8.');ok=%f;
-	end
-	bit=uint8(bit)
-	n=2^bit;
-	n=uint8(n)
-	model.sim=list('bit_set_8',4)
-    else message ('Datatype '+string(Datatype)+' is not supported ; It must be 3 to 8');ok=%f;
+
+    if bit > 7 | bit < 0 then
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Index of Bit"), bit), ..
+            msprintf(gettext("Must be in the interval %s."), "[0, 7]"));
+        ok=%f;
+    end
+    bit=uint8(bit)
+    n=2^bit;
+    n=uint8(n)
+    model.sim=list('bit_set_8',4)
+    else
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Data Type"), Datatype), ..
+          msprintf(gettext("Must be in the interval %s."), "[3, 8]"));
+        ok=%f;
     end
       if ok then
-	it=Datatype
-	ot=Datatype
-	out=[1 1]
-	[model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
+    it=Datatype
+    ot=Datatype
+    out=[1 1]
+    [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
       end
       if ok then
-	graphics.exprs=exprs;
-	model.opar=list(n);
-	x.graphics=graphics;x.model=model;
-	break
+    graphics.exprs=exprs;
+    model.opar=list(n);
+    x.graphics=graphics;x.model=model;
+    break
       end
   end
 

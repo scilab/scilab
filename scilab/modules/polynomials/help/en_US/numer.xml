@@ -23,7 +23,7 @@
     <synopsis>num=numer(R)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>R</term>
@@ -46,8 +46,8 @@
     function matrix <literal>R</literal> (<literal>R</literal> may be also a constant or polynomial matrix).
     <literal>numer(R)</literal> is equivalent to <literal>R(2)</literal>, <literal>R('num')</literal> or <literal>R.num</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="denom">denom</link>

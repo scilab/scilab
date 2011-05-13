@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="xpoly">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xpoly</refname>
+    <refpurpose>dessine une ligne brisée ou un
+  polygone</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>xpoly(xv,yv [,dtype [,close]])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>xv,yv</term>
+        <listitem>
+          <para>matrices de même taille (points de la ligne brisée).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dtype</term>
+        <listitem>
+          <para>chaîne de caractères (style de dessin, valeur par défaut :
+          "lines").</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>close</term>
+        <listitem>
+          <para>entier. Si close=1, la ligne brisée est fermée (valeur par
+          défaut : 0).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xpoly</literal> dessine une ligne brisée décrite par les vecteurs de
+    coordonnées <literal>xv</literal> et <literal>yv</literal>. Si <literal>xv</literal> et
+    <literal>yv</literal> sont des matrices elles sont considérées comme des
+    vecteurs (par concaténation de leurs colonnes). Si close=1 un segment
+    supplémentaire est ajouté entre le premier et le dernier point de la ligne
+    brisée. <literal>dtype</literal> peut être égal à   <literal>"lines"</literal>
+    pour utiliser le style de ligne courant ou <literal>"marks"</literal> pour
+    utiliser des marqueurs.</para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+x=sin(2*%pi*(0:4)/5);
+y=cos(2*%pi*(0:4)/5);
+
+plot2d(0,0,-1,"010"," ",[-2,-2,2,2])
+xset("color",5)
+xpoly(x,y,"lines",1) // by default closed
+
+// News graphics only
+e=gce(); // get the current entity (the last created: here the polyline)
+e.closed = 'off' // the polyline is now open
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xfpoly">xfpoly</link>
+      </member>
+      <member>
+        <link linkend="xfpolys">xfpolys</link>
+      </member>
+      <member>
+        <link linkend="xpolys">xpolys</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

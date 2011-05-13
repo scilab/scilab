@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="champ1" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>champ1</refname>
+
+    <refpurpose>campo vetorial 2d com setas coloridas</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>champ1(x,y,fx,fy,[arfact,rect,strf])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores que definem o grid </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fx</term>
+
+        <listitem>
+          <para>uma matriz que descreve o componente x do campo vetorial.
+          <literal>fx(i,j)</literal> é o componente x do campo vetorial no
+          ponto <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fy</term>
+
+        <listitem>
+          <para>uma matriz que descreve o componente y do campo vetorial.
+          <literal>fy(i,j)</literal> é o componente y do campo vetorial no
+          ponto <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arfact</term>
+
+        <listitem>
+          <para>um argumento opcional do tipo real que fornece um fator de
+          escala para a exibição das cabeças das setas no esboço (o valor
+          padrão é 1.0). </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>um vetor <literal>rect=[xmin,ymin,xmax,ymax]</literal> que
+          fornece as fronteiras da moldura gráfica a ser utilizada. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frameflag</term>
+
+        <listitem>
+          <para>ccontrola a computação dos intervalos de coordenadas
+          verdadeiros a partir dos valores mínimos requeridos. O valor
+          associado deve ser um inteiro no intervalo de 0 a 8. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>axesflag</term>
+
+        <listitem>
+          <para>especifica como os eixos são desenhados. O valor associado
+          deve ser um inteiro no intervalo de 0 a 5.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf</term>
+
+        <listitem>
+          <para>um string de comprimento 3 "xyz" que possui o mesmo
+          significado do parâmetro <literal>strf</literal> de
+          <literal>plot2d</literal>. O primeiro caractere não tem efeito com
+          <literal>champ1</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>champ1</literal> desenha um campo vetorial 2d com setas
+    coloridas. A cor das setas depende da intensidade do campo.</para>
+
+    <para>Se você quiser setas proporcionais à intensidade do campo, use
+    <literal>champ</literal>.</para>
+
+    <para>Entre com o comando <literal>champ1()</literal> para visualizar uma
+    demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="champ">champ</link></member>
+
+      <member><link linkend="fchamp">fchamp</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

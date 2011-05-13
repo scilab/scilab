@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="iir" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>iir</refname>
+
+    <refpurpose>iir デジタルフィルタ</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[hz]=iir(n,ftype,fdesign,frq,delta)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+
+        <listitem>
+          <para>正の整数値, フィルタの次数.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>ftype</term>
+
+        <listitem>
+          <para>フィルタの型を指定する文字列, 以下の値を使用可能:
+          <literal>'lp'</literal> :ローパス(低域通過),<literal>'hp'</literal> : ハイパス(高域通過)
+,<literal>'bp'</literal>: バンドパス(帯域通過), 
+          <literal>'sb'</literal> : ストップバンド(帯域阻止).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fdesign</term>
+
+        <listitem>
+          <para>アナログフィルタ設計を指定する文字列, 以下の値を指定可能:
+          <literal>'butt'</literal>,
+          <literal>'cheb1'</literal>, <literal>'cheb2'</literal> および
+          <literal>'ellip'</literal></para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>frq</term>
+
+        <listitem>
+          <para>離散カットオフ周波数の要素数2のベクトル
+		(すなわち,<literal>0&lt;frq&lt;.5</literal>).
+	<literal>'lp'</literal> および
+          <literal>'hp'</literal> フィルタの場合,
+	<literal>frq(1)</literal> が使用されます.
+          <literal>'bp'</literal> および <literal>'sb'</literal> フィルタの場合,
+          <literal>frq(1)</literal> が下限カットオフ周波数,
+          <literal>frq(2)</literal> が上限カットオフ周波数となります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>delta</term>
+
+        <listitem>
+          <para><literal>cheb1</literal>,
+          <literal>cheb2</literal>, および <literal>ellip</literal> フィルタ用
+	誤差値のベクトル(要素数:2)です.
+	ただし,<literal>cheb1</literal>の場合には<literal>delta(1)</literal>のみが
+	使用され,<literal>cheb2</literal>の場合には<literal>delta(2)</literal>のみが
+	使用されます.<literal>ellip</literal>の場合には,
+	<literal>delta(1)</literal> および <literal>delta(2)</literal>の両方が
+	使用されます.
+          <literal>0&lt;delta(1),delta(2)&lt;1</literal></para>
+
+          <itemizedlist>
+            <listitem>
+              <para><literal>cheb1</literal> フィルタの場合,通過域では,
+              <literal>1-delta(1)&lt;ripple&lt;1</literal> です.</para>
+            </listitem>
+	    <listitem>
+              <para><literal>cheb2</literal> フィルタの場合,阻止域では
+                <literal>0&lt;ripple&lt;delta(2)</literal> です.</para>
+            </listitem>
+	    <listitem>
+	      <para><literal>ellip</literal> フィルタの場合,通過域では
+	      <literal>1-delta(1)&lt;ripple&lt;1</literal> ,阻止域では
+	      <literal>0&lt;ripple&lt;delta(2)</literal> です.</para>
+	    </listitem>
+	  </itemizedlist>
+	  </listitem>
+	</varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<link
+    linkend="analpf">アナログフィルタ</link>設計および<link
+    linkend="bilt">双一次変換</link>を用いて
+	IIRデジタルフィルタを設計する関数です.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+hz=iir(3,'bp','ellip',[.15 .25],[.08 .03]);
+[hzm,fr]=frmag(hz,256);
+plot2d(fr',hzm')
+xtitle('Discrete IIR filter band pass  0.15&lt;fr&lt;0.25 ',' ',' ');
+q=poly(0,'q');     // 遅延演算子 q=z^-1 の項で結果を表わすため
+hzd=horner(hz,1/q) 
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="eqfir">eqfir</link></member>
+      <member><link linkend="eqiir">eqiir</link></member>
+      <member><link linkend="analpf">analpf</link></member>
+      <member><link linkend="bilt">bilt</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <para>Carey Bunks</para>
+  </refsection>
+</refentry>

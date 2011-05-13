@@ -12,7 +12,7 @@
     <synopsis>[Ct,p] = taucs_chget(C_ptr)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C_ptr  </term>
@@ -89,12 +89,12 @@ PlotSparse(Ct) ; xtitle("The pattern of Ct (A(p,p) = C*Ct)")
 [OK, n, cnz] = taucs_chinfo(Cptr)
 // cnz is superior to the realnumber of non zeros elements of C :
 cnz_exact = nnz(Ct)
-// don't forget to clear memory
+// do not forget to clear memory
 taucs_chdel(Cptr)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chfact">taucs_chfact</link>

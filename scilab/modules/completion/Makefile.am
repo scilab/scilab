@@ -18,8 +18,8 @@ endif
 COMPLETION_C_SOURCES = src/c/completion.c \
 src/c/completion_generic.c \
 src/c/getfilesdictionary.c \
-src/c/getfulldictionary.c \
 src/c/getmacrosdictionary.c \
+src/c/getfieldsdictionary.c \
 src/c/toolsdictionary.c \
 src/c/completion_wrap_java.c \
 src/c/getPartLine.c \
@@ -46,7 +46,7 @@ libscicompletion_la_CFLAGS=  	$(JAVA_JNI_INCLUDE) \
 # the system)
 pkglib_LTLIBRARIES = libscicompletion.la
 
-libscicompletion_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscicompletion_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 # All the sources needed by libscicompletion.la
 libscicompletion_la_SOURCES = $(COMPLETION_JNI_SOURCES) $(COMPLETION_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -57,14 +57,14 @@ INCLUDE_FLAGS = $(libscicompletion_la_CFLAGS)
 
 ## Libraries necessary
 ## Change to include other Scilab modules/lib
-libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
+libscicompletion_la_LIBADD =  $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la 
 #$(top_builddir)/modules/graphics/libscigraphics.la
 #### Name of the module and the path ######
 modulename=completion
 
 #### completion : Conf files ####
 libscicompletion_la_rootdir = $(mydatadir)
-libscicompletion_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicompletion_la_root_DATA =  license.txt version.xml
 
 #### completion : init scripts ####
 libscicompletion_la_etcdir = $(mydatadir)/etc

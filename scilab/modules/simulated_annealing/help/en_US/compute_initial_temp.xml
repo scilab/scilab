@@ -35,7 +35,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -161,8 +161,8 @@ T0 = compute_initial_temp(x0, rastrigin, Proba_start, It_Pre, saparams);
     </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member>

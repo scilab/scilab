@@ -24,7 +24,7 @@
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>curve_handle</term>
@@ -71,8 +71,8 @@
     datatips_struct.formatfunction
     ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="datatips" >datatips</link></member>
       <member><link linkend="datatipSetDisplay" >datatipSetDisplay</link></member>

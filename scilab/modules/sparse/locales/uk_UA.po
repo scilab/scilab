@@ -1,0 +1,418 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-10 13:14+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+"\n"
+"Щільність = %2.2lf%%.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Найбільший діагональний елемент = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest element in matrix = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Найбільший елемент у матриці = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest pivot element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"Найбільший опорний елемент = %-1.4lg.\n"
+
+#, c-format
+msgid "     Absolute Threshold = %e\n"
+msgstr "     Абсолютне порогове значення = %e\n"
+
+#, c-format
+msgid "     Average number of elements per row = %lf\n"
+msgstr "     Середня кількість елементів на рядок = %lf\n"
+
+#, c-format
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr "     Середня кількість ненульових коефіцієнтів на рядок = %lf%%\n"
+
+#, c-format
+msgid "     Density = %lf%%\n"
+msgstr "     Щільність = %lf%%\n"
+
+#, c-format
+msgid "     Fill-ins = %d\n"
+msgstr "     Ненульових коефіцієнтів = %d\n"
+
+#, c-format
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr "     Початкова кількість елементів на рядок = %lf\n"
+
+#, c-format
+msgid "     Initial number of elements = %d\n"
+msgstr "     Початкова кількість елементів = %d\n"
+
+#, c-format
+msgid "     Largest Element = %e\n"
+msgstr "     Найбільший елемент = %e\n"
+
+#, c-format
+msgid "     Relative Threshold = %e\n"
+msgstr "     Відносне порогове значення = %e\n"
+
+#, c-format
+msgid ""
+"     Smallest Element = %e\n"
+"\n"
+"\n"
+msgstr ""
+"     Найменший елемент = %e\n"
+"\n"
+"\n"
+
+#, c-format
+msgid "     Total number of elements = %d\n"
+msgstr "     Загальна кількість елементів = %d\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  Ітерація №%s з %s, нев’язка: %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr "  Нова нев’язка = %s < tol = %s => зупинка\n"
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr "  Тип передобумовленості №1: %d\n"
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr "  Тип передобумовленості №2: %d\n"
+
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr "%s: на діагоналі матриці виявлено нульовий елемент.\n"
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: помилка збіжності.\n"
+
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: не збігся.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
+"від %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: %s має розмірність %d, "
+"мало бути використано розмірність %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор-стовпчик.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+"з розмірністю вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"квадратну матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора-"
+"стовпчика.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
+"матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мала бути функція, транспонована "
+"щодо %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: %s=%d, але потрібне було "
+"додатне значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: %s=%d, що не відповідає %s: "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: %s=%d, що не відповідає "
+"розмірності %s: %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: %s=%s, але мало бути "
+"використано ціле число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати тип "
+"вектора-стовпчика.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення тип вхідного параметра №%d: мала бути функція, "
+"транспонована щодо %s.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати тип "
+"вектора.\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "Збій алгоритму\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "Алгоритм пройдено\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "Параметри:\n"
+
+#, c-format
+msgid "Columns %1d to %1d.\n"
+msgstr "Стовпчики від %1d до %1d.\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "Остаточна нев’язка = %s > припустиму похибку =%s\n"
+
+#, c-format
+msgid ""
+"MATRIX SUMMARY\n"
+"\n"
+msgstr ""
+"РЕЗЮМЕ МАТРИЦІ\n"
+"\n"
+
+#, c-format
+msgid "Matrix after factorization:\n"
+msgstr "Матриця після факторизації:\n"
+
+#, c-format
+msgid "Matrix before factorization:\n"
+msgstr "Матриця до факторизації:\n"
+
+#, c-format
+msgid "Matrix has been reordered.\n"
+msgstr "Матрицю було перевпорядковано.\n"
+
+#, c-format
+msgid "Matrix has not been factored.\n"
+msgstr "Матрицю не було факторизовано.\n"
+
+#, c-format
+msgid "Matrix is complex.\n"
+msgstr "Матриця є комплексною.\n"
+
+#, c-format
+msgid "Matrix is real.\n"
+msgstr "Матриця є дійсною.\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr "Норма правої частини: %s\n"
+
+#, c-format
+msgid "Number of fill-ins = %1d.\n"
+msgstr "Кількість ненульових елементів = %1d.\n"
+
+#, c-format
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr "Кількість операцій для прямого циклу факторизації = %d.\n"
+
+#, c-format
+msgid "Pivot found at %1d,%1d using "
+msgstr "Знайдено опорний елемент у позиції %1d,%1d, використання "
+
+#, c-format
+msgid "Reordering,  Step = %1d\n"
+msgstr "Перевпорядкування, крок = %1d\n"
+
+#, c-format
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr "Розмірність матриці = %1u x %1u.\n"
+
+#, c-format
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr "Найменший діагональний елемент = %-1.4lg.\n"
+
+#, c-format
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr "Найменший елемент матриці = %-1.4lg.\n"
+
+#, c-format
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr "Найменший опорний елемент = %-1.4lg.\n"
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr "Особлива обробка для матриць з нульовою правою частиною.\n"
+
+#, c-format
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr "Попередження: наведену нижче матрицю факторизовано за формулою LU.\n"
+
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr "sparse: помилка у файлі «%s», рядок %d.\n"
+
+#, c-format
+msgid "|||  Starting new matrix  |||\n"
+msgstr "|||  Початок нової матриці  |||\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+#~ "з розмірністю вхідного параметра №%d"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: розмірність має збігатися з "
+#~ "розмірністю вхідного параметра №%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: розмірність має збігатися з "
+#~ "розмірністю вхідного параметра №%d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for size argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+#~ "однакову з  параметром №%d розмірність.\n"

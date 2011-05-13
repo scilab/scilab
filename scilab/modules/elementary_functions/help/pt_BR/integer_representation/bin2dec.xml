@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bin2dec" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bin2dec</refname>
+
+    <refpurpose>conversão de representação binária para inteira</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>y=bin2dec(str)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>str</term>
+
+        <listitem>
+          <para>um string ou vetor/matriz de strings contendo apenas
+          caracteres '1' e '0'</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>y</term>
+
+        <listitem>
+          <para>um escalar ou um vetor/matriz de inteiros positivos</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Dado <literal>str</literal> um string binário, está função retorna
+    <literal>y</literal>, o número decimal cuja representação binária é dada
+    por <literal>str</literal> ( <literal>y</literal> e <literal>str</literal>
+    possuem o mesmo tamanho)</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+// example 1 :
+// '1010110' : é a representação binária de 86 
+str='1010110';
+y=bin2dec(str)
+
+// example 2 :
+// '1011011' : é a representação binária de 91 
+// '1010010' : é a representação binária de 82
+str=['1011011'; '1010010']
+y=bin2dec(str)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="base2dec">base2dec</link></member>
+
+      <member><link linkend="oct2dec">oct2dec</link></member>
+
+      <member><link linkend="hex2dec">hex2dec</link></member>
+
+      <member><link linkend="dec2bin">dec2bin</link></member>
+
+      <member><link linkend="dec2oct">dec2oct</link></member>
+
+      <member><link linkend="dec2hex">dec2hex</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

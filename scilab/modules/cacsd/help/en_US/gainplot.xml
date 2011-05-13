@@ -25,7 +25,7 @@
     gainplot(frq, repf [,comments])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>
@@ -94,8 +94,8 @@
       </inlinemediaobject>
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="bode">bode</link>

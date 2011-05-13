@@ -21,8 +21,8 @@
     in Scilab one has to write a few lines in the <literal>user</literal> fortran subroutine
     of Scilab. See <literal>intersci</literal> or the Scilab documentation for more information.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fort">fort</link>

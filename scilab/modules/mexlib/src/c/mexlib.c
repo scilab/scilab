@@ -911,7 +911,7 @@ void *mxGetImagData(const mxArray *ptr)
 void mexErrMsgTxt(const char *error_msg)
 {
   cerro((char *)error_msg);
-  errjump(0);
+  errjump();
 }
 
 void mxAssert(int expr, char *error_message)
@@ -1508,18 +1508,31 @@ bool mxIsStruct(const mxArray *ptr)
 
 int IsstOrce(mxArray *ptr)
 {
-  int *header1; int l; int nfplus2;
-  int *header = Header(ptr);
-  if (header[0]==MLIST) {
-    header1 = (int *) listentry(header,1);
-    nfplus2 = header1[1]*header1[2];
-    l = 5 + nfplus2;
-    if (header1[0]==STRINGMATRIX)
-	if (header1[l]==12 && header1[l+1]==14) return 1;  /*  "ce"  */
-	if (header1[l]==28 && header1[l+1]==29) return 1;  /*  "st"  */
-    else return 0;
-      }
-  else return 0;
+    int *header1; int l; int nfplus2;
+    int *header = Header(ptr);
+    if (header[0]==MLIST)
+    {
+        header1 = (int *) listentry(header,1);
+        nfplus2 = header1[1]*header1[2];
+        l = 5 + nfplus2;
+        if (header1[0]==STRINGMATRIX)
+        {
+            if (header1[l]==12 && header1[l+1]==14)
+            {
+                return 1;  /*  "ce"  */
+            }
+        }
+        if (header1[l]==28 && header1[l+1]==29)
+        {
+            return 1;  /*  "st"  */
+        } else {
+            return 0;
+        }
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 /***************************************************************
@@ -2136,7 +2149,7 @@ int mexEvalString(const char *name)
   mxFreeMatrix(ppr[0]);
   if ( rep == 1 || (int) (*val) != 0 )
     {
-      errjump(0);
+      errjump();
     }
   return rep;
 }
@@ -2676,7 +2689,7 @@ void  C2F(mexprintf)(char *error_msg, int len)
 void C2F(mexerrmsgtxt)(char *error_msg, int len)
 {
   C2F(erro)(error_msg,len);
-  errjump(0);
+  errjump();
 }
 
 mxArray *C2F(mxcreatefull)(int *m, int *n, int *it)

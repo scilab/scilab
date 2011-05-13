@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="profile">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>profile</refname>
+    <refpurpose> extract execution profiles of a Scilab function</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>c=profile(fun)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>a Scilab function</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>a nx3 matrix containig the execution profiles</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    To use <literal>profile</literal> the Scilab function must have been prepared for
+    profiling (see exec).</para>
+    <para>
+    For such function, When such a function is executed the systems counts
+    how many time each line is executed and how may cpu time is spend for
+    each line execution. These data are stored within the function data
+    structure.  The profile function allows to extract these data and
+    return them in the two first columns of <literal>c</literal>. The <literal>c</literal> third
+    column gives a measure of interpetor effort for one execution of
+    corresponding line. Ith line of <literal>c</literal> corresponds to Ith line of the
+    function (included first)</para>
+    <para>
+    Note that, due to the precision of the processor clock (typically one
+    micro second), some executed lignes may appear with 0 cpu time even if
+    total cpu time really spend in their execution is large.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+//define function and prepare it for profiling
+deff('x=foo(n)',['if n==0 then'
+                 '  x=[]'
+                 'else'
+                 '  x=0'
+                 '  for k=1:n'
+                 '    s=svd(rand(n+10,n+10))'
+                 '    x=x+s(1)'
+                 '  end'
+                 'end'],'p')
+
+//call the function
+foo(10)
+
+//get execution profiles
+profile(foo)
+
+//call the function
+foo(20)
+profile(foo) //execution profiles are cumulated
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="exec">exec</link>
+      </member>
+      <member>
+        <link linkend="deff">deff</link>
+      </member>
+      <member>
+        <link linkend="plotprofile">plotprofile</link>
+      </member>
+      <member>
+        <link linkend="showprofile">showprofile</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

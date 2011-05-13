@@ -1,0 +1,124 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-07-29 10:16+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser un nombre "
+"senar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+msgid "%s: awaited parameters: "
+msgstr "%s: paràmetres esperats: "
+
+#, c-format
+msgid "%s: parameter %s not defined"
+msgstr "%s: No s'ha definit el paràmetre %s"
+
+#, c-format
+msgid "%s: parameter doesn''t exist"
+msgstr "%s: No existeix el paràmetre"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %d.\n"
+msgstr ""
+"%s: No s'ha trobat el paràmetre. Es retorna el valor predeterminat %d.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %f.\n"
+msgstr ""
+"%s: No s'ha trobat el paràmetre. Es retorna el valor predeterminat %f.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %s.\n"
+msgstr ""
+"%s: No s'ha trobat el paràmetre. Es retorna el valor predeterminat %s.\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
+msgstr ""
+"%s: El límit superior del paràmetre %s és invàlid: Límit superior %d, valor "
+"%d\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
+msgstr ""
+"%s: El límit superior del paràmetre %s és invàlid: Límit superior %f, valor "
+"%f\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
+msgstr ""
+"%s: El límit inferior del paràmetre %s és invàlid: Límit inferior %d, valor "
+"%d\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
+msgstr ""
+"%s: El límit inferior del paràmetre %s és invàlid: Límit inferior %f, valor "
+"%f\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
+msgstr ""
+"%s: El paràmetre és d'un tipus incorrecte. Ha de ser un %s. Es retorna el "
+"valor predeterminat %d.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
+msgstr ""
+"%s: El paràmetre és d'un tipus incorrecte. Ha de ser un %s. Es retorna el "
+"valor predeterminat %f.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
+msgstr ""
+"%s: El paràmetre és d'un tipus incorrecte. Ha de ser un %s. Es retorna el "
+"valor predeterminat %s.\n"
+
+#, c-format
+msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
+msgstr ""
+"%s: El paràmetre %s té una mida incorrecta. Es demanava %d, i s'ha rebut "
+"%d.\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %d\n"
+msgstr "%s: El paràmetre %s té un valor incorrecte: valor %d\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %f\n"
+msgstr "%s: El paràmetre %s té un valor incorrecte: valor %f\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %s\n"
+msgstr "%s: El paràmetre %s té un valor incorrecte: valor %s\n"
+
+#, c-format
+#~ msgid "%s: not a plist"
+#~ msgstr "%s: no és una plist"

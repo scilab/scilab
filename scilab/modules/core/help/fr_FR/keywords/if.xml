@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="if">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>if then else</refname>
+    <refpurpose> exécution conditionnelle  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>if expr1 then instructions
+elseif expri then instructions
+....
+else instructions
+end</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Le mot-clé <literal>if</literal> évalue une expression logique et exécute un groupe
+    d'instructions si l'expression est vraie.
+  </para>
+    <para>
+    Les <literal>expri</literal> sont des expressions à valeurs numériques ou booléennes. Si <literal>expri</literal> est à valeur matricielle la condition est vraie si tous les termes de la matrice sont vrais ou différents de zéro.
+  </para>
+    <para>
+    Les mot-clés optionnels <literal>elseif</literal> et <literal>else</literal> permettent d'exécuter en alternative des groupes d'instructions. Le mot clé <literal>end</literal>,
+    correspondant au <literal>if</literal>, termine le groupe courant d'instructions. La structure des lignes ci-dessus n'est pas significative et la seule contrainte
+    est que chaque mot-clé <literal>then</literal> doit être sur la même ligne que le <literal>if</literal> ou <literal>elseif</literal> correspondant .
+  </para>
+    <para>
+  </para>
+    <para>
+    Le mot-clé <literal>then</literal> peut être remplacé par un passage à la ligne ou une virgule.
+  </para>
+    <para>
+    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+i=2
+for j = 1:3, 
+  if i == j then
+    a(i,j) = 2; 
+  elseif abs(i-j) == 1 then 
+    a(i,j) = -1; 
+  else a(i,j) = 0;
+  end,
+end
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="try">try</link>
+      </member>
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="select">select</link>
+      </member>
+      <member>
+        <link linkend="boolean">boolean</link>
+      </member>
+      <member>
+        <link linkend="end">end</link>
+      </member>
+      <member>
+        <link linkend="then">then</link>
+      </member>
+      <member>
+        <link linkend="else">else</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

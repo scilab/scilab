@@ -23,7 +23,7 @@
     <synopsis>del_help_chapter(title[,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title</term>
@@ -46,8 +46,8 @@
     <para>
   This function deletes an entry in the help list.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

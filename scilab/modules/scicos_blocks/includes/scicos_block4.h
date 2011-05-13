@@ -85,43 +85,21 @@ typedef struct {
 	int *mode;
 } scicos_block;
 
-
-
-/* define scicos flag number */
-/**
-\brief DerivativeState is flag 0
-*/
-#define DerivativeState 0
-
-/**
-\brief OutputUpdate is flag 1
-*/
-#define OutputUpdate 1
-
-/**
-\brief StateUpdate is flag 2
-*/
-#define StateUpdate 2
-
-/**
-\brief OutputEventTiming is flag 3
-*/
-#define OutputEventTiming 3
-
-/**
-\brief Initialization is flag 4
-*/
-#define Initialization 4
-
-/**
-\brief Ending is flag 5
-*/
-#define Ending 5
-
-/**
-\brief ReInitialization is flag 6
-*/
-#define ReInitialization 6
+/** define scicos flag number */
+typedef enum {
+        /* Should not be used directly, set through the API. */
+        CosError                = -5,
+        
+        /* Valid simulation states */
+        DerivativeState         = 0,
+        OutputUpdate            = 1,
+        StateUpdate             = 2,
+        OutputEventTiming       = 3,
+        Initialization          = 4,
+        Ending                  = 5,
+        ReInitialization        = 6,
+        ZeroCrossing            = 9,
+} scicos_flag;
 
 /* utility function for block declaration */
 int get_block_error(void);

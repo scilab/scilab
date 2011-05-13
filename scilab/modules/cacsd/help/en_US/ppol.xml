@@ -23,7 +23,7 @@
     <synopsis>[K]=ppol(A,B,poles)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,B</term>
@@ -66,8 +66,8 @@ F=ppol(A,B,[-1,-2,-3]);
 spec(A-B*F)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="canon">canon</link>

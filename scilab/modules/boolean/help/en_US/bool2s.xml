@@ -23,7 +23,7 @@
     <synopsis>bool2s(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -50,8 +50,8 @@ bool2s([%t %t %f %t])
 bool2s([2.3 0 10 -1])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="boolean">boolean</link>

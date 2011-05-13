@@ -19,9 +19,7 @@
 #define COMPATFUNCTIONS "compatibility_functions"
 ;
 Source: modules\{#COMPATFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\readme.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\license.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
-Source: modules\{#COMPATFUNCTIONS}\changelog.txt; DestDir: {app}\modules\{#COMPATFUNCTIONS}; Components: {#COMPN_COMPATFUNCTIONS}
 ;
 Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.quit; DestDir: {app}\modules\{#COMPATFUNCTIONS}\etc; Components: {#COMPN_COMPATFUNCTIONS}
 Source: modules\{#COMPATFUNCTIONS}\etc\{#COMPATFUNCTIONS}.start; DestDir: {app}\modules\{#COMPATFUNCTIONS}\etc; Components: {#COMPN_COMPATFUNCTIONS}

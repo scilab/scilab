@@ -23,7 +23,7 @@
     <synopsis>res = strrchr(str1,char)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>
@@ -58,8 +58,8 @@ strrchr(['This is a sample string','in scilab'],'s')
 strrchr(['This is a sample string','in scilab'],['s','a'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strchr">strchr</link>

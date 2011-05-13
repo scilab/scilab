@@ -118,7 +118,7 @@ public class ScilabPushButtonBridge {
 	 * @return the text of the PushButton
 	 */
 	public static String getText(PushButton pushButton) {
-		return pushButton.getAsSimplePushButton().getText();
+		return pushButton.getAsSimplePushButton().getBaseText();
 	}
 	
 	/**

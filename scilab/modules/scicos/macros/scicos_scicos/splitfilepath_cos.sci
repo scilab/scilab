@@ -20,6 +20,9 @@
 //
 
 function [path,name,ext]=splitfilepath_cos(fname)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 l=length(fname)
 //getting the extension part
 n=l

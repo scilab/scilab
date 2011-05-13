@@ -1,29 +1,30 @@
 // Copyright (C) 2008 - INRIA
-// Copyright (C) 2009-2010 - DIGITEO
+// Copyright (C) 2009-2011 - DIGITEO
 
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mode(-1);
 lines(0);
 
-TOOLBOX_NAME  = "toolbox_skeleton";
-TOOLBOX_TITLE = "Toolbox Skeleton";
-toolbox_dir   = get_absolute_file_path("builder.sce");
+function main_builder()
+
+  TOOLBOX_NAME  = "toolbox_skeleton";
+  TOOLBOX_TITLE = "Toolbox Skeleton";
+  toolbox_dir   = get_absolute_file_path("builder.sce");
 
 // Check Scilab's version
 // =============================================================================
 
-try
+  try
     v = getversion("scilab");
-catch
+  catch
     error(gettext("Scilab 5.3 or more is required."));
-end
+  end
 
-if v(2) < 3 then
+  if v(2) < 3 then
     // new API in scilab 5.3
     error(gettext('Scilab 5.3 or more is required.'));
-end
-clear v;
+  end
 
 // Check modules_manager module availability
 // =============================================================================
@@ -42,8 +43,10 @@ tbx_builder_help(toolbox_dir);
 tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
 tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
 
-// Clean variables
+endfunction
+// =============================================================================
+main_builder();
+clear main_builder; // remove main_builder on stack
 // =============================================================================
 
-clear toolbox_dir TOOLBOX_NAME TOOLBOX_TITLE;
 

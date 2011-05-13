@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+	  xml:id="Continuous_pal"
+	  xml:lang="fr">
+  <refnamediv>
+    <refname>Continuous_pal</refname>
+
+    <refpurpose>Palette Systèmes à temps continu</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçus</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLINDUMMY_f" fileref="../../../../../../modules/xcos/images/palettes/CLINDUMMY_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLR" fileref="../../../../../../modules/xcos/images/palettes/CLR.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="CLSS" fileref="../../../../../../modules/xcos/images/palettes/CLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="DERIV" fileref="../../../../../../modules/xcos/images/palettes/DERIV.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="INTEGRAL_m" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PID" fileref="../../../../../../modules/xcos/images/palettes/PID.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TCLSS" fileref="../../../../../../modules/xcos/images/palettes/TCLSS.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TIME_DELAY" fileref="../../../../../../modules/xcos/images/palettes/TIME_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="VARIABLE_DELAY" fileref="../../../../../../modules/xcos/images/palettes/VARIABLE_DELAY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="PDE" fileref="../../../../../../modules/xcos/images/palettes/PDE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Continuous_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Continuous_pal">
+    <title>Description</title>
+
+    <para>La palette Systèmes à temps continu contient les blocs linéaires de base.</para>
+  </refsection>
+
+  <refsection id="Blocks_Continuous_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+
+	  <listitem>
+        <para>
+          <link linkend="CLINDUMMY_f">CLINDUMMY_f — Dummy (Factice)</link>
+        </para>
+      </listitem>
+
+	  <listitem>
+        <para>
+          <link linkend="CLR">CLR — Fonction de transfert continue</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="CLSS">CLSS - Représentation d'état en temps continu</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="DERIV">DERIV - Dérivée</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_f">INTEGRAL_f - Intégration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="INTEGRAL_m">INTEGRAL_m — Intégration</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="PID">PID - Régulateur PID</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TCLSS">TCLSS — Système continu linéaire avec saut</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="TIME_DELAY">TIME_DELAY - Retard pur</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <link linkend="VARIABLE_DELAY">VARIABLE_DELAY — Retard pur variable</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

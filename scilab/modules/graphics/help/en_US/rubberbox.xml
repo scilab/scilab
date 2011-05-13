@@ -27,7 +27,7 @@
 </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>initial_rect</term>
@@ -78,8 +78,8 @@ xrect(r)
 r=rubberbox()
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xrect">xrect</link>

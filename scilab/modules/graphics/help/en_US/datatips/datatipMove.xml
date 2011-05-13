@@ -21,7 +21,7 @@
     <synopsis>datatipMove(tip_handle)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>tip_handle</term>
@@ -36,13 +36,13 @@
   <refsection>
     <title>Description</title>
     <para>
-      Once this function as been called the user can move the mouse on
+      Once this function has been called the user can move the mouse on
       the associated figure and left click for the desired position.
     </para>
   </refsection>
  
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="datatips" >datatips</link>

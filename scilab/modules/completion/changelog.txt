@@ -1,3 +1,0 @@
-  * First version of "completion" module
-
- -- Allan CORNET  1st August 2007

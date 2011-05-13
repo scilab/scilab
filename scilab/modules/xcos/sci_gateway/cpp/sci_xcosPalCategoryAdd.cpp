@@ -12,6 +12,7 @@
 
 #include "Palette.hxx"
 #include "GiwsException.hxx"
+#include "xcosUtilities.hxx"
 
 extern "C"
 {
@@ -26,11 +27,6 @@ extern "C"
 #include "getScilabJavaVM.h"
 }
 
-extern int
-readVectorString(int rhsPosition, char*** out, int* vectorLength, char* fname);
-extern int
-readSingleBoolean(int rhsPosition, bool* out, const char* fname);
-
 using namespace org_scilab_modules_xcos_palette;
 
 int
@@ -44,7 +40,7 @@ sci_xcosPalCategoryAdd(char *fname, unsigned long fname_len)
     bool visible = false;
 
     /* name setup */
-    if (readVectorString(1, &name, &nameLength, fname))
+    if (readVectorString(pvApiCtx, 1, &name, &nameLength, fname))
     {
         return 0;
     }
@@ -52,7 +48,7 @@ sci_xcosPalCategoryAdd(char *fname, unsigned long fname_len)
     /* visible setup */
     if (Rhs > 2)
     {
-        if (readSingleBoolean(2, &visible, fname))
+        if (readSingleBoolean(pvApiCtx, 2, &visible, fname))
         {
             return 0;
         }

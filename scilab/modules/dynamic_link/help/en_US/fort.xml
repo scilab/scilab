@@ -31,14 +31,13 @@
     <title>Calling Sequence</title>
 
     <synopsis>// long form 'out' is present
-[y1,...,yk]=fort("ident",x1,px1,"tx1",...,xn,pxn,"txn",
-"out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
+[y1,...,yk] = fort("ident",x1,px1,"tx1",...,xn,pxn,"txn","out",[ny1,my1],py1,"ty1",...,[nyl,myl],pyl,"tyl")
 // short form : no 'out' parameter
-[y1,....,yk]=fort("ident",x1,...,xn)</synopsis>
+[y1,....,yk] = fort("ident",x1,...,xn)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -226,7 +225,7 @@ int *m,*n;
 { 
    double sin();
    int i;
-   for ( i =0 ; i &lt; (*m)*(*n) ; i++) 
+   for ( i =0 ; i < (*m)*(*n) ; i++) 
        c[i] = sin(a[i]) + *b; 
 }
 ]]></programlisting>
@@ -239,8 +238,8 @@ c=fort("fooc",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="call">call</link></member>

@@ -24,7 +24,7 @@
 exportUI(fig)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>figId</term>
@@ -46,8 +46,8 @@ exportUI(fig)</synopsis>
       call the graphical interface dedicated in exporting a graphic window into an image file.
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xs2jpg">xs2jpg</link>

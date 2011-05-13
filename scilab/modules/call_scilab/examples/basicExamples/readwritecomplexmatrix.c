@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) DIGITEO - 2009 - Sylvestre LEDRU
  * 
- * This file is released into the public domain
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
  *
  * This example shows how to read / write a matrix of complex from Scilab
  * engine
@@ -18,9 +18,9 @@
 int main(void)
 {
 	#ifdef _MSC_VER
-	if ( StartScilab(NULL,NULL,NULL) == FALSE )
+	if ( StartScilab(NULL, NULL, 0) == FALSE )
 	#else
-	if ( StartScilab(getenv("SCI"),NULL,NULL) == FALSE )
+	if ( StartScilab(getenv("SCI"), NULL, 0) == FALSE )
 	#endif
 	{
 		fprintf(stderr,"Error while calling StartScilab\n");

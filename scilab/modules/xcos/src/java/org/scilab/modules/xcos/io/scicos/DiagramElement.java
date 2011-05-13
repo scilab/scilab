@@ -16,17 +16,21 @@ import static java.util.Arrays.asList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.scilab.modules.types.scilabTypes.ScilabBoolean;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.graph.ScilabGraphUniqueObject;
+import org.scilab.modules.types.ScilabBoolean;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -34,11 +38,14 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchEx
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
 import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
+import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.model.mxIGraphModel;
 
 /**
  * Perform a diagram transformation between Scicos and Xcos.
@@ -48,7 +55,7 @@ import com.mxgraph.model.mxIGraphModel;
 public class DiagramElement extends AbstractElement<XcosDiagram> {
 	private static final List<String> BASE_FIELD_NAMES = asList(
 			"diagram", "props", "objs");
-	private static final String VERSION = "scicos4.3";
+	private static final List<String> VERSIONS = Arrays.asList("", "scicos4.2", "scicos4.3", "scicos4.4");
 	
 	private static final int OBJS_INDEX = 2;
 	private static final int VERSION_INDEX = 3;
@@ -117,7 +124,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 *            the Xcos instance, if null, a new instance is returned.
 	 * @return the modified into parameters
 	 * @throws ScicosFormatException when a decoding error occurs
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	@Override
@@ -136,7 +143,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 * @param validate true, if the diagram version will be checked. false otherwise.
 	 * @return the modified into parameters
 	 * @throws ScicosFormatException when a decoding error occurs
-	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.scilabTypes.ScilabType,
+	 * @see org.scilab.modules.xcos.io.scicos.Element#decode(org.scilab.modules.types.ScilabType,
 	 *      java.lang.Object)
 	 */
 	public XcosDiagram decode(ScilabType element, XcosDiagram into, boolean validate)
@@ -179,7 +186,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 * @param element the encoded element
 	 * @param into the target instance
 	 * @return the modified target instance
-	 * @see org.scilab.modules.xcos.io.scicos.AbstractElement#afterDecode(org.scilab.modules.types.scilabTypes.ScilabType, java.lang.Object)
+	 * @see org.scilab.modules.xcos.io.scicos.AbstractElement#afterDecode(org.scilab.modules.types.ScilabType, java.lang.Object)
 	 */
 	@Override
 	public XcosDiagram afterDecode(ScilabType element, XcosDiagram into) {
@@ -233,6 +240,8 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 				blocks.put(i, block);
 				cell = block;
 				
+				BlockPositioning.updateBlockView(block);
+				
 				minimalYaxisValue = Math.min(minimalYaxisValue, ((mxCell) cell).getGeometry().getY());
 			} else if (labelElement.canDecode(data)) {
 				cell = labelElement.decode(data, null);
@@ -267,11 +276,21 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		/*
 		 * Perform post-calculus
 		 */
-		final mxICell defaultParent = ((mxICell) diag.getDefaultParent());
-		
-		// Translate the y axis
+
+		// Translate the y axis for blocks and links
 		final double minY = -minimalYaxisValue + V_MARGIN;
-		defaultParent.setGeometry(new mxGeometry(H_MARGIN, minY, 0, 0));
+		mxGraphModel.filterDescendants(diag.getModel(), new mxGraphModel.Filter() {
+			@Override
+			public boolean filter(Object cell) {
+				mxGeometry geom = ((mxICell) cell).getGeometry();
+				if (geom != null && (cell instanceof BasicBlock || cell instanceof BasicLink)) {
+					geom.translate(H_MARGIN, minY);
+				}
+				
+				// never store the cell
+				return false;
+			}
+		});
 	}
 	
 	/**
@@ -352,7 +371,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		 */
 		if (checkVersion) {
 			String scicosVersion = ((ScilabString) base.get(field)).getData()[0][0];
-			if (!scicosVersion.equals(VERSION)) {
+			if (!VERSIONS.contains(scicosVersion)) {
 				throw new VersionMismatchException(scicosVersion);
 			}
 		}
@@ -363,10 +382,14 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	/**
 	 * @param element the base element
 	 * @return true if the header is valid, false otherwise
-	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#canDecode(org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public boolean canDecode(ScilabType element) {
+		if (!(element instanceof ScilabMList)) {
+			return false;
+		}
+		
 		base = (ScilabMList) element;
 		
 		/*
@@ -379,7 +402,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		 * Check the version if applicable
 		 */
 		final String scicosVersion = ((ScilabString) base.get(VERSION_INDEX)).getData()[0][0];
-		final boolean versionIsValid = !scicosVersion.equals(VERSION);
+		final boolean versionIsValid = VERSIONS.contains(scicosVersion);
 		return typeIsValid && versionIsValid;
 	}
 	
@@ -389,7 +412,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 	 * @param from the source instance
 	 * @param element the previously allocated element.
 	 * @return the element parameter
-	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.scilabTypes.ScilabType)
+	 * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object, org.scilab.modules.types.ScilabType)
 	 */
 	@Override
 	public ScilabType encode(XcosDiagram from, ScilabType element) {
@@ -422,7 +445,7 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		ScilabMList data = new ScilabMList(BASE_FIELD_NAMES.toArray(new String[0]));
 		data.add(allocatePropsField()); // props
 		data.add(new ScilabList()); // objs
-		data.add(new ScilabString(VERSION)); // version
+		data.add(new ScilabString(VERSIONS.get(0))); // official version
 		return data;
 	}
 
@@ -459,7 +482,12 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
 		data = paramsElement.encode(from.getScicosParameters(), data);
 		
 		// set the title as it is need for generating files
-		((ScilabTList) data).set(TITLE_INDEX, new ScilabString(from.getTitle()));
+		((ScilabTList) data).set(
+				TITLE_INDEX,
+				new ScilabString(
+						FileUtils.toValidCIdentifier(from.getTitle())
+				)
+		);
 		
 		base.set(field, data);
 	}
@@ -481,29 +509,59 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     	/*
     	 * Fill the block and link lists
     	 */
-		final Object parent = from.getDefaultParent();
-		final mxIGraphModel model = from.getModel();
-		final int nbObjs = model.getChildCount(parent);
-		for (int i = 0; i < nbObjs; i++) {
-			Object current = model.getChildAt(parent, i);
-			
-			if (current instanceof BasicBlock && !(current instanceof TextBlock)) {
-				BasicBlock block = (BasicBlock) current;
-				blockList.add(block);
-				
-    			//
-    			// Look inside a Block to see if there is no "AutoLink"
-    			// Jgraphx will store this link as block's child  
-    			//
-    			for (int j = 0; j < block.getChildCount(); ++j) {
-    				if (block.getChildAt(j) instanceof BasicLink) {
-    					linkList.add((BasicLink) block.getChildAt(j));
-    				}
-    			}
-			} else if (current instanceof BasicLink) {
-				BasicLink link = (BasicLink) current;
-				linkList.add(link);
+		final Filter filter = new Filter() {
+			@Override
+			public boolean filter(Object current) {
+				if (current instanceof BasicBlock
+						&& !(current instanceof TextBlock)) {
+					final BasicBlock block = (BasicBlock) current;
+					blockList.add(block);
+
+					//
+					// Look inside a Block to see if there is no "AutoLink"
+					// Jgraphx will store this link as block's child
+					//
+					for (int j = 0; j < block.getChildCount(); ++j) {
+						if (block.getChildAt(j) instanceof BasicLink) {
+							final BasicLink link = (BasicLink) block
+									.getChildAt(j);
+
+							// do not add the link if not connected
+							if (link.getSource() != null
+									&& link.getTarget() != null) {
+								linkList.add(link);
+							}
+						}
+					}
+				} else if (current instanceof BasicLink) {
+					final BasicLink link = (BasicLink) current;
+
+					// Only add connected links
+					final mxICell source = link.getSource();
+					final mxICell target = link.getTarget();
+					if (source != null && target != null
+							&& source.getParent() instanceof BasicBlock
+							&& target.getParent() instanceof BasicBlock) {
+						linkList.add(link);
+					}
+				}
+
+				return false;
 			}
+		};
+		mxGraphModel.filterDescendants(from.getModel(), filter);
+		
+		/*
+		 * Use a predictable block and links order when debug is enable
+		 */
+		if (LogFactory.getLog(DiagramElement.class).isDebugEnabled()){
+			Collections.sort(blockList);
+			Collections.sort(linkList, new Comparator<BasicLink>() {
+				@Override
+				public int compare(BasicLink o1, BasicLink o2) {
+					return ((ScilabGraphUniqueObject) o1.getSource()).compareTo((ScilabGraphUniqueObject) o2.getSource());
+				}
+			});
 		}
 		
 		/*
@@ -526,7 +584,10 @@ public class DiagramElement extends AbstractElement<XcosDiagram> {
     	 * Encode links
     	 */
     	for (int i = 0; i < linkList.size(); ++i) {
-    		data.add(linkElement.encode(linkList.get(i), null));
+			final ScilabType link = linkElement.encode(linkList.get(i), null);
+			if (link != null) {
+				data.add(link);
+			}
     	}
 	}
 }

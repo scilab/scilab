@@ -1,0 +1,298 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-05-07 12:54+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+#, c-format
+msgid "                        nonpositive pivot in column %d\n"
+msgstr "                        nonpositive pivot in column %d\n"
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               KLIKNIJ ABY KONTYNUOWAĆ                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              rozmiar stosu(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           nie osiągnie po %d iteracji (posiada tylko %e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           wtedy ponownie wprowadzić scisptdemo()                "
+
+msgid "    CC^T Factorization: Matrix is not positive definite.\n"
+msgstr "    Rozkład CC^T : Macierz nie jest dodatnio określona.\n"
+
+msgid "   then click on OK   "
+msgstr "   potem kliknij OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " Dla tego dema obecny rozmiar stosu jest zbyt mały "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Warning : for lM convergence at rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Warning : for lm convergence at rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " wpisz następujące polecenia w konsoli Scilab :          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " iteracja %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " iteracja %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Wystąpił błąd: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s.\n"
+msgstr "%s: Wystąpił błąd: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s: %s\n"
+msgstr "%s: Wystąpił błąd: %s: %s\n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+"%s: Niewłaściwy typ i/lub rozmiar i/lub wartość drugiego argumentu.\n"
+
+#, c-format
+msgid "%s: No more memory (n=%d, nnz=%d).\n"
+msgstr "%s: Brak pamięci (n=%d,  nnz=%d).\n"
+
+#, c-format
+msgid ""
+"%s: No more memory : increase stacksize %d supplementary words needed.\n"
+msgstr "%s: Brak pamięci : zwiększ rozmiar stosu o %d dodatkowych słów.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Brak pamięci.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s: No values for this matrix (only non zero pattern) : put some 1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr ""
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: Macierz i czynniki LU nie mają tych samych rozmiarów !\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowy parametr wejściowy nr %d: Oczekiwany '%s' lub '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano przynajmniej "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %s.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana kwadratowa "
+"macierz rzadka.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: not compatible with the Choleski "
+"factorisation.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: nie jest zgodny z  "
+"faktoryzacją Choleskiego.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentów wejściowych: Oczekiwano tego samego "
+"rozmiaru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana kwadratowa "
+"macierz rzadka.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana macierz "
+"rzadka.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
+"LU factors.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid reference to a "
+"Cholesky factorisation"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be symmetric positive definite "
+"matrix."
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być symetryczną "
+"dodatnie określoną macierzą."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
+"factors.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: Obecnie nie czyta nie zmontowanej (pierwiastkowej) rzadkiej macierzy."
+
+#, c-format
+msgid "%s: not enough memory.\n"
+msgstr "%s: niewystarczająca ilość pamięci.\n"
+
+msgid "Choose a sparse matrix"
+msgstr "Wybierz macierz rzadką"
+
+msgid "Click to choose a demo"
+msgstr "Kliknij aby wybrać demo"
+
+msgid "GENMMD ordering only works on symmetric matrices.\n"
+msgstr ""
+
+msgid "Matrix is not compatible with the given LU factors"
+msgstr "Macierz nie jest zgodna z podanymi czynnikami LU"
+
+msgid "Scilab UMFPACK module not installed.\n"
+msgstr "Moduł Scilab UMFPACK nie jest zainstalowany.\n"
+
+msgid "The (square) matrix appears to be singular."
+msgstr "Macierz (kwadratowa) wydaje się być osobliwą."
+
+msgid "The lower part of the matrix must be represented.\n"
+msgstr ""
+
+msgid "This is a factorisation of a singular matrix"
+msgstr "jest to rozkład na czynniki  macierzy osobliwej"
+
+msgid "This is not a factorisation of a square matrix"
+msgstr "To nie jest rozkład na czynniki macierzy kwadratowej"
+
+msgid "Warning"
+msgstr "Ostrzeżenie"
+
+msgid "display a speed comparison test"
+msgstr "Pokaż porównawczy test prędkości"
+
+msgid "factorization"
+msgstr "rozkład na czynniki"
+
+msgid "how to use this stuff"
+msgstr "jak tego uzywać"
+
+msgid "internal error"
+msgstr "błąd wewnętrzny"
+
+msgid "invalid matrix"
+msgstr "niewłaściwa macierz"
+
+msgid "no place to store the LU pointer in ListNumeric."
+msgstr "no place to store the LU pointer in ListNumeric."
+
+msgid "not enough memory"
+msgstr "brak pamięci"
+
+msgid "numeric factorization"
+msgstr "numeryczny rozkład na czynniki"
+
+msgid "singular matrix"
+msgstr "macierz osobliwa"
+
+msgid "small tests for condestsp"
+msgstr "małe testy dla condestsp"
+
+msgid "symbolic factorization"
+msgstr "symboliczny rozkład na czynniki"

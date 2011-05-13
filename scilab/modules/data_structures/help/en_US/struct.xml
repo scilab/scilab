@@ -20,7 +20,7 @@
     <synopsis>st=struct(field1,value1,field2,value2...)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>field1, field2, ..</term>
@@ -62,8 +62,8 @@ date_st.day=19;
 date_st.semaine=32
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="cell">cell</link>

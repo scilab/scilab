@@ -1,0 +1,470 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 17:57+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid " Std must not be zero\n"
+msgstr " Std не повинно дорівнювати нулеві\n"
+
+#, c-format
+msgid "%s and %s must have same size.\n"
+msgstr "%s і %s мають бути однакової розмірності.\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s: перевищення обмежень графічними даними.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів для варіанта з «%s»: мало бути %d "
+"параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr ""
+"%s: помилкова розмірність обох вхідних параметрів: розмірності мали бути "
+"однаковими.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідних параметрів №%d та №%d: розмірність має "
+"бути однаковою.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: має бути > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: кількість стовпчиків у "
+"другому вхідному параметрі мала збігатися з кількістю стовпчиків у першому.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: кількість рядків у другому "
+"вхідному параметрі мала збігатися з кількістю рядків у першому.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"розмірність %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
+"збігатися.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати булівське "
+"значення."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати числовий "
+"тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор або "
+"матрицю дійсних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"або векторний тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"вектора.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектора або "
+"матрицю з чисел або рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів №%d: слід використовувати числові "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати числове "
+"значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути «%s», «%s», %d або "
+"%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», %d або %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», %d або %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s» або додатне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s», %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"між %d та %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати дійсне "
+"значення від %d до %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: кількість стовпчиків мала "
+"збігатися з кількістю стовпчиків у першому.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: кількість рядків мала "
+"збігатися з кількістю рядків у першому.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра: мало бути «%s», «%s», %d або %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"менше або рівне за довжину останнього вхідного параметра.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgstr "%s: помилкове значення w: мало бути %d, 0 або 1.\n"
+
+msgid "A,B,P and Q"
+msgstr "A, B, P і Q"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %f\n"
+msgstr "Здається, значення відповіді перевищує верхню межу пошуку %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr "Значення відповіді перевищує найбільшу межу пошуку %s\n"
+
+#, c-format
+msgid "Answer appears to be lower than lowest search bound %f\n"
+msgstr "Здається, значення відповіді лежить нижче за нижню межу пошуку %f\n"
+
+msgid "B,P,Q,X and Y"
+msgstr "B, P, Q, X і Y"
+
+msgid "Correlations Circle"
+msgstr "Кореляційне коло"
+
+msgid "Df, P and Q"
+msgstr "Df, P і Q"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df, Pnonc, P і Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd, P, Q і F"
+
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr "Dfd, Pnonc, P, Q і F"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn, Dfd, P і Q"
+
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr "Dfn, Dfd, Pnonc, P і Q"
+
+msgid "Eigenvalues (in percent)"
+msgstr "Власні значення (у відсотках)"
+
+msgid "F,Dfn and Dfd"
+msgstr "F, Dfn і Dfd"
+
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr "F, Dfn, Dfd і Pnonc"
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr "Залишено %i впорядкованих значень від %i до %i\n"
+
+msgid "Mean,Std,P and Q"
+msgstr "Mean, Std, P і Q"
+
+msgid "P,Q and S"
+msgstr "P, Q і S"
+
+msgid "P,Q and T"
+msgstr "P, Q і T"
+
+msgid "P,Q and X"
+msgstr "P, Q і X"
+
+msgid "P,Q,F and Dfn"
+msgstr "P, Q, F і Dfn"
+
+msgid "P,Q,F,Dfn and Dfd"
+msgstr "P, Q, F, Dfn і Dfd"
+
+msgid "P,Q,S  and Xn"
+msgstr "P, Q, S і Xn"
+
+msgid "P,Q,S and Xn"
+msgstr "P, Q, S і Xn"
+
+msgid "P,Q,X and Df"
+msgstr "P, Q, X і Df"
+
+msgid "P,Q,X and Mean"
+msgstr "P, Q, X і Mean"
+
+msgid "P,Q,X and Shape"
+msgstr "P, Q, X і Shape"
+
+msgid "P,Q,X,Y and A"
+msgstr "P, Q, X, Y і A"
+
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR, OMPR, P, Q і S"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc, P, Q і X"
+
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr "Pnonc, P, Q, F і Dfn"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr, OMPr, P, Q і S"
+
+msgid "Rate,P,Q and X"
+msgstr "Rate, P, Q та X"
+
+msgid "S and Xlam"
+msgstr "S і Xlam"
+
+msgid "S,XN,PR and OMPR"
+msgstr "S, XN, PR і OMPR"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S, Xn, Pr і Ompr"
+
+msgid "Shape,Rate,P and Q"
+msgstr "Shape, Rate, P та Q"
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr "Розмірність x дорівнює нулеві: повернуто NaN.\n"
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr "Розмірність x: %i\n"
+
+msgid "Std,P,Q and X"
+msgstr "Std, P, Q і X"
+
+msgid "T and Df"
+msgstr "T і Df"
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr "Неочікуване значення orien: %s\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr "Помилкове значення вхідного параметра orien: %s.\n"
+
+msgid "X and Df"
+msgstr "X і Df"
+
+msgid "X,Df and Pnonc"
+msgstr "X, Df і Pnonc"
+
+msgid "X,Mean and Std"
+msgstr "X, Mean і Std"
+
+msgid "X,Shape and Rate"
+msgstr "X, Shape та Rate"
+
+msgid "X,Y,A and B"
+msgstr "X, Y, A і B"
+
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN, PR, OMPR, P і Q"
+
+msgid "Xlam,P and Q"
+msgstr "Xlam, P і Q"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn, Pr, Ompr, P і Q"
+
+msgid "cdfchi: Error in cumgam\n"
+msgstr "cdfchi: помилка у cumgam\n"
+
+#, c-format
+msgid "discard=%s\n"
+msgstr "discard=%s\n"
+
+#, c-format
+msgid "orien=%s\n"
+msgstr "orien=%s\n"
+
+#~ msgid "Scale,P,Q and X"
+#~ msgstr "Scale, P, Q і X"
+
+#~ msgid "Shape,Scale,P and Q"
+#~ msgstr "Shape, Scale, P і Q"
+
+#, c-format
+#~ msgid ""
+#~ "Input argument %c is out of range.\n"
+#~ "Bound exceeded: %f\n"
+#~ msgstr ""
+#~ "Значення вхідного параметра %c перевищує обмеження.\n"
+#~ "Перевищення обмежень: %f\n"
+
+#~ msgid "X,Shape and Scale"
+#~ msgstr "X, Shape і Scale"

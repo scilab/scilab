@@ -23,7 +23,7 @@
     <synopsis>[H [,err]]=time_id(n,u,y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -104,8 +104,8 @@ H=time_id(2,'step',rep)
 H=time_id(3,u,rep)    //with u as input and too high order required
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="imrep2ss">imrep2ss</link>

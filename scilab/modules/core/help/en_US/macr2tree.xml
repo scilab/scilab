@@ -12,7 +12,7 @@
     <synopsis>t=macr2tree(function-name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>function-name</term>
@@ -44,8 +44,8 @@ txt=tree2code(tree,%T);
 write(%io(2),txt,'(a)');
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tree2code">tree2code</link>

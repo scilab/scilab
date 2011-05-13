@@ -400,11 +400,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getfilesdictionary.c"
+				RelativePath=".\getfieldsdictionary.c"
 				>
 			</File>
 			<File
-				RelativePath=".\getfulldictionary.c"
+				RelativePath=".\getfilesdictionary.c"
 				>
 			</File>
 			<File
@@ -461,11 +461,11 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getfilesdictionary.h"
+				RelativePath="..\..\includes\getfieldsdictionary.h"
 				>
 			</File>
 			<File
-				RelativePath=".\getfulldictionary.h"
+				RelativePath=".\getfilesdictionary.h"
 				>
 			</File>
 			<File

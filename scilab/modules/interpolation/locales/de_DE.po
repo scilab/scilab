@@ -1,0 +1,242 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:10+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: %s must be a real %d-dim hypermatrix.\n"
+msgstr "%s: %s muß eine reelle Hypermatrix der Dimension %d sein.\n"
+
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr "%s: doppelte Knoten oder alle Knoten kolinear (ier = %d).\n"
+
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr ""
+"%s: für eine geklammerte Spline, müssen Sie die Endpunkt-Steigungen "
+"angeben.\n"
+
+#, c-format
+msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
+msgstr "%s: Matrix Abszisse der Dimension %d ist nicht stetig steigend.\n"
+
+#, c-format
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: nicht genügend Punkte für die Übereinstimmung.\n"
+
+#, c-format
+msgid "%s: Problem with 'flag' = %d\n"
+msgstr "%s: Problem mit Kennzeichen = %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and grid values in dimension "
+"%d.\n"
+msgstr ""
+"%s: Größen-Inkompatiblität zwischen Koordinatenpunkten und Koordinatenwerten "
+"in Dimension %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d or "
+"%d.\n"
+msgstr ""
+"%s: Größen Inkompatibilität zwischen Koordinatenpunkten und Werten in "
+"Dimension %d oder %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgstr ""
+"%s: Größen Inkompatibilität zwischen Koordinatenpunkten und Werten in "
+"Dimension %d.\n"
+
+#, c-format
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr "%s: Warnung: Rang Defizit der letzten quadratischen Matrix.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Falsche Anzahl an Eingangsargumenten.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr ""
+"%s: falsche Anzahl von Eingangsargumenten: muß zwischen %d und %d liegen.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
+"expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine reellwertige 3-dimensionale "
+"Hypermatrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: Endpunkt Steigungen.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: muß ein %s sein.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: zwei Reihen erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: Vektor erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: Vektor oder Matrix erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d und #%d: Vektor der gleichen "
+"Größe erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangargument #%d:, #%d und #%d: gleiche Größe "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d, #%d oder #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
+"points.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargumente: x,y und Z Koordinatenpunkte müssen "
+"mindestens %d Punkte haben.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: %s tlist erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: Anordnung von reellen Zahlen "
+"erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder ''%s'' oder ''%s'' "
+"erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: ''%s'' oder reelle Zahl "
+"erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: nicht (strikt) zunehmend oder +- "
+"unendlich erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: reelle Zahlen erwartet, aber "
+"einige Undefinite gefunden.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: Vektor mit %d Komponenten "
+"erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr "%s: falscher Wert für periodische Splines %s: muß gleich %s sein.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: unbekannter '%s' Typ.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: nicht unterstützter '%s' Typ.\n"
+
+#, c-format
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr ""
+"%s: x und/oder y sind nicht stetig steigend (oder +- unendlich erkannt)\n"
+
+#, c-format
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr "%s: xyz muß eine (n,3) reellwertige Matrix mit n =>10 sein.\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
+msgstr ""
+"Falscher Typ für Eingangsargument #%d: reelle Hypermatrix erwartet.\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: String expected.\n"
+msgstr "Falscher Typ für Eingansgargument #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Not enought points for the fit.\n"
+#~ msgstr "%s: nicht genug Punkte, um zu passen.\n"

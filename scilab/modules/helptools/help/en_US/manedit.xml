@@ -23,7 +23,7 @@
     <synopsis>manedit(manitem)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>manitem</term>
@@ -53,8 +53,8 @@ endfunction
 manedit foo123
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="help">help</link>

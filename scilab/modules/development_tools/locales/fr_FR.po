@@ -1,0 +1,236 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-07 16:33+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s n'est pas un module installé"
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s n'est pas une toolbox ou un module installé"
+
+#, c-format
+msgid "%s: Assertion failed: expected = %s while computed = %s"
+msgstr "%s : Échec de l'assertion : attendu = %s, cependant traité = %s"
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error message = %s while computed error "
+"message = %s."
+msgstr ""
+"%s : Échec de l'assertion : message d'erreur attendu = %s, cependant message "
+"d'erreur traité = %s."
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error number = %d while computed error number "
+"= %d."
+msgstr ""
+"%s : Échec de l'assertion : numéro attendu d'erreur = %d, cependant numéro "
+"d'erreur traitée = %d."
+
+#, c-format
+msgid "%s: Assertion failed: found false entry in condition = %s"
+msgstr "%s : Échec de l'assertion : false trouvé dans la condition = %s"
+
+#, c-format
+msgid "%s: Cannot close file %s.\n"
+msgstr "%s: Le fichier %s n'a pu être fermé.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s : Le fichier %s n'a pu être ouvert.\n"
+
+#, c-format
+msgid "%s: Computed is complex, but expected is real."
+msgstr "%s : L'objet traité est complexe, mais il aurait du être réel."
+
+#, c-format
+msgid "%s: Computed is real, but expected is complex."
+msgstr "%s : L'objet traité est réel, mais il aurait du être complexe."
+
+#, c-format
+msgid "%s: Error while formatting the error message: %s"
+msgstr "%s : Erreur à la génération du message d'erreur : %s"
+
+#, c-format
+msgid ""
+"%s: Expected %d columns in input argument #%d, but found %d columns instead."
+msgstr ""
+"%s: Il faut exactement %d colonnes pour l'argument d'entrée #%d, et non %d."
+
+#, c-format
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr ""
+"%s: Il faut exactement %d lignes pour l'argument d'entrée #%d, et non %d."
+
+#, c-format
+msgid ""
+"%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
+msgstr ""
+"%s : Le type %s ou %s était attendu pour l'argument d'entrée %s #%d, et non "
+"%s."
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s : Les arguments d'entrée n°%d et n°%d sont incompatibles : ils doivent "
+"avoir la même taille.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+"%s : Arguments d'entrée #%d et #%d incompatibles : Même types attendus.\n"
+
+#, c-format
+msgid "%s: No error was produced while evaluating %s."
+msgstr "%s: Aucune erreur n'a été rencontrée pendant l'évaluation de %s."
+
+#, c-format
+msgid ""
+"%s: The content of computed file %s is different from the content of "
+"reference file %s."
+msgstr ""
+"%s : Le contenu du fichier calculé %s est différent du contenu du fichier "
+"référence %s."
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s : Le fichier %s n'existe pas.\n"
+
+#, c-format
+msgid ""
+"%s: The number of output arguments %d do not match the number of input "
+"arguments %d."
+msgstr ""
+"%s : Le nombre d'arguments en sortie %d ne correspond pas au nombre "
+"d'arguments en entrée %d."
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr "%s : Mauvais premier argument: Fichier avec un suffixe .dia attendu."
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s : Nombre incorrect d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s : Nombre incorrect d'arguments d'entrée : Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Nombre incorrect d'arguments en entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr ""
+"%s : Nombre incorrect d'arguments d'entrée : entre %d et %d attendus."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s : Nombre incorrect d'arguments d'entrée : entre %d et %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s : Taille incorrecte de l'argument d'entrée #%d : matrice %dx%d attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s : Type incorrect de l'argument %d : Matrice booléenne attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s : Type incorrect de l'argument %d : Matrice attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Type incorrect de l'argument %d : Matrice de chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s : Valeur incorrecte de l'argument d'entrée #%d : Doit être > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s : Valeur incorrecte de l'argument d'entrée #%d : Doit appartenir à "
+"l'ensemble {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s : Valeur incorrecte de l'argument d'entrée #%d : Entiers positifs "
+"attendus.\n"
+
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "Pas de variable %s_ref dans le fichier de référence"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "Echec du test. Voir : diff -wu %s"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "Echec du test. Voir : fc /L /N %s"
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "Echec du test ERREUR DETECTEE pendant l'execution de %s"
+
+msgid "Test passed"
+msgstr "Succès du test"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "Le fichier ref (%s) n''existe pas"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Le test %s n'est pas disponible dans le module %s"
+
+msgid "error : Input argument sizes are not valid"
+msgstr "erreur : les dimensions de l'argument d'entrée ne sont pas valides"
+
+#, c-format
+#~ msgid "The test %s is not available from the %s toolbox"
+#~ msgstr "Le test %s n'est pas disponible dans la toolbox %s"
+
+#, c-format
+#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
+#~ msgstr ""
+#~ "%s: Le test ''%s'' n'existe pas ou n'est pas accessible en lecture.\n"
+
+#~ msgid "Generating loader.sce...\n"
+#~ msgstr "Génération de loader.sce...\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+#~ msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"

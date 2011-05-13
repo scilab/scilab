@@ -15,7 +15,7 @@ gstacksize('min')
 sz=gstacksize()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -46,8 +46,8 @@ sz=gstacksize()</synopsis>
     <para><literal>gstacksize('min')</literal> allows the user to decrease the size of
     this global stack to the minimum.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="who">who</link>

@@ -24,6 +24,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -56,17 +58,17 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.types.scilabTypes.ScilabDouble;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
+import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.block.actions.BlockDocumentationAction;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
-import org.scilab.modules.xcos.block.actions.EditBlockFormatAction;
 import org.scilab.modules.xcos.block.actions.FilledColorAction;
 import org.scilab.modules.xcos.block.actions.FlipAction;
 import org.scilab.modules.xcos.block.actions.MirrorAction;
@@ -254,7 +256,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 */
 	public static enum SimulationFunctionType {
 		ESELECT(-2.0), IFTHENELSE(-1.0), DEFAULT(0.0), TYPE_1(1.0), TYPE_2(2.0),
-		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
+		    TYPE_3(3.0), C_OR_FORTRAN(4.0), SCILAB(5.0), DEBUG(99), MODELICA(30004.0), UNKNOWN(5.0), OLDBLOCKS(10001.0), IMPLICIT_C_OR_FORTRAN(10004.0);
 
 		private double value;
 
@@ -656,6 +658,75 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     /**
+     * @return the expression as a object array
+     */
+    public Object[] getExprsFormat() {
+    	// evaluate emptiness
+		if (getExprs() == null || getExprs().isEmpty()
+				|| getExprs().getHeight() == 0 || getExprs().getWidth() == 0) {
+			return new String[0];
+		}
+    	
+		List<String[]> stack = getString(null, getExprs());
+		
+		int len = 0;
+		for (Object[] strings : stack) {
+			len += strings.length;
+		}
+		
+		final Object[] array = new Object[len];
+		int start = 0;
+		for (Object[] strings : stack) {
+			System.arraycopy(strings, 0, array, start, strings.length);
+			start += strings.length;
+		}
+		
+		return array;
+    }
+    
+    /**
+     * Append the data recursively to the stack
+     * @param stack the current stack
+     * @param data the data to append
+     * @return the stack
+     */
+    private List<String[]> getString(List<String[]> stack, ScilabType data)  {
+    	if (stack == null) {
+    		stack = new LinkedList<String[]>();
+    	}
+    		
+    	if (data instanceof List) {
+    		/*
+    		 * Container case (ScilabList, ScilabMList, ScilabTList) 
+    		 */
+    		
+    		@SuppressWarnings("unchecked")
+			final List<ScilabType> list = (List<ScilabType>) data;
+    		
+    		for (final ScilabType scilabType : list) {
+				getString(stack, scilabType);
+			}
+    	} else if (data instanceof ScilabString) {
+    		/*
+    		 * native case (only ScilabString supported)
+    		 */
+    		
+    		final String[][] scilabData = ((ScilabString) data).getData();
+    		final int height = data.getHeight();
+    		final int width = data.getWidth();
+    		
+    		final String[] array = new String[height * width];
+    		for (int i = 0; i < height; ++i) {
+    			System.arraycopy(scilabData[i], 0, array, i * width, width);
+    		}
+    		
+    		stack.add(array);
+    	}
+    	
+    	return stack;
+    }
+    
+    /**
      * @return zero crossing value
      */
     public ScilabType getNbZerosCrossing() {
@@ -793,7 +864,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param port to remove
      */
     public void removePort(BasicPort port) {
-	if (port.getEdgeCount() != 0) {
+	if (port.getEdgeCount() != 0 && getParentDiagram() != null) {
 	    getParentDiagram().removeCells(new Object[]{port.getEdgeAt(0)});
 	}
 	remove(port);
@@ -801,12 +872,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     
     /**
      * Add a port on the block.
+     * 
+     * This call should only be used when a port reordering operation must be performed.
+     * 
      * @param port The port to be added to the block
      */
     public void addPort(BasicPort port) {
     	insert(port);
-    	BlockPositioning.updateBlockView(this);
     	port.setOrdering(BasicBlockInfo.getAllTypedPorts(this, false, port.getClass()).size());
+    	BlockPositioning.updateBlockView(this);
     }
 
 	/**
@@ -847,6 +921,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param modifiedBlock the new settings
      */
     public void updateBlockSettings(BasicBlock modifiedBlock) {
+    	if (modifiedBlock == null) {
+    		return;
+    	}
+    	
     	/*
 		 * Update the block settings
 		 */
@@ -855,17 +933,26 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		/*
 		 * Update the children ports
 		 */
-		updateChildren(modifiedBlock);
+		if (children != null) {
+			updateChildren(modifiedBlock);
+		}
 
 		/*
 		 * If the block is in a superblock then update it.
 		 */
 		if (getParentDiagram() instanceof SuperBlockDiagram) {
-			SuperBlock parentBlock = ((SuperBlockDiagram) getParentDiagram())
+			SuperBlock block = ((SuperBlockDiagram) getParentDiagram())
 					.getContainer();
-			parentBlock.getParentDiagram().fireEvent(
-					new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
-							XcosConstants.EVENT_BLOCK_UPDATED, parentBlock));
+			
+			XcosDiagram graph = block.getParentDiagram();
+			if (graph == null) {
+				setParentDiagram(Xcos.findParent(block));
+				graph = block.getParentDiagram();
+				LogFactory.getLog(getClass()).error("Parent diagram was null");
+			}
+			
+			graph.fireEvent(new mxEventObject(XcosEvent.SUPER_BLOCK_UPDATED,
+							XcosConstants.EVENT_BLOCK_UPDATED, block));
 		}
     }
 
@@ -875,6 +962,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the modified instance
 	 */
 	private void updateFields(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
 		setDependsOnT(modifiedBlock.isDependsOnT());
 		setDependsOnU(modifiedBlock.isDependsOnU());
 		setExprs(modifiedBlock.getExprs());
@@ -896,6 +987,17 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 	 * @param modifiedBlock the new block instance
 	 */
 	private void updateChildren(BasicBlock modifiedBlock) {
+		if (modifiedBlock == null) {
+			return;
+		}
+		
+		XcosDiagram graph = getParentDiagram();
+		if (graph == null) {
+			setParentDiagram(Xcos.findParent(this));
+			graph = getParentDiagram();
+			LogFactory.getLog(getClass()).error("Parent diagram was null");
+		}
+		
 		/*
 		 * Checked as port classes only
 		 */
@@ -965,6 +1067,18 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			oldPorts.put(type, new LinkedList<mxICell>());
 		}
 		
+		// sort children according to the ordering parameter (useful on scilab-5.2.x diagrams)
+		Collections.sort(children, new Comparator<Object>() {
+			@Override
+			public int compare(Object o1, Object o2) {
+				if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
+					return ((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering();
+				} else {
+					return 0;
+				}
+			}
+		});
+		
 		// children lookup
 		for (Object cell : children) {
 			
@@ -977,7 +1091,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			}
 			
 			final Deque<mxICell> current = oldPorts.get(klass);
-			current.add((mxICell) cell);
+			if (current != null) {
+				current.add((mxICell) cell);
+			}
 		}
 		
 		return oldPorts;
@@ -987,7 +1103,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
      * @param context parent diagram context
      */
     public void openBlockSettings(String[] context) {
-	
+	final XcosDiagram graph;
+	if (getParentDiagram() == null) {
+		setParentDiagram(Xcos.findParent(this));
+		graph = getParentDiagram();
+		LogFactory.getLog(getClass()).error("Parent diagram was null");
+	} else {
+		graph = getParentDiagram();
+	}
 	if (getParentDiagram() instanceof PaletteDiagram) {
 	    return;
 	}
@@ -1020,20 +1143,21 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
 			    updateBlockSettings(modifiedBlock);
 			    
-			    getParentDiagram().fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+			    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
 				    currentBlock));
 			    delete(tempInput);
 				} else {
 					LOG.trace("No needs to update data.");
 				}
 				
-			    setLocked(false);
 			    delete(tempOutput);
 			    delete(tempContext);
+			    setLocked(false);
 			}
 		};
 		
 	    try {
+	    	setLocked(true);
 			ScilabInterpreterManagement.asynchronousScilabExec(action, 
 				"xcosBlockInterface", 
 				tempOutput.getAbsolutePath(),
@@ -1043,8 +1167,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 				tempContext.getAbsolutePath());
 		} catch (InterpreterException e) {
 			LOG.error(e);
+			setLocked(false);
 		}
-	    setLocked(true);
 
 	} catch (IOException e) {
 	    LOG.error(e);
@@ -1332,7 +1456,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 			format.add(BorderColorAction.createMenu(graph));
 			format.add(FilledColorAction.createMenu(graph));
 		} else {
-			format.add(EditBlockFormatAction.createMenu(graph));
+			format.add(EditFormatAction.createMenu(graph));
 		}
 		/*--- */
 		menu.getAsSimpleContextMenu().addSeparator();
@@ -1358,7 +1482,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isFlipped = flip;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_FLIP, Boolean.toString(flip));
 		}
 	}
@@ -1386,7 +1510,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		if (getParentDiagram() != null) {
 			isMirrored = mirror;
 			final mxIGraphModel model = getParentDiagram().getModel();
-			mxUtils.setCellStyles(model, new Object[] {this},
+			mxUtils.setCellStyles(model, new Object[] { this },
 					ScilabGraphConstants.STYLE_MIRROR, Boolean.toString(mirror));
 		}
 	}
@@ -1491,6 +1615,19 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		return parametersPCS;
 	}
 	
+    /*
+     * Overriden methods from jgraphx
+     */
+    
+    /**
+     * @return always false
+     * @see com.mxgraph.model.mxCell#isConnectable()
+     */
+    @Override
+    public boolean isConnectable() {
+    	return false;
+    }
+	
 	/**
 	 * Re-associate fields with the new instance.
 	 * 
@@ -1510,6 +1647,23 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		}
 		
 		return clone;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Sync the specific child {@link EditFormatAction#HASH_IDENTIFIER}
+	 */
+	@Override
+	public mxICell insert(mxICell child, int index) {
+		/*
+		 * Update the id if this is an identifier cell (herited identifier)
+		 */
+		if (child.getId().endsWith(EditFormatAction.HASH_IDENTIFIER)) {
+			child.setId(getId() + EditFormatAction.HASH_IDENTIFIER);
+		}
+		
+		return super.insert(child, index);
 	}
 	
 	/**

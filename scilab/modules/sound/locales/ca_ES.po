@@ -1,0 +1,206 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-07-29 10:06+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Hi ha hagut un error: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr "%s: S'ha produït un error: %s no està suportat.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr ""
+"%s: Hi ha hagut un error: El format de compressió de dades %s no està "
+"suportat.\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de "
+"<%s>.\n"
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr "%s: No hi ha disponible el sistema de so.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: L'argument d'entrada #%d és incorrecte: Ha de ser '%s' o '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
+"vector of %d integers.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s, un "
+"enter o un vector de %d enters.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or %d-element vector.\n"
+msgstr ""
+"%s: L'argument d'entrada té un valor incorrecte: El rang d'índexos s'ha "
+"d'especificar com un escalar o un vector de %d elements.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: L'argument d'entrada té valors incorrectes: El nom del fitxer ha de ser "
+"una cadena de text.\n"
+
+msgid ".wav file does not contain the RIFF identifier."
+msgstr "El fitxer .wav no conté l'identificador RIFF."
+
+msgid ".wav file does not contain the wave identifier."
+msgstr "El fitxer .wav no conté l'identificador d'ona."
+
+msgid "A complete picture of the sound."
+msgstr ""
+
+msgid "Cannot play file."
+msgstr "No s'ha pogut reproduir el fitxer."
+
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr "No s'ha pogut llegir el fitxer .wav amb més de 16 bits per mostra."
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "El vector de dades ha de tenir només 1 o 2 dimensions."
+
+msgid "Error reading .wav file."
+msgstr "Error llegint el fitxer .wav."
+
+msgid "Error reading <fact-ck> chunk."
+msgstr "Error llegint la peça <fact-ck>."
+
+msgid "Error reading wav file."
+msgstr "Error llegint el fitxer wav."
+
+msgid "Error while writing sound file."
+msgstr "Error escrivint el fitxer de so."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr ""
+
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "S'ha trobat informació incorrecta de peça en el fitxer RIFF."
+
+msgid "Invalid .wav file: found data before format information."
+msgstr ""
+"El fitxer .wav és invàlid: s'ha trobat dades abans de la informació del "
+"format."
+
+msgid "Invalid sample limits (use ascending order)."
+msgstr "Els límits de la mostra són invàlids (utilitzeu un ordre ascendent)."
+
+msgid "Invalid wav format."
+msgstr "El format wav no és vàlid."
+
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr ""
+"La llei Mu només es pot utilitzar amb dades de 8 bits. Utilitzeu el "
+"method=''linear''."
+
+msgid "Requires 2-D values only."
+msgstr "Ha de tenir només valors en 2D."
+
+msgid "Sample limit vector must have 2 entries."
+msgstr "El vector de límit de mostra ha de tenir 2 entrades."
+
+msgid "Sample limits out of range."
+msgstr "Els límits de la mostra estan fora del rang."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "El mòdul de so del Scilab no està instal·lat.\n"
+
+msgid "Unknown data format."
+msgstr "El format de les dades és desconegut."
+
+msgid "Unrecognized data format."
+msgstr "El format de les dades és desconegut."
+
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "Només es pot codificar en 8/16/24/32 bits."
+
+msgid "see ''mapsound'' function"
+msgstr ""
+
+#~ msgid "Audio capabilities not available."
+#~ msgstr "Les capacitats d'audio no estan disponibles."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
+#~ "vector of %d integers.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s , un "
+#~ "enter o un vector de %d enters.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Error d'assignació de memòria.\n"

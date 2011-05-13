@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 2008 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="rotate_axes">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rotate_axes</refname>
+    <refpurpose>Rotation interactive d'un handle de type Axes.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>rotate_axes()
+rotate_axes(h)
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>Handle de type Figure ou Axes. Spécifie le système d'axe à faire pivoter.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      La fonction <literal>rotate_axes</literal> est utilisée pour faire pivoter interactivement un objet graphique de type Axes.
+      Une fois la fonction appelée, l'utilisateur doit cliquer deux fois sur la fenêtre graphique. Le premier clic démarre la rotation tandis que le second la termine.
+    </para>
+    <para>
+      Si l'argument d'entrée est un handle de type Axes, la rotation s'applique à celui-ci.
+      S'il s'agit d'un handle de type figure, le premier clic détermine le système d'axe à pivoter.
+      Si la fonction est appelée sans argument, la rotation s'applique à la fenêtre courante.
+    </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+clf();
+// création deux système d'axe à l'intérieur de la figure
+subplot(2, 1, 1);
+plot2d;
+subplot(2, 1, 2);
+plot3d;
+
+// rotation du deuxième système d'axe uniquement
+axes2 = gca();
+rotate_axes(axes2);
+
+// rotation du système d'axe sélectionné
+rotate_axes();
+// ou de façon équivalente
+rotate_axes(gcf());
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="zoom_rect">zoom_rect</link>
+      </member>
+      <member>
+        <link linkend="axes_properties">axes_properties</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Jean-Baptiste Silvy INRIA</para>
+  </refsection>
+</refentry>
+
+
+

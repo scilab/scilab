@@ -12,13 +12,13 @@ modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
 
-libsciumfpack_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### umfpack : Conf files ####
 libsciumfpack_la_rootdir = $(mydatadir)
-libsciumfpack_la_root_DATA = changelog.txt \
+libsciumfpack_la_root_DATA =  \
 license.txt \
-readme.txt \
+ \
 version.xml \
 TAUCS_license.txt \
 UMFPACK_license.txt
@@ -62,7 +62,6 @@ libsciumfpack_la_LIBADD =  $(top_builddir)/modules/mexlib/libmx.la \
 $(top_builddir)/modules/mexlib/libmat.la \
 $(top_builddir)/modules/sparse/libscisparse.la \
 $(top_builddir)/modules/mexlib/libmex.la \
-$(top_builddir)/modules/core/libscicore.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 

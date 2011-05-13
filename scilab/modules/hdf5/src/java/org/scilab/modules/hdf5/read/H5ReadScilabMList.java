@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabTList;
+import org.scilab.modules.types.ScilabMList;
 
 public class H5ReadScilabMList extends H5ReadScilabCommonList {
 

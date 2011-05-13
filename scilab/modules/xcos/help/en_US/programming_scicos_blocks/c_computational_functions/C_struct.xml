@@ -641,7 +641,7 @@ The event output register must be only written for </para>
 </para>
   </refsection>
   <refsection id="Parameters_C_struct">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <para>
 
 </para>
@@ -1533,7 +1533,7 @@ Note that if a block use a </para>
         <para> pointer, it will be called with </para>
         <programlisting role="code"><![CDATA[flag]]></programlisting>
         <para>=2 even if
-                           the block don't use discrete states.
+                           the block do not use discrete states.
 </para>
         <para>
 The pointer of that array can also be retrieve via the C macro </para>

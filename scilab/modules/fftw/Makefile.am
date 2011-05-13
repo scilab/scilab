@@ -12,7 +12,7 @@ modulename=fftw
 
 pkglib_LTLIBRARIES = libscifftw.la
 
-libscifftw_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
+libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
 libscifftw_la_rootdir = $(mydatadir)
@@ -40,7 +40,7 @@ GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
 
 
 #### fftw : Conf files ####
-libscifftw_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscifftw_la_root_DATA =  license.txt version.xml
 
 #### fftw : gateway declaration ####
 libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -52,7 +52,7 @@ libscifftw_la_SOURCES = $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 CHECK_SRC= $(FFTW_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscifftw_la_CFLAGS)
 
-libscifftw_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscifftw_la_LIBADD =  $(top_builddir)/libs/MALLOC/libscimalloc.la  $(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 libscifftw_la_CFLAGS=  	-I$(srcdir)/includes/ \
 			-I$(srcdir)/src/c/ \
 			-I$(top_srcdir)/libs/dynamiclibrary/includes/ \

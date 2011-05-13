@@ -28,7 +28,7 @@
   <!-- Parameters -->
   <!-- ===================================================================== -->
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>category</term>
@@ -66,8 +66,8 @@ atomsList("Data Analysis And Statistics");
   <!-- ===================================================================== -->
   <!-- See also -->
   <!-- ===================================================================== -->
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="atomsShow">atomsShow</link>

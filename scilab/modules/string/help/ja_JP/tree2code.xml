@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="tree2code">
+  <info>
+    <pubdate>$LastChangedDate: 2007-03-07 13:01:23 +0100 (Wed, 07 Mar 2007) $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>tree2code</refname>
+    <refpurpose>Scilab関数のアスキー定義を生成する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>txt=tree2code(tree,prettyprint)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>tree</term>
+        <listitem>
+          <para>マクロツリー (macr2treeの出力)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prettyprint</term>
+        <listitem>
+          <para>オプションの論理値</para>
+          <variablelist>
+            <varlistentry>
+              <term>%T</term>
+              <listitem>
+                <para>生成されるコードはインデント,整形されます</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>%F</term>
+              <listitem>
+                <para>生成されるコードは整形されません (デフォルト)</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>txt</term>
+        <listitem>
+          <para>文字列の列ベクトルで, Scilab命令を指定するテキスト</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+    読み込まれたScilab関数 "ツリー" (macr2treeの出力)を指定することで, tree2code
+	によりコードを再生することができます.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+tree=macr2tree(cosh);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)');
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="macr2tree">macr2tree</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>V.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -12,7 +12,7 @@
     <synopsis>result=x_dialog(labels,valueini)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>labels</term>
@@ -46,8 +46,8 @@ x_dialog(['Method';'enter sampling period'],'1')
 m=evstr(x_dialog('enter a  3x3 matrix ',['[0 0 0';'0 0 0';'0 0 0]']))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>

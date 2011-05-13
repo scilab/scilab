@@ -12,7 +12,7 @@
     <synopsis>[X(,sep)] = linmeq(task,A,(B,)C,flag,trans(,schur))</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task</term>
@@ -345,8 +345,8 @@ X=linmeq(3,A,C,[1 0]);
 norm(A'*X'*X*A - X'*X +C'*C,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sylv">sylv</link>

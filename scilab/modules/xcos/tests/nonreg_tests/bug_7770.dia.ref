@@ -1,0 +1,45 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Jérôme Picard
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- TEST WITH XCOS -->
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Non-regression test for bug 7770 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=7770
+//
+// <-- Short Description -->
+// It was not possible to compile a xcos diagram
+// containing Modelica blocks
+funcprot(0);
+// Stubbing the messagebox method
+function [btn] = messagebox(msg, msgboxtitle, msgboxicon, buttons, ismodal)
+    btn=1;
+endfunction
+loadXcosLibs();
+// import a diagram of a Modelica demo in Scilab
+result= importXcosDiagram(SCI+"/modules/xcos/demos/ModelicaBlocks/RLC_Modelica.xcos");
+if ~result then bugmes();quit;end
+// compile the diagram
+[%cpr,ok] = xcos_compile(scs_m);
+--------------------------------------------\
+ Main Modelica : TMPDIR/RLC_Modelica_im.mo
+
+ Flat Modelica : TMPDIR/RLC_Modelica_imf.mo
+ Simulation C code :TMPDIR/RLC_Modelica_im.c
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Did not copy RLC_Modelica_im.c: Source and target directories are the same (TMPDIR).
+   ilib_gen_Make: configure : Generate Makefile.
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the Makefile
+   Generate a cleaner file
+Shared archive loaded.
+Link done.
+if ~ok then bugmes();quit;end

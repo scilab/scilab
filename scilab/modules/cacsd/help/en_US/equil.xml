@@ -23,7 +23,7 @@
     <synopsis>T=equil(P,Q)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, Q</term>
@@ -55,8 +55,8 @@ clean(T*P*T')
 clean(inv(T)'*Q*inv(T))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="equil1">equil1</link>

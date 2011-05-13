@@ -93,7 +93,7 @@ SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");
 		return sciErr;
 	}
 
@@ -121,17 +121,17 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 	return sciErr;
 }
 
-SciErr createNamedPointer(void* _pvCtx, char* _pstName, int* _pvPtr)
+SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int iVarID[nsiz];
-  int iSaveRhs			= Rhs;
-	int iSaveTop			= Top;
-	void* pvPtr				= NULL;
-	int *piAddr				= NULL;
+	int iSaveRhs	= Rhs;
+	int iSaveTop	= Top;
+	void* pvPtr	= NULL;
+	int *piAddr	= NULL;
 
 	C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-  Top = Top + Nbvars + 1;
+	Top = Top + Nbvars + 1;
 
 	int iMemSize = 1;
 	int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
@@ -165,7 +165,7 @@ SciErr createNamedPointer(void* _pvCtx, char* _pstName, int* _pvPtr)
 	return sciErr;
 }
 
-SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr)
+SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)
 {
 	SciErr sciErr; sciErr.iErr = 0; sciErr.iMsgCount = 0;
 	int* piAddr				= NULL;
@@ -195,7 +195,7 @@ int isPointerType(void* _pvCtx, int* _piAddress)
 	return checkVarType(_pvCtx, _piAddress, sci_pointer);
 }
 /*--------------------------------------------------------------------------*/
-int isNamedPointerType(void* _pvCtx, char* _pstName)
+int isNamedPointerType(void* _pvCtx, const char* _pstName)
 {
 	return checkNamedVarType(_pvCtx, _pstName, sci_pointer);
 }

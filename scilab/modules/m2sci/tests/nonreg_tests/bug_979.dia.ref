@@ -1,3 +1,12 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 979 -->
 //
 // <-- Bugzilla URL -->
@@ -6,32 +15,16 @@
 // <-- Short Description -->
 //    Matlab comments like %blabla are translated to
 //    part(comment,"blabla") [!?]
-// Copyright INRIA
-// Scilab Project - V. Couvert
-// Modified by Pierre MARECHAL
-// Copyright INRIA
-// Date : 18 Mar 2005
-MFILECONTENTS=["comment=1;";"%This line is a comment line"]
- MFILECONTENTS  =
- 
-!comment=1;                    !
-!                              !
-!%This line is a comment line  !
-MFILE=TMPDIR+"/bug979.m"
- MFILE  =
- 
- TMPDIR/bug979.m   
-SCIFILE=TMPDIR+"/bug979.sci"
- SCIFILE  =
- 
- TMPDIR/bug979.sci   
+MFILECONTENTS=["comment=1;";"%This line is a comment line"];
+MFILE=TMPDIR+"/bug979.m";
+SCIFILE=TMPDIR+"/bug979.sci";
 mputl(MFILECONTENTS,MFILE);
 mfile2sci(MFILE,TMPDIR);
   ****** Beginning of mfile2sci() session ******
   File to convert: TMPDIR/bug979.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formated code: NO
   M-file reading...
@@ -52,24 +45,5 @@ SCIFILECONTENTSREF=["";
 		"ieee(1);";
 		"";
 		"comment = 1;";
-		"//This line is a comment line"]
- SCIFILECONTENTSREF  =
- 
-!                                                 !
-!                                                 !
-!// Display mode                                  !
-!                                                 !
-!mode(0);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!// Display warning for floating point exception  !
-!                                                 !
-!ieee(1);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!comment = 1;                                     !
-!                                                 !
-!//This line is a comment line                    !
+		"//This line is a comment line"];
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

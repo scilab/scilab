@@ -23,7 +23,7 @@
     <synopsis>spcho=chfact(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -47,8 +47,8 @@
     Fortran programs for a complete description of the variables in
     <literal>spcho</literal>. This function is to be used with <literal>chsolve</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="chsolve">chsolve</link>

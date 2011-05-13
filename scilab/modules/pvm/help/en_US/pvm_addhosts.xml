@@ -23,7 +23,7 @@
     <synopsis>[infos] = pvm_addhosts(hosts)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>hosts</term>
@@ -62,8 +62,8 @@
     as they become available, for example on a weekend, or if the
     application dynamically determines it could use more computational power.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_delhosts">pvm_delhosts</link>

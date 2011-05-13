@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) Digiteo - 2009 - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="get">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>get</refname>
+    <refpurpose>Retrieve a property value from a graphics
+  entity or an User Interface object.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>h=get(prop)
+val=get(h,prop)
+val=h.prop</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>handle, the handle of the entity to retrieve a property.
+          <literal>h</literal> can be a vector of handles, in which case get returns
+          the property value for all objects contained in h. <literal>h</literal> can also be <emphasis>0</emphasis> to get the root object properties.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>prop</term>
+        <listitem>
+          <para>character string name of the property.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>val</term>
+        <listitem>
+          <para>value of the property.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>This routine can be used to retrieve the value of a specified property from a
+    graphics entity or a GUI object. In this case it is equivalent to use the dot operator on an handle.
+	For exemple, <literal>get(h,"background")</literal> is equivalent to <literal>h.background</literal>.
+	</para>
+	<para>Property names are character strings. To get the list of all existing properties
+	see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>
+	for User Interface objects.</para>
+	
+	<para>
+	<literal>get</literal> function can be also called with only a property as argument. In this case,
+	the property must be one of the following:</para>
+	<variablelist>
+      <varlistentry>
+        <term>current_entity or hdl</term>
+        <listitem>
+          <para>returns a handle on the lastly created (and still
+    existent) entity.
+	<literal>get('current_entity')</literal> and <literal>get('hdl')</literal> are equivalent to <link linkend="gce">gce</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>current_figure</term>
+        <listitem>
+          <para>returns a handle on the current graphic figure.
+		  <literal>get('current_figure')</literal> is equivalent to <link linkend="gcf">gcf</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>current_axes</term>
+        <listitem>
+          <para>returns a handle on the current axes entity.
+		  <literal>get('current_axes')</literal> is equivalent to <link linkend="gca">gca</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>default_figure</term>
+        <listitem>
+          <para>returns a handle on the default figure entity.
+		  <literal>get('default_figure')</literal> is equivalent to <link linkend="gdf">gdf</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>default_axes</term>
+        <listitem>
+          <para>returns a handle on the default axes entity.
+		  <literal>get('default_axes')</literal> is equivalent to <link linkend="gda">gda</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	  <varlistentry>
+        <term>figures_id</term>
+        <listitem>
+          <para>returns a row vector containing ids of all opened graphic figures.
+		  <literal>get('figures_id')</literal> is equivalent to <link linkend="winsid">winsid</link>.
+		  </para>
+        </listitem>
+      </varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+// for graphics entities
+ clf()
+    
+// simple graphics objects  
+subplot(121);
+x=[-.2:0.1:2*%pi]';
+plot2d(x-2,x.^2);
+subplot(122);
+xrect(.2,.7,.5,.2);     
+xrect(.3,.8,.3,.2);
+xfarc(.25,.55,.1,.15,0,64*360);
+xfarc(.55,.55,.1,.15,0,64*360);
+xstring(0.2,.9,"Example <<A CAR>>");
+ 
+h=get("current_entity") //get the newly object created
+h.font_size=3;
+ 
+f=get("current_figure") //get the current figure 
+f.figure_size
+f.figure_size=[700 500];
+f.children
+f.children(2).type
+f.children(2).children
+f.children(2).children.children.thickness=4; 
+ 
+a=get("current_axes") //get the current axes
+a.children.type
+a.children.foreground //get the foreground color of a set of graphics objects
+a.children.foreground=9;
+
+// for  User Interface objects
+h=uicontrol('string', 'Button'); // Opens a window with a  button.
+p=get(h,'position'); // get the geometric aspect of the button
+disp('Button width: ' + string(p(3))); // print the width of the button
+close(); // close figure
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="uicontrol">uicontrol</link>
+      </member>
+      <member>
+        <link linkend="root_properties">root_properties</link>
+      </member>
+	  <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

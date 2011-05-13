@@ -18,9 +18,9 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.2.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-0.9.4.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.2.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-0.9.4.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-all-4.3.jar
 
@@ -65,11 +65,15 @@ library.history_manager.name=org.scilab.modules.history_manager.jar
 library.renderer.dir=${modules.dir}/renderer/${build.jar.dir}/
 library.renderer.name=org.scilab.modules.renderer.jar
 
-library.graphic_export.dir=${modules.dir}/renderer/${build.jar.dir}/
+library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
 
+library.core.dir=${modules.dir}/core/${build.jar.dir}/
+library.core.name=org.scilab.modules.core.jar
+
 library.javasci.dir=${modules.dir}/javasci/${build.jar.dir}/
-library.javasci.name=javasci.jar
+library.javasci-v1.name=javasci.jar
+library.javasci.name=org.scilab.modules.javasci.jar
 
 library.graphic_export.dir=${modules.dir}/graphic_export/${build.jar.dir}/
 library.graphic_export.name=org.scilab.modules.graphic_export.jar
@@ -94,3 +98,6 @@ library.graph.name=org.scilab.modules.graph.jar
 
 library.history_browser.dir=${modules.dir}/history_browser/${build.jar.dir}/
 library.history_browser.name=org.scilab.modules.history_browser.jar
+
+library.output_stream.dir=${modules.dir}/output_stream/${build.jar.dir}/
+library.output_stream.name=org.scilab.modules.output_stream.jar

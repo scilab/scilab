@@ -1,0 +1,1037 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <develop.dujardin@numericable.fr>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="xcos_menu_entries" xml:lang="fr_FR"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Entrées de menu</refname>
+
+    <refpurpose>Entrées de menu de l'éditeur Xcos</refpurpose>
+  </refnamediv>
+
+  <refsection id="Contents_xcos_menu_entries">
+    <title>Contenu</title>
+    <para>
+      Cette section présente brièvement toutes les entrées de menu de l'éditeur <emphasis>Xcos</emphasis>. Beaucoup d'items
+      sont également disponibles dans les menus contextuels affichés par un clic droit quand le curseur de souris est sur un
+      bloc, une liaison ou dans la fenêtre principale de <emphasis>Xcos</emphasis> window.
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="xcos_menu_entries">Entrées de menu de l'éditeur Xcos</link></para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+
+          <listitem>
+            <para><xref linkend="Filemenu_Menu_entries">Menu Fichier</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Editmenu_Menu_entries">Menu Édition</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Viewmenu_Menu_entries">Menu Affichage</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Simulatemenu_Menu_entries">Menu Simulation</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Formatmenu_Menu_entries">Menu Format</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Toolsmenu_Menu_entries">Menu Outils</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Helpmenu_Menu_entries">Menu ?</xref></para>
+          </listitem>
+
+          <listitem>
+            <para><xref linkend="Seealso_Menu_entries">Voir aussi </xref></para>
+          </listitem>
+          <listitem>
+            <para><xref linkend="Authors_Menu_entries">Auteurs</xref></para>
+          </listitem>
+
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Filemenu_Menu_entries">
+    <title>Menu Fichier</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_file.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Fichier : Nouveau schéma (Ctrl+N)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/document-new.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          En cliquant sur l'item <emphasis>Nouveau schéma</emphasis> un schéma vide est chargé dans une nouvelle fenêtre
+          d'édition de schéma <emphasis>Xcos</emphasis>. Avec ce menu, vous pouvez ouvrir un nouveau schéma ou une nouvelle
+          palette.
+        </para>
+        <para>
+          Le schéma <emphasis>Xcos</emphasis> courant n'est pas affecté.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Fichier : Ouvrir (Ctrl+O)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/document-open.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Sélectionnez l'item <emphasis>Ouvrir</emphasis> pour charger un fichier XML (<emphasis>.xcos</emphasis>)
+          ou binaire (<emphasis>.cos</emphasis>) contenant un schéma-bloc ou une palette. La commande ouvre une boîte de
+          dialogue qui vous permet de choisir un dossier et un fichier.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fichier : Enregistrer (Ctrl+S)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/media-floppy.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Sélectionnez l'item de menu <emphasis>Enregistrer</emphasis> pour sauver le schéma-bloc
+          dans un fichier<emphasis>XML</emphasis>.
+        </para>
+        <para>
+          Si vous choisissez cet item sans jamais avoir cliqué sur l'item <emphasis>Enregistrer</emphasis> ou
+          l'item <emphasis>Enregistrer sous</emphasis>, un dialogue vous permet de choisir un répertoire et de spécifier
+          un nom de fichier sans extension. L'extension par défaut est <emphasis>.xcos</emphasis>
+        </para>
+        <para>
+          Le schéma prend le nom du fichier (sans l'extension).
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Fichier : Enregistrer sous (Ctrl+Maj+S)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/document-save-as.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Sélectionnez l'item <emphasis>Enregistrer sous</emphasis> pour sauver le schéma bloc ou la palette avec
+          un nouveau nom.
+        </para>
+        <para>
+          Un dialogue permet de spécifier un nom de fichier et un dossier de sauvegarde. Comme nous l'avons dit ci-dessus ne
+          spécifiez pas d'extension. L'extension par défaut est <emphasis>.xcos</emphasis>.
+        </para>
+        <para>
+          Le schéma prend le nom du fichier (sans l'extension).
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fichier : Exporter (Ctrl+E)</emphasis></para>
+
+        <para>
+          Cet item est utilisé pour exporter une image du schéma <emphasis>Xcos</emphasis> courant. L'exportation peut être
+          faîte aux formats WBMP, GIF, HTML, JPEG, JPG, PNG, SVG ou VML.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fichier : Fichiers récents </emphasis></para>
+
+        <para>
+          A travers ce menu, vous avez un accès rapide aux fichiers récemment ouverts.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Fichier : Imprimer (Ctrl+P)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/document-print.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>Imprime le schéma courant sur une imprimante.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fichier : Fermer (Ctrl+W)</emphasis></para>
+
+        <para>
+          Si plusieurs schémas sont ouverts, l'action <emphasis>Fermer</emphasis> ferme le schéma courant. Si un seul schéma
+           est ouvert, l'action <emphasis>Fermer</emphasis> ferme <emphasis>Xcos</emphasis>. Les fenêtres auxiliaires telles
+            que zone d'affichage, palettes, etc. sont également fermées si nécessaire.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Fichier : Quitter (Ctrl+Q)</emphasis></para>
+
+        <para>
+          L'action <emphasis>Quitter</emphasis> ferme <emphasis>Xcos</emphasis>.
+          Les fenêtres auxiliaires telles que zone d'affichage, palettes, etc sont également fermées si nécessaire.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Editmenu_Menu_entries">
+    <title>Menu Édition</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_edit.png" />
+      </imageobject>
+    </mediaobject>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+        <emphasis role="bold">Édition : Défaire (Ctrl+Z)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-undo.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Sélectionnez l'item <emphasis>Défaire</emphasis> pour annuler la dernière opération d'édition.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Édition : Rétablir (Ctrl+Y)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-redo.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Sélectionnez l'item <emphasis>Rétablir</emphasis>  pour rétablir la dernière opération d'édition annulée.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Édition : Couper (Ctrl+X)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-cut.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          <emphasis>Couper</emphasis> est utilisé pour supprimer les objets sélectionnés du schéma et en garder une copie
+          dans le presse-papier. Quand vous effacez un bloc, toutes les liaisons qui lui sont connectées sont elles aussi
+          effacées.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Édition : Copier (Ctrl+C)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-copy.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          <emphasis>Copier</emphasis> est utilisé pour placer une copie des objets sélectionnés dans le presse-papier.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem >
+        <para>
+        <emphasis role="bold">Édition : Coller (Ctrl+V)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-paste.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          <emphasis>Coller</emphasis> place le contenu du presse-papier dans le schéma courant.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Édition : Supprimer (Suppr)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/edit-delete.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Pour effacer des blocs ou des liaisons, sélectionnez les objets à effacer puis l'item <emphasis>Supprimer</emphasis>.
+          Quand vous effacez un bloc, toutes les liaisons qui lui sont connectées sont elles aussi effacées.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Édition : Tout sélectionner (Ctrl+A)</emphasis></para>
+
+        <para>Sélectionne tous les blocs du schéma courant.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Édition : Inverser la sélection</emphasis></para>
+
+        <para>Inverse la sélection courante.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Édition : Paramètres de bloc (Ctrl+B)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/applications-system.png" />
+            </imageobject>
+            </inlinemediaobject>
+        </para>
+
+        <para>
+          Ouvre le dialogue de configuration du bloc sélectionné. La configuration dépend du bloc utilisé (voir l'aide du
+          bloc pour obtenir plus d'information sur sa configuration).
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Édition : Zone vers superbloc</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/object-group.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>Convertit une sélection de blocs en un superbloc.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Viewmenu_Menu_entries">
+    <title>Menu Affichage</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_view.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+        <emphasis role="bold">Vue : Zoom in (Ctrl+Plus)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/zoom-in.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>Quand vous sélectionnez cet item la vue du schéma est agrandie d'un facteur de 10%.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Vue : Zoom out (Ctrl+Moins)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/zoom-out.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Quand vous sélectionnez cet item, la vue du schéma est réduite d'un facteur de 10%.
+        </para>
+        <para />
+       </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Vue : Ajuster le schéma à la vue</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/zoom-fit-drawing.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Quand vous sélectionnez cet item la vue du schéma est ajustée à la taille de la fenêtre courante.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Vue : Normal 100%</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/zoom-original.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>Dimensionne les composants du diagramme à leurs dimensions par défaut.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Vue : Navigateur de palette</emphasis></para>
+
+        <para>Ouvre le navigateur de palette.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Vue : Navigateur de schéma</emphasis></para>
+
+        <para>
+          Affiche une fenêtre qui liste les propriétés globales du schéma et de tous les objets qu'il contient (blocs et
+          liaisons). Il présente le contenu de la structure <emphasis>scs_m</emphasis> du schéma.
+          </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Vue : Zone d'affichage</emphasis></para>
+
+        <para>
+          Affiche la vue <emphasis>Zone d'affichage</emphasis>. Cette fenêtre est une image complète du schéma courant.
+          Avec la vue <emphasis>Zone d'affichage</emphasis>, vous pouvez déplacer l'aire de travail affichée sur une partie
+          du schéma. Vous pouvez agrandir ou réduire la vue du schéma.
+        </para>
+        <para />
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_viewport.png" />
+          </imageobject>
+        </mediaobject>
+        <para />
+        <para>
+          Ci-dessus, vous avez un exemple de la vue <emphasis>Zone d'affichage</emphasis> incluse dans la fenêtre
+          <emphasis>Xcos</emphasis> utilisée pour agrandir une partie du schéma. Sur la gauche, la fenêtre d'édition
+          présente la partie agrandie du schéma.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Vue : Détails</emphasis></para>
+
+        <para>
+          Affiche une une fenêtre par bloc sélectionné qui liste les propriétés du bloc. Il présente sous forme
+          d'arbre le contenu de la structure <emphasis>scs_m</emphasis> du bloc
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Simulatemenu_Menu_entries">
+    <title>Menu Simulation</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_simulation.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+        <emphasis role="bold">Simulation : Configurer</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/preferences-desktop.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Dans la fenêtre principale de <emphasis>Xcos</emphasis>, Un clic sur l'item de menu <emphasis>Configurer</emphasis>
+          invoque le dialogue ci-dessous qui vous permet de modifier les paramètres d'intégration (simulation):
+        </para>
+        <para />
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_set_simulation_parameters_gui.png" />
+          </imageobject>
+        </mediaobject>
+        <para />
+        <itemizedlist>
+          <listitem>
+            <para>
+            <emphasis role="bold">Temps final d'intégration</emphasis> : l'intégration (la simulation)
+            finit à cet instant, elle démarre toujours à 0.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Mise à l'échelle temps réel</emphasis> : force une simulation temps réel
+              en plaçant l'unité de temps de simulation <emphasis>Xcos</emphasis> à 1 seconde.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Tolérances absolue et relative</emphasis> : propriétés du
+              du solveur.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Tolérance de temps</emphasis> : le plus petit intervalle de temps
+              pour lequel le solveur ode est utilisé pour mettre à jour les états continus.
+            </para>
+          <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Intervalle max de temps d'intégration</emphasis> : l'intervalle maximal
+              de temps entre chaque appel au solveur. il doit être réduit si le message "Beaucoup trop d'appels"
+              est rencontré.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Solveur</emphasis> : choix du solveur numérique à utiliser. Vous avez le
+              choix entre un solveur d'équations différentielles ordinaires (ODE) et un solveur d'équations
+              différentielles algébriques (IDA). Si <emphasis> Xcos</emphasis> détecte que votre modèle requiert
+              un solveur IDA, <emphasis> Xcos</emphasis> affiche un message d'information pour son basculement
+              automatique vers le solveur IDA.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Taille de pas maximum</emphasis> : la valeur maximale d'un pas de temps calcul
+              pris par le solveur. Ce paramètre est utile pour chercher les singularités localisées dans une réponse
+              monotone d'un système. Pour ce type réponse, le solveur accroît automatiquement la valeur du pas pour
+              diminuer le temps global de calcul. Si vous pensez que votre système est dans ce cas, réduisez la valeur
+              de ce paramètre.
+            </para>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Modifier le contexte</emphasis> : voir l'explication ci-dessous.
+            </para>
+           <para />
+          </listitem>
+          <listitem>
+            <para>
+              <emphasis role="bold">Standard</emphasis> : ce bouton remet les paramètres de simulation à leurs valeurs usine.
+            </para>
+            <para />
+          </listitem>
+          <para />
+        </itemizedlist>
+          <para>
+            Pour plus d'information sur les solveurs, rendez-vous à la section
+            <link linkend="Seealso_Menu_entries"> Voir aussi</link>.
+          </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Trace d'exécution et de débogage</emphasis></para>
+
+        <para>
+          Met <emphasis>Xcos</emphasis> en mode débogage. Pour plus d'informations, voir la commande
+          <link linkend="scicos_debug">scicos_debug</link>
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation : Modifier le contexte</emphasis></para>
+
+        <para>
+          Quand vous sélectionnez cet item de menu vous obtenez ce dialogue :
+        </para>
+        <para />
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_set_context_gui.png" />
+          </imageobject>
+        </mediaobject>
+        <para />
+        <para>
+          Vous pouvez entrer des instructions <emphasis>Scilab</emphasis> pour définir des paramètres symboliques
+          <emphasis>Xcos</emphasis> utilisés dans les définitions de bloc ou faire tout autre chose.
+        </para>
+        <para>
+          Ces instructions seront évaluées à chaque chargement du schéma. Si vous changez la valeur d'un paramètre symbolique
+          <emphasis>Xcos</emphasis> dans le contexte, tous les blocs qui le contiennent sont mis à jour quand vous cliquez
+          sur <emphasis>OK</emphasis>. Par exemple si vous voulez mettre la valeur de gain de plusieurs blocs à une valeur
+          dépendant d'une seule valeur, vous pouvez procéder comme suit
+        </para>
+        <orderedlist>
+          <listitem>
+            <para>
+              Nous avons trois blocs GAINBLK_f, ouvrez le dialogue <emphasis>Modifier le contexte</emphasis>
+              et écrivez vos variables symboliques :
+            </para>
+            <para />
+            <programlisting><![CDATA[
+              A = 1.5;
+              B = 2*A;
+              C = 3*A;
+            ]]></programlisting>
+            <para />
+          </listitem>
+          <listitem>
+            <para>
+             Ensuite, ouvrez successivement chaque boîte de dialogue de paramètres de bloc et inscrivez pour la valeur de gain
+             le nom de la valeur symbolique, ici <emphasis>A</emphasis>, <emphasis>B</emphasis>, et <emphasis>C</emphasis>.
+            </para>
+          </listitem>
+        </orderedlist>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation : Compiler</emphasis></para>
+
+        <para>
+          Sélectionnez l'item <emphasis>Compiler</emphasis> pour compiler le schéma-bloc. Cet item n'a jamais
+          besoin d'être utilisé puisque la compilation est effectuée, si nécessaire, avant le début de chaque simulation
+          (item de menu <emphasis>Démarrer</emphasis>).
+        </para>
+       <para>
+          Normalement, une nouvelle compilation n'est pas utile si seuls les paramètres et les états internes sont modifiés.
+          Dans quelques cas cependant, ces modifications ne sont pas correctement mises à jour et une compilation peut être
+          nécessaire avant de <emphasis>Redémarrer</emphasis> ou de <emphasis>Continuer</emphasis>.
+        </para>
+        <para>
+          <emphasis role="bold">
+            Si vous rencontrez une telle situation, veuillez s'il vous plaît, nous la signaler.</emphasis>
+            <ulink url="http://bugzilla.scilab.org/">
+            Rapport de bogues et d'amélioration de <emphasis>Scilab</emphasis>
+            </ulink>
+        </para>
+        <para />
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Simulation : Initialisation de Modelica</emphasis>
+        </para>
+        <para>
+          Cet item ouvre un dialogue spécifique pour le compilateur <emphasis>Modelica</emphasis> où vous pouvez voir les
+          composants de votre modèle et également sélectionner un solveur parmi les solveurs <emphasis>Kinsol</emphasis>,
+          <emphasis>Ida</emphasis>, <emphasis>Fsolve</emphasis>, <emphasis>Optim</emphasis>,
+          <emphasis>Nelder Mead</emphasis> et <emphasis>Hompack</emphasis>.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation : Démarrer</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/media-playback-start.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Sélectionnez l'item <emphasis>Démarrer</emphasis> pour lancer la simulation. Si le système a déjà été
+          simulé, un dialogue est affiché dans lequel vous pouvez choisir entre <emphasis>Continuer</emphasis>,
+          <emphasis>Redémarrer</emphasis> ou <emphasis>Terminer</emphasis> la simulation.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Simulation : Stop</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/process-stop.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Vous pouvez interrompre la simulation en cliquant sur l'item <emphasis>Stop</emphasis> ou sur le bouton de
+          la barre d'outils. Vous pouvez modifier les paramètres de bloc et continuer la simulation avec les nouvelles
+          valeurs.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Formatmenu_Menu_entries">
+    <title>Menu Format</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_format.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Format : Rotation (Ctrl+R)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/transform-rotate.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          <emphasis>Rotation</emphasis> permet de tourner un bloc vers la gauche d'un angle de 90°. La rotation affecte tous
+          les blocs sélectionnés.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Format : Pivoter (Ctrl+F)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/transform-flip.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Pour inverser les positions des entrées et sorties d'événements placées en haut et en bas d'un bloc, sélectionnez
+          un bloc et l'item <emphasis>Flip</emphasis>. Ceci n'affecte ni l'ordre ni la position des ports d'entrée
+          et de sortie d'événement qui sont numérotés de droite à gauche. Le pivotement affecte tous les blocs sélectionnés.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Format: Miroir (Ctrl+M)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/transform-mirror.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>
+          Pour inverser les positions des entrées et sorties régulières placées sur sa gauche et sur sa droite, sélectionnez un
+          bloc et l'item <emphasis>Miroir</emphasis> Ceci n'affecte ni l'ordre, ni la position des ports d'entrée et de sortie
+          réguliers qui sont numérotés de haut en bas. Le miroir affecte tous les blocs sélectionnés.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format : Afficher/Cacher l'ombre</emphasis></para>
+
+        <para>
+          L'item permet de sélectionner l'aspect 3D des blocs sélectionnés.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format : Aligner les blocs</emphasis></para>
+        <para />
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_format_align.png" />
+          </imageobject>
+        </mediaobject>
+        <para />
+        <para>
+          Quand vous sélectionnez plusieurs blocs, il est possible de les aligner sur l'axe horizontal
+          (<emphasis>Haut</emphasis>, <emphasis>Bas</emphasis> et <emphasis>Milieu</emphasis>) ou sur l'axe
+          vertical (<emphasis>Gauche</emphasis>, <emphasis>Droite</emphasis> et <emphasis>Centre</emphasis>).
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Format :  Couleur de la bordure</emphasis>
+            <inlinemediaobject>
+              <imageobject>
+                <imagedata fileref="../../images/icons/draw-brush.png" />
+              </imageobject>
+            </inlinemediaobject>
+        </para>
+
+        <para>L'item permet de changer la couleur des bords des blocs sélectionnés.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Format : Couleur de remplissage</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../images/icons/color-fill.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>L'item permet de changer la couleur de remplissage des blocs sélectionnés.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format : Style de liaison</emphasis></para>
+        <para />
+        <mediaobject>
+          <imageobject>
+            <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_format_link_style.png" />
+          </imageobject>
+        </mediaobject>
+        <para />
+        <para>L'item permet de modifier le style d'une liaison.</para>
+
+        <itemizedlist>
+          <listitem>
+            <para>Horizontal</para>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_horizontal_fr_FR.png" />
+                </imageobject>
+              </mediaobject>
+          </listitem>
+
+          <listitem>
+            <para>Direct</para>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_straight_fr_FR.png" />
+                </imageobject>
+              </mediaobject>
+          </listitem>
+
+          <listitem>
+            <para>Vertical</para>
+              <mediaobject>
+                <imageobject>
+                  <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_vertical_fr_FR.png" />
+                </imageobject>
+              </mediaobject>
+          </listitem>
+        </itemizedlist>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format : Fond du schéma...</emphasis></para>
+
+        <para>L'item permet de changer la couleur de fond du schéma.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Format : Grille</emphasis></para>
+
+        <para>
+          L'item permet d'activer/désactiver la grille. Avec la grille, le placement des blocs et des liaisons est plus facile
+          et vous obtenez un schéma plus lisible.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Toolsmenu_Menu_entries">
+    <title>Menu Outils</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_tools.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">Tools : Génération de code </emphasis></para>
+
+        <para>
+          Ce menu permet de générer le code de simulation associé avec à un Super bloc en temps discret.
+          La génération de code est obtenue simplement en sélectionnant le Super bloc et ensuite ce menu.
+        </para>
+        <para>
+          Si le Super bloc satisfait les conditions requises, un dialogue est affiché qui demande un nom de bloc, le répertoire
+          où placer les fichiers générés et les librairies optionnelles requises par l'éditeur de lien. Une fois cette
+          information donnée, le code est généré, compilé et lié avec <emphasis>Scilab</emphasis>.
+        </para>
+        <para>
+          Le Super bloc est remplacé automatiquement par un nouveau bloc qui implémente le code généré. Ensuite, il est possible
+          de simuler le schéma modifié. Le code pour une utilisation autonome est également généré.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Helpmenu_Menu_entries">
+    <title>Menu ?</title>
+
+    <mediaobject>
+      <imageobject>
+        <imagedata align="center" fileref="../gui/xcos_menu_entries/fr_FR/xcos_menu_help.png" />
+      </imageobject>
+    </mediaobject>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+        <emphasis role="bold">Aide : Aide Xcos (F1)</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/help-browser.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+
+        <para>Ce menu ouvre le navigateur d'aide sur la section Xcos.</para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+        <emphasis role="bold">Aide : Aide du bloc</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/help-browser.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          Pour obtenir de l'aide sur un bloc <emphasis>Xcos</emphasis>, sélectionnez le bloc cliquez ensuite sur cet item.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">Aide : Démos Xcos</emphasis>
+          <inlinemediaobject>
+            <imageobject>
+              <imagedata fileref="../../../gui/images/icons/applications-system.png" />
+            </imageobject>
+          </inlinemediaobject>
+        </para>
+        <para>
+          L'item <emphasis>Démos Xcos</emphasis> permet d'ouvrir plusieurs exemples de schémas Xcos.
+        </para>
+        <para />
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">Aide : A propos de Xcos</emphasis></para>
+
+        <para>
+          L'item <emphasis>About Xcos</emphasis> affiche la version courante de Xcos dans un dialogue.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_Menu_entries">
+    <title>See Also</title>
+    <itemizedlist>
+       <listitem>
+           <link linkend="scicos_debug">scicos_debug</link>
+       </listitem>
+       <listitem>
+           <link linkend="ode">ode</link>
+       </listitem>
+       <listitem>
+           <link linkend="dassl">dassl</link>
+       </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_Menu_entries">
+    <title>Auteurs</title>
+    <simplelist type="vert">
+      <member>DIGITEO</member>
+      <member>Bernard DUJARDIN - Contributeur</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

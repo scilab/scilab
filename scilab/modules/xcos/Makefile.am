@@ -2,11 +2,11 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2009-2010 - Allan CORNET <allan.cornet@scilab.org>
 # Copyright (C) DIGITEO - 2010-2010 - Clément DAVID <clement.david@scilab.org>
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscixcos_la_root_DATA =  license.txt version.xml
 
 
 #### xcos : init scripts ####
@@ -31,7 +31,7 @@ libscixcos_la_etc_DATA =	etc/xcos.quit \
 				etc/PaletteConfiguration.xsd \
 				etc/Modelica.xsd
 
-XCOS_C_SOURCES = 
+XCOS_C_SOURCES =
 
 XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Xcos.cpp \
@@ -40,7 +40,8 @@ XCOS_CPP_SOURCES = 	src/cpp/callxcos.cpp \
 			src/jni/Palette.hxx \
 			src/jni/Modelica.cpp \
 			src/jni/Modelica.hxx \
-			src/jni/GiwsException.cpp
+			src/jni/GiwsException.cpp \
+			src/cpp/xcosUtilities.cpp
 
 GIWS_WRAPPERS = src/jni/Xcos.giws.xml \
 			src/jni/Palette.giws.xml \
@@ -60,7 +61,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_xcosDiagramToHDF5.cpp \
 	sci_gateway/cpp/sci_xcosDiagramOpen.cpp \
 	sci_gateway/cpp/sci_xcosDiagramClose.cpp \
-	sci_gateway/cpp/xcosUtilities.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -76,7 +76,7 @@ libscixcos_la_CFLAGS= $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/output_stream/includes \
 			-I$(top_srcdir)/modules/fileio/includes \
 			-I$(top_srcdir)/modules/localization/includes \
-			-I$(top_srcdir)/modules/api_scilab/includes	
+			-I$(top_srcdir)/modules/api_scilab/includes
 
 libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(srcdir)/includes/ \
@@ -90,21 +90,23 @@ libscixcos_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/scicos_blocks/src/jni \
 			-I$(top_srcdir)/modules/api_scilab/includes
 
-# Without the xcos module 
+# Without the xcos module
 libscixcos_disable_la_CFLAGS = -Iincludes/ \
 			-I$(top_srcdir)/modules/output_stream/includes
 
 XCOS_DISABLE_C_SOURCES = src/noxcos/noxcos.c
-libscixcos_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscixcos_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscixcos_disable_la_SOURCES = $(XCOS_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscixcos-disable.la
 
+if XCOS
 if GUI
-pkglib_LTLIBRARIES += libscixcos.la 
+pkglib_LTLIBRARIES += libscixcos.la
+endif
 endif
 
-libscixcos_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscixcos_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscixcos_la_SOURCES = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(XCOS_CPP_SOURCES)
 
@@ -114,8 +116,9 @@ INCLUDE_FLAGS = $(libscixcos_la_CFLAGS)
 
 
 
-libscixcos_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscixcos_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/jvm/libscijvm.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -127,13 +130,12 @@ libscixcos_la_sci_gateway_DATA = sci_gateway/xcos_gateway.xml
 #### xcos : images files ####
 #
 # Generated with:
-#   $ find images/ -type f -printf "%p \\ \n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '{sub(/[ \t]+$/, "")};1' |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
+#   $ find images/ -type f -printf "%p \\\\\n" -name *.svg -or -name *.gif -or -name *.jpg -or -name *.png -not -name *_pal.jpg -not -name gui |sort |awk '$0 !~ /gui/{print;}' |awk '$0 !~ /_pal.jpg/{print;}'
 libscixcos_la_imagesdir=$(mydatadir)/
 nobase_libscixcos_la_images_DATA = images/blocks/3DSCOPE.svg \
 images/blocks/ANDBLK.svg \
 images/blocks/ASCOPE.svg \
 images/blocks/BACHE.svg \
-images/blocks/background.svg \
 images/blocks/BPLATFORM.svg \
 images/blocks/Capacitor.svg \
 images/blocks/CCS.svg \
@@ -146,7 +148,6 @@ images/blocks/CVS.svg \
 images/blocks/DEADBAND.svg \
 images/blocks/Diode.svg \
 images/blocks/DSCOPE.svg \
-images/blocks/empty.svg \
 images/blocks/Ground.svg \
 images/blocks/Gyrator.svg \
 images/blocks/HYSTHERESIS.svg \
@@ -174,14 +175,20 @@ images/blocks/SWITCH.svg \
 images/blocks/VanneReglante.svg \
 images/blocks/VariableResistor.svg \
 images/blocks/VoltageSensor.svg \
-images/icons/go-bottom.png \
-images/icons/go-center.png \
-images/icons/go-first.png \
-images/icons/go-last.png \
-images/icons/go-middle.png \
-images/icons/go-top.png \
+images/icons/align-horizontal-center.png \
+images/icons/align-horizontal-left.png \
+images/icons/align-horizontal-right.png \
+images/icons/align-vertical-bottom.png \
+images/icons/align-vertical-center.png \
+images/icons/align-vertical-top.png \
+images/icons/color-fill.png \
+images/icons/draw-brush.png \
+images/icons/object-group.png \
+images/icons/preferences-desktop.png \
 images/icons/process-stop.png \
-images/icons/view-fullscreen.png \
+images/icons/select-by-color.png \
+images/icons/transform-flip.png \
+images/icons/transform-mirror.png \
 images/palettes/ABS_VALUE.png \
 images/palettes/AFFICH_m.png \
 images/palettes/ANDBLK.png \
@@ -218,7 +225,7 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
-images/palettes/CONSTRAINT_f.png \
+images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \
@@ -376,6 +383,7 @@ images/palettes/SWITCH_f.png \
 images/palettes/Switch.png \
 images/palettes/TANBLK_f.png \
 images/palettes/TCLSS.png \
+images/palettes/TEXT_f.png \
 images/palettes/TIME_DELAY.png \
 images/palettes/TIME_f.png \
 images/palettes/TKSCALE.png \
@@ -393,9 +401,11 @@ images/palettes/WRITEAU_f.png \
 images/palettes/WRITEC_f.png \
 images/palettes/ZCROSS_f.png
 
+if XCOS
 if GUI
 if HDF5
 USEANT=1
+endif
 endif
 endif
 

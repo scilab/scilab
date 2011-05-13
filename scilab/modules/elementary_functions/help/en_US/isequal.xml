@@ -35,7 +35,7 @@ t=isequal(a,b,..)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -82,8 +82,8 @@ isequal(a,1)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="isequalbitwise">isequalbitwise</link></member>

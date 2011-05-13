@@ -1,7 +1,7 @@
 c     ==================================================
 
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
+c Copyright (C) -2011 - INRIA - Serge Steer
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -37,18 +37,11 @@ c     max number of index to find
          nmax=-1
       endif
 
+
       vt=gettype(top)
       if(vt.eq.1.or.vt.eq.4) then
-         if(lhs.gt.2) then
-            call error(39)
-            return
-         endif
          call intsfind(nmax)
       elseif(vt.eq.5.or.vt.eq.6) then
-         if(lhs.gt.2) then
-            call error(39)
-            return
-         endif
          call intspfind(nmax)
       else
 c     .  overloaded find

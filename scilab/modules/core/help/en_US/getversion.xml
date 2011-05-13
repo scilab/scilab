@@ -29,7 +29,7 @@ versioninfo = getversion('&lt;module&gt;','string_info')</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -99,10 +99,10 @@ getversion()
 [version, opts] = getversion()
 COMPILER = opts(1)
 ARCH = opts(2)
-or(opt == 'modelicac')
-or(opt == 'pvm')
-or(opt == 'tk')
-or(opt == 'atlas')
+or(opts == 'modelicac')
+or(opts == 'pvm')
+or(opts == 'tk')
+or(opts == 'atlas')
 RELEASE_MODE = opts($-2)
 RELEASE_DATE = opts($-1)
 RELEASE_TIME = opts($)
@@ -115,8 +115,8 @@ versionstr = getversion('overloading','string_info')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="getmodules">getmodules</link></member>

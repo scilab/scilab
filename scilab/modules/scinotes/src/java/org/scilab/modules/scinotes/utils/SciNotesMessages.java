@@ -40,6 +40,11 @@ public class SciNotesMessages {
     public static final String RECENT_FILES = Messages.gettext("Recent Files");
     public static final String SAVE = Messages.gettext("Save");
     public static final String SAVE_AS = Messages.gettext("Save as") + DOTS;
+    public static final String OPEN_ERROR = Messages.gettext("The file could not be created, check the path");
+    public static final String READONLY = Messages.gettext("The file is not writable so it is opened in read-only mode");
+    public static final String NOTWRITABLE = Messages.gettext("You do not have the permissions to write this file");
+    public static final String NOTREADABLE = Messages.gettext("You do not have the permissions to read this file");
+
     /**
      * "Save All" message
      */
@@ -47,6 +52,8 @@ public class SciNotesMessages {
     public static final String PAGE_SETUP = Messages.gettext("Page Setup") + DOTS;
     public static final String PRINT_PREVIEW = Messages.gettext("Print Preview") + DOTS;
     public static final String PRINT = Messages.gettext("Print") + DOTS;
+    public static final String EXPORTERROR = Messages.gettext("An error occured when exporting the code using FOP");
+    public static final String PRINTERERROR = Messages.gettext("An error occured when printing");
     public static final String CLOSE = Messages.gettext("Close");
     public static final String CLOSEALL = Messages.gettext("Close All");
     public static final String CLOSEALLBUTTHIS = Messages.gettext("Close All But This");
@@ -81,7 +88,7 @@ public class SciNotesMessages {
     public static final String FIND_REPLACE = Messages.gettext("Find/Replace");
     public static final String FIND_NEXT = Messages.gettext("Find Next");
     public static final String FIND_PREVIOUS = Messages.gettext("Find Previous");
-    public static final String GOTO_LINE = Messages .gettext("Goto line");
+    public static final String GOTO_LINE = Messages.gettext("Goto line");
 
     /** VIEW MENU */
     public static final String VIEW = Messages.gettext("View");
@@ -157,7 +164,7 @@ public class SciNotesMessages {
     public static final String BEGIN_OF_DOCUMENT = Messages.gettext("You have reached the beginning of the document");
     public static final String STRING_NOT_FOUND = Messages.gettext("String %s not found");
 
-    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s doesn't exist\n Do you want to create it?");
+    public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist\nDo you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
     public static final String MODIFIED = Messages.gettext(" has been modified since last save\nsave it?");
@@ -170,6 +177,7 @@ public class SciNotesMessages {
     public static final String FILE_ALREADY_EXIST = Messages.gettext("File already exists");
     public static final String UNTITLED = Messages.gettext("Untitled ");
     public static final String OK = Messages.gettext("Ok");
+    public static final String APPLYREINDENT = Messages.gettext("Apply & Reindent");
     public static final String CANCEL = Messages.gettext("Cancel");
     public static final String DEFAULT = Messages.gettext("Default");
     public static final String NEXT_TAB = Messages.gettext("Next tab");
@@ -178,24 +186,26 @@ public class SciNotesMessages {
     public static final String BIG_FILE_WARNING = Messages.gettext("This file is very long. \"Execute File Into Scilab\" could be better.\nAre you sure to continue ?");
 
 
-    public static final String ENTER_LINE_NUMBER = Messages .gettext("Enter line number");
-    public static final String BINARY_FILE = Messages .gettext("This file is a binary, saving it will result in a corrupt file.");
+    public static final String ENTER_LINE_NUMBER = Messages.gettext("Enter line number");
+    public static final String BINARY_FILE = Messages.gettext("This file is a binary, saving it will result in a corrupt file.");
 
     /* Status bar messages */
-    public static final String LOADING = Messages .gettext("Loading") + DOTS;
-    public static final String COLORIZATION_CANCELED = Messages .gettext("Colorization canceled");
-    public static final String BINARY_FILE_MODE = Messages .gettext("Binary file: read-only mode");
-    public static final String READ_ONLY_MODE = Messages .gettext("Read-only mode");
-    public static final String CLICKABLE_URL = Messages .gettext("Press CTRL and move the mouse over the link to activate it");
-    public static final String OPENURL = Messages .gettext("Open in the navigator the URL ");
-    public static final String MAILTO = Messages .gettext("Mail to ");
-    public static final String OPENSOURCE = Messages .gettext("Open the source of the macro ");
-    public static final String SHOWSOURCE = Messages .gettext("Show the definition of the macro ");
+    public static final String LOADING = Messages.gettext("Loading") + DOTS;
+    public static final String COLORIZATION_CANCELED = Messages.gettext("Colorization canceled");
+    public static final String BINARY_FILE_MODE = Messages.gettext("Binary file: read-only mode");
+    public static final String READ_ONLY_MODE = Messages.gettext("Read-only mode");
+    public static final String CLICKABLE_URL = Messages.gettext("Press CTRL and move the mouse over the link to activate it");
+    public static final String OPENURL = Messages.gettext("Open in the navigator the URL ");
+    public static final String MAILTO = Messages.gettext("Mail to ");
+    public static final String OPENSOURCE = Messages.gettext("Open the source of the macro ");
+    public static final String SHOWSOURCE = Messages.gettext("Show the definition of the macro ");
+    public static final String POSFUN_IN_DOC = Messages.gettext("Line %s, Column %s. Function '%s' at Line %s.");
+    public static final String POS_IN_DOC = Messages.gettext("Line %s, Column %s.");
 
     /* About box */
     public static final String VERSION = Messages.gettext("SciNotes") + " 1.1";
     public static final String DIGITEO = "The Scilab Consortium (DIGITEO)";
-    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2010";
+    public static final String COPYRIGHT = Messages.gettext("Copyright (c)") + " 2009-2011";
 
     public static final String SCINOTES_ERROR = Messages.gettext("SciNotes error");
     public static final String COULD_NOT_SAVE_FILE = Messages.gettext("The file could not be saved.");
@@ -211,6 +221,10 @@ public class SciNotesMessages {
     public static final String NO_TEXT_TO_EXECUTE = Messages.gettext("No text to execute.");
     public static final String COMPLETE = Messages.gettext("Complete");
     public static final String EDIT_SELECTION = Messages.gettext("Copy selection in a new tab");
+
+    public static final String DIFFERENT_ENCODINGS = Messages.gettext("The file encoding is actually %s and it will be saved in using %s. Continue ?");
+    public static final String DIFFERENT_ENCODINGS_TITLE = Messages.gettext("Encoding problems");
+    public static final String CANNOT_GUESS_ENCODING = Messages.gettext("Cannot guess the file encoding.");
 
     /**
      * "Change Colors" message
@@ -238,10 +252,19 @@ public class SciNotesMessages {
     public static final String ABSOLUTE = Messages.gettext("Absolute");
     public static final String RELATIVE = Messages.gettext("Relative");
     public static final String GO_TO_LINE = Messages.gettext("Go to line: ");
-    public static final String NUMEROTATION = Messages.gettext("Numerotation");
+    public static final String NUMEROTATION = Messages.gettext("Numeration");
     public static final String ALPHABETIC_ORDER = Messages.gettext("Alphabetic order");
     public static final String NATURAL_ORDER = Messages.gettext("Natural order");
     public static final String ORDER = Messages.gettext("Order");
+    public static final String FUNCTIONS = Messages.gettext("Functions");
+    public static final String ANCHORS = Messages.gettext("Anchors");
+
+    /**
+     * Anchor
+     */
+    public static final String ANCHOR_NAME = Messages.gettext("Anchor's name: ");
+    public static final String SET_ANCHOR = Messages.gettext("Set an anchor");
+    public static final String ANCHOR = Messages.gettext("Anchor: ");
 
     /**
      * Open source
@@ -259,4 +282,47 @@ public class SciNotesMessages {
      */
     public static final String RESTORE_FILES_QUERY = Messages.gettext("Restore files from your last SciNotes session ?");
     public static final String RESTORE_FILES_TITLE = Messages.gettext("Restore the last sessions");
+
+    /**
+     * Tabulations configuration
+     */
+    public static final String CONFIGTAB = Messages.gettext("Configure Tabulation");
+    public static final String TABSTYLE = Messages.gettext("Tab style");
+    public static final String TABUSEWHITES = Messages.gettext("Use spaces");
+    public static final String TABLENGTH = Messages.gettext("Length");
+    public static final String TABREPRESENTATION = Messages.gettext("Tab representation");
+    public static final String TABHRULE = Messages.gettext("Horizontal rule");
+    public static final String TABVRULE = Messages.gettext("Vertical rule");
+    public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
+
+    /**
+     * Incremental search
+     */
+    public static final String EXACT = Messages.gettext("Exact");
+
+    /**
+     * Find in files
+     */
+    public static final String SEARCHFILES = Messages.gettext("Search Files...");
+    public static final String SEARCHINFILES = Messages.gettext("Search in Files...");
+    public static final String MATCHES = Messages.gettext("<html>%s <i>(%s matches)</i></html>");
+    public static final String MATCH = Messages.gettext("<html>%s <i>(%s match)</i></html>");
+    public static final String ELAPSEDTIME = Messages.gettext("Elapsed time: %s seconds.");
+    public static final String ELAPSEDTIMELESSONESEC = Messages.gettext("Elapsed time: %s second.");
+    public static final String BASEDIRECTORY = Messages.gettext("Base directory:");
+    public static final String RECURSIVE = Messages.gettext("Recursive");
+    public static final String FILEPATTERN = Messages.gettext("File pattern");
+    public static final String FILEPATTERNEXP = Messages.gettext("(* for any string and ? for any character)");
+    public static final String WORDPATTERN = Messages.gettext("Word pattern");
+    public static final String FILELINEBYLINE = Messages.gettext("Read file line by line");
+    public static final String CHOOSEDIR = Messages.gettext("Choose...");
+    public static final String STOPBUTTON = Messages.gettext("Stop");
+    public static final String REGEXPATTERN = Messages.gettext("Regex");
+    public static final String WORD = Messages.gettext("Word");
+    public static final String WORDCASESENSITIVE = Messages.gettext("Case-sensitivity (Word)");
+    public static final String FILECASESENSITIVE = Messages.gettext("Case-sensitivity (File name)");
+    public static final String RECURSIVESEARCH = Messages.gettext("Recursive search");
+    public static final String LINEBYLINE = Messages.gettext("Line by line");
+    public static final String WORDREGEX = Messages.gettext("Regular expression (Word)");
+    public static final String CHOOSEBASEDIR = Messages.gettext("Choose the search base directory");
 }

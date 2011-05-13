@@ -71,16 +71,15 @@ public class ScilabView extends WrappedPlainView {
 
     private ScilabContext context;
     private ScilabLexer lexer;
-    private boolean lexerValid;
     private ScilabDocument doc;
     private Segment text = new Segment();
-    private boolean isLaTeXViewable;
     private boolean isTabViewable = true;
     private boolean isWhiteViewable = true;
     private boolean enable = true;
 
     private int tabType;
     private String tabCharacter = " ";
+    private int tabLength = 4;
 
     private int numOfColumns = 80;
     private Color lineColor = new Color(220, 220, 220);
@@ -109,16 +108,7 @@ public class ScilabView extends WrappedPlainView {
         }
         doc.setView(this);
         lexer = doc.createLexer();
-        lexerValid = false;
         setTabRepresentation(TABVERTICAL);
-    }
-
-    /**
-     * To render LaTeX in this view (unused for the moment)
-     * @param b true if viewable or not
-     */
-    public void setLaTeXViewable(boolean b) {
-        isLaTeXViewable = b;
     }
 
     /**
@@ -158,6 +148,20 @@ public class ScilabView extends WrappedPlainView {
      */
     public void setMaxColumns(int n) {
         numOfColumns = n;
+    }
+
+    /**
+     * @return the width of a white
+     */
+    public int getWhiteWidth() {
+        return whiteWidth;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public float nextTabStop(float x, int tabOffset) {
+        return x + whiteWidth * tabLength;
     }
 
     /**
@@ -241,6 +245,8 @@ public class ScilabView extends WrappedPlainView {
         Element elem = doc.getDefaultRootElement();
         Element line = elem.getElement(elem.getElementIndex(p0));
 
+        FontMetrics metrics = g.getFontMetrics();
+
         int prevTok = -1;
         int tok = -1;
         int mark = p0;
@@ -268,7 +274,7 @@ public class ScilabView extends WrappedPlainView {
             lexer.setRange(start, endL);
         }
 
-        while (start < p1) {
+        while (start < p1 && tok != ScilabLexerConstants.EOF) {
             try {
                 if (!isBroken) {
                     tok = lexer.scan();
@@ -296,12 +302,12 @@ public class ScilabView extends WrappedPlainView {
                 int w;
 
                 if ((context.tokenAttrib[tok] & 1) != 0) {
-                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    w = Utilities.getTabbedTextWidth(text, metrics, x, this, mark);
                     g.drawLine(x, y + 1, x + w, y + 1);
                 }
 
                 if ((context.tokenAttrib[tok] & 2) != 0) {
-                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    w = Utilities.getTabbedTextWidth(text, metrics, x, this, mark);
                     g.drawLine(x, y - whiteHeight, x + w, y - whiteHeight);
                 }
 
@@ -321,11 +327,20 @@ public class ScilabView extends WrappedPlainView {
                         paintTab(text, x, y, g, mark);
                     }
                     break;
-                case ScilabLexerConstants.LATEX :
-                        if (isLaTeXViewable) {
-                            //LaTeXUtilities.drawText(text, x, y, g, mark);
-                        }
-                        break;
+                case ScilabLexerConstants.ERROR :
+                    if (unselected) {
+                        g.setColor(Color.RED);
+                    } else {
+                        g.setColor(Color.WHITE);
+                    }
+                    w = Utilities.getTabbedTextWidth(text, g.getFontMetrics(), x, this, mark);
+                    for (int i = 0; i < w; i +=4) {
+                        g.drawLine(x + i, y + 2, x + i + 1, y + 2);
+                    }
+                    for (int i = 2; i < w; i +=4) {
+                        g.drawLine(x + i, y + 1, x + i + 1, y + 1);
+                    }
+                    break;
                 default :
                     break;
                 }
@@ -338,6 +353,50 @@ public class ScilabView extends WrappedPlainView {
         }
 
         return x;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    protected void drawLine(int p0, int p1, Graphics g, int x, int y) {
+        ScilabEditorPane pane = (ScilabEditorPane) getContainer();
+        int sel0 = pane.getSelectionStart();
+        int sel1 = pane.getSelectionEnd();
+        int[] selC = pane.isNearColumnSelection(p0);
+        p1 = Math.min(doc.getLength(), p1);
+
+        try {
+            if (sel0 == sel1) {
+                if (selC == null) {
+                    drawUnselectedText(g, x, y, p0, p1);
+                    return;
+                }
+                sel0 = selC[0];
+                sel1 = selC[1];
+                if (sel0 == sel1) {
+                    drawUnselectedText(g, x, y, p0, p1);
+                    return;
+                }
+            }
+
+            if ((p0 >= sel0 && p0 <= sel1) && (p1 >= sel0 && p1 <= sel1)) {
+                drawSelectedText(g, x, y, p0, p1);
+            } else if (sel0 >= p0 && sel0 <= p1) {
+                if (sel1 >= p0 && sel1 <= p1) {
+                    x = drawUnselectedText(g, x, y, p0, sel0);
+                    x = drawSelectedText(g, x, y, sel0, sel1);
+                    drawUnselectedText(g, x, y, sel1, p1);
+                } else {
+                    x = drawUnselectedText(g, x, y, p0, sel0);
+                    drawSelectedText(g, x, y, sel0, p1);
+                }
+            } else if (sel1 >= p0 && sel1 <= p1) {
+                x = drawSelectedText(g, x, y, p0, sel1);
+                drawUnselectedText(g, x, y, sel1, p1);
+            } else {
+                drawUnselectedText(g, x, y, p0, p1);
+            }
+        } catch (BadLocationException e) { }
     }
 
     /**
@@ -385,6 +444,7 @@ public class ScilabView extends WrappedPlainView {
         } else {
             setTabRepresentation(tabulation.type);
         }
+        tabLength = tabulation.number;
     }
 
     /**

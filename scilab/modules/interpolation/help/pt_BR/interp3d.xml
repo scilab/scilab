@@ -143,8 +143,8 @@ s(x,y) = s(proj(x,y)) onde  proj(x,y) é o ponto mais próximo
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="splin3d">splin3d</link></member>

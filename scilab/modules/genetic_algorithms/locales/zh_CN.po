@@ -1,0 +1,55 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2009-04-12 05:16+0000\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid " - min / max value found = %f / %f\n"
+msgstr ""
+
+#, c-format
+msgid "%s: F_in is mandatory"
+msgstr ""
+
+#, c-format
+msgid "%s: Initialization of the population\n"
+msgstr ""
+
+#, c-format
+msgid "%s: ga_f is mandatory"
+msgstr ""
+
+#, c-format
+msgid "%s: iteration %d / %d"
+msgstr "%s：迭代%d/%d"
+
+#, c-format
+msgid "%s: iteration %d / %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: optimization starting, please wait ...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: wrong direction"
+msgstr "%s：错误的目录"
+
+msgid "optim_moga: ga_f is mandatory"
+msgstr ""
+
+msgid "optim_nsga2: ga_f is mandatory"
+msgstr ""

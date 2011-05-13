@@ -24,7 +24,7 @@
 TCL_DeleteInterp()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>interp</term>
@@ -55,8 +55,8 @@ TCL_DeleteInterp('BisInterp')
 TCL_ExistInterp('BisInterp')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="TCL_SetVar">TCL_SetVar</link>

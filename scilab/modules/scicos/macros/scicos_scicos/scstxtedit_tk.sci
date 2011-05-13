@@ -28,6 +28,9 @@
 //##          winId : the Id number of the block editor
 //##
 function Mopen(InFile,winId)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //## get the input buffer
   str_in=mgetl(InFile)
 
@@ -56,6 +59,9 @@ endfunction
 //##          winId : the Id number of the block editor
 //##
 function txt=ToCos(InFile,OutFile,winId)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   txt=mgetl(OutFile+winId);
   //mputl(txt,InFile+winId);
 endfunction
@@ -67,6 +73,9 @@ endfunction
 //##          winId : the Id number of the block editor
 //##
 function Quit=Mquit(InFile,OutFile,winId)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
  //## get input/output text of the buffer
  txt_out = mgetl(OutFile+winId);
  txt_in  = mgetl(InFile+winId);
@@ -106,6 +115,9 @@ endfunction
 //##                 1 : Quit
 //##
 function [str_out,Quit] = scstxtedit_tk (str_in,ptxtedit)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   //** check lhs/rhs arg
   [lhs,rhs]=argn(0)
 
@@ -255,5 +267,8 @@ endfunction
 //##                       windows. Used for Cmenu="XcosMenuQuit"
 //##
 function [] = close_scstxtedit_tk ()
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   TCL_EvalStr('ClosScsTxtEdit');
 endfunction

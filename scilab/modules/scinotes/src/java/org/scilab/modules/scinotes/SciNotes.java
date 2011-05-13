@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,41 +18,35 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Iterator;
 import java.util.UUID;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
-import javax.swing.JTabbedPane;
 import javax.swing.KeyStroke;
 import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.ChangedCharSetException;
 import javax.swing.text.EditorKit;
+import javax.swing.text.View;
 import javax.swing.undo.UndoManager;
 
 import org.apache.commons.logging.LogFactory;
@@ -80,20 +74,27 @@ import org.scilab.modules.gui.utils.SciFileFilter;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.scinotes.actions.ConfigTabulationsAction;
+import org.scilab.modules.scinotes.actions.EncodingAction;
+import org.scilab.modules.scinotes.actions.EndOfLineAction;
 import org.scilab.modules.scinotes.actions.ExitAction;
 import org.scilab.modules.scinotes.actions.FindAction;
-import org.scilab.modules.scinotes.actions.SetColorsAction;
+import org.scilab.modules.scinotes.actions.IncrementalSearchAction;
+import org.scilab.modules.scinotes.actions.InsertOverwriteAction;
 import org.scilab.modules.scinotes.actions.LineBeautifierAction;
 import org.scilab.modules.scinotes.actions.OpenSourceFileOnKeywordAction;
 import org.scilab.modules.scinotes.actions.RecentFileAction;
-import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
-import org.scilab.modules.scinotes.actions.EncodingAction;
-import org.scilab.modules.scinotes.actions.EndOfLineAction;
 import org.scilab.modules.scinotes.actions.RestoreOpenedFilesAction;
+import org.scilab.modules.scinotes.actions.SciNotesCompletionAction;
+import org.scilab.modules.scinotes.actions.SetColorsAction;
+import org.scilab.modules.scinotes.actions.SearchWordInFilesAction;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.DropFilesListener;
+import org.scilab.modules.scinotes.utils.NavigatorWindow;
+import org.scilab.modules.scinotes.utils.SearchFile;
 import org.scilab.modules.scinotes.utils.SaveFile;
 import org.scilab.modules.scinotes.utils.ScilabTabbedPane;
+import org.scilab.modules.scinotes.utils.SciNotesContents;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -121,37 +122,29 @@ public class SciNotes extends SwingScilabTab implements Tab {
     private static final String ALL_SCX_FILES = "*.sc*";
     private static final String ALL_SCILAB = "all";
     private static final String ALL_FILES = "*.*";
-    private static final String TIRET = " - ";
     private static final String DOT = ".";
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static final int ZERO = 0;
-    private static final int ONE = 1;
-    private static final int TWO = 2;
-    private static final int THREE = 3;
-    private static final int FOUR = 4;
-
-    private static List<SciNotes> scinotesList = new ArrayList();
+    private static List<SciNotes> scinotesList = new ArrayList<SciNotes>();
     private static SciNotes editor;
 
     private final Window parentWindow;
     private UUID uuid;
 
-    private JTabbedPane tabPane;
+    private ScilabTabbedPane tabPane;
+    private SciNotesContents contentPane;
+
     private int numberOfUntitled;
     private EditorKit editorKit;
 
     private PushButton undoButton;
     private PushButton redoButton;
 
-    private Color highlightColor;
-    private Color highlightContourColor;
-
     private boolean protectOpenFileList;
 
-    private List<Integer> tabList = new ArrayList();
-    private List<Integer> closedTabList = new ArrayList();
+    private List<Integer> tabList = new ArrayList<Integer>();
+    private List<Integer> closedTabList = new ArrayList<Integer>();
 
     private String fileFullPath = "";
 
@@ -161,38 +154,38 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public SciNotes(Window parentWindow) {
         super(SCINOTES);
+        setWindowIcon(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/accessories-text-editor.png").getImage());
         scinotesList.add(this);
         this.parentWindow = parentWindow;
         this.uuid = UUID.randomUUID();
         numberOfUntitled = 0;
-        editorKit = new ScilabEditorKit();
+        editorKit = new ScilabEditorKit(!ConfigSciNotesManager.getHorizontalWrap());
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Position pos = ConfigSciNotesManager.getMainWindowPosition();
         window.setLocation(pos.getX(), pos.getY());
         Size size = ConfigSciNotesManager.getMainWindowSize();
         window.setSize(size.getWidth(), size.getHeight());
         protectOpenFileList = false;
-        tabPane = new ScilabTabbedPane(this);
+        contentPane = new SciNotesContents(this);
+        tabPane = contentPane.getScilabTabbedPane();
         tabPane.addChangeListener(new ChangeListener() {
                 public void stateChanged(ChangeEvent e) {
-                    String path = new String("");
                     if (getTextPane() != null) {
-                        if (getTextPane().getName() != null) {
-                            path  =  " (" + getTextPane().getName() + ")";
-                        }
                         updateUI();
                         getTextPane().updateInfosWhenFocused();
+                        getTextPane().requestFocus();
+                        getTextPane().highlightWords(IncrementalSearchAction.getWord(SciNotes.this), IncrementalSearchAction.getExact(SciNotes.this));
 
                         // Update encoding menu
                         EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
 
                         // Update End Of Line  menu
                         EndOfLineAction.updateEolMenu((ScilabDocument) getTextPane().getDocument());
-                        setTitle(tabPane.getTitleAt(tabPane.getSelectedIndex()) + path + TIRET + SciNotesMessages.SCILAB_EDITOR);
+                        setTitle(getTextPane().getTitle());
                     }
                 }
             });
-        this.setContentPane(tabPane);
+        this.setContentPane(contentPane);
     }
 
     /**
@@ -200,11 +193,21 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void setTitle(String title) {
         super.setTitle(title);
-        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities
-            .getAncestorOfClass(SwingScilabWindow.class, tabPane);
+        final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, tabPane);
         if (window != null) {
             window.setTitle(title);
         }
+    }
+
+    public void insertBottomComponent(Component c) {
+        contentPane.insertBottomComponent(c);
+    }
+
+    /**
+     * @return the SwingScilabWindow containing this editor
+     */
+    public SwingScilabWindow getSwingParentWindow() {
+        return (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, this);
     }
 
     /**
@@ -272,12 +275,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
      *
      * This method *must not* be called on the EDT thread.
      */
-    public static void scinotes(final String filePath, final int lineNumber) {
+    public static void scinotes(final String filePath, final int lineNumber, final String functionName) {
         try {
             SwingUtilities.invokeAndWait(new Runnable() {
 
                     public void run() {
-                        launchSciNotes().openFile(filePath, lineNumber, null);
+                        launchSciNotes().openFile(filePath, lineNumber, functionName);
                     }
                 });
         } catch (InterruptedException e) {
@@ -337,7 +340,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public static void cloneAndCloseCurrentTab(SciNotes ed, boolean b) {
         ScilabDocument cdoc = (ScilabDocument) ed.getTextPane().getDocument();
-        String title = ed.getTabPane().getTitleAt(ed.getTabPane().getSelectedIndex());
+        String title = ed.getTabPane().getScilabTitleAt(ed.getTabPane().getSelectedIndex());
         ScilabEditorPane currentSep = ed.getTextPane();
         String winTitle = ed.getTitle();
 
@@ -404,6 +407,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     }
                 }
             }
+        } else {
+            final SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, getEditor().getTabPane());
+            window.setVisible(true);
+            window.toFront();
         }
 
         return editor;
@@ -425,21 +432,29 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         if (filePath == null) {
             addEmptyTab();
-            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 
         File f = fileToCanonicalFile(new File(filePath));
+        if (!f.getParentFile().exists()) {
+            JOptionPane.showMessageDialog(SciNotes.this, SciNotesMessages.OPEN_ERROR);
+            addEmptyTab();
+            return;
+        }
+
         if (f.isDirectory()) { /* Bug 5131 */
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             addEmptyTab();
-            ConfigSciNotesManager.saveToOpenFiles(getTextPane().getName(), this, getTextPane());
             return;
         }
 
         readFileAndWait(f);
-        getTextPane().scrollTextToLineNumber(lineNumber, true);
-        if (option != null && "readonly".equals(option.toLowerCase())) {
+        if (option == null || option.length() == 0 || "readonly".equals(option.toLowerCase())) {
+            getTextPane().scrollTextToLineNumber(lineNumber, true);
+        } else {
+            getTextPane().scrollTextToLineNumberInWhereami(lineNumber, option, true);
+        }
+        if ((option != null && "readonly".equals(option.toLowerCase()))) {
             getTextPane().setReadOnly(true);
             getInfoBar().setText(getTextPane().getInfoBarText());
             ConfigSciNotesManager.removeFromOpenFiles(this, getTextPane());
@@ -454,13 +469,20 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void closeSciNotes() {
         FindAction.close();
+        IncrementalSearchAction.close(this);
         SetColorsAction.closeSetColorsWindow();
         OpenSourceFileOnKeywordAction.closeOpenSourceWindow();
+        ConfigTabulationsAction.closeConfTabWindow();
+        SearchWordInFilesAction.closeWindow();
 
         while (getTabPane().getTabCount() > 0) {
             closeTabAt(0, true);
         }
         scinotesList.remove(this);
+        if (scinotesList.size() == 0) {
+            NavigatorWindow.closeCurrent();
+            SearchFile.closeCurrent();
+        }
         editor = null;
         SwingScilabWindow window = (SwingScilabWindow) parentWindow.getAsSimpleWindow();
         Point p = window.getLocation();
@@ -543,8 +565,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
             }
         }
 
+        textPaneAt.close();
+
         if (textPaneAt.getName() == null) {
-            String closedTabName = tabPane.getTitleAt(indexTab);
+            String closedTabName = tabPane.getScilabTitleAt(indexTab);
             String closedTabNameIndex = closedTabName.substring(closedTabName.length() - 1, closedTabName.length());
             tabList.remove(Integer.valueOf(closedTabNameIndex));
             closedTabList.add(Integer.valueOf(closedTabNameIndex));
@@ -563,10 +587,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
             ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
         }
 
+        NavigatorWindow.removePane(textPaneAt);
+
         textPaneAt.close();
         tabPane.remove(indexTab);
-        return true;
 
+        textPaneAt = getTextPane();
+        if (textPaneAt != null) {
+            NavigatorWindow.updateNavigator((ScilabDocument) textPaneAt.getDocument());
+        }
+        return true;
     }
 
     /**
@@ -588,6 +618,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
 
         return true;
+    }
+
+    /**
+     * @return the list of the different openened editors
+     */
+    public static List<SciNotes> getSciNotesList() {
+        return scinotesList;
     }
 
     /**
@@ -627,10 +664,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         if (!force) {
             AnswerOption answer;
             if (scilabClose) {
-                answer = ScilabModalDialog.show(this, getTabPane().getTitleAt(indexTab) + SciNotesMessages.MODIFIED,
+                answer = ScilabModalDialog.show(this, getTabPane().getScilabTitleAt(indexTab) + SciNotesMessages.MODIFIED,
                                                 SciNotesMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO);
             } else {
-                answer = ScilabModalDialog.show(this, getTabPane().getTitleAt(indexTab) + SciNotesMessages.MODIFIED,
+                answer = ScilabModalDialog.show(this, getTabPane().getScilabTitleAt(indexTab) + SciNotesMessages.MODIFIED,
                                                 SciNotesMessages.SCILAB_EDITOR, IconType.QUESTION_ICON, ButtonType.YES_NO_CANCEL);
             }
 
@@ -661,21 +698,29 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         File newSavedFile = new File(fileToSave);
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
         ScilabDocument styledDocument = (ScilabDocument) textPaneAt.getDocument();
         styledDocument.setContentModified(false);
 
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
-        setTitle(newSavedFile.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
-
         // Get current file path for Execute file into Scilab
         fileFullPath = newSavedFile.getAbsolutePath();
         getTextPane().setLastModified(newSavedFile.lastModified());
 
+        if (textPaneAt.getName() == null) {
+            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
+            String index = name.substring(name.length() - 1, name.length());
+            tabList.remove(Integer.valueOf(index));
+            closedTabList.add(Integer.valueOf(index));
+        }
+
         textPaneAt.setName(fileToSave);
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
+
+        setTitle(textPaneAt.getTitle());
+
         return true;
     }
 
@@ -696,7 +741,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
             return true;
         }
 
-        if (!SaveFile.doSave(textPaneAt, newSavedFile, editorKit)) {
+        if (!SaveFile.doSave(textPaneAt, indexTab, newSavedFile, editorKit)) {
             return false;
         }
 
@@ -704,13 +749,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
         styledDocument.setContentModified(false);
 
         getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newSavedFile.getName());
-        setTitle(newSavedFile.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
 
         // Get current file path for Execute file into Scilab
         fileFullPath = newSavedFile.getAbsolutePath();
         getTextPane().setLastModified(newSavedFile.lastModified());
 
         textPaneAt.setName(fileToSave);
+        setTitle(textPaneAt.getTitle());
+
         return true;
     }
 
@@ -739,9 +785,23 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return the file picked up by the user
      */
     public String chooseFileToSave(String title) {
+        return chooseFileToSave(title, null);
+    }
+
+    /**
+     * Return through a file selector the name of the selected
+     * file.
+     * @param title the title for JFileChooser
+     * @param path the path where to open the filechooser
+     * @return the file picked up by the user
+     */
+    public String chooseFileToSave(String title, String path) {
         String extension = new String();
 
-        String initialDirectoryPath = getTextPane().getName();
+        String initialDirectoryPath = path;
+        if (initialDirectoryPath == null) {
+            initialDirectoryPath = getTextPane().getName();
+        }
         if (initialDirectoryPath == null) {
             initialDirectoryPath =  ConfigManager.getLastOpenedDirectory();
         }
@@ -778,9 +838,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
         fileChooser.setFileFilter(sceFilter);
         fileChooser.setTitle(title);
 
-        String name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
+        String name = getTextPane().getName();
+        if (name == null) {
+            name = ((ScilabDocument) getTextPane().getDocument()).getFirstFunctionName();
+            if (name != null) {
+                name += SCI_EXTENSION;
+            }
+        }
+
         if (name != null) {
-            fileChooser.setSelectedFile(new File(name + SCI_EXTENSION));
+            fileChooser.setSelectedFile(new File(name));
         }
 
         int retval = fileChooser.showSaveDialog(this);
@@ -842,10 +909,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
     /**
      * Save a file.
+     * @param path the initial path where the filechooser will be open
      * @return execution status
      */
-    public boolean saveAs() {
-        String filename = chooseFileToSave(SciNotesMessages.SAVE_AS);
+    public boolean saveAs(String path) {
+        String filename = chooseFileToSave(SciNotesMessages.SAVE_AS, path);
         if (filename == null || filename.length() == 0) {
             return true;
         }
@@ -853,8 +921,15 @@ public class SciNotes extends SwingScilabTab implements Tab {
         File f = new File(filename);
         ScilabDocument styledDocument = (ScilabDocument) getTextPane().getDocument();
 
-        if (!SaveFile.doSave(getTextPane(), f, editorKit)) {
+        if (!SaveFile.doSave(getTextPane(), getTabPane().getSelectedIndex(), f, editorKit)) {
             return false;
+        }
+
+        if (getTextPane().getName() == null) {
+            String name = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
+            String index = name.substring(name.length() - 1, name.length());
+            tabList.remove(Integer.valueOf(index));
+            closedTabList.add(Integer.valueOf(index));
         }
 
         ConfigManager.saveLastOpenedDirectory(f.getPath());
@@ -862,9 +937,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
         ConfigSciNotesManager.renameOpenFilesItem(f.getPath(), this, getTextPane());
         getTextPane().setName(f.getPath());
         getTabPane().setTitleAt(getTabPane().getSelectedIndex(), f.getName());
-        setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
+        setTitle(getTextPane().getTitle());
+
         RecentFileAction.updateRecentOpenedFilesMenu(this);
 
+        NavigatorWindow.updateNavigator(styledDocument);
         styledDocument.setContentModified(false);
         getTextPane().setLastModified(f.lastModified());
         getTextPane().setReadOnly(false);
@@ -895,11 +972,10 @@ public class SciNotes extends SwingScilabTab implements Tab {
         ScilabEditorPane sep = new ScilabEditorPane(this);
         initPane(sep);
         int ind = Math.min(Math.max(0, index), tabPane.getTabCount());
-        tabPane.insertTab(title, null, sep.getParentComponent(), "", ind);
+        tabPane.insertTab(title, null, sep.getEditorComponent(), "", ind);
         tabPane.setSelectedIndex(ind);
-        setContentPane(tabPane);
+        setContentPane(contentPane);
         initInputMap(sep);
-        setTitle(title + TIRET + SciNotesMessages.SCILAB_EDITOR);
         updateTabTitle();
         getInfoBar().setText(sep.getInfoBarText());
         repaint();
@@ -912,7 +988,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param pane the pane to init
      */
     public void initPane(ScilabEditorPane pane) {
-        initPane(pane, false);
+        initPane(pane, !ConfigSciNotesManager.getHorizontalWrap());
     }
 
     /**
@@ -950,6 +1026,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
     public void initInputMap(ScilabEditorPane pane) {
         setKeyStrokeAction(pane, this);
         LineBeautifierAction.putInInputMap(pane);
+        InsertOverwriteAction.putInInputMap(pane);
     }
 
     /**
@@ -958,8 +1035,11 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void splitTab(boolean vertical) {
         ScilabEditorPane pane = getTextPane();
+        Component bottom = pane.getEditorComponent().getBottom();
+        int state = pane.getXln().getState();
         ScilabEditorPane leftPane = new ScilabEditorPane(editor);
         ScilabEditorPane rightPane = new ScilabEditorPane(editor);
+        NavigatorWindow.changePaneOnSplit(pane, leftPane);
         initPane(leftPane, true);
         initPane(rightPane, true);
         leftPane.setOtherPaneInSplit(rightPane);
@@ -977,13 +1057,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
         } else {
             split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         }
-        leftPane.setSplitPane(split);
-        rightPane.setSplitPane(split);
-        tabPane.setComponentAt(tabPane.getSelectedIndex(), split);
+        leftPane.getXln().setWhereamiLineNumbering(state);
+        rightPane.getXln().setWhereamiLineNumbering(state);
         split.setLeftComponent(leftPane.getScrollPane());
         split.setRightComponent(rightPane.getScrollPane());
         split.setResizeWeight(0.5);
-        setContentPane(tabPane);
+        rightPane.setEditorComponent(leftPane.getEditorComponent());
+        leftPane.setSplitPane(split);
+        rightPane.setSplitPane(split);
+
+        setContentPane(contentPane);
         activateHelpOnTyping(leftPane);
         activateHelpOnTyping(rightPane);
         initInputMap(leftPane);
@@ -994,15 +1077,20 @@ public class SciNotes extends SwingScilabTab implements Tab {
         }
         getInfoBar().setText(leftPane.getInfoBarText());
         updateTabTitle();
+        tabPane.setComponentAt(tabPane.getSelectedIndex(), leftPane.getEditorComponent());
+        leftPane.getEditorComponent().insertBottomComponent(bottom);
+        leftPane.requestFocus();
     }
 
     /**
      * Remove a split
      */
     public void removeSplit() {
-        if (tabPane.getSelectedComponent() instanceof JSplitPane) {
+        if (((EditorComponent) tabPane.getSelectedComponent()).isSplited()) {
             ScilabEditorPane pane = new ScilabEditorPane(editor);
             ScilabEditorPane textpane = getTextPane();
+            Component bottom = textpane.getEditorComponent().getBottom();
+            NavigatorWindow.changePaneOnSplit(textpane, pane);
             initPane(pane);
             textpane.setOtherPaneInSplit(null);
             textpane.copyProps(pane);
@@ -1010,14 +1098,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
             pane.setDocument(doc);
             pane.setCaretPosition(0);
             activateHelpOnTyping(pane);
-            tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getScrollPane());
-            setContentPane(tabPane);
+            tabPane.setComponentAt(tabPane.getSelectedIndex(), pane.getEditorComponent());
+            setContentPane(contentPane);
             initInputMap(pane);
             if (doc.getBinary()) {
                 pane.setBinary(true);
             }
             getInfoBar().setText(pane.getInfoBarText());
             updateTabTitle();
+            pane.getEditorComponent().insertBottomComponent(bottom);
+            pane.requestFocus();
         }
     }
 
@@ -1026,15 +1116,23 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @return the text component inside the tab
      */
     public ScilabEditorPane addEmptyTab() {
+        ScilabEditorPane sep;
         if (closedTabList.size() > 0) {
-            Object obj = Collections.min(closedTabList);
-            closedTabList.remove(Integer.valueOf(obj.toString()));
-            return addTab(SciNotesMessages.UNTITLED + obj.toString());
+            Integer n = (Integer) Collections.min(closedTabList);
+            closedTabList.remove(n);
+            sep = addTab(SciNotesMessages.UNTITLED + n);
+            sep.setShortName(SciNotesMessages.UNTITLED + n);
+            sep.setTitle(SciNotesMessages.UNTITLED + n);
         } else {
             numberOfUntitled++;
             tabList.add(Integer.valueOf(numberOfUntitled));
-            return addTab(SciNotesMessages.UNTITLED + numberOfUntitled);
+            sep = addTab(SciNotesMessages.UNTITLED + numberOfUntitled);
+            sep.setShortName(SciNotesMessages.UNTITLED + numberOfUntitled);
+            sep.setTitle(SciNotesMessages.UNTITLED + numberOfUntitled);
         }
+        setTitle(sep.getTitle());
+
+        return sep;
     }
 
     /**
@@ -1052,14 +1150,14 @@ public class SciNotes extends SwingScilabTab implements Tab {
             File f = new File(textPaneName);
             newTitle.append(f.getName());
         } catch (NullPointerException e) { // not a file name, no path prefix to remove, but maybe a '*'
-            textPaneName = getTabPane().getTitleAt(getTabPane().getSelectedIndex());
+            textPaneName = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
             if (textPaneName.charAt(0) == '*') {
                 newTitle.append(textPaneName.substring(1, textPaneName.length()));
             } else {
                 newTitle.append(textPaneName);
             }
         }
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex() , newTitle.toString());
+        getTabPane().setTitleAt(getTabPane().getSelectedIndex(), newTitle.toString());
     }
 
     /**
@@ -1122,20 +1220,21 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public void reload(int index) {
         ScilabEditorPane textPaneAt = getTextPane(index);
-        if ((index == 0) && (getTabPane().getTabCount() == 1)) {
-            for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
-                tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+        if (textPaneAt.getName() != null) {
+            if ((index == 0) && (getTabPane().getTabCount() == 1)) {
+                for (int j = 0; j < tabPane.getChangeListeners().length; j++) {
+                    tabPane.removeChangeListener(tabPane.getChangeListeners()[j]);
+                }
+            }
+            ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
+            tabPane.remove(index);
+            File f = new File(textPaneAt.getName());
+            if (f.exists()) {
+                loadFile(f, index);
+            } else {
+                createNewFile(f);
             }
         }
-        ConfigSciNotesManager.removeFromOpenFiles(this, textPaneAt);
-        tabPane.remove(index);
-        File f = new File(textPaneAt.getName());
-        if (f.exists()) {
-            loadFile(f, index);
-        } else {
-            createNewFile(f);
-        }
-        ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
     }
 
     /**
@@ -1161,7 +1260,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             } else {
                 createNewFile(f);
             }
-            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
         }
 
         // Get current file path for Execute file into Scilab
@@ -1232,7 +1330,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
             } else {
                 createNewFile(f);
             }
-            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
         }
     }
 
@@ -1243,18 +1340,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public ScilabEditorPane getTextPane() {
         try {
-            Component c = tabPane.getSelectedComponent();
-            if (c instanceof JScrollPane) {
-                return (ScilabEditorPane) ((JScrollPane) c).getViewport().getComponent(0);
-            } else if (c instanceof JSplitPane) {
-                ScilabEditorPane sep = (ScilabEditorPane) ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getViewport().getComponent(0);
-                if (sep == ScilabEditorPane.getFocusedPane()) {
-                    return sep;
-                } else {
-                    return (ScilabEditorPane) ((JScrollPane) ((JSplitPane) c).getRightComponent()).getViewport().getComponent(0);
-                }
-            }
-            return null;
+            EditorComponent c = (EditorComponent) tabPane.getSelectedComponent();
+            return c.getEditorPane();
         } catch (NullPointerException e) {
             return null;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1269,18 +1356,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
      */
     public ScilabEditorPane getTextPane(int index) {
         try {
-            Component c = tabPane.getComponentAt(index);
-            if (c instanceof JScrollPane) {
-                return (ScilabEditorPane) ((JScrollPane) c).getViewport().getComponent(0);
-            } else if (c instanceof JSplitPane) {
-                ScilabEditorPane sep = (ScilabEditorPane) ((JScrollPane) ((JSplitPane) c).getLeftComponent()).getViewport().getComponent(0);
-                if (sep == ScilabEditorPane.getFocusedPane()) {
-                    return sep;
-                } else {
-                    return (ScilabEditorPane) ((JScrollPane) ((JSplitPane) c).getRightComponent()).getViewport().getComponent(0);
-                }
-            }
-            return null;
+            EditorComponent c = (EditorComponent) tabPane.getComponentAt(index);
+            return c.getEditorPane();
         } catch (NullPointerException e) {
             return null;
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -1324,6 +1401,51 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
+     * Auto-indent mode management
+     * @param b true to activate auto-indent mode
+     */
+    public static void setSuppressComments(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.suppressCommentsInExecutingCode(b);
+                if (sep.getOtherPaneInSplit() != null) {
+                    sep.getOtherPaneInSplit().suppressCommentsInExecutingCode(b);
+                }
+            }
+        }
+    }
+
+    /**
+     * Horizontal Wrap mode management
+     * @param b true to activate horizontal wrapping mode
+     */
+    public static void setHorizontalWrap(boolean b) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                if (sep.getOtherPaneInSplit() == null) {
+                    ScilabEditorPane pane = new ScilabEditorPane(editor);
+                    ed.initPane(pane, !b);
+                    sep.copyProps(pane);
+                    pane.setDocument(sep.getDocument());
+                    pane.setCaretPosition(sep.getCaretPosition());
+                    pane.getXln().setWhereamiLineNumbering(ConfigSciNotesManager.getLineNumberingState());
+                    ed.tabPane.setComponentAt(i, pane.getEditorComponent());
+                    ed.activateHelpOnTyping(pane);
+                    ed.initInputMap(pane);
+                    if (((ScilabDocument) sep.getDocument()).getBinary()) {
+                        pane.setBinary(true);
+                    }
+                    ed.getInfoBar().setText(pane.getInfoBarText());
+                }
+            }
+        }
+    }
+
+    /**
      * Enable the highlighted line in this editor
      * @param b boolean
      */
@@ -1359,6 +1481,30 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 sep.activateHelpOnTyping();
                 if (sep.getOtherPaneInSplit() != null) {
                     sep.getOtherPaneInSplit().activateHelpOnTyping();
+                }
+            }
+        }
+    }
+
+    /**
+     * Set the color of the highlighted line in this editor
+     * @param c Color
+     */
+    public static void setDefaultTabulation(TabManager.Tabulation tab) {
+        for (SciNotes ed : scinotesList) {
+            int n = ed.getTabPane().getTabCount();
+            for (int i = 0; i < n; i++) {
+                ScilabEditorPane sep = (ScilabEditorPane) ed.getTextPane(i);
+                sep.getTabManager().setTabulation(tab);
+                View view = ((ScilabDocument) sep.getDocument()).getView();
+                if (view != null) {
+                    if (view instanceof ScilabView) {
+                        ((ScilabView) view).setTabRepresentation(tab);
+                        ((ScilabView) view).reinitialize();
+                    } else {
+                        ((ScilabPlainView) view).setTabRepresentation(tab);
+                        ((ScilabPlainView) view).reinitialize();
+                    }
                 }
             }
         }
@@ -1463,18 +1609,18 @@ public class SciNotes extends SwingScilabTab implements Tab {
     }
 
     /**
-     * Get SciNotes main JTabbedPane.
-     * @return SciNotes main JTabbedPane
+     * Get SciNotes main ScilabTabbedPane.
+     * @return SciNotes main ScilabTabbedPane
      */
-    public JTabbedPane getTabPane() {
+    public ScilabTabbedPane getTabPane() {
         return tabPane;
     }
 
     /**
-     * Set SciNotes main JTabbedPane.
-     * @param tabPane SciNotes main JTabbedPane
+     * Set SciNotes main ScilabTabbedPane.
+     * @param tabPane SciNotes main ScilabTabbedPane
      */
-    public void setTabPane(JTabbedPane tabPane) {
+    public void setTabPane(ScilabTabbedPane tabPane) {
         this.tabPane = tabPane;
     }
 
@@ -1500,7 +1646,6 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param index the index where to put the file
      */
     public void loadFile(File f, int index) {
-        getInfoBar().setText(SciNotesMessages.LOADING);
         // Get current file path for Execute file into Scilab
         fileFullPath = f.getAbsolutePath();
 
@@ -1509,6 +1654,16 @@ public class SciNotes extends SwingScilabTab implements Tab {
 
         // File exist
         if (f.exists()) {
+            if (!f.canRead()) {
+                ScilabModalDialog.show(this, SciNotesMessages.NOTREADABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+                if (getTabPane().getTabCount() == 0) {
+                    addEmptyTab();
+                }
+                return;
+            }
+
+            getInfoBar().setText(SciNotesMessages.LOADING);
+
             if (index != -1) {
                 theTextPane = addTab(f.getName(), index);
             } else {
@@ -1518,25 +1673,12 @@ public class SciNotes extends SwingScilabTab implements Tab {
             styleDocument.disableUndoManager();
             theTextPane.setLastModified(f.lastModified());
 
-            FileInputStream fis = null;
-            InputStreamReader isr = null;
-            BufferedReader br = null;
-
             try {
                 styleDocument.setUpdater(false);
                 boolean indentMode = styleDocument.getAutoIndent();
                 styleDocument.setAutoIndent(false);
-                fis = new FileInputStream(f);
                 try {
-                    try {
-                        isr = new InputStreamReader(fis, styleDocument.getEncoding());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    } catch (ChangedCharSetException e) {
-                        isr = new InputStreamReader(fis, e.getCharSetSpec());
-                        br = new BufferedReader(isr);
-                        editorKit.read(br, styleDocument, 0);
-                    }
+                    ((ScilabEditorKit) editorKit).read(this, f, styleDocument, 0);
                 } catch (BadLocationException e) {
                     e.printStackTrace();
                 }
@@ -1544,31 +1686,30 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 styleDocument.setUpdater(true);
             } catch (IOException ioex) {
                 ioex.printStackTrace();
-            } finally {
-                try {
-                    if (fis != null) {
-                        fis.close();
-                    }
-                    if (isr != null) {
-                        isr.close();
-                    }
-                    if (br != null) {
-                        br.close();
-                    }
-                } catch (IOException e) { }
             }
 
             theTextPane.setName(f.getAbsolutePath());
-            getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
+            getTabPane().setTitleAt(getTabPane().getSelectedIndex(), f.getName());
+            setTitle(theTextPane.getTitle());
             styleDocument.setContentModified(false);
             styleDocument.enableUndoManager();
 
             if (styleDocument.getBinary()) {
                 theTextPane.setBinary(true);
             }
+
+            if (!f.canWrite()) {
+                getTextPane().setReadOnly(true);
+                JOptionPane.showMessageDialog(SciNotes.this, SciNotesMessages.READONLY);
+            }
+
             getInfoBar().setText(theTextPane.getInfoBarText());
 
             EncodingAction.updateEncodingMenu((ScilabDocument) getTextPane().getDocument());
+
+            ConfigManager.saveLastOpenedDirectory(f.getPath());
+            ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
+            ConfigSciNotesManager.saveToOpenFiles(f.getPath(), this, getTextPane());
 
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
@@ -1602,9 +1743,9 @@ public class SciNotes extends SwingScilabTab implements Tab {
                 editorKit.write(bw, styleDocument, 0, styleDocument.getLength());
                 bw.flush();
             } catch (IOException e) {
-                e.printStackTrace();
+                System.err.println(e);
             } catch (BadLocationException e) {
-                e.printStackTrace();
+                System.err.println(e);
             } finally {
                 try {
                     if (fos != null) {
@@ -1616,15 +1757,18 @@ public class SciNotes extends SwingScilabTab implements Tab {
                     if (bw != null) {
                         bw.close();
                     }
-                } catch (IOException e) { }
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
             }
 
             ConfigManager.saveLastOpenedDirectory(f.getPath());
             ConfigSciNotesManager.saveToRecentOpenedFiles(f.getPath());
-            ConfigSciNotesManager.saveToOpenFiles(editor.getTextPane().getName(), editor, editor.getTextPane());
+            ConfigSciNotesManager.saveToOpenFiles(theTextPane.getName(), this, theTextPane);
+
             theTextPane.setName(f.getPath());
             getTabPane().setTitleAt(getTabPane().getSelectedIndex() , f.getName());
-            setTitle(f.getPath() + TIRET + SciNotesMessages.SCILAB_EDITOR);
+            setTitle(theTextPane.getTitle());
             RecentFileAction.updateRecentOpenedFilesMenu(this);
 
             styleDocument.setContentModified(false);
@@ -1684,6 +1828,8 @@ public class SciNotes extends SwingScilabTab implements Tab {
                             ExitAction.doExit(arr[i]);
                         }
                         scinotesList.clear();
+                        NavigatorWindow.closeCurrent();
+                        SearchFile.closeCurrent();
                     }
                 });
         } catch (InterruptedException e) {
@@ -1712,7 +1858,7 @@ public class SciNotes extends SwingScilabTab implements Tab {
      * @param ed the SciNotes editor
      */
     private static void setKeyStrokeAction(ScilabEditorPane sep, SciNotes ed) {
-        Map<String, KeyStroke> map = new HashMap();
+        Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
         ConfigSciNotesManager.addMapActionNameKeys(map);
 
         ClassLoader loader = ClassLoader.getSystemClassLoader();

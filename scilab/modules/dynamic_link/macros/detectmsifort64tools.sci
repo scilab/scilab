@@ -11,27 +11,27 @@
 function bOK = detectmsifort64tools()
 
  bOK = %F;
- if getos() == 'Windows' & win64() then
-  IFORTPATH = '';
+ if getos() == "Windows" & win64() then
+  IFORTPATH = "";
    ifortcomp = findmsifortcompiler();
-   if ifortcomp <> 'unknown' then
+   if ifortcomp <> "unknown" then
      select ifortcomp,
-       case  'ifort12' then
-         IFORTPATH = getenv('IFORT_COMPILER12','');
+       case  "ifort12" then
+         IFORTPATH = getenv("IFORT_COMPILER12","");
 
-       case  'ifort11' then
-         IFORTPATH = getenv('IFORT_COMPILER11','');
+       case  "ifort11" then
+         IFORTPATH = getenv("IFORT_COMPILER11","");
 
-       case  'ifort10' then
-         IFORTPATH = getenv('IFORT_COMPILER10','');
+       case  "ifort10" then
+         IFORTPATH = getenv("IFORT_COMPILER10","");
 
-       case  'ifort9' then
-         IFORTPATH = getenv('IFORT_COMPILER9','');
+       case  "ifort9" then
+         IFORTPATH = getenv("IFORT_COMPILER9","");
 
      else
        show = displayWarningmsifort();
        if show then
-         TXT = gettext('Intel Fortran Comiler 9, 10, 11 or 12 Compiler not found.');
+         TXT = gettext("Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found.");
          warning(TXT);
          clear TXT;
          disableWarningmsifort();
@@ -41,10 +41,13 @@ function bOK = detectmsifort64tools()
      end
    end
 
-   if (ifortcomp == 'ifort11') | (ifortcomp == 'ifort12') then
-     IFORTSPATHEMT64 = IFORTPATH + 'lib\intel64';
-   else
-     IFORTSPATHEMT64 = IFORTPATH + 'em64t';
+   select ifortcomp,
+     case  "ifort12" then
+       IFORTSPATHEMT64 = IFORTPATH + "compiler\lib\intel64";
+     case  "ifort11" then
+       IFORTSPATHEMT64 = IFORTPATH + "lib\intel64";
+     else
+       IFORTSPATHEMT64 = IFORTPATH + "em64t";
    end
 
    if isdir(IFORTSPATHEMT64) then
@@ -55,18 +58,18 @@ function bOK = detectmsifort64tools()
 endfunction
 //=============================================================================
 function show = displayWarningmsifort()
-  settings_filename = '/.settings_warning_msif';
+  settings_filename = "/.settings_warning_msif";
   settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
   w = fileinfo(settings_file);
   show = %t;
   if isfile(settings_file) then
-    show = grep(mgetl(settings_file),'displayWarningIFx64=no')==[]
+    show = grep(mgetl(settings_file),"displayWarningIFx64=no")==[]
   end
 endfunction
 //=============================================================================
 function disableWarningmsifort()
-  settings_filename = '/.settings_warning_msif';
+  settings_filename = "/.settings_warning_msif";
   settings_file = pathconvert(SCIHOME+settings_filename,%f,%t);
-  mputl('displayWarningIFx64=no',settings_file);
+  mputl("displayWarningIFx64=no",settings_file);
 endfunction
 //=============================================================================

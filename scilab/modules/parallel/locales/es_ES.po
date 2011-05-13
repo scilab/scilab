@@ -1,0 +1,42 @@
+# Spanish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-16 14:49+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: %s module is not installed.\n"
+msgstr "%s: El módulo %s no está instalado.\n"
+
+#, c-format
+msgid "%s: This function is forbidden in a concurrent execution context.\n"
+msgstr ""
+"%s: Esta función está prohibida en un entorno de ejecución concurrente.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size of input argument #%d: Number of columns are incompatible "
+msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: El número de "
+"columnas es incompatible "
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"

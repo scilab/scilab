@@ -22,10 +22,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
     <synopsis>[path,fname,extension]=fileparts(fullpath)
-v=fileparts(fullpath,sel)</synopsis>
+value=fileparts(fullpath,sel)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fullpath</term>
@@ -80,8 +80,8 @@ v=fileparts(fullpath,sel)</synopsis>
 fileparts('SCI/etc/scilab.start','extension')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>

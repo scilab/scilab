@@ -1,0 +1,2158 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-27 06:49+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+"\n"
+"         (already programmed) event. There may be an error in"
+msgstr ""
+"\n"
+"         événement (déjà programmé). Il y a peut-être une erreur dans"
+
+msgid ""
+"\n"
+"         your model. Please check your model\n"
+msgstr ""
+"\n"
+"         votre modèle. Veuillez vérifier votre modèle\n"
+
+msgid ""
+"\n"
+" The residual function returns NAN/Inf. \n"
+" Please verify your model:\n"
+" some functions might be called with illegal inputs."
+msgstr ""
+"\n"
+" La fonction résiduelle renvoie NaN/Inf. \n"
+" Veuillez vérifier votre modèle :\n"
+" quelques fonctions pourraient être appelées avec des valeurs d'entrée "
+"illégales."
+
+#, c-format
+msgid ""
+"\n"
+" Warning: an event is reprogrammed at t=%g by removing another"
+msgstr ""
+"\n"
+" Attention: un évènement est reprogrammé à t=%g par la suppression d'un autre"
+
+msgid ""
+"\n"
+" error in Jacobian"
+msgstr ""
+"\n"
+" erreur dans le Jacobien"
+
+#, c-format
+msgid ""
+"\n"
+"MEMORY_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"MEMORY_ERROR : %s () a échoué - le pointeur NULL a été retourné\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR : %s () a échoué -  le pointeur NULL a été retourné\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed with flag = %d\n"
+"\n"
+msgstr ""
+"\n"
+"SUNDIALS_ERROR : %s () a échoué avec le drapeau = %d\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The computing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avertissement : La fonction de calcul #%d renvoie NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The initialization system #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Avertissement : Le système d'initialisation #%d renvoie un NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Attention: La fonction résidu n° %d retourne un NaN/Inf"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero-crossing function #%d returns a NaN"
+msgstr ""
+"\n"
+"Avertissement : La fonction passant par zéro #%d renvoie un NaN"
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero_crossing function #%d returns a NaN/Inf"
+msgstr ""
+"\n"
+"Attention: La fonction zero_crossing n° %d retourne un NaN/Inf"
+
+msgid ""
+"\n"
+"getscicosvars : utility function to retrieve\n"
+msgstr ""
+"\n"
+"getscicosvars : fonction utilitaire pour récupérer\n"
+
+msgid ""
+"                scicos arrays during simulation.\n"
+"\n"
+msgstr ""
+"                tableaux scicos pendant la simulation\n"
+"\n"
+
+msgid "  that must be informed with the following values :\n"
+msgstr "  qui doit être informée avec la valeurs suivantes:\n"
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " %s.mo ne peut pas être compilée\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " Compilation de %s.mo forcée\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo doit être recompilée\n"
+
+msgid " Scilab is in no gui mode : Scicos is unavailable"
+msgstr " Scilab est en mode sans-UI : Scicos n'est pas disponible"
+
+#, c-format
+msgid "%s : Allocation error.\n"
+msgstr "%s : Erreur d'allocation.\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(1).\n"
+msgstr "%s : Mauvaise dimension pour Rhs(1).\n"
+
+#, c-format
+msgid "%s : Bad size for Rhs(2).\n"
+msgstr "%s : Mauvaise dimension pour Rhs(2).\n"
+
+#, c-format
+msgid "%s : Error.\n"
+msgstr "%s : Erreur.\n"
+
+#, c-format
+msgid "%s : First argument must be a Typed list.\n"
+msgstr "%s : Le premier argument doit être une liste typée.\n"
+
+#, c-format
+msgid ""
+"%s : First argument must be a matrix or an hypermatrix\n"
+"of real, complex or integer numbers.\n"
+msgstr ""
+"%s : Le premier argument doit être une matrice ou une hypermatrice \n"
+"de réels, complexes ou de nombres entiers.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos model.\n"
+msgstr "%s : Le premier argument doit être un modèle scicos.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos signal structure.\n"
+msgstr "%s : Le premier argument doit être une structure scicos signal.\n"
+
+#, c-format
+msgid "%s : First argument must be a scicos_block typed list.\n"
+msgstr "%s : Le premier argument doit être une liste typée scicos_block.\n"
+
+#, c-format
+msgid "%s : First argument must be a string.\n"
+msgstr "%s : Le premier argument doit être une chaîne de caractères.\n"
+
+#, c-format
+msgid "%s : First argument must be a structure.\n"
+msgstr "%s : Le premier argument doit être une structure.\n"
+
+#, c-format
+msgid "%s : First argument must be a valid scicos_block typed list.\n"
+msgstr ""
+"%s : Le premier argument doit être une liste typée scicos_block valide.\n"
+
+#, c-format
+msgid "%s : Fourth argument must be a Tlist.\n"
+msgstr "%s : Le quatrième argument doit être une Tlist.\n"
+
+#, c-format
+msgid "%s : Function not found\n"
+msgstr "%s : Fonction non trouvée\n"
+
+#, c-format
+msgid "%s : Incompatible sim.nb RHS parameter.\n"
+msgstr "%s : Paramètre RHS sim.nb incompatible.\n"
+
+#, c-format
+msgid "%s : No more free memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr "%s : Pas assez de mémoire.\n"
+
+#, c-format
+msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
+msgstr "%s : Seules les hypermatrices à 3 dimensions sont autorisées.\n"
+
+#, c-format
+msgid "%s : Second argument must be a real.\n"
+msgstr "%s : Le second argument doit être un réel.\n"
+
+#, c-format
+msgid "%s : Second argument must be a scalar.\n"
+msgstr "%s : Le deuxième argument doit être une grandeur scalaire.\n"
+
+#, c-format
+msgid "%s : Second argument must be scalar.\n"
+msgstr "%s : Le second argument doit être un scalaire.\n"
+
+#, c-format
+msgid "%s : Second element of sim must be a list.\n"
+msgstr "%s : Le second élément de sim doit être une liste.\n"
+
+#, c-format
+msgid "%s : Sixth argument must have a maximum of seven elements.\n"
+msgstr "%s : Le sixième élément doit avoir un maximum de sept éléments.\n"
+
+#, c-format
+msgid "%s : Sixth argument must have at least four elements.\n"
+msgstr "%s : Le sixième argument doit avoir au moins quatre élémens.\n"
+
+#, c-format
+msgid "%s : Third argument must be a scalar.\n"
+msgstr "%s : Le troisième élément doit être un scalaire.\n"
+
+#, c-format
+msgid "%s : Third argument must be scalar.\n"
+msgstr "%s : Le troisième argument doit être scalaire.\n"
+
+#, c-format
+msgid "%s : Undefined Function type\n"
+msgstr "%s : Type de fonction non défini\n"
+
+#, c-format
+msgid "%s : Undefined field in string matrix position : %d.\n"
+msgstr ""
+"%s : Champ non défini à la position %d dans la matrice de chaînes de "
+"caractères.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
+msgstr ""
+"%s : Dimension non déterminée. in(%d)=%d. Ajuster votre modèle SVP.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
+msgstr ""
+"%s : Dimension non déterminée. in2(%d)=%d. Ajuster votre modèle SVP.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
+msgstr ""
+"%s : Dimension non déterminée. out(%d)=%d. Ajuster votre modèle SVP.\n"
+
+#, c-format
+msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
+msgstr ""
+"%s : Dimension non déterminée. out2(%d)=%d. Ajuster votre modèle SVP.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Type non déterminé. intyp(%d)=%d. Ajuster votre modèle SVP.\n"
+
+#, c-format
+msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
+msgstr "%s : Type non déterminé. outtyp(%d)=%d. Ajuster votre mmodèle SVP.\n"
+
+#, c-format
+msgid "%s : bad dimension for lnksz argument.\n"
+msgstr "%s : mauvaise dimension pour l'argument lnksz.\n"
+
+#, c-format
+msgid "%s : bad dimension for lnktyp argument.\n"
+msgstr "%s : mauvaise dimension pour l'argument lnktyp.\n"
+
+#, c-format
+msgid "%s : error\n"
+msgstr "%s : erreur\n"
+
+#, c-format
+msgid "%s : error in cross variable size checking : %d\n"
+msgstr ""
+"%s : erreur dans la vérification croisée des dimensions des variables: %d\n"
+
+#, c-format
+msgid "%s : error. Type %d not yet supported for outtb.\n"
+msgstr "%s : erreur. Le type %d n'est pas encore supporté pour outtb.\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
+msgstr ""
+"%s : erreur. Le type %d de la matrice de double scalaire n'est pas encore "
+"supporté pour outtb.\n"
+
+#, c-format
+msgid ""
+"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgstr ""
+"%s : erreur. Le type %d de la matrice d'entier scalaire n'est pas encore "
+"supporté pour outtb.\n"
+
+#, c-format
+msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
+msgstr "%s : dimension incompatible entre lnksz et lnktyp.\n"
+
+#, c-format
+msgid "%s : lnksz and lnktyp argument must have the same length.\n"
+msgstr "%s : Les arguments lnksz et lnktyp doivent avoir la même longueur.\n"
+
+#, c-format
+msgid "%s : lnksz argument must be double or integer.\n"
+msgstr "%s : L'argument lnksz doit être double ou entier.\n"
+
+#, c-format
+msgid "%s : lnktyp argument must be double or integer.\n"
+msgstr "%s : L'argument lnktyp doit être double ou entier.\n"
+
+#, c-format
+msgid "%s : outtb element of state must be a list.\n"
+msgstr "%s : L'élément d'état outtb doit être une liste.\n"
+
+#, c-format
+msgid "%s : oz element of state must be a list.\n"
+msgstr "%s : L'élément d'état oz doit être une liste.\n"
+
+#, c-format
+msgid "%s : sim.opar must be a list.\n"
+msgstr "%s : sim.opar doit être une liste.\n"
+
+#, c-format
+msgid "%s : type 1 function not allowed for scilab blocks\n"
+msgstr ""
+"%s : Les fonctions de type 1 ne sont pas autorisées pour les blocks scilab\n"
+
+#, c-format
+msgid "%s : type 2 function not allowed for scilab blocks\n"
+msgstr ""
+"%s : Les fonctions de type 2 ne sont pas autorisées pour les blocks scilab\n"
+
+#, c-format
+msgid "%s : unknown block : %s\n"
+msgstr "%s : block inconnu : %s\n"
+
+#, c-format
+msgid "%s :the handle is not or no more valid.\n"
+msgstr "%s : le handle n'est pas ou n'est plus valide.\n"
+
+#, c-format
+msgid "%s is not a valid directory\n"
+msgstr "%s n'est pas un répertoire valide\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s n'est pas un nom valide, changez, svp, le titre du diagramme."
+
+#, c-format
+msgid "%s: 1st and 2nd argument must have equal size\n"
+msgstr "%s: Les 1er et 2nd arguments doivent avoir une dimension identique\n"
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr ""
+"%s: Impossible de trouver les fichiers MO dans le répertoire suivant: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: Le diagramme ne compile pas à l'étape %d.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Erreur: Un bloc scifunc n'a pas été défini."
+
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr ""
+"%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
+
+#, c-format
+msgid "%s: First argument must be a Scicos diagram data structure\n"
+msgstr ""
+"%s: Le premier argument doit être une structure de donnée d'un diagramme "
+"Scicos\n"
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Les ports d'entrée ne sont pas numérotés correctement.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation de mémoire.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Les ports de sortie ne sont pas numérotés correctement.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr "%s : Impossible de trouver les entrées du diagramme\n"
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr "%s : Impossible de trouver les sorties du diagramme\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s : Nombre incorrect d'argument(s) d'entrée : Au moins %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée. Doit être entre %d et %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s : Nombre incorrect d'arguments d'entrée : entre %d et %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Mauvais nombre d'arguments de sortie : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un seul entier "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s : Type incorrect de l'argument d'entrée #%d : structure de données de "
+"type %s attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+"%s : Type incorrect de l'argument d'entrée #%d : Diagramme attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s : Type incorrect de l'argument d'entrée #%d : Liste attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Entier attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s : Type incorrect de l'argument d'entrée #%d : Tableau de chaîne de "
+"caractères attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr "%s : Valeur incorrect de l'argument d'entrée #%d : ''%s'' attendu.\n"
+
+#, c-format
+msgid "%s: error %d. A type of a scilab object has changed.\n"
+msgstr "%s: erreur %d. Le type d'un objet Scilab a changé.\n"
+
+#, c-format
+msgid "%s: error %d. Bad double object sub_type.\n"
+msgstr "%s: erreur %d. Mauvais objet double sub_type.\n"
+
+#, c-format
+msgid "%s: error %d. Bad int object sub_type.\n"
+msgstr "%s: erreur %d. Mauvais objet entier sub_type.\n"
+
+#, c-format
+msgid "%s: error %d. No more space on the stack for new data.\n"
+msgstr ""
+"%s: erreur %d. Plus de place disponible sur la stack pour de nouvelles "
+"données.\n"
+
+#, c-format
+msgid "%s: error %d. Only int or double object are accepted.\n"
+msgstr ""
+"%s: erreur %d. Uniquement des objets entiers ou double sont acceptés.\n"
+
+#, c-format
+msgid "%s: error %d. Stack is full.\n"
+msgstr "%s: erreur %d. La stack est pleine.\n"
+
+#, c-format
+msgid "%s: error %d. Undefined error.\n"
+msgstr "%s: erreur %d. Erreur non définie.\n"
+
+#, c-format
+msgid "%s: scicosim is not running.\n"
+msgstr "%s: scicosim n'est pas lancé.\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Edition"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Tools"
+msgstr "&Outils"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr "&nbsp; %s la taille du port d'entrée est : %s"
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr "&nbsp; Taille du port de sortie %s : %s"
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr "&nbsp;Taille du port d'entrée %s : %s"
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr "&nbsp;Type du port d'entrée %s : %s"
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr "&nbsp;Taille du port de sortie %s : %s"
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr "&nbsp;Type du port de sortie %s : %s"
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr "''scicos'' n'est plus accessible, veuillez utiliser ''xcos''.\n"
+
+msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
+msgstr ""
+"**** SUNDIALS.IDA échec de l'initialisation -> essayer encore *****\n"
+
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
+msgstr "**** SUNDIALS.IDA initialisé avec succès *****\n"
+
+#, c-format
+msgid ""
+"**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+"**** SUNDIALS.Ida: trop de travail à l'instant=%g (région raide, changer "
+"RTOL et ATOL)\n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
+msgstr "****SUNDIALS.Cvode de: %f à %f hot= %d  \n"
+
+#, c-format
+msgid "****SUNDIALS.Cvode reached: %f\n"
+msgstr "****SUNDIALS.Cvode atteint: %f\n"
+
+#, c-format
+msgid ""
+"****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+"****SUNDIALS.Cvode: trop de travail à l'instant=%g (région raide, changer "
+"RTOL et ATOL)\n"
+
+#, c-format
+msgid "****SUNDIALS.Ida reached: %f\n"
+msgstr "****SUNDIALS.Ida atteint: %f\n"
+
+#, c-format
+msgid "****daskr from: %f to %f hot= %d  \n"
+msgstr "****daskr de: %f à %f hot= %d  \n"
+
+msgid "**mod**\n"
+msgstr "**mod**\n"
+
+msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
+msgstr "- [\"str1\";\"str2\",...] est une matrice de chaînes de caractères\n"
+
+msgid "- myvar : an int32 or double matrix or a Tlist.\n"
+msgstr "- myvar : un int32 ou une matrice double ou une tlist.\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "About Scicos"
+msgstr "A propos de Scicos"
+
+msgid "Activate Scilab Window"
+msgstr "Active la Fenêtre Scilab"
+
+msgid "Add a new color at the Scicos palette"
+msgstr "Ajoute une nouvelle couleur dans la palette Scicos"
+
+msgid "Add color"
+msgstr "Ajoute une couleur"
+
+msgid "Add new block"
+msgstr "Ajoute un nouveau block"
+
+msgid "Align"
+msgstr "Aligner"
+
+msgid "An Atomic Superblock cannot contain sample clocks"
+msgstr ""
+"Un Superblock Atomique ne peut pas contenir d'horloges d'échantillonnage"
+
+msgid "An error occur when evaluating context:"
+msgstr "Une erreur est survenue pendant l'évaluation du contexte:"
+
+#, c-format
+msgid ""
+"An unexpected  error occurred while executing the menu\n"
+"%s:\n"
+msgstr ""
+"Une erreur inattendue est survenue pendant l'exécution du menu\n"
+"%s:\n"
+
+msgid "Analyze Diagram"
+msgstr "Analyse le Diagramme"
+
+msgid "Atomic"
+msgstr "Atomique"
+
+msgid "Available Parameters"
+msgstr "Paramètres Disponibles"
+
+msgid "Background color"
+msgstr "Couleur de l'arrière-plan"
+
+msgid "Background color ? :"
+msgstr "Couleur de fond ? :"
+
+msgid "Block Documentation"
+msgstr "Documentation du Block"
+
+msgid "Block ID font name"
+msgstr "Nom de la police de caractère de l'ID du Block"
+
+msgid "Block ID font size"
+msgstr "Taille de la police de caractère de l'ID du block"
+
+msgid "BrowseTo"
+msgstr "Parcourir"
+
+msgid "Browser"
+msgstr "Navigateur"
+
+msgid "C Code Generation"
+msgstr "Génération de Code C"
+
+msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "CV_BAD_ABSTOL: abstol a des composantes nétagives (illégale)."
+
+msgid ""
+"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+"[((d/dt)^k)y](t)."
+msgstr ""
+"CV_BAD_DKY:  L'argument dky était NULL. dky est le vecteur de la dérivée de "
+"la sortie [((d/dt)^k)y](t)."
+
+msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
+msgstr ""
+"CV_BAD_EWT: L'ewt initial has des composantes égales à zéros (illégale)."
+
+msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "CV_BAD_H0: h0 et tout - t0 sont inconsistents."
+
+msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "CV_BAD_INIT_ROOT: La racine trouvée sur et près du t initial."
+
+msgid "CV_BAD_ITASK: Illegal value for itask."
+msgstr "CV_BAD_ITASK: Valeur illégale pour itask."
+
+msgid ""
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_WF."
+msgstr ""
+"CV_BAD_ITOL: Valeur illégale pour itol. Les valeurs légales sont CV_SS, "
+"CV_SV, et CV_WF."
+
+msgid ""
+"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
+"range 0, 1, ..., qu, where qu is the order last used"
+msgstr ""
+"CV_BAD_K: k (l'ordre de la dérivée de y à calculer) n'est pas dans "
+"l'interval 0, 1, ..., qu, où qu est le dernier ordre utilisé"
+
+msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+"CV_BAD_NVECTOR: Une opération vectorielle requise n'est pas implémentée."
+
+msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "CV_BAD_RELTOL: la tolérance relative est reltol < 0 illégale."
+
+msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "CV_BAD_T: t n'est pas dans l'interval [tn-hu,tn]."
+
+msgid ""
+"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+"CV_BAD_TOUT: Problèmes lors de l'interpolation. ''tout'' est trop loins "
+"derrière la direction d'intégration"
+
+msgid ""
+"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+"CV_BAD_TSTOP: tstop est derrière le temps de simulation courant dans la "
+"direction d'intégration."
+
+msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr ""
+"CV_CLOSE_ROOTS: La raciné trouvée est sur et très près de l'instant de "
+"départ."
+
+msgid ""
+"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
+"= 10) during one internal time step or occurred with |h| = hmin."
+msgstr ""
+"CV_CONV_FAILURE: L'échec du test de convergence est apparau trop souvent (= "
+"MXNCF = 10) pendant un pas temporelle interne ou est apparu avec |h| = hmin."
+
+msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
+msgstr "CV_Derivative_NAN: Les dérivées retournées par les blocks sont NAN."
+
+msgid ""
+"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
+"during one internal step or occurred with |h|=h_min "
+msgstr ""
+"CV_ERR_FAILURE: L'échec du test d'erreur est apparu trop souvent (=MXETF = "
+"7) pendant un pas temporelle ou est apparu avec |h|=h_min "
+
+msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "CV_EWT_FAIL: Echec de la fonction EwtSet fournie par l'utilisateur"
+
+msgid ""
+"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error at the first call"
+msgstr ""
+"CV_FIRST_RHSFUNC_ERR: La fonction du coté droit (ODE fournie pas "
+"l'utilisateur) a une erreur récupérable au premier appel"
+
+msgid ""
+"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
+"situation where a component of the error weight vector becomes negative "
+"during internal time-stepping. This also includes if the linear solver "
+"function initialization (called by the user after calling CVodeCreat) failed "
+"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
+"happens if number of root functions is positive but the return surface value "
+"is NULL. "
+msgstr ""
+"CV_ILL_INPUT: indique qu'un argument d'entrée était illégal. Ceci comprend "
+"la situation ou une composante du vecteur de poids de l'erreur est devenu "
+"négative pendant un pas temporel interne. Ceci inclue aussi le cas où "
+"l'initialisation de la fonction de résolution linéaire (appelé par "
+"l'utilisateur après l'appel de CVodeCreat) a échoué lors de l'affectation du "
+"champ du solveur linéaire spécifique ''lsolve'' dans cvode_mem. Cette erreur "
+"apparaît sur le nombre de fonctions racines est positif mais la valeur de "
+"retour de la surface est NULL. "
+
+msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
+msgstr ""
+"CV_LINIT_FAIL: La fonction d'initialisation du solveur linéaire a échoué."
+
+msgid ""
+"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
+"unrecoverable manner."
+msgstr ""
+"CV_LSETUP_FAIL: La routine de réglage du solveur linéaire a échoué de façon "
+"irrécupérable."
+
+msgid ""
+"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
+"unrecoverable manner."
+msgstr ""
+"CV_LSOLVE_FAIL: La routine de résolution du solveur linéaire a échoué de "
+"façon irrécupérable."
+
+msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr ""
+"CV_LSOLVE_NULL: La routine de résolution du solveur linéaire est NULL."
+
+msgid ""
+"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
+"maxord"
+msgstr ""
+"CV_MEM_FAIL: une allocation mémoire a échoué, incluant une tentative "
+"d'accroitre maxord"
+
+msgid "CV_MEM_NULL: the cvode memory was NULL"
+msgstr "CV_MEM_NULL: la mémoire cvode était NULL"
+
+msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
+msgstr ""
+"CV_NO_EFUN: itol = CV_WF mais aucune fonction EwtSet n'a été fournie."
+
+msgid ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
+"was not set"
+msgstr ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP ou itask = CV_ONE_STEP_TSTOP mais tstop "
+"n'a pas été défini"
+
+msgid ""
+"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
+"CVodeMalloc has not been called)."
+msgstr ""
+"CV_NO_MALLOC: indique que cvode_mem n'a pas été alloué (i.e., CVodeMalloc "
+"n'a pas été appelé)."
+
+msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "CV_NULL_ABSTOL: les tolérances absolues is = NULL illégal."
+
+msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr ""
+"CV_NULL_F: la routine ODE fournie par l'utilisateur est NULL illégal."
+
+msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+"CV_NULL_G: la routine de zero-crossing fournie par l'utilisateur est NULL "
+"illégal."
+
+msgid "CV_NULL_Y0: y0 = NULL illegal."
+msgstr "CV_NULL_Y0: y0 = NULL illégal."
+
+msgid ""
+"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
+"repeated recoverable errors in the right-hand side function (user supplied "
+"ODE). This error may be raised due to repeated  recoverable errors during "
+"the estimation of an initial step size."
+msgstr ""
+"CV_REPTD_RHSFUNC_ERR: Les tests de convergence sont apparus trop souvent du "
+"à des erreurs récupérables répétées dans la fonction du membre de droite "
+"(ODE fournie par l'utilisateur). Cette erreur a pu être émise à cause "
+"d'erreurs récupérables répétées pendant l'estimation de la taille du pas "
+"initial."
+
+msgid ""
+"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
+"an unrecoverable manner"
+msgstr ""
+"CV_RHSFUNC_FAIL: La fonction du membre de droite (ODE fournie par "
+"l'utilisateur) a échoué de manière irrécupérable"
+
+msgid ""
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
+msgstr ""
+"CV_RTFUNC_FAIL: La routine de recherche de racine a échoué de manière "
+"irrécupérable."
+
+msgid "CV_Rootfunction_NAN: The Root function returns NAN."
+msgstr "CV_Rootfunction_NAN: La fonction Root retourne NAN."
+
+msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+"CV_TOO_CLOSE: ''tout'' trop proche de ''t0'' pour démarrer l'intégration."
+
+msgid ""
+"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step"
+msgstr ""
+"CV_TOO_MUCH_ACC: Le solveur ne peut pas satisfaire la précision demandée par "
+"l'utilisateur pour certains pas internes"
+
+msgid ""
+"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"CV_TOO_MUCH_WORK: Le solveur a pris mxstep pas internes pour atteindre "
+"''tout''. La valeur pas défaut de est MXSTEP_DEFAULT = 500."
+
+msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "CV_TRET_NULL: ''tret'' = NULL illégal."
+
+msgid ""
+"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error, but no recovery was possible."
+msgstr ""
+"CV_UNREC_RHSFUNC_ERR: Le fonction du membdre de droite (ODE fournie par "
+"l'utilisateur) a subi une erreur récupérable, mais aucune récupération "
+"n'était possible."
+
+msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "CV_YOUT_NULL: ''yout'' = NULL illégal."
+
+msgid "Calc"
+msgstr "Calculer"
+
+msgid "Can''t convert old diagram (problem in version)"
+msgstr "Impossible de convertir l'ancien diagramme (problème de version)"
+
+msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
+msgstr ""
+"Ne peut pas trouver le mode initial, peut être y a-t-il une condition de "
+"mode glissant"
+
+msgid "Choose export format:"
+msgstr "choisissez un format d'exportation:"
+
+msgid "Click block to label"
+msgstr "Cliquez sur le block pour ajouter un label"
+
+msgid "Click block to resize"
+msgstr "Cliquez sur le block pour le redimensionner"
+
+msgid "Click object to move, drag and click (left to fix, right to cancel)"
+msgstr ""
+"Cliquez sur un objet à déplacer, glissez et cliquez (clique gauche pour le "
+"fixer, clique droit pour abandonner)"
+
+msgid ""
+"Click on a Super Block (without activation output) to obtain a coded block!"
+msgstr ""
+"Cliquez sur un Super Block (sans sortie d'activation) pour obtenir un block "
+"codé!"
+
+msgid "Click on a block to set or get its documentation"
+msgstr "Cliquez sur un block pour affecter ou récupérer sa documentation"
+
+msgid "Click on a port of object to be moved"
+msgstr "Cliquez sur un port, cliquez sur un port de l'objet à déplacer"
+
+msgid "Click on a super block"
+msgstr "Cliquez sur un Super Block"
+
+msgid "Click on an object to set or get identification"
+msgstr "Cliquez sur un objet pour affecter ou récupérer son identification"
+
+msgid "Click on block to  open graphic icon editor"
+msgstr "Cliquez sur un block pour ouvrir l'éditeur graphique d'icone"
+
+msgid "Click on block to be flipped"
+msgstr "Cliquez sur le block à renverser"
+
+msgid "Click on block to be turned left"
+msgstr "Cliquez sur le block à tourner à gauche"
+
+msgid "Click on block to be turned right"
+msgstr "Cliquez sur le block à tourner à droite"
+
+msgid "Click on block to edit its icon"
+msgstr "Cliquez sur le block pour éditer son icone"
+
+msgid "Click on object  to get information on it"
+msgstr "Cliquez sur l'objet pour obtenir de l'information"
+
+msgid "Click on object to choose its color"
+msgstr "Cliquez sur l'objet pour choisir sa couleur"
+
+msgid ""
+"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgstr ""
+"Cliquez sur l'objet à dupliquer, glisser, cliquer (clique gauche pour "
+"copier, clique droit pour abandonner)"
+
+msgid "Click to open block or make a link"
+msgstr "Cliquez pour ouvrir le block ou pour contruire un lien"
+
+msgid "Click where you want object to be placed (right-click to cancel)"
+msgstr "Cliquer où vous voulez placer l'objet (clic-droit pour annuler)"
+
+msgid "Close"
+msgstr "Fermer"
+
+msgid "Code Generation only works for a Superblock !\n"
+msgstr "La génération de code fonctionne uniquement pour un super-bloc !\n"
+
+msgid "Code generation applies only to Super Blocks."
+msgstr "La génération de code s'applique seulement aux super-blocs."
+
+msgid "Color"
+msgstr "Couleur"
+
+msgid "Compile"
+msgstr "Compiler"
+
+msgid "Connection error"
+msgstr "Erreur de connexion"
+
+msgid "Context"
+msgstr "Contexte"
+
+msgid "Copy"
+msgstr "Copier"
+
+msgid "Create Atomic"
+msgstr "Créé Atomique"
+
+msgid "Create Mask"
+msgstr "Créer un masque"
+
+msgid "CtrlSelect"
+msgstr "CtrlSélect"
+
+msgid "Customize Mask"
+msgstr "Personnaliser le masque"
+
+msgid "Customize block GUI:"
+msgstr "Customise l'interface graphique du block:"
+
+msgid "Cut"
+msgstr "Couper"
+
+msgid "Cut: Click on the object to cut"
+msgstr "Couper : Cliquer sur l'objet pour le couper"
+
+msgid "Debug Level"
+msgstr "Niveau de débogage"
+
+msgid "Default link colors"
+msgstr "Couleurs par défaut du lien"
+
+msgid "Default window parameters"
+msgstr "Paramètres par défaut de la fenêtre"
+
+msgid "Defined shortcuts"
+msgstr "Raccourcis définis"
+
+msgid "Delete"
+msgstr "Supprimer"
+
+msgid "Delete: Click on the object to delete"
+msgstr "Suppression : Cliquer sur l'objet pour le supprimer"
+
+msgid "Demos"
+msgstr "Démos"
+
+msgid "Details"
+msgstr "Détails"
+
+msgid "Diagram"
+msgstr "Diagramme"
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+"Ce diagramme a été compilé pour le solveur explicite\n"
+"démarrage du solveur explicite"
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+"Ce diagramme a été compilé pour le solveur implicite\n"
+"démarrage du solveur implicite"
+
+msgid "Done\n"
+msgstr "Effectué\n"
+
+msgid "Drag, click left for final or intermediate points or right to cancel"
+msgstr ""
+"Glisser, clic gauche pour les points finaux ou intermédiaires ou droit de "
+"annuler"
+
+msgid "Duplicate"
+msgstr "Dupliquer"
+
+msgid "Edit"
+msgstr "Edition"
+
+msgid "End of activation"
+msgstr "Fin d'activation"
+
+msgid "End of activation\n"
+msgstr "Fin d'activation\n"
+
+msgid "End problem: "
+msgstr "Problème à la Fin : "
+
+msgid "Entering the block \n"
+msgstr "Entre dans le block \n"
+
+msgid "Error\n"
+msgstr "Erreur\n"
+
+msgid "Error in the Debug block \n"
+msgstr "Erreur dans le bloc de débogage \n"
+
+#, c-format
+msgid "Error: cannot find '%s'  \n"
+msgstr "Erreur : impossible de trouver '%s'  \n"
+
+#, c-format
+msgid "Error: cannot write to  '%s'  \n"
+msgstr "Erreur : impossible d'écrire dans '%s'  \n"
+
+msgid "Eval"
+msgstr "Évaluation"
+
+msgid "Event links color? :"
+msgstr "Couleur des liens évènement? :"
+
+#, c-format
+msgid "Event: %d activated at t=%f\n"
+msgstr "Événement : %d activé à t=%f\n"
+
+msgid "Exit"
+msgstr "Quitter"
+
+msgid "Export"
+msgstr "Exporter"
+
+msgid "Export All"
+msgstr "Exporter tout"
+
+#, c-format
+msgid "Export in file %s failed\n"
+msgstr "Exportation dans le fichier %s a échoué\n"
+
+msgid "File"
+msgstr "Fichier"
+
+msgid "Fit diagram to figure"
+msgstr "Adapter le diagramme à la figure"
+
+msgid "Flip"
+msgstr "Pivoter"
+
+msgid "Following palette(s) ignored (associated file(s) no more exist):"
+msgstr ""
+"La(les) palette(s) suivante(s) est(sont) ignorée(s) (le(s) dossier(s) "
+"associé(s) n'existe(nt) plus) :"
+
+msgid "Foreground color ? :"
+msgstr "Couleur de premier plan ? :"
+
+msgid "Format"
+msgstr "Format"
+
+msgid "Free"
+msgstr "Gratuit"
+
+msgid "Function not found\n"
+msgstr "Fonction non trouvée\n"
+
+msgid "Get Info"
+msgstr "Obtenir les informations"
+
+msgid "Help"
+msgstr "Aide"
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+"Le bloc sélectionné a des ports connectés <br />avec des types  "
+"incompatibles."
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+"Le bloc sélectionné a des ports connectés<br />avec des tailles "
+"incompatibles."
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+"Le ou les blocs sélectionnés ont des ports connectés<br />avec des tailles "
+"incompatibles."
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
+"Le ou les blocs sélectionnés ont des ports connectés<br />avec des types "
+"incompatibles."
+
+msgid "ID font definitions"
+msgstr "Définitions des ID des polices"
+
+msgid "ID fonts"
+msgstr "ID des polices"
+
+msgid ""
+"IDACalc cannot find the initial condition at this point. If you are using a "
+"Modelica model, you can try with the initialization GUI to try with other "
+"nonlinear solvers."
+msgstr ""
+"IDACalc ne peut pas trouver la condition initiale en ce point. Si vous "
+"utilisez un modèle Modelica, vous pouvez essayer l'interface graphique "
+"d'initialisation pour essayer avec d'autres solveurs non linéaires."
+
+msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr "IDA_BAD_ABSTOL: abstol a des composantes négatives (illégal)."
+
+msgid ""
+"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
+"either for the input value of y0 or a corrected value."
+msgstr ""
+"IDA_BAD_EWT: Des composantes du vecteur de poids de l'erreur sont nulles "
+"(illégal), soit pour la valeur d'entrée de y0 ou pour une valeur corrigée."
+
+msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr "IDA_BAD_H0: h0 et tout - t0 incompatibles."
+
+msgid "IDA_BAD_HINIT: yret = NULL illegal.."
+msgstr "IDA_BAD_HINIT: yret = NULL illégal.."
+
+msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr "IDA_BAD_INIT_ROOT: Racine trouvée à et très près du t initial."
+
+msgid "IDA_BAD_ITASK: Illegal value for itask."
+msgstr "IDA_BAD_ITASK: Vauleur illégale pour itask."
+
+msgid ""
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"and IDA_WF."
+msgstr ""
+"IDA_BAD_ITOL: Valeur illégale pour itol. Les valeurs légales sont IDA_SS, "
+"IDA_SV, et IDA_WF."
+
+msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+"IDA_BAD_NVECTOR: Une opération vectorielle requise n'est pas implémentée."
+
+msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr "IDA_BAD_RELTOL: la tolérance relative est reltol < 0 illégal."
+
+msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr "IDA_BAD_T: t n'est pas dans l'interval [tn-hu,tn]."
+
+msgid ""
+"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+"IDA_BAD_TOUT: Difficulté d'interpolation. ''tout'' est trop loin derrière la "
+"direction d'intégration"
+
+msgid ""
+"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+"IDA_BAD_TSTOP: tstop est derrière le temps courant de simulation dans la "
+"direction d'intégration."
+
+msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr ""
+"IDA_CLOSE_ROOTS: Racine trouvée à et très près de l'instant de départ."
+
+msgid ""
+"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
+"inequality constraints."
+msgstr ""
+"IDA_CONSTR_FAIL: IDACalcIC n'a pas été capable de trouver une solution "
+"satisfiant les contraintes d'inégalités."
+
+msgid ""
+"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
+"iterations. or IDA_solve->Convergence test failures occurred too many times "
+"(= MXNCF = 10) during one internal step. "
+msgstr ""
+"IDA_CONV_FAIL: IDACalcIC->A échoué à obtenir la convergence des itérations "
+"de Newton. ou IDA_solve->Les échecs du test de convergence sont apparus trop "
+"souvent (= MXNCF = 10) pendant un pas interne. "
+
+msgid ""
+"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
+"during one internal step or occurred with |h|=h_min"
+msgstr ""
+"IDA_ERR_FAIL: Les échecs du test d'erreur sont apparus trop souvent (=MXETF "
+"= 10) pendant un pas interne ou sont apparus avec |h|=h_min"
+
+msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr "IDA_EWT_FAIL: La fonction EwtSet fournie par l'utilisateur a échoué."
+
+msgid ""
+"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
+"error flag on the first call, but IDACalcIC was unable to recover."
+msgstr ""
+"IDA_FIRST_RES_FAIL: La routine résidu de l'utilisateur a retournée une "
+"erreur récupérable lors du premier appel, mais IDACalcIC n'a pas été capable "
+"de récupérer."
+
+msgid ""
+"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
+"may be returned if the linear solver function initialization (called by the "
+"user after calling IDACreate) failed to set the linear solver-specific "
+"lsolve field in ida_mem."
+msgstr ""
+"IDA_ILL_INPUT: Un des arguments d'entrée était illégal. Ces messages "
+"d'erreur peuvent être retournés si la fonction d'initialisation du solveur "
+"linéaire (appelé par l'utilisateur après l'appel de IDACreate) a échoué lors "
+"de l'affectation du champ du solveur linéaire spécifique lpsolve dans "
+"ida_mem."
+
+msgid ""
+"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
+"a step larger than steptol in weighted RMS norm."
+msgstr ""
+"IDA_LINESEARCH_FAIL: L'algorithme de recherche linéaire n'a pas réussi à "
+"trouver une solution avec un pas plus grand que steptol en norme RMS "
+"pondérée."
+
+msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
+msgstr ""
+"IDA_LINIT_FAIL: La routine d'initialisation du solveur linéaire a échoué."
+
+msgid ""
+"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
+"error."
+msgstr ""
+"IDA_LSETUP_FAIL: La routine de réglage du solveur linéaire a émis une erreur "
+"irrécupérable."
+
+msgid ""
+"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
+"error."
+msgstr ""
+"IDA_LSOLVE_FAIL: La routine de résolution du solveur linéaire a émis une "
+"erreur irrécupérable."
+
+msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr ""
+"IDA_LSOLVE_NULL: La routine de résolution du solveur linéaire est NULL."
+
+msgid "IDA_MEM_FAIL: A memory allocation failed."
+msgstr "IDA_MEM_FAIL: Une allocation mémoire a échoué."
+
+msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
+msgstr "IDA_MEM_NULL:L'argument ida_mem était NULL"
+
+msgid ""
+"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
+"but suppressalg option on."
+msgstr ""
+"IDA_MISSING_ID :id = NULL (''id'' définissent les états agébriques et "
+"différentiels) mais l'option suppressalg est on."
+
+msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
+msgstr ""
+"IDA_NO_EFUN: itol = IDA_WF mais aucune fonction EwtSet n'a été fournie."
+
+msgid ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
+"tstop was not set"
+msgstr ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP ou itask = IDA_ONE_STEP_TSTOP mais "
+"tstop n'a pas été réglé"
+
+msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
+msgstr "IDA_NO_MALLOC: indique que ida_mem n'a pas été alloué."
+
+msgid ""
+"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
+"or solve routine had a  recoverable error, but IDACalcIC was unable to "
+"recover."
+msgstr ""
+"IDA_NO_RECOVERY: La routine utilisateur résidu, ou la fonction de réglage du "
+"solveur linéaire ou la routine de résolution ont eu une erreur récupérable, "
+"mais IDACalcIC n'a pas été capable de récupérer."
+
+msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr "IDA_NULL_ABSTOL: la tolérance absolue est = NULL illégal."
+
+msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr "IDA_NULL_F: la routine utilisateur ODE est (NULL) illégal."
+
+msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+"IDA_NULL_G: la routine utilisateur de zero-crossing est (NULL) illégal."
+
+msgid "IDA_NULL_Y0: y0 = NULL illegal."
+msgstr "IDA_NULL_Y0: y0 = NULL illégal."
+
+msgid ""
+"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
+"recoverable error flag, but the solver was unable to recover."
+msgstr ""
+"IDA_REP_RES_ERR: la routine utilisateur résidu a retourné de façon répétée "
+"une erreur récupérable, mais le solveur n'a pas été capable de récupérer."
+
+msgid ""
+"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
+"flag."
+msgstr ""
+"IDA_RES_FAIL: La routine utilisateur résidu a retournée une erreur "
+"irrécupérable."
+
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
+msgstr "IDA_RES_NULL: le résidu retourné res = NULL est illégal."
+
+msgid "IDA_RTFUNC_FAIL: The root founding function failed."
+msgstr "IDA_RTFUNC_FAIL: La fonction de recherche de racine a échoué."
+
+msgid "IDA_Residual_NAN: The residual function returns NAN."
+msgstr "IDA_Residual_NAN: la fonction résidu a retourné NAN."
+
+msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
+msgstr "IDA_Rootfunction_NAN: la fonction racine a retournée NAN."
+
+msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+"IDA_TOO_CLOSE: ''tout'' trop proche de ''t0'' pour démarrer l'intégration."
+
+msgid ""
+"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step."
+msgstr ""
+"IDA_TOO_MUCH_ACC: Le solveur n'a pas pu satisfaire la précision demandée par "
+"l'utilisateur pour certains pas internes."
+
+msgid ""
+"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+"IDA_TOO_MUCH_WORK: Le solveur a pris mxstep pas internes mais n'a pas pu "
+"atteindre tout. La valeur par défaut de mxstep est MXSTEP_DEFAULT = 500."
+
+msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
+msgstr "IDA_TRET_NULL: ''tret'' = NULL illégal."
+
+msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
+msgstr "IDA_Y0_FAIL_CONSTR: y0 a échoué à satisfaire les contraintes."
+
+msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr "IDA_YOUT_NULL: ''yout'' = NULL illégal."
+
+msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
+msgstr "IDA_YP0_NULL: la dérivée yp0 = NULL est illégal."
+
+msgid "IDA_YPRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YPRET_NULL: yret = NULL illégal.."
+
+msgid "IDA_YRET_NULL: yret = NULL illegal.."
+msgstr "IDA_YRET_NULL: yret = NULL illégal.."
+
+msgid "Icon"
+msgstr "Icône"
+
+msgid "Icon Editor"
+msgstr "Éditeur d'icônes"
+
+msgid "Identification"
+msgstr "Identification"
+
+msgid "Initialisation problem:"
+msgstr "Problème à l'Initialisation :"
+
+msgid "It is impossible to set ID for this type of object"
+msgstr "Il est impossible de définir l'ID pour ce type d'objet"
+
+msgid ""
+"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
+"verify your model. There might be an error in the computing function, for "
+"example a function may be called with illegal inputs."
+msgstr ""
+"KIN_FIRST_SYSFUNC_ERR: La fonction système a échoué au premier appel. "
+"Vérifier votre modèle SVPl. Il y a peut être une erreur dans la fonction de "
+"calcul, par exemple une fonction peut avoir été appelée avec des entrées "
+"illégales."
+
+msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
+msgstr ""
+"KIN_ILL_INPUT: Un paramètre fourni est invalide (vérifiez le message "
+"d'erreur)."
+
+msgid ""
+"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
+"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
+"nonlinear iterations (not necessarily consecutive), which may indicate the "
+"algorithm is making  poor progress "
+msgstr ""
+"KIN_LINESEARCH_BCFAI: L'algorithme de recherche linéaire (implémenté dans "
+"KINLineSearch) n'a pas été capable de satisfaire la condition béta pour "
+"MXNBCF + 1 itérations non linéaires (pas nécessairement consécutivess), ce "
+"qui peut indiquer que l'algorithme progresse lentement "
+
+msgid ""
+"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
+"iterate sufficiently distinct  from the current iterate failure to satisfy "
+"the sufficient decrease condition could mean the current iterate is close to "
+"an approximate solution of the given nonlinear system, the finite-difference "
+" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
+"real scalar scsteptol is too large "
+msgstr ""
+"KIN_LINESEARCH_NONCONV:  L'algorithme de recherche linéaire n'a pas été "
+"capable de trouver un intéré suffisamment distinct de l'itéré courant.. Cet "
+"échec à satisfaire la condition de décroissance peut vouloir dire que "
+"l'itéré courant est proche d'une solution approximée du système non linéaire "
+"donné. L'approximation obtenue par différences finies du produit vecteur "
+"matrix J(u)*v est imprécise, ou le scalaire réel scsteptol est trop grand "
+
+msgid ""
+"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
+"an error."
+msgstr ""
+"KIN_LINIT_FAIL: La routine d'initialisation du solveur linéaire (linit) a "
+"rencontré une erreur."
+
+msgid ""
+"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
+"recoverable error, but the preconditioner is already current"
+msgstr ""
+"KIN_LINSOLV_NO_RECOVERY: La routine utilisateur psolve a rencontré une "
+"erreur récupérable, mais le préconditionneur est déjà courant"
+
+msgid ""
+"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
+"preconditioner) encountered an unrecoverable error ."
+msgstr ""
+"KIN_LSETUP_FAIL: La routine utilisateur pset (utilisée pour calculer le "
+"préconditionneur) a rencontré une erreur irrécupérable."
+
+msgid ""
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
+msgstr ""
+"KIN_LSOLVE_FAIL: Soit la routine utilisateur psolve (utilisée pour résoudre "
+"le système linéaire préconditionné) a rencontré une erreur irrécupérable, "
+"soit la routine du solveur linéaire (lsolve) a rencontré une condition "
+"d'erreur."
+
+msgid ""
+"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
+"reached "
+msgstr ""
+"KIN_MAXITER_REACHED: Le nombre maximum d'itération non linéaire a été "
+"atteint "
+
+msgid ""
+"KIN_MEM_FAIL: An error occurred during memory allocation (either "
+"insufficient system resources are available or the vector kernel has not yet "
+"been initialized "
+msgstr ""
+"KIN_MEM_FAIL: Une erreur est apparue lors de l'allocation mémoire (soit les "
+"ressources système ne sont pas suffisantes, soit le vecteur noyau n'a pas "
+"été initialisé "
+
+msgid ""
+"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
+msgstr ""
+"KIN_MEM_NULL: Une erreur dans l'allocation mémoire dans KINCreate ou "
+"KINMalloc."
+
+msgid ""
+"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
+"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
+"the current step and mxnewtstep is a real scalar upper bound on the scaled "
+"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
+"above to a finite value, or the real scalar mxnewtstep is too small "
+msgstr ""
+"KIN_MXNEWT_5X_EXCEEDE: Cinq pas consécutifs ont été pris qui satisfont "
+"l'inégalité suivante:  ||uscale*p||_L2 > 0.99*mxnewtstep où p correspond au "
+"pas courant et mxnewtstep est une borne supérieure réelle sur la longueur de "
+"pas mis à l'échelle. Un tel échec peut vouloir dire ||fscale*func(u)||_L2 "
+"est une asymptotes à partir du dessus d'une valeur finie, ou le scalaire "
+"réel  mxnewtstep est trop petit "
+
+msgid ""
+"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
+"some functions might be called with illegal inputs."
+msgstr ""
+"KIN_NAN_ERR: La fonction résiduelle retourne NAN. Vérifiez votre modèle SVP: "
+"des fonctions peuvent avoir été appelées avec des valeurs d'entrées "
+"illégales."
+
+msgid ""
+"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
+"vector storage (forgot to call the  KINMalloc routine)"
+msgstr ""
+"KIN_NO_MALLOC: La mémoire système additionnelle n'a pas encore été allouée "
+"pour le stockage du vecteur (oublie d'appeler la routine KINMalloc)"
+
+msgid ""
+"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
+"your model. There might be an error in the computing function, for example a "
+"function may be called with illegal inputs"
+msgstr ""
+"KIN_REPTD_SYSFUNC_ERR: La fonction système a échoué de façon répétitive. "
+"Vérifiez votre modèle SVP. Il peut y avoir une erreur dans la fonction de "
+"calcul, par exemple, une fonction peut avoir été appelée avec des entrées "
+"illégales"
+
+msgid ""
+"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
+msgstr ""
+"KIN_SYSFUNC_FAIL: Erreur dans la fonction de calcul. Vérifier votre modèle "
+"SVP."
+
+msgid "Label"
+msgstr "Etiquettes"
+
+#, c-format
+msgid "Leaving block %d \n"
+msgstr "Laisser le bloc %d \n"
+
+msgid "Link"
+msgstr "Lien"
+
+msgid "Link ID font name"
+msgstr "Nom de police de caractères de l'ID du lien"
+
+msgid "Link ID font size"
+msgstr "Taille de la police de caractères de l'ID du lien"
+
+msgid "Link parameters"
+msgstr "Paramètres de lien"
+
+msgid "Load as Palette"
+msgstr "Charger en tant que palette"
+
+msgid "Mask"
+msgstr "Masque"
+
+msgid "Mask can only be created for Super Blocks."
+msgstr "Les Masques ne peuvent être crées que pour les Super Blocks."
+
+msgid "Modelica initialize"
+msgstr "Initialisation de Modelica"
+
+msgid "Modify title and menu labels."
+msgstr "Modifier les étiquettes de titre et de menu."
+
+msgid "Move"
+msgstr "Déplacer"
+
+msgid "MoveLink "
+msgstr "Déplacer le Lien "
+
+msgid "Multiple selection cannot be used here"
+msgstr "Le choix multiple ne peut pas être employé ici"
+
+msgid "Navigator window"
+msgstr "Fenêtre de navigateur"
+
+msgid "New"
+msgstr "Nouveau"
+
+msgid "No"
+msgstr "Non"
+
+msgid "No selected block in the current Scicos window."
+msgstr "Aucun bloc sélectionné dans la fenêtre courante de Scicos."
+
+msgid "Only  blocks can be selected for this operation."
+msgstr "Seuls des blocs peuvent être choisis pour cette opération."
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+"Un seul bloc peut être sélectionné dans la fenêtre actuelle pour cette "
+"opération."
+
+msgid "Open"
+msgstr "Ouvrir"
+
+msgid "Open a Scicos demonstration diagram"
+msgstr "Ouvrir un diagramme de démonstration de Xcos"
+
+msgid "Open a Scicos diagram"
+msgstr "Ouvrir un diagramme de Xicos"
+
+msgid "Open/Set"
+msgstr "Ouvrir/Régler"
+
+msgid "Pal editor"
+msgstr "Editeur de Palette"
+
+msgid "Palette"
+msgstr "Palette"
+
+msgid "Palettes"
+msgstr "Palettes"
+
+msgid "Palettes Tree"
+msgstr "Arbre de palettes"
+
+msgid "Paste"
+msgstr "Coller"
+
+msgid "Place in Diagram"
+msgstr "Placer dans le diagramme"
+
+msgid "PlaceinBrowser"
+msgstr "Placer dans l'Explorateur"
+
+msgid "PlaceinDiagram"
+msgstr "Placer dans le Diagramme"
+
+msgid "Please report"
+msgstr "Faites un rapport svp"
+
+msgid "Popup"
+msgstr "Fenêtre qui apparaît"
+
+msgid ""
+"Press left mouse button, drag region and release (right button to cancel)"
+msgstr ""
+"Presser le bouton gauche de la sourie, glisser la région et relacher (bouton "
+"droit pour abandonner)"
+
+msgid "Problem saving a backup; I cannot activate Scilab\n"
+msgstr ""
+"Problème lors de la sauvegarde du backup ; Je ne peux pas activer Scilab\n"
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "Un problème est arrivé en construisant la bibliothèque %s\n"
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr "Problème avec le bloc généré à partir des blocs Modelica."
+
+msgid "Properties"
+msgstr "Propriétés"
+
+msgid "Purge"
+msgstr "Purger"
+
+msgid "Region to Palette"
+msgstr "Région vers Palette"
+
+msgid "Region to Super Block"
+msgstr "Région vers Super Block"
+
+msgid "Regular links color ? :"
+msgstr "Couleur des liens réguliers ?:"
+
+msgid "Remove Atomic"
+msgstr "Supprimer Atomique"
+
+msgid "Remove Mask"
+msgstr "Enlever le masque"
+
+msgid "Rename"
+msgstr "Renommer"
+
+msgid "Replot"
+msgstr "Retracer"
+
+#, c-format
+msgid "Requested action: %s is not available"
+msgstr "Action demandée : %s n'est pas disponible"
+
+msgid "Resize"
+msgstr "Redimensionner"
+
+msgid "Resize is allowed only for Blocks or Links."
+msgstr "Le redimensionnement n'est permis que pour les blocs et les liens."
+
+msgid "Rotate Left"
+msgstr "Tourner vers la gauche"
+
+msgid "Rotate Right"
+msgstr "Tourner vers la droite"
+
+msgid "Run"
+msgstr "Exécuter"
+
+msgid "Save"
+msgstr "Enregistrer"
+
+msgid "Save As"
+msgstr "Enregistrer sous..."
+
+msgid "Save Block GUI"
+msgstr "Sauver l'UI du block"
+
+msgid "Save as Interf Func"
+msgstr "Sauver en Interf Func"
+
+msgid "Save as Palette"
+msgstr "Sauvegarder une palette"
+
+msgid "Scicos Documentation"
+msgstr "Documentation de Xcos"
+
+#, c-format
+msgid "Scicos version %s\n"
+msgstr "Version de Scicos %s\n"
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "Graphiques de Scilab de %s"
+
+msgid "Select a block."
+msgstr "Sélectionner un block"
+
+msgid "Select a directory path"
+msgstr "Choisir un chemin de dossier"
+
+msgid "SelectAll"
+msgstr "Tout sélectionner"
+
+msgid "SelectLink  "
+msgstr "Sélectionner le lien  "
+
+msgid "SelectRegion"
+msgstr "Selectionner la région"
+
+msgid "Set Block identification"
+msgstr "Définir l'identification bloc"
+
+msgid "Set Block sizes"
+msgstr "Définir la taille bloc"
+
+msgid "Set Diagram Info"
+msgstr "Définir l'information de diagramme"
+
+msgid "Set grid"
+msgstr "Définir la grille"
+
+msgid "Set link Identification"
+msgstr "Définir l'identification de lien"
+
+msgid "Set link edition mode"
+msgstr "Définir le mode d'édition de lien"
+
+msgid "Setup"
+msgstr "Configurer"
+
+msgid "Shortcuts"
+msgstr "Raccourcis"
+
+msgid "Show Block Shadow"
+msgstr "Afficher l'ombre du block"
+
+msgid "Simulate"
+msgstr "Simuler"
+
+msgid "Simulation parameters not set:"
+msgstr "Les paramètres de simulation n'ont pas été définis :"
+
+msgid "Simulation problem: "
+msgstr "Problème à la simulation : "
+
+#, c-format
+msgid "Slider t=%10.3f, flag=%d \n"
+msgstr "Curseur t=%10.3f, drapeau=%d \n"
+
+msgid "Smart"
+msgstr "Rapide"
+
+msgid "Smart Move"
+msgstr "Déplacement intelligent"
+
+msgid "Smart move does not work yet with multiple selection"
+msgstr ""
+"Le déplacement intelligent ne fonctionne pas avec une sélection multiple"
+
+msgid "Sorry file name not defined in "
+msgstr "Désolé le nom de fichier n'est pas défini dans "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "Désolé : Seuls les langages C et Fortran sont supportés"
+
+msgid "Stop"
+msgstr "Arrêter"
+
+msgid "The current icon depends on block parameter\n"
+msgstr "L'icône courant dépend des paramètres du bloc\n"
+
+#, c-format
+msgid "The key %s is already in use for %s"
+msgstr "La clef %s est déjà en service pour %s"
+
+#, c-format
+msgid "The key %s is not a valid letter"
+msgstr "La clef %s n'est pas une lettre valide"
+
+msgid ""
+"The number of parameter provided by Scicos blocks is different from what "
+"expected by the code generated by the Modelica compiler. You might have "
+"relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
+"model. This will be corrected in the next version"
+msgstr ""
+"Le nombre de paramètres fournis par les blocks Scicos est différent de ce "
+"qui est attendu par le code généré par le compilateur Modelica. Vous avez "
+"peut être relaché un paramètre en utilisant la propriété FIXED (i.e., "
+"fixed=false) dans un modèle Modelical. Ceci sera corrigée dans une prochaine "
+"version"
+
+#, c-format
+msgid ""
+"The parameter(s) %s \n"
+"must be defined in the"
+msgstr ""
+"Le(s) paramètre(s) %s \n"
+"doit(doivent) être défini(s) dans"
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+"Le nom de variable %s ne peut être utilisé comme paramètre de bloc : ignoré"
+
+msgid "Thickness"
+msgstr "Épaisseur"
+
+msgid "This block is not masked."
+msgstr "Ce bloc n'est pas masqué."
+
+msgid "This window is not an active palette"
+msgstr "Cette fenêtre n'est pas une palette active"
+
+msgid "This window is not an active scicos window"
+msgstr "Cette fenêtre n'est pas une fenêtre active de scicos"
+
+msgid "Title of the GUI"
+msgstr "Titre de la GUI"
+
+msgid "TkPopup "
+msgstr "TkPopup "
+
+#, c-format
+msgid "To avoid this message, please update the %s.scicos_pal file."
+msgstr "Pour éviter ce message, mettre svp le fichier %s.scicos_pal."
+
+msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
+msgstr "Pour réactiver Scicos, cliquer sur un diagramme ou tapez xcos();\n"
+
+msgid "Toggle grid"
+msgstr "Basculer la grille"
+
+msgid "Tools"
+msgstr "Outils"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Type not recognized"
+msgstr "Type non reconnu"
+
+msgid "Undefined Function type\n"
+msgstr "Type de fonction non défini\n"
+
+msgid "Undefined data type."
+msgstr "Type de données non défini."
+
+msgid "Undo"
+msgstr "Défaire"
+
+msgid "Up To Main Diagram"
+msgstr "Jusqu'au diagramme principal"
+
+msgid ""
+"Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
+msgstr ""
+"Utilisation : [myvar]=getscicosvars([« str1 » ; « str2 » ; …]);\n"
+"\n"
+
+msgid "Use 3D aspect?"
+msgstr "Utiliser l'aspect 3D ?"
+
+msgid "View"
+msgstr "Vue"
+
+#, c-format
+msgid "Warning %d menus have identical name %s\n"
+msgstr "Attention %d menus ont des noms %s identiques\n"
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+"Attention la variable %s ne correspond à aucun nom de variable dans ce "
+"contexte\n"
+"ignoré"
+
+msgid "Xcos block parameter error"
+msgstr "Erreur de paramètre de bloc Xcos"
+
+msgid "Yes"
+msgstr "Oui"
+
+msgid ""
+"You have changed a parameter in your model, but the model has been compiled "
+"to use an XML file containing initial values and parameters. So you should "
+"either recompile your Scicos diagram or [re]launch the initialization "
+"interface to regenerate the XML file  with new parameters."
+msgstr ""
+"Vous avez changé un paramètre dans votre modèle, mais le modèle a été "
+"compilé pour employer un fichier XML contenant des valeurs initiales et des "
+"paramètres. Ainsi vous devriez soit recompiler votre diagramme Scicos soit "
+"[re]lancer l'interface d'initialisation pour régénérer le fichier XML avec "
+"de nouveaux paramètres."
+
+msgid "Your diagram is not saved. Do not quit Scilab or "
+msgstr "Votre diagramme n'est pas sauvegarder. Ne pas quitter Scilab ou "
+
+msgid "Zoom in"
+msgstr "Zoom avant"
+
+msgid "Zoom out"
+msgstr "Zoom arrière"
+
+msgid "algebraic loop detected"
+msgstr "Boucle algébrique détectée"
+
+#, c-format
+msgid "at time %f \n"
+msgstr "au temps %f \n"
+
+#, c-format
+msgid "block %d is called "
+msgstr "le bloc %d est appelé "
+
+msgid "block produces an internal error"
+msgstr "le bloc produit une erreur interne"
+
+msgid "cannot allocate memory"
+msgstr "impossible d'allouer la mémoire"
+
+#, c-format
+msgid "cannot allocate memory in block=%d"
+msgstr "impossible d'allouer la mémoire dans le block=%d"
+
+msgid "current choice is "
+msgstr "le choix courant est "
+
+msgid "event conflict"
+msgstr "conflit d'événement"
+
+msgid "height"
+msgstr "hauteur"
+
+msgid "initial conditions not converging"
+msgstr "les conditions initiales ne convergent pas"
+
+msgid "input to zero-crossing stuck on zero"
+msgstr "entrée au passage à zéro coincée sur zéro"
+
+#, c-format
+msgid "integration problem istate=%d"
+msgstr "Problème d'intégration istate=%d"
+
+#, c-format
+msgid "mode of block %d=%d, "
+msgstr "mode du bloc %d=%d, "
+
+#, c-format
+msgid "root found at t=: %f\n"
+msgstr "racine trouvée à t=: %f\n"
+
+msgid "scheduling problem"
+msgstr "problème d'ordonnancement"
+
+msgid "scicos unexpected error, please report..."
+msgstr "Erreur inattendue Scicos, rapportez le bug SVP..."
+
+msgid "scs_show active..."
+msgstr "scs_show actif..."
+
+msgid "singularity in a block"
+msgstr "singularité dans un bloc"
+
+msgid "sliding mode condition, cannot integrate"
+msgstr "condition de mode glissant, ne peut pas intégrer"
+
+#, c-format
+msgid "the block %d has been called with input out of its domain"
+msgstr "le block %d a été appelé avec des entrées hors de son domaine"
+
+msgid "type 1 function not allowed for scilab blocks\n"
+msgstr "fonction de type 1 non permise pour des des blocs de scilab\n"
+
+msgid "type 2 function not allowed for scilab blocks\n"
+msgstr "fonction de type 2 non permise pour des des blocs de scilab\n"
+
+msgid "unknown or erroneous block"
+msgstr "bloc inconnu ou incorrect"
+
+msgid "width"
+msgstr "largeur"
+
+#, c-format
+msgid "with flag %d "
+msgstr "avec le drapeau %d "
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr ""
+#~ "%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr ""
+#~ "%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
+
+#~ msgid "Scicos"
+#~ msgstr "Scicos"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: Le diagramme ne compile pas à l'étape %d.\n"
+#~ "'),"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr "%s: Erreur : la commande suivante n'a pas pu s'exécuter: %s.\n"
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Désolé pour ce probleme de compilation"
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "Un compilateur C est nécessaire."
+
+#~ msgid "Click on a port, click on a port of object to be moved"
+#~ msgstr "Cliquez sur un port, cliquez sur un port de l'objet à déplacer"

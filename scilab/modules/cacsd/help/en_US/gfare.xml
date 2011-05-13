@@ -23,7 +23,7 @@
     <synopsis>[Z,H]=gfare(Sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -59,8 +59,8 @@
     where <literal>S=(eye()+D'*D)</literal>, <literal>Si=inv(S)</literal>, <literal>R=(eye()+D*D')</literal>, <literal>Ri=inv(R)</literal>
     and <literal>H=-(B*D'+Z*C')*Ri</literal> is such that <literal>A+H*C</literal> is stable.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gcare">gcare</link>

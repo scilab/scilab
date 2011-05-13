@@ -21,57 +21,57 @@ extern "C" {
  * Get pointer variable
  * @param[in] _piAddress variable address
  * @param[out] _pvPtr return pointer
- * @return if the operation successed (0) or not ( !0 )
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
 
 /**
- * Alloc pointer variable
+ * Allocate a pointer variable
  * @param[in] _iVar variable number
- * @param[out] _pvPtr return pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
+ * @param[out] _pvPtr return pointer
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
 SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr);
 
 /**
  * Create pointer variable
  * @param[in] _iVar variable number
- * @param[in] _pvPtr pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
+ * @param[in] _pvPtr pointer
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
 SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr);
 
 /**
  * Create named pointer variable
  * @param[in] _pstName variable name
- * @param[in] _pvPtr pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
+ * @param[in] _pvPtr pointer
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr createNamedPointer(void* _pvCtx, char* _pstName, void* _pvPtr);
+SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr);
 
 /**
  * Read pointer named variable
  * @param[in] _pstName variable name
- * @param[in] _pvPtr pointer on pointer
- * @return if the operation successed (0) or not ( !0 )
+ * @param[out] _pvPtr return pointer
+ * @return if the operation succeeded ( 0 ) or not ( !0 )
  */
-SciErr readNamedPointer(void* _pvCtx, char* _pstName, void** _pvPtr);
+SciErr readNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr);
 
 /* shortcut functions */
 
 /**
- * check if the variable type is a pointer
+ * Check if the variable is of pointer type
  * @param[in] _piAddress variable address
  * @return 1 for true and 0 for false
  */
 int isPointerType(void* _pvCtx, int* _piAddress);
 
 /**
- * check if the variable type is a pointer
+ * check if the named variable type of pointer type
  * @param[in] _pstName variable name
  * @return 1 for true and 0 for false
  */
-int isNamedPointerType(void* _pvCtx, char* _pstName);
+int isNamedPointerType(void* _pvCtx, const char* _pstName);
 
 #ifdef __cplusplus
 }

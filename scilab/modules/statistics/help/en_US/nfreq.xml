@@ -23,7 +23,7 @@
     <synopsis>m=nfreq(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -55,8 +55,8 @@ x=[2 8 0 3 7 6 8 7 9 1]
 m=nfreq(x)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="tabul">tabul</link>

@@ -65,7 +65,7 @@
 
     <para>As bibliotecas padrões do Scilab são definidas utilizando-se
     <literal>lib</literal> nos subdiretórios
-    <literal>SCIDIR/macros/*</literal>.</para>
+    <literal>SCI/modules/*/macros/*</literal>.</para>
 
     <para>Uma variável biblioteca geralmente é salva para carregamento
     posterior, tanto on-line quanto do arquivo de inicialização específico do
@@ -110,8 +110,8 @@ A
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="library">library</link></member>

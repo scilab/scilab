@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Bruno JOFRET
+ * Copyright (C) 2010-2011 - DIGITEO - Clément DAVID 
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,13 +13,11 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
 
 /**
- * @author Bruno JOFRET
- *
+ * @deprecated use "displayedLabel" = "%s" style property. 
  */
+@Deprecated
 public final class GainBlock extends BasicBlock {
 
      private static final long serialVersionUID = 7762548847345910801L;
@@ -37,17 +36,5 @@ public final class GainBlock extends BasicBlock {
     protected void setDefaultValues() {
 		super.setDefaultValues();
     	setInterfaceFunctionName("GAINBLK_f");
-    	setValue("1.0");
     }
-    
-    
-    /**
-     * @param exprs new exprs
-     */
-	@Override
-    public void setExprs(ScilabType exprs) {
-	super.setExprs(exprs);
-	setValue(((ScilabString) getExprs()).getData()[0][0]);
-    }
-
 }

@@ -29,7 +29,7 @@
     <synopsis>y = erfinv(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -62,8 +62,8 @@ y = erfinv(x);
 plot2d(x, y)
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="cdfnor">cdfnor</link></member>
       <member><link linkend="erf">erf</link></member>

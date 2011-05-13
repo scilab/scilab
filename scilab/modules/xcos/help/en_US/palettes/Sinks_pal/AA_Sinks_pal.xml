@@ -165,7 +165,7 @@
       (Scope) and write data during simulation and also some output ports used
       in superblocks.</para>
 
-      <para>The blocks of that palette doesn't have regular output
+      <para>The blocks of that palette does not have regular output
       ports.</para>
   </refsection>
 

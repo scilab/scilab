@@ -23,7 +23,7 @@
     <synopsis>sl=tf2ss(h [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -76,8 +76,8 @@ Sys=tf2ss(H)
 clean(ss2tf(Sys))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ss2tf">ss2tf</link>

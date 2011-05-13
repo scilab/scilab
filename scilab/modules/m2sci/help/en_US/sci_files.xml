@@ -240,8 +240,8 @@
   (e.g. sci_abs.sci) to very complex ones (e.g. sci_zeros.sci).
   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="m2scideclare">m2scideclare</link>

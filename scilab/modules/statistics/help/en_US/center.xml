@@ -25,7 +25,7 @@ s=center(x,'r') or s=center(x,1)
 s=center(x,'c') or s=center(x,2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>  </term>
@@ -69,8 +69,8 @@ s=center(x,'r')
 s=center(x,'c')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="wcenter">wcenter</link>

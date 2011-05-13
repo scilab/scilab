@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2bmp</refname>
 
-    <refpurpose>send graphics to a BMP file.</refpurpose>
+    <refpurpose>Export graphics to BMP.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,7 +35,7 @@ xs2bmp(fig, file_name)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -80,8 +80,8 @@ xs2bmp(0,'foo.bmp');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="xs2gif">xs2gif</link></member>

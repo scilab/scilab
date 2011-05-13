@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="hsvcolormap">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>hsvcolormap</refname>
+    <refpurpose>  Hue-saturation-value colormap</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>cmap = hsvcolormap(n)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para> integer &gt;= 1, the colormap size.
+       </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>cmap</term>
+        <listitem>
+          <para>matrix with 3 columns <literal>[R,G,B]</literal>.
+       </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>hsvcolormap</literal> computes a colormap with
+      <literal>n</literal>colors. This colormap  varies the hue component of the
+      hsv color model.  The colors begin with red, pass through yellow, green,
+    cyan, blue, magenta, and return to red.  The map is particularly
+    useful for displaying periodic functions. </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]'; z=sin(t)*cos(t'); 
+f=gcf();f.color_map=hsvcolormap(64);
+plot3d1(t,t,z,35,45,"X@Y@Z",[-2,2,2])
+ ]]></programlisting>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <variablelist>
+      <varlistentry>
+        <term>Serge Steer</term>
+        <listitem>
+          <para>
+      INRIA
+    </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="colormap">colormap</link>
+      </member>
+      <member>
+        <link linkend="autumncolormap">autumncolormap</link>
+      </member>
+      <member>
+        <link linkend="bonecolormap">bonecolormap</link>
+      </member>
+      <member>
+        <link linkend="coolcolormap">coolcolormap</link>
+      </member>
+      <member>
+        <link linkend="coppercolormap">coppercolormap</link>
+      </member>
+      <member>
+        <link linkend="graycolormap">graycolormap</link>
+      </member>
+      <member>
+        <link linkend="hotcolormap">hotcolormap</link>
+      </member>
+      <member>
+        <link linkend="hsvcolormap">hsvcolormap</link>
+      </member>
+      <member>
+        <link linkend="jetcolormap">jetcolormap</link>
+      </member>
+      <member>
+        <link linkend="oceancolormap">oceancolormap</link>
+      </member>
+      <member>
+        <link linkend="pinkcolormap">pinkcolormap</link>
+      </member>
+      <member>
+        <link linkend="rainbowcolormap">rainbowcolormap</link>
+      </member>
+      <member>
+        <link linkend="springcolormap">springcolormap</link>
+      </member>
+      <member>
+        <link linkend="summercolormap">summercolormap</link>
+      </member>
+      <member>
+        <link linkend="whitecolormap">whitecolormap</link>
+      </member>
+      <member>
+        <link linkend="wintercolormap">wintercolormap</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

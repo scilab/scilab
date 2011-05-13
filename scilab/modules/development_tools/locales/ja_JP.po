@@ -1,0 +1,217 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-13 13:30+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s はインストール済みのモジュールではありません."
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s はインストール済みのモジュールまたはツールボックスではありません."
+
+#, c-format
+msgid "%s: Assertion failed: expected = %s while computed = %s"
+msgstr "%s: アサーションが失敗しました: %s の予定でしたが,計算値は %s でした"
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error message = %s while computed error "
+"message = %s."
+msgstr "%s: アサーションが失敗しました: 予定のエラーメッセージは %s でしたが,計算されたエラーメッセージは %s でした."
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error number = %d while computed error number "
+"= %d."
+msgstr "%s: アサーションが失敗しました: 予定のエラー番号は %d でしたが,計算されたエラー番号は %d でした."
+
+#, c-format
+msgid "%s: Assertion failed: found false entry in condition = %s"
+msgstr "%s: アサーションが失敗しました: 条件 - %s に不正なエントリが見つかりました"
+
+#, c-format
+msgid "%s: Cannot close file %s.\n"
+msgstr "%s: ファイル %s を閉じることができません.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません.\n"
+
+#, c-format
+msgid "%s: Computed is complex, but expected is real."
+msgstr "%s: 計算値は複素数ですが, 実数となる必要があります."
+
+#, c-format
+msgid "%s: Computed is real, but expected is complex."
+msgstr "%s: 計算結果は実数ですが, 予定は複素数でした."
+
+#, c-format
+msgid "%s: Error while formatting the error message: %s"
+msgstr "%s: エラーメッセージ: %s を整形中にエラーを発生しました"
+
+#, c-format
+msgid ""
+"%s: Expected %d columns in input argument #%d, but found %d columns instead."
+msgstr "%s: 予定では%d列が入力引数 #%d に含まれるはずでしたが、%d 列となりました."
+
+#, c-format
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr "%1$s: #%3$d 番目の引数は %2$d  行とする必要がありますが,  %4$d 行でした."
+
+#, c-format
+msgid ""
+"%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
+msgstr "%1$s: 入力引数 %4$s #%5$d  は %2$sまたは %3$s 型とする必要がありますが, %6$s型でした."
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr "%s:入力引数 #%d と #%d に互換性がありません: 同じ型を指定してください.\n"
+
+#, c-format
+msgid "%s: No error was produced while evaluating %s."
+msgstr "%s:  %s を評価する際にエラーは発生しませんでした."
+
+#, c-format
+msgid ""
+"%s: The content of computed file %s is different from the content of "
+"reference file %s."
+msgstr "%s: 計算結果のファイル %s の内容が基準ファイルの内容 %s と異なっています."
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません.\n"
+
+#, c-format
+msgid ""
+"%s: The number of output arguments %d do not match the number of input "
+"arguments %d."
+msgstr "%s: 出力引数 %d が入力引数 %d の数と一致しません."
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr "%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してください."
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: 入力引数の数が間違っています: %d から %d の範囲で指定してください."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: 入力引数の大きさが間違っています."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 論理値行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　文字列の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 負でない整数を指定してください.\n"
+
+#
+# File: macros/testexamples.sci, line: 17
+# File: macros/testexamples.sci, line: 32
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "参照ファイルの変数　%s_ref はありません"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "テストが失敗しました. 参照: diff -wu %s"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "テストが失敗しました. 参照: fc /L /N %s"
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "テストが失敗しました. %s を実行中にエラーが検出されました."
+
+msgid "Test passed"
+msgstr "テストに合格しました"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "参照先ファイル (%s) が存在しません"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "テスト %s は %s モジュールで利用できません."
+
+msgid "error : Input argument sizes are not valid"
+msgstr "エラー: 入力引数の大きさが間違っています."
+
+#
+# File: macros/test_run.sci, line: 252
+#, c-format
+#~ msgid "The test %s is not available from the %s toolbox"
+#~ msgstr "テスト %s は、%s ツールボックスから利用できません"
+
+#~ msgid "Generating loader.sce...\n"
+#~ msgstr "loader.sce 生成中...\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています : %s を指定してください.\n"
+
+#, c-format
+#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
+#~ msgstr "%s: テスト ''%s'' は存在しないか,読み込み可能ではありません.\n"

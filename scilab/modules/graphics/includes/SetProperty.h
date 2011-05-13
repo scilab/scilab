@@ -4,6 +4,7 @@
  * Copyright (C) 2002 - 2004 - INRIA - Djalel Abdemouche
  * Copyright (C) 2004 - 2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -89,6 +90,15 @@ GRAPHICS_IMPEXP int sciSetBoxType ( sciPointObj * pobj, EAxesBoxType type ) ; /*
 
 GRAPHICS_IMPEXP int sciInitIsBoxed(sciPointObj * pobj, BOOL isboxed);
 GRAPHICS_IMPEXP int sciSetIsBoxed (sciPointObj * pobj, BOOL isboxed); /* SET */
+
+GRAPHICS_IMPEXP int sciInitNbXSubTics(sciPointObj * pobj, int nbsubtics);
+GRAPHICS_IMPEXP int sciSetNbXSubTics (sciPointObj * pobj, int nbsubtics); /* SET */
+
+GRAPHICS_IMPEXP int sciInitNbYSubTics(sciPointObj * pobj, int nbsubtics);
+GRAPHICS_IMPEXP int sciSetNbYSubTics (sciPointObj * pobj, int nbsubtics); /* SET */
+
+GRAPHICS_IMPEXP int sciInitNbZSubTics(sciPointObj * pobj, int nbsubtics);
+GRAPHICS_IMPEXP int sciSetNbZSubTics (sciPointObj * pobj, int nbsubtics); /* SET */
 
 /* Text Functions */
 GRAPHICS_IMPEXP int sciInitFontSize(sciPointObj * pobj, double fontSize); /* SET */

@@ -23,7 +23,7 @@
     <synopsis>s = nansum(x,orient)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -83,8 +83,8 @@ m=nansum(x,1)
 m=nansum(x,2)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="nancumsum">nancumsum</link>

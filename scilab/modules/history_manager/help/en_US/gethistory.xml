@@ -25,7 +25,7 @@
 line=gethistory(N)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>matstr</term>
@@ -51,8 +51,8 @@ line=gethistory(N)</synopsis>
     <title>Description</title>
     <para>returns current scilab history in a string matrix.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="savehistory">savehistory</link>

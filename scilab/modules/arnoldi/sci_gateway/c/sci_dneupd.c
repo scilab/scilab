@@ -27,22 +27,22 @@ extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr,
 /*--------------------------------------------------------------------------*/
 int sci_dneupd(char *fname,unsigned long fname_len)
 {
-  int RVEC,     mRVEC,     nRVEC,      pRVEC;
-  int HOWMANY,  mHOWMANY,  nHOWMANY,   pHOWMANY;
-  int SELECT,   mSELECT,   nSELECT,    pSELECT;
+  int mRVEC,     nRVEC,      pRVEC;
+  int mHOWMANY,  nHOWMANY,   pHOWMANY;
+  int mSELECT,   nSELECT,    pSELECT;
   int Dr,       mDr,       nDr,        pDr;
   int Di,       mDi,       nDi,        pDi;
   int Z,        mZ,        nZ,         pZ;
-  int SIGMAr,   mSIGMAr,   nSIGMAr,    pSIGMAr;
-  int SIGMAi,   mSIGMAi,   nSIGMAi,    pSIGMAi;
-  int WORKev,   mWORKev,   nWORKev,    pWORKev;
-  int BMAT,     mBMAT,     nBMAT,      pBMAT;
-  int N,        mN,        nN,         pN;
-  int WHICH,    mWHICH,    nWHICH,     pWHICH;
-  int NEV,      mNEV,      nNEV,       pNEV;
-  int TOL,      mTOL,      nTOL,       pTOL;
+  int mSIGMAr,   nSIGMAr,    pSIGMAr;
+  int mSIGMAi,   nSIGMAi,    pSIGMAi;
+  int mWORKev,   nWORKev,    pWORKev;
+  int mBMAT,     nBMAT,      pBMAT;
+  int mN,        nN,         pN;
+  int mWHICH,    nWHICH,     pWHICH;
+  int mNEV,      nNEV,       pNEV;
+  int mTOL,      nTOL,       pTOL;
   int RESID,    mRESID,    nRESID,     pRESID;
-  int NCV,      mNCV,      nNCV,       pNCV;
+  int mNCV,      nNCV,       pNCV;
   int V,        mV,        nV,         pV;
   int IPARAM,   mIPARAM,   nIPARAM,    pIPARAM;
   int IPNTR,    mIPNTR,    nIPNTR,     pIPNTR;
@@ -58,22 +58,22 @@ int sci_dneupd(char *fname,unsigned long fname_len)
   CheckLhs(minlhs,maxlhs);
 
   /*                                                  VARIABLE = NUMBER   */
-  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mRVEC,   &nRVEC,   &pRVEC);          RVEC =  1;
-  GetRhsVar( 2,STRING_DATATYPE,            &mHOWMANY,&nHOWMANY,&pHOWMANY);    HOWMANY =  2;
-  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mSELECT, &nSELECT, &pSELECT);      SELECT =  3;
+  GetRhsVar( 1,MATRIX_OF_INTEGER_DATATYPE, &mRVEC,   &nRVEC,   &pRVEC);
+  GetRhsVar( 2,STRING_DATATYPE,            &mHOWMANY,&nHOWMANY,&pHOWMANY);
+  GetRhsVar( 3,MATRIX_OF_INTEGER_DATATYPE, &mSELECT, &nSELECT, &pSELECT);
   GetRhsVar( 4,MATRIX_OF_DOUBLE_DATATYPE,  &mDr,     &nDr,     &pDr);              Dr =  4;
   GetRhsVar( 5,MATRIX_OF_DOUBLE_DATATYPE,  &mDi,     &nDi,     &pDi);              Di =  5;
   GetRhsVar( 6,MATRIX_OF_DOUBLE_DATATYPE,  &mZ,      &nZ,      &pZ);                Z =  6;
-  GetRhsVar( 7,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAr, &nSIGMAr, &pSIGMAr);      SIGMAr =  7;
-  GetRhsVar( 8,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAi, &nSIGMAi, &pSIGMAi);      SIGMAi =  8;
-  GetRhsVar( 9,MATRIX_OF_DOUBLE_DATATYPE,  &mWORKev, &nWORKev, &pWORKev);      WORKev =  9;
-  GetRhsVar(10,STRING_DATATYPE,            &mBMAT,   &nBMAT,   &pBMAT);          BMAT = 10;
-  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);                N = 11;
-  GetRhsVar(12,STRING_DATATYPE,            &mWHICH,  &nWHICH,  &pWHICH);        WHICH = 12;
-  GetRhsVar(13,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);            NEV = 13;
-  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE,  &mTOL,    &nTOL,    &pTOL);            TOL = 14;
+  GetRhsVar( 7,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAr, &nSIGMAr, &pSIGMAr);
+  GetRhsVar( 8,MATRIX_OF_DOUBLE_DATATYPE,  &mSIGMAi, &nSIGMAi, &pSIGMAi);
+  GetRhsVar( 9,MATRIX_OF_DOUBLE_DATATYPE,  &mWORKev, &nWORKev, &pWORKev);
+  GetRhsVar(10,STRING_DATATYPE,            &mBMAT,   &nBMAT,   &pBMAT);
+  GetRhsVar(11,MATRIX_OF_INTEGER_DATATYPE, &mN,      &nN,      &pN);
+  GetRhsVar(12,STRING_DATATYPE,            &mWHICH,  &nWHICH,  &pWHICH);
+  GetRhsVar(13,MATRIX_OF_INTEGER_DATATYPE, &mNEV,    &nNEV,    &pNEV);
+  GetRhsVar(14,MATRIX_OF_DOUBLE_DATATYPE,  &mTOL,    &nTOL,    &pTOL);
   GetRhsVar(15,MATRIX_OF_DOUBLE_DATATYPE,  &mRESID,  &nRESID,  &pRESID);        RESID = 15;
-  GetRhsVar(16,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);            NCV = 16;
+  GetRhsVar(16,MATRIX_OF_INTEGER_DATATYPE, &mNCV,    &nNCV,    &pNCV);
   GetRhsVar(17,MATRIX_OF_DOUBLE_DATATYPE,  &mV,      &nV,      &pV);                V = 17;
   GetRhsVar(18,MATRIX_OF_INTEGER_DATATYPE, &mIPARAM, &nIPARAM, &pIPARAM);      IPARAM = 18;
   GetRhsVar(19,MATRIX_OF_INTEGER_DATATYPE, &mIPNTR,  &nIPNTR,  &pIPNTR);        IPNTR = 19;

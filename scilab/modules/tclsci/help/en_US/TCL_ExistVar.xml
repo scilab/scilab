@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistVar(varname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>
@@ -75,8 +75,8 @@ TCL_ExistVar("aa",'SlaveInterp')
 TCL_DeleteInterp('SlaveInterp') 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

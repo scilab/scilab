@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab"
+          xml:id="math_rendering_features_in_graphic" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Math rendering in Scilab graphics</refname>
+
+    <refpurpose>Display mathematical equations in Scilab graphics through the
+    LaTeX or MathML languages.</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Usage</title>
+
+    <para>Starting from Scilab 5.2, it is possible to write LaTeX or MathML
+    expression.</para>
+
+    <para>LaTeX texts must start and end by $ (dollar symbol) while MathML
+    texts must start by &lt; and end by &gt; and being syntactically
+    valid.</para>
+
+    <para>On the first use (these libraries are loading on the fly only when
+    needed), note that the MathML engine is slower to load than LaTeX.</para>
+
+    <programlisting role="example"><![CDATA[ 
+// Example with LaTeX / MathML ticks:
+plot2d();
+a=gca();
+
+mathml="<mrow>;<mfrac><mrow><mi>d</mi><mi>y</mi></mrow><mrow><mi>d</mi><mi>x</mi></mrow></mfrac><mo>=</mo>..
+<mfrac><mn>1</mn><msup><mi>y</mi><mn>2</mn></msup></mfrac></mrow>";
+// LaTeX and MathML mixed expression
+a.x_ticks.labels=[mathml;"1";"$\sin(x)$";"3";"$\cos(a) - test$";"5";"6";"7"];
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>LaTeX description</title>
+
+    <para>The rendering engine is based on the Java library JLaTeXMath.
+    JLaTeXMath is an implementation of the mathematic mode of LaTeX. All LaTeX
+    base commands are handle (do not hesitate to submit a bug report if
+    missing). Few TeX commands, like <literal>\over are supported.</literal></para>
+    
+    <para>Since Scilab 5.2.1, greek, cyrillic and complete unicode for latin alphabets characters are handled in the Scilab graphics</para>
+
+    <programlisting role="example"><![CDATA[
+xtitle('$\textstyle\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}{6}$')
+xtitle('$\big(\bigg)$')
+xtitle('$\mbox{Vector field for }\ddot{\theta}=\sin\theta$')
+xtitle('$\JLaTeXMath\ \mathfrak{and}\ \mathtt{Scilab}$')
+xstring(0.5,0.5,"$\overbrace{привет\ мир} \underbrace{γειά\ κόσμο}$")
+ ]]></programlisting>
+
+    <para>JLaTeXMath provides several fonts with the commands
+    <literal>\mathbb</literal>, <literal>\mathscr</literal>,
+    <literal>\mathcal</literal>, <literal>\mathbf</literal>,
+    <literal>\mathit</literal>, <literal>\mathsf</literal>,
+    <literal>\mathtt</literal>, <literal>\mathfrak</literal>,
+    <literal>\mathds</literal>, <literal>\mathrm</literal>, with their bold
+    versions when they are available with the command
+    <literal>\boldsymbol</literal> :</para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\mathbb{SCILAB}\ \mathsf{or}\ \boldsymbol{\mathfrak{Scilab}}$')
+xtitle('$\mathscr{C}\mbox{ n''est pas }\boldsymbol{\mathcal{C}}$')
+ ]]></programlisting>
+
+    <para>Different LaTeX packages are available:
+    <replaceable>amsmath</replaceable>, <replaceable>amssymb</replaceable>,
+    <replaceable>stmaryrd</replaceable>, <replaceable>amsxtra</replaceable>
+    and <replaceable>accents</replaceable> with some commands of
+    <replaceable>graphics</replaceable>. Most of the commands of these
+    packages are available (some of <replaceable>amsmath</replaceable> are
+    missing for example).</para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\sideset{_\alpha^\beta}{_\gamma^\delta}\prod$')
+xtitle('$\hat{\accentset{\star}{\hat h}}\undertilde{ABC}$')
+xtitle('$\begin{pmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{pmatrix}\mbox{ or }..
+\begin{bmatrix}\mathfrak{a}&\alpha\\\mathbb{A}&\mathcal{A}\end{bmatrix}$')
+xstring(0.5,0.5,'$\left(\frac{\pi}{\sqrt[3]{2}}\middle|\sqrt{\frac{1+\frac1x}{x}}\right\rangle$')
+xtitle('$\doublecup\ddag\fatbslash\lll\oplus\ovee\circledcirc\circlearrowright$')
+xtitle('$\rotatebox{180}{\boxed{\JLaTeXMath}}\ \reflectbox{\JLaTeXMath}$')
+xtitle('$\scalebox{0.6}{\sum_{n=1}^{+\infty}\frac1{n^2}=\frac{\pi^2}6}$')
+xtitle('$\fcolorbox{black}{Tan}{\JLaTeXMath}$')
+xtitle('$\textcolor{Magenta}{\mathfrak{Scilab}}\mbox{ and }\textcolor{Green}{\mathcal{SCILAB}}$')
+ ]]></programlisting>
+
+    <para>It is also possible to define new commands or new
+    environments:</para>
+
+    <programlisting role="example"><![CDATA[ 
+xtitle('$\newcommand{\op}{\left(}\newcommand{\cp}{\right)} \op\frac12\cp$')
+xtitle('$\newcommand{\myfrac}[2]{\frac{\mathfrak{#1}}{\mathcal{#2}}}\myfrac{A}{B}$')
+ ]]></programlisting>
+  </refsection>
+
+  <refsection>
+    <title>MathML description</title>
+
+    <para>The MathML rendering is based on Jeuclid. Jeuclid is a MathML
+    implementation which covers the whole specification. Therefor, all the
+    MathML language is supported within Scilab.</para>
+
+    <para>Due to the size of the Jeuclid library, on the first use, it can
+    take up to a few seconds to load. However, next uses are much
+    faster.</para>
+
+    <programlisting role="example"><![CDATA[ 
+plot3d();
+a=get("current_axes");
+a.x_label.font_size= 5;
+a.x_label.text="<mrow><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo></mo><mfenced open=""{"" close=""}""> ..
+<mrow><mfrac><mrow><mfrac><mrow><mi>a</mi></mrow><mrow><mi>b</mi></mrow></mfrac></mrow><mrow><mfrac><mrow> ..
+<mi>c</mi></mrow><mrow><mi>d</mi></mrow></mfrac></mrow></mfrac></mrow></mfenced></mrow>"
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xtitle">xtitle</link></member>
+      <member><link linkend="axes_properties">axes_properties</link></member>
+      <member><link linkend="label_properties">label_properties</link></member>
+      <member><link linkend="legend_properties">legend_properties</link></member>
+      <member><link linkend="text_properties">text_properties</link></member>
+      <member><link linkend="xstringb">xstringb</link></member>
+      <member><link linkend="xstringl">xstringl</link></member>
+      <member><link linkend="xstring">xstring</link></member>
+      <member><link linkend="uicontrol">uicontrol</link></member>
+      <member><link linkend="uimenu">uimenu</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,8 +1,13 @@
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-tbx_build_src(["fsum"],   ..
-              ["fsum.f"], ..
-              "f",        ..
-              get_absolute_file_path("builder_fortran.sce"));
+function builder_fortran()
 
-clear tbx_build_src;
+  tbx_build_src(["fsum"],   ..
+                ["fsum.f"], ..
+                "f",        ..
+                get_absolute_file_path("builder_fortran.sce"));
+
+endfunction
+
+builder_fortran();
+clear builder_fortran; // remove builder_fortran on stack

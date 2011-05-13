@@ -1,0 +1,243 @@
+# Localization of the module ui_data
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-10 10:58+0100\n"
+
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 213
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 216
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 248
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 251
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 312
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 315
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 349
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 352
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 391
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 394
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 425
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 428
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 458
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 461
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 492
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 495
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 525
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 528
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 559
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 562
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 575
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 583
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 155
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 85
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 121
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 106
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_editvar.cpp, line: 146
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 3
+# File: scilab_fake_localization_file.c, line: 7
+msgid "&?"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 4
+# File: scilab_fake_localization_file.c, line: 8
+msgid "&About Scilab..."
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 2
+# File: scilab_fake_localization_file.c, line: 6
+msgid "&Close"
+msgstr ""
+#
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 5
+msgid "&File"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 38
+msgid "Boolean"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_browsevar.cpp, line: 88
+msgid "Bytes"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 33
+msgid "Close"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 45
+msgid "Compiled function"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 61
+msgid "Copy"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 63
+msgid "Cut"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 36
+msgid "Double"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 32
+msgid "File"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 34
+msgid "Filter"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 46
+msgid "Function library"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 58
+msgid "Global variables can not be edited."
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 42
+msgid "Graphic handles"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_browsevar.cpp, line: 84
+msgid "Icon"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 53
+msgid "Implicit polynomial"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 41
+msgid "Integer"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 51
+msgid "Intrinsic function"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 47
+msgid "List"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 52
+msgid "Matlab sparse"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 49
+msgid "Mlist"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_browsevar.cpp, line: 85
+msgid "Name"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 62
+msgid "Paste"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 50
+msgid "Pointer"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 37
+msgid "Polynomial"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 65
+msgid "Redo"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 60
+msgid "Refresh the variable "
+msgstr ""
+#
+# File: sci_gateway/c/gw_ui_data.c, line: 37
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+#
+# File: src/noui_data/noui_data.c, line: 19
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 39
+msgid "Sparse"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 40
+msgid "Sparse boolean"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 43
+msgid "String"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 48
+msgid "Tlist"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_browsevar.cpp, line: 89
+msgid "Type"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 44
+msgid "Un-compiled function"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 64
+msgid "Undo"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 56
+msgid "Variable Browser"
+msgstr ""
+#
+# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 55
+# File: src/java/org/scilab/modules/ui_data/variableeditor/ScilabVariableEditor.java, line: 153
+msgid "Variable Editor"
+msgstr ""
+#
+# File: sci_gateway/cpp/sci_browsevar.cpp, line: 98
+msgid "Visibility"
+msgstr ""

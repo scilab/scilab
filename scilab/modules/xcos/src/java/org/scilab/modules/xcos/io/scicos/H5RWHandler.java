@@ -13,8 +13,7 @@
 package org.scilab.modules.xcos.io.scicos;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
@@ -23,10 +22,10 @@ import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.hdf5.read.H5Read;
 import org.scilab.modules.hdf5.write.H5Write;
-import org.scilab.modules.types.scilabTypes.ScilabList;
-import org.scilab.modules.types.scilabTypes.ScilabMList;
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabMList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.VersionMismatchException;
@@ -120,9 +119,9 @@ public class H5RWHandler {
 	 * 
 	 * @return the decoded context
 	 */
-	public Map<String, String> readContext() {
+	public LinkedHashMap<String, String> readContext() {
 		final ScilabList list = new ScilabList();
-		final Map<String, String> result = new HashMap<String, String>();
+		final LinkedHashMap<String, String> result = new LinkedHashMap<String, String>();
 
 		if (LOG.isTraceEnabled()) {
 			LOG.trace("Reading context from " + h5File);
@@ -207,10 +206,11 @@ public class H5RWHandler {
 						+ ((VersionMismatchException) e).getWrongVersion()
 						+ "\n" + XcosMessages.TRY_TO_CONTINUE);
 			} else {
-				LOG.error(e);
+				// rethrow
+				throw new RuntimeException(e);
 			}
 		} catch (HDF5Exception e) {
-			LOG.error(e);
+			throw new RuntimeException(e);
 		} finally {
 			diagram.getModel().endUpdate();
 		}
@@ -310,7 +310,9 @@ public class H5RWHandler {
 
 			H5Write.closeFile(fileId);
 		} catch (HDF5Exception e) {
+			// important error which need a backtrace.
 			LOG.error(e);
+			e.printStackTrace();
 		} catch (java.lang.NullPointerException e) {
 			LOG.error(e);
 			LOG.debug(data);

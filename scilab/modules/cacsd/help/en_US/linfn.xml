@@ -23,7 +23,7 @@
     <synopsis>[x,freq]=linfn(G,PREC,RELTOL,options);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -98,8 +98,8 @@
     and upper bounds are computed using the associated 
     Lyapunov solutions.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="h_norm">h_norm</link>

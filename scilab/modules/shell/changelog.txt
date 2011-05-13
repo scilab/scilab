@@ -1,3 +1,0 @@
-  * First version of the Shell module
-
-  -- Allan CORNET  13/05/2007

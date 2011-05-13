@@ -19,9 +19,7 @@
 #define TEXMACS "texmacs"
 ;
 Source: modules\{#TEXMACS}\VERSION.xml; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\readme.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\license.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
-Source: modules\{#TEXMACS}\changelog.txt; DestDir: {app}\modules\{#TEXMACS}; Components: {#COMPN_TEXMACS}
 ;
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.quit; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
 Source: modules\{#TEXMACS}\etc\{#TEXMACS}.start; DestDir: {app}\modules\{#TEXMACS}\etc; Components: {#COMPN_TEXMACS}
@@ -44,7 +42,7 @@ Source: modules\{#TEXMACS}\macros\overloading\cleanmacros.bat; DestDir: {app}\mo
 ;
 ;Source: modules\{#TEXMACS}\demos\*.*; DestDir: {app}\modules\{#TEXMACS}\demos; Flags: recursesubdirs; Components: {#COMPN_TEXMACS}
 ;
-Source: modules\{#TEXMACS}\tests\*.*; DestDir: {app}\modules\{#TEXMACS}\tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_TESTS}
+;Source: modules\{#TEXMACS}\tests\*.*; DestDir: {app}\modules\{#TEXMACS}\tests; Flags: recursesubdirs; Components: {#COMPN_TEXMACS} and {#COMPN_TESTS}
 ;
 ;
 ;--------------------------------------------------------------------------------------------------------------

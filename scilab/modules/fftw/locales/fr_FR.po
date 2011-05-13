@@ -1,0 +1,105 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-02-16 13:41+0000\n"
+"Last-Translator: Allan CORNET <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s : Une erreur s'est produite : %s\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr ""
+"%s : Arguments d'entrée n°%d et n°%d incompatibles : Mêmes tailles "
+"attendues.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée : %d pas attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Un réel ou complexe "
+"attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument %d: Tableau à N-dimensions attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : matrice d'entiers "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s : Mauvaises valeurs pour l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s : Mauvaise valeurs pour l'argument d'entrée n°%d : Drapeaux FFTW "
+"attendus.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s : Mauvaise valeurs pour l'argument d'entrée n°%d : Un entier non-négatif "
+"attendu.\n"
+
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "Bibliothèque FFTW %s non trouvé.\n"
+
+msgid "FFTW Library not found.\n"
+msgstr "Bibliothèque FFTW non trouvée.\n"
+
+msgid "FFTW can't read wisdom."
+msgstr "FFTW ne peut pas lire la transformation pré-calculée (wisdom)."
+
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Module scilab FFTW non installé.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvais type pour l'argument d'entrée n°%d : une table de dimension N "
+#~ "attendue.\n"

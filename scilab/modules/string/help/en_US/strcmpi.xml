@@ -24,7 +24,7 @@
     <synopsis>res = strcmpi(string_one,string_two)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>string_one</term>
@@ -64,8 +64,8 @@ strcmpi(TXT1,TXT2)
 strcmpi(TXT1,'scilab')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="strcat">strcat</link>

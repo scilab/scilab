@@ -105,6 +105,7 @@ public final class XcosMessages {
     public static final String FONT_NAME = Messages.gettext("Font name");
     public static final String FONT_STYLE = Messages.gettext("Font style");
     public static final String TEXT_SETTINGS = Messages.gettext("Text settings");
+    public static final String IMAGE_PATH = Messages.gettext("Image path");
     
     /* Tools menu */
     public static final String TOOLS = Messages.gettext("Tools");
@@ -273,6 +274,9 @@ public final class XcosMessages {
     /* Blocks values */
     public static final String BLOCK_FROM = Messages.gettext("From %s");
     public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
+
+	/* Error checking */
+	public static final String WRONG_PORT_NUMBER =  Messages.gettext("Wrong port number");
     
 // CSON: JavadocVariable
 // CSON: LineLength

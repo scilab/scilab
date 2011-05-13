@@ -35,7 +35,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -226,7 +226,7 @@ mclose(fd_r);</programlisting>
 fd_w = mopen(TMPDIR+'/write.txt','wt');
 
 // write a line in fd_w 
-mputl('This is a line of text', fwd_w);
+mputl('This is a line of text', fd_w);
 mclose(fd_w);
 
 // read text 
@@ -261,8 +261,8 @@ mget(fd_rb, 'c')
 mclose(fd_rb) </programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="mclose">mclose</link></member>

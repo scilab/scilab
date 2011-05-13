@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Interface functions between between GetProperty functions and 
  * the C++/Java part of module 
  * 
@@ -118,6 +119,11 @@ RENDERER_IMPEXP BOOL sciGetJavaAutoResizeMode(sciPointObj * pFigure);
  * @param viewport [x,y,w,h] array
  */
 RENDERER_IMPEXP void sciGetJavaViewport(sciPointObj * pFigure, int viewport[4]);
+
+/**
+ * Get number of subticks along each axis of a subwindow.
+ */
+RENDERER_IMPEXP void sciGetJavaNbSubticks(sciPointObj * pSubwin, double subtics[3]);
 
 /**
  * Get number of ticks along X axis of a subwindow.

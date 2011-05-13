@@ -1,0 +1,162 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ --><!-- This document was created with Syntext Serna Free. --><refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="javasci_step_by_step" xml:lang="en">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>javasci - Step by step</refname>
+    <refpurpose>How to write an application based on javasci v2</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Step 1 - The code itself</title>
+    <para>Javasci v2 allows the call of Scilab engine from a Java API.</para>
+    <para>Some objects and methods are provided to perform such tasks. The main class being <emphasis role="italic">Scilab</emphasis>. This object allows sending / receiving data from the Scilab engine, error management or execution of Scilab script/code.</para>
+    <para>Classes are split in two packages: </para>
+    <itemizedlist>
+      <listitem>org.scilab.modules.javasci.*; // Contains the main Scilab class</listitem>
+      <listitem>org.scilab.modules.types.*; // Contains Scilab &lt;=&gt; Java mappings</listitem>
+    </itemizedlist>
+    <para><para>Here is an example of a classical use-case:</para></para>
+    <programlisting role="java">/*
+ * Copyright (C) 2010 - DIGITEO - Sylvestre Ledru
+ *
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
+ *
+ */
+
+import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.types.ScilabDouble;
+
+class Example1 {
+
+    public static void main(String[] args) {
+        try {
+            Scilab sci = new Scilab();
+            if (sci.open()) {
+                /* Send a Scilab instruction */
+                sci.exec(&quot;foo = [ 2, 4, 6; 4, 0, 10; 6, 10, 12 ];&quot;);
+
+                /* Retrieve the variable foo */
+                ScilabType foo = sci.get(&quot;foo&quot;);
+
+                /* Display the variable */
+                System.out.println(&quot;Representation of  : &quot;+foo);
+
+                /* Get the data and retrieve the 2,2 value */
+                double[][] aReal = ((ScilabDouble)foo).getRealPart();
+                System.out.println(&quot;foo[1,1] = &quot; + aReal[1][1]);
+
+                /* Change the value of 2,2 */
+                aReal[1][1] = Math.PI;
+
+                /* Create a new variable */
+                ScilabDouble bar = new ScilabDouble(aReal);
+
+                /* Send it to Scilab */
+                sci.put(&quot;bar&quot;,bar);
+
+                /* Display it through Scilab */
+                sci.exec(&quot;disp(bar)&quot;);
+
+                sci.close();
+            } else {
+                System.out.println(&quot;Could not start Scilab &quot;);
+            }
+
+
+            /* Can be improved by other exceptions: AlreadyRunningException,
+             * InitializationException, UndefinedVariableException,
+             * UnknownTypeException, etc
+             */
+        } catch (org.scilab.modules.javasci.JavasciException e) {
+            System.err.println(&quot;An exception occured: &quot; + e.getLocalizedMessage());
+        }
+    }
+}
+
+</programlisting>
+    <para>Note that the source are available in SCI/modules/javasci/examples/v2/</para>
+    <para>The output of the program will be:</para>
+    <programlisting>Representation of  : [2.0, 4.0, 6.0 ; 4.0, 0.0, 10.0 ; 6.0, 10.0, 12.0]
+foo[1,1] = 0.0
+
+    2.    4.           6.
+    4.    3.1415927    10.
+    6.    10.          12.
+</programlisting>
+    <para>For more information about the objects and methods, browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser).</para>
+  </refsection>
+  <refsection>
+    <title>Step 2 - Build</title>
+    <para>Path to Scilab data is also expected under GNU/Linux and Mac OS X (under Microsoft Windows, it is automatically detected).</para>
+    <programlisting># Variable SCI
+# Under GNU/Linux with the Scilab binary, the path is:
+/path/to/scilab-xxx/share/scilab/
+# Under GNU/Linux and Mac OS X with the source tree, the path is the base of the source tree
+/path/to/scilab/sources/
+# Under Mac OS X, the path is:
+/Applications/scilab-xxx/Contents/MacOS/share/scilab/
+# On Windows, the path is:
+C:\Program Files\Scilab-5.3.0\</programlisting>
+    <para>To build a code using Javasci v2, two jars files are necessary in the CLASSPATH.</para>
+    <programlisting role="example"><![CDATA[# For example, create a variable CLASSPATH
+$(SCI)/modules/javasci/jar/org.scilab.modules.javasci.jar
+$(SCI)/modules/types/jar/org.scilab.modules.types.jar
+]]> </programlisting>
+  </refsection>
+  <refsection>
+    <title>Step 3 - Execution</title>
+    <para>Like in the building step, both jars are expected. </para>
+    <para>Path(s) to native libraries have to be set in order for Java to communicate with Scilab.</para>
+    <para>Two libraries are needed by Javasci v2 on load libjavasci2.{so,dylib,dll} and libscilab.{so,dylib,dll}. Other Scilab libraries will be loaded transparently.</para>
+    <programlisting role="example"># For example, create a variable LIBPATH
+# Under GNU/Linux with the Scilab binary, the path is:
+/path/to/scilab-xxx/lib/scilab/
+# Under GNU/Linux and Mac OS X with the source tree, the path is:
+$(SCI)/modules/javasci/.libs/:$(SCI)/modules/.libs/
+# Under Mac OS X, the path is:
+/Applications/scilab-xxx/Contents/MacOS/lib/scilab/
+# Under Windows, the path is:
+set LIBPATH="C:\Program Files\Scilab-5.3.0\bin"</programlisting>
+    <para>The command to launch the  program is the following:</para>
+    <programlisting>java -cp $CLASSPATH:. -DSCI=$SCI -Djava.library.path=$LIBPATH Example1</programlisting>
+  </refsection>
+  <refsection>
+    <title>A sample Makefile</title>
+    <para>A simple Makefile would be:</para>
+    <programlisting>SCI = /path/to/scilab/share/scilab/
+CLASSPATH = $(SCI)/modules/javasci/jar/org.scilab.modules.javasci.jar:$(SCI)/modules/types/jar/org.scilab.modules.types.jar
+LIB_PATH = /path/to/scilab/lib/scilab
+all:
+    javac -cp $(CLASSPATH) Example1.java
+    java -cp $(CLASSPATH):. -DSCI=$(SCI) -Djava.library.path=$(LIB_PATH) Example1</programlisting>
+  </refsection>
+  <para>See build.bat for Windows in SCI/modules/javasci/examples/v2 directory.</para>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member> Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link> (this will open the web browser). </member>
+      <member>
+        <link linkend="compile_and_run_javasci_v2">Compile and run with Javasci v2</link>
+      </member>
+      <member>
+        <link linkend="javasci_faq_v2">Javasci v2 FAQ</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Sylvestre Ledru</para>
+  </refsection>
+</refentry>

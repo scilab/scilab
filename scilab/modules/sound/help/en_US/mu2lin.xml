@@ -23,7 +23,7 @@
     <synopsis>mu=lin2mu(y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>y</term>
@@ -49,8 +49,8 @@
     byte-encoded audio files.   Translation of C program by Craig Reese: 
     IDA/Supercomputing Research Center Joe Campbell: Department of Defense</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mu2lin">mu2lin</link>

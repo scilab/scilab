@@ -66,8 +66,8 @@ t1=['1','2','3','4';'2','1','2','3';'3','2','1','2';'4','3','2','1']
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="matrix">matrix</link></member>

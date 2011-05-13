@@ -18,7 +18,7 @@
 [wk]=corr('updt',xk,[yk],w,xu)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -225,8 +225,8 @@ y=ymacro(100,1);
 [max(abs(cc-cc1)),max(abs(mm-mm1)),max(abs(cc-cc2)),max(abs(mm-mm2))]
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fft">fft</link>

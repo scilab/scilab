@@ -51,6 +51,9 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 	 * Throw when there is a problem to communicate with the scilab interpreter.
 	 */
 	public static class InterpreterException extends Exception {
+		
+		private static final long serialVersionUID = -7222406936060866827L;
+
 		/**
 		 * Default constructor
 		 * 
@@ -73,7 +76,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 	public static void synchronousScilabExec(String command)
 			throws InterpreterException {
 		final String uidDesc = Integer.toString(command.hashCode());
-		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
+		final String fullCommand = protectStatements(command, uidDesc);
 
 		if (runningTasks.contains(uidDesc)) {
 			throw new InterpreterException(
@@ -140,7 +143,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 			final ActionListener callback) throws InterpreterException {
 		final int uid = command.hashCode();
 		final String uidDesc = Integer.toString(uid);
-		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
+		final String fullCommand = protectStatements(command, uidDesc);
 		final ActionEvent event = new ActionEvent(
 				ScilabInterpreterManagement.class, uid, command);
 
@@ -150,6 +153,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 		}
 
 		executor.submit(new Callable<Void>() {
+			@Override
 			public Void call() throws Exception {
 				int ret = InterpreterManagement
 						.putCommandInScilabQueue(fullCommand);
@@ -161,6 +165,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 				Signal.wait(uidDesc);
 				runningTasks.remove(uidDesc);
 				SwingUtilities.invokeLater(new Runnable() {
+					@Override
 					public void run() {
 						callback.actionPerformed(event);
 					}
@@ -196,7 +201,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 			String command) throws InterpreterException {
 		final int uid = command.hashCode();
 		final String uidDesc = Integer.toString(uid);
-		final String fullCommand = command + NOTIFY + uidDesc + CLOSE;
+		final String fullCommand = protectStatements(command, uidDesc);
 		final ActionEvent event = new ActionEvent(
 				ScilabInterpreterManagement.class, uid, command);
 
@@ -206,6 +211,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 		}
 
 		executor.submit(new Callable<Void>() {
+			@Override
 			public Void call() throws Exception {
 				int ret = InterpreterManagement
 						.putCommandInScilabQueue(fullCommand);
@@ -218,6 +224,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 				runningTasks.remove(uidDesc);
 				if (callback != null) {
 					SwingUtilities.invokeLater(new Runnable() {
+						@Override
 						public void run() {
 							callback.actionPerformed(event);
 						}
@@ -345,5 +352,25 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 		b.append("); ");
 
 		return b.toString();
+	}
+	
+	/**
+	 * Protect some statements of commands within a try-catch block.
+	 * @param statements the statements to protect
+	 * @param uid the uid used on the notify(...) call
+	 * @return the protected statements
+	 */
+	private static String protectStatements(String statements, String uid) {
+		return new StringBuilder()
+		
+		.insert(0, "try, ")
+			.append(statements)
+		.append(" ,catch")
+			.append(" disp(lasterror()); ")
+		.append(" end ")
+		
+		.append(NOTIFY).append(uid).append(CLOSE)
+		
+		.toString();
 	}
 }

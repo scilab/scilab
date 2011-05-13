@@ -12,7 +12,7 @@
     <synopsis>[P]=inv_coeff(C,[,d,[name])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C</term>
@@ -52,8 +52,8 @@ P1=inv_coeff(A)
 norm(coeff(P1)-A)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

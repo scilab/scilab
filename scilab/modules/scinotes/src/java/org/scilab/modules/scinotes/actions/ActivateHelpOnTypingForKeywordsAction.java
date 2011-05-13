@@ -28,6 +28,8 @@ import org.scilab.modules.scinotes.HelpOnTypingManager;
  */
 public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAction {
 
+    private static final long serialVersionUID = 3793710651553964430L;
+
     /**
      * Constructor
      * @param name the name of the action
@@ -54,6 +56,7 @@ public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAct
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForKeywordsAction(label, editor), key);
+        cb.setChecked(HelpOnTypingManager.isKeywordsActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
                     cb.setChecked(HelpOnTypingManager.isKeywordsActive());

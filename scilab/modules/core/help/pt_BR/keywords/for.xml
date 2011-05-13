@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<refentry version="5.0-subset Scilab" xml:id="for" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>for</refname>
+
+    <refpurpose>palavra-chave de linguagem para laços ("loops") (significa
+    "para...")</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para>Usado para definir laços ("loops"). sua sintaxe é: <literal> for
+    variável=expressão ,instrução, ... ,instrução,end</literal></para>
+
+    <para><literal> for variável= expressão do instrução, ...
+    ,instrução,end</literal></para>
+
+    <para>Se <literal>expressão</literal> é uma matriz ou um vetor linha,
+    <literal>variável</literal> toma como valores os valores de cada coluna da
+    matriz.</para>
+
+    <para>Um caso particular utiliza o operador <link
+    linkend="colon">colon</link> para criar vetores linhas regularmente
+    espaçados, e remonta a formas de laço "for" tradicionais : <literal>for
+    variable=n1:step:n2, ...,end</literal></para>
+
+    <para>Se <literal>expressão </literal>é uma lista,
+    <literal>variável</literal> toma como valores as entradas sucessivas da
+    lista.</para>
+
+    <para>Aviso: o número de caracteres usados para definir o corpo de
+    qualquer instrução condicional (if, while, for ou select/case) deve ser
+    limitado a 16k.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+// laços "for" tradicionais
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+for j = 2:n-1
+    a(j,j) = j; 
+end; 
+a
+for j= 4:-1:1
+    disp(j);
+end // laço decrescente
+
+//laço em colunas de matrizes
+for  e=eye(3,3), e, end  
+for v=a, write(6,v), end
+for j=1:n, v=a(:,j), write(6,v), end 
+
+//laço em listas de entradas
+for l=list(1,2,'example'); l, end 
+
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="while">while</link></member>
+
+      <member><link linkend="end">end</link></member>
+
+      <member><link linkend="do">do</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

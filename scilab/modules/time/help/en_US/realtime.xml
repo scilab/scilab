@@ -28,7 +28,7 @@
 realtime(t)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>time_unit</term>
@@ -69,8 +69,8 @@ realtimeinit(1);realtime(0);
 dt=getdate('s'); realtime(10);   getdate('s')-dt
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getdate">getdate</link>

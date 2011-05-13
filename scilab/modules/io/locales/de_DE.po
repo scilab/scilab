@@ -1,0 +1,200 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "\"%s\" directory write access denied.\n"
+msgstr "'%s' Verzeichnis Schreibzugriff verweigert.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Speicher-Allokationsfehler.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher.\n"
+
+#, c-format
+msgid "%s: The file \"%s\" does not exist.\n"
+msgstr "%s: die Datei '%s' existiert nicht.\n"
+
+#, c-format
+msgid "%s: The file does not exist.\n"
+msgstr "%s: die Datei existiert nicht.\n"
+
+#, c-format
+msgid "%s: The system interpreter does not answer..."
+msgstr "%s: Der System-Interpreter antwortet nicht..."
+
+#, c-format
+msgid "%s: Undefined environment variable %s.\n"
+msgstr "%s: undefinierte Umgebungsvariable %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument.\n"
+msgstr "%s: falsche Anzahl an EIngangsargumenten.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: falsche Anzahl von Ausgangsargument(en).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwatet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' value expected.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: ''%s'' Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: eine Ganzzahl erwartet.\n"
+
+#, c-format
+msgid "%s: error during %s execution"
+msgstr "%s: Fehler während des %s Ausführens"
+
+#, c-format
+msgid "File \"%s\" already exists.\n"
+msgstr "Datei '%s' existiert bereits.\n"
+
+#, c-format
+msgid "File \"%s\" does not exist.\n"
+msgstr "Datei '%s' existiert nicht.\n"
+
+#, c-format
+msgid "File \"%s\" read access denied.\n"
+msgstr "Datei '%s' Lesezugriff verweigert.\n"
+
+msgid "Too many files opened!\n"
+msgstr "Zu viele geöffnete Dateien!\n"
+
+#, c-format
+msgid "Undefined environment variable %s.\n"
+msgstr "undefinierte Umgebungsvariable %s.\n"
+
+msgid "unmanaged error by v2cunit.\n"
+msgstr "nicht behandelter Fehler durch v2cunit.\n"
+
+#~ msgid ": "
+#~ msgstr ": "
+
+#, c-format
+#~ msgid "%s: end of input reached before final conversion.\n"
+#~ msgstr "%s: Ende des Dateneingangs vor der Finalen Konversion erreicht.\n"
+
+#, c-format
+#~ msgid "%s: Invalid conversion.\n"
+#~ msgstr "%s: ungültige Konversion.\n"
+
+#, c-format
+#~ msgid "%s: system cannot be displayed in this page.\n"
+#~ msgstr "%s: System kann nicht auf dieser Seite angezeigt werden.\n"
+
+#, c-format
+#~ msgid "%s: Incorrect format.\n"
+#~ msgstr "%s: Inkorrektes Format.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string.\n"
+#~ msgstr "%s: falscher Typ an Eingangsargumenten #%d: eine Zeichenkette.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument: no empty string expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument. keine leere Zeichenkette erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+#~ msgstr ""
+#~ "%s: falsche Größe für Eingangsargument #%d: muß kleiner als %d Zeichen "
+#~ "sein.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: Matrix von Variablen erwartet.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Wert für Eingangsargument #%d: ein gültiger Datei-Deskriptor "
+#~ "wird erwartet.\n"
+
+#, c-format
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: Die Datei %s existiert nicht.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: ein Datei-Deskriptor wird "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+#~ msgstr ""
+#~ "%s: falsche Größe für Eingangsargument #%d: ein Datei-Deskriptor wird "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+#~ msgstr ""
+#~ "%s: falscher Typ für Eingangsargument #%d: ein Integer-Skalar wird "
+#~ "erwartet.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Fehler bei der Speicherbelegung.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Falscher Wert für Eingangsargument #%d: eine Ganzzahl erwartet.\n"

@@ -1,6 +1,6 @@
 c     ==================================================
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-c Copyright (C) INRIA
+c Copyright (C) -2011 - INRIA - Serge Steer
 c 
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
@@ -61,7 +61,7 @@ c     argument is a standard matrix
 c     .     get all the occurences
                do 11 k=0,mn1-1
                   if(stk(l1+k).ne.0.0d0) then
-                     stk(l)=float(k+1)
+                     stk(l)=dble(k+1)
                      l=l+1
                   endif
  11            continue
@@ -69,7 +69,7 @@ c     .     get all the occurences
 c     .     get at most nmax occurences
                do 12 k=0,mn1-1
                   if(stk(l1+k).ne.0.0d0) then
-                     stk(l)=float(k+1)
+                     stk(l)=dble(k+1)
                      l=l+1
                      if(l-lr.ge.nmax) goto 13
                   endif
@@ -102,14 +102,14 @@ c     argument is a full boolean matrix
 c     .     get all occurrences
                do 14 k=0,mn1-1
                   if(istk(il+k).ne.1) goto 14
-                  stk(l)=float(k+1)
+                  stk(l)=dble(k+1)
                   l=l+1
  14            continue
             else
 c     .     get at most nmax occurences
                do 15 k=0,mn1-1
                   if(istk(il+k).ne.1) goto 15
-                  stk(l)=float(k+1)
+                  stk(l)=dble(k+1)
                   l=l+1
                   if(l-lr.ge.nmax) goto 16
  15            continue
@@ -127,6 +127,11 @@ c     .     get at most nmax occurences
       if(lhs.eq.1) goto 999
       top=top+1
       il2=iadr(lstk(top))
+      err=sadr(il2+4)+nt-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
       istk(il2)=1
       istk(il2+1)=min(1,nt)
       istk(il2+2)=nt
@@ -135,9 +140,29 @@ c     .     get at most nmax occurences
       lstk(top+1)=l2+nt
       if(nt.eq.0) goto 999
       do 18 k=0,nt-1
-         stk(l2+k)=float(int((stk(lr+k)-1.0d0)/m1)+1)
+         stk(l2+k)=dble(int((stk(lr+k)-1.0d0)/m1)+1)
          stk(lr+k)=stk(lr+k)-(stk(l2+k)-1.0d+0)*m1
  18   continue
+      if (lhs.gt.2) then
+         do k=3,lhs
+            top=top+1
+            ilk=iadr(lstk(top))
+            err=sadr(ilk+4)+nt-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            istk(ilk)=1
+            istk(ilk+1)=min(1,nt)
+            istk(ilk+2)=nt
+            istk(ilk+3)=0
+            lr=sadr(ilk+4)
+            lstk(top+1)=lr+nt
+            if (nt.gt.0) then
+               call dset(nt,1.0D0,stk(lr),1)
+            endif
+         enddo
+      endif
       goto 999
 c
   999 return
@@ -236,6 +261,11 @@ c     order the index column wise
       if(lhs.eq.1) return
       top=top+1
       il2=iadr(lstk(top))
+      err=sadr(il2+4)+nt-lstk(bot)
+      if(err.gt.0) then
+         call error(17)
+         return
+      endif
       istk(il2)=1
       istk(il2+1)=min(1,nt)
       istk(il2+2)=nt
@@ -244,10 +274,29 @@ c     order the index column wise
       lstk(top+1)=l2+nt
       if(nt.eq.0) return
       do 18 k=0,nt-1
-         stk(l2+k)=float(int((stk(lr+k)-1.0d0)/m1)+1)
+         stk(l2+k)=dble(int((stk(lr+k)-1.0d0)/m1)+1)
          stk(lr+k)=stk(lr+k)-(stk(l2+k)-1.0d+0)*m1
  18   continue
-
+      if (lhs.gt.2) then
+         do k=3,lhs
+            top=top+1
+            ilk=iadr(lstk(top))
+            err=sadr(ilk+4)+nt-lstk(bot)
+            if(err.gt.0) then
+               call error(17)
+               return
+            endif
+            istk(ilk)=1
+            istk(ilk+1)=min(1,nt)
+            istk(ilk+2)=nt
+            istk(ilk+3)=0
+            lr=sadr(ilk+4)
+            lstk(top+1)=lr+nt
+            if (nt.gt.0) then
+               call dset(nt,1.0D0,stk(lr),1)
+            endif
+         enddo
+      endif
       return
       end
 c     ==================================================      

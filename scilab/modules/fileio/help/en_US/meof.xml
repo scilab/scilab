@@ -24,7 +24,7 @@
     <synopsis>err=meof(fd)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
@@ -48,8 +48,8 @@
     The function <literal>clearerr</literal> is used to reset the error flag and
     EOF flag to zero.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

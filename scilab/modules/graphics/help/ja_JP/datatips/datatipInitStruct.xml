@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Copyright (C) INRIA -  Serge Steer Serge.Steer@inria.fr
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="datatipInitStruct">
+  <info>
+    <pubdate>$LastChangedDate: 19-02-2010 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>datatipInitStruct</refname>
+    <refpurpose>指定したポリラインに関するdatatip構造体を初期化する. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>ok=datatipInitStruct(curve_handle,varargin)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>curve_handle</term>
+        <listitem>
+          <para>
+            datatipsと互換性があるエンティティのハンドル
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>varargin</term>
+        <listitem>
+          <para>
+	datatipsデータ構造体のフィールドを追加またはカスタマイズする際に使用される
+	一連の対(&lt;field name&gt;,&lt;field value&gt;)
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	この関数は,polylineエンティティのuser_sataフィールドに保存されるtips用の
+	データ構造体を作成する際に
+	<link linkend="datatipCreate">datatipCreate</link>によりコールされます.
+    </para>
+    <para>
+      この関数をコールするのは,datatipsデータ構造体フィールドをカスタマイズしたいユーザ
+	のみです.
+    </para>
+  </refsection>
+  <refsection>
+    <title>datatip データ構造体</title>
+    <para>
+      datatipsデータ構造体は少なくとも以下のフィールドを有する<literal>"datatips"</literal>
+	型の<literal>tlist</literal> です.
+    </para>
+    <variablelist>
+      <varlistentry>
+        <term>interpolate</term>
+        <listitem>
+          <para>
+	論理値で, tipsの位置をメッシュ点の間で補間するかどうかを指定します.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>replace</term>
+        <listitem>
+          <para>
+	論理値で,新しいtipを追加する際に他のtipを消去するかどうかを指定します.
+          </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>formatfunction</term>
+        <listitem>
+          <para>
+             Scilab関数で, datatipsに表示されるテキストを整形する際に
+		コールされます.この関数は以下のようにコールされます:
+             <literal>str=datatipDefaultDisplay(curve_handle,pt,index)</literal>
+             ただし, <literal>curve_handle</literal> はポリラインまたは曲面のハンドル, 
+	<literal>pt</literal> は点の座標, <literal>index</literal> は
+	データの中の点のインデックス(補間モードの場合は空)です.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tips</term>
+        <listitem>
+          <para>
+	ハンドルの配列. これらの各々は曲線の指定されたtipを指します.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+    <para>
+	プログラマは,オプション引数<literal>datatipInitStruct</literal>
+      <literal>varargin</literal>により
+	他のフィールドをdatatipsデータ構造体に追加することが
+	できます.
+    </para>
+   
+   
+  </refsection>
+ 
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="datatipCreate">datatipCreate</link>
+      </member>
+     <member>
+        <link linkend="datatips">datatips</link>
+     </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[
+    t=linspace(0,10,1000);
+    clf();
+    plot(t.*sin(t),t.*cos(t),1.5*t.*sin(t),1.5*t.*cos(1.5*t));
+    e=gce();
+    p1=e.children(1);//ポリラインのハンドルを取得
+    p2=e.children(2);//ポリラインのハンドルを取得
+
+
+    function str=mytipfmt(curve,pt,index)
+      ds=datatipGetStruct(curve)
+      if index<>[] then
+        t=ds.param(index);
+      else //interpolated
+        [d,ptp,i,c]=orthProj(curve.data,pt);
+        t=ds.param(i)+(ds.param(i+1)-ds.param(i))*c;
+      end
+      str=msprintf("%s\nt=%-0.3g",ds.name,t);
+    endfunction
+
+    ok=datatipInitStruct(p1,"formatfunction","mytipfmt","param",t,"name","spiral");
+    ok=datatipInitStruct(p2,"formatfunction","mytipfmt","param",t,"name","curve");
+
+    datatipCreate(p1,500);
+    datatipCreate(p1,900);
+    datatipCreate(p2,750);
+
+    ]]></programlisting>
+    <para>
+      <inlinemediaobject>
+	<imageobject>
+	  <imagedata fileref="../../images/datatips2.svg"/>
+	</imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

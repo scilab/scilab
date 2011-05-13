@@ -1,0 +1,64 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-02-02 18:32+0000\n"
+"Last-Translator: Petersen <Unknown>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Falsche Anzahl von Ausgangsargumenten.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: einen booleschen Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d.\n"
+msgstr "%s: Falsche Größe für Eingangsargument %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: A string expected.\n"
+msgstr ""
+"%s: Falsche Grösse des Eingangsarguments: Eine Zeichenkette wird erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments.\n"
+msgstr "%s: Falscher Typ für Eingangsargumente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument: '%s', '%s', '%s', '%s', '%s' oder "
+"'%s' erwartet.\n"
+
+msgid "Scilab completion module not installed.\n"
+msgstr "Scilab Vervollständigungsmodul nicht installiert.\n"

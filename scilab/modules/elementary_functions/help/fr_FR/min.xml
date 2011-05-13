@@ -14,10 +14,6 @@
     <refname>min</refname>
     <refpurpose>minimum</refpurpose>
   </refnamediv>
- <refnamediv xml:id="mini">
-    <refname>mini</refname>
-    <refpurpose>Equivalent obsolete de la fonction min</refpurpose>
-  </refnamediv>
 
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
@@ -57,7 +53,7 @@
     <title>Description</title>
 
     <para>Pour <literal>A</literal>, un vecteur ou une matrice réelle,
-    <literal>min(A)</literal> est son plus grand élément.
+    <literal>min(A)</literal> est son plus petit élément.
     <literal>[m,k]=min(A)</literal> donne la position du minimum dans
     <literal>A</literal>. Le deuxième argument peut être la chaîne de
     caractère <literal>'r'</literal> ou <literal>'c'</literal> :
@@ -82,11 +78,6 @@
     <para><literal>[m,k]=min(list(A1,...,An))</literal> est une syntaxe
     équivalente de <literal>[m,k]=min(A1,A2,...,An)</literal></para>
   </refsection>
-  <refsection>
-    <title>Remarque</title>
-    <para>La fonction <literal>mini</literal> est un equivalent
-    obsolete de la fonction <literal>min</literal>.</para>
- </refsection>
 
   <refsection>
     <title>Exemples</title>
@@ -100,8 +91,8 @@
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
 
     <simplelist type="inline">
       <member><link linkend="gsort">gsort</link></member>

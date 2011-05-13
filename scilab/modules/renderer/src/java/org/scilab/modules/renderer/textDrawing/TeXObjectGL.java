@@ -12,24 +12,21 @@
 
 package org.scilab.modules.renderer.textDrawing;
 
-import java.awt.Graphics2D;
-import java.awt.Graphics;
-import java.awt.Component;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Insets;
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.awt.geom.AffineTransform;
-
 import java.nio.ByteBuffer;
 
-import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
-
+import org.scilab.forge.jlatexmath.ParseException;
 import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
-import org.scilab.forge.jlatexmath.ParseException;
+import org.scilab.modules.renderer.utils.textRendering.SpecialTextException;
 
 /**
  * LaTeX object
@@ -65,7 +62,7 @@ public class TeXObjectGL extends SpecialTextObjectGL {
  
 		this.fontSize = fontSize;
 		this.color = color;
-		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
+		this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
 
 		this.isColored = this.texi.isColored;
 
@@ -110,7 +107,7 @@ public class TeXObjectGL extends SpecialTextObjectGL {
     public boolean setFontSize(float fontSize) {
 	        if (this.fontSize != fontSize) {
 		    this.fontSize = fontSize;
-		    this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize + 6);
+		    this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, fontSize);
 		    makeImage();
 		    return true;
 		}
@@ -120,14 +117,12 @@ public class TeXObjectGL extends SpecialTextObjectGL {
     
 
     public void makeImage() {
-		texi.setInsets(new Insets(1, 1, 1, 1));
 		width = texi.getIconWidth();
 		height = texi.getIconHeight();
 
 		if (width <= 0 || height <= 0) {
 			formula = new TeXFormula("An\\ error\\ occured,\\ please\\ contact\\ the\\ author\\ of\\ \\JLaTeXMath");
 			this.texi = formula.createTeXIcon(TeXConstants.STYLE_DISPLAY, 10);
-			texi.setInsets(new Insets(1, 1, 1, 1));
 			width = texi.getIconWidth();
 			height = texi.getIconHeight();
 		}   

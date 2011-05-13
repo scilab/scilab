@@ -32,7 +32,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -57,7 +57,7 @@
 
         <listitem>
           <para>an error flag which is set to %T if list_name is not of type
-          plist (this list hasn't been initialized by a call to
+          plist (this list has not been initialized by a call to
           init_param).</para>
         </listitem>
       </varlistentry>
@@ -82,8 +82,8 @@ disp(list_param(mylist));
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="init_param">init_param</link></member>

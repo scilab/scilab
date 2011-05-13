@@ -24,7 +24,7 @@
     <synopsis>mfile2sci([M-file-path [,result-path [,Recmode [,only-double [,verbose-mode [,prettyprintoutput]]]]]])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>M-file-path</term>
@@ -196,8 +196,8 @@ m=rand(4,2);
 rot90(m,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="translatepaths">translatepaths</link>

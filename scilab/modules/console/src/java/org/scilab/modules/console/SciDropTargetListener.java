@@ -67,8 +67,8 @@ public class SciDropTargetListener implements DropTargetListener {
 			try {
 
 				if (transferable.isDataFlavorSupported(DataFlavor.javaFileListFlavor)) {
-				java.util.List data = (java.util.List) transferable.getTransferData(DataFlavor.javaFileListFlavor);
-				// Send file names to Scilab
+					List<File> data = (List<File>) transferable.getTransferData(DataFlavor.javaFileListFlavor);
+					// Send file names to Scilab
 
 					String[] fileNames = new String[data.size()];
 					for (int i = 0; i < data.size(); i++) {

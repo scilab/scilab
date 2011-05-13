@@ -24,7 +24,7 @@
     <synopsis>msg=gettext(myString)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>string</term>
@@ -44,13 +44,19 @@
 gettext('Startup execution:')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="dgettext">dgettext</link>
       </member>
     </simplelist>
+    <simplelist type="inline">
+      <member>
+        <link linkend="_">_</link>
+      </member>
+    </simplelist>
+    
   </refsection>
   <refsection>
     <title>Authors</title>

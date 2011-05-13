@@ -24,7 +24,7 @@
     <synopsis>[phi,db]=phasemag(z [,mod])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>z</term>
@@ -89,8 +89,8 @@ scf();
 plot2d(frq',phasemag(rf,'m')');
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="repfreq">repfreq</link>

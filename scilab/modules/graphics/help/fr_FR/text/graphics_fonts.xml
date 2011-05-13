@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)  2009 - Digiteo - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="graphics_fonts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graphics_fonts</refname>
+    <refpurpose>description des fonts utilisées par les figure graphiques.</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+	Certaines entités graphiques comme les entités Axes, Text, Label ou Legend permettent d'afficher une ou plusieures chaînes de caractères.
+	L'apparence de ces chaînes de caractères à l'écran peut être modifiée. Pour cela, il est possible de choisir la police de caractère
+	et la taille des caractères utilisées lors de l'affichage du texte.
+	</para>
+	
+	
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Changer de police de caractère</term>
+        <listitem>
+		  <para>
+		    Les polices utilisées dans les figure graphiques sont selectionnées à partir d'un ensemble de polices appelé polices chargées.
+			En d'autres termes, les polices chargées sont celles disponibles dans les figure graphiques. La liste des polices chargées à un moment donné
+			peut être obtenue avec la fonction <literal>xlfont</literal> appelée sans arguments.
+			Par defaut, Scilab contient un ensemble de 11 polices chargées. Cet ensemble peut-être modifié ou étendu en utilisant la fonction <literal>xlfont</literal>
+			avec le nom de la police à chercher en argument. Le nom de la police peut soit être la chemin d'un fichier
+			descripteur de police ou le nom d'une police du système. La liste des polices du système peut être obtenue avec la commande <literal>xlfont('AVAILABLE_FONTS')</literal>.
+			Pour plus d'information sur la manipulation des fonts, référez vous à la page <link linkend="xlfont">xlfont</link>.
+	      </para>
+		  
+		  <para>
+		    La Liste de 11 polices de caractères disponibles par défaut est donnée ci-dessous.</para>
+			<informaltable border="1">
+            <tr><td><emphasis role="bold">Numéro de police</emphasis></td><td><emphasis role="bold">Famille de police</emphasis></td><td><emphasis role="bold">Gras</emphasis></td><td><emphasis role="bold">Italique</emphasis></td></tr>
+            <tr><td>0</td><td>Monospaced</td><td>Non</td><td>Non</td></tr>
+            <tr><td>1</td><td>ScilabSymbols</td><td>Non</td><td>Non</td></tr>
+			<tr><td>2</td><td>Serif</td><td>Non</td><td>Non</td></tr>
+            <tr><td>3</td><td>Serif</td><td>Non</td><td>Oui</td></tr>
+            <tr><td>4</td><td>Serif</td><td>Oui</td><td>Non</td></tr>
+            <tr><td>5</td><td>Serif</td><td>Oui</td><td>Oui</td></tr>
+			<tr><td>6</td><td>SansSerif</td><td>Non</td><td>Non</td></tr>
+			<tr><td>7</td><td>SansSerif</td><td>Non</td><td>Oui</td></tr>
+			<tr><td>8</td><td>SansSerif</td><td>Oui</td><td>Non</td></tr>
+			<tr><td>9</td><td>SansSerif</td><td>Oui</td><td>Oui</td></tr>
+			<tr><td>10</td><td>SansSerif</td><td>Oui</td><td>Oui</td></tr>
+            </informaltable>
+		  
+		  <para>
+		    La police de caractère utilisée par une entité graphique est déterminée par sa propriété <literal>font_style</literal>.
+			Il s'agit d'un entier positif permettant de référencer une des polices chargées.
+			Sa valeur doit être comprise entre 0, référençant la première police, et le nombre de polices chargées moins un, référençant alors
+			la dernière police.
+		  </para>
+		  <para>
+		    La propriété <literal>fractional_font</literal> premet d'activer l'anticrénelage des fonts. La propriété peut prendre les
+			valeurs <literal>'on'</literal> ou <literal>'off'</literal>. Si sa valeur est <literal>'on'</literal> alors la font est lissée,
+			sinon elle ne l'est pas.
+		  </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Changer la taille des caractères </term>
+        <listitem>
+		  <para>
+		    La taille du texte affiché par une entité graphique est déterminée par sa propriété <literal>font_size</literal>.
+			Il s'agit d'un scalaire déterminant la taille des caractères à utiliser.
+			</para>
+			<para>
+			La taille des cractère en Scilab est différente de celle utilisée par Java.
+			L'équivalence entre les deux échelles est donnée ci-dessous.</para>
+			<informaltable border="1">
+            <tr><td><emphasis role="bold">Taille Scilab</emphasis></td><td><emphasis role="bold">Taille Java</emphasis></td></tr>
+            <tr><td>0</td><td>8</td></tr>
+            <tr><td>1</td><td>10</td></tr>
+            <tr><td>2</td><td>12</td></tr>
+            <tr><td>3</td><td>14</td></tr>
+            <tr><td>4</td><td>18</td></tr>
+			<tr><td>5</td><td>24</td></tr>
+			<tr><td>6</td><td>30</td></tr>
+			<tr><td>7</td><td>36</td></tr>
+			<tr><td>8</td><td>42</td></tr>
+			<tr><td>9</td><td>48</td></tr>
+			<tr><td>10</td><td>54</td></tr>
+            </informaltable>
+			<para>La taille des caractères peut prendre des valeurs non entière. Dans ce cas, le résultat dépend de la propriété <literal>fractional_font</literal> .
+			Si <literal>fractional_font</literal> a pour valeur <literal>'on'</literal>, alors la taille de caractère est interpolée
+			entre les deux tailles entière les plus proches. Par exemple, une taille de 2.5 permet d'afficher des caractères dont la taille
+			en Java est 13.
+			Si <literal>fractional_font</literal> a pour valeur <literal>'off'</literal>, alors la taille de caractère est tronquée
+			à sa partie entière. Par exemple, une taille de 2.5 affichera des caractères dont la taille
+			en Java est 12.
+          </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xlfont">xlfont</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

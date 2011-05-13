@@ -23,7 +23,7 @@
     <synopsis>x=read4b(file-name,m,n [,rec])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file-name</term>
@@ -55,8 +55,8 @@
     <literal>file</literal> function to set the record_length. <literal>file-name</literal> must be
     the result of the <literal>file</literal> function.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="file">file</link>

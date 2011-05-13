@@ -24,7 +24,7 @@
     <synopsis>s = samplef(n,X,f,orient)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -105,8 +105,8 @@ s=samplef(15,a,f2,'r')
 s=samplef(15,a,f3,'c')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sample">sample</link>

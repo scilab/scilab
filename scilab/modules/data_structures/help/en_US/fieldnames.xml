@@ -24,7 +24,7 @@
     <synopsis>f = fieldnames(lst)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lst</term>
@@ -59,8 +59,8 @@ obj.y = 3;
 fieldnames(obj)
     </programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>
@@ -75,7 +75,7 @@ fieldnames(obj)
         <link linkend="mlist">mlist</link>
       </member>
       <member>
-        <link linkend="mlist">struct</link>
+        <link linkend="struct">struct</link>
       </member>
     </simplelist>
   </refsection>

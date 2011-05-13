@@ -23,7 +23,7 @@
     <synopsis>[sl1]=cls2dls(sl,T [,fp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl,sl1</term>
@@ -63,8 +63,8 @@ sl1t=ss2tf(sl1) // Converts in transfer form
 sl2=horner(sl,(2/0.2)*(z-1)/(z+1))   //Compare sl2 and sl1
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="horner">horner</link>

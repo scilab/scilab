@@ -490,6 +490,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\sci_gateway\c\sci_loadScicos.c"
+				>
+			</File>
+			<File
 				RelativePath="..\..\sci_gateway\c\sci_model2blk.c"
 				>
 			</File>
@@ -567,10 +571,6 @@
 			</File>
 			<File
 				RelativePath=".\scicosclip.c"
-				>
-			</File>
-			<File
-				RelativePath=".\slider.c"
 				>
 			</File>
 			<File

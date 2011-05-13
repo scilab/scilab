@@ -25,7 +25,7 @@ import javax.xml.bind.JAXBException;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.modelica.ModelStatistics;
 import org.scilab.modules.xcos.modelica.Modelica;
 import org.scilab.modules.xcos.modelica.ModelicaController;

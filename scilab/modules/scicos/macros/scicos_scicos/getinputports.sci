@@ -20,6 +20,9 @@
 //
 
 function [x,y,typ]=getinputports(o)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
   [x,y,typ]=getinputs(o)
   [x2,y2,typ2]=getoutputs(o)
   k=find(typ2==2)

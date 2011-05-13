@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Sfgrayplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Sfgrayplot</refname>
+    <refpurpose>関数により定義された曲面の平滑化2次元カラープロット
+  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
+Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+        <listitem>
+          <para>大きさ n1 および n2の実数行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>scilab 関数 (z=f(x,y))</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>
+	一連の命令<literal>key1=value1,
+          key2=value2</literal>,... を表します.
+	ただし, <literal>key1</literal>,
+          <literal>key2,...</literal> は以下のどれかとすることができます:
+	 strf, rect, nax, zminmax, colminmax, mesh, colout
+          (最初の3つについては <link linkend="plot2d">plot2d</link>,  最後の4つに
+	 ついては<link linkend="fec">fec</link> を参照).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>strf,rect,nax</term>
+        <listitem>
+          <para><link linkend="plot2d">plot2d</link>参照.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>zminmax, colminmax, mesh, colout</term>
+        <listitem>
+          <para><link linkend="fec">fec</link>参照.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>Sfgrayplot</literal> は
+	<literal>fgrayplot</literal> と同じですが,プロットが平滑化されるところが
+	異なります. 平滑化には関数 <literal>fec</literal> が使用されます. 
+	面の描画の際には,以下のグリッド (ここでは n1=5, n2=3)から構築された
+	一連の三角形上では線形であると仮定されます:</para>
+    <screen><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></screen>
+    <para>関数 <link linkend="colorbar">colorbar</link> は色スケールを参照する
+	際にも使用できます
+	(しかし,最小値と最大値が既知(または計算する)必要があります).</para>
+    <para>Sfgrayplotの代わりに, <link linkend="Sgrayplot">Sgrayplot</link> を
+	使用することができ,若干高速化される可能性があります.</para>
+    <para>デモを参照するにはコマンド <literal>Sfgrayplot()</literal> を入力してください.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// 例 #1: 4 個の面をプロット
+function z=surf1(x,y), z=x*y, endfunction
+function z=surf2(x,y), z=x^2-y^2, endfunction
+function z=surf3(x,y), z=x^3+y^2, endfunction
+function z=surf4(x,y), z=x^2+y^2, endfunction
+clf()
+xset("colormap",[jetcolormap(64);hotcolormap(64)])
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+drawlater() ;
+subplot(2,2,1)
+  colorbar(-1,1,[1,64])
+  Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x*y")
+subplot(2,2,2)
+  colorbar(-1,1,[65,128])
+  Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^2-y^2")
+subplot(2,2,3)
+  colorbar(-1,2,[65,128])
+  Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+  xtitle("f(x,y) = x^3+y^2")
+subplot(2,2,4)
+  colorbar(0,2,[1,64])
+  Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+  xtitle("f(x,y) = x^2+y^2")
+drawnow() ;
+show_window()
+
+// 例 #2: surf3 をプロットしいくつかの等高線を追加
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+xset("colormap",hotcolormap(128))
+drawlater() ;
+colorbar(-1,2)
+Sfgrayplot(x,y,surf3,strf="041")
+fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2")
+drawnow() ;
+show_window()
+
+// 例 #3: surf3 をプロットし,プロットを -0.5<= z <= 1に制限するために
+// オプションの引数 zminmax および colout を使用
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+xset("colormap",jetcolormap(128))
+drawlater() ;
+zminmax = [-0.5 1]; colors=[32 96];
+colorbar(zminmax(1),zminmax(2),colors)
+Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2, with parts under z = -0.5 and upper z = 1 removed")
+drawnow() ;
+show_window()
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="fec">fec</link>
+      </member>
+      <member>
+        <link linkend="fgrayplot">fgrayplot</link>
+      </member>
+      <member>
+        <link linkend="grayplot">grayplot</link>
+      </member>
+      <member>
+        <link linkend="Sgrayplot">Sgrayplot</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

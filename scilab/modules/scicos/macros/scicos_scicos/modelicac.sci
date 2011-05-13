@@ -75,9 +75,11 @@ function  ok = modelicac(Flat, Flat_functions, xmlfileTMP, Jacobian, Cfile, with
   end
 
   if execstr('unix_s(instr)', 'errcatch') <> 0 then  
-    messagebox([_('-------Modelica compiler error (with the translator):-------');
-                mgetl(Errfile);
-                _('Please read the error message in the Scilab window')], 'error', 'modal');
+    messagebox([_('-------Modelica compiler error (with the translator):-------');_('Please read the error message in the Scilab window')], 'error', 'modal');
+    if isfile(Errfile) then
+      mgetl(Errfile);
+    end
+    
     ok=%f;
     return
   end     

@@ -60,8 +60,7 @@ function DoTasksJustAfterInstall: Boolean;
                 bOK := checkMD5Files_MKL();
                 if (bOK = false) then
                     begin
-                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg1') + #13 +
-                        CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
+                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg2'),mbError, MB_OK, MB_OK );
                         Result := false;
                     end else begin
                         bOK := Install_MKL();
@@ -78,8 +77,7 @@ function DoTasksJustAfterInstall: Boolean;
                 bOK := checkMD5Files_MKL_FFTW();
                 if (bOK = false) then
                     begin
-                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg1') + #13 +
-                        CustomMessage('DoTasksJustAfterInstallMsg3'),mbError, MB_OK, MB_OK );
+                        SuppressibleMsgBox(CustomMessage('DoTasksJustAfterInstallMsg3'),mbError, MB_OK, MB_OK );
                         Result := false;
                     end else begin
 
@@ -93,14 +91,21 @@ function DoTasksJustAfterInstall: Boolean;
 
     end;
 //------------------------------------------------------------------------------
+function haveProgramFiles64(): Boolean;
+    var
+        strEnv : String;
+    begin
+        strEnv := GetEnv('ProgramW6432');
+        result := DirExists(strEnv);
+    end;
+//------------------------------------------------------------------------------
 function isWow64(): Boolean;
     begin
         result := false;
-         if RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') then
-            begin
-                result := true;
-            end;
-
+        if (RegKeyExists(HKLM, 'SOFTWARE\Wow6432Node') = true) and (haveProgramFiles64() = true) then
+          begin
+              result := true;
+          end;
     end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;

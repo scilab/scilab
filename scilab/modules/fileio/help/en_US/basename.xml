@@ -31,11 +31,11 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>files= basename(files[,flag [,flagexpand]])</synopsis>
+    <synopsis>processedfiles = basename(files[,flag [,flagexpand]])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -56,12 +56,13 @@
       </varlistentry>
 
       <varlistentry>
-        <term>files</term>
+        <term>processedFiles</term>
 
         <listitem>
-          <para>a string matrix.</para>
+          <para>a string matrix containing the processed filenames.</para>
         </listitem>
       </varlistentry>
+
     </variablelist>
   </refsection>
 
@@ -89,8 +90,8 @@ files=basename('SCI/modules\fileio/macros/poo.sci.k')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="listfiles">listfiles</link></member>

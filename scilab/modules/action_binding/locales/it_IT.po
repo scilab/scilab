@@ -1,0 +1,45 @@
+# Italian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-12 15:37+0000\n"
+"Last-Translator: Valerio Angelici <Unknown>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+msgid "Same command executed again"
+msgstr "Eseguito di nuovo lo stesso comando"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
+
+msgid "Unable to communicate with the interpreter"
+msgstr "Impossibile comunicare con l'interprete"
+
+#, c-format
+#~ msgid "Unqueuing %s - No option.\n"
+#~ msgstr "Rimozione di %s dalla coda - Nessuna opzione.\n"
+
+#, c-format
+#~ msgid "Unqueuing %s - seq.\n"
+#~ msgstr "Rimozione di %s dalla coda - seq.\n"

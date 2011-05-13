@@ -20,7 +20,7 @@
 #include "machine.h"
 #include "scidcopy.h"
 /*--------------------------------------------------------------------------*/
-int C2F(scidcopy)(int *n, long long *dx, int *incx, long long *dy, int *incy)
+int C2F(scidcopy)(int *n, const long long *dx, int *incx, long long *dy, int *incy)
 {
 	if (*n <= 0) return 0;
 

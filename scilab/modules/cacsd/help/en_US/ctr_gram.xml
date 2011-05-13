@@ -24,7 +24,7 @@
 [Gc]=ctr_gram(sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A,B</term>
@@ -63,8 +63,8 @@ U=rand(3,3);A1=U*A/U;B1=U*B;
 Wc1=ctr_gram(A1,B1)    //Not invariant!
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="equil1">equil1</link>

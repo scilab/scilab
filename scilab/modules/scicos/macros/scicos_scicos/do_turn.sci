@@ -21,6 +21,9 @@
 //
 
 function [scs_m]=do_turn(%pt,scs_m,theta)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 //** x,07/07 Alan : do_turn update theta value of blocks
 //**                and text (redraw it)
 //** 16/07/2009, S. Steer, make it work with multiple selection

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="tbx_sum">
+  <refnamediv>
+    <refname>tbx_sum</refname>
+    <refpurpose>Simple sum with 2 inputs and 1 output</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      out = tbx_sum(in1, in2);
+    </synopsis>
+  </refsynopsisdiv>
+  <refsection id="Module_tbx_sum">
+    <title>Module</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="tbx_sum">tbx_sum</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="Parameters_tbx_sum">
+    <title>Arguments</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">in1 : </emphasis> a double.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">in2 : </emphasis> a double.</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">out : </emphasis> a double with value:</para>
+        <para>
+          <latex>out=in1+in2</latex>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+  <refsection id="SeeAlso_tbx_sum">
+    <title>See Also</title>
+    <itemizedlist>
+      <listitem>
+        <para><link linkend="TBX_SUM_c">TBX_SUM_c</link> : corresponding <link type="scilab" linkend="scilab.help/xcos">Xcos</link> block.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+</refentry>

@@ -23,7 +23,7 @@
     <synopsis>fr=freson(h)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>h</term>
@@ -54,8 +54,8 @@ bode(h)
 g=20*log(abs(repfreq(h,fr)))/log(10)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="frep2tf">frep2tf</link>

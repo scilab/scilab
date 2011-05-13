@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C)  2009 - Digiteo - Jean-Baptiste Silvy
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="graphics_fonts">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>graphics_fonts</refname>
+    <refpurpose>description of fonts used in graphic figures</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+	Some Graphic entities such as Text, Axes, Label or Legend entities display one or more character strings in graphic figures. The appearance of the displayed strings 
+	can be modified by specifying different fonts and character sizes.
+	</para>
+	
+	
+    <para/>
+    <variablelist>
+      <varlistentry>
+        <term>Changing font</term>
+        <listitem>
+		  <para>
+	        Fonts used in graphic figures are selected from a set of fonts called loaded fonts. In other words, the loaded fonts are the ones currenlty available in graphic figures.
+	        The list of these fonts can be obtained using the <literal>xlfont</literal> function without argument. 
+	        By default, Scilab contains a set of 11 loaded fonts. This set can be modified and extended using the <literal>xlfont</literal> function with
+	        a font name as argument. The added font can either be loaded from a file or be one of the system. To know the list of fonts available on the system use the
+			<literal>xlfont('AVAILABLE_FONTS')</literal> command.
+	        For more information on how to manipulate fonts see <link linkend="xlfont">xlfont</link>.
+	      </para>
+		  
+		  <para>
+		    Here is the list of the 11 default fonts.</para>
+			<informaltable border="1">
+            <tr><td><emphasis role="bold">Font number</emphasis></td><td><emphasis role="bold">Font Family</emphasis></td><td><emphasis role="bold">Bold</emphasis></td><td><emphasis role="bold">Italic</emphasis></td></tr>
+            <tr><td>0</td><td>Monospaced</td><td>No</td><td>No</td></tr>
+            <tr><td>1</td><td>ScilabSymbols</td><td>No</td><td>No</td></tr>
+			<tr><td>2</td><td>Serif</td><td>No</td><td>No</td></tr>
+            <tr><td>3</td><td>Serif</td><td>No</td><td>Yes</td></tr>
+            <tr><td>4</td><td>Serif</td><td>Yes</td><td>No</td></tr>
+            <tr><td>5</td><td>Serif</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>6</td><td>SansSerif</td><td>No</td><td>No</td></tr>
+			<tr><td>7</td><td>SansSerif</td><td>No</td><td>Yes</td></tr>
+			<tr><td>8</td><td>SansSerif</td><td>Yes</td><td>No</td></tr>
+			<tr><td>9</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
+			<tr><td>10</td><td>SansSerif</td><td>Yes</td><td>Yes</td></tr>
+            </informaltable>
+		  
+		  <para>
+            The font used by a graphic entities can be modified with its <literal>font_style</literal> property.
+			This is a positive integer referecing one of the loaded fonts. Its value must be between 0, referecing the first font,
+		    and the number of loaded fonts minus one, referencing the last font.
+		  </para>
+		  <para>
+		    The <literal>fractional_font</literal> controls the font anti-aliasing. Its value can be either <literal>'on'</literal>
+			or <literal>'off'</literal>. If its value is <literal>'on'</literal> the font is smoothed, otherwise it's not.
+		  </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Changing character size </term>
+        <listitem>
+		  <para>
+		    The text size of a graphic entity is modified using the <literal>font_size</literal> property.
+			It is a scalar specifying the displayed character size.
+			</para>
+			<para>
+			The Scilab character size is different from the Java size. Here is the equivalence between the two scales.</para>
+			<informaltable border="1">
+            <tr><td><emphasis role="bold">Scilab Size</emphasis></td><td><emphasis role="bold">Java Size</emphasis></td></tr>
+            <tr><td>0</td><td>8</td></tr>
+            <tr><td>1</td><td>10</td></tr>
+            <tr><td>2</td><td>12</td></tr>
+            <tr><td>3</td><td>14</td></tr>
+            <tr><td>4</td><td>18</td></tr>
+			<tr><td>5</td><td>24</td></tr>
+			<tr><td>6</td><td>30</td></tr>
+			<tr><td>7</td><td>36</td></tr>
+			<tr><td>8</td><td>42</td></tr>
+			<tr><td>9</td><td>48</td></tr>
+			<tr><td>10</td><td>54</td></tr>
+            </informaltable>
+                        <para>
+			The character size might not be an integer. In this case, the result depends on the entities <literal>fractional_font</literal> property.
+			If <literal>fractional_font</literal> property is <literal>'on'</literal> then the displayed font size is interpolated between the two
+			closest integer. For example, a font size of 2.5 displays characters with a Java size of 13.
+			If <literal>fractional_font</literal> property is <literal>'off'</literal> then the displayed font size is truncated to
+			its integer part. For example, a font size of 2.5 displays characters using a Java size of 12.
+          </para>
+		  <para/>
+        </listitem>
+      </varlistentry>
+	</variablelist>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xlfont">xlfont</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

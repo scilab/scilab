@@ -70,34 +70,17 @@ if ( ~isdef("scicos_pal") | ~isdef("%scicos_menu") | ..
 end
 // =====================================================================
 
+if ~exists("scicos_diagram") then
+    loadXcosLibs();
+end
 
   funcprot(prot);
   //-- end
 
   //**---- prepare from and to workspace stuff ( "From workspace" block )
-  curdir = pwd() ;
-  chdir(TMPDIR)     ;
-  mkdir("Workspace");
-  chdir("Workspace");
-  %a = who("get")   ;
-  %a = %a(1:$-predef()+1);  //** exclude protected variables
+   xcos_workspace_init()
 
-  for %ij=1:size(%a,1)
-    var = %a(%ij)
-    if var<>'ans' & typeof(evstr(var))=='st' then
-      ierr = execstr('x='+var+'.values','errcatch')
-      if ierr==0 then
-        ierr = execstr('t='+var+'.time','errcatch')
-      end
-      if ierr==0 then
-        execstr('save('"'+var+''",x,t)')
-      end
-    end
-  end
-
-  chdir(curdir)
-  //**----- end of /prepare from and to workspace stuff
-
+ 
 //** extract tolerances from scs_m.props.tol
   tolerances = scs_m.props.tol ;
   //** extract solver type from tolerances
@@ -310,7 +293,9 @@ end
       if kfun<>0 then  //** block error
         path=corinv(kfun)
         //** get error cmd for the block
-        get_errorcmd(path,'Initialisation problem.',str_err);
+        disp(str_err);
+        get_errorcmd(path,gettext('Initialisation problem'),str_err);
+        
 
       else //** simulator error
         message(['Initialisation problem:';str_err])
@@ -366,7 +351,7 @@ end
         if kfun<>0 then //** block error
           path = corinv(kfun)
           //** get error cmd for the block
-          get_errorcmd(path,'End problem.',str_err);
+          get_errorcmd(path,gettext('End problem'),str_err);
         else //** simulator error
           message(['End problem:';str_err])
           //scf(curwin);
@@ -386,7 +371,7 @@ end
     if kfun<>0 then //** block error
       path = corinv(kfun);
       //** get error cmd for the block
-      get_errorcmd(path,"Simulation problem.",str_err);
+      get_errorcmd(path,gettext("Simulation problem"),str_err);
     else //** simulateur error
       message(['Simulation problem:';str_err])
       //scf(curwin);

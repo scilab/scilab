@@ -23,7 +23,7 @@
     <synopsis>slb=minreal(sl [,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl,slb</term>
@@ -61,8 +61,8 @@ clean(ctr_gram(slb))
 clean(obs_gram(slb))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="minss">minss</link>

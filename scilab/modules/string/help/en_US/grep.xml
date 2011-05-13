@@ -38,7 +38,7 @@ row=grep(haystack,needle ,[flag])
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -137,8 +137,8 @@ grep(str,'/cat|dog/','r')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="strindex">strindex</link></member>

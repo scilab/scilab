@@ -16,6 +16,7 @@ package org.scilab.modules.scinotes.utils;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.print.Paper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -45,7 +46,9 @@ import javax.xml.transform.stream.StreamResult;
 
 import javax.swing.KeyStroke;
 
-import org.scilab.modules.console.GuiManagement;
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.gui.ScilabKeyStroke;
+import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 
@@ -59,16 +62,26 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
 
 /**
  * Configuration class which interacts with the file etc/scinotesConfiguration.xml
  */
 public final class ConfigSciNotesManager {
+
+    public static final String RECENTBASEDIR = "recentBaseDir";
+    public static final String BASEDIR = "baseDir";
+    public static final String RECENTFILEPATTERN = "recentFilePattern";
+    public static final String FILEPATTERN = "filePattern";
+    public static final String RECENTWORDPATTERN = "recentWordPattern";
+    public static final String WORDPATTERN = "wordPattern";
+
     private static final int BUFSIZE = 1024;
 
     private static final int MARGIN = 20;
 
+    private static final String HORIZONTALWRAP = "HorizontalWrapAllowed";
     private static final String ERROR_READ = "Could not load file: ";
     private static final String ERROR_WRITE = "Could not save file: ";
     private static final String VALUE = "value";
@@ -89,15 +102,18 @@ public final class ConfigSciNotesManager {
     private static final String MAINWINPOSITION = "MainWindowPosition";
     private static final String MAINWINSIZE = "MainWindowSize";
     private static final String AUTOINDENT = "AutoIndent";
-    private static final String AUTOCOLORIZE = "AutoColorize";
     private static final String DEFAULTENCONDING = "DefaultEncoding";
     private static final String LINEHIGHLIGHTER = "LineHighlighter";
     private static final String HELPONTYPING = "HelpOnTyping";
     private static final String LINENUMBERING = "LineNumbering";
     private static final String EDITOR = "SciNotes";
+    private static final String SUPPRESSCOMMENTS = "SuppressComments";
 
     private static final String FOREGROUNDCOLOR = "ForegroundColor";
     private static final String BACKGROUNDCOLOR = "BackgroundColor";
+    private static final String ALTERNCOLORS = "AlternColors";
+    private static final String COLOR1 = "color1";
+    private static final String COLOR2 = "color2";
     private static final String LINECOLOR = "linecolor";
     private static final String CONTOURCOLOR = "contourcolor";
     private static final String COLORPREFIX = "#";
@@ -111,6 +127,10 @@ public final class ConfigSciNotesManager {
     private static final String SEARCH = "search";
     private static final String RECENT_REPLACE = "recentReplace";
     private static final String REPLACE = "replace";
+    private static final String RECURSIVE = "recursiveSearch";
+    private static final String LINEBYLINE = "readLineByLine";
+    private static final String FILECASE = "fileCase";
+
     private static final String EXPRESSION = "exp";
     private static final String REGULAR_EXPRESION = "regularExp";
     private static final String CIRCULAR = "circularSearch";
@@ -135,12 +155,18 @@ public final class ConfigSciNotesManager {
     private static final String FAVORITE_DIRS = "favoriteDirectories";
     private static final String DIRECTORY = "Directory";
 
+    private static final String PAPER = "PaperFormat";
+    private static final String MARGINLEFT = "MarginLeft";
+    private static final String MARGINRIGHT = "MarginRight";
+    private static final String MARGINTOP = "MarginTop";
+    private static final String MARGINBOTTOM = "MarginBottom";
+
     private static final String SCI = "SCI";
     private static final String SCINOTES_CONFIG_FILE = System.getenv(SCI) + "/modules/scinotes/etc/scinotesConfiguration.xml";
     private static final String SCINOTES_CONFIG_KEYS_FILE = System.getenv(SCI) + "/modules/scinotes/etc/keysConfiguration.xml";
 
-    private static final String USER_SCINOTES_CONFIG_FILE = GuiManagement.getSCIHOME() + "/scinotesConfiguration.xml";
-    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = GuiManagement.getSCIHOME() + "/keysConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_FILE = ScilabCommons.getSCIHOME() + "/scinotesConfiguration.xml";
+    private static final String USER_SCINOTES_CONFIG_KEYS_FILE = ScilabCommons.getSCIHOME() + "/keysConfiguration.xml";
 
     private static final int PLAIN = 0;
     private static final int BOLD =  1;
@@ -150,9 +176,7 @@ public final class ConfigSciNotesManager {
     private static final int DEFAULT_WIDTH = 650;
     private static final int DEFAULT_HEIGHT = 550;
 
-    private static final int MAX_RECENT_FILES = 10;
-    private static final int MAX_RECENT_SEARCH = 20;
-    private static final int MAX_RECENT_REPLACE = 20;
+    private static final int MAXRECENT = 20;
 
     private static Document document;
     private static Properties keysMap;
@@ -174,6 +198,8 @@ public final class ConfigSciNotesManager {
             /* Create a local copy of the configuration file */
             copyFile(new File(SCINOTES_CONFIG_FILE), new File(USER_SCINOTES_CONFIG_FILE));
             copyFile(new File(SCINOTES_CONFIG_KEYS_FILE), new File(USER_SCINOTES_CONFIG_KEYS_FILE));
+            document = null;
+            keysMap = null;
             updated = true;
         }
     }
@@ -229,7 +255,6 @@ public final class ConfigSciNotesManager {
 
     public static List<String> getAllStyleName() {
         List<String> stylesName = new ArrayList<String>();
-
         readDocument();
 
         Element root = document.getDocumentElement();
@@ -237,10 +262,7 @@ public final class ConfigSciNotesManager {
 
         for (int i = 0; i < styles.getLength(); ++i) {
             Element style = (Element) styles.item(i);
-
             stylesName.add(style.getAttribute(NAME));
-
-
         }
         return stylesName;
     }
@@ -250,7 +272,6 @@ public final class ConfigSciNotesManager {
      * @return the name of the font
      */
     public static String getFontName() {
-
         /*load file*/
         readDocument();
 
@@ -261,8 +282,8 @@ public final class ConfigSciNotesManager {
 
         NodeList fontNameElement = scinotesProfile.getElementsByTagName(FONT_NAME);
         Element fontName = (Element) fontNameElement.item(0);
-        return fontName.getAttribute(VALUE);
 
+        return fontName.getAttribute(VALUE);
     }
 
     /**
@@ -317,12 +338,80 @@ public final class ConfigSciNotesManager {
         NodeList allSizeElements = scinotesProfile.getElementsByTagName(HELPONTYPING + type);
         Element helpOnTyping = (Element) allSizeElements.item(0);
         if (helpOnTyping == null) {
-            Element help = document.createElement(HELPONTYPING + type);
+            helpOnTyping = document.createElement(HELPONTYPING + type);
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
-            helpOnTyping.appendChild((Node) help);
+            scinotesProfile.appendChild((Node) helpOnTyping);
         } else {
             helpOnTyping.setAttribute(VALUE, new Boolean(activated).toString());
         }
+        writeDocument();
+    }
+
+    /**
+     * @return the paper format saved in previous session
+     */
+    public static Paper getPaperFormat() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(PAPER);
+        Element paper = (Element) allSizeElements.item(0);
+
+        if (paper == null) {
+            return new Paper();
+        }
+
+        Paper p = new Paper();
+        double width = Double.parseDouble(paper.getAttribute(WIDTH));
+        double height = Double.parseDouble(paper.getAttribute(HEIGHT));
+        double marginLeft = Double.parseDouble(paper.getAttribute(MARGINLEFT));
+        double marginRight = Double.parseDouble(paper.getAttribute(MARGINRIGHT));
+        double marginTop = Double.parseDouble(paper.getAttribute(MARGINTOP));
+        double marginBottom = Double.parseDouble(paper.getAttribute(MARGINBOTTOM));
+        p.setSize(width, height);
+        p.setImageableArea(marginLeft, marginTop, width - (marginLeft + marginRight), height - (marginTop + marginBottom));
+
+        return p;
+    }
+
+    /**
+     * Save the paper format
+     * @param p the Paper to save
+     */
+    public static void savePaperFormat(Paper p) {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(PAPER);
+        Element paper = (Element) allSizeElements.item(0);
+
+        if (paper == null) {
+            paper = document.createElement(PAPER);
+            scinotesProfile.appendChild((Node) paper);
+        }
+
+        double width = p.getWidth();
+        double height = p.getHeight();
+        double marginLeft = p.getImageableX();
+        double marginRight = width - (marginLeft + p.getImageableWidth());
+        double marginTop = p.getImageableY();
+        double marginBottom = height - (marginTop + p.getImageableHeight());
+
+        paper.setAttribute(WIDTH, Double.toString(width));
+        paper.setAttribute(HEIGHT, Double.toString(height));
+        paper.setAttribute(MARGINLEFT, Double.toString(marginLeft));
+        paper.setAttribute(MARGINRIGHT, Double.toString(marginRight));
+        paper.setAttribute(MARGINTOP, Double.toString(marginTop));
+        paper.setAttribute(MARGINBOTTOM, Double.toString(marginBottom));
+
         writeDocument();
     }
 
@@ -358,9 +447,9 @@ public final class ConfigSciNotesManager {
         NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINENUMBERING);
         Element lineNumbering = (Element) allSizeElements.item(0);
         if (lineNumbering == null) {
-            Element line = document.createElement(LINENUMBERING);
+            lineNumbering = document.createElement(LINENUMBERING);
             lineNumbering.setAttribute(VALUE, Integer.toString(state));
-            lineNumbering.appendChild((Node) line);
+            scinotesProfile.appendChild((Node) lineNumbering);
         } else {
             lineNumbering.setAttribute(VALUE, Integer.toString(state));
         }
@@ -399,9 +488,9 @@ public final class ConfigSciNotesManager {
         NodeList allSizeElements = scinotesProfile.getElementsByTagName(LINEHIGHLIGHTER);
         Element lineHighlighter = (Element) allSizeElements.item(0);
         if (lineHighlighter == null) {
-            Element line = document.createElement(LINEHIGHLIGHTER);
+            lineHighlighter = document.createElement(LINEHIGHLIGHTER);
             lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
-            lineHighlighter.appendChild((Node) line);
+            scinotesProfile.appendChild((Node) lineHighlighter);
         } else {
             lineHighlighter.setAttribute(VALUE, Boolean.toString(state));
         }
@@ -436,6 +525,40 @@ public final class ConfigSciNotesManager {
             c = null;
         } else {
             c = Color.decode(lineHighlight.getAttribute(CONTOURCOLOR));
+        }
+
+        arr[1] = c;
+        return arr;
+    }
+
+    /**
+     * @return the color the altern colors for inner function
+     */
+    public static Color[] getAlternColors() {
+        readDocument();
+
+        Element root = document.getDocumentElement();
+
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(ALTERNCOLORS);
+        Element alternColors = (Element) allSizeElements.item(0);
+        Color[] arr = new Color[2];
+
+        Color c;
+        if (NULL.equals(alternColors.getAttribute(COLOR1))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR1));
+        }
+
+        arr[0] = c;
+
+        if (NULL.equals(alternColors.getAttribute(COLOR2))) {
+            c = null;
+        } else {
+            c = Color.decode(alternColors.getAttribute(COLOR2));
         }
 
         arr[1] = c;
@@ -715,6 +838,44 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Retrieve from scinotesConfiguration.xml the infos about a tabulation
+     * @return a Tabulation containing infos
+     */
+    public static void saveDefaultTabulation(TabManager.Tabulation cfg) {
+        /* <style name="Tabulation" rep="vertical" value="4" white="false"> */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList styles = root.getElementsByTagName(STYLE);
+
+        for (int i = 0; i < styles.getLength(); ++i) {
+            Element style = (Element) styles.item(i);
+            if ("Tabulation".equals(style.getAttribute(NAME))) {
+                String type = "none";
+                switch (cfg.type) {
+                case ScilabView.TABVERTICAL:
+                    type = "vertical";
+                    break;
+                case ScilabView.TABHORIZONTAL:
+                    type = "horizontal";
+                    break;
+                case ScilabView.TABDOUBLECHEVRONS:
+                    type = "doublechevrons";
+                    break;
+                default:
+                    break;
+                }
+
+                style.setAttribute("rep", type);
+                style.setAttribute(VALUE, Integer.toString(cfg.number));
+                style.setAttribute("white", Boolean.toString(cfg.tab == ' '));
+                writeDocument();
+                return;
+            }
+        }
+    }
+
+    /**
      * Retrieve form scinotesConfiguration.xml the infos the matchers
      * @param kind should be "KeywordsHighlighter" or "OpenCloseHighlighter"
      * @return an Object containing infos
@@ -892,9 +1053,7 @@ public final class ConfigSciNotesManager {
         Element scinotesAutoIndent = (Element) allSizeElements.item(0);
         if (scinotesAutoIndent == null) {
             Element autoIndent = document.createElement(AUTOINDENT);
-
             autoIndent.setAttribute(VALUE, new Boolean(activated).toString());
-
             scinotesProfile.appendChild((Node) autoIndent);
         } else {
             scinotesAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
@@ -923,13 +1082,11 @@ public final class ConfigSciNotesManager {
         }
     }
 
-
     /**
-     * Save SciNotes autoColorize or not
+     * Save SciNotes autoIndent or not
      * @param activated if autoIndent should be used or not
      */
-    public static void saveAutoColorize(boolean activated) {
-
+    public static void saveSuppressComments(boolean activated) {
         /* Load file */
         readDocument();
 
@@ -938,26 +1095,44 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element scinotesAutoIndent = (Element) allSizeElements.item(0);
-        if (scinotesAutoIndent == null) {
-            Element autoColorize = document.createElement(AUTOCOLORIZE);
-
-            autoColorize.setAttribute(VALUE, new Boolean(activated).toString());
-
-            scinotesProfile.appendChild((Node) autoColorize);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
+        Element suppressComments = (Element) allSizeElements.item(0);
+        if (suppressComments == null) {
+            Element sup = document.createElement(SUPPRESSCOMMENTS);
+            sup.setAttribute(VALUE, new Boolean(activated).toString());
+            scinotesProfile.appendChild((Node) sup);
         } else {
-            scinotesAutoIndent.setAttribute(VALUE, new Boolean(activated).toString());
+            suppressComments.setAttribute(VALUE, new Boolean(activated).toString());
         }
         /* Save changes */
         writeDocument();
     }
 
+    /**
+     * @return a boolean if autoIndent should be used or not
+     */
+    public static boolean getSuppressComments() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(SUPPRESSCOMMENTS);
+        Element suppressComments = (Element) allSizeElements.item(0);
+
+        if (suppressComments == null) {
+            return true;
+        } else {
+            return new Boolean(suppressComments.getAttribute(VALUE));
+        }
+    }
 
     /**
-     * @return a boolean to say if the doc is autocolorize
+     * Save SciNotes horizontal wrapping or not
+     * @param activated if autoIndent should be used or not
      */
-    public static boolean getAutoColorize() {
+    public static void saveHorizontalWrap(boolean activated) {
         /* Load file */
         readDocument();
 
@@ -966,16 +1141,38 @@ public final class ConfigSciNotesManager {
         NodeList profiles = root.getElementsByTagName(PROFILE);
         Element scinotesProfile = (Element) profiles.item(0);
 
-        NodeList allSizeElements = scinotesProfile.getElementsByTagName(AUTOCOLORIZE);
-        Element autoColorize = (Element) allSizeElements.item(0);
-
-        if (autoColorize == null) {
-            return true;
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
+        if (horizontalWrap == null) {
+            Element hw = document.createElement(HORIZONTALWRAP);
+            hw.setAttribute(VALUE, new Boolean(activated).toString());
+            scinotesProfile.appendChild((Node) hw);
         } else {
-            return new Boolean(autoColorize.getAttribute(VALUE));
+            horizontalWrap.setAttribute(VALUE, new Boolean(activated).toString());
         }
+        /* Save changes */
+        writeDocument();
     }
 
+    /**
+     * @return a boolean if horizontal wrapping should be used or not
+     */
+    public static boolean getHorizontalWrap() {
+        /* Load file */
+        readDocument();
+
+        Element root = document.getDocumentElement();
+        NodeList profiles = root.getElementsByTagName(PROFILE);
+        Element scinotesProfile = (Element) profiles.item(0);
+        NodeList allSizeElements = scinotesProfile.getElementsByTagName(HORIZONTALWRAP);
+        Element horizontalWrap = (Element) allSizeElements.item(0);
+
+        if (horizontalWrap == null) {
+            return true;
+        } else {
+            return new Boolean(horizontalWrap.getAttribute(VALUE));
+        }
+    }
 
     /**
      * @param encoding the default encoding for the files
@@ -1209,8 +1406,7 @@ public final class ConfigSciNotesManager {
 
             String rgb = Integer.toHexString(color.getRGB());
             styleForeground.setAttribute(VALUE, COLORPREFIX + rgb.substring(2, rgb.length()));
-
-
+            clean(styleForeground);
         }
         /* Save changes */
         writeDocument();
@@ -1245,6 +1441,7 @@ public final class ConfigSciNotesManager {
             }
 
             fontStyle.setAttribute(VALUE, Integer.toString(bold + italic));
+            clean(fontStyle);
         }
         /* Save changes */
         writeDocument();
@@ -1277,6 +1474,7 @@ public final class ConfigSciNotesManager {
 
             style.setAttribute(UNDERLINE, underline);
             style.setAttribute(STROKE, stroke);
+            clean(style);
         }
         /* Save changes */
         writeDocument();
@@ -1405,7 +1603,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return files;
@@ -1433,7 +1631,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
 
         return dirsList;
@@ -1451,7 +1649,7 @@ public final class ConfigSciNotesManager {
         newDir.setAttribute(PATH, path);
         root.appendChild((Node) newDir);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1468,7 +1666,7 @@ public final class ConfigSciNotesManager {
             root.removeChild(dirs.item(dirs.getLength() - 1));
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1493,7 +1691,7 @@ public final class ConfigSciNotesManager {
         }
 
         // if we have reached the maximun , we remove the oldest files
-        while (recentFiles.getLength() >= MAX_RECENT_FILES) {
+        while (recentFiles.getLength() >= MAXRECENT) {
             root.removeChild(root.getFirstChild());
         }
 
@@ -1501,7 +1699,7 @@ public final class ConfigSciNotesManager {
         newFile.setAttribute(PATH, filePath);
         root.appendChild((Node) newFile);
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1543,6 +1741,8 @@ public final class ConfigSciNotesManager {
         } else {
             restorefiles.setAttribute(VALUE, new Boolean(activated).toString());
         }
+
+        clean(root);
         writeDocument();
     }
 
@@ -1565,7 +1765,6 @@ public final class ConfigSciNotesManager {
                 if (temp.exists()) {
                     count++;
                 }
-                writeDocument();
             }
         }
         return count;
@@ -1601,7 +1800,8 @@ public final class ConfigSciNotesManager {
                     }
                 }
             }
-            /* Save any changes */
+
+            clean(root);
             writeDocument();
         }
         return files;
@@ -1639,6 +1839,16 @@ public final class ConfigSciNotesManager {
      * @param sep the pane
      */
     public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep) {
+        saveToOpenFiles(filePath, editorInstance, sep, -1);
+    }
+
+    /**
+     * Add a file to currently open files
+     * @param filePath the path of the files to add
+     * @param editorInstance instance of the editor to associate with the open file
+     * @param sep the pane
+     */
+    public static void saveToOpenFiles(String filePath, SciNotes editorInstance, ScilabEditorPane sep, int pos) {
         readDocument();
         UUID nil = new UUID(0, 0);
 
@@ -1648,6 +1858,11 @@ public final class ConfigSciNotesManager {
         NodeList openFiles = root.getElementsByTagName(DOCUMENT);
         int numberOfFiles = openFiles.getLength();
 
+        Node bef = null;
+        if (pos != - 1 && pos < numberOfFiles) {
+            bef = openFiles.item(pos);
+        }
+
         Element newFile =  document.createElement(DOCUMENT);
         newFile.setAttribute(PATH, filePath);
         // Record the editor instance's hash code
@@ -1656,9 +1871,13 @@ public final class ConfigSciNotesManager {
         // Record the text pane's hash code
         newFile.setAttribute(PANEINST, sep.getUUID().toString());
         newFile.setAttribute(PANEINST_EX, nil.toString());
-        root.appendChild((Node) newFile);
+        if (bef != null) {
+            root.insertBefore((Node) newFile, bef);
+        } else {
+            root.appendChild((Node) newFile);
+        }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1704,7 +1923,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        /* Save changes */
+        clean(root);
         writeDocument();
     }
 
@@ -1812,7 +2031,8 @@ public final class ConfigSciNotesManager {
             Element style = (Element) openFiles.item(i);
             root.removeChild((Node) style);
         }
-        /* Save changes */
+
+        clean(root);
         writeDocument();
     }
 
@@ -1882,7 +2102,7 @@ public final class ConfigSciNotesManager {
     public static void addMapActionNameKeys(Map map) {
         for (Enumeration action = keysMap.propertyNames(); action.hasMoreElements();) {
             String name = (String) action.nextElement();
-            KeyStroke ks = KeyStroke.getKeyStroke(keysMap.getProperty(name));
+            KeyStroke ks = ScilabKeyStroke.getKeyStroke(keysMap.getProperty(name));
             map.put(name, ks);
         }
     }
@@ -1891,23 +2111,28 @@ public final class ConfigSciNotesManager {
      * Save the modifications
      */
     private static void writeDocument() {
-
         Transformer transformer = null;
         try {
-            transformer = TransformerFactory.newInstance().newTransformer();
+            transformer = ScilabTransformerFactory.newInstance().newTransformer();
         } catch (TransformerConfigurationException e1) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(e1);
         } catch (TransformerFactoryConfigurationError e1) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+            System.err.println(e1);
         }
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
-        StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
-        DOMSource source = new DOMSource(document);
-        try {
-            transformer.transform(source, result);
-        } catch (TransformerException e) {
-            System.out.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+        if (transformer != null) {
+            transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+
+            StreamResult result = new StreamResult(new File(USER_SCINOTES_CONFIG_FILE));
+            DOMSource source = new DOMSource(document);
+            try {
+                transformer.transform(source, result);
+            } catch (TransformerException e) {
+                System.err.println(ERROR_WRITE + USER_SCINOTES_CONFIG_FILE);
+                System.err.println(e);
+            }
         }
     }
 
@@ -1929,7 +2154,7 @@ public final class ConfigSciNotesManager {
 
         List<Node> search = getNodeChildren(recents, SEARCH);
 
-        while (search.size() >= MAX_RECENT_SEARCH) {
+        while (search.size() >= MAXRECENT) {
             removeRecentSearch(((Element) search.get(0)).getAttribute(EXPRESSION));
             search = getNodeChildren(recents, SEARCH);
         }
@@ -1944,7 +2169,7 @@ public final class ConfigSciNotesManager {
         newSearch.setAttribute(EXPRESSION, exp);
         recents.appendChild((Node) newSearch);
 
-        /* Save changes */
+        clean(recents);
         writeDocument();
     }
 
@@ -1967,7 +2192,8 @@ public final class ConfigSciNotesManager {
                 break;
             }
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -1996,6 +2222,91 @@ public final class ConfigSciNotesManager {
     }
 
     /**
+     * Add a file to recent Opened Files
+     * @param exp the path of the files to add
+     */
+    public static void saveRecent(String exp, String nodeName, String childNodeName) {
+        Node root = getXcosRoot();
+        if (root == null || exp == null || exp.compareTo("") == 0) {
+            return;
+        }
+
+        Node recents = getNodeChild(root, nodeName);
+        if (recents == null) {
+            recents = document.createElement(nodeName);
+            root.appendChild(recents);
+        }
+
+        List<Node> list = getNodeChildren(recents, childNodeName);
+
+        while (list.size() >= MAXRECENT) {
+            removeRecent(((Element) list.get(0)).getAttribute(EXPRESSION), nodeName, childNodeName);
+            list = getNodeChildren(recents, childNodeName);
+        }
+        //if path already in file no need to add it
+        for (Node item : list) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
+                return;
+            }
+        }
+
+        Element newNode = document.createElement(childNodeName);
+        newNode.setAttribute(EXPRESSION, exp);
+        recents.appendChild((Node) newNode);
+
+        clean(recents);
+        writeDocument();
+    }
+
+    /**
+     * @param exp the expression to remove
+     */
+    public static void removeRecent(String exp, String nodeName, String childNodeName) {
+        Node root = getXcosRoot();
+        if (root == null) {
+            return;
+        }
+
+        Node recent = getNodeChild(root, nodeName);
+        List<Node> list = getNodeChildren(recent, childNodeName);
+
+        // remove node if exists
+        for (Node item : list) {
+            if (exp.compareTo(((Element) item).getAttribute(EXPRESSION)) == 0) {
+                recent.removeChild(item);
+                break;
+            }
+        }
+
+        clean(recent);
+        writeDocument();
+    }
+
+    /**
+     * @return a list of the recent searches
+     */
+    public static List<String> getRecent(String nodeName, String childNodeName) {
+        List<String> files = new ArrayList<String>();
+
+        Node root = getXcosRoot();
+        if (root == null) {
+            return files;
+        }
+
+        Node recent = getNodeChild(root, nodeName);
+        List<Node> list = getNodeChildren(recent, childNodeName);
+        for (Node node : list) {
+            String exp = ((Element) node).getAttribute(EXPRESSION);
+            if (exp != null && exp.compareTo("") != 0) {
+                files.add(exp);
+            }
+        }
+
+        return files;
+    }
+
+
+    /**
      * @param exp the recent expression for a replacement
      */
     public static void saveRecentReplace(String exp) {
@@ -2012,7 +2323,7 @@ public final class ConfigSciNotesManager {
 
         List<Node> replace = getNodeChildren(recent, REPLACE);
 
-        while (replace.size() >= MAX_RECENT_REPLACE) {
+        while (replace.size() >= MAXRECENT) {
             removeRecentReplace(((Element) replace.get(0)).getAttribute(EXPRESSION));
             replace = getNodeChildren(recent, REPLACE);
         }
@@ -2027,7 +2338,7 @@ public final class ConfigSciNotesManager {
         newReplace.setAttribute(EXPRESSION, exp);
         recent.appendChild((Node) newReplace);
 
-        /* Save changes */
+        clean(recent);
         writeDocument();
     }
 
@@ -2052,7 +2363,8 @@ public final class ConfigSciNotesManager {
             }
 
         }
-        /* Save changes */
+
+        clean(recent);
         writeDocument();
 
     }
@@ -2106,6 +2418,48 @@ public final class ConfigSciNotesManager {
      */
     public static void saveWholeWord(boolean wholeWord) {
         saveBooleanAttribute(WHOLE_WORD, STATE_FLAG, wholeWord);
+    }
+
+    /**
+     * @return true for a recursive search
+     */
+    public static boolean getRecursive() {
+        return getBooleanAttribute(RECURSIVE, STATE_FLAG, true);
+    }
+
+    /**
+     * @param recursive for a recursive search
+     */
+    public static void saveRecursive(boolean recursive) {
+        saveBooleanAttribute(RECURSIVE, STATE_FLAG, recursive);
+    }
+
+    /**
+     * @return true for a line by line search
+     */
+    public static boolean getLineByLine() {
+        return getBooleanAttribute(LINEBYLINE, STATE_FLAG, true);
+    }
+
+    /**
+     * @param lineByLine for a line by line search
+     */
+    public static void saveLineByLine(boolean lineByLine) {
+        saveBooleanAttribute(LINEBYLINE, STATE_FLAG, lineByLine);
+    }
+
+    /**
+     * @return true for a case sensitive file name
+     */
+    public static boolean getFileCase() {
+        return getBooleanAttribute(FILECASE, STATE_FLAG, false);
+    }
+
+    /**
+     * @param fileCase for a case sensitive file name
+     */
+    public static void saveFileCase(boolean fileCase) {
+        saveBooleanAttribute(FILECASE, STATE_FLAG, fileCase);
     }
 
     /**
@@ -2268,5 +2622,20 @@ public final class ConfigSciNotesManager {
             }
         }
         return null;
+    }
+
+    /**
+     * Remove text at the beginning and at the end
+     * @param r the element to clean
+     */
+    private static void clean(Node r) {
+        Node n = r.getFirstChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
+        n = r.getLastChild();
+        if (n != null && n instanceof Text) {
+            r.removeChild(n);
+        }
     }
 }

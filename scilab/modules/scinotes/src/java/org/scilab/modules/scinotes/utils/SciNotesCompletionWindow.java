@@ -26,10 +26,10 @@ import javax.swing.text.BadLocationException;
 import com.artenum.rosetta.interfaces.core.CompletionItem;
 import com.artenum.rosetta.interfaces.core.CompletionManager;
 
+import org.scilab.modules.completion.AbstractSciCompletionWindow;
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.console.AbstractSciCompletionWindow;
 
 /**
  * Scilab completion window main class

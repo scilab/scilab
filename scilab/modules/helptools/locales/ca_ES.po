@@ -1,0 +1,530 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:33+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tS'està processant el fitxer %s.xml\n"
+
+msgid ""
+"\n"
+"Building master documents:\n"
+msgstr ""
+"\n"
+"S'està generant els documents mestres:\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"S'esta creant el manual del Scilab per a %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s].\n"
+msgstr ""
+
+msgid ""
+"\n"
+"Building the master document:\n"
+msgstr ""
+"\n"
+"S'està generant el document mestre:\n"
+
+#, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: El fitxer %s no s'ha mogut al directori %s."
+
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: El %s no s'ha generat."
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+
+#, c-format
+msgid "%s: Could find or create the working directory %s.\n"
+msgstr "%s: No s'ha pogut trobar o crear el directori de treball %s.\n"
+
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr "%s: El directori %s no existeix o no teniu permisos de lectura."
+
+#, c-format
+msgid "%s: Error while building documentation: %s.\n"
+msgstr "%s: Error en crear la documentació: %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack %s.\n"
+msgstr "%s: Pila d'execució en Java %s.\n"
+
+#, c-format
+msgid "%s: Execution Java stack: %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: S'ha ignorat el fitxer %s."
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Please check %s, number of modules is invalid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: Processant el fitxer: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%s: Processant el fitxer: %s a %s\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: S'està llegint del directori %s\n"
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr "%s: Els 2 mlist no poden tenir cap camp en comú.\n"
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: El fitxer de CHAPTER té un format incorrecte a la línia %d\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: El fitxer %s no existeix.\n"
+
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: El navegador de l'ajuda està deshabilitat en el mode %s.\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+"%s: El fitxer de last_successful_build té un format incorrecte a la línia "
+"%d\n"
+
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: Aquesta funció només està suportada en plataformes Windows.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser %d com a "
+"màxim.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser entre %d i "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de text simple.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de cadenes de text.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"orientada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+"caràcters que acabi amb .last_successful_build.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr ""
+"%s: L'argument #%d té un valor incorrecte: Ha de ser una cadena de caràcters "
+"que acabi amb CHAPTER.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un directori que "
+"existeixi.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr ""
+"%s: L'argument #%d té un valor incorrecte: Ha de ser un fitxer que "
+"existeixi.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un directori "
+"que existeixi.\n"
+
+#, c-format
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: no s'ha instal·lat el fitxer d'ajuda (.jar).\n"
+
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: No s'ha trobat hhc.exe.\n"
+
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: No s'ha generat cap fitxer.\n"
+
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: S'ha processat %i fitxers.\n"
+
+msgid "-- Deleting help files --\n"
+msgstr "-- S'està eliminant els fitxers d'ajuda --\n"
+
+msgid "Building the scilab manual file ["
+msgstr "S'està generant el fitxer de manual de l'Scilab ["
+
+msgid "Help chapter"
+msgstr "Capítol de l'ajuda"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
+
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "Avís: El %s no segueix el dtd"
+
+#, c-format
+#~ msgid "%s: help module is not installed.\n"
+#~ msgstr "%s: No s'ha instal·lat el mòdul d'ajuda.\n"
+
+#, c-format
+#~ msgid "Processing %s to %s"
+#~ msgstr "S'està processant de %s a %s"
+
+#~ msgid "...demodir must be a directory."
+#~ msgstr "...demodir ha de ser un directori."
+
+#~ msgid "Scilab 5.0 or more is required."
+#~ msgstr "Es necessita tenir la versió 5.0 o major del Scilab."
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing from %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'estan copiant els que no es troben des de %s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing help files copied from the default language\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'estan copiant els fitxers d'ajuda que no es troben des de l'idioma "
+#~ "predeterminat\n"
+
+#, c-format
+#~ msgid "%s: The %s files are up-to-date."
+#~ msgstr "%s: Els fitxers %s estan actualtitzats."
+
+#~ msgid ""
+#~ "\n"
+#~ "Copying missing files copied from\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'estan copiant els fitxers d'ajuda que no es troben des de\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document: %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el document mestre: %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document for %s.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el document mestre per a %s.\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the master document in %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el document mestre a %s\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "Building the scilab manual file ["
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el fitxer de manual del Scilab ["
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Deleting files copied from %s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està eliminant els fitxers copiats de %s\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Deleting files copied from\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està eliminant els fitxers copiats de\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s] in %s. (Please wait building ... this can take "
+#~ "a while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el fitxer de manual [%s] a %s. (Espereu a la seva creació... "
+#~ "pot durar una estona)\n"
+
+#, c-format
+#~ msgid ""
+#~ "\n"
+#~ "Building the manual file [%s]. (Please wait building ... this can take a "
+#~ "while)\n"
+#~ msgstr ""
+#~ "\n"
+#~ "S'està creant el fitxer de manual [%s]. (Espereu a la seva creació... pot "
+#~ "durar una estona)\n"
+
+#~ msgid "Editor"
+#~ msgstr "Editor"
+
+#~ msgid "Sources Palette"
+#~ msgstr "Paleta d'origens"
+
+#~ msgid "Linear Palette"
+#~ msgstr "Paleta lineal"
+
+#~ msgid "Non-linear Palette"
+#~ msgstr "Paleta no lineal"
+
+#~ msgid "About Scicos"
+#~ msgstr "Quant al Scicos"
+
+#~ msgid "Scicos Manual"
+#~ msgstr "Manual del Scicos"
+
+#~ msgid "Batch functions"
+#~ msgstr "Funcions de lot"
+
+#~ msgid "Scilab manual"
+#~ msgstr "Manual del Scilab"
+
+#~ msgid "Branching Palette"
+#~ msgstr "Paleta de bifurcació"
+
+#~ msgid "Others Palettes"
+#~ msgstr "Altres paletes"
+
+#~ msgid "C Computational Functions"
+#~ msgstr "Funcions de càlcul en C"
+
+#~ msgid "Electrical Palette"
+#~ msgstr "Paleta elèctrica"
+
+#~ msgid "Events Palette"
+#~ msgstr "Paleta d'esdeveniments"
+
+#~ msgid "Sinks Palette"
+#~ msgstr "Paleta sinks"
+
+#~ msgid "Threshold Palette"
+#~ msgstr "Paleta de llindar"
+
+#~ msgid "Demoblocks Palette"
+#~ msgstr "Paleta de blocs de demostració"
+
+#~ msgid "Integer Palette"
+#~ msgstr "Paleta d'enters"
+
+#~ msgid "Matrix Palette"
+#~ msgstr "Paleta de matrius"
+
+#~ msgid "Thermohydraulics Palette"
+#~ msgstr "Paleta termohidràulica"
+
+#~ msgid "ABCD Blocks"
+#~ msgstr "Blocs ABCD"
+
+#~ msgid "Palettes"
+#~ msgstr "Paletes"
+
+#~ msgid "Scilab Data Structures"
+#~ msgstr "Estructures de dades del Scilab"
+
+#~ msgid "Scilab Utilities Functions"
+#~ msgstr "Funcions d'utilitats del Scilab"
+
+#~ msgid "Programming Scicos Blocks"
+#~ msgstr "Blocs de programació del Scicos"
+
+#~ msgid "Utilities Functions"
+#~ msgstr "Funcions d'utilitats"
+
+#~ msgid "Scilab Computational Functions"
+#~ msgstr "Funcions de càlcul del Scilab"
+
+#~ msgid "Compilation/Simulation"
+#~ msgstr "Compilació/Simulació"
+
+#~ msgid "Links"
+#~ msgstr "Enllaços"
+
+#~ msgid "Blocks"
+#~ msgstr "Blocs"
+
+#~ msgid "Diagram"
+#~ msgstr "Diagrama"
+
+#~ msgid "Old Blocks Palette"
+#~ msgstr "Paleta antiga de blocs"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr ""
+#~ "El mòdul '%s' de Scilab està deshabilitat en els modes -nogui o -nwni."
+
+#, c-format
+#~ msgid "%s: Wrong for type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+#~ "de text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
+
+#, c-format
+#~ msgid "%s: Scilab 5.0 or more is required.\n"
+#~ msgstr "%s: És necessari tenir Scilab 5.0 o superior.\n"

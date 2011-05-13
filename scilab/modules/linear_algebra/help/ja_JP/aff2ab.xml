@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="aff2ab">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>aff2ab</refname>
+    <refpurpose>線形 (アフィン)関数を A,b に変換</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>afunction</term>
+        <listitem>
+          <para>scilab 関数 <literal> Y =fct(X,D) </literal> 
+	ただし, <literal>X, D, Y</literal> は行列の <literal>list</literal></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dimX</term>
+        <listitem>
+          <para>p x 2 整数行列 (<literal>p</literal> は
+	<literal>X</literal>の行列の数)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>D</term>
+        <listitem>
+          <para>実数行列の<literal>list</literal>  (または任意の有効なScilab オブジェクト).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag</term>
+        <listitem>
+          <para>オプションのパラメータ (<literal>flag='f'</literal> または <literal>flag='sp'</literal>)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>b</term>
+        <listitem>
+          <para><literal>A</literal>と同じ行次元を有する実数ベクトル</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>aff2ab</literal>  はアフィン関数の(正準形式の)行列表現を返します.</para>
+    <para><literal>afunction</literal> は以下の規定の構文を有する関数です:
+    <literal> Y=afunction(X,D) </literal> 
+	ただし, <literal> X=list(X1,X2,...,Xp) </literal> は
+	p 個の実数行列のリスト,<literal> Y=list(Y1,...,Yq) </literal> は
+	<literal> Xi</literal>に線形に依存するq 個の実数行列のリストです.
+	(オプションの) 入力 <literal> D</literal> は, X の関数として
+	Yを計算するために必要なパラメータを有しています.</para>
+    <para><literal> dimX</literal> は p x 2 行列です: <literal>dimX(i)=[nri,nci]</literal>
+    は行列<literal>Xi</literal>の行と列の実際の数です.
+	これらの次元は,結果の行列<literal>A</literal>の列の次元である
+	<literal>na</literal> を以下のように定義します:
+	 <literal>na=nr1*nc1 +...+ nrp*ncp</literal>.</para>
+    <para>
+	オプションのパラメータ <literal>flag='sp'</literal> が指定された場合,
+	結果の行列 <literal>A</literal>は疎行列として返されます.</para>
+    <para>
+	この関数は,未知変数が行列であるような
+	線形方程式のシステムを解くために有用です.
+	</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+// リアプノフ方程式ソルバ (未知変数1つ, 拘束条件1つ)
+deff('Y=lyapunov(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(lyapunov,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); lyapunov(Xv,D)
+Xm=Xv(:); A'*Xm+Xm*A-Q
+
+// 冗長な拘束 t X=X'を有するリアプノフ方程式ソルバ
+// (変数1つ, 拘束条件2つt) D はグローバル変数
+deff('Y=ly2(X,D)','[A,Q]=D(:);Xm=X(:); Y=list(A''*Xm+Xm*A-Q,Xm''-Xm)')
+A=rand(3,3);Q=rand(3,3);Q=Q+Q';D=list(A,Q);dimX=[3,3];
+[Aly,bly]=aff2ab(ly2,dimX,D);
+[Xl,kerA]=linsolve(Aly,bly); Xv=vec2list(Xl,dimX); ly2(Xv,D)
+
+// フランシス方程式
+// 以下のような行列 X1 および X2 を見つける:
+// A1*X1 - X1*A2 + B*X2 -A3 = 0
+// D1*X1 -D2 = 0 
+deff('Y=bruce(X,D)','[A1,A2,A3,B,D1,D2]=D(:),...
+[X1,X2]=X(:);Y=list(A1*X1-X1*A2+B*X2-A3,D1*X1-D2)')
+A1=[-4,10;-1,2];A3=[1;2];B=[0;1];A2=1;D1=[0,1];D2=1;
+D=list(A1,A2,A3,B,D1,D2);
+[n1,m1]=size(A1);[n2,m2]=size(A2);[n3,m3]=size(B);
+dimX=[[m1,n2];[m3,m2]];
+[Af,bf]=aff2ab(bruce,dimX,D);
+[Xf,KerAf]=linsolve(Af,bf);Xsol=vec2list(Xf,dimX)
+bruce(Xsol,D)
+
+// Aを変換する全てのXを見つける
+deff('y=f(X,D)','y=list(D(:)*X(:)-X(:)*D(:))')
+A=rand(3,3);dimX=[3,3];[Af,bf]=aff2ab(f,dimX,list(A));
+[Xf,KerAf]=linsolve(Af,bf);[p,q]=size(KerAf);
+Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
+C=Xsol(:); A*C-C*A
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="linsolve">linsolve</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

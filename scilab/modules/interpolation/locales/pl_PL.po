@@ -1,0 +1,258 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-06-30 11:44+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: %s must be a real %d-dim hypermatrix.\n"
+msgstr "%s: %s musi być %d-wymiarową hipermacierzą liczb rzeczywistych.\n"
+
+#, c-format
+msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
+msgstr ""
+"%s: Powielone węzły lub wszystkie węzły są współliniowe (ier = %d).\n"
+
+#, c-format
+msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
+msgstr ""
+"%s: Dla ograniczonego splajnu musisz podać parametry kątów pochylenia na "
+"końcach.\n"
+
+#, c-format
+msgid "%s: Grid abscissae of dim %d not in strict increasing order.\n"
+msgstr "%s: Wartości odciętych wzdłuż osi %d nie są w kolejności rosnącej.\n"
+
+#, c-format
+msgid "%s: Not enough points for the fit.\n"
+msgstr "%s: Za mało punktów do dopasowania.\n"
+
+#, c-format
+msgid "%s: Problem with 'flag' = %d\n"
+msgstr "%s: Problem z 'flag' = %d\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and grid values in dimension "
+"%d.\n"
+msgstr ""
+"%s: Niekompatybilność pomiędzy ilością punktów siatki i ilością odpowiednich "
+"wartości dla wymiaru %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d or "
+"%d.\n"
+msgstr ""
+"%s: Niekompatybilność pomiędzy ilością punktów siatki i ilością odpowiednich "
+"wartości dla wymiarów %d lub %d.\n"
+
+#, c-format
+msgid ""
+"%s: Size incompatibility between grid points and values in dimension %d.\n"
+msgstr ""
+"%s: Niekompatybilność pomiędzy ilością punktów siatki i ilością odpowiednich "
+"wartości dla wymiaru %d.\n"
+
+#, c-format
+msgid "%s: Warning: Rank deficiency of the least square matrix.\n"
+msgstr ""
+"%s: Ostrzeżenie: Niewystarczający rząd macierzy metody najmniejszych "
+"kwadratów.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba parametrów wejściowych.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Musi być pomiędzy %d i %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real 3-dimension hypermatrix "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano 3-"
+"wymiarowej hipermacierzy liczb rzeczywistych.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Endpoint slopes.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: pochylenie w punkcie "
+"końcowym.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi być %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Two rows expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Oczekiwano dwóch "
+"wierszy.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano wektora "
+"lub macierzy.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
+"tego samego rozmiaru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
+"tego samego rozmiaru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Vector of same size "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
+"wektorów tego samego rozmiaru.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d, nr %d i nr %d: "
+"Oczekiwano tego samego rozmiaru.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
+msgstr ""
+"%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d, nr %d i nr %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments: x, y and z grids must have at least %d "
+"points.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentów wejściowych: siatki x, y i z muszą mieć "
+"co najmniej %d punktów.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s tlist expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego  nr %d: oczekiwana tlist'a "
+"%s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Array of reals expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano tablicy liczb "
+"rzeczywistych.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekiwano ''%s'' lub "
+"''%s'' lub ''%s'' .\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or real expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano ''%s'' lub "
+"liczby rzeczywistej .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Not (strictly) increasing or +-inf "
+"detected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Nie jest (ściśle) "
+"wzrastający lub znaleziono +-inf.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Reals expected but some NaN found.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano liczby "
+"rzeczywiste ale znaleziono kilka NaN.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Vector with %d components expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: Oczekiwano wektora z "
+"%d składowymi.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości parametrów wejściowych nr %d i nr %d: Oczekiwano "
+"tego samego rozmiaru.\n"
+
+#, c-format
+msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla okresowego splajnu %s: Musi być równa %s.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: Nieprawidłowe wartości dla argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
+msgstr ""
+"%s: Nieprawidłowe wartości parametrów wejściowych nr %d: Nieznany typ '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
+msgstr ""
+"%s: Nieprawidłowa wartości parametrów wejściowych nr %d: Nieobsługiwany typ "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr ""
+"%s: x i/lub y nie są  w tylko rosnącym porządku (lub wykryto +-inf)\n"
+
+#, c-format
+msgid "%s: xyz must be a (n,3) real matrix with n >= 10\n"
+msgstr ""
+"%s: xyz musi być macierzą liczb rzeczywistych o wymiarze n x 3 przy n >= 10\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
+msgstr ""
+"Nieprawidłowy typ dla argumentu wejściowego nr %d: Oczekiwano rzeczywistej "
+"hipermacierzy.\n"
+
+#, c-format
+msgid "Wrong type for input argument #%d: String expected.\n"
+msgstr "Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano łańcuch.\n"

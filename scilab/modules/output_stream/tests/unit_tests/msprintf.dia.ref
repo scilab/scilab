@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- JVM NOT MANDATORY -->
 // unit tests for msprintf function
 // =============================================================================
 // format '%f'
@@ -197,7 +198,7 @@ if msprintf("%X",-123)   <> "FFFFFF85"   then bugmes();quit;end
 if msprintf("%#.3X",12)  <> "0X00C"      then bugmes();quit;end
 // format '%o'
 // =============================================================================
-if execstr("msprintf(""%015o"",-12)","errcatch") == 0 then bugmes();quit;end
+if msprintf("%015o",-12)<>"000037777777764" then bugmes();quit;end
 // Vectorisation
 // =============================================================================
 nb_row = 10000;
@@ -230,3 +231,10 @@ end
 B = 100*rand(nb_row,1);
 if execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);","errcatch")     == 0 then, pause end
 if execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);","errcatch") == 0 then, pause end
+// No arg
+if execstr("msprintf();","errcatch")     == 0 then, bugmes();quit;end
+// overload: Arg not managed
+s=poly(0,"s");
+p=1+s+2*s^2;
+if execstr("msprintf(""plop"",p);","errcatch") <> 246 then, bugmes();quit;end
+if execstr("msprintf(""%s %s"",""plop"");","errcatch") <> 999 then, bugmes();quit;end

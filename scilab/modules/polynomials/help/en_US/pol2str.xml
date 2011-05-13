@@ -23,7 +23,7 @@
     <synopsis>[str]=pol2str(p)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>
@@ -44,8 +44,8 @@
     <para>
     converts polynomial to character string (utility function).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="string">string</link>

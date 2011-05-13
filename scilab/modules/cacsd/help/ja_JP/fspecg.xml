@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fspecg">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fspecg</refname>
+    <refpurpose> 安定な因数分解</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[gm]=fspecg(g).</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>g,gm</term>
+        <listitem>
+          <para> <literal>syslin</literal>リスト (状態空間表現の線形システム)</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>gm</literal> 	および <literal>gm^-1</literal>が安定となる
+	次のような
+    <literal>gm</literal> を返します:</para>
+    <programlisting><![CDATA[ 
+gtild(g)*g = gtild(gm)*gm
+ ]]></programlisting>
+    <para><literal>g</literal> および <literal>gm</literal> は,
+	状態空間形式の連続時間線形システムです.
+	</para>
+    <para>
+   虚軸の極がある場合は使用できません.</para>
+  </refsection>
+</refentry>

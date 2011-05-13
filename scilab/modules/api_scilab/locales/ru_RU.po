@@ -1,0 +1,251 @@
+# Russian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-20 21:55+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "\tin %s\n"
+msgstr "\tв %s\n"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr ""
+
+#, c-format
+msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid argument address"
+msgstr "%s: Неверный адрес параметра"
+
+#, c-format
+msgid "%s: Invalid argument type, %s excepted"
+msgstr "%s: Неверный тип параметра, ожидался %s"
+
+#, c-format
+msgid "%s: Items must be inserted in order"
+msgstr "%s: элементы должны быть вставлены в порядке"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create %s named \"%s\""
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to create list item #%d in Scilab memory"
+msgstr "%s: Невозможно создать элемент списка №%d в памяти Scilab"
+
+#, c-format
+msgid "%s: Unable to create list item #%d in variable \"%s\""
+msgstr "%s: Невозможно создать элемент списка №%d в в переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to create variable in Scilab memory"
+msgstr "%s: Невозможно создать переменную в памяти Scilab"
+
+#, c-format
+msgid "%s: Unable to get address of item #%d in argument #%d"
+msgstr "%s: Невозможно получить адрес элемента №%d в параметре #%d"
+
+#, c-format
+msgid "%s: Unable to get address of item #%d in variable \"%s\""
+msgstr "%s: Невозможно получить адрес элемента №%d в переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get address of variable \"%s\""
+msgstr "%s: Невозможно получить адрес переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get argument \"%s\""
+msgstr "%s: Невозможно получить параметр \"%s\""
+
+#, c-format
+msgid "%s: Unable to get argument #%d"
+msgstr "%s: Невозможно получить параметр №%d"
+
+#, c-format
+msgid "%s: Unable to get argument data"
+msgstr "%s: Невозможно получить данные параметра"
+
+#, c-format
+msgid "%s: Unable to get argument dimension"
+msgstr "%s: Невозможно получить размерность параметра"
+
+#, c-format
+msgid "%s: Unable to get argument precision"
+msgstr "%s: Невозможно получить точность параметра"
+
+#, c-format
+msgid "%s: Unable to get argument type"
+msgstr "%s: Невозможно получить тип параметра"
+
+#, c-format
+msgid "%s: Unable to get dimension from variable \"%s\""
+msgstr "%s: Невозможно получить размерность из переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get dimension of variable \"%s\""
+msgstr "%s: Невозможно получить размерность переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get item number of list"
+msgstr "%s: Невозможно получить количество элементов списка"
+
+#, c-format
+msgid "%s: Unable to get name of argument #%d"
+msgstr "%s: Невозможно получить имя параметра №%d"
+
+#, c-format
+msgid "%s: Unable to get precision of variable \"%s\""
+msgstr "%s: Невозможно получить точность переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get type of variable \"%s\""
+msgstr "%s: Невозможно получить тип переменной \"%s\""
+
+#, c-format
+msgid "%s: Unable to get variable \"%s\""
+msgstr "%s: Невозможно получить переменную \"%s\""
+
+#, c-format
+msgid "%s: Unable to get variable address"
+msgstr "%s: Невозможно получить адрес переменной"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: Неверный размер параметра %d: ожидался размер (%d,%d).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument \"%s\": A scalar expected.\n"
+msgstr "%s: Неверный тип параметра \"%s\": ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real scalar or a integer scalar "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась строка или скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
+
+#, c-format
+msgid "%s: bad call to %s! (1rst argument).\n"
+msgstr "%s: неправильный вызов %s! (1-й параметр).\n"
+
+#, c-format
+msgid "%s: matrix argument excepted"
+msgstr ""
+
+msgid "API Error:\n"
+msgstr "Ошибка API:\n"
+
+msgid "API_ERROR_GET_POLY_IN_LIST"
+msgstr ""
+
+msgid "API_ERROR_READ_NAMED_BOOLEAN_SPARSE"
+msgstr ""
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "Необходимо промежуточной памяти: %d\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "Занято памяти под переменные: %d\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "Всего памяти доступно: %d\n"
+
+#, c-format
+msgid "Use stacksize function to increase it.\n"
+msgstr "Используйте функцию stacksize для его увеличения.\n"
+
+msgid "boolean matrix"
+msgstr "булева матрица"
+
+msgid "boolean sparse matrix"
+msgstr ""
+
+msgid "double matrix"
+msgstr ""
+
+msgid "int matrix"
+msgstr ""
+
+msgid "list"
+msgstr "список"
+
+msgid "matrix of boolean"
+msgstr ""
+
+msgid "matrix of double"
+msgstr ""
+
+msgid "matrix of string"
+msgstr ""
+
+msgid "matrix of wide string"
+msgstr ""
+
+msgid "pointer"
+msgstr "указатель"
+
+msgid "polynomial matrix"
+msgstr ""
+
+msgid "sparse matrix"
+msgstr ""
+
+#, c-format
+msgid "stack size exceeded!\n"
+msgstr "достигнут предел размера стека!\n"
+
+msgid "string matrix"
+msgstr ""

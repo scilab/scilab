@@ -1,0 +1,1630 @@
+# French translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-23 08:19+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr "       dans la fonction: %s.\n"
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr "     (fin) %s\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr "  (continue) %s\n"
+
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr ""
+"  vérifier les arguments ou définir la fonction %s pour la surcharge.\n"
+
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr " et %s variables parmi %s.\n"
+
+msgid " end or else is missing...\n"
+msgstr " end ou else est manquant ...\n"
+
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr " a été tronqué en : %s.\n"
+
+#, c-format
+msgid " input line longer than buffer size: %d\n"
+msgstr " la ligne entrée est plus longue que la taille du buffer : %d\n"
+
+msgid "\"unknown data\""
+msgstr "\"Donnée inconnue\""
+
+#, c-format
+msgid "%d graphic terminal?\n"
+msgstr "%d terminaux graphiques?\n"
+
+#, c-format
+msgid "%d: logical unit already used.\n"
+msgstr "%d: unité logique déjà utilisée.\n"
+
+#, c-format
+msgid "%dth argument type must be boolean.\n"
+msgstr "Le type du %dième argument doit être booléen.\n"
+
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
+msgstr "%s et %s doivent avoir les mêmes dimensions.\n"
+
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
+msgstr "%s et %s doivent avoir le même nombre de colonnes.\n"
+
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
+msgstr "%s et %s doivent avoir le même nombre de lignes.\n"
+
+#, c-format
+msgid "%s is not valid in this context.\n"
+msgstr "%s n'est pas valide dans ce contexte.\n"
+
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr "%s pas encore implémenté pour les paramètres d'entrée pleins.\n"
+
+#, c-format
+msgid "%s was a function when compiled but is now a primitive!\n"
+msgstr ""
+"%s était une fonction à la compilation mais est maintenant une primitive!\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
+"%s: %s est trop petit. %s est orthogonal aux colonnes du Jacobien à la "
+"précision machine près.\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+"%s: %s est trop petit. Une réduction supplémentaire du critère est "
+"impossible.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s : Une erreur s'est produite : %s\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+msgstr ""
+"%s: Mauvaise conversion drapeau 'l' ou 'h' mélangé avec la directive 'c'.\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+msgstr ""
+"%s: Mauvaise conversion drapeau 'l' ou 'h' mélangé avec la directive 's'.\n"
+
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr "%s: Les bornes et l'estimation initiale sont incompatibles.\n"
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s : problème pendant la recherche de l'intersection avec les bornes du "
+"domaine.\n"
+"   le précédent ordre calculé est retourné.\n"
+
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
+msgstr "%s: Le premier argument ne peut pas être un nombre.\n"
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s : impossible d'atteindre l'ordre demandé.\n"
+"   le précédent ordre calculé est retourné.\n"
+
+#, c-format
+msgid "%s: Incorrect bounds.\n"
+msgstr "%s: Bornes incorrectes.\n"
+
+#, c-format
+msgid "%s: Incorrect stopping parameters.\n"
+msgstr "%s: Paramètres d'arrêts incorrects.\n"
+
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr ""
+"%s: Les arguments d'entrée devrait avoir le même nom formel de variable.\n"
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s: Boucle sur deux niveaux détectée.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s : Plus de mémoire disponible.\n"
+
+#, c-format
+msgid "%s: Not enough arguments.\n"
+msgstr "%s: Pas assez d'arguments.\n"
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr "%s: Le nombre d'appels à %s a atteint ou dépassé %s.\n"
+
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
+msgstr ""
+"%s: Seulement un point d'entrée est autorisé sur ce système d'exploitation.\n"
+
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr "%s: Problèmes avec les constantes initiales dans simul.\n"
+
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr "%s: Arrêt demandé par le simulateur (ind=0)\n"
+
+#, c-format
+msgid "%s: The colocation matrix is singular.\n"
+msgstr "%s: La matrice de colocation est singulière.\n"
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr "%s: Cette méthode n'est pas encore crée.\n"
+
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+"%s : trop de solutions trouvées.\n"
+"   le précédent ordre calculé est retourné.\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s : Le type %s n'est pas géré : Veuillez définir la fonction %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s : Mauvais format d'export : %s"
+
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr "%s: Mauvais paramètres d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s : Mauvais nombre d'argument(s) d'entrée : %d à %d attendus."
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s : Mauvais nombre d'arguments d'entrée.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "% s: Mauvais nombre d'arguments d'entrée : De %d à %d attendu."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s: Mauvais nombre d'arguments d'entrée: au plus %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+"%s : Nombre incorrect d'arguments en entrée : les données ne sont pas prises "
+"en charge par ce format.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr ""
+"%s: Mauvais nombre d'arguments d'entrée: les données ne correspondent pas au "
+"format.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Mauvais nombre d'arguments de sortie.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s : Mauvaise taille pour l'argument %d : %d attendu.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s : Mauvaise taille pour l'argument %d : (%d,%d) attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un vecteur attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr "%s : Mauvais type d'argument pour #%d: Booleen attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Matrice booléenne attendue.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument %d : Fonction ou chaîne de caractères "
+"(fonction externe) attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s : Mauvais type pour le paramètre %d : Liste attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Matrice attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument %d : Matrice de chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s: Mauvais type pour l'argument %d: Polynôme attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s : type invalide pour l'argument %d : matrice réelle attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument %d : Une matrice réelle ou complexe "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Vecteur réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgstr "%s: Mauvais type for l'argument %d: Scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s : Mauvais type pour l'argument %d : Vecteur attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument n°%d : Matrice de travail d'entiers "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Mauvais type pour l'argument d'entrée n° %d: Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"est attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s : Mauvaise valeur pour l'argument d'entrée #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s : Mauvaise valeur pour le paramètre d'entrée #%d : ''%s'', ''%s'', "
+"''%s'', ''%s'', ''%s'' ou ''%s'' attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
+msgstr "%s: Mauvaise valeur pour l'argument d'entrée n° %d: 0 attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: l'ID %d du journal "
+"n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: le nom de fichier du "
+"journal n'existe pas.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"fermer le journal %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"fermer le journal.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"interrompre le journal %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"interrompre le journal.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"résumer le journal %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: erreur, ne peux pas "
+"continuer le journal.\n"
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgstr ""
+"%s: Mauvaise valeur pour l'argument d'entrée n° %d: les données ne "
+"correspondent pas au format.\n"
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+"%s: les réductions relatives actuelle et prédite du critère sont au plus "
+"%s.\n"
+
+#, c-format
+msgid "%s: df0 must be positive !\n"
+msgstr "%s: df0 doit être positive !\n"
+
+#, c-format
+msgid "%s: error can not close diary.\n"
+msgstr "%s: erreur, ne peux pas fermer le journal.\n"
+
+#, c-format
+msgid "%s: error can not create diary.\n"
+msgstr "%s: erreur, ne peux pas créer le journal.\n"
+
+#, c-format
+msgid "%s: error can not create diary: %s.\n"
+msgstr "%s: erreur, ne peux pas créer le journal: %s.\n"
+
+#, c-format
+msgid "%s: expecting more than one argument.\n"
+msgstr "%s: attend plus d'un argument.\n"
+
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
+msgstr "%s: fixpnt doit être de dimension ipar(11).\n"
+
+#, c-format
+msgid "%s: input data error.\n"
+msgstr "%s: erreur de données d'entrée.\n"
+
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
+msgstr "%s: ipar doit être de dimension au moins 11.\n"
+
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
+msgstr "%s: ltol doit être de dimension ipar(4).\n"
+
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
+msgstr "%s: m doit être de dimension ncomp.\n"
+
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr "%s: maxpts était trop petit pour obtenir la précision demandée.\n"
+
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
+msgstr "%s: ncomp < 20 demandé.\n"
+
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
+msgstr "%s: no. de sous intervalles dépasse la capacité de stockage.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s : problème avec un des points d'entrée.\n"
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+"%s: l'erreur relative entre deux itérations consécutives est au plus %s.\n"
+
+#, c-format
+msgid "%s: singular or asymmetric problem.\n"
+msgstr "%s : problème singulier ou asymétrique.\n"
+
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
+msgstr "%s: sum(m) doit être inférieur à 40.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr "%s: Le système ne peut pas s'afficher dans cette page.\n"
+
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr "%s: fin pour cause de bruit d'arrondi.\n"
+
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr ""
+"%s: fin pour cause de manque d'espace pour le découpage d'un triangle.\n"
+
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr "%s: fin pour cause d'erreur relative < (5.0*%eps).\n"
+
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr "%s: fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+"%s: le cosinus de l'angle entre %s et n'importe quelle colonne du Jacobien "
+"est au plus %s en valeur absolue.\n"
+
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
+msgstr "%s: la bibliothèque partagée n'a pas été chargée.\n"
+
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr "%s: les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
+
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
+"Une entrée de la matrice creuse est définie avec deux valeurs différentes.\n"
+
+msgid "Argument type must be boolean.\n"
+msgstr "Le type de l'argument doit être booléen.\n"
+
+msgid "Arguments are :\n"
+msgstr "Les arguments sont:\n"
+
+#, c-format
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
+"Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
+
+#, c-format
+msgid "Bad call to primitive: %s\n"
+msgstr "Mauvais appel de la primitive : %s\n"
+
+msgid "Bad conversion."
+msgstr "Mauvaise conversion"
+
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr "L'accès direct à un fichier binaire doit être ouvert par 'file'\n"
+
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr "Point d'arrêt de la fonction: %s\n"
+
+msgid "Buffer too small."
+msgstr "Buffer trop petit."
+
+msgid "C file logical unit not allowed here.\n"
+msgstr "L'unité logique de type fichier C n'est pas autorisé ici.\n"
+
+msgid "Commands:\n"
+msgstr "Commandes :\n"
+
+msgid "Convergence problem...\n"
+msgstr "Problème de convergence ...\n"
+
+msgid "Degenerate starting point.\n"
+msgstr "Point de départ dégénéré.\n"
+
+msgid "Direct access : give format.\n"
+msgstr "Accès direct : donner le format.\n"
+
+msgid "Division by zero...\n"
+msgstr "Division par zéro ...\n"
+
+msgid "Dot cannot be used as modifier for this operator.\n"
+msgstr ""
+"Le Point ne peut pas être utilisé comme modifieur de cet opérateur.\n"
+
+#, c-format
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
+msgstr ""
+"Les éléments du %dième argument ne sont pas rangés en ordre (strictement) "
+"décroissant.\n"
+
+#, c-format
+msgid "Elements of %dth argument must be in increasing order.\n"
+msgstr ""
+"Les éléments du %dième argument doivent être rangés par ordre croissant.\n"
+
+msgid "Elements of first argument are not (strictly) increasing.\n"
+msgstr ""
+"Les éléments du premier argument ne sont pas (strictement) croissant.\n"
+
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
+msgstr ""
+"Les éléments du premier argument ne sont pas rangés en ordre (strictement) "
+"décroissant.\n"
+
+msgid "Empty function...\n"
+msgstr "Fonction vide ...\n"
+
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr "Fin de fichier à la ligne %d.\n"
+
+msgid "End of optimization (linear search fails).\n"
+msgstr "Fin de l'optimisation (échec de la recherche en ligne).\n"
+
+msgid "End of optimization.\n"
+msgstr "Fin de l'optimisation.\n"
+
+msgid "Entry name not found.\n"
+msgstr "Nom d'entrée non trouvé.\n"
+
+msgid "Error while linking.\n"
+msgstr "Erreur pendant l'édition de liens.\n"
+
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr ""
+"Erreur durant l'ecriture dans le fichier: disque plein ou fichier supprimé.\n"
+
+msgid "Eye variable undefined in this context.\n"
+msgstr "La variable Eye n'est pas définie dans ce contexte.\n"
+
+#, c-format
+msgid ""
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
+msgstr ""
+"Erreur fatale ! ! ! Vos variables ont été sauvegardées dans le dossier : %s\n"
+"                                   Appel incorrect à une fonction de scilab "
+"?\n"
+"                                   Autrement, envoyez un rapport de bogue à "
+":\n"
+
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+"Le fichier \"%s\" existe déjà ou le répertoire n'est pas accessible en "
+"écriture.\n"
+
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr "Le fichier \"%s\" n'existe pas ou n'est pas accessible en lecture.\n"
+
+msgid "Floating point exception.\n"
+msgstr "Exception en virgule flottante.\n"
+
+msgid "Formal variable name has been truncated.\n"
+msgstr "Le nom de la variable formel a été tronqué.\n"
+
+msgid "Fortran file logical unit not allowed here.\n"
+msgstr "L'unité logique de type fortran n'est pas autorisé ici.\n"
+
+msgid "Function name already used.\n"
+msgstr "Nom de fonction déjà utilisé.\n"
+
+msgid "Function not bounded from below.\n"
+msgstr "La fonction n'est pas bornée inférieurement.\n"
+
+msgid "Function not defined for given argument type(s),\n"
+msgstr "Fonction non définie pour le type d'argument donné.\n"
+
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "Emplacement des fichiers de fonctions: %s.\n"
+
+msgid "Help file inconsistent...\n"
+msgstr "Fichier d'aide invalide ...\n"
+
+msgid "Host does not answer...\n"
+msgstr "L'hôte ne répond pas ...\n"
+
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr ""
+"Redémarrage à chaud: dimension de l'espace de travail (argument n°:%d).\n"
+
+msgid "Imaginary part\n"
+msgstr "Partie imaginaire\n"
+
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr "Impossible de charger la variable %s.\n"
+
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr "Indices incompatibles pour les éléments non-nuls.\n"
+
+msgid "Incompatible input argument.\n"
+msgstr "Argument d'entrée incompatible.\n"
+
+msgid "Incompatible output argument.\n"
+msgstr "Argument de sortie incompatible.\n"
+
+msgid "Inconsistent addition.\n"
+msgstr "Addition incohérente.\n"
+
+msgid "Inconsistent column/row dimensions.\n"
+msgstr "Dimension colonne/ligne incohérente.\n"
+
+msgid "Inconsistent constraints.\n"
+msgstr "Contraintes incompatibles.\n"
+
+msgid "Inconsistent left division.\n"
+msgstr "Division gauche incohérente.\n"
+
+msgid "Inconsistent multiplication.\n"
+msgstr "Multiplication incohérente.\n"
+
+msgid "Inconsistent right division.\n"
+msgstr "Division droite incohérente.\n"
+
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "Dimension ligne/colonne incohérente.\n"
+
+msgid "Inconsistent subtraction.\n"
+msgstr "Soustraction incohérente.\n"
+
+msgid "Incorrect assignment.\n"
+msgstr "Affectation incorrecte.\n"
+
+msgid "Incorrect command!\n"
+msgstr "Commande erronée!\n"
+
+msgid "Incorrect control instruction syntax.\n"
+msgstr "Syntaxe de l'instruction de contrôle incorrecte.\n"
+
+msgid "Incorrect file or format.\n"
+msgstr "Fichier ou format incorrect.\n"
+
+#, c-format
+msgid "Incorrect function (argument n: %d).\n"
+msgstr "Fonction incorrecte (argument n: %d).\n"
+
+#, c-format
+msgid "Incorrect function at line %d.\n"
+msgstr "Fonction incorrecte à la ligne %d.\n"
+
+msgid "Incorrect function.\n"
+msgstr "Fonction incorrecte.\n"
+
+msgid "Incorrect number of input arguments.\n"
+msgstr "Nombre incorrect d'argument d'entrée.\n"
+
+msgid "Incorrect string.\n"
+msgstr "Chaîne de caractères incorrecte.\n"
+
+msgid "Incorrect syntax.\n"
+msgstr "Syntaxe incorrecte.\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
+"L'indexage n'est pas autorisé pour les arguments de sortie de resume.\n"
+
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr ""
+"Les indices des éléments non-nuls doivent être donnés dans une matrice 2 "
+"colonnes.\n"
+
+msgid "Inequality comparison with empty matrix.\n"
+msgstr "Comparaison de type inégalité avec une matrice vide.\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr "Les arguments d'entrée doivent avoir le même nom de variable.\n"
+
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgstr ""
+"Partie gauche de l'instruction: en attente d'un point ou d'une parenthèse "
+"ouvrante.\n"
+
+msgid "Instruction left hand side: waiting for a name.\n"
+msgstr "Partie de gauche de l'instruction: en attente d'un nom.\n"
+
+msgid "Integration fails.\n"
+msgstr "Echec de l'intégration.\n"
+
+msgid "Interface property table is full.\n"
+msgstr "La table des propriétés d'interface est pleine.\n"
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr "Mémoire intermédiaire requise: %d\n"
+
+msgid "Invalid exponent.\n"
+msgstr "Exposant invalide.\n"
+
+msgid "Invalid factor.\n"
+msgstr "Facteur invalide.\n"
+
+msgid "Invalid index.\n"
+msgstr "Index invalide.\n"
+
+#, c-format
+msgid "Invalid return value for function passed in arg %d.\n"
+msgstr "Valeur de retour invalide pour la fonction passée en argument %d.\n"
+
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr ""
+"Il n'est pas possible de redéfinir la primitive %s de cette façon (voir "
+"clearfun).\n"
+
+#, c-format
+msgid "Last element of %dth argument <> first.\n"
+msgstr "Le dernier élément du %dième argument <> d'abord.\n"
+
+msgid "Last element of first argument does not match the first one.\n"
+msgstr ""
+"Le dernier élément du premier argument ne correspond pas au premier "
+"élément.\n"
+
+msgid "Leading coefficient is zero.\n"
+msgstr "Le premier coefficient est zéro.\n"
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "L'élément %d de la list n'est pas défini.\n"
+
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr "Le numéro d'unité logique doit être plus grand que %d.\n"
+
+msgid "Matrix is not positive definite.\n"
+msgstr "La matrice n'est pas définie positive.\n"
+
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
+msgstr "Les normes matricielles disponibles sont 1, 2, inf et fro.\n"
+
+msgid "Maximum number of dynamic interfaces reached.\n"
+msgstr "Nombre maximum d'interfaces dynamique atteint.\n"
+
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr "Taille maximum du buffer: %d caractères.\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr "Mémoire utilisée pour les variables: %d\n"
+
+msgid "Missing index.\n"
+msgstr "Indice manquant.\n"
+
+msgid "Missing operator, comma, or semicolon.\n"
+msgstr "Opérateur, virgule ou point-virgule manquant.\n"
+
+msgid "NO hot restart available in this method.\n"
+msgstr "PAS de redémarrage à chaud disponible pour cette méthode.\n"
+
+msgid "No feasible point has been found.\n"
+msgstr "Aucun point réalisable n'a été trouvé.\n"
+
+msgid "No feasible solution.\n"
+msgstr "Pas de solution réalisables.\n"
+
+#, c-format
+msgid "No input file associated to logical unit %d.\n"
+msgstr "Aucun fichier d'entrée n'est associé à l'unité logique %d.\n"
+
+msgid "No more memory.\n"
+msgstr "Plus de mémoire.\n"
+
+msgid "Non convergence in QR steps.\n"
+msgstr "Non convergence des itérations QR.\n"
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "Non convergence de l'algorithme QZ.\n"
+
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr "La norme du gradient projeté est inférieure à %s.\n"
+
+msgid "Not enough memory to perform simplification.\n"
+msgstr "Pas suffisamment de mémoire pour effectuer la simplification.\n"
+
+msgid "Not implemented in scilab...\n"
+msgstr "Pas encore implémenté dans Scilab...\n"
+
+msgid "Null variable cannot be used here.\n"
+msgstr "Une variable nulle ne peut pas être utilisée ici.\n"
+
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr "Les opérandes des opérations  / et \\ ne peuvent être NaN ou Inf.\n"
+
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr "Optim s'est arrêté: le nombre maximum d'appel à f a été atteint.\n"
+
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr "Optim s'est arrêté: le nombre maximum d'itérations a été atteint.\n"
+
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr ""
+"Optim s'est arrêté: les variations de direction du gradient sont trop "
+"petites.\n"
+
+msgid "Optimization fails: back to initial point.\n"
+msgstr "Echec de l'optimisation: retour au point initial.\n"
+
+msgid "Optimization stops because too small variations for x.\n"
+msgstr ""
+"L'optimisation s'est arrêtée à cause d'une trop petite variation de x.\n"
+
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "Mode pause : entrer des lignes vides pour continuer.\n"
+
+msgid "Problem is singular.\n"
+msgstr "Le problème est singulier.\n"
+
+msgid ""
+"Problem may be unbounded: too high distance between two consecutive "
+"iterations.\n"
+msgstr ""
+"Le problème peut être non borné: la distance est trop grande entre deux "
+"itérations consécutives.\n"
+
+msgid "Problem with comparison symbol...\n"
+msgstr "Problème avec le symbole de comparaison ...\n"
+
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr "Quapro a rencontré des cycles sur un point dégénéré.\n"
+
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr "Défaillance du rang : rang = %s - tol = %s.\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr "rang déficiant. rang = %d\n"
+
+msgid "Real part\n"
+msgstr "Partie réelle\n"
+
+msgid "Rebuild your function libraries.\n"
+msgstr "Reconstruisez votre bibliothèque de fonctions.\n"
+
+msgid "Recursion problems. Sorry...\n"
+msgstr "Problèmes de récursion. Désolé ...\n"
+
+msgid "Recursive extraction is not valid in this context.\n"
+msgstr "L'extraction récursive n'est pas valide dans ce contexte.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Redéfinition d'une variable permanente.\n"
+
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+"Les erreurs d'arrondi font que les premières valeurs\n"
+" propres de la forme de Schur ne satisfont plus le critère.\n"
+
+msgid "Singularity of log or tan function.\n"
+msgstr "Singularité de la fonction log ou tan.\n"
+
+#, c-format
+msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"L'argument de taille variable a*eye(), (arg %d) n'est pas autorisé ici.\n"
+
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr ""
+"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+
+msgid ""
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output "
+"arguments.\n"
+"No output argument test has been made for this function.\n"
+"Please report this bug :\n"
+msgstr ""
+"Problème de pile détecté pendant une boucle.\n"
+"Une fonction primitive a été appelée avec un mauvais nombre d'arguments de "
+"sortie.\n"
+"Aucun test sur les arguments de sortie n'a été fait dans cette fonction.\n"
+"Rapportez ce bug s'il vous plaît :\n"
+
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr "Arrêt après la ligne %s dans la fonction %s.\n"
+
+msgid "Stop during calculation of descent direction.\n"
+msgstr "Arrêt pendant le calcul de la direction de descente.\n"
+
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr "Arrêt pendant le calcul de l'estimation du hessien.\n"
+
+msgid "Submatrix incorrectly defined.\n"
+msgstr "Sous-matrice incorrectement définie.\n"
+
+#, c-format
+msgid "Syntax error in a '%s' instruction.\n"
+msgstr "Erreur de syntaxe dans une instruction '%s'.\n"
+
+msgid "System functions:\n"
+msgstr "Fonctions système:\n"
+
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr "Les premières %d valeurs singulières sont peut être incorrectes.\n"
+
+#, c-format
+msgid "The identifier : %s\n"
+msgstr "L'identifiant : %s\n"
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr ""
+"Les %d x %d blocs supérieurs ne sont peut être pas sous la forme de Schur "
+"généralisée.\n"
+
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr ""
+"Les %d x %d blocks supérieurs ne sont peut être pas sous la forme de Schur.\n"
+
+msgid "This data type is already defined.\n"
+msgstr "Ce type de donnée est déjà définie.\n"
+
+msgid "This variable is not valid in fort.\n"
+msgstr "Cette variable n'est pas valide dans fort.\n"
+
+msgid "Too complex for scilab, may be a too long control instruction.\n"
+msgstr ""
+"Trop compliqué pour Scilab, peut-être une instruction de contrôle trop "
+"longue.\n"
+
+msgid "Too complex recursion! (recursion tables are full)\n"
+msgstr "Récurrence trop complexe! (les tables de récurrence sont pleines)\n"
+
+msgid "Too high degree (max 100).\n"
+msgstr "Degré trop grand (max 100).\n"
+
+msgid "Too large string.\n"
+msgstr "Chaîne de caractères trop longue.\n"
+
+msgid "Too large, can't be displayed.\n"
+msgstr "Trop large, ne peut pas être affiché.\n"
+
+msgid "Too many ':'\n"
+msgstr "Trop de ':'\n"
+
+msgid "Too many arguments in fort (max 30).\n"
+msgstr "Trop d'arguments dans fort (max 30).\n"
+
+msgid "Too many commands defined.\n"
+msgstr "Trop de commandes définies.\n"
+
+msgid "Too many files opened!\n"
+msgstr "Trop de fichiers ouverts!\n"
+
+#, c-format
+msgid "Too many functions are defined (maximum #:%d).\n"
+msgstr "Trop de fonctions sont définies (nb maximum: %d).\n"
+
+#, c-format
+msgid "Too many global variables! Max number is %d.\n"
+msgstr "Trop de variables globales ! Le nombre maximum est %d.\n"
+
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr "Trop d'entrées d'entrée-sortie pour le bloc accentué.\n"
+
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr "Trop de ports d'entrée-sortie pour le bloc accentué\n"
+
+msgid "Too many linked routines.\n"
+msgstr "Trop de routines liées.\n"
+
+msgid "Too many variables!\n"
+msgstr "Trop de variables!\n"
+
+msgid "Too small memory.\n"
+msgstr "Mémoire trop limitée.\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr "Mémoire totale disponible: %d\n"
+
+#, c-format
+msgid "Trying to re-define function %s.\n"
+msgstr "Essaye de redéfinir la fonction %s.\n"
+
+msgid "Type data base is full.\n"
+msgstr "La base de données des types est pleine.\n"
+
+msgid "Uncontrollable system.\n"
+msgstr "Système non contrôlable.\n"
+
+msgid "Undefined display for this data type.\n"
+msgstr "Affichage non défini pour ce type de donnée.\n"
+
+msgid "Undefined fonction.\n"
+msgstr "Fonction non définie.\n"
+
+msgid "Undefined operation for the given operands.\n"
+msgstr "Opération non définie pour les opérandes données.\n"
+
+msgid "Undefined variable.\n"
+msgstr "Variable non définie.\n"
+
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "Variable non définie: %s\n"
+
+msgid "Unknown file format.\n"
+msgstr "Format de fichier inconnu.\n"
+
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr "La clef inconnue <%s> est ignorée.\n"
+
+msgid "Unobservable system.\n"
+msgstr "Système non observable.\n"
+
+msgid "Use stacksize function to increase it.\n"
+msgstr "Utiliser la fonction stacksize pour l'augmenter.\n"
+
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr "Utilisation de %s éléments parmi %s.\n"
+
+#, c-format
+msgid "Variable %s is not a valid rational function.\n"
+msgstr "La variable %s n'est pas une fonction rationnelle valide.\n"
+
+#, c-format
+msgid "Variable %s is not a valid state space representation.\n"
+msgstr ""
+"La variable %s n'est pas dans une représentation espace d'état valide.\n"
+
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr "Variable: %s doit être une liste\n"
+
+#, c-format
+msgid "Variable or function %s are not in file.\n"
+msgstr "La variable ou la fonction %s n'est pas dans le fichier.\n"
+
+msgid "Variable returned by scilab argument function is incorrect.\n"
+msgstr ""
+"La variable retournée par la fonction scilab passée en argument est "
+"invalide.\n"
+
+msgid "Waiting for end of command.\n"
+msgstr "En attente de la fin de la commande.\n"
+
+msgid "Waiting for right parenthesis.\n"
+msgstr "En attente d'une parenthèse droite.\n"
+
+msgid "Warning :\n"
+msgstr "Attention:\n"
+
+msgid "Warning : division by zero...\n"
+msgstr "Attention: division par zéro ...\n"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+"Attention: redéfinition de la fonction: %s. Utilisez funcprot(0) pour éviter "
+"ce message"
+
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr "Attention: singularité de la fonction 'log' ou 'tan'.\n"
+
+msgid "Warning:\n"
+msgstr "Attention:\n"
+
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr "Attention: Le résultat est peut être inexact.\n"
+
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used! See %ODEOPTIONS(6).\n"
+msgstr ""
+"Avertissement : L'external de Jacobian est donné, mais non utilisé! Voir "
+"%ODEOPTIONS(6).\n"
+
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+"Attention: Pas de Jacobien externe donnée mais\n"
+" un est requis par %ODEOPTIONS(6) !\n"
+
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr ""
+"Attention: l'utilisation d'une liste standard pour définir des structures "
+"typées\n"
+"          est obsolète. Utilisez tlist.\n"
+
+msgid "Warning: function is already compiled.\n"
+msgstr "Attention: la fonction est déjà compilée.\n"
+
+msgid ""
+"Warning: integration not completed! Check tolerance parameters or step "
+"size.\n"
+msgstr ""
+"Avertissement : intégration non accomplie! Vérifiez les paramètres de "
+"tolérance ou la taille du pas.\n"
+
+msgid "Warning: integration up to tcrit.\n"
+msgstr "Attention: intégration jusqu'à l'instant tcrit.\n"
+
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr ""
+"Attention : le fichier chargé a été créé avec une version précédente de "
+"Scilab\n"
+"ou alors vous essayez de charger un fichier sauvé sur une architecture "
+"différente.\n"
+
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr "Attention: utilisation obsolète de '=' à la place de '=='.\n"
+
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr "Avertissement : utilisation désuète de eye, rand, ou ones.\n"
+
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr ""
+"Attention: odedc impose itask=4 et gère\n"
+" tcrit.\n"
+
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr "Attention: la fonction primitive %s a été déplacée.\n"
+
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr ""
+"Attention: la fonction primitive %s est maintenant une fonction Scilab.\n"
+
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr "Attention: problème de récurrence ... nettoyé.\n"
+
+msgid "Warning: stack problem..., cleared.\n"
+msgstr "Attention: problème avec la pile ... nettoyé.\n"
+
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr "Attention: la variable %%ODEOPTIONS n'a pas été trouvée.\n"
+
+#, c-format
+msgid "Wrong argument %d.\n"
+msgstr "Mauvais argument %d.\n"
+
+msgid "Wrong file name.\n"
+msgstr "Mauvais nom de fichier.\n"
+
+msgid "Wrong first argument.\n"
+msgstr "Mauvais premier argument.\n"
+
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr "Mauvais argument d'entrée %d.\n"
+
+msgid "Wrong number of input arguments:\n"
+msgstr "Mauvais nombre d'arguments d'entrée:\n"
+
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
+msgstr ""
+"Mauvais nombre d'arguments d'entrée: Cette fonction n'a pas d'argument "
+"d'entrée.\n"
+
+msgid "Wrong number of output arguments\n"
+msgstr "Mauvais nombre d'arguments de sortie\n"
+
+msgid ""
+"Wrong number of output arguments: This function has no output argument.\n"
+msgstr ""
+"Mauvais nombre d'arguments de sortie: Cette fonction n'a pas d'argument de "
+"sortie.\n"
+
+#, c-format
+msgid "Wrong size for argument %d.\n"
+msgstr "Mauvaise dimension pour l'argument %d.\n"
+
+msgid "Wrong size for argument: Incompatible dimensions.\n"
+msgstr "Mauvaise dimension for l'argument: Dimensions incompatibles.\n"
+
+#, c-format
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Matrice scalaire creuse ou pleine "
+"attendue.\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Un système sous la forme espace d'état ou "
+"sous la forme matrice de transfert est attendu.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgstr "Mauvais type pour l'argument %d: Booléen ou scalaire attendu.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Un handle vers des facteurs lu creux est "
+"attendu.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgstr "Mauvais type pour l'argument %d: Attendu en temps continu.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgstr "Mauvais type pour l'argument %d: Attendu en temps discret.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: In state space form expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Attendu sous la forme espace d'état.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: List expected.\n"
+msgstr "Mauvais type pour l'argument %d : Liste attendue.\n"
+
+#, c-format
+msgid ""
+"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Une variable nommée n'est pas l'expression "
+"attendue.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgstr "Mauvais type pour l'argument %d: Matrice rationnelle attendue.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgstr "type invalide pour l'argument %d : matrice réelle attendue.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "Mauvais type pour l'argument %d: SISO attendu.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgstr ""
+"Mauvais type pour l'argument %d: Matrice creuse ou scalaires attendus.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgstr "Mauvais type pour l'argument %d: Une matrice carrée est attendue.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: String expected.\n"
+msgstr "Mauvais type pour l'argument %d: Chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgstr "Mauvais type pour l'argument %d: Matrice de transfert attendue.\n"
+
+msgid "Wrong type for first argument: Square matrix expected.\n"
+msgstr ""
+"Mauvais type pour le premier argument: une matrice carrée est attendue.\n"
+
+msgid "Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+"Mauvais type pour le premier argument d'entrée: Une seule chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
+msgstr "Mauvais type pour l'argument d'entrée %d: Polynôme attendu.\n"
+
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"Mauvais type pour l'argument d'entrée %d: Matrice de réels ou de complexes "
+"attendue.\n"
+
+#, c-format
+msgid "Wrong value for argument %d.\n"
+msgstr "Mauvaise valeur pour l'argument %d.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Empty string expected.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: chaîne de caractères vide attendue.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: Ne doit pas contenir de NaN ou Inf.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: Nom de variable valide attendu.\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: le module des valeurs propres doivent "
+"être inférieurs à un.\n"
+
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: les valeurs propres doivent avoir une "
+"partie réelle négative.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
+"Mauvaise valeur pour l'argument %d: le handle lu n'est plus valide.\n"
+
+msgid "You cannot link more functions, maxentry reached.\n"
+msgstr "Vous ne pouvez pas lier plus de fonctions, maxentry atteint.\n"
+
+msgid "Your global variables are...\n"
+msgstr "Vos variables globales sont ...\n"
+
+msgid "Your variables are:\n"
+msgstr "Vos variables sont:\n"
+
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr "pendant la dernière itération, f a diminué de moins de %s.\n"
+
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "vérifier ou définir la fonction %s pour la surcharge.\n"
+
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "calcul de la solution des moindres carrés. (voir lsq).\n"
+
+msgid "eigenvectors are badly conditioned.\n"
+msgstr "les vecteurs propres sont mal conditionnés.\n"
+
+msgid "endfunction is missing.\n"
+msgstr "endfunction est manquant.\n"
+
+#, c-format
+msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
+msgstr "pour x=val avec type(val)=%d n'est pas implémenté dans Scilab.\n"
+
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+"itask=2,3 ou 5: Au moins une valeur de t\n"
+" est autorisée, le dernier élément de t est utilisé.\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "la matrice est presque singulière ou mal conditionnée. rcond = %s\n"
+
+#, c-format
+msgid "null matrix (argument # %d).\n"
+msgstr "matrice null (argument # %d).\n"
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr "poly: le nom de variable doit faire moins de 5 caractères de long.\n"
+
+#, c-format
+msgid "reference to the cleared global variable %s.\n"
+msgstr "référence vers la variable global effacée %s.\n"
+
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr "les résultats sont peut être inexacts. rcond = %s\n"
+
+msgid "semi def fails.\n"
+msgstr "Echec de semi def.\n"
+
+#, c-format
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr ""
+"sfact : convergence incomplète. Précision relative atteinte: 10**(%s).\n"
+
+msgid "stack size exceeded!\n"
+msgstr "Taille de la pile dépassée!\n"
+
+msgid "stepsize not significant in rkqc.\n"
+msgstr "stepsize n'est pas suffisamment important dan rkqc.\n"
+
+#, c-format
+msgid "subroutine not found: %s\n"
+msgstr "sous-programme non trouvé : %s\n"
+
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
+msgstr "le domaine temporel de l'argument %d n'est pas défini.\n"
+
+msgid "varargout keyword cannot be used here.\n"
+msgstr "Le mot clef varargout ne peut pas être utilisé ici.\n"
+
+#~ msgid "Incorrect # of outputs in the function\n"
+#~ msgstr "Nombre de sorties de la fonction incorrecte\n"
+
+#~ msgid "Function has no output.\n"
+#~ msgstr "La fonction n'a pas de sortie.\n"
+
+#~ msgid "Wrong number of arguments in function call...\n"
+#~ msgstr "Mauvais nombre d'arguments dans l'appel de la fonction ...\n"
+
+#~ msgid "Function has no input argument...\n"
+#~ msgstr "La fonction n'a pas d'argument d'entrée ...\n"
+
+#~ msgid "No more logical units available!\n"
+#~ msgstr "Plus d'unités logiques disponibles:\n"
+
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: problème singulier ou asymétrique.\n"
+
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: Cette méthode n'est PAS implémentée.\n"
+
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr ""
+#~ "Une entrée de matrice creuse est définie avec deux valeurs différentes.\n"
+
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr ""
+#~ "Les fichiers en accès binaire directs doivent être ouvert par la fonction "
+#~ "'file'.\n"
+
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "Trop de variables globales! , le nombre max est %d.\n"
+
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr ""
+#~ "Erreur pendant l'écriture dans le fichier, (disque plein ou fichier "
+#~ "supprimé.\n"
+
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: La matrice de colocation Th est singulière.\n"
+
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "Rang défaillant. rang = %d\n"
+
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "Attention: le Jacobien externe est donnée, mais\n"
+#~ " pas utilisé!, voir %ODEOPTIONS(6).\n"
+
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr ""
+#~ "Attention: intégration incomplète! vérifiez les paramètres de tolérance ou "
+#~ "la taille du pas.\n"
+
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr ""
+#~ "A l'instant: %s, Trop d'itération pour atteindre la précision demandée.\n"
+
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "Trop de ports entrée / sortie pour le bloc souligné.\n"
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Erreur fatale !!! Vos variables ont été sauvegardées dans le fichier : %s\n"
+#~ "Mauvais appel à une fonction Scilab ?\n"
+#~ "Sinon, envoyer un rapport de bug à :\n"
+
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "Attention : utilisation obsolète de eye, rand ou ones.\n"
+
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr ""
+#~ "Les opérandes des opérations / et \\ ne doivent pas contenir de NaN ou "
+#~ "d'Inf.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Erreur d'allocation mémoire.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+#~ msgstr "%s: Mauvais nombre d'arguments d'entrée: Doit être > 0.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "format 'o' non autorisé."
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr ""
+#~ "%s :  Mauvais nombre d'arguments d'entrée : au moins %d attendu(s).\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr "Les opérandes /et \\  ne doivent pas contenir NaN & Inf.\n"

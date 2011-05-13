@@ -23,7 +23,7 @@
     <synopsis>F=sfact(P)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -79,8 +79,8 @@ roots(f)    //f is stable
 clean(f*gtild(f,'c')-p)    //f(s)*f(-s) is p(s)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="gtild">gtild</link>

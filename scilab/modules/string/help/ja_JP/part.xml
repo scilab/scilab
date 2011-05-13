@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="part" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2006-08-08 16:57:13 +0200 (Tue, 08 Aug 2006)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>part</refname>
+
+    <refpurpose>文字列の展開</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[strings_out] = part(strings_in, v)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータs</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>strings_in, strings_out</term>
+
+        <listitem>
+          <para>文字列の行列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>v</term>
+
+        <listitem>
+          <para>整数行ベクトル.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>s[k]</literal>が文字列<literal>s</literal>の
+	<literal>k</literal>文字目
+	(または<literal>k &gt;length(s)</literal>の場合は空白文字)
+	を意味するとします.</para>
+
+    <para><literal>part</literal> は,
+	<literal>strings_out(i,j)</literal>が
+	文字列<literal>"s[v(1)]...s[v(n)]"</literal>(
+    <literal>s=strings_in(i,j)</literal> )となるような
+	文字列の行列<literal>strings_out</literal>を返します,</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+// 位置 8 から 11 の文字を返します
+part("How to use ""part"" ?",8:11)
+
+// 各要素の位置2から4の文字を返します
+// 文字はn ''で置換されません
+c = part(['a','abc','abcd'],2:4)
+
+// 各要素の位置1の文字に各要素の位置4から7に文字を追加して返します
+c = part(['abcdefg','hijklmn','opqrstu'],[1,4:7]);
+
+// 各要素の4番目の文字に位置1から7の文字を追加し,各要素の位置4の文字を追加して返します
+c = part(['abcdefg','hijklmn','opqrstu'],[4,1:7,4]);
+
+// 位置1の文字に位置1の文字を再度追加,位置2の文字を追加して返す
+c=part(['a','abc','abcd'],[1,1,2])
+
+// a a a  
+part(['a','abc','abcd'],[1])
+
+// aa aa aa 
+part(['a','abc','abcd'],[1,1])
+
+// aa aab aab 
+part(['a','abc','abcd'],[1,1,2])
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="string">string</link></member>
+
+      <member><link linkend="length">length</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

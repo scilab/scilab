@@ -27,6 +27,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -65,6 +66,7 @@ import org.scilab.modules.gui.bridge.textbox.SwingScilabTextBox;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.SearchManager;
+import org.scilab.modules.scinotes.utils.NavigatorWindow;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
@@ -77,7 +79,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Vincent COUVERT
  * @author Calixte DENIZET
  */
-public final class FindAction extends DefaultAction {
+public final class FindAction extends DefaultAction implements WindowFocusListener {
 
     /**
      * serialVersionUID
@@ -254,12 +256,31 @@ public final class FindAction extends DefaultAction {
     }
 
     /**
+     * {@inheritedDoc}
+     */
+    public void windowGainedFocus(WindowEvent e) {
+	if (e.getWindow() == getEditor().getSwingParentWindow()) {
+	    frame.setAlwaysOnTop(true);
+	}
+    }
+    
+    /**
+     * {@inheritedDoc}
+     */
+    public void windowLostFocus(WindowEvent e) {
+	if (e.getOppositeWindow() != frame && e.getOppositeWindow() != getEditor().getSwingParentWindow()) {
+	    frame.setAlwaysOnTop(false);
+	}
+    }
+
+    /**
      * findReplaceBox
      */
     public void findReplaceBox() {
 
         //Find & Replace Frame
         frame = new JFrame();
+        frame.setAlwaysOnTop(true);
         frame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
         frame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
@@ -271,6 +292,9 @@ public final class FindAction extends DefaultAction {
         frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         frame.setTitle(SciNotesMessages.FIND_REPLACE);
         frame.setResizable(false);
+
+	getEditor().getSwingParentWindow().addWindowFocusListener(this);
+	frame.addWindowFocusListener(this);
 
         buttonGroup1 = new ButtonGroup();
         buttonGroup2 = new ButtonGroup();
@@ -524,9 +548,10 @@ public final class FindAction extends DefaultAction {
                     updateRecentSearch();
                     updateRecentReplace();
 
-                    int start = 0;
                     JEditorPane scinotesTextPane = getEditor().getTextPane();
                     ScilabDocument doc = (ScilabDocument) scinotesTextPane.getDocument();
+                    int start = 0;
+                    int end = doc.getLength();
                     String text = "";
 
                     boolean wholeWordSelected = checkWhole.isSelected() && checkWhole.isEnabled();
@@ -537,8 +562,8 @@ public final class FindAction extends DefaultAction {
                     int currentCaretPos = scinotesTextPane.getCaretPosition();
 
                     if (radioSelection.isSelected()) {
-                        ScilabDocument scilabDocument = (ScilabDocument) scinotesTextPane.getDocument();
                         start = startSelectedLines;
+                        end = endSelectedLines;
                         try {
                             text = doc.getText(startSelectedLines, endSelectedLines - startSelectedLines);
                         } catch (BadLocationException ex) { }
@@ -556,15 +581,23 @@ public final class FindAction extends DefaultAction {
                     if (replacedText.compareTo(text) != 0 && text.length() > 0) {
                         // only touch document if any replacement took place
                         try {
+                            List<ScilabDocument.Anchor> anchors = doc.getAnchorsBetween(start, end);
                             doc.mergeEditsBegin();
                             doc.setFocused(true);
                             doc.replace(start, text.length(), replacedText, null);
                             doc.mergeEditsEnd();
+                            Element root = doc.getDefaultRootElement();
+                            for (ScilabDocument.Anchor anchor : anchors) {
+                                ScilabDocument.ScilabLeafElement line = (ScilabDocument.ScilabLeafElement) root.getElement(anchor.getLine());
+                                line.setAnchor(anchor.toString());
+                            }
+                            NavigatorWindow.updateNavigator();
                             previousRegexp = "";
                             previousIndex = -1;
                             buttonReplace.setEnabled(false);
                             buttonReplaceFind.setEnabled(false);
                             buttonReplaceAll.setEnabled(false);
+                            scinotesTextPane.setCaretPosition(currentCaretPos);
                         } catch (BadLocationException e1) {
                             e1.printStackTrace();
                         }
@@ -769,7 +802,6 @@ public final class FindAction extends DefaultAction {
      */
     protected void updateFindReplaceButtonStatus() {
         String textFind = (String) comboFind.getEditor().getItem();
-        String textReplace = (String) comboReplace.getEditor().getItem();
         if (textFind.compareTo("") != 0) {
             buttonFind.setEnabled(true);
             buttonReplace.setEnabled(true);
@@ -978,7 +1010,6 @@ public final class FindAction extends DefaultAction {
         setPreviousSearch(wordToFind);
 
         JEditorPane scinotesTextPane = getEditor().getTextPane();
-        Document doc = scinotesTextPane.getDocument();
 
         if (generateOffsets()) {
             addHighlighters(false);
@@ -1074,8 +1105,6 @@ public final class FindAction extends DefaultAction {
      * replaceText
      */
     private void replaceText() {
-        boolean forwardSearch = radioForward.isSelected();
-        boolean backwardSearch = radioBackward.isSelected();
         boolean caseSensitive = checkCase.isSelected();
         boolean wholeWord = checkWhole.isSelected() && checkWhole.isEnabled();
         boolean useRegexp = checkRegular.isSelected();
@@ -1127,6 +1156,8 @@ public final class FindAction extends DefaultAction {
                 int end = scinotesTextPane.getSelectionEnd();
                 scinotesTextPane.select(start, end);
             }
+	    getEditor().getSwingParentWindow().removeWindowFocusListener(this);
+	    frame.removeWindowFocusListener(this);
             frame.dispose();
             windowAlreadyExist = false;
         }

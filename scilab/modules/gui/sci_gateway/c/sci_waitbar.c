@@ -73,7 +73,7 @@ int sci_waitbar(char *fname,unsigned long fname_len)
         {
           setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
         }
-      else if (messageAdr != 0)
+      else if (messageAdr != NULL)
         {
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
           freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
@@ -119,6 +119,11 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
           GraphicHandle = (unsigned long)*hstk(handleAdr);
           pObj = sciGetPointerFromHandle(GraphicHandle);
+          if (pObj == NULL)
+          {
+              Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
+              return FALSE;
+          }
 
           waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
           setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
@@ -136,6 +141,11 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
           GraphicHandle = (unsigned long)*hstk(handleAdr);
           pObj = sciGetPointerFromHandle(GraphicHandle);
+          if (pObj == NULL)
+          {
+              Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 2, "Waitbar");
+              return FALSE;
+          }
 
           waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
           setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
@@ -193,19 +203,19 @@ int sci_waitbar(char *fname,unsigned long fname_len)
 
       GraphicHandle = (unsigned long)*hstk(handleAdr);
       pObj = sciGetPointerFromHandle(GraphicHandle);
-	  if (pObj)
-	  {
-		waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
-		setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
-		setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
-		freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
-	  }
-	  else
-	  {
-		  freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
-		  Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 3,  "Waitbar");
-		  return 0;
-	  }
+      if (pObj)
+      {
+          waitbarID = pWAITBAR_FEATURE(pObj)->hashMapIndex;
+          setWaitBarValue(waitbarID, (int)(getDoubleFromStack(fractionAdr) * 100));
+          setWaitBarMessage(waitbarID, getStringMatrixFromStack((size_t)messageAdr), nbColMessage*nbRowMessage);
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
+      }
+      else
+      {
+          freeArrayOfString(messageAdr, nbColMessage*nbRowMessage);
+          Scierror(999, _("%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"), fname, 3,  "Waitbar");
+          return 0;
+      }
     }
 
   if (Lhs == 1)

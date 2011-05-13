@@ -1,0 +1,45 @@
+# Russian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-26 10:39+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s: Шаг температуры %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s: cit_f является обязательным"
+
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s: ошибка - неверный принимаемый тип"
+
+msgid "Please wait ..."
+msgstr "Пожалуйста, подождите..."
+
+msgid "Simulated Annealing"
+msgstr "Имитационный отжиг"
+
+msgid "Simulated Annealing and Ising problem"
+msgstr "Имитационный отжиг и модель Изинга"
+
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa: sa_f является обязательным"

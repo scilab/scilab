@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab\
+ * Copyright (C) INRIA\
+ *\
+ * This file must be used under the terms of the CeCILL.\
+ * This source file is licensed as described in the file COPYING, which\
+ * you should have received as part of this distribution.  The terms\
+ * are also available at\
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt\
+ *\
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab"
+          xml:id="MATMAGPHI"
+          xml:lang="fr_FR">
+  <refnamediv>
+    <refname>MATMAGPHI</refname>
+
+    <refpurpose>Complexe à partir de/vers module et phase</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para><inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/palettes/MATMAGPHI.png"
+                     valign="middle"></imagedata>
+        </imageobject>
+      </inlinemediaobject></para>
+  </refsection>
+
+  <refsection id="Contents_MATMAGPHI">
+    <title>Contenu</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MATMAGPHI">Complexe à partir de/vers module et phase</link>
+        </para>
+      </listitem>
+
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_MATMAGPHI">Palette</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Description_MATMAGPHI">Description</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_MATMAGPHI">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_MATMAGPHI">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_MATMAGPHI">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Computationalfunction_MATMAGPHI">Fonctions de calcul</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Seealso_MATMAGPHI">Voir aussi</xref>
+            </para>
+          </listitem>
+
+          <listitem>
+            <para>
+              <xref linkend="Authors_MATMAGPHI">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_MATMAGPHI">
+    <title>Palette</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Mathoperations_pal">Palette Opérations mathématiques</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_MATMAGPHI">
+    <title>Description</title>
+
+    <para>
+      Ce bloc calcule le module et l'argument d'une matrice de nombres complexes ou construit une matrice de nombres complexes
+      à partir d'une matrice de modules et d'une matrice d'arguments en fonction de la valeur du paramètre <emphasis role="bold">decomposition type</emphasis>.
+      Le tableau suivant résume le comportement du bloc :
+    </para>
+    <para />
+    <informaltable border="1" cellpadding="2">
+      <tr>
+        <td align="left"><emphasis role="bold">Decomposition type</emphasis></td>
+        <td align="left"><emphasis role="bold">Entrées</emphasis></td>
+        <td align="left"><emphasis role="bold">Sorties</emphasis></td>
+        <td align="left"><emphasis role="bold">Opération</emphasis></td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">1</emphasis></td>
+        <td align="left">Une (complexe ou double)</td>
+        <td align="left">Deux (double)</td>
+        <td align="left">
+          Conversion : complexe vers module (première sortie) et l'argument en radians (seconde sortie).
+          Si l'entrée est un double, l'argument sera nul ou égal à PI et le module sera égal à la valeur absolue
+          de l'entrée.
+        </td>
+      </tr>
+      <tr>
+        <td align="left"><emphasis role="bold">2</emphasis></td>
+        <td align="left">Deux (doubles)</td>
+        <td align="left">Une (complexe)</td>
+        <td align="left">
+          Le bloc sort une matrice de nombres complexes construite avec le module et l'argument en radians venant
+          respectivement de la première et de la seconde entrée en radians.
+        </td>
+      </tr>
+    </informaltable>
+
+    <para />
+  </refsection>
+
+  <refsection id="Dialogbox_MATMAGPHI">
+    <title>Boîte de dialogue</title>
+
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata align="center" fileref="../../../../images/gui/MATMAGPHI_gui.gif"
+                     valign="middle" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+
+    <para />
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">decomposition type (1=Complex2MAG&amp;amp;PHI 2=MAG&amp;amp;PHI2Complex)</emphasis>
+        </para>
+
+        <para>Il indique la règle de conversion.</para>
+
+        <para>Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_MATMAGPHI">
+    <title>Propriétés par défaut</title>
+
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> oui</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular inputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 2</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">regular outputs:</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+        </para>
+
+        <para>
+          <emphasis role="bold">- port 2 : size [-1,-2] / type 1</emphasis>
+        </para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">matz_abs</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Interfacingfunction_MATMAGPHI">
+    <title>Fonction d'interfaçage</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/macros/MatrixOp/MATMAGPHI.sci</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Computationalfunction_MATMAGPHI">
+    <title>Fonctions de calcul</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matz_abs.c</para>
+      </listitem>
+
+      <listitem>
+        <para>SCI/modules/scicos_blocks/src/c/matz_absc.c</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Seealso_MATMAGPHI">
+    <title>Voir aussi</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="MATZREIM">MATZREIM - Décomposition complexe</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_MATMAGPHI">
+    <title>Auteurs</title>
+
+    <para><emphasis role="bold">Fady NASSIF</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

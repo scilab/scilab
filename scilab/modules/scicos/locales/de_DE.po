@@ -1,0 +1,1867 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:47+0000\n"
+"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+"\n"
+"         (already programmed) event. There may be an error in"
+msgstr ""
+
+msgid ""
+"\n"
+"         your model. Please check your model\n"
+msgstr ""
+
+msgid ""
+"\n"
+" The residual function returns NAN/Inf. \n"
+" Please verify your model:\n"
+" some functions might be called with illegal inputs."
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+" Warning: an event is reprogrammed at t=%g by removing another"
+msgstr ""
+
+msgid ""
+"\n"
+" error in Jacobian"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"MEMORY_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed - returned NULL pointer\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"SUNDIALS_ERROR: %s() failed with flag = %d\n"
+"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The computing function #%d returns a NaN/Inf"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The initialization system #%d returns a NaN/Inf"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The residual function #%d returns a NaN/Inf"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero-crossing function #%d returns a NaN"
+msgstr ""
+
+#, c-format
+msgid ""
+"\n"
+"Warning: The zero_crossing function #%d returns a NaN/Inf"
+msgstr ""
+
+msgid ""
+"\n"
+"getscicosvars : utility function to retrieve\n"
+msgstr ""
+
+msgid ""
+"                scicos arrays during simulation.\n"
+"\n"
+msgstr ""
+
+msgid "  that must be informed with the following values :\n"
+msgstr ""
+
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " %s.mo kann nicht kompiliert werden\n"
+
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " %s.mo Kompilation erzwungen\n"
+
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo muß kompiliert werden\n"
+
+msgid " Scilab is in no gui mode : Scicos is unavailable"
+msgstr ""
+
+#, c-format
+msgid "%s : Allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Bad size for Rhs(1).\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Bad size for Rhs(2).\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a Typed list.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : First argument must be a matrix or an hypermatrix\n"
+"of real, complex or integer numbers.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a scicos model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a scicos signal structure.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a scicos_block typed list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a string.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a structure.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : First argument must be a valid scicos_block typed list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Fourth argument must be a Tlist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Function not found\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Incompatible sim.nb RHS parameter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : No more free memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Second argument must be a real.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Second argument must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Second argument must be scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Second element of sim must be a list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Sixth argument must have a maximum of seven elements.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Sixth argument must have at least four elements.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Third argument must be a scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Third argument must be scalar.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undefined Function type\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undefined field in string matrix position : %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : bad dimension for lnksz argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : bad dimension for lnktyp argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : error\n"
+msgstr ""
+
+#, c-format
+msgid "%s : error in cross variable size checking : %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s : error. Type %d not yet supported for outtb.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : lnksz and lnktyp argument must have the same length.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : lnksz argument must be double or integer.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : lnktyp argument must be double or integer.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : outtb element of state must be a list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : oz element of state must be a list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : sim.opar must be a list.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : type 1 function not allowed for scilab blocks\n"
+msgstr ""
+
+#, c-format
+msgid "%s : type 2 function not allowed for scilab blocks\n"
+msgstr ""
+
+#, c-format
+msgid "%s : unknown block : %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s :the handle is not or no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s is not a valid directory\n"
+msgstr ""
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr ""
+
+#, c-format
+msgid "%s: 1st and 2nd argument must have equal size\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: kann keine MO Dateien an dem folgenden Ort finden: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: Diagramm kompiliert in Durchlauf %d nicht.\n"
+
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: Fehler: ein Scifunc Block wurde nicht definiert."
+
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: Fehler: Modelica Kompiler (MODELICAC) nicht verfügbar."
+
+#, c-format
+msgid "%s: First argument must be a Scicos diagram data structure\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: Eingangsports sind nicht korrekt durchnummeriert.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: Ausgangsports sind nicht korrekt durchnummeriert.\n"
+
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr ""
+"%s: falsche Anzahl an Eingangsargumenten. Muß zwischen %d und %d liegen.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: einzelner Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: einzelne Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d und #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. A type of a scilab object has changed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. Bad double object sub_type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. Bad int object sub_type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. No more space on the stack for new data.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. Only int or double object are accepted.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. Stack is full.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error %d. Undefined error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: scicosim is not running.\n"
+msgstr ""
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editieren"
+
+msgid "&File"
+msgstr "&Datei"
+
+msgid "&Tools"
+msgstr "&Zusatzprogramme"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr ""
+"''scicos'' ist nicht mehr verfügbar, bitte verwenden Sie ''xcos'' "
+"anstattdessen.\n"
+
+msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
+msgstr ""
+
+msgid "**** SUNDIALS.IDA successfully initialized *****\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"**** SUNDIALS.Ida: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+
+#, c-format
+msgid "****SUNDIALS.Cvode from: %f to %f hot= %d  \n"
+msgstr ""
+
+#, c-format
+msgid "****SUNDIALS.Cvode reached: %f\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"****SUNDIALS.Cvode: too much work at time=%g (stiff region, change RTOL and "
+"ATOL)\n"
+msgstr ""
+
+#, c-format
+msgid "****SUNDIALS.Ida reached: %f\n"
+msgstr ""
+
+#, c-format
+msgid "****daskr from: %f to %f hot= %d  \n"
+msgstr ""
+
+msgid "**mod**\n"
+msgstr ""
+
+msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
+msgstr ""
+
+msgid "- myvar : an int32 or double matrix or a Tlist.\n"
+msgstr ""
+
+msgid "?"
+msgstr ""
+
+msgid "About Scicos"
+msgstr ""
+
+msgid "Activate Scilab Window"
+msgstr ""
+
+msgid "Add a new color at the Scicos palette"
+msgstr ""
+
+msgid "Add color"
+msgstr ""
+
+msgid "Add new block"
+msgstr ""
+
+msgid "Align"
+msgstr ""
+
+msgid "An Atomic Superblock cannot contain sample clocks"
+msgstr ""
+
+msgid "An error occur when evaluating context:"
+msgstr ""
+
+#, c-format
+msgid ""
+"An unexpected  error occurred while executing the menu\n"
+"%s:\n"
+msgstr ""
+
+msgid "Analyze Diagram"
+msgstr ""
+
+msgid "Atomic"
+msgstr ""
+
+msgid "Available Parameters"
+msgstr ""
+
+msgid "Background color"
+msgstr ""
+
+msgid "Background color ? :"
+msgstr ""
+
+msgid "Block Documentation"
+msgstr ""
+
+msgid "Block ID font name"
+msgstr ""
+
+msgid "Block ID font size"
+msgstr ""
+
+msgid "BrowseTo"
+msgstr ""
+
+msgid "Browser"
+msgstr ""
+
+msgid "C Code Generation"
+msgstr ""
+
+msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr ""
+
+msgid ""
+"CV_BAD_DKY:  The dky argument was NULL. dky is the output derivative vector "
+"[((d/dt)^k)y](t)."
+msgstr ""
+
+msgid "CV_BAD_EWT: Initial ewt has component(s) equal to zero (illegal)."
+msgstr ""
+
+msgid "CV_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr ""
+
+msgid "CV_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr ""
+
+msgid "CV_BAD_ITASK: Illegal value for itask."
+msgstr ""
+
+msgid ""
+"CV_BAD_ITOL: Illegal value for itol. The legal values are CV_SS, CV_SV, and "
+"CV_WF."
+msgstr ""
+
+msgid ""
+"CV_BAD_K: k (the order of the derivative of y to be computed) is not in the "
+"range 0, 1, ..., qu, where qu is the order last used"
+msgstr ""
+
+msgid "CV_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+
+msgid "CV_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr ""
+
+msgid "CV_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr ""
+
+msgid ""
+"CV_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+
+msgid ""
+"CV_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+
+msgid "CV_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr ""
+
+msgid ""
+"CV_CONV_FAILURE: Convergence test failures occurred too many times (= MXNCF "
+"= 10) during one internal time step or occurred with |h| = hmin."
+msgstr ""
+
+msgid "CV_Derivative_NAN: The Derivatives returned by blocks are NAN."
+msgstr ""
+
+msgid ""
+"CV_ERR_FAILURE: Error test failures occurred too many times (=MXETF = 7) "
+"during one internal step or occurred with |h|=h_min "
+msgstr ""
+
+msgid "CV_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr ""
+
+msgid ""
+"CV_FIRST_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error at the first call"
+msgstr ""
+
+msgid ""
+"CV_ILL_INPUT: indicating an input argument was illegal. This include the "
+"situation where a component of the error weight vector becomes negative "
+"during internal time-stepping. This also includes if the linear solver "
+"function initialization (called by the user after calling CVodeCreat) failed "
+"to set the linear solver-specific ''lsolve'' field in cvode_mem. This error "
+"happens if number of root functions is positive but the return surface value "
+"is NULL. "
+msgstr ""
+
+msgid "CV_LINIT_FAIL: The linear solver''s initialization function failed."
+msgstr ""
+
+msgid ""
+"CV_LSETUP_FAIL: The linear solver''s setup routine failed in an "
+"unrecoverable manner."
+msgstr ""
+
+msgid ""
+"CV_LSOLVE_FAIL: The linear solver''s solve routine failed in an "
+"unrecoverable manner."
+msgstr ""
+
+msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr ""
+
+msgid ""
+"CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
+"maxord"
+msgstr ""
+
+msgid "CV_MEM_NULL: the cvode memory was NULL"
+msgstr ""
+
+msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
+msgstr ""
+
+msgid ""
+"CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
+"was not set"
+msgstr ""
+
+msgid ""
+"CV_NO_MALLOC: indicating that cvode_mem has not been allocated (i.e., "
+"CVodeMalloc has not been called)."
+msgstr ""
+
+msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr ""
+
+msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr ""
+
+msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+
+msgid "CV_NULL_Y0: y0 = NULL illegal."
+msgstr ""
+
+msgid ""
+"CV_REPTD_RHSFUNC_ERR: Convergence tests occurred too many times due to "
+"repeated recoverable errors in the right-hand side function (user supplied "
+"ODE). This error may be raised due to repeated  recoverable errors during "
+"the estimation of an initial step size."
+msgstr ""
+
+msgid ""
+"CV_RHSFUNC_FAIL: The right-hand side function (user supplied ODE) failed in "
+"an unrecoverable manner"
+msgstr ""
+
+msgid ""
+"CV_RTFUNC_FAIL: The root finding routine failed in an unrecoverable manner."
+msgstr ""
+
+msgid "CV_Rootfunction_NAN: The Root function returns NAN."
+msgstr ""
+
+msgid "CV_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+
+msgid ""
+"CV_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step"
+msgstr ""
+
+msgid ""
+"CV_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"''tout''. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+
+msgid "CV_TRET_NULL: ''tret'' = NULL illegal."
+msgstr ""
+
+msgid ""
+"CV_UNREC_RHSFUNC_ERR: The right-hand side function (user supplied ODE) had a "
+"recoverable error, but no recovery was possible."
+msgstr ""
+
+msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr ""
+
+msgid "Calc"
+msgstr ""
+
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
+msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
+msgstr ""
+
+msgid "Choose export format:"
+msgstr ""
+
+msgid "Click block to label"
+msgstr ""
+
+msgid "Click block to resize"
+msgstr ""
+
+msgid "Click object to move, drag and click (left to fix, right to cancel)"
+msgstr ""
+
+msgid ""
+"Click on a Super Block (without activation output) to obtain a coded block!"
+msgstr ""
+
+msgid "Click on a block to set or get its documentation"
+msgstr ""
+
+msgid "Click on a port of object to be moved"
+msgstr ""
+
+msgid "Click on a super block"
+msgstr ""
+
+msgid "Click on an object to set or get identification"
+msgstr ""
+
+msgid "Click on block to  open graphic icon editor"
+msgstr ""
+
+msgid "Click on block to be flipped"
+msgstr ""
+
+msgid "Click on block to be turned left"
+msgstr ""
+
+msgid "Click on block to be turned right"
+msgstr ""
+
+msgid "Click on block to edit its icon"
+msgstr ""
+
+msgid "Click on object  to get information on it"
+msgstr ""
+
+msgid "Click on object to choose its color"
+msgstr ""
+
+msgid ""
+"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgstr ""
+
+msgid "Click to open block or make a link"
+msgstr ""
+
+msgid "Click where you want object to be placed (right-click to cancel)"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Code Generation only works for a Superblock !\n"
+msgstr ""
+
+msgid "Code generation applies only to Super Blocks."
+msgstr ""
+
+msgid "Color"
+msgstr ""
+
+msgid "Compile"
+msgstr ""
+
+msgid "Connection error"
+msgstr ""
+
+msgid "Context"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Create Atomic"
+msgstr ""
+
+msgid "Create Mask"
+msgstr ""
+
+msgid "CtrlSelect"
+msgstr ""
+
+msgid "Customize Mask"
+msgstr ""
+
+msgid "Customize block GUI:"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Cut: Click on the object to cut"
+msgstr ""
+
+msgid "Debug Level"
+msgstr ""
+
+msgid "Default link colors"
+msgstr ""
+
+msgid "Default window parameters"
+msgstr ""
+
+msgid "Defined shortcuts"
+msgstr ""
+
+msgid "Delete"
+msgstr ""
+
+msgid "Delete: Click on the object to delete"
+msgstr ""
+
+msgid "Demos"
+msgstr ""
+
+msgid "Details"
+msgstr ""
+
+msgid "Diagram"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
+msgid "Done\n"
+msgstr ""
+
+msgid "Drag, click left for final or intermediate points or right to cancel"
+msgstr ""
+
+msgid "Duplicate"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "End of activation"
+msgstr ""
+
+msgid "End of activation\n"
+msgstr ""
+
+msgid "End problem: "
+msgstr ""
+
+msgid "Entering the block \n"
+msgstr ""
+
+msgid "Error\n"
+msgstr ""
+
+msgid "Error in the Debug block \n"
+msgstr ""
+
+#, c-format
+msgid "Error: cannot find '%s'  \n"
+msgstr ""
+
+#, c-format
+msgid "Error: cannot write to  '%s'  \n"
+msgstr ""
+
+msgid "Eval"
+msgstr ""
+
+msgid "Event links color? :"
+msgstr ""
+
+#, c-format
+msgid "Event: %d activated at t=%f\n"
+msgstr ""
+
+msgid "Exit"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Export All"
+msgstr ""
+
+#, c-format
+msgid "Export in file %s failed\n"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Fit diagram to figure"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Following palette(s) ignored (associated file(s) no more exist):"
+msgstr ""
+
+msgid "Foreground color ? :"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "Function not found\n"
+msgstr ""
+
+msgid "Get Info"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "ID font definitions"
+msgstr ""
+
+msgid "ID fonts"
+msgstr ""
+
+msgid ""
+"IDACalc cannot find the initial condition at this point. If you are using a "
+"Modelica model, you can try with the initialization GUI to try with other "
+"nonlinear solvers."
+msgstr ""
+
+msgid "IDA_BAD_ABSTOL: abstol has negative component(s) (illegal)."
+msgstr ""
+
+msgid ""
+"IDA_BAD_EWT: Some component of the error weight vector is zero (illegal), "
+"either for the input value of y0 or a corrected value."
+msgstr ""
+
+msgid "IDA_BAD_H0: h0 and tout - t0 inconsistent."
+msgstr ""
+
+msgid "IDA_BAD_HINIT: yret = NULL illegal.."
+msgstr ""
+
+msgid "IDA_BAD_INIT_ROOT: Root found at and very near initial t."
+msgstr ""
+
+msgid "IDA_BAD_ITASK: Illegal value for itask."
+msgstr ""
+
+msgid ""
+"IDA_BAD_ITOL: Illegal value for itol. The legal values are IDA_SS, IDA_SV, "
+"and IDA_WF."
+msgstr ""
+
+msgid "IDA_BAD_NVECTOR: A required vector operation is not implemented."
+msgstr ""
+
+msgid "IDA_BAD_RELTOL: relative tolerances is reltol < 0 illegal."
+msgstr ""
+
+msgid "IDA_BAD_T: t is not in the interval [tn-hu,tn]."
+msgstr ""
+
+msgid ""
+"IDA_BAD_TOUT: Trouble interpolating. ''tout'' too far back in direction of "
+"integration"
+msgstr ""
+
+msgid ""
+"IDA_BAD_TSTOP: tstop is behind current simulation time in the direction of "
+"integration."
+msgstr ""
+
+msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
+msgstr ""
+
+msgid ""
+"IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
+"inequality constraints."
+msgstr ""
+
+msgid ""
+"IDA_CONV_FAIL: IDACalcIC->Failed to get convergence of the Newton "
+"iterations. or IDA_solve->Convergence test failures occurred too many times "
+"(= MXNCF = 10) during one internal step. "
+msgstr ""
+
+msgid ""
+"IDA_ERR_FAIL: Error test failures occurred too many times (=MXETF = 10) "
+"during one internal step or occurred with |h|=h_min"
+msgstr ""
+
+msgid "IDA_EWT_FAIL: The user-provide EwtSet function failed."
+msgstr ""
+
+msgid ""
+"IDA_FIRST_RES_FAIL: The user''s residual routine returned  a recoverable "
+"error flag on the first call, but IDACalcIC was unable to recover."
+msgstr ""
+
+msgid ""
+"IDA_ILL_INPUT: One of the input arguments was illegal. This errors message "
+"may be returned if the linear solver function initialization (called by the "
+"user after calling IDACreate) failed to set the linear solver-specific "
+"lsolve field in ida_mem."
+msgstr ""
+
+msgid ""
+"IDA_LINESEARCH_FAIL: The Linesearch algorithm failed to find a solution with "
+"a step larger than steptol in weighted RMS norm."
+msgstr ""
+
+msgid "IDA_LINIT_FAIL: The linear solver''s initialization routine failed."
+msgstr ""
+
+msgid ""
+"IDA_LSETUP_FAIL: The linear solver''s setup routine had a non-recoverable "
+"error."
+msgstr ""
+
+msgid ""
+"IDA_LSOLVE_FAIL: The linear solver''s solve routine had a non-recoverable "
+"error."
+msgstr ""
+
+msgid "IDA_LSOLVE_NULL: The linear solver''s solve routine is NULL."
+msgstr ""
+
+msgid "IDA_MEM_FAIL: A memory allocation failed."
+msgstr ""
+
+msgid "IDA_MEM_NULL:The argument ida_mem was NULL"
+msgstr ""
+
+msgid ""
+"IDA_MISSING_ID :id = NULL (''id'' defines algebraic and differential states) "
+"but suppressalg option on."
+msgstr ""
+
+msgid "IDA_NO_EFUN: itol = IDA_WF but no EwtSet function was provided."
+msgstr ""
+
+msgid ""
+"IDA_NO_ESTOP: itask = IDA_NORMAL_TSTOP or itask = IDA_ONE_STEP_TSTOP but "
+"tstop was not set"
+msgstr ""
+
+msgid "IDA_NO_MALLOC: indicating that ida_mem was not allocated."
+msgstr ""
+
+msgid ""
+"IDA_NO_RECOVERY: The user''s residual routine, or the linear solver''s setup "
+"or solve routine had a  recoverable error, but IDACalcIC was unable to "
+"recover."
+msgstr ""
+
+msgid "IDA_NULL_ABSTOL: absolute tolerances is = NULL illegal."
+msgstr ""
+
+msgid "IDA_NULL_F: user supplied ODE routine is (NULL) illegal."
+msgstr ""
+
+msgid "IDA_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
+msgstr ""
+
+msgid "IDA_NULL_Y0: y0 = NULL illegal."
+msgstr ""
+
+msgid ""
+"IDA_REP_RES_ERR: The user''s residual function repeatedly returned a "
+"recoverable error flag, but the solver was unable to recover."
+msgstr ""
+
+msgid ""
+"IDA_RES_FAIL: The user''s residual routine returned a non-recoverable error "
+"flag."
+msgstr ""
+
+msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
+msgstr ""
+
+msgid "IDA_RTFUNC_FAIL: The root founding function failed."
+msgstr ""
+
+msgid "IDA_Residual_NAN: The residual function returns NAN."
+msgstr ""
+
+msgid "IDA_Rootfunction_NAN: The Root function returns NAN."
+msgstr ""
+
+msgid "IDA_TOO_CLOSE: ''tout'' too close to ''t0'' to start integration."
+msgstr ""
+
+msgid ""
+"IDA_TOO_MUCH_ACC: The solver could not satisfy the accuracy demanded by the "
+"user for some internal step."
+msgstr ""
+
+msgid ""
+"IDA_TOO_MUCH_WORK: The solver took mxstep internal steps but could not reach "
+"tout. The default value for mxstep is MXSTEP_DEFAULT = 500."
+msgstr ""
+
+msgid "IDA_TRET_NULL: ''tret'' = NULL illegal."
+msgstr ""
+
+msgid "IDA_Y0_FAIL_CONSTR: y0 fails to satisfy constraints."
+msgstr ""
+
+msgid "IDA_YOUT_NULL: ''yout'' = NULL illegal."
+msgstr ""
+
+msgid "IDA_YP0_NULL: the derivative yp0 = NULL is illegal."
+msgstr ""
+
+msgid "IDA_YPRET_NULL: yret = NULL illegal.."
+msgstr ""
+
+msgid "IDA_YRET_NULL: yret = NULL illegal.."
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Icon Editor"
+msgstr ""
+
+msgid "Identification"
+msgstr ""
+
+msgid "Initialisation problem:"
+msgstr ""
+
+msgid "It is impossible to set ID for this type of object"
+msgstr ""
+
+msgid ""
+"KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
+"verify your model. There might be an error in the computing function, for "
+"example a function may be called with illegal inputs."
+msgstr ""
+
+msgid "KIN_ILL_INPUT: A supplied parameter is invalid (check error message)."
+msgstr ""
+
+msgid ""
+"KIN_LINESEARCH_BCFAI: The line search algorithm (implemented in "
+"KINLineSearch) was unable to satisfy the beta-condition for MXNBCF + 1 "
+"nonlinear iterations (not necessarily consecutive), which may indicate the "
+"algorithm is making  poor progress "
+msgstr ""
+
+msgid ""
+"KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
+"iterate sufficiently distinct  from the current iterate failure to satisfy "
+"the sufficient decrease condition could mean the current iterate is close to "
+"an approximate solution of the given nonlinear system, the finite-difference "
+" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
+"real scalar scsteptol is too large "
+msgstr ""
+
+msgid ""
+"KIN_LINIT_FAIL: The linear solver initialization routine (linit) encountered "
+"an error."
+msgstr ""
+
+msgid ""
+"KIN_LINSOLV_NO_RECOVERY: The user-supplied routine psolve encountered a "
+"recoverable error, but the preconditioner is already current"
+msgstr ""
+
+msgid ""
+"KIN_LSETUP_FAIL: The user-supplied routine pset (used to compute the "
+"preconditioner) encountered an unrecoverable error ."
+msgstr ""
+
+msgid ""
+"KIN_LSOLVE_FAIL: Either the user-supplied routine psolve (used to solve the "
+"preconditioned linear system) encountered an unrecoverable error, or the "
+"linear solver routine (lsolve) encountered an error condition."
+msgstr ""
+
+msgid ""
+"KIN_MAXITER_REACHED: The maximum number of nonlinear iterations has been "
+"reached "
+msgstr ""
+
+msgid ""
+"KIN_MEM_FAIL: An error occurred during memory allocation (either "
+"insufficient system resources are available or the vector kernel has not yet "
+"been initialized "
+msgstr ""
+
+msgid ""
+"KIN_MEM_NULL: An error in the memory allocation in KINCreate or KINMalloc."
+msgstr ""
+
+msgid ""
+"KIN_MXNEWT_5X_EXCEEDE: Five consecutive steps have been taken that satisfy "
+"the following inequality:  ||uscale*p||_L2 > 0.99*mxnewtstep where p denotes "
+"the current step and mxnewtstep is a real scalar upper bound on the scaled "
+"step length such a failure may mean ||fscale*func(u)||_L2 asymptotes from "
+"above to a finite value, or the real scalar mxnewtstep is too small "
+msgstr ""
+
+msgid ""
+"KIN_NAN_ERR: The residual function returns NAN. Please verify your model: "
+"some functions might be called with illegal inputs."
+msgstr ""
+
+msgid ""
+"KIN_NO_MALLOC: Additional system memory has not yet been  allocated for "
+"vector storage (forgot to call the  KINMalloc routine)"
+msgstr ""
+
+msgid ""
+"KIN_REPTD_SYSFUNC_ERR: The system function failed repeatedly. Please verify "
+"your model. There might be an error in the computing function, for example a "
+"function may be called with illegal inputs"
+msgstr ""
+
+msgid ""
+"KIN_SYSFUNC_FAIL: Error in the computing function. Please verify your model."
+msgstr ""
+
+msgid "Label"
+msgstr ""
+
+#, c-format
+msgid "Leaving block %d \n"
+msgstr ""
+
+msgid "Link"
+msgstr ""
+
+msgid "Link ID font name"
+msgstr ""
+
+msgid "Link ID font size"
+msgstr ""
+
+msgid "Link parameters"
+msgstr ""
+
+msgid "Load as Palette"
+msgstr ""
+
+msgid "Mask"
+msgstr ""
+
+msgid "Mask can only be created for Super Blocks."
+msgstr ""
+
+msgid "Modelica initialize"
+msgstr ""
+
+msgid "Modify title and menu labels."
+msgstr ""
+
+msgid "Move"
+msgstr ""
+
+msgid "MoveLink "
+msgstr ""
+
+msgid "Multiple selection cannot be used here"
+msgstr ""
+
+msgid "Navigator window"
+msgstr ""
+
+msgid "New"
+msgstr ""
+
+msgid "No"
+msgstr ""
+
+msgid "No selected block in the current Scicos window."
+msgstr ""
+
+msgid "Only  blocks can be selected for this operation."
+msgstr ""
+
+msgid "Only one block can be selected in current window for this operation."
+msgstr ""
+"Nur ein Block kann im aktuellen Fenster für diese Operation ausgewählt "
+"werden."
+
+msgid "Open"
+msgstr ""
+
+msgid "Open a Scicos demonstration diagram"
+msgstr ""
+
+msgid "Open a Scicos diagram"
+msgstr ""
+
+msgid "Open/Set"
+msgstr ""
+
+msgid "Pal editor"
+msgstr ""
+
+msgid "Palette"
+msgstr ""
+
+msgid "Palettes"
+msgstr ""
+
+msgid "Palettes Tree"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Place in Diagram"
+msgstr ""
+
+msgid "PlaceinBrowser"
+msgstr ""
+
+msgid "PlaceinDiagram"
+msgstr ""
+
+msgid "Please report"
+msgstr ""
+
+msgid "Popup"
+msgstr ""
+
+msgid ""
+"Press left mouse button, drag region and release (right button to cancel)"
+msgstr ""
+
+msgid "Problem saving a backup; I cannot activate Scilab\n"
+msgstr ""
+
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "Problem beim Erzeugen der Bibliothek %s\n"
+
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
+msgid "Properties"
+msgstr ""
+
+msgid "Purge"
+msgstr ""
+
+msgid "Region to Palette"
+msgstr ""
+
+msgid "Region to Super Block"
+msgstr ""
+
+msgid "Regular links color ? :"
+msgstr ""
+
+msgid "Remove Atomic"
+msgstr ""
+
+msgid "Remove Mask"
+msgstr ""
+
+msgid "Rename"
+msgstr ""
+
+msgid "Replot"
+msgstr ""
+
+#, c-format
+msgid "Requested action: %s is not available"
+msgstr ""
+
+msgid "Resize"
+msgstr ""
+
+msgid "Resize is allowed only for Blocks or Links."
+msgstr ""
+
+msgid "Rotate Left"
+msgstr ""
+
+msgid "Rotate Right"
+msgstr ""
+
+msgid "Run"
+msgstr ""
+
+msgid "Save"
+msgstr ""
+
+msgid "Save As"
+msgstr ""
+
+msgid "Save Block GUI"
+msgstr ""
+
+msgid "Save as Interf Func"
+msgstr ""
+
+msgid "Save as Palette"
+msgstr ""
+
+msgid "Scicos Documentation"
+msgstr ""
+
+#, c-format
+msgid "Scicos version %s\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr ""
+
+msgid "Select a block."
+msgstr ""
+
+msgid "Select a directory path"
+msgstr ""
+
+msgid "SelectAll"
+msgstr ""
+
+msgid "SelectLink  "
+msgstr ""
+
+msgid "SelectRegion"
+msgstr ""
+
+msgid "Set Block identification"
+msgstr ""
+
+msgid "Set Block sizes"
+msgstr ""
+
+msgid "Set Diagram Info"
+msgstr ""
+
+msgid "Set grid"
+msgstr ""
+
+msgid "Set link Identification"
+msgstr ""
+
+msgid "Set link edition mode"
+msgstr ""
+
+msgid "Setup"
+msgstr ""
+
+msgid "Shortcuts"
+msgstr ""
+
+msgid "Show Block Shadow"
+msgstr ""
+
+msgid "Simulate"
+msgstr ""
+
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
+#, c-format
+msgid "Slider t=%10.3f, flag=%d \n"
+msgstr ""
+
+msgid "Smart"
+msgstr ""
+
+msgid "Smart Move"
+msgstr ""
+
+msgid "Smart move does not work yet with multiple selection"
+msgstr ""
+
+msgid "Sorry file name not defined in "
+msgstr ""
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr ""
+
+msgid "Stop"
+msgstr ""
+
+msgid "The current icon depends on block parameter\n"
+msgstr "Das aktuelle Symbol hängt vom Block-Parameter ab\n"
+
+#, c-format
+msgid "The key %s is already in use for %s"
+msgstr ""
+
+#, c-format
+msgid "The key %s is not a valid letter"
+msgstr ""
+
+msgid ""
+"The number of parameter provided by Scicos blocks is different from what "
+"expected by the code generated by the Modelica compiler. You might have "
+"relaxed a parameter using FIXED property (i.e., fixed=false) in a Modelica "
+"model. This will be corrected in the next version"
+msgstr ""
+
+#, c-format
+msgid ""
+"The parameter(s) %s \n"
+"must be defined in the"
+msgstr ""
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+
+msgid "Thickness"
+msgstr ""
+
+msgid "This block is not masked."
+msgstr ""
+
+msgid "This window is not an active palette"
+msgstr ""
+
+msgid "This window is not an active scicos window"
+msgstr ""
+
+msgid "Title of the GUI"
+msgstr ""
+
+msgid "TkPopup "
+msgstr ""
+
+#, c-format
+msgid "To avoid this message, please update the %s.scicos_pal file."
+msgstr ""
+
+msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
+msgstr ""
+
+msgid "Toggle grid"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Type not recognized"
+msgstr ""
+
+msgid "Undefined Function type\n"
+msgstr ""
+
+msgid "Undefined data type."
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Up To Main Diagram"
+msgstr ""
+
+msgid ""
+"Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"\n"
+msgstr ""
+
+msgid "Use 3D aspect?"
+msgstr ""
+
+msgid "View"
+msgstr ""
+
+#, c-format
+msgid "Warning %d menus have identical name %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
+msgstr ""
+
+msgid "Yes"
+msgstr ""
+
+msgid ""
+"You have changed a parameter in your model, but the model has been compiled "
+"to use an XML file containing initial values and parameters. So you should "
+"either recompile your Scicos diagram or [re]launch the initialization "
+"interface to regenerate the XML file  with new parameters."
+msgstr ""
+
+msgid "Your diagram is not saved. Do not quit Scilab or "
+msgstr ""
+
+msgid "Zoom in"
+msgstr ""
+
+msgid "Zoom out"
+msgstr ""
+
+msgid "algebraic loop detected"
+msgstr ""
+
+#, c-format
+msgid "at time %f \n"
+msgstr ""
+
+#, c-format
+msgid "block %d is called "
+msgstr ""
+
+msgid "block produces an internal error"
+msgstr ""
+
+msgid "cannot allocate memory"
+msgstr ""
+
+#, c-format
+msgid "cannot allocate memory in block=%d"
+msgstr ""
+
+msgid "current choice is "
+msgstr ""
+
+msgid "event conflict"
+msgstr ""
+
+msgid "height"
+msgstr ""
+
+msgid "initial conditions not converging"
+msgstr ""
+
+msgid "input to zero-crossing stuck on zero"
+msgstr ""
+
+#, c-format
+msgid "integration problem istate=%d"
+msgstr ""
+
+#, c-format
+msgid "mode of block %d=%d, "
+msgstr ""
+
+#, c-format
+msgid "root found at t=: %f\n"
+msgstr ""
+
+msgid "scheduling problem"
+msgstr ""
+
+msgid "scicos unexpected error, please report..."
+msgstr ""
+
+msgid "scs_show active..."
+msgstr ""
+
+msgid "singularity in a block"
+msgstr ""
+
+msgid "sliding mode condition, cannot integrate"
+msgstr ""
+
+#, c-format
+msgid "the block %d has been called with input out of its domain"
+msgstr ""
+
+msgid "type 1 function not allowed for scilab blocks\n"
+msgstr ""
+
+msgid "type 2 function not allowed for scilab blocks\n"
+msgstr ""
+
+msgid "unknown or erroneous block"
+msgstr ""
+
+msgid "width"
+msgstr ""
+
+#, c-format
+msgid "with flag %d "
+msgstr ""
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr "%s: Fehler: Modelica Kompiler (MODELICAC) nicht verfügbar.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr ""
+#~ "%s: Ein Fehler ist während der Kompilation des Modelica Blocks aufgetreten."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr "%s: Diagramm kompiliert im Durchlauf %d nicht."
+
+#~ msgid "Scicos"
+#~ msgstr "Scios"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr ""
+#~ "%s: Fehler: die folgende Kommando-Zeile konnte nicht ausgeführt werden: %s.\n"
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Entschuldigung, Kompiler Problem."
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "ein kompatibler C Kompiler benötigt."

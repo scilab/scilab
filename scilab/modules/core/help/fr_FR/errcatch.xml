@@ -112,8 +112,8 @@ errcatch()</synopsis>
       la place de <literal>errcatch</literal> lorsque c'est possible.
     </para>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="errclear">errclear</link>

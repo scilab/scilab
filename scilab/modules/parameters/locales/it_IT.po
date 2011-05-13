@@ -1,0 +1,121 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-07-13 12:50+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): An even number expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: era atteso un numero "
+"pari.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: awaited parameters: "
+msgstr "%s: parametri attesi: "
+
+#, c-format
+msgid "%s: parameter %s not defined"
+msgstr "%s: il parametro %s non è definito"
+
+#, c-format
+msgid "%s: parameter doesn''t exist"
+msgstr "%s: il parametro non esiste"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %d.\n"
+msgstr "%s: parametro non trovato. Restituisce il valore predefinito %d.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %f.\n"
+msgstr "%s: parametro non trovato. Restituisce il valore predefinito %f.\n"
+
+#, c-format
+msgid "%s: parameter not found. Return default value %s.\n"
+msgstr "%s: parametro non trovato. Restituisce il valore predefinito %s.\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %d, value %d\n"
+msgstr ""
+"%s: il limite massimo per il parametro %s è sbagliato: limite massimo %d, "
+"valore %d\n"
+
+#, c-format
+msgid "%s: wrong max bound for parameter %s: max bound %f, value %f\n"
+msgstr ""
+"%s: il limite massimo per il parametro %s è sbagliato: limite massimo %f, "
+"valore %f\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %d, value %d\n"
+msgstr ""
+"%s: il limite minimo per il parametro %s è sbagliato: limite minimo %d, "
+"valore %d\n"
+
+#, c-format
+msgid "%s: wrong min bound for parameter %s: min bound %f, value %f\n"
+msgstr ""
+"%s: il limite minimo per il parametro %s è sbagliato: limite minimo %f, "
+"valore %f\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
+msgstr ""
+"%s: parametro di tipo sbagliato. Era atteso %s. Restituisce il valore "
+"predefinito %d.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
+msgstr ""
+"%s: parametro di tipo sbagliato. Era atteso %s. Restituisce il valore "
+"predefinito %f.\n"
+
+#, c-format
+msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
+msgstr ""
+"%s: parametro di tipo sbagliato. Era atteso %s. Restituisce il valore "
+"predefinito %s.\n"
+
+#, c-format
+msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
+msgstr ""
+"%s: dimensione sbagliata per il parametro %s: richiesto %d,ottenuto %d\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %d\n"
+msgstr "%s: valore sbagliato per il parametro %s: valore %d\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %f\n"
+msgstr "%s: valore sbagliato per il parametro %s: valore %f\n"
+
+#, c-format
+msgid "%s: wrong value for parameter %s: value %s\n"
+msgstr "%s: valore sbagliato per il parametro %s: valore %s\n"
+
+#, c-format
+#~ msgid "%s: not a plist"
+#~ msgstr "%s: non è una plist"

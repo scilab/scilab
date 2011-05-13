@@ -23,7 +23,7 @@
     <synopsis>Rfiles=G_make(files,dllname)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>files</term>
@@ -75,8 +75,8 @@ if getos() == 'Windows' then
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="addinter">addinter</link>

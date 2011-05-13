@@ -30,9 +30,7 @@ Source: thirdparty\looks-2.1.1.jar; DestDir: {app}\thirdparty; Components: {#COM
 Source: thirdparty\skinlf.jar; DestDir: {app}\thirdparty; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\VERSION.xml; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#GUI}\readme.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#GUI}\license.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#GUI}\changelog.txt; DestDir: {app}\modules\{#GUI}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\sci_gateway\{#GUI}_gateway.xml; DestDir: {app}\modules\{#GUI}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
@@ -40,7 +38,7 @@ Source: modules\{#GUI}\etc\{#GUI}.quit; DestDir: {app}\modules\{#GUI}\etc; Compo
 Source: modules\{#GUI}\etc\{#GUI}.start; DestDir: {app}\modules\{#GUI}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#GUI}\etc\*.xml; DestDir: {app}\modules\{#GUI}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-Source: modules\{#GUI}\images\icons\*.png; DestDir: {app}\modules\{#GUI}\images\icons; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
+Source: modules\{#GUI}\images\icons\*.png; DestDir: {app}\modules\{#GUI}\images\icons; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 ;Source: modules\{#GUI}\includes\*.h; DestDir: {app}\modules\{#GUI}\includes; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;

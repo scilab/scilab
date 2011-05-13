@@ -324,8 +324,8 @@ plot2d(x,x^3)  //os desenhos são enviados à figura inicial
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="set">set</link></member>

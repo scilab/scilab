@@ -23,7 +23,7 @@
     <synopsis>[C]=coeff(Mp [,v])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Mp</term>
@@ -56,8 +56,8 @@
     <para><literal>C=coeff(Mp,v)</literal> returns the matrix of coefficients with
     degree in <literal>v</literal> . (<literal>v</literal> is a row or column vector).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="poly">poly</link>

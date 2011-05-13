@@ -23,7 +23,7 @@
     <synopsis>den=denom(r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>r</term>
@@ -48,8 +48,8 @@
     <literal>denom(r</literal>) is the same as <literal>r(3)</literal>,
     <literal>r('den')</literal> or <literal>r.den</literal></para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="numer">numer</link>

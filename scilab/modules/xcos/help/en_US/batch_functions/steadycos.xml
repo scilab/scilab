@@ -43,16 +43,35 @@
   <refsection id="Description_steadycos">
     <title>Description</title>
     <para>
-This function finds the steady state for a given system described by a xcos diagram. The diagram consists in general of a Super block with input and output port blocks. The steady state concern only the continuous-time dynamics.  
+This function finds the steady state for a given system described by a xcos diagram or <link linkend="SUPER_f">sub-diagram</link>. The diagram should have <link linkend="IN_f">inputs</link> and <link linkend="OUT_f">outputs</link>.The steady state concern only the continuous-time dynamics.  
 </para>
     <para>
 </para>
-    <programlisting role="example"><![CDATA[ 
-[X,U,Y,XP]=steadycos(scs_m,X,U,Y,Indx,Indu,Indy [,Indxp [,param ] ])
+    <programlisting role="example"><![CDATA[
+// loading data
+exec("SCI/modules/xcos/tests/unit_tests/PENDULUM_ANIM.sci");
+exec("SCI/modules/xcos/tests/unit_tests/anim_pen.sci");
+importXcosDiagram("SCI/modules/xcos/tests/unit_tests/pendulum_anim45.xcos");
+
+// configure the context
+M  = 10;
+m  = 3;
+l  = 3;
+ph = 0.1;
+
+// look for the specific sub-diagram to work on
+for i=1:length(scs_m.objs)
+    if typeof(scs_m.objs(i))=="Block" & scs_m.objs(i).gui=="SUPER_f" then
+        scs_m = scs_m.objs(i).model.rpar;
+        break;
+    end
+end
+
+[X,U,Y,XP] = steadycos(scs_m,[],[],[],[],1,1:$);
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_steadycos">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">scs_m :</emphasis> a xcos data structure</para>
@@ -126,5 +145,6 @@ This function finds the steady state for a given system described by a xcos diag
   <refsection id="Authors_steadycos">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

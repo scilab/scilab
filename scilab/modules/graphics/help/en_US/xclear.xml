@@ -23,7 +23,7 @@
     <synopsis>xclear([window-id])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>window-id</term>
@@ -48,8 +48,8 @@
 		To clear a figure, please use instead the <literal>clf</literal> function or the <literal>visible</literal> property.
 	</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clf">clf</link>

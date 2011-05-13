@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="argn">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>argn</refname>
+    <refpurpose> 関数コールの入力/出力引数の数を返す</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>[lhs [,rhs] ]=argn()
+lhs=argn(1)
+rhs=argn(2)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+    この関数は関数定義の内部で使用されます.
+	この関数は関数がコールされた際に関数に指定された実際の入力引数(<literal>rhs</literal>)と
+	出力引数(<literal>lhs</literal>) の数を出力します.
+	通常,関数の定義においてオプションの引数を処理する際に使用されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+function concat=myOwnFunction(name,optional)
+  [lhs,rhs]=argn(0) 
+  if rhs <= 1 then
+  	 optional="my Optional value"
+  end
+  if rhs == 0 then
+  	 error("Expect at least one argument")
+  end
+  concat=name+" "+optional
+endfunction
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="function">function</link>
+      </member>
+      <member>
+        <link linkend="varargin">varargin</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,254 @@
+# German translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 11:43+0000\n"
+"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
+"Language-Team: German <de@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Could not load JVM dynamic library (libjava).\n"
+msgstr ""
+"\n"
+"Kann die JVM dynamische Bibliothek (libjava) nicht laden.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (JNIEnv_SCILAB).\n"
+msgstr ""
+"\n"
+"Fehler: kann die Scilab Java Umgebung nicht aufrufen (JNIEnv_SCILAB).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Error: Cannot return Scilab Java environment (jvm_SCILAB): check if the JVM "
+"has been loaded by Scilab before calling this function.\n"
+msgstr ""
+"\n"
+"Fehler: kann Scilab Java Laufzeitumgebung (jvm_SCILAB) nicht aufrufen: "
+"überprüfen Sie, ob die JVM durch Scilab geladen wurde, bevor Scilab diese "
+"Funktion aufruft.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Impossible to read %s.\n"
+msgstr ""
+"\n"
+"Unmöglich zu lesen %s.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Incorrect version JNI (needs at least JDK 1.4).\n"
+msgstr ""
+"\n"
+"Nicht korrekte Version JNI (benötigt mindestens JDK 1.4).\n"
+
+#, c-format
+msgid ""
+"\n"
+"JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
+msgstr ""
+"\n"
+"JVM Fehler in AttachCurrentThread: kann nicht an den aktuellen "
+"Programmprozess anhängen.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot create Scilab Java Main-Class (we have not been able to find "
+"the main Scilab class. Check if the Scilab and thirdparty packages are "
+"available).\n"
+msgstr ""
+"\n"
+"Scilab kann keineScilab Java Haupt Klasse erzeugen (wir konnten die Scilab "
+"Haupt Klasse nicht finden. Überprüfen Sie, ob Scilab und drittpartei Pakete "
+"verfügbar sind.).\n"
+
+#, c-format
+msgid ""
+"\n"
+"Scilab cannot open JVM library.\n"
+msgstr ""
+"\n"
+"Scilab kann JVM Bibliothek nicht öffnen.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Weird error. Calling from Java but haven't been able to find the already "
+"existing JVM.\n"
+msgstr ""
+"\n"
+"Unbekannter Fehler: Aufruf von Java, konnte die bereist existierende JVM "
+"nicht finden.\n"
+
+#, c-format
+msgid "%s: Could not add URL to system classloader : %s.\n"
+msgstr "%s: kann keine URL zum System Klassenlader: %s.\n"
+
+#, c-format
+msgid "%s: Could not add path to java.library.path: %s.\n"
+msgstr "%s: kann keine Pfad zu java.library.path hinzufügen: %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d oder #%d: Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+msgid "Could not access to the Main Scilab Class:\n"
+msgstr "Kann nicht auf die Haupt Scliab Klasse zugreifen:\n"
+
+msgid "Could not access to the constructor of the Main Scilab Class:\n"
+msgstr "Kann nicht auf den Konstruktor der Haupt Scliab Klasse zugreifen:\n"
+
+msgid "Could not create a Scilab main class. Error:\n"
+msgstr "Kann keine Scilab Haupt Klasse erzeugen: Fehler:\n"
+
+msgid "Error"
+msgstr "Fehler"
+
+#, c-format
+msgid ""
+"Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Fehler: keine gültige Klassenpfad Datei %s (Enkodierung nicht 'utf-8'); "
+"Enkodierung '%s' gefunden.\n"
+
+#, c-format
+msgid ""
+"Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
+msgstr ""
+"Fehler: keine gültige Pfaddatei %s (Enkodierung nicht 'utf-8') Enkodierung "
+"'%s' gefunden\n"
+
+#, c-format
+msgid "Error in the creation of the Java VM: %s\n"
+msgstr "Fehler beim Erzeugen der Java VM: %s.\n"
+
+#, c-format
+msgid "Error: %s\n"
+msgstr "Fehler: %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Fehler: Kann Datei %s nicht einlesen.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
+"found.\n"
+msgstr ""
+"Fehler: keine gültige Konfigurationsdatei %s (Enkodierung nicht '%s') "
+"Enkodierung '%s' nicht gefunden.\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Fehler: kann Datei nicht einlesen %s.\n"
+
+#, c-format
+msgid ""
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr ""
+"Wenn Sie eine Binärversion von Scilab verwenden, geben Sie einen "
+"Fehlerbreicht unter http://bugzilla.scilab.org/ ab.\n"
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
+msgstr ""
+"Wenn Sie eine selbsterzeugte Version von Scilab verwenden, aktualisieren Sie "
+"das Skript Bin/Scilab, um einen Pfad zu JVM zu geben.\n"
+
+msgid "JNI version error"
+msgstr "JNI Versions Fehler"
+
+msgid "JNI: invalid arguments"
+msgstr "JNI: ungültige Argumente"
+
+msgid "JNI: not enough memory"
+msgstr "JNI: nicht genug Speicher"
+
+msgid "JVM interface disabled in -nogui or -nwni modes.\n"
+msgstr "JVM Schnittstelle in -nogui oder -nwni Modus hinzufügen.\n"
+
+#, c-format
+msgid "Options:\n"
+msgstr "Optionen:\n"
+
+#, c-format
+msgid ""
+"Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
+"system (or vice versa).\n"
+msgstr ""
+
+msgid "Scilab Java module not installed.\n"
+msgstr "Scilab Java Modul nicht installiert.\n"
+
+#, c-format
+msgid ""
+"Some problems during the loading of the Java libraries occured.\n"
+"This could lead to inconsistent behaviours.\n"
+"Please check SCI/etc/classpath.xml.\n"
+msgstr ""
+"Einige Probleme sind während des Ladens der Java Bibliotheken aufgetreten.\n"
+"Dies kann zu unvorhergesehenem Verhalten führen.\n"
+"Überprüfen Sie SCI/etc/classpath.xml.\n"
+
+#, c-format
+msgid "The problem might be related to SELinux. Try to deactivate it.\n"
+msgstr ""
+"Das Problem könnte mit SELinux zusammenhängen. Versuchen Sie es zu "
+"deaktivieren.\n"
+
+msgid "Thread detached from the VM"
+msgstr "Programmprozess aus der virtuellen Maschine gelöst"
+
+msgid "Undefined error code in the JNI. Weird problem"
+msgstr "undefinierter Fehlercode in der JNI. Unbekanntes Problem."
+
+msgid "Unknown JNI error"
+msgstr "UNbekannter JNI Fehler"
+
+msgid "VM already created"
+msgstr "VM bereits erzeugt"
+
+#, c-format
+msgid "Warning: Could not find Java package '%s'.\n"
+msgstr "Warnung: kann kein Java Paket finden '%s'.\n"
+
+#, c-format
+msgid "Warning: could not find classpath declaration file %s.\n"
+msgstr "Warnung: kann keine Klassenpfad Deklarationsdatei %s finden.\n"
+
+#, c-format
+msgid "Wrong format for %s.\n"
+msgstr "Falsches Format für %s.\n"
+
+#~ msgid "Console"
+#~ msgstr "Konsole"
+
+#~ msgid "Scilab Console"
+#~ msgstr "Scilab-Konsole"

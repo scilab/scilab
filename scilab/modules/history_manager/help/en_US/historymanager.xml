@@ -24,7 +24,7 @@
 state1=historymanager()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>state1</term>
@@ -58,8 +58,8 @@ displayhistory()
 historymanager(backupstate)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getscilabmode">getscilabmode</link>

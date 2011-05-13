@@ -97,10 +97,6 @@
     variables. Using the enumeration type is recommended because of the
     explicit meaning of the value of the enumeration type.</para>
 
-    <para>If this function is used, it is probable that <link
-    linkend="GetType">GetType</link> will also be used.</para>
-
-    <para>WARNING: This API is deprecated from Scilab 5.2.0 and is going to be removed with Scilab 6.0. Please use <link linkend="api_scilab">API Scilab</link> (the new Scilab API).</para>
   </refsection>
 
   <refsection>
@@ -110,79 +106,96 @@
     a switch case structure, we display the type of the variable sent as a
     parameter.</para>
 
-    <programlisting role="example"><![CDATA[ 
-#include <stack-c.h>
-#include <sciprint.h>
+    <programlisting role="code_gateway"><![CDATA[
+#include "stack-c.h"
+#include "sciprint.h"
+#include "api_scilab.h"
 
-int sci_mysci_typesrhs(char * fname)
+int sci_mysci_typesrhs(char * fname, unsigned long fname_len)
 {
-  switch(GetType(1))
-  {
-    case sci_matrix:
-      sciprint("A matrix of doubles\n");
-      break;
-    case sci_poly:
-      sciprint("A matrix of polynomials\n");
-      break;
-    case sci_boolean:
-      sciprint("A matrix of booleans\n");
-      break;
-    case sci_sparse:
-      sciprint("A sparse matrix of doubles\n");
-      break;
-    case sci_boolean_sparse:
-      sciprint("A sparse matrix of booleans\n");
-      break;
-    case sci_matlab_sparse:
-      sciprint("A sparse matlab matrix\n");
-      break;
-    case sci_ints:
-      sciprint("A matrix of integers\n");
-      break;
-    case sci_handles:
-      sciprint("A graphic handle\n");
-      break;
-    case sci_strings:
-      sciprint("A matrix of strings\n");
-      break;
-    case sci_u_function:
-      sciprint("An uncompiled Scilab function\n");
-      break;
-    case sci_c_function:
-      sciprint("A compiled Scilab function\n");
-      break;
-    case sci_lib:
-      sciprint("A library of Scilab functions\n");
-      break;
-    case sci_list:
-      sciprint("A Scilab list\n");
-      break;
-    case sci_tlist:
-      sciprint("A Scilab tlist\n");
-      break;
-    case sci_mlist:
-      sciprint("A Scilab mlist\n");
-      break;
-    case sci_pointer:
-    case sci_lufact_pointer: /* Renamed in version 5.2 */
-      sciprint("A pointer\n");
-      break;
-    default:
-      sciprint("Unknown type !\n"); // Should never happen
-  }
+    int         iType = 0;
+    int*        piAddr = NULL;
+    SciErr      sciErr;
 
-  return 0;
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddr, &iType);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 1;
+    }
+
+    switch(iType)
+    {
+    case sci_matrix:
+        sciprint("A matrix of doubles\n");
+        break;
+    case sci_poly:
+        sciprint("A matrix of polynomials\n");
+        break;
+    case sci_boolean:
+        sciprint("A matrix of booleans\n");
+        break;
+    case sci_sparse:
+        sciprint("A sparse matrix of doubles\n");
+        break;
+    case sci_boolean_sparse:
+        sciprint("A sparse matrix of booleans\n");
+        break;
+    case sci_matlab_sparse:
+        sciprint("A sparse matlab matrix\n");
+        break;
+    case sci_ints:
+        sciprint("A matrix of integers\n");
+        break;
+    case sci_handles:
+        sciprint("A graphic handle\n");
+        break;
+    case sci_strings:
+        sciprint("A matrix of strings\n");
+        break;
+    case sci_u_function:
+        sciprint("An uncompiled Scilab function\n");
+        break;
+    case sci_c_function:
+        sciprint("A compiled Scilab function\n");
+        break;
+    case sci_lib:
+        sciprint("A library of Scilab functions\n");
+        break;
+    case sci_list:
+        sciprint("A Scilab list\n");
+        break;
+    case sci_tlist:
+        sciprint("A Scilab tlist\n");
+        break;
+    case sci_mlist:
+        sciprint("A Scilab mlist\n");
+        break;
+    case sci_pointer:
+        sciprint("A pointer\n");
+        break;
+    default:
+        sciprint("Unknown type !\n"); // Should never happen
+    }
+
+    return 0;
 }
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sciprint">sciprint</link></member>
 
-      <member><link linkend="GetType">GetType</link></member>
     </simplelist>
   </refsection>
 </refentry>

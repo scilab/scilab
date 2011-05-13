@@ -3,11 +3,11 @@
  * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2009 - Calixte Denizet
  * desc : Static class used to create file export of graphic figures
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -45,19 +45,20 @@ public class FileExporter {
      * @param figureIndex index of the figure to export
      * @param fileName name of the file to create
      * @param fileType kind of the file
+     * @param jpegCompressionQuality the JPEG compression quality
      * @param fileOrientation orientation of the file
      * @return 0 if everything worked fine, a non null integer if an exception occured
      *         depending on the kind of error
      */
-    public static int fileExport(int figureIndex, String fileName, int fileType, int fileOrientation) {
+    public static String fileExport(int figureIndex, String fileName, int fileType, float jpegCompressionQuality, int fileOrientation) {
         int saveFileType = -1;
         String saveFileName = "";
-    
+
         DrawableFigureGL exportedFig = FigureMapper.getCorrespondingFigure(figureIndex);
 
         if (exportedFig == null) {
             // figure no longer exists
-            return ExportRenderer.IOEXCEPTION_ERROR;
+            return ExportRenderer.errors.get(ExportRenderer.IOEXCEPTION_ERROR);
         }
 
         //When the graphic-export is too long, we inform the user that the figure is exporting
@@ -91,17 +92,17 @@ public class FileExporter {
             String ext = "";
 
             switch (fileType) {
-                case ExportRenderer.PDF_EXPORT:
-                    ext = ".pdf";
-                    break;
-                case ExportRenderer.EPS_EXPORT:
-                    ext = ".eps";
-                    break;
-                case ExportRenderer.PS_EXPORT:
-                    ext = ".ps";
-                    break;
-                default: /* Do not the extension. Probably an error */
-                    return ExportRenderer.IOEXCEPTION_ERROR;
+            case ExportRenderer.PDF_EXPORT:
+                ext = ".pdf";
+                break;
+            case ExportRenderer.EPS_EXPORT:
+                ext = ".eps";
+                break;
+            case ExportRenderer.PS_EXPORT:
+                ext = ".ps";
+                break;
+            default: /* Do not the extension. Probably an error */
+                return ExportRenderer.errors.get(ExportRenderer.IOEXCEPTION_ERROR);
             }
 
             String name = new File(fileName).getName();
@@ -115,6 +116,10 @@ public class FileExporter {
 
             try {
                 /* Temporary SVG file which will be used to convert to PDF */
+                /* fileName prefix must be at least 3 characters */
+                while (name.length() < 3) {
+                    name = "_" + name;
+                }
                 fileName = File.createTempFile(name,".svg").getAbsolutePath();
             } catch (IOException e) {
                 System.err.println("Could not create temporary file " + e.getLocalizedMessage());
@@ -123,9 +128,9 @@ public class FileExporter {
             saveFileType = fileType;
             fileType = ExportRenderer.SVG_EXPORT;
         }
-    
+
         ExportRenderer export;
-        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, fileOrientation);
+        export = ExportRenderer.createExporter(figureIndex, fileName, fileType, jpegCompressionQuality, fileOrientation);
 
         // To be sure that their is a GLContext active for export
         exportedFig.openGraphicCanvas();
@@ -137,11 +142,11 @@ public class FileExporter {
         //Put back the old infoMessage
         exportedFig.setInfoMessage(oldInfoMessage);
 
-        if (saveFileType != -1) {
+        if (saveFileType != -1 && ExportRenderer.getErrorNumber() == ExportRenderer.SUCCESS) {
             ConvertSVG.SVGTo(fileName, saveFileName, saveFileType);
             new File(fileName).delete();
         }
 
-        return ExportRenderer.getErrorNumber();
+        return ExportRenderer.errors.get(ExportRenderer.getErrorNumber());
     }
 }

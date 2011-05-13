@@ -37,7 +37,7 @@ string_out=strsubst(string_in,searchStr,replaceStr,[flag])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -108,8 +108,8 @@ strsubst('2' ,'/2(]*)?$\1/' ,'0','r')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="string">string</link></member>

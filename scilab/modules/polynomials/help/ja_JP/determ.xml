@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA - Francois DELBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="determ">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>determ</refname>
+    <refpurpose>多項式行列の行列式</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>res=determ(W [,k])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>W</term>
+        <listitem>
+          <para>実数正方多項式行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>k</term>
+        <listitem>
+          <para>整数 (Wの行列式の次数の上限</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	実数多項式行列の行列式を返します
+	(Wの大きさが2*2より大きい場合,FFTにより計算されます).</para>
+    <para><literal>res=determ(W [,k])</literal><literal>k</literal> は
+	<literal>W</literal>の行列式の実際の次数より大きな整数です.</para>
+    <para>
+    <literal>k</literal>のデフォルト値は<literal>n*max(degree(W))</literal>
+	より大きな2の冪乗の最小値です.</para>
+    <para>
+    手法 (Wの大きさが  2*2より大きな場合のみ) : 
+	フーリエ周波数に関して
+	<literal>W</literal>の行列式を評価し,
+	行列式の係数に逆FFTを適用します.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+s=poly(0,'s');
+w=s*rand(10,10);
+determ(w)
+det(coeff(w,1))*s^10
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="det">det</link>
+      </member>
+      <member>
+        <link linkend="detr">detr</link>
+      </member>
+      <member>
+        <link linkend="coffg">coffg</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F.D.  </para>
+  </refsection>
+</refentry>

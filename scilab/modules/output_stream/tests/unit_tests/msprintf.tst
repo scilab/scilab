@@ -246,7 +246,7 @@ if msprintf("%#.3X",12)  <> "0X00C"      then pause,end
 
 // format '%o'
 // =============================================================================
-if execstr("msprintf(""%015o"",-12)","errcatch") == 0 then pause,end
+if msprintf("%015o",-12)<>"000037777777764" then pause,end
 
 // Vectorisation
 // =============================================================================
@@ -292,3 +292,14 @@ end
 B = 100*rand(nb_row,1);
 if execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);","errcatch")     == 0 then, pause end
 if execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);","errcatch") == 0 then, pause end
+
+// No arg
+if execstr("msprintf();","errcatch")     == 0 then, pause, end
+
+// overload: Arg not managed
+s=poly(0,"s");
+p=1+s+2*s^2;
+if execstr("msprintf(""plop"",p);","errcatch") <> 246 then, pause, end
+
+
+if execstr("msprintf(""%s %s"",""plop"");","errcatch") <> 999 then, pause, end

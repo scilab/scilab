@@ -9,28 +9,26 @@
 
 pkglib_LTLIBRARIES = libsciscicos_blocks.la
 
-libsciscicos_blocks_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
+libsciscicos_blocks_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(RT_LIB) 
 
 #### Target ######
 modulename=scicos_blocks
 
 include $(top_srcdir)/Makefile.incl.am
 
-if SCICOS
+if XCOS
 
 # All the filename are important here.
 # The filename must be the same as the function name
 # since they are used by genblocks.sh to generate the blocks.h
-SCICOS_BLOCKS_C_SOURCES = src/c/absolute_value.c \
-src/c/absblk.c \
-src/c/andlog.c \
-src/c/gain.c \
-src/c/dband.c \
-src/c/cosblk.c \
+SCICOS_BLOCKS_C_SOURCES = src/c/absblk.c \
+src/c/absolute_value.c \
 src/c/acos_blk.c \
 src/c/acosh_blk.c \
+src/c/andlog.c \
 src/c/asin_blk.c \
 src/c/asinh_blk.c \
+src/c/assignment.c \
 src/c/atan_blk.c \
 src/c/atanh_blk.c \
 src/c/automat.c \
@@ -52,8 +50,10 @@ src/c/cfscope.c \
 src/c/cmat3d.c \
 src/c/cmatview.c \
 src/c/cmscope.c \
+src/c/constraint_c.c \
 src/c/convert.c \
 src/c/cos_blk.c \
+src/c/cosblk.c \
 src/c/cosh_blk.c \
 src/c/counter.c \
 src/c/cscope.c \
@@ -69,6 +69,7 @@ src/c/cumsumz_c.c \
 src/c/cumsumz_m.c \
 src/c/cumsumz_r.c \
 src/c/curve_c.c \
+src/c/dband.c \
 src/c/deadband.c \
 src/c/delay4.c \
 src/c/delay4_i16.c \
@@ -78,6 +79,7 @@ src/c/delay4_ui16.c \
 src/c/delay4_ui32.c \
 src/c/delay4_ui8.c \
 src/c/deriv.c \
+src/c/diffblk_c.c \
 src/c/dmmul1.c \
 src/c/dmmul.c \
 src/c/dollar4.c \
@@ -87,7 +89,6 @@ src/c/edgetrig.c \
 src/c/evaluate_expr.c \
 src/c/evtdly4.c \
 src/c/evtvardly.c \
-src/c/scicosexit.c \
 src/c/expblk_m.c \
 src/c/extdiag.c \
 src/c/extdiagz.c \
@@ -131,6 +132,7 @@ src/c/exttril.c \
 src/c/exttrilz.c \
 src/c/exttriu.c \
 src/c/exttriuz.c \
+src/c/foriterator.c \
 src/c/fromws_c.c \
 src/c/gainblk.c \
 src/c/gainblk_i16e.c \
@@ -151,6 +153,7 @@ src/c/gainblk_ui32s.c \
 src/c/gainblk_ui8e.c \
 src/c/gainblk_ui8n.c \
 src/c/gainblk_ui8s.c \
+src/c/gain.c \
 src/c/hystheresis.c \
 src/c/integral_func.c \
 src/c/integralz_func.c \
@@ -164,7 +167,12 @@ src/c/logicalop_ui16.c \
 src/c/logicalop_ui32.c \
 src/c/logicalop_ui8.c \
 src/c/logic.c \
+src/c/lookup2d.c \
+src/c/lookup_c.c \
 src/c/mat_bksl.c \
+src/c/matbyscal.c \
+src/c/matbyscal_e.c \
+src/c/matbyscal_s.c \
 src/c/mat_cath.c \
 src/c/mat_catv.c \
 src/c/mat_det.c \
@@ -174,7 +182,9 @@ src/c/mat_expm.c \
 src/c/mathermit_m.c \
 src/c/mat_inv.c \
 src/c/mat_lu.c \
+src/c/matmul2_e.c \
 src/c/matmul2_m.c \
+src/c/matmul2_s.c \
 src/c/matmul_i16e.c \
 src/c/matmul_i16n.c \
 src/c/matmul_i16s.c \
@@ -262,6 +272,7 @@ src/c/samphold4.c \
 src/c/samphold4_m.c \
 src/c/satur.c \
 src/c/scalar2vector.c \
+src/c/scicosexit.c \
 src/c/selector.c \
 src/c/selector_m.c \
 src/c/shift_16_LA.c \
@@ -309,6 +320,7 @@ src/c/summation_z.c \
 src/c/switch2.c \
 src/c/switch2_m.c \
 src/c/switchn.c \
+src/c/tablex2d_c.c \
 src/c/tan_blk.c \
 src/c/tanh_blk.c \
 src/c/tcslti4.c \
@@ -316,21 +328,10 @@ src/c/tcsltj4.c \
 src/c/time_delay.c \
 src/c/tows_c.c \
 src/c/variable_delay.c \
+src/c/whileiterator.c \
 src/c/writeau.c \
 src/c/writec.c \
-src/c/zcross2.c \
-src/c/assignment.c \
-src/c/constraint_c.c \
-src/c/diffblk_c.c \
-src/c/foriterator.c \
-src/c/lookup2d.c \
-src/c/lookup_c.c \
-src/c/matbyscal_e.c \
-src/c/matbyscal_s.c \
-src/c/matmul2_e.c \
-src/c/matmul2_s.c \
-src/c/tablex2d_c.c \
-src/c/whileiterator.c
+src/c/zcross2.c
 
 SCICOS_BLOCKS_CPP_SOURCES = \
 src/cpp/affich2.cpp
@@ -340,7 +341,6 @@ src/c/scoSetProperty.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
 src/c/scoWindowScope.c \
-src/c/affich.c \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
@@ -348,8 +348,10 @@ NON_BLOCK_CPP_SOURCES = \
 src/jni/GiwsException.cpp \
 src/jni/AfficheBlock.cpp
 
+GIWS_WRAPPERS = \
+src/jni/Blocks.giws.xml
+
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
-src/fortran/affich.f \
 src/fortran/csslti.f \
 src/fortran/cstblk.f \
 src/fortran/delay.f \
@@ -459,27 +461,34 @@ INCLUDE_FLAGS = $(libsciscicos_blocks_la_CFLAGS)
 #### scicos_blocks : Generation of the  includes/blocks.h Files ####
 BUILT_SOURCES = includes/blocks.h
 
-build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
+if GIWS
+BUILT_SOURCES+=giws
+endif
+
+$(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
-	@if test ! -d build; then mkdir build; fi
+	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > build/Cblocknames
+	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
-build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CPP_SOURCES)
+$(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CPP_SOURCES)
 	@echo "-- Generates build/CPPblocknames --"
-	@if test ! -d build; then mkdir build; fi
+	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > build/CPPblocknames
+	@for file in $(SCICOS_BLOCKS_CPP_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
-build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
+$(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 	@echo "-- Generates build/Fblocknames --" 
-	@if test ! -d build; then mkdir build; fi
+	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
 # Get the filename, strip the extension and put into a file
-	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > build/Fblocknames
+	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
 
-includes/blocks.h: build/Cblocknames build/Fblocknames build/CPPblocknames
+includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 	@echo "-- Building includes/blocks.h --"
-	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_srcdir)/modules/scicos_blocks/build/Fblocknames $(top_srcdir)/modules/scicos_blocks/build/Cblocknames $(top_srcdir)/modules/scicos_blocks/build/CPPblocknames $(top_srcdir)/modules/scicos_blocks/includes/blocks.h 
+	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
+		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
+	fi
+	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h 
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 	$(top_srcdir)/modules/scicos_blocks/build/Cblocknames \
@@ -494,19 +503,19 @@ CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
 
 
 # cyclic deps $(top_builddir)/modules/scicos/libsciscicos.la
-libsciscicos_blocks_la_LIBADD =  $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la  $(top_builddir)/modules/graphics/libscigraphics.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/polynomials/libscipolynomials.la $(top_builddir)/modules/fileio/libscifileio.la  $(top_builddir)/modules/linear_algebra/libscilinear_algebra.la $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libsciscicos_blocks_la_root_DATA =  license.txt version.xml
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
 libsciscicos_blocks_la_etc_DATA = etc/scicos_blocks.quit etc/scicos_blocks.start
 
 #### scicos_blocks : include files ####
-libsciscicos_blocks_la_includedir=$(pkgincludedir)/scicos_blocks
+libsciscicos_blocks_la_includedir=$(pkgincludedir)
 libsciscicos_blocks_la_include_HEADERS = includes/scicos_block.h \
 includes/scicos_block4.h \
 includes/blocks.h
@@ -576,7 +585,7 @@ blocks/CMATVIEW.h5 \
 blocks/CMSCOPE.h5 \
 blocks/CONST_m.h5 \
 blocks/ConstantVoltage.h5 \
-blocks/CONSTRAINT_f.h5 \
+blocks/CONSTRAINT_c.h5 \
 blocks/CONVERT.h5 \
 blocks/COSBLK_f.h5 \
 blocks/Counter.h5 \

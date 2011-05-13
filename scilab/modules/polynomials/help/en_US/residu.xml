@@ -23,7 +23,7 @@
     <synopsis>[V]=residu(P,Q1,Q2)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P, Q1, Q2</term>
@@ -60,8 +60,8 @@ a=a+0*%i;b=b+0*%i;
 real(residu(b*btild,z*a,atild)-2.9488038) //Complex case
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pfss">pfss</link>

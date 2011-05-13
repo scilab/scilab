@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="legend" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>legend</refname>
+
+    <refpurpose>draw graph legend</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>hl=legend([h,] string1,string2, ... [,pos] [,boxed])
+hl=legend([h,] strings [,pos] [,boxed])
+</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parameters</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+
+        <listitem>
+          <para>graphic handle on an Axes entity or vector of handles on
+          polyline entities. The default value is the handle on
+          <literal>current_axes</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string1,string2, ...</term>
+
+        <listitem>
+          <para>character strings <literal>stringi</literal> is the legend of the ith
+          curve</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strings</term>
+
+        <listitem>
+          <para>n vector of strings, <literal>strings(i)</literal> is the legend of the ith
+          curve</para>
+         <para>Starting from Scilab 5.2, it is possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML expression</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>pos</term>
+
+        <listitem>
+          <para>(optional) specify where to draw the legend; this
+          parameter may be a string (or equivalent but obsolete an
+          integer). It can also be a vector <literal>[x,y]</literal>
+          which gives the coordinates (in user units) of the upper
+          left corner of the legend box. </para>
+
+          <para>In the first case the possible valuesare:</para>
+
+          <itemizedlist>
+              <listitem>
+                <para>1 or "in_upper_right": the legend is drawn in the upper right-hand corner
+                (default). This is the default value.</para>
+              </listitem>
+         
+              <listitem>
+                <para>2 or "in_upper_left":the legend is drawn in the upper left-hand
+                corner.</para>
+              </listitem>
+         
+         
+              <listitem>
+                <para>3 or "in_lower_left": the legend is drawn in the lower left-hand
+                corner.</para>
+              </listitem>
+       
+               <listitem>
+                <para>4 or "in_lower_right": the legend is drawn in the lower right-hand
+                corner.</para>
+              </listitem>
+         
+          
+              <listitem>
+                <para>5 or "by_coordinates": interactive placement with the mouse .</para>
+              </listitem>
+       
+              <listitem>
+                <para>-1 or "out_upper_right": the legend is drawn at the right of the upper right-hand
+                corner.</para>
+              </listitem>
+         
+          
+              <listitem>
+                <para>-2 or "out_upper_left": the legend is drawn at the left of the upper left-hand
+                corner.</para>
+              </listitem>
+        
+               <listitem>
+                <para>-3 or "out_lower_left": the legend is drawn at the left of the lower left-hand
+                corner.</para>
+              </listitem>
+           
+              <listitem>
+                <para>-4 or "out_lower_right": the legend is drawn at the right of the lower right-hand
+                corner.</para>
+              </listitem>
+       
+              <listitem>
+                <para>-5 or "upper_caption": the legend is drawn above the upper left-hand
+                corner.</para>
+              </listitem>
+
+
+              <listitem>
+                <para>-6 or "lower_caption": the legend is drawn below the lower left-hand
+                corner.</para>
+              </listitem>
+
+          </itemizedlist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>boxed</term>
+
+        <listitem>
+          <para>a boolean (default value %t) which sets ot not the drawing of
+          the box.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>hl</term>
+
+        <listitem>
+          <para>a handle, points to the Compound containing all the legend
+          .</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Puts a legend on the current plot using the specified strings as
+    labels. legend prepends labels by a recall of the corresponding line or
+    patch. The recall type and properties are recovered from the given
+    handles:</para>
+
+    <para>when called without handle argument (or with a handle on a axes
+    entity) the function first build the vectors of handle on polylines
+    entities which are the children of the given axes.</para>
+
+    <para>In the interactive placement mode (opt=5) move the legend box with
+    the mouse and press the left button to release it.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+t=linspace(0,%pi,20);
+a=gca();a.data_bounds=[t(1) -1.8;t($) 1.8];
+
+plot2d(t,[cos(t'),cos(2*t'),cos(3*t')],[-5,2 3]);  
+e=gce();
+e1=e.children(1);e1.thickness=2;e1.polyline_style=4;e1.arrow_size_factor = 1/2;
+e.children(2).line_style=4;
+e3=e.children(3);e3.line_mode='on';e3.mark_background=5;
+
+hl=legend(['cos(t)';'cos(2*t)';'cos(3*t)']);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="xstring">xstring</link></member>
+      <member><link linkend="captions">captions</link></member>
+      <member><link
+      linkend="polyline_properties">polyline_properties</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -25,7 +25,7 @@ libscisymbolic_la_CFLAGS=  	-I$(srcdir)/includes/ \
 #-Isrc/c/
 pkglib_LTLIBRARIES = libscisymbolic.la
 
-libscisymbolic_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscisymbolic_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 
@@ -33,7 +33,7 @@ libscisymbolic_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
 CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscisymbolic_la_CFLAGS)
 
-libscisymbolic_la_LIBADD =  $(top_builddir)/modules/arnoldi/libsciarnoldi.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
+libscisymbolic_la_LIBADD =  $(top_builddir)/modules/arnoldi/libsciarnoldi.la  $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la
 
 
 
@@ -43,7 +43,7 @@ modulename=symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(mydatadir)
-libscisymbolic_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscisymbolic_la_root_DATA =  license.txt version.xml
 
 
 #### symbolic : init scripts ####

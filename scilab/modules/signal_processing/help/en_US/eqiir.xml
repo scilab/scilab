@@ -24,7 +24,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -129,8 +129,8 @@ h=fact*poly(zzeros,'z')/poly(zpoles,'z')
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member><link linkend="eqfir">eqfir</link></member>
       <member><link linkend="iir">iir</link></member>

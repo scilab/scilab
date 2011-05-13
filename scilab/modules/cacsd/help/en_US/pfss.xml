@@ -26,7 +26,7 @@ elts=pfss(Sl,'cord')
 elts=pfss(Sl,rmax,'cord')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -76,8 +76,8 @@ W1=0;for k=1:size(elts), W1=W1+ss2tf(elts(k));end
 clean(ss2tf(W)-W1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pbig">pbig</link>

@@ -26,7 +26,7 @@ U=givens(x,y)
 [U,c]=givens(x,y)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x,y</term>
@@ -70,8 +70,8 @@ U=givens(A(:,1));
 U*A
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

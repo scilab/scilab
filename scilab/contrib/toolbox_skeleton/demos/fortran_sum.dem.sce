@@ -1,10 +1,19 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Allan CORNET
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-mode(-1);
-lines(0);
+function demo_fortran_sum()
 
-disp("fortran_sum(3,4)");
-disp(fortran_sum(3,4));
+  mode(-1);
+  lines(0);
+
+  disp("fortran_sum(3,4)");
+  disp(fortran_sum(3,4));
+  
+endfunction
+
+demo_fortran_sum();
+clear demo_fortran_sum;
+

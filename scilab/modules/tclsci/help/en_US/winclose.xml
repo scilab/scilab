@@ -24,7 +24,7 @@
     <synopsis>winclose(winIds)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>winIds</term>

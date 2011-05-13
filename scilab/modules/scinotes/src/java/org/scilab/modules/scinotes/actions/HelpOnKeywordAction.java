@@ -20,19 +20,21 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * HelpOnKeywordAction Class
  * @author Calixte DENIZET
  */
 public class HelpOnKeywordAction extends DefaultAction {
+
+    private static final long serialVersionUID = -7241378949942315933L;
+
+    protected boolean isPopup;
 
     /**
      * Constructor
@@ -52,9 +54,9 @@ public class HelpOnKeywordAction extends DefaultAction {
         int end = getEditor().getTextPane().getSelectionEnd();
         try {
             if (start == end) {
-                KeywordEvent kwe = ((ScilabEditorPane) getEditor().getTextPane()).getKeywordEvent();
-                if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                    selection = getEditor().getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
+                String kw = ((ScilabEditorPane) getEditor().getTextPane()).getHelpableKeyword(!isPopup);
+                if (kw != null) {
+                    selection = kw;
                 }
             } else {
                 selection = getEditor().getTextPane().getDocument().getText(start, end - start);
@@ -68,32 +70,43 @@ public class HelpOnKeywordAction extends DefaultAction {
      * createMenu
      * @param label label of the menu
      * @param editor SciNotes
-     * @param key Keystroke
+     * @param key KeyStroke
      * @return MenuItem
      */
     public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
         StringTokenizer token = new StringTokenizer(label, ";");
         final String label1 = token.nextToken();
         final String label2 = token.nextToken();
-        final MenuItem menuitem = createMenu(label1, null, new HelpOnKeywordAction(label1 + SciNotesMessages.DOTS, editor), key);
+        return createMenu(label1, label2, editor, key, new HelpOnKeywordAction(label1 + SciNotesMessages.DOTS, editor));
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key Keystroke
+     * @param hoka the HelpOnKeyword action
+     * @return MenuItem
+     */
+    protected static MenuItem createMenu(final String label1, final String label2, final SciNotes editor, KeyStroke key, final HelpOnKeywordAction hoka) {
+        final MenuItem menuitem = createMenu(label1, null, hoka, key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    String select = editor.getTextPane().getSelectedText();
-                    if (select == null) {
-                        KeywordEvent kwe = ((ScilabEditorPane) editor.getTextPane()).getKeywordEvent();
-                        if (ScilabLexerConstants.isHelpable(kwe.getType())) {
-                            try {
-                                String kw = editor.getTextPane().getDocument().getText(kwe.getStart(), kwe.getLength());
+                    if (editor.getTextPane() != null) {
+                        String select = editor.getTextPane().getSelectedText();
+                        if (select == null) {
+                            String kw = ((ScilabEditorPane) editor.getTextPane()).getHelpableKeyword(!hoka.isPopup);
+                            if (kw != null) {
                                 menuitem.setText(label1 + SciNotesMessages.QUOTE + kw + SciNotesMessages.QUOTE);
                                 menuitem.setEnabled(true);
-                            } catch (BadLocationException ex) { }
+                            } else {
+                                menuitem.setText(label1 + SciNotesMessages.DOTS);
+                                menuitem.setEnabled(false);
+                            }
                         } else {
-                            menuitem.setText(label1 + SciNotesMessages.DOTS);
-                            menuitem.setEnabled(false);
+                            menuitem.setText(label2);
+                            menuitem.setEnabled(true);
                         }
-                    } else {
-                        menuitem.setText(label2);
-                        menuitem.setEnabled(true);
                     }
                 }
             });

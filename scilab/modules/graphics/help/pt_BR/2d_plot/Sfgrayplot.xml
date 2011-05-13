@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="Sfgrayplot" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>Sfgrayplot</refname>
+
+    <refpurpose>esboço 2d suave de uma superfície definida por uma função
+    utilizando cores </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>Sfgrayplot(x,y,f,&lt;opt_args&gt;)
+Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>vetores linhas de reais de tamanhos n1 e n2. </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>f</term>
+
+        <listitem>
+          <para>função do Scilab (z=f(x,y)) </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>representa uma seqüência de declarações <literal>key1=value1,
+          key2=value2</literal>,... onde <literal>key1</literal>,
+          <literal>key2,...</literal> podem ser um dos seguintes: strf, rect,
+          nax, zminmax, colminmax, mesh, colout (ver <link
+          linkend="plot2d">plot2d</link> para os três primeiros e <link
+          linkend="fec">fec</link> para os quatro últimos).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf,rect,nax</term>
+
+        <listitem>
+          <para>ver <link linkend="plot2d">plot2d</link>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>zminmax, colminmax, mesh, colout</term>
+
+        <listitem>
+          <para>ver <link linkend="fec">fec</link>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>Sfgrayplot</literal> é o mesmo que
+    <literal>fgrayplot</literal> mas o esboço é suavizado. A função
+    <literal>fec</literal> é utilizada para suavização. A superfície é
+    esboçada assumindo-se que é linear em um conjunto de triângulos
+    construídos a partir do grid (aqui, com n1=5, n2=3):</para>
+
+    <screen><![CDATA[ 
+_____________
+| /| /| /| /|
+|/_|/_|/_|/_| 
+| /| /| /| /| 
+|/_|/_|/_|/_|
+ ]]></screen>
+
+    <para>A função <link linkend="colorbar">colorbar</link> pode ser utilizada
+    para se visualizar a escala de cores (mas você deve saber (ou computar) os
+    valores mínimo e máximo).</para>
+
+    <para>Ao invés de Sfgrayplot, você pode usar <link
+    linkend="Sgrayplot">Sgrayplot</link> este pode ser um pouco mais
+    rápido.</para>
+
+    <para>Entre com o comando <literal>Sfgrayplot()</literal> para visualizar
+    uma demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+// exemplo #1: esboço de 4 superfícies
+function z=surf1(x,y), z=x*y, endfunction
+function z=surf2(x,y), z=x^2-y^2, endfunction
+function z=surf3(x,y), z=x^3+y^2, endfunction
+function z=surf4(x,y), z=x^2+y^2, endfunction
+clf()
+xset("colormap",[jetcolormap(64);hotcolormap(64)])
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+drawlater() ;
+subplot(2,2,1)
+   colorbar(-1,1,[1,64])
+   Sfgrayplot(x,y,surf1,strf="041",colminmax=[1,64])
+   xtitle("f(x,y) = x*y")
+subplot(2,2,2)
+   colorbar(-1,1,[65,128])
+   Sfgrayplot(x,y,surf2,strf="041",colminmax=[65,128])
+   xtitle("f(x,y) = x^2-y^2")
+subplot(2,2,3)
+   colorbar(-1,2,[65,128])
+   Sfgrayplot(x,y,surf3,strf="041",colminmax=[65,128])
+   xtitle("f(x,y) = x^3+y^2")
+subplot(2,2,4)
+   colorbar(0,2,[1,64])
+   Sfgrayplot(x,y,surf4,strf="041",colminmax=[1,64])
+   xtitle("f(x,y) = x^2+y^2")
+drawnow() ;
+show_window()
+
+// exemplo #2: esboço de surf3 e adição de algumas linhas de contorno
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+xset("colormap",hotcolormap(128))
+drawlater() ;
+colorbar(-1,2)
+Sfgrayplot(x,y,surf3,strf="041")
+fcontour2d(x,y,surf3,[-0.1, 0.025, 0.4],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2")
+drawnow() ;
+show_window()
+
+// exemplo #3: esboço de surf3 e uso dos argumentos opcionais zminmax e colout
+//             para restringir o esboço em -0.5&lt;= z &lt;= 1
+function z=surf3(x,y), z=x^3+y^2, endfunction
+clf()
+x = linspace(-1,1,60);
+y = linspace(-1,1,60);
+xset("colormap",jetcolormap(128))
+drawlater() ;
+zminmax = [-0.5 1]; colors=[32 96];
+colorbar(zminmax(1),zminmax(2),colors)
+Sfgrayplot(x, y, surf3, strf="041", zminmax=zminmax, colout=[0 0], colminmax=colors)
+fcontour2d(x,y,surf3,[-0.5, 1],style=[1 1 1],strf="000")
+xtitle("f(x,y) = x^3+y^2, com partes abaixo de z = -0.5 e acima de z = 1 removidas")
+drawnow() ;
+show_window()
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="fec">fec</link></member>
+
+      <member><link linkend="fgrayplot">fgrayplot</link></member>
+
+      <member><link linkend="grayplot">grayplot</link></member>
+
+      <member><link linkend="Sgrayplot">Sgrayplot</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

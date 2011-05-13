@@ -1,0 +1,71 @@
+# Localization of the module special_functions
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-10 10:57+0100\n"
+
+# File: sci_gateway/c/sci_legendre.c, line: 76
+#, c-format
+msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 59
+#, c-format
+msgid "%s: Wrong type for first input argument.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_beta.c, line: 53
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d or #%d: No complex input argument "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 68
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+#
+# File: macros/erfinv.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 83
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 92
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix with elements in (%d,%d) "
+"expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_beta.c, line: 61
+#, c-format
+msgid "%s: Wrong value for input arguments: Must be > %d.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 143
+#, c-format
+msgid "%s: error number %d\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_legendre.c, line: 139
+#, c-format
+msgid "%s: overflow or underflow of an extended range number\n"
+msgstr ""

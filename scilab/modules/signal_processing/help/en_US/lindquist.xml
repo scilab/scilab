@@ -12,7 +12,7 @@
     <synopsis>[P,R,T]=lindquist(n,H,F,G,R0)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -53,8 +53,8 @@
     Riccati equation and gives the matrices <literal>R</literal> and <literal>T</literal> of the 
     filter model, by the Lindquist's algorithm.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="srfaur">srfaur</link>

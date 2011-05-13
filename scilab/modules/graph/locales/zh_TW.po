@@ -1,0 +1,56 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-16 08:38+0000\n"
+"Last-Translator: Alvin Tseng <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "Copy"
+msgstr "複製"
+
+msgid "Cut"
+msgstr "剪下"
+
+msgid "Delete"
+msgstr "刪除"
+
+msgid "Group"
+msgstr "群組"
+
+msgid "Invert selection"
+msgstr "反向選取"
+
+msgid "Paste"
+msgstr "貼上"
+
+msgid "Redo"
+msgstr "重做"
+
+msgid "Select all"
+msgstr "選擇全部"
+
+msgid "UnGroup"
+msgstr "取消群組"
+
+msgid "Undo"
+msgstr "復原"
+
+msgid "Untitled"
+msgstr "未命名"
+
+msgid "Zoom In"
+msgstr "放大"
+
+msgid "Zoom Out"
+msgstr "縮小"

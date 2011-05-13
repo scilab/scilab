@@ -18,8 +18,8 @@
 #include "getfunctionslist.h"
 #include "getmacrosdictionary.h"
 #include "completion_generic.h"
-#include "getfulldictionary.h"
 #include "getfilesdictionary.h"
+#include "getfieldsdictionary.h"
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
@@ -290,6 +290,26 @@ char **completionOnFiles(char *somechars, int *sizeArrayReturned)
 	int sizedictionary = 0;
 
 	dictionary = getfilesdictionary(somechars,&sizedictionary,FALSE);
+
+	if (dictionary)
+	{
+		ListWords = dictionary;
+		*sizeArrayReturned = sizedictionary;
+	}
+	else
+	{
+		*sizeArrayReturned = 0;
+	}
+	return ListWords;
+}
+/*--------------------------------------------------------------------------*/
+char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayReturned)
+{
+	char **ListWords = NULL;
+	char **dictionary = NULL;
+	int sizedictionary = 0;
+
+	dictionary = getfieldsdictionary(lineBeforeCaret, pattern, &sizedictionary);
 
 	if (dictionary)
 	{

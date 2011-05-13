@@ -24,7 +24,7 @@
 m_circle(gain)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>gain</term>
@@ -69,8 +69,8 @@ nyquist([h1;h],0.01,100,['h1';'h'])
 m_circle([-8 -6 -4]);
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="nyquist">nyquist</link>

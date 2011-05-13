@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy 
+ * Copyright (C) 2007 - INRIA - Jean-Baptiste Silvy
+ * Copyright (C) 2010 - Paul Griffiths
  * desc : Class containing the drawing routine for a subwin object 
  * 
  * This file must be used under the terms of the CeCILL.
@@ -112,6 +113,12 @@ public:
    * To be used to know the positions and labels from outside the rendering process
    */
   virtual void getZTicksPos(double ticksPositions[], char ** ticksLabels) = 0;
+
+  /**
+   * Get the initial number of subticks (with no reduction) that will be drawn per
+   * major tick graduation.
+   */
+  virtual void getNbSubticksPerGrad(double nbsubtics[3]) = 0;
 
   /**
    * Compute bounds of X axis and direction of ticks

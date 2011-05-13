@@ -23,7 +23,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
-import com.mxgraph.util.mxConstants;
+import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
 import com.mxgraph.view.mxCellState;
@@ -34,10 +34,6 @@ import com.mxgraph.view.mxGraphView;
  * Implement specific method to render a graph
  */
 public class ScilabGraphView extends mxGraphView {
-	/**
-	 * Empty area real size between bounding-box and paint area. 
-	 */
-	private static final double LABEL_BORDER = 8.0;
 
 	/**
 	 * Default constructor
@@ -51,6 +47,7 @@ public class ScilabGraphView extends mxGraphView {
 	 * Updates the label bounds in the given state.
 	 * @param state the cell visible state
 	 */
+	@Override
 	public void updateLabelBounds(mxCellState state) {
 		Object cell = state.getCell();
 		Map<String, Object> style = state.getStyle();
@@ -68,13 +65,18 @@ public class ScilabGraphView extends mxGraphView {
 			 * scaled generated image values.
 			 */
 			try {
-				Icon icon = ScilabGraphUtils.getTexIcon(label);
+				final Icon icon = ScilabGraphUtils.getTexIcon(label);
 				w = icon.getIconWidth();
 				h = icon.getIconHeight();
 				
-				state.setWidth(((w + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
-				state.setHeight(((h + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
-				labelBounds = state;
+				final mxPoint offset = state.getOrigin();
+				final mxRectangle size = new mxRectangle();
+				size.setWidth(w);
+				size.setHeight(h);
+				
+				labelBounds = mxUtils.getScaledLabelBounds(offset.getX(),
+						offset.getY(), size, state.getWidth(),
+						state.getHeight(), style, scale);
 			} catch (Exception e) {
 				// popup an error
 				// FIXME: use a ScilabGraphTab instead of null there
@@ -98,9 +100,14 @@ public class ScilabGraphView extends mxGraphView {
 				w = comp.getWidth();
 				h = comp.getHeight();
 				
-				state.setWidth(((w + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
-				state.setHeight(((h + LABEL_BORDER) * scale) + (2 * mxConstants.LABEL_INSET));
-				labelBounds = state;
+				final mxPoint offset = state.getOrigin();
+				final mxRectangle size = new mxRectangle();
+				size.setWidth(w);
+				size.setHeight(h);
+				
+				labelBounds = mxUtils.getScaledLabelBounds(offset.getX(),
+						offset.getY(), size, state.getWidth(),
+						state.getHeight(), style, scale);
 			} catch (SAXException e) {
 				// popup an error
 				// FIXME: use a ScilabGraphTab instead of null there

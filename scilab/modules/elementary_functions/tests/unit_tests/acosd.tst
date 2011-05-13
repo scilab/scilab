@@ -1,6 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
+// Copyright (C) 2010 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -419,7 +420,10 @@ ref=[-1, 180.
 1, 0.];
 
 
-x=ref(1:$-1,1);e=max(abs((ref(1:$-1,2)-acosd(x))./ref(1:$-1,2)));
+x=ref(1:$-1,1);
+expected = ref(1:$-1,2);
+computed = acosd(x);
+e=max(abs((expected-computed)./expected));
 if e>10*eps then pause,end
 if acosd(1)<>0 then pause,end
 if acosd(-1)<>180 then pause,end

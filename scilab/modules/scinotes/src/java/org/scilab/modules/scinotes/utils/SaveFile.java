@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Allan CORNET
+ * Copyright (C) 2010 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,12 +25,17 @@ import javax.swing.JEditorPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.AnswerOption;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
 
 /**
  * Save File utility class
  * @author Allan CORNET
- *
+ * @author Calixte DENIZET
  */
 public final class SaveFile {
 
@@ -38,8 +44,8 @@ public final class SaveFile {
     /**
      * private Constructor
      */
-    private SaveFile() {
-    }
+    private SaveFile() { }
+
     /**
      * save text in JEditorPane
      * @param textPane JEditorPane
@@ -47,9 +53,27 @@ public final class SaveFile {
      * @param editorKit EditorKit
      * @return true if saved
      */
-    public static boolean doSave(JEditorPane textPane, File fOut, EditorKit editorKit) {
-
+    public static boolean doSave(ScilabEditorPane textPane, int index, File fOut, EditorKit editorKit) {
         ScilabDocument styledDocument = (ScilabDocument) textPane.getDocument();
+        boolean enc = false;
+        if (!styledDocument.getEncoding().equalsIgnoreCase(ConfigSciNotesManager.getDefaultEncoding())) {
+            String msg = String.format(SciNotesMessages.DIFFERENT_ENCODINGS, styledDocument.getEncoding(), ConfigSciNotesManager.getDefaultEncoding());
+            if (ScilabModalDialog.show(textPane.getEditor(), msg, SciNotesMessages.DIFFERENT_ENCODINGS_TITLE, IconType.QUESTION_ICON, ButtonType.YES_NO) == AnswerOption.NO_OPTION) {
+                return false;
+            }
+            enc = true;
+        }
+
+        try {
+            fOut.createNewFile();
+        } catch (IOException e) {
+            System.err.println(e);
+        }
+
+        if (!fOut.canWrite()) {
+            ScilabModalDialog.show(textPane.getEditor(), SciNotesMessages.NOTWRITABLE, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+            return false;
+        }
 
         // get default eol
         String defaultEol = System.getProperty(LINE_SEPARATOR);
@@ -66,15 +90,16 @@ public final class SaveFile {
 
         try {
             fos = new FileOutputStream(fOut);
-            osw = new OutputStreamWriter(fos, styledDocument.getEncoding());
+            osw = new OutputStreamWriter(fos, ConfigSciNotesManager.getDefaultEncoding());
             bw = new BufferedWriter(osw);
             editorKit.write(bw, styledDocument, 0, styledDocument.getLength());
             bw.flush();
-
             bReturn = true;
         } catch (IOException e) {
+            System.err.println(e);
             bReturn = false;
         } catch (BadLocationException e) {
+            System.err.println(e);
             bReturn = false;
         } finally {
             try {
@@ -87,11 +112,16 @@ public final class SaveFile {
                 if (bw != null) {
                     bw.close();
                 }
-            } catch (IOException e) { }
+            } catch (IOException e) {
+                System.err.println(e);
+            }
         }
 
         // restore default eol
         System.setProperty(LINE_SEPARATOR, defaultEol);
+        if (enc) {
+            textPane.getEditor().reload(index);
+        }
 
         return bReturn;
     }

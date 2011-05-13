@@ -15,7 +15,7 @@ ierr=exec(path,'errcatch' [,mode])
 ierr=exec(fun,'errcatch' [,mode])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>path</term>
@@ -114,8 +114,8 @@ exec(foo)
 whos -name "a "
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="execstr">execstr</link>

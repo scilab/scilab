@@ -25,7 +25,7 @@
 [Xlam]=cdfpoi("Xlam",P,Q,S);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P,Q,S,Xlam</term>

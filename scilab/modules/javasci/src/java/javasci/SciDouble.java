@@ -23,6 +23,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	
 	/**
 	 * Constructs a Scilab Double from a other SciDouble
+     * @deprecated
 	 * @param name the name of the Scilab variable
 	 * @param doubleObj the SciDouble you want to copy
 	 */
@@ -35,6 +36,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	/**
 	 * Constructs a Scilab Double 
 	 * initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 */ 
  public SciDouble(String name) {
@@ -43,6 +45,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 
 	/**
 	 * Constructs a Scilab Double from a Java Double
+     * @deprecated
 	 * @param name the name of the Scilab Variable 
 	 * @param value the value
 	 */ 
@@ -54,6 +57,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 
 	/**
 	 * Return the double
+     * @deprecated
 	 * @return the double
 	 */
   public double getData() {
@@ -65,6 +69,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	/**
 	 * Return the description of the DataType
 	 * Description must set in any class which extends SciAbstractDataType
+     * @deprecated
 	 * @return the Description
 	 *
 	 */

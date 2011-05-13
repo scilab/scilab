@@ -41,6 +41,7 @@ import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
 import org.apache.commons.logging.LogFactory;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -63,7 +64,7 @@ public class SetContextDialog extends JDialog {
 	/**
 	 * Default constructor
 	 * @param parent the parent component
-	 * @param parameters the associated parameters
+	 * @param parameters the Scicos parameters
 	 */
 	public SetContextDialog(Component parent, ScicosParameters parameters) {
 		this.parameters = parameters;
@@ -92,7 +93,8 @@ public class SetContextDialog extends JDialog {
         StringBuilder contextBuilder = new StringBuilder();
         for (int i = 0; i < parameters.getContext().length; i++) {
         	contextBuilder.append(parameters.getContext()[i]);
-        	contextBuilder.append(System.getProperty("line.separator"));
+        	// The '\n' is used on JTextArea for new lines.
+        	contextBuilder.append("\n");
         }
         
         contextArea = new JTextArea(contextBuilder.toString());
@@ -186,7 +188,20 @@ public class SetContextDialog extends JDialog {
 					
 					String[] context = contextList.toArray(new String[i]);
 					parameters.setContext(context);
-
+					
+					// Execute the context to alert the user against wrong settings
+					String ctx = contextArea.getText();
+					if (!ctx.replaceAll("[^\\p{Graph}]*", "").isEmpty()) {
+						// We need to remove some blanks and convert to a one line expression
+						// The '\n' is used on JTextArea for new lines.
+						ScilabInterpreterManagement
+								.putCommandInScilabQueue(ctx
+										.trim()
+										.replaceAll("\n", "; ") + ";");
+					}
+					
+					
+					
 					dispose();
 					
 				} catch (IOException e1) {

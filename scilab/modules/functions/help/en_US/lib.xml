@@ -23,7 +23,7 @@
     <synopsis>namelib = lib('lib-dir')</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>lib-dir</term>
@@ -104,8 +104,8 @@ isdef('myplus')
 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="library">library</link>

@@ -12,7 +12,7 @@
     <synopsis>p=poly(a,vname, ["flag"])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>a</term>
@@ -81,8 +81,8 @@ A=rand(2,2);poly(A,"x")
 h=(1+2*%s)/poly(1:4,'s','c')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="coeff">coeff</link>

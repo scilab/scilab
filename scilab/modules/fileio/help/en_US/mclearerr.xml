@@ -24,7 +24,7 @@
     <synopsis>mclearerr([fd])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
@@ -41,8 +41,8 @@
     <para>The function <literal>clearerr</literal> is used to resets the error indicator and
     EOF  indicator to zero.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="merror">merror</link>

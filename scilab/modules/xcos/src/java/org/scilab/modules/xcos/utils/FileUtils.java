@@ -18,9 +18,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.channels.FileChannel;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.commons.logging.LogFactory;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.w3c.dom.Document;
+import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;
@@ -31,7 +36,7 @@ import com.mxgraph.view.mxStylesheet;
  */
 public final class FileUtils {
 	/**
-	 * Stylesheet filename.
+	 * Name of the xcos style configuration file.
 	 */
 	public static final String STYLE_FILENAME = "Xcos-style.xml";
 	
@@ -166,7 +171,67 @@ public final class FileUtils {
 		String xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
 		xml = xml.replaceAll("\\$SCILAB", sciURL);
 		xml = xml.replaceAll("\\$SCIHOME", homeURL);
-		Document document = mxUtils.parse(xml);
+		Document document = mxUtils.parseXml(xml);
 		new mxCodec().decode(document.getDocumentElement(), styleSheet);
+	}
+
+	/**
+	 * Load an Xcos file.
+	 * 
+	 * @param xcosFile xcos file
+	 * @return opened document
+	 */
+	public static Document loadXcosDocument(String xcosFile) {
+		DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory
+				.newInstance();
+		DocumentBuilder docBuilder;
+		
+		try {
+			docBuilder = docBuilderFactory.newDocumentBuilder();
+			return docBuilder.parse(xcosFile);
+		} catch (ParserConfigurationException e) {
+			return null;
+		} catch (SAXException e) {
+			return null;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+
+	/**
+	 * Export an HTML label String to a valid C identifier String. 
+	 * 
+	 * @param label the HTML label
+	 * @return a valid C identifier String
+	 */
+	public static String toValidCIdentifier(final String label) {
+		final String text = mxUtils.getBodyMarkup(label, true);
+		final StringBuilder cFunctionName = 
+			new StringBuilder();
+		
+		for (int i = 0; i < text.length(); i++) {
+			final char ch = text.charAt(i);
+			
+			// Adding upper case chars
+			if (ch >= 'A' && ch <= 'Z') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Adding lower case chars
+			if (ch >= 'a' && ch <= 'z') {
+				cFunctionName.append(ch);
+			} else
+				
+			// Adding number chars
+			if (ch >= '0' && ch <= '9') {
+				cFunctionName.append(ch);
+			} else
+			
+			// Specific chars
+			if (ch == '_' || ch == ' ') {
+				cFunctionName.append('_');
+			}
+		}
+		return cFunctionName.toString();
 	}
 }

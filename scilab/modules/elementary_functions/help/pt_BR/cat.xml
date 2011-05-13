@@ -81,7 +81,7 @@
     linhas</para>
 
     <para>A1=[1 2 3 ; 4 5 6]; A2=[7 8 9 ; 10 11 12]; y=cat(1,A1,A2) =&gt; y=[1
-    2 3 ; 4 5 61 ;7 8 9; 10 11 12]</para>
+    2 3 ; 4 5 6 ;7 8 9; 10 11 12]</para>
 
     <para>Se dims= 2,então a concatenação é feita de acordo com as colunas dos
     argumentos de entrada</para>
@@ -105,8 +105,8 @@ dims=3; A1=matrix(1:12,[2,2,3]); A2=[13 14;15 16]; A3=matrix(21:36,[2,2,4]); y=c
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>Ver Também</title>
+  <refsection role="see also">
+<title>Ver Também</title>
 
     <simplelist type="inline">
       <member><link linkend="permute">permute</link></member>

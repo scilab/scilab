@@ -24,7 +24,7 @@
     <synopsis>mtell([fd])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fd</term>
@@ -40,8 +40,8 @@
     The function <literal>mtell()</literal> returns the offset of the current byte  relative  to
     the beginning of the file associated with the named stream <literal>fd</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mclose">mclose</link>

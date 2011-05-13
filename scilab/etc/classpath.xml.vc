@@ -28,14 +28,15 @@ The option is "disableUnderMode" and can be:
 <classpaths>
 
 <!-- Mandatory on startup -->
+<path value="$SCILAB/thirdparty/flexdock-0.5.2.jar"/>
+<path value="$SCILAB/thirdparty/jrosetta-API.jar" disableUnderMode="NW"/>
+<path value="$SCILAB/thirdparty/jrosetta-engine.jar"/>
+<path value="$SCILAB/thirdparty/skinlf.jar"/>
+<path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
+<path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
+<path value="$SCILAB/thirdparty/jhall.jar"/>
 
-<path value="$SCILAB/thirdparty/flexdock-0.5.2.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/jrosetta-API.jar" load="startup" disableUnderMode="NW"/>
-<path value="$SCILAB/thirdparty/jrosetta-engine.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/skinlf.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/looks-2.1.1.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/commons-logging-1.1.jar" load="startup"/>
-<path value="$SCILAB/thirdparty/jhall.jar" load="startup"/>
+<!-- Load when needed -->
 
 <path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
 	<load on="XCos"/>
@@ -59,12 +60,9 @@ The option is "disableUnderMode" and can be:
 	<load on="HDF5"/>
 </path>
 
-<path value="$SCILAB/thirdparty/jgraphx.jar" load="onUse">
-        <load on="XCos"/>
-</path>
-
 <!-- Temp. loaded at startup -->
 <path value="$SCILAB/modules/types/jar/org.scilab.modules.types.jar"/>
+<path value="$SCILAB/modules/output_stream/jar/org.scilab.modules.output_stream.jar" load="startup"/>
 <path value="$SCILAB/modules/hdf5/jar/org.scilab.modules.hdf5.jar" load="startup"/>
 
 <path value="$SCILAB/modules/xcos/jar/org.scilab.modules.xcos.jar" load="onUse">
@@ -78,6 +76,15 @@ The option is "disableUnderMode" and can be:
 	<load on="graphics_mathml_textrendering"/>
 	<load on="xcos_mathml_rendering"/>
 </path>
+
+<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.4.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>
+<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
+	<load on="documentationGeneration"/>
+	<load on="pdf_ps_eps_graphic_export"/>
+</path>
 <path value="$SCILAB/thirdparty/saxon.jar" load="onUse">
 	<load on="documentationGeneration"/>
 </path>
@@ -87,10 +94,6 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
 </path>
-<path value="$SCILAB/thirdparty/fop.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>	
 <path value="$SCILAB/thirdparty/xml-apis-ext.jar" load="onUse">
 	<load on="documentationGeneration"/>
 	<load on="pdf_ps_eps_graphic_export"/>
@@ -102,7 +105,7 @@ The option is "disableUnderMode" and can be:
 	<load on="documentationGeneration"/>
 	<load on="graphics_mathml_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
-	<load on="XCos"/>
+	<load on="xcos"/>
 </path>
 
 <!-- PDF doc generation (dep of jeuclid) -->
@@ -117,26 +120,17 @@ The option is "disableUnderMode" and can be:
 	<load on="pdf_ps_eps_graphic_export"/>
 </path>
 
-<path value="$SCILAB/thirdparty/xalan.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>	
-
-<path value="$SCILAB/thirdparty/jlatexmath-0.9.2.jar" load="onUse">
-	<load on="documentationGeneration"/>
+<path value="$SCILAB/thirdparty/jlatexmath-0.9.4.jar" load="onUse">
+  	<load on="documentationGeneration"/>
 	<load on="graphics_latex_textrendering"/>
 	<load on="pdf_ps_eps_graphic_export"/>
 	<load on="XCos"/>
-</path>	
-
-<path value="$SCILAB/thirdparty/jlatexmath-fop-0.9.2.jar" load="onUse">
-	<load on="documentationGeneration"/>
-	<load on="pdf_ps_eps_graphic_export"/>
-</path>	
+</path>
 
 <!-- helptools module doc generation -->
 <path value="$SCILAB/modules/helptools/jar/org.scilab.modules.helptools.jar" load="onUse">
 	<load on="documentationGeneration"/>
+	<load on="copyAsHTMLinScinotes"/>
 </path>
 
 <!-- Mandatory on startup -->
@@ -160,6 +154,8 @@ The option is "disableUnderMode" and can be:
 <path value="$SCILAB/modules/renderer/jar/org.scilab.modules.renderer.jar"/>
 
 <path value="$SCILAB/modules/graphic_export/jar/org.scilab.modules.graphic_export.jar"/>
+
+<path value="$SCILAB/modules/core/jar/org.scilab.modules.core.jar"/>
 
 <!-- scinotes module -->
 <path value="$SCILAB/modules/scinotes/jar/org.scilab.modules.scinotes.jar" load="onUse">

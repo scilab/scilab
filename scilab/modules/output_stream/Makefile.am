@@ -1,5 +1,6 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2007 - INRIA - Bruno JOFRET
+# Copyright (C) 2010 - DIGITEO - Bruno JOFRET
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -30,7 +31,8 @@ OUTPUT_STREAM_C_SOURCES = 	src/c/erro.c \
 				src/c/error.c \
 				src/c/error_internal.c \
 				src/c/do_xxprintf.c \
-				src/c/set_xxprintf.c
+				src/c/set_xxprintf.c \
+				src/c/lasterror.c
 
 OUTPUT_STREAM_FORTRAN_SOURCES = src/fortran/wspdsp.f \
 		src/fortran/wmdsp.f \
@@ -79,7 +81,11 @@ libscioutput_stream_la_CPPFLAGS=  -I$(top_srcdir)/libs/MALLOC/includes/ \
 
 pkglib_LTLIBRARIES = libscioutput_stream.la
 
-libscioutput_stream_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+if GUI
+USEANT=1
+endif
+
+libscioutput_stream_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscioutput_stream_la_SOURCES = $(OUTPUT_STREAM_C_SOURCES) $(OUTPUT_STREAM_CPP_SOURCES) $(OUTPUT_STREAM_FORTRAN_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(JNI_SOURCES)
 
@@ -88,13 +94,13 @@ CHECK_SRC= $(OUTPUT_STREAM_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscioutput_stream_la_CFLAGS)
 
 # Many stuff depends on this one ... commented
-#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la
+#libscioutput_stream_la_LIBADD =  $(top_builddir)/modules/console/libsciconsole.la $(top_builddir)/modules/string/libscistring.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/shell/libscishell.la  $(top_builddir)/libs/MALLOC/libscimalloc.la
 #### Target ######
 modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscioutput_stream_la_root_DATA =  license.txt version.xml
 
 
 #### output_stream : init scripts ####

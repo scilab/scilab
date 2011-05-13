@@ -12,7 +12,7 @@
     <synopsis>[xn, rn] = rafiter(A, C_ptr, b, x0, [, nb_iter, verb])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A  </term>
@@ -48,7 +48,7 @@
         <term>verb  </term>
         <listitem>
           <para>(optional) boolean, must be %t for displaying the intermediary results, 
-      and %f (default) if you don't want.</para>
+      and %f (default) if you do not want.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -96,8 +96,8 @@ norm(A*xn - b)
 taucs_chdel(C_ptr)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chsolve">taucs_chsolve</link>

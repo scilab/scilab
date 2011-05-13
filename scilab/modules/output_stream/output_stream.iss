@@ -18,13 +18,13 @@
 ;
 #define OUTPUT_STREAM "output_stream"
 ;
+Source: modules\{#OUTPUT_STREAM}\jar\org.scilab.modules.{#OUTPUT_STREAM}.jar;DestDir: {app}\modules\{#OUTPUT_STREAM}\jar; Components: {#COMPN_SCILAB}
+;
 Source: bin\{#OUTPUT_STREAM}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#OUTPUT_STREAM}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#OUTPUT_STREAM}\changelog.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB};
 Source: modules\{#OUTPUT_STREAM}\license.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
-Source: modules\{#OUTPUT_STREAM}\readme.txt; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 Source: modules\{#OUTPUT_STREAM}\version.xml; DestDir: {app}\modules\{#OUTPUT_STREAM}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#OUTPUT_STREAM}\includes\*.h; DestDir: {app}\modules\{#OUTPUT_STREAM}\includes; Components: {#COMPN_SCILAB}

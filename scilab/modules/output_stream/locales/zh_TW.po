@@ -1,0 +1,2031 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-11-20 05:25+0000\n"
+"Last-Translator: fracting <fracting@gmail.com>\n"
+"Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
+
+#
+# File: src/c/msgs.c, line: 870
+#, c-format
+msgid "       inside function: %s.\n"
+msgstr "       在函數 %s 之內.\n"
+
+#, c-format
+msgid "     (end) %s\n"
+msgstr "     (結束) %s\n"
+
+#, c-format
+msgid "  (cont'd) %s\n"
+msgstr "  (持續) %s\n"
+
+#
+# File: src/c/errmsg.c, line: 1351
+#, c-format
+msgid "  check arguments or define function %s for overloading.\n"
+msgstr "  檢查參數或重新定義函數 %s 以便重載.\n"
+
+#
+# File: src/c/msgs.c, line: 815
+#, c-format
+msgid " and %s variables out of %s.\n"
+msgstr " 以及 %s 變數 (由 %s 中選取).\n"
+
+#
+# File: src/c/errmsg.c, line: 355
+msgid " end or else is missing...\n"
+msgstr " 缺少 end 或 else ...\n"
+
+#
+# File: src/c/msgs.c, line: 763
+#, c-format
+msgid " has been truncated to: %s.\n"
+msgstr " 已截尾 (truncated) 成 : %s.\n"
+
+#
+# File: src/c/errmsg.c, line: 361
+#, c-format
+msgid " input line longer than buffer size: %d\n"
+msgstr " 輸入行長度超過緩衝區長度: %d\n"
+
+#
+# File: src/c/errmsg.c, line: 1614
+msgid "\"unknown data\""
+msgstr "\"未知數據\""
+
+#
+# File: src/c/errmsg.c, line: 463
+#, c-format
+msgid "%d graphic terminal?\n"
+msgstr "%d 為圖形終端機 ?\n"
+
+#
+# File: src/c/errmsg.c, line: 473
+#, c-format
+msgid "%d: logical unit already used.\n"
+msgstr "%d: 邏輯單元已使用.\n"
+
+#
+# File: src/c/errmsg.c, line: 1162
+#, c-format
+msgid "%dth argument type must be boolean.\n"
+msgstr "第 %d 參數型態須為  boolean.\n"
+
+#
+# File: src/c/errmsg.c, line: 1455
+#, c-format
+msgid "%s and %s must have equal dimensions.\n"
+msgstr "%s 和 %s 必須有相同之維度.\n"
+
+#
+# File: src/c/errmsg.c, line: 1450
+#, c-format
+msgid "%s and %s must have equal number of columns.\n"
+msgstr "%s 和 %s 必須有相同之列數.\n"
+
+#
+# File: src/c/errmsg.c, line: 1445
+#, c-format
+msgid "%s and %s must have equal number of rows.\n"
+msgstr "%s 和 %s 必須有相同之行數.\n"
+
+#
+# File: src/c/errmsg.c, line: 514
+#, c-format
+msgid "%s is not valid in this context.\n"
+msgstr "%s 在此語境 (context) 中不合法.\n"
+
+#
+# File: src/c/errmsg.c, line: 1203
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr "%s 尚未實作出全部之輸入參數.\n"
+
+#
+# File: src/c/errmsg.c, line: 785
+#, c-format
+msgid "%s was a function when compiled but is now a primitive!\n"
+msgstr "%s 編譯時是一函數，但現在是一基本函數 (primitive) !\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. %s is orthogonal to the columns of the jacobian to "
+"machine precision.\n"
+msgstr ""
+"%s: %s長度太短. %s orthogonal to the columns of the jacobian to 機器運算的精度(machine "
+"precision).\n"
+
+#, c-format
+msgid ""
+"%s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+"%s: %s 長度太短. 在這情況下( in the criterion)沒有進一步的減少(No further reduction )的可能( "
+"possible).\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 產生錯誤: %s\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+msgstr "%s: 轉換錯誤, 'l' 或 'h' 旗標與 'c' 指示混用.\n"
+
+#, c-format
+msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+msgstr "%s: 轉換錯誤, 'l' 或 'h' 旗標與 's' 指示混用.\n"
+
+#
+# File: src/c/errmsg.c, line: 924
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr "%s: 初始猜值及邊界限制不匹配.\n"
+
+#
+# File: src/c/msgs.c, line: 931
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1295
+#, c-format
+msgid "%s: First argument cannot be a number.\n"
+msgstr "%s: 第一參數不能是一數字.\n"
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr "%s: 無法達到所需之量級 (order).\n"
+
+#
+# File: src/c/errmsg.c, line: 944
+#, c-format
+msgid "%s: Incorrect bounds.\n"
+msgstr "%s: 不正確的邊界值.\n"
+
+#
+# File: src/c/errmsg.c, line: 939
+#, c-format
+msgid "%s: Incorrect stopping parameters.\n"
+msgstr "%s: 不正確的停止參數.\n"
+
+#, c-format
+msgid "%s: Input arguments should have the same formal variable name.\n"
+msgstr "%s: 輸入參數須有相同的正式變數名(formal variable name).\n"
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr "%s: 迴圈(Loop) on two orders 偵側到(detected).\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Memory 分配有誤.\n"
+
+# File: src/c/sciprint_full.c, line: 38
+# File: src/c/sciprint_full.c, line: 56
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "%s: Not enough arguments.\n"
+msgstr "%s: 參數不夠.\n"
+
+#, c-format
+msgid "%s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1290
+#, c-format
+msgid "%s: Only one entry point allowed on this operating system.\n"
+msgstr "%s: 此作業系統只允許一個進入點 (entry point) .\n"
+
+#
+# File: src/c/errmsg.c, line: 919
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr "%s: 模擬時之初始常數發生問題.\n"
+
+#
+# File: src/c/errmsg.c, line: 904
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0)\n"
+msgstr "%s: 模擬器要求停止 (ind=0)\n"
+
+#, c-format
+msgid "%s: The colocation matrix is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr "%s: 此方法(method )並未實作( NOT implemented).\n"
+
+#, c-format
+msgid ""
+"%s: Too many solutions found.\n"
+"   previous order computed solution returned.\n"
+msgstr "%s: 找到太多解.\n"
+
+#, c-format
+msgid "%s: Type %s is not handled : Define the function %s2%s."
+msgstr "%s: Type %s is not handled : Define the function %s2%s."
+
+#, c-format
+msgid "%s: Wrong export format: %s"
+msgstr "%s: Wrong export format: %s"
+
+#
+# File: src/c/errmsg.c, line: 909
+#, c-format
+msgid "%s: Wrong input parameters.\n"
+msgstr "%s: 輸入參數錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: Wrong number of input argument(s): %d to %d expected."
+
+#
+# File: src/c/errmsg.c, line: 545
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: 輸入參數數目錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected"
+msgstr "%s: Wrong number of input arguments: %d to %d expected"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 最多應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+msgstr "%s: 輸入參數之數目錯誤: 資料與格式不吻合.\n"
+
+#
+# File: src/c/errmsg.c, line: 556
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: 輸出參數數目錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 1064
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: 參數 %d 長度錯誤: 應為 %d.\n"
+
+#
+# File: src/c/errmsg.c, line: 1051
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: 參數 %d 長度錯誤: 應為 (%d,%d).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1086
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為 Boolean 矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 1119
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為函數或字串(外部函數).\n"
+
+#
+# File: src/c/errmsg.c, line: 1108
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為 list.\n"
+
+#
+# File: src/c/errmsg.c, line: 1097
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 1075
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為字串矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 1130
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為多項式.\n"
+
+#
+# File: src/c/errmsg.c, line: 588
+# File: src/c/errmsg.c, line: 1011
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 577
+# File: src/c/errmsg.c, line: 998
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數或複數矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 599
+# File: src/c/errmsg.c, line: 1024
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數向量.\n"
+
+#
+# File: src/c/errmsg.c, line: 610
+# File: src/c/errmsg.c, line: 1037
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar expected.\n"
+msgstr "%s: 參數 %d 型態錯誤: 應為實數純量.\n"
+
+#
+# File: src/c/errmsg.c, line: 1152
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s: 參數 %d 之型態錯誤: 應為向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: both actual and predicted relative reductions in the criterion at most "
+"%s.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 964
+#, c-format
+msgid "%s: df0 must be positive !\n"
+msgstr "%s: df0 須為正值 !\n"
+
+#, c-format
+msgid "%s: error can not close diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error can not create diary.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error can not create diary: %s.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1275
+#, c-format
+msgid "%s: expecting more than one argument.\n"
+msgstr "%s: 預期不只一個參數.\n"
+
+#
+# File: src/c/errmsg.c, line: 1389
+#, c-format
+msgid "%s: fixpnt must be of size ipar(11).\n"
+msgstr "%s: fixpnt 必須為 ipar(11) 之長度.\n"
+
+#
+# File: src/c/errmsg.c, line: 1409
+#, c-format
+msgid "%s: input data error.\n"
+msgstr "%s: 輸入資料錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 1379
+#, c-format
+msgid "%s: ipar dimensioned at least 11.\n"
+msgstr "%s: ipar 維度最小為 11.\n"
+
+#
+# File: src/c/errmsg.c, line: 1384
+#, c-format
+msgid "%s: ltol must be of size ipar(4).\n"
+msgstr "%s: ltol 必須為 ipar(4) 之長度.\n"
+
+#
+# File: src/c/errmsg.c, line: 1399
+#, c-format
+msgid "%s: m must be of size ncomp.\n"
+msgstr "%s: m 之長度須為 ncomp.\n"
+
+#
+# File: src/c/msgs.c, line: 1135
+#, c-format
+msgid "%s: maxpts was too small to obtain the required accuracy.\n"
+msgstr "%s: maxpts 值太小無法達到要求之精度.\n"
+
+#
+# File: src/c/errmsg.c, line: 1394
+#, c-format
+msgid "%s: ncomp < 20 requested.\n"
+msgstr "%s: ncomp < 20 (必要).\n"
+
+#
+# File: src/c/errmsg.c, line: 1414
+#, c-format
+msgid "%s: no. of subintervals exceeds storage.\n"
+msgstr "%s: 次區間 (subintervals)數目已超過容量限制.\n"
+
+#
+# File: src/c/errmsg.c, line: 1280
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: 其中一個進入點 (entry point) 出問題.\n"
+
+#, c-format
+msgid "%s: relative error between two consecutive iterates is at most %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: singular or asymmetric problem.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1404
+#, c-format
+msgid "%s: sum(m) must be less than 40.\n"
+msgstr "%s: sum(m) 必須小於 40.\n"
+
+#, c-format
+msgid "%s: system cannot be displayed in this page.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1117
+#, c-format
+msgid "%s: termination because of roundoff noise.\n"
+msgstr "%s: 結束: 因捨去誤差之干擾 .\n"
+
+#
+# File: src/c/msgs.c, line: 1111
+#, c-format
+msgid "%s: termination for lack of space to divide triangle.\n"
+msgstr "%s: termination for lack of space to divide triangle.\n"
+
+#
+# File: src/c/msgs.c, line: 1123
+#, c-format
+msgid "%s: termination for relative error < (5.0*%eps).\n"
+msgstr "%s: 結束: 因相對誤差 < (5.0*%eps) .\n"
+
+#
+# File: src/c/msgs.c, line: 1129
+#, c-format
+msgid "%s: termination: function evaluations > MEVALS.\n"
+msgstr "%s: 結束: 函數計算數 > MEVALS.\n"
+
+#, c-format
+msgid ""
+"%s: the cosine of the angle between %s and any column of the jacobian is at "
+"most %s in absolute value.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1285
+#, c-format
+msgid "%s: the shared archive was not loaded.\n"
+msgstr "%s: 共用 archive 未載入.\n"
+
+#
+# File: src/c/msgs.c, line: 1294
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr "%s: window 尺寸限制小於 2^16.\n"
+
+msgid "A sparse matrix entry is defined with two different values.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1166
+msgid "Argument type must be boolean.\n"
+msgstr "參數型態須為  boolean.\n"
+
+#
+# File: src/c/errmsg.c, line: 424
+# File: src/c/errmsg.c, line: 440
+msgid "Arguments are :\n"
+msgstr "參數為 :\n"
+
+#, c-format
+msgid "At time: %s. Too many iteration to achieve required precision.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 206
+#, c-format
+msgid "Bad call to primitive: %s\n"
+msgstr "錯誤的呼叫基本函數 (primitive): %s\n"
+
+msgid "Bad conversion."
+msgstr ""
+
+msgid "Binary direct access files must be opened by 'file'.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 694
+#, c-format
+msgid "Breakpoints of function : %s\n"
+msgstr "函數之中斷點 : %s\n"
+
+msgid "Buffer too small."
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1332
+msgid "C file logical unit not allowed here.\n"
+msgstr "不允許在此使用 C 檔案之邏輯單元.\n"
+
+#
+# File: src/c/msgs.c, line: 827
+msgid "Commands:\n"
+msgstr "指令:\n"
+
+#
+# File: src/c/errmsg.c, line: 198
+msgid "Convergence problem...\n"
+msgstr "收斂性問題 ...\n"
+
+#
+# File: src/c/errmsg.c, line: 889
+msgid "Degenerate starting point.\n"
+msgstr "退化之起始點.\n"
+
+#
+# File: src/c/errmsg.c, line: 453
+msgid "Direct access : give format.\n"
+msgstr "直接存取 : 給定格式.\n"
+
+#
+# File: src/c/errmsg.c, line: 222
+msgid "Division by zero...\n"
+msgstr "除以 0 ...\n"
+
+#
+# File: src/c/errmsg.c, line: 94
+msgid "Dot cannot be used as modifier for this operator.\n"
+msgstr "句號(.) 無法用於此運算子作為一修飾元 ( modifier).\n"
+
+#
+# File: src/c/errmsg.c, line: 702
+#, c-format
+msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
+msgstr "參數 %d 的元素並非以(嚴格)漸減方式排序.\n"
+
+#
+# File: src/c/errmsg.c, line: 690
+#, c-format
+msgid "Elements of %dth argument must be in increasing order.\n"
+msgstr "參數 %d 的元素必須以漸增方式排序.\n"
+
+#
+# File: src/c/errmsg.c, line: 694
+msgid "Elements of first argument are not (strictly) increasing.\n"
+msgstr "第一參數的元素並非以(嚴格)漸增方式排序.\n"
+
+#
+# File: src/c/errmsg.c, line: 706
+msgid "Elements of first argument are not in (strictly) decreasing order.\n"
+msgstr "第一參數的元素並非以(嚴格)漸減方式排序.\n"
+
+#
+# File: src/c/errmsg.c, line: 227
+msgid "Empty function...\n"
+msgstr "空函數...\n"
+
+#
+# File: src/c/errmsg.c, line: 458
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr "第 %d 行檔案結束.\n"
+
+#
+# File: src/c/msgs.c, line: 639
+msgid "End of optimization (linear search fails).\n"
+msgstr "結束最佳化 (線性搜索失敗).\n"
+
+#
+# File: src/c/msgs.c, line: 633
+msgid "End of optimization.\n"
+msgstr "結束最佳化.\n"
+
+#
+# File: src/c/errmsg.c, line: 1265
+msgid "Entry name not found.\n"
+msgstr "輸入名稱找不到.\n"
+
+#
+# File: src/c/errmsg.c, line: 522
+msgid "Error while linking.\n"
+msgstr "聯結 (linking) 時錯誤.\n"
+
+msgid "Error while writing in file: disk full or deleted file.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 129
+msgid "Eye variable undefined in this context.\n"
+msgstr "此語境中 Eye 變數(單位元素)未定義.\n"
+
+#, c-format
+msgid ""
+"Fatal error!!! Your variables have been saved in the file : %s\n"
+"                                   Bad call to a scilab function ?\n"
+"                                   Otherwise, send a bug report to :\n"
+msgstr ""
+
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr "文件%s已经存在或禁止写入\n"
+
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr "文件%s不存在或禁止讀取\n"
+
+#
+# File: src/c/errmsg.c, line: 496
+msgid "Floating point exception.\n"
+msgstr "浮點運算例外.\n"
+
+#
+# File: src/c/msgs.c, line: 1278
+msgid "Formal variable name has been truncated.\n"
+msgstr "形式變數名稱已截尾.\n"
+
+#
+# File: src/c/errmsg.c, line: 1337
+msgid "Fortran file logical unit not allowed here.\n"
+msgstr "不允許在此使用 Fortran 檔案之邏輯單元.\n"
+
+#
+# File: src/c/errmsg.c, line: 762
+msgid "Function name already used.\n"
+msgstr "函數名稱已使用過.\n"
+
+#
+# File: src/c/errmsg.c, line: 864
+msgid "Function not bounded from below.\n"
+msgstr "此函數不是下有界.\n"
+
+#
+# File: src/c/errmsg.c, line: 1348
+msgid "Function not defined for given argument type(s),\n"
+msgstr "此參數型態沒有對應之函數定義,\n"
+
+#
+# File: src/c/msgs.c, line: 664
+#, c-format
+msgid "Functions files location : %s.\n"
+msgstr "函數檔案位置: %s.\n"
+
+#
+# File: src/c/msgs.c, line: 653
+msgid "Help file inconsistent...\n"
+msgstr "Help 檔不相容...\n"
+
+#
+# File: src/c/errmsg.c, line: 618
+msgid "Host does not answer...\n"
+msgstr "主機未回達...\n"
+
+#
+# File: src/c/errmsg.c, line: 959
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr "熱重啟 (hot restart): 工作表之維度(參數 n:%d).\n"
+
+#
+# File: src/c/msgs.c, line: 776
+msgid "Imaginary part\n"
+msgstr "虛部\n"
+
+#
+# File: src/c/msgs.c, line: 989
+#, c-format
+msgid "Impossible to load variable %s.\n"
+msgstr "無法載入變數 %s.\n"
+
+#
+# File: src/c/errmsg.c, line: 854
+msgid "Incompatible indices for non-zero elements.\n"
+msgstr "不匹配之非零元素指標.\n"
+
+#
+# File: src/c/errmsg.c, line: 321
+msgid "Incompatible input argument.\n"
+msgstr "不相匹配之輸入參數.\n"
+
+#
+# File: src/c/errmsg.c, line: 316
+msgid "Incompatible output argument.\n"
+msgstr "不相匹配之輸出參數.\n"
+
+#
+# File: src/c/errmsg.c, line: 99
+msgid "Inconsistent addition.\n"
+msgstr "不相容之加運算.\n"
+
+#
+# File: src/c/errmsg.c, line: 84
+msgid "Inconsistent column/row dimensions.\n"
+msgstr "列/行維度不相容.\n"
+
+#
+# File: src/c/errmsg.c, line: 879
+msgid "Inconsistent constraints.\n"
+msgstr "不相容限制.\n"
+
+#
+# File: src/c/errmsg.c, line: 119
+msgid "Inconsistent left division.\n"
+msgstr "不相容之左除運算.\n"
+
+#
+# File: src/c/errmsg.c, line: 109
+msgid "Inconsistent multiplication.\n"
+msgstr "不相容之乘運算.\n"
+
+#
+# File: src/c/errmsg.c, line: 114
+msgid "Inconsistent right division.\n"
+msgstr "不相容之右除運算.\n"
+
+#
+# File: src/c/errmsg.c, line: 89
+msgid "Inconsistent row/column dimensions.\n"
+msgstr "行/列維度不相容.\n"
+
+#
+# File: src/c/errmsg.c, line: 104
+msgid "Inconsistent subtraction.\n"
+msgstr "不相容之減運算.\n"
+
+#
+# File: src/c/errmsg.c, line: 55
+msgid "Incorrect assignment.\n"
+msgstr "賦值錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 139
+msgid "Incorrect command!\n"
+msgstr "指令錯誤!\n"
+
+#
+# File: src/c/errmsg.c, line: 258
+msgid "Incorrect control instruction syntax.\n"
+msgstr "控制指令語法錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 366
+msgid "Incorrect file or format.\n"
+msgstr "檔案或格式錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 569
+# File: src/c/errmsg.c, line: 954
+#, c-format
+msgid "Incorrect function (argument n: %d).\n"
+msgstr "函數不正確  (參數 n: %d).\n"
+
+#
+# File: src/c/errmsg.c, line: 295
+#, c-format
+msgid "Incorrect function at line %d.\n"
+msgstr "第 %d 行出現不正確之函數 .\n"
+
+msgid "Incorrect function.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 305
+msgid "Incorrect number of input arguments.\n"
+msgstr "輸入參數數目錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 242
+msgid "Incorrect string.\n"
+msgstr "字串錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 349
+msgid "Incorrect syntax.\n"
+msgstr "不正確之語法.\n"
+
+msgid "Indexing not allowed for output arguments of resume.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 849
+msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
+msgstr "非零元素必須以 2 列之矩陣作為指標\n"
+
+#
+# File: src/c/errmsg.c, line: 1229
+msgid "Inequality comparison with empty matrix.\n"
+msgstr "空矩陣之不等式比較.\n"
+
+msgid "Input arguments should have the same formal variable name.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1485
+msgid ""
+"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgstr "左邊指示: 等待句點 (.) 或一左括弧.\n"
+
+#
+# File: src/c/errmsg.c, line: 1490
+msgid "Instruction left hand side: waiting for a name.\n"
+msgstr "左邊指示: 等待一名稱\n"
+
+#
+# File: src/c/errmsg.c, line: 468
+msgid "Integration fails.\n"
+msgstr "積分失敗.\n"
+
+#
+# File: src/c/errmsg.c, line: 1424
+msgid "Interface property table is full.\n"
+msgstr "介面特性表已滿.\n"
+
+#, c-format
+msgid "Intermediate memory needed: %d\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 237
+msgid "Invalid exponent.\n"
+msgstr "指數項錯誤.\n"
+
+msgid "Invalid factor.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 183
+msgid "Invalid index.\n"
+msgstr "指標錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 1460
+#, c-format
+msgid "Invalid return value for function passed in arg %d.\n"
+msgstr "由參數 %d 傳入之參數之傳回值不合法.\n"
+
+#
+# File: src/c/errmsg.c, line: 1211
+#, c-format
+msgid ""
+"It is not possible to redefine the %s primitive this way (see clearfun).\n"
+msgstr "不可能用此法重新定義基本函數 %s (參考 clearfun).\n"
+
+#
+# File: src/c/errmsg.c, line: 714
+#, c-format
+msgid "Last element of %dth argument <> first.\n"
+msgstr "參數 %d 之最後元素 <> 第一元素.\n"
+
+#
+# File: src/c/errmsg.c, line: 718
+msgid "Last element of first argument does not match the first one.\n"
+msgstr "第一參數之最後元素與第一元素不匹配 (match).\n"
+
+#
+# File: src/c/errmsg.c, line: 527
+msgid "Leading coefficient is zero.\n"
+msgstr "首項係數為 0.\n"
+
+#
+# File: src/c/errmsg.c, line: 833
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr "List 之第 %d 元素誤定義.\n"
+
+#
+# File: src/c/errmsg.c, line: 859
+#, c-format
+msgid "Logical unit number should be larger than %d.\n"
+msgstr "邏輯單元編號必須大於  %d.\n"
+
+#
+# File: src/c/errmsg.c, line: 232
+msgid "Matrix is not positive definite.\n"
+msgstr "矩陣不是正定 (positive definite).\n"
+
+#
+# File: src/c/errmsg.c, line: 193
+msgid "Matrix norms available are 1, 2, inf, and fro.\n"
+msgstr "可用之矩陣范數 (norms) 為 1, 2, inf, 及 fro.\n"
+
+#
+# File: src/c/errmsg.c, line: 1270
+msgid "Maximum number of dynamic interfaces reached.\n"
+msgstr "已達動態聯結數目之上限.\n"
+
+#
+# File: src/c/msgs.c, line: 782
+#, c-format
+msgid "Maximum size of buffer : %d characters.\n"
+msgstr "緩衝區最大長度 : %d 字元.\n"
+
+#, c-format
+msgid "Memory used for variables: %d\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1234
+msgid "Missing index.\n"
+msgstr "缺少指標.\n"
+
+#
+# File: src/c/errmsg.c, line: 1500
+msgid "Missing operator, comma, or semicolon.\n"
+msgstr "缺少運算子，逗號 (,) 或分號 (;).\n"
+
+#
+# File: src/c/errmsg.c, line: 934
+msgid "NO hot restart available in this method.\n"
+msgstr "此法未提供熱重啟 (hot restart)功能.\n"
+
+#
+# File: src/c/errmsg.c, line: 894
+msgid "No feasible point has been found.\n"
+msgstr "找不到可行 (feasible) 之點.\n"
+
+#
+# File: src/c/errmsg.c, line: 884
+msgid "No feasible solution.\n"
+msgstr "無可行 (feasible) 之解.\n"
+
+#
+# File: src/c/errmsg.c, line: 1342
+#, c-format
+msgid "No input file associated to logical unit %d.\n"
+msgstr "輸入檔沒有對應到邏輯單元 %d.\n"
+
+#
+# File: src/c/errmsg.c, line: 804
+msgid "No more memory.\n"
+msgstr "記憶體耗盡.\n"
+
+#
+# File: src/c/msgs.c, line: 494
+# File: src/c/msgs.c, line: 506
+msgid "Non convergence in QR steps.\n"
+msgstr "QR 演算步驟未收斂.\n"
+
+#
+# File: src/c/msgs.c, line: 483
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "QZ 演算法未收斂.\n"
+
+#
+# File: src/c/msgs.c, line: 582
+#, c-format
+msgid "Norm of projected gradient lower than %s.\n"
+msgstr "投影梯度之範數 (Norm) 小於 %s.\n"
+
+#
+# File: src/c/msgs.c, line: 877
+msgid "Not enough memory to perform simplification.\n"
+msgstr "記憶體不足以進一化簡.\n"
+
+#
+# File: src/c/errmsg.c, line: 326
+msgid "Not implemented in scilab...\n"
+msgstr "未在  scilab 中實作 (implemented)...\n"
+
+#
+# File: src/c/errmsg.c, line: 1193
+msgid "Null variable cannot be used here.\n"
+msgstr "此處不能使用空 (Null) 變數 .\n"
+
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 603
+msgid "Optim stops: maximum number of calls to f is reached.\n"
+msgstr "最佳化停止: f 呼叫次數超過限制.\n"
+
+#
+# File: src/c/msgs.c, line: 609
+msgid "Optim stops: maximum number of iterations is reached.\n"
+msgstr "最佳化停止: 已達最大迭代次數.\n"
+
+#
+# File: src/c/msgs.c, line: 615
+msgid "Optim stops: too small variations in gradient direction.\n"
+msgstr "最佳化停止: 梯度方向變化過小而停止.\n"
+
+#
+# File: src/c/errmsg.c, line: 899
+msgid "Optimization fails: back to initial point.\n"
+msgstr "最佳化失敗 : 重回初始點.\n"
+
+#
+# File: src/c/msgs.c, line: 597
+msgid "Optimization stops because too small variations for x.\n"
+msgstr "最佳化因 x 變化過小而停止.\n"
+
+#
+# File: src/c/msgs.c, line: 685
+msgid "Pause mode: enter empty lines to continue.\n"
+msgstr "Pause 模式: 輸入空白行以繼續.\n"
+
+#
+# File: src/c/errmsg.c, line: 166
+msgid "Problem is singular.\n"
+msgstr "奇異 (singular) 問題.\n"
+
+#
+# File: src/c/errmsg.c, line: 874
+msgid ""
+"Problem may be unbounded: too high distance between two consecutive "
+"iterations.\n"
+msgstr "可能是之無界問題: 兩次迭代之間之距離過遠.\n"
+
+#
+# File: src/c/errmsg.c, line: 412
+msgid "Problem with comparison symbol...\n"
+msgstr "與比較符號 ( comparison symbol) 相關之問題...\n"
+
+#
+# File: src/c/msgs.c, line: 574
+msgid "Quapro encounters cycles on degenerate point.\n"
+msgstr "Quapro 在退化點上遇到 cycles.\n"
+
+#
+# File: src/c/msgs.c, line: 793
+#, c-format
+msgid "Rank deficient : rank = %s  - tol = %s .\n"
+msgstr "矩陣秩缺陷 (Rank deficient) : rank = %s  - tol = %s .\n"
+
+#, c-format
+msgid "Rank deficient. rank = %d\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 770
+msgid "Real part\n"
+msgstr "實部\n"
+
+#
+# File: src/c/msgs.c, line: 1244
+# File: src/c/msgs.c, line: 1264
+msgid "Rebuild your function libraries.\n"
+msgstr "重建你的函式庫.\n"
+
+#
+# File: src/c/errmsg.c, line: 188
+msgid "Recursion problems. Sorry...\n"
+msgstr "產生遞迴問題. 對不起...\n"
+
+#
+# File: src/c/errmsg.c, line: 1374
+msgid "Recursive extraction is not valid in this context.\n"
+msgstr "遞迴取值 (extraction) 在此處不合法 .\n"
+
+#
+# File: src/c/errmsg.c, line: 124
+msgid "Redefining permanent variable.\n"
+msgstr "永久(permanent)變數重新定義.\n"
+
+#
+# File: src/c/msgs.c, line: 1272
+msgid ""
+"Roundoff errors make leading eigenvalues\n"
+" in the Schur form no longer satisfy criterion.\n"
+msgstr ""
+"捨去誤差使 Schur 形式之起首特徵值 (leading eigenvalues)\n"
+" 不再滿足規範要求.\n"
+
+#
+# File: src/c/errmsg.c, line: 248
+msgid "Singularity of log or tan function.\n"
+msgstr "log 或 tan 函數之奇異點 (Singularity).\n"
+
+#
+# File: src/c/errmsg.c, line: 1475
+#, c-format
+msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr "可變長度之參數  a*eye(), (arg %d) 此處不允許.\n"
+
+#
+# File: src/c/msgs.c, line: 1300
+msgid "Some data have not been computed they are replaced by NaN.\n"
+msgstr "部份資料未計算因此以 NaN 取代.\n"
+
+#
+# File: src/c/errmsg.c, line: 819
+msgid ""
+"Stack problem detected within a loop.\n"
+"A primitive function has been called with a wrong number of output "
+"arguments.\n"
+"No output argument test has been made for this function.\n"
+"Please report this bug :\n"
+msgstr ""
+"在迴圈內發現堆疊出問題.\n"
+"一基本 (primitive) 函數以錯誤之輸入參數數目被呼叫.\n"
+"此函數尚未進行輸出參數測試.\n"
+"請回報此程式錯誤:\n"
+
+#
+# File: src/c/msgs.c, line: 746
+#, c-format
+msgid "Stop after row %s in function %s.\n"
+msgstr "在第 %s 行結束 (函數 %s 內).\n"
+
+#
+# File: src/c/msgs.c, line: 621
+msgid "Stop during calculation of descent direction.\n"
+msgstr "尋找下降方向時停止計算.\n"
+
+#
+# File: src/c/msgs.c, line: 627
+msgid "Stop during calculation of estimated hessian.\n"
+msgstr "估計 hessian 時停止計算.\n"
+
+#
+# File: src/c/errmsg.c, line: 134
+msgid "Submatrix incorrectly defined.\n"
+msgstr "子矩陣 (Submatrix) 定義錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 267
+# File: src/c/errmsg.c, line: 271
+# File: src/c/errmsg.c, line: 275
+#, c-format
+msgid "Syntax error in a '%s' instruction.\n"
+msgstr "'%s' 指令中語法錯誤.\n"
+
+#
+# File: src/c/msgs.c, line: 821
+msgid "System functions:\n"
+msgstr "系統函數:\n"
+
+#
+# File: src/c/msgs.c, line: 509
+#, c-format
+msgid "The first %d singular values may be incorrect.\n"
+msgstr "前  %d 個奇異值 (singular values) 可能不正確.\n"
+
+#
+# File: src/c/msgs.c, line: 761
+#, c-format
+msgid "The identifier : %s\n"
+msgstr "變數 : %s\n"
+
+#
+# File: src/c/msgs.c, line: 486
+# File: src/c/msgs.c, line: 705
+# File: src/c/msgs.c, line: 713
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr "最高之 %d  x %d 方塊可能不是廣義 Schur 型式.\n"
+
+#
+# File: src/c/msgs.c, line: 498
+#, c-format
+msgid "The top %d x %d block may not be in Schur form.\n"
+msgstr "最高之 %d  x %d 方塊可能不是 Schur 型式.\n"
+
+#
+# File: src/c/errmsg.c, line: 1224
+msgid "This data type is already defined.\n"
+msgstr "此資料型態已定義.\n"
+
+#
+# File: src/c/errmsg.c, line: 506
+msgid "This variable is not valid in fort.\n"
+msgstr "此變數在 fort 不合法.\n"
+
+#
+# File: src/c/errmsg.c, line: 772
+msgid "Too complex for scilab, may be a too long control instruction.\n"
+msgstr "對 scilab 過於複雜, 也許是控制指令太長.\n"
+
+#
+# File: src/c/errmsg.c, line: 214
+msgid "Too complex recursion! (recursion tables are full)\n"
+msgstr "遞迴過於複雜! (遞迴表已滿)\n"
+
+#
+# File: src/c/errmsg.c, line: 532
+msgid "Too high degree (max 100).\n"
+msgstr "層度過深 (最大 100).\n"
+
+#
+# File: src/c/errmsg.c, line: 809
+msgid "Too large string.\n"
+msgstr "字串太長.\n"
+
+#
+# File: src/c/errmsg.c, line: 777
+msgid "Too large, can't be displayed.\n"
+msgstr "太大, 無法顯示.\n"
+
+#
+# File: src/c/errmsg.c, line: 253
+msgid "Too many ':'\n"
+msgstr "太多 ':'\n"
+
+#
+# File: src/c/errmsg.c, line: 501
+msgid "Too many arguments in fort (max 30).\n"
+msgstr "fort 之參數過多(最多 30).\n"
+
+#
+# File: src/c/errmsg.c, line: 1506
+msgid "Too many commands defined.\n"
+msgstr "已定義指令過多.\n"
+
+msgid "Too many files opened!\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 767
+#, c-format
+msgid "Too many functions are defined (maximum #:%d).\n"
+msgstr "定義過多函數 (最多 #:%d).\n"
+
+#, c-format
+msgid "Too many global variables! Max number is %d.\n"
+msgstr ""
+
+msgid "Too many input/output entries for highlighted block.\n"
+msgstr ""
+
+msgid "Too many input/output ports for highlighted block.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 814
+msgid "Too many linked routines.\n"
+msgstr "聯結之函式過多.\n"
+
+#
+# File: src/c/errmsg.c, line: 161
+msgid "Too many variables!\n"
+msgstr "變數過多!\n"
+
+#
+# File: src/c/errmsg.c, line: 914
+msgid "Too small memory.\n"
+msgstr "記憶體過小.\n"
+
+#, c-format
+msgid "Total memory available: %d\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 796
+#, c-format
+msgid "Trying to re-define function %s.\n"
+msgstr "嘗試重新定義函數 %s.\n"
+
+#
+# File: src/c/errmsg.c, line: 1219
+msgid "Type data base is full.\n"
+msgstr "型態之資料庫已滿.\n"
+
+#
+# File: src/c/errmsg.c, line: 623
+msgid "Uncontrollable system.\n"
+msgstr "不可控系統.\n"
+
+#
+# File: src/c/msgs.c, line: 1225
+msgid "Undefined display for this data type.\n"
+msgstr "此資料型態未定義顯示函數.\n"
+
+#
+# File: src/c/errmsg.c, line: 757
+msgid "Undefined fonction.\n"
+msgstr "未定義函數.\n"
+
+#
+# File: src/c/errmsg.c, line: 972
+msgid "Undefined operation for the given operands.\n"
+msgstr "運算元 (operands) 未定義之運算.\n"
+
+msgid "Undefined variable.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 76
+#, c-format
+msgid "Undefined variable: %s\n"
+msgstr "未定義變數 : %s\n"
+
+#
+# File: src/c/errmsg.c, line: 483
+msgid "Unknown file format.\n"
+msgstr "未知檔案格式.\n"
+
+#
+# File: src/c/msgs.c, line: 1287
+#, c-format
+msgid "Unknown key <%s> ignored.\n"
+msgstr "忽略未定義之 key <%s> .\n"
+
+#
+# File: src/c/errmsg.c, line: 628
+msgid "Unobservable system.\n"
+msgstr "不可觀系統.\n"
+
+#
+# File: src/c/errmsg.c, line: 153
+msgid "Use stacksize function to increase it.\n"
+msgstr "使用stacksize 函數增大它.\n"
+
+#
+# File: src/c/msgs.c, line: 811
+#, c-format
+msgid "Using %s elements out of %s.\n"
+msgstr "使用 %s 元素 (由 %s 中選取).\n"
+
+#
+# File: src/c/errmsg.c, line: 738
+#, c-format
+msgid "Variable %s is not a valid rational function.\n"
+msgstr "變數 %s 不是一有效之有理函數.\n"
+
+#
+# File: src/c/errmsg.c, line: 749
+#, c-format
+msgid "Variable %s is not a valid state space representation.\n"
+msgstr "變數 %s 不是一有效之狀態函數表示.\n"
+
+#, c-format
+msgid "Variable : %s must be a list\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 727
+#, c-format
+msgid "Variable or function %s are not in file.\n"
+msgstr "變數或函數 %s 不在檔案內.\n"
+
+#
+# File: src/c/errmsg.c, line: 683
+msgid "Variable returned by scilab argument function is incorrect.\n"
+msgstr "Scilab 參數函數 ( argument function) 所傳回之變數不正確.\n"
+
+#
+# File: src/c/errmsg.c, line: 310
+msgid "Waiting for end of command.\n"
+msgstr "等待指令結束.\n"
+
+#
+# File: src/c/errmsg.c, line: 67
+msgid "Waiting for right parenthesis.\n"
+msgstr "等待右括弧.\n"
+
+msgid "Warning :\n"
+msgstr "警告 :\n"
+
+#
+# File: src/c/msgs.c, line: 1001
+msgid "Warning : division by zero...\n"
+msgstr "警告 : 除已零...\n"
+
+#, c-format
+msgid ""
+"Warning : redefining function: %s. Use funcprot(0) to avoid this message"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1007
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
+msgstr "警告 :  'log' 或 'tan' 函數之奇異點.\n"
+
+#
+# File: src/c/msgs.c, line: 988
+# File: src/c/msgs.c, line: 1329
+msgid "Warning:\n"
+msgstr "警告:\n"
+
+#
+# File: src/c/msgs.c, line: 516
+msgid "Warning:  Result may be inaccurate.\n"
+msgstr "警告:  計算結果可能不正確.\n"
+
+msgid ""
+"Warning: Jacobian external is given, but\n"
+" not used! See %ODEOPTIONS(6).\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1081
+msgid ""
+"Warning: No Jacobian external given but\n"
+" one is required by %ODEOPTIONS(6) value !\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 995
+msgid ""
+"Warning: Use of standard list to define typed structures\n"
+"          is obsolete. Use tlist.\n"
+msgstr ""
+"警告: 使用標準串列 (list) 以定義 typed structures\n"
+"          已過時。請用 Use tlist.\n"
+
+#
+# File: src/c/msgs.c, line: 1105
+msgid "Warning: function is already compiled.\n"
+msgstr ""
+
+msgid ""
+"Warning: integration not completed! Check tolerance parameters or step "
+"size.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1063
+msgid "Warning: integration up to tcrit.\n"
+msgstr ""
+
+msgid ""
+"Warning: loaded file has been created with a previous version of Scilab\n"
+"or you are trying to load a file saved on a different architecture.\n"
+msgstr "警告: 載入之檔案為舊版 Scilab 或不同硬體架構之 Scilab 版本所產生.\n"
+
+#
+# File: src/c/msgs.c, line: 548
+msgid "Warning: obsolete use of '=' instead of '=='.\n"
+msgstr "警告: 用法 '=' 已廢棄，改用 '=='.\n"
+
+msgid "Warning: obsolete use of eye, rand, or ones.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1093
+msgid ""
+"Warning: odedc forces itask=4 and handles\n"
+" tcrit.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1243
+#, c-format
+msgid "Warning: primitive function %s has moved.\n"
+msgstr "警告: 基本函數 (primitive function) %s 已移除.\n"
+
+#
+# File: src/c/msgs.c, line: 1263
+#, c-format
+msgid "Warning: primitive function %s is now a Scilab function.\n"
+msgstr "警告: 基本函數 (primitive function) %s 現在已是 Scilab 函數.\n"
+
+msgid "Warning: recursion problem..., cleared.\n"
+msgstr ""
+
+msgid "Warning: stack problem..., cleared.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 1057
+#, c-format
+msgid "Warning: variable %%ODEOPTIONS not found.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 337
+#, c-format
+msgid "Wrong argument %d.\n"
+msgstr "錯誤參數 %d.\n"
+
+#
+# File: src/c/errmsg.c, line: 300
+msgid "Wrong file name.\n"
+msgstr "檔名錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 285
+# File: src/c/errmsg.c, line: 333
+msgid "Wrong first argument.\n"
+msgstr "第一參數錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 289
+#, c-format
+msgid "Wrong input argument %d.\n"
+msgstr "參數 %d 錯誤.\n"
+
+msgid "Wrong number of input arguments:\n"
+msgstr ""
+
+msgid ""
+"Wrong number of input arguments: This function has no input argument.\n"
+msgstr ""
+
+msgid "Wrong number of output arguments\n"
+msgstr ""
+
+msgid ""
+"Wrong number of output arguments: This function has no output argument.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 638
+#, c-format
+msgid "Wrong size for argument %d.\n"
+msgstr "參數 %d 長度錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 448
+msgid "Wrong size for argument: Incompatible dimensions.\n"
+msgstr "參數之長錯誤: 維度不匹配.\n"
+
+#
+# File: src/c/errmsg.c, line: 1188
+#, c-format
+msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為稀疏矩陣滿矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 678
+#, c-format
+msgid ""
+"Wrong type for argument %d: A system in state space or transfer matrix form "
+"expected.\n"
+msgstr "參數 %d 型態錯誤: 應為以狀態空間或轉換函數定義之系統.\n"
+
+#
+# File: src/c/errmsg.c, line: 1172
+#, c-format
+msgid "Wrong type for argument %d: Boolean or scalar expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為 Boolean 或純量.\n"
+
+#
+# File: src/c/errmsg.c, line: 1182
+#, c-format
+msgid "Wrong type for argument %d: Handle to sparse lu factors expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為稀疏矩陣之 lu 分解之 handle.\n"
+
+#
+# File: src/c/errmsg.c, line: 658
+#, c-format
+msgid "Wrong type for argument %d: In continuous time expected.\n"
+msgstr "參數 %d 型態錯誤: 應為連續時間型態.\n"
+
+#
+# File: src/c/errmsg.c, line: 663
+#, c-format
+msgid "Wrong type for argument %d: In discrete time expected.\n"
+msgstr "參數 %d 型態錯誤: 應為離散時間型態.\n"
+
+#
+# File: src/c/errmsg.c, line: 648
+#, c-format
+msgid "Wrong type for argument %d: In state space form expected.\n"
+msgstr "參數 %d 型態錯誤: 應為狀態空間.\n"
+
+#
+# File: src/c/errmsg.c, line: 407
+#, c-format
+msgid "Wrong type for argument %d: List expected.\n"
+msgstr "輸入參數 %d 之型態錯誤: 應為串列 (list).\n"
+
+#
+# File: src/c/errmsg.c, line: 839
+#, c-format
+msgid ""
+"Wrong type for argument %d: Named variable not an expression expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為已命名之變數而非運算式.\n"
+
+#
+# File: src/c/errmsg.c, line: 653
+#, c-format
+msgid "Wrong type for argument %d: Rational matrix expected.\n"
+msgstr "參數 %d 型態錯誤: 應為有理矩陣 (Rational matrix).\n"
+
+#
+# File: src/c/errmsg.c, line: 387
+#, c-format
+msgid "Wrong type for argument %d: Real matrix expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為實數矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 668
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
+msgstr "參數 %d 型態錯誤: 應為 SISO 型態.\n"
+
+#
+# File: src/c/errmsg.c, line: 1177
+#, c-format
+msgid "Wrong type for argument %d: Sparse matrix of scalars expected.\n"
+msgstr "參數 %d 之型態錯誤: 應為純量之稀疏矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 177
+#, c-format
+msgid "Wrong type for argument %d: Square matrix expected.\n"
+msgstr "參數 %d 型態錯誤: 應為方陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 402
+#, c-format
+msgid "Wrong type for argument %d: String expected.\n"
+msgstr "輸入參數 %d 之型態錯誤: 應為字串.\n"
+
+#
+# File: src/c/errmsg.c, line: 643
+#, c-format
+msgid "Wrong type for argument %d: Transfer matrix expected.\n"
+msgstr "參數 %d 型態錯誤: 應為轉移函數.\n"
+
+#
+# File: src/c/errmsg.c, line: 173
+msgid "Wrong type for first argument: Square matrix expected.\n"
+msgstr "第一參數型態錯誤: 應為方陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 1260
+msgid "Wrong type for first input argument: Single string expected.\n"
+msgstr "第一參數型態錯誤:  應為單一字串.\n"
+
+#
+# File: src/c/errmsg.c, line: 397
+#, c-format
+msgid "Wrong type for input argument %d: Polynomial expected.\n"
+msgstr "輸入參數 %d 之型態錯誤: 應為多項式.\n"
+
+#
+# File: src/c/errmsg.c, line: 392
+#, c-format
+msgid "Wrong type for input argument %d: Real or complex matrix expected.\n"
+msgstr "輸入參數 %d 之型態錯誤: 應為實數或複數矩陣.\n"
+
+#
+# File: src/c/errmsg.c, line: 828
+#, c-format
+msgid "Wrong value for argument %d.\n"
+msgstr "參數 %d 數值錯誤.\n"
+
+#
+# File: src/c/errmsg.c, line: 1369
+#, c-format
+msgid "Wrong value for argument %d: Empty string expected.\n"
+msgstr "參數 %d 數值錯誤 : 應為空字串.\n"
+
+#
+# File: src/c/errmsg.c, line: 1440
+#, c-format
+msgid "Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr "參數 %d 數值錯誤 : 應不含 NaN 或 Inf.\n"
+
+#
+# File: src/c/errmsg.c, line: 1364
+#, c-format
+msgid "Wrong value for argument %d: Valid variable name expected.\n"
+msgstr "參數 %d 數值錯誤 : 應為合法之變數名稱.\n"
+
+#
+# File: src/c/errmsg.c, line: 1470
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues modulus must be less than one.\n"
+msgstr "參數 %d 數值錯誤 : 特徵值之模 (modulus) 應小於 1.\n"
+
+#
+# File: src/c/errmsg.c, line: 1465
+#, c-format
+msgid ""
+"Wrong value for argument %d: eigenvalues must have negative real parts.\n"
+msgstr "參數 %d 數值錯誤 : 特徵值之實部應為負.\n"
+
+#, c-format
+msgid "Wrong value for argument %d: the lu handle is no more valid.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1300
+msgid "You cannot link more functions, maxentry reached.\n"
+msgstr "無法再聯結更多函數， 已達最高數 maxentry .\n"
+
+#
+# File: src/c/msgs.c, line: 883
+msgid "Your global variables are...\n"
+msgstr "你的全域變數為...\n"
+
+#
+# File: src/c/msgs.c, line: 799
+msgid "Your variables are:\n"
+msgstr "你的變數為:\n"
+
+#
+# File: src/c/msgs.c, line: 591
+#, c-format
+msgid "at last iteration f decreases by less than %s.\n"
+msgstr "最後之迭代 f 之減少小於 %s.\n"
+
+#
+# File: src/c/errmsg.c, line: 973
+#, c-format
+msgid "check or define function %s for overloading.\n"
+msgstr "檢查或定義函數 %s 以便重載 (overloading).\n"
+
+#
+# File: src/c/msgs.c, line: 530
+msgid "computing least squares solution. (see lsq).\n"
+msgstr "計算最小二乘解. (參考 lsq).\n"
+
+#
+# File: src/c/msgs.c, line: 541
+msgid "eigenvectors are badly conditioned.\n"
+msgstr "特徵向量之條件不佳.\n"
+
+#
+# File: src/c/errmsg.c, line: 1480
+msgid "endfunction is missing.\n"
+msgstr "缺 endfunction 指令.\n"
+
+#
+# File: src/c/errmsg.c, line: 537
+#, c-format
+msgid "for x=val with type(val)=%d  is not implemented in Scilab.\n"
+msgstr "for x=val 其中 type(val)=%d  尚未於 Scilab 中實作 (implemented).\n"
+
+#
+# File: src/c/msgs.c, line: 1087
+msgid ""
+"itask=2,3 or 5: At most one value of t\n"
+" is allowed, the last element of t is used.\n"
+msgstr ""
+
+#
+# File: src/c/msgs.c, line: 526
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr "矩陣近於奇異 (singular) 或者各方向尺度調整 (scaled) 不佳. rcond = %s\n"
+
+#
+# File: src/c/errmsg.c, line: 344
+#, c-format
+msgid "null matrix (argument # %d).\n"
+msgstr "空 (null) 矩陣  (第 # %d 參數).\n"
+
+msgid "poly: variable name must be lesser than 5 characters long.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 1242
+#, c-format
+msgid "reference to the cleared global variable %s.\n"
+msgstr "參考到已清空之全域變數  %s .\n"
+
+#
+# File: src/c/msgs.c, line: 542
+#, c-format
+msgid "results may be inaccurate. rcond = %s\n"
+msgstr "計算結果可能不正確. rcond = %s\n"
+
+#
+# File: src/c/errmsg.c, line: 1255
+msgid "semi def fails.\n"
+msgstr "不滿足半正定條件.\n"
+
+#
+# File: src/c/msgs.c, line: 647
+#, c-format
+msgid ""
+"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr "sfact : 未完全收斂,相對精度為 : 10**(%s).\n"
+
+#
+# File: src/c/errmsg.c, line: 152
+msgid "stack size exceeded!\n"
+msgstr "堆疊長度超過!\n"
+
+#
+# File: src/c/msgs.c, line: 1051
+msgid "stepsize not significant in rkqc.\n"
+msgstr ""
+
+#
+# File: src/c/errmsg.c, line: 374
+#, c-format
+msgid "subroutine not found: %s\n"
+msgstr "副函式 (subroutine) 找不到: %s\n"
+
+#
+# File: src/c/errmsg.c, line: 673
+#, c-format
+msgid "time domain of argument %d is not defined.\n"
+msgstr "參數 %d 的時間域未定義.\n"
+
+#
+# File: src/c/errmsg.c, line: 1495
+msgid "varargout keyword cannot be used here.\n"
+msgstr "此處克可使用保留字 varargout.\n"
+
+#
+# File: src/c/errmsg.c, line: 419
+#~ msgid "Function has no input argument...\n"
+#~ msgstr "沒有輸入參數的函數...\n"
+
+#
+# File: src/c/errmsg.c, line: 423
+#~ msgid "Wrong number of arguments in function call...\n"
+#~ msgstr "函數呼叫時參數數目錯誤...\n"
+
+#
+# File: src/c/errmsg.c, line: 435
+#~ msgid "Function has no output.\n"
+#~ msgstr "沒有輸出結果的函數...\n"
+
+#
+# File: src/c/errmsg.c, line: 439
+#~ msgid "Incorrect # of outputs in the function\n"
+#~ msgstr "函數之輸出參數數目錯誤\n"
+
+#
+# File: src/c/errmsg.c, line: 478
+#~ msgid "No more logical units available!\n"
+#~ msgstr "邏輯單元已用完!\n"
+
+#
+# File: src/c/errmsg.c, line: 488
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "嚴重錯誤!!! 你的變數曾經存在檔案 : %s 內\n"
+#~ "是否錯誤呼叫 scilab 函數 ?\n"
+#~ "否則, 請交問題回報給 :\n"
+
+#
+# File: src/c/errmsg.c, line: 633
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: 奇異或非對稱問題.\n"
+
+#
+# File: src/c/errmsg.c, line: 929
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: 此法未實做 (implemented).\n"
+
+#
+# File: src/c/errmsg.c, line: 1198
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr "稀疏矩陣之實體是由兩個不同數值定義.\n"
+
+#
+# File: src/c/errmsg.c, line: 1327
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr "二元直接存取檔 (Binary direct acces files)  必須以 'file' 開啟.\n"
+
+#
+# File: src/c/errmsg.c, line: 1419
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s:  colocation 矩陣為奇異.\n"
+
+#
+# File: src/c/errmsg.c, line: 1430
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr "全域變數太多! , 最高數為 %d.\n"
+
+#
+# File: src/c/errmsg.c, line: 1435
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr "寫入檔案時錯誤,(硬碟已滿或檔案已清除.\n"
+
+#
+# File: src/c/msgs.c, line: 555
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "警告: 用法  eye rand或 ones 已廢棄.\n"
+
+#
+# File: src/c/msgs.c, line: 562
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "矩陣秩缺陷. rank = %d\n"
+
+#
+# File: src/c/msgs.c, line: 1165
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "所選擇之方塊之輸入/輸出埠 (ports)太多.\n"
+
+#
+# File: src/c/msgs.c, line: 1171
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "所選擇之方塊之輸入/輸出實體(entries)太多.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr "%s: Wrong number of input arguments: at least %d expected.\n"

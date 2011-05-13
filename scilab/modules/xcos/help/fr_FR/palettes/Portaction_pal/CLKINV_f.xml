@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="CLKINV_f" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+
+  <refnamediv>
+    <refname>CLKINV_f</refname>
+    <refpurpose>Port d'entrée d'activation</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/CLKINV_f.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_CLKINV_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="CLKINV_f">Port d'entrée d'activation</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_CLKINV_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_CLKINV_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_CLKINV_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_CLKINV_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_CLKINV_f">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Interfacingfunction_CLKINV_f">Fonction d'interfaçage</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Seealso_CLKINV_f">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_CLKINV_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_CLKINV_f">
+    <title>Palettes</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Portaction_pal">Palette Ports &amp; Sous-systèmes</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Sources_pal">Palette Sources</link>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <link linkend="Events_pal">Palette Gestion d'événements</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_CLKINV_f">
+    <title>Description</title>
+    <para>
+      Ce bloc représente une port d'entrée d'évènement. Il doit être utilisé uniquement à l'intérieur d'un Super bloc Xcos et être
+      connecté à un port d'entrée d'activation dans le sous-système.
+    </para>
+    <para>
+      Ce bloc est une liaison d'événement d'un système dans un sous-système. Dans un Super bloc, les ports d'entrée d'événement
+      doivent être numérotés de 1 au nombre total d'entrées d'événements du Super bloc. Chaque numéro d'entrée d'activation doit
+      être unique et défini avec le paramètre <emphasis role="bold">Port number</emphasis>.
+    </para>
+  </refsection>
+
+  <refsection id="Dialogbox_CLKINV_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/portaction_pal/fr_FR/CLKINV_f_gui.png" align="center" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Port number</emphasis>
+        </para>
+        <para> Un entier définissant le numéro de port.</para>
+        <para> Propriétés : Type 'vec' de taille 1.</para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_CLKINV_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 1</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">input</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_CLKINV_f">
+    <title>Exemple</title>
+
+    <para>
+      Dans cet exemple nous créons un genérateur d'onde carrée avec deux sorties inverses l'une de l'autre.
+      en utilisant un bloc SUPER_f avec le contenu décrit par la figure suivante, dans laquelle vous pouvez voir
+      l'utilisation du bloc CLKINV_f comme entrée d'événement du générateur d'onde carrée. 
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/portaction_pal/fr_FR/CLKINV_f_fr_FR.xcos">
+        Ouvrir cet exemple dans Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/fr_FR/clkinv_f_superbloc_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+    <para>
+    <para />
+      La figure suivante montre la sortie du Super bloc :
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/portaction_pal/fr_FR/clkinv_f_diagram_fr_FR.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
+  <refsection id="Interfacingfunction_CLKINV_f">
+    <title>Fonction d'interfaçage</title>
+    <itemizedlist>
+      <listitem>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/CLKINV_f.sci">SCI/modules/scicos_blocks/macros/Sources/CLKINV_f.sci</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection role="see also" id="Seealso_CLKINV_f">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="CLKOUTV_f">CLKOUTV_f</link>
+      </listitem>
+      <listitem>
+        <link linkend="SUPER_f">SUPER_f</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Authors_CLKINV_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

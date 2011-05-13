@@ -23,7 +23,7 @@
     <synopsis>[A,b]=aff2ab(afunction,dimX,D [,flag])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>afunction</term>
@@ -124,8 +124,8 @@ Xsol=vec2list(Xf+KerAf*rand(q,1),dimX);
 C=Xsol(:); A*C-C*A
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="linsolve">linsolve</link>

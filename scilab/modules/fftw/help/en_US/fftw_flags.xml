@@ -35,7 +35,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -188,8 +188,8 @@ fftw_flags(["FFTW_MEASURE";"FFTW_CONSERVE_MEMORY"]);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="fftw">fftw</link></member>

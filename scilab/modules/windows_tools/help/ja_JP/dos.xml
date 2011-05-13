@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="dos">
+  <info>
+    <pubdate>$LastChangedDate: 2006-12-13 10:29:16 +0200 (ven., 13 decembre 2006)$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>dos</refname>
+    <refpurpose>シェル (cmd) コマンド実行 (Windows専用)</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>bOK=dos(command-name)
+bOK=dos(command-name,'-echo')
+[output,bOK]=dos(command-name)
+[output,bOK,exitcode]=dos(command-name)
+[output,bOK]=dos(command-name,'-echo')
+[output,bOK,exitcode]=dos(command-name,'-echo')</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>コマンドシェルで実行するために
+	コマンド名の文字列をWindowsに送信します.
+	シェルコマンドの標準出力および標準エラーが呼び出し側のシェルに
+	書き込まれます.
+	コマンドが実行された場合は, bOK が返されます.</para>
+    <para>[output,bOK] = dos(command-name,'-echo') は,
+	出力先が特定の変数へ割り付けられている場合でも
+	コマンドウインドウへの出力を強制的に行ないます.</para>
+    <para>外部プロセスによる終了コードの値が返されます.</para>
+    
+    <para>
+	ノートパッドエディタをオープンした後,すぐに
+	Scilabに制御を戻すには以下のようにします:
+    dos('start notepad')</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+[s,w] = dos('dir');
+[s,w] = dos('dir','-echo');
+dos('start notepad')
+dos('taskkill /IM notepad.exe') // 注意:このコマンドは全てのノートパッドのプロセスを終了します
+[s, w] = dos('foo')
+[s, w, code] = dos('dir')
+[s, w, code] = dos('foo')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="unix">unix</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>A.C.</member>
+    </simplelist>
+  </refsection>
+</refentry>

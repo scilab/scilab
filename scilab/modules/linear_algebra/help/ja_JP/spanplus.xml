@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="spanplus">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>spanplus</refname>
+    <refpurpose> 部分空間の合計</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[X,dim,dima]=spanplus(A,B[,tol])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A, B</term>
+        <listitem>
+          <para>同数の行を有する実数または複素数の行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>X</term>
+        <listitem>
+          <para>直交またはユニタリ正方行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>dim, dima</term>
+        <listitem>
+          <para>整数, 部分空間の次元</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>非負の実数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	基底Xは以下を計算します:</para>
+    <para>
+	<literal>X</literal>の最初の<literal>dima</literal>列は,
+	range(<literal>A</literal>)に展開されます.
+	そして,これ以降の(<literal>dim-dima</literal>)列は,
+	<literal>A+B</literal> の<literal>A</literal>に関する
+	基底を構成します.</para>
+    <para>
+	<literal>X</literal>の最初の<literal>dim</literal>列は,
+	<literal>A+B</literal>の基底を構成します.</para>
+    <para>
+	<literal>[A,B]</literal>に関する以下の正準形式が定義されます:</para>
+    <programlisting role = ""><![CDATA[ 
+         [*,*]    (dima 行)
+X'*[A,B]=[0,*]    (dim-dima 行)
+         [0,0]    
+ ]]></programlisting>
+    <para><literal>tol</literal> は
+	オプションの引数です(関数のコードを参照).</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+A=rand(6,2)*rand(2,5);      // rank(A)=2
+B=[A(:,1),rand(6,2)]*rand(3,3);   //独立なベクトル2つを追加
+[X,dim,dimA]=spanplus(A,B);
+dimA
+dim
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="spaninter">spaninter</link>
+      </member>
+      <member>
+        <link linkend="im_inv">im_inv</link>
+      </member>
+      <member>
+        <link linkend="spantwo">spantwo</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>F. D.; ;   </para>
+  </refsection>
+</refentry>

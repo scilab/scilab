@@ -23,7 +23,7 @@
     <synopsis>p=jre_path()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>p</term>
@@ -37,8 +37,8 @@
     <title>Description</title>
     <para>returns Java Runtime Environment used by Scilab.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="system_getproperty">system_getproperty</link>

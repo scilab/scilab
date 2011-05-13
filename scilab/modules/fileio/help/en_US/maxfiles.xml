@@ -24,7 +24,7 @@
     <synopsis>r= maxfiles(newnumbermax)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>newnumbermax</term>
@@ -53,8 +53,8 @@
 r=maxfiles(50);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mopen">mopen</link>

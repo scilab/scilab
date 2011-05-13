@@ -1,0 +1,290 @@
+# Catalan translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-04-10 19:18+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
+msgstr "%s: Els arguments #%d i #%d han de tenir la mateixa mida.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
+"less than argument #%d.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: L'argument #%d ha "
+"de ser menor que el #%d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix grau.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir el "
+"mateix nombre d'elements.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d són incompatibles: Han de tenir la "
+"mateixa mida.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: L'argument d'entrada #%d ha de ser un nombre real.\n"
+
+#, c-format
+msgid "%s: Too abrupt change near end of frequency range.\n"
+msgstr ""
+"%s: Hi ha un canvi massa abrupte prop del final del rang de freqüències.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
+"%d elements.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un sistema "
+"d'entrada simple i sortida simple.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"alta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  Linear dynamical system or row "
+"vector of floats expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sistema "
+"dinàmic lineal o un vector fila de decimals amb coma flotant.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de decimals amb coma flotant.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
+"de fraccions racionals.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és incorrecte: Ha de ser a l'interval [%s, "
+"%s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
+"d'aquests {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Distance between Max and Min "
+"elements must be greater than %g.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: La distància entre els "
+"elements mínim i màxim ha de ser major que %g.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Els elements han d'estar "
+"en ordre decreixent.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Els elements han de ser "
+"a l'interval [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Els elements han de ser "
+"positius.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: Han de ser nombres "
+"enters no-negatius.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: La mostra no és prou "
+"gran.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: The first element must be %s and "
+"the last %s.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: El primer element ha de "
+"ser %s, i l'últim, %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té valors incorrectes: ha de tenir el grau "
+"{%s}.\n"
+
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
+msgid "Arma identification"
+msgstr "Identificació Arma"
+
+msgid "Arma simulation and identification"
+msgstr ""
+
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+msgid "Arma, bidimensional version"
+msgstr ""
+
+msgid "Bode plots"
+msgstr ""
+
+msgid "Discrete IIR filter"
+msgstr ""
+
+msgid "IIR filter design"
+msgstr ""
+
+msgid "Identification ARX (least square):"
+msgstr ""
+
+msgid "Identification ARX (least square): "
+msgstr ""
+
+msgid "Minimax FIR filter"
+msgstr ""
+
+msgid "Minimax FIR filter design"
+msgstr ""
+
+msgid "Press Return to continue ... \n"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr "Processat de senyal"
+
+msgid "Simulation of an ARMAX process:"
+msgstr ""
+
+msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+msgid "Spectral Estimation"
+msgstr ""
+
+msgid "Spectral power"
+msgstr "Espectre de potència"
+
+msgid "Theoretical value"
+msgstr "Valor teòric"
+
+msgid "Using macro mese"
+msgstr "S'està utilitzant la macro mese"
+
+msgid "Wiegner filter"
+msgstr ""
+
+msgid "Window FIR filters"
+msgstr ""
+
+msgid "estimates xf"
+msgstr "estima xf"
+
+msgid "estimates xs"
+msgstr "estima xs"
+
+msgid "frequency"
+msgstr "freqüència"
+
+msgid "length 33"
+msgstr ""
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr ""
+
+msgid "real state"
+msgstr "estat real"
+
+msgid "spectral estimate"
+msgstr "espectre estimat"
+
+#~ msgid "Theoritical value"
+#~ msgstr "Valor teòric"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "Identificació Arma"

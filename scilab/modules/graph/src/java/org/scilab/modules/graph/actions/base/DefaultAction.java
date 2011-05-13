@@ -99,8 +99,16 @@ public abstract class DefaultAction extends CallBack {
 			/*
 			 * Getting icon from the registered icon path
 			 */
-			final String iconName = (String) getClass().getField("SMALL_ICON").get(null);
+			String iconName = (String) getClass().getField("SMALL_ICON").get(null);
 			if (iconName != null && !iconName.isEmpty()) {
+				// TODO: manage icons according to http://live.gnome.org/ThemableAppSpecificIcons
+				
+				// add default extension of no-one set
+				if (iconName.lastIndexOf('.') == -1) {
+					iconName = iconName + ".png";
+				}
+				
+				// get the existing icon path
 				for (String path : ICON_PATH) {
 					if (new File(path + iconName).isFile()) {
 						icon = path + iconName;
@@ -182,10 +190,8 @@ public abstract class DefaultAction extends CallBack {
 				.getAsSimplePushButton();
 		swingItem.setAction(action);
 
-		// Not compatible with java 1.5
-		// Hide the name text
-		// swingItem.setHideActionText(true);
-		swingItem.setText("");
+		// Hide the text on buttons
+		swingItem.setHideActionText(true);
 
 		return item;
 	}

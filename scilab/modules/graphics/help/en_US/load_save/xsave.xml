@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="xsave">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>xsave</refname>
+    <refpurpose>save graphics into a
+  file</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>xsave(filename,[win_num])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>file_name</term>
+        <listitem>
+          <para>string, name of the file.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>win_num</term>
+        <listitem>
+          <para>integer, the graphics window number. If not given, the current
+          graphics window is used.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>xsave</literal> saves the graphics contained in the graphics window
+    <literal>win_num</literal> in the binary file <literal>file_name</literal>. and can be
+    reloaded with <literal>xload</literal>.</para>
+    <para>Since  Scilab 5.0, all <link linkend="uimenu">uimenu</link> or <link linkend="uicontrol">uicontrol</link> handles are also saved.
+    </para>
+    <para>For graphics <literal>xsave(file_name,win_num)</literal> use preferabily
+    <literal>save(file_name,scf(win_num))</literal>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+t=0:0.01:10;
+subplot(211),plot2d(t,sin(t))
+subplot(212),plot2d(t,sin(3*t))
+save(TMPDIR+'/foo.scg',gcf())
+clf()
+load(TMPDIR+'/foo.scg')
+   
+a=gca();
+curve=a.children.children; //handle on the curve
+save(TMPDIR+'/foo.scg',curve)
+delete(curve)
+load(TMPDIR+'/foo.scg')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="xload">xload</link>
+      </member>
+      <member>
+        <link linkend="save">save</link>
+      </member>
+      <member>
+        <link linkend="load">load</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

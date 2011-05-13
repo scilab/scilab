@@ -1,0 +1,750 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 19:07+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: %s format not recognized.\n"
+msgstr "%s: %s formato no reconocido.\n"
+
+#, c-format
+msgid "%s: An error occurred in %s: errno=%s\n"
+msgstr "%s: Ocurrió un error en %s: errno=%s\n"
+
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr "%s: Ha ocurrido un error.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: A ocurrido un error: %s\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgstr ""
+"%s: Ocurrió un error: El campo %d es muy largo (< %d) para la directiva "
+"%%c.\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgstr ""
+"%s: Ocurrió un error: El campo %d es muy largo (< %d) para la directiva "
+"%%s.\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgstr ""
+"%s: Ocurrió un error: El campo %d es muy largo (> %d) para la directiva %%[ "
+".\n"
+
+#, c-format
+msgid "%s: An error occurred: format is too long (> %d).\n"
+msgstr "%s: Ocurrió un error: El formato es muy largo (> %d).\n"
+
+#, c-format
+msgid "%s: An error occurred: too many (> %d) conversion required.\n"
+msgstr "%s: Ocurrió un error: demasiados (> %d) se requiere conversión.\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
+msgstr ""
+"%s: No se puede cerrar archivo cuyo descriptor es %d: El archivo no está "
+"activo.\n"
+
+#, c-format
+msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
+msgstr ""
+"%s: No se puede cerrar archivo cuyo descriptor es %d: No hay archivo para "
+"cerrar.\n"
+
+#, c-format
+msgid "%s: Cannot go to directory %s\n"
+msgstr "%s: No se puede ir al directorio %s\n"
+
+#, c-format
+msgid "%s: Cannot go to directory.\n"
+msgstr "%s: No se puede ir al directorio.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No se puede abrir el archivo %s.\n"
+
+#, c-format
+msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
+msgstr ""
+"%s: No se pudo leer el archivo cuyo descriptor es %d: El archivo no está "
+"activo.\n"
+
+#, c-format
+msgid ""
+"%s: Could not extend the number of files simultaneously open in Scilab.\n"
+msgstr ""
+"%s: No se puede extender el número de archivos abiertos simultáneamente en "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Data mismatch.\n"
+msgstr "%s: Los datos no coinciden.\n"
+
+#, c-format
+msgid "%s: Error while opening, reading or writing '%s'.\n"
+msgstr "%s: Error durante la carga, lectura o escritura '%s'.\n"
+
+#, c-format
+msgid "%s: Error while opening, reading or writing.\n"
+msgstr "%s: Error durante la carga, lectura o escritura.\n"
+
+#, c-format
+msgid ""
+"%s: Error while trying to retrieve the name of the current directory.\n"
+msgstr ""
+"%s: Error mientras se intentaba obtener el nombre del directorio actual.\n"
+
+#, c-format
+msgid "%s: Incorrect format.\n"
+msgstr "%s: Formato incorrecto.\n"
+
+#, c-format
+msgid "%s: Invalid conversion.\n"
+msgstr "%s: Conversión inválida.\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr "%s: Formato inválido.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de asignación de memoria.\n"
+
+#, c-format
+msgid "%s: No File opened in Scilab.\n"
+msgstr "%s: Ningún archivo abierto en Scilab.\n"
+
+#, c-format
+msgid "%s: No input file associated to logical unit %d.\n"
+msgstr "%s: No hay archivo de entrada asociado a la unidad lógica %d.\n"
+
+#, c-format
+msgid "%s: No input file.\n"
+msgstr "%s: No hay archivo de entrada.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria insuficiente.\n"
+
+#, c-format
+msgid "%s: No such file %s.\n"
+msgstr "%s: El archivo %s no existe.\n"
+
+#, c-format
+msgid "%s: Options ignored.\n"
+msgstr "%s: Opciones ignoradas.\n"
+
+#, c-format
+msgid "%s: Specified format cannot include any '\\n'\n"
+msgstr "%s: El formato especificado no incluye ningún '\\n'\n"
+
+#, c-format
+msgid "%s: The file %s is not opened in scilab.\n"
+msgstr "%s: El archivo %s no está abierto en scilab.\n"
+
+#, c-format
+msgid "%s: Too many directives in scanf.\n"
+msgstr "%s: Muchas directivas en scanf.\n"
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr "%s: ¡Demasiados archivos abiertos!\n"
+
+#, c-format
+msgid ""
+"%s: Warning : only extend the limit for the number of scilab's files opened "
+"simultaneously.\n"
+msgstr ""
+"%s: Advertencia : solo extienda el número límite de archivos de Scilab "
+"abiertos simultáneamente.\n"
+
+#, c-format
+msgid "%s: Warning: Directory '%s' already exists.\n"
+msgstr "%s: Advertencia: El directorio '%s' ya existe.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Specified maximum number of files (%d) > Absolute maximum "
+"number of files allowed (%d).\n"
+msgstr ""
+"%s: Advertencia: El número máximo especificado de archivos (%d) > número "
+"máximo absoluto de archivos permitidos (%d).\n"
+
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: Descriptor de archivo incorrecto: %d.\n"
+
+#, c-format
+msgid "%s: Wrong file mode: READ only.\n"
+msgstr "%s: Modo de archivo incorrecto: Solo LECTURA.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de salida.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Número incorrecto de argumentos de salida: Se esperaban %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d ('%s'): Se esperaba un "
+"string no-vacío.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Tamaño incorrecto para el argumento de entrada #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un arreglo "
+"de A 1-by-n o m-by-1.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"descriptor de archivo.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un nombre de "
+"archivo.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un arreglo "
+"de mx1.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Debe tener menos de %d "
+"caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz no-"
+"vacía de strings.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string o "
+"unidad lógica.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument: Scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una cadena de "
+"caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un descriptor "
+"de archivo.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A filename or file descriptor "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un nombre o un "
+"descriptor de archivo.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero o "
+"una cadena.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"números flotantes.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real values expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaban valores "
+"reales.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
+"string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumento de entrada #%d: Se esperaba un string o "
+"unidad lógica.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: se esperaba un entero o un "
+"string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumento de entrada: Se esperaba una matriz.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgstr ""
+"%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d (%s): Se esperaba '%s' o "
+"'%s' o '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d ('%s'): Formato "
+"desconocido.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: '%s' no es una ruta "
+"válida.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s' o '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s' o "
+"'%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''w'' or ''u'' string expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba el string "
+"''w'' o ''u''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: Se esperaba un "
+"string.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un descriptor "
+"de archivo válido.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid filename or directory "
+"expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba un nombre de "
+"archivo o un directorio.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Formato no reconocido.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe ser ''%s''.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument: no empty string expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada: No se esperaba un string "
+"vacío.\n"
+
+#, c-format
+msgid "%s: Wrong value(s) for input argument(s).\n"
+msgstr "%s: valor(es) incorrecto(s) de argumento(s) de entrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong variable type (%s) found in ''%s''. File may be wrong or "
+"corrupted.\n"
+msgstr ""
+"%s: Variables de tipo (%s) incorrecto encontradas en ''%s''. El archivo "
+"puede ser erróneo o corrupto.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s: no se puede abrir el archivo %s.\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s: no se puede leer el archivo %s.\n"
+
+#, c-format
+msgid "%s: end of input reached before final conversion.\n"
+msgstr ""
+"%s: se llegó al fin de la entrada antes de terminar la conversión final.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: error.\n"
+
+#, c-format
+msgid "%s: format is of 0 length.\n"
+msgstr "%s: el formato es de longitud 0.\n"
+
+#, c-format
+msgid "%s: invalid filename %s.\n"
+msgstr "%s: nombre de archivo invalido %s.\n"
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr "%s: nombre de archivo inválido.\n"
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr "%s: estado inválido.\n"
+
+#, c-format
+msgid "%s: unknown format %s.\n"
+msgstr "%s: formato desconocido %s.\n"
+
+msgid "A file with the same name already exists in "
+msgstr "Ya existe un archivo con el mismo nombre en "
+
+msgid "Bad conversion."
+msgstr "Mala conversión."
+
+msgid "Can't get current directory.\n"
+msgstr "No se puede obtener el directorio actual.\n"
+
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr "No se puede ir al directorio %s.\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr "No se puede ir al directorio %s: %s\n"
+
+msgid "Impossible to create directory "
+msgstr "Imposible crear el directorio "
+
+msgid "Invalid buffer.\n"
+msgstr "Buffer inválido.\n"
+
+msgid "No input file\n"
+msgstr "No hay archivo de entrada\n"
+
+msgid "Not enough entries."
+msgstr "No hay suficientes entradas."
+
+msgid "This directory already exists in "
+msgstr "El directorio ya existe en "
+
+msgid "Unknown error.\n"
+msgstr "Error desconocido.\n"
+
+#, c-format
+msgid "Warning: Could not open directory %s: %s\n"
+msgstr "Advertencia: No se pudo abrir el directorio %s: %s\n"
+
+#, c-format
+msgid "Warning: Could not remove directory %s: %s\n"
+msgstr "Advertencia: No se pudo quitar el directorio %s: %s\n"
+
+#, c-format
+msgid "Warning: Could not remove file %s: %s\n"
+msgstr "Advertencia: No se pudo quitar el archivo %s: %s\n"
+
+#, c-format
+msgid "Warning: Error while opening %s: %s\n"
+msgstr "Advertencia: Error abriendo %s: %s\n"
+
+#, c-format
+msgid "Warning: file '%s' already opened in Scilab.\n"
+msgstr "Advertencia: El archivo '%s' ya está abierto en Scilab.\n"
+
+msgid "unclosed [ directive."
+msgstr "directiva [ no cerrada"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' or ''%s'' "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba ''%s'' o "
+#~ "''%s'' o ''%s''.\n"
+
+#, c-format
+#~ msgid "%s: Destination directory %s does not exist or is unreadable.\n"
+#~ msgstr "%s: Directorio de destino %s no existe o no es legible.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: %s expected.\n"
+#~ msgstr "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments.\n"
+#~ msgstr "%s: Número incorrecto de argumentos de entrada.\n"
+
+#, c-format
+#~ msgid "%s: Source directory %s does not exist or is unreadable.\n"
+#~ msgstr "%s: El directorio de fuentes %s no existe o no es legible.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument: Must be less than %d characters.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto de argumento de entrada: Debe tener menos de %d "
+#~ "caracteres.\n"
+
+#, c-format
+#~ msgid "%s: Cannot open file '%s'.\n"
+#~ msgstr "%s: No se puede abrir el archivo '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Cannot read data in file '%s'.\n"
+#~ msgstr "%s: No se pueden leer los datos del archivo '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
+#~ msgstr ""
+#~ "%s: Número incorrecto de argumentos de entrada: Los datos no entran en el "
+#~ "formato.\n"
+
+#~ msgid "Buffer too small."
+#~ msgstr "Buffer muy pequeño."
+
+#, c-format
+#~ msgid "%s: Not enough arguments.\n"
+#~ msgstr "%s: No hay suficientes argumentos.\n"
+
+#, c-format
+#~ msgid "%s: Bad conversion 'l' or 'h' flag mixed with 's' directive.\n"
+#~ msgstr ""
+#~ "%s: Mala conversión la bandera 'l' o 'h' se mezcla con la directiva 's'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
+#~ msgstr "%s: Número incorrecto de argumentos de entrada: Debe ser > 0.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value of input argument %d: data doesn't fit with format.\n"
+#~ msgstr ""
+#~ "%s: Valor incorrecto del argumento de entrada %d: Los datos no entran en el "
+#~ "formato.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "El formato 'o' no está permitido."
+
+#, c-format
+#~ msgid "%s: Bad conversion 'l' or 'h' flag mixed with 'c' directive.\n"
+#~ msgstr ""
+#~ "%s: Mala conversión la bandera 'l' o 'h' se mezcla con la directiva 'c'.\n"
+
+#, c-format
+#~ msgid "%s: Source file %s does not exist or unable to access.\n"
+#~ msgstr "%s: El archivo fuente %s no existe o no se puede tener acceso.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument: A string expected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto de argumento de entrada: Se esperaba un string.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+#~ msgstr ""
+#~ "%s: Número incorrecto de argumentos de entrada: Se esperaban a lo sumo %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A filename or file descriptor "
+#~ "nexpected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un nombre de "
+#~ "archivo, o un descriptor.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Error de asignación de memoria.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A integer or string expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero o "
+#~ "una cadena.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A valid format expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto de argumento de entrada #%d: Se esperaba un formato "
+#~ "válido.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d ('%ls'): A valid filename or "
+#~ "directory expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorrecto del argumento de entrada #%d ('%ls'): Se esperaba un "
+#~ "nombre de archivo o un directorio.\n"

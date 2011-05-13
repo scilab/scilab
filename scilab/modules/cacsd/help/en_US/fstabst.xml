@@ -23,7 +23,7 @@
     <synopsis>[J]=fstabst(P,r)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P</term>
@@ -85,8 +85,8 @@ K=lft(J,r,Q);
 A=h_cl(P,r,K); spec(A)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="obscont">obscont</link>

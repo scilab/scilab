@@ -1,7 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer <Serge.Steer@scilab.org>
 //
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
 mode(-1)
 exec SCI/modules/differential_equations/demos/levitron/levitron.sci;

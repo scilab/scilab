@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="milk_drop">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>milk_drop</refname>
+    <refpurpose> représentation d'une goutte de lait  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>z=milk_drop(x,y)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y  </term>
+        <listitem>
+          <para>deux vecteurs lignes de taille n1 et n2.
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>z  </term>
+        <listitem>
+          <para>matrice de taille (n1,n2).
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>milk_drop</literal> est une fonction représentant la surface d'une goutte de lait
+    tombant dans du lait. Elle peut être utilisée pour tester les fonctions <literal>eval3d</literal> et <literal>plot3d</literal>.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+x=-2:0.1:2; y=x;
+z=eval3d(milk_drop,x,y);
+plot3d(x,y,z)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="eval3d">eval3d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>Steer S.  </para>
+  </refsection>
+</refentry>

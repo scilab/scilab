@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_ExistArray(arrayname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>arrayname</term>
@@ -65,8 +65,8 @@ TCL_ExistVar("A")
 TCL_ExistArray("A")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

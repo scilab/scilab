@@ -24,7 +24,7 @@
     <synopsis>fprintf(file,format,value_1,..,value_n)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>format</term>
@@ -97,8 +97,8 @@ file('close',u) //close the result file
 fprintf(0,'My error which is going to be displayed on the stderr') 
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mfprintf">mfprintf</link>

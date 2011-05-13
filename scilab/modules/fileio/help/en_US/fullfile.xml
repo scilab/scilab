@@ -24,7 +24,7 @@
     <synopsis>f = fullfile(varargin)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varargin</term>
@@ -52,8 +52,8 @@ f=fullfile("/home/","\scilab","macros","\util","fullfile.sci")
 f=fullfile("C:","\scilab","macros","\util","fullfile.sci")
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pathconvert">pathconvert</link>

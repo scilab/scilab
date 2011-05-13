@@ -109,15 +109,15 @@ public class IndentManager {
             getNums(lineStart - 1, ind);
             if (lineStart > 0) {
                 scanner.getIndentLevel(elem.getElement(lineStart - 1).getStartOffset(), level);
-                tabs[0] = ind[1] + level[1];
+                tabs[0] = ind[1] + level[1] * num;
             }
 
             for (int lineNumber = 0; lineNumber <= lineEnd - lineStart; lineNumber++) {
                 int pos = elem.getElement(lineNumber + lineStart).getEndOffset() - 1;
                 scanner.getIndentLevel(pos, level);
-                tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0], 0);
+                tabs[lineNumber] = Math.max(tabs[lineNumber] - level[0] * num, 0);
                 if (lineNumber != lineEnd - lineStart) {
-                    tabs[lineNumber + 1] = tabs[lineNumber] + level[1];
+                    tabs[lineNumber + 1] = tabs[lineNumber] + level[1] * num;
                 }
             }
 
@@ -136,8 +136,9 @@ public class IndentManager {
                     e = t;
                 }
                 doc.getText(t, e - t, seg);
+                ret[0] = start;
                 if (e > t + 1) {
-                    char[] str = new char[tabs[lineNumber - lineStart] * num];
+                    char[] str = new char[tabs[lineNumber - lineStart]];
                     for (int i = 0; i < str.length; i++) {
                         str[i] = indentChar;
                     }

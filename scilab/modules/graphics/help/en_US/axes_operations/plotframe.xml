@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="plotframe" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (Wed, 26 Mar 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>plotframe</refname>
+
+    <refpurpose>plot a frame with scaling and grids. <emphasis
+    role="bold">This function is obsolete.</emphasis></refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>plotframe(rect,tics,[arg_opt1,arg_opt2,arg_opt3])
+plotframe(rect,&lt;opts_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Arguments</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>vector <literal>[xmin,ymin,xmax,ymax]</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>tics</term>
+
+        <listitem>
+          <para>vector <literal>[nx,mx,ny,my]</literal> where <literal>mx,
+          nx</literal> (resp. <literal>my, ny</literal>) are the number of
+          x-axis (resp. y-axis) intervals and subintervals.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arg_optX</term>
+
+        <listitem>
+          <para>optional arguments up to three and choosen among.</para>
+
+          <variablelist>
+            <varlistentry>
+              <term>flags</term>
+
+              <listitem>
+                <para>vector <literal>[wantgrids,findbounds]</literal> where
+                <literal>wantgrids</literal> is a boolean variable
+                (<literal>%t</literal> or <literal>%f</literal>) which
+                indicates gridding. <literal>findbounds</literal> is a boolean
+                variable. If <literal>findbounds</literal> is
+                <literal>%t</literal>, the bounds given in
+                <literal>rect</literal> are allowed to be slightly modified
+                (in fact always increased) in order to have simpler
+                graduations: then <literal>tics(2)</literal> and
+                <literal>tics(4)</literal> are ignored.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>Captions</term>
+
+              <listitem>
+                <para>vector of 3 strings
+                <literal>[title,x-leg,y-leg]</literal> corresponding
+                respectively to the title of the plot and the captions on the
+                x-axis and the y-axis. Warning: the upper-case "C" is important.</para>
+              </listitem>
+            </varlistentry>
+
+            <varlistentry>
+              <term>subwin</term>
+
+              <listitem>
+                <para>a vector of size 4 defining the sub window. The sub
+                window is specified with the parameter
+                <literal>subwin=[x,y,w,h]</literal> (upper-left, width,
+                height). The values in <literal>subwin</literal> are specified
+                using proportion of the width or height of the current
+                graphics window (see <literal>xsetech</literal>).</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opts_args&gt;</term>
+
+        <listitem>
+          <para>This represents a sequence of statements <emphasis
+          role="bold">key1=value1</emphasis>,<emphasis role="bold">
+          key2=value2</emphasis>,... where <emphasis
+          role="bold">key1</emphasis>, <emphasis
+          role="bold">key2</emphasis>,... can be one of the following:
+          <emphasis role="bold">tics</emphasis>, <emphasis
+          role="bold">flags</emphasis>, <emphasis
+          role="bold">captions</emphasis> ou <emphasis
+          role="bold">subwin</emphasis>. These arguments have the same meaning
+          as the ones used in the first form of the routine.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>plotframe</literal> is used with 2D plotting functions
+    <link linkend="plot2d">plot2d</link>, <link
+    linkend="plot2d1">plot2d1</link>,... to set a graphics frame. It must be
+    used before <literal>plot2d</literal> which should be invoked with the
+    "000" superposition mode.</para>
+
+    <para><emphasis role="bold">This function is obsolete.</emphasis></para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[-0.3:0.8:27.3]';
+y=rand(x);
+rect=[min(x),min(y),max(x),max(y)];
+tics=[4,10,2,5];    //4 x-intervals and 2 y-intervals
+plotframe(rect,tics,[%f,%f],["My plot","x","y"],[0,0,0.5,0.5])
+plot2d(x,y,2,"000")
+plotframe(rect,tics=tics,flags=[%t,%f],Captions=["My plot with grids","x","y"],subwin=[0.5,0,0.5,0.5])
+plot2d(x,y,3,"000")
+plotframe(rect,tics,[%t,%t],..
+["My plot with grids and automatic bounds","x","y"],[0,0.5,0.5,0.5])
+plot2d(x,y,4,"000")
+plotframe(rect,flags=[%f,%t],tics=tics,..
+          Captions=["My plot without grids but with automatic bounds ","x","y"],..
+          subwin=[0.5,0.5,0.5,0.5])
+plot2d(x,y,5,"000")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>See Also</title>
+
+    <simplelist type="inline">
+      <member><link linkend="plot2d">plot2d</link></member>
+
+      <member><link linkend="graduate">graduate</link></member>
+
+      <member><link linkend="xsetech">xsetech</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

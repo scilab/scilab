@@ -23,7 +23,7 @@
     <synopsis>lc=lstcat(l1,..ln)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>li</term>
@@ -52,8 +52,8 @@ lstcat(list(1,2,3),33,list('foo',%s))
 lstcat(1,2,3)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="list">list</link>

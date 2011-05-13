@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="asind" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>asind</refname>
+
+    <refpurpose>sinus inverse des éléments de l'argument, résultats exprimés
+    en degrés</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>t=asind(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Paramètres</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>Tableau réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>t</term>
+
+        <listitem>
+          <para>Tableau réel ou complexe.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Description</title>
+
+    <para>Les éléments de <literal>t</literal> sont les sinus inverses des
+    éléments correspondants de <literal>x</literal>. Pour des valeurs réelles
+    dans <literal>[-1, 1]</literal>, les résulats sont réels et dans
+    <literal>[-90 90]</literal>.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+x=[-1 0 1 sqrt(2)/2 -sqrt(2)/2 sqrt(3)/2 -sqrt(3)/2];
+asind(x)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="sin">sin</link></member>
+
+      <member><link linkend="sinm">sind</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

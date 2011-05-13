@@ -17,7 +17,7 @@ RGB = uigetcolor([title,] defaultRed, defaultGreen, defaultBlue)
     </synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>title</term>
@@ -88,8 +88,8 @@ RBG = uigetcolor(0, 128, 255)
 RBG = uigetcolor("My color chooser", 0, 128, 255)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="getcolor">getcolor</link>

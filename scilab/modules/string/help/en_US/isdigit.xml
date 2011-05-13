@@ -23,7 +23,7 @@
     <synopsis>res = isdigit(str)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str</term>
@@ -53,8 +53,8 @@ s = 'A1,B2,C3';
 isdigit(s)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="isalphanum">isalphanum</link>

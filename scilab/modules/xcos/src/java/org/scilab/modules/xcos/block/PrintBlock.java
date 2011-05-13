@@ -13,12 +13,15 @@
 
 package org.scilab.modules.xcos.block;
 
-import org.scilab.modules.types.scilabTypes.ScilabString;
-import org.scilab.modules.types.scilabTypes.ScilabType;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
 
 /**
  * A {@link BasicBlock} which print getExprs()[0][0] as bloc value.
+ * 
+ * @deprecated prefer using "displayedLabel" = "%s" style property. 
  */
+@Deprecated
 public class PrintBlock extends BasicBlock {
 	private final String format;
 	

@@ -187,9 +187,9 @@ helptxt = [
 "<?xml version=""1.0"" encoding=""UTF-8""?>"
 ""
 "<!--"
-" * "
+" *"
 " * This help file was generated from "+out+".sci using help_from_sci()."
-" * "
+" *"
 " -->"
 ""
 "<refentry version=""5.0-subset Scilab"" xml:id="""+out+""" xml:lang=""en"""
@@ -289,7 +289,14 @@ while (~isempty(stripblanks(line)) & ~meof(f)) & ~isempty(regexp(stripblanks(lin
       end
       helptxt = [helptxt; in];
     elseif doing == "See also" & convstr(in, "u") ~= "SEE ALSO" & ~isempty(stripblanks(in)) then
-      helptxt = [helptxt; "   <member><link linkend=""" + in + """>" + in + "</link></member>"];
+      str = stripblanks(in);
+      i = strindex(str, " ");
+      if i <> [] then
+          str = stripblanks(strsplit(str, i(1)));
+      else
+          str = [str str];
+      end
+      helptxt = [helptxt; "   <member><link linkend=""" + str(1) + """>" + str(2) + "</link></member>"];
     elseif doing == "Authors" & convstr(in, "u") ~= "AUTHORS" & ~isempty(stripblanks(in)) then
       [name, ref] = chop(in, ";");
       if isempty(ref) then

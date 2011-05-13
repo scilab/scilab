@@ -23,7 +23,7 @@
     <synopsis>[Z,U]=zeropen(Sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Sl</term>
@@ -58,8 +58,8 @@ U*[-sI+A |B;   [ Z |0;
     <para>
     The zeros of <literal>Z</literal> are the zeros of <literal>Sl</literal>.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="systmat">systmat</link>

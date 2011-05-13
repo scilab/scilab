@@ -76,7 +76,7 @@ int C2F(sci_exit)(char *fname,unsigned long fname_len)
 
 		if (*pdVarOne != (double)iExit)
 		{
-			Scierror(999,_("%s: Wrong value for input argument #%d: A integer expected.\n"),fname,1);
+			Scierror(999,_("%s: Wrong value for input argument #%d: An integer expected.\n"),fname,1);
 			return 0;
 		}
 

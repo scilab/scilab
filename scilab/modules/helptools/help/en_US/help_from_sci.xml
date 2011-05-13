@@ -36,7 +36,7 @@ help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.d
 </refsynopsisdiv>
 
 <refsection>
-   <title>Parameters</title>
+   <title>Arguments</title>
    <variablelist>
    <varlistentry><term>funname:</term>
       <listitem><para> the name of a single .sci source file to be processed.</para></listitem></varlistentry>
@@ -122,8 +122,8 @@ help_from_sci('test_fun','.','.')
  ]]></programlisting>
 </refsection>
 
-<refsection>
-   <title>See also</title>
+<refsection role="see also">
+<title>See Also</title>
    <simplelist type="inline">
    <member><link linkend="help">help</link></member>
    <member><link linkend="help_skeleton">help_skeleton</link></member>

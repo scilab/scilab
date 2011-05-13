@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="for">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>for</refname>
+    <refpurpose> mot clé pour les structures de boucles  </refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+    Utilisé pour spécifier une boucle. La syntaxe est la suivante :
+  </para>
+    <para>
+      <literal>for variable=expression ,instruction,   ,instruction,end</literal>
+    </para>
+    <para>
+      <literal>for variable=expression do instruction,   ,instruction,end</literal>
+    </para>
+    <para>
+    Si <literal>expression</literal> est une matrice ou un vecteur ligne, <literal>variable</literal>
+    prend successivement les valeurs de chaque colonne de la matrice.
+  </para>
+    <para>
+    Un exemple utile : <literal>for variable=n1:pas:n2,  ...,end</literal>
+  </para>
+    <para>
+    Si <literal>expression</literal> est une liste, <literal>variable</literal> prend comme valeurs successives les termes de la liste.
+  </para>
+    <para>
+    Attention : le nombre de caractères constituant le corps d'une instruction conditionnelle (if while for ou select/case) est limité à 16k.
+  </para>
+    <para>
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+// "traditional" for loops
+n=5;
+for i = 1:n
+    for j = 1:n
+        a(i,j) = 1/(i+j-1);
+    end;
+end
+for j = 2:n-1
+    a(j,j) = j; 
+end; 
+a
+for j= 4:-1:1
+    disp(j);
+end // decreasing loop
+
+//loop on matrix columns
+for  e=eye(3,3), e, end  
+for v=a, write(6,v), end
+for j=1:n, v=a(:,j), write(6,v), end 
+
+//loop on list entries
+for l=list(1,2,'example'); l, end 
+
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="while">while</link>
+      </member>
+      <member>
+        <link linkend="end">end</link>
+      </member>
+      <member>
+        <link linkend="do">do</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

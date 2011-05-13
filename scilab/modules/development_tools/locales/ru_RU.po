@@ -1,0 +1,216 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-24 22:23+0000\n"
+"Last-Translator: Nkolay Parukhin <parukhin@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s не является установленным модулем"
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s не является установленным модулем или набором инструментов"
+
+#, c-format
+msgid "%s: Assertion failed: expected = %s while computed = %s"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error message = %s while computed error "
+"message = %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Assertion failed: expected error number = %d while computed error number "
+"= %d."
+msgstr ""
+
+#, c-format
+msgid "%s: Assertion failed: found false entry in condition = %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot close file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Computed is complex, but expected is real."
+msgstr ""
+
+#, c-format
+msgid "%s: Computed is real, but expected is complex."
+msgstr ""
+
+#, c-format
+msgid "%s: Error while formatting the error message: %s"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected %d columns in input argument #%d, but found %d columns instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые входные параметры №%d и №%d: ожидались одинаковые "
+"размеры.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No error was produced while evaluating %s."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The content of computed file %s is different from the content of "
+"reference file %s."
+msgstr ""
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: Файл %s не существует.\n"
+
+#, c-format
+msgid ""
+"%s: The number of output arguments %d do not match the number of input "
+"arguments %d."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr ""
+"%s: Неверный первый входной параметр: ожидался файл с расширением .dia."
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected."
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: Неверный размер входного параметра."
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип параметра %d: ожидалась матрица логических значений.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалось неотрицательно целое "
+"число.\n"
+
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "Нет переменной %s_ref в файле ссылок"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "Тест не пройден. См.: diff -wu  %s"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "Тест не пройден. См.: fc /L /N  %s"
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "Тест не пройден: обнаружена ошибка во время исполнения %s"
+
+msgid "Test passed"
+msgstr "Тест пройден"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "Файл ссылок (%s) не существует"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "Тест %s недоступен из модуля %s"
+
+msgid "error : Input argument sizes are not valid"
+msgstr "Ошибка: неверные размеры входных параметров"
+
+#, c-format
+#~ msgid "The test %s is not available from the %s toolbox"
+#~ msgstr "Тест %s недоступен из набора инструментов %s"
+
+#, c-format
+#~ msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
+#~ msgstr "%s: Тест «%s» не существует или нет прав доступа на чтение.\n"
+
+#~ msgid "Generating loader.sce...\n"
+#~ msgstr "Формируется loader.sce...\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидался %s.\n"

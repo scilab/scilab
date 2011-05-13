@@ -21,12 +21,12 @@
 //    the first case the conversion fails without errors, in the second case 
 //    an error appears and a message suggests to report here the error.
 
-MFILE         = TMPDIR+"/bug2428.m"
-SCIFILE       = TMPDIR+"/bug2428.sci"
+MFILE         = TMPDIR+"/bug2428.m";
+SCIFILE       = TMPDIR+"/bug2428.sci";
 MFILECONTENTS = ["function bug2428";
     "global gui_settings";
     "i = 1;";
-    "a = gui_settings.pn_mem{i}"]
+    "a = gui_settings.pn_mem{i}"];
 
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);

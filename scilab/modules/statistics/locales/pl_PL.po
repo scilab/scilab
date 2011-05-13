@@ -1,0 +1,457 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:12+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid " Std must not be zero\n"
+msgstr " Std nie może być zerem.\n"
+
+#, c-format
+msgid "%s and %s must have same size.\n"
+msgstr "%s i %s muszą mieć ten sam rozmiar.\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s: Wykres poza granicami.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano przynajmniej %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych z opcją '%s': Oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr ""
+"%s: Zły rozmiar obu parametrów wejściowych: Oczekiwano tego samego "
+"rozmiaru.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje tego "
+"samego rozmiaru.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Musi być > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany drugi "
+"argument wejściowy o takiej samej liczbie kolumn.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany drugi "
+"argument wejściowy o takiej samej liczbie wierszy.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwany rozmiar "
+"%s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje "
+"takich samych wymiarów.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wartości "
+"logicznej."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wartości "
+"liczbowych.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora liczb "
+"rzeczywistych lub macierzy.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje liczby skalarnej "
+"lub wektora.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora, "
+"macierzy liczbowej lub ciągów znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje liczb.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego: Oczekuje liczb.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość %d argumentu wejściowego: Oczekuje ''%s'', ''%s'', "
+"%d lub %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwana '%s', "
+"'%s' lub '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', "
+"'%s', '%s' lub '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje '%s', '%s', "
+"'%s', '%s' lub '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: oczekiwany ''%s'' lub "
+"''%s'' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje ''%s'', "
+"''%s'', %d lub %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje ''%s'', "
+"''%s'', ''%s'', %d lub %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje ''%s'', "
+"''%s'', ''%s'' lub liczby dodatniej.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: ''%s'', "
+"''%s'',''%s'', %d  lub %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: musi być pomiędzy %d "
+"i %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje liczb "
+"rzeczywistych z przedziału %d do %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje taką samą "
+"liczbę kolumn jak pierwszy argument wejściowy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje taką samą "
+"liczbę wierszy jak pierwszy argument wejściowy.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego: Oczekuje ''%s'', ''%s'', %d "
+"lub %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość argumentu wejściowego nr %d: Oczekuje mniejszej "
+"lub równej wartości długości ostatniego argumentu.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgstr "%s: Nieprawidłowa wartość w : %d; Oczekiwano 0 lub 1\n"
+
+msgid "A,B,P and Q"
+msgstr "A,B,P i Q"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %f\n"
+msgstr "Odpowiedź jest większa niż górna granica wyszukiwania %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr "Wynik przekracza górną granicę wyszukiwania %s\n"
+
+#, c-format
+msgid "Answer appears to be lower than lowest search bound %f\n"
+msgstr "Odpowiedź jest mniejsza niż dolna granica wyszukiwania %f\n"
+
+msgid "B,P,Q,X and Y"
+msgstr "B,P,Q,X i Y"
+
+msgid "Correlations Circle"
+msgstr "Koło korelacyjne"
+
+msgid "Df, P and Q"
+msgstr "Df, P i Q"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df,Pnonc,P i Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd,P,Q i F"
+
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr "Dfd,Pnonc,P,Q i F"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn,Dfd,P i Q"
+
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr "Dfn,Dfd,Pnonc,P i Q"
+
+msgid "Eigenvalues (in percent)"
+msgstr "Wartości własne (w procentach)"
+
+msgid "F,Dfn and Dfd"
+msgstr "F,Dfn i Dfd"
+
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr "F,Dfn,Dfd i Pnonc"
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr "Zachowuje wartość %i  z %i do %i  w uporządkowanej klasyfikacji\n"
+
+msgid "Mean,Std,P and Q"
+msgstr "Mean,Std,P i Q"
+
+msgid "P,Q and S"
+msgstr "P,Q i S"
+
+msgid "P,Q and T"
+msgstr "P,Q i T"
+
+msgid "P,Q and X"
+msgstr "P,Q i X"
+
+msgid "P,Q,F and Dfn"
+msgstr "P,Q,F i Dfn"
+
+msgid "P,Q,F,Dfn and Dfd"
+msgstr "P,Q,F,Dfn i Dfd"
+
+msgid "P,Q,S  and Xn"
+msgstr "P,Q,S i Xn"
+
+msgid "P,Q,S and Xn"
+msgstr "P,Q,S i Xn"
+
+msgid "P,Q,X and Df"
+msgstr "P,Q,X i Df"
+
+msgid "P,Q,X and Mean"
+msgstr "P,Q,X i Średnia"
+
+msgid "P,Q,X and Shape"
+msgstr "P,Q,X i Kształt"
+
+msgid "P,Q,X,Y and A"
+msgstr "P,Q,X,Y i A"
+
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR,OMPR,P,Q i S"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc,P,Q i X"
+
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr "Pnonc,P,Q,F i Dfn"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr,OMPr,P,Q i S"
+
+msgid "Rate,P,Q and X"
+msgstr ""
+
+msgid "S and Xlam"
+msgstr "S oraz Xlam"
+
+msgid "S,XN,PR and OMPR"
+msgstr "S,XN,PR i OMPR"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S,Xn,Pr i Ompr"
+
+msgid "Shape,Rate,P and Q"
+msgstr ""
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr "Wymiar x jest zerem: zwraca NaN.\n"
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr "rozmiar x:%i\n"
+
+msgid "Std,P,Q and X"
+msgstr "Std,P,Q i X"
+
+msgid "T and Df"
+msgstr "T i Df"
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr "Nieoczekiwana wartość orien : %s\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr "Nieprawidłowa wartość argumentu wejściowego orien: %s.\n"
+
+msgid "X and Df"
+msgstr "X i Df"
+
+msgid "X,Df and Pnonc"
+msgstr "X,Df i Pnonc"
+
+msgid "X,Mean and Std"
+msgstr "X,Średnia i Std"
+
+msgid "X,Shape and Rate"
+msgstr ""
+
+msgid "X,Y,A and B"
+msgstr "X,Y,A i B"
+
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN,PR,OMPR,P i Q"
+
+msgid "Xlam,P and Q"
+msgstr "Xlam,P i Q"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn,Pr,Ompr,P i Q"
+
+msgid "cdfchi: Error in cumgam\n"
+msgstr "cdfchi: Błąd w cumgam\n"
+
+#, c-format
+msgid "discard=%s\n"
+msgstr "odrzucony=%s\n"
+
+#, c-format
+msgid "orien=%s\n"
+msgstr "orientacja=%s\n"
+
+#~ msgid "Scale,P,Q and X"
+#~ msgstr "Skalowanie,P,Q oraz X"
+
+#~ msgid "Shape,Scale,P and Q"
+#~ msgstr "Kształt ,Skala, P oraz Q"
+
+#, c-format
+#~ msgid ""
+#~ "Input argument %c is out of range.\n"
+#~ "Bound exceeded: %f\n"
+#~ msgstr ""
+#~ "Argument wejściowy %c jest poza przedziałem.\n"
+#~ "Przekroczenie związane z: %f\n"
+
+#~ msgid "X,Shape and Scale"
+#~ msgstr "X,Kształt i Skala"

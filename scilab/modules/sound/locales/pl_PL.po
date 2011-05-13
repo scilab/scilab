@@ -1,0 +1,190 @@
+# Polish translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-06-29 10:45+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Wystąpił błąd: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr "%s: Wystąpił błąd:% s błąd nie jest obsługiwany.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: Wystąpił błąd %s format kompresji danych nie jest obsługiwany.\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+"%s: Wystąpił błąd: niewłaściwy format pliku. Błąd podczas odczytu kawałka "
+"<%s>.\n"
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr "%s: Funkcje audio nie są dostępne.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Nie można otworzyć pliku %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Błąd przedzielania pamięci\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: Zły parametr wejściowy #%d: Oczekiwano '%s' lub '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Zła liczba parametrów(-u) wejściowych(-ego): Oczekiwano przynajmniej "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Zła liczba parametrów wejściowych: Oczekiwano od %d do %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: Zła liczba parametrów wyjściowych.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Niewłaściwy rozmiar argumentu wejściowego nr %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
+"znaków.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
+"vector of %d integers.\n"
+msgstr ""
+"%s: Zła wartość parametru wejściowego nr %d: Musi być %s lub %s, liczba "
+"całkowita lub %d-elementowy wektor liczb całkowitych.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or %d-element vector.\n"
+msgstr ""
+"%s: Zła wartość parametru wejściowego: Zakres indeksów musi być określony "
+"jako skalar lub %d-elementowy wektor.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: Zła wartość parametru wejściowego: Nazwa pliku musi być ciągiem znaków.\n"
+
+msgid ".wav file does not contain the RIFF identifier."
+msgstr "Plik .wav nie zawiera idektyfikatora RIFF."
+
+msgid ".wav file does not contain the wave identifier."
+msgstr "Plik .wav nie zawiera idektyfikatora wave."
+
+msgid "A complete picture of the sound."
+msgstr ""
+
+msgid "Cannot play file."
+msgstr "Nie można odtworzyć pliku."
+
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr ""
+"Nie można odczytać pliku .wav który posiada więcej niż 16 bitów na próbkę."
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "Tablica danych musi być 1 - lub 2-wymiarowa."
+
+msgid "Error reading .wav file."
+msgstr "Błąd odczytu pliku. WAV."
+
+msgid "Error reading <fact-ck> chunk."
+msgstr "Błąd podczas odczytu kawałka <fact-ck>."
+
+msgid "Error reading wav file."
+msgstr "Błąd odczytu pliku WAV."
+
+msgid "Error while writing sound file."
+msgstr "Błąd podczas zapisywania pliku dźwiękowego."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr ""
+
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "Nieprawidłowy rozmiar informacji kawałka w pliku typu RIFF."
+
+msgid "Invalid .wav file: found data before format information."
+msgstr "Niewłaściwy plik .wav: znaleziono dane przed informacja o formacie."
+
+msgid "Invalid sample limits (use ascending order)."
+msgstr "Niewłaściwe granice próbki (użyj kolejności rosnącej)."
+
+msgid "Invalid wav format."
+msgstr "Niewłaściwy format wav."
+
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr ""
+"Mu-law może być tylko użyte z danymi 8-śmio bitowymi. W zamian użyj "
+"method=''linear''."
+
+msgid "Requires 2-D values only."
+msgstr "Wymaga tylko wartości 2-D."
+
+msgid "Sample limit vector must have 2 entries."
+msgstr "Wektor granic próbki musi posiadać dwie wartości."
+
+msgid "Sample limits out of range."
+msgstr "Granice próbki poza zasięgiem."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Moduł dźwiękowy nie jest zainstalowany.\n"
+
+msgid "Unknown data format."
+msgstr "Nieznany format danych."
+
+msgid "Unrecognized data format."
+msgstr "Nierozpoznany format danych."
+
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "Kodowanie tylko 8/16/24/32 bitowe."
+
+msgid "see ''mapsound'' function"
+msgstr ""
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s : Błąd alokacji pamięci.\n"

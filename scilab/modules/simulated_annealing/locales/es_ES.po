@@ -1,0 +1,45 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 15:00+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: Temperature step %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best = "
+"%f\n"
+msgstr ""
+"%s: Paso de temperatura %d / %d - T = %f, E(f(T)) = %f var(f(T)) = %f f_best "
+"= %f\n"
+
+#, c-format
+msgid "%s: cit_f is mandatory"
+msgstr "%s: cit_f es obligatorio"
+
+#, c-format
+msgid "%s: error - wrong accept type"
+msgstr "%s: error - tipo de aceptación incorrecta"
+
+msgid "Please wait ..."
+msgstr "Por favor, espere ..."
+
+msgid "Simulated Annealing"
+msgstr "Recocido Simulado"
+
+msgid "Simulated Annealing and Ising problem"
+msgstr ""
+
+msgid "optim_sa: sa_f is mandatory"
+msgstr "optim_sa: sa_f es obligatorio"

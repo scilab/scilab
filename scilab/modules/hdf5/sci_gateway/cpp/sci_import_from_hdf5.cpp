@@ -48,6 +48,8 @@ static bool import_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char*
 static bool import_boolean_sparse(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 static bool import_poly(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 static bool import_list(int _iDatasetId, int _iVarType, int _iItemPos, int* _piAddress, char* _pstVarname);
+static bool import_void(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
+static bool import_undefined(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname);
 
 int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 {
@@ -113,26 +115,28 @@ int sci_import_from_hdf5(char *fname,unsigned long fname_len)
 
     int iNbItem = 0;
     iNbItem = getVariableNames(iFile, NULL);
-    char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
-    iNbItem = getVariableNames(iFile, pstVarNameList);
-
-    //import all data
-    for(int i = 0 ; i < iNbItem ; i++)
+    if(iNbItem != 0)
     {
-        int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
-        if(iDataSetId == 0)
-        {
-            return 0;
-        }
+        char** pstVarNameList = (char**)MALLOC(sizeof(char*) * iNbItem);
+        iNbItem = getVariableNames(iFile, pstVarNameList);
 
-        bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
-        if(bImport == false)
+        //import all data
+        for(int i = 0 ; i < iNbItem ; i++)
         {
-            break;
-        }
+            int iDataSetId = getDataSetIdFromName(iFile, pstVarNameList[i]);
+            if(iDataSetId == 0)
+            {
+                return 0;
+            }
 
+            bImport = import_data(iDataSetId, 0, NULL, pstVarNameList[i]);
+            if(bImport == false)
+            {
+                break;
+            }
+
+        }
     }
-
     //close the file
     closeHDF5File(iFile);
 
@@ -211,17 +215,70 @@ static bool import_data(int _iDatasetId, int _iItemPos, int* _piAddress, char* _
             bRet = import_boolean_sparse(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
             break;
         }
+    case sci_void : //void item only on list variable
+        {
+            bRet = import_void(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            break;
+        }
+    case sci_undefined : //undefined item only on list variable
+        {
+            bRet = import_undefined(_iDatasetId, _iItemPos, _piAddress, _pstVarname);
+            break;
+        }
     default : 
         {
+            Scierror(999,_("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
 #ifdef PRINT_DEBUG
-            char pstMsg[512];
-            sprintf(pstMsg, "Unknown type : %d", iVarType);
-            print_tree(pstMsg);
+            {
+                char pstMsg[512];
+                sprintf(pstMsg, "Unknown type : %d", iVarType);
+                print_tree(pstMsg);
+            }
 #endif
         }
     }
 
     return bRet;
+}
+
+static bool import_void(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+    SciErr sciErr;
+    if(_piAddress)
+    {
+        sciErr = createVoidInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos);
+    }
+    else
+    {
+        return false;
+    }
+
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return false;
+    }
+    return true;
+}
+
+static bool import_undefined(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)
+{
+    SciErr sciErr;
+    if(_piAddress)
+    {
+        sciErr = createUndefinedInNamedList(pvApiCtx, _pstVarname, _piAddress, _iItemPos);
+    }
+    else
+    {
+        return false;
+    }
+
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return false;
+    }
+    return true;
 }
 
 static bool import_double(int _iDatasetId, int _iItemPos, int* _piAddress, char* _pstVarname)

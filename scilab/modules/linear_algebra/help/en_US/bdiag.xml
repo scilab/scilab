@@ -23,7 +23,7 @@
     <synopsis>[Ab [,X [,bs]]]=bdiag(A [,rmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -85,8 +85,8 @@ a=rand(5,5);[ab,x,bs]=bdiag(a);ab
 [ab,x,bs]=bdiag(a+%i*0);ab
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="schur">schur</link>

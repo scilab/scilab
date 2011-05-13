@@ -107,13 +107,6 @@ y = besselh(alpha,K,x [,ice])</synopsis>
   <refsection>
     <title>Descrição</title>
 
-    <para>Aviso: a semântica destas funções varia entre o Scilab-3.0 e
-    Scilab-3.1. A semântica antiga está disponível para compatibilidade usando
-    as funções <link linkend="oldbesseli">oldbesseli</link>, <link
-    linkend="oldbesselj">oldbesselj</link>, <link
-    linkend="oldbesselk">oldbesselk</link>, <link
-    linkend="oldbessely">oldbessely</link>.</para>
-
     <itemizedlist>
       <listitem>
         <para><literal>besseli(alpha,x)</literal> computa as funções de Bessel

@@ -1,0 +1,203 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-12-03 05:24+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr "%s: сталася помилка: %s не підтримується.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: сталася помилка: формат стискання даних %s не підтримується.\n"
+
+#, c-format
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+"%s: сталася помилка: некоректний формат файла. Помилка читання фрагмента "
+"<%s>.\n"
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr "%s: не виявлено можливостей роботи зі звуком.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметра №%d: слід використовувати «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: помилкова кількість вихідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: помилкова кількість вихідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
+"vector of %d integers.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %s або "
+"%s, ціле число або вектор з %d цілих чисел.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or %d-element vector.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра: діапазон індексів слід визначати "
+"як скалярне значення або вектор з %d елементів.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr ""
+"%s: помилкові значення вхідних параметрів: назва файла має бути рядком.\n"
+
+msgid ".wav file does not contain the RIFF identifier."
+msgstr "Файл .wav не містить ідентифікатора RIFF."
+
+msgid ".wav file does not contain the wave identifier."
+msgstr "Файл .wav не містить ідентифікатора wave."
+
+msgid "A complete picture of the sound."
+msgstr "Повний образ звукових даних"
+
+msgid "Cannot play file."
+msgstr "Не вдалося відтворити файл."
+
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr "Читання файла .wav у форматі 16 бітів на семпл неможливе."
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "Масив даних може бути лише одно- або двовимірним."
+
+msgid "Error reading .wav file."
+msgstr "Помилка під час читання файла .wav."
+
+msgid "Error reading <fact-ck> chunk."
+msgstr "Помилка під час читання фрагмента <fact-ck>."
+
+msgid "Error reading wav file."
+msgstr "Помилка читання файла wav."
+
+msgid "Error while writing sound file."
+msgstr "Помилка під час спроби запису звукового файла."
+
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr "Аналіз за допомогою перетворення Фурьє 0,5 секунд звукових даних."
+
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "Помилкові дані щодо розмірів фрагмента у файлі RIFF."
+
+msgid "Invalid .wav file: found data before format information."
+msgstr ""
+"Некоректний файл .wav: виявлено дані поза межами відомостей про формат."
+
+msgid "Invalid sample limits (use ascending order)."
+msgstr "Некоректні межі семпла (слід впорядковувати за зростанням)."
+
+msgid "Invalid wav format."
+msgstr "Некоректний формат wav."
+
+msgid ""
+"Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr ""
+"Мю-закон можна використовувати лише для 8-бітових даних. Скористайтеся "
+"методом «linear»."
+
+msgid "Requires 2-D values only."
+msgstr "Можна використовувати лише двовимірні дані."
+
+msgid "Sample limit vector must have 2 entries."
+msgstr "Вектор обмеження семпла має складатися з двох записів 2."
+
+msgid "Sample limits out of range."
+msgstr "Межі семпла поза діапазоном."
+
+msgid "Scilab sound module not installed.\n"
+msgstr "Модуль роботи зі звуком (sound) Scilab не встановлено.\n"
+
+msgid "Unknown data format."
+msgstr "Невідомий формат даних."
+
+msgid "Unrecognized data format."
+msgstr "Не вдалося визначити формат даних."
+
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "лише 8/16/24/32 бітів для кодування."
+
+msgid "see ''mapsound'' function"
+msgstr "див. функцію «mapsound»"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Must be %s or %s , an integer or a "
+#~ "vector of %d integers.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати %s або "
+#~ "%s, ціле число або вектор з %d цілих чисел.\n"

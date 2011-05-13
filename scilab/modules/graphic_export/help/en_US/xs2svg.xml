@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2svg</refname>
 
-    <refpurpose>save graphics to a SVG file.</refpurpose>
+    <refpurpose>Export graphics to SVG.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,7 +35,7 @@ xs2svg(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -91,8 +91,8 @@ xs2svg(gcf(),'foo.svg');
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member>figure_size property</member>

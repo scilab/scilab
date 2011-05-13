@@ -22,7 +22,7 @@
     datatipToggle()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>fig</term>
@@ -57,8 +57,8 @@
     //now click somewhere on the curve
     ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="datatipManagerMode">datatipManagerMode</link>

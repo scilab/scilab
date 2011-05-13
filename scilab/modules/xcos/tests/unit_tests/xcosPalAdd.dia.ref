@@ -6,23 +6,22 @@
 //
 // <-- Short Description -->
 // White-box test for the xcosPalAdd macro.
-loadScicosLibs;
+loadXcosLibs();
+prot = funcprot();
+funcprot(0);
 // stub methods (white box)
 function [status, msg] = xcosPalExport(pal, path)
-	status = %t;
-	msg = "";
-	disp("export to " + path);
+    status = %t;
+    msg = "";
+    disp("export to " + path);
 endfunction
-Attention: redéfinition de la fonction: xcosPalExport           . Utilisez funcprot(0) pour éviter ce message
-
 function xcosPalLoad(pal, category)
-	if typeof(pal) <> "string" then bugmes();quit;end
-	if size(pal, '*') <> 1 then bugmes();quit;end
-	if typeof(category) <> "string" then bugmes();quit;end
-	if and([size(category, 'r') > 1, size(category, 'c') > 1]) then bugmes();quit;end
+    if typeof(pal) <> "string" then bugmes();quit;end
+    if size(pal, '*') <> 1 then bugmes();quit;end
+    if typeof(category) <> "string" then bugmes();quit;end
+    if and([size(category, 'r') > 1, size(category, 'c') > 1]) then bugmes();quit;end
 endfunction
-Attention: redéfinition de la fonction: xcosPalLoad             . Utilisez funcprot(0) pour éviter ce message
-
+funcprot(prot);
 // start of the test
 pal = xcosPal();
 pal = xcosPalAddBlock(pal, "SUM_f");

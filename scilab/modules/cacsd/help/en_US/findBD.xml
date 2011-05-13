@@ -20,11 +20,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),Y
-(,U,tol,printw,ldwork))</synopsis>
+    <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>jobx0</term>
@@ -309,8 +308,8 @@ Y1=flts(U,SYS1);
 clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inistate">inistate</link>

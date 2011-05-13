@@ -42,8 +42,8 @@ A=rand(4,4);B=A+A';X=signm(B);spec(B),spec(X)
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="sign">sign</link></member>

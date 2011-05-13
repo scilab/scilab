@@ -1,0 +1,359 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2010-07-18 05:40+0000\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"\n"
+"Density = %2.2lf%%.\n"
+msgstr ""
+"\n"
+"密度(Density) = %2.2lf%%.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest diagonal element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"最大的對角線元素( diagonal element) = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest element in matrix = %-1.4lg.\n"
+msgstr ""
+"\n"
+"最大的矩陣元素 = %-1.4lg.\n"
+
+#, c-format
+msgid ""
+"\n"
+"Largest pivot element = %-1.4lg.\n"
+msgstr ""
+"\n"
+"最大的 pivot element = %-1.4lg.\n"
+
+#, c-format
+msgid "     Absolute Threshold = %e\n"
+msgstr "     絕對的邊界值= %e\n"
+
+#, c-format
+msgid "     Average number of elements per row = %lf\n"
+msgstr "     每列元素的平均數 = %lf\n"
+
+#, c-format
+msgid "     Average number of fill-ins per row = %lf%%\n"
+msgstr "     每列fill-ins的平均數 = %lf%%\n"
+
+#, c-format
+msgid "     Density = %lf%%\n"
+msgstr "     密度(Density) = %lf%%\n"
+
+#, c-format
+msgid "     Fill-ins = %d\n"
+msgstr "     Fill-ins = %d\n"
+
+#, c-format
+msgid "     Initial average number of elements per row = %lf\n"
+msgstr "     每列元素啟始的數目 = %lf\n"
+
+#, c-format
+msgid "     Initial number of elements = %d\n"
+msgstr "     元素(elements)的起啟數字 = %d\n"
+
+#, c-format
+msgid "     Largest Element = %e\n"
+msgstr "     最大的元素( Element) = %e\n"
+
+#, c-format
+msgid "     Relative Threshold = %e\n"
+msgstr "     相對的臨界點= %e\n"
+
+#, c-format
+msgid ""
+"     Smallest Element = %e\n"
+"\n"
+"\n"
+msgstr ""
+"     最小的 Element = %e\n"
+"\n"
+"\n"
+
+#, c-format
+msgid "     Total number of elements = %d\n"
+msgstr "     elements的總數 = %d\n"
+
+#, c-format
+msgid "  Iteration #%s/%s residual : %s\n"
+msgstr "  迭代(Iteration) #%s/%s residual : %s\n"
+
+#, c-format
+msgid "  New residual = %s < tol = %s => break\n"
+msgstr ""
+
+#, c-format
+msgid "  Type of preconditionning #1 : %d\n"
+msgstr ""
+
+#, c-format
+msgid "  Type of preconditionning #2 : %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: A zero was encountered on the diagonal the matrix.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Convergence error.\n"
+msgstr "%s: 收歛有誤.\n"
+
+#, c-format
+msgid "%s: Did not converge.\n"
+msgstr "%s: 不收歛( converge).\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 至少 %d個才對.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤 : 至少應有 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as input argument #%d "
+"expected.\n"
+msgstr "%s: 第#%d個輸入參數長度有誤: 應和第 #%d個參數同長度才對\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為方陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤 : 應為列向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一方陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 變換函式(Transpose)%s才對.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 行向量(Column vector )才對.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Transpose of the function %s "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 變換函式(Transpose)%s才對.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
+msgstr "%s: 第 %d 輸入參數值錯誤: 向量( vector )才對.\n"
+
+#, c-format
+msgid "Algorithm fails\n"
+msgstr "演算法有誤\n"
+
+#, c-format
+msgid "Algorithm pass\n"
+msgstr "演算法成功\n"
+
+#, c-format
+msgid "Arguments:\n"
+msgstr "參數:\n"
+
+#, c-format
+msgid "Columns %1d to %1d.\n"
+msgstr "行 %1d 到 %1d.\n"
+
+#, c-format
+msgid "Final residual = %s > tol =%s\n"
+msgstr "最後剩餘(residual) = %s > tol =%s\n"
+
+#, c-format
+msgid ""
+"MATRIX SUMMARY\n"
+"\n"
+msgstr ""
+"矩陣總合( SUMMARY)\n"
+"\n"
+
+#, c-format
+msgid "Matrix after factorization:\n"
+msgstr "矩陣因式分解後\n"
+
+#, c-format
+msgid "Matrix before factorization:\n"
+msgstr "矩陣因式分解前\n"
+
+#, c-format
+msgid "Matrix has been reordered.\n"
+msgstr "矩陣已重排序\n"
+
+#, c-format
+msgid "Matrix has not been factored.\n"
+msgstr "矩陣還未因式分解\n"
+
+#, c-format
+msgid "Matrix is complex.\n"
+msgstr "Matrix 是複數(complex).\n"
+
+#, c-format
+msgid "Matrix is real.\n"
+msgstr "Matrix 是實數(real).\n"
+
+#, c-format
+msgid "Norm of right-hand side : %s\n"
+msgstr ""
+
+#, c-format
+msgid "Number of fill-ins = %1d.\n"
+msgstr ""
+
+#, c-format
+msgid "Operation count for inner loop of factorization = %d.\n"
+msgstr ""
+
+#, c-format
+msgid "Pivot found at %1d,%1d using "
+msgstr ""
+
+#, c-format
+msgid "Reordering,  Step = %1d\n"
+msgstr ""
+
+#, c-format
+msgid "Size of matrix = %1u x %1u.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest diagonal element = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest element in matrix = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Smallest pivot element = %-1.4lg.\n"
+msgstr ""
+
+#, c-format
+msgid "Special processing where the right-hand side is zero.\n"
+msgstr ""
+
+#, c-format
+msgid "Warning : The following matrix is factored in to LU form.\n"
+msgstr ""
+
+#, c-format
+msgid "sparse: panic in file `%s' at line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "|||  Starting new matrix  |||\n"
+msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr "%s: 第#%d個輸入參數長度有誤: 應和第 #%d個參數同長度才對"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"

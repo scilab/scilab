@@ -24,7 +24,7 @@
     <synopsis>mdelete(filename)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -43,8 +43,8 @@
     To avoid accidentally losing files, make sure that you have accurately specified the items you want deleted.
     </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mopen">mopen</link>

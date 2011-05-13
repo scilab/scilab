@@ -23,7 +23,7 @@
     <synopsis>[Bfs,Bis,chis]=glever(E,A [,s])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>E, A</term>
@@ -83,8 +83,8 @@ s=%s;F=[-1,s,0,0;0,-1,0,0;0,0,s-2,0;0,0,0,s-1];
 inv(F)-((Bfs/chis) - Bis)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rowshuff">rowshuff</link>

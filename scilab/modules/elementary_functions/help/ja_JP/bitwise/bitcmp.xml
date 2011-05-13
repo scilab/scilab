@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitcmp" 
+          xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>bitcmp</refname>
+    <refpurpose>ビット毎の補数</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+      y = bitcmp(x,n)
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数(uint8, uint16 または uint32)の
+	    m行n列行列.値は正の整数値である必要があります.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数(uint8, uint16 または uint32)の
+	    m行n列行列.
+	    入力<literal>n</literal>は 1,2,...,bitmax の範囲であることが
+	    必要です.
+	    ただし,bitmax は x の最大ビット数です.
+	    値は正の整数値である必要があります.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数のm行n列行列.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+    <para>
+      符合なし整数<literal>x</literal>を指定すると, この関数は
+      <literal>x</literal>の2進数形式の補数を値とする
+      符合なし整数を返します.
+    </para>
+
+    <para>
+      整数 <literal>n</literal> は最大ビット数を指定します.
+    </para>
+
+    <para>
+      <literal>x</literal>の2進数表現のビット数が bitmax の値 (8, 16 または 32)
+      よりも小さい場合, bitmax ビット (8, 16 または 32)の補数とするために
+      ビット '1' がこの補数に付加されます.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+    <programlisting role="example">
+      <![CDATA[
+// 13 is (1101)_2
+// We insert zeros in the begining to get a 8-bit number:
+// (00001101)_2
+// The 8-bits complement is then (11110010)_2
+// which is 242
+bitcmp(13,8)
+expected = 242
+
+// The input argument can be an unsigned int
+bitcmp(uint8(99),8)
+expected = 156
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+      <member>Copyright (C) 2008 - INRIA - Pierre MARECHAL</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

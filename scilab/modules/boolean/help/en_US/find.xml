@@ -24,7 +24,7 @@
 [i1,i2,..]=find(x [,nmax])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -87,8 +87,8 @@ H=rand(4,3,5); //an hypermatrix
 H(i(1),j(1),k(1))
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="boolean">boolean</link>

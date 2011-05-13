@@ -12,7 +12,7 @@
     <synopsis>[P,R,T]=faurre(n,H,F,G,R0)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>n</term>
@@ -64,8 +64,8 @@ P0=G*R0 *G'
     Note that this method may not converge,especially when F has poles
     near the unit circle. Use preferably the srfaur function.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="srfaur">srfaur</link>

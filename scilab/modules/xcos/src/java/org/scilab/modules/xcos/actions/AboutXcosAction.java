@@ -61,7 +61,7 @@ public class AboutXcosAction extends DefaultAction {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String[] contents = {
-				Xcos.TRADENAME + " - " + Xcos.VERSION,
+				Xcos.TRADENAME,
 				"",
 				XcosMessages.DIGITEO,
 				XcosMessages.COPYRIGHT_INRIA,

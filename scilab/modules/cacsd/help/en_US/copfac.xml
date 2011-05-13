@@ -23,7 +23,7 @@
     <synopsis>[N,M,XT,YT]=copfac(G [,polf,polc,tol])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>G</term>
@@ -60,8 +60,8 @@
     <para><literal>[XT -YT].[M N]' = eye</literal> (Bezout identity)</para>
     <para><literal>G</literal> is assumed stabilizable and detectable.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="syslin">syslin</link>

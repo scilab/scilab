@@ -70,7 +70,7 @@ val = optimget(options, key, value)
   </refsection>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -174,8 +174,8 @@ val = optimget(op, 'MaxF'); // val = 1000
     <para>Michael Baudin - Digiteo - 2009</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="optimset">optimset</link></member>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright 2011 Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="Annotations_pal" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>Annotations_pal</refname>
+
+    <refpurpose>Palette Annotations</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+
+    <para>
+    <inlinemediaobject>
+      <imageobject>
+        <imagedata linkend="TEXT_f" fileref="../../../../images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+      </imageobject>
+    </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Module_Annotations_pal">
+    <title>Module</title>
+
+    <itemizedlist>
+      <listitem>
+         <para><link linkend="xcos">xcos</link></para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_Annotations_pal">
+    <title>Description</title>
+
+    <para>Cette palette inclut les blocs utilisés pour les annotations.</para>
+  </refsection>
+
+  <refsection id="Blocks_Annotations_pal">
+    <title>Blocs</title>
+
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">TEXT_f - Annotation libre</link>
+        </para>
+      </listitem>
+
+    </itemizedlist>
+  </refsection>
+</refentry>

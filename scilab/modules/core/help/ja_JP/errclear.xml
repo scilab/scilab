@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="errclear">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>errclear</refname>
+    <refpurpose>エラーのクリア</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+    <synopsis>errclear([n])</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>説明</title>
+    <para>
+	<literal>n</literal>型のエラーに結合されたアクション(エラーハンドラ)
+	をクリアします.</para>
+    <para>
+    <literal>n</literal> が正の場合,クリアされるエラーの番号となります ;
+	それ以外の場合,全ての誤差がクリアされます (デフォルトの場合)</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="errcatch">errcatch</link>
+      </member>
+      <member>
+        <link linkend="iserror">iserror</link>
+      </member>
+      <member>
+        <link linkend="lasterror">lasterror</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

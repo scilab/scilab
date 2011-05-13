@@ -23,7 +23,7 @@
     <synopsis>[K,X,err]=leqr(P12,Vx)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>P12</term>
@@ -93,8 +93,8 @@ z|0   A'  0| - |-Q    I    -S|      s|0   I   0| - |-Q   -A'   -S |
  |0   B2' 0|   | S'   0     R|       |0   0   0|   | S'   -B2'   R|
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqr">lqr</link>

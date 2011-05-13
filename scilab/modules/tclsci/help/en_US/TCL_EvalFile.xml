@@ -24,7 +24,7 @@
     <synopsis>TCL_EvalFile(filename [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>filename</term>
@@ -93,8 +93,8 @@
 TCL_EvalFile(SCI+"/modules/tclsci/demos/tk/puzzle");
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

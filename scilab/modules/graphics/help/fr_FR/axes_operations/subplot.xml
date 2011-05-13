@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="subplot">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>subplot</refname>
+    <refpurpose> divise une fenêtre graphique en sous-fenêtres  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>subplot(m,n,p)
+subplot(mnp)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>m,n,p  </term>
+        <listitem>
+          <para>entiers positifs
+</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mnp  </term>
+        <listitem>
+          <para>un entier avec <literal>mnp</literal> comme notation décimale
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+    subplot(m,n,p) ou subplot(mnp) divise la fenêtre graphique courante
+    en une matrice m x n matrice de sous fenêtres et sélectionne la p-ième sous-fenêtre
+    comme emplacement de dessin par défaut.  Le numéro de la sous-fenêtre
+    est compté ligne par ligne, c'est à dire que l'emplacement
+    (i,j) de la matrice porte le numéro (i-1)*n + j.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+subplot(221)
+plot2d()
+subplot(222)
+plot3d()
+subplot(2,2,3)
+param3d()
+subplot(2,2,4)
+hist3d()
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+      <member>
+        <link linkend="plot3d">plot3d</link>
+      </member>
+      <member>
+        <link linkend="xstring">xstring</link>
+      </member>
+      <member>
+        <link linkend="xtitle">xtitle</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

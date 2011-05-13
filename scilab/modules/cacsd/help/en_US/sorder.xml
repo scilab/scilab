@@ -20,11 +20,10 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[Ro(,n,sval,rcnd)] = sorder(meth,alg,jobd,batch,conct,s,Y(,U,tol,
-printw,ldwork,Ri))</synopsis>
+    <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>meth</term>
@@ -311,8 +310,8 @@ y(k)   = Cx(k) + Du(k) + e(k),
     <para>
     2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findBD">findBD</link>

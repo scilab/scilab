@@ -23,7 +23,7 @@
     <synopsis>[wrect,frect,logflag,arect]=xgetech()</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>wrect,frect</term>
@@ -79,8 +79,8 @@ clf();
 xset('default')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="xsetech">xsetech</link>

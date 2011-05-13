@@ -13,9 +13,13 @@ function datatip_handle=datatipCreate(curve,index,ax)
 //curve : handle on the curve
 //index : index of the mesh point of the curve
 //ax    : optional (the axes which contains the curve;
+  if argn(2)<2 then
+    error(msprintf(_("%s: Wrong number of input argument(s): At least %d expected.\n"),"datatipCreate",2))
+  end
+  
   bg=addcolor([255 255 238]/255);
-  if type(curve)<>9|and(curve.type<>["Polyline" "Plot3d"]) then
-    error(msprintf(_("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Polyline"))
+  if type(curve)<>9|and(curve.type<>["Polyline"]) then
+    error(msprintf(_("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",1,"Polyline"))
   end
 
   ud=datatipGetStruct(curve);
@@ -34,7 +38,7 @@ function datatip_handle=datatipCreate(curve,index,ax)
     while ax.type<>"Axes" then ax=ax.parent,end
   else
     if type(ax)<>9|or(ax.type<>"Axes") then
-      error(msprintf(_( "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",3,"Axes"))
+      error(msprintf(_( "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"),"datatipCreate",3,"Axes"))
     end
   end
   if curve.type=="Polyline" then

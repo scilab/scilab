@@ -12,7 +12,7 @@
     <synopsis>[OK, n, cnz] = taucs_chinfo(C_ptr)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>C_ptr  </term>
@@ -69,8 +69,8 @@
     the <link linkend="nnz">nnz</link> scilab function (see the 2d example in <link linkend="taucs_chget">taucs_chget</link>).
   </para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="taucs_chfact">taucs_chfact</link>

@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) ????-2008 - INRIA
+* Copyright (C) 2010 - DIGITEO - Allan CORNET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -1213,20 +1214,15 @@ char *SGetForType(int type)
 Code generation
 ***************************************************************/
 
-
 void WriteMainHeader(FILE *f,char *fname)
 {
-    char *scidir;
     Fprintf(f,indent,"subroutine %s\n",fname);
-    scidir = getenv("SCI");
-    if ( scidir != NULL)
-        Fprintf(f,indent,"include '%s/modules/core/includes/stack.h'\n",scidir);
-    else
-        Fprintf(f,indent,"include 'SCIDIR/modules/core/includes/stack.h'\n");
+    /* path of stack.h must be defined in FFLAGS */
+    /* same behaviour that others definitions of this include see line 1232 */
+    Fprintf(f,indent,"include 'stack.h'\n");
     Fprintf(f,indent,"rhs = max(0,rhs)\n");
     FCprintf(f,"c\n");
 }
-
 
 void WriteHeader(FILE *f,char *fname0,char *fname)
 {
@@ -1235,7 +1231,7 @@ void WriteHeader(FILE *f,char *fname0,char *fname)
     Fprintf(f,indent,"character*(*) fname\n");
     Fprintf(f,indent,"include 'stack.h'\n");
     FCprintf(f,"c\n");
-    Fprintf(f,indent,"int iadr, sadr\n");
+    Fprintf(f,indent,"integer iadr, sadr\n");
     WriteDeclaration(f);
     Fprintf(f,indent,"iadr(l)=l+l-1\n");
     Fprintf(f,indent,"sadr(l)=(l/2)+1\n");

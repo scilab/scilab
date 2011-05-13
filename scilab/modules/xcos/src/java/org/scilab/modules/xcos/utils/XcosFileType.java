@@ -17,6 +17,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Arrays;
 
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
@@ -25,6 +28,10 @@ import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.I
  * All the filetype recognized by Xcos.
  */
 public enum XcosFileType {
+	/**
+	 * Represent the Xcos XML format.
+	 */
+	XCOS("xcos", XcosMessages.FILE_XCOS),
 	/**
 	 * Represent the old Scicos text format.
 	 */
@@ -66,15 +73,7 @@ public enum XcosFileType {
 		public File exportToHdf5(File arg0) {
 			return arg0;
 		}
-	},
-	/**
-	 * Represent the Xcos XML format.
-	 */
-	XCOS("xcos", XcosMessages.FILE_XCOS),
-	/**
-	 * Any other format.
-	 */
-	UNKNOW("", "");
+	};
 	
 	
 	private String extension;
@@ -87,7 +86,7 @@ public enum XcosFileType {
 	 */
 	XcosFileType(String extension, String description) {
 		this.extension = extension;
-		this.description = description;
+		this.description = description + " (*." + extension + ")";
 	}
 	
 	/**
@@ -126,7 +125,7 @@ public enum XcosFileType {
 	public static XcosFileType findFileType(File theFile) {
 		int dotPos = theFile.getName().lastIndexOf('.');
 		String extension = "";
-		XcosFileType retValue = XcosFileType.UNKNOW;
+		XcosFileType retValue = null;
 
 		if (dotPos > 0 && dotPos <= theFile.getName().length() - 2) {
 			extension = theFile.getName().substring(dotPos + 1);
@@ -151,10 +150,10 @@ public enum XcosFileType {
 				length = stream.read(readMagic);
 				if (length != xmlMagic.length
 						|| !Arrays.equals(xmlMagic, readMagic)) {
-					retValue = XcosFileType.UNKNOW;
+					retValue = null;
 				}
 			} catch (IOException e) {
-				retValue = XcosFileType.UNKNOW;
+				retValue = null;
 			} finally {
 				if (stream != null) {
 					try {
@@ -190,6 +189,21 @@ public enum XcosFileType {
 	 */
 	public File exportToHdf5(File file) {
 	    throw new Error("Not implemented operation");
+	}
+	
+	/**
+	 * @return the valid file filters
+	 */
+	public static FileFilter[] getValidFilters() {
+		final FileFilter[] filters = new FileFilter[values().length];
+		
+		for (int i = 0; i < filters.length; i++) {
+			final XcosFileType type = values()[i];
+			filters[i] = new FileNameExtensionFilter(
+					type.getDescription(), 
+					type.getExtension());
+		}
+		return filters;
 	}
 	
 	/**

@@ -67,12 +67,12 @@ mclose(fd_6);
 status_6    =  mkdir(test_6_dir);
 if status_6 <> -2 then pause,end
 
-// TEST 7 : Bad Case - Cannot create the directory
+// TEST 7 : mkdir creates in the same instruction one folder and one subfolder.
 
 cd;
 test_7_dir  =  TMPDIR+"/mkdir_test_7/mkdir_test_7";
 status_7    =  mkdir(test_7_dir);
-if status_7 <> 0 then pause,end
+if status_7 <> 1 then pause,end
 
 
 removedir(test_1_dir);
@@ -82,3 +82,20 @@ removedir(test_4_dir);
 removedir(test_5_dir);
 removedir(test_6_dir);
 removedir(test_7_dir);
+
+// TEST : error messages
+try
+  mkdir([])
+catch
+  [str,n]=lasterror();
+  if n <> 999 then pause, end
+  if str <> msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "mkdir", 1) then pause, end
+end
+
+try
+  mkdir(["a", "b"])
+catch
+  [str,n]=lasterror();
+  if n <> 999 then pause, end
+  if str <> msprintf(_("%s: Wrong size for input argument #%d: String expected.\n"), "mkdir", 1) then pause, end
+end

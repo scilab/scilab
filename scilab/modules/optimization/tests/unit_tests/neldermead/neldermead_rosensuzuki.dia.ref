@@ -7,6 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 // <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 //
 // assert_close --
 //   Returns 1 if the two real matrices computed and expected are close,
@@ -125,8 +126,6 @@ nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_search(nm);
 nm = neldermead_restart(nm);
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
 assert_close ( xopt , [0.0 1.0 2.0 -1.0]', 1e-1 );
@@ -434,7 +433,6 @@ Fopt : -2.949262e+001
 DeltaFv : 5.740236e+001
 Center : [-0.0876091 -0.0845603 0.1578852 -0.0170337]
 Size : 3.635568e+000
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 Optim Simplex Object:
 =====================
 Vertex #1/8 : fv=-2.949262e+001, x=8.269055e-001 6.419589e-001 1.748726e+000 9.286551e-001
@@ -469,7 +467,6 @@ Fopt : -2.949262e+001
 DeltaFv : 4.083067e+001
 Center : [0.0618524 -0.2553754 0.4896135 0.0789371]
 Size : 3.149420e+000
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 Optim Simplex Object:
 =====================
 Vertex #1/8 : fv=-2.949262e+001, x=8.269055e-001 6.419589e-001 1.748726e+000 9.286551e-001
@@ -515,7 +512,6 @@ Fopt : -2.949262e+001
 DeltaFv : 3.235009e+001
 Center : [0.1646023 -0.5085979 0.7173453 0.1825392]
 Size : 2.858240e+000
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 Optim Simplex Object:
 =====================
 Vertex #1/8 : fv=-2.949262e+001, x=8.269055e-001 6.419589e-001 1.748726e+000 9.286551e-001
@@ -557,7 +553,6 @@ Fopt : -2.949262e+001
 DeltaFv : 3.021714e+001
 Center : [0.3664731 -0.3836060 0.8081474 0.2460178]
 Size : 2.693410e+000
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 Optim Simplex Object:
 =====================
 Vertex #1/8 : fv=-2.949262e+001, x=8.269055e-001 6.419589e-001 1.748726e+000 9.286551e-001
@@ -594,7 +589,6 @@ Fopt : -3.195639e+001
 DeltaFv : 3.195639e+001
 Center : [0.3315468 -0.3323730 1.0486902 0.2601700]
 Size : 2.252008e+000
-ATTENTION : optimsimplex_tostring: obsolete use of optimsimplex_tostring, use string instead.
 Optim Simplex Object:
 =====================
 Vertex #1/8 : fv=-3.195639e+001, x=1.933600e-001 -1.296685e-001 2.000403e+000 3.161631e-001

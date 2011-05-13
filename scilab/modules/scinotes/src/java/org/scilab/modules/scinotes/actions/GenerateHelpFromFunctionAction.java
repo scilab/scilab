@@ -33,6 +33,8 @@ import org.scilab.modules.scinotes.FunctionScanner;
  */
 public class GenerateHelpFromFunctionAction extends DefaultAction {
 
+    private static final long serialVersionUID = 5008914832562621484L;
+
     /**
      * The help template
      */
@@ -122,10 +124,12 @@ public class GenerateHelpFromFunctionAction extends DefaultAction {
         final MenuItem menuitem = createMenu(label, null, new GenerateHelpFromFunctionAction(label, editor), key);
         ((JMenuItem) menuitem.getAsSimpleMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
                 public void propertyChange(PropertyChangeEvent e) {
-                    Element root = editor.getTextPane().getDocument().getDefaultRootElement();
-                    int pos = editor.getTextPane().getCaretPosition();
-                    ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
-                    menuitem.setEnabled(elem.isFunction());
+                    if (editor.getTextPane() != null) {
+                        Element root = editor.getTextPane().getDocument().getDefaultRootElement();
+                        int pos = editor.getTextPane().getCaretPosition();
+                        ScilabDocument.ScilabLeafElement elem = (ScilabDocument.ScilabLeafElement) root.getElement(root.getElementIndex(pos));
+                        menuitem.setEnabled(elem.isFunction());
+                    }
                 }
             });
 

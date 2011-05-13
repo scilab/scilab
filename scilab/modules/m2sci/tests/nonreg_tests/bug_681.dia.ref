@@ -1,3 +1,11 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA - Vincent COUVERT <vincent.couvert@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 681 -->
 //
 // <-- Bugzilla URL -->
@@ -5,20 +13,9 @@
 //
 // <-- Short Description -->
 //    m2sci doesn't translate "error" function.
-// Copyright INRIA
-// Scilab Project - V. Couvert
-MFILECONTENTS="error(''This is an error message'')"
- MFILECONTENTS  =
- 
- error('This is an error message')   
-MFILE=TMPDIR+"/bug681.m"
- MFILE  =
- 
- TMPDIR/bug681.m   
-SCIFILE=TMPDIR+"/bug681.sci"
- SCIFILE  =
- 
- TMPDIR/bug681.sci   
+MFILECONTENTS="error(''This is an error message'')";
+MFILE=TMPDIR+"/bug681.m";
+SCIFILE=TMPDIR+"/bug681.sci";
 fd=mopen(MFILE,"w");
 mputl(MFILECONTENTS,fd);
 mclose(fd);
@@ -27,7 +24,7 @@ mfile2sci(MFILE,TMPDIR);
   File to convert: TMPDIR/bug681.m
   Result file path: TMPDIR/
   Recursive mode: OFF
-  Only double values used in M-file: NO
+  Only double values used in M-file: YES
   Verbose mode: 3
   Generate formated code: NO
   M-file reading...
@@ -49,26 +46,6 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"error(""This is an error message"")"]
- SCIFILECONTENTSREF  =
- 
-!                                                 !
-!                                                 !
-!// Display mode                                  !
-!                                                 !
-!mode(0);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!// Display warning for floating point exception  !
-!                                                 !
-!ieee(1);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!error("This is an error message")                !
-correct=%T
- correct  =
- 
-  T  
+"error(""This is an error message"")"];
+correct=%T;
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

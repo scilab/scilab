@@ -62,8 +62,8 @@ obj.y = 3;
 fieldnames(obj)
     </programlisting>
   </refsection>
-  <refsection>
-    <title>Voir Aussi</title>
+  <refsection role="see also">
+<title>Voir aussi</title>
     <simplelist type="inline">
       <member>
         <link linkend="extraction">extraction</link>
@@ -78,7 +78,7 @@ fieldnames(obj)
         <link linkend="mlist">mlist</link>
       </member>
       <member>
-        <link linkend="mlist">struct</link>
+        <link linkend="struct">struct</link>
       </member>
     </simplelist>
   </refsection>

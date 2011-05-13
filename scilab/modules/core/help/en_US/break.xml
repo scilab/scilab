@@ -19,14 +19,14 @@
 k=0; 
 while 1==1, 
 	  k=k+1;
-	  if k &gt; 100 then  
+	  if k > 100 then  
 	     break
 	  end; 
 end
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="while">while</link>

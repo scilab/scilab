@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Digiteo - Vincent LIARD
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
+          version="5.0-subset Scilab" xml:lang="ja" xml:id="TMPDIR">
+  <refnamediv>
+    <refname>TMPDIR</refname>
+    <refpurpose>テンポラリディレクトリのパス</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>
+      <literal>TMPDIR</literal>定数は,Scilabプロセスのテンポラリディレクトリの
+	絶対パスを保持します.
+	各Scilabプロセスは,
+	Scilabの起動時に<literal>TMPDIR</literal>を基準に作成された
+	独自のテンポラリディレクトリを有します.
+	このテンポラリディレクトリは,Scilab終了時に削除されます.
+    </para>
+    <para>
+	テンポラリディレクトリは,システムのテンポラリディレクトリの
+	サブディレクトリに作成され,その名前は
+	SCI_TMP_&lt;unique&gt; となります.
+	ただし, &lt;unique&gt; はScilabの起動時に名前がユニークとなる
+	ように生成された数です.
+	GNU/Linux, UNIX および Mac OS Xでは,
+	このディレクトリへのアクセス権は,Scilabユーザに限定されています.
+    </para>
+    <para>
+      <literal>TMPDIR</literal> 定数は,Scilab実行中に変更することはできません.
+	しかし,GNU/Linux, UNIX および Mac OS Xでは,
+	システムのテンポラリディレクトリ (通常<literal>/tmp</literal>)は,
+	システム変数<literal>TMPDIR</literal>を変更することにより,
+	選択することができます.
+    </para>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Vincent Liard</para>
+  </refsection>
+</refentry>

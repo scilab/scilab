@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="Compound_properties">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>Compound_properties</refname>
+    <refpurpose>Compoundエンティティのプロパティの説明</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>説明</title>
+    <para>Compoundエンティティはグラフィックエンティティ階層の第3層に属します.
+	このエンティティは,様々なグラフィックエンティティおよび
+	それらのグローバル可視プロパティの相互関係を定義します.</para>
+    <variablelist>
+      <varlistentry>
+        <term>parent: </term>
+        <listitem>
+          <para>このプロパティは親のハンドルを有します.
+	textエンティティの親は, <literal>"Axes"</literal> または
+        <literal>"Compound"</literal>型となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>children: </term>
+        <listitem>
+          <para>Compoundの全ての子グラフィックオブジェクトの
+	ハンドルを有するベクトルです.
+	これらのグラフィクオブジェクトは,
+	<literal>"Compound"</literal>, <literal>"Rectangle"</literal>,
+        <literal>"Polyline"</literal>, <literal>"Patch"</literal>, <literal>"Segs"</literal>,
+        <literal>"Arc"</literal>, <literal>"Grayplot"</literal>,.. 型となります.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>visible: </term>
+        <listitem>
+          <para>このフィールドは,エンティティの<literal>visible</literal>プロパティを
+	有します. その値は, <literal>"on" </literal> または <literal>"off"</literal>となります.
+	デフォルト値は <literal>"on" </literal>で,
+	Compound の子グラフィックエンティティはそれらの可視エンティティに
+	基づいて描画されます.
+        <literal>"off"</literal>の場合,Compound の全ての子は画面に表示されません.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>user_data: </term>
+        <listitem>
+          <para>このフィールドは任意のScilab変数を図のデータ構造に保存し,
+	再度取得するために使用できます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="glue">glue</link>
+      </member>
+      <member>
+        <link linkend="unglue">unglue</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE</para>
+  </refsection>
+</refentry>

@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - INRIA - Serge Steer
+// Copyright (C) 2010-2011 - INRIA - Serge Steer
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 function [phm,fr]=p_margin(h)
-  //compute the phase margin of a SISO transfer function
+//compute the phase margin of a SISO transfer function
   select typeof(h)
   case 'rational' then
   case 'state-space' then
@@ -17,7 +17,7 @@ function [phm,fr]=p_margin(h)
     error(97,1)
   end
   if or(size(h)<>[1 1]) then
-   error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"p_margin",1))
+    error(msprintf(_("%s: Wrong size for input argument #%d: Single input, single output system expected.\n"),"p_margin",1))
   end
   eps=1.e-7;// threshold used for testing if complex numbers are real or pure imaginary
 
@@ -29,16 +29,16 @@ function [phm,fr]=p_margin(h)
     w=roots(real(niw*conj(niw)-diw*conj(diw)),"e");
     //select positive real roots
     ws=real(w(find((abs(imag(w))<eps)&(real(w)>0)))); //frequency points with unitary modulus
-    if ws==[] then 
+    if ws==[] then
       phm=[];
       fr=[];
       return
     end
     f=horner(h,%i*ws);
   else  //discrete time case
-    if h.dt=='d' then 
+    if h.dt=='d' then
       dt=1;
-    else 
+    else
       dt=h.dt;
     end
     // |h(e^(i*w*dt))|=1 <-- h(e^(i*w*dt))*h(e^(-i*w*dt))
@@ -52,15 +52,21 @@ function [phm,fr]=p_margin(h)
     z(abs(abs(z)-1)>eps)=[];// retain only roots with modulus equal to 1
     w=log(z)/(%i*dt);
     ws=real(w(abs(imag(w))<eps&real(w)>0)); //frequency points with unitary modulus
-    if ws==[] then 
+    if ws==[] then
       phm=%inf;
       fr=[];
       return
     end
     f=horner(h,exp(%i*ws*dt));
   end
-  phm=atand(imag(f),real(f));// phase of the frequency response in [-180 180]
-  phm=pmodulo(phm-180,360);
-  [phm,k]=min(phm)
+  phi=atand(imag(f),real(f));// phase of the frequency response (in [-180 180])
+
+  //avoid near 0 negative phases that will give phm=180 instead of -180
+  phi(phi>-1e-12&phi<0)=0;
+  //compute the margins
+  phm=pmodulo(phi,360)-180;
+  //select the min value together with associated frequency in Hz
+  [w,k]=min(abs(phm));
+  phm=phm(k)
   fr=ws(k)/(2*%pi);
 endfunction

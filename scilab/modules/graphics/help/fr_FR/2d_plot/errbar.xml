@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="fr" xml:id="errbar">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>errbar</refname>
+    <refpurpose> ajoute des barres d'erreur sur un dessin 2D  </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+    <synopsis>errbar(x,y,em,ep)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Paramètres</title>
+    <variablelist>
+      <varlistentry>
+        <term>x,y,em,ep  </term>
+        <listitem>
+          <para>4 matrices de même taille.
+</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>errbar</literal> ajoute des barres d'erreur sur un dessin 2D.
+    <literal>x</literal> et <literal>y</literal> ont la même signification que dans <literal>plot2d</literal>.
+    <literal>em(i,j)</literal> et <literal>ep(i,j)</literal> représentent l'intervalle d'erreur autour de la valeur 
+    <literal>y(i,j)</literal> : <literal>[y(i,j)-em(i,j),y(i,j)+ep(i,j)]</literal>.
+  </para>
+    <para>
+    Taper <literal>errbar()</literal> pour voir une démonstration de la fonction.
+  </para>
+  </refsection>
+  <refsection>
+    <title>Exemples</title>
+    <programlisting role="example"><![CDATA[ 
+t=[0:0.1:2*%pi]';
+y=[sin(t) cos(t)]; x=[t t];
+plot2d(x,y)
+errbar(x,y,0.05*ones(x),0.03*ones(x))
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>Voir aussi</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="plot2d">plot2d</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Auteurs</title>
+    <para>J.Ph.C.  </para>
+  </refsection>
+</refentry>

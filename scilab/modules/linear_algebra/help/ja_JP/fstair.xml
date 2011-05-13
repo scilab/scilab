@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="fstair">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fstair</refname>
+    <refpurpose>qz変換により列階段形ペンシルを計算する</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[AE,EE,QE,ZE,blcks,muk,nuk,muk0,nuk0,mnei]=fstair(A,E,Q,Z,stair,rk,tol)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>A</term>
+        <listitem>
+          <para>実数エントリを有するm x n行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>tol</term>
+        <listitem>
+          <para>実数の正のスカラー.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>E</term>
+        <listitem>
+          <para>列階段形行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Q</term>
+        <listitem>
+          <para>m x m ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>Z</term>
+        <listitem>
+          <para>n x n ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>stair</term>
+        <listitem>
+          <para>添字ベクトル (ereduc参照)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rk</term>
+        <listitem>
+          <para>整数, 行列ランクの推定値</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>AE</term>
+        <listitem>
+          <para>実数エントリを有するm x n行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>EE</term>
+        <listitem>
+          <para>列階段形行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>QE</term>
+        <listitem>
+          <para>m x m ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>ZE</term>
+        <listitem>
+          <para>n x n ユニタリ行列</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nblcks</term>
+        <listitem>
+          <para>
+	行列<literal>A</literal>で検出された
+	フル行ランクを有するサブ行列の数(&gt;= 0).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>muk:  </term>
+        <listitem>
+          <para>次元 (n) の整数配列.
+		ペンシルsE(eps)-A(eps)において
+	列フルランクを有するサブ行列の列次元 mu(k) (k=1,...,nblcks) を含みます.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nuk:  </term>
+        <listitem>
+          <para>
+	次元 (m+1) の整数配列.
+	ペンシルsE(eps)-A(eps)において
+	行フルランクを有するサブ行列の行次元 nu(k) (k=1,...,nblcks) 
+	を含みます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>muk0:  </term>
+        <listitem>
+          <para>
+	次元 (n) の整数配列.
+	ペンシルsE(eps,inf)-A(eps,inf)において
+	列フルランクを有するサブ行列の列次元 mu(k) (k=1,...,nblcks) を含みます.
+	</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>nuk:  </term>
+        <listitem>
+          <para>
+	次元 (m+1) の整数配列.
+	ペンシルsE(eps,inf)-A(eps,inf)において
+	行フルランクを有するサブ行列の行次元 nu(k) (k=1,...,nblcks) 
+	を含みます.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>mnei:  </term>
+        <listitem>
+          <para>次元 (4) の整数配列.
+	mnei(1) = sE(eps)-A(eps)の行の次元</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	行列 <literal>E</literal> を列階段形として,
+    ペンシル <literal>sE-A</literal> を指定すると,
+	関数<literal>fstair</literal>は
+	ユーザの指定に基づき
+	ユニタリ変換されたペンシル<literal>QE(sEE-AE)ZE</literal>を
+	計算します.
+	このペンシルは, ほぼペンシル<literal>sE-A</literal>
+	の一般化Schur形式です.
+	この関数は,指定したペンシルの
+	クロネッカー構造の部分も出力します.</para>
+    <para><literal>Q,Z</literal> はユニタリ行列で,
+	ペンシルを計算する際に使用されます.
+	ただし, E は列階段形です (ereduc参照)</para>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="quaskro">quaskro</link>
+      </member>
+      <member>
+        <link linkend="ereduc">ereduc</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Th.G.J. Beelen (Philips Glass Eindhoven). SLICOT</para>
+  </refsection>
+</refentry>

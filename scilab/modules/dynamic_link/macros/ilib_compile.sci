@@ -25,6 +25,9 @@ function libn = ilib_compile(lib_name, ..
     return
   end
 
+  // The name of the library starts by "lib", strip it
+  lib_name_orig = strsubst(lib_name,"/^lib/","","r");
+
   libn=""; //** init variable
 
   if ~haveacompiler() then
@@ -34,9 +37,16 @@ function libn = ilib_compile(lib_name, ..
 
   [lhs,rhs]=argn(0);
 
-  if rhs < 3 then files = []; end
+  if rhs < 3 then
+    files = [];
+  else
+    if ~isempty(files) & (or(fileext(files)==".o") | or(fileext(files)==".obj")) then
+      warnobsolete(msprintf(_("A managed file extension for input argument #%d"), 3), "5.4.0");
+    end
+  end
 
-  if typeof(lib_name)<>'string' then
+
+  if typeof(lib_name)<>"string" then
     error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
     return ;
   end
@@ -44,8 +54,8 @@ function libn = ilib_compile(lib_name, ..
   oldpath = pwd();
   files = files(:)';
 
-  managed_ext = ['.obj','.o'];
-  for i=1:size(files,'*') // compatibility scilab 4.x
+  managed_ext = [".obj",".o"];
+  for i=1:size(files,"*") // compatibility scilab 4.x
     [path_f, file_f, ext_f] = fileparts(files(i));
     if or(managed_ext == ext_f) then
       files1(i) = path_f + file_f;
@@ -61,14 +71,14 @@ function libn = ilib_compile(lib_name, ..
     chdir(path);
   end
 
-  if getos() == 'Windows' then
+  if getos() == "Windows" then
     //** ----------- Windows section  -----------------
-    msgs_make = '';
-    nf = size(files,'*');
+    msgs_make = "";
+    nf = size(files,"*");
 
     for i=1:nf
       if ( ilib_verbose() <> 0 ) then
-        mprintf(_("   Compilation of ") + string(files1(i)) +'\n');
+        mprintf(_("   Compilation of ") + string(files1(i)) +"\n");
       end
     end
 
@@ -77,11 +87,16 @@ function libn = ilib_compile(lib_name, ..
       mprintf(_("   Building shared library (be patient)\n"));
     end
 
-    if ilib_verbose() > 1 then
-      msg = unix_g(make_command + makename + ' all');
-      disp(msg);
+    [msg, stat] = unix_g(make_command + makename + " all 2>&0");
+    if stat <> 0 then
+      // more feedback when compilation fails
+      [msg, stat, stderr] = unix_g(make_command + makename + " all 1>&2"); 
+      disp(stderr);
+      error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
     else
-      unix_s(make_command + makename + ' all');
+      if ilib_verbose() > 1 then
+        disp(msg);
+      end
     end
 
   else
@@ -96,12 +111,12 @@ function libn = ilib_compile(lib_name, ..
       defaultModulesFHeader=[ "core" ];
       ScilabTreeFound=%t
 
-      for x = defaultModulesCHeader(:)'
+      for x = defaultModulesCHeader(:)';
           cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
       end
       cflags=" -I"+SCI+"/libs/MALLOC/includes/ " + cflags;
 
-      for x = defaultModulesFHeader(:)'
+      for x = defaultModulesFHeader(:)';
           fflags=" -I"+SCI+"/modules/"+x+"/includes/ " + fflags;
           end
     end
@@ -127,7 +142,19 @@ function libn = ilib_compile(lib_name, ..
     oldPath = pwd();
 
     // Switch back to the TMPDIR where the mandatory files are
-    chdir(TMPDIR);
+
+    chdir(TMPDIR+"/"+lib_name_orig);
+
+   // Detect the actual path to the libstdc++ library. For the dynamic link
+   // build, we want to use the same lib as the compiler installed.
+   // CF bug #7887 for more information.
+   // Note that, for the configure, the setup is done by compilerDetection.sh
+    cmdGCC="if test -x ""$(which gcc 2>/dev/null)""; then echo $(LC_ALL=C gcc -print-search-dirs|awk ''$1==""install:""{print $2}''); fi";
+    [GCClibpath, ierr, stderr] = unix_g(cmdGCC);
+    if (GCClibpath <> "" & ierr == 0 & grep(getenv("LD_LIBRARY_PATH"),GCClibpath) == []) then
+        setenv("LD_LIBRARY_PATH",GCClibpath+"/../../../:"+getenv("LD_LIBRARY_PATH"));
+    end
+
     cmd = "make "
 
     cmd = cmd + gencompilationflags_unix(ldflags, cflags, fflags, cc, "build")
@@ -141,7 +168,7 @@ function libn = ilib_compile(lib_name, ..
       mprintf(gettext("Output: %s\n"),msg);
       mprintf(gettext("stderr: %s\n"),stderr);
     end
-    
+
     if ierr <> 0 then
       mprintf(gettext("%s: An error occurred during the compilation:\n"),"ilib_compile");
       lines(0);
@@ -153,7 +180,7 @@ function libn = ilib_compile(lib_name, ..
       chdir(oldPath); // Go back to the working dir
       return ;
     end
-    
+
     if stderr <> "" then
       if ( ilib_verbose() <> 0 ) then
         mprintf(gettext("%s: Warning: No error code returned by the compilation but the error output is not empty:\n"),"ilib_compile");
@@ -162,10 +189,15 @@ function libn = ilib_compile(lib_name, ..
       return ;
     end
 
+    generatedLibrary=".libs/" + lib_name;
     // Copy the produce lib to the working path
-    copyfile(".libs/" + lib_name, oldPath);
+    if ~isfile(generatedLibrary) then
+      error(msprintf(gettext("%s: Could not find the built library ''%s''.\n"),"ilib_compile",generatedLibrary));
+    end
+    copyfile(generatedLibrary, oldPath);
+    
   end
-
+  
   libn = path + lib_name_make ;
   chdir(oldpath);
 
@@ -176,9 +208,9 @@ endfunction
 function [make_command,lib_name_make,lib_name,path,makename,files] = ..
              ilib_compile_get_names(lib_name, makename, files)
 
-  if getos() <> 'Windows' then
-    managed_ext = '.o';
-    for i=1:size(files,'*') // compatibility scilab 4.x
+  if getos() <> "Windows" then
+    managed_ext = ".o";
+    for i=1:size(files,"*") // compatibility scilab 4.x
       [path_f, file_f, ext_f] = fileparts(files(i));
       if or(managed_ext == ext_f) then
         files(i) = path_f + file_f;
@@ -187,25 +219,25 @@ function [make_command,lib_name_make,lib_name,path,makename,files] = ..
       end
     end
 
-    k = strindex(makename,['/','\']);
+    k = strindex(makename,["/","\"]);
 
     if k~=[] then
       path = part(makename,1:k($));
       makename = part(makename,k($)+1:length(makename));
     else
-      path = '';
+      path = "";
     end
 
     lib_name = lib_name + getdynlibext();
     lib_name_make = lib_name;
 
-    make_command = 'make ';
+    make_command = "make ";
     if files <> [] then
-      files = files + '.o';
+      files = files + ".o";
     end
 
   else // Windows
-    // Load dynamic_link Internal lib if it's not already loaded
+    // Load dynamic_link Internal lib if it"s not already loaded
     if ~ exists("dynamic_linkwindowslib") then
       load("SCI/modules/dynamic_link/macros/windows/lib");
     end

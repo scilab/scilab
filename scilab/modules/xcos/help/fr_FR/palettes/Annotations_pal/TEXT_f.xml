@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry
+  version="5.0-subset Scilab" xml:id="TEXT_f" xml:lang="fr_FR"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
+  <refnamediv>
+    <refname>TEXT_f</refname>
+    <refpurpose>Annotation libre</refpurpose>
+  </refnamediv>
+
+  <refsection>
+    <title>Aperçu</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../../images/palettes/TEXT_f.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+  </refsection>
+
+  <refsection id="Contents_TEXT_f">
+    <title>Contenu</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="TEXT_f">Annotation libre</link>
+        </para>
+      </listitem>
+      <listitem>
+        <itemizedlist>
+          <listitem>
+            <para>
+              <xref linkend="Palette_TEXT_f">Palette</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Description_TEXT_f">Description</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Dialogbox_TEXT_f">Boîte de dialogue</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Defaultproperties_TEXT_f">Propriétés par défaut</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Example_TEXT_f">Exemple</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="See_also">Voir aussi</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
+              <xref linkend="Authors_TEXT_f">Auteurs</xref>
+            </para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Palette_TEXT_f">
+    <title>Palette</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <link linkend="Annotations_pal">Palette Annotations</link>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Description_TEXT_f">
+    <title>Description</title>
+    <para>
+      Ce bloc spécial est utilisé uniquement pour ajouter du texte à n'importe quel endroit du schéma. Il n'a aucun effet sur la simulation.
+    </para>
+    <para>
+      Vous pouvez ajouter ce bloc directement  par un double clic de souris dans une zone libre du schéma.
+    </para>
+    <para>
+      Après l'ajout, faîtes une double clic sur le bloc et écrivez votre texte. Si vous voulez plus de contrôle sur le texte
+      (type et taille de police, couleurs), un clic de souris à droite montre un menu contextuel. Choisissez le sous-menu
+      <emphasis>Edition...</emphasis> de l'item <emphasis>Format</emphasis>. Cet item ouvre le dialogue à onglets ci-dessous,
+      dans lequel vous pouvez modifier les paramètres de texte.
+    </para>
+
+    <para>
+      Note : l'interface suivant est aussi utilisé pour modifier le texte de commentaire et l'apparence des autres blocs.
+    </para>
+  </refsection>
+
+  <refsection id="Dialogbox_TEXT_f">
+    <title>Boîte de dialogue</title>
+    <para>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_text_gui.png" align="center" />
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/annotations_pal/fr_FR/TEXT_f_color_gui.png" align="center" />
+        </imageobject>
+      </inlinemediaobject>
+    </para>
+    <para />
+    <itemizedlist>
+      <listitem>
+        <para>
+          <emphasis role="bold">Réglage de texte</emphasis>
+        </para>
+        <para>
+          Dans cet onglet, vous pouvez modifier votre texte et son apparence avec la taille, la famille et le style de police,
+          Vous pouvez aussi utiliser certaines balises HTML pour contrôler l'affichage de votre texte. Depuis la version 5.2 de
+          Scilab, il est possible d'écrire des expressions <link linkend="math_rendering_features_in_graphic">
+          LaTeX or MathML</link>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Onglets de couleur</emphasis>
+        </para>
+        <para>
+          L'utilisation de ces onglets est la même pour les couleurs du texte, de la bordure ou du fond. Vous pouvez régler la couleur par quatre
+          méthodes :
+        </para>
+        <itemizedlist>
+          <listitem>
+            <para>Couleurs HSV (teinte, saturation, valeur).</para>
+          </listitem>
+          <listitem>
+            <para>Couleurs RVB (rouge, vert, bleu).</para>
+          </listitem>
+          <listitem>
+            <para>Couleur HTML : couleur RVB sous la forme d'une chaîne de trois nombres hexadécimaux deux chiffres (RRVVBB) précédée par le caractère "#".</para>
+          </listitem>
+          <listitem>
+            <para>Cercle de couleur HSV : déplacez le petit segment blanc autour du cercle pour régler la teinte, et déplacez le petit cercle dans le triangle pour régler la saturation et la valeur.</para>
+          </listitem>
+        </itemizedlist>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Defaultproperties_TEXT_f">
+    <title>Propriétés par défaut</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">always active:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">direct-feedthrough:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">zero-crossing:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">mode:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation inputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">number/sizes of activation outputs:</emphasis> 0</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">continuous-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">object discrete-time state:</emphasis> non</para>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">name of computational function:</emphasis>
+          <emphasis role="italic">text</emphasis>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
+
+  <refsection id="Example_TEXT_f">
+    <title>Exemple</title>
+    <para>
+        La figure ci-dessous montre quelques exemples d'annotations.
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/fr_FR/text_f_fr_FR.xcos">
+          Ouvrez cet exemple dans Xcos
+        </link> et sélectionnez <emphasis>Format</emphasis> puis <emphasis>Edition</emphasis> dans le menu contextuel pour changer les paramètres du texte.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/annotations_pal/fr_FR/text_f_diagram_fr_FR.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
+  <refsection role="see also" id="See_also">
+    <title>Voir aussi</title>
+    <itemizedlist>
+      <listitem>
+        <link linkend="math_rendering_features_in_graphic">Rendu mathématique</link>
+      </listitem>
+    </itemizedlist>
+  </refsection>  
+
+  <refsection id="Authors_TEXT_f">
+    <title>Auteurs</title>
+    <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+  </refsection>
+</refentry>

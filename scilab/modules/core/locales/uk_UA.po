@@ -1,0 +1,1415 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-07 17:54+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "  loading initial environment"
+msgstr "  завантаження початкового середовища"
+
+#, c-format
+msgid " and   %10d variables out of %10d.\n"
+msgstr " та  %10d змінних з %10d.\n"
+
+msgid " by "
+msgstr " Автор — "
+
+#, c-format
+msgid " results may be inaccurate. rcond = %s1\n"
+msgstr " результати можуть бути неточними. rcond = %s1\n"
+
+#, c-format
+msgid " using %10d elements out of  %10d.\n"
+msgstr " на основі %10d елементів з %10d.\n"
+
+#, c-format
+msgid "%f: No more space to store string arguments.\n"
+msgstr "%f: простору для зберігання рядкових параметрів не залишилося.\n"
+
+#, c-format
+msgid "%s and %s arguments"
+msgstr "%s і %s параметрів"
+
+#, c-format
+msgid "%s argument"
+msgstr "параметр %s"
+
+#, c-format
+msgid "%s argument and argument %d"
+msgstr "параметр %s і параметр %d"
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%s викликано у рядку %s %s"
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%s викликано у рядку %s команди %s."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%s викликано у рядку %s макроса %s"
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s викликано з %s"
+
+#, c-format
+msgid "%s module not found.\n"
+msgstr "Модуль %s не знайдено.\n"
+
+#, c-format
+msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
+msgstr ""
+"%s: %s має помилкову розмірність за %s (%d), слід використовувати (%d).\n"
+
+#, c-format
+msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
+msgstr ""
+"%s: %s має помилкові розмірності (%d,%d), слід використовувати (%d,%d).\n"
+
+#, c-format
+msgid "%s: %s has wrong length %d, expecting (%d).\n"
+msgstr "%s: %s має помилкову довжину %d, слід використовувати (%d).\n"
+
+#, c-format
+msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
+msgstr "%s: %s мають несумісні розмірності (%dx%d) та (%dx%d)\n"
+
+#, c-format
+msgid "%s: %s have incompatible dimensions.\n"
+msgstr "%s: %s мають несумісні розмірності.\n"
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: функцію %s не призначено для редагування.\n"
+
+#, c-format
+msgid "%s: %s is not a Scilab function.\n"
+msgstr "%s: %s не є функцією Scilab.\n"
+
+#, c-format
+msgid "%s: %s should be a list with %d-element being %s.\n"
+msgstr "%s: %s має бути списком, у якому елементом з номером %d є %s.\n"
+
+#, c-format
+msgid "%s: '%s' already exists.\n"
+msgstr "%s: «%s» вже існує.\n"
+
+#, c-format
+msgid "%s: (%s) bad second argument!\n"
+msgstr "%s: (%s) помилковий другий параметр!\n"
+
+#, c-format
+msgid "%s: (%s) bad third argument!\n"
+msgstr "%s: (%s) помилковий третій параметр!\n"
+
+#, c-format
+msgid ""
+"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"%s: (%s) занадто багато параметрів у стеці, збільшіть значення intersiz у "
+"stack.h.\n"
+
+#, c-format
+msgid "%s: Cannot allocate memory.\n"
+msgstr "%s: не вдалося виділити пам’ять.\n"
+
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr "%s: файла не існує: %s"
+
+#, c-format
+msgid "%s: Impossible to read %s gateway.\n"
+msgstr "%s: не вдалося прочитати шлюз %s.\n"
+
+#, c-format
+msgid "%s: Incompatible sizes.\n"
+msgstr "%s: несумісні розмірності.\n"
+
+#, c-format
+msgid "%s: Invalid module name : %s.\n"
+msgstr "%s: некоректна назва модуля: %s.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка виділення пам’яті.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: не вказано команди perl."
+
+#, c-format
+msgid "%s: Old version of if and while not implemented.\n"
+msgstr "%s: застарілі версії «if» та «while» не реалізовано.\n"
+
+#, c-format
+msgid "%s: Optional argument %d not given and default value %s not found.\n"
+msgstr ""
+"%s: додатковий параметр %d не вказано, а типове значення %s не знайдено.\n"
+
+#, c-format
+msgid "%s: Optional arguments name=val must be at the end.\n"
+msgstr ""
+"%s: записи додаткових параметрів у формі назва=значення слід вказувати "
+"наприкінці.\n"
+
+#, c-format
+msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
+msgstr ""
+"%s: значення поза можливими межами (не належить проміжку [%lu,%lu]).\n"
+
+#, c-format
+msgid "%s: Out of code.\n"
+msgstr "%s: поза кодом.\n"
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: будь ласка, перевірте: %s.\n"
+
+#, c-format
+msgid "%s: Recursion problems. Sorry ...\n"
+msgstr "%s: проблеми з рекурсією. Вибачте…\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: потрібен редактор Scilab.\n"
+
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: помилка системи: виконувалася команда: %s"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: Too many names.\n"
+msgstr "%s: занадто багато назв.\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: не вдалося знайти файл Perl: %s"
+
+#, c-format
+msgid "%s: Unable to find Perl in ''%s''"
+msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
+
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
+
+#, c-format
+msgid "%s: Unknown Error.\n"
+msgstr "%s: невідома помилка.\n"
+
+#, c-format
+msgid "%s: Unknown code %d at index2 %d.\n"
+msgstr "%s: невідомий код %d з index2 %d.\n"
+
+#, c-format
+msgid "%s: Unknown operator %d.\n"
+msgstr "%s: невідомий оператор %d.\n"
+
+#, c-format
+msgid "%s: Unrecognized optional arguments %s.\n"
+msgstr "%s: невідомі додаткові параметри %s.\n"
+
+#, c-format
+msgid "%s: Variable %s not found.\n"
+msgstr "%s: змінної з назвою %s не знайдено.\n"
+
+#, c-format
+msgid "%s: Wrong %s value %d instead of %d.\n"
+msgstr "%s: помилкове значення %s — %d замість %d.\n"
+
+#, c-format
+msgid "%s: Wrong file version.xml %s.\n"
+msgstr "%s: помилка у файлі version.xml %s.\n"
+
+#, c-format
+msgid "%s: Wrong fromwhat value %s.\n"
+msgstr "%s: помилкове значення fromwhat — %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметр №%d: мало бути вказано адресу файла скрипту "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong module name %s.\n"
+msgstr "%s: помилкова назва модуля %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments.\n"
+msgstr "%s: помилкова кількість вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr "%s: помилкова розмірність параметра №%d: мало бути (%d,%d).\n"
+
+#, c-format
+msgid "%s: Wrong size for argument %d: At least %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра №%d: розмірність мала бути не меншою за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути ціле значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for inputs arguments.\n"
+msgstr "%s: помилкова розмірність вхідних параметрів.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boolean matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю булівських значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Boxed pointer expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"обмежений вказівник (boxed pointer).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Int matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю цілих значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of handle "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю елементів керування значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Matrix of strings "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Real or complex matrix "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю дійсних або комплексних значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Row vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"вектор-рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Scalar expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"скалярне значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): Sparse matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"розріджену матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d (List element: %d): String matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"матрицю рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d (List element: %d): Vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d (елемент списку %d): слід використовувати "
+"вектор.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d : Polygon expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати багатокутник.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю булівських "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Boxed pointer expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати обмежений вказівник "
+"(boxed pointer).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Column vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати тип вектора-"
+"стовпчика.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d: Function or string (external function) "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати функцію або рядок "
+"(посилання на зовнішню функцію).\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати тип списку.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: List of size at least %d expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати тип списку принаймні "
+"з %d елементів.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of handle expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з елементів "
+"керування.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Polynomial matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю з поліномів.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
+"комплексних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати вектор дійсних "
+"чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Row vector expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати вектор-рядок.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати скалярний тип, «%s» "
+"або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати розріджену матрицю.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Vector expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати вектор.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Working int matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати робочу матрицю з "
+"цілих чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument: Complex expected.\n"
+msgstr ""
+"%s: помилковий тип параметра: слід використовувати комплексне значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або скалярний тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати функцію "
+"Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або скалярний тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
+"цілого типу.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати зібраний "
+"макрос.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано double.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип, «%s», «%s»\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: помилковий тип вхідного параметра.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів №%d і №%d: слід використовувати "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for inputs arguments.\n"
+msgstr "%s: помилковий тип вхідних параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type value.\n"
+msgstr "%s: значення помилкового типу.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
+"argument #%d must be '%s'.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s». Вхідним параметром №%d має бути «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s», «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати 0 або 1\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 1,2 or 3 expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати 1, 2 або "
+"3.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"число.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
+"цілого типу.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати "
+"визначену змінну.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"у інтервалі [%d, %d]\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати "
+"значення, більше за 0.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: мало бути «%s» або «%s».\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: A int expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: мало бути ціле значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Must be in the interval [%d, %d].\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: слід використовувати значення "
+"у інтервалі [%d, %d]\n"
+
+#, c-format
+msgid "%s: argument %d > (%d) should be a complex matrix.\n"
+msgstr "%s: параметр №%d > (%d) має бути комплексною матрицею.\n"
+
+#, c-format
+msgid "%s: argument %d >(%d) should be a column vector.\n"
+msgstr "%s: параметр №%d > (%d) має бути вектором-стовпчиком.\n"
+
+#, c-format
+msgid "%s: argument %d should be a list of size at least %d.\n"
+msgstr "%s: параметр №%d має бути списком, розмірності не меншої за %d.\n"
+
+#, c-format
+msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
+msgstr ""
+"%s: параметр %d(%d) має помилкову розмірність за %s (%d), слід "
+"використовувати (%d).\n"
+
+#, c-format
+msgid "%s: argument must be a string.\n"
+msgstr "%s: параметром має бути рядок.\n"
+
+#, c-format
+msgid "%s: bad call to %s (third argument %c).\n"
+msgstr "%s: помилковий виклик %s (третій параметр %c).\n"
+
+#, c-format
+msgid "%s: bad call to %s!\n"
+msgstr "%s: помилковий виклик %s!\n"
+
+#, c-format
+msgid "%s: bad call to %s! (1rst argument).\n"
+msgstr "%s: помилковий виклик %s (перший параметр).\n"
+
+#, c-format
+msgid "%s: code %d not yet implemented.\n"
+msgstr "%s: код %d ще не реалізовано.\n"
+
+#, c-format
+msgid ""
+"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
+msgstr ""
+"%s: createcvarfromptr: занадто багато параметрів у стеку, збільшіть значення "
+"intersiz.\n"
+
+#, c-format
+msgid "%s: entry point %s not found in predefined tables or link table.\n"
+msgstr ""
+"%s: вхідну точку %s не знайдено у попередньо визначених таблицях або таблиці "
+"посилань.\n"
+
+#, c-format
+msgid "%s: function-name is incorrect.\n"
+msgstr "%s: помилкова назва функції.\n"
+
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr "%s: внутрішня помилка, info=%d.\n"
+
+#, c-format
+msgid "%s: intersiz is too small.\n"
+msgstr "%s: занадто мале значення intersiz.\n"
+
+#, c-format
+msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
+msgstr ""
+"%s: перевищено розміри стека (скористайтеся функцією stacksize, щоб "
+"збільшити ці розміри).\n"
+
+#, c-format
+msgid "%s: wrong code %d.\n"
+msgstr "%s: помилковий код %d.\n"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Applications"
+msgstr "П&рограми"
+
+msgid "&Control"
+msgstr "&Керування"
+
+msgid "&Edit"
+msgstr "З&міни"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Preferences"
+msgstr "П&араметри"
+
+msgid "&Toolboxes"
+msgstr "&Набори інструментів"
+
+msgid "A non square matrix!\n"
+msgstr "Матриця не є квадратною!\n"
+
+msgid "Bytes"
+msgstr "Байти"
+
+msgid "Cannot find Windows temporary directory (1)."
+msgstr "Не вдалося визначити тимчасовий каталог Windows (1)."
+
+#, c-format
+msgid "Cannot load the module declaration file: %s.\n"
+msgstr "Не вдалося завантажити файл оголошення модуля: %s.\n"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "Перевірка: %s\n"
+
+msgid "Commands:\n"
+msgstr "Команди:\n"
+
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Консорціум Scilab (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Авторські права належать ENPC, ©1989–2007\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr "© INRIA, 1989–2011\n"
+
+msgid "Do you really want to abort computation (y or n ?) \n"
+msgstr "Ви справді бажаєте перервати обчислення (y (так) або n (ні)?) \n"
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid "Error returning tlist, memory full.\n"
+msgstr ""
+"Помилка під час спроби повернути tlist, перевищено обмеження на розміри "
+"пам’яті.\n"
+
+msgid ""
+"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
+"SciError(x).\n"
+msgstr ""
+"Error(x) вважається застарілою функцією, її буде вилучено у Scilab 5.4. Будь "
+"ласка, скористайтеся функцією SciError(x).\n"
+
+#, c-format
+msgid "Error: Could not create %s: %s\n"
+msgstr "Помилка: не вдалося створити %s: %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s\n"
+msgstr "Помилка: не вдалося розібрати файл %s\n"
+
+#, c-format
+msgid "Error: Could not parse file %s.\n"
+msgstr "Помилка: не вдалося розібрати файл %s.\n"
+
+#, c-format
+msgid "Error: Impossible to define %s environment variable.\n"
+msgstr "Помилка: не вдалося визначити змінну середовища %s.\n"
+
+#, c-format
+msgid "Error: Memory allocation.\n"
+msgstr "Помилка виділення пам’яті.\n"
+
+#, c-format
+msgid "Error: Not a valid gateway ID %d.\n"
+msgstr "Помилка: некоректний ідентифікатор шлюзу %d.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Помилка: некоректний файл шлюзу %s (кодування, відмінне від «utf-8»). "
+"Виявлено кодування «%s».\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
+"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+msgstr ""
+"Помилка: некоректний файл шлюзу %s (файл має починатися з запису <GATEWAY> і "
+"містити запис <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid module file %s (encoding not '%s') Encoding '%s' found.\n"
+msgstr ""
+"Помилка: некоректний файл модуля %s (кодування, відмінне від «%s»). Виявлено "
+"кодування «%s».\n"
+
+#, c-format
+msgid "Error: Not a valid primitive ID %d.\n"
+msgstr "Помилка: некоректний ідентифікатор примітива %d.\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
+"found\n"
+msgstr ""
+"Помилка: некоректний файл версії %s (кодування, відмінне від «utf-8»). "
+"Виявлено кодування «%s».\n"
+
+#, c-format
+msgid ""
+"Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+"contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+msgstr ""
+"Помилка: некоректний файл версії %s (дані мають починатися з "
+"<MODULE_VERSION> і містити рядок <VERSION major='' minor='' maintenance='' "
+"revision='' string=''>)\n"
+
+#, c-format
+msgid "Error: could not parse file %s\n"
+msgstr "Помилка: не вдалося розібрати файл %s\n"
+
+msgid "Fatal Error: Can't create table for scilab functions.\n"
+msgstr "Критична помилка: не вдалося створити таблицю функцій Scilab.\n"
+
+msgid "Functions compiled with very old versions are no more handled."
+msgstr ""
+"Обробка функцій, зібраних за допомогою дуже старих версій програми, "
+"неможлива."
+
+#, c-format
+msgid "GetDataFromName: variable %s not found.\n"
+msgstr "GetDataFromName: змінної з назвою %s не знайдено.\n"
+
+#, c-format
+msgid "Impossible to call %s in %s library: %s\n"
+msgstr "Не вдалося викликати %s у бібліотеці %s: %s\n"
+
+#, c-format
+msgid "Impossible to create : %s"
+msgstr "Неможливо створити: %s"
+
+#, c-format
+msgid "Impossible to load %s function in %s library: %s\n"
+msgstr "Не вдалося завантажити функцію %s у бібліотеці %s: %s\n"
+
+#, c-format
+msgid "Impossible to load %s library: %s\n"
+msgstr "Не вдалося завантажити бібліотеку %s: %s\n"
+
+msgid "Internal Functions:\n"
+msgstr "Вбудовані функції:\n"
+
+msgid "Introduction"
+msgstr "Вступ"
+
+#, c-format
+msgid "Invalid %c,%c matrices.\n"
+msgstr "Некоректні матриці %c, %c.\n"
+
+msgid "Invalid system.\n"
+msgstr "Некоректна система.\n"
+
+msgid "Invalid time domain.\n"
+msgstr "Некоректний діапазон часу.\n"
+
+msgid "List full.\n"
+msgstr "Список переповнено.\n"
+
+msgid "Name"
+msgstr "Назва"
+
+msgid "No space to allocate Scilab stack.\n"
+msgstr "Простору для виділення стека Scilab не залишилося.\n"
+
+msgid "Optional argument list is empty.\n"
+msgstr "Список додаткових параметрів порожній.\n"
+
+msgid "Optional arguments list: \n"
+msgstr "Список додаткових параметрів: \n"
+
+msgid "SCI environment variable not defined.\n"
+msgstr "Змінну середовища SCI не визначено.\n"
+
+msgid "SCIHOME not defined.\n"
+msgstr "SCIHOME не визначено.\n"
+
+msgid "SIGSTP: aborting current computation\n"
+msgstr "SIGSTP: поточні обчислення перервано\n"
+
+msgid "Scilab Console"
+msgstr "Консоль Scilab"
+
+msgid "Scilab Version Info."
+msgstr "Відомості щодо версії Scilab."
+
+#, c-format
+msgid "Scilab version \"%d.%d.%d.%d\"\n"
+msgstr "Версія Scilab «%d.%d.%d.%d»\n"
+
+#, c-format
+msgid ""
+"Scilab version \"%d.%d.%d.%d\"\n"
+"%s\n"
+msgstr ""
+"Версія Scilab «%d.%d.%d.%d»\n"
+"%s\n"
+
+msgid "Size"
+msgstr "Розмір"
+
+msgid "Startup execution:"
+msgstr "Команда запуску:"
+
+msgid "TMPDIR not defined.\n"
+msgstr "TMPDIR не визначено.\n"
+
+msgid "The SCI environment variable is not set.\n"
+msgstr "Змінну середовища SCI не визначено.\n"
+
+msgid "Trying to stop scilab in the middle of an interface.\n"
+msgstr "Спроба перервати роботу Scilab під час взаємодії з користувачем.\n"
+
+msgid "Type"
+msgstr "Тип"
+
+#, c-format
+msgid "Undefined variable %s.\n"
+msgstr "Невизначена змінна %s.\n"
+
+msgid "Unexpected opcode, please report into the Scilab bug tracker."
+msgstr ""
+"Неочікуваний код операції, будь ласка, повідомте про помилку у системі "
+"стеження за вадами Scilab."
+
+#, c-format
+msgid "Unqueuing %s - No option.\n"
+msgstr "Вилучення з черги %s: параметр не задано.\n"
+
+#, c-format
+msgid "Unqueuing %s - seq.\n"
+msgstr "Вилучення з черги %s: послідовність.\n"
+
+msgid "User variables are:"
+msgstr "Змінними користувача є:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "На основі %s елементів з %s"
+
+#, c-format
+msgid "WARNING: %s"
+msgstr "ПОПЕРЕДЖЕННЯ: %s"
+
+#, c-format
+msgid "WARNING: %s\n"
+msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "Warning: Could not find %s\n"
+msgstr "Попередження: не вдалося знайти %s\n"
+
+#, c-format
+msgid "Warning: Problems with %s.\n"
+msgstr "Попередження: виникли проблеми з %s.\n"
+
+msgid "Your global variables are:"
+msgstr "Вашими загальними змінними є:"
+
+msgid "Your variables are:"
+msgstr "Вашими змінними є:"
+
+msgid "a column vector"
+msgstr "вектор-стовпчик"
+
+msgid "a row vector"
+msgstr "вектор-рядок"
+
+msgid "a scalar"
+msgstr "скаляр"
+
+msgid "a vector"
+msgstr "вектор"
+
+#, c-format
+msgid "and %s.\n"
+msgstr "і %s.\n"
+
+#, c-format
+msgid "argument number %d"
+msgstr "параметр з номером %d"
+
+#, c-format
+msgid "arguments %d and %d"
+msgstr "параметри %d і %d"
+
+msgid "built in"
+msgstr "вбудований"
+
+msgid "first"
+msgstr "перший"
+
+msgid "fourth"
+msgstr "четвертий"
+
+msgid "second"
+msgstr "другий"
+
+msgid "should be a column vector"
+msgstr "має бути вектором-стовпчиком"
+
+msgid "should be a row vector"
+msgstr "має бути вектором-рядком"
+
+msgid "should be a scalar"
+msgstr "має бути числом"
+
+msgid "should be a vector"
+msgstr "має бути вектором"
+
+msgid "should be square"
+msgstr "має бути квадратною матрицею"
+
+msgid "square"
+msgstr "квадратна матриця"
+
+msgid "third"
+msgstr "третій"
+
+msgid "tlist not completely filled.\n"
+msgstr "tlist заповнено не до кінця.\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Тільки для Microsoft Windows."
+
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: Сталася помилка.\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Консорціум Scilab (DIGITEO)\n"
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               Авторські права належать © 1989-2009 (INRIA)\n"
+
+#~ msgid "Enable"
+#~ msgstr "Увімкнути"
+
+#~ msgid "Operating System: "
+#~ msgstr "Операційна система: "
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+#~ "значення.\n"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Дата збирання: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Час збирання: %s"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "Зібрано за допомогою %s"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Архітектура компілятора: %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "Роздільник каталогів: %s"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Вільної фізичної пам’яті (кілобайтів): %*I64d"
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Вільної віртуальної пам’яті (кілобайтів): %*I64d"
+
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "Використано пам’яті: %*ld %%"
+
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "Кількість процесорів: %d"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "Версія PCRE: %d.%d"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "Версія TCL: %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "Версія TK: %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "Загалом у файлі кешу сторінок (кілобайтів): %*I64d"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Загалом фізичної пам’яті (кілобайтів): %*I64d"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "Загалом віртуальної пам’яті (кілобайтів): %*I64d"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: не вдалося отримати більше пам’яті.\n"
+#~ "Спробуйте ввести команду gstacksize('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: не вдалося виділити пам’ять.\n"
+#~ "Спробуйте stacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: некоректне значення «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип параметра №%d: слід використовувати скалярний тип, «%s» "
+#~ "або «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати іменовану "
+#~ "змінну.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+#~ "тип, «%s», «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати скалярне "
+#~ "значення, «%s» або «%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "Помилка: некоректний файл версії %s (файл має починатися записом "
+#~ "<MODULE_VERSION> і містити запис <VERSION major='' minor='' maintenance='' "
+#~ "revision='' string=''>)\n"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "Вільної розширеної пам’яті (кілобайтів): %*I64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "Вільно у файлі кешу сторінок (кілобайтів): %*I64d"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "Роздільник каталогів: %s"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "Параметри екрана: %d x %d %d бітів на колір"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Версія: %s"
+
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "Версія драйвера відеокартки: %s"
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "Відеокартка: %s"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "Попередження: команда консорціуму Scilab\n"
+#~ "не супроводжує і не підтримує цю версію Scilab, зібрану за допомогою\n"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "Версія XML: %s"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Авторські права належать ENPC, ©1989–2007\n"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Авторські права належать INRIA, ©1989–2010\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+#~ msgstr ""
+#~ "%s: помилкове значення вхідного параметра №%d. Слід використовувати ціле "
+#~ "значення.\n"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Авторські права належать INRIA, ©1989–2010\n"

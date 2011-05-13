@@ -67,20 +67,18 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_3 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_4 = test
 subdir = modules/hdf5
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
@@ -147,7 +145,6 @@ libscihdf5_forceload_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
 @HDF5_TRUE@@NEED_JAVA_TRUE@am_libscihdf5_forceload_la_rpath = -rpath \
 @HDF5_TRUE@@NEED_JAVA_TRUE@	$(pkglibdir)
 libscihdf5_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
 am__libscihdf5_la_SOURCES_DIST = src/c/h5_fileManagement.c \
@@ -251,6 +248,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -273,9 +271,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -293,6 +292,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -358,8 +358,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -380,6 +383,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -476,11 +480,11 @@ top_srcdir = @top_srcdir@
 @HDF5_TRUE@sci_gateway/cpp/sci_import_from_hdf5.cpp
 
 @HDF5_TRUE@FORCE_LOAD_SOURCES_DISABLE = src/cpp/forceJHDF5load-jvmdisable.cpp
-@HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 @HDF5_TRUE@libscihdf5_forceload_la_SOURCES = $(FORCE_LOAD_SOURCES)
 @HDF5_TRUE@libscihdf5_forceload_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 @HDF5_TRUE@libscihdf5_forceload_la_CFLAGS = $(libscihdf5_la_CFLAGS)
-@HDF5_TRUE@libscihdf5_forceload_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
+@HDF5_TRUE@libscihdf5_forceload_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS) $(HDF5_LIBS)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_SOURCES = $(FORCE_LOAD_SOURCES_DISABLE)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 @HDF5_TRUE@libscihdf5_forceload_disable_la_CFLAGS = $(libscihdf5_la_CFLAGS)
@@ -514,7 +518,7 @@ libscihdf5_la_CFLAGS = -I$(srcdir)/includes/ \
 libscihdf5_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscihdf5_la_sci_gateway_DATA = sci_gateway/hdf5_gateway.xml
 pkglib_LTLIBRARIES = libscihdf5.la $(am__append_1) $(am__append_2)
-libscihdf5_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
+libscihdf5_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(HDF5_LIBS)
 libscihdf5_la_SOURCES = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(HDF5_CPP_SOURCES)
 
 # For the code check (splint)
@@ -522,7 +526,7 @@ CHECK_SRC = $(HDF5_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CFLAGS)
 
 # pb of order
-libscihdf5_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscihdf5_la_LIBADD = \
 				$(top_builddir)/libs/MALLOC/libscimalloc.la \
 				$(top_builddir)/modules/output_stream/libscioutput_stream.la
 
@@ -532,7 +536,7 @@ modulename = hdf5
 
 #### hdf5 : Conf files ####
 libscihdf5_la_rootdir = $(mydatadir)
-libscihdf5_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihdf5_la_root_DATA = license.txt version.xml
 
 #### hdf5 : init scripts ####
 libscihdf5_la_etcdir = $(mydatadir)/etc
@@ -549,7 +553,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_3) $(am__append_4)
+TARGETS_ALL = $(am__append_3)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -585,7 +589,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -1180,6 +1184,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1277,9 +1287,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

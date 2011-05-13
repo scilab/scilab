@@ -12,7 +12,7 @@
     <synopsis>[hk]=hank(m,n,cov)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>m</term>
@@ -72,8 +72,8 @@ c=rand(2,2*64)
 H=hank(4,5,c);
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="toeplitz">toeplitz</link>

@@ -135,23 +135,49 @@ free(pstData);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
-      <member><link linkend="call_scilab">Call_Scilab</link>,<link linkend="api_scilab">api Scilab</link>,
-<link linkend="cwritechain">cwritechain</link>, <link
-      linkend="creadchain">creadchain</link>, <link
-      linkend="SendScilabJob">SendScilabJob</link>, <link
-      linkend="StartScilab">StartScilab</link>, <link
-      linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>, <link
-      linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>, <link
-      linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>, <link
-      linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>, <link
-      linkend="Double_management_reading_API">API_Scilab: Double Reading</link>, <link
-      linkend="Double_management_writing_API">API_Scilab: Double Writing</link>, <link
-      linkend="ComplexManagement_callscilab">Complex
-      Management</link></member>
+      <member>
+	<link linkend="call_scilab">Call_Scilab</link>
+      </member>
+      <member>
+	<link linkend="api_scilab">api Scilab</link>
+      </member>
+      <member>
+	<link linkend="cwritechain">cwritechain</link>
+      </member>
+      <member>
+	<link linkend="creadchain">creadchain</link>
+      </member>
+      <member>
+	<link linkend="SendScilabJob">SendScilabJob</link>
+      </member>
+      <member>
+	<link linkend="StartScilab">StartScilab</link>
+      </member>
+      <member>
+	<link linkend="BooleanManagement_callscilab">Call_Scilab: Boolean Management</link>
+      </member>
+      <member>
+	<link linkend="DoubleManagement_callscilab">Call_Scilab: Double Management</link>
+      </member>
+      <member>
+	<link linkend="boolean_reading_API">API_Scilab: Boolean Reading</link>
+      </member>
+      <member>
+	<link linkend="boolean_writing_API">API_Scilab: Boolean Writing</link>
+      </member>
+      <member>
+	<link linkend="Double_management_reading_API">API_Scilab: Double Reading</link>
+      </member>
+      <member>
+	<link linkend="Double_management_writing_API">API_Scilab: Double Writing</link>
+      </member>
+      <member>
+	<link linkend="ComplexManagement_callscilab">Complex Management</link>
+      </member>
     </simplelist>
   </refsection>
 

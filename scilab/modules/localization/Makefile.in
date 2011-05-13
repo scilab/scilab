@@ -61,7 +61,9 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
-@NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c
+@NEED_JAVA_TRUE@am__append_1 = src/jni/Messages_wrap.c \
+@NEED_JAVA_TRUE@src/jni/LocaleToLCID_wrap.c
+
 @IS_MACOSX_TRUE@am__append_2 = src/c/getLocaleInfo_Apple.c
 @IS_MACOSX_TRUE@am__append_3 = -lintl -framework Cocoa
 @IS_MACOSX_TRUE@am__append_4 = -lintl -framework Cocoa
@@ -69,20 +71,18 @@ DIST_COMMON = $(libscilocalization_la_include_HEADERS) \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_5 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_6 = test
 subdir = modules/localization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
@@ -122,12 +122,13 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscilocalization_la_includedir)"
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscilocalization_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
-	$(top_builddir)/modules/output_stream/libscioutput_stream.la
+	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
 am__libscilocalization_la_SOURCES_DIST =  \
 	src/c/InitializeLocalization.c src/c/setgetlanguage.c \
-	src/c/charEncoding.c src/jni/Messages_wrap.c \
+	src/c/getLcidString.c src/c/charEncoding.c \
+	src/jni/Messages_wrap.c src/jni/LocaleToLCID_wrap.c \
 	src/c/getLocaleInfo_Apple.c sci_gateway/c/gw_localization.c \
 	sci_gateway/c/sci_gettext.c sci_gateway/c/sci_dgettext.c \
 	sci_gateway/c/sci_setlanguage.c \
@@ -135,11 +136,13 @@ am__libscilocalization_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_getlanguage.c \
 	sci_gateway/c/sci_setdefaultlanguage.c
 @NEED_JAVA_TRUE@am__objects_1 =  \
-@NEED_JAVA_TRUE@	libscilocalization_la-Messages_wrap.lo
+@NEED_JAVA_TRUE@	libscilocalization_la-Messages_wrap.lo \
+@NEED_JAVA_TRUE@	libscilocalization_la-LocaleToLCID_wrap.lo
 @IS_MACOSX_TRUE@am__objects_2 =  \
 @IS_MACOSX_TRUE@	libscilocalization_la-getLocaleInfo_Apple.lo
 am__objects_3 = libscilocalization_la-InitializeLocalization.lo \
 	libscilocalization_la-setgetlanguage.lo \
+	libscilocalization_la-getLcidString.lo \
 	libscilocalization_la-charEncoding.lo $(am__objects_1) \
 	$(am__objects_2)
 am__objects_4 = libscilocalization_la-gw_localization.lo \
@@ -224,6 +227,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -246,9 +250,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -266,6 +271,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -331,8 +337,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -353,6 +362,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -422,8 +432,8 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
-	src/c/setgetlanguage.c src/c/charEncoding.c $(am__append_1) \
-	$(am__append_2)
+	src/c/setgetlanguage.c src/c/getLcidString.c \
+	src/c/charEncoding.c $(am__append_1) $(am__append_2)
 GATEWAY_C_SOURCES = sci_gateway/c/gw_localization.c \
 sci_gateway/c/sci_gettext.c \
 sci_gateway/c/sci_dgettext.c \
@@ -440,21 +450,24 @@ libscilocalization_la_CFLAGS = $(JAVA_JNI_INCLUDE) -I/sw/include \
 	-I$(top_srcdir)/modules/api_scilab/includes \
 	-I$(top_srcdir)/modules/output_stream/includes $(am__append_4)
 pkglib_LTLIBRARIES = libscilocalization.la
-libscilocalization_la_LDFLAGS = -version-info \
+libscilocalization_la_LDFLAGS = -version-number \
 	$(SCILAB_LIBRARY_VERSION) $(am__append_3)
 libscilocalization_la_SOURCES = $(LOCALIZATION_C_SOURCES)  $(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libscilocalization_la_SOURCES)
 INCLUDE_FLAGS = $(libscilocalization_la_CFLAGS)
-libscilocalization_la_LIBADD = $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la
+libscilocalization_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
+$(top_builddir)/modules/output_stream/libscioutput_stream.la \
+$(top_builddir)/modules/api_scilab/libsciapi_scilab.la
+
 # $(top_builddir)/modules/io/libsciio.la
 #### Target ######
 modulename = localization
 
 #### localization : Conf files ####
 libscilocalization_la_rootdir = $(mydatadir)
-libscilocalization_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscilocalization_la_root_DATA = license.txt version.xml
 
 ####localization : init scripts ####
 libscilocalization_la_etcdir = $(mydatadir)/etc
@@ -473,7 +486,9 @@ includes/charEncoding.h
 @GUI_TRUE@USEANT = 1
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/Messages.i 
+SWIG_WRAPPERS = src/jni/Messages.i \
+src/jni/LocaleToLCID.i
+
 @SWIG_TRUE@BUILT_SOURCES = swig
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -487,7 +502,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_5) $(am__append_6)
+TARGETS_ALL = $(am__append_5)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -523,7 +538,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -614,8 +629,10 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-InitializeLocalization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-LocaleToLCID_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-Messages_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-charEncoding.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-getLcidString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscilocalization_la-sci_dgettext.Plo@am__quote@
@@ -661,6 +678,13 @@ libscilocalization_la-setgetlanguage.lo: src/c/setgetlanguage.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-setgetlanguage.lo `test -f 'src/c/setgetlanguage.c' || echo '$(srcdir)/'`src/c/setgetlanguage.c
 
+libscilocalization_la-getLcidString.lo: src/c/getLcidString.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-getLcidString.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-getLcidString.Tpo -c -o libscilocalization_la-getLcidString.lo `test -f 'src/c/getLcidString.c' || echo '$(srcdir)/'`src/c/getLcidString.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_la-getLcidString.Tpo $(DEPDIR)/libscilocalization_la-getLcidString.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/getLcidString.c' object='libscilocalization_la-getLcidString.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-getLcidString.lo `test -f 'src/c/getLcidString.c' || echo '$(srcdir)/'`src/c/getLcidString.c
+
 libscilocalization_la-charEncoding.lo: src/c/charEncoding.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-charEncoding.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-charEncoding.Tpo -c -o libscilocalization_la-charEncoding.lo `test -f 'src/c/charEncoding.c' || echo '$(srcdir)/'`src/c/charEncoding.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_la-charEncoding.Tpo $(DEPDIR)/libscilocalization_la-charEncoding.Plo
@@ -674,6 +698,13 @@ libscilocalization_la-Messages_wrap.lo: src/jni/Messages_wrap.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/Messages_wrap.c' object='libscilocalization_la-Messages_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-Messages_wrap.lo `test -f 'src/jni/Messages_wrap.c' || echo '$(srcdir)/'`src/jni/Messages_wrap.c
+
+libscilocalization_la-LocaleToLCID_wrap.lo: src/jni/LocaleToLCID_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-LocaleToLCID_wrap.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-LocaleToLCID_wrap.Tpo -c -o libscilocalization_la-LocaleToLCID_wrap.lo `test -f 'src/jni/LocaleToLCID_wrap.c' || echo '$(srcdir)/'`src/jni/LocaleToLCID_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscilocalization_la-LocaleToLCID_wrap.Tpo $(DEPDIR)/libscilocalization_la-LocaleToLCID_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/LocaleToLCID_wrap.c' object='libscilocalization_la-LocaleToLCID_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o libscilocalization_la-LocaleToLCID_wrap.lo `test -f 'src/jni/LocaleToLCID_wrap.c' || echo '$(srcdir)/'`src/jni/LocaleToLCID_wrap.c
 
 libscilocalization_la-getLocaleInfo_Apple.lo: src/c/getLocaleInfo_Apple.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT libscilocalization_la-getLocaleInfo_Apple.lo -MD -MP -MF $(DEPDIR)/libscilocalization_la-getLocaleInfo_Apple.Tpo -c -o libscilocalization_la-getLocaleInfo_Apple.lo `test -f 'src/c/getLocaleInfo_Apple.c' || echo '$(srcdir)/'`src/c/getLocaleInfo_Apple.c
@@ -1128,6 +1159,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1225,9 +1262,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

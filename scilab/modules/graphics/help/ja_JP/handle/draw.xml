@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="draw">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>draw</refname>
+    <refpurpose>エンティティを描画.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>draw()
+draw(h)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h</term>
+        <listitem>
+          <para>ハンドル, 描画するエンティティのハンドル. <literal>h</literal> は
+	ハンドルのベクトルとすることができ, この場合, h(i)で特定される全てのオブジェクト
+	が描画されます.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>この関数は,<literal>h</literal>で指定されるエンティティを
+	描画する際に使用されます.
+	その親の図の<literal>immediate_drawing</literal>プロパティが
+	<literal>"off"</literal>の場合でも描画は実行されます.
+	引数が指定されない場合,<literal>カレントのオブジェクト</literal> 
+	が描画されます.
+	ウインドウの大きさを変更するべきではないことに注意してください;
+	変更するとこのオブジェクトが隠されてしまいます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+subplot(212)
+a=gca();
+plot2d
+drawlater
+
+subplot(211)
+plot2d1 // デフォルトの描画モード
+
+e=gce();
+draw(e.children(2)) // ポリゴンを1つ,2番目の軸に描画
+
+e.children(1).visible='off'; // 線を不可視に設定
+
+draw(e) // Compound とその子を描画 <=> 全ての可視のポリラインを描画
+
+drawnow // ...now!
+
+e.children(1).visible='on';
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="drawnow">drawnow</link>
+      </member>
+      <member>
+        <link linkend="drawlater">drawlater</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>作者</title>
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
+</refentry>

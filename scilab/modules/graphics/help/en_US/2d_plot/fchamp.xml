@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="fchamp">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>fchamp</refname>
+    <refpurpose>direction field of a 2D first order
+  ODE</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>fchamp(f,t,xr,yr,[arfact,rect,strf])
+fchamp(f,t,xr,yr,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>f</term>
+        <listitem>
+          <para>An external (function or character string) or a list which
+          describes the ODE.</para>
+          <variablelist>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para>It can be a function name <literal>f</literal>, where
+                <literal>f</literal> is supposed to be a function of type
+                <literal>y=f(t,xy [p1,..pn])</literal>. <literal>f</literal> returns a
+                column vector of size 2, <literal>y</literal>, which gives the value
+                of the direction field <literal>f</literal> at point
+                <literal>xy=[x,y]</literal> and at time <literal>t</literal>.</para>
+              </listitem>
+            </varlistentry>
+            <varlistentry>
+              <term>-</term>
+              <listitem>
+                <para>It can also be an object of type list,
+                <literal>list(f,P1,..Pn)</literal> where <literal>f</literal> is a
+                function of type <literal>y=f(t,xy,p1,..pn)</literal> and
+                <literal>Pi</literal> gives the value of the parameter
+                <literal>pi</literal>.</para>
+              </listitem>
+            </varlistentry>
+          </variablelist>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>t</term>
+        <listitem>
+          <para>The selected time.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>xr,yr</term>
+        <listitem>
+          <para>Two row vectors of size n1 and n2 which define the grid on
+          which the direction field is computed.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+        <listitem>
+          <para>This represents a sequence of statements <literal>key1=value1,key2=value2</literal>,
+          ... where <literal>key1</literal>,
+          <literal>key2,...</literal> can be one of the following: arfact, rect,
+          strf (see below).</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>arfact,rect,strf</term>
+        <listitem>
+          <para>Optional arguments, see <literal>champ</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>fchamp</literal> is used to draw the direction field of a 2D first
+    order ODE defined by the external function <literal>f</literal>. Note that if
+    the ODE is autonomous, argument <literal>t</literal> is useless, but it must be
+    given.</para>
+    <para>Enter the command <literal>fchamp()</literal> to see a demo.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+deff("[xdot] = derpol(t,x)",..
+        ["xd1 = x(2)";..
+         "xd2 = -x(1) + (1 - x(1)**2)*x(2)";..
+         "xdot = [ xd1 ; xd2 ]"])
+xf= -1:0.1:1;
+yf= -1:0.1:1;
+fchamp(derpol,0,xf,yf)
+clf()
+fchamp(derpol,0,xf,yf,1,[-2,-2,2,2],"011")
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="champ">champ</link>
+      </member>
+      <member>
+        <link linkend="champ1">champ1</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

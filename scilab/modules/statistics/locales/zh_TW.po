@@ -1,0 +1,402 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 13:27+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid " Std must not be zero\n"
+msgstr " Std 不可為 0\n"
+
+#, c-format
+msgid "%s and %s must have same size.\n"
+msgstr "%s 及 %s 長度須相同.\n"
+
+#, c-format
+msgid "%s: Graph demand out of bounds.\n"
+msgstr "%s: 要求之 Graph 超過範圍.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 最小為 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
+msgstr "%s: 選項 '%s'  之輸入參數數目錯誤:  應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 至 %d 個輸入參數.\n"
+
+#, c-format
+msgid "%s: Wrong size for both input arguments: same size expected.\n"
+msgstr "%s: 兩輸入參數之長度錯誤: 長度應相同.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr "%s: 第 %d 及 第 %d 輸入參數長度錯誤: 長度應相同.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 應 > %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of columns of the second "
+"input argument expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應與第二參數之列數相同.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same number of rows of the second "
+"input argument expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 應與第二參數之行數相同.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
+msgstr "%s: 第 %d 輸入參數長度錯誤: 長度應為 %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected."
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一布林數."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為一數值.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為向量或矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為純量或向量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為向量,數值矩陣或字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為數值.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: Numerical expected.\n"
+msgstr "%s: 輸入參數型態錯誤: 應為數字.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for %d input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 ''%s'', ''%s'', %d 或 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' 或 '%s' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'' 或 ''%s'' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為''%s'', ''%s'', %d 或 %d .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', %d or %d "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'', ''%s'' , ''%s'' , %d  或 %d .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'' or a positive "
+"number expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 ''%s'', ''%s'' , ''%s''  或正值之數 .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 ''%s'', ''%s'',''%s'', %d 或%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應 > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應介於 %d 及 %d 之間.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Real number between %d to %d "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為介於 %d , %d  間之實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of column as first input "
+"argument expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為與第一參數之列數相同.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Same number of line as first input "
+"argument expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應為與第一參數之行數相同.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', %d or %d expected.\n"
+msgstr "%s: 輸入參數數值錯誤: 應為 ''%s'', ''%s'' , %d 或 %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of input argument #%d: Less or equal than length of last "
+"input argument expected.\n"
+msgstr "%s: 第 %d 輸入參數數值錯誤: 應小於或等於最後參數之長度.\n"
+
+#, c-format
+msgid "%s: Wrong value of w : %d; 0 or 1 expected.\n"
+msgstr "%s: w 的數據錯誤: %d; 應該是 0 或 1.\n"
+
+msgid "A,B,P and Q"
+msgstr "A,B,P 及 Q"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %f\n"
+msgstr "答案似乎大於最大搜索界限 %f\n"
+
+#, c-format
+msgid "Answer appears to be higher than greatest search bound %s\n"
+msgstr ""
+
+#, c-format
+msgid "Answer appears to be lower than lowest search bound %f\n"
+msgstr "答案似乎小於最小搜索界限 %f\n"
+
+msgid "B,P,Q,X and Y"
+msgstr "B,P,Q,X 及 Y"
+
+msgid "Correlations Circle"
+msgstr "Correlations 圓"
+
+msgid "Df, P and Q"
+msgstr "Df, P 及 Q"
+
+msgid "Df,Pnonc,P and Q"
+msgstr "Df,Pnonc,P 及 Q"
+
+msgid "Dfd,P,Q and F"
+msgstr "Dfd,P,Q 及 F"
+
+msgid "Dfd,Pnonc,P,Q and F"
+msgstr "Dfd,Pnonc,P,Q 及 F"
+
+msgid "Dfn,Dfd,P and Q"
+msgstr "Dfn,Dfd,P 及 Q"
+
+msgid "Dfn,Dfd,Pnonc,P and Q"
+msgstr "Dfn,Dfd,Pnonc,P 及 Q"
+
+msgid "Eigenvalues (in percent)"
+msgstr "特徵值"
+
+msgid "F,Dfn and Dfd"
+msgstr "F,Dfn 及 Dfd"
+
+msgid "F,Dfn,Dfd and Pnonc"
+msgstr "F,Dfn,Dfd 及 Pnonc"
+
+#, c-format
+msgid "Keeping %i values from %i to %i in sorted order\n"
+msgstr "從經排序後的 %i 到 %i 中保留數值 %i\n"
+
+msgid "Mean,Std,P and Q"
+msgstr "Mean,Std,P 及 Q"
+
+msgid "P,Q and S"
+msgstr "P,Q 及 S"
+
+msgid "P,Q and T"
+msgstr "P,Q 及 T"
+
+msgid "P,Q and X"
+msgstr "P,Q 及 X"
+
+msgid "P,Q,F and Dfn"
+msgstr "P,Q,F 及 Dfn"
+
+msgid "P,Q,F,Dfn and Dfd"
+msgstr "P,Q,F,Dfn 及 Dfd"
+
+msgid "P,Q,S  and Xn"
+msgstr "P,Q,S 及 Xn"
+
+msgid "P,Q,S and Xn"
+msgstr "P,Q,S 及 Xn"
+
+msgid "P,Q,X and Df"
+msgstr "P,Q,X 及 Df"
+
+msgid "P,Q,X and Mean"
+msgstr "P,Q,X 及 Mean"
+
+msgid "P,Q,X and Shape"
+msgstr "P,Q,X 及 Shape"
+
+msgid "P,Q,X,Y and A"
+msgstr "P,Q,X,Y 及 A"
+
+msgid "PR,OMPR,P,Q and S"
+msgstr "PR,OMPR,P,Q 及 S"
+
+msgid "Pnonc,P,Q and X"
+msgstr "Pnonc,P,Q 及 X"
+
+msgid "Pnonc,P,Q,F and Dfn"
+msgstr "Pnonc,P,Q,F 及 Dfn"
+
+msgid "Pr,OMPr,P,Q and S"
+msgstr "Pr,OMPr,P,Q 及 S"
+
+msgid "Rate,P,Q and X"
+msgstr ""
+
+msgid "S and Xlam"
+msgstr "S 及 Xlam"
+
+msgid "S,XN,PR and OMPR"
+msgstr "S,XN,PR 及 OMPR"
+
+msgid "S,Xn,Pr and Ompr"
+msgstr "S,Xn,Pr 及 Ompr"
+
+msgid "Shape,Rate,P and Q"
+msgstr ""
+
+#, c-format
+msgid "Size of x is zero : returning NaN.\n"
+msgstr "x 的資料長度是零: 回傳 NaN.\n"
+
+#, c-format
+msgid "Size of x:%i\n"
+msgstr "x 的資料長度: %i\n"
+
+msgid "Std,P,Q and X"
+msgstr "Std,P,Q 及 X"
+
+msgid "T and Df"
+msgstr "T 及 Df"
+
+#, c-format
+msgid "Unexpected value of orien : %s\n"
+msgstr "orien 的數值無法預期: %s\n"
+
+#, c-format
+msgid "Wrong value for input argument orien: %s.\n"
+msgstr "輸入參數 orien 的數值錯誤: %s.\n"
+
+msgid "X and Df"
+msgstr "X 及 Df"
+
+msgid "X,Df and Pnonc"
+msgstr "X,Df 及 Pnonc"
+
+msgid "X,Mean and Std"
+msgstr "X,Mean 及 Std"
+
+msgid "X,Shape and Rate"
+msgstr ""
+
+msgid "X,Y,A and B"
+msgstr "X,Y,A 及 B"
+
+msgid "XN,PR,OMPR,P and Q"
+msgstr "XN,PR,OMPR,P 及 Q"
+
+msgid "Xlam,P and Q"
+msgstr "Xlam,P 及 Q"
+
+msgid "Xn,Pr,Ompr,P and Q"
+msgstr "Xn,Pr,Ompr,P 及 Q"
+
+msgid "cdfchi: Error in cumgam\n"
+msgstr "cdfchi: cumgam 中之錯誤\n"
+
+#, c-format
+msgid "discard=%s\n"
+msgstr "discard=%s\n"
+
+#, c-format
+msgid "orien=%s\n"
+msgstr "orien=%s\n"
+
+#, c-format
+#~ msgid ""
+#~ "Input argument %c is out of range.\n"
+#~ "Bound exceeded: %f\n"
+#~ msgstr ""
+#~ "輸入參數 %c 超過限制.\n"
+#~ "超過界限: %f\n"
+
+#~ msgid "X,Shape and Scale"
+#~ msgstr "X,Shape 及 Scale"
+
+#~ msgid "Shape,Scale,P and Q"
+#~ msgstr "Shape,Scale,P 及 Q"
+
+#~ msgid "Scale,P,Q and X"
+#~ msgstr "Scale,P,Q 及 X"

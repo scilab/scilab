@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Djalel Abdemouche
+ * Copyright (C) INRIA - Fabrice Leray
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="drawnow">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>drawnow</refname>
+    <refpurpose>draw hidden graphics
+  entities.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>drawnow()</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Description</title>
+    <para>Considering the current figure, this function can be used to draw the
+    hidden graphics entities and all its chidren, that may have been postponed
+    by a previous call to <literal>drawlater</literal>. The
+    <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
+    is set to <literal>"on" </literal>.</para>
+    <para>It can specially be used with the <literal>drawlater</literal> function.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+f=get("current_figure") // handle of the current figure
+  
+drawlater()
+subplot(221);
+t=1:10;plot2d(t,t.^2)
+subplot(222);
+x=0:1:7;plot2d(x,cos(x),2) 
+subplot(234);
+plot2d(t,cos(t),3);
+subplot(235);
+plot2d(x,sin(2*x),5); 
+subplot(236);
+plot2d(t,tan(2*t));  
+ 
+draw(gca()); //draw the current axes and its children
+draw(f.children([3 4])); // draw the specified axes and their children
+drawnow(); // draw the current figure
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get">get</link>
+      </member>
+      <member>
+        <link linkend="set">set</link>
+      </member>
+      <member>
+        <link linkend="drawlater">drawlater</link>
+      </member>
+      <member>
+        <link linkend="graphics_entities">graphics_entities</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <para>Djalel ABDEMOUCHE, F.Leray</para>
+  </refsection>
+</refentry>

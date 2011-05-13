@@ -24,7 +24,7 @@
     <synopsis>OK=TCL_UnsetVar(varname [,interp])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>varname</term>
@@ -72,8 +72,8 @@ TCL_ExistVar("Scilab",'InterpSlave')
 TCL_DeleteInterp('InterpSlave')
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="ScilabEval">ScilabEval</link>

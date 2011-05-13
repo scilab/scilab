@@ -1,0 +1,50 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-10-17 05:29+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+msgid ""
+"Click on an Axes object to start rotation. Right click or ESCAPE to cancel."
+msgstr "Axesオブジェクト上でクリックすると回転を開始します.右クリックまたはエスケープでキャンセルします."
+
+msgid "Click or press ESCAPE to terminate rotation."
+msgstr "クリックまたはエスケープキーを押すと回転を終了します."
+
+msgid "Unable to render polyline, memory full.\n"
+msgstr "ポリラインを描画できません, メモリ不足です.\n"
+
+#
+# File: src/cpp/rendererBasicAlgos.cpp, line: 41
+#, c-format
+msgid ""
+"Warning !!!\n"
+"Scilab has found a critical error (%s).\n"
+"Save your data and restart Scilab.\n"
+msgstr ""
+"警告!!!\n"
+"Scilabは深刻なエラーを見つけました(%s).\n"
+"データを保存して、Scilabをリスタートしてください。\n"
+
+#
+# File: src/norenderer/norenderer.c, line: 19
+#~ msgid "Scilab Renderer module not installed.\n"
+#~ msgstr "Scilabレンダラーモジュールはインストールされていません。\n"

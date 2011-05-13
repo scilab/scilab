@@ -1,0 +1,106 @@
+# Italian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 08:36+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid " An hypermatrix extraction must have at least 2 arguments. "
+msgstr " Una estrazione di ipermatrice deve avere almeno 2 argomenti. "
+
+msgid " An hypermatrix insertion must have at least 3 arguments. "
+msgstr " Un inserimento di ipermatrice deve avere almeno 3 argomenti. "
+
+msgid " Argument is not an hypermatrix. "
+msgstr " L'argomento non è una ipermatrice. "
+
+msgid " Bad hypermatrix insertion. "
+msgstr " L'inserimento della ipermatrice è sbagliato. "
+
+msgid " Incompatible hypermatrix extraction. "
+msgstr " L'estrazione di ipermatrice non è compatibile. "
+
+#, c-format
+msgid "%s: ''dims'' can not be used as a field name.\n"
+msgstr "%s: ''dims'' non può essere usato come nome per un campo.\n"
+
+#, c-format
+msgid "%s: Number of entries does not match product of dimensions"
+msgstr ""
+"%s: Il numero degli elementi non coincide col prodotto delle dimensioni."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne era atteso un "
+"numero pari.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected"
+msgstr ""
+"%s: Il numero di parametri in ingresso  è sbagliato: ne erano attesi %d."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: struct array expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"struct.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be non-negative "
+"integers.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: gli elementi devono "
+"essere interi non negativi.\n"
+
+#, c-format
+msgid "%s: field name ''%s'' defined twice.\n"
+msgstr "%s: il nome del campo ''%s'' è definito due volte.\n"
+
+#, c-format
+msgid "Bad (%d th) index in hypermatrix extraction. "
+msgstr "L'indice (%d esimo) nella estrazione dell' ipermatrice è sbagliato. "
+
+msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgstr ""
+"Ci sono troppi argomenti nello stack, modificare il file stack.h e allargare "
+"intersiz.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s)."
+#~ msgstr "%s: Il numero degli argomenti in ingresso è sbagliato."
+
+#~ msgid " An hypermatrix insertion must have at least 3 arguments "
+#~ msgstr " Un inserimento di ipermatrice deve avere almeno 3 argomenti "
+
+#~ msgid " Argument is not an hypermatrix "
+#~ msgstr " L'argomento non è una ipermatrice "
+
+#, c-format
+#~ msgid "%s: Wrong number of input argument(s) : an even number is expected."
+#~ msgstr ""
+#~ "%s: Il numero degli argomenti in ingresso è sbagliato: ne era atteso un "
+#~ "numero pari."

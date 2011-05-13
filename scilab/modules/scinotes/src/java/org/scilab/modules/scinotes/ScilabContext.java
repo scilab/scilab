@@ -36,21 +36,21 @@ public class ScilabContext implements ViewFactory {
     /**
      * Contains the colors of the different tokens
      */
-    Color[] tokenColors;
+    public Color[] tokenColors;
 
     /**
      * Contains the fonts of the different tokens
      */
-    Font[] tokenFonts;
+    public Font[] tokenFonts;
 
     /**
      * Contains the attrib (underline or stroke) of the different tokens
      */
-    int[] tokenAttrib;
+    public int[] tokenAttrib;
 
     private View view;
     private boolean plain;
-    private List<Integer> typeToDefault = new ArrayList();
+    private List<Integer> typeToDefault = new ArrayList<Integer>();
 
     /**
      * The constructor
@@ -79,6 +79,7 @@ public class ScilabContext implements ViewFactory {
     public void genAttribute(String keyword, int type) {
         tokenAttrib[ScilabLexerConstants.TOKENS.get(keyword)] = type;
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(keyword) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenAttrib[i] = tokenAttrib[0];
@@ -91,17 +92,18 @@ public class ScilabContext implements ViewFactory {
      */
     public void genAttributes() {
         tokenAttrib = new int[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map map = ConfigSciNotesManager.getAllAttributes();
-        Iterator it = map.keySet().iterator();
+        Map<String, Integer>  map = ConfigSciNotesManager.getAllAttributes();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = ((Integer) map.get(tokenType)).intValue();
+            String tokenType = it.next();
+            tokenAttrib[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType).intValue();
         }
 
         for (Integer i : typeToDefault) {
             tokenAttrib[i] = tokenAttrib[0];
         }
         tokenAttrib[ScilabLexerConstants.OSKEYWORD] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
+        tokenAttrib[ScilabLexerConstants.ELSEIF] = tokenAttrib[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -109,11 +111,11 @@ public class ScilabContext implements ViewFactory {
      */
     public void genColors() {
         tokenColors = new Color[ScilabLexerConstants.NUMBEROFTOKENS];
-        Map map = ConfigSciNotesManager.getAllForegroundColors();
-        Iterator it = map.keySet().iterator();
+        Map<String, Color> map = ConfigSciNotesManager.getAllForegroundColors();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = (Color) map.get(tokenType);
+            String tokenType = it.next();
+            tokenColors[ScilabLexerConstants.TOKENS.get(tokenType)] = map.get(tokenType);
         }
 
         tokenColors[ScilabLexerConstants.OSKEYWORD] = Color.BLACK;
@@ -129,6 +131,7 @@ public class ScilabContext implements ViewFactory {
         /* Special case : Scilab's developers in comments */
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
     }
 
     /**
@@ -137,7 +140,6 @@ public class ScilabContext implements ViewFactory {
      * @param color the color to use
      */
     public void genColors(String name, Color color) {
-        Map map = ConfigSciNotesManager.getAllForegroundColors();
         if (tokenColors == null) {
             genColors();
         }
@@ -145,6 +147,7 @@ public class ScilabContext implements ViewFactory {
         tokenColors[ScilabLexerConstants.TOKENS.get(name)] = color;
         tokenColors[ScilabLexerConstants.AUTHORS] = tokenColors[ScilabLexerConstants.COMMENT];
         tokenColors[ScilabLexerConstants.OSKEYWORD] = tokenColors[ScilabLexerConstants.SKEYWORD];
+        tokenColors[ScilabLexerConstants.ELSEIF] = tokenColors[ScilabLexerConstants.SKEYWORD];
 
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
@@ -179,6 +182,7 @@ public class ScilabContext implements ViewFactory {
 
         tokenFonts[ScilabLexerConstants.TOKENS.get(name)] = font;
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
         if (ScilabLexerConstants.TOKENS.get(name) == ScilabLexerConstants.DEFAULT) {
             for (Integer i : typeToDefault) {
                 tokenFonts[i] = tokenFonts[0];
@@ -198,7 +202,7 @@ public class ScilabContext implements ViewFactory {
      * @param font the base font to use
      */
     public void genFonts(Font font) {
-        Map map;
+        Map<String,Font> map;
         Font f = font;
         if (f == null) {
             f = ConfigSciNotesManager.getFont();
@@ -209,10 +213,10 @@ public class ScilabContext implements ViewFactory {
 
         tokenFonts = new Font[ScilabLexerConstants.NUMBEROFTOKENS];
 
-        Iterator it = map.keySet().iterator();
+        Iterator<String> it = map.keySet().iterator();
         while (it.hasNext()) {
-            String tokenType = (String) it.next();
-            f = (Font) map.get(tokenType);
+            String tokenType = it.next();
+            f = map.get(tokenType);
             if (!compatible && (f.isBold() || f.isItalic())) {
                 f = f.deriveFont(Font.PLAIN);
             }
@@ -237,6 +241,7 @@ public class ScilabContext implements ViewFactory {
         }
 
         tokenFonts[ScilabLexerConstants.OSKEYWORD] = tokenFonts[ScilabLexerConstants.SKEYWORD];
+        tokenFonts[ScilabLexerConstants.ELSEIF] = tokenFonts[ScilabLexerConstants.SKEYWORD];
     }
 
     /**

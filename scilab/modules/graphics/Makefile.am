@@ -16,7 +16,7 @@ modulename=graphics
 
 #### graphics : Conf files ####
 libscigraphics_la_rootdir = $(mydatadir)
-libscigraphics_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscigraphics_la_root_DATA =  license.txt version.xml
 
 #### graphics : init scripts ####
 libscigraphics_la_etcdir = $(mydatadir)/etc
@@ -440,7 +440,7 @@ libscigraphics_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES) $(GRAPHIC
 CHECK_SRC= $(GRAPHICS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphics_la_CFLAGS)
 
-libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/modules/core/libscicore.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/jvm/libscijvm.la
+libscigraphics_la_LIBADD =  $(top_builddir)/libs/hashtable/libscihashtable.la $(top_builddir)/modules/action_binding/libsciaction_binding.la $(top_builddir)/modules/elementary_functions/libscielementary_functions.la $(top_builddir)/modules/renderer/libscirenderer.la $(top_builddir)/modules/tclsci/libscitclsci.la $(top_builddir)/modules/gui/libscigui.la $(top_builddir)/libs/doublylinkedlist/libscidoublylinkedlist.la $(top_builddir)/libs/MALLOC/libscimalloc.la $(top_builddir)/modules/output_stream/libscioutput_stream.la $(top_builddir)/modules/fileio/libscifileio.la $(top_builddir)/modules/jvm/libscijvm.la
 
 
 
@@ -499,7 +499,7 @@ libscigraphics_disable_la_CFLAGS = -I$(top_srcdir)/modules/output_stream/include
 -Iincludes/ \
 -I$(top_srcdir)/libs/doublylinkedlist/includes/
 
-libscigraphics_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libscigraphics_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libscigraphics_la_CFLAGS += -I$(top_srcdir)/modules/output_stream/includes/
 
@@ -512,7 +512,7 @@ USEANT=1
 pkglib_LTLIBRARIES += libscigraphics.la
 endif
 
-libscigraphics_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
+libscigraphics_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(TCLTK_LIBS) $(X_LIBS)
 
 
 include $(top_srcdir)/Makefile.incl.am

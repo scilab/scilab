@@ -20,6 +20,9 @@
 //
 
 function systexport(scs_m, exp_dir, exp_format)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 
   do_export(scs_m, fullfile(exp_dir, scs_m.props.title(1)), 0, exp_format) 
   

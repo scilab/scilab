@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry version="5.0-subset Scilab" xml:id="cothm" xml:lang="fr"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cothm</refname>
+
+    <refpurpose>cotangente hyperbolique matricielle</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Séquence d'appel</title>
+
+    <synopsis>[t]=cothm(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Description</title>
+
+    <para><literal>cothm(x)</literal> est la cotangente hyperbolique
+    matricielle de la matrice carrée x.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemples</title>
+
+    <programlisting role="example"><![CDATA[ 
+A=[1,2;3,4];
+cothm(A)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Voir aussi</title>
+
+    <simplelist type="inline">
+      <member><link linkend="coth">coth</link></member>
+    </simplelist>
+  </refsection>
+</refentry>

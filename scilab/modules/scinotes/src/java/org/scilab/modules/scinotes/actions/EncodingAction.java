@@ -26,11 +26,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.IllegalCharsetNameException;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Iterator;
-import java.util.Set;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 
 import javax.swing.ButtonGroup;
@@ -41,6 +41,7 @@ import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.EditorKit;
 
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -48,7 +49,6 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.ButtonType;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
-import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
@@ -64,14 +64,26 @@ public class EncodingAction extends DefaultCheckAction {
      */
     private static final long serialVersionUID = -5421313717126859924L;
 
-    private static final String CHECKICON = System.getenv("SCI") + "/modules/gui/images/icons/check-icon.png";
+    private static final String CHECKICON = ScilabConstants.SCI.getPath() + "/modules/gui/images/icons/check-icon.png";
 
-    private static Map<String, String> encodings = new HashMap();
-    private static Map<String, List<String>> language = new HashMap();
+    private static Map<String, String> encodings = new HashMap<String, String>();
+    private static Map<String, List<String>> language = new HashMap<String, List<String>>();
     private static JRadioButtonMenuItem[] radioTypes;
     private static Menu[] menuLang;
 
     static {
+        encodings.put("x-MacArabic", "Arabic");
+        encodings.put("x-MacCentralEurope", "Central European");
+        encodings.put("x-MacCroatian", "Central European");
+        encodings.put("x-MacCyrillic", "Cyrillic");
+        encodings.put("x-MacGreek", "Greek");
+        encodings.put("x-MacHebrew", "Hebrew");
+        encodings.put("x-MacIceland", "Western European");
+        encodings.put("x-MacRoman", "Western European");
+        encodings.put("x-MacRomania", "Central European");
+        encodings.put("x-MacThai", "Thai");
+        encodings.put("x-MacTurkish", "Turkish");
+        encodings.put("x-MacUkraine", "Cyrillic");
         encodings.put("ASMO-708", "Arabic");
         encodings.put("cp866", "Cyrillic");
         encodings.put("windows-874", "Thai");
@@ -184,7 +196,7 @@ public class EncodingAction extends DefaultCheckAction {
                 group.add(radioTypes[psize + i]);
                 ((JMenu) menuLang[k].getAsSimpleMenu()).add(radioTypes[psize + i]);
 
-                if (encodingList.get(i).toUpperCase().equals(Charset.defaultCharset().toString().toUpperCase())) {
+                if (encodingList.get(i).equalsIgnoreCase(Charset.defaultCharset().toString())) {
                     radioTypes[psize + i].setSelected(true);
                 }
             }
@@ -195,6 +207,10 @@ public class EncodingAction extends DefaultCheckAction {
         return encodingTypeMenu;
     }
 
+    public static Set<String> getSupportedEncodings() {
+        return encodings.keySet();
+    }
+
     /**
      * Update the selected item in the encoding pull down menu of the document.
      * @param scilabDocument the document for which the encoding menu should
@@ -203,9 +219,9 @@ public class EncodingAction extends DefaultCheckAction {
     public static void updateEncodingMenu(ScilabDocument scilabDocument) {
         if (radioTypes != null) {
             for (int i = 0; i < radioTypes.length; i++) {
-                if (scilabDocument.getEncoding().equals(radioTypes[i].getText())) {
+                if (scilabDocument.getEncoding().equalsIgnoreCase(radioTypes[i].getText())) {
                     radioTypes[i].setSelected(true);
-                    updateIcon(scilabDocument.getEncoding());
+                    updateIcon(radioTypes[i].getText());
                     return;
                 }
             }
@@ -214,7 +230,7 @@ public class EncodingAction extends DefaultCheckAction {
 
     /**
      * getEncodings
-     * @return Map : Language -> {enc1, enc2, ...}
+     * @return Map : Language -&gt; {enc1, enc2, ...}
      */
     public static Map<String, List<String>> getEncodings() {
         if (!language.isEmpty()) {
@@ -229,7 +245,7 @@ public class EncodingAction extends DefaultCheckAction {
                 Charset.forName(enc);
                 String lang = encodings.get(enc);
                 if (!language.containsKey(lang)) {
-                    language.put(lang, new ArrayList());
+                    language.put(lang, new ArrayList<String>());
                 }
 
                 language.get(lang).add(enc);
@@ -240,7 +256,7 @@ public class EncodingAction extends DefaultCheckAction {
             }
         }
 
-        language = new TreeMap(language);
+        language = new TreeMap<String, List<String>>(language);
         return language;
     }
 
@@ -277,7 +293,7 @@ public class EncodingAction extends DefaultCheckAction {
         styleDocument.setAutoIndent(false);
 
         styleDocument.setEncoding(encoding);
-        ConfigSciNotesManager.saveDefaultEncoding(encoding);
+        //ConfigSciNotesManager.saveDefaultEncoding(encoding);
 
         //Update the menu
         updateIcon(encoding);

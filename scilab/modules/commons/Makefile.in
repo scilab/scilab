@@ -65,21 +65,19 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
-@GUI_TRUE@am__append_3 = libscicommons.la 
+@GUI_TRUE@am__append_2 = libscicommons.la 
 subdir = modules/commons
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
@@ -127,11 +125,11 @@ libscicommons_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(libscicommons_disable_la_CFLAGS) $(CFLAGS) \
 	$(libscicommons_disable_la_LDFLAGS) $(LDFLAGS) -o $@
 libscicommons_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/core/libscicore.la \
 	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la
-am__objects_2 = empty.lo
-am_libscicommons_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
+am__objects_2 = libscicommons_la-ScilabCommons_wrap.lo
+am__objects_3 = empty.lo
+am_libscicommons_la_OBJECTS = $(am__objects_2) $(am__objects_3) \
 	$(am__objects_1) $(am__objects_1) $(am__objects_1) \
 	$(am__objects_1)
 libscicommons_la_OBJECTS = $(am_libscicommons_la_OBJECTS)
@@ -140,13 +138,9 @@ libscicommons_la_LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(libscicommons_la_LDFLAGS) $(LDFLAGS) -o $@
 @GUI_TRUE@am_libscicommons_la_rpath = -rpath $(pkglibdir)
 DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
-F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
-F77LD = $(F77)
-F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
-	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
-	$(LDFLAGS) -o $@
+depcomp = $(SHELL) $(top_srcdir)/config/depcomp
+am__depfiles_maybe = depfiles
+am__mv = mv -f
 COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
 	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
 LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
@@ -155,6 +149,13 @@ LTCOMPILE = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 CCLD = $(CC)
 LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
 	--mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
+	$(LDFLAGS) -o $@
+F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
+LTF77COMPILE = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
+F77LD = $(F77)
+F77LINK = $(LIBTOOL) --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) \
+	--mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
 SOURCES = $(libscicommons_disable_la_SOURCES) \
 	$(libscicommons_la_SOURCES)
@@ -212,6 +213,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -234,9 +236,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -254,6 +257,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -319,8 +323,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -341,6 +348,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -415,7 +423,7 @@ modulename = commons
 
 #### commons : Conf files ####
 libscicommons_la_rootdir = $(mydatadir)
-libscicommons_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscicommons_la_root_DATA = license.txt version.xml
 
 #### commons : init scripts ####
 libscicommons_la_etcdir = $(mydatadir)/etc
@@ -434,7 +442,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -470,7 +478,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -486,7 +494,7 @@ HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 COMMONS_JNI_SOURCES = 
-COMMONS_C_SOURCES = 
+COMMONS_C_SOURCES = src/jni/ScilabCommons_wrap.c
 COMMONS_CPP_SOURCES = 
 COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
 GIWS_WRAPPERS = 
@@ -494,16 +502,16 @@ GIWS_WRAPPERS =
 @SWIG_TRUE@BUILT_SOURCES = swig
 GATEWAY_C_SOURCES = 
 GATEWAY_CPP_SOURCES = 
-libscicommons_la_CFLAGS = 
+libscicommons_la_CFLAGS = $(JAVA_JNI_INCLUDE)
 libscicommons_la_CPPFLAGS = 
 
 # Without the commons module 
 libscicommons_disable_la_CFLAGS = 
 COMMONS_DISABLE_C_SOURCES = 
-libscicommons_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscicommons_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscicommons_disable_la_SOURCES = $(COMMONS_DISABLE_C_SOURCES)
-pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_3)
-libscicommons_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+pkglib_LTLIBRARIES = libscicommons-disable.la $(am__append_2)
+libscicommons_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(COMMONS_CPP_SOURCES)
 
 # For the code check (splint)
@@ -511,9 +519,8 @@ CHECK_SRC = $(COMMONS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscicommons_la_CFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
-libscicommons_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
-$(top_builddir)/libs/MALLOC/libscimalloc.la \
+SWIG_WRAPPERS = src/jni/ScilabCommons.i
+libscicommons_la_LIBADD = $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 
@@ -525,7 +532,7 @@ all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -597,6 +604,36 @@ mostlyclean-compile:
 
 distclean-compile:
 	-rm -f *.tab.c
+
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo@am__quote@
+
+.c.o:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c $<
+
+.c.obj:
+@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ `$(CYGPATH_W) '$<'`
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(COMPILE) -c `$(CYGPATH_W) '$<'`
+
+.c.lo:
+@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/$*.Tpo $(DEPDIR)/$*.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LTCOMPILE) -c -o $@ $<
+
+libscicommons_la-ScilabCommons_wrap.lo: src/jni/ScilabCommons_wrap.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -MT libscicommons_la-ScilabCommons_wrap.lo -MD -MP -MF $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Tpo $(DEPDIR)/libscicommons_la-ScilabCommons_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/jni/ScilabCommons_wrap.c' object='libscicommons_la-ScilabCommons_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicommons_la_CPPFLAGS) $(CPPFLAGS) $(libscicommons_la_CFLAGS) $(CFLAGS) -c -o libscicommons_la-ScilabCommons_wrap.lo `test -f 'src/jni/ScilabCommons_wrap.c' || echo '$(srcdir)/'`src/jni/ScilabCommons_wrap.c
 
 .f.o:
 	$(F77COMPILE) -c -o $@ $<
@@ -800,6 +837,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -847,6 +885,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
+	-rm -rf ./$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -979,6 +1018,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1076,9 +1121,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

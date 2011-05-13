@@ -12,7 +12,7 @@
     <synopsis>[ok,x1,..,x14]=getvalue(desc,labels,typ,ini)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>desc</term>
@@ -123,8 +123,8 @@ labels=["magnitude";"frequency";"phase    "];
      list("vec",1,"vec",1,"vec",1),["0.85";"10^2";"%pi/3"])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="x_mdialog">x_mdialog</link>

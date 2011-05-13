@@ -13,7 +13,7 @@
 
 ######### Common Modelica elements #############
 
-if SCICOS
+if XCOS
 if OCAML
 TARGET = modelicac XML2Modelica modelicat
 BASE_PATH = $(srcdir)/src/
@@ -161,6 +161,8 @@ SUFFIXES += .ml .mli .mll .mly .cmo .cmi .cmx
 generate-parser: $(PARSER_SRC)
 	$(OCAMLYACC) $(<)
 	$(RM) -f $(<:.mly=.mli)
+# Crappy workaround to avoid bug 8013
+	touch src/modelica_compiler/scicosCodeGeneration.mli
 
 # Call the lexer
 generate-lexer: $(LEXER_SRC)
@@ -180,7 +182,10 @@ XML2Modelica: $(MLS_XML2Modelica:.ml=.cmo) $(MLS_XML2Modelica:.ml=.cmx)
 # call the ocaml/Yacc
 generate-parser_modelicat: $(PARSER_SRC_modelicat)
 	$(OCAMLYACC) $(<)
-	$(RM) -f $(<:.mly=.mli)
+	$(RM) -f $(<:.mly=.ml)i
+# Crappy workaround to avoid bug 8013
+	touch $(srcdir)/src/modelica_compiler/scicosCodeGeneration.mli
+
 
 # Call the lexer
 generate-lexer_modelicat: $(LEXER_SRC_modelicat)
@@ -211,4 +216,4 @@ CLEANFILES = $(BASE_PATH)/*/*.cmi \
 	$(TARGET)
 
 endif # OCAML
-endif # SCICOS
+endif # XCOS

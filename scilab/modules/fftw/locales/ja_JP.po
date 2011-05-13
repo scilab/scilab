@@ -1,0 +1,101 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-08-25 12:44+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: エラーが発生しました: %s\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgstr "%s: 入力引数 '#%d' および '#%d' で互換性がありません: 同じ大きさとしてください.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d not expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real or Complex expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: N次元配列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: int matrix expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+
+# File: sci_gateway/c/gw_fftw.c, line: 45
+#, c-format
+msgid "FFTW Library %s not found.\n"
+msgstr "FFTW ライブラリ %s が見つかりません。\n"
+
+#
+# File: sci_gateway/c/gw_fftw.c, line: 49
+msgid "FFTW Library not found.\n"
+msgstr "FFTW ライブラリ が見つかりません。\n"
+
+#
+# File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 78
+msgid "FFTW can't read wisdom."
+msgstr "FFTW wisdom を読めません。"
+
+#
+# File: src/nofftw/nofftw.c, line: 20
+msgid "Scilab FFTW module not installed.\n"
+msgstr "Scilab FFTW モジュールはインストールされていません。\n"
+
+#
+# File: sci_gateway/c/sci_fftw.c, line: 187
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: n次元配列 を想定します。\n"

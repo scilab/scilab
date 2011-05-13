@@ -1,17 +1,22 @@
-// This file is released into the public domain
+// This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-src_c_path = get_absolute_file_path("builder_c.sce");
+// This macro compiles the files
 
-CFLAGS = "-I" + src_c_path;
+function builder_c()
 
-tbx_build_src(["csum","csub"],    ..
-              ["csum.c","csub.c"],..
-              "c", ..             ..
-              src_c_path,         ..
-              "",                 ..
-              "",                 ..
-              CFLAGS);
+  src_c_path = get_absolute_file_path("builder_c.sce");
 
-clear tbx_build_src;
-clear src_c_path;
-clear CFLAGS;
+  CFLAGS = ilib_include_flag(src_c_path);
+
+  tbx_build_src(["csum","csub","multiplybypi"],    ..
+                ["csum.c","csub.c","multiplybypi.c"],..
+                "c", ..             ..
+                src_c_path,         ..
+                "",                 ..
+                "",                 ..
+                CFLAGS);
+                
+endfunction
+
+builder_c();
+clear builder_c; // remove builder_c on stack

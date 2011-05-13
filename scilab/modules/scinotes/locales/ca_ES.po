@@ -1,0 +1,803 @@
+# Catalan translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-07-29 16:41+0000\n"
+"Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
+"Language-Team: Catalan <ca@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid ""
+" has been modified since last save\n"
+"save it?"
+msgstr ""
+" s'ha modificat des de l'últim cop que es va desar\n"
+"El voleu desar?"
+
+msgid "%s is a directory."
+msgstr "%s és un directori."
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hi ha més memòria.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
+msgstr ""
+"%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
+"tenir les mateixes dimensions.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A single string.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix or 'readonly' expected.\n"
+msgstr ""
+"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu real o "
+"'readonly'.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: String matrix expected.\n"
+msgstr ""
+"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
+"de text.\n"
+
+msgid "... file with echo"
+msgstr ""
+
+msgid "... file with no echo"
+msgstr ""
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+msgid "?"
+msgstr "?"
+
+msgid "About"
+msgstr "Quant a"
+
+msgid "Absolute"
+msgstr ""
+
+msgid "All"
+msgstr "Tot"
+
+msgid "Alphabetic order"
+msgstr ""
+
+msgid "An error occured when exporting the code using FOP"
+msgstr ""
+
+msgid "An error occured when printing"
+msgstr ""
+
+msgid "Anchor's name: "
+msgstr ""
+
+msgid "Anchor: "
+msgstr ""
+
+msgid "Anchors"
+msgstr ""
+
+msgid "Apply & Reindent"
+msgstr ""
+
+msgid "Are you sure that you want to close SciNotes ?"
+msgstr "Esteu segur que voleu tancar l'SciNotes?"
+
+msgid "Auto (Default)"
+msgstr "Automàtic (Predeterminat)"
+
+msgid "Auto-completion on (,&quot;,..."
+msgstr ""
+
+msgid "Auto-completion on if,function,..."
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Backward"
+msgstr "Enrere"
+
+msgid "Binary file: read-only mode"
+msgstr "Fitxer binari: mode de només lectura"
+
+msgid "Bold"
+msgstr "Negreta"
+
+msgid "Cancel"
+msgstr "Cancel·la"
+
+msgid "Cannot guess the file encoding."
+msgstr ""
+
+msgid "Cannot load \"scinotesConfiguration.xml\""
+msgstr "No s'ha pogut carregar el \"scinotesConfiguration.xml\""
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr ""
+
+msgid "Case sensitive"
+msgstr "Distingix majúscules i minúscules"
+
+msgid "Change Color"
+msgstr "Canvia el color"
+
+msgid "Change Colors"
+msgstr "Canvia els colors"
+
+msgid "Circular search"
+msgstr ""
+
+msgid "Clone and close tab in a new window"
+msgstr "Clona i tanca la pestanya en una nova finestra"
+
+msgid "Clone tab in a new window"
+msgstr "Clona la pestanya en una nova finestra"
+
+msgid "Close"
+msgstr "Tanca"
+
+msgid "Close All"
+msgstr "Tanca-ho tot"
+
+msgid "Close All But This"
+msgstr "Tanca-ho tot excepte això"
+
+msgid "Code Navigator"
+msgstr ""
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Colorization canceled"
+msgstr "S'ha cancel·lat l'acoloriment"
+
+msgid "Colorize"
+msgstr "Acoloreix"
+
+msgid "Columns actions"
+msgstr ""
+
+msgid "Comment Selection"
+msgstr "Comenta la selecció"
+
+msgid "Complete"
+msgstr "Finalitzat"
+
+msgid "Configure Tabulation"
+msgstr ""
+
+msgid "Continue ?"
+msgstr ""
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid "Copy as HTML with line number"
+msgstr ""
+
+msgid "Copy selection in a new tab"
+msgstr ""
+
+msgid "Copy tab in new window"
+msgstr ""
+
+msgid "Copyright (c)"
+msgstr "Copyright (c)"
+
+msgid "Correct Indentation"
+msgstr "Sagnat correcte"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "No s'ha trobat la consola ni l'intèrpret de comandes."
+
+msgid "Could not find the temporary file."
+msgstr "No s'ha trobat el fitxer temporal"
+
+msgid "Current file encoding"
+msgstr ""
+
+msgid "Cursor Color"
+msgstr ""
+
+msgid "Cut"
+msgstr "Retalla"
+
+msgid "Default"
+msgstr "Predeterminat"
+
+msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
+msgstr ""
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Detach tab in new window"
+msgstr ""
+
+msgid "Direction"
+msgstr "Direcció"
+
+msgid "Document"
+msgstr "Document"
+
+msgid "Double chevrons"
+msgstr ""
+
+msgid "Edit"
+msgstr "Edita"
+
+msgid "Enable Auto Reformat"
+msgstr "Habilita el format automàtic"
+
+msgid "Encoding"
+msgstr "Codificació"
+
+msgid "Encoding problems"
+msgstr ""
+
+msgid "Enter line number"
+msgstr "Entreu el número de línia"
+
+msgid "Error while reading the String"
+msgstr ""
+
+msgid "Evaluate Selection"
+msgstr "Avalua la selecció"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr ""
+
+msgid "Evaluate from beginning..."
+msgstr "Avalua des del principi..."
+
+msgid "Exact"
+msgstr ""
+
+msgid "Execute"
+msgstr "Executa"
+
+msgid "Execute File Into Scilab"
+msgstr "Executa el fitxer a l'Scilab"
+
+msgid "Exit"
+msgstr "Surt"
+
+msgid "Export"
+msgstr ""
+
+msgid "File"
+msgstr "Fitxer"
+
+msgid "File already exists"
+msgstr "El fitxer ja existeix"
+
+msgid "Find"
+msgstr "Cerca"
+
+msgid "Find Next"
+msgstr "Cerca el següent"
+
+msgid "Find Previous"
+msgstr "Cerca l'anterior"
+
+msgid "Find/Replace"
+msgstr "Cerca/Reemplaça"
+
+msgid "Find:"
+msgstr "Cerca:"
+
+msgid "Forward"
+msgstr "Endavant"
+
+msgid "Functions"
+msgstr ""
+
+msgid "Generate comments for help_from_sci"
+msgstr ""
+
+msgid "Generate help from function"
+msgstr "Genera l'ajuda de la funció"
+
+msgid "Go to line: "
+msgstr ""
+
+msgid "Go to next anchor"
+msgstr ""
+
+msgid "Go to previous anchor"
+msgstr ""
+
+msgid "Goto line"
+msgstr "Ves a la línia"
+
+msgid "Help about '"
+msgstr "Ajuda sobre '"
+
+msgid "Help on ;Help on selection"
+msgstr ""
+
+msgid "Help on selected text or keyword"
+msgstr "Ajuda del text seleccionat o de la paraula clau"
+
+msgid "Help on the current keyword"
+msgstr "Ajuda de la paraula actual"
+
+msgid "Help on the selected text"
+msgstr ""
+
+msgid "Help on typing"
+msgstr "Ajuda a l'escriptura"
+
+msgid "Highlight current line"
+msgstr "Ressalta la línia actual"
+
+msgid "Horizontal rule"
+msgstr ""
+
+msgid "Horizontal wrapping"
+msgstr ""
+
+msgid "Ignore"
+msgstr "Ignora"
+
+msgid "Incremental Search"
+msgstr ""
+
+msgid "Invalid regular expression : %s"
+msgstr "Expressió regular invàlida: %s"
+
+msgid "Italic"
+msgstr "Cursiva"
+
+msgid "Length"
+msgstr ""
+
+msgid "Line %s, Column %s."
+msgstr ""
+
+msgid "Line %s, Column %s. Function '%s' at Line %s."
+msgstr ""
+
+msgid "Line Endings"
+msgstr "Finals de línia"
+
+msgid "Line numbering;Off;Normal;Whereami compatible"
+msgstr ""
+
+msgid "Load Into Scilab"
+msgstr "Carrega a l'Scilab"
+
+msgid "Loading"
+msgstr "S'està carregant"
+
+msgid "Mac Classic (CR)"
+msgstr "Mac Classic (CR)"
+
+msgid "Mail to "
+msgstr ""
+
+msgid "Make Selection Lowercase"
+msgstr ""
+
+msgid "Make Selection Uppercase"
+msgstr ""
+
+msgid "Natural order"
+msgstr ""
+
+msgid "New"
+msgstr "Nou"
+
+msgid "Next tab"
+msgstr "Pestanya següent"
+
+msgid "No Line Numbering"
+msgstr "Sense números de línia"
+
+msgid "No split"
+msgstr "Sense divisió"
+
+msgid "No text selected."
+msgstr ""
+
+msgid "No text to execute."
+msgstr ""
+
+msgid "Normal Line Numbering"
+msgstr "Números de línia normals"
+
+msgid "Numeration"
+msgstr ""
+
+msgid "Ok"
+msgstr "D'acord"
+
+msgid "Open"
+msgstr "Obre"
+
+msgid "Open URL"
+msgstr ""
+
+msgid "Open file in ..."
+msgstr ""
+
+msgid "Open function source file"
+msgstr "Obre la font de la funció"
+
+msgid "Open in the navigator the URL "
+msgstr ""
+
+msgid "Open source"
+msgstr ""
+
+msgid "Open source file of the function:"
+msgstr ""
+
+msgid "Open the source of the macro "
+msgstr ""
+
+msgid "Options"
+msgstr "Opcions"
+
+msgid "Order"
+msgstr ""
+
+msgid "Overwrite"
+msgstr "Sobreescriu"
+
+msgid "Page Setup"
+msgstr "Configuració de pàgina"
+
+msgid "Paste"
+msgstr "Enganxa"
+
+msgid "Paste Column"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Press CTRL and move the mouse over the link to activate it"
+msgstr ""
+
+msgid "Preview"
+msgstr "Previsualitza"
+
+msgid "Previous tab"
+msgstr "Pestanya anterior"
+
+msgid "Print"
+msgstr "Imprimeix"
+
+msgid "Print Preview"
+msgstr "Previsualitza la impressió"
+
+msgid "Read-only mode"
+msgstr "Mode de només lectura"
+
+msgid "Recent Files"
+msgstr "Fitxers recents"
+
+msgid "Redo"
+msgstr "Refés"
+
+msgid "Regular expressions"
+msgstr "Expressions regulars"
+
+msgid "Relative"
+msgstr ""
+
+msgid "Reload"
+msgstr "Recarrega"
+
+msgid "Remove anchor"
+msgstr ""
+
+msgid "Remove trailing spaces"
+msgstr ""
+
+msgid "Remove trailing whitespaces"
+msgstr "Elimina els espais del darrere"
+
+msgid "Repeat on the Column"
+msgstr ""
+
+msgid "Replace"
+msgstr "Reemplaça"
+
+msgid "Replace All"
+msgstr "Reemplaça-ho tot"
+
+msgid "Replace File?"
+msgstr "Reemplaçar el fitxer?"
+
+msgid "Replace With :"
+msgstr "Reemplaça per:"
+
+msgid "Replace/Find"
+msgstr "Reemplaça/cerca"
+
+msgid "Reset default font"
+msgstr "Reinicia la lletra predeterminada"
+
+msgid "Restart the search from the beginning"
+msgstr ""
+
+msgid "Restore files from your last SciNotes session ?"
+msgstr ""
+
+msgid "Restore opened files on start-up"
+msgstr ""
+
+msgid "Restore the last sessions"
+msgstr ""
+
+msgid "Save"
+msgstr "Desa"
+
+msgid "Save All"
+msgstr "Desa-ho tot"
+
+msgid "Save as"
+msgstr "Anomena i desa"
+
+msgid "Save file in ..."
+msgstr ""
+
+msgid "SciNotes"
+msgstr "SciNotes"
+
+msgid "SciNotes error"
+msgstr "Error de SciNotes"
+
+msgid "SciNotes help"
+msgstr "Ajuda de SciNotes"
+
+msgid "Scilab"
+msgstr "Scilab"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
+
+msgid "Scope"
+msgstr "Abast"
+
+msgid "Search"
+msgstr "Cerca"
+
+msgid "Select All"
+msgstr "Selecciona-ho tot"
+
+msgid "Select current block"
+msgstr ""
+
+msgid "Selected lines"
+msgstr "Línies seleccionades"
+
+msgid "Set Colors"
+msgstr "Determina els colors"
+
+msgid "Set Colors ..."
+msgstr ""
+
+msgid "Set Font"
+msgstr "Determina la font"
+
+msgid "Set an anchor"
+msgstr ""
+
+msgid "Set anchor"
+msgstr ""
+
+msgid "Settings"
+msgstr "Configuració"
+
+msgid "Shift Left"
+msgstr "Desplaça a l'esquerra"
+
+msgid "Shift Right"
+msgstr "Desplaça a la dreta"
+
+msgid "Show the definition of the macro "
+msgstr ""
+
+msgid "Show/Hide ToolBar"
+msgstr "Mostra/amaga la barra d'eines"
+
+msgid "Source of '"
+msgstr "Font de '"
+
+msgid "Split View;Off;Horizontally;Vertically"
+msgstr ""
+
+msgid "Split horizontally"
+msgstr "Divideix horitzontalment"
+
+msgid "Split vertically"
+msgstr "Divideix verticalment"
+
+msgid "Strike Through"
+msgstr "Tatxat"
+
+msgid "String %s not found"
+msgstr "No s'ha trobat la cadena %s"
+
+msgid "Suppress comments when executing selection"
+msgstr ""
+
+msgid "Syntax Type"
+msgstr "Tipus de sintaxi"
+
+msgid "Tab representation"
+msgstr ""
+
+msgid "Tab style"
+msgstr ""
+
+msgid ""
+"The file %s does not exist\n"
+"Do you want to create it?"
+msgstr ""
+
+msgid ""
+"The file %s has been modified by another program !\n"
+" Overwrite it ?"
+msgstr ""
+"Algun altre programa ha modificat el fitxer %s.\n"
+" El voleu sobreescriure?"
+
+msgid "The file could not be converted."
+msgstr "No s'ha pogut convertir el text."
+
+msgid "The file could not be created, check the path"
+msgstr ""
+
+msgid "The file could not be saved."
+msgstr "No s'ha pogut desar el text."
+
+msgid ""
+"The file encoding is actually %s and it will be saved in using %s. Continue ?"
+msgstr ""
+
+msgid "The file is not writable so it is opened in read-only mode"
+msgstr ""
+
+msgid "This file"
+msgstr "Aquest fitxer"
+
+msgid "This file is a binary, saving it will result in a corrupt file."
+msgstr "Aquest fitxer és binari, si el desem serà incorrecte."
+
+msgid ""
+"This file is very long. \"Execute File Into Scilab\" could be better.\n"
+"Are you sure to continue ?"
+msgstr ""
+"Aquest fitxer és molt gran. És millor l'opció \"Executa el fitxer al "
+"Scilab\".\n"
+"Esteu segur que voleu continuar?"
+
+msgid "Tools"
+msgstr "Eines"
+
+msgid "Uncomment Selection"
+msgstr "Descomenta la selecció"
+
+msgid "Underline"
+msgstr "Subratlla"
+
+msgid "Undo"
+msgstr "Desfés"
+
+msgid "Unix (LF)"
+msgstr "Unix (LF)"
+
+msgid "Untitled "
+msgstr "Sense títol "
+
+msgid "Use spaces"
+msgstr ""
+
+msgid "Vertical rule"
+msgstr ""
+
+msgid "View"
+msgstr "Visualitza"
+
+msgid "Warning: the file has been modified by another program !"
+msgstr "Avís: un altre programa ha modificat el fitxer."
+
+msgid "Whereami Line Numbering"
+msgstr "Nombres de línia amb Whereami"
+
+msgid "Whole word"
+msgstr "Paraula completa"
+
+msgid "Window"
+msgstr ""
+
+msgid "Windows/DOS (CR + LF)"
+msgstr "Windows/DOS (CR + LF)"
+
+msgid "Word Wrap"
+msgstr "Ajust de paraula"
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr ""
+
+msgid "You do not have the permissions to read this file"
+msgstr ""
+
+msgid "You do not have the permissions to write this file"
+msgstr ""
+
+msgid "You have passed the beginning of the document"
+msgstr "Heu passat l'inici del document"
+
+msgid "You have passed the end of the document"
+msgstr "Heu passat el final del document"
+
+msgid "You have reached the beginning of the document"
+msgstr "Heu arribat a l'inici del document"
+
+msgid "You have reached the end of the document"
+msgstr "Heu arribat al final del document"
+
+msgid ""
+"You need to save your modifications before executing this file into Scilab."
+msgstr ""
+"Heu de desar les modificacions per executar aquest fitxer a l'Scilab."
+
+msgid "Your modifications will be lost, change encoding anyway?"
+msgstr "Perdreu les modificacions. Tot i així, voleu canviar la codificació?"
+
+msgid "close this tab"
+msgstr "Tanca aquesta pestanya"
+
+#~ msgid "Continue?"
+#~ msgstr "Voleu continuar?"
+
+#~ msgid "Edit selection in a new tab"
+#~ msgstr "Edita la selecció en una nova pestanya"
+
+#~ msgid "No text selected"
+#~ msgstr "No heu seleccionat cap text"
+
+#~ msgid ""
+#~ "The file %s doesn't exist\n"
+#~ " Do you want to create it?"
+#~ msgstr ""
+#~ "El fitxer %s no existeix\n"
+#~ " El voleu crear?"
+
+#~ msgid "Wrap search"
+#~ msgstr "Ajusta la cerca"
+
+#~ msgid "No text to execute"
+#~ msgstr "No hi ha text a executar"

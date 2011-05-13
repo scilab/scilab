@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="lcm">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>lcm</refname>
+    <refpurpose>最小公倍数</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>[pp,fact]=lcm(p)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para></para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>fact</term>
+        <listitem>
+          <para>多項式ベクトルまたは整数ベクトル  (8型)</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pp</term>
+        <listitem>
+          <para>多項式または整数</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para><literal>pp=lcm(p)</literal> は,多項式ベクトル<literal>p</literal>
+	の最小公倍数<literal>pp</literal>を計算します.</para>
+    <para><literal>[pp,fact]=lcm(p)</literal> はこれに加えて以下のような
+	ベクトル<literal>fact</literal>を計算します:</para>
+    <para>
+      <literal>p.*fact=pp*ones(p)</literal>
+    </para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//多項式の場合
+s=poly(0,'s');
+p=[s,s*(s+1)^2,s^2*(s+2)];
+[pp,fact]=lcm(p);
+p.*fact, pp
+
+//整数の場合
+V=int32([2^2*3^5, 2^3*3^2,2^2*3^4*5]);
+lcm(V)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="gcd">gcd</link>
+      </member>
+      <member>
+        <link linkend="bezout">bezout</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

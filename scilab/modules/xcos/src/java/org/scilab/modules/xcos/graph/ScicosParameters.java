@@ -17,6 +17,7 @@ import java.beans.PropertyChangeSupport;
 import java.beans.PropertyVetoException;
 import java.beans.VetoableChangeListener;
 import java.beans.VetoableChangeSupport;
+import java.io.Serializable;
 
 /**
  * Contains Scicos specific parameters.
@@ -25,7 +26,7 @@ import java.beans.VetoableChangeSupport;
  * 
  * @see http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html
  */
-public class ScicosParameters {
+public class ScicosParameters implements Serializable, Cloneable {
 	/*
 	 * Default instance values from :
 	 * SCI/modules/scicos/macros/scicos_scicos/scicos_params.sci
@@ -74,7 +75,7 @@ public class ScicosParameters {
 	/**
 	 * The current Scicos simulator version.
 	 */
-	public static final String SCICOS_VERSION = "scicos4.2";
+	public static final String SCICOS_VERSION = "scicos4.3";
 
 	/*
 	 * Bean properties
@@ -138,8 +139,8 @@ public class ScicosParameters {
 	/*
 	 * Beans support, used to follow instance modification and validate changes.
 	 */
-	private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
-	private final VetoableChangeSupport vcs = new VetoableChangeSupport(this);
+	private PropertyChangeSupport pcs = new PropertyChangeSupport(this);
+	private VetoableChangeSupport vcs = new VetoableChangeSupport(this);
 
 	/**
 	 * Default constructor
@@ -529,5 +530,13 @@ public class ScicosParameters {
 	public void removeVetoableChangeListener(String propertyName,
 			VetoableChangeListener listener) {
 		this.vcs.removeVetoableChangeListener(propertyName, listener);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 }

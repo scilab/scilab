@@ -2,7 +2,7 @@
 ; Inno Setup Install script for Toolbox_skeleton
 ; http://www.jrsoftware.org/isinfo.php
 ; Allan CORNET
-; This file is released into the public domain
+; This file is released under the 3-clause BSD license. See COPYING-BSD.
 ;##############################################################################################################
 ; modify this path where is toolbox_skeleton directory
 #define BinariesSourcePath "C:\Programs files\scilab-5.0\contrib\toolbox_skeleton"

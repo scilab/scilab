@@ -40,8 +40,8 @@
     <para>
     PVM must be installed in your envriromnent before using it in Scilab. PVM scilab have been developped using the version 3.3.7 of the PVM library.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm_barrier">pvm_barrier</link>

@@ -23,7 +23,7 @@
     <synopsis>cond(X)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>X</term>
@@ -46,8 +46,8 @@ A=testmatrix('hilb',6);
 cond(A)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="rcond">rcond</link>

@@ -23,7 +23,7 @@
     <synopsis>[hinfnorm [,frequency]]=h_norm(sl [,rerr])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>
@@ -57,8 +57,8 @@
     produces the infinity norm  of a state-space system 
     (the maximum over all frequencies of the maximum singular value).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="linfn">linfn</link>

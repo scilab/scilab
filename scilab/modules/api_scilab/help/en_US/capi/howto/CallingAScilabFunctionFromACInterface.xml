@@ -82,7 +82,7 @@ ulink(); // unload the dynamic library
 
     <para>The file sci_call_scifunc.c is the following:</para>
 
-    <programlisting role = ""><![CDATA[  
+    <programlisting role = "code_gateway"><![CDATA[  
 #include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -187,19 +187,15 @@ int sci_call_scifunc(char *fname)
     Scilab function inside a C interface.</para>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="CheckLhs">CheckLhs</link></member>
 
       <member><link linkend="CheckRhs">CheckRhs</link></member>
 
-      <member><link linkend="stk">stk</link></member>
-
       <member><link linkend="LhsVar">LhsVar</link></member>
-
-      <member><link linkend="GetType">GetType</link></member>
 
       <member><link linkend="Scierror">Scierror</link></member>
 

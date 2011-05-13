@@ -66,16 +66,6 @@
 
 #include "kinsol_impl.h"
 #include <sundials/sundials_math.h>
-
-/* 
- * =================================================================
- * MACRO DEFINITIONS
- * =================================================================
- */
-
-/* Macro: loop */
-#define loop for(;;)
-
 /* 
  * =================================================================
  * KINSOL PRIVATE CONSTANTS
@@ -500,7 +490,7 @@ int KINSol(void *kinmem, N_Vector u, int strategy,
 
   if (inexact_ls && !noMinEps) epsmin = POINT01 * fnormtol;
 
-  loop{
+  for(;;){
 
     retry_nni = FALSE;
 
@@ -557,7 +547,9 @@ int KINSol(void *kinmem, N_Vector u, int strategy,
 
     /* evaluate eta by calling the forcing term routine */
 
-    if (callForcingTerm) KINForcingTerm(kin_mem, fnormp);
+    if (callForcingTerm) {
+        KINForcingTerm(kin_mem, fnormp);
+    }
 
     fnorm = fnormp;
 
@@ -585,7 +577,7 @@ int KINSol(void *kinmem, N_Vector u, int strategy,
 
     fflush(errfp);
     
-  }  /* end of loop; return */
+  }  /* end of for(;;); return */
 
   if (printfl > 0)
     KINPrintInfo(kin_mem, PRNT_RETVAL, "KINSOL", "KINSol", INFO_RETVAL, ret);
@@ -972,7 +964,7 @@ static int KINLinSolDrv(KINMem kin_mem)
     update_fnorm_sub = TRUE;
   }
 
-  loop{
+  for(;;){
 
     jacCurrent = FALSE;
 
@@ -1253,7 +1245,7 @@ static int KINLineSearch(KINMem kin_mem, realtype *fnormp, realtype *f1normp,
 
   /* Loop until the ALPHA condition is satisfied. Terminate if rl becomes too small */
 
-  loop {
+  for(;;) {
     
     /* Evaluate test quantity */
 

@@ -24,7 +24,7 @@
     <synopsis>txt=mgetl(file_desc [,m])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>file_desc</term>
@@ -74,8 +74,8 @@ mgetl(fd,10)
 mclose(fd)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="mputl">mputl</link>

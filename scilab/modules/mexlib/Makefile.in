@@ -60,20 +60,18 @@ host_triplet = @host@
 DIST_COMMON = $(libmex_la_include_HEADERS) $(srcdir)/Makefile.am \
 	$(srcdir)/Makefile.in $(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-
-# With --enable-compilation-tests, launch java unitary tests
-@COMPILATION_TESTS_TRUE@am__append_2 = test
 subdir = modules/mexlib
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
-	$(top_srcdir)/m4/lib-ld.m4 $(top_srcdir)/m4/libsmath.m4 \
-	$(top_srcdir)/m4/libtool.m4 $(top_srcdir)/m4/libxml2.m4 \
-	$(top_srcdir)/m4/ltoptions.m4 $(top_srcdir)/m4/ltsugar.m4 \
-	$(top_srcdir)/m4/ltversion.m4 $(top_srcdir)/m4/lt~obsolete.m4 \
+	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
+	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
+	$(top_srcdir)/m4/libxml2.m4 $(top_srcdir)/m4/ltoptions.m4 \
+	$(top_srcdir)/m4/ltsugar.m4 $(top_srcdir)/m4/ltversion.m4 \
+	$(top_srcdir)/m4/lt~obsolete.m4 $(top_srcdir)/m4/macosx.m4 \
 	$(top_srcdir)/m4/ocaml.m4 $(top_srcdir)/m4/pcre.m4 \
 	$(top_srcdir)/m4/pkg.m4 $(top_srcdir)/m4/pvm.m4 \
 	$(top_srcdir)/m4/relocatable.m4 $(top_srcdir)/m4/swig.m4 \
@@ -201,6 +199,7 @@ FGREP = @FGREP@
 FLEXDOCK = @FLEXDOCK@
 FLIBS = @FLIBS@
 FOP = @FOP@
+GENHTML = @GENHTML@
 GETTEXT_MACRO_VERSION = @GETTEXT_MACRO_VERSION@
 GIWS_BIN = @GIWS_BIN@
 GLUEGEN_RT = @GLUEGEN_RT@
@@ -223,9 +222,10 @@ INTL_MACOSX_LIBS = @INTL_MACOSX_LIBS@
 JAR = @JAR@
 JAVA = @JAVA@
 JAVAC = @JAVAC@
+JAVAC_DEBUG = @JAVAC_DEBUG@
+JAVADOC = @JAVADOC@
 JAVAH = @JAVAH@
 JAVASCI_ENABLE = @JAVASCI_ENABLE@
-JAVA_DEBUG_OPTIONS = @JAVA_DEBUG_OPTIONS@
 JAVA_ENABLE = @JAVA_ENABLE@
 JAVA_G = @JAVA_G@
 JAVA_HOME = @JAVA_HOME@
@@ -243,6 +243,7 @@ JROSETTA_API = @JROSETTA_API@
 JROSETTA_ENGINE = @JROSETTA_ENGINE@
 JUNIT = @JUNIT@
 LAPACK_LIBS = @LAPACK_LIBS@
+LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
 LIBICONV = @LIBICONV@
@@ -308,8 +309,11 @@ RANLIB = @RANLIB@
 RELOCATABLE = @RELOCATABLE@
 RT_LIB = @RT_LIB@
 SAXON = @SAXON@
-SCICOS_ENABLE = @SCICOS_ENABLE@
+SCILAB_BINARY_VERSION = @SCILAB_BINARY_VERSION@
 SCILAB_LIBRARY_VERSION = @SCILAB_LIBRARY_VERSION@
+SCILAB_VERSION_MAINTENANCE = @SCILAB_VERSION_MAINTENANCE@
+SCILAB_VERSION_MAJOR = @SCILAB_VERSION_MAJOR@
+SCILAB_VERSION_MINOR = @SCILAB_VERSION_MINOR@
 SED = @SED@
 SET_MAKE = @SET_MAKE@
 SET_RELOCATABLE = @SET_RELOCATABLE@
@@ -330,6 +334,7 @@ USE_NLS = @USE_NLS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
+XCOS_ENABLE = @XCOS_ENABLE@
 XGETTEXT = @XGETTEXT@
 XGETTEXT_015 = @XGETTEXT_015@
 XGETTEXT_EXTRA_OPTIONS = @XGETTEXT_EXTRA_OPTIONS@
@@ -406,7 +411,7 @@ MEXLIB_FLAGS = -I$(srcdir)/includes/ \
 	-I$(top_srcdir)/modules/elementary_functions/includes/ \
 	-I$(top_srcdir)/modules/call_scilab/includes/ \
 	-I$(top_srcdir)/modules/string/includes
-MEXLIB_DEP = $(top_builddir)/modules/core/libscicore.la \
+MEXLIB_DEP = \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/output_stream/libscioutput_stream.la \
@@ -416,15 +421,15 @@ pkglib_LTLIBRARIES = libmat.la libmex.la libmx.la
 libmex_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmex_la_LIBADD = $(MEXLIB_DEP)
 libmex_la_CFLAGS = $(MEXLIB_FLAGS)
-libmex_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmex_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libmat_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmat_la_LIBADD = $(MEXLIB_DEP)
 libmat_la_CFLAGS = $(MEXLIB_FLAGS)
-libmat_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libmx_la_SOURCES = $(MEXLIB_C_SOURCES)
 libmx_la_LIBADD = $(MEXLIB_DEP)
 libmx_la_CFLAGS = $(MEXLIB_FLAGS)
-libmx_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION)
+libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 #### Target ######
 modulename = mexlib
@@ -435,7 +440,7 @@ INCLUDE_FLAGS = $(MEXLIB_FLAGS)
 
 #### mexlib : Conf files ####
 libmex_la_rootdir = $(mydatadir)
-libmex_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libmex_la_root_DATA = license.txt version.xml
 
 #### mexlib : init scripts ####
 libmex_la_etcdir = $(mydatadir)/etc
@@ -458,7 +463,7 @@ SPLINT_OPTIONS = -weak -booltype BOOL
 #### the procedure will be the same with Microsoft Windows (C)
 #### and Linux/Unix
 #######################################################################
-TARGETS_ALL = $(am__append_1) $(am__append_2)
+TARGETS_ALL = $(am__append_1)
 
 ################ MACROS ######################
 # Rule to build a macro
@@ -494,7 +499,7 @@ MACROBUILDMASK = *.sce
 # Mask of the Scilab compiled macros
 MACROBINMASK = *.bin
 # List of the standard directory for tests
-TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests
+TESTS_DIR = tests/benchmarks tests/nonreg_tests tests/unit_tests tests/java
 # Where the demos should be installed
 pkgdemosdir = $(mydatadir)
 # List of the standard directory for demos
@@ -1021,6 +1026,12 @@ all-local: $(TARGETS_ALL)
 	fi )
 
 install-html-local:
+
+install-data-local-local:
+# Mainly for javasci
+	@if test -d $(srcdir)/javadoc; then \
+		cp -R $(srcdir)/javadoc $(DESTDIR)/$(mydatadir)/; \
+	fi
 # If the user wants the help sources to be installed
 @INSTALL_HELP_XML_TRUE@	@echo "-------- Install of XML sources of help files --------"; \
 @INSTALL_HELP_XML_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -1118,9 +1129,11 @@ install-data-local:
 	fi
 
 ########### CLEAN ###################
-# Clean macros and help (generated automatically by Scilab)
-@NEED_JAVA_TRUE@clean-local: clean-java clean-macros
-@NEED_JAVA_FALSE@clean-local: clean-macros
+# Clean help (generated automatically by Scilab)
+# It used to clean the macro (clean-macros) but this was causing
+# make clean && make to fail Scilab startup
+@NEED_JAVA_TRUE@clean-local: clean-java
+@NEED_JAVA_FALSE@clean-local:
 
 distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*

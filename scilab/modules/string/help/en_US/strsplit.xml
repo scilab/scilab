@@ -40,7 +40,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -159,8 +159,8 @@ strsplit("abcdef2ghijkl3mnopqr6stuvw7xyz","/\d+/")
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="strcat"> strcat</link></member>

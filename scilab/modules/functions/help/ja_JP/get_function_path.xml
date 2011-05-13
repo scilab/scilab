@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="get_function_path">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>get_function_path</refname>
+    <refpurpose>ライブラリ関数のソースファイルのパスを取得</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>path=get_function_path(fun_name)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>fun_name</term>
+        <listitem>
+          <para>文字列, 関数名</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>path</term>
+        <listitem>
+          <para>文字列, 関数ソースファイル(.sci)の絶対パス名または [].</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明</title>
+    <para>
+	関数名を指定すると, 
+	その関数が Scilab ライブラリ(lib参照)で定義されている場合,
+	get_function_path は関数ソースファイルの
+	絶対パス名を返します.
+	名前がライブラリ関数に一致しない場合 [] が返されます.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+get_function_path('median')
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="lib">lib</link>
+      </member>
+      <member>
+        <link linkend="string">string</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -28,7 +28,8 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>scicos_debug(level) level=scicos_debug()</synopsis>
+    <synopsis>scicos_debug(level)
+level = scicos_debug()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_scicos_debug">
     <title>Module</title>
@@ -56,7 +57,7 @@ level=scicos_debug()
  ]]></programlisting>
   </refsection>
   <refsection id="Parameters_scicos_debug">
-    <title>Parameters</title>
+    <title>Arguments</title>
     <itemizedlist>
       <listitem>
         <para><emphasis role="bold">level :</emphasis> set/get the current level of the Scicos simulation debugging.</para>

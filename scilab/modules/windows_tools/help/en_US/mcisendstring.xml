@@ -27,7 +27,7 @@ bOK=mcisendstring(mcistring)
 [bOK,CodeError,StringError]=mcisendstring(mcistring)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>mcistring</term>

@@ -5,6 +5,7 @@ EXPORTS
 ; --------------------------------------- 
 ; call_scilab explicit export (SEP 35)
 ; --------------------------------------- 
+    setCallScilabEngineState
 	DisableInteractiveMode
 	StartScilab
 	TerminateScilab
@@ -13,4 +14,6 @@ EXPORTS
 	SendScilabJob
 	GetLastJob
 	SendScilabJobs
+	Call_ScilabOpen
+	getVariableType
 ; --------------------------------------- 

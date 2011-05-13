@@ -23,7 +23,7 @@
     <synopsis>X=full(sp)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sp</term>
@@ -52,8 +52,8 @@ sp=sparse([1,2;5,4;3,1],[1,2,3]);
 A=full(sp)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="sparse">sparse</link>

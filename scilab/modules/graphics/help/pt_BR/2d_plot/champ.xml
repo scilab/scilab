@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ENPC - Jean-Philippe Chancelier
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="champ" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>champ</refname>
+
+    <refpurpose>esboço de campo vetorial 2d</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Seqüência de Chamamento</title>
+
+    <synopsis>champ(x,y,fx,fy,[arfact,rect,strf])
+champ(x,y,fx,fy,&lt;opt_args&gt;)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>Parâmetros</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x,y</term>
+
+        <listitem>
+          <para>dois vetores que definem o grid</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fx</term>
+
+        <listitem>
+          <para>uma matriz que descreve o componente x do campo vetorial.
+          <literal>fx(i,j)</literal> é o componente x do campo vetorial no
+          ponto <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>fy</term>
+
+        <listitem>
+          <para>uma matriz que descreve o componente y do campo vetorial.
+          <literal>fy(i,j)</literal>é o componente y do campo vetorial no
+          ponto <literal>(x(i),y(j))</literal>.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>&lt;opt_args&gt;</term>
+
+        <listitem>
+          <para>representa a seqüência de declarações
+          <literal>key1=value1,key2=value2</literal>,... onde
+          <literal>key1</literal>, <literal>key2,...</literal> podem ser um
+          dos seguintes: arfact, rect, strf (ver abaixo).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>arfact</term>
+
+        <listitem>
+          <para>um argumento opcional do tipo real que fornece um fator de
+          escala para a exibição das cabeças das setas no esboço (o valor
+          padrão é 1.0).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>rect</term>
+
+        <listitem>
+          <para>um vetor <literal>rect=[xmin,ymin,xmax,ymax]</literal> que
+          fornece as fronteiras da moldura gráfica à ser utilizada.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>strf</term>
+
+        <listitem>
+          <para>um string de comprimento 3 "xyz" que possui o mesmo
+          significado do parâmetro <literal>strf</literal> de
+          <literal>plot2d</literal>. O primeiro caractere não tem efeito com
+          <literal>champ</literal>.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>Descrição</title>
+
+    <para><literal>champ</literal> desenha um campo vetorial 2d. O comprimento
+    das setas é proporcional é proporcional à intensidade do campo.</para>
+
+    <para>Se você quiser setas coloridas com a cor das setas dependendo da
+    intensidade do campo, use <literal>champ1</literal>.</para>
+
+    <para>Entre com o comando <literal>champ()</literal> para visualizar uma
+    demonstração.</para>
+  </refsection>
+
+  <refsection>
+    <title>Exemplos</title>
+
+    <programlisting role="example"><![CDATA[ 
+// usando rect como fronteiras do esboço
+champ(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+// usando (x,y) para conseguir obter
+clf()
+champ(-5:5,-5:5,rand(11,11),rand(11,11),2,[-10,-10,10,10],"021")
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>Ver Também</title>
+
+    <simplelist type="inline">
+      <member><link linkend="champ1">champ1</link></member>
+
+      <member><link linkend="fchamp">fchamp</link></member>
+
+      <member><link linkend="plot2d">plot2d</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Autor</title>
+
+    <para>J.Ph.C.</para>
+  </refsection>
+</refentry>

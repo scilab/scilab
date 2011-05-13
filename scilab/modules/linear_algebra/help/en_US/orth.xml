@@ -23,7 +23,7 @@
     <synopsis>Q=orth(A)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>A</term>
@@ -56,8 +56,8 @@ A=rand(5,3)*rand(3,4);
 svd([orth(A),X(:,1:dim)])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="qr">qr</link>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Ajouter ici d'éventuels commentaires sur le fichier XML
+-->
+<refentry version="5.0-subset Scilab" xml:id="cscd" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns5="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 09-12-2008 $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>cscd</refname>
+
+    <refpurpose>
+	度単位で指定した引数のコセカント(余割)を要素毎に計算する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼出し手順</title>
+
+    <synopsis>x = cscd(x)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数の配列.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>x</term>
+
+        <listitem>
+          <para>実数または複素数の配列.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+
+    <para>
+	<literal>y</literal>のエントリは,度単位で指定した
+	<literal>x</literal>のエントリのコセカント<literal>1/sin</literal>
+	となります.
+
+
+	引数の要素毎のコセカント(余割)を計算します.
+	コセカント(余割)は 1/sin で定義される周期関数です.
+	実数のデータの場合,結果は
+	<literal>]-%inf -1] U [1 %inf[</literal>の範囲の実数となります.
+	結果は実数となり, <literal>]-%inf -1] U [1 %inf[</literal>
+	の範囲となります.
+	<literal>n</literal>を整数として<literal>n*180</literal>
+	に等しいエントリの場合,結果は無限大
+	(<link linkend="ieee">ieee</link> モードによってはエラーとなります)
+	となります.
+	<literal>n</literal>を整数かつ奇数として<literal>n*90</literal>
+	に等しいエントリの場合,結果は厳密に1または-1となります.</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+csc(%pi/4)
+cscd(90)
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="secd">secd</link></member>
+
+      <member><link linkend="csc">csc</link></member>
+
+      <member><link linkend="sind">sind</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Serge Steer, INRIA</member>
+    </simplelist>
+  </refsection>
+</refentry>

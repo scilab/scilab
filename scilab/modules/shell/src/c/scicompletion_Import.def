@@ -12,3 +12,4 @@ completionOnVariablesWithoutMacros
 completionOnMacros
 completionOnCommandWords
 completionOnFunctions
+completionOnFields

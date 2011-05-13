@@ -23,7 +23,7 @@
     <synopsis>bool = isfield(s,fieldname)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>s</term>
@@ -64,8 +64,8 @@ isfield( s , "field_1"  )
 isfield( s , [ "field_1" "field_2" ; "field_3" "field_4" ] )
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="struct">struct</link>

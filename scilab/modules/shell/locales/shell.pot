@@ -1,0 +1,105 @@
+# Localization of the module shell
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-10 10:58+0100\n"
+
+# File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
+#, c-format
+msgid "%s: Not implemented in this mode.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_clc.c, line: 60
+# File: sci_gateway/c/sci_tohome.c, line: 29
+#, c-format
+msgid "%s: This feature has not been implemented in this mode.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_clc.c, line: 47
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_prompt.c, line: 77
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_prompt.c, line: 66
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_prompt.c, line: 58
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_lines.c, line: 56
+# File: sci_gateway/c/sci_lines.c, line: 70
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_clc.c, line: 41
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 60
+# File: src/c/others/zzledt.c, line: 808
+msgid "File or Directory"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 207
+# File: src/c/others/zzledt.c, line: 972
+msgid "Graphics handle field"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 204
+# File: src/c/others/zzledt.c, line: 969
+msgid "Scilab Command"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 175
+# File: src/c/others/zzledt.c, line: 940
+msgid "Scilab Fields"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 203
+# File: src/c/others/zzledt.c, line: 968
+msgid "Scilab Function"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 205
+# File: src/c/others/zzledt.c, line: 970
+msgid "Scilab Macro"
+msgstr ""
+#
+# File: src/c/windows/TermCompletion.c, line: 206
+# File: src/c/others/zzledt.c, line: 971
+msgid "Scilab Variable"
+msgstr ""
+#
+# File: src/c/prompt.c, line: 43
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+#
+# File: src/c/more.c, line: 25
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""

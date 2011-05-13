@@ -24,7 +24,7 @@
 [Bfs,Bis,chis]=des2tf(sl)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>sl</term>
@@ -80,8 +80,8 @@ Descrip2=tf2des(G,"withD");Tf2=des2tf(Descrip2)
 [A,B,C,D,E]=Descrip2(2:6);Tf3=C*inv(s*E-A)*B+D
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="glever">glever</link>

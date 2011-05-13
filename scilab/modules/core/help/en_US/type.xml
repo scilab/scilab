@@ -12,7 +12,7 @@
     <synopsis>[i]=type(x)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>x</term>
@@ -86,8 +86,8 @@
      130
     : Scilab intrinsic (C or Fortran code).</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="typeof">typeof</link>

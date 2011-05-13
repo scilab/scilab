@@ -24,7 +24,7 @@
     <synopsis>[v_1,...v_n]=scanf (format);</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>format</term>
@@ -61,8 +61,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="printf">printf</link>

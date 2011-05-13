@@ -3,17 +3,13 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
-# Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
+# Copyright (C) DIGITEO - 2010-2011 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-#
-# Simon Lipp 2008:
-# - clean up (get rid of unnecessary sci_args)
-#                            - accept arguments with spaces, e.g.
-#                               -e "disp(1); disp(2)" (fix bug #2606)
 
 ####
 #
@@ -28,8 +24,8 @@
 #    /my/dir/include/scilab/
 #    Scilab official binary uses this arch
 # * ./configure; make install prefix=$(DESTDIR)/usr \
-#				   bindir=$(DESTDIR)/usr/bin \
-#				   datadir=$(DESTDIR)/usr/share/scilab ...
+#                   bindir=$(DESTDIR)/usr/bin \
+#                   datadir=$(DESTDIR)/usr/share/scilab ...
 #    Solution used mainly by Linux packagers
 #
 ## First, this script will look for scilab-bin in :
@@ -45,198 +41,300 @@
 ###
 
 if test ! -z "$SCIVERBOSE"; then
-	SCIVERBOSE=1
+    SCIVERBOSE=1
 else
-	SCIVERBOSE=0
+    SCIVERBOSE=0
 fi
 
 if test -n "$SCI"; then
-	if test ! -d "$SCI/modules"; then
-		echo "Cannot find directory $SCI/modules/ !"
-		echo "SCI should point to the root data directory of Scilab"
-		exit -1
-	fi
+    if test ! -d "$SCI/modules"; then
+        echo "Cannot find directory $SCI/modules/ !"
+        echo "SCI should point to the root data directory of Scilab"
+        exit -1
+    fi
 fi
 
 DISABLE_JAVA_DETECTION=0
+IS_SCILAB_BINARY=0
 
 # Electric fence is a tool to check problem of memory
 start_electric_fence() {
-	echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
-	LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
+    echo "Running Scilab with Electric Fence : "  LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
+    LD_PRELOAD=libefence.so.0.0 "$SCILABBIN" "$@"
 }
 
 start_debug() {
-	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-		  "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-	  else
-		  echo "Running debug of Scilab [gdb]  : " gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-		  gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
-	  fi
+    if test -n "$DEVENV"; then
+        echo "Running debug of Scilab [gdb]  : " "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+        "$SCI"/libtool --mode=execute gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+    else
+        echo "Running debug of Scilab [gdb]  : " gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+        gdb $SCILAB_GDB_OPT --args "$SCILABBIN" "$@"
+    fi
 }
 
 start_debug_kdbg() {
-	  if test -n "$DEVENV"; then
-		  echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
-		  "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
-	  else
-		  echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN"
-		  kdbg "$SCILABBIN"
-	  fi
+    if test -n "$DEVENV"; then
+        echo "Running debug of Scilab [kdbg]  : " "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
+        "$SCI"/libtool --mode=execute kdbg "$SCILABBIN"
+    else
+        echo "Running debug of Scilab [kdbg]  : " kdbg "$SCILABBIN"
+        kdbg "$SCILABBIN"
+    fi
 }
 
 start_profiling() {
-	VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all -v --trace-redir=yes --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
-	  if test -n "$DEVENV"; then
-		  echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
-		  "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
-	  else
-		  echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
-		  valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
-	  fi
+    VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all -v --trace-redir=yes --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
+    if test -n "$DEVENV"; then
+        echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+        "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+    else
+        echo "Running profiling of Scilab  : " valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+        valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
+    fi
 
 }
 
 start_profiling_visu() {
-	VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes $SCILAB_VALGRIND_OPT"
+    VALGRIND_VISU_OPTIONS=" --tool=callgrind --trace-children=yes --smc-check=all --trace-jump=yes --dump-line=yes --separate-threads=yes $SCILAB_VALGRIND_OPT"
 #--dump-instr=yes
-	if test -n "$DEVENV"; then
-		echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
-		"$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
-	else
-		echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
-		valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
-	  fi
+    if test -n "$DEVENV"; then
+        echo "Running profiling visualization of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+        "$SCI"/libtool --mode=execute valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+    else
+        echo "Running profiling visualization of Scilab  : " valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+        valgrind $VALGRIND_VISU_OPTIONS "$SCILABBIN" "$@"
+    fi
 }
 
 find_docbook_path() {
-	if test -z "$DOCBOOK_ROOT"; then
-		for dir in $SCI/thirdparty/docbook /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/; do
-			if test -r "$dir/javahelp/javahelp.xsl"; then
-				if test -z "$DOCBOOK_ROOT"; then
-					DOCBOOK_ROOT=$dir
-					export DOCBOOK_ROOT
-				fi
-			fi
-		done
-	fi
-	if test $SCIVERBOSE -ne 0; then
-		echo "DOCBOOK : $DOCBOOK_ROOT"
-	fi
+    if test -z "$DOCBOOK_ROOT"; then
+        for dir in $SCI/thirdparty/docbook /usr/share/sgml/docbook/stylesheet/xsl/nwalsh /usr/share/docbook2X/xslt/man/ /usr/share/xml/docbook/stylesheet/nwalsh/ /usr/share/xml/docbook/stylesheet/nwalsh/current/ /sw/share/xml/xsl/docbook-xsl /usr/share/xml/docbook/xsl-stylesheets-*/ /usr/share/sgml/docbook/xsl-stylesheets-*/; do
+            if test -r "$dir/javahelp/javahelp.xsl"; then
+                if test -z "$DOCBOOK_ROOT"; then
+                    DOCBOOK_ROOT=$dir
+                    export DOCBOOK_ROOT
+                fi
+            fi
+        done
+    fi
+    if test $SCIVERBOSE -ne 0; then
+        echo "DOCBOOK : $DOCBOOK_ROOT"
+    fi
 }
 
 detect_type_of_scilab(){
 
-	progname="$0"
-	SCILAB_MODE="gui"
-	SCILABBIN="scilab-bin"
+    progname="$0"
+    SCILAB_MODE="gui"
+    SCILABBIN="scilab-bin"
 
-	if (echo "$progname"|grep "scilab-adv-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nw" 2>&1 > /dev/null;) then
-		SCILAB_MODE="nw"
-		# We are using scilab-bin here because we are going to force the arg -nw
-		SCILABBIN="scilab-bin"
-	fi
+    if (echo "$progname"|grep "scilab-adv-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nw" 2>&1 > /dev/null;) then
+        SCILAB_MODE="nw"
+        # We are using scilab-bin here because we are going to force the arg -nw
+        SCILABBIN="scilab-bin"
+    fi
 
-	if (echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nwni" 2>&1 > /dev/null;) then
-		SCILAB_MODE="nwni"
-		SCILABBIN="scilab-cli-bin"
-		DISABLE_JAVA_DETECTION=1
-	fi
+    if (echo "$progname"|grep "scilab-cli$" 2>&1 > /dev/null;) || (echo "$@"|grep "\-nwni" 2>&1 > /dev/null;) then
+        SCILAB_MODE="nwni"
+        SCILABBIN="scilab-cli-bin"
+        DISABLE_JAVA_DETECTION=1
+    fi
 
-	if test $SCIVERBOSE -ne 0; then
-		echo "SCILABBIN : $SCILABBIN"
-		echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
-		echo "SCILAB_MODE : $SCILAB_MODE"
-	fi
+    if test $SCIVERBOSE -ne 0; then
+        echo "SCILABBIN : $SCILABBIN"
+        echo "DISABLE_JAVA_DETECTION : $DISABLE_JAVA_DETECTION"
+        echo "SCILAB_MODE : $SCILAB_MODE"
+    fi
+}
+
+detect_os() {
+
+    if test "${OS}" = ""; then
+        OS=$(uname -s) # Retrieve the Operating System
+    fi
+    if test "${MODEL}" = ""; then
+        MODEL=$(uname -m) # Retrieve the model
+    fi
+
+    if test $SCIVERBOSE -ne 0; then
+        echo "OS : $OS"
+        echo "MODEL : $MODEL"
+    fi
 }
 
 detect_type_of_scilab $@
 
+detect_os
+
 detect_scilab_path() {
 
-LOCALOLDPWD=`pwd`
+    LOCALOLDPWD=$(pwd)
 
-# Use scilab-bin in the current dir if it exists
-# If not, then start resolving symlinks until we find scilab-bin
-	found=0
-	progname="$0"
-	curdir=`dirname "$progname"`
-	PATH="$curdir:$PATH"
+    # If we are running Scilab binary, it is trivial to set paths.
+    curdir=$(dirname "$progname")
 
-	progbase=`basename "$progname"`
-	run_sci="$curdir/$SCILABBIN"
-	if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
-		cd "$curdir/../"
-		SCI=`pwd`
-		SCIBIN=$run_sci
-		found=1
-	else
-		run_sci="$curdir/../$SCILABBIN"
-		if test -x "$run_sci"; then # scilab-bin is in the / directory
-		# which is the case in a dev env
-			cd "$curdir/../"
-			SCI=`pwd`
-			SCIBIN=$run_sci
-			found=1
-		else
-			here=`/bin/pwd`
-			while test -h "$progname"; do
-				bn=`basename "$progname"`
-				cd `dirname "$progname"`
-			# Browse the symlink to the real one
-				progname=`/bin/ls -l "$bn" | sed -e 's/^.* -> //' `
-				if test ! -x "$progname"; then
-					break
-				fi
-				curdir=`dirname "$progname"`
-				if test -x "$curdir"; then
-					cd "$curdir/../"
-					SCI=`pwd`
-					SCIBIN="$curdir/$SCILABBIN"
-					found=1
-					break
-				fi
-			# The current file ($0), probably scilab is a symlink to the 
-			# real one and here, it is the dev env
-				run_sci="$curdir/../$SCILABBIN"
-				if test -x "$run_sci"; then
-					cd "$curdir/../"
-					SCI=`pwd`
-					SCIBIN=$run_sci
-					found=1
-					break
-				fi
-			done
-			cd "$here"
-		fi
-		if test $SCIVERBOSE -ne 0; then
-			echo "I think I found Scilab here : $SCI"
-		fi
-	fi
+    # If the script is a symlink, it might be a symlink to the Scilab binary
+    # We could run into the bug #9125
+    if test -h $progname; then
+        while test -h "$progname"; do
+            bn=$(basename "$progname")
+            cd $(dirname "$progname")
+
+            # Browse the symlink to the real one
+            progname=$(/bin/ls -l "$bn" | sed -e 's/^.* -> //' )
+
+            if test ! -x "$progname"; then
+                break
+            fi
+        done
+        cd $(dirname "$progname")
+        curdir=$(pwd)
+    fi
+
+    if test -d $curdir/../thirdparty/ -a -d $curdir/../share/scilab; then
+        # We are in the Scilab binary
+        IS_SCILAB_BINARY=1
+        # export the bin directory to the PATH first (avoid to take the packaged version)
+        PATH="$curdir:$PATH"
+        cd "$curdir/../"
+        SCIBINARYBASE=$(pwd)
+        SCI=$SCIBINARYBASE/share/scilab
+        export SCI
+        return
+    fi
+
+    # Use scilab-bin in the current dir if it exists
+    # If not, then start resolving symlinks until we find scilab-bin
+    found=0
+    curdir=$(dirname "$progname")
+    PATH="$curdir:$PATH"
+
+    progbase=$(basename "$progname")
+    run_sci="$curdir/$SCILABBIN"
+    if test -x "$run_sci"; then # scilab-bin is in the /bin/ directory
+        cd "$curdir/../"
+        SCI=$(pwd)
+        SCIBIN=$run_sci
+        found=1
+    else
+        run_sci="$curdir/../$SCILABBIN"
+        if test -x "$run_sci"; then # scilab-bin is in the / directory
+        # which is the case in a dev env
+            cd "$curdir/../"
+            SCI=$(pwd)
+            SCIBIN=$run_sci
+            found=1
+        else
+            here=$(/bin/pwd)
+            while test -h "$progname"; do
+                bn=$(basename "$progname")
+                cd $(dirname "$progname")
+            # Browse the symlink to the real one
+                progname=$(/bin/ls -l "$bn" | sed -e 's/^.* -> //' )
+                if test ! -x "$progname"; then
+                    break
+                fi
+                curdir=$(dirname "$progname")
+                if test -x "$curdir"; then
+                    cd "$curdir/../"
+                    SCI=$(pwd)
+                    SCIBIN="$curdir/$SCILABBIN"
+                    found=1
+
+                    break
+                fi
+            # The current file ($0), probably scilab is a symlink to the
+            # real one and here, it is the dev env
+                run_sci="$curdir/../$SCILABBIN"
+                if test -x "$run_sci"; then
+                    cd "$curdir/../"
+                    SCI=$(pwd)
+                    SCIBIN=$run_sci
+                    found=1
+                    break
+                fi
+            done
+            cd "$here"
+        fi
+        if test $SCIVERBOSE -ne 0; then
+            echo "I think I found Scilab here : $SCI"
+        fi
+    fi
 
 
-	if test -x "$SCI/bin/$SCILABBIN"; then
+    if test -x "$SCI/bin/$SCILABBIN"; then
 # real env
-		SCILABBIN=$SCI/bin/$SCILABBIN
-		SCI=$SCI/share/scilab/
-	else
-		if test -x "$SCI/$SCILABBIN"; then
-		# dev env
-			SCILABBIN=$SCI/$SCILABBIN
-			DEVENV=1
-		# add modelica in the path
-			PATH="$PATH:$SCI/modules/scicos/"
-		else
-			echo "Cannot find $SCILABBIN ..."
-			exit 1
-		fi
-	fi
+        SCILABBIN=$SCI/bin/$SCILABBIN
+        SCI=$SCI/share/scilab/
+    else
+        if test -x "$SCI/$SCILABBIN"; then
+        # dev env
+            SCILABBIN=$SCI/$SCILABBIN
+            DEVENV=1
+        # add modelica in the path
+            PATH="$PATH:$SCI/modules/scicos/"
+        else
+            echo "Cannot find $SCILABBIN ..."
+            exit 1
+        fi
+    fi
 
-	export SCI
+    export SCI
+}
+
+
+set_macosx_java_vm () {
+    # For Mac OS X, Since path are different from the JVM normal tree,
+    # don't need to detect the CPU
+    JAVA_SHLIB="libjava.jnilib"
+    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+    DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+
+}
+
+set_embedded_java_vm () {
+
+       # Scilab binary => no Java detection since we are using the embeded JRE
+        # Here, we are handling 3 cases: GNU/Linux 32bit, GNU/Linux 64bit,
+        # Mac OS X
+        case $OS in
+            "Linux")
+                case $MODEL in
+                    "x86_64")
+                        proc="amd64"
+                        ;;
+                    i?86)
+                        # We embed java/lib/i386 with Scilab Binary
+                        # force proc to i386 even if systems answer i686
+                        proc="i386"
+                        ;;
+                    *)
+                        echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us on http://bugzilla.scilab.org"
+                        ;;
+                esac
+                ;;
+            *darwin* | *Darwin*) # MacOS X
+                set_macosx_java_vm
+                ;;
+            *)
+            echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+            echo "Fallback on the model <${MODEL}> found by uname -m"
+            proc=$MODEL
+            ;;
+    esac
+    JRE_HOME="$SCIBINARYBASE/thirdparty/java/"
+
 }
 
 detect_java_vm() {
+
+    JAVA_SHLIB="libjava.so"
+
+    if test $IS_SCILAB_BINARY -eq 1; then
+        set_embedded_java_vm
+    else  # NOT IS_SCILAB_BINARY
+
 ############# JAVA DETECTION ##############
 # Basic inspiration from Eclipse
 #
@@ -251,13 +349,6 @@ detect_java_vm() {
 # 2 others) are available
 ###
 
-	if test "${OS}" = ""; then
-            OS=`uname -s` # Retrieve the Operating System
-	fi
-	if test "${MODEL}" = ""; then
-            MODEL=`uname -m` # Retrieve the model
-	fi
-
 # Get the proc name matching to the one of the JVM
 # Inspiration and data are from http://www.google.com/codesearch?hl=en&q=+java+ppc+libjava.so+show:a78sz0SP41k:zxNozD-vc0A:FWiIy7Hinmg&sa=N&cd=2&ct=rc&cs_p=http://fresh.t-systems-sfr.com/unix/src/misc/tclBlendSrc1.2.5.tar.gz&cs_f=tclBlend1.2.5/configure.in#a0
 # For Mac OS X, we will get stuff like that:
@@ -265,220 +356,238 @@ detect_java_vm() {
 # uname -m Darwin
 
 # If the user has the variable JAVA_HOME in the ENV
-	if test -n "$JAVA_HOME" ; then
-		if test $SCIVERBOSE -ne 0; then
-			echo "Using specified vm: $JAVA_HOME"
-		fi
-		if test ! -x "$JAVA_HOME/bin/java" ; then
-			echo "Cannot find $JAVA_HOME/bin/java"
-			exit 1
-		fi
-	fi
+        if test -n "$JAVA_HOME" ; then
+            if test $SCIVERBOSE -ne 0; then
+                echo "Using specified vm: $JAVA_HOME"
+            fi
+            if test ! -x "$JAVA_HOME/bin/java" ; then
+                echo "Cannot find $JAVA_HOME/bin/java"
+                exit 1
+            fi
+        fi
 
-	if test -z "$JAVA_HOME"; then
         case $OS in
             *darwin* | *Darwin*)
-                    # Apple thinks and does things different (it would be too easy otherwise)
-		    # They provide a script which returns the JAVA_HOME path
-		    JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
-                    LD_LIBRARY_PATH="$JAVA_HOME/../Libraries:$LD_LIBRARY_PATH"
-		    if test $SCIVERBOSE -ne 0; then
-			echo "Using default Mac OS X vm: $JAVA_HOME"
-			echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
-		    fi
-		    ;;
-                *)
-					;;
-			esac
-fi
+                set_macosx_java_vm
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Using default Mac OS X vm: $JAVA_HOME"
+                    echo "And LD_LIBRARY_PATH: $LD_LIBRARY_PATH"
+                    echo "And DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+                fi
+                ;;
+            *)
+                ;;
+        esac
 
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
-	if test -z "$JAVA_HOME"; then
-		JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
-		for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
-			if test $SCIVERBOSE -ne 0; then
-				echo "Trying to find Java in $JAVA_HOME "
-			fi
-			if test -x "${JAVA_HOME}/bin/java" ; then
-				export JAVA_HOME
-				if test $SCIVERBOSE -ne 0; then
-					echo "found"
-				fi
-				break
-			fi
-		done
-	fi
+        if test -z "$JAVA_HOME"; then
+            JAVA_DEFAULT_DIR="/usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+            for JAVA_HOME in $JAVA_DEFAULT_DIR ; do
+                if test $SCIVERBOSE -ne 0; then
+                    echo "Trying to find Java in $JAVA_HOME "
+                fi
+                if test -x "${JAVA_HOME}/bin/java" ; then
+                    export JAVA_HOME
+                    if test $SCIVERBOSE -ne 0; then
+                        echo "found"
+                    fi
+                    break
+                fi
+            done
+        fi
 
 # JAVA_HOME still haven't been found. Well, we can now try to find it in the path
+        if test ! -d "$JAVA_HOME" -o ! -h "$JAVA_HOME"; then
+            if test $SCIVERBOSE -ne 0; then
+                echo "Have not been able to find any Java VM on this computer. Some features may be broken."
+            fi
+        else
 
-	if test -z "$JAVA_HOME"; then
-		PATH_SEPARATOR=:
-		as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
-		if test $SCIVERBOSE -ne 0; then
-			echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
-		fi
-		for DIR in $PATH; do
-			if test -f $DIR/java; then
+            PATH_SEPARATOR=:
+            as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+            if test $SCIVERBOSE -ne 0; then
+                echo "Look the binary java in the PATH. If it is a symlink, try to resolve it"
+            fi
+            for DIR in $PATH; do
+                if test -f $DIR/java; then
 
-				_cur=$DIR/java
-			# resolve symlink
-			# Will probably bug if a file contains -> in the name
-				while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
-					_cur=`ls -ld "$_cur" | sed 's/.* -> //'`
-				done
-			# symlink resolved to the real file
+                    _cur=$DIR/java
+            # resolve symlink
+            # Will probably bug if a file contains -> in the name
+                    while ls -ld "$_cur" 2>/dev/null | grep " -> " >/dev/null; do
+                        _cur=$(ls -ld "$_cur" | sed 's/.* -> //')
+                    done
+            # symlink resolved to the real file
 
-			# Now, create JAVA_HOME
-				TMP=`dirname $_cur`
-				JAVA_HOME=`dirname $TMP`
-				if test ! -z "$JAVA_HOME"; then
-					break;
-				fi
-			fi
-		done
-		IFS=$as_save_IFS
-	fi
-	if test ! -z "$JAVA_HOME"; then
-		if test $SCIVERBOSE -ne 0; then
-			echo "JAVA_HOME : $JAVA_HOME"
-		fi
+            # Now, create JAVA_HOME
+                    TMP=$(dirname $_cur)
+                    JAVA_HOME=$(dirname $TMP)
+                    if test ! -z "$JAVA_HOME"; then
+                        break;
+                    fi
+                fi
+            done
+            IFS=$as_save_IFS
+        fi
+        if test ! -z "$JAVA_HOME"; then
+            if test $SCIVERBOSE -ne 0; then
+                echo "JAVA_HOME : $JAVA_HOME"
+            fi
 
 # Manage JRE & JDK because libjava.so and others are stored in the JRE
-		if test -d $JAVA_HOME/jre; then
-			JRE_HOME=$JAVA_HOME/jre
-		else
-			JRE_HOME=$JAVA_HOME
-		fi
+            if test -d $JAVA_HOME/jre; then
+                JRE_HOME=$JAVA_HOME/jre
+            else
+                JRE_HOME=$JAVA_HOME
+            fi
 
 # Configuring LD_LIBRARY_PATH for libjava.so libhpi.so and libxxxx.so
 
-		JAVA_SHLIB="libjava.so"
+            case $OS in
+                "Linux")
+                    case $MODEL in
+                        "x86_64")
+                            proc="amd64"
+                            ;;
+                        i?86)
 
-		case $OS in
-			"Linux")
-				case $MODEL in
-					"x86_64")
-						proc="amd64"
-						;;
-					i?86)
+                            if test -d ${JRE_HOME}/lib/$(uname -m) ; then
+                                proc=$(uname -m)
+                            else
+                                proc="i386"
+                            fi
+                            ;;
+                        "alpha")
+                            proc="alpha"
+                            ;;
+                        "sparc"|"sparc64")
+                            proc="sparc"
+                            ;;
+                        sh*)
+                            proc="sh"
+                            ;;
+                        "ia64")
+                            proc="ia64"
+                            ;;
+                        "mips"|"mipsel") # under mipsel, uname -m is
+                    # usually returning mips ...
+                    # but binary are in mipsel
+                            if test -d ${JRE_HOME}/lib/mipsel ; then
+                                proc="mipsel"
+                            else
+                                proc="mips"
+                            fi
+                            ;;
+                        "ppc"|"powerpc"|"ppc64")
+                            proc="ppc"
+                            ;;
+                        "s390"|"s390x")
+                            proc="s390"
+                            ;;
+                        armv*)
+                            proc="arm"
+                            ;;
+                        *)
+                            echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us on http://bugzilla.scilab.org"
+                            ;;
+                    esac
+                    ;;
+                "HP-UX")
+                    JAVA_SHLIB="libjava.sl"
+                    proc="lib" # TODO : check if it is right or not ... seems not !
+                    ;;
+                "IRIX")
+                    proc="lib32"
+                    ;;
+                "SunOS")
+                    case $MODEL in
+                        "i86pc") # solaris x86
+                            proc="i386"
+                            ;;
+                # check for the 64 bits syntax
+                        "sparc"|"sparc64")
+                            proc="sparc"
+                            ;;
+                        *)
+                            echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
+                            ;;
+                    esac
+                    ;;
 
-						if test -d ${JRE_HOME}/lib/`uname -m` ; then
-							proc=`uname -m`
-						else
-							proc="i386"
-						fi
-						;;
-					"ia64")
-						proc="i64"
-						;;
-					"alpha")
-						proc="alpha"
-						;;
-					"sparc"|"sparc64")
-						proc="sparc"
-						;;
-					sh*)
-						proc="sh"
-						;;
-					"ia64")
-						proc="ia64"
-						;;
-					"mips"|"mipsel") # under mipsel, uname -m is
-					# usually returning mips ...
-					# but binary are in mipsel
-						if test -d ${JRE_HOME}/lib/mipsel ; then
-							proc="mipsel"
-						else
-							proc="mips"
-						fi
-						;;
-					"ppc"|"powerpc"|"ppc64")
-						proc="ppc"
-						;;
-					"s390"|"s390x")
-						proc="s390"
-						;;
-					"armv4l"|"armv5tel")
-						proc="arm"
-						;;
-					*)
-						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
-						;;
-				esac
-				;;
-			"HP-UX")
-				JAVA_SHLIB="libjava.sl"
-				proc="lib" # TODO : check if it is right or not ... seems not !
-				;;
-			"IRIX")
-				proc="lib32"
-				;;
-			"SunOS")
-    			case $MODEL in
-					"i86pc") # solaris x86
-						proc="i386"
-						;;
-				# check for the 64 bits syntax
-					"sparc"|"sparc64")
-						proc="sparc"
-						;;
-					*)
-						echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us."
-						;;
-				esac
-				;;
-
-			*win32* | *WIN32* | *CYGWIN_NT*)
-				proc="win32"
-				JAVA_SHLIB="jvm.dll"
-				;;
-			*darwin* | *Darwin*) # MacOS X
-        # For Mac OS X, Since path are different from the JVM normal tree,
-		# don't need to detect the CPU
-				JAVA_SHLIB="libjava.jnilib"
-				;;
-			*FreeBSD*)
-				proc=$MODEL
-				;;
-			*)
-				echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
-                echo "Fallback on the model <${MODEL}> found by uname -m"
-                proc=$MODEL
-                ;;
-		esac
-
+                *win32* | *WIN32* | *CYGWIN_NT*)
+                    proc="win32"
+                    JAVA_SHLIB="jvm.dll"
+                    ;;
+                *darwin* | *Darwin*) # MacOS X
+                    set_macosx_java_vm
+                    ;;
+                *FreeBSD*)
+                    proc=$MODEL
+                    ;;
+                *)
+                    echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
+                    echo "Fallback on the model <${MODEL}> found by uname -m"
+                    proc=$MODEL
+                    ;;
+            esac
+        fi # JAVA_HOME provided but wrong
+    fi # IS_SCILAB_BINARY
 
 # Check if the lib exists or not (we should manage system where .so is not the
 # ext for library
-		LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
-		if test ! -f $LIBJAVA; then
-			if test $SCIVERBOSE -ne 0; then
-				echo "Cannot find $LIBJAVA"
-			fi
-		else
-            CLASSPATH="$CLASSPATH:$SCI/modules/jvm/jar/org.scilab.modules.jvm.jar"
-		# @TODO This is the default path of the official sun JVM. 
-		# It is different for other implementation of the JVM....
-		    LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/:$LD_LIBRARY_PATH"
-		fi
-	else
-		if test $SCIVERBOSE -ne 0; then
-			echo "Have not been able to find any Java VM on this computer. Some features may be broken."
-		fi
-	fi
+    LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
+    if test ! -f $LIBJAVA; then
+        if test $SCIVERBOSE -ne 0; then
+            echo "Cannot find $LIBJAVA"
+        fi
+    else
+        CLASSPATH="${CLASSPATH:+:$CLASSPATH}$SCI/modules/core/jar/org.scilab.modules.core.jar"
+        # @TODO This is the default path of the official sun JVM.
+        # It is different for other implementation of the JVM....
+        LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+    fi
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
 }
 
 detect_scilab_path
-
-PATH="$SCI:$SCI/bin:$PATH"
+if test $SCIVERBOSE -ne 0; then
+    echo "IS_SCILAB_BINARY : $IS_SCILAB_BINARY"
+fi
 
 # If we are calling scilab-cli, no need to detect java.
 if test $DISABLE_JAVA_DETECTION -ne 1; then
-	detect_java_vm
+    detect_java_vm
 fi
+
+if test $IS_SCILAB_BINARY -eq 1; then
+
+    TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
+    Tk_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
+    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+    DOCBOOK_ROOT="$SCI/thirdparty/docbook"
+    PATH="$PATH:$SCI/modules/scicos/"
+
+    export DOCBOOK_ROOT
+    export PATH
+    export LD_LIBRARY_PATH
+    export TCL_LIBRARY
+    export Tk_LIBRARY
+
+    case $OS in
+        *darwin* | *Darwin*)
+            DYLD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+            export DYLD_LIBRARY_PATH
+            PATH="/sw/bin:/sw64/bin:$PATH"
+            export PATH
+            ;;
+    esac
+
+else
+    PATH="$SCI:$SCI/bin:$PATH"
+fi
+
 
 # See http://bugzilla.scilab.org/show_bug.cgi?id=3486
 # Some Java stuff raises spurious SIGSEGV. The problem is that when bug-buddy
@@ -486,13 +595,14 @@ fi
 # desactivate bug-buddy.
 # See also https://bugzilla.novell.com/show_bug.cgi?id=331618
 # and: http://bugzilla.gnome.org/show_bug.cgi?id=479929
-GTK_MODULES=`echo $GTK_MODULES | sed s/gnomebreakpad//g`
+GTK_MODULES=$(echo $GTK_MODULES | sed s/gnomebreakpad//g)
 export GTK_MODULES
 
 if test $SCIVERBOSE -ne 0; then
-	echo "SCI : $SCI"
-	echo "SCIBIN : $SCIBIN"
-	echo "PATH : $PATH"
+    echo "SCI : $SCI"
+    echo "SCIBIN : $SCIBIN"
+    echo "PATH : $PATH"
+    echo "CLASSPATH : $CLASSPATH"
 fi
 
 # Returns to the original path
@@ -509,9 +619,52 @@ cd "$LOCALOLDPWD"
 #export PVM_ROOT
 
 #if test "$PVM_ARCH" = ""; then
-#  PVM_ARCH=`$PVM_ROOT/lib/pvmgetarch`
+#  PVM_ARCH=$($PVM_ROOT/lib/pvmgetarch)
 #fi
 #export PVM_ARCH
+
+
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
+    macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
+    macosxMajorVersion=`echo $macosxVersion | cut -d . -f 1`
+    macosxMinorVersion=`echo $macosxVersion | cut -d . -f 2`
+    macosxBuildVersion=`echo $macosxVersion | cut -d . -f 3`
+
+    if test $SCIVERBOSE -ne 0; then
+        echo "Found MacOSX Version: $macosxVersion"
+    fi
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                6)
+                    if test $macosxBuildVersion -le 4; then
+                        # Version <= 10.6.4
+                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    fi
+                    ;;
+# Does not work under 10.5 binary for now. Fail by default
+#                 5)
+#                     if test $macosxBuildVersion -ge 8; then
+#                         # Version <= 10.5.8
+#                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
+#                         fi
+#                    ;;
+                *)
+                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    ;;
+            esac
+            ;;
+        *)
+            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+            ;;
+    esac
+}
 
 SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
@@ -519,154 +672,165 @@ LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 case $OS in
     *darwin* | *Darwin*) # MacOS X
         # When using some packaging tools like fink which are storing the info in /sw/lib
-        LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/sw/lib/"
-	# Export the path to the Scilab lib when Scilab has been install ...
-	# to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
-		DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/../../lib/scilab/
-		# Crappy workaround for the dynamic load of sundials under Mac OS X
-		# in the source tree version. This does not occur in the binary
-		# thanks to the previous declaration on ../../lib/scilab
-		# See bug #4949
-		if test -d "$SCI/modules/scicos_blocks/.libs/"; then
-			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos_blocks/.libs/
-		fi
-		if test -d "$SCI/modules/scicos/.libs/"; then
-			DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$SCI/modules/scicos/.libs/
-		fi
-		export DYLD_LIBRARY_PATH
+        LD_LIBRARY_PATH="/sw/lib/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+    # Export the path to the Scilab lib when Scilab has been install ...
+    # to a Mac os x specific variable used by the linker before LD_LIBRARY_PATH
+        DYLD_LIBRARY_PATH=$SCI/../../lib/scilab/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}:
+        # Crappy workaround for the dynamic load of sundials under Mac OS X
+        # in the source tree version. This does not occur in the binary
+        # thanks to the previous declaration on ../../lib/scilab
+        # See bug #4949
+        if test -d "$SCI/modules/scicos_blocks/.libs/"; then
+            DYLD_LIBRARY_PATH=$SCI/modules/scicos_blocks/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
+        fi
+        if test -d "$SCI/modules/scicos/.libs/"; then
+            DYLD_LIBRARY_PATH=$SCI/modules/scicos/.libs/${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}
+        fi
+        export DYLD_LIBRARY_PATH
+        # Now, check that I can run Scilab on this version of Mac OS X and
+        # display a standard window
+        BINPATH=$(dirname $0)
+        # Do not perform the check with Scilab is started in CLI mode
+        if test "$SCILAB_MODE" = "gui"; then
+            check_macosx_version
+        fi
         ;;
     *)
 esac
 
 
 if test $SCIVERBOSE -ne 0; then
-	echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
-	if test ! -z "$DYLD_LIBRARY_PATH"; then
-	    echo "DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
-	fi
+    echo "LD_LIBRARY_PATH : $LD_LIBRARY_PATH"
+    if test ! -z "$DYLD_LIBRARY_PATH"; then
+        echo "DYLD_LIBRARY_PATH: $DYLD_LIBRARY_PATH"
+    fi
 fi
 export LD_LIBRARY_PATH
 export PATH
 
-find_docbook_path
+if test $IS_SCILAB_BINARY -ne 1; then
+# We are not using the Scilab binary, find out where docbook is.
+    find_docbook_path
+fi
 
 do_scilex()
 {
     "$SCILABBIN" "$@"
-
 }
 
 do_help()
 {
-	echo "Usage:"
-	echo     "scilab <arguments>"
-	echo     " "
-	echo     "      Possible arguments are:"
-	echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
-	echo     "      -d Display      : equivalent to -display Display."
-	echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
-	echo     "                        -e and -f arguments are mutually exclusive."
-	echo     "      -f File         : execute the scilab script given in File argument."
-	echo     "                        -e and -f arguments are mutually exclusive."
-	echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
-	echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
-	echo     "      -nb             : do not display the Scilab banner at starting time."
-	echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
-	echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
-	echo     "      -nw             : start Scilab without dedicated Scilab Window."
-	echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
-	echo     "      -nogui          : See -nwni"
-	echo     "      -args           : accept all extra arguments and make them available through sciargs"
-	echo     "      -version        : print product version and exit."
-	echo     "      -h/--help       : display help about this command."
-	echo     "      --texmacs       : reserved for TeXMacs."
-	echo     " "
-	echo     "Developer arguments:"
-	echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
-	echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
-	echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
-	echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-	echo     "                        valgrind (and override the existing valgrind arguments)."
-	echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
-	echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
-	echo     "                        callgrind (and override the existing callgrind arguments)."
-	echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
-	echo     " "
-	echo     "      All these arguments can be retrieved by the Scilab function sciargs."
-	echo     " "
-	exit
+    echo "Usage:"
+    echo     "scilab <arguments>"
+    echo     " "
+    echo     "      Possible arguments are:"
+    echo     "      -display Display: for use under Xwindow systems to set a specific X server display."
+    echo     "      -d Display      : equivalent to -display Display."
+    echo     "      -e Instruction  : execute the scilab instruction given in Instruction argument."
+    echo     "                        -e and -f arguments are mutually exclusive."
+    echo     "      -f File         : execute the scilab script given in File argument."
+    echo     "                        -e and -f arguments are mutually exclusive."
+    echo     "      -l Lang         : set the current language. Lang can be equal to fr or en."
+    echo     "      -mem N          : set the initial stacksize, for use with -ns argument."
+    echo     "      -nb             : do not display the Scilab banner at starting time."
+    echo     "      -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
+    echo     "      -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
+    echo     "      -nw             : start Scilab without dedicated Scilab Window."
+    echo     "      -nwni           : start Scilab without the GUI, graphic and help features (batch mode). This argument disables the need of Java."
+    echo     "      -nogui          : See -nwni"
+    echo     "      -args           : accept all extra arguments and make them available through sciargs"
+    echo     "      -version        : print product version and exit."
+    echo     "      -h/--help       : display help about this command."
+    echo     "      --texmacs       : reserved for TeXMacs."
+    echo     " "
+    if test $IS_SCILAB_BINARY -eq 0; then
+        echo     "Developer arguments:"
+        echo     "      -debug          : Start Scilab under gdb (Unix/linux only)."
+        echo     "                        define the variable SCILAB_GDB_OPT to add custom arguments to gdb."
+        echo     "      -debug-kdbg     : Start Scilab under kdbg (Unix/linux only)."
+        echo     "      -profiling      : Start Scilab under valgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        valgrind (and override the existing valgrind arguments)."
+        echo     "      -profiling-visu : Start Scilab under callgrind (Unix/linux only)."
+        echo     "                        define the variable SCILAB_VALGRIND_OPT to add custom arguments to"
+        echo     "                        callgrind (and override the existing callgrind arguments)."
+        echo     "      -electric-fence : Start Scilab with the Electric Fence (Unix/linux only)."
+        echo     " "
+    fi
+    echo     "      All these arguments can be retrieved by the Scilab function sciargs."
+    echo     " "
+    exit
 }
 
 do_compile()
 {
-	umask 002
-	rm -f report
-	name=`basename $1 .sci`
-	echo generating $name.bin
-	echo "predef();exec('$name.sci');save('$name.bin');quit"\
-	      | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
-	if (grep error report 1> /dev/null  2>&1);
-	then cat report;echo " "
-	   echo see `pwd`/report for more informations
-	   grep libok report>/dev/null;
-	else rm -f report;
-	fi
-	umask 022
-	exit 0
+    umask 002
+    rm -f report
+    name=$(basename $1 .sci)
+    echo generating $name.bin
+    echo "predef();exec('$name.sci');save('$name.bin');quit"\
+          | $SCILABBIN -ns -nwni | sed 1,8d 1>report 2>&1
+    if (grep error report 1> /dev/null  2>&1);
+    then cat report;echo " "
+        echo see $(pwd)/report for more information
+        grep libok report>/dev/null;
+    else rm -f report;
+    fi
+    umask 022
+    exit 0
 }
 
 do_lib()
 {
-	umask 002
-	rm -f report
-	echo "$1=lib('$2/');save('$2/lib',$1);quit"\
-	      | $SCILABBIN -ns -nwni |sed 1,/--\>/d 1>report 2>&1
-	if (grep error report 1> /dev/null  2>&1);
-	then cat report;echo " "
-		echo see `pwd`/report for more informations
-		grep libok report>/dev/null;
-	else rm -f report;
-	fi
-	umask 022
-	exit 0
+    umask 002
+    rm -f report
+    echo "$1=lib('$2/');save('$2/lib',$1);quit"\
+          | $SCILABBIN -ns -nwni |sed 1,/--\>/d 1>report 2>&1
+    if (grep error report 1> /dev/null  2>&1);
+    then cat report;echo " "
+        echo see $(pwd)/report for more information
+        grep libok report>/dev/null;
+    else rm -f report;
+    fi
+    umask 022
+    exit 0
 }
 
 MORE_OPT=""
 if test "$SCILAB_MODE" = "nw"; then
-	MORE_OPT="-nw"
+    MORE_OPT="-nw"
 fi
 
 # calling Scilab with no argument or special cases of calling Scilab
 rest="no"
 case $# in
     0) # No arg, run Scilab
-		do_scilex $MORE_OPT
+        do_scilex $MORE_OPT
         ;;
     2) # Only two arg
         case $1 in
             -comp)
-				do_compile $2
+                do_compile $2
                 ;;
             *)
-				rest="yes"
+                rest="yes"
                 ;;
         esac
         ;;
     3)
         case $1 in
             -lib)
-				do_lib $2 $3
+                do_lib $2 $3
                 ;;
             *)
-				rest="yes"
+                rest="yes"
                 ;;
         esac
         ;;
     *)
         case $1 in
             *)
-				rest="yes"
+                rest="yes"
                 ;;
         esac
         ;;
@@ -675,85 +839,97 @@ esac
 # really calling Scilab with arguments
 
 if test "$rest" = "yes"; then
-  debug=
-  debug_kdbg=
-  profiling=
-  profiling_visu=
-  electric_fence=
-  prevarg=
-  for sciarg in "$@"
-  do
+    debug=
+    debug_kdbg=
+    profiling=
+    profiling_visu=
+    electric_fence=
+    prevarg=
+    for sciarg in "$@"
+    do
 
     # If the previous argument needs an argument, skip current one.
-    if test -n "$prevarg"; then
-      prevarg=
-      continue
-    fi
+        if test -n "$prevarg"; then
+            prevarg=
+            continue
+        fi
 
-    case $sciarg in
-      -nogui|-version|-ns|-nb|-nw|-nouserstartup|--texmacs|-nwni)
-	      ;;
-      -psn_*)
-	    # Under Mac OS X, .app is adding the arg -psn_0_xxxx
-	    # (psn = ProcessSerialNumber). It is not used (but could be in the future)
-	    ;;
-      -display|-f|-l|-e|-d|-mem)
-	      prevarg=1
-	      ;;
-	  -args) # Accept extra arguments
-		  extraarg=1
-		  ;;
-      -debug)
-          DEBUG="-debug"
-          ;;
-      -debug-kdbg)
-          DEBUG_KDBG="-debug-kdbg"
-          ;;
-      -profiling)
-          PROFILING="-profiling"
-          ;;
-      -profiling-visu)
-          PROFILING_VISU="-profiling-visu"
-          ;;
-      -electric-fence)
-          ELECTRIC_FENCE="-electric-fence"
-          ;;
-      -h|--help)
-          do_help
-          ;;
-		*)
-			foundUnknownArg=1
-		  # Do nothing. Gives unknown args to Scilab binaries if -a is provided
-		  ;;
-    esac
-  done
+        case $sciarg in
+            -nogui|-version|-ns|-nb|-nouserstartup|--texmacs)
+                ;;
+            -nw)
+                if test "$SCILAB_MODE" = "nwni"; then
+                    echo "Cannot use scilab-cli with option -nw"
+                    exit 5
+                fi
+                ;;
+            -nwni)
+                if test "$SCILAB_MODE" = "nw"; then
+                    echo "Cannot use scilab-adv-cli with option -nwni"
+                    exit 5
+                fi
+                ;;
+            -psn_*)
+        # Under Mac OS X, .app is adding the arg -psn_0_xxxx
+        # (psn = ProcessSerialNumber). It is not used (but could be in the future)
+                ;;
+            -display|-f|-l|-e|-d|-mem)
+                prevarg=1
+                ;;
+            -args) # Accept extra arguments
+                extraarg=1
+                ;;
+            -debug)
+                DEBUG="-debug"
+                ;;
+            -debug-kdbg)
+                DEBUG_KDBG="-debug-kdbg"
+                ;;
+            -profiling)
+                PROFILING="-profiling"
+                ;;
+            -profiling-visu)
+                PROFILING_VISU="-profiling-visu"
+                ;;
+            -electric-fence)
+                ELECTRIC_FENCE="-electric-fence"
+                ;;
+            -h|--help)
+                do_help
+                ;;
+            *)
+                foundUnknownArg=1
+          # Do nothing. Gives unknown args to Scilab binaries if -a is provided
+                ;;
+        esac
+    done
 
 
 # If the argument -a is not provided (extraarg) and we found unknown args
 # fail and provide help
-  if test -z "$extraarg" -a -n "$foundUnknownArg"; then
-	  do_help
-  fi
+    if test -z "$extraarg" -a -n "$foundUnknownArg"; then
+        do_help
+    fi
 
-  if test -n "$DEBUG"; then
-	  start_debug "$@" $MORE_OPT
-  else
-  if test -n "$DEBUG_KDBG"; then
-	  start_debug_kdbg "$@" $MORE_OPT
-  else
-	if test -n "$PROFILING"; then
-		start_profiling "$@" $MORE_OPT
-	else
-		if test -n "$PROFILING_VISU"; then
-			start_profiling_visu "$@" $MORE_OPT
-		else
-			if test -n "$ELECTRIC_FENCE"; then
-				start_electric_fence "$@" $MORE_OPT
-			else
-				do_scilex "$@" $MORE_OPT
-			fi # not electric fense
-		fi # not profiling visu
-	fi # not profiling
-  fi # not debug kdbg
-  fi # not debug
+    if test -n "$DEBUG"; then
+        start_debug "$@" $MORE_OPT
+    else
+        if test -n "$DEBUG_KDBG"; then
+            start_debug_kdbg "$@" $MORE_OPT
+        else
+            if test -n "$PROFILING"; then
+                start_profiling "$@" $MORE_OPT
+            else
+                if test -n "$PROFILING_VISU"; then
+                    start_profiling_visu "$@" $MORE_OPT
+                else
+                    if test -n "$ELECTRIC_FENCE"; then
+                        start_electric_fence "$@" $MORE_OPT
+                    else
+                        do_scilex "$@" $MORE_OPT
+                    fi # not electric fense
+                fi # not profiling visu
+            fi # not profiling
+        fi # not debug kdbg
+    fi # not debug
 fi # if rest

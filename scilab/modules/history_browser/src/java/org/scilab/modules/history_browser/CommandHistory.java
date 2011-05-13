@@ -109,6 +109,12 @@ public final class CommandHistory {
 
                 scilabHistoryTree.addMouseListener(new CommandHistoryMouseListener());
 
+                DeleteAction.registerKeyAction();
+                EvaluateAction.registerKeyAction();
+                CopyAction.registerKeyAction();
+                CutAction.registerKeyAction();
+                CloseAction.registerKeyAction();
+
                 scrollPane = new JScrollPane(scilabHistoryTree);
                 JPanel contentPane = new JPanel(new BorderLayout());
                 contentPane.add(scrollPane);
@@ -149,8 +155,8 @@ public final class CommandHistory {
         * @retour true or false
         */
         private static boolean isBeginSessionLine(String lineToAppend) {
-                if (lineToAppend.startsWith(SESSION_BEGINNING) &&
-                    lineToAppend.endsWith(SESSION_ENDING)) {
+                if (lineToAppend.startsWith(SESSION_BEGINNING)
+                        && lineToAppend.endsWith(SESSION_ENDING)) {
                        return true;
                     }
                return false;

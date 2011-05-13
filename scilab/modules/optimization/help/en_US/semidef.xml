@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,8 +19,10 @@
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
   <info>
-    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
-    $</pubdate>
+    <pubdate>
+      $LastChangedDate: 2008-03-26 09:50:39 +0100 (mer, 26 mar 2008)
+      $
+    </pubdate>
   </info>
 
   <refnamediv>
@@ -35,15 +38,17 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
         <term>x0</term>
 
         <listitem>
-          <para>m x 1 real column vector (must be strictly primal feasible,
-          see below)</para>
+          <para>
+            m-by-1 real column vector (must be strictly primal feasible,
+            see below)
+          </para>
         </listitem>
       </varlistentry>
 
@@ -51,8 +56,10 @@
         <term>Z0</term>
 
         <listitem>
-          <para>L x 1 real vector (compressed form of a strictly feasible dual
-          matrix, see below)</para>
+          <para>
+            L-by-1 real vector (compressed form of a strictly feasible dual
+            matrix, see below)
+          </para>
         </listitem>
       </varlistentry>
 
@@ -60,7 +67,7 @@
         <term>F</term>
 
         <listitem>
-          <para>L x (m+1) real matrix</para>
+          <para>L-by-(m+1) real matrix</para>
         </listitem>
       </varlistentry>
 
@@ -68,9 +75,11 @@
         <term>blck_szs</term>
 
         <listitem>
-          <para>p x 2 integer matrix (sizes of the blocks) defining the
-          dimensions of the (square) diagonal blocks
-          <literal>size(Fi(j)=blck_szs(j) j=1,...,m+1</literal>.</para>
+          <para>
+            p-by-2 integer matrix (sizes of the blocks) defining the
+            dimensions of the (square) diagonal blocks
+            <literal>size(Fi(j)=blck_szs(j) j=1,...,m+1</literal>.
+          </para>
         </listitem>
       </varlistentry>
 
@@ -78,7 +87,7 @@
         <term>c</term>
 
         <listitem>
-          <para>m x 1 real vector</para>
+          <para>m-by-1 real vector</para>
         </listitem>
       </varlistentry>
 
@@ -86,8 +95,9 @@
         <term>options</term>
 
         <listitem>
-          <para>row vector with five entries
-          <literal>[nu,abstol,reltol,0,maxiters]</literal></para>
+          <para>
+            a 1-by-5 matrix of doubles <literal>[nu,abstol,reltol,tv,maxiters]</literal>
+          </para>
         </listitem>
       </varlistentry>
 
@@ -95,7 +105,7 @@
         <term>ul</term>
 
         <listitem>
-          <para>row vector with two entries</para>
+          <para>a 1-by-2 matrix of doubles.</para>
         </listitem>
       </varlistentry>
     </variablelist>
@@ -104,8 +114,9 @@
   <refsection>
     <title>Description</title>
 
-    <para><literal>[x,Z,ul,info]=semidef(x0,Z0,F,blck_szs,c,options)</literal>
-    solves semidefinite program:</para>
+    <para>
+      <literal>semidef</literal> solves the semidefinite program:
+    </para>
 
     <informalequation>
       <mediaobject>
@@ -125,15 +136,17 @@
       </mediaobject>
     </informalequation>
 
-    <para>exploiting block structure in the matrices
-    <literal>F_i</literal>.</para>
+    <para>
+      exploiting block structure in the matrices
+      <literal>F_i</literal>.
+    </para>
 
-    <para>It interfaces L. Vandenberghe and S. Boyd sp.c program.</para>
-
-    <para>The <literal>Fi's</literal> matrices are stored columnwise in
-    <literal>F</literal> in compressed format: if <literal>F_i^j</literal>,
-    i=0,..,m, j=1,...,L denote the jth (symmetric) diagonal block of
-    <literal>F_i</literal>, then</para>
+    <para>
+      The <literal>Fi's</literal> matrices are stored columnwise in
+      <literal>F</literal> in compressed format: if <literal>F_i^j</literal>,
+      i=0,..,m, j=1,...,L denote the jth (symmetric) diagonal block of
+      <literal>F_i</literal>, then
+    </para>
 
     <informalequation>
       <mediaobject>
@@ -143,60 +156,157 @@
       </mediaobject>
     </informalequation>
 
-    <para>where <literal>pack(M)</literal>, for symmetric
-    <literal>M</literal>, is the vector
-    <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>
-    (obtained by scanning columnwise the lower triangular part of
-    <literal>M</literal>).</para>
+    <para>
+      where <literal>pack(M)</literal>, for symmetric
+      <literal>M</literal>, is the vector
+      <literal>[M(1,1);M(1,2);...;M(1,n);M(2,2);M(2,3);...;M(2,n);...;M(n,n)]</literal>
+      (obtained by scanning rowwise the upper triangular part of
+      <literal>M</literal>).
+    </para>
 
-    <para><literal>blck_szs</literal> gives the size of block
-    <literal>j</literal>, ie,
-    <literal>size(F_i^j)=blck_szs(j)</literal>.</para>
+    <para>
+      <literal>blck_szs</literal> gives the size of block
+      <literal>j</literal>, ie,
+      <literal>size(F_i^j)=blck_szs(j)</literal>.
+    </para>
 
-    <para>Z is a block diagonal matrix with L blocks <literal>Z^0, ...,
-    Z^{L-1}</literal>. <literal>Z^j</literal> has size <literal>blck_szs[j]
-    times blck_szs[j]</literal>. Every block is stored using packed storage of
-    the lower triangular part.</para>
+    <para>
+      Z is a block diagonal matrix with L blocks <literal>
+        Z^0, ...,
+        Z^{L-1}
+      </literal>. <literal>Z^j</literal> has size <literal>
+        blck_szs[j]
+        times blck_szs[j]
+      </literal>. Every block is stored using packed storage of
+      the lower triangular part.
+    </para>
 
-    <para>The 2 vector <literal>ul</literal> contains the primal objective
-    value <literal>c'*x</literal> and the dual objective value
-    <literal>-trace(F_0*Z</literal>).</para>
+    <para>
+      The 1-by-2 matrix of doubles <literal>ul</literal> contains the primal objective
+      value <literal>c'*x</literal> and the dual objective value
+      <literal>-trace(F_0*Z</literal>).
+    </para>
 
-    <para>The entries of <literal>options</literal> are respectively:
-    <literal>nu</literal> = a real parameter which ntrols the rate of
-    convergence. <literal>abstol</literal> = absolute tolerance.
-    <literal>reltol</literal> = relative tolerance (has a special meaning when
-    negative). <literal>tv</literal> target value, only referenced if
-    <literal>reltol &lt; 0</literal>. <literal>iters</literal> = on entry:
-    maximum number of iterations &gt;= 0, on exit: the number of iterations
-    taken. Notice that the absolute tolerance cannot be lower than 1.0e-8,
-    that is, the absolute tolerance used in the algorithm is the maximum of
-    the user-defined tolerance and the constant tolerance 1.0e-8.</para>
+    <para>
+      The entries of <literal>options</literal> are respectively:
+      <itemizedlist>
+        <listitem>
+          <para>
+            <literal>nu</literal>: a real parameter which ntrols the rate of
+            convergence.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>abstol</literal>: absolute tolerance.
+            The absolute tolerance cannot be lower than 1.0e-8,
+            that is, the absolute tolerance used in the algorithm is the maximum of
+            the user-defined tolerance and the constant tolerance 1.0e-8.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>reltol</literal>: relative tolerance (has a special meaning when
+            negative).
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>tv</literal>: the target value, only referenced if
+            <literal>reltol &lt; 0</literal>.
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>maxiters</literal>: the maximum number of iterations, a positive integer value.
+          </para>
+        </listitem>
+      </itemizedlist>
 
-    <para><literal>info</literal> returns 1 if maxiters exceeded, 2 if
-    absolute accuracy is reached, 3 if relative accuracy is reached, 4 if
-    target value is reached, 5 if target value is not achievable; negative
-    values indicate errors.</para>
+    </para>
 
-    <para>Convergence criterion:</para>
+    <para>
+      On output, the <literal>info</literal> variable contains the status of the execution.
+      <itemizedlist>
+        <listitem>
+          <para>
+            <literal>info=1</literal> if maxiters exceeded,
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>info=2</literal> if absolute accuracy is reached,
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>info=3</literal> if relative accuracy is reached,
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>info=4</literal> if target value is reached,
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            <literal>info=5</literal> if target value is not achievable;
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            negative values indicate errors.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
 
-    <programlisting role = ""><![CDATA[ 
-(1) maxiters is exceeded
-(2) duality gap is less than abstol
-(3) primal and dual objective are both positive and
-    duality gap is less than (reltol * dual objective)
-    or primal and dual objective are both negative and
-    duality gap is less than (reltol * minus the primal objective)
-(4) reltol is negative and
-    primal objective is less than tv or dual objective is greater
-    than tv
- ]]></programlisting>
+    <para>
+      Convergence criterion is based on the following conditions that is, the
+      algorithm stops if one of the following conditions is true:
+      <itemizedlist>
+        <listitem>
+          <para>
+            maxiters is exceeded
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            duality gap is less than abstol
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            primal and dual objective are both positive and
+            duality gap is less than (<literal>reltol</literal> * dual objective)
+            or primal and dual objective are both negative and
+            duality gap is less than (<literal>reltol</literal> * minus the primal objective)
+          </para>
+        </listitem>
+        <listitem>
+          <para>
+            reltol is negative and
+            primal objective is less than tv or dual objective is greater
+            than <literal>tv</literal>.
+          </para>
+        </listitem>
+      </itemizedlist>
+    </para>
+
+  </refsection>
+  <refsection>
+    <title>Implementation notes</title>
+    <para>
+      This function is based on L. Vandenberghe and S. Boyd sp.c program.
+    </para>
+
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+    <programlisting role="example">
+      <![CDATA[ 
 F0=[2,1,0,0;
     1,2,0,0;
     0,0,3,1
@@ -229,27 +339,35 @@ options=[10,1.d-10,1.d-10,0,50];
 
 [x,Z,ul,info]=semidef(x0,pack(ZZ0),pack(FF),blck_szs,c,options)
 
-w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);Z=sysdiag(w(1),w(2))
+w=vec2list(unpack(Z,blck_szs),[blck_szs;blck_szs]);
+Z=sysdiag(w(1),w(2))
 
 c'*x+trace(F0*Z)
 spec(F0+F1*x(1)+F2*x(2))
 trace(F1*Z)-c(1)
 trace(F2*Z)-c(2)
- ]]></programlisting>
+ ]]>
+    </programlisting>
   </refsection>
 
   <refsection>
     <title>References</title>
 
-    <para>L. Vandenberghe and S. Boyd, " Semidefinite Programming,"
-    Informations Systems Laboratory, Stanford University, 1994.</para>
+    <para>
+      L. Vandenberghe and S. Boyd, " Semidefinite Programming,"
+      Informations Systems Laboratory, Stanford University, 1994.
+    </para>
 
-    <para>Ju. E. Nesterov and M. J. Todd, "Self-Scaled Cones and
-    Interior-Point Methods in Nonlinear Programming," Working Paper, CORE,
-    Catholic University of Louvain, Louvain-la-Neuve, Belgium, April
-    1994.</para>
+    <para>
+      Ju. E. Nesterov and M. J. Todd, "Self-Scaled Cones and
+      Interior-Point Methods in Nonlinear Programming," Working Paper, CORE,
+      Catholic University of Louvain, Louvain-la-Neuve, Belgium, April
+      1994.
+    </para>
 
-    <para>SP: Software for Semidefinite Programming, <ulink
-    url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink></para>
+    <para>
+      SP: Software for Semidefinite Programming, <ulink
+    url="http://www.ee.ucla.edu/~vandenbe/sp.html">http://www.ee.ucla.edu/~vandenbe/sp.html</ulink>
+    </para>
   </refsection>
 </refentry>

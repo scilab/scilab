@@ -1,0 +1,261 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2009-11-14 07:13+0000\n"
+"Last-Translator: TzuYuan Lin <Unknown>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid " Flushing starts for queued commands.\n"
+msgstr " 排序中之指令開始更新 (flushing)\n"
+
+#, c-format
+msgid ""
+"%s, at line %i of file %s\n"
+"\t%s.\n"
+msgstr ""
+"%s, 行數:%i   檔案: %s\n"
+"\t%s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#, c-format
+msgid "%s: Could not read Tcl Variable.\n"
+msgstr "%s: 無法讀取 Tcl 變數.\n"
+
+#, c-format
+msgid "%s: Error TCL interpreter not initialized.\n"
+msgstr "%s: TCL 直譯器未重置的錯誤.\n"
+
+#, c-format
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr "%s:  TCL 主解譯器未初始化.\n"
+
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr "%s: 找不到檔案 %s .\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: 記憶體耗盡.\n"
+
+#, c-format
+msgid "%s: No such slave interpreter.\n"
+msgstr "%s: 從 (slave)  解譯器不存在.\n"
+
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr "%s: Slave 解譯器已存在.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr "%s: 輸入參數的數值錯誤: 至少要有一個.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr "%s: 第 %d 或 %d  輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一布林數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or vector of strings "
+"expected.\n"
+msgstr "%s: 第 %d 輸入參數型態錯誤: 應為字串或字串向量.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s'.\n"
+
+msgid "Alpha Release"
+msgstr "Alpha 版"
+
+msgid "Beta Release"
+msgstr "Beta 版"
+
+msgid "Color"
+msgstr ""
+
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr "錯誤 %s (載入檔案 %s  時產生)"
+
+#, c-format
+msgid "Execution ends for %s"
+msgstr "%s 執行結束"
+
+#, c-format
+msgid "Execution starts for %s"
+msgstr "%s 開始執行"
+
+msgid "Final Release"
+msgstr "最終版"
+
+#, c-format
+msgid "Flushed execution ends for %s"
+msgstr "更新後結束執行%s"
+
+#, c-format
+msgid "Flushed execution starts for %s - No option"
+msgstr "更新後開始執行%s - 無選項"
+
+#, c-format
+msgid "Flushed execution starts for %s - seq"
+msgstr "更新後開始執行%s - seq"
+
+msgid "Flushing ends\n"
+msgstr "刷新結束\n"
+
+msgid "Impossible to set environment variable."
+msgstr "無法設定環境參數."
+
+msgid "Impossible to set system encoding."
+msgstr "無法設定系統編碼"
+
+msgid "Puzzle"
+msgstr ""
+
+msgid "Scale"
+msgstr ""
+
+msgid "Scilab TCL/TK module not installed.\n"
+msgstr "Scilab TCL/TK   模組未安裝.\n"
+
+msgid "Scroll"
+msgstr ""
+
+#, c-format
+msgid "TCL_EvalScilabCmd %s"
+msgstr "TCL_EvalScilabCmd %s"
+
+#, c-format
+msgid "Tcl Error : %s\n"
+msgstr "Tcl 錯誤 : %s\n"
+
+#, c-format
+msgid "Tcl Error: %s\n"
+msgstr "TCL 錯誤: %s\n"
+
+#, c-format
+msgid ""
+"Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
+"%s\n"
+msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤. 載入 %s: %s 失敗\n"
+
+#, c-format
+msgid ""
+"Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
+"%s\n"
+msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤. 尚未設定 SciPath: %s\n"
+
+#, c-format
+msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
+msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤 (Tk_Init): %s\n"
+
+#, c-format
+msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
+msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤. (Tcl_Init): %s\n"
+
+msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
+msgstr "Tcl 錯誤: 在 Scilab/TK 重置程中發生錯誤. (Tcl_CreateInterpt).\n"
+
+msgid "Tcl/TK interface disabled in -nogui mode.\n"
+msgstr "Tcl/Tk 介面在 -nogui  模式下未啟用.\n"
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"TCL initialisation failed !\n"
+msgstr ""
+"SCI 環境變數未被設定.\n"
+"TCL 重置失敗 !\n"
+
+msgid ""
+"The SCI environment variable is not set.\n"
+"Tcl initialisation failed !\n"
+msgstr ""
+"SCI 環境變數未被設定.\n"
+"Tcl 重置程序失敗 !\n"
+
+msgid "This function doesn't work with Complex.\n"
+msgstr "此函數無法用於複數.\n"
+
+msgid ""
+"Unable to find Tcl initialisation scripts.\n"
+"Check your SCI environment variable.\n"
+"Tcl initialisation failed !"
+msgstr ""
+"找不到 Tcl 重置的描述程序.\n"
+"檢查你的 SCI 環境變數.\n"
+"Tcl 重置程失敗 !"
+
+msgid "Unknown Release"
+msgstr "未知版本"
+
+msgid "Variable too long.\n"
+msgstr "變數太長.\n"
+
+msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
+msgstr "警告: TCL/TK 介面問題. 介面未啟用.\n"
+
+msgid "Warning: Too many callbacks in queue!\n"
+msgstr "警告: 序列中已有太多回呼 (callback)在等待中!\n"
+
+msgid "[] doesn't work with Tcl/Tk.\n"
+msgstr "[] 無法在 Tcl/Tl 中使用.\n"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#~ msgid "&Tools"
+#~ msgstr "工具(&T)"
+
+#~ msgid "&Edit"
+#~ msgstr "編輯(&E)"
+
+#~ msgid "&File"
+#~ msgstr "檔案(&F)"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Tcl/Tk 介面未載入."
+
+#~ msgid "Updating, please wait"
+#~ msgstr "更新中,  請等一下"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或字串之矩陣.\n"

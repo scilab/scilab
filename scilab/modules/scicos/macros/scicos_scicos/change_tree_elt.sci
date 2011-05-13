@@ -20,6 +20,9 @@
 //
 
 function tree=change_tree_elt(tree,path,value)
+  // any old scicos macros, will be removed on 5.4.0
+  warnobsolete(scilabRemovedVersion="5.4.0")
+
 // tree  : a recursive list
 // path  : a vector of index giving top to bottom path
 // value : new value for the pointed tree element

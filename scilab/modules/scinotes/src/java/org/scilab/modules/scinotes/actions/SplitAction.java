@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2010 - Calixte DENIZET
+ * Copyright (C) 2010 - 2011 - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -11,18 +11,23 @@
  */
 package org.scilab.modules.scinotes.actions;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.StringTokenizer;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JComponent;
 import javax.swing.JMenu;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JSplitPane;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.EditorComponent;
 
 /**
  * SplitAction Class
@@ -69,7 +74,7 @@ public final class SplitAction extends DefaultAction {
      * @param key KeyStroke
      * @return createMenu
      */
-    public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
+    public static Menu createMenu(String label, final SciNotes editor, KeyStroke key) {
         StringTokenizer tokens = new StringTokenizer(label, ";");
         String labelSplitView = tokens.nextToken();
         String labelOff = tokens.nextToken();
@@ -82,7 +87,7 @@ public final class SplitAction extends DefaultAction {
 
         ButtonGroup group = new ButtonGroup();
         JRadioButtonMenuItem radio;
-        JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
+        final JRadioButtonMenuItem[] arr = new JRadioButtonMenuItem[3];
         String[] labels = new String[]{labelOff, labelH, labelV};
 
         for (int i = 0; i < 3; i++) {
@@ -93,6 +98,24 @@ public final class SplitAction extends DefaultAction {
         }
 
         arr[0].setSelected(true);
+
+        ((JMenu) menu.getAsSimpleMenu()).addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    if (editor.getTextPane() != null) {
+                        EditorComponent c = editor.getTextPane().getEditorComponent();
+                        int state = 0;
+                        if (c.isSplited()) {
+                            JSplitPane split = c.getSplitPane();
+                            if (split.getOrientation() == JSplitPane.HORIZONTAL_SPLIT) {
+                                state = 1;
+                            } else {
+                                state = 2;
+                            }
+                        }
+                        arr[state].setSelected(true);
+                    }
+                }
+            });
 
         return menu;
     }

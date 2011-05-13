@@ -12,7 +12,7 @@
     <synopsis>[numptr] = funptr(name)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>name</term>
@@ -59,8 +59,8 @@
 // you will see all the interfaces working by reference
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="clearfun">clearfun</link>

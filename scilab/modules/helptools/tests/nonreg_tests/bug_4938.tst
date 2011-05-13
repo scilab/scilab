@@ -15,4 +15,4 @@
 // <-- Short Description -->
 // The output of check_xml.pl is eating some characters.
 
-// perl ./modules/helptools/src/perl/check_xml.pl graphics
+// perl ./modules/helptools/src/script/check_xml.pl graphics

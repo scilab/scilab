@@ -35,7 +35,7 @@
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -139,7 +139,12 @@
           <literal>[nr,nc,nx]=size(x)</literal> returns in addition the
           dimension <literal>nx</literal> of the <literal>A</literal> matrix
           of <literal>x</literal>.</para>
+        </listitem>
+      </varlistentry>
 
+      <varlistentry>
+        <term>Applied to:</term>
+        <listitem>
           <para>an hypermatrix, <literal> y=size(x)
           </literal> returns the vector of hypermatrix dimensions. <literal>
           [n1,n2,...nn]=size(x) </literal> returns the hypermatrix dimensions.
@@ -148,6 +153,7 @@
           dimensions.</para>
         </listitem>
       </varlistentry>
+      
     </variablelist>
   </refsection>
 
@@ -170,8 +176,8 @@ nm=size(rand(3,2),"*")
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member><link linkend="length">length</link></member>

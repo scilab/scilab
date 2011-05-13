@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
+ * Xcos
+ *
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ * Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -17,107 +20,172 @@
  * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
  * 
  * See the file ./license.txt
+ *
  -->
-<refentry version="5.0-subset Scilab" xml:id="xcos"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcos">
   <refnamediv>
     <refname>xcos</refname>
-
-    <refpurpose>Block diagram editor and GUI for the hybrid
-    simulator</refpurpose>
+    <refpurpose>Block diagram editor and GUI for the hybrid simulator</refpurpose>
   </refnamediv>
-
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-
-    <synopsis>xcos(filename)
-xcos(scs_m_list)</synopsis>
+    <synopsis>
+      xcos(filename)
+      xcos(scs_m_list)
+    </synopsis>
   </refsynopsisdiv>
-
   <refsection id="Module_xcos">
     <title>Module</title>
-
     <itemizedlist>
       <listitem>
-        <para><link linkend="xcos">xcos</link></para>
+        <para>
+          <link linkend="xcos">xcos</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-
+  <refsection id="Parameters_xcos">
+    <title>Arguments</title>
+    <itemizedlist>
+      <listitem>
+        <para><emphasis role="bold">filename : </emphasis> a character string containing the path of the diagram file
+          (.cos, .cosf or .xcos extension). If no input argument is used, an empty diagram is opened (default name Untitled).
+        </para>
+      </listitem>
+      <listitem>
+        <para><emphasis role="bold">scs_m_list : </emphasis>a <emphasis>Xcos</emphasis> diagram structure after edition.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </refsection>
   <refsection id="Description_xcos">
     <title>Description</title>
-
-    <para>Xcos is a visual editor for constructing models of hybrid dynamical
-    systems.</para>
-
-    <para>Invoking Xcos with no argument opens up an empty Xcos window. Models
-    can then be assembled, loaded, saved, compiled, simulated, using GUI of
-    Xcos. Xcos serves as an interface to the various block diagram compilers
-    and the hybrid simulator scicosim.</para>
-
-    <programlisting role="example"> 
-xcos('mydiagram.xcos')
- </programlisting>
-  </refsection>
-
-  <refsection id="Parameters_xcos">
-    <title>Parameters</title>
-
+    <para><emphasis>Xcos</emphasis> is a graphical editor for constructing models of hybrid dynamical systems.
+      Models can then be assembled, loaded, saved, compiled, simulated, using GUI of
+      <emphasis>Xcos</emphasis>. <emphasis>Xcos</emphasis> serves as an interface to the
+      various block diagram compilers and the hybrid simulator <link linkend="scicosim">scicosim</link>
+    </para>
+    <para>
+      The <emphasis>Xcos</emphasis> environment presents the following elements:
+    </para>
     <itemizedlist>
       <listitem>
-        <para><emphasis role="bold">filename : </emphasis> a character string
-        containing the path of the diagram file (.cos, .cosf or .xcos
-        extension). If no input argument is used, an empty diagram is opened
-        (default name Untitled).</para>
+        <para>
+          <emphasis role="bold">Editor</emphasis>
+        </para>
+        <para>
+          The editor allows the design of flow charts representing a dynamic system made of blocks
+          defined in palettes. Users can customize standard blocks and define new ones.
+        </para>
+        <para/>
       </listitem>
-
       <listitem>
-        <para><emphasis role="bold">scs_m_list : </emphasis>a Xcos diagram
-        structure after edition.</para>
+        <para>
+          <emphasis role="bold">Palette browser</emphasis>
+        </para>
+        <para>
+          The palette browser lists all Xcos standard blocks grouped by categories (signal processing,
+          electrical, hydraulics, derivative, integral, etc.). See the figure below.
+        </para>
+        <para/>
+      </listitem>
+      <listitem>
+        <para>
+          <emphasis role="bold">Compiler/Simulator</emphasis>
+        </para>
+        <para>
+          Xcos environment enables, from the built model, the simulation of complex systems -
+          discrete, continuous, defined by symbolic equations (Modelica), etc.. and hybrid systems
+          combining the capabilities above. The data resulting of the simulation can then be
+          graphically viewed in real time, used in Scilab for post processing...
+        </para>
       </listitem>
     </itemizedlist>
+    <para/>
+    <para>
+      Invoking xcos with the toolbar icon
+      <inlinemediaobject><imageobject><imagedata fileref="../../../gui/images/icons/utilities-system-monitor.png"/></imageobject></inlinemediaobject>
+      , with the <emphasis>Xcos</emphasis> menu item in <emphasis>Applications</emphasis> of the Scilab main window,
+      or as the following example opens up the empty <emphasis>Xcos</emphasis> window of edition shown below.
+    </para>
+    <para/>
+    <programlisting role="example">
+        xcos
+      </programlisting>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_gui.png"/>
+      </imageobject>
+    </mediaobject>
+    <para>
+      To open an existing diagram, you must provide a valid filename, like in this example:
+    </para>
+    <para/>
+    <programlisting role="example"><![CDATA[xcos("SCI/modules/xcos/demos/bounce.xcos")]]></programlisting>
+    <para>
+      In this use case, the <emphasis>Xcos</emphasis> window is opened and displays the diagram of<emphasis>bounce.xcos</emphasis> demonstration.
+    </para>
+    <para/>
+    <para>
+      If a diagram structure is present in <emphasis>Scilab</emphasis> workspace, you can open it like in this example:
+    </para>
+    <para/>
+    <programlisting role="example"><![CDATA[
+loadXcosLibs();
+
+// define diagram structure
+scs_m = scicos_diagram();
+scs_m.props.title = "Imported diagram";
+scs_m.objs(1) = SUMMATION("define");
+scs_m.objs(1).graphics.sz = [30 50];
+
+xcos(scs_m);]]></programlisting>
+    <para>
+       where <emphasis>scs_m</emphasis> is the diagram structure of <emphasis>bounce.xcos</emphasis>.
+    </para>
+    <para>
+      You build your models by linking the blocks provided in the palette browser simultaneously opened with
+       <emphasis>Xcos</emphasis> editor. This window has the following appearance
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_palette_gui.png"/>
+      </imageobject>
+    </mediaobject>
+    <para/>
+    <para>
+      You can customize the palettes to be shown by clicking on the <emphasis>Palette</emphasis> title in
+      the left part of the windows. The palette windows shows a selection list where you can select/deselect
+      palettes individually. Tp return to the previous display, click on a palette title.
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../gui/xcos/en_US/xcos_palette_select_gui.png"/>
+      </imageobject>
+    </mediaobject>
   </refsection>
-
-  <refsection id="Example_xcos">
-    <title>Example</title>
-
-    <programlisting role="example"> 
-// Open a new diagram 
-xcos();
-xcos
-
-// Load a diagram  
-xcos SCI/scicos/demos/bounce.cosf; 
-
-// Load a structure 
-load('mondiagr.cos'); 
-xcos(scs_m);
- </programlisting>
-  </refsection>
-
   <refsection id="SeeAlso_xcos">
-    <title>See Also</title>
-
+    <title role="see also">See Also</title>
     <itemizedlist>
       <listitem>
-        <para><link linkend="scicosim">scicosim - Scicos (batch) simulation
-        function (Scilab Function)</link></para>
+        <link linkend="scicosim">scicosim</link>
       </listitem>
-
       <listitem>
-        <para><link linkend="scicos_simulate">scicos_simulate - Function for
-        running xcos simulation in batch mode (Scilab
-        Function)</link></para>
+        <link linkend="scicos_simulate">scicos_simulate</link>
       </listitem>
-
       <listitem>
-        <para><link linkend="xcos_menu_entries">Menu entries</link></para>
+        <link linkend="xcos_menu_entries">Menu entries</link>
       </listitem>
     </itemizedlist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>DIGITEO</member>
+      <member>Bernard DUJARDIN - Contributor</member>
+    </simplelist>
   </refsection>
 </refentry>

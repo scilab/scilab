@@ -1,0 +1,48 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- JVM NOT MANDATORY -->
+ierr = execstr("a=zzzzzzz", "errcatch");
+if ierr <> 4 then bugmes();quit;end
+if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
+ierr = execstr("a=zzzzzzz", "errcatch");
+if ierr <> 4 then bugmes();quit;end
+[str, n] = lasterror();
+if ierr <> n then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
+ierr = execstr("a=zzzzzzz", "errcatch");
+if ierr <> 4 then bugmes();quit;end
+[str, n, l] = lasterror();
+if ierr <> n then bugmes();quit;end
+if l <> 1 then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
+ierr = execstr("a=zzzzzzz", "errcatch");
+if ierr <> 4 then bugmes();quit;end
+[str, n, l, f] = lasterror();
+if ierr <> n then bugmes();quit;end
+if l <> 1 then bugmes();quit;end
+if f <> '' then bugmes();quit;end
+if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then bugmes();quit;end
+ierr = execstr("a=zzzzzzz", "errcatch");
+[str2, n2, l2, f2] = lasterror(%f);
+if n2 <> n then bugmes();quit;end
+if l2 <> l then bugmes();quit;end
+if f2 <> f then bugmes();quit;end
+if str2 <> str then bugmes();quit;end
+[str3, n3, l3, f3] = lasterror(%t);
+if n3 <> n2 then bugmes();quit;end
+if l3 <> l2 then bugmes();quit;end
+if f3 <> f2 then bugmes();quit;end
+if str <> str2 then bugmes();quit;end
+[str4, n4, l4, f4] = lasterror(%t);
+if n4 <> 0 then bugmes();quit;end
+if l4 <> 0 then bugmes();quit;end
+if f4 <> '' then bugmes();quit;end
+if str4 <> [] then bugmes();quit;end
+ierr = execstr('a = lasterror(2);','errcatch');
+if ierr <> 999 then bugmes();quit;end
+ierr = execstr('a = lasterror([%t, %f]);','errcatch');
+if ierr <> 999 then bugmes();quit;end

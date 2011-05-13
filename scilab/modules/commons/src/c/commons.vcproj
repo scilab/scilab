@@ -45,7 +45,7 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions=""
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMMONS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -69,7 +69,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib commons_f.lib"
-				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
@@ -128,7 +128,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;COMMONS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="0"
@@ -152,7 +152,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib commons_f.lib"
-				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
@@ -214,7 +214,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMMONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -238,7 +238,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib commons_f.lib"
-				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -303,7 +303,7 @@
 				InlineFunctionExpansion="1"
 				FavorSizeOrSpeed="1"
 				WholeProgramOptimization="false"
-				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes"
+				AdditionalIncludeDirectories=".;../../includes;../../../../libs/MALLOC/includes;../../../core/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../dynamic_link/src/c;../../../localization/includes;../../../core/src/c;../../../../libs/intl;../../../commons/includes;../../../api_scilab/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32"
 				PreprocessorDefinitions="_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;COMMONS_EXPORTS"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -327,7 +327,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="LibScilab.lib commons_f.lib"
-				OutputFile="$(SolutionDir)bin\$(ProjectName).dll"
+				OutputFile="$(SolutionDir)bin\sci$(ProjectName).dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile=""
 				GenerateDebugInformation="false"
@@ -375,6 +375,10 @@
 				RelativePath=".\DllmainCommons.c"
 				>
 			</File>
+			<File
+				RelativePath="..\jni\ScilabCommons_wrap.c"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -418,19 +422,11 @@
 			</File>
 		</Filter>
 		<File
-			RelativePath="..\..\..\..\bin\blasplus.lib"
-			>
-		</File>
-		<File
 			RelativePath="..\..\commons.iss"
 			>
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\commons_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\..\bin\lapack.lib"
 			>
 		</File>
 		<File

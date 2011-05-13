@@ -24,7 +24,7 @@
 k=newest(path1,path2,...,pathn)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>k</term>
@@ -60,8 +60,8 @@ newest(['SCI/modules/graphics/macros/bode.sci','SCI/modules/graphics/macros/bode
 newest('SCI/modules/graphics/macros/bode.'+['sci','bin'])
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="fileinfo">fileinfo</link>

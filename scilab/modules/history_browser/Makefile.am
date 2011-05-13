@@ -15,7 +15,7 @@ modulename=history_browser
 
 #### history_browser : Conf files ####
 libscihistory_browser_la_rootdir = $(mydatadir)
-libscihistory_browser_la_root_DATA = changelog.txt license.txt readme.txt version.xml
+libscihistory_browser_la_root_DATA =  license.txt version.xml
 
 
 #### history_browser : init scripts ####
@@ -60,7 +60,7 @@ libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 # Without the history_browser module 
 libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
 HISTORY_BROWSER_DISABLE_C_SOURCES =  src/nohistory_browser/CommandHistory_Wrap_Fake.c
-libscihistory_browser_disable_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
+libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
 
 pkglib_LTLIBRARIES = libscihistory_browser-disable.la
@@ -69,7 +69,7 @@ if GUI
 pkglib_LTLIBRARIES += libscihistory_browser.la 
 endif
 
-libscihistory_browser_la_LDFLAGS = -version-info $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
+libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 
 libscihistory_browser_la_SOURCES = $(HISTORY_BROWSER_C_SOURCES) $(HISTORY_BROWSER_JNI_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) $(HISTORY_BROWSER_CPP_SOURCES)
 
@@ -85,7 +85,7 @@ if SWIG
 BUILT_SOURCES=swig
 endif
 
-libscihistory_browser_la_LIBADD = $(top_builddir)/modules/core/libscicore.la \
+libscihistory_browser_la_LIBADD =  \
 $(top_builddir)/libs/MALLOC/libscimalloc.la \
 $(top_builddir)/modules/output_stream/libscioutput_stream.la
 

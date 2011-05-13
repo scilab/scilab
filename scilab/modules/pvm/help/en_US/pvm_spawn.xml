@@ -23,7 +23,7 @@
     <synopsis>[tids, numt] = pvm_spawn(task, ntask, [nw], [where])</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>task : string, which is the file name of the scilab script (see exec) to be</term>
@@ -108,8 +108,8 @@ setenv PVM_EXPORT DISPLAY:MYSTERYVAR
     <literal>pvm_spawn</literal> will start all
     copies on this single machine using the vendor's underlying routines.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="pvm">pvm</link>

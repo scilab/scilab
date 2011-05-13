@@ -33,7 +33,7 @@ import javax.xml.validation.SchemaFactory;
 import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
-import org.scilab.modules.jvm.utils.ScilabConstants;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.model.ObjectFactory;

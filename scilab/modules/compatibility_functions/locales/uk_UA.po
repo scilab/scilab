@@ -1,0 +1,312 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-08-17 13:09+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid ""
+"%s: %s Scilab function does not work with more than one row variables.\n"
+msgstr "%s: функція Scilab %s не працює з декількома рядковими змінними.\n"
+
+#, c-format
+msgid "%s: %s is not implemented.\n"
+msgstr "%s: %s не реалізовано.\n"
+
+#, c-format
+msgid "%s: ''%s'' ignored.\n"
+msgstr "%s: «%s» проігноровано.\n"
+
+#, c-format
+msgid "%s: ''%s'' not implemented.\n"
+msgstr "%s: «%s» не реалізовано.\n"
+
+#, c-format
+msgid "%s: ''%s'' only used in 3d mode."
+msgstr "%s: «%s» використовується лише у режимі 3d."
+
+#, c-format
+msgid "%s: ''%s'' option ignored.\n"
+msgstr "%s: параметр «%s» проігноровано.\n"
+
+#, c-format
+msgid "%s: All windows deleted.\n"
+msgstr "%s: всі вікна вилучено.\n"
+
+#, c-format
+msgid "%s: Cannot open file ''%s''.\n"
+msgstr "%s: не вдалося відкрити файл «%s».\n"
+
+#, c-format
+msgid "%s: Could not open neither ''%s'' nor ''%s'' nor ''%s''.\n"
+msgstr "%s: не вдалося відкрити ні «%s», ні «%s», ні «%s».\n"
+
+#, c-format
+msgid "%s: End of file reached before all matrix is read.\n"
+msgstr ""
+"%s: читання матриці було перервано несподіваним завершенням файла даних.\n"
+
+#, c-format
+msgid "%s: End of string reached before data has been read.\n"
+msgstr "%s: читання даних було перервано несподіваним завершенням рядка.\n"
+
+#, c-format
+msgid "%s: No equivalent for ''%s'' property.\n"
+msgstr "%s: у властивості «%s» немає еквівалентів.\n"
+
+#, c-format
+msgid "%s: No minor grid in Scilab.\n"
+msgstr "%s: у Scilab не передбачено додаткової ґратки.\n"
+
+#, c-format
+msgid "%s: Not yet implemented.\n"
+msgstr "%s: ще не реалізовано.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is not yet handled.\n"
+msgstr "%s: обробки формату «%s» ще не передбачено.\n"
+
+#, c-format
+msgid "%s: The format ''%s'' is unknown.\n"
+msgstr "%s: формат «%s» не належить до відомих.\n"
+
+#, c-format
+msgid "%s: The normalization m - 1 factor is zero.\n"
+msgstr "%s: коефіцієнт нормування m - 1 дорівнює нулеві.\n"
+
+#, c-format
+msgid "%s: The normalization n - 1 factor is zero.\n"
+msgstr "%s: коефіцієнт нормування n - 1 дорівнює нулеві.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: цю можливість ще не реалізовано.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: цю можливість не реалізовано: %s.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: Argument of type %d.\n"
+msgstr "%s: цю можливість не реалізовано: параметр типу %d.\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgstr "%s: цю можливість не реалізовано: підтримка гіперматриць.\n"
+
+#, c-format
+msgid "%s: This particular case is not implemented.\n"
+msgstr "%s: цей частковий випадок не реалізовано.\n"
+
+#, c-format
+msgid "%s: Unhandled class ''%s''.\n"
+msgstr "%s: непридатний для обробки клас «%s».\n"
+
+#, c-format
+msgid "%s: Unknown color found in ''%s'' -> set to black.\n"
+msgstr "%s: у «%s» виявлено невідомий колір -> встановлено чорний.\n"
+
+#, c-format
+msgid "%s: Unknown line style found in ''%s'' -> set to 6.\n"
+msgstr ""
+"%s: у «%s» виявлено невідомий стиль лінії -> встановлено значення 6.\n"
+
+#, c-format
+msgid "%s: Unknown type ''%s'': IGNORED.\n"
+msgstr "%s: невідомий тип «%s»: проігноровано.\n"
+
+#, c-format
+msgid "%s: Unknown type.\n"
+msgstr "%s: невідомий тип.\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
+msgstr "%s: помилковий вхідний параметр №%d: невідповідність розмірностей.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong input arguments: Dimensions given as first argument do not match "
+"specified cell contents.\n"
+msgstr ""
+"%s: помилкові вхідні параметри: розмірності, вказані за допомогою першого "
+"параметра, не відповідають вказаному вмісту комірок.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for ''%s'': Vector expected.\n"
+msgstr "%s: помилкова розмірність «%s»: слід використовувати вектор.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"вектор з рядків Matlab.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
+"expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"дійсних, цілих або рядкових значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора-"
+"стовпчика.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
+"матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Cell elements must be character arrays.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: елементи комірок мають бути масивами "
+"символів.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: Cell expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра: слід використовувати тип комірки.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів: слід використовувати «string».\n"
+
+#, c-format
+msgid "%s: Wrong value for affectation to ''%s''.\n"
+msgstr "%s: помилкове надання значення «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
+"%s, «%s», «%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати %s, %s, "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
+"ціле значення.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
+"з набору {%s}.\n"
+
+#, c-format
+msgid "%s: pencil is not diagonalizable.\n"
+msgstr "%s: діагоналізація неможлива.\n"
+
+msgid "Apr"
+msgstr "кві"
+
+msgid "Aug"
+msgstr "сер"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Dec"
+msgstr "гру"
+
+msgid "Feb"
+msgstr "лют"
+
+msgid "Jan"
+msgstr "січ"
+
+msgid "Jul"
+msgstr "лип"
+
+msgid "Jun"
+msgstr "чер"
+
+msgid "Mar"
+msgstr "бер"
+
+msgid "May"
+msgstr "тра"
+
+msgid "Nov"
+msgstr "лис"
+
+msgid "Oct"
+msgstr "жов"
+
+msgid "Sep"
+msgstr "вер"

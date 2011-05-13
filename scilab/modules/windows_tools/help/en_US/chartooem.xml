@@ -24,7 +24,7 @@
     <synopsis>str=chartooem(str1)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>str1</term>
@@ -45,8 +45,8 @@
     <para><literal>chartooem</literal> translates a string into the OEM-defined
     character set.</para>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="oemtochar">oemtochar</link>

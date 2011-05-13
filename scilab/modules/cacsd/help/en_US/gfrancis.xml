@@ -23,7 +23,7 @@
     <synopsis>[L,M,T]=gfrancis(Plant,Model)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Plant</term>
@@ -94,8 +94,8 @@ norm(G*M-T*B,1)
 norm(J*M-D,1)
  ]]></programlisting>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="lqg">lqg</link>

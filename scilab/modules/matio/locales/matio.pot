@@ -1,0 +1,318 @@
+# Localization of the module matio
+# Please see in SCI/tools/localization for localization management
+# Copyright (C) 2007-2008 - INRIA
+# Copyright (C) 2008-2011 - DIGITEO
+# This file is distributed under the same license as the Scilab package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"Last-Translator: Sylvestre Ledru <sylvestre.ledru@scilab.org>\n"
+"Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Revision-Date: 2011-05-10 10:58+0100\n"
+
+# File: macros/WritemiMatrix.sci, line: 133
+#, c-format
+msgid "%s mlist type not yet implemented."
+msgstr ""
+#
+# File: macros/WritemiMatrix.sci, line: 168
+#, c-format
+msgid "%s not yet implemented."
+msgstr ""
+#
+# File: src/c/GetCharVariable.c, line: 206
+#, c-format
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr ""
+#
+# File: macros/loadmatfile.sci, line: 91
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr ""
+#
+# File: src/c/GetCharVariable.c, line: 172
+#, c-format
+msgid ""
+"%s: Column array of strings with different lengths saving is not "
+"implemented.\n"
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 265
+# File: macros/savematfile.sci, line: 294
+#, c-format
+msgid "%s: Could not open file ''%s''.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 77
+#, c-format
+msgid "%s: Could not rewind the file %s.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 73
+#, c-format
+msgid "%s: Invalid file identifier.\n"
+msgstr ""
+#
+# File: src/c/GetMlistVariable.c, line: 84
+# File: src/c/GetMlistVariable.c, line: 90
+#, c-format
+msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
+msgstr ""
+#
+# File: src/c/CreateCharVariable.c, line: 106
+#, c-format
+msgid "%s: N-D arrays of chars not implemented.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 88
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 95
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 102
+# File: src/c/CreateIntegerVariable.c, line: 51
+# File: src/c/CreateIntegerVariable.c, line: 71
+# File: src/c/CreateIntegerVariable.c, line: 91
+# File: src/c/CreateIntegerVariable.c, line: 112
+# File: src/c/CreateIntegerVariable.c, line: 133
+# File: src/c/CreateIntegerVariable.c, line: 153
+# File: src/c/CreateIntegerVariable.c, line: 173
+# File: src/c/CreateIntegerVariable.c, line: 194
+# File: src/c/GetSparseVariable.c, line: 55
+# File: src/c/GetSparseVariable.c, line: 62
+# File: src/c/GetSparseVariable.c, line: 82
+# File: src/c/GetSparseVariable.c, line: 91
+# File: src/c/GetSparseVariable.c, line: 101
+# File: src/c/GetSparseVariable.c, line: 112
+# File: src/c/GetSparseVariable.c, line: 144
+# File: src/c/GetSparseVariable.c, line: 153
+# File: src/c/GetSparseVariable.c, line: 163
+# File: src/c/GetSparseVariable.c, line: 186
+# File: src/c/GetSparseVariable.c, line: 210
+# File: src/c/GetSparseVariable.c, line: 233
+# File: src/c/GetSparseVariable.c, line: 256
+# File: src/c/GetStructVariable.c, line: 60
+# File: src/c/GetIntegerVariable.c, line: 61
+# File: src/c/CreateCharVariable.c, line: 44
+# File: src/c/CreateCharVariable.c, line: 54
+# File: src/c/CreateStructVariable.c, line: 51
+# File: src/c/CreateStructVariable.c, line: 58
+# File: src/c/CreateStructVariable.c, line: 64
+# File: src/c/CreateStructVariable.c, line: 74
+# File: src/c/GetCharVariable.c, line: 74
+# File: src/c/GetCellVariable.c, line: 75
+# File: src/c/GetDoubleVariable.c, line: 55
+# File: src/c/CreateSparseVariable.c, line: 46
+# File: src/c/CreateSparseVariable.c, line: 56
+# File: src/c/CreateSparseVariable.c, line: 70
+# File: src/c/CreateSparseVariable.c, line: 103
+# File: src/c/CreateSparseVariable.c, line: 123
+# File: src/c/CreateSparseVariable.c, line: 131
+# File: src/c/CreateSparseVariable.c, line: 140
+# File: src/c/CreateSparseVariable.c, line: 149
+# File: src/c/CreateSparseVariable.c, line: 159
+# File: src/c/CreateHyperMatrixVariable.c, line: 91
+# File: src/c/CreateHyperMatrixVariable.c, line: 111
+# File: src/c/CreateHyperMatrixVariable.c, line: 132
+# File: src/c/CreateHyperMatrixVariable.c, line: 153
+# File: src/c/CreateHyperMatrixVariable.c, line: 174
+# File: src/c/CreateHyperMatrixVariable.c, line: 194
+# File: src/c/CreateHyperMatrixVariable.c, line: 214
+# File: src/c/CreateHyperMatrixVariable.c, line: 235
+# File: src/c/CreateBooleanVariable.c, line: 41
+# File: src/c/CreateBooleanVariable.c, line: 65
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+#
+# File: macros/loadmatfile.sci, line: 114
+#, c-format
+msgid ""
+"%s: No variable read in file ''%s''. Check if your file is not corrupted.\n"
+msgstr ""
+#
+# File: src/c/GetCharVariable.c, line: 157
+#, c-format
+msgid "%s: Row array of strings saving is not implemented.\n"
+msgstr ""
+#
+# File: macros/loadmatfile.sci, line: 54
+#, c-format
+msgid "%s: This feature has not been implemented: %s."
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 60
+# File: sci_gateway/c/sci_matfile_close.c, line: 55
+# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 57
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 61
+#, c-format
+msgid "%s: Wrong size for first input argument: Single double expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 58
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 115
+#, c-format
+msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 87
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 86
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_listvar.c, line: 67
+# File: sci_gateway/c/sci_matfile_close.c, line: 62
+# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 64
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 68
+#, c-format
+msgid "%s: Wrong type for first input argument: Double expected.\n"
+msgstr ""
+#
+# File: src/c/GetDoubleVariable.c, line: 105
+#, c-format
+msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
+msgstr ""
+#
+# File: src/c/GetIntegerVariable.c, line: 149
+#, c-format
+msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
+msgstr ""
+#
+# File: src/c/GetMlistVariable.c, line: 97
+# File: src/c/GetCellVariable.c, line: 54
+#, c-format
+msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 67
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+#
+# File: src/c/GetSparseVariable.c, line: 305
+#, c-format
+msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
+msgstr ""
+#
+# File: src/c/GetCharVariable.c, line: 217
+#, c-format
+msgid "%s: Wrong type for first input argument: String matrix expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 124
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgstr ""
+#
+# File: macros/loadmatfile.sci, line: 19
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 115
+# File: sci_gateway/c/sci_matfile_varwrite.c, line: 95
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_matfile_open.c, line: 105
+#, c-format
+msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 20
+msgid "All inputs must be character strings."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 217
+msgid "Attempt to write an unsupported data type to an ASCII file."
+msgstr ""
+#
+# File: macros/WritemiMatrix.sci, line: 219
+# File: macros/WritemiMatrix.sci, line: 364
+msgid "Error while writing MI."
+msgstr ""
+#
+# File: macros/ReadmiMatrix.sci, line: 21
+#, c-format
+msgid "Found Datatype=%d, expecting %d."
+msgstr ""
+#
+# File: macros/ReadmiMatrix.sci, line: 303
+msgid "Invalid level 5 binary MAT-file!."
+msgstr ""
+#
+# File: macros/WritemiMatrix.sci, line: 199
+msgid "MATLAB 5.0 MAT-file, Generated by Scilab"
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 161
+# File: macros/savematfile.sci, line: 270
+# File: macros/savematfile.sci, line: 299
+# File: macros/savematfile.sci, line: 351
+#, c-format
+msgid "Name conflict: it is not possible to save variable with name %s."
+msgstr ""
+#
+# File: macros/ReadmiMatrix.sci, line: 246
+#, c-format
+msgid "Not implemented DataType: %d."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 47
+# File: macros/savematfile.sci, line: 101
+#, c-format
+msgid "Option %s not implemented: IGNORED."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 121
+msgid "Option -v7 added."
+msgstr ""
+#
+# File: src/nomatio/nomatio.c, line: 20
+msgid "Scilab matio module not installed.\n"
+msgstr ""
+#
+# File: macros/WritemiMatrix.sci, line: 60
+msgid "Scilab string matrix saved as Matlab Cell."
+msgstr ""
+#
+# File: macros/ReadmiMatrix.sci, line: 154
+msgid "Unknown Class."
+msgstr ""
+#
+# File: macros/WritemiMatrix.sci, line: 96
+#, c-format
+msgid "Unknown integer type: %s."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 331
+#, c-format
+msgid "Variable %s can not be saved in ASCII file: IGNORED."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 150
+#, c-format
+msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 320
+#, c-format
+msgid "Version %d MAT-file not implemented."
+msgstr ""
+#
+# File: macros/savematfile.sci, line: 282
+# File: macros/savematfile.sci, line: 285
+# File: macros/savematfile.sci, line: 311
+# File: macros/savematfile.sci, line: 314
+#, c-format
+msgid "savematfile: could not save variable named %s.\n"
+msgstr ""

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="rgb2name">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>rgb2name</refname>
+    <refpurpose> returns the name of a color</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>names=rgb2name(r,g,b)
+names=rgb2name(rgb)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Arguments</title>
+    <variablelist>
+      <varlistentry>
+        <term>r,g,b</term>
+        <listitem>
+          <para>RGB integer values of a color.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rgb</term>
+        <listitem>
+          <para>vector of RGB integer values of a color.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>names</term>
+        <listitem>
+          <para>names of the color.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para><literal>rgb2name</literal> returns the color name corresponding to the RGB values
+    given by its argument. A vector of color names can also be returned if the color has more than 1 name.
+    <literal>r</literal>, <literal>g</literal> and <literal>b</literal> must be integers between 0 and 255
+    corresponding to colors components red, green and blue. As usual 0 means no intensity and 
+    255 means all the intensity of the color. RGB values can also be given by a vector <literal>[r,g,b]</literal>.</para>
+    <para> If no color is found <literal>[]</literal> is returned.</para>
+    <para> The list of all known colors is given by <link linkend="color_list">color_list</link>.</para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[ 
+rgb2name(255,128,128)
+rgb2name([255 215 0])
+// get color #10 of the current colormap and find its name
+cmap=get(gcf(),"color_map");
+rgb2name(cmap(10,:)*255)
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+<title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="color">color</link>
+      </member>
+      <member>
+        <link linkend="color_list">color_list</link>
+      </member>
+      <member>
+        <link linkend="name2rgb">name2rgb</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

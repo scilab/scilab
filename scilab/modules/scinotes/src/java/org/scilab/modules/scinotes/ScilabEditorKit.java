@@ -12,15 +12,27 @@
 
 package org.scilab.modules.scinotes;
 
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.io.Reader;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
 
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.Document;
 import javax.swing.text.ViewFactory;
-import javax.swing.text.BadLocationException;
+
+import org.scilab.modules.gui.messagebox.ScilabModalDialog;
+import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.scinotes.actions.DefaultEncodingAction;
+import org.scilab.modules.scinotes.actions.EncodingAction;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * The class ScilabEditorKit provides the minimal things needed to render
@@ -28,6 +40,8 @@ import javax.swing.text.BadLocationException;
  * @author Calixte DENIZET
  */
 public class ScilabEditorKit extends DefaultEditorKit {
+
+    private static final long serialVersionUID = 8005575461386086815L;
 
     /**
      * The mimetype for a scilab code
@@ -77,6 +91,7 @@ public class ScilabEditorKit extends DefaultEditorKit {
         if (preferences == null) {
             preferences = new ScilabContext(plain);
         }
+
         return preferences;
     }
 
@@ -95,6 +110,31 @@ public class ScilabEditorKit extends DefaultEditorKit {
         return getStylePreferences();
     }
 
+   /**
+     * The read method is used to read the file and to write its contents
+     * in the document at position pos
+     * @param file the file to read
+     * @param doc the Document where to write
+     * @param pos position where to write
+     * @throws CharacterCodingException if an unreadable char is encountered
+     * @throws IOException if a problem is encountered in reading the stream
+     * @throws BadLocationException if the pos is invalid
+     */
+    public void read(SciNotes editor, File file, Document doc, int pos) throws IOException, BadLocationException {
+	Charset charset = Charset.forName(ConfigSciNotesManager.getDefaultEncoding());
+	try {
+	    charset = DefaultEncodingAction.tryToGuessEncoding(file);
+	} catch (CharacterCodingException e) {
+	    ScilabModalDialog.show(editor, SciNotesMessages.CANNOT_GUESS_ENCODING, SciNotesMessages.SCINOTES_ERROR, IconType.ERROR_ICON);
+	}
+	((ScilabDocument) doc).setEncoding(charset.toString());
+	EncodingAction.updateEncodingMenu((ScilabDocument) doc);
+	FileInputStream fis = new FileInputStream(file);
+	InputStreamReader isr = new InputStreamReader(fis, charset);
+	BufferedReader br = new BufferedReader(isr);
+	read(br, doc, pos);
+    }
+
     /**
      * The read method is used to read the Reader and to write its contents
      * in the document at position pos
@@ -106,22 +146,20 @@ public class ScilabEditorKit extends DefaultEditorKit {
      */
     public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
         int nch;
-        int st;
         int i;
         int prev;
-        int offs = 0;
         int inc = 0;
         boolean win = false;
         boolean mac = false;
         boolean first = true;
         boolean binary = false;
-        StringBuffer sbuf = new StringBuffer(buffer.length);
+	StringBuilder sbuf = new StringBuilder(buffer.length);
         while ((nch = in.read(buffer, 0, buffer.length)) != -1) {
             if (first) {
                 /* We try to know if we have a binary file
                    The rule is : two \0 in the first 8ko : it's binary ! */
                 CharBuffer cb = CharBuffer.wrap(buffer);
-                byte[] bytes = Charset.defaultCharset().encode(cb).array();
+                byte[] bytes = Charset.forName("utf-8").encode(cb).array();
                 for (i = 0; i < nch; i++) {
                     if (bytes[i] == 0 ) {
                         inc++;

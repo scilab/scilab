@@ -25,7 +25,7 @@
     <synopsis>[Pop_out,FObj_Pop_out,Efficiency,MO_Total_FObj_out] = selection_ga_elitist(Pop_in,Indiv1,Indiv2,FObj_Pop_in,FObj_Indiv1,FObj_Indiv2,MO_Total_FObj_in,MO_FObj_Indiv1,MO_FObj_Indiv2,param)</synopsis>
   </refsynopsisdiv>
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
     <variablelist>
       <varlistentry>
         <term>Pop_in</term>
@@ -138,8 +138,8 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="selection_ga_random"> selection_ga_random </link>

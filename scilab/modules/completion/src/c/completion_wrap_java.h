@@ -60,6 +60,14 @@ char **searchVariablesDictionary(char *somechars);
 char **searchFilesDictionary(char *somechars);
 
 /**
+* completion function on files for scilab
+* @param[in] the line before the caret
+* @param[in] the part
+* @return a array of chars 
+*/
+char **searchFieldsDictionary(char *lineBeforeCaret, char *pattern);
+
+/**
 * completion handle graphics properties for scilab
 * @param[in] somechars first characters of a word
 * @return a array of chars 

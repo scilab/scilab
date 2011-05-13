@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="srfaur">
+  <info>
+    <pubdate>$LastChangedDate$</pubdate>
+  </info>
+  <refnamediv>
+    <refname>srfaur</refname>
+    <refpurpose>平方根アルゴリズム</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[p,s,t,l,rt,tt]=srfaur(h,f,g,r0,n,p,s,t,l)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>h, f, g</term>
+        <listitem>
+          <para>状態空間モデルの共分散行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>r0</term>
+        <listitem>
+          <para>E(yk*yk').</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>n</term>
+        <listitem>
+          <para>反復回数.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>n回の反復後の解の推定値.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>s, t, l</term>
+        <listitem>
+          <para>連続する反復の中間行列;</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>rt, tt</term>
+        <listitem>
+          <para><literal>n</literal>回の反復後のフィルタモデルのゲイン行列.</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>p, s, t, l</term>
+        <listitem>
+          <para>
+	複数回の反復を行う場合,入力として指定できます
+	(<literal>p</literal>の中間値の評価).</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>説明n</title>
+    <para>
+	代数リカッチ方程式の平方根アルゴリズム.</para>
+  </refsection>
+  <refsection>
+    <title>例</title>
+    <programlisting role="example"><![CDATA[ 
+//信号を生成
+x=%pi/10:%pi/10:102.4*%pi;
+rand('seed',0);rand('normal');
+y=[1;1]*sin(x)+[sin(2*x);sin(1.9*x)]+rand(2,1024);
+
+//相関を計算
+c=[];for j=1:2,for k=1:2,c=[c;corr(y(k,:),y(j,:),64)];end;end
+c=matrix(c,2,128);
+
+//状態量6の H,F,G を計算
+hk=hank(20,20,c);
+[H,F,G]=phc(hk,2,6);
+
+//リカッチ方程式を解く
+r0=c(1:2,1:2);
+[P,s,t,l,Rt,Tt]=srfaur(H,F,G,r0,200);
+
+//厳密に対称な共分散行列を作成
+Rt=(Rt+Rt')/2
+ ]]></programlisting>
+  </refsection>
+  <refsection role="see also">
+    <title>参照</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="phc">phc</link>
+      </member>
+      <member>
+        <link linkend="faurre">faurre</link>
+      </member>
+      <member>
+        <link linkend="lindquist">lindquist</link>
+      </member>
+    </simplelist>
+  </refsection>
+</refentry>

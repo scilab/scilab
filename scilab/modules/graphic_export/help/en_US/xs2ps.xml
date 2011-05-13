@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>xs2ps</refname>
 
-    <refpurpose>send graphics to a PS file.</refpurpose>
+    <refpurpose>Export graphics to PS.</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -35,7 +35,7 @@ xs2ps(fig, file_name [,orientation])</synopsis>
   </refsynopsisdiv>
 
   <refsection>
-    <title>Parameters</title>
+    <title>Arguments</title>
 
     <variablelist>
       <varlistentry>
@@ -97,8 +97,8 @@ xs2ps(0,filename);
  ]]></programlisting>
   </refsection>
 
-  <refsection>
-    <title>See Also</title>
+  <refsection role="see also">
+<title>See Also</title>
 
     <simplelist type="inline">
       <member>figure_size property</member>
