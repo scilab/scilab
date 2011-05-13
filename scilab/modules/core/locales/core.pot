@@ -1198,12 +1198,6 @@ msgstr ""
 msgid "Error returning tlist, memory full.\n"
 msgstr ""
 #
-# File: includes/stack-c.h, line: 195
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-#
 # File: src/c/tmpdir.c, line: 139
 #, c-format
 msgid "Error: Could not create %s: %s\n"

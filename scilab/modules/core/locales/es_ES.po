@@ -871,13 +871,6 @@ msgstr "Error"
 msgid "Error returning tlist, memory full.\n"
 msgstr "Error devolviendo tlist, memoria llena.\n"
 
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-"Error(x) es obsoleto y será eliminado en Scilab 5.4. Por favor considere "
-"utilizar SciError(x).\n"
-
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Error: No se pudo crear %s: %s\n"

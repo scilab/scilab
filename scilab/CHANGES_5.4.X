@@ -35,6 +35,8 @@ Removed functions (previously declared as obsolete):
 
 * 'with_atlas' removed. Please use 'getdebuginfo' instead.
 
+* C API function Error(x) has been removed. Please use SciError.
+
 
 Performance:
 ============

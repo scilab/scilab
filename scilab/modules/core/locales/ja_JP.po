@@ -859,11 +859,6 @@ msgstr "エラー"
 msgid "Error returning tlist, memory full.\n"
 msgstr "tlist を返す際のエラー, メモリ不足です.\n"
 
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr "Error(x) は古い関数で, Scilab 5.4 では削除される予定です. SciError(x) の使用を検討ください.\n"
-
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "エラー:  %s を作成できませんでした: %s\n"
