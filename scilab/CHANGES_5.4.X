@@ -60,8 +60,11 @@ Bug fixes:
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
+* bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
+* bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
 
@@ -69,6 +72,4 @@ Bug fixes:
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
-* bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
-
-* bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
+* bug 9479 fixed - Typo fixed (intput => input).
