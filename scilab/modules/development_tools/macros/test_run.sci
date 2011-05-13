@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
@@ -131,7 +131,7 @@ function test_run(varargin)
     status.list                 = [];
 
     params.longtime             = %t;
-    params.wanted_mode          = "NW";
+    params.wanted_mode          = "";
     params.error_output         = "check";
     params.reference            = "check";
     params.testTypes            = "all_tests";
@@ -727,9 +727,9 @@ function status = test_single(_module, _testPath, _testName)
     elseif _module.wanted_mode == "NWNI" then
         mode_arg = "-nwni";
     else
-        if mode == "NWNI" then
+        if execMode == "NWNI" then
             mode_arg = "-nwni";
-        elseif mode == "NW" then
+        elseif execMode == "NW" then
             mode_arg = "-nw";
         else
             mode_arg = "-nw";
@@ -873,6 +873,7 @@ function status = test_single(_module, _testPath, _testName)
 
     if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
         //  Do some modification in  dia file
+
         dia(grep(dia, "write(%io(2), tmpdirToPrint")) = [];
         dia(grep(dia, "TMPDIR1")) = [];
         dia(grep(dia, "diary(0)")) = [];
