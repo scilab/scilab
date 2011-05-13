@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-08-18 19:42+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -107,3 +107,12 @@ msgstr "Срд"
 
 msgid "filename not defined."
 msgstr "имя файла не задано."
+
+#~ msgid "// Begin Session : "
+#~ msgstr "// Начало сессии : "
+
+#~ msgid "// End Session   : "
+#~ msgstr "// Конец сессии   : "
+
+#~ msgid "Scilab history_manager module not installed.\n"
+#~ msgstr "Модуль history_manager не установлен.\n"

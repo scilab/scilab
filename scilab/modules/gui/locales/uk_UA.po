@@ -6,14 +6,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-11-05 11:09+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-07 17:55+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "Language: uk\n"
 
 #, c-format
@@ -658,9 +658,6 @@ msgstr "&Кольори"
 msgid "&Command History"
 msgstr "Журнал ко&манд"
 
-msgid "&Contributions"
-msgstr "В&нески"
-
 msgid "&Control"
 msgstr "&Керування"
 
@@ -669,6 +666,9 @@ msgstr "&Копіювати"
 
 msgid "&Copy to clipboard"
 msgstr "&Копіювати до буфера"
+
+msgid "&Decrease font size"
+msgstr "З&меншити розмір шрифту"
 
 msgid "&Display current directory"
 msgstr "П&оказати поточний каталог"
@@ -680,7 +680,7 @@ msgid "&EPS"
 msgstr "&EPS"
 
 msgid "&Edit"
-msgstr "&Правка"
+msgstr "З&міни"
 
 msgid "&Empty clipboard"
 msgstr "Спо&рожнити буфер обміну даними"
@@ -700,17 +700,29 @@ msgstr "&Властивості рисунка"
 msgid "&File"
 msgstr "&Файл"
 
+msgid "&File Exchange"
+msgstr "&Обмін файлами"
+
 msgid "&Font..."
 msgstr "&Шрифт…"
 
+msgid "&Forge"
+msgstr "&Forge"
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr "&Нарощувальний пошук"
 
 msgid "&Interrupt"
 msgstr "П&ризупинити"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Веб-посилання"
 
 msgid "&Load environment..."
 msgstr "&Завантажити середовище..."
@@ -793,9 +805,6 @@ msgstr "Перегляд з&мінних"
 msgid "&Vectorial export"
 msgstr "Е&кспорт у векторному форматі"
 
-msgid "&Links"
-msgstr "&Веб-посилання"
-
 msgid "&Xcos"
 msgstr "&Xcos"
 
@@ -826,6 +835,21 @@ msgstr "Додати колір з панелі списку"
 
 msgid "All %s files"
 msgstr "Всі файли %s"
+
+msgid "All Encapsulated PS files"
+msgstr "Всі файли EPS"
+
+msgid "All PDF files"
+msgstr "Всі файли PDF"
+
+msgid "All PNG image files"
+msgstr "Всі файли зображень PNG"
+
+msgid "All Postscript files"
+msgstr "Всі файли Postscript"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "Всі файли RTF (Rich Text Format)"
 
 msgid "All Scilab files"
 msgstr "Всі файли Scilab"
@@ -940,8 +964,11 @@ msgstr "Копіювати"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Авторські права належать © 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "© INRIA, 1989-2010"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr "© INRIA, 1989–2011"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Не вдалося виявити консолі або InterpreterManagement."
 
 msgid "Could not open: "
 msgstr "Не вдалося відкрити: "
@@ -978,6 +1005,12 @@ msgstr "Помилка під час спроби експортування"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Помилка. A signal has been caught.\n"
+
+msgid "Evaluate selection with echo"
+msgstr "Обчислити позначення з показом результатів"
+
+msgid "Evaluate selection with no echo"
+msgstr "Обчислити позначене без показу результатів"
 
 msgid "Execute into Scilab"
 msgstr "Виконати у Scilab"
@@ -1038,6 +1071,9 @@ msgstr "Довідка щодо позначеного ключового сло
 
 msgid "Impossible to get current look and feel"
 msgstr "Не вдалося визначити поточний вигляд і поведінку"
+
+msgid "In&crease font size"
+msgstr "З&більшити розмір шрифту"
 
 msgid "Italic"
 msgstr "Курсив"
@@ -1188,8 +1224,14 @@ msgstr "Де&монстрації Scilab"
 msgid "Scilab &Help"
 msgstr "&Довідка Scilab"
 
+msgid "Scilab &Online Help"
+msgstr "&Інтернет-довідка зі Scilab"
+
 msgid "Scilab &Web Site"
 msgstr "&Веб-сайт Scilab"
+
+msgid "Scilab &Wiki"
+msgstr "&Вікі Scilab"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1594,6 +1636,11 @@ msgstr ""
 "Помилкове значення властивості «%s»: слід використовувати рядок або вектор "
 "дійсних значень 1 x %d.\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+"Помилкове значення властивості «%s»: слід використовувати число між 0 і 1.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1671,3 +1718,51 @@ msgstr "не позначено"
 
 msgid "yellow"
 msgstr "жовтий"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: Для властивості «%s» і значення «%s» результатів не виявлено.\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: відповідників не знайдено.\n"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&База даних вад і запитів"
+
+#~ msgid "&Contributions"
+#~ msgstr "В&нески"
+
+#~ msgid "&Editor"
+#~ msgstr "&Редактор"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Авторські права належать © 1989-2009 (INRIA)"
+
+#~ msgid "&Web links"
+#~ msgstr "&Веб-посилання"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Ви справді бажаєте завершити роботу Scilab?"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Запустити текстовий редактор Scilab"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "Вкажіть файл, який слід відкрити у текстовому редакторі Scilab"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"ПОПЕРЕДЖЕННЯ: нехтуючи нашим попередженням, ви наказали Scilab "
+#~ "використовувати додаткові графічні властивості. Введіть команду «help "
+#~ "usecanvas», щоб дізнатися більше.\")"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "© INRIA, 1989-2010"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: сталася помилка типу «виключення»: %s"

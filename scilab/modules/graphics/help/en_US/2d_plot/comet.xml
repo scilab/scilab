@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Add some comments about XML file
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en_US" xml:id="comet">
+  <info>
+    <pubdate>$LastChangedDate: 11-03-2011 $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>comet</refname>
+    <refpurpose>2D comet animated plot. </refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>comet(y)</synopsis>
+    <synopsis>comet(x,y)</synopsis>
+    <synopsis>comet(x,fun)</synopsis>
+    <synopsis>comet(x,y,p)</synopsis>
+    <synopsis>comet(x,fun,p)</synopsis>
+    <synopsis>comet(...,"colors",c)</synopsis>
+  </refsynopsisdiv>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>x</term>
+        <listitem>
+          <para>
+            a real vector or matrix. If omitted, it is assumed to be the vector
+            <literal>1:ny</literal> where <literal>ny</literal> is the
+            number of curve points (see below).
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y</term>
+        <listitem>
+          <para>
+            a real vector or matrix of length.
+           </para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>p</term>
+        <listitem>
+          <para>
+            a real scalar in the interval<literal>[0 1[</literal>. Default value is 0.1.
+           </para>
+        </listitem>
+      </varlistentry>
+     <varlistentry>
+        <term>fun</term>
+        <listitem>
+          <para>
+            a scilab function with calling sequence <literal>y=fun(x)</literal>.  <literal>fun</literal> can also be a polynomial or a rational fraction.
+           </para>
+        </listitem>
+      </varlistentry>
+    <varlistentry>
+        <term>c</term>
+        <listitem>
+          <para>
+            a vector of  <literal>ny</literal> color index.
+           </para>
+        </listitem>
+      </varlistentry>
+
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>
+      If <literal>(x,y)</literal> are two vectors with the same number
+      of elements, this function draws a 2D comet animated plot
+      showing the progession of the curve
+      <literal>(x(1:k),y(1:k))</literal> for <literal>k</literal>
+      varying from <literal>1</literal> to
+      <literal>size(x,'*')</literal>.  
+    </para>
+    <para>
+      The plot is made of three parts:
+         <variablelist>
+           <varlistentry>
+             <term>a head</term> 
+             mark that shows the current <literal>(x(i),y(i))</literal> position.
+             <listitem>
+               <para>
+               </para>
+             </listitem>
+           </varlistentry>
+           <varlistentry>
+             <term>a body</term> that shows the trailing curve that
+             follows the head: the
+             <literal>(x(i-k:i),y(i-k:i)</literal>) part of the curve.
+             <listitem>
+               <para>
+               </para>
+             </listitem>
+           </varlistentry>
+          <varlistentry>
+             <term>a tail</term> 
+             that shows the  <literal>(x(1:i-k),y(1:i-k))</literal>  part of the curve.
+             <listitem>
+               <para>
+               </para>
+             </listitem>
+           </varlistentry>
+         </variablelist>
+       <para>
+         <literal>comet(x,fun,...)</literal>  is equivalent to <literal>comet(x,feval(x,fun),...)</literal> 
+         </para>
+         <para>
+         <literal>comet(...,p)</literal> can be used to set the
+         relative length of the body. <literal>k</literal> is defined
+         as <literal>k = round(p*ny)</literal>.
+         </para>
+        <para>
+          if <literal>y</literal> is a matrix then animated curves are drawn for each pair  <literal>(x,y(:,l))</literal>.
+          in this case <literal>ny</literal> is the number of rows of <literal>y</literal>.
+        </para>
+        <para>
+          if <literal>x</literal> and <literal>y</literal> are
+          matrices with identical sizes then animated curves are drawn
+          for each pair <literal>(x(:,l),y(:,l))</literal>.  in this
+          case <literal>ny</literal> is the number of rows of
+          <literal>x</literal>and  <literal>y</literal>.
+        </para>
+
+         <para>
+           <literal>comet(...,"colors",c)</literal> can be used to set the colors of each curves.
+         </para>
+
+    </para>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500);
+clf();set(gca(),"isoview","on"); //set isoview axes
+comet(t.*sin(t),t.*cos(t))
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+t = linspace(0,10*%pi,500)';
+clf();comet(t.*sin(t),[t.*sin(2*t) t.*sin(3*t)])
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+function y=traj(x),y=1.5*sin(x^2),endfunction
+clf();comet(linspace(0,5,500),traj)
+    ]]></programlisting>
+    <programlisting role="example"><![CDATA[
+clf();comet(linspace(-2,4,500),(%s-3)/(%s^3+2*%s^2+1))
+    ]]></programlisting>
+
+  </refsection>
+  <refsection>
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="comet3d">comet3d</link>
+      </member>
+      <member>
+        <link linkend="paramfplot2d">paramfplot2d</link>
+      </member>
+
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Serge Steer</member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>History</title>
+    <simplelist type="vert">
+      <member>First version April 2011, for Scilab-5.3.2</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

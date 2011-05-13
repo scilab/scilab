@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 17:16+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-09-01 21:47+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -70,16 +70,16 @@ msgid "%s: overflow or underflow of an extended range number\n"
 msgstr "%s: overflow o underflow di un numero di portata estesa.\n"
 
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "La funzione %s è obsoleta."
+#~ msgid "Function %s is obsolete."
+#~ msgstr "La funzione %s è obsoleta."
 
 #, c-format
-msgid "Please use %s instead."
-msgstr "Usare %s invece."
+#~ msgid "Please use %s instead."
+#~ msgstr "Usare %s invece."
 
 #, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Questa funzione sarà rimossa in modo permanente in Scilab %s"
 
-msgid "Warning: "
-msgstr "Attenzione: "
+#~ msgid "Warning: "
+#~ msgstr "Attenzione: "

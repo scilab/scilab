@@ -28,6 +28,8 @@ import org.scilab.modules.scinotes.HelpOnTypingManager;
  */
 public final class ActivateHelpOnTypingForKeywordsAction extends DefaultCheckAction {
 
+    private static final long serialVersionUID = 3793710651553964430L;
+
     /**
      * Constructor
      * @param name the name of the action

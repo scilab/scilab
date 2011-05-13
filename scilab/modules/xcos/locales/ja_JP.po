@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-10-02 02:20+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-12 00:09+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <zz-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -91,8 +91,8 @@ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr "%s:  %s からブロックをロードできませんでした: `scs_m'' 変数が見つかりません.\n"
 
 #, c-format
-msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-msgstr "%s: 入力引数 %s が間違っています: svg または gif を指定してください.\n"
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr "%s: 入力引数 %s が間違っています: svg, gif または jpg を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -212,6 +212,12 @@ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr "%s: 入力引数 %s の型が間違っています:文字列のベクトルを指定してください.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr "%s: 入力引数 %s の値が間違っています: 有効なフォーマット (png, jpg, gif) を指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr "%s: 入力引数 %s の値が間違っています:存在するファイルを指定してください.\n"
 
@@ -239,8 +245,17 @@ msgstr "ブロックを整列"
 msgid "Annotations"
 msgstr "注釈"
 
+msgid "Automotive Suspension"
+msgstr "自動車のサスペンション"
+
+msgid "Ball on a Platform"
+msgstr "台上の球"
+
 msgid "Based on Scicos"
 msgstr "Scicosに基づく"
+
+msgid "Basic controller"
+msgstr "基本コントローラ"
 
 msgid "Block Help"
 msgstr "ブロックヘルプ"
@@ -257,6 +272,15 @@ msgstr "境界色"
 msgid "Bottom"
 msgstr "下揃え"
 
+msgid "Bouncing Ball"
+msgstr "跳ねる球"
+
+msgid "Bouncing Balls"
+msgstr "跳ねる球"
+
+msgid "Bridge Rectifer"
+msgstr "ブリッジ整流器"
+
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -269,6 +293,9 @@ msgstr "カテゴリ"
 msgid "Center"
 msgstr "中央"
 
+msgid "Chaos Modelica"
+msgstr "Chaos Modelica"
+
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr "図形をクリックしてリンク点を加えるか、あるいは互換の目標をクリックして終了してください"
@@ -278,6 +305,9 @@ msgstr "閉じる"
 
 msgid "Code generation"
 msgstr "コード生成"
+
+msgid "Colpitts oscillator"
+msgstr "コルピットオシレータ"
 
 msgid "Command port must be connected to control port"
 msgstr "コマンドポートは、制御ポートと接続されなくてはなりません"
@@ -298,8 +328,14 @@ msgstr "コンパイル中"
 msgid "Computing"
 msgstr "計算中"
 
+msgid "Cont.Plant-Hybrid Observer"
+msgstr "制御プラント+ハイブリッド観測器"
+
 msgid "Continuous time systems"
 msgstr "連続時間システム"
+
+msgid "Control Systems"
+msgstr "制御システム"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
@@ -315,6 +351,12 @@ msgstr "カテゴリを作成"
 
 msgid "Customize"
 msgstr "カスタマイズ"
+
+msgid "DC/DC Boost Converter"
+msgstr "DC/DC昇圧コンバータ"
+
+msgid "DC/DC Buck Converter"
+msgstr "DC/DC降圧コンバータ"
 
 msgid "Debug block calls without trace"
 msgstr "トレースなしのデバッグブロックコール"
@@ -347,11 +389,20 @@ msgstr "直近の保存以降にダイアグラムが修正されています.<b
 msgid "Diff. States"
 msgstr "状態量の微分"
 
+msgid "Differential amplifier"
+msgstr "差動アンプ"
+
 msgid "Discontinuities"
 msgstr "不連続"
 
 msgid "Discrete"
 msgstr "離散"
+
+msgid "Discrete Controller"
+msgstr "離散コントローラ"
+
+msgid "Discrete Kalman Filter"
+msgstr "離散カルマンフィルタ"
 
 msgid "Do you want a transparent background image?"
 msgstr "背景イメージを透明にしますか?"
@@ -371,6 +422,9 @@ msgstr "編集可"
 msgid "Electrical"
 msgstr "電気工学"
 
+msgid "Electrical Systems"
+msgstr "電気システム"
+
 msgid "Enable"
 msgstr "有効にする"
 
@@ -379,6 +433,9 @@ msgstr "方程式"
 
 msgid "Error"
 msgstr "エラー"
+
+msgid "Error on export"
+msgstr "エクスポートエラー"
 
 msgid "Event handling"
 msgstr "イベント・ハンドリング"
@@ -408,6 +465,9 @@ msgstr "拡張"
 
 msgid "Failed to load Diagram"
 msgstr "ダイアグラムの読み込みに失敗"
+
+msgid "Fibonacci Numbers"
+msgstr "フィナボッチ数"
 
 msgid "File"
 msgstr "ファイル"
@@ -469,17 +529,26 @@ msgstr "グローバル"
 msgid "Goto %s"
 msgstr "%s へ"
 
+msgid "Goto/From blocks"
+msgstr "goto/fromブロック"
+
 msgid "Grid"
 msgstr "グリッド"
 
 msgid "Horizontal"
 msgstr "水平"
 
+msgid "Hydraulics blocks"
+msgstr "水力学ブロック"
+
 msgid "IDA"
 msgstr "IDA"
 
 msgid "Image contains no data."
 msgstr "イメージはデータを含みません。"
+
+msgid "Image path"
+msgstr "イメージのパス"
 
 msgid "Implicit"
 msgstr "暗示的"
@@ -494,6 +563,9 @@ msgstr "暗示的なデータ出力ポートは、暗示的なデータ入力ポ
 
 msgid "Import from XML"
 msgstr "XMLからインポート"
+
+msgid "Incompatibility detected"
+msgstr "互換性がありません"
 
 msgid "Initial computing method"
 msgstr "初期値計算法"
@@ -513,8 +585,14 @@ msgstr "積算絶対許容誤差"
 msgid "Integrator relative tolerance"
 msgstr "積分相対誤差"
 
+msgid "Inverted Pendulum"
+msgstr "倒立振子"
+
 msgid "Italic"
 msgstr "イタリック体"
+
+msgid "Kalman Filter"
+msgstr "カルマンフィルタ"
 
 msgid "Left"
 msgstr "左"
@@ -540,8 +618,17 @@ msgstr "ブロックを読み込み中"
 msgid "Loading user defined palettes"
 msgstr "ユーザ定義パレットを読み込み中"
 
+msgid "Logic AND gate"
+msgstr "論理ANDゲート"
+
+msgid "Logic NOR gate"
+msgstr "論理NORゲート"
+
 msgid "Lookup Tables"
 msgstr "ルックアップ・テーブル"
+
+msgid "Lorentz butterfly"
+msgstr "ローレンツバタフライ"
 
 msgid "Masked SuperBlock editor"
 msgstr "マスクされたスーパーブロックエディタ"
@@ -555,11 +642,17 @@ msgstr "行列"
 msgid "Max integration time interval"
 msgstr "最大積分時間間隔"
 
+msgid "Mechanical Systems"
+msgstr "メカニカルシステム"
+
 msgid "Middle"
 msgstr "中間"
 
 msgid "Mirror"
 msgstr "反転"
+
+msgid "Modelica demos"
+msgstr "Modelicaデモ"
 
 msgid "Modelica initialize"
 msgstr "Modelica初期化"
@@ -594,6 +687,15 @@ msgstr "標準 100%"
 msgid "Ok"
 msgstr "OK"
 
+msgid "Old Gain Block"
+msgstr "古いゲインブロック"
+
+msgid "Old demos"
+msgstr "古いデモ"
+
+msgid "OpAmp amplifier"
+msgstr "オペアンプ"
+
 msgid "Open"
 msgstr "開く"
 
@@ -612,6 +714,12 @@ msgstr "パラメータ埋込"
 msgid "Per block execution trace and Debug block calls"
 msgstr "ブロック毎の実行トレースとデバッグブロックコール"
 
+msgid "Please check the diagram, before trying to simulate it."
+msgstr "シミュレーション実行前にダイアグラムを確認してください."
+
+msgid "Please specify a file format"
+msgstr "ファイル形式を指定してください."
+
 msgid "Please take a look into the Scilab console"
 msgstr "Scilabコンソールを確認してください"
 
@@ -622,11 +730,20 @@ msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr "ポートは接続済みです, 未接続のポートまたは有効なリンクを選択してください."
 
+msgid "Preview"
+msgstr "プレビュー"
+
 msgid "Print"
 msgstr "印刷"
 
 msgid "Quit Xcos"
 msgstr "Xcosを終了"
+
+msgid "RLC Circuit"
+msgstr "RLC回路"
+
+msgid "RLC circuit"
+msgstr "RLC回路"
 
 msgid "Real time scaling"
 msgstr "実時間スケール"
@@ -687,6 +804,9 @@ msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
 
+msgid "Scilab block"
+msgstr "Scilabブロック"
+
 msgid "Scilab file"
 msgstr "Scilabファイル"
 
@@ -714,8 +834,17 @@ msgstr "親ダイアグラムを表示"
 msgid "Show/Hide shadow"
 msgstr "影の表示/非表示"
 
+msgid "Signal Builder"
+msgstr "信号ビルダ"
+
 msgid "Signal Routing"
 msgstr "信号の配線"
+
+msgid "Simple Demo"
+msgstr "簡単なデモ"
+
+msgid "Simple Thermostat"
+msgstr "簡単なサーモスタット"
 
 msgid "Simulation"
 msgstr "シミュレーション"
@@ -735,8 +864,14 @@ msgstr "ソルバー"
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "ソルバ 0 (CVODE) - 100 (IDA)"
 
+msgid "Some blocks have been removed to ensure compatibility."
+msgstr "互換性を確保するためいくつかのブロックが削除されています."
+
 msgid "Sources"
 msgstr "信号源"
+
+msgid "Standard demos"
+msgstr "標準デモ"
 
 msgid "Start"
 msgstr "開始"
@@ -749,6 +884,15 @@ msgstr "直線"
 
 msgid "Superblock mask"
 msgstr "スーパーブロック・マスク"
+
+msgid "Switched capacitor integrator"
+msgstr "スイッチドキャパシタ積分器"
+
+msgid "Table Lookup"
+msgstr "テーブル検索"
+
+msgid "Temperature Controller"
+msgstr "温度コントローラ"
 
 msgid "Text Color"
 msgstr "テキストの色"
@@ -790,6 +934,15 @@ msgstr "ツール"
 
 msgid "Top"
 msgstr "上位"
+
+msgid "Transformer"
+msgstr "変換器"
+
+msgid "Unable to decode \"%s\" : invalid data."
+msgstr "\"%s\" をデコードできません : データが無効です."
+
+msgid "Unable to decode \"%s.%s\" : invalid field."
+msgstr "\"%s.%s\" をデコードできません : フィールドが無効です."
 
 msgid "Unable to delete "
 msgstr "削除できません "
@@ -870,6 +1023,9 @@ msgstr "Scicosでの表示"
 msgid "Viewport"
 msgstr "表示ポート"
 
+msgid "Water tank"
+msgstr "水タンク"
+
 msgid "Will try to continue..."
 msgstr "継続を試みます..."
 
@@ -895,6 +1051,9 @@ msgstr "Xcosデモ"
 msgid "Xcos Help"
 msgstr "Xcos ヘルプ"
 
+msgid "Xcos data types"
+msgstr "Xcosデータ型"
+
 msgid "Xcos error"
 msgstr "Xcos エラー"
 
@@ -910,8 +1069,14 @@ msgstr ""
 "Scilab命令を利用するブロック定義で使用される数式パラメータを定義するためのScilab命令をここに入力することができます.<br/> "
 "これらの命令は検証された後,評価されます. (すなわち, EvalでOKをクリックすると,図形が毎回読み込まれます.)"
 
+msgid "Zero Crossing"
+msgstr "ゼロ交差"
+
 msgid "Zero crossing detection"
 msgstr "ゼロクロス検出"
+
+msgid "_IF_ Xcos block"
+msgstr "_IF_ Xcos ブロック"
 
 msgid "comment"
 msgstr "コメント"
@@ -959,3 +1124,143 @@ msgstr "選択"
 
 msgid "weight"
 msgstr "重み"
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "エクスポート失敗: %s\n"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。"
+
+#~ msgid "Copy"
+#~ msgstr "コピー"
+
+#~ msgid "Cut"
+#~ msgstr "切り取り"
+
+#~ msgid "Group"
+#~ msgstr "グループ"
+
+#~ msgid "UnGroup"
+#~ msgstr "グループでない"
+
+#~ msgid "Paste"
+#~ msgstr "貼り付け"
+
+#~ msgid "Redo"
+#~ msgstr "やり直し"
+
+#~ msgid "Undo"
+#~ msgstr "元に戻す"
+
+#~ msgid "Select all"
+#~ msgstr "全て選択"
+
+#~ msgid "Invert selection"
+#~ msgstr "反転選択"
+
+#~ msgid "Quit"
+#~ msgstr "終了"
+
+#~ msgid "Browser"
+#~ msgstr "ブラウザー"
+
+#~ msgid "Help"
+#~ msgstr "ヘルプ"
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Xcos バージョン 1.0"
+
+#~ msgid "Discontinuous"
+#~ msgstr "断続的"
+
+#~ msgid "Threshold"
+#~ msgstr "閾値"
+
+#~ msgid "Math Operations"
+#~ msgstr "数学操作"
+
+#~ msgid "Modelica"
+#~ msgstr "造形"
+
+#~ msgid "Port Action"
+#~ msgstr "ポート活動"
+
+#~ msgid "Events"
+#~ msgstr "イベント"
+
+#~ msgid ""
+#~ "Diagram has been modified since last save\n"
+#~ "save it?"
+#~ msgstr ""
+#~ "図形は、最後の保存から修正されました\n"
+#~ "保存しますか?"
+
+#~ msgid "Line Color"
+#~ msgstr "ライン色"
+
+#~ msgid "All rights reserved"
+#~ msgstr "All rights reserved"
+
+#~ msgid "CeCILL License"
+#~ msgstr "CeCILL ライセンス"
+
+#~ msgid "Copyright 2009"
+#~ msgstr "Copyright 2009"
+
+#~ msgid "Set Debug Level"
+#~ msgstr "デバッグレベル設定"
+
+#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+#~ msgstr "デバッグレベル設定 (0,1,2,3) </br>scicos_debug(n) を実行します"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Scilab コンソーシアム / DIGITEO"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "未知の図形バージョン : "
+
+#~ msgid "Xcos 1.0"
+#~ msgstr "Xcos 1.0"
+
+#~ msgid "Continuous"
+#~ msgstr "連続性"
+
+#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
+#~ msgstr "信号シミュレーショントレース(分離と連続部分スイッチ)"
+
+#~ msgid "Same command executed again"
+#~ msgstr "再度同じコマンドを実行"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "インタープリタと連携できません"
+
+#~ msgid "Zoom In"
+#~ msgstr "拡大"
+
+#~ msgid "Zoom Out"
+#~ msgstr "縮小"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: 入力引数 %s が間違っています: svg または gif を指定してください.\n"
+
+#~ msgid ""
+#~ "Unable to load the HDF5 library. \n"
+#~ "Expecting version %s ; Getting version %s ."
+#~ msgstr "HDF5ライブラリを読み込めません."
+
+#, c-format
+#~ msgid "%s: Unable to import from data from %s"
+#~ msgstr "%s: %s からデータをインポートできません"
+
+#~ msgid "Scicos data types"
+#~ msgstr "Scicosデータ型"
+
+#~ msgid "_IF_ Scicos block"
+#~ msgstr "_IF_ Scicosブロック"
+
+#~ msgid ""
+#~ "Saxon provides only an immutable DOM, please configure another implementation"
+#~ msgstr "Saxonは変更不可のDOMのみをサポートします. configureに他の実装を指定してください."

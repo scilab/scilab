@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-09-18 21:11+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
@@ -877,3 +877,48 @@ msgstr "фаза (y) (градус)"
 
 msgid "rad/sec"
 msgstr "рад/с"
+
+#, c-format
+#~ msgid "%s: Infinite solution.\n"
+#~ msgstr "%s: Бесконечное решение.\n"
+
+#~ msgid "Magnitude (Db)"
+#~ msgstr "Амплитуда (дБ)"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась линейная динамическая "
+#~ "система.\n"
+
+#, c-format
+#~ msgid "%s Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s Неверное количество входных параметров: ожидалось %d или %d.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидались чисто мнимые "
+#~ "полюса.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра %d: ожидалась правильная система "
+#~ "(D=0).\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась линейное пространство "
+#~ "состояний.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Square system expected.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидалась система с квадратной "
+#~ "матрицей."

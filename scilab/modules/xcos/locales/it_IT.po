@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-10-11 15:00+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 08:36+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -89,8 +89,8 @@ msgstr ""
 "trovata.\n"
 
 #, c-format
-msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso svg o gif.\n"
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -249,6 +249,12 @@ msgstr ""
 "stringhe.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso %s ha un valore sbagliato: era atteso un file "
@@ -278,8 +284,17 @@ msgstr "Allinea i blocchi"
 msgid "Annotations"
 msgstr "Annotazioni"
 
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr "Palla su una piattaforma"
+
 msgid "Based on Scicos"
 msgstr "Basato su Scicos"
+
+msgid "Basic controller"
+msgstr ""
 
 msgid "Block Help"
 msgstr "Aiuto del blocco"
@@ -296,6 +311,15 @@ msgstr "Colore del bordo"
 msgid "Bottom"
 msgstr "In basso"
 
+msgid "Bouncing Ball"
+msgstr "Palla che salta"
+
+msgid "Bouncing Balls"
+msgstr "Palle che saltano"
+
+msgid "Bridge Rectifer"
+msgstr ""
+
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -308,6 +332,9 @@ msgstr "Categoria"
 msgid "Center"
 msgstr "Al centro"
 
+msgid "Chaos Modelica"
+msgstr ""
+
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
@@ -319,6 +346,9 @@ msgstr "Chiudi"
 
 msgid "Code generation"
 msgstr "Generazione del codice"
+
+msgid "Colpitts oscillator"
+msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "La porta di comando deve essere connessa alla porta di controllo"
@@ -341,8 +371,14 @@ msgstr "Compilazione in corso"
 msgid "Computing"
 msgstr "Calcolo in corso"
 
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "Sistemi di tempo continuo"
+
+msgid "Control Systems"
+msgstr "Sistemi di controllo"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Diritto d'autore (c) 1989-2009 (INRIA)"
@@ -358,6 +394,12 @@ msgstr "Crea una categoria"
 
 msgid "Customize"
 msgstr "Personalizza"
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr ""
@@ -392,11 +434,20 @@ msgstr ""
 msgid "Diff. States"
 msgstr ""
 
+msgid "Differential amplifier"
+msgstr "Amplificatore differenziale"
+
 msgid "Discontinuities"
 msgstr "Discontinuità"
 
 msgid "Discrete"
 msgstr "Discreto"
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
+msgstr "Filtro di Kalman discreto"
 
 msgid "Discrete time systems"
 msgstr "Sistemi di tempo discreto"
@@ -419,6 +470,9 @@ msgstr "Modificabile"
 msgid "Electrical"
 msgstr "Elettrico"
 
+msgid "Electrical Systems"
+msgstr "Sistemi elettrici"
+
 msgid "Enable"
 msgstr "Abilita"
 
@@ -427,6 +481,9 @@ msgstr "Equazioni"
 
 msgid "Error"
 msgstr "Errore"
+
+msgid "Error on export"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Gestione dell'evento"
@@ -460,6 +517,9 @@ msgstr "Esteso"
 
 msgid "Failed to load Diagram"
 msgstr "Fallito il caricamento del diagramma"
+
+msgid "Fibonacci Numbers"
+msgstr "Numeri di Fibonacci"
 
 msgid "File"
 msgstr "File"
@@ -521,17 +581,26 @@ msgstr "GLobale"
 msgid "Goto %s"
 msgstr "Vai a %s"
 
+msgid "Goto/From blocks"
+msgstr ""
+
 msgid "Grid"
 msgstr "_Griglia"
 
 msgid "Horizontal"
 msgstr "Orizzontale"
 
+msgid "Hydraulics blocks"
+msgstr "Blocchi di Idraulica"
+
 msgid "IDA"
 msgstr "IDA"
 
 msgid "Image contains no data."
 msgstr "L'immagine non contiene dati"
+
+msgid "Image path"
+msgstr ""
 
 msgid "Implicit"
 msgstr "Implicito"
@@ -551,6 +620,9 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa da XML"
 
+msgid "Incompatibility detected"
+msgstr ""
+
 msgid "Initial computing method"
 msgstr "Metodo di calcolo iniziale"
 
@@ -569,8 +641,14 @@ msgstr "Tolleranza assoluta dell'integratore"
 msgid "Integrator relative tolerance"
 msgstr "Tolleranza relativa dell'integratore"
 
+msgid "Inverted Pendulum"
+msgstr ""
+
 msgid "Italic"
 msgstr "Corsivo"
+
+msgid "Kalman Filter"
+msgstr "Filtro di Kalman"
 
 msgid "Left"
 msgstr "A sinistra"
@@ -596,8 +674,17 @@ msgstr "Caricamento del blocco in corso"
 msgid "Loading user defined palettes"
 msgstr "Caricamento in corso dei pannelli definiti dall'utente"
 
+msgid "Logic AND gate"
+msgstr ""
+
+msgid "Logic NOR gate"
+msgstr ""
+
 msgid "Lookup Tables"
 msgstr "Tabelle di controllo"
+
+msgid "Lorentz butterfly"
+msgstr "Farfalla di Lorentz"
 
 msgid "Masked SuperBlock editor"
 msgstr ""
@@ -611,11 +698,17 @@ msgstr "Matrici"
 msgid "Max integration time interval"
 msgstr "Intervallo di tempo di integraione massima"
 
+msgid "Mechanical Systems"
+msgstr "Sistemi meccanici"
+
 msgid "Middle"
 msgstr "Al centro"
 
 msgid "Mirror"
 msgstr ""
+
+msgid "Modelica demos"
+msgstr "Demo di MOdelica"
 
 msgid "Modelica initialize"
 msgstr "Inizializza modelica"
@@ -650,6 +743,15 @@ msgstr "Normale 100%"
 msgid "Ok"
 msgstr "Ok"
 
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Old demos"
+msgstr "Vecchie demo"
+
+msgid "OpAmp amplifier"
+msgstr "Amplificatore OpAmp"
+
 msgid "Open"
 msgstr "_Apri"
 
@@ -668,6 +770,12 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
+msgid "Please check the diagram, before trying to simulate it."
+msgstr ""
+
+msgid "Please specify a file format"
+msgstr "Specificare un formato di file"
+
 msgid "Please take a look into the Scilab console"
 msgstr "Controllare la console di Scilab"
 
@@ -680,11 +788,20 @@ msgstr ""
 "La porta è già connessa,selezionare una porta non connessa o un collegamento "
 "valido."
 
+msgid "Preview"
+msgstr "Anteprima"
+
 msgid "Print"
 msgstr "Stam_pa"
 
 msgid "Quit Xcos"
 msgstr "Uscire da Xcos"
+
+msgid "RLC Circuit"
+msgstr "Circuito RLC"
+
+msgid "RLC circuit"
+msgstr "Circuito RLC"
 
 msgid "Real time scaling"
 msgstr "Riduzione in tempo reale"
@@ -746,6 +863,9 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Il modulo '%s' di Scilab non è installato.\n"
 
+msgid "Scilab block"
+msgstr "Blocco di Scicos"
+
 msgid "Scilab file"
 msgstr "Un file di Scilab"
 
@@ -773,11 +893,20 @@ msgstr "Mostra il diagramma padre"
 msgid "Show/Hide shadow"
 msgstr "Mostra/Nascondi l'ombra"
 
+msgid "Signal Builder"
+msgstr ""
+
 msgid "Signal Processing"
 msgstr "Elaborazione dei segnali"
 
 msgid "Signal Routing"
 msgstr "Instradamento del segnale"
+
+msgid "Simple Demo"
+msgstr "Semplice demo"
+
+msgid "Simple Thermostat"
+msgstr "Termostato semplice"
 
 msgid "Simulation"
 msgstr "_Simulazione"
@@ -797,8 +926,14 @@ msgstr "Risolutore"
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Risolutore 0 (CVODE) - 100 (IDA)"
 
+msgid "Some blocks have been removed to ensure compatibility."
+msgstr ""
+
 msgid "Sources"
 msgstr "Fonti"
+
+msgid "Standard demos"
+msgstr "Demo standard"
 
 msgid "Start"
 msgstr "_Inizia"
@@ -811,6 +946,15 @@ msgstr "Diritto"
 
 msgid "Superblock mask"
 msgstr "Maschera del superblocco"
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr "Tavola di riferimento"
+
+msgid "Temperature Controller"
+msgstr ""
 
 msgid "Text Color"
 msgstr "Colore del testo"
@@ -856,6 +1000,15 @@ msgstr "_Strumenti"
 
 msgid "Top"
 msgstr "In alto"
+
+msgid "Transformer"
+msgstr "Trasformatore"
+
+msgid "Unable to decode \"%s\" : invalid data."
+msgstr ""
+
+msgid "Unable to decode \"%s.%s\" : invalid field."
+msgstr ""
 
 msgid "Unable to delete "
 msgstr "Impossibile eliminare "
@@ -940,6 +1093,9 @@ msgstr "Visualizza in Scicos"
 msgid "Viewport"
 msgstr "Area visibile"
 
+msgid "Water tank"
+msgstr "Cisterna"
+
 msgid "Will try to continue..."
 msgstr "Si tenterà di proseguire..."
 
@@ -969,6 +1125,9 @@ msgstr "_Demo di Xcos"
 msgid "Xcos Help"
 msgstr "A_iuto di Xcos"
 
+msgid "Xcos data types"
+msgstr ""
+
 msgid "Xcos error"
 msgstr "Errore di Xcos"
 
@@ -982,20 +1141,26 @@ msgid ""
 "diagram is loaded.)"
 msgstr ""
 
+msgid "Zero Crossing"
+msgstr ""
+
 msgid "Zero crossing detection"
 msgstr ""
 
-msgid "comment"
+msgid "_IF_ Xcos block"
 msgstr ""
+
+msgid "comment"
+msgstr "commento"
 
 msgid "control port must be connected to command port"
 msgstr "una porta di controllo deve essere connessa a una porta di comando"
 
 msgid "fixed"
-msgstr ""
+msgstr "fisso"
 
 msgid "id"
-msgstr ""
+msgstr "id"
 
 msgid "initial"
 msgstr "iniziale"
@@ -1023,7 +1188,7 @@ msgid "model is not valid"
 msgstr "il modello non è valido"
 
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 msgid "nominal"
 msgstr "nominale"
@@ -1033,3 +1198,131 @@ msgstr "selezionato"
 
 msgid "weight"
 msgstr "peso"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr ""
+#~ "Il modulo \"%s\" di Scilab è disabilitato nelle modalità -nogui o nwni."
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "FALLITA L'ESPORTAZIONE: %s\n"
+
+#~ msgid "Group"
+#~ msgstr "Raggruppa"
+
+#~ msgid "Invert selection"
+#~ msgstr "Inverti la selezione"
+
+#~ msgid "UnGroup"
+#~ msgstr "Dividi"
+
+#~ msgid "Browser"
+#~ msgstr "Browser"
+
+#~ msgid "Help"
+#~ msgstr "Aiuto"
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Xcos versione 1.0"
+
+#~ msgid "Threshold"
+#~ msgstr "Soglia"
+
+#~ msgid "Continuous"
+#~ msgstr "Continuo"
+
+#~ msgid "Discontinuous"
+#~ msgstr "Discontinuo"
+
+#~ msgid "Math Operations"
+#~ msgstr "Operazioni matematiche"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid ""
+#~ "Diagram has been modified since last save\n"
+#~ "save it?"
+#~ msgstr ""
+#~ "Il  diagramma è stato modificato dall'ultimo salvataggio\n"
+#~ "salvarlo?"
+
+#~ msgid "Events"
+#~ msgstr "Eventi"
+
+#~ msgid "Line Color"
+#~ msgstr "Colore della linea"
+
+#~ msgid "Copyright 2009"
+#~ msgstr "Diritto d'autore 2009"
+
+#~ msgid "All rights reserved"
+#~ msgstr "Tutti i diritti sono riservati"
+
+#~ msgid "Final inegration time"
+#~ msgstr "Tempo di integrazione finale"
+
+#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+#~ msgstr "Imposta il livello di debug (0,1,2,3) </br> esegue scicos_debug(n)"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Il consorzio Scilab / DIGITEO"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "Versione di diagramma sconosciuta: "
+
+#~ msgid "Xcos 1.0"
+#~ msgstr "Xcos 1.0"
+
+#~ msgid "CeCILL License"
+#~ msgstr "Licenza CeCILL"
+
+#~ msgid "Copy"
+#~ msgstr "_Copia"
+
+#~ msgid "Cut"
+#~ msgstr "_Taglia"
+
+#~ msgid "Paste"
+#~ msgstr "_Incolla"
+
+#~ msgid "Redo"
+#~ msgstr "_Ripeti"
+
+#~ msgid "Quit"
+#~ msgstr "_Esci"
+
+#~ msgid "Set Debug Level"
+#~ msgstr "Imposta il livello di _debug"
+
+#~ msgid "Select all"
+#~ msgstr "_Seleziona tutto"
+
+#~ msgid "Undo"
+#~ msgstr "_Annulla"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Rid_uci ingrandimento"
+
+#~ msgid "Zoom In"
+#~ msgstr "Aum_enta ingrandimento"
+
+#~ msgid "Remove user defined palette"
+#~ msgstr "Rimuovi il pannello definito dall'utente"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "Impossibile comunicare con l'interprete"
+
+#~ msgid "Same command executed again"
+#~ msgstr "Eseguito di nuovo lo stesso comando"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso svg o gif.\n"
+
+#~ msgid "Scicos data types"
+#~ msgstr "Tipi di dati di Scicos"
+
+#~ msgid "_IF_ Scicos block"
+#~ msgstr "Blocco _IF_ di Scicos"

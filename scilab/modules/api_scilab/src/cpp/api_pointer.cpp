@@ -93,7 +93,7 @@ SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
 	sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
 	if(sciErr.iErr)
 	{
-		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");;
+		addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");
 		return sciErr;
 	}
 

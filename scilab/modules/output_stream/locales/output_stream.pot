@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-05-10 10:58+0100\n"
 
 # File: src/c/msgs.c, line: 922
 #, c-format
@@ -250,7 +250,7 @@ msgid ""
 "   previous order computed solution returned.\n"
 msgstr ""
 #
-# File: macros/prettyprint.sci, line: 593
+# File: macros/prettyprint.sci, line: 594
 #, c-format
 msgid "%s: Type %s is not handled : Define the function %s2%s."
 msgstr ""

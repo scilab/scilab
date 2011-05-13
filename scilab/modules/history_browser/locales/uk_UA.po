@@ -1,0 +1,59 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-19 08:27+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "?"
+msgstr "Довідка"
+
+msgid "Cannot delete current session beginning line."
+msgstr "Не вдалося вилучити початковий рядок поточного сеансу."
+
+msgid "Clear history"
+msgstr "Спорожнити журнал"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Command History"
+msgstr "Журнал команд"
+
+msgid "Copy"
+msgstr "Копіювати"
+
+msgid "Cut"
+msgstr "Вирізати"
+
+msgid "Delete"
+msgstr "Вилучити"
+
+msgid "Edit"
+msgstr "Зміни"
+
+msgid "Edit in SciNotes"
+msgstr "Редагувати у SciNotes"
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid "Evaluate Selection"
+msgstr "Обчислити позначене"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "Scilab Help"
+msgstr "Довідка зі Scilab"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-15 15:53+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-05 13:57+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -86,8 +86,9 @@ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr "%s: не вдалося завантажити блок з %s: не виявлено змінної «scs_m».\n"
 
 #, c-format
-msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-msgstr "%s: помилковий вхідний параметр %s: мало бути svg або gif.\n"
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
+"%s: помилковий вхідний параметр %s: мало бути вказано svg, gif або jpg.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -252,6 +253,14 @@ msgstr ""
 "рядків.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра %s: мало бути вказано коректний "
+"формат файла (png, jpg, gif).\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра %s: мало бути вказано існуючий "
@@ -281,8 +290,17 @@ msgstr "Вирівняти блоки"
 msgid "Annotations"
 msgstr "Примітки"
 
+msgid "Automotive Suspension"
+msgstr "Автомобільна підвіска"
+
+msgid "Ball on a Platform"
+msgstr "Куля на платформі"
+
 msgid "Based on Scicos"
 msgstr "Засновано на Scicos"
+
+msgid "Basic controller"
+msgstr "Базовий регулятор"
 
 msgid "Block Help"
 msgstr "Довідка щодо блоку"
@@ -299,6 +317,15 @@ msgstr "Колір межі"
 msgid "Bottom"
 msgstr "Внизу"
 
+msgid "Bouncing Ball"
+msgstr "М’ячик-стрибунець"
+
+msgid "Bouncing Balls"
+msgstr "Зіткнення кульок"
+
+msgid "Bridge Rectifer"
+msgstr "Містковий випрямлювач"
+
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -311,6 +338,9 @@ msgstr "Категорія"
 msgid "Center"
 msgstr "По центру"
 
+msgid "Chaos Modelica"
+msgstr "Modelica (Хаос)"
+
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
@@ -322,6 +352,9 @@ msgstr "Закрити"
 
 msgid "Code generation"
 msgstr "Створення коду"
+
+msgid "Colpitts oscillator"
+msgstr "Ємнісна триточка"
 
 msgid "Command port must be connected to control port"
 msgstr "Порт команди слід з’єднати з портом керування"
@@ -343,8 +376,14 @@ msgstr "Компіляція"
 msgid "Computing"
 msgstr "Обчислення"
 
+msgid "Cont.Plant-Hybrid Observer"
+msgstr "Неперервне спостереження за гілками-гібридами"
+
 msgid "Continuous time systems"
 msgstr "Неперервні динамічні системи"
+
+msgid "Control Systems"
+msgstr "Системи керування"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Авторські права належать © 1989-2009 (INRIA)"
@@ -360,6 +399,12 @@ msgstr "Створити категорію"
 
 msgid "Customize"
 msgstr "Налаштувати"
+
+msgid "DC/DC Boost Converter"
+msgstr "Перетворювач DC/DC з підсиленням"
+
+msgid "DC/DC Buck Converter"
+msgstr "Перетворювач DC/DC з послабленням"
 
 msgid "Debug block calls without trace"
 msgstr "Діагностика викликів блоку без трасування"
@@ -394,11 +439,20 @@ msgstr ""
 msgid "Diff. States"
 msgstr "Диф. стани"
 
+msgid "Differential amplifier"
+msgstr "Диференційний підсилювач"
+
 msgid "Discontinuities"
 msgstr "Розриви"
 
 msgid "Discrete"
 msgstr "Дискретний"
+
+msgid "Discrete Controller"
+msgstr "Дискретний регулятор"
+
+msgid "Discrete Kalman Filter"
+msgstr "Дискретний фільтр Калмана"
 
 msgid "Discrete time systems"
 msgstr "Дискретні динамічні системи"
@@ -413,13 +467,16 @@ msgid "Dump"
 msgstr "Дамп"
 
 msgid "Edit"
-msgstr "Правка"
+msgstr "Зміни"
 
 msgid "Editable"
 msgstr "Можна редагувати"
 
 msgid "Electrical"
 msgstr "Електрика"
+
+msgid "Electrical Systems"
+msgstr "Електричні системи"
 
 msgid "Enable"
 msgstr "Увімкнути"
@@ -429,6 +486,9 @@ msgstr "Рівняння"
 
 msgid "Error"
 msgstr "Помилка"
+
+msgid "Error on export"
+msgstr "Помилка під час спроби експортування"
 
 msgid "Event handling"
 msgstr "Обробка подій"
@@ -460,6 +520,9 @@ msgstr "Розширений"
 
 msgid "Failed to load Diagram"
 msgstr "Не вдалося завантажити діаграму"
+
+msgid "Fibonacci Numbers"
+msgstr "Числа Фібоначчі"
 
 msgid "File"
 msgstr "Файл"
@@ -521,17 +584,26 @@ msgstr "Загальний"
 msgid "Goto %s"
 msgstr "Перейти до %s"
 
+msgid "Goto/From blocks"
+msgstr "Блоки переходу/початку"
+
 msgid "Grid"
 msgstr "Ґратка"
 
 msgid "Horizontal"
 msgstr "Горизонтально"
 
+msgid "Hydraulics blocks"
+msgstr "Гідравлічні блоки"
+
 msgid "IDA"
 msgstr "IDA"
 
 msgid "Image contains no data."
 msgstr "Зображення не містить даних."
+
+msgid "Image path"
+msgstr "Адреса зображення"
 
 msgid "Implicit"
 msgstr "Неявний"
@@ -548,6 +620,9 @@ msgstr ""
 
 msgid "Import from XML"
 msgstr "Імпортувати з XML"
+
+msgid "Incompatibility detected"
+msgstr "Виявлено несумісність"
 
 msgid "Initial computing method"
 msgstr "Початковий спосіб обчислення"
@@ -567,8 +642,14 @@ msgstr "Абсолютна похибка інтегрування"
 msgid "Integrator relative tolerance"
 msgstr "Відносна похибка інтегрування"
 
+msgid "Inverted Pendulum"
+msgstr "Обернений маятник"
+
 msgid "Italic"
 msgstr "Курсив"
+
+msgid "Kalman Filter"
+msgstr "Фільтр Калмана"
 
 msgid "Left"
 msgstr "Ліворуч"
@@ -595,8 +676,17 @@ msgstr "Завантаження блоку"
 msgid "Loading user defined palettes"
 msgstr "Завантаження визначених користувачем палітр"
 
+msgid "Logic AND gate"
+msgstr "Логічний шлюз AND"
+
+msgid "Logic NOR gate"
+msgstr "Логічний шлюз NOR"
+
 msgid "Lookup Tables"
 msgstr "Визначення табличних значень"
+
+msgid "Lorentz butterfly"
+msgstr "Метелик Лоренца"
 
 msgid "Masked SuperBlock editor"
 msgstr "Замаскований редактор суперблоку"
@@ -610,11 +700,17 @@ msgstr "Операції над матрицями"
 msgid "Max integration time interval"
 msgstr "Максимальний час інтегрування"
 
+msgid "Mechanical Systems"
+msgstr "Механічні системи"
+
 msgid "Middle"
 msgstr "Посередині"
 
 msgid "Mirror"
 msgstr "Віддзеркалити"
+
+msgid "Modelica demos"
+msgstr "Демонстрації Modelica"
 
 msgid "Modelica initialize"
 msgstr "Ініціалізація Modelica"
@@ -649,6 +745,15 @@ msgstr "Звичайний 100%"
 msgid "Ok"
 msgstr "Гаразд"
 
+msgid "Old Gain Block"
+msgstr "Старий блок підсилення"
+
+msgid "Old demos"
+msgstr "Старі демонстрації"
+
+msgid "OpAmp amplifier"
+msgstr "Операційний підсилювач"
+
 msgid "Open"
 msgstr "Відкрити"
 
@@ -667,6 +772,12 @@ msgstr "Вбудовування параметрів"
 msgid "Per block execution trace and Debug block calls"
 msgstr "Трасування за виконанням блоків та виклики діагностування блоків"
 
+msgid "Please check the diagram, before trying to simulate it."
+msgstr "Будь ласка, перевірте правильність діаграми до запуску імітації."
+
+msgid "Please specify a file format"
+msgstr "Будь ласка, вкажіть формат файла"
+
 msgid "Please take a look into the Scilab console"
 msgstr "Будь ласка, ознайомтеся з повідомленнями у консолі Scilab"
 
@@ -679,11 +790,20 @@ msgstr ""
 "Порт вже з’єднано, будь ласка, вкажіть нез’єднаний порт або коректне "
 "з’єднання."
 
+msgid "Preview"
+msgstr "Перегляд"
+
 msgid "Print"
 msgstr "Надрукувати"
 
 msgid "Quit Xcos"
 msgstr "Вийти з Xcos"
+
+msgid "RLC Circuit"
+msgstr "Коливальний контур"
+
+msgid "RLC circuit"
+msgstr "Коливальний контур"
 
 msgid "Real time scaling"
 msgstr "Динамічне масштабування"
@@ -744,6 +864,9 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
 
+msgid "Scilab block"
+msgstr "Блок Scilab"
+
 msgid "Scilab file"
 msgstr "Файл Scilab"
 
@@ -772,11 +895,20 @@ msgstr "Показати батьківську діаграму"
 msgid "Show/Hide shadow"
 msgstr "Показати/Сховати тінь"
 
+msgid "Signal Builder"
+msgstr "Побудова сигналів"
+
 msgid "Signal Processing"
 msgstr "Обробка сигналів"
 
 msgid "Signal Routing"
 msgstr "Маршрутизація сигналів"
+
+msgid "Simple Demo"
+msgstr "Проста демонстрація"
+
+msgid "Simple Thermostat"
+msgstr "Простий термостат"
 
 msgid "Simulation"
 msgstr "Моделювання"
@@ -796,8 +928,14 @@ msgstr "Розв’язувач"
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Розв’язувач 0 (CVODE) — 100 (IDA)"
 
+msgid "Some blocks have been removed to ensure compatibility."
+msgstr "Деякі блоки було усунуто з міркувань забезпечення сумісності."
+
 msgid "Sources"
 msgstr "Джерела сигналів"
+
+msgid "Standard demos"
+msgstr "Стандартні демонстрації"
 
 msgid "Start"
 msgstr "Почати"
@@ -810,6 +948,15 @@ msgstr "Прямий"
 
 msgid "Superblock mask"
 msgstr "Маска суперблоку"
+
+msgid "Switched capacitor integrator"
+msgstr "Інтегральна схема на конденсаторах з перемиканням"
+
+msgid "Table Lookup"
+msgstr "Табличне перетворення"
+
+msgid "Temperature Controller"
+msgstr "Регулятор температури"
 
 msgid "Text Color"
 msgstr "Колір тексту"
@@ -855,6 +1002,15 @@ msgstr "Інструменти"
 
 msgid "Top"
 msgstr "Вгорі"
+
+msgid "Transformer"
+msgstr "Перетворювач"
+
+msgid "Unable to decode \"%s\" : invalid data."
+msgstr "Не вдалося декодувати «%s»: некоректні дані."
+
+msgid "Unable to decode \"%s.%s\" : invalid field."
+msgstr "Не вдалося декодувати «%s.%s»: некоректне поле."
 
 msgid "Unable to delete "
 msgstr "Не вдалося вилучити "
@@ -939,6 +1095,9 @@ msgstr "Переглянути у Scicos"
 msgid "Viewport"
 msgstr "Демонстраційне вікно"
 
+msgid "Water tank"
+msgstr "Резервуар для води"
+
 msgid "Will try to continue..."
 msgstr "Спроба продовжити…"
 
@@ -966,6 +1125,9 @@ msgstr "Демонстрації Xcos"
 msgid "Xcos Help"
 msgstr "Довідка з Xcos"
 
+msgid "Xcos data types"
+msgstr "Типи даних Xcos"
+
 msgid "Xcos error"
 msgstr "Помилка Xcos"
 
@@ -983,8 +1145,14 @@ msgstr ""
 "одразу після підтвердження (тобто натискання кнопки «Гаразд» або "
 "«Обчислити», а також під час кожного завантаження діаграми)."
 
+msgid "Zero Crossing"
+msgstr "Перетин нульового рівня"
+
 msgid "Zero crossing detection"
 msgstr "Визначення переходів через нуль"
+
+msgid "_IF_ Xcos block"
+msgstr "Блок _IF_ Xcos"
 
 msgid "comment"
 msgstr "коментар"
@@ -1034,3 +1202,80 @@ msgstr "вибране"
 
 msgid "weight"
 msgstr "вага"
+
+#~ msgid "Copy"
+#~ msgstr "Копіювати"
+
+#~ msgid "Cut"
+#~ msgstr "Вирізати"
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "НЕ ВДАЛОСЯ ЕКСПОРТУВАТИ: %s\n"
+
+#~ msgid "Group"
+#~ msgstr "Групувати"
+
+#~ msgid "Invert selection"
+#~ msgstr "Інвертувати вибір"
+
+#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
+#~ msgstr ""
+#~ "Поверхневе трасування моделі (перемикачі дискретних та неперервних частин)"
+
+#~ msgid "Paste"
+#~ msgstr "Вставити"
+
+#~ msgid "Redo"
+#~ msgstr "Повторити"
+
+#~ msgid "UnGroup"
+#~ msgstr "Розгрупувати"
+
+#~ msgid "Undo"
+#~ msgstr "Вернути"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "Невідома версія діаграми: "
+
+#~ msgid "Zoom In"
+#~ msgstr "Збільшити"
+
+#~ msgid "Zoom Out"
+#~ msgstr "Зменшити"
+
+#~ msgid "Same command executed again"
+#~ msgstr "Та сама команда, виконана знову"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "Не вдалося обмінятися даними з інтерпретатором"
+
+#~ msgid "Select all"
+#~ msgstr "Позначити все"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: помилковий вхідний параметр %s: мало бути svg або gif.\n"
+
+#~ msgid ""
+#~ "Unable to load the HDF5 library. \n"
+#~ "Expecting version %s ; Getting version %s ."
+#~ msgstr ""
+#~ "Не вдалося завантажити бібліотеку HDF5. \n"
+#~ "Потрібна версія — %s; Поточна версія — %s."
+
+#, c-format
+#~ msgid "%s: Unable to import from data from %s"
+#~ msgstr "%s: не вдалося імпортувати дані з %s"
+
+#~ msgid "Scicos data types"
+#~ msgstr "Типи даних Scicos"
+
+#~ msgid "_IF_ Scicos block"
+#~ msgstr "Блок _IF_ Scicos"
+
+#~ msgid ""
+#~ "Saxon provides only an immutable DOM, please configure another implementation"
+#~ msgstr ""
+#~ "У Saxon передбачено лише незмінні об’єктні моделі документів (DOM), "
+#~ "скористайтеся іншою реалізацією моделей."

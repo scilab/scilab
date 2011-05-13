@@ -87,6 +87,10 @@ typedef struct {
 
 /** define scicos flag number */
 typedef enum {
+        /* Should not be used directly, set through the API. */
+        CosError                = -5,
+        
+        /* Valid simulation states */
         DerivativeState         = 0,
         OutputUpdate            = 1,
         StateUpdate             = 2,

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-29 12:24+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-05-07 12:23+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -83,10 +83,11 @@ msgstr "%s: Brak pamięci.\n"
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
 msgstr ""
+"%s: Nie znaleziono wyników dla właściwości ''%s'' i wartości ''%s''.\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s: Nie znaleziono wyników.\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -519,8 +520,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for parent: Figure or uimenu expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla rodzica: Oczekiwane typy Figure lub "
-"uimenu.\n"
+"%s: Nieprawidłowy typ dla rodzica: Oczekiwane typy Figure lub uimenu.\n"
 
 #, c-format
 msgid ""
@@ -622,7 +622,7 @@ msgid "&About Scilab..."
 msgstr "&Informacje o Scilab..."
 
 msgid "&Applications"
-msgstr "&Programy"
+msgstr "Narzędzia"
 
 msgid "&Axes properties"
 msgstr "&Właściwości osi"
@@ -648,9 +648,6 @@ msgstr "&Kolory"
 msgid "&Command History"
 msgstr "Historia poleceń"
 
-msgid "&Contributions"
-msgstr "Weź &udział"
-
 msgid "&Control"
 msgstr "&Sterowanie"
 
@@ -659,6 +656,9 @@ msgstr "&Kopiuj"
 
 msgid "&Copy to clipboard"
 msgstr "&Kopiuj do schowka"
+
+msgid "&Decrease font size"
+msgstr "Zmiejsz czcionkę"
 
 msgid "&Display current directory"
 msgstr "&Wyświetl katalog bierzący"
@@ -690,17 +690,29 @@ msgstr "&Parametry okna graficznego"
 msgid "&File"
 msgstr "&Plik"
 
+msgid "&File Exchange"
+msgstr "&File Exchange"
+
 msgid "&Font..."
 msgstr "&Czcionka..."
 
+msgid "&Forge"
+msgstr "&Forge"
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr "Poszukiwanie przyrostowe"
 
 msgid "&Interrupt"
 msgstr "&Zatrzymaj"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Linki w sieci"
 
 msgid "&Load environment..."
 msgstr "&Załaduj środowisko..."
@@ -783,9 +795,6 @@ msgstr "Przeglądarka zmiennych"
 msgid "&Vectorial export"
 msgstr "&Eksportowanie wektorowe"
 
-msgid "&Links"
-msgstr "&Linki w sieci"
-
 msgid "&Xcos"
 msgstr "&Xcos"
 
@@ -816,6 +825,21 @@ msgstr "Dodaj kolor z listy"
 
 msgid "All %s files"
 msgstr "Wszystkie %s pliki"
+
+msgid "All Encapsulated PS files"
+msgstr "Wszystkie pliki EPS"
+
+msgid "All PDF files"
+msgstr "Wszystkie pliki PDF"
+
+msgid "All PNG image files"
+msgstr "Wszystkie pliki PNG"
+
+msgid "All Postscript files"
+msgstr "Wszystkie pliki PS"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "Wszystkie pliki RTF"
 
 msgid "All Scilab files"
 msgstr "Wszystkie pliki Scilab"
@@ -930,8 +954,11 @@ msgstr "Kopiuj"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr "Copyright (c) 1989-2011 (INRIA)"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "Nie udało się znaleść ani konsoli ani InterpreterManagement"
 
 msgid "Could not open: "
 msgstr "Nie mogę otworzyć: "
@@ -968,6 +995,12 @@ msgstr "Błąd podczas exportowania"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Błąd. Sygnał został złapany.\n"
+
+msgid "Evaluate selection with echo"
+msgstr "Wykonaj zaznaczenie, z echem"
+
+msgid "Evaluate selection with no echo"
+msgstr "Wykonaj zaznaczenie, bez echa"
 
 msgid "Execute into Scilab"
 msgstr "Wykonaj w Scilab"
@@ -1029,6 +1062,9 @@ msgstr "Pomoc o wybranym słowie kluczowym"
 msgid "Impossible to get current look and feel"
 msgstr "Nie można uzyskać bieżącego wyglądu i czucia"
 
+msgid "In&crease font size"
+msgstr "Zwiększ czcionkę"
+
 msgid "Italic"
 msgstr "Kursywa"
 
@@ -1059,7 +1095,7 @@ msgid "Loading help browser..."
 msgstr "Ładowanie przeglądarki pomocy..."
 
 msgid "M&odule manager - ATOMS"
-msgstr "ATOMS - menadżer M&odule"
+msgstr "&ATOMS - menadżer modułów zewn."
 
 msgid "Menu"
 msgstr "Menu"
@@ -1072,7 +1108,7 @@ msgid "Menu status"
 msgstr "Status menu"
 
 msgid "Module manager - ATOMS"
-msgstr "Moduł zarządzania - ATOMS"
+msgstr "ATOMS - menadżer modułów zewn."
 
 msgid "Monospaced"
 msgstr "Maszynowa"
@@ -1179,8 +1215,14 @@ msgstr "&Przykłady"
 msgid "Scilab &Help"
 msgstr "&Pomoc Scilab"
 
+msgid "Scilab &Online Help"
+msgstr "Pomoc on-line Scilab"
+
 msgid "Scilab &Web Site"
 msgstr "&Strona internetowa Scilab"
+
+msgid "Scilab &Wiki"
+msgstr "Wiki Scilaba"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1564,6 +1606,11 @@ msgstr ""
 "Nieprawidłowa wartość dla właściwości '%s': oczekiwano łańcuch lub 1 x %d "
 "wektor wierszowy liczb rzeczywistych\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+"Nieprawidłowa wartość własności '%s': Oczekiwano wartości pomiędzy 0 a 1.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1641,3 +1688,37 @@ msgstr "odznaczony"
 
 msgid "yellow"
 msgstr "żółty"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr ""
+#~ "%s: Brak znalezionych wyników dla właściwości \"%s\" oraz wartości \"%s\".\n"
+
+#~ msgid "&Editor"
+#~ msgstr "&Edytor"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Uruchom edytor textu Scilab"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "Wybierz plik do otwarcia w edytorze tekstowym Scilab"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: Wystąpił wyjątek: %s"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: Nie znaleziono wyników.\n"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&Zawiadomienie o błędzie"
+
+#~ msgid "&Contributions"
+#~ msgstr "Weź &udział"
+
+#~ msgid "&Web links"
+#~ msgstr "&Linki w sieci"

@@ -1041,8 +1041,8 @@ function st = st_run(st)
     end
 
     if (st.platform=="linux") & (~LINUX) then
-        st.status = status_set_id(status,10);
-        st.status = status_set_message(status,"skipped : Linux only");
+        st.status = status_set_id(st.status,10);
+        st.status = status_set_message(st.status,"skipped : Linux only");
         return;
     end
 

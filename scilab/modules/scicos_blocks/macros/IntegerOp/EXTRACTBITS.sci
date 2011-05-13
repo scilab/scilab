@@ -48,18 +48,18 @@ case 'set' then
             gettext("&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"); gettext("&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"); ..
             gettext("&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"); gettext("&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"); ..
             gettext("&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': [Start, End]");" "],..
-          [gettext("Data Type (3:int32, 4:int16, 5:int8, ...)"); gettext("Bits to extract"); ..
+          [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Bits to extract"); ..
             gettext("Number of Bits or Index of Bit"); gettext("Treat Bit Field as an Integer (0:No, 1:Yes)")],..
           list('vec',1,'vec',1,'vec',-1,'vec',1), exprs);
 
     if ~ok then break,end
     bitstr = strcat(string(bit(:))," ")
     if (rule < 1) | (rule > 5) then
-        block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %d."), rule), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Bits to Extract"), rule), ..
           msprintf(gettext("Must be in the interval %s."), "[1, 5]"));
         ok = %f;
     elseif scal < 0 | scal > 1 then
-        block_parameter_error(msprintf(gettext("Wrong value for ''Treat Bit Field as an Integer'' parameter: %d."), scal), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Treat Bit Field as an Integer"), scal), ..
         msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
         ok = %f
     else
@@ -68,18 +68,18 @@ case 'set' then
 
     if (rule==3)|(rule==4) then
       if (size(bit,'*') ~= 1) then
-          block_parameter_error(msprintf(gettext("Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+          block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
           gettext("Must be a single value."));
           ok=%f;
       else numb=bit;
       end
     elseif (rule==5)
     if (size(bit,'*') ~= 2) then
-        block_parameter_error(msprintf(gettext("Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+        block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
           gettext("Must have this form: [Start, End]."));
         ok=%f;
     elseif bit(1) > bit(2) then
-        block_parameter_error(msprintf(gettext("Wrong values for ''Number of Bits or Index of Bit'' parameter: %s."), bitstr), ..
+        block_parameter_error(msprintf(gettext("Wrong values for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
           msprintf(gettext("''Start'' must be less than ''End''.")));
         ok=%f;
     else numb=bit(2)-bit(1);
@@ -92,7 +92,7 @@ case 'set' then
       if (Datatype==3 | Datatype==6) then
 
         if or(bit(:) > 31) | or(bit(:) < 0) then
-            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+            block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
             msprintf(gettext("Indexes must be in the interval %s."), "[0, 31]"));
             ok=%f;
       end
@@ -131,7 +131,7 @@ case 'set' then
     end
     elseif (Datatype==4 | Datatype==7) then
         if or(bit(:) > 15) | or(bit(:) < 0) then
-            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+            block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
                 msprintf(gettext("Indexes must be in the interval %s."), "[0, 15]"));
             ok=%f;
         end
@@ -170,7 +170,7 @@ case 'set' then
     end
     elseif (Datatype == 5 | Datatype == 8) then
         if or(bit(:) > 7) | or(bit(:) < 0) then
-            block_parameter_error(msprintf(gettext("Wrong value for ''Bits to Extract'' parameter: %s."), bitstr), ..
+            block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Number of Bits or Index of Bit"), bitstr), ..
                 msprintf(gettext("Indexes must be in the interval %s."), "[0, 7]"));
             ok=%f;
         end
@@ -208,7 +208,7 @@ case 'set' then
         end
     end
     else
-        block_parameter_error(msprintf(gettext("Wrong value for ''Data Type'' parameter: %d."), Datatype), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Data Type"), Datatype), ..
             msprintf(gettext("Must be in the interval %s."), "[3, 8]"));
         ok=%f;
     end

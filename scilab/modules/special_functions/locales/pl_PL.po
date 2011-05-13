@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 17:16+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-11-09 09:12+0000\n"
 "Last-Translator: Jarosław Ogrodnik <nobodythere@gmail.com>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -70,16 +70,8 @@ msgstr ""
 "dokładności\n"
 
 #, c-format
-msgid "Function %s is obsolete."
-msgstr "Funkcja %s jest przestarzała."
+#~ msgid "Function %s is obsolete."
+#~ msgstr "Funkcja %s jest przestarzała."
 
-#, c-format
-msgid "Please use %s instead."
-msgstr ""
-
-#, c-format
-msgid "This function will be permanently removed in Scilab %s"
-msgstr ""
-
-msgid "Warning: "
-msgstr "Ostrzeżenie: "
+#~ msgid "Warning: "
+#~ msgstr "Ostrzeżenie: "

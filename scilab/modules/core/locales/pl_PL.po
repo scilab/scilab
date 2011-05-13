@@ -7,23 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-09-29 13:19+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-07 12:58+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Scilab Consortium (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "Copyright (c) 1989-2010 (INRIA)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid "  loading initial environment"
 msgstr "  ładowanie środowiska początkowego"
@@ -575,9 +566,17 @@ msgstr ""
 "%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub skalara.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego #%d: oczekiwane skompilowane makro.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
@@ -615,6 +614,8 @@ msgstr "%s: Złe typy parametrów wejściowych\n"
 #, c-format
 msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
 msgstr ""
+"%s: Niewłaściwy typ wejściowego argumentu nr  %d: Oczekiwano liczbę "
+"całkowirtą.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -683,6 +684,10 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego #%d:oczekiwano wartości "
 "całkowitej (int).\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -804,7 +809,7 @@ msgid "&?"
 msgstr "&?"
 
 msgid "&Applications"
-msgstr "&Aplikacje"
+msgstr "Narzędzia"
 
 msgid "&Control"
 msgstr "&Sterowanie"
@@ -840,6 +845,15 @@ msgstr "Sprawdzanie: %s\n"
 
 msgid "Commands:\n"
 msgstr "Polecenia:\n"
+
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Scilab Consortium (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "Copyright (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr "Copyright (c) 1989-2011 (INRIA)\n"
 
 msgid "Do you really want to abort computation (y or n ?) \n"
 msgstr "Czy na pewno chcesz przerwać obliczenia (y(tak) lub n ?) \n"
@@ -1039,8 +1053,7 @@ msgstr "Niezdefiniowana zmienna %s.\n"
 
 msgid "Unexpected opcode, please report into the Scilab bug tracker."
 msgstr ""
-"Nieoczekiwany opcode, proszę zgłosić na raportowanie błędów programu "
-"Scilab."
+"Nieoczekiwany opcode, proszę zgłosić na raportowanie błędów programu Scilab."
 
 #, c-format
 msgid "Unqueuing %s - No option.\n"
@@ -1069,15 +1082,12 @@ msgid "Warning"
 msgstr "Ostrzeżenie"
 
 #, c-format
+msgid "Warning: Could not find %s\n"
+msgstr "Ostrzeżenie: Nie można znaleźć %s\n"
+
+#, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "Ostrzeżenie: Problemy z %s.\n"
-
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"Ostrzeżenia: zespół operacyjny Konsorcjum Scilab\n"
-"nie zapewnia i nie wspiera tej wersji programu Scilab zbudowanej z\n"
 
 msgid "Your global variables are:"
 msgstr "Twoje zmienne globalne:"
@@ -1144,3 +1154,136 @@ msgstr "trzeci"
 
 msgid "tlist not completely filled.\n"
 msgstr "tlist'a nie w pełni wypełniona.\n"
+
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: Wymaga Scipad.\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "Tylko dla Microsoft Windows"
+
+#~ msgid "Powershell not found."
+#~ msgstr "Nie znaleeziono Powershell."
+
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: Wystąpił błąd.\n"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "Wersja TCL: %s"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "Architektura kompilatora: %s"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "Skompilowane z: %s"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "Wersja XML: %s"
+
+#~ msgid "Enable"
+#~ msgstr "Włącz"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "Data kompilacji: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "Czas kompilacji: %s"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "Wersja: %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "Wersja PCRE: %d%d"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "Wersja TK: %s"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               Copyright (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               Copyright (c) 1989-2007 (ENPC)\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Scilab Consortium (DIGITEO)\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: Zły typ parametru #%d: Oczekiwano skalara, '%s' lub '%s'.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Zła wartość parametru wejściowego #%d: Oczekiwano skalara, '%s' lub "
+#~ "'%s'.\n"
+
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "Ostrzeżenia: zespół operacyjny Konsorcjum Scilab\n"
+#~ "nie zapewnia i nie wspiera tej wersji programu Scilab zbudowanej z\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Błąd przydzielenia pamięci\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Niemożna przydzielić więcej pamięci.\n"
+#~ "Spróbuj gstacksize('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: Nie można przydzielić więcej pamięci.\n"
+#~ "Spróbuj stacksize('max').\n"
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: Niepoprawna wartość '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: Nieprawidłowa wartość VERSION pliku %s\n"
+
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: Nieprawidłowa wartość VERSION pliku %s.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ parametru wejściowego #%d: oczekiwano nazwy zmiennej.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ parametru wejściowego #%d: oczekiwano skalara, '%s' "
+#~ "lub '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano "
+#~ "wartości całkowitej.\n"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)\n"

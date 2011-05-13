@@ -455,7 +455,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block,int flag)
 
 		if (nPoints!=Ydim[7]) 
 		{
-			Coserror(_("The Time vector type is not ""double"".\n")); 
+			Coserror(_("The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"), nPoints, 1, Ydim[7], Ydim[8]);
 			/*set_block_error(-3);*/
 			*(block->work)=NULL;
 			scicos_free(ptr->work);

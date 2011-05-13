@@ -62,12 +62,16 @@
       <menuitem action="ToUpperCaseAction" label="Make Selection Uppercase"/>
       <menuitem action="ToLowerCaseAction" label="Make Selection Lowercase"/>
       <menuitem action="CapitalizeAction" label="Capitalize Selection;Capitalize character"/>
+      <menuitem action="DoubleQuoteStringAction" label="Single to double quote strings"/>
     </menu>
     <menu label="Search" mnemonic="H">
       <menuitem action="FindAction" label="Find/Replace"/>
       <menuitem action="FindNextAction" label="Find Next"/>
       <menuitem action="FindPreviousAction" label="Find Previous"/>
       <menuitem action="IncrementalSearchAction" label="Incremental Search"/>
+      <separator/>
+      <menuitem action="SearchWordInFilesAction" label="Find word in files"/>
+      <menuitem action="SearchFilesAction" label="Find files"/>
       <separator/>
       <menuitem action="SetAnchorAction" label="Set anchor"/>
       <menuitem action="RemoveAnchorAction" label="Remove anchor"/>
@@ -110,6 +114,8 @@
       <menuitem action="ExecuteFileIntoScilabAction" label="... file with no echo"/>
       <menuitem action="LoadIntoScilabAction" label="... file with echo"/>
       <menuitem action="EvaluateSelectionAction" label="... the selection with echo;... until the caret, with echo"/>
+      <separator/>
+      <menuitem action="SaveAndExecuteFileAction" label="Save and execute"/>
     </menu>
     <menu label="?">
       <menuitem action="HelpAction" label="SciNotes help"/>
@@ -159,5 +165,6 @@
     <button action="IncrementalSearchAction" tooltip="Incremental Search" icon="16x16/actions/go-bottom.png"/>
     <separator/>
     <button action="ExecuteFileIntoScilabAction" tooltip="Execute" icon="media-playback-start.png"/>
+    <button action="SaveAndExecuteFileAction" tooltip="Execute" icon="16x16/actions/save-and-execute.png"/>
   </ToolBar>
 </Configuration>

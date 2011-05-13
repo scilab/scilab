@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2010-07-18 05:40+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid ""
@@ -143,6 +143,15 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤 : 至少應有 %d 個.\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
@@ -185,6 +194,29 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr "%s: 第 %d 輸入參數型態錯誤: 變換函式(Transpose)%s才對.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
@@ -307,3 +339,21 @@ msgstr ""
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr ""
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr "%s: 第#%d個輸入參數長度有誤: 應和第 #%d個參數同長度才對"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s: 第#%d個輸入參數型別有誤: 應和第 #%d個參數同長度才對\n"

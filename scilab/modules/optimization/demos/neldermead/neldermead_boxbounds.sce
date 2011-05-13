@@ -1,6 +1,7 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -58,7 +59,7 @@ function demo_boxbounds()
   mprintf(_("Searching (please wait) ...\n"));
   nm = nmplot_search(nm);
   mprintf(_("...Done\n"));
-  nmplot_display(nm);
+  disp(nm);
   mprintf("==========================\n");
   xcomp = nmplot_get(nm,"-xopt");
   mprintf("x computed = %s\n",strcat(string(xcomp), " "));

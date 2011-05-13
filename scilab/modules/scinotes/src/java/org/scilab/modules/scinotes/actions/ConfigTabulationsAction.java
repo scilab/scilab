@@ -37,7 +37,6 @@ import javax.swing.JScrollBar;
 import javax.swing.JSpinner;
 import javax.swing.KeyStroke;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.text.View;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -46,10 +45,9 @@ import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
 import org.scilab.modules.scinotes.ScilabView;
-import org.scilab.modules.scinotes.ScilabPlainView;
 import org.scilab.modules.scinotes.TabManager;
-import org.scilab.modules.scinotes.utils.SciNotesMessages;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
 
 /**
  * ConfigTabulationsAction Class
@@ -226,7 +224,6 @@ public class ConfigTabulationsAction extends DefaultAction {
                     ScilabEditorPane sep = getEditor().getTextPane();
                     IndentManager indent = sep.getIndentManager();
                     ScilabDocument doc = (ScilabDocument) sep.getDocument();
-                    int currentLine = doc.getDefaultRootElement().getElementIndex(sep.getCaretPosition());
                     JScrollBar sb = sep.getScrollPane().getHorizontalScrollBar();
                     int val = -1;
                     if (sb != null) {

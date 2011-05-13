@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-21 16:58+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-12 23:19+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -188,11 +188,56 @@ msgstr ""
 "%s: Неверные значения входного параметра №%d: степень должна принадлежать "
 "множеству {%s}.\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr "Оценка спектральной плотности ARMA:"
+
 msgid "Arma identification"
 msgstr "Идентификация модели ARMA"
 
+msgid "Arma simulation and identification"
+msgstr "Моделирования и идентификация ARMA"
+
+msgid "Arma, Spectral power estimation"
+msgstr "ARMA: оценка спектральной плотности"
+
+msgid "Arma, bidimensional version"
+msgstr "ARMA: двумерная версия"
+
+msgid "Bode plots"
+msgstr "Графики Боде"
+
+msgid "Discrete IIR filter"
+msgstr "Дискретный БИХ-фильтр"
+
+msgid "IIR filter design"
+msgstr "Проектирование БИХ-фильтра"
+
+msgid "Identification ARX (least square):"
+msgstr "Идентификация ARX (МНК):"
+
+msgid "Identification ARX (least square): "
+msgstr "Идентификация ARX (МНК): "
+
+msgid "Minimax FIR filter"
+msgstr "Минимаксный КИХ-фильтр"
+
+msgid "Minimax FIR filter design"
+msgstr "Проектирование минимаксного КИХ-фильтра"
+
+msgid "Press Return to continue ... \n"
+msgstr "Нажмите клавишу Enter для продолжения... \n"
+
 msgid "Signal Processing"
 msgstr "Обработка сигналов"
+
+msgid "Simulation of an ARMAX process:"
+msgstr "Моделирование процесса ARMAX:"
+
+msgid "Simulation of an ARMAX process: "
+msgstr "Моделирование процесса ARMAX: "
+
+msgid "Spectral Estimation"
+msgstr "Оценка спектральной плотности"
 
 msgid "Spectral power"
 msgstr "Спектральная мощность"
@@ -203,6 +248,12 @@ msgstr "Теоретическое значение"
 msgid "Using macro mese"
 msgstr "Использование макроса mese"
 
+msgid "Wiegner filter"
+msgstr "Фильтр Винера"
+
+msgid "Window FIR filters"
+msgstr "КИХ-фильтры с окнами"
+
 msgid "estimates xf"
 msgstr "оценки xf"
 
@@ -212,8 +263,20 @@ msgstr "оценки xs"
 msgid "frequency"
 msgstr "частота"
 
+msgid "length 33"
+msgstr "длина 33"
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr "срез низких частот в [.23,.27]"
+
 msgid "real state"
 msgstr "истинное состояние"
 
 msgid "spectral estimate"
 msgstr "оценка спектральной плотности"
+
+#~ msgid "Theoritical value"
+#~ msgstr "Теоретическое значение"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "ARMA идентификация"

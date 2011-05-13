@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-07-29 09:40+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -823,3 +823,231 @@ msgstr "Versió"
 
 msgid "WebSite"
 msgstr "Lloc web"
+
+#, c-format
+#~ msgid "%s: No version of the module ''%s'' is installed.\n"
+#~ msgstr "%s: El mòdul ''%s'' no té cap versió instal·lada.\n"
+
+#, c-format
+#~ msgid "%s: the module ''%s - %s'' is not installed.\n"
+#~ msgstr "%s: El mòdul ''%s - %s'' no està instal·lat.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà o "
+#~ "una cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#~ msgid "Automaticaly Installed"
+#~ msgstr "Instal·lat automàticament"
+
+#, c-format
+#~ msgid "%s: The version ''%s'' of The module ''%s'' is not installed.\n"
+#~ msgstr "%s: No està instal·lada la versió ''%s'' del mòdul ''%s''.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The following modules are installed in the user section, you cannot add "
+#~ "them in the autoload list for all users:\n"
+#~ msgstr ""
+#~ "%s: Aquests mòduls estan instal·lats a la secció d'usuari, i no els podeu "
+#~ "afegir a la llista automàtica per a tots els usuaris:\n"
+
+#~ msgid "Installing..."
+#~ msgstr "S'està instal·lant..."
+
+#~ msgid "Updating..."
+#~ msgstr "S'està actualitzant..."
+
+#~ msgid "Remove done !"
+#~ msgstr "S'ha realitzat l'eliminació"
+
+#~ msgid "Atoms"
+#~ msgstr "Atoms"
+
+#~ msgid "Installation done !"
+#~ msgstr "S'ha realitzat la instal·lació"
+
+#~ msgid "Atoms error"
+#~ msgstr "Instal·lació d'Atoms"
+
+#~ msgid "Installation failed !"
+#~ msgstr "Ha fallat la instal·lació"
+
+#~ msgid "Remove failed !"
+#~ msgstr "Ha fallat l'eliminació"
+
+#~ msgid "Removing..."
+#~ msgstr "S'està eliminant..."
+
+#~ msgid "Load done !"
+#~ msgstr "S'ha realitzat la càrrega"
+
+#~ msgid "Load failed !"
+#~ msgstr "Ha fallat la càrrega"
+
+#~ msgid "Update failed !"
+#~ msgstr "Ha fallat l'actualització"
+
+#~ msgid "Update done !"
+#~ msgstr "S'ha realitzat l'actualització"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
+#~ "length expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una longitud incorrecta: Ha de ser una "
+#~ "cadena de 32 caràcters.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that start with "
+#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
+#~ "caràcters que comenci per ''http://'', ''ftp://'' o ''file://''.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una "
+#~ "estructura.\n"
+
+#, c-format
+#~ msgid "%s: The config file ("
+#~ msgstr "%s: El fitxer de configuració ("
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una sola "
+#~ "cadena de caràcters.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un sol "
+#~ "text.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+#~ ".tgz or .zip expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un sol text "
+#~ "que acabi amb .tar.gz, .tgz o .zip.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+#~ "the ScilabVersion field\n"
+#~ msgstr ""
+#~ "%s: El fitxer %s té un format incorrecte. La caixa d'eines %s - %s no conté "
+#~ "el camp ScilabVersion\n"
+
+#, c-format
+#~ msgid "%s: The file %s is not well formated at line %d\n"
+#~ msgstr "%s: El fitxer %s té un format incorrecte a la línia %d\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+#~ "or ''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un text que "
+#~ "contingui ''TOOLBOXES'' o ''DESCRIPTION''.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un text que "
+#~ "acabi amb DESCRIPTION.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: You have not enought rights to remove any version of the package %s.\n"
+#~ msgstr "%s: No teniu permisos per a eliminar cap versió del paquet %s.\n"
+
+#, c-format
+#~ msgid "%s: You have not enought rights to remove the package %s (%s).\n"
+#~ msgstr "%s: No teniu permisos per a eliminar el paquet %s (%s).\n"
+
+#~ msgid "No Atoms module available. Check your Internet connection."
+#~ msgstr ""
+#~ "El mòdul Atoms no està disponible. Comproveu la vostra connexió a Internet."
+
+#~ msgid "Available Modules"
+#~ msgstr "Mòduls Disponibles"
+
+#~ msgid "Module Description"
+#~ msgstr "Descripció del mòdul"
+
+#~ msgid "Load"
+#~ msgstr "Carrega"
+
+#~ msgid "No module selected"
+#~ msgstr "No heu seleccionat cap mòdul"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un sol text.\n"
+
+#, c-format
+#~ msgid "%s: An error accured while loading ''%s-%s''.\n"
+#~ msgstr "%s: S'ha produït un error en carregar el ''%s-%s''.\n"
+
+#~ msgid "Modules"
+#~ msgstr "Mòduls"
+
+#~ msgid "No Atoms module is available. Please, check your Internet connection."
+#~ msgstr ""
+#~ "El mòdul Atoms no està disponible. Comproveu la vostra connexió a Internet."
+
+#~ msgid "No Atoms module is available: your repository list is empty."
+#~ msgstr "El mòdul Atoms no està disponible: la vostra llista és buida."
+
+#, c-format
+#~ msgid "%s: An error occurred while loading ''%s-%s''.\n"
+#~ msgstr "%s: Hi ha hagut un error en carregar ''%s-%s''.\n"

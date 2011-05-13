@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-07-29 09:54+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-09 14:18+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -647,9 +647,6 @@ msgstr "&Colors"
 msgid "&Command History"
 msgstr ""
 
-msgid "&Contributions"
-msgstr "&Contribuïdors"
-
 msgid "&Control"
 msgstr "&Control"
 
@@ -658,6 +655,9 @@ msgstr "&Copia"
 
 msgid "&Copy to clipboard"
 msgstr "&Copia al porta-retalls"
+
+msgid "&Decrease font size"
+msgstr ""
 
 msgid "&Display current directory"
 msgstr "Mostra el &directori actual"
@@ -689,17 +689,29 @@ msgstr "Propietats de la &figura"
 msgid "&File"
 msgstr "&Fitxer"
 
+msgid "&File Exchange"
+msgstr ""
+
 msgid "&Font..."
 msgstr "&Lletra..."
 
+msgid "&Forge"
+msgstr ""
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr ""
 
 msgid "&Interrupt"
 msgstr "&Interromp"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "&Enllaços"
 
 msgid "&Load environment..."
 msgstr "&Carrega l'entorn..."
@@ -782,9 +794,6 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "Exportació &vectorial"
 
-msgid "&Links"
-msgstr "&Enllaços"
-
 msgid "&Xcos"
 msgstr "&Xcos"
 
@@ -815,6 +824,21 @@ msgstr "Afegiu un color a la llista"
 
 msgid "All %s files"
 msgstr "Tots els fitxers %s"
+
+msgid "All Encapsulated PS files"
+msgstr ""
+
+msgid "All PDF files"
+msgstr ""
+
+msgid "All PNG image files"
+msgstr ""
+
+msgid "All Postscript files"
+msgstr ""
+
+msgid "All RTF (Rich Text Format) files"
+msgstr ""
 
 msgid "All Scilab files"
 msgstr "Tots els fitxers d'Scilab"
@@ -929,8 +953,11 @@ msgstr "Copia"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
 
 msgid "Could not open: "
 msgstr ""
@@ -967,6 +994,12 @@ msgstr "Error a l'exportació"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Error. S'ha capturat una senyal.\n"
+
+msgid "Evaluate selection with echo"
+msgstr ""
+
+msgid "Evaluate selection with no echo"
+msgstr ""
 
 msgid "Execute into Scilab"
 msgstr "Executa a l'Scilab"
@@ -1027,6 +1060,9 @@ msgstr "Ajuda sobre una paraula seleccionada"
 
 msgid "Impossible to get current look and feel"
 msgstr "No s'ha pogut recuperar l'aparença actual"
+
+msgid "In&crease font size"
+msgstr ""
 
 msgid "Italic"
 msgstr ""
@@ -1177,8 +1213,14 @@ msgstr "&Demonstracions de Scilab"
 msgid "Scilab &Help"
 msgstr "A&juda de Scilab"
 
+msgid "Scilab &Online Help"
+msgstr ""
+
 msgid "Scilab &Web Site"
 msgstr "Pàgina &Web de Scilab"
+
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1580,6 +1622,10 @@ msgstr ""
 "La propietat '%s' té un valor incorrecte: Ha de ser una cadena de text o un "
 "vector de nombres reals de (1 x %d).\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1656,3 +1702,70 @@ msgstr "inhabilitat"
 
 msgid "yellow"
 msgstr "groc"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr ""
+#~ "El mòdul '%s' de Scilab està deshabilitat en els modes -nogui o -nwni."
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"Avís: Malgrat els missatges anteriors, heu escollit utilitzar el "
+#~ "Scilab amb capacitats gràfiques avançades. Escriviu \"\"help usecanvas\"\" "
+#~ "per més informació.\")"
+
+#~ msgid "&Editor"
+#~ msgstr "&Editor"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "&Contributions"
+#~ msgstr "&Contribuïdors"
+
+#~ msgid "&Web links"
+#~ msgstr "&Enllaços"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "Executa el Scipad"
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "Arxius de &notícies"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "&Base de dades d'errors i consultes"
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "Seleccioneu un fitxer a obrir amb el Scipad"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: No s'ha trobat cap resultat.\n"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr ""
+#~ "%s: No s'ha trobat cap resultat per a la propietat ''%s'' i el valor "
+#~ "''%s''.\n"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Executar l'editor de text de l'Scilab"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "Seleccioneu un fitxer a obrir amb l'editor de l'Scilab"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2009 (INRIA)"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Voleu sortir de l'Scilab?"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: S'ha produït una excepció: %s"

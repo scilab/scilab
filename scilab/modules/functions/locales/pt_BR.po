@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-22 10:52+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-03 21:57+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
@@ -75,6 +75,11 @@ msgstr "%s: Nenhum arquivo com extensão %s encontrado em %s\n"
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: Por favor verifique: %s\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr ""
+"%s: função privada: não é possível acessar esta função diretamente.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -257,3 +262,63 @@ msgstr "linha %s [%s chamada, %s segundos] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "linha %s [%s chamadas, %s segundos] :: "
+
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr "%s: Não há arquivo de nome %s.sci no diretório de biblioteca %s.\n"
+
+#~ msgid "&Insert"
+#~ msgstr "&Inserir"
+
+#~ msgid "Insert"
+#~ msgstr "Inserir"
+
+#~ msgid "&Edit"
+#~ msgstr "&Editar"
+
+#~ msgid "UnZoom"
+#~ msgstr "Remover zoom"
+
+#~ msgid "&Tools"
+#~ msgstr "&Ferramentas"
+
+#~ msgid "&File"
+#~ msgstr "&File"
+
+#~ msgid "File"
+#~ msgstr "Arquivo"
+
+#~ msgid "Zoom"
+#~ msgstr "Ampliar"
+
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "A função %s está obsoleta."
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "Esta função será permanentemente removida no Scilab %s"
+
+#~ msgid "Editer"
+#~ msgstr "Editor"
+
+#~ msgid "3D Rot."
+#~ msgstr "Rotação 3D."
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr ""
+#~ "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
+#~ "inteiro.\n"
+
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "AVISO: Por favor, use %s no lugar.\n"
+
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "AVISO: Esta função será removida permanentemente no Scilab %s.\n"
+
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "AVISO: A função %s está obsoleta.\n"

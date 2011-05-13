@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2009-10-28 03:14+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid ""
@@ -143,6 +143,15 @@ msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 
 #, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
 
@@ -184,6 +193,29 @@ msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
+"%s: %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
+"is expected.\n"
 msgstr ""
 
 #, c-format
@@ -307,3 +339,21 @@ msgstr "sparse：致命错误发生于文件`%s'的第%d行。\n"
 #, c-format
 msgid "|||  Starting new matrix  |||\n"
 msgstr "|||  开始新矩阵  |||\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as the input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该与输入参数#%d的大小相同。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Same size as input argument #%d "
+#~ "expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该与输入参数#%d同样大小。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be same size as input argument "
+#~ "#%d"
+#~ msgstr "%s：输入参数#%d的大小错误：必须跟输入参数#%d同样大小。"

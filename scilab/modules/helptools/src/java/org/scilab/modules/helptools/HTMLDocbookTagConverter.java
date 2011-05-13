@@ -91,6 +91,8 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     protected String currentId;
     protected String indexFilename = "index" /*UUID.randomUUID().toString()*/ + ".html";
 
+    protected boolean isToolbox;
+
     /**
      * Constructor
      * @param inName the name of the input stream
@@ -118,6 +120,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         scilabLexer = new ScilabLexer(primConf, macroConf);
         this.urlBase = urlBase;
         this.linkToTheWeb = urlBase != null && !urlBase.equals("scilab://");
+        this.isToolbox = isToolbox;
         if (isToolbox) {// we generate a toolbox's help
             HTMLScilabCodeHandler.setLinkWriter(new AbstractScilabCodeHandler.LinkWriter() {
                     public String getLink(String id) {
@@ -753,14 +756,14 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
         String role = attributes.get("role");
         String str;
         if (role == null) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
-                if (prependToProgramListing != null) {
-                    code = prependToProgramListing + code;
-                }
-                if (appendToProgramListing != null) {
-                    code += appendToProgramListing;
-                }
-                str = encloseContents("div", "programlisting", code);
+            String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
+            if (prependToProgramListing != null) {
+                code = prependToProgramListing + code;
+            }
+            if (appendToProgramListing != null) {
+                code += appendToProgramListing;
+            }
+            str = encloseContents("div", "programlisting", code);
         } else {
             if (role.equals("xml")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "xmlcode", xmlLexer.convert(HTMLXMLCodeHandler.getInstance(), contents)));
@@ -769,7 +772,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
             } else if (role.equals("java")) {
                 str = encloseContents("div", "programlisting", encloseContents("pre", "ccode", javaLexer.convert(HTMLCCodeHandler.getInstance(), contents)));
             } else if (role.equals("exec")) {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
@@ -778,7 +781,7 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
                 }
                 str = encloseContents("div", "programlisting", code);
             } else {
-                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname), contents));
+                String code = encloseContents("pre", "scilabcode", scilabLexer.convert(HTMLScilabCodeHandler.getInstance(refname, currentFileName), contents));
                 if (prependToProgramListing != null) {
                     code = prependToProgramListing + code;
                 }
@@ -1000,7 +1003,12 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
      * @throws SAXEception if an error is encountered
      */
     public String handleTerm(Map<String, String> attributes, String contents) throws SAXException {
-        return encloseContents("span", "term", contents);
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\"></a>" + encloseContents("span", "term", contents);
+        } else {
+            return encloseContents("span", "term", contents);
+        }
     }
 
     /**

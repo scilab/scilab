@@ -50,6 +50,7 @@
   <entry key="LoadIntoScilabAction">OSSCKEY L</entry>
   <entry key="ExecuteFileIntoScilabAction">OSSCKEY shift E</entry>
   <entry key="EvaluateSelectionAction">OSSCKEY E</entry>
+  <entry key="SaveAndExecuteFileAction">F5</entry>
 
   <entry key="FindAction">OSSCKEY F</entry>
   <entry key="FindNextAction">OSSCKEY K</entry>
@@ -60,6 +61,8 @@
   <entry key="GotoNextAnchorAction">OSSCKEY shift LESS</entry>
   <entry key="GotoPreviousAnchorAction">OSSCKEY LESS</entry>
   <entry key="CodeNavigatorAction">OSSCKEY G</entry>
+  <entry key="SearchWordInFilesAction">OSSCKEY shift F</entry>
+  <entry key="SearchFilesAction">OSSCKEY shift B</entry>
 
   <entry key="SciNotesCompletionAction">OSSCKEY SPACE</entry>
 

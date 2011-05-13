@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-09-26 07:58+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -855,3 +855,55 @@ msgstr "位相(y) (度)"
 
 msgid "rad/sec"
 msgstr "rad/sec"
+
+#
+# File: macros/black.sci, line: 185
+# File: macros/bode.sci, line: 101
+# File: macros/gainplot.sci, line: 87
+#~ msgid "Magnitude (Db)"
+#~ msgstr "マグニチュード (Db)"
+
+#
+# File: macros/cont_mat.sci, line: 35
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Linear dynamical system .\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 動的線システムを想定します。\n"
+
+#
+# File: macros/kpure.sci, line: 36
+#, c-format
+#~ msgid "%s: Infinite solution.\n"
+#~ msgstr "%s:  無限の解決策です。\n"
+
+#
+# File: macros/obsvss.sci, line: 23
+#, c-format
+#~ msgid "%s Wrong number of input arguments: %d or %d expected.\n"
+#~ msgstr "%s: 入力引数で不正な値: %d  または %d を想定します。\n"
+
+#
+# File: macros/obsvss.sci, line: 40
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 線状態の空間を想定します。\n"
+
+#
+# File: macros/plzr.sci, line: 21
+# File: macros/plzr.sci, line: 29
+#, c-format
+#~ msgid "%s: Wrong value for of input argument %d: Proper system expected.\n"
+#~ msgstr "%s: 入力引数 %d で不正な値: 適切なシステムを想定します。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Square system expected.\n"
+#~ "'),"
+#~ msgstr ""
+#~ "%s: 入力引数 #%d で不正なサイズ: 平方のシステムを想定します。\n"
+#~ "'),"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Pure imaginary  poles unexpected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な値: 純粋な虚部極を想定します。\n"

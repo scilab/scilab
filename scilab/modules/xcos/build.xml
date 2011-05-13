@@ -14,6 +14,7 @@
 <project name="xcos" default="jar">
   <import file="../../build.incl.xml"/>
   <property name="library.name" value="${library.xcos.name}"/>
+  <property name="library.title" value="Modeler and simulator for hybrid systems"/>
   <description>
       Build the Scilab xcos module
   </description>

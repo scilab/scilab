@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-06-21 09:22+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -151,11 +151,56 @@ msgid ""
 "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr "%s: 第#%d個輸入參數值有誤 :度數要在集合{%s}中.\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
 msgid "Arma identification"
 msgstr "Arma  識別"
 
+msgid "Arma simulation and identification"
+msgstr ""
+
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+msgid "Arma, bidimensional version"
+msgstr ""
+
+msgid "Bode plots"
+msgstr ""
+
+msgid "Discrete IIR filter"
+msgstr ""
+
+msgid "IIR filter design"
+msgstr ""
+
+msgid "Identification ARX (least square):"
+msgstr ""
+
+msgid "Identification ARX (least square): "
+msgstr ""
+
+msgid "Minimax FIR filter"
+msgstr ""
+
+msgid "Minimax FIR filter design"
+msgstr ""
+
+msgid "Press Return to continue ... \n"
+msgstr ""
+
 msgid "Signal Processing"
 msgstr "訊號處理"
+
+msgid "Simulation of an ARMAX process:"
+msgstr ""
+
+msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+msgid "Spectral Estimation"
+msgstr ""
 
 msgid "Spectral power"
 msgstr "波譜倍數"
@@ -166,6 +211,12 @@ msgstr "理論值"
 msgid "Using macro mese"
 msgstr "使用巨集mese"
 
+msgid "Wiegner filter"
+msgstr ""
+
+msgid "Window FIR filters"
+msgstr ""
+
 msgid "estimates xf"
 msgstr "計算xf"
 
@@ -174,6 +225,12 @@ msgstr "計算xs"
 
 msgid "frequency"
 msgstr "頻率"
+
+msgid "length 33"
+msgstr ""
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr ""
 
 msgid "real state"
 msgstr "真實的狀態"

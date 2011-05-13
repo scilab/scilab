@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-06-29 10:25+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-07 13:10+0000\n"
 "Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -157,11 +157,17 @@ msgstr "Znaczenie parametrów ml,mu"
 msgid "ODE 1D vector field"
 msgstr "Pole wektorowe ODE 1D"
 
+msgid "Reading a precomputed trajectory"
+msgstr ""
+
 msgid "Simulation"
 msgstr "Symulacja"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "symulacja układu mechanicznego z więzami holonomicznymi"
+
+msgid "Simulation with ode (needs a Fortran compiler)"
+msgstr "Simulacja dla RRZ (wymaga kompilatora Fortran)"
 
 msgid "Sphere"
 msgstr "Kula"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 16:50+0100\n"
-"PO-Revision-Date: 2008-11-20 11:34+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-29 10:11+0000\n"
+"Last-Translator: Jens Maucher <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -54,7 +54,7 @@ msgid "Aug"
 msgstr "August"
 
 msgid "Begin Session : "
-msgstr ""
+msgstr "Beginne Sitzung : "
 
 msgid "Dec"
 msgstr "Dezember"
@@ -109,3 +109,13 @@ msgstr "Mittwoch"
 
 msgid "filename not defined."
 msgstr "Dateiname nicht definiert."
+
+#~ msgid "// End Session   : "
+#~ msgstr "//Ende Sitzung: "
+
+#~ msgid "// Begin Session : "
+#~ msgstr "//Beginne Sitzung: "
+
+#~ msgid "Scilab history_manager module not installed.\n"
+#~ msgstr ""
+#~ "Scilabs Modul für die Verwaltung der Historie ist nicht installiert.\n"

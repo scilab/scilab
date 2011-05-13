@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-08-25 12:38+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-12 00:44+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -31,12 +31,25 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr "%s: 引数 %d の型が間違っています:　実数ベクトルを指定してください.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
+msgstr "%s: 入力および出力の行列の要素の数は同じとする必要があります.\n"
 
 msgid "A null assignment can have only one non-colon index"
 msgstr "ヌル値の代入ではコロンを使用しないインデックスのみを指定できます."
@@ -52,3 +65,8 @@ msgstr "無効なフィールド名です."
 
 msgid "Invalid index.\n"
 msgstr "不正なインデックスです.\n"
+
+# File: macros/%c_mclose.sci, line: 19
+#, c-format
+#~ msgid "%s: No such file opened file.\n"
+#~ msgstr "%s: いかなるファイルも開いていません。\n"

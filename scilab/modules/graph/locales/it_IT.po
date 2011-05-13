@@ -1,0 +1,56 @@
+# Italian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-12 15:42+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "Copy"
+msgstr "Copia"
+
+msgid "Cut"
+msgstr "Taglia"
+
+msgid "Delete"
+msgstr "Elimina"
+
+msgid "Group"
+msgstr "Raggruppa"
+
+msgid "Invert selection"
+msgstr "Inverti la selezione"
+
+msgid "Paste"
+msgstr "Incolla"
+
+msgid "Redo"
+msgstr "Ripeti l'ultima azione"
+
+msgid "Select all"
+msgstr "Seleziona tutto"
+
+msgid "UnGroup"
+msgstr "Separa"
+
+msgid "Undo"
+msgstr "Annulla l'ultima azione"
+
+msgid "Untitled"
+msgstr "Senza titolo"
+
+msgid "Zoom In"
+msgstr "Aumenta ingrandimento"
+
+msgid "Zoom Out"
+msgstr "Riduci ingrandimento"

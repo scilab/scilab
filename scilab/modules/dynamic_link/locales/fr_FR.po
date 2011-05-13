@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-09-16 11:23+0000\n"
-"Last-Translator: Allan CORNET <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-07 15:01+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "   %s: Command: %s\n"
@@ -125,8 +125,24 @@ msgid "%s is not an entry point.\n"
 msgstr "%s n'est pas un point d'entrée.\n"
 
 #, c-format
+msgid "%s: %s already loaded in scilab."
+msgstr "%s : %s est déjà chargé dans Scilab."
+
+#, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr "%s : Un compilateur fortran ou C est requis.\n"
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected."
+msgstr ""
+"%s : L'extension du fichier d'entrée en argument #%d n'est pas prise en "
+"charge."
+
+#, c-format
+msgid "%s: A managed file extension for input argument #%d expected.\n"
+msgstr ""
+"%s : L'extension du fichier d'entrée en argument #%d n'est pas prise en "
+"charge.\n"
 
 #, c-format
 msgid "%s: Already loaded from library %s\n"
@@ -161,6 +177,14 @@ msgid "%s: Cannot open shared files. Max entry %d reached.\n"
 msgstr ""
 "%s : Ne peut pas ouvrir les fichiers partagés. Nombre maximum d'entrée %d "
 "atteint.\n"
+
+#, c-format
+msgid "%s: Could not find the built library ''%s''.\n"
+msgstr "%s : La librairie compilée ''%s'' n'a pas pu être trouvée.\n"
+
+#, c-format
+msgid "%s: Error while executing %s.\n"
+msgstr "%s: Erreur lors de l'exécution %s.\n"
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
@@ -314,10 +338,9 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
-"%s: Valeur inappropriée pour l'argument d'entrée #%d: '''' or ''[]'' "
-"attendu.\n"
+"%s : Valeur incorrecte pour l'argument d'entrée #%d :  ou [] attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
@@ -329,6 +352,12 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
 "l'ensemble {%s}.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
+msgstr ""
+"%s : Valeur incorrecte de l'argument d'entrée #%d : fichier(s) existant(s) "
+"attendu(s).\n"
 
 #, c-format
 msgid "%s: problem with one of the entry point.\n"
@@ -363,6 +392,10 @@ msgstr "Erreur: %d n'est pas un numéro de routine interne valide.\n"
 
 msgid "F2C cannot build fortran 90"
 msgstr "F2C ne peut pas compiler de fortran 90"
+
+msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
+msgstr ""
+"Le compilateur Intel Fortran Compiler 9, 10, 11 ou 12 n'a pas été trouvé."
 
 #, c-format
 msgid "Interface %s not linked.\n"
@@ -400,6 +433,9 @@ msgstr "Un nom unique de bibliothèque partagée attendu."
 msgid "Unique id of a shared library expected."
 msgstr "Id unique d'une bibliothèque partagée attendu."
 
+msgid "You need to unload this library before."
+msgstr "Cette librairie doit être déchargée au prélable."
+
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr "] : %d bibliothèques.\n"
@@ -411,6 +447,32 @@ msgstr "] : %d bibliothèque.\n"
 #, c-format
 msgid "stderr: %s\n"
 msgstr "stderr: %s\n"
+
+#~ msgid "   Generate a loader file"
+#~ msgstr "   Génère un fichier loader"
+
+#~ msgid "   Running the makefile"
+#~ msgstr "   Exécute le makefile"
+
+#~ msgid "   Generate a gateway file"
+#~ msgstr "   Génère un fichier gateway"
+
+#~ msgid "   Running the Makefile"
+#~ msgstr "   Exécute le Makefile"
+
+#~ msgid "   Generate a Makefile"
+#~ msgstr "   Génère un Makefile"
+
+#, c-format
+#~ msgid " results may be inaccurate. rcond = %s\n"
+#~ msgstr " résultats peuvent être imprécis. rcond = %s\n"
+
+#~ msgid "   Building shared library (be patient)"
+#~ msgstr "   Construction de la bibliothèque partagée (soyez patient)"
+
+#, c-format
+#~ msgid "   Generate a Makefile: %s"
+#~ msgstr "   Génère un Makefile : %s"
 
 #, c-format
 #~ msgid "%s: An error occured during the compilation:\n"
@@ -425,3 +487,14 @@ msgstr "stderr: %s\n"
 #~ msgstr ""
 #~ "%s : Mauvais type pour l'argument d'entrée n°%d : Table de chaîne de "
 #~ "caractères attendue.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: String expected.\n"
+#~ msgstr ""
+#~ "%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '''' or ''[]'' expected.\n"
+#~ msgstr ""
+#~ "%s: Valeur inappropriée pour l'argument d'entrée #%d: '''' or ''[]'' "
+#~ "attendu.\n"

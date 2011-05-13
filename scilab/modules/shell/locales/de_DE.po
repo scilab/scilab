@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-10-23 07:34+0000\n"
-"Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-01-11 09:29+0000\n"
+"Last-Translator: Jens Maucher <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -59,6 +59,9 @@ msgstr "Feld für Graphen"
 
 msgid "Scilab Command"
 msgstr "Scilab Befehl"
+
+msgid "Scilab Fields"
+msgstr "Scilab Felder"
 
 msgid "Scilab Function"
 msgstr "Scilab Funktion"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-02-12 16:04+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 20:30+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -194,11 +194,56 @@ msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід встановити значення "
 "степеня з набору {%s}.\n"
 
+msgid "Arma Spectral power estimation:"
+msgstr "Оцінка потужності спектра ARMA:"
+
 msgid "Arma identification"
 msgstr "Визначення за ARMA"
 
+msgid "Arma simulation and identification"
+msgstr "Моделювання та визначення ARMA"
+
+msgid "Arma, Spectral power estimation"
+msgstr "ARMA, оцінка потужності спектра"
+
+msgid "Arma, bidimensional version"
+msgstr "ARMA, двовимірна версія"
+
+msgid "Bode plots"
+msgstr "Графіки Боде"
+
+msgid "Discrete IIR filter"
+msgstr "Дискретний IIR-фільтр"
+
+msgid "IIR filter design"
+msgstr "Схема з IIR-фільтром"
+
+msgid "Identification ARX (least square):"
+msgstr "Визначення ARX (метод найменших квадратів):"
+
+msgid "Identification ARX (least square): "
+msgstr "Визначення ARX (метод найменших квадратів): "
+
+msgid "Minimax FIR filter"
+msgstr "Мінімаксний FIR-фільтр"
+
+msgid "Minimax FIR filter design"
+msgstr "Схема з мінімаксним FIR-фільтром"
+
+msgid "Press Return to continue ... \n"
+msgstr "Натисніть Enter, щоб продовжити… \n"
+
 msgid "Signal Processing"
 msgstr "Обробка сигналів"
+
+msgid "Simulation of an ARMAX process:"
+msgstr "Моделювання процесу ARMAX:"
+
+msgid "Simulation of an ARMAX process: "
+msgstr "Моделювання процесу ARMAX: "
+
+msgid "Spectral Estimation"
+msgstr "Спектральне оцінювання"
 
 msgid "Spectral power"
 msgstr "Спектральна потужність"
@@ -209,6 +254,12 @@ msgstr "Теоретичне значення"
 msgid "Using macro mese"
 msgstr "Використання макросу mese"
 
+msgid "Wiegner filter"
+msgstr "Фільтр Вігнера"
+
+msgid "Window FIR filters"
+msgstr "Діапазонні FIR-фільтри"
+
 msgid "estimates xf"
 msgstr "оцінки xf"
 
@@ -218,8 +269,20 @@ msgstr "оцінки xs"
 msgid "frequency"
 msgstr "частота"
 
+msgid "length 33"
+msgstr "довжина 33"
+
+msgid "low pass  cut-off in [.23,.27]"
+msgstr "нижні частоти обрізання на [.23,.27]"
+
 msgid "real state"
 msgstr "поточний стан"
 
 msgid "spectral estimate"
 msgstr "оцінка спектральної щільності"
+
+#~ msgid "Arma identifcation"
+#~ msgstr "Ідентифікація ARMA"
+
+#~ msgid "Theoritical value"
+#~ msgstr "Теоретичне значення"

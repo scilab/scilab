@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-10-24 18:02+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:06+0000\n"
 "Last-Translator: Piotr Strębski <strebski@o2.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -814,3 +814,155 @@ msgstr "Wersja"
 
 msgid "WebSite"
 msgstr "Strona WWW"
+
+#, c-format
+#~ msgid "%s: An error occurred while loading ''%s-%s''.\n"
+#~ msgstr "%s: Wystąpił błąd podczas ładowania ''%s-%s''.\n"
+
+#, c-format
+#~ msgid "%s: The file %s is not well formated at line %d\n"
+#~ msgstr "%s: Plik %s nie jest dobrze sformatowany, w wierszu %d\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
+#~ "length expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowa długość argumentu wejściowego #%d: Maksymalna długość "
+#~ "wyrażenia powinna wynosić 32 znaki.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+#~ "pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+#~ "pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+#~ "pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy rozmiar dla argumentu wejściowego #%d: Oczekiwano "
+#~ "pojedynczego łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano pojedynczego "
+#~ "łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano pojedynczego "
+#~ "łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano pojedynczego "
+#~ "łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano pojedynczego "
+#~ "łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwano typu boolean lub "
+#~ "łańcuchu znaków.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwano pojedynczego "
+#~ "łańcuchu znaków.\n"
+
+#~ msgid "Modules"
+#~ msgstr "Moduły"
+
+#~ msgid "Removing..."
+#~ msgstr "Usuwanie..."
+
+#~ msgid "No module selected"
+#~ msgstr "Nie wybrano modułów"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+#~ "the ScilabVersion field\n"
+#~ msgstr ""
+#~ "%s: Plik %s jest źle sformatowany, przybornik %s - %s nie zawiera pola "
+#~ "ScilabVersion\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+#~ msgstr "%s: Zły typ parametru wejściowego #%d: Oczekiwano struktury.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that start with "
+#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
+#~ msgstr ""
+#~ "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ciągu znaków "
+#~ "rozpoczynającego się od ''http://'',''ftp://'' lub ''file://'' .\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+#~ "or ''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ciągu znaków "
+#~ "zawierającego ''TOOLBOXES'' lub ''DESCRIPTION'' .\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ciągu znaków "
+#~ "zakończonego DESCRIPTION.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+#~ ".tgz or .zip expected.\n"
+#~ msgstr ""
+#~ "%s: Zła wartość parametru wejściowego #%d: Oczekiwano pojedynczego ciągu "
+#~ "znaków kończącego się na .tar.gz, .tgz lub .zip.\n"
+
+#~ msgid "Atoms"
+#~ msgstr "Atomy"
+
+#~ msgid "Atoms error"
+#~ msgstr "Atomy błąd"
+
+#~ msgid "No Atoms module is available. Please, check your Internet connection."
+#~ msgstr ""
+#~ "Żaden moduł Atoms nie jest dostępny. Proszę sprawdzić połączenie z "
+#~ "Internetem."
+
+#~ msgid "Installing..."
+#~ msgstr "Instalowanie..."
+
+#~ msgid "No Atoms module is available: your repository list is empty."
+#~ msgstr ""
+#~ "Żaden moduł Atoms nie jest dostępny.: twoja lista repozytoriów jest pusta."
+
+#~ msgid "Updating..."
+#~ msgstr "Aktualizowanie..."

@@ -1,0 +1,59 @@
+# Spanish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-16 15:36+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "Cannot delete current session beginning line."
+msgstr "No puede borrarse la linea inicial de la sesión actual"
+
+msgid "Clear history"
+msgstr "Limpiar historial"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Command History"
+msgstr "Historial de comandos"
+
+msgid "Copy"
+msgstr "Copiar"
+
+msgid "Cut"
+msgstr "Cortar"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Edit in SciNotes"
+msgstr "Editar en SciNotes"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Evaluate Selection"
+msgstr "Evaluar selección"
+
+msgid "File"
+msgstr "Archivo"
+
+msgid "Scilab Help"
+msgstr "Ayuda de Scilab"

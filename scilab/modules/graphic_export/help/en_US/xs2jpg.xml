@@ -47,7 +47,7 @@ xs2jpg(fig, file_name [, compression_quality])</synopsis>
       <varlistentry>
         <term>compression_quality</term>
         <listitem>
-          <para>real, a number between 0 and 1 (best quality). The default compression quality is set to 0.75.</para>
+          <para>real, a number between 0 and 1 (best quality). The default compression quality is set to 0.95.</para>
           <para>Argument available since Scilab 5.3.2</para>
         </listitem>
       </varlistentry>

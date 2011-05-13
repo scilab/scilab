@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2010-08-17 13:16+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -108,3 +108,13 @@ msgstr "Консоль Scilab"
 
 msgid "see help"
 msgstr "див. довідку"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell не знайдено."
+
+#~ msgid "Verify your script without Scilab."
+#~ msgstr "Перевірка вашого скрипту без Scilab."

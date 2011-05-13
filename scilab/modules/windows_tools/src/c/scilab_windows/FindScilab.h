@@ -24,16 +24,16 @@
 SCILAB_WINDOWS_IMPEXP BOOL HaveAnotherWindowScilab(void);
 
 /**
-* returns name of the first Scilab finded
+* returns name of the first Scilab found
 * @return name
 */
-SCILAB_WINDOWS_IMPEXP char * getFirstScilabFinded(void);
+SCILAB_WINDOWS_IMPEXP char * getFirstScilabFound(void);
 
 /**
-* returns name of the last Scilab finded
+* returns name of the last Scilab found
 * @return name
 */
-SCILAB_WINDOWS_IMPEXP char * getLastScilabFinded(void);
+SCILAB_WINDOWS_IMPEXP char * getLastScilabFound(void);
 
 #endif /*__FINDSCILAB_H__ */
 /*--------------------------------------------------------------------------*/ 

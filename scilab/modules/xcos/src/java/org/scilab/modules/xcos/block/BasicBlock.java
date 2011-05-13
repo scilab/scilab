@@ -1152,13 +1152,14 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 					LOG.trace("No needs to update data.");
 				}
 				
-			    setLocked(false);
 			    delete(tempOutput);
 			    delete(tempContext);
+			    setLocked(false);
 			}
 		};
 		
 	    try {
+	    	setLocked(true);
 			ScilabInterpreterManagement.asynchronousScilabExec(action, 
 				"xcosBlockInterface", 
 				tempOutput.getAbsolutePath(),
@@ -1168,8 +1169,8 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 				tempContext.getAbsolutePath());
 		} catch (InterpreterException e) {
 			LOG.error(e);
+			setLocked(false);
 		}
-	    setLocked(true);
 
 	} catch (IOException e) {
 	    LOG.error(e);
@@ -1648,6 +1649,23 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 		}
 		
 		return clone;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * Sync the specific child {@link EditFormatAction#HASH_IDENTIFIER}
+	 */
+	@Override
+	public mxICell insert(mxICell child, int index) {
+		/*
+		 * Update the id if this is an identifier cell (herited identifier)
+		 */
+		if (child.getId().endsWith(EditFormatAction.HASH_IDENTIFIER)) {
+			child.setId(getId() + EditFormatAction.HASH_IDENTIFIER);
+		}
+		
+		return super.insert(child, index);
 	}
 	
 	/**

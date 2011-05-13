@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-01-30 18:01+0100\n"
-"PO-Revision-Date: 2010-06-29 12:31+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-10 05:34+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -228,15 +228,16 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до %d"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
 "%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: вказані дані не збігаються за "
+"форматом.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -890,8 +891,8 @@ msgstr "Не реалізовано у Scilab…\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Тут не можна використовувати порожню змінну.\n"
 
-msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
+msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
+msgstr "У операндами / і \\ не повинні бути значення NaN та Inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -1516,3 +1517,91 @@ msgstr "Часову область параметра №%d не визначе
 
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Тут не можна використовувати ключове слово varargout.\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
+
+#, c-format
+#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+#~ msgstr ""
+#~ "%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
+
+#~ msgid "%: This method is NOT implemented.\n"
+#~ msgstr "%: цей метод ще не реалізовано.\n"
+
+#, c-format
+#~ msgid "%s: Th colocation matrix is singular.\n"
+#~ msgstr "%s: матриця колокації є виродженою.\n"
+
+#, c-format
+#~ msgid "%s: singular or assymetric problem.\n"
+#~ msgstr "%s: вироджена або несиметрична задача.\n"
+
+#~ msgid "'o' format not allowed."
+#~ msgstr "Не можна використовувати формат «o»."
+
+#~ msgid "A sparse matrix entry is defined with two differents values.\n"
+#~ msgstr "Запис розрідженої матриці визначено двома різними значеннями.\n"
+
+#, c-format
+#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
+#~ msgstr ""
+#~ "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
+
+#~ msgid "Binary direct acces files must be opened by 'file'.\n"
+#~ msgstr ""
+#~ "Бінарні файли безпосереднього доступ слід відкривати за допомогою «file».\n"
+
+#~ msgid "Error while writing in file,(disk full or deleted file.\n"
+#~ msgstr ""
+#~ "Помилка під час спроби запису до файла (диск переповнено або файл "
+#~ "вилучено).\n"
+
+#, c-format
+#~ msgid ""
+#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
+#~ "Bad call to a scilab function ?\n"
+#~ "Otherwise, send a bug report to :\n"
+#~ msgstr ""
+#~ "Критична помилка! Ваші змінні було збережено до файла %s\n"
+#~ "Помилковий виклик функції Scilab?\n"
+#~ "Якщо це не так, надішліть звіт про ваду на адресу:\n"
+
+#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
+#~ msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"
+
+#, c-format
+#~ msgid "Rank defficient. rank = %d\n"
+#~ msgstr "Недостатній ранг. ранг = %d\n"
+
+#, c-format
+#~ msgid "Too many global variables! , max number is %d.\n"
+#~ msgstr ""
+#~ "Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
+
+#~ msgid "Too many input/output entries for hilited block.\n"
+#~ msgstr "Занадто багато вхідних/вихідних записів у позначеному блоці.\n"
+
+#~ msgid "Too many input/output ports for hilited block.\n"
+#~ msgstr "Занадто багато вхідних/вихідних портів у позначеному блоці.\n"
+
+#~ msgid ""
+#~ "Warning: Jacobian external is given, but\n"
+#~ " not used!,  see %ODEOPTIONS(6).\n"
+#~ msgstr ""
+#~ "Попередження: вказано зовнішню функцію якобіана, але\n"
+#~ " її не використано! Див. %ODEOPTIONS(6).\n"
+
+#~ msgid ""
+#~ "Warning: integration not completed! check tolerance parameters or step "
+#~ "size.\n"
+#~ msgstr ""
+#~ "Попередження: інтегрування не завершено! Перевірте параметри точності "
+#~ "обчислень або розміру кроку.\n"
+
+#~ msgid "Warning: obsolete use of eye rand or ones.\n"
+#~ msgstr "Попередження: застаріле використання eye, rand або ones.\n"
+
+#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
+#~ msgstr "Операнди операцій / і \\ не повинні містити значень NaN чи Inf.\n"

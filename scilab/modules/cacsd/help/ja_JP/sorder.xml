@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>[Ro(,n,sval,rcnd)] = sorder(meth,alg,jobd,batch,conct,s,Y(,U,tol,
-printw,ldwork,Ri))</synopsis>
+    <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -232,7 +231,7 @@ printw,ldwork,Ri))</synopsis>
         <term>ldwork</term>
         <listitem>
           <para>(オプション) ワークスペースの大きさ. デフォルト : 以下の式で計算</para>
-          <programlisting role = ""><![CDATA[ 
+          <programlisting role=""><![CDATA[ 
 nr = 2*( m + l )*s
 LDWORK = ( t - 2*s + 3 + 64 )*nr
 if ( CSIZE > MAX( nr*nr + t*( m + l ) + 16, 2*nr ) ) then
@@ -312,7 +311,7 @@ end if
       [R,n,sval,rcnd] = sorder(meth,alg,jobd,4,conct,s,Y,U);</para>
     <para>
     ブロックがf個の場合 (データ系列 Yj, Uj, j = 1 : f):</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 R = sorder(meth,alg,jobd,1,conct,s,Y1,U1);
 for j = 2 : f - 1
    R = sorder(meth,alg,jobd,2,conct,s,Yj,Uj,tol,printw,ldwork,R)
@@ -327,7 +326,7 @@ end
 	離散時間実現の次数を推定します.</para>
     <para>
     モデルの構造は以下のようになります :</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + w(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>

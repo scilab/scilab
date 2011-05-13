@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2010-09-18 21:21+0000\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "\t - ''%s - %s''\n"
@@ -791,3 +791,257 @@ msgstr "Версия"
 
 msgid "WebSite"
 msgstr "Веб-сайт"
+
+#~ msgid "Load"
+#~ msgstr "Загрузить"
+
+#, c-format
+#~ msgid "%s: the module ''%s - %s'' is not installed.\n"
+#~ msgstr "%s: модуль «%s - %s» не установлен.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: A boolean or a single string "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалось логическое значение или "
+#~ "одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: No version of the module ''%s'' is installed.\n"
+#~ msgstr "%s: Нет установленных версий модуля «%s».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#~ msgid "Automaticaly Installed"
+#~ msgstr "Установлен автоматически"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The following modules are installed in the user section, you cannot add "
+#~ "them in the autoload list for all users:\n"
+#~ msgstr ""
+#~ "%s: Следующие модули установлены в пользовательский раздел, вы не можете "
+#~ "добавить их в список автозагрузки для всех пользователей:\n"
+
+#~ msgid "Installing..."
+#~ msgstr "Идёт установка..."
+
+#~ msgid "Atoms"
+#~ msgstr "Atoms"
+
+#~ msgid "Atoms error"
+#~ msgstr "Ошибка Atoms"
+
+#~ msgid "Installation failed !"
+#~ msgstr "Сбой при установке!"
+
+#~ msgid "Remove failed !"
+#~ msgstr "Сбой при удалении!"
+
+#~ msgid "Removing..."
+#~ msgstr "Идёт удаление..."
+
+#~ msgid "Load failed !"
+#~ msgstr "Сбой при загрузке!"
+
+#~ msgid "Updating..."
+#~ msgstr "Идёт обновление..."
+
+#~ msgid "Update failed !"
+#~ msgstr "Сбой при обновлении!"
+
+#~ msgid "Update done !"
+#~ msgstr "Обновление выполнено!"
+
+#~ msgid "Remove done !"
+#~ msgstr "Удаление выполнено!"
+
+#~ msgid "Installation done !"
+#~ msgstr "Установка выполнена!"
+
+#~ msgid "Load done !"
+#~ msgstr "Загрузка выполнена!"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: The version ''%s'' of The module ''%s'' is not installed.\n"
+#~ msgstr "%s: Версия «%s» модуля «%s» не установлена.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong length for input argument #%d: A string which has 32-characters "
+#~ "length expected.\n"
+#~ msgstr ""
+#~ "%s: Неверная длина входного параметра №%d: ожидалась строка длиной в 32 "
+#~ "символа.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A struct expected.\n"
+#~ msgstr "%s: Неверный тип входного параметра №%d: ожидалась структура.\n"
+
+#, c-format
+#~ msgid "%s: The config file ("
+#~ msgstr "%s: Конфигурационный файл ("
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A Single String expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный размер входного аргумента №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that start with "
+#~ "''http://'',''ftp://'' or ''file://'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+#~ "начинается с «http://», «ftp://» или «file://».\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A a single-string expected.\n"
+#~ msgstr ""
+#~ "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Single string that end with .tar.gz, "
+#~ ".tgz or .zip expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась одиночная строка, "
+#~ "которая заканчивается на «.tar.gz», «.tgz» или «.zip».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
+#~ "the ScilabVersion field\n"
+#~ msgstr ""
+#~ "%s: Неправильный формат файла %s, модуль %s - %s не содержит поля "
+#~ "ScilabVersion\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that contain ''TOOLBOXES'' "
+#~ "or ''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+#~ "содержит «TOOLBOXES» или «DESCRIPTION».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A string that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+#~ "заканчивается на DESCRIPTION.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: You have not enought rights to remove any version of the package %s.\n"
+#~ msgstr ""
+#~ "%s: У вас недостаточно прав на удаление какой-либо версии пакета %s.\n"
+
+#, c-format
+#~ msgid "%s: You have not enought rights to remove the package %s (%s).\n"
+#~ msgstr "%s: У вас недостаточно прав на удаление пакета %s (%s).\n"
+
+#~ msgid "No Atoms module available. Check your Internet connection."
+#~ msgstr "Нет доступных модулей Atoms. Проверьте ваше интернет соединение."
+
+#~ msgid "Module Description"
+#~ msgstr "Описание модуля"
+
+#~ msgid "Available Modules"
+#~ msgstr "Доступные модули"
+
+#~ msgid "No module selected"
+#~ msgstr "Нет выбранного модуля"
+
+#, c-format
+#~ msgid "%s: The following modules is not installed:\n"
+#~ msgstr "%s: Следующие модули не установлены:\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: All modules'' version should be "
+#~ "set.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: версия всех модулей должна "
+#~ "быть присвоена.\n"
+
+#, c-format
+#~ msgid "%s: The file %s is not well formated at line %d\n"
+#~ msgstr "%s: Неправильный формат файла %s в строке %d\n"
+
+#~ msgid "Ko"
+#~ msgstr "Кбайт"
+
+#, c-format
+#~ msgid "%s: An error accured while loading ''%s-%s''.\n"
+#~ msgstr "%s: Ошибка при загрузке «%s-%s».\n"
+
+#~ msgid "Modules"
+#~ msgstr "Модули"
+
+#~ msgid "Mo"
+#~ msgstr "Мбайт"
+
+#~ msgid "Octets"
+#~ msgstr "байт"
+
+#~ msgid "No Atoms module is available: your repository list is empty."
+#~ msgstr "Модуль Atoms недоступен: ваш список репозиториев пуст."
+
+#~ msgid "No Atoms module is available. Please, check your Internet connection."
+#~ msgstr "Модуль Atoms недоступен. Проверьте соединение с интернетом."
+
+#, c-format
+#~ msgid "%s: An error occurred while loading ''%s-%s''.\n"
+#~ msgstr "%s: Произошла ошибка при загрузке «%s-%s».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: String that contain ''TOOLBOXES'' or "
+#~ "''DESCRIPTION'' expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+#~ "содержит «TOOLBOXES» или «DESCRIPTION».\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: String that end with DESCRIPTION "
+#~ "expected.\n"
+#~ msgstr ""
+#~ "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
+#~ "заканчивается на DESCRIPTION.\n"

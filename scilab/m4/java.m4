@@ -4,13 +4,13 @@
 #------------------------------------------------------------------------
 # AC_MSG_LOG( MSG, ?LOGONLY? )
 #
-#	Write the message out to the config.log file and the console.
-#	If 1 is passed as the second argument, then write to the
-#	config.log file only.
+#    Write the message out to the config.log file and the console.
+#    If 1 is passed as the second argument, then write to the
+#    config.log file only.
 #
 # Arguments:
-#	1. The message to log
-#	2. Optional boolean, if true then write to config.log only
+#    1. The message to log
+#    2. Optional boolean, if true then write to config.log only
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_MSG_LOG], [
@@ -21,15 +21,15 @@ AC_DEFUN([AC_MSG_LOG], [
 #------------------------------------------------------------------------
 # AC_GREP_FILE( PATTERN, FILE, ACTION-IF-FOUND, [ACTION-IF-NOT-FOUND])
 #
-#	Use grep to search for a pattern in a file. If the pattern
-#	is not found then return a non zero exit status. No information
-#	will be echoed to the screen by this macro.
+#    Use grep to search for a pattern in a file. If the pattern
+#    is not found then return a non zero exit status. No information
+#    will be echoed to the screen by this macro.
 #
 # Arguments:
-#	1. The pattern to search for
-#	2. The name of the file to be grep'ed
-#	3. The script to execute if PATTERN is found in FILE
-#	4. The script to execute if PATTERN is not found in FILE (optional)
+#    1. The pattern to search for
+#    2. The name of the file to be grep'ed
+#    3. The script to execute if PATTERN is found in FILE
+#    4. The script to execute if PATTERN is not found in FILE (optional)
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_GREP_FILE], [
@@ -49,32 +49,32 @@ AC_DEFUN([AC_GREP_FILE], [
 #------------------------------------------------------------------------
 # AC_PROG_JAVAC
 #
-#	If JAVAC is not already defined, then search for "javac" on
-#	the path. If a java compiler is found, then test it to make
-#	sure it actually works.
+#    If JAVAC is not already defined, then search for "javac" on
+#    the path. If a java compiler is found, then test it to make
+#    sure it actually works.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	JAVAC can be set to the path name of the java compiler
-#	JAVAC_FLAGS can be set to compiler specific flags
-#	ac_java_jvm_dir can be set to the jvm's root directory
+#    JAVAC can be set to the path name of the java compiler
+#    JAVAC_FLAGS can be set to compiler specific flags
+#    ac_java_jvm_dir can be set to the jvm's root directory
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_PROG_JAVAC], [
 # Mac OS X
     if test "x$JAVAC" = "x" ; then
-	case "$host_os" in
-	     *darwin* )
-	     # Don't follow the symlink since Java under MacOS is messy
-	     # Uses the wrapper providing by Apple to retrieve the path
-	     # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-		JAVAC=/System/Library/Frameworks/JavaVM.framework/Commands/javac
-		DONT_FOLLOW_SYMLINK=yes
-		;;
-	esac
-	fi
+    case "$host_os" in
+         *darwin* )
+         # Don't follow the symlink since Java under MacOS is messy
+         # Uses the wrapper providing by Apple to retrieve the path
+         # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+           JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
+               DONT_FOLLOW_SYMLINK=yes
+         ;;
+    esac
+    fi
     if test "x$JAVAC" = "x" ; then
         AC_PATH_PROG(JAVAC, javac)
         if test "x$JAVAC" = "x" ; then
@@ -88,12 +88,12 @@ AC_DEFUN([AC_PROG_JAVAC], [
 
     # Check for installs which uses a symlink. If it is the case, try to resolve JAVA_HOME from it
     if test -h "$JAVAC" -a "x$DONT_FOLLOW_SYMLINK" != "xyes"; then
-		FOLLOW_SYMLINKS($JAVAC,"javac")
-		JAVAC=$SYMLINK_FOLLOWED_TO
+        FOLLOW_SYMLINKS($JAVAC,"javac")
+        JAVAC=$SYMLINK_FOLLOWED_TO
         TMP=`dirname $SYMLINK_FOLLOWED_TO`
         TMP=`dirname $TMP`
         ac_java_jvm_dir=$TMP
-		echo "Java base directory (probably) available here : $ac_java_jvm_dir"
+        echo "Java base directory (probably) available here : $ac_java_jvm_dir"
     fi
 
 
@@ -129,15 +129,15 @@ AC_DEFUN([AC_PROG_JAVAC], [
 #------------------------------------------------------------------------
 # AC_JAVA_TRY_COMPILE(imports, main-body, try-to-run, action-if-worked, [action-if-failed])
 #
-#	Try to compile a Java program. This works a lot like AC_TRY_COMPILE
-#	except is supports Java instead of C or C++. This macro will create
-#	a file named Test.java and try to compile it.
+#    Try to compile a Java program. This works a lot like AC_TRY_COMPILE
+#    except is supports Java instead of C or C++. This macro will create
+#    a file named Test.java and try to compile it.
 #
 # Arguments:
-#	imports should contain Java import statements like [import java.util.*;]
+#    imports should contain Java import statements like [import java.util.*;]
 #       main-body should contain the code to appear in the main() method
-#	action-if-worked should contain the code to run if the compile worked
-#	action-if-failed should contain the code to run if the compile failed (optional)
+#    action-if-worked should contain the code to run if the compile worked
+#    action-if-failed should contain the code to run if the compile failed (optional)
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_TRY_COMPILE], [
@@ -158,24 +158,24 @@ EOF
     if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftest.java.output 2>&AS_MESSAGE_LOG_FD) ; then
        if test "$3" = "no"; then
            echo "yes" >&AS_MESSAGE_LOG_FD
-   		   $4
-	   else
-	   	   cmd="$JAVA conftest"
-	   	   if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
-	           echo "yes" >&AS_MESSAGE_LOG_FD
-       		   $4
-			else
-		        echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
-				cat conftest.java >&AS_MESSAGE_LOG_FD
+              $4
+       else
+              cmd="$JAVA conftest"
+              if (echo $cmd >&AS_MESSAGE_LOG_FD ; eval $cmd >conftest.java.output 2>&AS_MESSAGE_LOG_FD); then
+               echo "yes" >&AS_MESSAGE_LOG_FD
+                  $4
+            else
+                echo "configure: failed program was:" >&AS_MESSAGE_LOG_FD
+                cat conftest.java >&AS_MESSAGE_LOG_FD
                 if test -s conftest.java.output; then
                    STDOUT=`cat conftest.java.output`
                 fi
-        		echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
-        		m4_ifval([$5],
-        		[  $5
-        		])dnl
-			fi
-		fi
+                echo "configure: CLASSPATH was $CLASSPATH" >&AS_MESSAGE_LOG_FD
+                m4_ifval([$5],
+                [  $5
+                ])dnl
+            fi
+        fi
         if test -f conftest.java.output; then
            rm conftest.java.output
         fi
@@ -193,51 +193,51 @@ EOF
 #------------------------------------------------------------------------
 # AC_JAVA_DETECT_JVM
 #
-#	Figure out what JVM to build with. If no JVM was already defined
-#	using a --with command line option then we search for one
-#	by looking for the javac executable.
+#    Figure out what JVM to build with. If no JVM was already defined
+#    using a --with command line option then we search for one
+#    by looking for the javac executable.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	JAVAC
-#	ac_java_jvm_version can be set to 1.4, or 1.5
-#	ac_java_jvm_dir can be set to the jvm's root directory
+#    JAVAC
+#    ac_java_jvm_version can be set to 1.4, 1.5 or 1.6
+#    ac_java_jvm_dir can be set to the jvm's root directory
 #
 # DEPENDS ON:
-#	This macro can depend on the values set by the following macros:
-#	AC_JAVA_WITH_JDK
-#	AC_PROG_JAVAC
+#    This macro can depend on the values set by the following macros:
+#    AC_JAVA_WITH_JDK
+#    AC_PROG_JAVAC
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_DETECT_JVM], [
-	AC_MSG_CHECKING([JAVA_HOME variable])
-	# check if JAVA_HOME is set. If it is the case, try to use if first
-	if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" = "x"; then
-		if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
-		    AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
-    		    ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
-			JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
-		else
-		    AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac
+    AC_MSG_CHECKING([JAVA_HOME variable])
+    # check if JAVA_HOME is set. If it is the case, try to use if first
+    if test ! -z "$JAVA_HOME" && test "x$ac_java_jvm_dir" = "x"; then
+        if test -x $JAVA_HOME/bin/javac${EXEEXT}; then
+            AC_MSG_RESULT([JAVA_HOME variable found, use it as JVM root directory])
+                ac_java_jvm_dir=`cd $JAVA_HOME ; pwd`
+            JAVAC=$ac_java_jvm_dir/bin/javac${EXEEXT}
+        else
+            AC_MSG_RESULT([JAVA_HOME variable found, but unable to find javac
 Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK (Java Developement Kit) ? )])
-		fi
-	else
-		AC_MSG_RESULT([not defined])
-	fi
+        fi
+    else
+        AC_MSG_RESULT([not defined])
+    fi
 
 # Mac OS default path
-	if test "x$JAVAC" = "x" && test "x$ac_java_jvm_dir" != "x"; then
-		case "$host_os" in
-		     *darwin* )
-			AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
-			# See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-			ac_java_jvm_dir=/System/Library/Frameworks/JavaVM.framework
-			JAVAC=$ac_java_jvm_dir/Commands/javac
-			;;
-		esac
-	fi
+    if test "x$JAVAC" = "x" && test "x$ac_java_jvm_dir" != "x"; then
+        case "$host_os" in
+             *darwin* )
+            AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
+            # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
+            ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+            JAVAC=$ac_java_jvm_dir/bin/javac
+            ;;
+        esac
+    fi
 
     # if we do not know the jvm dir, javac will be found on the PATH
     if test "x$JAVAC" = "x" && test "x$ac_java_jvm_dir" != "x"; then
@@ -282,6 +282,10 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 
     AC_JAVA_TRY_COMPILE([import java.lang.StringBuilder;], , "no", ac_java_jvm_version=1.5)
 
+    # The class java.util.ArrayDeque is new to 1.6
+
+    AC_JAVA_TRY_COMPILE([import java.util.ArrayDeque;], , "no", ac_java_jvm_version=1.6)
+
     if test "x$ac_java_jvm_version" = "x" ; then
         AC_MSG_ERROR([Could not detect Java version, 1.4 or newer is required])
     fi
@@ -294,18 +298,18 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
 #------------------------------------------------------------------------
 # AC_JAVA_CLASSPATH
 #
-#	Find out which .zip or .jar files need to be included on
-#	the CLASSPATH if we are setting it via an env variable.
+#    Find out which .zip or .jar files need to be included on
+#    the CLASSPATH if we are setting it via an env variable.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	ac_java_classpath
+#    ac_java_classpath
 #
 # DEPENDS ON:
-#	This macro is used by the AC_JAVA_DETECT_JVM macro.
-#	It depends on the ac_java_jvm_dir variable.
+#    This macro is used by the AC_JAVA_DETECT_JVM macro.
+#    It depends on the ac_java_jvm_dir variable.
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_CLASSPATH], [
@@ -336,26 +340,26 @@ AC_DEFUN([AC_JAVA_CLASSPATH], [
 #------------------------------------------------------------------------
 # AC_JAVA_JNI_INCLUDE
 #
-#	Figure out where jni.h and jni_md.h include files are installed.
+#    Figure out where jni.h and jni_md.h include files are installed.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	ac_java_jvm_jni_include_flags : Flags that we pass to the compiler
+#    ac_java_jvm_jni_include_flags : Flags that we pass to the compiler
 #           so that it can locate JNI headers. (for example: -I/usr/jdk/include)
 #
 # DEPENDS ON:
-#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
-#	it depends on the ac_java_jvm_dir variable.
+#    This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#    it depends on the ac_java_jvm_dir variable.
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 
-	# JAVA_HOME specificed, check if we can find jni.h in this path
-	if test !  -z "$JAVA_HOME"; then
-		ac_java_jvm_dir=$JAVA_HOME
-	fi
+    # JAVA_HOME specificed, check if we can find jni.h in this path
+    if test !  -z "$JAVA_HOME"; then
+        ac_java_jvm_dir=$JAVA_HOME
+    fi
     # Look for jni.h in the subdirectory $ac_java_jvm_dir/include
 
     F=$ac_java_jvm_dir/include/jni.h
@@ -366,14 +370,14 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          if test -f "$F" ; then
              ac_java_jvm_jni_include_flags="-I`dirname $F`"
          else
-		case "$host_os" in
-		     *darwin* )
-		     	      ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers"
-			      ;;
-		      *)
-	                   AC_MSG_ERROR([Could not locate Java's jni.h include file])
-			   ;;
-			   esac
+        case "$host_os" in
+             *darwin* )
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/"
+                  ;;
+              *)
+                       AC_MSG_ERROR([Could not locate Java's jni.h include file])
+               ;;
+               esac
          fi
     fi
 
@@ -414,22 +418,22 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
 #------------------------------------------------------------------------
 # AC_JAVA_JNI_LIBS
 #
-#	Figure out where the native threads libraries for JNI live.
+#    Figure out where the native threads libraries for JNI live.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	ac_java_jvm_ld_preload : list of libraries to include in LD_PRELOAD
-#	ac_java_jvm_ld_bind_now : if set to 1, then use LD_BIND_NOW=1
-#	ac_java_jvm_jni_lib_flags : library flags that we will pass to the compiler.
-#	    For instance, we might pass -L/usr/jdk/lib -ljava
-#	ac_java_jvm_jni_lib_runtime_path : colon separated path of directories
-#	    that is typically passed to rld.
+#    ac_java_jvm_ld_preload : list of libraries to include in LD_PRELOAD
+#    ac_java_jvm_ld_bind_now : if set to 1, then use LD_BIND_NOW=1
+#    ac_java_jvm_jni_lib_flags : library flags that we will pass to the compiler.
+#        For instance, we might pass -L/usr/jdk/lib -ljava
+#    ac_java_jvm_jni_lib_runtime_path : colon separated path of directories
+#        that is typically passed to rld.
 #
 # DEPENDS ON:
-#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
-#	it depends on the ac_java_jvm_dir variable.
+#    This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#    it depends on the ac_java_jvm_dir variable.
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_JNI_LIBS], [
@@ -439,28 +443,28 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
           machine=i386
           ;;
         i86pc)
-		# Solaris 10 x86
+        # Solaris 10 x86
           machine=i386
           ;;
-		sun*|sparc64)
+        sun*|sparc64)
        # Sun
           machine=sparc
           ;;
-	    powerpc|ppc64)
-	  	  machine=ppc
-		  ;;
-		  armv*)
-		  machine=arm
-		  ;;
-		  s390x) # s390 arch can also returns s390x
-		  machine=s390
-		  ;;
-	    sh*)
-	  	  machine=sh
-		  ;;
+        powerpc|ppc64)
+            machine=ppc
+          ;;
+          armv*)
+          machine=arm
+          ;;
+          s390x) # s390 arch can also returns s390x
+          machine=s390
+          ;;
+        sh*)
+            machine=sh
+          ;;
     esac
 
-	AC_MSG_LOG([Looking for JNI libs with $machine as machine hardware name])
+    AC_MSG_LOG([Looking for JNI libs with $machine as machine hardware name])
 
     # Check for known JDK installation layouts
 
@@ -480,15 +484,15 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
                 D=$ac_java_jvm_dir/jre/lib/$machine/client
-		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
-			# Try the server directory
-			D=$ac_java_jvm_dir/jre/lib/$machine/server
-			if test ! -f $D/libjvm.so; then
-				AC_MSG_ERROR([Could not find libjvm.so in
-				jre/lib/$machine/client/ or in jre/lib/$machine/server/.
-				Please report to http://bugzilla.scilab.org/])
-			fi
-		fi
+        if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+            # Try the server directory
+            D=$ac_java_jvm_dir/jre/lib/$machine/server
+            if test ! -f $D/libjvm.so; then
+                AC_MSG_ERROR([Could not find libjvm.so in
+                jre/lib/$machine/client/ or in jre/lib/$machine/server/.
+                Please report to http://bugzilla.scilab.org/])
+            fi
+        fi
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/$machine/native_threads
@@ -551,27 +555,6 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
             fi
         fi
 
-        # Sun on MacOS X Java Compiler
-
-        F=Libraries/libjava.jnilib
-        if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
-            AC_MSG_LOG([Looking for $ac_java_jvm_dir/$F])
-            if test -f $ac_java_jvm_dir/$F ; then
-                AC_MSG_LOG([Found $ac_java_jvm_dir/$F])
-		libSymbolToTest="JNI_GetCreatedJavaVMs_Impl"
-
-
-                #D=`dirname $ac_java_jvm_dir/$F`
-                #ac_java_jvm_jni_lib_runtime_path=$D
-                #ac_java_jvm_jni_lib_flags="-L$D -ljvm"
-
-                #D=$ac_java_jvm_dir/jre/lib/i386/server
-		D=/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Versions/CurrentJDK/Libraries
-                ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
-                ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
-            fi
-        fi
-
         # Sun JDK 1.4 and 1.5 for Win32 (client JVM)
 
         F=lib/jvm.lib
@@ -594,9 +577,9 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
     fi
 
         # Under GNU/Debian on a mipsel CPU, uname -m is still returning mips
-		# causing a confusion with mips... Therefor, I have to hardcode this
-		# test
-		# Note that most of the code is duplicated from
+        # causing a confusion with mips... Therefor, I have to hardcode this
+        # test
+        # Note that most of the code is duplicated from
         # Sun/Blackdown 1.4 for Linux (client JVM) tests
         F=jre/lib/mipsel/libjava.so
         if test "x$ac_java_jvm_jni_lib_flags" = "x" ; then
@@ -607,10 +590,10 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
                 ac_java_jvm_jni_lib_runtime_path=$D
                 ac_java_jvm_jni_lib_flags="-L$D -ljava -lverify"
                 D=$ac_java_jvm_dir/jre/lib/mipsel/client
-		if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
-			# Try the server directory
-			D=$ac_java_jvm_dir/jre/lib/mipsel/server
-		fi
+        if test ! -f $D/libjvm.so; then # Check if it is in the client or server directory
+            # Try the server directory
+            D=$ac_java_jvm_dir/jre/lib/mipsel/server
+        fi
                 ac_java_jvm_jni_lib_runtime_path="${ac_java_jvm_jni_lib_runtime_path}:$D"
                 ac_java_jvm_jni_lib_flags="$ac_java_jvm_jni_lib_flags -L$D -ljvm"
                 D=$ac_java_jvm_dir/jre/lib/mipsel/native_threads
@@ -690,27 +673,27 @@ AC_DEFUN([AC_JAVA_JNI_LIBS], [
 #------------------------------------------------------------------------
 # AC_JAVA_WITH_JDK
 #
-#	Check to see if the --with-jdk command line option is given.
-#	If it was, then set ac_java_with_jdk to the DIR argument.
+#    Check to see if the --with-jdk command line option is given.
+#    If it was, then set ac_java_with_jdk to the DIR argument.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	ac_java_with_jdk can be set to the directory where the jdk lives
-#	ac_java_jvm_name can be set to "jdk"
+#    ac_java_with_jdk can be set to the directory where the jdk lives
+#    ac_java_jvm_name can be set to "jdk"
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_WITH_JDK], [
     AC_ARG_WITH(jdk,
-	AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]),
-	ok=$withval, ok=no)
+    AC_HELP_STRING([--with-jdk=DIR],[use JDK from DIR]),
+    ok=$withval, ok=no)
     if test "$ok" = "no" ; then
         NO=op
     elif test "$ok" = "yes" || test ! -d "$ok"; then
         AC_MSG_ERROR([--with-jdk=DIR option, must pass a valid DIR])
     elif test "$ok" != "no" ; then
-	    AC_MSG_RESULT([Use JDK path specified ($ok)])
+        AC_MSG_RESULT([Use JDK path specified ($ok)])
         ac_java_jvm_dir=$ok
         ac_java_jvm_name=jdk
     fi
@@ -719,24 +702,24 @@ AC_DEFUN([AC_JAVA_WITH_JDK], [
 #------------------------------------------------------------------------
 # AC_JAVA_TOOLS
 #
-#	Figure out the paths of any Java tools we will need later on.
+#    Figure out the paths of any Java tools we will need later on.
 #
 # Arguments:
-#	NONE
+#    NONE
 #
 # VARIABLES SET:
-#	JAVA
-#	JAVA_G
-#	JAVAC
-#	JAVAH
-#	JAR
-#	JDB
-#	JAVADOC
+#    JAVA
+#    JAVA_G
+#    JAVAC
+#    JAVAH
+#    JAR
+#    JDB
+#    JAVADOC
 #
 # DEPENDS ON:
-#	This macro must be run after the AC_JAVA_DETECT_JVM macro as
-#	it depends on the ac_java_jvm_name, ac_java_jvm_version and
-#	ac_java_jvm_dir variables
+#    This macro must be run after the AC_JAVA_DETECT_JVM macro as
+#    it depends on the ac_java_jvm_name, ac_java_jvm_version and
+#    ac_java_jvm_dir variables
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_TOOLS], [
@@ -744,7 +727,8 @@ AC_DEFUN([AC_JAVA_TOOLS], [
 
     case "$host_os" in
           *darwin*)
-	      ac_java_jvm_bin_dir=/System/Library/Frameworks/JavaVM.framework/Versions/Current/Commands;;
+          ac_java_jvm_bin_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/
+    ;;
           *)
               ac_java_jvm_bin_dir=$ac_java_jvm_dir/bin;;
     esac
@@ -788,27 +772,27 @@ AC_DEFUN([AC_JAVA_TOOLS], [
 #------------------------------------------------------------------------
 # AC_JAVA_ANT
 #
-#	Figure out if ant is available and where
+#    Figure out if ant is available and where
 #
 # Arguments:
-#	PATH
+#    PATH
 #
 # VARIABLES SET:
-#	ANT
+#    ANT
 #
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_ANT], [
     AC_ARG_WITH(ant,
-	AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR]),
-	ANTPATH=$withval, ANTPATH=no)
+    AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR]),
+    ANTPATH=$withval, ANTPATH=no)
     if test "$ANTPATH" = "no" ; then
-	    AC_JAVA_TOOLS_CHECK(ANT, ant)
-	elif test ! -d "$ANTPATH"; then
+        AC_JAVA_TOOLS_CHECK(ANT, ant)
+    elif test ! -d "$ANTPATH"; then
         AC_MSG_ERROR([--with-ant=DIR option, must pass a valid DIR])
-	else
-		AC_JAVA_TOOLS_CHECK(ANT, ant, $ANTPATH/bin $ANTPATH)
-	fi
+    else
+        AC_JAVA_TOOLS_CHECK(ANT, ant, $ANTPATH/bin $ANTPATH)
+    fi
 ])
 
 #------------------------------------------------------------------------
@@ -818,7 +802,7 @@ AC_DEFUN([AC_JAVA_ANT], [
 # usable
 #
 # Arguments:
-#	1. name of the package
+#    1. name of the package
 #   2. name of the class to test
 #   3. used by (Comment)
 #   4. Do not stop on error
@@ -828,20 +812,20 @@ AC_DEFUN([AC_JAVA_ANT], [
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
-	AC_MSG_CHECKING($1)
-	PACKAGE_JAR_FILE=
-	found_jar=no
-	saved_ac_java_classpath=$ac_java_classpath
-	DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
+    AC_MSG_CHECKING($1)
+    PACKAGE_JAR_FILE=
+    found_jar=no
+    saved_ac_java_classpath=$ac_java_classpath
+    DEFAULT_JAR_DIR="/usr/share/java/ /usr/lib/java/ /usr/share/java /usr/share/java/jar /opt/java/lib /usr/local/java /usr/local/java/jar /usr/local/share/java /usr/local/share/java/jar /usr/local/lib/java $(ls -d /usr/share/java/*/ 2>/dev/null) $(ls -d /usr/lib64/*/ 2>/dev/null) $(ls -d /usr/lib/*/ 2>/dev/null)  $(ls -d /usr/share/*/lib/ 2>/dev/null)"
     for jardir in "`pwd`/thirdparty" "`pwd`/jar" $DEFAULT_JAR_DIR "$_user_libdir"; do
       for jar in "$jardir/$1.jar" "$jardir/lib$1.jar" "$jardir/lib$1-java.jar" "$jardir/$1*.jar"; do
-#	jar=`echo $jar|sed -e 's/ /\\ /'`
-#	echo "protected $jar"
-#	jar_resolved=`ls $jar 2>/dev/null`
-#	echo "looking for $jar_resolved"
+#    jar=`echo $jar|sed -e 's/ /\\ /'`
+#    echo "protected $jar"
+#    jar_resolved=`ls $jar 2>/dev/null`
+#    echo "looking for $jar_resolved"
 # TODO check the behaviour when spaces
-	jars_resolved=`ls $jar 2>/dev/null`
-	for jar_resolved in $jars_resolved; do # If several jars matches
+    jars_resolved=`ls $jar 2>/dev/null`
+    for jar_resolved in $jars_resolved; do # If several jars matches
         if test -e "$jar_resolved"; then
           export ac_java_classpath="$jar_resolved:$ac_java_classpath"
           AC_JAVA_TRY_COMPILE([import $2;], , "no", [
@@ -854,41 +838,41 @@ AC_DEFUN([AC_JAVA_CHECK_PACKAGE], [
 
           ])
         fi
-	  done
-	  # If ls returns several results and the first one is OK, stop the search
+      done
+      # If ls returns several results and the first one is OK, stop the search
       if test "$found_jar" = "yes"; then
         break
       fi
       done
-	  # If found, no need to search in other directory
+      # If found, no need to search in other directory
       if test "$found_jar" = "yes"; then
         break
       fi
     done
     if test "$found_jar" = "no"; then
       AC_MSG_RESULT([no])
-	  if test "$4" = "yes"; then
- 		AC_MSG_WARN([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
-	  else
-		  AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
-	  fi
+      if test "$4" = "yes"; then
+         AC_MSG_WARN([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
+      else
+          AC_MSG_ERROR([Could not find or use the Java package/jar $1 used by $3 (looking for package $2)])
+      fi
     fi
 ])
 
 #------------------------------------------------------------------------
 # AC_JAVA_TOOLS_CHECK(VARIABLE, TOOL, PATH, NOERR)
 #
-#	Helper function that will look for the given tool on the
-#	given PATH. If cross compiling and the tool can not
-#	be found on the PATH, then search for the same tool
-#	on the users PATH. If the tool still can not be found
-#	then give up with an error unless NOERR is 1.
+#    Helper function that will look for the given tool on the
+#    given PATH. If cross compiling and the tool can not
+#    be found on the PATH, then search for the same tool
+#    on the users PATH. If the tool still can not be found
+#    then give up with an error unless NOERR is 1.
 #
 # Arguments:
-#	1. The variable name we pass to AC_PATH_PROG
-#	2. The name of the tool
-#	3. The path to search on
-#	4. Pass 1 if you do not want any error generated
+#    1. The variable name we pass to AC_PATH_PROG
+#    2. The name of the tool
+#    3. The path to search on
+#    4. Pass 1 if you do not want any error generated
 #------------------------------------------------------------------------
 
 AC_DEFUN([AC_JAVA_TOOLS_CHECK], [

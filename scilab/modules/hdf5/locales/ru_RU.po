@@ -1,0 +1,58 @@
+# Russian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-02 21:41+0000\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: Не удалось открыть файл %s.\n"
+
+#, c-format
+msgid "%s: Invalid HDF5 Scilab format.\n"
+msgstr "%s: Неверный формат HDF5 Scilab.\n"
+
+#, c-format
+msgid "%s: Type: %dx%d\n"
+msgstr "%s: Тип: %dx%d\n"
+
+#, c-format
+msgid "%s: Unable to open file: %s\n"
+msgstr "%s: Не удалось открыть файл: %s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr "%s: Неверное значение входного параметра №%d: «%s» — каталог"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: переменная должна быть "
+"определена.\n"
+
+msgid "HDF5 is not installed"
+msgstr "HDF5 не установлен"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2009-12-09 17:24+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 12:47+0000\n"
 "Last-Translator: Keruskerfuerst <armin_mohring@web.de>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid ""
 "\n"
@@ -380,6 +380,18 @@ msgid "%s: Output ports are not numbered properly.\n"
 msgstr "%s: Ausgangsports sind nicht korrekt durchnummeriert.\n"
 
 #, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
 msgstr ""
 "%s: falsche Anzahl an Eingangsargumenten. Muß zwischen %d und %d liegen.\n"
@@ -387,6 +399,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: falsche Anzahl für Eingangsargumente: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -407,12 +423,32 @@ msgid "%s: Wrong size for input arguments #%d and #%d.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d und #%d.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Integer erwartet.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: Variable erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -457,6 +493,30 @@ msgstr "&Datei"
 
 msgid "&Tools"
 msgstr "&Zusatzprogramme"
+
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
 msgstr ""
@@ -750,6 +810,9 @@ msgstr ""
 msgid "Calc"
 msgstr ""
 
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 
@@ -827,6 +890,9 @@ msgstr ""
 msgid "Compile"
 msgstr ""
 
+msgid "Connection error"
+msgstr ""
+
 msgid "Context"
 msgstr ""
 
@@ -881,6 +947,16 @@ msgstr ""
 msgid "Diagram"
 msgstr ""
 
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
 msgid "Done\n"
 msgstr ""
 
@@ -897,6 +973,9 @@ msgid "End of activation"
 msgstr ""
 
 msgid "End of activation\n"
+msgstr ""
+
+msgid "End problem: "
 msgstr ""
 
 msgid "Entering the block \n"
@@ -967,6 +1046,20 @@ msgid "Get Info"
 msgstr ""
 
 msgid "Help"
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
 msgstr ""
 
 msgid "ID font definitions"
@@ -1182,6 +1275,9 @@ msgstr ""
 msgid "Identification"
 msgstr ""
 
+msgid "Initialisation problem:"
+msgstr ""
+
 msgid "It is impossible to set ID for this type of object"
 msgstr ""
 
@@ -1390,6 +1486,9 @@ msgstr ""
 msgid "Problem while building library %s\n"
 msgstr "Problem beim Erzeugen der Bibliothek %s\n"
 
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
 msgid "Properties"
 msgstr ""
 
@@ -1507,6 +1606,12 @@ msgstr ""
 msgid "Simulate"
 msgstr ""
 
+msgid "Simulation parameters not set:"
+msgstr ""
+
+msgid "Simulation problem: "
+msgstr ""
+
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr ""
@@ -1551,6 +1656,10 @@ msgstr ""
 msgid ""
 "The parameter(s) %s \n"
 "must be defined in the"
+msgstr ""
+
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
 msgstr ""
 
 msgid "Thickness"
@@ -1615,6 +1724,15 @@ msgstr ""
 
 #, c-format
 msgid "Warning %d menus have identical name %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+msgid "Xcos block parameter error"
 msgstr ""
 
 msgid "Yes"
@@ -1718,3 +1836,32 @@ msgstr ""
 #, c-format
 msgid "with flag %d "
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
+#~ msgstr "%s: Fehler: Modelica Kompiler (MODELICAC) nicht verfügbar.\n"
+
+#, c-format
+#~ msgid "%s: An error occurred during the compilation of the Modelica block."
+#~ msgstr ""
+#~ "%s: Ein Fehler ist während der Kompilation des Modelica Blocks aufgetreten."
+
+#, c-format
+#~ msgid ""
+#~ "%s: Diagram does not compile in pass %d.\n"
+#~ "'),"
+#~ msgstr "%s: Diagramm kompiliert im Durchlauf %d nicht."
+
+#~ msgid "Scicos"
+#~ msgstr "Scios"
+
+#, c-format
+#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
+#~ msgstr ""
+#~ "%s: Fehler: die folgende Kommando-Zeile konnte nicht ausgeführt werden: %s.\n"
+
+#~ msgid "Sorry compiling problem"
+#~ msgstr "Entschuldigung, Kompiler Problem."
+
+#~ msgid "A compatible C compiler required."
+#~ msgstr "ein kompatibler C Kompiler benötigt."

@@ -163,11 +163,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\modules\helptools\etc\SciDocConf.xml.vc"
+				>
+			</File>
+			<File
 				RelativePath="..\..\scilab-lib-doc.properties.vc"
 				>
 			</File>
 			<File
 				RelativePath="..\..\scilab-lib.properties.vc"
+				>
+			</File>
+			<File
+				RelativePath="..\..\scilab.properties.vc"
 				>
 			</File>
 			<File

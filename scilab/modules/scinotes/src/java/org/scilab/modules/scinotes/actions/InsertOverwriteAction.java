@@ -27,6 +27,7 @@ import org.scilab.modules.scinotes.ScilabEditorPane;
  */
 public final class InsertOverwriteAction extends AbstractAction {
 
+    private static final long serialVersionUID = 8047960139101685363L;
     /**
      * The key associated with this action
      */

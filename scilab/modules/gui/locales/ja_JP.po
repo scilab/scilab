@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-11-06 03:24+0000\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-12 00:31+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: JAPAN\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -586,11 +586,6 @@ msgid "&Command History"
 msgstr "コマンドヒストリ (&C)"
 
 #
-# File: scilab_fake_localization_file.c, line: 78
-msgid "&Contributions"
-msgstr "寄贈(&C)"
-
-#
 # File: scilab_fake_localization_file.c, line: 65
 msgid "&Control"
 msgstr "コントロール(&C)"
@@ -604,6 +599,9 @@ msgstr "コピー(&C)"
 # File: scilab_fake_localization_file.c, line: 17
 msgid "&Copy to clipboard"
 msgstr "クリップボードへコピー"
+
+msgid "&Decrease font size"
+msgstr "フォントを小さくする (&D)"
 
 #
 # File: scilab_fake_localization_file.c, line: 47
@@ -659,15 +657,24 @@ msgstr "構成プロパティ(&F)"
 msgid "&File"
 msgstr "ファイル(&F)"
 
+msgid "&File Exchange"
+msgstr "&File Exchange"
+
 #
 # File: scilab_fake_localization_file.c, line: 61
 msgid "&Font..."
 msgstr "フォント(&F)..."
 
+msgid "&Forge"
+msgstr "&Forge"
+
 #
 # File: scilab_fake_localization_file.c, line: 7
 msgid "&GIF"
 msgstr "GIF(&G)"
+
+msgid "&Incremental Search"
+msgstr "インクリメンタルサーチ (&I)"
 
 #
 # File: scilab_fake_localization_file.c, line: 68
@@ -678,6 +685,11 @@ msgstr "割り込み(&I)"
 # File: scilab_fake_localization_file.c, line: 8
 msgid "&JPG"
 msgstr "JPG(&J)"
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+msgid "&Links"
+msgstr "ウエブリンク(&W)"
 
 #
 # File: scilab_fake_localization_file.c, line: 44
@@ -799,11 +811,6 @@ msgid "&Vectorial export"
 msgstr "ベクトル形式でエクスポート(&V)"
 
 #
-# File: scilab_fake_localization_file.c, line: 76
-msgid "&Links"
-msgstr "ウエブリンク(&W)"
-
-#
 # File: scilab_fake_localization_file.c, line: 71
 msgid "&Xcos"
 msgstr "Xcos(&X)"
@@ -841,6 +848,21 @@ msgstr "リストボックスで色を加える"
 
 msgid "All %s files"
 msgstr "全ての %s ファイル"
+
+msgid "All Encapsulated PS files"
+msgstr "epsファイル"
+
+msgid "All PDF files"
+msgstr "PDFファイル"
+
+msgid "All PNG image files"
+msgstr "PNG画像ファイル"
+
+msgid "All Postscript files"
+msgstr "ポストスクリプトファイル"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "RTF (Rich Text Format)ファイル"
 
 msgid "All Scilab files"
 msgstr "全てのScilabファイル"
@@ -993,8 +1015,11 @@ msgstr "コピー"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "Copyright (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr "Copyright (c) 1989-2011 (INRIA)"
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr "インタープリタ・マネージメントもコンソールも見つけることができません。"
 
 msgid "Could not open: "
 msgstr "オープンできません: "
@@ -1039,6 +1064,12 @@ msgstr "エクスポートエラー"
 # File: src/nogui/nogui.c, line: 94
 msgid "Error. A signal has been caught.\n"
 msgstr "エラー、シグナルを捉えました。\n"
+
+msgid "Evaluate selection with echo"
+msgstr "選択部分をecho有りで評価"
+
+msgid "Evaluate selection with no echo"
+msgstr "選択部分をecho無しで評価"
 
 msgid "Execute into Scilab"
 msgstr "Scilabで実行"
@@ -1116,6 +1147,9 @@ msgstr "選択したキーワードのヘルプ"
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 msgid "Impossible to get current look and feel"
 msgstr "現在のルックアンドフィールを取得できません"
+
+msgid "In&crease font size"
+msgstr "フォントを拡大(&c)"
 
 msgid "Italic"
 msgstr "イタリック"
@@ -1338,8 +1372,14 @@ msgstr "Scilab デモ(&D)"
 msgid "Scilab &Help"
 msgstr "Scilab ヘルプ(&H)"
 
+msgid "Scilab &Online Help"
+msgstr "Scilab オンラインヘルプ (&O)"
+
 msgid "Scilab &Web Site"
 msgstr "Scilab ウエブサイト(&W)"
+
+msgid "Scilab &Wiki"
+msgstr "Scilab &Wiki"
 
 #
 # File: sci_gateway/c/gw_gui.c, line: 68
@@ -1857,6 +1897,10 @@ msgid ""
 "expected.\n"
 msgstr "'%s' プロパティで不正な値: 文字、または 1 x %d 実行ベクトルを想定します。\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "'%s'プロパティの値が間違っています: 0 と 1の間の数を指定してください.\n"
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1942,3 +1986,106 @@ msgstr "チェックなし"
 
 msgid "yellow"
 msgstr "黄"
+
+#
+# File: sci_gateway/c/gw_gui.c, line: 68
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。"
+
+#
+# File: scilab_fake_localization_file.c, line: 70
+#~ msgid "&Editor"
+#~ msgstr "エディタ(&E)"
+
+#
+# File: scilab_fake_localization_file.c, line: 71
+#~ msgid "&Scicos"
+#~ msgstr "Scicos(&S)"
+
+#
+# File: scilab_fake_localization_file.c, line: 76
+#~ msgid "&Web links"
+#~ msgstr "ウエブリンク(&W)"
+
+#
+# File: scilab_fake_localization_file.c, line: 78
+#~ msgid "&Contributions"
+#~ msgstr "寄贈(&C)"
+
+#
+# File: scilab_fake_localization_file.c, line: 79
+#~ msgid "&Bug And Request database"
+#~ msgstr "バグと要求のデータベース(&B)"
+
+#
+# File: scilab_fake_localization_file.c, line: 80
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "ニュースグループ・アーカイブ(&N)"
+
+#
+# File: scilab_fake_localization_file.c, line: 86
+#~ msgid "Launch Scipad"
+#~ msgstr "Scipadをはじめる"
+
+#
+# File: etc/main_menubar.xml, line: 23
+# File: etc/main_toolbar.xml, line: 11
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "Scipadで開くファイルを選択"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: いかなる結果もプロパティ ''%s'' と ''%s'' 値に基づきません。\n"
+
+#
+# File: scilab_fake_localization_file.c, line: 86
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "Scipadテキスト編集を始める"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: いかなる結果もありません。\n"
+
+#~ msgid "All rights reserved"
+#~ msgstr "All rights reserved"
+
+#~ msgid "Copyright 1989 - 2009"
+#~ msgstr "Copyright 1989 - 2009"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "Scilabを抜けますか?"
+
+#
+# File: macros/about.sci, line: 18
+#~ msgid "INRIA / ENPC / Contributors"
+#~ msgstr "INRIA / ENPC / 貢献者達"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "Scilab コンソーシアム / DIGITEO"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2009 (INRIA)"
+
+#
+# File: src/java/org/scilab/modules/gui/bridge/canvas/SwingScilabCanvasImpl.java, line: 167
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"警告: "
+#~ "以前の警告にも関わらず、Scilabで高度なグラフィック能力を使いました。更に情報が必要な場合には\"\"キャンバスの使い方\"\"を入力します。\")"
+
+#
+# File: etc/main_menubar.xml, line: 23
+# File: etc/main_toolbar.xml, line: 11
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "ファイルを選んでScilabテキスト・エディタで開く"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: 例外が起こりました: %s"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"

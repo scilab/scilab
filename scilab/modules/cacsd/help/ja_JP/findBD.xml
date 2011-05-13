@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼び出し手順</title>
-    <synopsis>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),Y
-(,U,tol,printw,ldwork))</synopsis>
+    <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -223,7 +222,7 @@
 	SLICOTルーチン IB01CD により,
 	状態量初期値および離散時間システムにおけるシステム行列 B と D を推定します.
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
       [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
@@ -246,7 +245,7 @@
     <para>
     モデルの構造は以下のようになります :
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>

@@ -2,24 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@scilab.org>\n"
-"POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-07-07 12:11+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:29+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-"Revision-Date: 2008-01-30 11:26+0100\n"
-
-msgid "Consortium Scilab (DIGITEO)\n"
-msgstr "Scilab 協會 (DIGITEO)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "版權 (c) 1989-2007 (ENPC)\n"
-
-msgid "Copyright (c) 1989-2010 (INRIA)\n"
-msgstr "版權 (c) 1989-2010 (INRIA)\n"
+"X-Generator: Launchpad (build 12981)\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
 
 #
 # File: etc/scilab.start, line: 42
@@ -687,8 +678,16 @@ msgid ""
 msgstr "%s: 第 %d 的輸入參數型態錯誤: 應該是字串或是純量.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為編譯後之巨集.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
@@ -778,6 +777,10 @@ msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 1,2 或 3.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
@@ -983,6 +986,15 @@ msgstr "檢查: %s\n"
 
 msgid "Commands:\n"
 msgstr "指令:\n"
+
+msgid "Consortium Scilab (DIGITEO)\n"
+msgstr "Scilab 協會 (DIGITEO)\n"
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr "版權 (c) 1989-2007 (ENPC)\n"
+
+msgid "Copyright (c) 1989-2011 (INRIA)\n"
+msgstr ""
 
 #
 # File: src/c/callinterf.c, line: 156
@@ -1275,17 +1287,12 @@ msgid "Warning"
 msgstr "警告"
 
 #, c-format
+msgid "Warning: Could not find %s\n"
+msgstr ""
+
+#, c-format
 msgid "Warning: Problems with %s.\n"
 msgstr "警告: %s 的問題.\n"
-
-#
-# File: src/c/banier.c, line: 45
-msgid ""
-"Warning: the operational team of the Scilab Consortium\n"
-"doesn't provide and doesn't support this version of Scilab built with\n"
-msgstr ""
-"警告: Scilab 協會之工作團隊未提供也不支援\n"
-"這一版 Scilab, 編譯方式 :\n"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 310
@@ -1393,3 +1400,254 @@ msgstr "第三"
 # File: src/c/returnPropertyList.c, line: 44
 msgid "tlist not completely filled.\n"
 msgstr "tlist 未完全填滿.\n"
+
+#
+# File: macros/toolboxes.sci, line: 42
+#~ msgid " is already compiled.\n"
+#~ msgstr " 已經編譯完成.\n"
+
+#
+# File: macros/powershell.sci, line: 7
+#~ msgid "Error(s) : see help powershell'';''verify your script without scilab."
+#~ msgstr "錯誤 : 請參考 powershell'';''不使用 Scilab 方式檢查你的程序檔."
+
+#
+# File: macros/powershell.sci, line: 20
+#~ msgid "Powershell not found."
+#~ msgstr "找不到 Powershell."
+
+#
+# File: macros/sethomedirectory.sci, line: 11
+#~ msgid "Obsolete: Define SCIHOME and HOME before to launch Scilab."
+#~ msgstr "已淘汰: 啟動 Scilab 前先定義 SCIHOME 及 HOME 環境參數."
+
+#
+# File: src/c/scicurdir.c, line: 49
+#~ msgid "Can't get current directory.\n"
+#~ msgstr "無法進入目前目錄內.\n"
+
+#
+# File: src/c/banier.c, line: 45
+#~ msgid ""
+#~ "Warning: the operational team of the Scilab Consortium\n"
+#~ "doesn't provide and doesn't support this version of Scilab built with\n"
+#~ msgstr ""
+#~ "警告: Scilab 協會之工作團隊未提供也不支援\n"
+#~ "這一版 Scilab, 編譯方式 :\n"
+
+#
+# File: sci_gateway/c/sci_stacksize.c, line: 90
+# File: sci_gateway/c/sci_gstacksize.c, line: 93
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot alloc more memory.\n"
+#~ "Try gstacksize('max').\n"
+#~ msgstr ""
+#~ "%s: 無法配置記憶體.\n"
+#~ "試試 gstacksize('max') 指令.\n"
+
+#
+# File: sci_gateway/c/sci_libraryinfo.c, line: 81
+#, c-format
+#~ msgid "%s: Invalid library %s.\n"
+#~ msgstr "%s: 無效之程式庫 %s.\n"
+
+#
+# File: sci_gateway/c/sci_getcwd.c, line: 28
+#, c-format
+#~ msgid "%s: An error occurred.\n"
+#~ msgstr "%s: 產生錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 218
+#, c-format
+#~ msgid "%s: Wrong file VERSION %s.\n"
+#~ msgstr "%s: 檔案版本錯誤 %s.\n"
+
+#
+# File: sci_gateway/c/sci_getversion.c, line: 306
+#, c-format
+#~ msgid "%s: Wrong file VERSION in %s.\n"
+#~ msgstr "%s: %s 中之檔案版本錯誤 .\n"
+
+#, c-format
+#~ msgid "%s: Requires Scipad.\n"
+#~ msgstr "%s: 需要 Scipad.\n"
+
+#~ msgid "Only for Microsoft Windows."
+#~ msgstr "只適用於 Microsoft Windows."
+
+#, c-format
+#~ msgid "%s: Invalid '%s' value.\n"
+#~ msgstr "%s: 不正確之 '%s' 值.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input arguments #%d or #%d.\n"
+#~ msgstr "%s: 第 %d 或 第 %d 輸入參數錯誤.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Cannot allocate more memory.\n"
+#~ "Try stacksize('max').\n"
+#~ msgstr ""
+#~ "%s: 無法配置多記憶區.\n"
+#~ "試試指令 stacksize('max').\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量 '%s' 或 '%s'.\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
+#~ msgstr "%s: 參數 %d 型態錯誤: 應為純量, '%s' 或 '%s'.\n"
+
+#, c-format
+#~ msgid "Version: %s"
+#~ msgstr "版本: %s"
+
+#, c-format
+#~ msgid "Compilation date: %s"
+#~ msgstr "編譯日期: %s"
+
+#, c-format
+#~ msgid "Compilation time: %s"
+#~ msgstr "編譯時間: %s"
+
+#, c-format
+#~ msgid "Compiler Architecture: %s"
+#~ msgstr "編譯器架構: %s"
+
+#, c-format
+#~ msgid "Compiled with %s"
+#~ msgstr "以 %s 編譯"
+
+#, c-format
+#~ msgid "XML version: %s"
+#~ msgstr "XML 版本: %s"
+
+#, c-format
+#~ msgid "Tcl/Tk: %s"
+#~ msgstr "Tcl/Tk: %s"
+
+#~ msgid "Enable"
+#~ msgstr "啟用"
+
+#, c-format
+#~ msgid "TCL version: %s"
+#~ msgstr "TCL 版本: %s"
+
+#, c-format
+#~ msgid "TK version: %s"
+#~ msgstr "TCL 版本: %s"
+
+#, c-format
+#~ msgid "Path separator: %s"
+#~ msgstr "檔案路徑分隔符號: %s"
+
+#, c-format
+#~ msgid "Directory separator: %s"
+#~ msgstr "目錄分隔符號: %s"
+
+#, c-format
+#~ msgid "PCRE Version: %d.%d"
+#~ msgstr "PCRE 版本: %d.%d"
+
+#~ msgid "Cannot find Windows temporary directory."
+#~ msgstr "無法找到 Windows 的暫存目錄."
+
+#, c-format
+#~ msgid ""
+#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
+#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
+#~ msgstr ""
+#~ "錯誤:版本檔 %s 不正確(應以 <MODULE_VERSION> 起頭並包含 <VERSION major='' minor='' "
+#~ "maintenance='' revision='' string=''>)\n"
+
+#, c-format
+#~ msgid ""
+#~ "Type '%s' or '%s' to return to standard level prompt.\n"
+#~ "\n"
+#~ msgstr ""
+#~ "鍵入 '%s' 或 '%s' 以返回標準提示 (prompt) 狀態.\n"
+#~ "\n"
+
+#~ msgid "                 Consortium Scilab (DIGITEO)\n"
+#~ msgstr "                 Scilab 協會 (DIGITEO)\n"
+
+#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
+#~ msgstr "               版權 (c) 1989-2007 (ENPC)\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為已命名之變數.\n"
+
+#, c-format
+#~ msgid "Can't go to directory %s.\n"
+#~ msgstr "無法進入到目錄 %s.\n"
+
+#, c-format
+#~ msgid "Memory in use: %*ld %%"
+#~ msgstr "使用中之記憶區: %*ld %%"
+
+#~ msgid "Total Physical Memory (Kbytes): %*I64d"
+#~ msgstr "Total Physical Memory (Kbytes): %*I64d"
+
+#~ msgid "Operating System: "
+#~ msgstr "作業系統: "
+
+#, c-format
+#~ msgid "Number of processors: %d"
+#~ msgstr "處理器數目: %d"
+
+#, c-format
+#~ msgid "Video card: %s"
+#~ msgstr "顯示卡: %s"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: 配置記憶體發生錯誤.\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是整數．\n"
+
+#, c-format
+#~ msgid "Video card driver version: %s"
+#~ msgstr "顯示卡版本: %s"
+
+#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
+#~ msgstr "               版權所有(c) 1989-2009 (INRIA)\n"
+
+#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "總虛擬記憶體 (Kbytes): %*l64d"
+
+#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
+#~ msgstr "釋放虛擬記憶體 (Kbytes): %*l64d"
+
+#~ msgid "Free Extended Memory (Kbytes): %*I64d"
+#~ msgstr "釋放延伸紀錄體 (Kbytes): %*l64d"
+
+#~ msgid "Free Physical Memory (Kbytes): %*I64d"
+#~ msgstr "釋放實體記憶體(Kbytes): %*l64d"
+
+#~ msgid "Total Paging File (Kbytes): %*I64d"
+#~ msgstr "記憶體總頁數 (Kbytes): %*l64d"
+
+#~ msgid "Free Paging File (Kbytes): %*I64d"
+#~ msgstr "記憶釋放頁數 (Kbytes): %*l64d"
+
+#, c-format
+#~ msgid "Screen size: %d x %d %d bits"
+#~ msgstr "螢幕尺寸: %d x %d %d 位元"
+
+#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "               版權 (c) 1989-2010 (INRIA)\n"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
+#~ msgstr "版權 (c) 1989-2010 (INRIA)\n"

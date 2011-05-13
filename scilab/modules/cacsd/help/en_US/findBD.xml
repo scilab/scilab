@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[(x0) (,B (,D)) (,V) (,rcnd)] = findBD(jobx0,comuse (,job),A (,B),C (,D),Y
-(,U,tol,printw,ldwork))</synopsis>
+    <synopsis>[[x0] [,B [,D]] [,V] [,rcnd]] = findBD(jobx0,comuse [,job],A [,B],C [,D],Y [,U,tol,printw,ldwork])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -210,7 +209,7 @@
     matrices B and D of a discrete-time system, using SLICOT routine 
     IB01CD.
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
    [x0,Br,V,rcnd] = findBD(1,1,1,A,C,Y,U)
 [x0,Br,Dr,V,rcnd] = findBD(1,1,2,A,C,Y,U)
       [Br,V,rcnd] = findBD(2,1,1,A,C,Y,U)
@@ -232,7 +231,7 @@
     <para>
     The model structure is :
   </para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k),   k >= 1,
 y(k)   = Cx(k) + Du(k),
  ]]></programlisting>
@@ -310,7 +309,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="inistate">inistate</link>

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
-"PO-Revision-Date: 2010-06-21 01:26+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:19+0000\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -133,11 +133,17 @@ msgstr "ml,mu 的意思:"
 msgid "ODE 1D vector field"
 msgstr "ODE 1D 向量域"
 
+msgid "Reading a precomputed trajectory"
+msgstr ""
+
 msgid "Simulation"
 msgstr "模擬"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "完備系統限制下的機械系統模擬"
+
+msgid "Simulation with ode (needs a Fortran compiler)"
+msgstr ""
 
 msgid "Sphere"
 msgstr "球體"
@@ -171,3 +177,12 @@ msgstr "球體鐘擺模擬"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "就像第1欄由mu zeros組成"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+#~ msgstr "%s: 第 %d 個輸入參數的數值錯誤: 所給定的運算式語法錯誤\n"
+
+#, c-format
+#~ msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+#~ msgstr "%s: 無效的選項 %s: 應該是 %d 或是實數矩陣.\n"

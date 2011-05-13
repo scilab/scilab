@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 18:25+0100\n"
-"PO-Revision-Date: 2010-07-03 01:02+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-09 14:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -207,3 +207,104 @@ msgstr "環境変数 %s は定義されていません。\n"
 
 msgid "unmanaged error by v2cunit.\n"
 msgstr "v2cunitによる管理外のエラー.\n"
+
+#
+# File: macros/fscanf.sci, line: 25
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: ファイル記述子を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 29
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正なサイズ: ファイル記述子を想定します。\n"
+
+#
+# File: macros/fscanf.sci, line: 44
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な値: 適切なファイル記述子を想定します。\n"
+
+#
+# File: macros/input.sci, line: 27
+# File: macros/input.sci, line: 31
+#~ msgid ": "
+#~ msgstr ": "
+
+#
+# File: macros/sscanf.sci, line: 55
+#, c-format
+#~ msgid "%s: Incorrect format.\n"
+#~ msgstr "%s:  不正確なフォーマット\n"
+
+#
+# File: macros/sscanf.sci, line: 62
+# File: macros/sscanf.sci, line: 72
+#, c-format
+#~ msgid "%s: Invalid conversion.\n"
+#~ msgstr "%s: 無効なコンバージョン\n"
+
+#
+# File: macros/sscanf.sci, line: 70
+#, c-format
+#~ msgid "%s: end of input reached before final conversion.\n"
+#~ msgstr "%s: 最終のコンバージョンの前に入力の終わりに達しました。\n"
+
+#
+# File: macros/ssprint.sci, line: 91
+# File: macros/ssprint.sci, line: 94
+# File: macros/ssprint.sci, line: 152
+# File: macros/ssprint.sci, line: 155
+#, c-format
+#~ msgid "%s: system cannot be displayed in this page.\n"
+#~ msgstr "%s システムはこのページで表示できません。\n"
+
+#
+# File: sci_gateway/c/intsetenv.c, line: 53
+# File: sci_gateway/c/intsetenv.c, line: 57
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 行列、または文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 36
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: A string.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 文字列です。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 50
+#, c-format
+#~ msgid "%s: Wrong value for input argument: no empty string expected.\n"
+#~ msgstr "%s: 入力引数で不正な値: 空でない文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_get_absolute_file_path.c, line: 100
+#, c-format
+#~ msgid "%s: The file %s does not exist.\n"
+#~ msgstr "%s: ファイル %s は存在しません。\n"
+
+#
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 63
+# File: sci_gateway/c/sci_getrelativefilename.c, line: 68
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+#~ msgstr "%s: 入力引数 #%d で不正なサイズ: %d 文字以下であるべきです。\n"
+
+#
+# File: sci_gateway/c/sci_mgetl.c, line: 25
+# File: sci_gateway/c/sci_mgetl.c, line: 32
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: An int scalar expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 整数スカラーを想定します。\n"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: メモリの割り当てに失敗しました。\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"

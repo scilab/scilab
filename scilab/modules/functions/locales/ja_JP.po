@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
-"PO-Revision-Date: 2010-09-17 13:09+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-12 00:20+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -99,6 +99,10 @@ msgstr "%s: 拡張子 %s を有するファイルが %s で見つかりません
 #, c-format
 msgid "%s: Please check: %s\n"
 msgstr "%s: %s を確認してください.\n"
+
+#, c-format
+msgid "%s: Private function: cannot access to this function directly.\n"
+msgstr "%s: プライベート関数: この関数に直接アクセスすることはできません.\n"
 
 #, c-format
 msgid "%s: Processing file: %s\n"
@@ -283,3 +287,106 @@ msgstr "行 %s [%s 呼び出し, %s 秒] :: "
 #, c-format
 msgid "line %s [%s calls, %s sec] :: "
 msgstr "行 %s [%s 呼び出し, %s 秒] :: "
+
+#
+# File: macros/get_function_path.sci, line: 22
+#, c-format
+#~ msgid "%s: There is no file named %s.sci in the library directory %s.\n"
+#~ msgstr "%1$s: ライブラリ・ディレクトリー %3$s に %2$s.sci 名のいかなるファイルもありません。\n"
+
+#
+# File: macros/plotprofile.sci, line: 93
+# File: macros/plotprofile.sci, line: 232
+#~ msgid "3D Rot."
+#~ msgstr "3D抑止"
+
+#
+# File: macros/plotprofile.sci, line: 95
+#~ msgid "Editer"
+#~ msgstr "編集"
+
+#
+# File: macros/plotprofile.sci, line: 96
+# File: macros/plotprofile.sci, line: 237
+#~ msgid "Insert"
+#~ msgstr "挿入"
+
+#
+# File: macros/plotprofile.sci, line: 98
+#~ msgid "3D &Rot."
+#~ msgstr "3D抑止(&R)"
+
+#
+# File: macros/plotprofile.sci, line: 99
+# File: macros/plotprofile.sci, line: 242
+#~ msgid "&Edit"
+#~ msgstr "編集(&E)"
+
+#
+# File: macros/plotprofile.sci, line: 100
+# File: macros/plotprofile.sci, line: 244
+#~ msgid "&Insert"
+#~ msgstr "挿入(&I)"
+
+#
+# File: macros/plotprofile.sci, line: 233
+#~ msgid "UnZoom"
+#~ msgstr "縮小"
+
+#
+# File: macros/plotprofile.sci, line: 234
+#~ msgid "Zoom"
+#~ msgstr "拡大"
+
+#
+# File: macros/plotprofile.sci, line: 236
+#~ msgid "File"
+#~ msgstr "ファイル"
+
+#
+# File: macros/plotprofile.sci, line: 241
+#~ msgid "&File"
+#~ msgstr "ファイル(&F)"
+
+#
+# File: macros/plotprofile.sci, line: 243
+#~ msgid "&Tools"
+#~ msgstr "ツール(&T)"
+
+#
+# File: macros/warnobsolete.sci, line: 22
+#, c-format
+#~ msgid "Function %s is obsolete."
+#~ msgstr "関数 %s は廃れました。"
+
+#
+# File: macros/warnobsolete.sci, line: 22
+#, c-format
+#~ msgid "WARNING: Function %s is obsolete.\n"
+#~ msgstr "警告: 関数 %s は廃れました。\n"
+
+#
+# File: macros/warnobsolete.sci, line: 24
+#, c-format
+#~ msgid "WARNING: Please use %s instead.\n"
+#~ msgstr "警告: どうぞ代わりに %s を使って下さい。\n"
+
+#
+# File: macros/warnobsolete.sci, line: 27
+#, c-format
+#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
+#~ msgstr "警告: この関数は、Scilab %s で使われなくなります。\n"
+
+#
+# File: macros/recompilefunction.sci, line: 19
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A function-name expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正なサイズ:  関数名を想定します。\n"
+
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
+#~ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
+
+#, c-format
+#~ msgid "This function will be permanently removed in Scilab %s"
+#~ msgstr "この関数は Scilab %s  以降では削除される予定です."

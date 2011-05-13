@@ -1,0 +1,142 @@
+# Spanish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-16 14:57+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Can''t go to directory ''%s''.\n"
+msgstr "%s: No se puede ir al directorio ''%s''.\n"
+
+#, c-format
+msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr ""
+"%s: El directorio ''%s'' no existe o no se tiene acceso de lectura.\n"
+
+#, c-format
+msgid ""
+"%s: The file %s cannot been created, please check if you have write access "
+"on this file.\n"
+msgstr ""
+"%s: El archivo %s no puede ser creado, por favor revise si tiene permisos de "
+"escritura.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr "%s: El archivo ''%s'' no existe o no puede ser leído.\n"
+
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr ""
+"%s: Este módulo requiere de un compilador de C, pero no fue encontrado.\n"
+
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr ""
+"%s: Este módulo requiere de un compilador de C o Fortran, pero no fue "
+"encontrado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s Número incorrecto de argumentos de entrada: Se esperaban %d\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un "
+"booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el argumento de entrada #%d: Se esperaban a lo "
+"sumo %d filas.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un booleano.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un arreglo de "
+"strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: No se puede ir a "
+"''%s''.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
+"or is not read accessible.\n"
+msgstr ""
+"%s: Valor incorrecto para el argumento de entrada #%d: El directorio ''%s'' "
+"no existe o no se tienen privilegios de lectura.\n"
+
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr ""
+"%s: No puede construir la documentación en este modo de scilab: %s.\n"
+
+msgid "Building gateway...\n"
+msgstr ""
+
+msgid "Building help...\n"
+msgstr "Construyendo ayuda...\n"
+
+msgid "Building macros...\n"
+msgstr "Construyendo macros...\n"
+
+msgid "Building sources...\n"
+msgstr "Construyendo fuentes...\n"
+
+msgid "Generating cleaner.sce...\n"
+msgstr "Generando cleaner.sce...\n"
+
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr "Generando cleaner_gateway.sce...\n"
+
+msgid "Generating loader.sce...\n"
+msgstr "Generando loader.sce...\n"
+
+msgid "Generating loader_gateway.sce...\n"
+msgstr "Generando loader_gateway.sce...\n"

@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-20 14:08+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-05-06 02:19+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s:  #%d matching nodes.\n"
@@ -82,11 +82,11 @@ msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
 msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
-msgstr ""
+msgstr "%s: 找不到符合屬性「 %s 」與值「 %s 」的結果。\n"
 
 #, c-format
 msgid "%s: No results found.\n"
-msgstr ""
+msgstr "%s: 找不到結果。\n"
 
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
@@ -515,10 +515,7 @@ msgid "&Colors"
 msgstr "顏色"
 
 msgid "&Command History"
-msgstr ""
-
-msgid "&Contributions"
-msgstr "貢獻(&C)"
+msgstr "& 之前的指令"
 
 msgid "&Control"
 msgstr "控制(&C)"
@@ -528,6 +525,9 @@ msgstr "複製(&C)"
 
 msgid "&Copy to clipboard"
 msgstr "複製到剪貼簿(&C)"
+
+msgid "&Decrease font size"
+msgstr "& 縮小字型大小"
 
 msgid "&Display current directory"
 msgstr "顯示目前目錄(&D)"
@@ -559,17 +559,29 @@ msgstr "圖形特性(&F)"
 msgid "&File"
 msgstr "檔案(&F)"
 
+msgid "&File Exchange"
+msgstr ""
+
 msgid "&Font..."
 msgstr "字體 (&F)..."
 
+msgid "&Forge"
+msgstr ""
+
 msgid "&GIF"
 msgstr "&GIF"
+
+msgid "&Incremental Search"
+msgstr ""
 
 msgid "&Interrupt"
 msgstr "中斷(&I)"
 
 msgid "&JPG"
 msgstr "&JPG"
+
+msgid "&Links"
+msgstr "網站連結 (&W)"
 
 msgid "&Load environment..."
 msgstr "將軟體環境載入(&L)...."
@@ -652,9 +664,6 @@ msgstr ""
 msgid "&Vectorial export"
 msgstr "向量圖檔輸出(&V)"
 
-msgid "&Links"
-msgstr "網站連結 (&W)"
-
 msgid "&Xcos"
 msgstr "&Xcos"
 
@@ -683,6 +692,21 @@ msgstr "在 listbox 中加入顏色"
 
 msgid "All %s files"
 msgstr "所有 %s 檔案"
+
+msgid "All Encapsulated PS files"
+msgstr ""
+
+msgid "All PDF files"
+msgstr "所有PDF檔案"
+
+msgid "All PNG image files"
+msgstr "所有PNG影像檔案"
+
+msgid "All Postscript files"
+msgstr "所有Postscript檔案"
+
+msgid "All RTF (Rich Text Format) files"
+msgstr "所有RTF(Rich Text Format)檔案"
 
 msgid "All Scilab files"
 msgstr "所有 Scilab 檔案"
@@ -797,8 +821,11 @@ msgstr "複製"
 msgid "Copyright (c) 1989-2007 (ENPC)"
 msgstr "版權所有 (c) 1989-2007 (ENPC)"
 
-msgid "Copyright (c) 1989-2010 (INRIA)"
-msgstr "Copyright (c) 1989-2010 (INRIA)"
+msgid "Copyright (c) 1989-2011 (INRIA)"
+msgstr ""
+
+msgid "Could not find the console nor the InterpreterManagement."
+msgstr ""
 
 msgid "Could not open: "
 msgstr ""
@@ -835,6 +862,12 @@ msgstr "匯出時發生錯誤"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "錯誤. 捕捉到一錯誤訊號.\n"
+
+msgid "Evaluate selection with echo"
+msgstr ""
+
+msgid "Evaluate selection with no echo"
+msgstr ""
 
 msgid "Execute into Scilab"
 msgstr "在 Scilab 中執行"
@@ -895,6 +928,9 @@ msgstr "所選的關鍵字說明"
 
 msgid "Impossible to get current look and feel"
 msgstr "無法取得目前之 look and feel"
+
+msgid "In&crease font size"
+msgstr ""
 
 msgid "Italic"
 msgstr ""
@@ -1041,8 +1077,14 @@ msgstr "Scilab 範例(&D)"
 msgid "Scilab &Help"
 msgstr "Scilab 線上手冊(&H)"
 
+msgid "Scilab &Online Help"
+msgstr ""
+
 msgid "Scilab &Web Site"
 msgstr "Scilab 網站(&w)"
+
+msgid "Scilab &Wiki"
+msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -1378,6 +1420,10 @@ msgid ""
 "expected.\n"
 msgstr "屬性 '%s' 數值錯誤:  應為一字串或 1 x %d 之實數行向量.\n"
 
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1450,3 +1496,78 @@ msgstr "已核消"
 
 msgid "yellow"
 msgstr "黃色"
+
+#~ msgid "&Editor"
+#~ msgstr "編輯器(&E)"
+
+#~ msgid "&Scicos"
+#~ msgstr "&Scicos"
+
+#~ msgid "&Contributions"
+#~ msgstr "貢獻(&C)"
+
+#~ msgid "&Bug And Request database"
+#~ msgstr "臭蟲及開發需求資料庫(&B)"
+
+#~ msgid "&Newsgroup Archives"
+#~ msgstr "新聞群組檔案櫃(&N)"
+
+#~ msgid "Launch Scipad"
+#~ msgstr "啟動 scipad"
+
+#~ msgid "Select a file to open with Scipad"
+#~ msgstr "選擇一檔案讓 Scipad 編輯"
+
+#, c-format
+#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
+#~ msgstr "Scilab '%s' 模組在-nogui 或 -nwni 模式下不啟用."
+
+#~ msgid "&Web links"
+#~ msgstr "網站連結 (&W)"
+
+#, c-format
+#~ msgid "%s: No results founded for property ''%s'' and value ''%s''.\n"
+#~ msgstr "%s: 找不到 \"%s\" 屬性 和 \"%s\" 數值 的結果.\n"
+
+#, c-format
+#~ msgid "%s: No results founded.\n"
+#~ msgstr "%s: 找不到任何的結果值.\n"
+
+#~ msgid "Select a file to open with Scilab text editor"
+#~ msgstr "使用 Scilab 文字編輯器開啟所選擇的檔案"
+
+#~ msgid ""
+#~ "disp(\"WARNING: Despite of our previous warning, you choosed to use Scilab "
+#~ "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
+#~ "information.\")"
+#~ msgstr ""
+#~ "disp(\"警告: 不管前一個警告訊息, 您仍在 Scilab 選擇使用進階繪圖功能. 鍵入 \"\"help usecanvas\"\" "
+#~ "取得更多的訊息.\")"
+
+#~ msgid "Launch Scilab text editor"
+#~ msgstr "執行 Scilab 文字編輯器"
+
+#~ msgid "All rights reserved"
+#~ msgstr "版權所有"
+
+#~ msgid "INRIA / ENPC / Contributors"
+#~ msgstr "INRIA / ENPC / 貢獻者群"
+
+#~ msgid "Do you relly want to quit Scilab?"
+#~ msgstr "您確定要離開 Scilab?"
+
+#~ msgid "Copyright 1989 - 2009"
+#~ msgstr "版權 1989 - 2009"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "The Scilab Consortium / DIGITEO"
+
+#~ msgid "Copyright (c) 1989-2009 (INRIA)"
+#~ msgstr "版權所有 (c) 1989-2009 (INRIA)"
+
+#~ msgid "Copyright (c) 1989-2010 (INRIA)"
+#~ msgstr "Copyright (c) 1989-2010 (INRIA)"
+
+#, c-format
+#~ msgid "%s: An exception occurred: %s"
+#~ msgstr "%s: 例外發生: %s"

@@ -91,6 +91,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 
 	piData = piOffset + *_piRows * *_piCols + 1;
 
+	int sum = 0;
 	for(int i = 0 ; i < *_piRows * *_piCols ; i++)
 	{
 		if(_pstStrings[i] == NULL)
@@ -98,7 +99,8 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 			addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
 			return sciErr;
 		}
-		code2str(&_pstStrings[i], piData + iArraySum(_piLength, 0, i), _piLength[i]);
+		code2str(&_pstStrings[i], piData + sum, _piLength[i]);
+		sum += _piLength[i];
 		_pstStrings[i][_piLength[i]] = 0;
 	}
 	return sciErr;

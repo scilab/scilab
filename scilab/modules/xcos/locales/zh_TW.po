@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-08-18 17:19+0000\n"
-"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-08 16:17+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
-"Revision-Date: 2010-08-18 15:26+0100\n"
+"X-Generator: Launchpad (build 12981)\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
@@ -53,7 +53,7 @@ msgstr "%s: 不能匯出( export) %s 到 %s.\n"
 
 #, c-format
 msgid "%s: Unable to export ''XX'' to %s"
-msgstr ""
+msgstr "%s: 無法輸出「XX」到 %s"
 
 #, c-format
 msgid "%s: Unable to export the palette to hdf5.\n"
@@ -69,7 +69,7 @@ msgstr "%s: 不能產生(generate)  palette icon : %s 已存在.\n"
 
 #, c-format
 msgid "%s: Unable to import data from %s"
-msgstr ""
+msgstr "%s:無法匯入從 %s 匯入資料"
 
 #, c-format
 msgid "%s: Unable to import xcos file %s.\n"
@@ -84,8 +84,8 @@ msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-msgstr "%s: Wrong input argument %s: svg or gif expected.\n"
+msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -207,6 +207,12 @@ msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
+"expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 
@@ -234,8 +240,17 @@ msgstr "對齊區塊"
 msgid "Annotations"
 msgstr "注解"
 
+msgid "Automotive Suspension"
+msgstr ""
+
+msgid "Ball on a Platform"
+msgstr ""
+
 msgid "Based on Scicos"
 msgstr "根據 Scicos"
+
+msgid "Basic controller"
+msgstr ""
 
 msgid "Block Help"
 msgstr "區塊說明"
@@ -252,6 +267,15 @@ msgstr "邊框顏色"
 msgid "Bottom"
 msgstr "底部"
 
+msgid "Bouncing Ball"
+msgstr ""
+
+msgid "Bouncing Balls"
+msgstr ""
+
+msgid "Bridge Rectifer"
+msgstr ""
+
 msgid "CVODE"
 msgstr "CVODE 常微分方程"
 
@@ -264,6 +288,9 @@ msgstr ""
 msgid "Center"
 msgstr "中間"
 
+msgid "Chaos Modelica"
+msgstr ""
+
 msgid ""
 "Click on diagram to add link point or on a compatible target to finish"
 msgstr "點按 diagram 以增加link point 或是 相容的目標來完成"
@@ -273,6 +300,9 @@ msgstr "關閉"
 
 msgid "Code generation"
 msgstr "產生程式碼"
+
+msgid "Colpitts oscillator"
+msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "命令埠必須連接到控制埠"
@@ -293,8 +323,14 @@ msgstr ""
 msgid "Computing"
 msgstr ""
 
+msgid "Cont.Plant-Hybrid Observer"
+msgstr ""
+
 msgid "Continuous time systems"
 msgstr "連續的 time systems"
+
+msgid "Control Systems"
+msgstr ""
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "版權所有 (c) 1989-2009 (INRIA)"
@@ -310,6 +346,12 @@ msgstr ""
 
 msgid "Customize"
 msgstr "自訂"
+
+msgid "DC/DC Boost Converter"
+msgstr ""
+
+msgid "DC/DC Buck Converter"
+msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr "Debug block 呼叫沒有 trace"
@@ -342,11 +384,20 @@ msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 msgid "Diff. States"
 msgstr ""
 
+msgid "Differential amplifier"
+msgstr ""
+
 msgid "Discontinuities"
 msgstr "不連續性"
 
 msgid "Discrete"
 msgstr "離散"
+
+msgid "Discrete Controller"
+msgstr ""
+
+msgid "Discrete Kalman Filter"
+msgstr ""
 
 msgid "Discrete time systems"
 msgstr "離散時間系統"
@@ -369,6 +420,9 @@ msgstr "可編輯的"
 msgid "Electrical"
 msgstr "電力"
 
+msgid "Electrical Systems"
+msgstr ""
+
 msgid "Enable"
 msgstr ""
 
@@ -376,6 +430,9 @@ msgid "Equations"
 msgstr ""
 
 msgid "Error"
+msgstr ""
+
+msgid "Error on export"
 msgstr ""
 
 msgid "Event handling"
@@ -406,6 +463,9 @@ msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "載入圖框失敗"
+
+msgid "Fibonacci Numbers"
+msgstr ""
 
 msgid "File"
 msgstr "檔案"
@@ -467,17 +527,26 @@ msgstr ""
 msgid "Goto %s"
 msgstr "Goto %s"
 
+msgid "Goto/From blocks"
+msgstr ""
+
 msgid "Grid"
 msgstr "網格"
 
 msgid "Horizontal"
 msgstr "水平"
 
+msgid "Hydraulics blocks"
+msgstr ""
+
 msgid "IDA"
 msgstr "IDA"
 
 msgid "Image contains no data."
 msgstr "影像內容無資料"
+
+msgid "Image path"
+msgstr ""
 
 msgid "Implicit"
 msgstr "默認（Implicit）"
@@ -492,6 +561,9 @@ msgstr "不明確資料的輸出埠必須連接到不明確資料的輸入埠"
 
 msgid "Import from XML"
 msgstr "從 XML 檔案匯入"
+
+msgid "Incompatibility detected"
+msgstr ""
 
 msgid "Initial computing method"
 msgstr ""
@@ -511,7 +583,13 @@ msgstr "絶對容錯積分器"
 msgid "Integrator relative tolerance"
 msgstr "相對容錯積分器"
 
+msgid "Inverted Pendulum"
+msgstr ""
+
 msgid "Italic"
+msgstr ""
+
+msgid "Kalman Filter"
 msgstr ""
 
 msgid "Left"
@@ -538,8 +616,17 @@ msgstr ""
 msgid "Loading user defined palettes"
 msgstr "載入使用者自訂的調色盤"
 
+msgid "Logic AND gate"
+msgstr ""
+
+msgid "Logic NOR gate"
+msgstr ""
+
 msgid "Lookup Tables"
 msgstr "查詢表"
+
+msgid "Lorentz butterfly"
+msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Masked SuperBlock 編輯器"
@@ -553,11 +640,17 @@ msgstr "矩陣"
 msgid "Max integration time interval"
 msgstr "最大整合的間隔時間"
 
+msgid "Mechanical Systems"
+msgstr ""
+
 msgid "Middle"
 msgstr "中間"
 
 msgid "Mirror"
 msgstr "鏡象"
+
+msgid "Modelica demos"
+msgstr ""
 
 msgid "Modelica initialize"
 msgstr ""
@@ -592,6 +685,15 @@ msgstr "正常 100%"
 msgid "Ok"
 msgstr "確定"
 
+msgid "Old Gain Block"
+msgstr ""
+
+msgid "Old demos"
+msgstr ""
+
+msgid "OpAmp amplifier"
+msgstr ""
+
 msgid "Open"
 msgstr "開啟"
 
@@ -610,6 +712,12 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr "每一block 執行trace和 Debug block calls"
 
+msgid "Please check the diagram, before trying to simulate it."
+msgstr ""
+
+msgid "Please specify a file format"
+msgstr ""
+
 msgid "Please take a look into the Scilab console"
 msgstr ""
 
@@ -620,11 +728,20 @@ msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr "Port 已連上, 請選擇一個未連上的port 或是有效的link."
 
+msgid "Preview"
+msgstr ""
+
 msgid "Print"
 msgstr "列印"
 
 msgid "Quit Xcos"
 msgstr "離開 Xcos"
+
+msgid "RLC Circuit"
+msgstr ""
+
+msgid "RLC circuit"
+msgstr ""
 
 msgid "Real time scaling"
 msgstr "即時延展"
@@ -685,6 +802,9 @@ msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' 模組尚未安裝.\n"
 
+msgid "Scilab block"
+msgstr ""
+
 msgid "Scilab file"
 msgstr "Scilab 檔"
 
@@ -712,11 +832,20 @@ msgstr "顯示上層的 diagram"
 msgid "Show/Hide shadow"
 msgstr "顯示/隱藏 陰影"
 
+msgid "Signal Builder"
+msgstr ""
+
 msgid "Signal Processing"
 msgstr "訊號處理"
 
 msgid "Signal Routing"
 msgstr "訊回迴路"
+
+msgid "Simple Demo"
+msgstr ""
+
+msgid "Simple Thermostat"
+msgstr ""
 
 msgid "Simulation"
 msgstr "模擬"
@@ -736,8 +865,14 @@ msgstr ""
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "求解器 0 (CVODE) - 100 (IDA)"
 
+msgid "Some blocks have been removed to ensure compatibility."
+msgstr ""
+
 msgid "Sources"
 msgstr "訊號源"
+
+msgid "Standard demos"
+msgstr ""
 
 msgid "Start"
 msgstr "開始"
@@ -750,6 +885,15 @@ msgstr "直線"
 
 msgid "Superblock mask"
 msgstr "Superblock 遮罩"
+
+msgid "Switched capacitor integrator"
+msgstr ""
+
+msgid "Table Lookup"
+msgstr ""
+
+msgid "Temperature Controller"
+msgstr ""
 
 msgid "Text Color"
 msgstr ""
@@ -789,6 +933,15 @@ msgstr "工具"
 
 msgid "Top"
 msgstr "頂部"
+
+msgid "Transformer"
+msgstr ""
+
+msgid "Unable to decode \"%s\" : invalid data."
+msgstr ""
+
+msgid "Unable to decode \"%s.%s\" : invalid field."
+msgstr ""
 
 msgid "Unable to delete "
 msgstr ""
@@ -867,6 +1020,9 @@ msgstr "檢示 Scicos"
 msgid "Viewport"
 msgstr "觀察窗"
 
+msgid "Water tank"
+msgstr ""
+
 msgid "Will try to continue..."
 msgstr "繼續測試..."
 
@@ -892,6 +1048,9 @@ msgstr "Xcos 展示"
 msgid "Xcos Help"
 msgstr "Xcos 說明"
 
+msgid "Xcos data types"
+msgstr ""
+
 msgid "Xcos error"
 msgstr "Xcos 錯誤"
 
@@ -907,8 +1066,14 @@ msgstr ""
 "你應該在scilab 指令處使用 Scilab 指令去定義區塊中的符號式參數.<br/>這些指令已被證實過.(換言之, 當你按 OK, 則圖框就被 "
 "Eval 載入一次.)"
 
+msgid "Zero Crossing"
+msgstr ""
+
 msgid "Zero crossing detection"
 msgstr "Zero crossing 偵測"
+
+msgid "_IF_ Xcos block"
+msgstr ""
 
 msgid "comment"
 msgstr ""
@@ -956,3 +1121,111 @@ msgstr ""
 
 msgid "weight"
 msgstr ""
+
+#~ msgid "CeCILL License"
+#~ msgstr "CeCILL 授權"
+
+#~ msgid "All rights reserved"
+#~ msgstr "版權所有"
+
+#~ msgid "Copyright 2009"
+#~ msgstr "版權 (c)2009"
+
+#~ msgid "Continuous"
+#~ msgstr "連續"
+
+#~ msgid "Copy"
+#~ msgstr "複制"
+
+#~ msgid "Discontinuous"
+#~ msgstr "非連續"
+
+#~ msgid "Cut"
+#~ msgstr "剪下"
+
+#~ msgid ""
+#~ "Diagram has been modified since last save\n"
+#~ "save it?"
+#~ msgstr ""
+#~ "相較上次存檔,圖框已被修改\n"
+#~ "是否儲存?"
+
+#~ msgid "Events"
+#~ msgstr "事件"
+
+#, c-format
+#~ msgid "FAILED TO EXPORT: %s\n"
+#~ msgstr "匯出至 %s 失敗\n"
+
+#~ msgid "Group"
+#~ msgstr "群組"
+
+#~ msgid "Invert selection"
+#~ msgstr "反向選擇"
+
+#~ msgid "Math Operations"
+#~ msgstr "數學運算元"
+
+#~ msgid "Modelica"
+#~ msgstr "Modelica"
+
+#~ msgid "Paste"
+#~ msgstr "貼上"
+
+#~ msgid "Redo"
+#~ msgstr "重複"
+
+#~ msgid "Port Action"
+#~ msgstr "啟動埠"
+
+#~ msgid "Quit"
+#~ msgstr "離開"
+
+#~ msgid "Select all"
+#~ msgstr "全選"
+
+#~ msgid "Set Debug Level"
+#~ msgstr "除錯等級設定"
+
+#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
+#~ msgstr "設定除錯等級 (0,1,2,3) </br> 執行 scicos_debu(n)"
+
+#~ msgid "The Scilab Consortium / DIGITEO"
+#~ msgstr "The Scilab Consortium / DIGITEO"
+
+#~ msgid "Undo"
+#~ msgstr "回復"
+
+#~ msgid "Threshold"
+#~ msgstr "閥值"
+
+#~ msgid "Unknow Diagram Version : "
+#~ msgstr "圖框版本未知: "
+
+#~ msgid "Xcos version 1.0"
+#~ msgstr "Xcos 版本 1.0"
+
+#~ msgid "Xcos 1.0"
+#~ msgstr "Xcos 1.0"
+
+#~ msgid "Zoom Out"
+#~ msgstr "縮小"
+
+#~ msgid "Zoom In"
+#~ msgstr "放大"
+
+#~ msgid "UnGroup"
+#~ msgstr "未群組化"
+
+#~ msgid "Final inegration time"
+#~ msgstr "最後整合時間"
+
+#~ msgid "Same command executed again"
+#~ msgstr "相同命令再執行一次"
+
+#~ msgid "Unable to communicate with the interpreter"
+#~ msgstr "無法聯繫上interpreter"
+
+#, c-format
+#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
+#~ msgstr "%s: Wrong input argument %s: svg or gif expected.\n"

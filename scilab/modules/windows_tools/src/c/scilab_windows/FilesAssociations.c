@@ -160,7 +160,7 @@ int CommandByFileExtension(char *fichier,int OpenCode,char *Cmd)
                         exit(0);
                     }
 
-                    ScilabDestination = getLastScilabFinded();
+                    ScilabDestination = getLastScilabFound();
                     if (ScilabDestination)
                     {
                         SendCommandToAnotherScilab(MSG_SCIMSG7,ScilabDestination,Cmd);

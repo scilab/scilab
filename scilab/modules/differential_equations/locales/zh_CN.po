@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-09-27 16:24+0200\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2009-10-25 15:13+0000\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: %s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -133,11 +133,17 @@ msgstr ""
 msgid "ODE 1D vector field"
 msgstr ""
 
+msgid "Reading a precomputed trajectory"
+msgstr ""
+
 msgid "Simulation"
 msgstr "模拟"
 
 msgid "Simulation of mechanical system with holonomic constraints"
 msgstr "机械系统仿真(完整约束)"
+
+msgid "Simulation with ode (needs a Fortran compiler)"
+msgstr ""
 
 msgid "Sphere"
 msgstr "球体"
@@ -171,3 +177,12 @@ msgstr ""
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr ""
+
+#, c-format
+#~ msgid "%s: Invalid option %s: %d or real matrix expected.\n"
+#~ msgstr "%s：不正确的选项%s：应该为%d或实数矩阵。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong value for imput argument #%d: syntax error in given expression\n"
+#~ msgstr "%s：输入参数#%d的值错误：给定表达式语法错误。\n"

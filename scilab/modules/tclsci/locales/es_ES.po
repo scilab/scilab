@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2009-04-07 00:22+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 15:06+0000\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr " Inicia purgado para los comandos en cola.\n"
@@ -112,23 +112,14 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "&Editar"
-
-msgid "&File"
-msgstr "Archivo"
-
-msgid "&Tools"
-msgstr "Herramien&tas"
-
 msgid "Alpha Release"
 msgstr "Lanzamiento Alfa"
 
 msgid "Beta Release"
 msgstr "Lanzamiento Beta"
+
+msgid "Color"
+msgstr "Color"
 
 #, c-format
 msgid "Error %s while loading library %s"
@@ -166,8 +157,17 @@ msgstr "Imposible configurar la variable de entorno."
 msgid "Impossible to set system encoding."
 msgstr "Imposible configurar el sistema de codificación."
 
+msgid "Puzzle"
+msgstr "Puzzle"
+
+msgid "Scale"
+msgstr "Escala"
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "El módulo TCL/TK de Scilab no está instalado.\n"
+
+msgid "Scroll"
+msgstr "Desplazar"
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -254,3 +254,31 @@ msgstr "Advertencia: Demasiadas devoluciones en cola!\n"
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] no funciona con Tcl/Tk.\n"
+
+#~ msgid "&?"
+#~ msgstr "&?"
+
+#~ msgid "&Tools"
+#~ msgstr "Herramien&tas"
+
+#~ msgid "&Edit"
+#~ msgstr "&Editar"
+
+#~ msgid "&File"
+#~ msgstr "Archivo"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Interfase Tcl/Tk no cargada."
+
+#~ msgid "Updating, please wait"
+#~ msgstr "Actualizando, espere por favor"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Real or String matrix expected.\n"
+#~ msgstr ""
+#~ "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+#~ "Reales o de strings.\n"
+
+#~ msgid "Open"
+#~ msgstr "Abrir"

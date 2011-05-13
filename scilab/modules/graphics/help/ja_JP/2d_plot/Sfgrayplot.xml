@@ -73,13 +73,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
 	異なります. 平滑化には関数 <literal>fec</literal> が使用されます. 
 	面の描画の際には,以下のグリッド (ここでは n1=5, n2=3)から構築された
 	一連の三角形上では線形であると仮定されます:</para>
-    <programlisting role = ""><![CDATA[ 
+    <screen><![CDATA[ 
 _____________
 | /| /| /| /|
 |/_|/_|/_|/_| 
 | /| /| /| /| 
 |/_|/_|/_|/_|
- ]]></programlisting>
+ ]]></screen>
     <para>関数 <link linkend="colorbar">colorbar</link> は色スケールを参照する
 	際にも使用できます
 	(しかし,最小値と最大値が既知(または計算する)必要があります).</para>

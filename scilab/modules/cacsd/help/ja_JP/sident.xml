@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>[(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,
-Ci,printw))</synopsis>
+    <synopsis>[[A,C][,B[,D]][,K,Q,Ry,S][,rcnd]] = sident(meth,job,s,n,l,R[,tol,t,Ai,Ci,printw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>
@@ -244,7 +243,7 @@ Ci,printw))</synopsis>
     SIDENT 関数は, SLICOT ルーチン IB01BD を用いて,
 	離散時間状態空間実現 (A,B,C,D) および
 	カルマンゲイン K を計算します.</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
               [A,C,B,D] = sident(meth,1,s,n,l,R)
 [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
                   [A,C] = sident(meth,2,s,n,l,R)
@@ -262,7 +261,7 @@ Ci,printw))</synopsis>
 	カルマン予測ゲイン K を計算します.</para>
     <para>
        モデル構造は以下のようになります :</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>

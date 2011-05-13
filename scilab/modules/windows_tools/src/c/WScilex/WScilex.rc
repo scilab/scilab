@@ -39,16 +39,16 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // remains consistent on all systems.
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON_TEST           ICON                    "..\\resources\\TST.ICO"
-IDI_ICON_BIN            ICON                    "..\\resources\\BIN.ICO"
-IDI_ICON_COS            ICON                    "..\\resources\\COS.ICO"
-IDI_ICON_COSF           ICON                    "..\\resources\\COSF.ICO"
-IDI_ICON_DEM            ICON                    "..\\resources\\DEM.ICO"
-IDI_ICON_GRAPH          ICON                    "..\\resources\\Graph.ICO"
-IDI_ICON_SAV            ICON                    "..\\resources\\SAV.ICO"
-IDI_ICON_SCE            ICON                    "..\\resources\\SCE.ICO"
-IDI_ICON_SCI            ICON                    "..\\resources\\SCI.ICO"
-IDI_ICON_SCILAB         ICON                    "..\\resources\\scilab.ico"
+IDI_ICON_TEST           ICON                    "..\\resources\\icon_tst.ICO"
+IDI_ICON_BIN            ICON                    "..\\resources\\icon_bin.ICO"
+IDI_ICON_COS            ICON                    "..\\resources\\icon_cos.ICO"
+IDI_ICON_COSF           ICON                    "..\\resources\\icon_cosf.ICO"
+IDI_ICON_DEM            ICON                    "..\\resources\\icon_dem.ICO"
+IDI_ICON_GRAPH          ICON                    "..\\resources\\icon_graph.ICO"
+IDI_ICON_SAV            ICON                    "..\\resources\\icon_sav.ICO"
+IDI_ICON_SCE            ICON                    "..\\resources\\icon_sce.ICO"
+IDI_ICON_SCI            ICON                    "..\\resources\\icon_sci.ICO"
+IDI_ICON_SCILAB         ICON                    "..\\resources\\icon_scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -115,7 +115,7 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Consortium Scilab (DIGITEO)"
-            VALUE "FileDescription", "Scilab 5.3.1 (GUI)"
+            VALUE "FileDescription", "Scilab 5.3.2 (GUI)"
             VALUE "FileVersion", "5, 3, 2, 0"
             VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2011"

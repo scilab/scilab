@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[(A,C)(,B(,D))(,K,Q,Ry,S)(,rcnd)] = sident(meth,job,s,n,l,R(,tol,t,Ai,
-Ci,printw))</synopsis>
+    <synopsis>[[A,C][,B[,D]][,K,Q,Ry,S][,rcnd]] = sident(meth,job,s,n,l,R[,tol,t,Ai,Ci,printw])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>Arguments</title>
@@ -216,7 +215,7 @@ Ci,printw))</synopsis>
     <para>
     SIDENT function for computing a discrete-time state-space realization
     (A,B,C,D) and Kalman gain K using SLICOT routine IB01BD.</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
               [A,C,B,D] = sident(meth,1,s,n,l,R)
 [A,C,B,D,K,Q,Ry,S,rcnd] = sident(meth,1,s,n,l,R,tol,t)
                   [A,C] = sident(meth,2,s,n,l,R)
@@ -233,7 +232,7 @@ Ci,printw))</synopsis>
     (MOESP, N4SID, or their combination).</para>
     <para>
        The model structure is :</para>
-    <programlisting role = ""><![CDATA[ 
+    <programlisting role=""><![CDATA[ 
 x(k+1) = Ax(k) + Bu(k) + Ke(k),   k >= 1,
 y(k)   = Cx(k) + Du(k) + e(k),
  ]]></programlisting>
@@ -300,7 +299,7 @@ clf();plot2d((1:nsmp)',[Y',Y1'])
 ]]></programlisting>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
       <member>
         <link linkend="findBD">findBD</link>

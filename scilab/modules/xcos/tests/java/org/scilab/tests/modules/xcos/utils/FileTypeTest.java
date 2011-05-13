@@ -28,7 +28,7 @@ public class FileTypeTest {
 	
 	@Test
 	public void checkSupportedType() {
-		assert XcosFileType.values().length == 5;
+		assert XcosFileType.values().length == 4;
 		assert XcosFileType.getDefault() == XcosFileType.XCOS;
 		assert XcosFileType.getScilabFileType() == XcosFileType.HDF5;
 	}
@@ -57,7 +57,7 @@ public class FileTypeTest {
 			if (type != XcosFileType.XCOS) {
 				assert type == XcosFileType.findFileType(tmp);
 			} else {
-				assert XcosFileType.findFileType(tmp) == XcosFileType.UNKNOW;
+				assert XcosFileType.findFileType(tmp) == null;
 			}
 			
 			tmp.delete();

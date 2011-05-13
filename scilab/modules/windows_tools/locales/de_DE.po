@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-20 16:50+0100\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2010-11-09 19:40+0000\n"
 "Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -99,3 +99,13 @@ msgstr "Scilab Konsole"
 
 msgid "see help"
 msgstr "in der Hilfe nachsehen"
+
+#, c-format
+#~ msgid "%s : Memory allocation error.\n"
+#~ msgstr "%s: Fehler bei der Speicherbelegung.\n"
+
+#~ msgid "Verify your script without Scilab."
+#~ msgstr "überprüfen Sie das Skript ohne Scilab"
+
+#~ msgid "Powershell not found."
+#~ msgstr "Powershell nicht gefunden."

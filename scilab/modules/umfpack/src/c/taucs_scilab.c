@@ -256,7 +256,7 @@ taucs_ccs_create(int m, int n, int nnz)
 	sciprint(_("%s: No more memory.\n"),"taucs_ccs_create");
     return NULL; 
   }
-  matrix->flags = 0;;
+  matrix->flags = 0;
   matrix->n = n;
   matrix->m = m;
   matrix->colptr = (int*)    MALLOC((n+1) * sizeof(int));

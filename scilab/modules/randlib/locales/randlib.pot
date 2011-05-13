@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-05-10 10:58+0100\n"
 
 # File: src/c/clcg4.c, line: 167
 msgid ""
@@ -77,7 +77,7 @@ msgstr ""
 msgid "%s Wrong value for first input argument %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 836
+# File: sci_gateway/c/sci_grand.c, line: 878
 #, c-format
 msgid "%s: Missing P matrix and X0 for Markov chain\n"
 msgstr ""
@@ -87,7 +87,7 @@ msgstr ""
 msgid "%s: The %s option affects only the %s generator\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 916
+# File: sci_gateway/c/sci_grand.c, line: 958
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
@@ -95,7 +95,7 @@ msgstr ""
 # File: sci_gateway/c/sci_grand.c, line: 147
 # File: sci_gateway/c/sci_grand.c, line: 416
 # File: sci_gateway/c/sci_grand.c, line: 462
-# File: sci_gateway/c/sci_grand.c, line: 699
+# File: sci_gateway/c/sci_grand.c, line: 741
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
 msgstr ""
@@ -149,7 +149,7 @@ msgstr ""
 msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 841
+# File: sci_gateway/c/sci_grand.c, line: 883
 #, c-format
 msgid ""
 "%s: Wrong second input argument: Square matrix or row vector expected.\n"
@@ -173,7 +173,7 @@ msgstr ""
 msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 812
+# File: sci_gateway/c/sci_grand.c, line: 854
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
 msgstr ""
@@ -200,39 +200,45 @@ msgstr ""
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 723
-# File: sci_gateway/c/sci_grand.c, line: 801
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+#
+# File: sci_gateway/c/sci_grand.c, line: 765
+# File: sci_gateway/c/sci_grand.c, line: 843
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 657
-# File: sci_gateway/c/sci_grand.c, line: 659
-# File: sci_gateway/c/sci_grand.c, line: 679
-# File: sci_gateway/c/sci_grand.c, line: 681
-# File: sci_gateway/c/sci_grand.c, line: 741
-# File: sci_gateway/c/sci_grand.c, line: 743
-# File: sci_gateway/c/sci_grand.c, line: 768
-# File: sci_gateway/c/sci_grand.c, line: 770
-# File: sci_gateway/c/sci_grand.c, line: 932
-# File: sci_gateway/c/sci_grand.c, line: 934
-# File: sci_gateway/c/sci_grand.c, line: 956
-# File: sci_gateway/c/sci_grand.c, line: 958
-# File: sci_gateway/c/sci_grand.c, line: 960
-# File: sci_gateway/c/sci_grand.c, line: 983
-# File: sci_gateway/c/sci_grand.c, line: 1003
+# File: sci_gateway/c/sci_grand.c, line: 663
+# File: sci_gateway/c/sci_grand.c, line: 670
+# File: sci_gateway/c/sci_grand.c, line: 703
+# File: sci_gateway/c/sci_grand.c, line: 710
+# File: sci_gateway/c/sci_grand.c, line: 783
+# File: sci_gateway/c/sci_grand.c, line: 785
+# File: sci_gateway/c/sci_grand.c, line: 810
+# File: sci_gateway/c/sci_grand.c, line: 812
+# File: sci_gateway/c/sci_grand.c, line: 974
+# File: sci_gateway/c/sci_grand.c, line: 976
+# File: sci_gateway/c/sci_grand.c, line: 998
+# File: sci_gateway/c/sci_grand.c, line: 1000
+# File: sci_gateway/c/sci_grand.c, line: 1002
 # File: sci_gateway/c/sci_grand.c, line: 1025
 # File: sci_gateway/c/sci_grand.c, line: 1045
+# File: sci_gateway/c/sci_grand.c, line: 1067
+# File: sci_gateway/c/sci_grand.c, line: 1087
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 803
+# File: sci_gateway/c/sci_grand.c, line: 845
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 804
+# File: sci_gateway/c/sci_grand.c, line: 846
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments: Mean and Cov have incompatible "
@@ -264,25 +270,25 @@ msgid ""
 "deviate.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 795
-# File: sci_gateway/c/sci_grand.c, line: 832
+# File: sci_gateway/c/sci_grand.c, line: 837
+# File: sci_gateway/c/sci_grand.c, line: 874
 #, c-format
 msgid ""
 "%s: Wrong value for first input argument: Must be the number of random "
 "simulation.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1063
+# File: sci_gateway/c/sci_grand.c, line: 1105
 #, c-format
 msgid "%s: Wrong value for input argument %s.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1027
+# File: sci_gateway/c/sci_grand.c, line: 1069
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 714
+# File: sci_gateway/c/sci_grand.c, line: 756
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Number of random simulation expected.\n"
@@ -317,16 +323,16 @@ msgid ""
 "expected.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 849
+# File: sci_gateway/c/sci_grand.c, line: 891
 #, c-format
 msgid "%s: X0(%d) must be in the range [1,%d]\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1007
+# File: sci_gateway/c/sci_grand.c, line: 1049
 msgid "Av < 0\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1049
+# File: sci_gateway/c/sci_grand.c, line: 1091
 msgid "Av < 0.0\n"
 msgstr ""
 #
@@ -338,11 +344,11 @@ msgstr ""
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 938
+# File: sci_gateway/c/sci_grand.c, line: 980
 msgid "DF < 1 or XNONC < 0\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 964
+# File: sci_gateway/c/sci_grand.c, line: 1006
 msgid "DF < 1.0 or DF <= 0.0 or Xnonc < 0.0\n"
 msgstr ""
 #
@@ -362,10 +368,6 @@ msgstr ""
 msgid "Hyper geometric random variable"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 664
-msgid "Low > High\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_grand.c, line: 502
 msgid "Missing A and B for beta law\n"
 msgstr ""
@@ -374,19 +376,19 @@ msgstr ""
 msgid "Missing Av and Sd for Normal law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1000
+# File: sci_gateway/c/sci_grand.c, line: 1042
 msgid "Missing Av for Poisson law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1042
+# File: sci_gateway/c/sci_grand.c, line: 1084
 msgid "Missing Av for exponential law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 930
+# File: sci_gateway/c/sci_grand.c, line: 972
 msgid "Missing Df and Xnonc for non-central chi-square law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 979
+# File: sci_gateway/c/sci_grand.c, line: 1021
 msgid "Missing Df for chi-square law\n"
 msgstr ""
 #
@@ -394,23 +396,23 @@ msgstr ""
 msgid "Missing Dfn and Dfd for F law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 953
+# File: sci_gateway/c/sci_grand.c, line: 995
 msgid "Missing Dfn, Dfd and Xnonc for non-central F law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 655
+# File: sci_gateway/c/sci_grand.c, line: 656
 msgid "Missing Low and High for Uniform Real law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 677
+# File: sci_gateway/c/sci_grand.c, line: 695
 msgid "Missing Low and High for Uniform int law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 799
+# File: sci_gateway/c/sci_grand.c, line: 841
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 766
+# File: sci_gateway/c/sci_grand.c, line: 808
 msgid "Missing N and P for Binomial law\n"
 msgstr ""
 #
@@ -418,11 +420,11 @@ msgstr ""
 msgid "Missing N and P for MULtinomial law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 739
+# File: sci_gateway/c/sci_grand.c, line: 781
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 1022
+# File: sci_gateway/c/sci_grand.c, line: 1064
 msgid "Missing p for Geometric law\n"
 msgstr ""
 #
@@ -430,13 +432,13 @@ msgstr ""
 msgid "Missing shape and scale for Gamma law\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 720
+# File: sci_gateway/c/sci_grand.c, line: 762
 msgid "Missing vect for random permutation\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_grand.c, line: 566
-# File: sci_gateway/c/sci_grand.c, line: 752
-# File: sci_gateway/c/sci_grand.c, line: 779
+# File: sci_gateway/c/sci_grand.c, line: 794
+# File: sci_gateway/c/sci_grand.c, line: 821
 msgid "N < 0\n"
 msgstr ""
 #
@@ -444,8 +446,8 @@ msgstr ""
 msgid "Ncat <= 1\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 747
-# File: sci_gateway/c/sci_grand.c, line: 774
+# File: sci_gateway/c/sci_grand.c, line: 789
+# File: sci_gateway/c/sci_grand.c, line: 816
 msgid "P is not in [0,1]\n"
 msgstr ""
 #
@@ -459,12 +461,12 @@ msgstr ""
 msgid "P(%d) > 1\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 864
+# File: sci_gateway/c/sci_grand.c, line: 906
 #, c-format
 msgid "P(%d,%d) < 0\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 869
+# File: sci_gateway/c/sci_grand.c, line: 911
 #, c-format
 msgid "P(%d,%d) > 1\n"
 msgstr ""
@@ -478,7 +480,7 @@ msgstr ""
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 987
+# File: sci_gateway/c/sci_grand.c, line: 1029
 msgid "Rand: DF <= 0\n"
 msgstr ""
 #
@@ -506,7 +508,7 @@ msgstr ""
 msgid "Simulation of a discrete random variable"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 876
+# File: sci_gateway/c/sci_grand.c, line: 918
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
 msgstr ""
@@ -542,11 +544,11 @@ msgstr ""
 msgid "Weibull random variable"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 844
+# File: sci_gateway/c/sci_grand.c, line: 886
 msgid "X0 is empty\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_grand.c, line: 685
+# File: sci_gateway/c/sci_grand.c, line: 724
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr ""
 #

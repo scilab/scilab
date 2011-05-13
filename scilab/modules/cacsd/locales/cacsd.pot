@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-05-10 10:57+0100\n"
 
 # File: macros/h_inf.sci, line: 45
 #, c-format
@@ -217,9 +217,9 @@ msgstr ""
 # File: macros/black.sci, line: 91
 # File: macros/black.sci, line: 95
 # File: macros/csim.sci, line: 91
-# File: macros/nyquist.sci, line: 52
-# File: macros/nyquist.sci, line: 58
-# File: macros/nyquist.sci, line: 61
+# File: macros/nyquist.sci, line: 56
+# File: macros/nyquist.sci, line: 62
+# File: macros/nyquist.sci, line: 65
 # File: macros/syslin.sci, line: 97
 # File: macros/syslin.sci, line: 123
 # File: macros/gainplot.sci, line: 48
@@ -243,7 +243,7 @@ msgid ""
 msgstr ""
 #
 # File: macros/black.sci, line: 113
-# File: macros/nyquist.sci, line: 79
+# File: macros/nyquist.sci, line: 83
 # File: macros/gainplot.sci, line: 70
 # File: macros/bode.sci, line: 76
 #, c-format
@@ -488,8 +488,8 @@ msgstr ""
 # File: macros/repfreq.sci, line: 45
 # File: macros/black.sci, line: 69
 # File: macros/black.sci, line: 99
-# File: macros/nyquist.sci, line: 36
-# File: macros/nyquist.sci, line: 66
+# File: macros/nyquist.sci, line: 40
+# File: macros/nyquist.sci, line: 70
 # File: macros/gainplot.sci, line: 34
 # File: macros/gainplot.sci, line: 60
 # File: macros/findx0BD.sci, line: 61
@@ -540,6 +540,11 @@ msgstr ""
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
 #
+# File: macros/nyquistfrequencybounds.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+#
 # File: macros/routh_t.sci, line: 51
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -547,8 +552,8 @@ msgstr ""
 #
 # File: macros/black.sci, line: 62
 # File: macros/black.sci, line: 80
-# File: macros/nyquist.sci, line: 30
-# File: macros/nyquist.sci, line: 49
+# File: macros/nyquist.sci, line: 34
+# File: macros/nyquist.sci, line: 53
 # File: macros/gainplot.sci, line: 27
 # File: macros/gainplot.sci, line: 44
 # File: macros/bode.sci, line: 27
@@ -700,6 +705,7 @@ msgstr ""
 # File: macros/repfreq.sci, line: 17
 # File: macros/abinv.sci, line: 51
 # File: macros/h_norm.sci, line: 30
+# File: macros/nyquistfrequencybounds.sci, line: 22
 # File: macros/plzr.sci, line: 42
 # File: macros/obsv_mat.sci, line: 26
 #, c-format
@@ -708,7 +714,7 @@ msgid ""
 msgstr ""
 #
 # File: macros/black.sci, line: 102
-# File: macros/nyquist.sci, line: 69
+# File: macros/nyquist.sci, line: 73
 # File: macros/gainplot.sci, line: 63
 # File: macros/bode.sci, line: 67
 #, c-format
@@ -905,7 +911,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
 #
-# File: macros/repfreq.sci, line: 64
+# File: macros/nyquistfrequencybounds.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: second row must be greater than "
+"first one.\n"
+msgstr ""
+#
+# File: macros/repfreq.sci, line: 75
 # File: macros/calfrq.sci, line: 90
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
@@ -1031,22 +1044,22 @@ msgid "Hall chart"
 msgstr ""
 #
 # File: macros/black.sci, line: 230
-# File: macros/nyquist.sci, line: 239
+# File: macros/nyquist.sci, line: 269
 # File: macros/gainplot.sci, line: 112
 # File: macros/bode.sci, line: 155
 # File: macros/bode.sci, line: 161
 msgid "Hz"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 112
+# File: macros/nyquist.sci, line: 120
 msgid "Im"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 109
+# File: macros/nyquist.sci, line: 117
 msgid "Im(h(2if))"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 115
+# File: macros/nyquist.sci, line: 123
 msgid "Im(h(exp(2if*dt)))"
 msgstr ""
 #
@@ -1080,7 +1093,7 @@ msgstr ""
 msgid "Numerator :"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 106
+# File: macros/nyquist.sci, line: 114
 msgid "Nyquist plot"
 msgstr ""
 #
@@ -1096,15 +1109,15 @@ msgstr ""
 msgid "Poles"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 111
+# File: macros/nyquist.sci, line: 119
 msgid "Re"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 108
+# File: macros/nyquist.sci, line: 116
 msgid "Re(h(2if))"
 msgstr ""
 #
-# File: macros/nyquist.sci, line: 114
+# File: macros/nyquist.sci, line: 122
 msgid "Re(h(exp(2if*dt)))"
 msgstr ""
 #
@@ -1135,6 +1148,11 @@ msgstr ""
 #
 # File: macros/h_inf.sci, line: 415
 msgid "Unfeasible (spectral radius)"
+msgstr ""
+#
+# File: macros/nyquistfrequencybounds.sci, line: 25
+#, c-format
+msgid "Wrong type for argument %d: SISO expected.\n"
 msgstr ""
 #
 # File: macros/plzr.sci, line: 89

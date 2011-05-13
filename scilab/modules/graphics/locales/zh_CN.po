@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-07-19 02:54+0000\n"
-"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-01-28 02:52+0000\n"
+"Last-Translator: zhangmiao <mymzhang@gmail.com>\n"
 "Language-Team: Chinese (simplified) <i18n-zh@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: %s “%c” 的值错误： 应该是“%s”，“%s”和“%s”。\n"
@@ -54,6 +54,10 @@ msgstr "%s 应该是一个 double 型向量。\n"
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s：句柄“%s”不存在。\n"
+
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -310,6 +314,10 @@ msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
 msgstr "%s：参数 #%d 大小错误：长度不一致。\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d < %d expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该 %d<%d。\n"
 
@@ -344,10 +352,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个“%s”句柄或一个实数标量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -501,6 +505,10 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个“%s”句柄或者一个实数标量。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个“Text”句柄。\n"
 
@@ -553,6 +561,10 @@ msgid ""
 msgstr "%s：输入参数 #%d 的类型错误：应该为句柄或 double 类型的向量。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为矩阵。\n"
 
@@ -563,6 +575,10 @@ msgstr "%s：输入参数 #%d 的类型错误：应该为句柄矩阵。\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为非负整数。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -692,6 +708,10 @@ msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
 msgstr "%s：输入参数 #%d 的值错误：不正确的值。\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr "%s：输入参数 #%d 的值错误：必须在区间 [%s, %s] 中。\n"
@@ -708,6 +728,22 @@ msgstr "%s：输入参数 #%d 的值错误：应该为非负整数。\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s：输入参数 #%d 的值错误：指定的范围不正确。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -728,6 +764,12 @@ msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr "%s：输入参数 #%d 的值错误：应该为“%s”。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: handle no more valid ignored.\n"
 msgstr "%s：忽略了无效的句柄。\n"
 
@@ -737,7 +779,7 @@ msgstr "%s：请使用 %s 代替。\n"
 
 #, c-format
 msgid "%s: too many input arguments"
-msgstr ""
+msgstr "%s：输入参数过多"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -763,7 +805,13 @@ msgstr "句柄“%s”不存在或不再存在。\n"
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "属性“%s”不为这个句柄存在。\n"
 
+msgid "... as well as very tiny radii"
+msgstr ""
+
 msgid "A Label object cannot be deleted.\n"
+msgstr ""
+
+msgid "A partial viewport may be set with clipping"
 msgstr ""
 
 #, c-format
@@ -776,6 +824,9 @@ msgstr "秋季"
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr "%s 的大小不足：您必须先增加 %s 的大小。\n"
+
+msgid "Big radii are supported..."
+msgstr ""
 
 msgid "Bone"
 msgstr "骨"
@@ -801,9 +852,6 @@ msgstr "颜色矩阵是空的：不能向当前的颜色表建立线性的颜色
 msgid "Color number"
 msgstr "颜色编号"
 
-msgid "Colormap"
-msgstr "颜色表"
-
 msgid "Common X axis"
 msgstr ""
 
@@ -815,6 +863,9 @@ msgstr "铜"
 
 msgid "Customize your complex function"
 msgstr "定制您的复杂函数"
+
+msgid "Data on the full circle ..."
+msgstr ""
 
 msgid ""
 "Data tips cannot be attached to this curve,\n"
@@ -828,7 +879,7 @@ msgid "Default figure cannot be create.\n"
 msgstr "默认的图象不能是创造的。\n"
 
 msgid "Delete all datatips"
-msgstr ""
+msgstr "删除全部数据提示"
 
 msgid "Delete all datatips for the selected curve"
 msgstr ""
@@ -873,9 +924,15 @@ msgid ""
 "logarithmic mode.\n"
 msgstr "错误：坐标 %s 上的数据范围必须严格切换到对数模式。\n"
 
+msgid "Exact gaussian density"
+msgstr ""
+
 #, c-format
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
 msgstr "Figure 的名称不能包含任何 %% 字符，除非是一个简单的 %%d。\n"
+
+msgid "Gaussian random sample histogram"
+msgstr ""
 
 #, c-format
 msgid "Graphic window number %d"
@@ -955,6 +1012,9 @@ msgstr ""
 msgid "Name"
 msgstr "名称"
 
+msgid "Negative radii are supported:"
+msgstr ""
+
 msgid "No Callback is associated with this Entity.\n"
 msgstr "没有回调函数跟此实体联系。\n"
 
@@ -1000,11 +1060,18 @@ msgstr "母属性不能直接被修改。\n"
 msgid "Pink"
 msgstr "粉色"
 
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr "请把此缺陷报告给：dev@lists.scilab.org\n"
 
 msgid "Plot with 3 different Y scales at shared X"
 msgstr ""
+
+msgid "Press enter to go on..."
+msgstr "按回车键继续..."
 
 msgid "Problem with sciInitFontContext\n"
 msgstr "sciInitFontContext 发生问题\n"
@@ -1027,14 +1094,20 @@ msgstr "在 -nogui 或 -nwni 模式下 Scilab 的图形模块被禁用。\n"
 msgid "Select tip orientation"
 msgstr ""
 
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
 msgid "Spring"
 msgstr "春季"
+
+msgid "Still a single quadrant..."
+msgstr ""
 
 msgid "Summer"
 msgstr "夏季"
 
 msgid "Tcl/Tk interface not installed."
-msgstr ""
+msgstr "Tcl/Tk 接口未安装。"
 
 #, c-format
 msgid "The font size must be greater than %d.\n"
@@ -1331,10 +1404,22 @@ msgstr ""
 msgid "automatic"
 msgstr ""
 
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
 msgid "lower left"
 msgstr ""
 
 msgid "lower right"
+msgstr ""
+
+msgid "on 2 quadrants..."
+msgstr ""
+
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
 msgstr ""
 
 msgid "select the curve tip display function"
@@ -1345,3 +1430,50 @@ msgstr ""
 
 msgid "upper right"
 msgstr ""
+
+#~ msgid "Colormap"
+#~ msgstr "颜色表"
+
+#, c-format
+#~ msgid "Demo of %s().\n"
+#~ msgstr "%s()的演示。\n"
+
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Single double or boolean vector "
+#~ "expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为double或布尔类型的向量。\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single double expected.\n"
+#~ msgstr "%s：输入参数#%d的类型错误：应该为一个double。\n"
+
+#, c-format
+#~ msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
+#~ msgstr "%s：可选参数位置错误：#%d 必须置于位置 %d\n"
+
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
+#~ msgstr "%s：输入参数 #%d 的类型错误：应该为“%s”或句柄。\n"
+
+#, c-format
+#~ msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
+#~ msgstr "属性 %s 的值错误：必须在区间 [%s, %s] 之中。\n"
+
+#, c-format
+#~ msgid ""
+#~ "WARNING: Wrong value for '%s' property: indices oustside the colormap will "
+#~ "be clamped.\n"
+#~ msgstr "警告：属性“%s”值错误：颜色表外的指数将被固定。\n"
+
+#~ msgid "Warning : Nax does not work with logarithmic scaling.\n"
+#~ msgstr "警告：Nax 对对数比例不起作用。\n"
+
+#~ msgid "Warning: Nax does not work with logarithmic scaling\n"
+#~ msgstr "警告：Nax 对对数比例不起作用。\n"
+
+#~ msgid "Warning : Nax does not work with logarithmic scaling\n"
+#~ msgstr "警告：Nax 对对数比例不起作用。\n"
+
+#~ msgid "Could not create initialize the window.\n"
+#~ msgstr "不能创建这个窗口的初始化。\n"

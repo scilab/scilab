@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-15 18:36+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 17:59+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid ""
 "\n"
@@ -349,6 +349,15 @@ msgstr "DF < 1.0, або DF <= 0.0, або Xnonc < 0.0\n"
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Кількість степенів свободи не є додатною\n"
 
+msgid "Erlang random variable"
+msgstr "Випадкова величина з розподілом Ерланга"
+
+msgid "Exponential random variable"
+msgstr "експоненційно розподілена випадкова величина"
+
+msgid "Hyper geometric random variable"
+msgstr "Випадкова величина з гіпергеометричним розподілом"
+
 msgid "Low > High\n"
 msgstr "Low > High\n"
 
@@ -434,6 +443,9 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
+msgid "Poisson random variable"
+msgstr "випадкова величина з розподілом Пуассона"
+
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A або B < %f\n"
@@ -449,6 +461,15 @@ msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Інтерфейс randlib Scilab не встановлено.\n"
+
+msgid "Simulation"
+msgstr "Моделювання"
+
+msgid "Simulation of a binomial random variable"
+msgstr "Моделювання біноміально розподіленої випадкової величини"
+
+msgid "Simulation of a discrete random variable"
+msgstr "Моделювання дискретної випадкової величини"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -470,14 +491,32 @@ msgstr ""
 "Першим компонентом стану генератора Мерсена-Твістера mt має бути ціле число "
 "у діапазоні [1, 624]\n"
 
+msgid "Theory"
+msgstr "Теорія"
+
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Ці дані стосуються лише генератора clcg4\n"
+
+msgid "Weibull random variable"
+msgstr "Випадкова величина з розподілом Вейбулла"
 
 msgid "X0 is empty\n"
 msgstr "X0 є порожнім\n"
 
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a і b мають бути цілими числами, такими, що (b-a+1) <= 2147483561"
+
+msgid "binomial random variable"
+msgstr "біноміально розподілена випадкова величина"
+
+msgid "discrete random variable"
+msgstr "дискретна випадкова величина"
+
+msgid "discrete uniform random variable"
+msgstr "рівномірно розподілена дискретна випадкова величина"
+
+msgid "geometric random variable"
+msgstr "геометрично розподілена випадкова величина"
 
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 або R <= 0.0\n"

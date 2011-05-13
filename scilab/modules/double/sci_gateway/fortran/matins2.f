@@ -275,12 +275,17 @@ c     .  sizes of arg1 or arg2 dont agree with arg3 sizes
 c
 
       mnr=mr*nr
+c     mnr must >= 0
+      if (mnr .lt. 0) then
+         call error(17)
+         return
+      endif
       itr=max(it4,it3)
       if(mnr*(itr+1).ne.mn4*(it4+1) ) then
          lr=lw
          lw=lr + mnr*(itr+1)
          err = lw - lstk(bot)
-c        lw must > 0         
+c        lw must > 0
          if (err .gt. 0 .or. lw .le. 0) then
             call error(17)
             return

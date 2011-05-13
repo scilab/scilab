@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
-"PO-Revision-Date: 2010-01-17 09:05+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2010-12-03 05:20+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 
 msgid " Flushing starts for queued commands.\n"
 msgstr " Почато синхронне виконання команд з черги.\n"
@@ -117,23 +117,14 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
-msgid "&?"
-msgstr "&Довідка"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
 msgid "Alpha Release"
 msgstr "Передтестовий випуск"
 
 msgid "Beta Release"
 msgstr "Тестовий випуск"
+
+msgid "Color"
+msgstr "Колір"
 
 #, c-format
 msgid "Error %s while loading library %s"
@@ -171,8 +162,17 @@ msgstr "Не вдалося встановити змінну середовищ
 msgid "Impossible to set system encoding."
 msgstr "Не вдалося встановити системне кодування."
 
+msgid "Puzzle"
+msgstr "Головломка"
+
+msgid "Scale"
+msgstr "Масштабування"
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK Scilab не встановлено.\n"
+
+msgid "Scroll"
+msgstr "Гортання"
 
 #, c-format
 msgid "TCL_EvalScilabCmd %s"
@@ -261,3 +261,21 @@ msgstr "Попередження: у черзі занадто багато зв
 
 msgid "[] doesn't work with Tcl/Tk.\n"
 msgstr "[] не працює у Tcl/Tk.\n"
+
+#~ msgid "&Edit"
+#~ msgstr "&Правка"
+
+#~ msgid "&File"
+#~ msgstr "&Файл"
+
+#~ msgid "&Tools"
+#~ msgstr "&Інструменти"
+
+#~ msgid "Tcl/Tk interface not loaded."
+#~ msgstr "Інтерфейс Tcl/Tk не завантажено."
+
+#~ msgid "Updating, please wait"
+#~ msgstr "Оновлення, зачекайте"
+
+#~ msgid "&?"
+#~ msgstr "&Довідка"

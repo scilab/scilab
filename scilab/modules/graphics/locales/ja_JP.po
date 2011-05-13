@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 17:45+0100\n"
-"PO-Revision-Date: 2010-09-17 13:03+0000\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-13 13:36+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -66,6 +66,10 @@ msgstr "%s は倍精度実数のベクトルとする必要があります.\n"
 #, c-format
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr "%s: '%s' ハンドルはもう存在しません。\n"
+
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr "%s: \"%s\" は　\"%s\" と共に使用することはできません.\n"
 
 #, c-format
 msgid ""
@@ -388,6 +392,10 @@ msgstr "%s: 引数 #%d, #%d と #%d で不正なサイズ: 互換性がない長
 msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
 msgstr "%s: 引数 #%d で不正なサイズ: 互換性のない長さです。\n"
 
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr "%s: 入力引数 #%d の大きさが間違っています."
+
 #
 # File: src/c/GetCommandArg.c, line: 46
 # File: src/c/GetCommandArg.c, line: 79
@@ -441,10 +449,6 @@ msgid ""
 "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
 "expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが正しくありません: '%s' ハンドルまたは'Text'ハンドルを1つ指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
-msgstr "%s: 入力引数 #%d の大きさに誤りがあります: ''%s'' ハンドルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
@@ -668,6 +672,10 @@ msgid ""
 "expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 実スカラー、または '%s' ハンドルを想定します。\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ハンドル \"%s\" を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 79
 # File: sci_gateway/c/sci_StringBox.c, line: 107
@@ -744,6 +752,10 @@ msgid ""
 "%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: ハンドル、または、二つのベクトルを想定します。\n"
 
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
 #
 # File: sci_gateway/c/sci_contour2di.c, line: 46
 #, c-format
@@ -761,6 +773,10 @@ msgstr "%s: 入力引数 #%d で不正な型: ハンドルの行列を想定し�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 負数以外を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 42
@@ -969,6 +985,10 @@ msgstr "%s: 入力引数 #%d で不正な値: 整数は、 %d より等しいか
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 正しくない値です。\n"
 
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %s の範囲で指定してください.\n"
+
 #
 # File: src/c/SetProperty.c, line: 762
 #, c-format
@@ -996,6 +1016,25 @@ msgstr "%s: 入力引数 #%d で不正な値: 負数以外を想定します。\
 msgid ""
 "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 明確に界は正しくありません。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効なプロパティを指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています: ''%s'', ''%s'', ''%s'', ''%s'' または ''%s'' を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' "
+"または ''%s'' を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_plot3d.c, line: 133
@@ -1026,6 +1065,12 @@ msgstr "%s: 間違った値: ベクトルは単調ではありません。\n"
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は昇順としてください.\n"
 
 #
 # File: macros/%h_save.sci, line: 38
@@ -1244,8 +1289,14 @@ msgstr "'%s' ハンドルは、見つからないか、もうありません。\
 msgid "'%s' property does not exist for this handle.\n"
 msgstr "'%s' プロパティはこのハンドルにありません。\n"
 
+msgid "... as well as very tiny radii"
+msgstr "... 非常に小さい半径も"
+
 msgid "A Label object cannot be deleted.\n"
 msgstr "ラベルオブジェクトは削除できません.\n"
+
+msgid "A partial viewport may be set with clipping"
+msgstr "クリッピングによりビューポートを限定することができます."
 
 #
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 203
@@ -1266,6 +1317,9 @@ msgstr "秋"
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr "%s は不正なサイズです: 最初に %s のサイズを増やさなければなりません。\n"
+
+msgid "Big radii are supported..."
+msgstr "大きな半径がサポートされています..."
 
 #
 # File: demos/misc.dem.sci, line: 232
@@ -1311,10 +1365,6 @@ msgstr "カラー行列はNULLです: 現在の色付けで直線的に色を描
 msgid "Color number"
 msgstr "色番号"
 
-# File: demos/misc.dem.sci, line: 55
-msgid "Colormap"
-msgstr "カラーマップ"
-
 msgid "Common X axis"
 msgstr "共通のX軸"
 
@@ -1334,6 +1384,9 @@ msgstr "銅"
 
 msgid "Customize your complex function"
 msgstr "複雑関数をカスタマイズして下さい"
+
+msgid "Data on the full circle ..."
+msgstr "完全な円の上のデータ ..."
 
 msgid ""
 "Data tips cannot be attached to this curve,\n"
@@ -1417,11 +1470,17 @@ msgid ""
 "logarithmic mode.\n"
 msgstr "エラー: %s 軸のdata_boundsは、対数のモードに変えるとき、厳密でなくてはいけません。\n"
 
+msgid "Exact gaussian density"
+msgstr "正確なガウス密度"
+
 #
 # File: src/c/SetProperty.c, line: 1932
 #, c-format
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
 msgstr "構成図名はどんな %% 文字も含みません、単一の　%%d を除いて\n"
+
+msgid "Gaussian random sample histogram"
+msgstr "ガウスランダム標本ヒストグラム"
 
 #
 # File: src/c/InitObjects.c, line: 472
@@ -1660,6 +1719,9 @@ msgstr "複数データtipsモード"
 msgid "Name"
 msgstr "名前"
 
+msgid "Negative radii are supported:"
+msgstr "負の半径がサポートされています:"
+
 #
 # File: src/c/Interaction.c, line: 169
 # File: src/c/Interaction.c, line: 227
@@ -1742,6 +1804,10 @@ msgstr "親プロパティは、直接に修正することができません。
 msgid "Pink"
 msgstr "桃"
 
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr "より多くのpolarplotの例を参照するには、Scilabコンソールでenterを入力してください."
+
 #
 # File: src/c/Format.c, line: 301
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
@@ -1749,6 +1815,9 @@ msgstr "どうぞ、dev@lists.scilab.org にバグレポートを送ってくだ
 
 msgid "Plot with 3 different Y scales at shared X"
 msgstr "3つの異なるYスケールを共通のXでプロット"
+
+msgid "Press enter to go on..."
+msgstr "継続するには、enterを入力してください..."
 
 #
 # File: src/c/BuildObjects.c, line: 850
@@ -1780,11 +1849,17 @@ msgstr "Scilabグラフィック・モジュール は、-nogui または -nwni 
 msgid "Select tip orientation"
 msgstr "tipの方向を選択"
 
+msgid "Several curves may be plotted at the same time"
+msgstr "複数の曲線を同時にプロットすることができます"
+
 #
 # File: demos/misc.dem.sci, line: 184
 # File: demos/misc/misc.dem.sci, line: 182
 msgid "Spring"
 msgstr "春"
+
+msgid "Still a single quadrant..."
+msgstr "まだ四分円です..."
 
 #
 # File: demos/misc.dem.sci, line: 200
@@ -2261,11 +2336,23 @@ msgstr "このオブジェクトには %s  を指定する必要があります.
 msgid "automatic"
 msgstr "自動"
 
+msgid "even huge radii, with properly formatted labels..."
+msgstr "大きな半径で、適切に整形されたラベルを指定した場合でも..."
+
+msgid "histplot() : (normalized) histogram plot"
+msgstr "histplot() : (正規化された) ヒストグラムプロット"
+
 msgid "lower left"
 msgstr "左下"
 
 msgid "lower right"
 msgstr "右下"
+
+msgid "on 2 quadrants..."
+msgstr "四分円が２つの場合..."
+
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr "polarplot(): データにより区切られた四分円のみが表示されます"
 
 msgid "select the curve tip display function"
 msgstr "曲線tip表示関数を選択"
@@ -2275,3 +2362,705 @@ msgstr "左上"
 
 msgid "upper right"
 msgstr "右上"
+
+# File: demos/misc.dem.sci, line: 55
+#~ msgid "Colormap"
+#~ msgstr "カラーマップ"
+
+#
+# File: sci_gateway/c/sci_champ.c, line: 79
+#, c-format
+#~ msgid "%s: Misplaced optional argument: #%d must be at position %d\n"
+#~ msgstr "%s: 引数オプションの配置が違います: #%d は、 %d でなくてはなりません\n"
+
+#
+# File: sci_gateway/c/sci_delete.c, line: 86
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: '%s' or handle expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: '%s' ハンドルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_demo.c, line: 58
+#, c-format
+#~ msgid "Demo of %s().\n"
+#~ msgstr "%s() のデモ.\n"
+
+#
+# File: sci_gateway/c/sci_xgetmouse.c, line: 67
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: Single double or boolean vector "
+#~ "expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 単一、二重 または、ブーリアン・ベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_xgetmouse.c, line: 78
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Single double expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 単一、二重を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_xgetmouse.c, line: 102
+#~ msgid ""
+#~ "%s: Using xgetmouse with a flag to avoid the event queue to be cleared is "
+#~ "obsolete.\n"
+#~ "This functionality will be permanently removed in Scilab 5.1.\n"
+#~ msgstr ""
+#~ "%s: イベント列を避けるためにフラグに xgetmouse を使ってください、既にクリアするために用いられません。\n"
+#~ "この機能は、Scilab ５.１で永久に取り去られます。\n"
+
+#
+# File: src/c/Gray.c, line: 129
+#~ msgid "Warning: Nax does not work with logarithmic scaling\n"
+#~ msgstr "警告: Nax は、対数尺に使えません。\n"
+
+#
+# File: src/c/Gray.c, line: 243
+#~ msgid "Warning : Nax does not work with logarithmic scaling\n"
+#~ msgstr "警告 : Nax は、対数尺に使えません。\n"
+
+#
+# File: src/c/SetProperty.c, line: 762
+#, c-format
+#~ msgid "Wrong value for %s property: Must be in the interval [%s, %s].\n"
+#~ msgstr "%s プロパティで不正な値: 間隔 [%s, %s] である必要があります。\n"
+
+#
+# File: src/c/getHandleProperty/get_alignment_property.c, line: 42
+#~ msgid "Error accessing alignment property.\n"
+#~ msgstr "整列プロパティにアクセスエラーです。\n"
+
+#
+# File: src/c/getHandleProperty/get_alignment_property.c, line: 46
+# File: src/c/getHandleProperty/get_arc_drawing_method_property.c, line: 30
+# File: src/c/getHandleProperty/get_arrow_size_factor_property.c, line: 32
+# File: src/c/getHandleProperty/get_arrow_size_property.c, line: 32
+# File: src/c/getHandleProperty/get_auto_clear_property.c, line: 33
+# File: src/c/getHandleProperty/get_auto_dimensionning_property.c, line: 41
+# File: src/c/getHandleProperty/get_auto_position_property.c, line: 32
+# File: src/c/getHandleProperty/get_auto_rotation_property.c, line: 32
+# File: src/c/getHandleProperty/get_auto_ticks_property.c, line: 38
+# File: src/c/getHandleProperty/get_axes_bounds_property.c, line: 33
+# File: src/c/getHandleProperty/get_axes_reverse_property.c, line: 38
+# File: src/c/getHandleProperty/get_axes_visible_property.c, line: 38
+# File: src/c/getHandleProperty/get_background_property.c, line: 33
+# File: src/c/getHandleProperty/get_bar_layout_property.c, line: 44
+# File: src/c/getHandleProperty/get_bar_width_property.c, line: 36
+# File: src/c/getHandleProperty/get_callback_type_property.c, line: 42
+# File: src/c/getHandleProperty/get_cdata_mapping_property.c, line: 32
+# File: src/c/getHandleProperty/get_clip_box_property.c, line: 44
+# File: src/c/getHandleProperty/get_clip_state_property.c, line: 45
+# File: src/c/getHandleProperty/get_closed_property.c, line: 32
+# File: src/c/getHandleProperty/get_color_flag_property.c, line: 32
+# File: src/c/getHandleProperty/get_color_map_property.c, line: 38
+# File: src/c/getHandleProperty/get_color_mode_property.c, line: 32
+# File: src/c/getHandleProperty/get_colored_property.c, line: 32
+# File: src/c/getHandleProperty/get_cube_scaling_property.c, line: 32
+# File: src/c/getHandleProperty/get_current_axes_property.c, line: 34
+# File: src/c/getHandleProperty/get_current_entity_property.c, line: 35
+# File: src/c/getHandleProperty/get_current_figure_property.c, line: 37
+# File: src/c/getHandleProperty/get_data_bounds_property.c, line: 54
+# File: src/c/getHandleProperty/get_data_mapping_property.c, line: 32
+# File: src/c/getHandleProperty/get_data_property.c, line: 192
+# File: src/c/getHandleProperty/get_default_axes_property.c, line: 35
+# File: src/c/getHandleProperty/get_default_figure_property.c, line: 34
+# File: src/c/getHandleProperty/get_dimension_property.c, line: 34
+# File: src/c/getHandleProperty/get_event_handler_enable_property.c, line: 33
+# File: src/c/getHandleProperty/get_event_handler_property.c, line: 33
+# File: src/c/getHandleProperty/get_figure_position_property.c, line: 38
+# File: src/c/getHandleProperty/get_figures_id_property.c, line: 38
+# File: src/c/getHandleProperty/get_filled_property.c, line: 31
+# File: src/c/getHandleProperty/get_font_color_property.c, line: 39
+# File: src/c/getHandleProperty/get_format_n_property.c, line: 32
+# File: src/c/getHandleProperty/get_fractional_font_property.c, line: 34
+# File: src/c/getHandleProperty/get_grid_property.c, line: 34
+# File: src/c/getHandleProperty/get_handle_visible_property.c, line: 32
+# File: src/c/getHandleProperty/get_hidden_axis_color_property.c, line: 32
+# File: src/c/getHandleProperty/get_immediate_drawing_property.c, line: 32
+# File: src/c/getHandleProperty/get_info_message_property.c, line: 37
+# File: src/c/getHandleProperty/get_interp_color_mode.c, line: 33
+# File: src/c/getHandleProperty/get_interp_color_vector.c, line: 33
+# File: src/c/getHandleProperty/get_isoview_property.c, line: 32
+# File: src/c/getHandleProperty/get_legend_location_property.c, line: 32
+# File: src/c/getHandleProperty/get_links_property.c, line: 34
+# File: src/c/getHandleProperty/get_log_flags_property.c, line: 33
+# File: src/c/getHandleProperty/get_margins_property.c, line: 33
+# File: src/c/getHandleProperty/get_old_style_property.c, line: 34
+# File: src/c/getHandleProperty/get_pixel_drawing_mode_property.c, line: 38
+# File: src/c/getHandleProperty/get_pixmap_property.c, line: 32
+# File: src/c/getHandleProperty/get_polyline_style_property.c, line: 36
+# File: src/c/getHandleProperty/get_position_property.c, line: 65
+# File: src/c/getHandleProperty/get_rotation_angles_property.c, line: 34
+# File: src/c/getHandleProperty/get_rotation_style_property.c, line: 32
+# File: src/c/getHandleProperty/get_segs_color_property.c, line: 37
+# File: src/c/getHandleProperty/get_sub_tics_property.c, line: 57
+# File: src/c/getHandleProperty/get_surface_color_property.c, line: 33
+# File: src/c/getHandleProperty/get_surface_mode_property.c, line: 45
+# File: src/c/getHandleProperty/get_text_box_mode_property.c, line: 48
+# File: src/c/getHandleProperty/get_text_box_property.c, line: 36
+# File: src/c/getHandleProperty/get_text_property.c, line: 38
+# File: src/c/getHandleProperty/get_tics_color_property.c, line: 41
+# File: src/c/getHandleProperty/get_tics_direction_property.c, line: 32
+# File: src/c/getHandleProperty/get_tics_label_property.c, line: 34
+# File: src/c/getHandleProperty/get_tics_segment_property.c, line: 33
+# File: src/c/getHandleProperty/get_tics_style_property.c, line: 33
+# File: src/c/getHandleProperty/get_tight_limits_property.c, line: 32
+# File: src/c/getHandleProperty/get_title_property.c, line: 32
+# File: src/c/getHandleProperty/get_triangles_property.c, line: 32
+# File: src/c/getHandleProperty/get_view_property.c, line: 33
+# File: src/c/getHandleProperty/get_viewport_property.c, line: 32
+# File: src/c/getHandleProperty/get_x_label_property.c, line: 32
+# File: src/c/getHandleProperty/get_x_shift_property.c, line: 45
+# File: src/c/getHandleProperty/get_xtics_coord_property.c, line: 32
+# File: src/c/getHandleProperty/get_y_shift_property.c, line: 45
+# File: src/c/getHandleProperty/get_ytics_coord_property.c, line: 32
+# File: src/c/getHandleProperty/get_z_bounds_property.c, line: 34
+# File: src/c/getHandleProperty/get_z_shift_property.c, line: 45
+# File: src/c/getHandleProperty/get_zoom_box_property.c, line: 33
+# File: src/c/getHandleProperty/get_zoom_state_property.c, line: 32
+# File: src/c/getHandleProperty/set_alignment_property.c, line: 39
+# File: src/c/getHandleProperty/set_arc_drawing_method_property.c, line: 33
+# File: src/c/getHandleProperty/set_arrow_size_property.c, line: 41
+# File: src/c/getHandleProperty/set_auto_dimensionning_property.c, line: 40
+# File: src/c/getHandleProperty/set_auto_ticks_property.c, line: 46
+# File: src/c/getHandleProperty/set_axes_bounds_property.c, line: 43
+# File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 44
+# File: src/c/getHandleProperty/set_axes_visible_property.c, line: 45
+# File: src/c/getHandleProperty/set_bar_layout_property.c, line: 41
+# File: src/c/getHandleProperty/set_bar_width_property.c, line: 41
+# File: src/c/getHandleProperty/set_box_property.c, line: 81
+# File: src/c/getHandleProperty/set_callback_type_property.c, line: 58
+# File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 45
+# File: src/c/getHandleProperty/set_closed_property.c, line: 41
+# File: src/c/getHandleProperty/set_color_flag_property.c, line: 45
+# File: src/c/getHandleProperty/set_color_mode_property.c, line: 46
+# File: src/c/getHandleProperty/set_colored_property.c, line: 41
+# File: src/c/getHandleProperty/set_cube_scaling_property.c, line: 42
+# File: src/c/getHandleProperty/set_current_axes_property.c, line: 42
+# File: src/c/getHandleProperty/set_current_entity_property.c, line: 37
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 39
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 212
+# File: src/c/getHandleProperty/set_data_mapping_property.c, line: 43
+# File: src/c/getHandleProperty/set_default_values_property.c, line: 58
+# File: src/c/getHandleProperty/set_event_handler_enable_property.c, line: 39
+# File: src/c/getHandleProperty/set_event_handler_property.c, line: 39
+# File: src/c/getHandleProperty/set_font_color_property.c, line: 52
+# File: src/c/getHandleProperty/set_format_n_property.c, line: 40
+# File: src/c/getHandleProperty/set_grid_property.c, line: 45
+# File: src/c/getHandleProperty/set_handle_visible_property.c, line: 41
+# File: src/c/getHandleProperty/set_hidden_axis_color_property.c, line: 44
+# File: src/c/getHandleProperty/set_isoview_property.c, line: 41
+# File: src/c/getHandleProperty/set_label_font_style_property.c, line: 45
+# File: src/c/getHandleProperty/set_labels_font_color_property.c, line: 47
+# File: src/c/getHandleProperty/set_labels_font_size_property.c, line: 45
+# File: src/c/getHandleProperty/set_legend_location_property.c, line: 41
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 129
+# File: src/c/getHandleProperty/set_margins_property.c, line: 43
+# File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 43
+# File: src/c/getHandleProperty/set_pixel_drawing_mode_property.c, line: 50
+# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 42
+# File: src/c/getHandleProperty/set_rotation_angles_property.c, line: 44
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 71
+# File: src/c/getHandleProperty/set_surface_color_property.c, line: 44
+# File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 41
+# File: src/c/getHandleProperty/set_text_box_property.c, line: 42
+# File: src/c/getHandleProperty/set_tics_color_property.c, line: 53
+# File: src/c/getHandleProperty/set_tics_labels_property.c, line: 42
+# File: src/c/getHandleProperty/set_tics_segment_property.c, line: 41
+# File: src/c/getHandleProperty/set_tics_style_property.c, line: 49
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 41
+# File: src/c/getHandleProperty/set_triangles_property.c, line: 44
+# File: src/c/getHandleProperty/set_view_property.c, line: 45
+# File: src/c/getHandleProperty/set_x_location_property.c, line: 41
+# File: src/c/getHandleProperty/set_x_ticks_property.c, line: 49
+# File: src/c/getHandleProperty/set_y_location_property.c, line: 41
+# File: src/c/getHandleProperty/set_y_ticks_property.c, line: 49
+# File: src/c/getHandleProperty/set_z_bounds_property.c, line: 42
+# File: src/c/getHandleProperty/set_z_ticks_property.c, line: 49
+# File: src/c/getHandleProperty/set_zoom_box_property.c, line: 42
+# File: src/c/getHandleProperty/set_zoom_state_property.c, line: 42
+# File: src/c/getHandleProperty/get_color_range_property.c, line: 32
+# File: src/c/getHandleProperty/get_outside_colors_property.c, line: 32
+# File: src/c/getHandleProperty/set_color_range_property.c, line: 43
+# File: src/c/getHandleProperty/set_outside_colors_property.c, line: 43
+#, c-format
+#~ msgid "%s property does not exist for this handle.\n"
+#~ msgstr "%s プロパティはこのハンドルにありません。\n"
+
+#
+# File: src/c/getHandleProperty/get_axes_size_property.c, line: 36
+# File: src/c/getHandleProperty/get_figure_id_property.c, line: 34
+# File: src/c/getHandleProperty/get_figure_name_property.c, line: 32
+# File: src/c/getHandleProperty/set_auto_resize_property.c, line: 42
+# File: src/c/getHandleProperty/set_auto_scale_property.c, line: 41
+# File: src/c/getHandleProperty/set_axes_size_property.c, line: 47
+# File: src/c/getHandleProperty/set_figure_size_property.c, line: 38
+# File: src/c/getHandleProperty/set_info_message_property.c, line: 42
+# File: src/c/getHandleProperty/set_rotation_style_property.c, line: 42
+#, c-format
+#~ msgid "%s undefined for this object.\n"
+#~ msgstr "%s はこのオブジェクトの定義ではありません。\n"
+
+#
+# File: src/c/getHandleProperty/get_figure_size_property.c, line: 36
+# File: src/c/getHandleProperty/get_figure_style_property.c, line: 35
+# File: src/c/getHandleProperty/get_y_label_property.c, line: 32
+# File: src/c/getHandleProperty/get_z_label_property.c, line: 32
+# File: src/c/getHandleProperty/set_figure_id_property.c, line: 45
+# File: src/c/getHandleProperty/set_figure_name_property.c, line: 42
+# File: src/c/getHandleProperty/set_filled_property.c, line: 38
+# File: src/c/getHandleProperty/set_immediate_drawing_property.c, line: 41
+# File: src/c/getHandleProperty/set_links_property.c, line: 37
+# File: src/c/getHandleProperty/set_pixmap_property.c, line: 33
+# File: src/c/getHandleProperty/set_screen_position_property.c, line: 52
+# File: src/c/getHandleProperty/set_title_property.c, line: 36
+# File: src/c/getHandleProperty/set_x_label_property.c, line: 34
+# File: src/c/getHandleProperty/set_y_label_property.c, line: 35
+# File: src/c/getHandleProperty/set_z_label_property.c, line: 34
+#, c-format
+#~ msgid "%s property undefined for this object.\n"
+#~ msgstr "%s プロパティはこのオブジェクトで定義されません。\n"
+
+#
+# File: src/c/getHandleProperty/get_labels_font_color_property.c, line: 36
+# File: src/c/getHandleProperty/get_labels_font_size_property.c, line: 38
+# File: src/c/getHandleProperty/get_labels_font_style_property.c, line: 32
+# File: src/c/getHandleProperty/set_auto_position_property.c, line: 40
+# File: src/c/getHandleProperty/set_auto_rotation_property.c, line: 40
+# File: src/c/getHandleProperty/set_position_property.c, line: 69
+# File: src/c/getHandleProperty/set_segs_color_property.c, line: 42
+# File: src/c/getHandleProperty/set_surface_mode_property.c, line: 43
+# File: src/c/getHandleProperty/set_viewport_property.c, line: 42
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 48
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 42
+#, c-format
+#~ msgid "%s does not exist for this handle.\n"
+#~ msgstr "%s はこのハンドルで見つかりません。\n"
+
+#
+# File: src/c/getHandleProperty/get_legend_location_property.c, line: 73
+# File: src/c/getHandleProperty/get_tics_direction_property.c, line: 51
+# File: src/c/getHandleProperty/get_x_location_property.c, line: 48
+# File: src/c/getHandleProperty/get_y_location_property.c, line: 48
+#, c-format
+#~ msgid "%s is not correctly defined.\n"
+#~ msgstr "%s は正しくない定義です。\n"
+
+#
+# File: src/c/getHandleProperty/get_x_location_property.c, line: 32
+# File: src/c/getHandleProperty/get_y_location_property.c, line: 32
+# File: src/c/getHandleProperty/set_arrow_size_factor_property.c, line: 40
+#, c-format
+#~ msgid "%s property undefined for this handle.\n"
+#~ msgstr "このハンドルで %s プロパティは未定義です。\n"
+
+#
+# File: src/c/getHandleProperty/get_x_ticks_property.c, line: 38
+# File: src/c/getHandleProperty/get_y_ticks_property.c, line: 38
+# File: src/c/getHandleProperty/get_z_ticks_property.c, line: 37
+#, c-format
+#~ msgid "%s property does not exist for this label.\n"
+#~ msgstr "%s プロパティは、このラベルのために存在しません。\n"
+
+#
+# File: src/c/getHandleProperty/set_alignment_property.c, line: 57
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: '%s','%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: '%s', '%s'' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_arc_drawing_method_property.c, line: 39
+#, c-format
+#~ msgid ""
+#~ "Incompatible type for property %s: Single character string expected.\n"
+#~ msgstr "プロパティ %s で互換性がないタイプ: 単一文字の文字列を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_arc_drawing_method_property.c, line: 53
+#, c-format
+#~ msgid "Wrong value for property %s: value must be '%s' or '%s'.\n"
+#~ msgstr "プロパティ %s で不正な値: 値は、'%s' または '%s' でなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_auto_clear_property.c, line: 48
+# File: src/c/getHandleProperty/set_auto_dimensionning_property.c, line: 54
+# File: src/c/getHandleProperty/set_auto_resize_property.c, line: 58
+# File: src/c/getHandleProperty/set_auto_scale_property.c, line: 55
+# File: src/c/getHandleProperty/set_handle_visible_property.c, line: 55
+# File: src/c/getHandleProperty/set_line_mode_property.c, line: 47
+# File: src/c/getHandleProperty/set_zoom_state_property.c, line: 66
+#, c-format
+#~ msgid "%s: Wrong input argument: '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数が不正 : '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_auto_position_property.c, line: 54
+# File: src/c/getHandleProperty/set_auto_rotation_property.c, line: 54
+# File: src/c/getHandleProperty/set_visible_property.c, line: 55
+#, c-format
+#~ msgid "Wrong value: '%s' or '%s' expected.\n"
+#~ msgstr "不正な値: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_auto_ticks_property.c, line: 63
+# File: src/c/getHandleProperty/set_auto_ticks_property.c, line: 85
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d が不正: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_auto_ticks_property.c, line: 94
+# File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 93
+# File: src/c/getHandleProperty/set_axes_visible_property.c, line: 94
+#, c-format
+#~ msgid "Wrong value for input argument #%d: Between %d to %d expected.\n"
+#~ msgstr "入力引数 #%d で不正な値: %d と %d の間を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_axes_bounds_property.c, line: 48
+# File: src/c/getHandleProperty/set_margins_property.c, line: 49
+#, c-format
+#~ msgid "Wrong size for argument #%d: %d elements expected.\n"
+#~ msgstr "引数 #%d で不正なサイズ: 要素 %d を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 65
+# File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 85
+# File: src/c/getHandleProperty/set_axes_visible_property.c, line: 66
+# File: src/c/getHandleProperty/set_box_property.c, line: 75
+#, c-format
+#~ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected."
+#~ msgstr "%s: 入力引数 #%d が不正 : '%s' または '%s' を想定します。"
+
+#
+# File: src/c/getHandleProperty/set_axes_size_property.c, line: 59
+#, c-format
+#~ msgid "Wrong value for property '%s': smaller values expected.\n"
+#~ msgstr "プロパティ '%s' で不正な値: より小さな値を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_bar_layout_property.c, line: 55
+#, c-format
+#~ msgid "%s must be set to '%s' or '%s'.\n"
+#~ msgstr "%s は '%s' または '%s' に設定される必要があります。\n"
+
+#
+# File: src/c/getHandleProperty/set_box_property.c, line: 59
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: '%s', '%s', '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_callback_type_property.c, line: 36
+# File: src/c/getHandleProperty/set_callback_type_property.c, line: 44
+#, c-format
+#~ msgid "Incompatible value for property %s: Must be %d, %d, %d or %d.\n"
+#~ msgstr "プロパティ %s で互換性の無い値:  %d, %d, %d または %d である必要があります。\n"
+
+#
+# File: src/c/getHandleProperty/set_cdata_mapping_property.c, line: 86
+# File: src/c/getHandleProperty/set_clip_state_property.c, line: 66
+# File: src/c/getHandleProperty/set_closed_property.c, line: 55
+# File: src/c/getHandleProperty/set_colored_property.c, line: 55
+# File: src/c/getHandleProperty/set_cube_scaling_property.c, line: 61
+# File: src/c/getHandleProperty/set_data_mapping_property.c, line: 54
+# File: src/c/getHandleProperty/set_figure_style_property.c, line: 52
+# File: src/c/getHandleProperty/set_fill_mode_property.c, line: 47
+# File: src/c/getHandleProperty/set_filled_property.c, line: 52
+# File: src/c/getHandleProperty/set_fractional_font_property.c, line: 51
+# File: src/c/getHandleProperty/set_immediate_drawing_property.c, line: 57
+# File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 63
+# File: src/c/getHandleProperty/set_isoview_property.c, line: 54
+# File: src/c/getHandleProperty/set_mark_mode_property.c, line: 47
+# File: src/c/getHandleProperty/set_mark_size_unit_property.c, line: 47
+# File: src/c/getHandleProperty/set_old_style_property.c, line: 50
+# File: src/c/getHandleProperty/set_pixmap_property.c, line: 47
+# File: src/c/getHandleProperty/set_rotation_style_property.c, line: 58
+#, c-format
+#~ msgid "Wrong value for argument: '%s' or '%s' expected.\n"
+#~ msgstr "引数で不正な値: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_clip_box_property.c, line: 44
+# File: src/c/getHandleProperty/set_viewport_property.c, line: 48
+#, c-format
+#~ msgid "Argument must be a vector of size %d.\n"
+#~ msgstr "引数は、サイズ %d のベクトルなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_color_flag_property.c, line: 58
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: %d or %d expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: %d または %d を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_color_flag_property.c, line: 71
+#, c-format
+#~ msgid ""
+#~ "%s: Wrong type for input argument #%d: %d, %d, %d, %d or %d expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型:'%d, %d, %d, %d または %d を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_cube_scaling_property.c, line: 48
+#, c-format
+#~ msgid "Warning: %s property is only used in 3D mode.\n"
+#~ msgstr "警告: %s プロパティは、単に3Dモードで使われます。\n"
+
+#
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 45
+#, c-format
+#~ msgid ""
+#~ "Wrong size for input argument #%d: A real or a 'Figure' handle expected.\n"
+#~ msgstr "入力引数 #%d で不正なサイズ: '' 図形'' ハンドル、または 実を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 62
+# File: src/c/getHandleProperty/set_current_figure_property.c, line: 75
+#, c-format
+#~ msgid ""
+#~ "Wrong type for input argument #%d: A real or a '%s' handle expected.\n"
+#~ msgstr "入力引数 #%d で不正な型: 実、または　'%s' ハンドルを想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 73
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 97
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 112
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 128
+# File: src/c/getHandleProperty/set_data_bounds_property.c, line: 133
+#, c-format
+#~ msgid ""
+#~ "Wrong size for argument #%d: %s, %s, %s, %s, %s or %s matrix expected.\n"
+#~ msgstr "引数 #%d で不正なサイズ: %s, %s, %s, %s, %s または %s 行列を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_default_values_property.c, line: 40
+#, c-format
+#~ msgid "Value must be %d to set default values.\n"
+#~ msgstr "値は、デフォルト設定値への %d でなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_dimension_property.c, line: 41
+# File: src/c/getHandleProperty/set_figure_size_property.c, line: 50
+# File: src/c/getHandleProperty/set_screen_position_property.c, line: 46
+#, c-format
+#~ msgid "Wrong size for %s property: Vector of size %d expected.\n"
+#~ msgstr "'%s' プロパティで不正なサイズ: %d サイズのベクトルを想定します。.\n"
+
+#
+# File: src/c/getHandleProperty/set_event_handler_enable_property.c, line: 51
+# File: src/c/getHandleProperty/set_tics_direction_property.c, line: 57
+# File: src/c/getHandleProperty/set_tics_direction_property.c, line: 74
+# File: src/c/getHandleProperty/set_view_property.c, line: 59
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_font_style_property.c, line: 48
+#, c-format
+#~ msgid "Wrong value for property %s: An Integer between %d and %d expected.\n"
+#~ msgstr "プロパティ %s で値が不正:  %d と %d の間の整数を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_grid_property.c, line: 51
+#, c-format
+#~ msgid "Wrong size for argument: %s or %s expected.\n"
+#~ msgstr "引数で不正なサイズ: %s または %s を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_grid_property.c, line: 62
+#, c-format
+#~ msgid "Wrong value for argument: %d (no grid) or number of color expected.\n"
+#~ msgstr "引数の値が不正: %d(格子) または、色番号を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_hidden_axis_color_property.c, line: 54
+#~ msgid "Color outside of color map boundaries.\n"
+#~ msgstr "カラーマップ境界の外にある色です。\n"
+
+#
+# File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 41
+# File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 41
+#, c-format
+#~ msgid "%s can only be set on %s objects.\n"
+#~ msgstr "%s は、 単に %s オブジェクトの設定に使えます。\n"
+
+#
+# File: src/c/getHandleProperty/set_legend_location_property.c, line: 93
+# File: src/c/getHandleProperty/set_x_location_property.c, line: 60
+# File: src/c/getHandleProperty/set_y_location_property.c, line: 60
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: '%s', '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: '%s', '%s'' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_links_property.c, line: 41
+#, c-format
+#~ msgid ""
+#~ "%s Invalid dimension of the assigned handle, expected dimension is %d.\n"
+#~ msgstr "%s 不正確な次元のハンドルを割り当てました、 次元は、%d を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_log_flags_property.c, line: 135
+#, c-format
+#~ msgid "%s: Wrong size for argument: %d or %d expected.\n"
+#~ msgstr "%s: 引数で不正なサイズ: %d または %d を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_parent_property.c, line: 38
+# File: src/c/getHandleProperty/set_parent_property.c, line: 50
+#, c-format
+#~ msgid "%s: Wrong type for '%s' property: A '%s' or a '%s' handle expected.\n"
+#~ msgstr "%s: '%s' プロパティで不正な値: '%s' または '%s' ハンドルを想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_polyline_style_property.c, line: 49
+#, c-format
+#~ msgid "Wrong value for %s property: Must be between %d and %d.\n"
+#~ msgstr "%s プロパティで不正な値: %dと%dの間でなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_sub_tics_property.c, line: 50
+#, c-format
+#~ msgid "Value must have %d elements (%d if in 3D).\n"
+#~ msgstr "値は %d 要素を持っていなくてはいけません(%d が3Dとすれば)。\n"
+
+#
+# File: src/c/getHandleProperty/set_surface_mode_property.c, line: 57
+#, c-format
+#~ msgid "Wrong value for input argument: '%s' or '%s' expected.\n"
+#~ msgstr "入力引数で不正な値: '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_text_box_mode_property.c, line: 65
+#, c-format
+#~ msgid "%s: Wrong value for input argument: '%s', '%s' or '%s' expected.\n"
+#~ msgstr "%s: 入力引数で不正な型: '%s', '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_text_box_property.c, line: 48
+#, c-format
+#~ msgid "%s must be a 2D vector.\n"
+#~ msgstr "%s は、2Dベクトルでなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_tics_labels_property.c, line: 48
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 54
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 48
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Row vector expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: 行ベクトルを想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_tics_labels_property.c, line: 54
+#, c-format
+#~ msgid "Value must have at least %d elements.\n"
+#~ msgstr "値は、最も小さな %d 要素でなくてはいけません。\n"
+
+#
+# File: src/c/getHandleProperty/set_tics_segment_property.c, line: 55
+#, c-format
+#~ msgid "Wrong value for argument: %s or %s expected.\n"
+#~ msgstr "引数で不正な値: %s または %s を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_tics_style_property.c, line: 57
+#, c-format
+#~ msgid "Wrong value for %s: '%s' or '%s' or '%s' expected.\n"
+#~ msgstr "%s の不正な値: '%s' か '%s' または '%s' を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 55
+#, c-format
+#~ msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected."
+#~ msgstr "%s: 入力引数 #%d で不正な値: '%s' または '%s' を想定します。"
+
+#
+# File: src/c/getHandleProperty/set_triangles_property.c, line: 50
+#, c-format
+#~ msgid "Argument #%d must have %d columns.\n"
+#~ msgstr "引数 #%d は、%d 欄を持っていなくてはなりません。\n"
+
+#
+# File: src/c/getHandleProperty/set_x_shift_property.c, line: 44
+# File: src/c/getHandleProperty/set_y_shift_property.c, line: 44
+# File: src/c/getHandleProperty/set_z_shift_property.c, line: 44
+#, c-format
+#~ msgid "This handle has no %s property.\n"
+#~ msgstr "このハンドルは、いかなる %s プロパティも持っていません。\n"
+
+#
+# File: src/c/getHandleProperty/set_x_shift_property.c, line: 50
+# File: src/c/getHandleProperty/set_y_shift_property.c, line: 50
+# File: src/c/getHandleProperty/set_z_shift_property.c, line: 50
+#, c-format
+#~ msgid "Bad input, %s should be a row or column vector.\n"
+#~ msgstr "不正な入力です、%s 行か列のベクトルであるべきです。\n"
+
+#
+# File: src/c/getHandleProperty/set_x_shift_property.c, line: 56
+# File: src/c/getHandleProperty/set_y_shift_property.c, line: 56
+# File: src/c/getHandleProperty/set_z_shift_property.c, line: 56
+#~ msgid "Wrong size for input vector.\n"
+#~ msgstr "入力ベクトルのサイズが不正です。\n"
+
+#
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 66
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 60
+#, c-format
+#~ msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
+#~ msgstr "%s: 入力引数 #%d で不正な型: ベクトルを想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_z_bounds_property.c, line: 48
+# File: src/c/getHandleProperty/set_color_range_property.c, line: 49
+# File: src/c/getHandleProperty/set_outside_colors_property.c, line: 49
+#, c-format
+#~ msgid "Wrong size for property %s: A vector of size %d expected.\n"
+#~ msgstr "'%s' プロパティで不正なサイズ: ベクトル、またはサイズ %d を想定します。.\n"
+
+#
+# File: src/c/getHandleProperty/set_zoom_box_property.c, line: 61
+#, c-format
+#~ msgid "Argument must be a vector of size %d (or %d in 2d).\n"
+#~ msgstr "引数は、サイズ %d のベクトルでなくてはなりません(あるいは、２dの%d)\n"
+
+#
+# File: src/c/getHandleProperty/set_color_range_property.c, line: 61
+# File: src/c/getHandleProperty/set_outside_colors_property.c, line: 61
+#, c-format
+#~ msgid ""
+#~ "WARNING: Wrong value for property %s: indices oustside the colormap will be "
+#~ "clamped.\n"
+#~ msgstr "警告:プロパティ %s で不正な値: カラーマップ外のインデックスは、留められるでしょう。\n"
+
+#
+# File: sci_gateway/c/sci_xgetmouse.c, line: 102
+#, c-format
+#~ msgid ""
+#~ "%s: Using xgetmouse with a flag to avoid the event queue to be cleared is "
+#~ "obsolete.\n"
+#~ "This functionnality will be permanently removed in Scilab 5.1.\n"
+#~ msgstr ""
+#~ "%s: イベント列を避けるためにフラグに xgetmouse を使ってください、もうクリアするために用いられません。\n"
+#~ "この機能は、Scilab ５.１で永久に取り去られます。\n"
+
+#
+# File: src/c/getHandleProperty/set_color_range_property.c, line: 61
+# File: src/c/getHandleProperty/set_outside_colors_property.c, line: 61
+#, c-format
+#~ msgid ""
+#~ "WARNING: Wrong value for '%s' property: indices oustside the colormap will "
+#~ "be clamped.\n"
+#~ msgstr "警告: プロパティ '%s' で不正な値: インデックス外のカラーマップは固定されるでしょう。\n"
+
+#~ msgid "Could not create initialize the window.\n"
+#~ msgstr "ウインドウで初期化生成ができません。\n"
+
+#~ msgid "Warning : Nax does not work with logarithmic scaling.\n"
+#~ msgstr "警告 : Nax は、対数尺に使えません。\n"
+
+#, c-format
+#~ msgid "%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"
+#~ msgstr "%s: 入力引数 #%d の大きさに誤りがあります: ''%s'' ハンドルを指定してください.\n"
