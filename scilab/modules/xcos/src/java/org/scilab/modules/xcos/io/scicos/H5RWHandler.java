@@ -70,8 +70,9 @@ public class H5RWHandler {
 	 * Decode an Xcos block
 	 * 
 	 * @return the decoded block
+	 * @throws ScicosFormatException on decoding error
 	 */
-	public BasicBlock readBlock() {
+	public BasicBlock readBlock() throws ScicosFormatException {
 		return readBlock(null);
 	}
 	
@@ -79,8 +80,9 @@ public class H5RWHandler {
 	 * Decode an Xcos block into an instance
 	 * @param into the instance to update
 	 * @return the updated instance.
+	 * @throws ScicosFormatException on decoding error
 	 */
-	public BasicBlock readBlock(BasicBlock into) {
+	public BasicBlock readBlock(BasicBlock into) throws ScicosFormatException {
 		final ScilabMList data = new ScilabMList();
 		final BlockElement element = new BlockElement();
 		BasicBlock instance;
@@ -99,9 +101,6 @@ public class H5RWHandler {
 			style.put(instance.getInterfaceFunctionName(), null);
 			instance.setStyle(style.toString());
 
-		} catch (ScicosFormatException e) {
-			LOG.error(e);
-			instance = null;
 		} catch (HDF5Exception e) {
 			LOG.error(e);
 			instance = null;

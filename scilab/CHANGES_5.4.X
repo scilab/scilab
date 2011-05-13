@@ -12,6 +12,11 @@ SciNotes:
 
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
 
+Xcos:
+=====
+
+* bug 9478 fixed - Block structure was not checked while adding them to a new
+                   palette.
 
 File input/output:
 ==================
