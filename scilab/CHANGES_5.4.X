@@ -4,6 +4,9 @@
 SciNotes:
 =========
 
+* In the find/grep tools, add the possibility to use ~ as a joker for user home
+  dir. and SCI for Scilab data base dir.
+
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
                    'seconds'.
 

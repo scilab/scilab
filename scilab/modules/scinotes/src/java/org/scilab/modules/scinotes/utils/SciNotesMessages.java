@@ -312,6 +312,7 @@ public class SciNotesMessages {
     public static final String RECURSIVE = Messages.gettext("Recursive");
     public static final String FILEPATTERN = Messages.gettext("File pattern");
     public static final String FILEPATTERNEXP = Messages.gettext("(* for any string and ? for any character)");
+    public static final String BASEDIREXP = Messages.gettext("(~ for user home dir. and SCI for Scilab base dir.)");
     public static final String WORDPATTERN = Messages.gettext("Word pattern");
     public static final String FILELINEBYLINE = Messages.gettext("Read file line by line");
     public static final String CHOOSEDIR = Messages.gettext("Choose...");

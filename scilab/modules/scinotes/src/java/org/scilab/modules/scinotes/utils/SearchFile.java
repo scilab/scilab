@@ -417,6 +417,9 @@ public class SearchFile extends SwingScilabTab implements Tab {
         synchronized public void done() {
             SearchManager.MatchingPositions pos = getResults();
             if (pos == null) {
+                if (component != null) {
+                    component.firePropertyChange(SEARCHDONE, false, true);
+                }
                 return;
             }
 
