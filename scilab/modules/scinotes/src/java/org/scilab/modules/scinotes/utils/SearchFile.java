@@ -502,8 +502,7 @@ public class SearchFile extends SwingScilabTab implements Tab {
                         tree.addSelectionRow(0);
                         tree.requestFocus();
                         long time = getElapsedTime();
-                        String msg = (time <= 1000) ? SciNotesMessages.ELAPSEDTIMELESSONESEC : SciNotesMessages.ELAPSEDTIME;
-                        infobar.setText(String.format(msg, ((double) time) / 1000));
+                        infobar.setText(String.format(SciNotesMessages.ELAPSEDTIME, ((double) time) / 1000));
                     }
                 });
 

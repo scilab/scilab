@@ -4,7 +4,8 @@
 SciNotes:
 =========
 
-* Add tools 'Find Files' (ctrl+shift+B) and 'Find word in Files' (ctrl+shift+F).
+* bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
+                   'seconds'.
 
 
 File input/output:

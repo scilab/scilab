@@ -307,8 +307,7 @@ public class SciNotesMessages {
     public static final String SEARCHINFILES = Messages.gettext("Search in Files...");
     public static final String MATCHES = Messages.gettext("<html>%s <i>(%s matches)</i></html>");
     public static final String MATCH = Messages.gettext("<html>%s <i>(%s match)</i></html>");
-    public static final String ELAPSEDTIME = Messages.gettext("Elapsed time: %s seconds.");
-    public static final String ELAPSEDTIMELESSONESEC = Messages.gettext("Elapsed time: %s second.");
+    public static final String ELAPSEDTIME = Messages.gettext("Elapsed time: %s sec.");
     public static final String BASEDIRECTORY = Messages.gettext("Base directory:");
     public static final String RECURSIVE = Messages.gettext("Recursive");
     public static final String FILEPATTERN = Messages.gettext("File pattern");
