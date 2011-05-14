@@ -27,6 +27,15 @@ New functions
   This automatically fixes the bug #4381.
 
 
+Documentation:
+==============
+
+* <ALT>+<LEFT ARROW> / <ALT>+<RIGHT ARROW> allows the browse of the history.
+  (see bug 9474)
+
+* The space key behave like the page down key. (see bug 9491)
+
+
 Removed functions (previously declared as obsolete):
 ====================================================
 
