@@ -71,6 +71,9 @@ Bug fixes:
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
+* bug 4847 fixed - In uigetfile, there was no way to select files with a given
+                   pattern.
+
 * bug 6875 fixed - test_run() could not run at once on the +3000 tests of
                    Scilab.
 
