@@ -1714,6 +1714,13 @@ public class SciNotes extends SwingScilabTab implements Tab {
             // Empty the undo Manager
             UndoManager undo = ((ScilabDocument) getTextPane().getDocument()).getUndoManager();
             undo.discardAllEdits();
+
+            if (getTabPane().getTabCount() == 2) {
+                ScilabEditorPane pane = getTextPane(0);
+                if (pane.getName() == null && !((ScilabDocument) pane.getDocument()).isContentModified()) {
+                    closeTabAt(0);
+                }
+            }
         }
     }
 
