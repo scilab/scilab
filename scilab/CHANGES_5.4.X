@@ -8,6 +8,8 @@ SciNotes:
 * In the find/grep tools, add the possibility to use ~ as a joker for user home
   dir. and SCI for Scilab data base dir.
 
+* Add an 'Save and Execute all files' action.
+
 * bug 9334 fixed - Extra lines was added when code was exported into PDF under
                    Windows.
 
@@ -31,6 +33,7 @@ Graphical User Interface:
 =========================
 
 * The variable browser now refresh itself automatically (See bug 9446).
+
 
 Xcos:
 =====

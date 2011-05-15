@@ -51,6 +51,7 @@
   <entry key="ExecuteFileIntoScilabAction">OSSCKEY shift E</entry>
   <entry key="EvaluateSelectionAction">OSSCKEY E</entry>
   <entry key="SaveAndExecuteFileAction">F5</entry>
+  <entry key="SaveAndExecuteAllFilesAction">OSSCKEY F5</entry>
 
   <entry key="FindAction">OSSCKEY F</entry>
   <entry key="FindNextAction">OSSCKEY K</entry>
