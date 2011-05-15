@@ -295,6 +295,8 @@ public class SciNotesMessages {
     public static final String TABVRULE = Messages.gettext("Vertical rule");
     public static final String TABDOUBLECHEVRONS = Messages.gettext("Double chevrons");
 
+    public static final String COPYFULLFILEPATH = Messages.gettext("Copy full path");
+
     /**
      * Incremental search
      */

@@ -15,6 +15,8 @@ SciNotes:
 
 * bug 9480 fixed - Highlighted words after selection were wrong under Windows.
 
+* Bug 9488 fixed - There was no popup menu on the tab to copy the file path.
+
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
 
 
