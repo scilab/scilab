@@ -214,6 +214,8 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 9056 fixed - An uicontrol could not be closed with <META>+W.
+
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
                    by default.
 
