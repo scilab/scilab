@@ -63,7 +63,7 @@ extern int C2F(mktlist)(int *nbitems);
   tlist(["program","name","outputs","inputs","statements","nblines"],..
                    macro_name,..
                            list_of_output_variable_tlists,..
-                                     list_of_intput_variable_tlists,..
+                                     list_of_input_variable_tlists,..
                                              list_of_macro_statements,..
                                                            total_number_of_lines_in_macro)
  Input:

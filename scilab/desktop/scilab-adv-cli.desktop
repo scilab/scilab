@@ -2,7 +2,7 @@
 Comment=Scientific software package for numerical computations
 Comment[fr]=Logiciel scientifique de calcul numérique
 Comment[de]=eine Wissenschaftssoftware für numerische Berechnungen
-Exec=scilab-cli
+Exec=scilab-adv-cli
 GenericName=Scientific Software Package
 GenericName[fr]=Logiciel de calcul numérique
 GenericName[de]=Wissenschaftssoftware

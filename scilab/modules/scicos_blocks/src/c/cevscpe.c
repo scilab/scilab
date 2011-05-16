@@ -18,7 +18,7 @@
 *
 * See the file ./license.txt
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /**
    \file cevscpe.c
    \author Benoit Bayol
@@ -27,7 +27,7 @@
    \brief CEVSCPE is a scope that indicates when the clocks is activated
    \see CEVENTSCOPE.sci in macros/scicos_blocks/Sinks/
 */
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 #include "CurrentObjectsManagement.h"
 #include "scicos.h"
 #include "scoMemoryScope.h"
@@ -42,7 +42,7 @@
 #include "scicos_free.h"
 #include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn cscopxy_draw(scicos_block * block, ScopeMemory ** pScopeMemory, int firstdraw)
     \brief Function to draw or redraw the window
 */
@@ -116,7 +116,7 @@ SCICOS_BLOCKS_IMPEXP void cevscpe_draw(scicos_block * block, ScopeMemory ** pSco
         sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
     }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/
 /** \fn void cevscpe(scicos_block * block, int flag)
     \brief the computational function
     \param block A pointer to a scicos_block
@@ -136,87 +136,88 @@ SCICOS_BLOCKS_IMPEXP void cevscpe(scicos_block * block, int flag)
     {
     case Initialization:
       {
-	cevscpe_draw(block,&pScopeMemory,1);
-	break;
+    cevscpe_draw(block,&pScopeMemory,1);
+    break;
       }
 
     case StateUpdate:
       {
 
-	/* Charging elements */
+    /* Charging elements */
 
-	scoRetrieveScopeMemory(block->work,&pScopeMemory);
+    scoRetrieveScopeMemory(block->work,&pScopeMemory);
 
-	if(scoGetScopeActivation(pScopeMemory) == 1)
-	  {
-	   
-	    t = get_scicos_time();
-	    if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
-	      {
-		cevscpe_draw(block,&pScopeMemory,0);
-	      }
+    if(scoGetScopeActivation(pScopeMemory) == 1)
+      {
 
-	    scoRefreshDataBoundsX(pScopeMemory,t);
-	
-	    /*Not Factorize*/
+        t = get_scicos_time();
+        if(scoGetPointerScopeWindow(pScopeMemory) == NULL)
+          {
+        cevscpe_draw(block,&pScopeMemory,0);
+          }
 
-	    for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-	      {
-		if((GetNevIn(block)&(1<<i))==(1<<i))
-		  {
-		    tab[nbseg]=i;
-		    nbseg++;
-		  }
-	      }
+        scoRefreshDataBoundsX(pScopeMemory,t);
 
-	    for(i = 0 ; i < nbseg ; i++)
-	      {
-		pShortDraw = scoGetPointerShortDraw(pScopeMemory,0,tab[i]);
-		pSEGS_FEATURE(pShortDraw)->vx[0] = t;
-		pSEGS_FEATURE(pShortDraw)->vx[1] = t;
-		pSEGS_FEATURE(pShortDraw)->vy[0] = i*0.8/nbseg;
-		pSEGS_FEATURE(pShortDraw)->vy[1] = (i+1)*0.8/nbseg;
-		pSEGS_FEATURE(pShortDraw)->Nbr1 = 2;
-		pSEGS_FEATURE(pShortDraw)->Nbr2 = 2;
-	      }
-	    /*End of Not Factorize*/
-	    scoDrawScopeAmplitudeTimeStyle(pScopeMemory,t);
-	  }
-	break;
+        /*Not Factorize*/
+
+        for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+          {
+        if((GetNevIn(block)&(1<<i))==(1<<i))
+          {
+            tab[nbseg]=i;
+            nbseg++;
+          }
+          }
+
+        for(i = 0 ; i < nbseg ; i++)
+          {
+        pShortDraw = scoGetPointerShortDraw(pScopeMemory,0,tab[i]);
+        pSEGS_FEATURE(pShortDraw)->vx[0] = t;
+        pSEGS_FEATURE(pShortDraw)->vx[1] = t;
+        pSEGS_FEATURE(pShortDraw)->vy[0] = i*0.8/nbseg;
+        pSEGS_FEATURE(pShortDraw)->vy[1] = (i+1)*0.8/nbseg;
+        pSEGS_FEATURE(pShortDraw)->Nbr1 = 2;
+        pSEGS_FEATURE(pShortDraw)->Nbr2 = 2;
+          }
+        /*End of Not Factorize*/
+        scoDrawScopeAmplitudeTimeStyle(pScopeMemory,t);
+      }
+    break;
       }
 
     case Ending:
       {
 
-				scoRetrieveScopeMemory(block->work, &pScopeMemory);
-				if(scoGetScopeActivation(pScopeMemory) == 1)
-				{
-					/* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
-					/* Check if figure is still opened, otherwise, don't try to destroy it again. */
-					if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
-					{
-						for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
-						{
-							/* maybe a bug here in the last argument of the following instruction (see tab[i]) */
-							pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
-							forceRedraw(pLongDraw);
-						}
-					
+                scoRetrieveScopeMemory(block->work, &pScopeMemory);
+                if(scoGetScopeActivation(pScopeMemory) == 1)
+                {
+                    /* sciSetUsedWindow(scoGetWindowID(pScopeMemory)); */
+                    /* Check if figure is still opened, otherwise, don't try to destroy it again. */
+                    if(scoGetPointerScopeWindow(pScopeMemory) != NULL)
+                    {
+                        for(i = 0 ; i < scoGetNumberOfCurvesBySubwin(pScopeMemory,0) ; i++)
+                        {
+                            /* maybe a bug here in the last argument of the following instruction (see tab[i]) */
+                            pLongDraw = scoGetPointerLongDraw(pScopeMemory,0,i);
+                            forceRedraw(pLongDraw);
+                        }
 
-						/* pShortDraw = sciGetCurrentFigure(); */
-						pShortDraw = scoGetPointerScopeWindow(pScopeMemory);
-						clearUserData(pShortDraw);
-						/* pFIGURE_FEATURE(pShortDraw)->user_data = NULL; */
-						/* pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0; */
-						/* restore double buffering */
+
+                        /* pShortDraw = sciGetCurrentFigure(); */
+                        pShortDraw = scoGetPointerScopeWindow(pScopeMemory);
+                        clearUserData(pShortDraw);
+                        /* pFIGURE_FEATURE(pShortDraw)->user_data = NULL; */
+                        /* pFIGURE_FEATURE(pShortDraw)->size_of_user_data = 0; */
+                        /* restore double buffering */
                         if (pShortDraw) {
                             sciSetJavaUseSingleBuffer(pShortDraw, FALSE);
                         }
-					}
-				}
-				scoFreeScopeMemory(block->work,&pScopeMemory);
-				break;
-			}
-	}
+                        scoDelCoupleOfSegments(pScopeMemory);
+                    }
+                }
+                scoFreeScopeMemory(block->work,&pScopeMemory);
+                break;
+            }
+    }
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

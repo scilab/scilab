@@ -13,16 +13,6 @@ File input/output:
 * mgetl, exec, fscanfMat functions manage files encoded as UTF-8 with BOM.
 
 
-Compilation:
-============
-
-* Under Windows, Scilab uses VS 2010 Pro and Express solution.
-
-* Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
-  as a static library (only available in the source tree).
-  This will avoid an important dependency tree for unitary testing.
-
-
 New functions
 =============
 
@@ -36,7 +26,6 @@ New functions
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
 
-
 Bug Fixes:
 ==========
 
@@ -47,6 +36,8 @@ Bug Fixes:
 
 * bug 8608 - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
              and optimized.
+
+* bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
 
 * bug 9156 - mgetl.c compilation failed on some Windows.
 
@@ -72,4 +63,14 @@ Performance:
   Pentium III class (or equivalent) with SSE instructions is required.
 
 * bug 8608 - dec2hex, hex2dec, dec2oct, oct2dec, code have been simplified and optimized.
+
+
+Compilation:
+============
+
+* Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
+* Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
+  as a static library (only available in the source tree).
+  This will avoid an important dependency tree for unitary testing.
 

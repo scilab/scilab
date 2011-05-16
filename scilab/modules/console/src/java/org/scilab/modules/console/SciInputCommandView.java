@@ -275,7 +275,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
      * {@inheritDoc}
      */
     public Dimension getPreferredSize() {
-        Dimension dim = super.getPreferredSize();
+        Dimension dim;
+        try {
+            dim = super.getPreferredSize();
+        } catch (Exception e) {
+            // workaround bug 9442
+            // Should be removed with JDK 7
+            dim = new Dimension(0, 0);
+        }
+
         if (height != -1) {
             dim.height = Math.max(height, dim.height);
         }

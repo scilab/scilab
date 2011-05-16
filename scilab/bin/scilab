@@ -4,7 +4,7 @@
 # Copyright (C) INRIA - 2006-2008 - Sylvestre Ledru
 # Copyright (C) INRIA - 2008 - Simon Lipp
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
-# Copyright (C) DIGITEO - 2010 - Bruno JOFRET
+# Copyright (C) DIGITEO - 2010-2011 - Bruno JOFRET
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -290,7 +290,7 @@ set_macosx_java_vm () {
     JAVA_SHLIB="libjava.jnilib"
     JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
     DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
-    
+
 }
 
 set_embedded_java_vm () {
@@ -623,6 +623,49 @@ cd "$LOCALOLDPWD"
 #fi
 #export PVM_ARCH
 
+
+#
+# Scilab will not work on some Mac OSX version
+# Check version number and ask user if he wants to go on.
+#
+check_macosx_version()
+{
+    macosxVersion=`sw_vers | grep '^ProductVersion:' | grep -o '[0-9]*\.[0-9]*\.[0-9]*'`
+    macosxMajorVersion=`echo $macosxVersion | cut -d . -f 1`
+    macosxMinorVersion=`echo $macosxVersion | cut -d . -f 2`
+    macosxBuildVersion=`echo $macosxVersion | cut -d . -f 3`
+
+    if test $SCIVERBOSE -ne 0; then
+        echo "Found MacOSX Version: $macosxVersion"
+    fi
+
+    case $macosxMajorVersion in
+        10)
+            case $macosxMinorVersion in
+                6)
+                    if test $macosxBuildVersion -le 4; then
+                        # Version <= 10.6.4
+                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    fi
+                    ;;
+# Does not work under 10.5 binary for now. Fail by default
+#                 5)
+#                     if test $macosxBuildVersion -ge 8; then
+#                         # Version <= 10.5.8
+#                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
+#                         fi
+#                    ;;
+                *)
+                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    ;;
+            esac
+            ;;
+        *)
+            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+            ;;
+    esac
+}
+
 SCILIB=$SCI/bin:$SCI/lib/scilab/:$SCI/lib64/scilab/
 LD_LIBRARY_PATH=$SCILIB${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
 
@@ -649,7 +692,7 @@ case $OS in
         BINPATH=$(dirname $0)
         # Do not perform the check with Scilab is started in CLI mode
         if test "$SCILAB_MODE" = "gui"; then
-               osascript $BINPATH/checkmacosx.applescript || exit 128
+            check_macosx_version
         fi
         ;;
     *)
@@ -673,7 +716,6 @@ fi
 do_scilex()
 {
     "$SCILABBIN" "$@"
-
 }
 
 do_help()

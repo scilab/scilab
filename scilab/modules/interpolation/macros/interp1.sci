@@ -136,7 +136,7 @@ function yi=interp1(varargin)
   end
 
   //-------------------------------------------------
-  // CASE : 3 intputs arguments : yi=interp1(x,y,xi) 
+  // CASE : 3 inputs arguments : yi=interp1(x,y,xi) 
   //-------------------------------------------------
 
   //default method : linear method is used
@@ -145,7 +145,7 @@ function yi=interp1(varargin)
   end
 
   //--------------------------------------------------
-  // CASE : 4 intputs arguments : yi=interp1(x,y,xi,method) 
+  // CASE : 4 inputs arguments : yi=interp1(x,y,xi,method) 
   //--------------------------------------------------
 
   if size(varargin)==4 then
@@ -185,7 +185,7 @@ function yi=interp1(varargin)
   end
 
   //-------------------------------------------------------------------------------------------------
-  // CASE : 5 intputs arguments :  yi=interp1(x,y,xi,method,'extrap')  or  yi=interp1(x,y,xi,method,extrapval)
+  // CASE : 5 inputs arguments :  yi=interp1(x,y,xi,method,'extrap')  or  yi=interp1(x,y,xi,method,extrapval)
   //-------------------------------------------------------------------------------------------------
 
   if size(varargin)==5 then
