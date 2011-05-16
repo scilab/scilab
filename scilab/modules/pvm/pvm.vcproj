@@ -607,10 +607,6 @@
 			RelativePath=".\sci_gateway\pvm_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

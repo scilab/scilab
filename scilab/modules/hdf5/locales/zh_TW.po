@@ -1,0 +1,56 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-04 01:33+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 無法開啟 %s 檔案.\n"
+
+#, c-format
+msgid "%s: Invalid HDF5 Scilab format.\n"
+msgstr "%s: 無效的HDF5 Scilab格式。\n"
+
+#, c-format
+msgid "%s: Type: %dx%d\n"
+msgstr "%s: 形式: %dx%d\n"
+
+#, c-format
+msgid "%s: Unable to open file: %s\n"
+msgstr "%s: 無法開啟檔案： %s\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為已定義之變數.\n"
+
+msgid "HDF5 is not installed"
+msgstr "HDF5沒有安裝"

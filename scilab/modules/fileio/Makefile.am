@@ -163,7 +163,7 @@ modulename=fileio
 
 #### fileio : Conf files ####
 libscifileio_la_rootdir = $(mydatadir)
-libscifileio_la_root_DATA =  license.txt version.xml
+libscifileio_la_root_DATA =  license.txt 
 
 
 #### fileio : init scripts ####

@@ -1,11 +1,11 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -15,7 +15,7 @@ modulename=history_browser
 
 #### history_browser : Conf files ####
 libscihistory_browser_la_rootdir = $(mydatadir)
-libscihistory_browser_la_root_DATA =  license.txt version.xml
+libscihistory_browser_la_root_DATA =  license.txt
 
 
 #### history_browser : init scripts ####
@@ -35,7 +35,7 @@ HISTORY_BROWSER_CPP_SOURCES = src/cpp/CommandHistory_Wrap.cpp
 
 GIWS_WRAPPERS = src/jni/CommandHistory.giws.xml
 
-HISTORY_BROWSER_C_SOURCES = 
+HISTORY_BROWSER_C_SOURCES =
 
 if GIWS
 BUILT_SOURCES=giws
@@ -45,16 +45,16 @@ else
 HISTORY_BROWSER_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
 endif
 
-libscihistory_browser_la_CFLAGS= 
+libscihistory_browser_la_CFLAGS=
 
 
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/jvm/includes/
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/
 
-# Without the history_browser module 
+# Without the history_browser module
 libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
 HISTORY_BROWSER_DISABLE_C_SOURCES =  src/nohistory_browser/CommandHistory_Wrap_Fake.c
 libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
@@ -63,7 +63,7 @@ libscihistory_browser_disable_la_SOURCES = $(HISTORY_BROWSER_DISABLE_C_SOURCES)
 pkglib_LTLIBRARIES = libscihistory_browser-disable.la
 
 if GUI
-pkglib_LTLIBRARIES += libscihistory_browser.la 
+pkglib_LTLIBRARIES += libscihistory_browser.la
 endif
 
 libscihistory_browser_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
@@ -76,7 +76,7 @@ INCLUDE_FLAGS = $(libscihistory_browser_la_CFLAGS)
 
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = 
+SWIG_WRAPPERS =
 
 if SWIG
 BUILT_SOURCES=swig
@@ -89,7 +89,7 @@ $(top_builddir)/modules/output_stream/libscioutput_stream.la
 
 #### history_browser : gateway declaration ####
 libscihistory_browser_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscihistory_browser_la_sci_gateway_DATA = 
+libscihistory_browser_la_sci_gateway_DATA =
 
 if GUI
 USEANT=1

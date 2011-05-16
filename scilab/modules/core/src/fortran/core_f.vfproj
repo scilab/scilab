@@ -118,7 +118,6 @@ cd .."/>
 		<File RelativePath="hmcreate.f"/>
 		<File RelativePath="hndlops.f"/>
 		<File RelativePath="indxg.f"/>
-		<File RelativePath="inibrk.f"/>
 		<File RelativePath="inisci.f"/>
 		<File RelativePath="intstr.f"/>
 		<File RelativePath="isany.f"/>

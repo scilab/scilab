@@ -54,7 +54,7 @@ static gw_generic_table Tab[]=
 	{sci_printfigure, "printfigure"},
 	{sci_exportUI, "exportUI"},
 	{sci_printsetupbox,"printsetupbox"},
-	{sci_toprint,"toprint"},
+	{NULL, ""}, // toprint
 	{sci_uigetfile,"uigetfile"},
 	{sci_usecanvas,"usecanvas"},
 	{sci_displaytree,"uiDisplayTree"},

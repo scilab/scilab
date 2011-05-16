@@ -19,7 +19,6 @@
 ;
 #define ATOMS "atoms"
 ;
-Source: modules\{#ATOMS}\VERSION.xml; DestDir: {app}\modules\{#ATOMS}; Components: {#COMPN_ATOMS}
 Source: modules\{#ATOMS}\license.txt; DestDir: {app}\modules\{#ATOMS}; Components: {#COMPN_ATOMS}
 ;
 Source: modules\{#ATOMS}\etc\{#ATOMS}.quit; DestDir: {app}\modules\{#ATOMS}\etc; Components: {#COMPN_ATOMS}

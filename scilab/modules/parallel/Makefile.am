@@ -12,7 +12,6 @@
 #GATEWAY_CPP_SOURCES =
 #sci_gateway/cpp/sci_parallel_run.cpp
 
-
 #PARALLEL_C_SOURCES =
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_parallel.c
@@ -68,7 +67,7 @@ modulename=parallel
 
 #### parallel : Conf files ####
 libsciparallel_la_rootdir = $(mydatadir)
-libsciparallel_la_root_DATA = license.txt version.xml
+libsciparallel_la_root_DATA = license.txt
 
 
 #### parallel : init scripts ####

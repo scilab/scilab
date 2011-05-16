@@ -449,10 +449,6 @@
 			RelativePath=".\parameters.iss"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

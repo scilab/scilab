@@ -66,10 +66,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/fftw
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -128,6 +128,7 @@ libscifftw_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libscifftw_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@FFTW_TRUE@am_libscifftw_algo_la_rpath =
 @FFTW_TRUE@libscifftw_la_DEPENDENCIES = libscifftw-algo.la \
 @FFTW_TRUE@	$(top_builddir)/libs/MALLOC/libscimalloc.la \
 @FFTW_TRUE@	$(top_builddir)/libs/dynamiclibrary/libscidynamiclibrary.la \
@@ -443,7 +444,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 modulename = fftw
 pkglib_LTLIBRARIES = libscifftw.la
-noinst_LTLIBRARIES = libscifftw-algo.la
+@FFTW_TRUE@noinst_LTLIBRARIES = libscifftw-algo.la
 libscifftw_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(FFTW3_LIB)
 
 #### fftw : Conf files ####
@@ -470,7 +471,7 @@ libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
 
 
 #### fftw : Conf files ####
-@FFTW_TRUE@libscifftw_la_root_DATA = license.txt version.xml
+@FFTW_TRUE@libscifftw_la_root_DATA = license.txt 
 
 #### fftw : gateway declaration ####
 @FFTW_TRUE@libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
@@ -638,7 +639,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libscifftw-algo.la: $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_DEPENDENCIES) 
-	$(libscifftw_algo_la_LINK)  $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
+	$(libscifftw_algo_la_LINK) $(am_libscifftw_algo_la_rpath) $(libscifftw_algo_la_OBJECTS) $(libscifftw_algo_la_LIBADD) $(LIBS)
 libscifftw.la: $(libscifftw_la_OBJECTS) $(libscifftw_la_DEPENDENCIES) 
 	$(libscifftw_la_LINK) -rpath $(pkglibdir) $(libscifftw_la_OBJECTS) $(libscifftw_la_LIBADD) $(LIBS)
 

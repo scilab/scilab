@@ -545,10 +545,6 @@
 			RelativePath=".\sci_gateway\matio_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

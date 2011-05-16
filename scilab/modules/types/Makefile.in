@@ -71,10 +71,10 @@ check_PROGRAMS = testTypes$(EXEEXT)
 TESTS = testTypes$(EXEEXT)
 subdir = modules/types
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -119,8 +119,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscitypes_algo_la_LIBADD =
-am__objects_1 =
-am__objects_2 = libscitypes_algo_la-types_gw.lo \
+am__objects_1 = libscitypes_algo_la-types_gw.lo \
 	libscitypes_algo_la-sci_list.lo \
 	libscitypes_algo_la-sci_struct.lo \
 	libscitypes_algo_la-sci_insert.lo \
@@ -134,11 +133,12 @@ am__objects_2 = libscitypes_algo_la-types_gw.lo \
 	libscitypes_algo_la-sci_isfield.lo \
 	libscitypes_algo_la-sci_fieldnames.lo \
 	libscitypes_algo_la-sci_getfield.lo
-am_libscitypes_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+am_libscitypes_algo_la_OBJECTS = $(am__objects_1)
 libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
 @GUI_TRUE@am_libscitypes_algo_la_rpath =
 libscitypes_disable_la_LIBADD =
-am_libscitypes_disable_la_OBJECTS = $(am__objects_1)
+am__objects_2 =
+am_libscitypes_disable_la_OBJECTS = $(am__objects_2)
 libscitypes_disable_la_OBJECTS = $(am_libscitypes_disable_la_OBJECTS)
 libscitypes_disable_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
@@ -164,7 +164,7 @@ am__objects_3 = libscitypes_la-types.lo libscitypes_la-string.lo \
 	libscitypes_la-int32.lo libscitypes_la-uint32.lo \
 	libscitypes_la-int64.lo libscitypes_la-uint64.lo \
 	libscitypes_la-types_tools.lo
-am_libscitypes_la_OBJECTS = $(am__objects_1) $(am__objects_1) \
+am_libscitypes_la_OBJECTS = $(am__objects_2) $(am__objects_2) \
 	$(am__objects_3)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
 libscitypes_la_LINK = $(LIBTOOL) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -474,7 +474,7 @@ modulename = types
 
 #### types : Conf files ####
 libscitypes_la_rootdir = $(mydatadir)
-libscitypes_la_root_DATA = license.txt version.xml
+libscitypes_la_root_DATA = license.txt
 
 #### types : init scripts ####
 libscitypes_la_etcdir = $(mydatadir)/etc
@@ -584,7 +584,8 @@ TYPES_CPP_SOURCES = \
 GIWS_WRAPPERS = 
 @GIWS_TRUE@BUILT_SOURCES = giws
 @SWIG_TRUE@BUILT_SOURCES = swig
-GATEWAY_C_SOURCES = 
+
+#GATEWAY_C_SOURCES =
 GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
 			sci_gateway/cpp/sci_list.cpp \
 			sci_gateway/cpp/sci_struct.cpp \
@@ -624,7 +625,7 @@ pkglib_LTLIBRARIES = libscitypes-disable.la $(am__append_2)
 @GUI_TRUE@noinst_LTLIBRARIES = libscitypes-algo.la
 libscitypes_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)  $(X_LIBS) $(X_EXTRA_LIBS)
 libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CPP_SOURCES)
-libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscitypes_algo_la_SOURCES = $(GATEWAY_CPP_SOURCES) #$(GATEWAY_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)

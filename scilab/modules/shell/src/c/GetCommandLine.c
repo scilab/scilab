@@ -186,7 +186,7 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
 
     /* if not an interactive terminal */
 #ifdef _MSC_VER
-    /* if file descriptor returned is -2 stdin is not associated with an intput stream */
+    /* if file descriptor returned is -2 stdin is not associated with an input stream */
     /* example : echo plot3d | scilex -nw -e */
     if(!isatty(fileno(stdin)) && (fileno(stdin) != -2) && getScilabMode() != SCILAB_STD )
 #else

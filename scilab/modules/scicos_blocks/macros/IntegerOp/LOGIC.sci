@@ -46,18 +46,18 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
       nout=size(mat,2)
       nin=(log(size(mat,1))/log(2))
       u1=floor(nin)
-      if (herit<>0) then herit=1;end;
+      //if (herit<>0) then herit=1;end; The test below verify the value of parameter
       if (u1 <> nin) then
-          block_parameter_error(msprintf(gettext("Wrong size for ''Truth Table'' parameter: %d."), size(mat,1)), ..
+          block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter: %d."), gettext("Truth Table"), size(mat,1)), ..
             gettext("Number of rows must be a power of two."));
           ok=%f;
       elseif (find(mat(:) <> 0 & mat(:) <> 1) <> []) then
-          block_parameter_error(gettext("Wrong value for elements of ''Truth Table'' parameter."), ..
-              msprintf(gettext( "Must be in the interval %s."),"[0, 1]"));
+          block_parameter_error(msprintf(gettext("Wrong value for of ''%s'' parameter."), gettext("Truth Table")), ..
+              msprintf(gettext( "Elements must be in the interval %s."),"[0, 1]"));
           ok=%f;
       elseif herit <0 | herit > 1 then
-          block_parameter_error(gettext(msprintf("Wrong value for ''Accepts Inherited Events'' parameter: %d.", herit), ..
-              msprintf(gettext( "Must be in the interval %s."),"[0, 1]")));
+          block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Accepts Inherited Events"), herit), ..
+              msprintf(gettext( "Must be in the interval %s."),"[0, 1]"));
           ok=%f;
       end
       if ok then

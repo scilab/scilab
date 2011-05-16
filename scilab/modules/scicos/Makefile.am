@@ -152,7 +152,7 @@ $(top_builddir)/modules/arnoldi/libsciarnoldi.la
 
 #### scicos : Conf files ####
 libsciscicos_la_rootdir = $(mydatadir)
-libsciscicos_la_root_DATA =  license.txt version.xml
+libsciscicos_la_root_DATA =  license.txt 
 
 
 #### scicos : init scripts ####

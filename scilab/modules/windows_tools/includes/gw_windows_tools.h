@@ -22,7 +22,6 @@ WINDOWS_TOOLS_IMPEXP int gw_windows_tools(void);
 /* Declaration of all the profile function declared and */
 /* used in sci_gateway */
 WINDOWS_TOOLS_IMPEXP int sci_winopen(char *fname,unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,unsigned long l);
 WINDOWS_TOOLS_IMPEXP int sci_findfileassociation(char *fname,unsigned long l);
 WINDOWS_TOOLS_IMPEXP int sci_mcisendstring(char *fname,unsigned long l);
 WINDOWS_TOOLS_IMPEXP int sci_oemtochar(char *fname,unsigned long l);
@@ -35,7 +34,7 @@ WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname,unsigned long l);
 //YaSp
 WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname, int* _piKey);
 WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname,int* _piKey);
-
+WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname,int *_piKey);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

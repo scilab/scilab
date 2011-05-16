@@ -18,11 +18,11 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
-# 
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
-# are also available at    
+# are also available at
 # http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 #
 
@@ -65,13 +65,13 @@ host_triplet = @host@
 DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/Makefile.incl.am
 @NEED_JAVA_TRUE@am__append_1 = java
-@GUI_TRUE@am__append_2 = libscihistory_browser.la 
+@GUI_TRUE@am__append_2 = libscihistory_browser.la
 subdir = modules/history_browser
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -441,7 +441,7 @@ modulename = history_browser
 
 #### history_browser : Conf files ####
 libscihistory_browser_la_rootdir = $(mydatadir)
-libscihistory_browser_la_root_DATA = license.txt version.xml
+libscihistory_browser_la_root_DATA = license.txt
 
 #### history_browser : init scripts ####
 libscihistory_browser_la_etcdir = $(mydatadir)/etc
@@ -526,11 +526,11 @@ libscihistory_browser_la_CFLAGS =
 libscihistory_browser_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/src/jni/ \
 -I$(srcdir)/includes/ \
--I$(top_srcdir)/modules/system_env/includes \
--I$(top_srcdir)/modules/jvm/includes/
+-I$(top_srcdir)/modules/jvm/includes/ \
+-I$(top_srcdir)/modules/system_env/includes/
 
 
-# Without the history_browser module 
+# Without the history_browser module
 libscihistory_browser_disable_la_CFLAGS = -I$(srcdir)/includes/
 HISTORY_BROWSER_DISABLE_C_SOURCES = src/nohistory_browser/CommandHistory_Wrap_Fake.c
 libscihistory_browser_disable_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)

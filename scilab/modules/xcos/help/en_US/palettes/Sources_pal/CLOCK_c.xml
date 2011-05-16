@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * 
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -21,11 +23,20 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="CLOCK_c">
+<refentry
+  version="5.0-subset Scilab" xml:id="CLOCK_c" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:svg="http://www.w3.org/2000/svg"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
+  xmlns:mml="http://www.w3.org/1998/Math/MathML"
+  xmlns:db="http://docbook.org/ns/docbook"
+>
   <refnamediv>
     <refname>CLOCK_c</refname>
     <refpurpose>Activation clock</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -36,6 +47,7 @@
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_CLOCK_c">
     <title>Contents</title>
     <itemizedlist>
@@ -68,12 +80,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
+              <link linkend="Example_CLOCK_c">Example</link>
             </para>
           </listitem>
           <listitem>
             <para>
-              <link linkend="CLOCK_c">Compiled Super Block content</link>
+              <xref linkend="Interfacingfunction_CLOCK_c">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -90,6 +102,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_CLOCK_c">
     <title>Palette</title>
     <itemizedlist>
@@ -100,53 +113,50 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_CLOCK_c">
     <title>Description</title>
-    <para>
-This block is a Super Block constructed by feeding back the output of
-the block  
-into its input
-event port. 
-</para>
-    <para>
-The unique output of this block generates a regular train of events
-that's scheduled by the dialog parameter <emphasis role="bold">Period</emphasis>.
 
-</para>
+    <para>
+      The unique output of this block generates a regular train of events that are scheduled by
+      parameter <emphasis role="bold">Period</emphasis> in seconds. The starting date of events
+      generation can be set in seconds with the <emphasis role="bold">Initialisation Time</emphasis>
+      parameter.
+    </para>
   </refsection>
+
   <refsection id="Dialogbox_CLOCK_c">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/CLOCK_c_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/sources_pal/en_US/CLOCK_c_gui.png" align="center" />
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-  
-</para>
+    <para />
     <itemizedlist>
       <listitem>
         <para>
           <emphasis role="bold">Period</emphasis>
         </para>
-        <para> scalar.</para>
-        <para> One over the frequency of the clock.</para>
-        <para> Period is the time that separates two output events.</para>
+        <para> Scalar.
+          Period is the time that separates two output events, it is the
+          inverse of the frequency of the clock.
+        </para>
         <para> Properties : Type 'vec' of size 1. </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Init time</emphasis>
+          <emphasis role="bold">Initialisation Time</emphasis>
         </para>
-        <para> scalar.</para>
-        <para> Starting date.</para>
+        <para> Scalar. Starting date.</para>
         <para> If negative the clock never starts.</para>
         <para> Properties : Type 'vec' of size 1.</para>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Defaultproperties_CLOCK_c">
     <title>Default properties</title>
     <itemizedlist>
@@ -185,36 +195,44 @@ that's scheduled by the dialog parameter <emphasis role="bold">Period</emphasis>
       </listitem>
     </itemizedlist>
   </refsection>
+
+  <refsection id="Example_CLOCK_c">
+    <title>Example</title>
+    <para>
+      A simple example of CLOCK_c block event output.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/clock_c_en_US.xcos">
+        Open this example in Xcos
+      </link>.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/sources_pal/en_US/clock_c_diagram_en_US.png" />
+      </imageobject>
+    </mediaobject>
+  </refsection>
+
   <refsection id="Interfacingfunction_CLOCK_c">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/CLOCK_c.sci</para>
+        <para><link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/CLOCK_c.sci">SCI/modules/scicos_blocks/macros/Sources/CLOCK_c.sci</link></para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="CompiledSuperBlockcontent_CLOCK_c">
-    <title>Compiled Super Block content</title>
-    <para>
-      <inlinemediaobject>
-        <imageobject>
-          <imagedata fileref="../../../../help/images/CLOCK_c_img3_eng.gif" align="center" valign="middle"/>
-        </imageobject>
-      </inlinemediaobject>
-    </para>
-  </refsection>
-  <refsection id="Seealso_CLOCK_c">
+
+  <refsection role="see also" id="Seealso_CLOCK_c">
     <title>See also</title>
     <itemizedlist>
       <listitem>
-        <para>
-          <link linkend="EVTDLY_c">EVTDLY_c - Event delay</link>
-        </para>
+        <link linkend="SampleCLK">SampleCLK</link>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Authors_CLOCK_c">
     <title>Authors</title>
     <para><emphasis role="bold">Alan Layec</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Bernard DUJARDIN</emphasis> - CONTRIBUTOR</para>
   </refsection>
 </refentry>

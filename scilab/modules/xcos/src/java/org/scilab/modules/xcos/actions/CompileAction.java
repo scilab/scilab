@@ -92,7 +92,7 @@ public class CompileAction extends SimulationNotRunningAction {
 				((XcosDiagram) getGraph(null)).info(XcosMessages.COMPILATION_IN_PROGRESS);
 				
 				String cmd = buildCall("import_from_hdf5", temp.getAbsolutePath()) 
-				                     + "xcos_compile(scs_m);";
+				                     + "cpr = xcos_compile(scs_m);";
 				
 				final ActionListener action = new ActionListener() {
 					@Override

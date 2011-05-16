@@ -24,7 +24,6 @@ Source: bin\sci{#LOCALIZATION}.dll; DestDir: {app}\bin; Components: {#COMPN_SCIL
 Source: bin\{#LOCALIZATION}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\sci{#LOCALIZATION}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#LOCALIZATION}\VERSION.xml; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 Source: modules\{#LOCALIZATION}\license.txt; DestDir: {app}\modules\{#LOCALIZATION}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#LOCALIZATION}\etc\{#LOCALIZATION}.quit; DestDir: {app}\modules\{#LOCALIZATION}\etc; Components: {#COMPN_SCILAB}

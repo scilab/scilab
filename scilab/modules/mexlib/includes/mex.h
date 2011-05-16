@@ -128,7 +128,7 @@ typedef int (*GT) ();
 
   void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs);
 
-  extern void errjump (int n);
+  extern void errjump ();
 
   int mxGetM (const mxArray *ptr);
   int  C2F(mxgetm)  (mxArray *ptr);

@@ -39,7 +39,7 @@ LANGUAGE LANG_FRENCH, SUBLANG_FRENCH
 // remains consistent on all systems.
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-IDI_ICON_SCILAB         ICON  "..\\resources\\scilab.ico"
+IDI_ICON_SCILAB         ICON  "..\\resources\\icon_scilab.ico"
 
 #ifdef APSTUDIO_INVOKED
 /////////////////////////////////////////////////////////////////////////////
@@ -47,12 +47,12 @@ IDI_ICON_SCILAB         ICON  "..\\resources\\scilab.ico"
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE 
+1 TEXTINCLUDE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE 
+2 TEXTINCLUDE
 BEGIN
     "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
     "#include ""windows.h""\r\n"
@@ -61,7 +61,7 @@ BEGIN
     "\0"
 END
 
-3 TEXTINCLUDE 
+3 TEXTINCLUDE
 BEGIN
     "\r\n"
     "\0"
@@ -106,7 +106,7 @@ BEGIN
         BLOCK "040c04b0"
         BEGIN
             VALUE "CompanyName", "Consortium Scilab (DIGITEO)"
-            VALUE "FileDescription", "Scilab 5.3.1 (NO GUI)"
+            VALUE "FileDescription", "Scilab 6.0.0 (NO GUI)"
             VALUE "FileVersion", "6, 0, 0, 0"
             VALUE "InternalName", "WScilex"
             VALUE "LegalCopyright", "Copyright (C) 2011"

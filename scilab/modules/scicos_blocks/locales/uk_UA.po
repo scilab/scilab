@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 04:36+0000\n"
+"PO-Revision-Date: 2011-04-05 14:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12734)\n"
+"X-Generator: Launchpad (build 12981)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "&?"
@@ -75,6 +75,8 @@ msgstr "&nbsp;- Вважається, що додатні дані належа�
 #, c-format
 msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
 msgstr ""
+"«Початкове значення» і «Остаточне значення» мають несумісні розмірності: %d "
+"і %d."
 
 msgid "''Minimum'' must be less than ''Maximum''."
 msgstr "«Мінімум» має бути меншим за «Максимум»."
@@ -191,7 +193,7 @@ msgid "Finite elements"
 msgstr "Скінченні елементи"
 
 msgid "Frequency (rad/s)"
-msgstr ""
+msgstr "Частота (рад/с)"
 
 msgid "Implicit input port"
 msgstr "Неявний порт введення даних"
@@ -320,7 +322,7 @@ msgid "PDE block"
 msgstr "Блок ДРЧП"
 
 msgid "Phase (rad)"
-msgstr ""
+msgstr "Фаза (рад)"
 
 msgid "Port number"
 msgstr "Номер порту"
@@ -389,7 +391,7 @@ msgid "SR flip-flop"
 msgstr "SR-тригер"
 
 msgid "Same sizes expected."
-msgstr ""
+msgstr "Розмірності мали збігатися."
 
 #, c-format
 msgid "Set %s block parameters"
@@ -405,7 +407,7 @@ msgid "Shift/Rotates bits"
 msgstr "Зсув/Циклічна перестановка бітів"
 
 msgid "Sine wave generator"
-msgstr ""
+msgstr "Генератор синусоїдальної хвилі"
 
 msgid "Size of buffer or input size have changed!\n"
 msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
@@ -420,10 +422,10 @@ msgid "Start Time"
 msgstr "Час початку"
 
 msgid "Step Function"
-msgstr ""
+msgstr "Східчаста функція"
 
 msgid "Step Time"
-msgstr ""
+msgstr "Час сходинки"
 
 msgid "Strictly positive integer expected."
 msgstr "Слід вказати додатне ціле число."
@@ -449,6 +451,8 @@ msgid ""
 "This Scope (block number : %d) has same number than another. It has been "
 "deactivated!\n"
 msgstr ""
+"Ця область (кількість блоків: %d) має той самий номер, що і інша. Її буде "
+"вимкнено!\n"
 
 msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
 msgstr "Вважати бітове поле полем цілого числа (0: Ні, 1: Так)"
@@ -515,7 +519,7 @@ msgstr "Помилкове значення параметра «Дія при �
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
-msgstr ""
+msgstr "Помилкове значення параметра «Частота»: %e."
 
 #, c-format
 msgid "Wrong value for ''Index of Bit'' parameter: %d."

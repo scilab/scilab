@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-04-04 22:09+0100\n"
+"Revision-Date: 2011-05-10 11:48+0100\n"
 
 # File: macros/dae.sci, line: 168
 #, c-format
@@ -233,8 +233,8 @@ msgstr ""
 msgid "bike simulation, unstable trajectory"
 msgstr ""
 #
-# File: demos/ode/ode_chstiff/ode_chstiff.dem.sce, line: 32
 # File: demos/ode/ode_chimpl/ode_chimpl.dem.sce, line: 45
+# File: demos/ode/ode_chstiff/ode_chstiff.dem.sce, line: 32
 msgid "chemical process (implicit)"
 msgstr ""
 #

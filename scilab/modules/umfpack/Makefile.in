@@ -67,10 +67,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/umfpack
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -128,6 +128,7 @@ libsciumfpack_algo_la_LINK = $(LIBTOOL) --tag=CC $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=link $(CCLD) \
 	$(libsciumfpack_algo_la_CFLAGS) $(CFLAGS) $(AM_LDFLAGS) \
 	$(LDFLAGS) -o $@
+@UMFPACK_TRUE@am_libsciumfpack_algo_la_rpath =
 @UMFPACK_TRUE@libsciumfpack_la_DEPENDENCIES =  \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmx.la \
 @UMFPACK_TRUE@	$(top_builddir)/modules/mexlib/libmat.la \
@@ -449,7 +450,7 @@ top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 modulename = umfpack
 pkglib_LTLIBRARIES = libsciumfpack.la
-noinst_LTLIBRARIES = libsciumfpack-algo.la
+@UMFPACK_TRUE@noinst_LTLIBRARIES = libsciumfpack-algo.la
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) \
 	$(am__append_1)
 
@@ -458,7 +459,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA = \
 license.txt \
  \
-version.xml \
+ \
 TAUCS_license.txt \
 UMFPACK_license.txt
 
@@ -655,7 +656,7 @@ clean-pkglibLTLIBRARIES:
 	  rm -f "$${dir}/so_locations"; \
 	done
 libsciumfpack-algo.la: $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_DEPENDENCIES) 
-	$(libsciumfpack_algo_la_LINK)  $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
+	$(libsciumfpack_algo_la_LINK) $(am_libsciumfpack_algo_la_rpath) $(libsciumfpack_algo_la_OBJECTS) $(libsciumfpack_algo_la_LIBADD) $(LIBS)
 libsciumfpack.la: $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_DEPENDENCIES) 
 	$(libsciumfpack_la_LINK) -rpath $(pkglibdir) $(libsciumfpack_la_OBJECTS) $(libsciumfpack_la_LIBADD) $(LIBS)
 

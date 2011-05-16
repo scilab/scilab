@@ -24,7 +24,6 @@ Source: modules\{#SHELL}\jar\org.scilab.modules.{#SHELL}.jar;DestDir: {app}\modu
 ;
 ;
 Source: modules\{#SHELL}\license.txt; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
-Source: modules\{#SHELL}\VERSION.xml; DestDir: {app}\modules\{#SHELL}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SHELL}\sci_gateway\{#SHELL}_gateway.xml; DestDir: {app}\modules\{#SHELL}\sci_gateway; Components: {#COMPN_SCILAB}
 ;

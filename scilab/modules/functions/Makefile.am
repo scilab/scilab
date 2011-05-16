@@ -86,7 +86,7 @@ modulename=functions
 
 #### functions : Conf files ####
 libscifunctions_la_rootdir = $(mydatadir)
-libscifunctions_la_root_DATA =  license.txt version.xml
+libscifunctions_la_root_DATA =  license.txt 
 
 
 #### functions : init scripts ####

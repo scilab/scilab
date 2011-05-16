@@ -117,7 +117,7 @@ modulename=string
 
 #### string : Conf files ####
 libscistring_la_rootdir = $(mydatadir)
-libscistring_la_root_DATA =  license.txt version.xml
+libscistring_la_root_DATA =  license.txt 
 
 #### string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc

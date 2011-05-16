@@ -22,7 +22,6 @@ Source: bin\{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
 Source: bin\lib{#MATIO}.dll; DestDir: {app}\bin; Components: {#COMPN_MATIO}
 Source: bin\{#MATIO}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#MATIO}\VERSION.xml; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
 Source: modules\{#MATIO}\license.txt; DestDir: {app}\modules\{#MATIO}; Components: {#COMPN_MATIO}
 ;
 Source: modules\{#MATIO}\etc\{#MATIO}.quit; DestDir: {app}\modules\{#MATIO}\etc; Components: {#COMPN_MATIO}

@@ -388,10 +388,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\affich.c"
-				>
-			</File>
-			<File
 				RelativePath="..\cpp\affich2.cpp"
 				>
 			</File>
@@ -1669,10 +1665,6 @@
 			Filter="h;hpp;hxx;hm;inl"
 			>
 			<File
-				RelativePath="..\..\includes\affich.h"
-				>
-			</File>
-			<File
 				RelativePath="..\jni\AfficheBlock.hxx"
 				>
 			</File>
@@ -1795,10 +1787,6 @@
 		</File>
 		<File
 			RelativePath="..\..\scicos_blocks.iss"
-			>
-		</File>
-		<File
-			RelativePath="..\..\version.xml"
 			>
 		</File>
 	</Files>

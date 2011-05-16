@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="TKSCALE">
   <refnamediv>
     <refname>TKSCALE</refname>
-    <refpurpose>Adjust constant value with a tk widget</refpurpose>
+    <refpurpose>Adjust value with a graphical widget.</refpurpose>
   </refnamediv>
   <refsection>
     <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TKSCALE">Adjust constant value with a tk widget</link>
+          <link linkend="TKSCALE">Adjust value with a graphical widget.</link>
         </para>
       </listitem>
       <listitem>
@@ -68,12 +68,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_TKSCALE">Interfacing function</xref>
+              <xref linkend="Example_TKSCALE">Example</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_TKSCALE">Computational function</xref>
+              <xref linkend="Interfacingfunction_TKSCALE">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,7 +98,7 @@
   <refsection id="Description_TKSCALE">
     <title>Description</title>
     <para>
-This source block generates a piecewise constant signal the value of which can be set interactively using a TK widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.  
+This source block generates a piecewise constant signal the value of which can be set interactively using a widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.
 </para>
     <para>
 </para>
@@ -108,7 +108,7 @@ This source block generates a piecewise constant signal the value of which can b
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/TKSCALE_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/sources_pal/en_US/TKSCALE_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -185,24 +185,33 @@ This source block generates a piecewise constant signal the value of which can b
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_TKSCALE">
+    <title>Example</title>
+    <para>
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/TKSCALE_en_US.xcos">
+          Open this example in Xcos
+        </link>
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/sources_pal/en_US/TKSCALE_diagram_en_US.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
   <refsection id="Interfacingfunction_TKSCALE">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Sources/TKSCALE.sci</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
-  <refsection id="Computationalfunction_TKSCALE">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos/macros/scicos_scicos/tkscaleblk.sci (Type 5)</para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/Sources/TKSCALE.sci">SCI/modules/scicos_blocks/macros/Sources/TKSCALE.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Authors_TKSCALE">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

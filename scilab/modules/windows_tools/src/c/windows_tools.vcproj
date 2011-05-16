@@ -576,10 +576,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
-		<File
 			RelativePath="..\..\windows_tools.iss"
 			>
 		</File>

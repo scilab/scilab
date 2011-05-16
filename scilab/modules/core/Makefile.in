@@ -73,10 +73,10 @@ DIST_COMMON = $(libscicore_la_include_HEADERS) $(srcdir)/Makefile.am \
 @NEED_JAVA_TRUE@am__append_4 = java
 subdir = modules/core
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -150,10 +150,11 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
-	src/c/scimem64.c src/cpp/core_gw.cpp \
-	src/cpp/hashtable_core.cpp src/cpp/namstr.cpp \
-	src/cpp/search_functions.cpp src/cpp/storeCommand.cpp \
-	src/cpp/banner.cpp src/cpp/with_module.cpp src/cpp/runner.cpp \
+	src/c/backtrace.c src/c/signal_mgmt.c src/c/scimem64.c \
+	src/cpp/core_gw.cpp src/cpp/hashtable_core.cpp \
+	src/cpp/namstr.cpp src/cpp/search_functions.cpp \
+	src/cpp/storeCommand.cpp src/cpp/banner.cpp \
+	src/cpp/with_module.cpp src/cpp/runner.cpp \
 	src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -164,10 +165,10 @@ am__libscicore_algo_la_SOURCES_DIST = src/c/inffic.c src/c/cs2st.c \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
 	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
 	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
-	src/fortran/inibrk.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
+	src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
@@ -247,7 +248,9 @@ am__objects_2 = libscicore_algo_la-inffic.lo \
 	libscicore_algo_la-exitCodeValue.lo \
 	libscicore_algo_la-getversion.lo \
 	libscicore_algo_la-dynamic_tclsci.lo \
-	libscicore_algo_la-dynamic_parallel.lo $(am__objects_1)
+	libscicore_algo_la-dynamic_parallel.lo \
+	libscicore_algo_la-backtrace.lo \
+	libscicore_algo_la-signal_mgmt.lo $(am__objects_1)
 am__objects_3 = libscicore_algo_la-core_gw.lo \
 	libscicore_algo_la-hashtable_core.lo \
 	libscicore_algo_la-namstr.lo \
@@ -260,14 +263,14 @@ am__objects_5 = clunit.lo getlin.lo allowptr.lo isany.lo hmcreate.lo \
 	nextj.lo setgetmode.lo showstack.lo misops.lo iseye.lo \
 	chkvar.lo setippty.lo compil.lo funnam.lo isnum.lo cmdstr.lo \
 	logops.lo atome.lo hndlops.lo cmplxt.lo skpins.lo folhp.lo \
-	cvname.lo funs.lo fact.lo inibrk.lo typ2cod.lo prompt.lo \
-	intstr.lo createref.lo btof.lo matzs.lo getnum.lo btofm.lo \
-	getsym.lo findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo \
-	stackgl.lo allops.lo mname.lo command.lo ref2val.lo stack.lo \
-	isbrk.lo majmin.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo \
-	getfun.lo savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo \
-	whatln.lo errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo \
-	matz.lo istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
+	cvname.lo funs.lo fact.lo typ2cod.lo prompt.lo intstr.lo \
+	createref.lo btof.lo matzs.lo getnum.lo btofm.lo getsym.lo \
+	findequal.lo stackg.lo find.lo setlnb.lo mrknmd.lo stackgl.lo \
+	allops.lo mname.lo command.lo ref2val.lo stack.lo isbrk.lo \
+	majmin.lo xerbla.lo dtosci.lo bexec.lo varfunptr.lo getfun.lo \
+	savlod.lo error.lo cvdm.lo tradsl.lo mkindx.lo whatln.lo \
+	errmgr.lo defmat.lo mklist.lo sigbas.lo indxg.lo matz.lo \
+	istrue.lo inisci.lo ptover.lo getfunction.lo stackp.lo \
 	dbasin.lo macro.lo extlarg.lo getstr.lo cvwm.lo storeglobal.lo \
 	lst2vars.lo basnms.lo matc.lo ptrback.lo getch.lo ftob.lo \
 	seteol.lo basin.lo clause.lo compcl.lo termf.lo expsum.lo \
@@ -639,7 +642,7 @@ CORE_C_SOURCES = src/c/inffic.c src/c/cs2st.c src/c/intmacr2tree.c \
 	src/c/inittypenames.c src/c/funcprot.c src/c/eqid.c \
 	src/c/exitCodeValue.c src/c/getversion.c \
 	src/c/dynamic_tclsci.c src/c/dynamic_parallel.c \
-	$(am__append_1)
+	src/c/backtrace.c src/c/signal_mgmt.c $(am__append_1)
 CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/allowptr.f src/fortran/isany.f \
 	src/fortran/hmcreate.f src/fortran/nextj.f \
@@ -650,10 +653,10 @@ CORE_FORTRAN_SOURCES = src/fortran/clunit.f src/fortran/getlin.f \
 	src/fortran/logops.f src/fortran/atome.f src/fortran/hndlops.f \
 	src/fortran/cmplxt.f src/fortran/skpins.f src/fortran/folhp.f \
 	src/fortran/cvname.f src/fortran/funs.f src/fortran/fact.f \
-	src/fortran/inibrk.f src/fortran/typ2cod.f \
-	src/fortran/prompt.f src/fortran/intstr.f \
-	src/fortran/createref.f src/fortran/btof.f src/fortran/matzs.f \
-	src/fortran/getnum.f src/fortran/btofm.f src/fortran/getsym.f \
+	src/fortran/typ2cod.f src/fortran/prompt.f \
+	src/fortran/intstr.f src/fortran/createref.f \
+	src/fortran/btof.f src/fortran/matzs.f src/fortran/getnum.f \
+	src/fortran/btofm.f src/fortran/getsym.f \
 	src/fortran/findequal.f src/fortran/stackg.f \
 	src/fortran/find.f src/fortran/setlnb.f src/fortran/mrknmd.f \
 	src/fortran/stackgl.f src/fortran/allops.f src/fortran/mname.f \
@@ -824,7 +827,7 @@ modulename = core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA = license.txt version.xml
+libscicore_la_root_DATA = license.txt
 
 #### core : init scripts ####
 libscicore_la_etcdir = $(mydatadir)/etc
@@ -1025,6 +1028,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-LaunchScilabSignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-LoadFunctionsTab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-TerminateCore.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-backtrace.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-banner.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-callDynamicGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Plo@am__quote@
@@ -1081,6 +1085,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-scirun.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-search_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-setPrecisionFPU.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-signal_mgmt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-stack1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-stack2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscicore_algo_la-stack3.Plo@am__quote@
@@ -1665,6 +1670,20 @@ libscicore_algo_la-dynamic_parallel.lo: src/c/dynamic_parallel.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
 
+libscicore_algo_la-backtrace.lo: src/c/backtrace.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-backtrace.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-backtrace.Tpo -c -o libscicore_algo_la-backtrace.lo `test -f 'src/c/backtrace.c' || echo '$(srcdir)/'`src/c/backtrace.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-backtrace.Tpo $(DEPDIR)/libscicore_algo_la-backtrace.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/backtrace.c' object='libscicore_algo_la-backtrace.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-backtrace.lo `test -f 'src/c/backtrace.c' || echo '$(srcdir)/'`src/c/backtrace.c
+
+libscicore_algo_la-signal_mgmt.lo: src/c/signal_mgmt.c
+@am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-signal_mgmt.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-signal_mgmt.Tpo -c -o libscicore_algo_la-signal_mgmt.lo `test -f 'src/c/signal_mgmt.c' || echo '$(srcdir)/'`src/c/signal_mgmt.c
+@am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-signal_mgmt.Tpo $(DEPDIR)/libscicore_algo_la-signal_mgmt.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='src/c/signal_mgmt.c' object='libscicore_algo_la-signal_mgmt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -c -o libscicore_algo_la-signal_mgmt.lo `test -f 'src/c/signal_mgmt.c' || echo '$(srcdir)/'`src/c/signal_mgmt.c
+
 libscicore_algo_la-scimem64.lo: src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(LIBTOOL)  --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscicore_algo_la_CFLAGS) $(CFLAGS) -MT libscicore_algo_la-scimem64.lo -MD -MP -MF $(DEPDIR)/libscicore_algo_la-scimem64.Tpo -c -o libscicore_algo_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
 @am__fastdepCC_TRUE@	$(am__mv) $(DEPDIR)/libscicore_algo_la-scimem64.Tpo $(DEPDIR)/libscicore_algo_la-scimem64.Plo
@@ -2231,9 +2250,6 @@ funs.lo: src/fortran/funs.f
 
 fact.lo: src/fortran/fact.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o fact.lo `test -f 'src/fortran/fact.f' || echo '$(srcdir)/'`src/fortran/fact.f
-
-inibrk.lo: src/fortran/inibrk.f
-	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o inibrk.lo `test -f 'src/fortran/inibrk.f' || echo '$(srcdir)/'`src/fortran/inibrk.f
 
 typ2cod.lo: src/fortran/typ2cod.f
 	$(LIBTOOL)  --tag=F77 $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS) -c -o typ2cod.lo `test -f 'src/fortran/typ2cod.f' || echo '$(srcdir)/'`src/fortran/typ2cod.f

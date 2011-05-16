@@ -12,6 +12,7 @@
 
 package org.scilab.modules.helptools.scilab;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +27,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
     private List<String> undoc = new ArrayList();
 
     protected String currentCommand;
+    protected String currentFileName;
     protected Appendable buffer;
 
     /**
@@ -45,8 +47,9 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
     /**
      * @return an instance of HTMLScilabCodeHandler
      */
-    public static AbstractScilabCodeHandler getInstance(String currentCommand) {
+    public static AbstractScilabCodeHandler getInstance(String currentCommand, String filename) {
         handler.currentCommand = currentCommand;
+        handler.currentFileName = filename;
         ((StringBuilder) handler.buffer).setLength(0);
         return handler;
     }
@@ -128,10 +131,10 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
                 buffer.append("<span class=\"scilabcommand\">");
                 buffer.append(seq);
                 buffer.append("</span>");
-                if (!undoc.contains(seq)) {
-                    System.err.println("Warning: the command " + seq + " is used in an example and is undocumented.");
-                    undoc.add(seq);
-                }
+                //if (!undoc.contains(seq)) {
+                System.err.println("Warning: the command " + seq + " is used in an example and is undocumented (" + new File(currentFileName).getName() + ").");
+                undoc.add(seq);
+                //}
             } else {
                 buffer.append("<a class=\"scilabcommand\" href=\"");
                 buffer.append(link);
@@ -156,10 +159,10 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
                 buffer.append("<span class=\"scilabmacro\">");
                 buffer.append(seq);
                 buffer.append("</span>");
-                if (!undoc.contains(seq)) {
-                    System.err.println("Warning: the macro " + seq + " is used in an example and is undocumented.");
-                    undoc.add(seq);
-                }
+                //if (!undoc.contains(seq)) {
+                System.err.println("Warning: the macro " + seq + " is used in an example and is undocumented (" + new File(currentFileName).getName() + ").");
+                undoc.add(seq);
+                //}
             } else {
                 buffer.append("<a class=\"scilabmacro\" href=\"");
                 buffer.append(link);

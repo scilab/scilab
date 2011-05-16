@@ -1,14 +1,18 @@
-/*--------------------------------------------------------------------------*/
-// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - Allan CORNET
-// 
-// This file must be used under the terms of the CeCILL.
-// This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
-// are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
+#include "api_scilab.h"
 #include "stack-c.h"
 #include "MALLOC.h"
 #include "registry.h"
@@ -17,126 +21,237 @@
 #include "PATH_MAX.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_winqueryreg(char *fname,unsigned long l)
+int sci_winqueryreg(char *fname,int *_piKey)
 {
-	static int l1,n1,m1;
+    SciErr sciErr;
+    int *piAddressVarOne = NULL;
+    int *piAddressVarTwo = NULL;
+    int *piAddressVarThree = NULL;
 
-	char *param1 = NULL,*param2 = NULL,*param3 = NULL;
-	char *output = NULL ;
-	int *paramoutINT = NULL;
-	BOOL OuputIsREG_SZ = FALSE;
-	BOOL TestWinQuery = FALSE;
+    char *pStrParamOne = NULL;
+    char *pStrParamTwo = NULL;
+    char *pStrParamThree = NULL;
 
-	Rhs=Max(0,Rhs);
-	CheckRhs(2,3);
-	CheckLhs(0,1);
+    char *pStrOutput = NULL;
+    int iOutput = 0;
 
-	if (Rhs == 3)
-	{
-		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) || (GetType(3) != sci_strings))
-		{
-			Scierror(999,_("%s: Wrong type for input arguments: String expected.\n"),fname);
-			return 0;
-		}
-	}
-	else /* Rhs == 2 */
-	{
-		if ( (GetType(1) != sci_strings) || (GetType(2) != sci_strings) )
-		{
-			Scierror(999,_("%s: Wrong type for input arguments: String expected.\n"),fname);
-			return 0;
-		}
-	}
+    Rhs = Max(0, Rhs);
+    CheckRhs(2, 3);
+    CheckLhs(0, 1);
 
-	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-	param1=cstk(l1);
+    if (Rhs == 3)
+    {
+        sciErr = getVarAddressFromPosition(_piKey, 3, &piAddressVarThree);
+        if(sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
 
-	GetRhsVar(2,STRING_DATATYPE,&m1,&n1,&l1);
-	param2=cstk(l1);
+        if (!isStringType(_piKey, piAddressVarThree))
+        {
+            Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+            return 0;
+        }
 
-	if ( Rhs == 3 )
-	{
-		GetRhsVar(3,STRING_DATATYPE,&m1,&n1,&l1);
-		param3=cstk(l1);
+        if (!isScalar(_piKey, piAddressVarThree))
+        {
+            Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 3);
+            return 0;
+        }
 
-		if (strcmp(param1,"name") == 0)
-		{
-			int NumbersElm=0;
+        if (getAllocatedSingleString(_piKey, piAddressVarThree, &pStrParamThree) != 0)
+        {
+            Scierror(999,_("%s: Memory allocation error.\n"), fname);
+            return 0;
+        }
+    }
 
-			WindowsQueryRegistryNumberOfElementsInList(param2,param3,&NumbersElm);
-			if (NumbersElm)
-			{
-				static char *ListKeysName[255];
+    sciErr = getVarAddressFromPosition(_piKey, 1, &piAddressVarOne);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-				if (NumbersElm > 255) NumbersElm=255;
-				if ( WindowsQueryRegistryList(param2,param3,NumbersElm,ListKeysName) )
-				{
-					int i=0;
+    if (!isStringType(_piKey, piAddressVarOne))
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
+    }
 
-					CreateVarFromPtr( Rhs+1,MATRIX_OF_STRING_DATATYPE, &NumbersElm, &n1, &ListKeysName);
+    if (!isScalar(_piKey, piAddressVarOne))
+    {
+        Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
+        return 0;
+    }
 
-					freeArrayOfString(ListKeysName, NumbersElm);
+    sciErr = getVarAddressFromPosition(_piKey, 2, &piAddressVarTwo);
+    if(sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
 
-					LhsVar(1)=Rhs+1;
-					C2F(putlhsvar)();
-					return 0;
-				}
-				else
-				{
-					Scierror(999,_("%s: Cannot open Windows registry.\n"),fname);
-					return 0;
-				}
-			}
-			else
-			{
-				m1=0;
-				n1=0;
-				l1=0;
-				CreateVar(Rhs+1,MATRIX_OF_DOUBLE_DATATYPE,  &m1, &n1, &l1);
-				LhsVar(1)=Rhs+1;
-				C2F(putlhsvar)();
-			}
-			return 0;
-		}
-	}
+    if (!isStringType(_piKey, piAddressVarTwo))
+    {
+        Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        return 0;
+    }
 
-	output=(char*)MALLOC(PATH_MAX*sizeof(char));
-	paramoutINT=(int*)MALLOC(sizeof(int));
+    if (!isScalar(_piKey, piAddressVarTwo))
+    {
+        Scierror(999,_("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
+        return 0;
+    }
 
-	if ( Rhs == 3 )
-	{
-		TestWinQuery=WindowsQueryRegistry(param1,param2,param3,output,paramoutINT,&OuputIsREG_SZ);
-	}
-	else
-	{
-		TestWinQuery=WindowsQueryRegistry(param1,param2,NULL,output,paramoutINT,&OuputIsREG_SZ);
-	}
+    if (getAllocatedSingleString(_piKey, piAddressVarTwo, &pStrParamTwo) != 0)
+    {
+        if (pStrParamThree)
+        {
+            freeAllocatedSingleString(pStrParamThree);
+            pStrParamThree = NULL;
+        }
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-	if ( TestWinQuery )
-	{
-		n1=1;
-		if ( OuputIsREG_SZ )
-		{
-			CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(output), &m1),&n1,&output);
-		}
-		else
-		{
-			CreateVarFromPtr(Rhs+1,MATRIX_OF_INTEGER_DATATYPE, &n1, &n1, &paramoutINT);
-		}
+    if (getAllocatedSingleString(_piKey, piAddressVarOne, &pStrParamOne) != 0)
+    {
+        if (pStrParamThree)
+        {
+            freeAllocatedSingleString(pStrParamThree);
+            pStrParamThree = NULL;
+        }
 
-		LhsVar(1) = Rhs+1;
-		C2F(putlhsvar)();
-	}
-	else
-	{
-		if (output) {FREE(output);output=NULL;}
-		if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-		Scierror(999,_("%s: Cannot query value of this type.\n"),fname);
-		return 0;
-	}
+        if (pStrParamTwo)
+        {
+            freeAllocatedSingleString(pStrParamTwo);
+            pStrParamTwo = NULL;
+        }
 
-	if (output) {FREE(output);output=NULL;}
-	if (paramoutINT) {FREE(paramoutINT);paramoutINT=NULL;}
-	return 0;
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
+
+    if (Rhs == 3)
+    {
+        if (strcmp(pStrParamOne, "name") == 0)
+        {
+            int NumbersElm = 0;
+            WindowsQueryRegistryNumberOfElementsInList(pStrParamTwo, pStrParamThree, &NumbersElm);
+            if (NumbersElm)
+            {
+                #define MAX_ELMT_REGLIST 255
+                char **ListKeysName = NULL;
+                int i = 0;
+
+                if (NumbersElm > MAX_ELMT_REGLIST) NumbersElm = MAX_ELMT_REGLIST;
+                ListKeysName = (char **)MALLOC(sizeof(char*) * NumbersElm);
+                for (i = 0; i < NumbersElm; i++)
+                {
+                    ListKeysName[i] = NULL;
+                }
+
+                if (WindowsQueryRegistryList(pStrParamTwo, pStrParamThree, NumbersElm, ListKeysName))
+                {
+                    int nOne = 1;
+                    sciErr = createMatrixOfString(_piKey, Rhs + 1, NumbersElm, nOne, ListKeysName);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                    }
+                    else
+                    {
+                        LhsVar(1) = Rhs + 1;
+                        PutLhsVar();
+                    }
+                }
+                else
+                {
+                    Scierror(999,_("%s: Cannot open Windows registry.\n"), fname);
+                }
+                freeArrayOfString(ListKeysName, NumbersElm);
+            }
+            else
+            {
+                createEmptyMatrix(_piKey, Rhs + 1);
+                LhsVar(1) = Rhs + 1;
+                PutLhsVar();
+            }
+
+            if (pStrParamThree)
+            {
+                freeAllocatedSingleString(pStrParamThree);
+                pStrParamThree = NULL;
+            }
+
+            if (pStrParamTwo)
+            {
+                freeAllocatedSingleString(pStrParamTwo);
+                pStrParamTwo = NULL;
+            }
+
+            if (pStrParamOne)
+            {
+                freeAllocatedSingleString(pStrParamOne);
+                pStrParamOne = NULL;
+            }
+            return 0;
+        }
+    }
+
+    pStrOutput = (char*)MALLOC(PATH_MAX * sizeof(char));
+    if (pStrOutput)
+    {
+        BOOL OuputIsREG_SZ = FALSE;
+        BOOL TestWinQuery = WindowsQueryRegistry(pStrParamOne, pStrParamTwo, pStrParamThree, pStrOutput, &iOutput, &OuputIsREG_SZ);
+        if ( TestWinQuery )
+        {
+            if (OuputIsREG_SZ)
+            {
+                createSingleString(_piKey, Rhs + 1, pStrOutput);
+            }
+            else
+            {
+                createScalarDouble(_piKey, Rhs + 1, (double)iOutput);
+            }
+
+            LhsVar(1) = Rhs+1;
+            PutLhsVar();
+        }
+        else
+        {
+            Scierror(999,_("%s: Cannot query value of this type.\n"),fname);
+        }
+
+        FREE( pStrOutput);
+        pStrOutput = NULL;
+    }
+    else
+    {
+        Scierror(999,_("%s: Memory allocation error.\n"), fname);
+    }
+
+    if (pStrParamThree)
+    {
+        freeAllocatedSingleString(pStrParamThree);
+        pStrParamThree = NULL;
+    }
+
+    if (pStrParamTwo)
+    {
+        freeAllocatedSingleString(pStrParamTwo);
+        pStrParamTwo = NULL;
+    }
+
+    if (pStrParamOne)
+    {
+        freeAllocatedSingleString(pStrParamOne);
+        pStrParamOne = NULL;
+    }
+
+    return 0;
+
 }
 /*--------------------------------------------------------------------------*/

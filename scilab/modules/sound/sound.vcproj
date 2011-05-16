@@ -449,10 +449,6 @@
 			RelativePath=".\sci_gateway\sound_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

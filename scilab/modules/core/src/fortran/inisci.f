@@ -129,7 +129,6 @@ c
 c     .  Control-C recovery
 c     .  ------------------
       if (first) then
-         call inibrk
          interruptible=.true.
          first=.false.
       endif

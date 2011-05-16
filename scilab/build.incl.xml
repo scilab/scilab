@@ -33,6 +33,8 @@
   <property file="${base.dir}/scilab-lib-doc.properties"/>
   <!-- Configure ANT flags -->
   <property file="${base.dir}/scilab.properties"/>
+  <!-- Set ${SCIVERSION} -->
+  <property file="${base.dir}/Version.incl"/>
   <path id="checkstyle.classpath">
     <pathelement location="${checkstyle.jar}"/>
     <pathelement location="${commons-logging.jar}"/>
@@ -127,6 +129,19 @@
     <!-- Empty target to be override by other build.xml -->
   </target>
   <target name="init">
+    <!-- Check the version of Java. If it changes after the configure
+         or if there is a mistake in the build system
+     -->
+    <fail message="JDK 1.6 or 1.7 required">
+      <condition>
+        <not>
+          <or>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+            <equals arg1="${ant.java.version}" arg2="1.7"/>
+          </or>
+        </not>
+      </condition>
+    </fail>
     <mkdir dir="${classes.dir}"/>
     <mkdir dir="${classes.test.dir}"/>
     <mkdir dir="${build.jar.dir}"/>
@@ -164,6 +179,15 @@
   <target name="jar" description="Build the jar file" depends="compile">
     <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
       <manifest>
+        <attribute name="Built-By" value="${user.name}"/>
+        <section name="org/scilab/modules/${ant.project.name}/">
+          <attribute name="Specification-Title" value="${library.title}"/>
+          <attribute name="Specification-Version" value="${SCIVERSION}"/>
+          <attribute name="Specification-Vendor" value="${library.vendor}"/>
+          <attribute name="Implementation-Title" value="${library.name}"/>
+          <attribute name="Implementation-Version" value="${DSTAMP} ${TSTAMP}"/>
+          <attribute name="Implementation-Vendor" value="${library.vendor}"/>
+        </section>
       </manifest>
     </jar>
   </target>

@@ -124,7 +124,7 @@ modulename=output_stream
 
 #### output_stream : Conf files ####
 libscioutput_stream_la_rootdir = $(mydatadir)
-libscioutput_stream_la_root_DATA =  license.txt version.xml
+libscioutput_stream_la_root_DATA =  license.txt 
 
 
 #### output_stream : init scripts ####

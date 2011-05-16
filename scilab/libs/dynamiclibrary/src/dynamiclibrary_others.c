@@ -20,27 +20,33 @@
 /*---------------------------------------------------------------------------*/
 BOOL FreeDynLibrary(DynLibHandle hInstance)
 {
-	if (hInstance)
-		{
-			if (dlclose( hInstance)) return TRUE;
-		}
-	#ifndef NDEBUG
-	else 
-		{
-			printf("FreeDynLibrary: Cannot close a not-opened library.\n");
-			fflush(NULL);
-		}
-	#endif
+    if (hInstance)
+        {
 
-	return FALSE;
+            if (dlclose( hInstance) == 0)
+            {
+                return TRUE;
+            }else{
+                fprintf(stderr,"Could not free library %s\n", dlerror());
+            }
+        }
+    #ifndef NDEBUG
+    else 
+        {
+            fprintf(stderr, "FreeDynLibrary: Cannot close a not-opened library.\n");
+            fflush(NULL);
+        }
+    #endif
+
+    return FALSE;
 }
 /*---------------------------------------------------------------------------*/
 DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance,char *funcName)
 {
-	if (hInstance)
-	{
-		return dlsym(hInstance, funcName);
-	}
-	return NULL;
+    if (hInstance)
+    {
+        return dlsym(hInstance, funcName);
+    }
+    return NULL;
 }
 /*---------------------------------------------------------------------------*/

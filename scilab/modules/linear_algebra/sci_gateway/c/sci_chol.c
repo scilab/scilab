@@ -56,7 +56,7 @@ int sci_chol(char *fname, int* _piKey)
 			otherwise Scilab stack turned upside-down... */
 			getMatrixOfDouble(_piKey, pArg1, &iRows, &iCols, &pdblReal);
 			Err = 1;
-			Error(20);
+			SciError(20);
 			return 0;
 		}
 
@@ -86,7 +86,7 @@ int sci_chol(char *fname, int* _piKey)
 			if (pdblReal[0] <= 0)
 			{
 				/* Matrix must be positive definite */
-				Error(29);
+				SciError(29);
 				return 0;
 			}
 
@@ -115,7 +115,7 @@ int sci_chol(char *fname, int* _piKey)
 		if (iCholProductResult > 0)
 		{
 			/* Matrix must be positive definite */
-			Error(29);
+			SciError(29);
 			return 0;
 		}
 

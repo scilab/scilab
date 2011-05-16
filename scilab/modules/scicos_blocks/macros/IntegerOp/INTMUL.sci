@@ -40,14 +40,14 @@ case 'set' then
   while %t do
     [ok,Datatype,np,exprs]=scicos_getvalue( ..
         [msprintf(gettext("Set %s block parameters"),"INTMUL"); " "; gettext("Integer matrix multiplication");" ";],..
-        [gettext("Data Type") + " (3:int32, 4:int16, 5:int8, ...)"; gettext("Do on Overflow") + " (0:Nothing, 1:Saturate, 2:Error)"],..
+        [msprintf(gettext("Data Type %s"), "(3:int32, 4:int16, 5:int8, ...)"); gettext("Do on Overflow (0:Nothing, 1:Saturate, 2:Error)")],..
         list('vec',1,'vec',1), exprs)
     if ~ok then break,end
 
     it=Datatype*ones(1,2);
     ot=Datatype;
     if (np~=0 & np~=1 & np~=2) then
-        block_parameter_error(msprintf( gettext("Wrong value for ''Do on Overflow'' parameter: %d."), np), ..
+        block_parameter_error(msprintf( gettext("Wrong value for ''%s'' parameter: %d."), gettext("Do on Overflow"), np), ..
            msprintf( gettext("Must be in the interval %s."), "[0, 2]"));
         ok=%f;
     elseif Datatype==3 then
@@ -99,7 +99,7 @@ case 'set' then
        model.sim=list('matmul_ui8e',4)
     end
     else
-        block_parameter_error(msprintf(gettext("Wrong value for ''Data Type'' parameter: %d."), ot), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Data Type"), ot), ..
            msprintf(gettext("Must be in the interval %s."), "[3, 8]"));
         ok=%f;
 

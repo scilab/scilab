@@ -20,7 +20,7 @@
 static gw_generic_table Tab[] =
 {
 {sci_winopen,"winopen"},
-{sci_winqueryreg,"winqueryreg"},
+{NULL, ""}, // winqueryreg
 {sci_findfileassociation,"findfileassociation"},
 {NULL, ""}, //dos
 {sci_mcisendstring,"mcisendstring"},

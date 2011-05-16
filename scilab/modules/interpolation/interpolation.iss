@@ -21,7 +21,6 @@
 Source: bin\{#INTERPOLATION}_f.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
 Source: bin\{#INTERPOLATION}.dll; DestDir: {app}\bin; Components: {#COMPN_INTERP}
 ;
-Source: modules\{#INTERPOLATION}\VERSION.xml; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 Source: modules\{#INTERPOLATION}\license.txt; DestDir: {app}\modules\{#INTERPOLATION}; Components: {#COMPN_INTERP}
 ;
 Source: modules\{#INTERPOLATION}\sci_gateway\{#INTERPOLATION}_gateway.xml; DestDir: {app}\modules\{#INTERPOLATION}\sci_gateway; Components: {#COMPN_INTERP}

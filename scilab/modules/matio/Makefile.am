@@ -78,7 +78,7 @@ modulename=matio
 
 #### matio : Conf files ####
 libscimatio_la_rootdir = $(mydatadir)
-libscimatio_la_root_DATA =  license.txt version.xml
+libscimatio_la_root_DATA =  license.txt 
 
 #### matio : init scripts ####
 libscimatio_la_etcdir = $(mydatadir)/etc

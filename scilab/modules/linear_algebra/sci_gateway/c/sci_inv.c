@@ -98,7 +98,7 @@ int sci_inv(char *fname, int* _piKey)
 
 			if(ret >0)
 			{
-				Error(ret) ;
+				SciError(ret) ;
 			}
 			else
 			{

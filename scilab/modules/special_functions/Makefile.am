@@ -50,7 +50,7 @@ modulename=special_functions
 
 #### special_functions : Conf files ####
 libscispecial_functions_la_rootdir = $(mydatadir)
-libscispecial_functions_la_root_DATA =  license.txt version.xml
+libscispecial_functions_la_root_DATA =  license.txt 
 
 #### special_functions : init scripts ####
 libscispecial_functions_la_etcdir = $(mydatadir)/etc

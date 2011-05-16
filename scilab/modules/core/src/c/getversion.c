@@ -1,11 +1,11 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -30,7 +30,6 @@
 #define PVM_MODULE_NAME             L"pvm"
 #define PVM_OPTION_STRING           L"pvm"
 #define TCLTK_OPTION_STRING         L"tk"
-#define ATLAS_OPTION_STRING         L"atlas"
 #define MODELICAC_OPTION_STRING     L"modelicac"
 #define X86_STRING                  L"x86"
 #define X64_STRING                  L"x64"
@@ -93,7 +92,7 @@ int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
 		int version_module_revision = 0;
 
 		if (getversionmodule(_pwstModule, &version_module_major, &version_module_minor,
-			&version_module_maintenance, versionstring, 
+			&version_module_maintenance, versionstring,
 			&version_module_revision))
 		{
 			returnedArray = (int *)MALLOC(sizeof(int) * DEFAULT_VERSION_ARRAY_SIZE);
@@ -140,7 +139,7 @@ wchar_t* getModuleVersionInfoAsString(wchar_t* _pwstModule)
 		int version_module_maintenance = 0;
 		int version_module_revision = 0;
 		if (getversionmodule(_pwstModule, &version_module_major, &version_module_minor,
-			&version_module_maintenance, versionstring, 
+			&version_module_maintenance, versionstring,
 			&version_module_revision))
 		{
 			infoString = os_wcsdup(versionstring);
@@ -195,20 +194,6 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
 			if (options)
 			{
 				options[nbOptions] = os_wcsdup(MODELICAC_OPTION_STRING);
-				nbOptions++;
-			}
-			else
-			{
-				return NULL;
-			}
-		}
-
-		if (with_atlas())
-		{
-			options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
-			if (options)
-			{
-				options[nbOptions] = os_wcsdup(ATLAS_OPTION_STRING);
 				nbOptions++;
 			}
 			else
@@ -336,14 +321,5 @@ BOOL with_modelica_compiler(void)
 BOOL with_tk(void)
 {
 	return with_module(TCLSCI_MODULE_NAME) && (getScilabMode() != SCILAB_NWNI);
-}
-/*--------------------------------------------------------------------------*/
-BOOL with_atlas(void)
-{
-	#ifdef WITH_ATLAS
-		return TRUE;
-	#else
-		return FALSE;
-	#endif
 }
 /*--------------------------------------------------------------------------*/

@@ -274,6 +274,9 @@ public final class XcosMessages {
     /* Blocks values */
     public static final String BLOCK_FROM = Messages.gettext("From %s");
     public static final String BLOCK_GOTO = Messages.gettext("Goto %s");
+
+	/* Error checking */
+	public static final String WRONG_PORT_NUMBER =  Messages.gettext("Wrong port number");
     
 // CSON: JavadocVariable
 // CSON: LineLength

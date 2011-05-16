@@ -24,7 +24,6 @@ Source: bin\{#INTEGER}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: bin\{#INTEGER}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#INTEGER}\VERSION.xml; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 Source: modules\{#INTEGER}\license.txt; DestDir: {app}\modules\{#INTEGER}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#INTEGER}\sci_gateway\{#INTEGER}_gateway.xml; DestDir: {app}\modules\{#INTEGER}\sci_gateway; Components: {#COMPN_SCILAB}

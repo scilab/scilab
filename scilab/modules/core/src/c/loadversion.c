@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006 - INRIA - Allan CORNET
- * Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- * 
+ * Copyright (C) 2011 - DIGITEO - Allan CORNET
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
@@ -27,7 +27,8 @@
 #include "os_strdup.h"
 #include "getshortpathname.h"
 #include "charEncoding.h"
-/*--------------------------------------------------------------------------*/ 
+#include "version.h"
+/*--------------------------------------------------------------------------*/
 BOOL getversionmodule(wchar_t* _pwstModule,
                       int *sci_version_major,
                       int *sci_version_minor,
@@ -71,6 +72,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 int version_minor=0;
                 int version_maintenance=0;
                 int version_revision=0;
+                wchar_t *pwstSciVersionString=0;
 
                 {
                     BOOL bConvert = FALSE;
@@ -83,7 +85,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                     }
                 }
 
-                if (doc == NULL) 
+                if (doc == NULL)
                 {
                     fprintf(stderr,_("Error: Could not parse file %s\n"), filename_VERSION_module);
                     return FALSE;
@@ -92,32 +94,32 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 xpathCtxt = xmlXPathNewContext(doc);
                 xpathObj = xmlXPathEval((const xmlChar*)"//MODULE_VERSION/VERSION", xpathCtxt);
 
-                if(xpathObj && xpathObj->nodesetval->nodeMax) 
+                if(xpathObj && xpathObj->nodesetval->nodeMax)
                 {
 
                     xmlAttrPtr attrib=xpathObj->nodesetval->nodeTab[0]->properties;
                     while (attrib != NULL)
-                    {	
+                    {
                         if (xmlStrEqual (attrib->name, (const xmlChar*) "major"))
-                        { 
+                        {
                             /* we found <major> */
                             const char *str=(const char*)attrib->children->content;
                             version_major=atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"minor"))
-                        { 
+                        {
                             /* we found <minor> */
                             const char *str=(const char*)attrib->children->content;
                             version_minor=atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"maintenance"))
-                        { 
+                        {
                             /* we found <maintenance> */
                             const char *str=(const char*)attrib->children->content;
                             version_maintenance=atoi(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*)"revision"))
-                        { 
+                        {
                             /* we found <revision> */
                             const char *str=(const char*)attrib->children->content;
                             version_revision=atoi(str);
@@ -138,6 +140,12 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                     *sci_version_minor=version_minor;
                     *sci_version_maintenance=version_maintenance;
                     *sci_version_revision=version_revision;
+                    wcscpy(_pwstSciVersionString, pwstSciVersionString);
+                    if (pwstSciVersionString)
+                    {
+                        FREE(pwstSciVersionString);
+                        pwstSciVersionString=NULL;
+                    }
                 }
                 else
                 {
@@ -154,11 +162,21 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             }
 
             if (encoding) {FREE(encoding);encoding=NULL;}
-
-            bOK=TRUE;
+            bOK = TRUE;
+        }
+        else
+        {
+            // version.xml does not exist but module exists then we returns scilab version
+            *sci_version_major =  SCI_VERSION_MAJOR;
+            *sci_version_minor = SCI_VERSION_MINOR;
+            *sci_version_maintenance = SCI_VERSION_MAINTENANCE;
+            *sci_version_revision = SCI_VERSION_TIMESTAMP;
+            wcscpy(_pwstSciVersionString, L"");
+            bOK = TRUE;
         }
 
         if (filename_VERSION_module) {FREE(filename_VERSION_module);filename_VERSION_module=NULL;}
     }
     return bOK;
 }
+/*--------------------------------------------------------------------------*/

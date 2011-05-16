@@ -16,7 +16,7 @@ modulename=xcos
 
 #### xcos : Conf files ####
 libscixcos_la_rootdir = $(mydatadir)
-libscixcos_la_root_DATA =  license.txt version.xml
+libscixcos_la_root_DATA =  license.txt 
 
 
 #### xcos : init scripts ####
@@ -234,7 +234,7 @@ images/palettes/CMATVIEW.png \
 images/palettes/CMSCOPE.png \
 images/palettes/ConstantVoltage.png \
 images/palettes/CONST_m.png \
-images/palettes/CONSTRAINT_f.png \
+images/palettes/CONSTRAINT_c.png \
 images/palettes/CONVERT.png \
 images/palettes/COSBLK_f.png \
 images/palettes/Counter.png \

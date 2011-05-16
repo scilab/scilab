@@ -491,10 +491,6 @@
 			RelativePath="..\..\sci_gateway\special_functions_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

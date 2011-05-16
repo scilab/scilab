@@ -84,7 +84,7 @@ modulename=shell
 
 #### shell : Conf files ####
 libscishell_la_rootdir = $(mydatadir)
-libscishell_la_root_DATA =  license.txt version.xml
+libscishell_la_root_DATA =  license.txt 
 
 #### shell : init scripts ####
 libscishell_la_etcdir = $(mydatadir)/etc

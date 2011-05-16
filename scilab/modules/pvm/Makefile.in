@@ -78,10 +78,10 @@ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@@PVM_FALSE@am__append_2 = java
 subdir = modules/pvm
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
-	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
-	$(top_srcdir)/m4/intel_compiler.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/fftw.m4 \
+	$(top_srcdir)/m4/fortran.m4 $(top_srcdir)/m4/giws.m4 \
+	$(top_srcdir)/m4/hdf5.m4 $(top_srcdir)/m4/intel_compiler.m4 \
 	$(top_srcdir)/m4/java-thirdparty.m4 $(top_srcdir)/m4/java.m4 \
 	$(top_srcdir)/m4/largefile.m4 $(top_srcdir)/m4/lib-ld.m4 \
 	$(top_srcdir)/m4/libsmath.m4 $(top_srcdir)/m4/libtool.m4 \
@@ -580,7 +580,7 @@ yacc_present = @yacc_present@
 
 #### pvm : Conf files ####
 @PVM_TRUE@libscipvm_la_rootdir = $(mydatadir)
-@PVM_TRUE@libscipvm_la_root_DATA = license.txt version.xml
+@PVM_TRUE@libscipvm_la_root_DATA = license.txt 
 
 #### pvm : init scripts ####
 @PVM_FALSE@libscipvm_la_etcdir = $(mydatadir)/etc

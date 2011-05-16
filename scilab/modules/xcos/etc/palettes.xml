@@ -770,9 +770,9 @@
             </block>
         </node>
         <node xsi:type="PreLoaded" enable="true" name="Implicit">
-            <block name="CONSTRAINT_f">
-                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONSTRAINT_f.h5"/>
-                <icon variable="SCI" path="/modules/xcos/images/palettes/CONSTRAINT_f.png"/>
+            <block name="CONSTRAINT_c">
+                <data variable="SCI" path="/modules/scicos_blocks/blocks/CONSTRAINT_c.h5"/>
+                <icon variable="SCI" path="/modules/xcos/images/palettes/CONSTRAINT_c.png"/>
             </block>
             <block name="DIFF_f">
                 <data variable="SCI" path="/modules/scicos_blocks/blocks/DIFF_f.h5"/>

@@ -21,7 +21,6 @@
 Source: bin\{#SIGPROC}_f.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
 Source: bin\{#SIGPROC}.dll; DestDir: {app}\bin; Components:  {#COMPN_SIGPROC}
 ;
-Source: modules\{#SIGPROC}\VERSION.xml; DestDir: {app}\modules\{#SIGPROC}; Components: {#COMPN_SIGPROC}
 Source: modules\{#SIGPROC}\license.txt; DestDir: {app}\modules\signal_processing; Components: {#COMPN_SIGPROC}
 ;
 Source: modules\{#SIGPROC}\sci_gateway\{#SIGPROC}_gateway.xml; DestDir: {app}\modules\{#SIGPROC}\sci_gateway; Components: {#COMPN_SIGPROC}

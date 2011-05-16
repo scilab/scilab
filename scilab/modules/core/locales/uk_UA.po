@@ -902,13 +902,6 @@ msgstr ""
 "Помилка під час спроби повернути tlist, перевищено обмеження на розміри "
 "пам’яті.\n"
 
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-"Error(x) вважається застарілою функцією, її буде вилучено у Scilab 5.4. Будь "
-"ласка, скористайтеся функцією SciError(x).\n"
-
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Помилка: не вдалося створити %s: %s\n"

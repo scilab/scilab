@@ -52,7 +52,7 @@ modulename=call_scilab
 
 #### call_scilab : Conf files ####
 libscicall_scilab_la_rootdir = $(mydatadir)
-libscicall_scilab_la_root_DATA =  license.txt version.xml
+libscicall_scilab_la_root_DATA =  license.txt 
 
 
 #### call_scilab : init scripts ####

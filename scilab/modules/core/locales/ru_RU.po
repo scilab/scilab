@@ -819,13 +819,6 @@ msgstr "Ошибка"
 msgid "Error returning tlist, memory full.\n"
 msgstr "Ошибка возврата tlist, память заполнена.\n"
 
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-"Error(x) является устаревшей и будет удалена в Scilab 5.4. Используйте "
-"SciError(x).\n"
-
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr "Ошибка: не удалось создать %s: %s\n"

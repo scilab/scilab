@@ -513,10 +513,6 @@
 			RelativePath=".\sci_gateway\spreadsheet_gateway.xml"
 			>
 		</File>
-		<File
-			RelativePath=".\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

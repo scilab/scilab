@@ -410,10 +410,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\getfulldictionary.c"
-				>
-			</File>
-			<File
 				RelativePath=".\getmacrosdictionary.c"
 				>
 			</File>
@@ -472,10 +468,6 @@
 			</File>
 			<File
 				RelativePath=".\getfilesdictionary.h"
-				>
-			</File>
-			<File
-				RelativePath=".\getfulldictionary.h"
 				>
 			</File>
 			<File
@@ -561,10 +553,6 @@
 		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
-			>
-		</File>
-		<File
-			RelativePath="..\..\version.xml"
 			>
 		</File>
 	</Files>

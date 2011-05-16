@@ -347,6 +347,7 @@ number = ({digit}+"."?{digit}*{exp}?)|("."{digit}+{exp}?)
 
 <FIELD> {
   {id}                           {
+                                   transposable = true;
                                    return ScilabLexerConstants.FIELD;
                                  }
 

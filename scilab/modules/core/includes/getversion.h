@@ -90,12 +90,6 @@ wchar_t* getCompilerUsedToBuildScilab(void);
 wchar_t* getCompilerArchitecture(void);
 
 /**
-* with atlas ?
-* @return TRUE or FALSE
-*/
-BOOL with_atlas(void);
-
-/**
 * with pvm ?
 * @return TRUE or FALSE
 */

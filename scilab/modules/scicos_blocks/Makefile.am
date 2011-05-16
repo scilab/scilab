@@ -341,7 +341,6 @@ src/c/scoSetProperty.c \
 src/c/scoMisc.c \
 src/c/scoMemoryScope.c\
 src/c/scoWindowScope.c \
-src/c/affich.c \
 src/c/scicos_evalhermite.c \
 src/c/scicos_indexfinder.c
 
@@ -353,7 +352,6 @@ GIWS_WRAPPERS = \
 src/jni/Blocks.giws.xml
 
 SCICOS_BLOCKS_FORTRAN_SOURCES = \
-src/fortran/affich.f \
 src/fortran/csslti.f \
 src/fortran/cstblk.f \
 src/fortran/delay.f \
@@ -502,7 +500,7 @@ libsciscicos_blocks_la_LIBADD =   $(top_builddir)/modules/cacsd/libscicacsd.la  
 
 #### scicos_blocks : Conf files ####
 libsciscicos_blocks_la_rootdir = $(mydatadir)
-libsciscicos_blocks_la_root_DATA =  license.txt version.xml
+libsciscicos_blocks_la_root_DATA =  license.txt 
 
 #### scicos_blocks : init scripts ####
 libsciscicos_blocks_la_etcdir = $(mydatadir)/etc
@@ -579,7 +577,7 @@ blocks/CMATVIEW.h5 \
 blocks/CMSCOPE.h5 \
 blocks/CONST_m.h5 \
 blocks/ConstantVoltage.h5 \
-blocks/CONSTRAINT_f.h5 \
+blocks/CONSTRAINT_c.h5 \
 blocks/CONVERT.h5 \
 blocks/COSBLK_f.h5 \
 blocks/Counter.h5 \

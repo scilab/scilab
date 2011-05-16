@@ -21,13 +21,12 @@ extern "C"
 #include "dynlib_scicos_blocks.h"
 #include "MALLOC.h"
 #include "scicos_block4.h"
+#include "scicos.h"
 #include "core_math.h"
 #include "getScilabJavaVM.h"
 #include "os_strdup.h"
 
     double C2F (sciround) (double *x);
-    void
-    set_block_error(int);
     SCICOS_BLOCKS_IMPEXP void
     affich2(scicos_block * block, int flag);
 }
@@ -76,18 +75,20 @@ affich2(scicos_block * block, int flag)
         {
             for (j = 0; j < iColsIn; j++)
             {
-                int iPrec = GetIparPtrs(block)[5];
+                int iDigit = GetIparPtrs(block)[3];
+                int iPrec = GetIparPtrs(block)[4];
+                
                 double dblScale = pow((double) 10, iPrec);
-                double dblTemp = pdblReal[i] * dblScale;
+                double dblTemp = pdblReal[i + (j * iRowsIn)] * dblScale;
                 double dblValue = C2F(sciround)(&dblTemp) / dblScale;
                 char pstFormat[10];
 
 #if _MSC_VER
                 //"%0.2f"
-                sprintf_s (pstFormat, 10, "%%0.%df", iPrec);
+                sprintf_s (pstFormat, 10, "%%%d.%df", iDigit, iPrec);
                 sprintf_s (pstConv, 128, pstFormat, dblValue);
 #else
-                sprintf(pstFormat, "%%0.%df", iPrec);
+                sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
                 sprintf(pstConv, pstFormat, dblValue);
 #endif
                 pstValue[i][j] = os_strdup(pstConv);
@@ -99,13 +100,12 @@ affich2(scicos_block * block, int flag)
             AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
                     iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniMethodNotFoundException & exception)
+        catch (const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
-             * the corresponding message is "block produces an internal error" (see sci_scicossim.c)
              */
-            set_block_error(-3);
+            Coserror(exception.what());
         }
         break;
 
@@ -132,13 +132,12 @@ affich2(scicos_block * block, int flag)
             AfficheBlock::setValue(getScilabJavaVM(), blockHashCode, pstValue,
                     iRowsIn, iColsIn);
         }
-        catch (const GiwsException::JniMethodNotFoundException & exception)
+        catch (const GiwsException::JniException & exception)
         {
             /* 
              * put a simulation error message.
-             * the corresponding message is "block produces an internal error" (see sci_scicossim.c)
              */
-            set_block_error(-3);
+            Coserror(exception.what());
         }
 
         // storing the allocated area on the block work field.

@@ -29,7 +29,6 @@ Source: bin\elem_func_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#ELEMFUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#ELEMFUNCTIONS}\VERSION.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 Source: modules\{#ELEMFUNCTIONS}\license.txt; DestDir: {app}\modules\{#ELEMFUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#ELEMFUNCTIONS}\sci_gateway\{#ELEMFUNCTIONS}_gateway.xml; DestDir: {app}\modules\{#ELEMFUNCTIONS}\sci_gateway; Components: {#COMPN_SCILAB}

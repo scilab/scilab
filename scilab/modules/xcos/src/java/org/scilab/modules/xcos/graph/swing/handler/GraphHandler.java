@@ -12,12 +12,14 @@
 
 package org.scilab.modules.xcos.graph.swing.handler;
 
+import java.awt.datatransfer.DataFlavor;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.SwingUtilities;
 
+import org.apache.commons.logging.LogFactory;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
@@ -32,6 +34,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.handler.mxGraphHandler;
+import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.view.mxGraph;
 
@@ -40,6 +43,18 @@ import com.mxgraph.view.mxGraph;
  */
 public class GraphHandler extends mxGraphHandler {
 
+	/**
+	 * Reduce the dropped data to JVM local transferable. 
+	 */
+	static {
+		try {
+			mxGraphTransferable.dataFlavor = new DataFlavor(DataFlavor.javaJVMLocalObjectMimeType
+					      + "; class=com.mxgraph.swing.util.mxGraphTransferable");
+		} catch (ClassNotFoundException e) {
+			LogFactory.getLog(GraphHandler.class).error(e);
+		}
+	}
+	
 	/**
 	 * Default constructor
 	 * 
