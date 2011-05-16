@@ -189,6 +189,7 @@ Compilation:
 Graphics:
 =========
 
+
 * bug 9330 fixed - delete() called overloading instead of deleting the current
                    graphic entity.
 
@@ -233,6 +234,8 @@ Bug fixes:
 * bug 8684 fixed - 'wfir' function produced an error message when used interactively.
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
+
+* bug 9045 fixed - plot2d did not support overloading.
 
 * bug 9056 fixed - An uicontrol could not be closed with <META>+W.
 

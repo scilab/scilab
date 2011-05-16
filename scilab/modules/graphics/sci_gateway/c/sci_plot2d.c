@@ -82,11 +82,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     iskip=1;
   }
 
-  if (GetType(1+iskip) != sci_matrix) {
-	  Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), fname, 1+iskip);
-    return 0;
-  }
-
   if (FirstOpt() == 2+iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
   {
     GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
@@ -110,10 +105,6 @@ int sci_plot2d( char * fname, unsigned long fname_len )
     GetRhsVar(1+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
 
     /* y */
-    if (GetType(2+iskip) != sci_matrix) {
-	    Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), fname, 2+iskip);
-      return 0;
-    }
     GetRhsVar(2+iskip,MATRIX_OF_DOUBLE_DATATYPE, &m2, &n2, &l2);
 
     test = (m1*n1 == 0)||
