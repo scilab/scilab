@@ -644,6 +644,7 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
                         StyleContext.NamedStyle style = (StyleContext.NamedStyle) doc.getStyleSheet().getStyle("body");
                         MutableAttributeSet attr = (MutableAttributeSet) style.getResolveParent();
                         currentFontSize = Math.min(Math.max(0, currentFontSize + s), 6);
+                        ConfigManager.setHelpFontSize(currentFontSize);
                         StyleConstants.setFontSize(attr, fontSizes[currentFontSize]);
                         style.setResolveParent(attr);
                     } catch (NullPointerException e) {
@@ -659,7 +660,6 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     public void increaseFont() {
         if (currentFontSize != Math.min(Math.max(0, currentFontSize + 1), 6)) {
             modifyFont(1);
-            ConfigManager.setHelpFontSize(currentFontSize);
         }
     }
 
@@ -669,7 +669,6 @@ public class SwingScilabHelpBrowserViewer extends BasicContentViewerUI implement
     public void decreaseFont() {
         if (currentFontSize != Math.min(Math.max(0, currentFontSize - 1), 6)) {
             modifyFont(-1);
-            ConfigManager.setHelpFontSize(currentFontSize);
         }
     }
 }
