@@ -111,6 +111,8 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 8863 fixed - The disabled test passes on the current build.
+
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
                    by default.
 
