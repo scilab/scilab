@@ -153,7 +153,8 @@ am__objects_6 = libscigraphic_objects_la-createGraphicObject.lo \
 	libscigraphic_objects_la-NgonGridDataDecomposer.lo \
 	libscigraphic_objects_la-NgonGridGrayplotDataDecomposer.lo \
 	libscigraphic_objects_la-Plot3DDecomposer.lo \
-	libscigraphic_objects_la-PolylineDecomposer.lo
+	libscigraphic_objects_la-PolylineDecomposer.lo \
+	libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
 	$(am__objects_6)
@@ -550,7 +551,8 @@ GRAPHIC_OBJECTS_CPP_SOURCES = src/cpp/createGraphicObject.cpp \
 								src/cpp/NgonGridDataDecomposer.cpp \
 								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
-								src/cpp/PolylineDecomposer.cpp
+								src/cpp/PolylineDecomposer.cpp \
+								src/cpp/TriangleMeshFecDataDecomposer.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 GATEWAY_C_SOURCES = sci_gateway/c/gw_graphic_objects.c
@@ -695,6 +697,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-PolylineDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshData.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecData.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-createGraphicObject.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-dataModel.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscigraphic_objects_la-deleteGraphicObject.Plo@am__quote@
@@ -926,6 +929,13 @@ libscigraphic_objects_la-PolylineDecomposer.lo: src/cpp/PolylineDecomposer.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/PolylineDecomposer.cpp' object='libscigraphic_objects_la-PolylineDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-PolylineDecomposer.lo `test -f 'src/cpp/PolylineDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/PolylineDecomposer.cpp
+
+libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo: src/cpp/TriangleMeshFecDataDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo -MD -MP -MF $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Tpo -c -o libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo `test -f 'src/cpp/TriangleMeshFecDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecDataDecomposer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Tpo $(DEPDIR)/libscigraphic_objects_la-TriangleMeshFecDataDecomposer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/TriangleMeshFecDataDecomposer.cpp' object='libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscigraphic_objects_la-TriangleMeshFecDataDecomposer.lo `test -f 'src/cpp/TriangleMeshFecDataDecomposer.cpp' || echo '$(srcdir)/'`src/cpp/TriangleMeshFecDataDecomposer.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

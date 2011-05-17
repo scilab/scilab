@@ -53,7 +53,8 @@ GRAPHIC_OBJECTS_CPP_SOURCES = 	src/cpp/createGraphicObject.cpp \
 								src/cpp/NgonGridDataDecomposer.cpp \
 								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
 								src/cpp/Plot3DDecomposer.cpp \
-								src/cpp/PolylineDecomposer.cpp
+								src/cpp/PolylineDecomposer.cpp \
+								src/cpp/TriangleMeshFecDataDecomposer.cpp
 
 GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml
 

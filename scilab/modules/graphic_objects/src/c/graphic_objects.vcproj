@@ -479,6 +479,10 @@
 				RelativePath="..\cpp\TriangleMeshFecData.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\cpp\TriangleMeshFecDataDecomposer.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -566,6 +570,10 @@
 			</File>
 			<File
 				RelativePath="..\..\includes\TriangleMeshData.hxx"
+				>
+			</File>
+			<File
+				RelativePath="..\..\includes\TriangleMeshFecDataDecomposer.hxx"
 				>
 			</File>
 		</Filter>
