@@ -134,10 +134,80 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         }
     }
 
+    /*
+     * To do:
+     * -use polygon offset for wireframe rendering.
+     * -take into account colormap updates.
+     */
     @Override
-    public void visit(Fec fec) {
-        // TODO
-        System.out.println("How can I draw a fec ?");
+    public void visit(final Fec fec) {
+        if (fec.getVisible()) {
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(fec.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return dataManager.getColorBuffer(fec.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(fec.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Geometry wireframe = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.SEGMENTS;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(fec.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return null;
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getWireIndexBuffer(fec.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Appearance trianglesAppearance = new Appearance();
+            drawingTools.draw(triangles, trianglesAppearance);
+
+            if (fec.getLineMode())
+            {
+                Appearance wireframeAppearance = new Appearance();
+                wireframeAppearance.setLineColor(ColorFactory.createColor(colorMap, fec.getLineColor()));
+                drawingTools.draw(wireframe, wireframeAppearance);
+            }
+        }
     }
 
     @Override
