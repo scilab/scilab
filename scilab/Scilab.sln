@@ -414,6 +414,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nocompletion", "modules\completion\src\nocompletion\nocompletion.vcxproj", "{D1586C83-3F16-467B-85C6-6A12A08CCB8D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager", "modules\history_manager\src\c\history_manager.vcxproj", "{1B98DC87-44F5-48AE-B5D0-29DD8AD86F5E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43C5BAB1-1DCA-4743-A183-77E0D42FE7D0} = {43C5BAB1-1DCA-4743-A183-77E0D42FE7D0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "history_manager-Ant", "modules\history_manager\src\java\history_manager-JAVA.vcxproj", "{63965A84-E354-4CBC-BFAC-FDFC8224573F}"
 EndProject

@@ -221,6 +221,8 @@ Bug fixes:
 
 * bug 9479 fixed - Typo fixed (intput => input).
 
+* bug 9498 fixed - A long history caused Scilab startup to be very long.
+
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
 
