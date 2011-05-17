@@ -115,10 +115,11 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
     /**
      * Constructor
-     * @param name the name of the tab (used to identify it)
+     * @param name the name of the tab
+     * @param uuid an uuid to identify the tab
      */
-    public SwingScilabTab(String name) {
-        super(name, name, name);
+    public SwingScilabTab(String name, String uuid) {
+        super(uuid, name, name);
         //This button is "overloaded" when we add a callback
         //this.addAction(DockingConstants.CLOSE_ACTION);
         // Removed because make JOGL crash when "Unpin"
@@ -133,6 +134,14 @@ public class SwingScilabTab extends View implements SimpleTab, FocusListener {
 
         getTitlebar().addFocusListener(this);
         addFocusListener(this);
+    }
+
+    /**
+     * Constructor
+     * @param name the name of the tab (used to identify it)
+     */
+    public SwingScilabTab(String name) {
+        this(name, name);
     }
 
     /**
