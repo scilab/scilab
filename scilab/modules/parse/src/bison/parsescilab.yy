@@ -1616,6 +1616,7 @@ TRY catchBody CATCH catchBody END                 { $$ =new ast::TryCatchExp(@$,
 catchBody :
 expressions                     { $$ = $1; }
 | EOL expressions               { $$ = $2; }
+| COMMA expressions             { $$ = $2; }
 | EOL                           {
                                   ast::exps_t *tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
