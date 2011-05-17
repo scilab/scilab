@@ -19,6 +19,7 @@
 #include "NgonGridGrayplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
+#include "TriangleMeshFecDataDecomposer.hxx"
 
 extern "C"
 {
@@ -31,11 +32,16 @@ extern "C"
 int getDataSize(char* id)
 {
     char* type;
+
     getGraphicObjectProperty(id, __GO_TYPE__, jni_string, (void**) &type);
 
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
         return Fac3DDecomposer::getDataSize(id);
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        return TriangleMeshFecDataDecomposer::getDataSize(id);
     }
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
@@ -66,6 +72,10 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
     {
         Fac3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        TriangleMeshFecDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+    }
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
@@ -90,6 +100,10 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
     {
         Fac3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
     }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        TriangleMeshFecDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+    }
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
@@ -110,6 +124,10 @@ int getIndicesSize(char* id)
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
         return Fac3DDecomposer::getIndicesSize(id);
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        return TriangleMeshFecDataDecomposer::getIndicesSize(id);
     }
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
@@ -138,6 +156,10 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
     {
         return Fac3DDecomposer::fillIndices(id, buffer, bufferLength, logMask);
     }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        return TriangleMeshFecDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+    }
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
@@ -163,6 +185,10 @@ int getWireIndicesSize(char* id)
     {
         return Fac3DDecomposer::getWireIndicesSize(id);
     }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        return TriangleMeshFecDataDecomposer::getWireIndicesSize(id);
+    }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         return Plot3DDecomposer::getWireIndicesSize(id);
@@ -184,6 +210,10 @@ int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask)
     if (strcmp(type, __GO_FAC3D__) == 0)
     {
         return Fac3DDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
+    }
+    else if (strcmp(type, __GO_FEC__) == 0)
+    {
+        return TriangleMeshFecDataDecomposer::fillWireIndices(id, buffer, bufferLength, logMask);
     }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
