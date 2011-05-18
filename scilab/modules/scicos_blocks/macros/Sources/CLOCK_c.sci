@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -40,12 +41,13 @@ function [x,y,typ]=CLOCK_c(job,arg1,arg2)
     dt_old= model.rpar(1)
     model_n=model
     while %t do
-      [ok,dt,t0,exprs0]=scicos_getvalue('Set Clock  block parameters',..
-				['Period';'Init time'],list('vec',1,'vec',1),exprs)
+      [ok, dt, t0, exprs0]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CLOCK_c");" "; gettext("Event clock generator");" "; ..
+          gettext("&nbsp; Do not start if ''Initialisation Time'' is negative");" "], [gettext("Period");gettext("Initialisation Time")], list('vec',1,'vec',1), exprs);
+
       if ~ok then break,end
-      if dt<=0 then
-	     message('period must be positive')
-	     ok=%f
+      if dt <= 0 then
+          block_parameter_error(msprintf(gettext("Wrong values for ''%s'' parameter: %5.1e."), gettext("Period"), dt), gettext("Strictly positive number expected."));
+        ok=%f
       end
       if ok then
 	xx.graphics.exprs=exprs0

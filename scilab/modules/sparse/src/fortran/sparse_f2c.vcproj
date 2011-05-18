@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
@@ -36,7 +36,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 				ExecutionBucket="2"
 			/>
 			<Tool
@@ -132,7 +132,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -220,7 +220,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -309,7 +309,7 @@
 			<Tool
 				Name="VCPreBuildEventTool"
 				Description="Build dependencies"
-				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL"
+				CommandLine="lib /DEF:&quot;$(InputDir)LibScilab_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)LibScilab.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)Elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;lib /DEF:&quot;$(InputDir)Sparse_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)sparse.lib&quot; 1&gt;NUL 2&gt;NUL&#x0D;&#x0A;"
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
@@ -1060,94 +1060,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\sci_gateway\fortran\intbfinit.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intblkfc1i.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intblkslvi.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intfadj2sp.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intfull.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intinpnvi.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intludel.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlufact.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intluget.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intlusolve.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intnnz.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intordmmd.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intsfinit.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intsparse.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspchol.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspclean.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspcompa.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspget.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspmatrix.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intspmax.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intsymfcti.f"
-				>
-			</File>
-			<File
-				RelativePath="..\..\sci_gateway\fortran\intta2lpd.f"
-				>
-			</File>
-			<File
 				RelativePath=".\sp2col.f"
 				>
 			</File>
@@ -1334,6 +1246,94 @@
 		</File>
 		<File
 			RelativePath="..\..\Makefile.am"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_bfinit.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_blkfc1i.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_blkslvi.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_fadj2sp.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_full.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_inpnvi.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_ludel.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_lufact.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_luget.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_lusolve.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_nnz.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_ordmmd.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_sfinit.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_sparse.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spchol.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spclean.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spcompa.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spget.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spmatrix.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_spmax.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_symfcti.f"
+			>
+		</File>
+		<File
+			RelativePath="..\..\sci_gateway\fortran\sci_f_ta2lpd.f"
 			>
 		</File>
 		<File

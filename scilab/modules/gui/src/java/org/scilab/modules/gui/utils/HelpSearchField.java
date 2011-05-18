@@ -14,7 +14,6 @@ package org.scilab.modules.gui.utils;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.KeyboardFocusManager;
@@ -41,7 +40,6 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Document;
 import javax.swing.text.JTextComponent;
 
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.commons.ScilabConstants;
 
 /**

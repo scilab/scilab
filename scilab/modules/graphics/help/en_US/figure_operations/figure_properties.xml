@@ -45,8 +45,8 @@
               <term>figure_style: </term>
               <listitem>
                 <para>The value of this field defines the figure style.
-		  Scince Scilab 5.0, old graphic mode has been disable.
-		  This property is kept for compatibility but can not be modified.</para>
+		  Since Scilab 5.0, old graphic mode has been disable.
+		  This property will be removed in Scilab 5.4 family.</para>
               </listitem>
             </varlistentry>
             <varlistentry>

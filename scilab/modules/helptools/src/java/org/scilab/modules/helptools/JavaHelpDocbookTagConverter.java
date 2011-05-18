@@ -38,6 +38,7 @@ import org.xml.sax.SAXException;
 public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
 
     private static final String XMLSTRING = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>\n";
+    private static final String WHATSNEW = "What's new ?";
 
     private StringBuilder buffer = new StringBuilder(8192);
 
@@ -118,6 +119,9 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
     private String convertMapId() {
         buffer.setLength(0);
         buffer.append("<map version=\"1.0\">\n<mapID target=\"index\" url=\"index.html\"/>\n");
+        if (!isToolbox) {
+            buffer.append("<mapID target=\"whatsnew\" url=\"ScilabHomePage.html\"/>\n");
+        }
         Iterator<String> iter = mapId.keySet().iterator();
         while (iter.hasNext()) {
             String id = iter.next();
@@ -153,6 +157,9 @@ public class JavaHelpDocbookTagConverter extends HTMLDocbookTagConverter {
     private String convertTocItem() {
         buffer.setLength(0);
         buffer.append("<toc version=\"1.0\">\n<tocitem target=\"index\" text=\"" + bookTitle + "\">\n");
+        if (!isToolbox) {
+            buffer.append("<tocitem target=\"whatsnew\" text=\"Scilab Home\"/>\n");
+        }
         convertTreeId(tree);
         buffer.append("</tocitem>\n</toc>");
 

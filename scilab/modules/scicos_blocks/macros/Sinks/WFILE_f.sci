@@ -1,6 +1,7 @@
-//  Scicos
+//  Xcos
 //
 //  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -39,39 +40,49 @@ case 'set' then
   fname=exprs(2)
   frmt=exprs(3)
   while %t do
-    [ok,in,fname1,frmt1,N,exprs]=scicos_getvalue(..
-	'Set WFILE block parameters',..
-	['Input size';
-	'Output file name';
-	'Output Format';
-	'Buffer size'],..
-	 list('vec',1,'str',1,'str',1,'vec',1),exprs)
+      [ok,in,fname1,frmt1,N,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "WFILE_f");" "; gettext("Write to output file"); " "; ..
+        gettext("Write is done on:"); gettext("&nbsp; - A binary file if no format given"); ..
+        gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")], [gettext("Input Size"); gettext("Output File Name"); ..
+        gettext("Output Format"); gettext("Buffer Size")], list('vec',1,'str',1,'str',1,'vec',1),exprs)
+
     if ~ok then break,end //user cancel modification
     in=int(in)
+
     nin=in
 
-    fname1=stripblanks(fname1)
+    fname1 = pathconvert(stripblanks(fname1), %f, %t) // File name expansion
     frmt1=stripblanks(frmt1)
-    mess=[]
-    if lunit>0&min(length(frmt),1)<>min(length(frmt1),1) then
-      mess=[mess;'You cannot swich from formatted to unformatted';
-	         'or  from unformatted to formatted when running';' ']
-    end
-    if lunit>0&fname1<>fname then
-      mess=[mess;'You cannot modify Output file name when running';' ']
+
+    if lunit > 0 & min(length(frmt),1) <> min(length(frmt1),1) then
+      block_parameter_error(gettext("Simulation running !!! You cannot switch<br />between formatted and unformatted when running"), gettext("End current simulation first."));
       ok=%f
-    end
-    if N<2 then
-      mess=[mess;'Buffer size must be at least 2';' ']
+    elseif lunit > 0 & fname1 <> fname then
+      block_parameter_error(gettext("You cannot modify ''Output File Name'' when running."), gettext("End current simulation first."));
       ok=%f
-    end
-    if in<=0 then
-      mess=[mess;'Block must have at least one input';' ']
+    elseif fname1 == "" then
+      block_parameter_error(gettext("Wrong value for ''Output File Name'' parameter"), gettext("You must provide a filename."));
       ok=%f
-    end
-    if ~ok then
-      message(['Some specified values are inconsistent:';
-	         ' ';mess])
+    //Check if directory exist
+    elseif fileparts(fname1) ~= "" then
+      [pa, fn, ex] = fileparts(fname1)
+      if ~isdir(pa) then
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Output File Name")), ..
+          msprintf(gettext("Directory ''%s'' does not exist"), pa ));
+        ok=%f
+      end
+    // Simple check for including of the format's string  in parenthesis
+    elseif frmt1 ~= "" &  (part(frmt1, 1) ~= "(" | part(frmt1, length(frmt1)) ~= ")")
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %s."), gettext("Input Format"), frmt1), ..
+        gettext("You must enclose the format''s string between parentheses."));
+      ok=%f
+    elseif N < 2 then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer Size"), N), ..
+        gettext("Must be greater than 1."));
+      ok=%f
+    elseif in <= 0 then
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Input Size"), in), ..
+        gettext("Strictly positive integer expected."));
+      ok=%f
     end
 
     if ok then

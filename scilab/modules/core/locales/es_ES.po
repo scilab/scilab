@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2008-02-27 18:16+0100\n"
-"PO-Revision-Date: 2010-10-08 09:41+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -870,13 +870,6 @@ msgstr "Error"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Error devolviendo tlist, memoria llena.\n"
-
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-"Error(x) es obsoleto y será eliminado en Scilab 5.4. Por favor considere "
-"utilizar SciError(x).\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"

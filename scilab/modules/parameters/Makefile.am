@@ -36,7 +36,7 @@ modulename=parameters
 
 #### parameters : Conf files ####
 libparameters_la_rootdir = $(mydatadir)
-libparameters_la_root_DATA =  license.txt version.xml
+libparameters_la_root_DATA =  license.txt 
 
 #### parameters : init scripts ####
 libparameters_la_etcdir = $(mydatadir)/etc

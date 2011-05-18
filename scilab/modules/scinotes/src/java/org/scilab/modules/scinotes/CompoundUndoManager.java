@@ -31,6 +31,8 @@ import javax.swing.undo.CannotRedoException;
  */
 public class CompoundUndoManager extends UndoManager {
 
+    private static final long serialVersionUID = 2400488911410627080L;
+    
     private CompoundEdit compoundEdit;
     private ScilabDocument sdoc;
     private Segment seg = new Segment();

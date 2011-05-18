@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,57 +9,19 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // 
 // Test #1 : Without parameters 
 //
 op = optimset ();
-assert_equal ( op.Display , [] );
-assert_equal ( op.FunValCheck , [] );
-assert_equal ( op.MaxFunEvals , [] );
-assert_equal ( op.MaxIter , [] );
-assert_equal ( op.OutputFcn , [] );
-assert_equal ( op.PlotFcns , [] );
-assert_equal ( op.TolFun , [] );
-assert_equal ( op.TolX , [] );
+assert_checkequal ( op.Display , [] );
+assert_checkequal ( op.FunValCheck , [] );
+assert_checkequal ( op.MaxFunEvals , [] );
+assert_checkequal ( op.MaxIter , [] );
+assert_checkequal ( op.OutputFcn , [] );
+assert_checkequal ( op.PlotFcns , [] );
+assert_checkequal ( op.TolFun , [] );
+assert_checkequal ( op.TolX , [] );
 clear op
 function y = myoutputfun (x)
   y = x;
@@ -79,77 +42,65 @@ op = optimset (...
   "TolFun",1.e-12,...
   "TolX",1.e-13...
   );
-assert_equal ( op.Display , "iter" );
-assert_equal ( op.FunValCheck , "on" );
-assert_equal ( op.MaxFunEvals , 100 );
-assert_equal ( op.MaxIter , 110 );
-//assert_equal ( op.OutputFcn , myoutputfun );
-//assert_equal ( op.PlotFcns , myplotfun );
-assert_equal ( op.TolFun , 1.e-12 );
-assert_equal ( op.TolX , 1.e-13 );
+assert_checkequal ( op.Display , "iter" );
+assert_checkequal ( op.FunValCheck , "on" );
+assert_checkequal ( op.MaxFunEvals , 100 );
+assert_checkequal ( op.MaxIter , 110 );
+//assert_checkequal ( op.OutputFcn , myoutputfun );
+//assert_checkequal ( op.PlotFcns , myplotfun );
+assert_checkequal ( op.TolFun , 1.e-12 );
+assert_checkequal ( op.TolX , 1.e-13 );
 clear op
 // 
 // Test #3 : Copy one option set into another
 // 
 op1 = optimset ("TolFun",1.e-12);
 op2 = optimset (op1,"TolX",1.e-13);
-assert_equal ( op2.TolFun , 1.e-12 );
-assert_equal ( op2.TolX , 1.e-13 );
+assert_checkequal ( op2.TolFun , 1.e-12 );
+assert_checkequal ( op2.TolX , 1.e-13 );
 clear op1
 clear op2
 // 
 // Test #3 : with one method name
 // 
 op = optimset ("fminsearch");
-assert_equal ( op.TolFun , 1.e-4 );
-assert_equal ( op.TolX , 1.e-4 );
-assert_equal ( op.Display , "notify" );
-assert_equal ( op.MaxFunEvals , "200*numberofvariables" );
-assert_equal ( op.MaxIter , "200*numberofvariables" );
+assert_checkequal ( op.TolFun , 1.e-4 );
+assert_checkequal ( op.TolX , 1.e-4 );
+assert_checkequal ( op.Display , "notify" );
+assert_checkequal ( op.MaxFunEvals , "200*numberofvariables" );
+assert_checkequal ( op.MaxIter , "200*numberofvariables" );
 clear op
 
 //
 // Test where the first input argument is not a struct
 //
 cmd = "optimset (''foo'',''MaxFunEvals'',100)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimset: Odd number of arguments : the first argument is expected to be a struct, but is a string";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Odd number of arguments : the first argument is expected to be a struct, but is a %s",[],"optimset","string");
 //
 // Test where the key is unknown
 //
 cmd = "optimset (''foo'',100)";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimset: Unrecognized parameter name ''foo''.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Unrecognized parameter name ''%s''.",[],"optimset","foo");
 
 //
 // Test where the algorithm is unknown
 //
 cmd = "optimset (''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimset: No default options available: the function ''foo'' does not exist on the path.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: No default options available: the function ''%s'' does not exist on the path.",[],"optimset","foo");
 //
 // Test where the Display key is unknown
 //
 cmd = "optimset (''Display'',''foo'')";
-execstr(cmd,"errcatch");
-computed = lasterror();
-expected = "optimset: Unrecognized value ''foo'' for ''Display'' option.";
-assert_equal ( computed , expected );
+assert_checkerror(cmd,"%s: Unrecognized value ''%s'' for ''Display'' option.",[],"optimset","foo");
 //
 // Test all possible values of Display
 //
 op = optimset ( "Display" , "final" );
-assert_equal ( op.Display , "final" );
+assert_checkequal ( op.Display , "final" );
 op = optimset ( "Display" , "iter" );
-assert_equal ( op.Display , "iter" );
+assert_checkequal ( op.Display , "iter" );
 op = optimset ( "Display" , "off" );
-assert_equal ( op.Display , "off" );
+assert_checkequal ( op.Display , "off" );
 op = optimset ( "Display" , "notify" );
-assert_equal ( op.Display , "notify" );
+assert_checkequal ( op.Display , "notify" );
 

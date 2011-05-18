@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,7 +26,7 @@
   <refnamediv>
     <refname>base2dec</refname>
 
-    <refpurpose>conversion from base b representation to integers</refpurpose>
+    <refpurpose>convert from base b to decimal</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -39,18 +40,10 @@
 
     <variablelist>
       <varlistentry>
-        <term>d</term>
-
-        <listitem>
-          <para>matrix of integers</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>s</term>
 
         <listitem>
-          <para>matrix of character strings corresponding to base b
+          <para>matrix of strings corresponding to base b
           representation</para>
         </listitem>
       </varlistentry>
@@ -59,9 +52,18 @@
         <term>b</term>
 
         <listitem>
-          <para>integer, the base</para>
+          <para>1-by-1 matrix of doubles, positive integer value, the base</para>
         </listitem>
       </varlistentry>
+
+      <varlistentry>
+        <term>d</term>
+
+        <listitem>
+          <para>matrix of doubles, positive integer values</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 

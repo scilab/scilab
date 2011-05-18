@@ -88,7 +88,7 @@ int get_rhs_real_hmat(int num, RealHyperMat *H)
 
   /*  get the 3d field */
   if ( !( *istk(il3) == 1 && *istk(il3+3)==0) )
-    goto err;;
+    goto err;
 
   H->size = (*istk(il3+1))*(*istk(il3+2));
   H->R = stk(sadr(il3+4));

@@ -1598,55 +1598,11 @@ sciGetRealVisibility (sciPointObj * pobj)
 BOOL
 sciGetVisibility (sciPointObj * pobj)
 {
-    switch (sciGetEntityType (pobj))
-    {
-    case SCI_FIGURE:
-        return pFIGURE_FEATURE (pobj)->visible;
-        break;
-    case SCI_SUBWIN:
-        return pSUBWIN_FEATURE (pobj)->visible;
-        break;
-    case SCI_LEGEND:
-        return pLEGEND_FEATURE (pobj)->visible;
-        break;
-    case SCI_ARC:
-        return pARC_FEATURE (pobj)->visible;
-        break;
-    case SCI_POLYLINE:
-        return pPOLYLINE_FEATURE (pobj)->visible;
-        break;
-    case SCI_RECTANGLE:
-        return pRECTANGLE_FEATURE (pobj)->visible;
-        break;
-    case SCI_SURFACE:
-        return pSURFACE_FEATURE (pobj)->visible;
-        break;
-    case SCI_SEGS:
-        return pSEGS_FEATURE (pobj)->visible;
-        break;
-    case SCI_FEC:
-        return pFEC_FEATURE (pobj)->visible;
-        break;
-    case SCI_GRAYPLOT:
-        return pGRAYPLOT_FEATURE (pobj)->visible;
-        break;
-    case SCI_TEXT:
-        return pTEXT_FEATURE (pobj)->visible;
-        break;
-    case SCI_AXES:
-        return pAXES_FEATURE (pobj)->visible;
-        break;
-    case SCI_AGREG:
-        return pAGREG_FEATURE (pobj)->visible;
-        break;
-    case SCI_LABEL: /* F.Leray 28.05.04 */
-        return sciGetVisibility ( pLABEL_FEATURE (pobj)->text ) ;
-        break;
-    case SCI_UIMENU:
-    default:
-        return TRUE;
-        break;
-    }
+    int visible = 0;
+    int* piVisible = &visible;
+    getGraphicObjectProperty(pobj->UID, __GO_VISIBLE__, jni_bool, &piVisible);
+
+    return visible;
 }
 
 

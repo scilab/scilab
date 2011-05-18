@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="list_param" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>list_param</refname>
+
+    <refpurpose>パラメータリストのパラメータ名のリストを取得
+    </refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[string_list,err] = list_param(list_name)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>引数</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>list_name</term>
+
+        <listitem>
+          <para>パラメータのリスト.このリストはinit_paramにより
+	  初期化されている必要があります.
+	  </para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>string_list</term>
+
+        <listitem>
+          <para>パラメータ名のリスト.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+         <para>エラーフラグで,list_nameがplist型でない
+	  (このリストはinit_paramをコールすることにより初期化されていない)
+	  場合 %T に設定されます.
+	 </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+        <para>
+	  パラメータリストのパラメータ名のリストを取得します.
+	エラー発生時に出力パラメータerrが存在しない場合,
+	メッセージがコンソールに出力されます.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+mylist = add_param(mylist,'maxbound',[1 1 1]);
+disp(list_param(mylist));
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="init_param">init_param</link></member>
+
+      <member><link linkend="set_param">set_param</link></member>
+
+      <member><link linkend="get_param">get_param</link></member>
+
+      <member><link linkend="remove_param">remove_param</link></member>
+
+      <member><link linkend="is_param">is_param</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Yann COLLETTE</member>
+    </simplelist>
+  </refsection>
+</refentry>

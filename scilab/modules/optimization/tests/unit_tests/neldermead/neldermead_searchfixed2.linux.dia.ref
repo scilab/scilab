@@ -1,47 +1,14 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then bugmes();quit;end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then bugmes();quit;end
-endfunction
+// <-- JVM NOT MANDATORY -->
+// <-- ENGLISH IMPOSED -->
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -61,13 +28,13 @@ nm = neldermead_search(nm);
 // simplex to the optimum.
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
-assert_close ( xopt , [1.0;1.0], 1e1 );
+assert_checkalmostequal ( xopt , [1.0;1.0], 1e1 );
 // Check optimum point value
 fopt = neldermead_get(nm,"-fopt");
-assert_close ( fopt , 0.0 , 1e1 );
+assert_checkalmostequal ( fopt , 0.0 , 1e1 );
 // Check status
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "maxfuneval" );
+assert_checkequal ( status , "maxfuneval" );
 // Cleanup
 nm = neldermead_destroy(nm);
 // Check that the verbose mode is functionnal
@@ -101,9 +68,9 @@ Fopt : 2.420000e+01
 DeltaFv : 6.940000e+01
 Center : -0.8666667 1.3333333
 Size : 1.000000e+00
+Optim Simplex Object:
+=====================
 Vertex #1/3 : fv=2.420000e+01, x=-1.200000e+00 1.000000e+00
-Vertex #2/3 : fv=3.620000e+01, x=-1.200000e+00 2.000000e+00
-Vertex #3/3 : fv=9.360000e+01, x=-2.000000e-01 1.000000e+00
 Reflect
 xbar=-1.2 1.5
 Function Evaluation #6 at [-2.2 2]
@@ -120,9 +87,9 @@ Fopt : 1.600000e+00
 DeltaFv : 9.200000e+01
 Center : -0.5333333 0.6666667
 Size : 1.414214e+00
+Optim Simplex Object:
+=====================
 Vertex #1/3 : fv=1.600000e+00, x=-2.000000e-01 0.000000e+00
-Vertex #2/3 : fv=2.420000e+01, x=-1.200000e+00 1.000000e+00
-Vertex #3/3 : fv=9.360000e+01, x=-2.000000e-01 1.000000e+00
 Reflect
 xbar=-0.7 0.5
 Function Evaluation #8 at [-1.2 0]
@@ -141,9 +108,9 @@ Fopt : 1.600000e+00
 DeltaFv : 2.100000e+01
 Center : -0.3666667 0.3333333
 Size : 7.071068e-01
+Optim Simplex Object:
+=====================
 Vertex #1/3 : fv=1.600000e+00, x=-2.000000e-01 0.000000e+00
-Vertex #2/3 : fv=2.900000e+00, x=-7.000000e-01 5.000000e-01
-Vertex #3/3 : fv=2.260000e+01, x=-2.000000e-01 5.000000e-01
 Reflect
 xbar=-0.45 0.25
 Function Evaluation #12 at [-0.7 0]
@@ -160,9 +127,9 @@ Fopt : 1.300000e+00
 DeltaFv : 2.130000e+01
 Center : -0.0333333 0.1666667
 Size : 7.071068e-01
+Optim Simplex Object:
+=====================
 Vertex #1/3 : fv=1.300000e+00, x=3.000000e-01 0.000000e+00
-Vertex #2/3 : fv=1.600000e+00, x=-2.000000e-01 0.000000e+00
-Vertex #3/3 : fv=2.260000e+01, x=-2.000000e-01 5.000000e-01
 Reflect
 xbar=0.05 0
 Function Evaluation #14 at [0.3 -0.5]
@@ -181,10 +148,10 @@ Fopt : 9.031250e-01
 DeltaFv : 6.125000e+00
 Center : 0.1333333 0.0833333
 Size : 2.500000e-01
+Optim Simplex Object:
+=====================
 Vertex #1/3 : fv=9.031250e-01, x=5.000000e-02 0.000000e+00
-Vertex #2/3 : fv=1.300000e+00, x=3.000000e-01 0.000000e+00
-Vertex #3/3 : fv=7.028125e+00, x=5.000000e-02 2.500000e-01
 Terminate with status : maxiter
 status = neldermead_get(nm,"-status");
-assert_equal ( status , "maxiter" );
+assert_checkequal ( status , "maxiter" );
 nm = neldermead_destroy(nm);

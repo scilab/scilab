@@ -11,14 +11,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
- 
 <project name="renderer" default="jar">
   <import file="../../build.incl.xml"/>
-
-  <property name="library.name" value="${library.renderer.name}" />
-
+  <property name="library.name" value="${library.renderer.name}"/>
+  <property name="library.title" value="Plot management"/>
   <description>
 	Build the renderer Scilab module
   </description>
-
 </project>

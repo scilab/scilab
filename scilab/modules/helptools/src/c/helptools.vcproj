@@ -465,10 +465,6 @@
 			RelativePath="..\..\Makefile.am"
 			>
 		</File>
-		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>

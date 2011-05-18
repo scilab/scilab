@@ -1,57 +1,11 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2008 - INRIA - Sabine Gaüzere
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2008 - INRIA - Sabine GaÃ¼zere
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-
-function flag = assert_true ( computed )
-  if and(computed) then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 function [x,y] = histcompute(n,data)
    //
@@ -85,7 +39,7 @@ function checkLaw0arg ( name , cdffun , N , NC , rtol )
   [X,EmpiricalPDF] = histcompute(NC,R);
   CDF = cdffun(X)
   TheoricPDF = diff(CDF);
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
     if ( %f ) then
       plot(X(1:$-1),EmpiricalPDF,"bo-"); // Empirical Histogram
       plot(X(1:$-1),TheoricPDF,"rox-"); // Theoretical Histogram
@@ -111,7 +65,7 @@ function checkLaw1arg ( name , cdffun , N , NC , A , rtol )
   [X,EmpiricalPDF] = histcompute(NC,R);
   CDF = cdffun(X,A)
   TheoricPDF = diff(CDF);
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
     if ( %f ) then
       plot(X(1:$-1),EmpiricalPDF,"bo-"); // Empirical Histogram
       plot(X(1:$-1),TheoricPDF,"rox-"); // Theoretical Histogram
@@ -138,7 +92,7 @@ function checkLaw2arg ( name , cdffun , N , NC , A , B , rtol )
   [X,EmpiricalPDF] = histcompute(NC,R);
   CDF = cdffun(X,A,B)
   TheoricPDF = diff(CDF);
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
     if ( %f ) then
       plot(X(1:$-1),EmpiricalPDF,"bo-"); // Empirical Histogram
       plot(X(1:$-1),TheoricPDF,"rox-"); // Theoretical Histogram
@@ -166,7 +120,7 @@ function checkLaw3arg ( name , cdffun , N , NC , A , B , C , rtol )
   [X,EmpiricalPDF] = histcompute(NC,R);
   CDF = cdffun(X,A,B,C)
   TheoricPDF = diff(CDF);
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
     if ( %f ) then
       plot(X(1:$-1),EmpiricalPDF,"bo-"); // Empirical Histogram
       plot(X(1:$-1),TheoricPDF,"rox-"); // Theoretical Histogram
@@ -198,7 +152,7 @@ function checkPieceLaw1arg ( name , cdffun , N , NC , A , rtol )
   EmpiricalPDF = EmpiricalPDF./N;
   CDF = cdffun(X,A)
   TheoricPDF=[CDF(1);diff(CDF)];
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
   if ( %f ) then
     plot(X,EmpiricalPDF,"bo-"); // Empirical Histogram
     plot(X,TheoricPDF,"rox-"); // Theoretical Histogram
@@ -230,7 +184,7 @@ function checkPieceLaw2arg ( name , cdffun , N , NC , A , B , rtol )
   EmpiricalPDF = EmpiricalPDF./N;
   CDF = cdffun(X,A,B)
   TheoricPDF=[CDF(1);diff(CDF)];
-  assert_true( abs(EmpiricalPDF-TheoricPDF) < rtol );
+  assert_checktrue( abs(EmpiricalPDF-TheoricPDF) < rtol );
   if ( %f ) then
     plot(X,EmpiricalPDF,"bo-"); // Empirical Histogram
     plot(X,TheoricPDF,"rox-"); // Theoretical Histogram
@@ -249,11 +203,11 @@ function checkMeanVariance0arg ( m , n , name , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
 
@@ -271,11 +225,11 @@ function checkMeanVariance1arg ( m , n , name , A , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name,A);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
 
@@ -293,11 +247,11 @@ function checkMeanVariance2arg ( m , n , name , A , B , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name,A,B);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
   
@@ -317,11 +271,11 @@ function checkMeanVariance3arg ( m , n , name , A , B , C , mu , va , rtol )
   // rtol : a 1-by-1 matrix of doubles, the relative tolerance
   
   R=grand(m,n,name,A,B,C);
-  assert_equal ( size(R) , [m,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R) , mu , rtol );
+  assert_checkequal ( size(R) , [m,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R) , mu , rtol );
   if ( va<>[] ) then
-    assert_close ( variance(R) , va , rtol );
+    assert_checkalmostequal ( variance(R) , va , rtol );
   end
 endfunction
 
@@ -640,10 +594,10 @@ A = [1;2;3];
 // Its diagonal entries are [4;6;5], the variances.
 B = [4,2,3;2,6,4;3,4,5];
   R=grand(n,"mn",A,B);
-  assert_equal ( size(R) , [3,n] );
-  assert_equal ( typeof(R) , "constant" );
-  assert_close ( mean(R,"c") , A , rtol );
-  assert_close ( variance(R,"c") , [4;6;5] , rtol );
+  assert_checkequal ( size(R) , [3,n] );
+  assert_checkequal ( typeof(R) , "constant" );
+  assert_checkalmostequal ( mean(R,"c") , A , rtol );
+  assert_checkalmostequal ( variance(R,"c") , [4;6;5] , rtol );
 //
 // No CDF for this function => no histogram test. 
 

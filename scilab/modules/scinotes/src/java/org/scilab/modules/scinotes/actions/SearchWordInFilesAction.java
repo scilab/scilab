@@ -1,0 +1,637 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+
+package org.scilab.modules.scinotes.actions;
+
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.util.List;
+import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
+
+import javax.swing.AbstractAction;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
+import javax.swing.SwingUtilities;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.JTextComponent;
+
+import org.scilab.modules.gui.filechooser.ScilabFileChooser;
+import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.scinotes.SciNotes;
+import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabLexer;
+import org.scilab.modules.scinotes.ScilabLexerConstants;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.KeywordEvent;
+import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
+import org.scilab.modules.scinotes.utils.SciNotesMessages;
+import org.scilab.modules.scinotes.utils.SearchFile;
+import org.scilab.modules.action_binding.InterpreterManagement;
+
+/**
+ * SearchWordInFilesAction Class
+ * @author Calixte DENIZET
+ */
+public class SearchWordInFilesAction extends DefaultAction implements WindowFocusListener {
+
+    private static final long serialVersionUID = 1L;
+
+    private static final int GAP = 5;
+    private static final String FILTERNEWLINES = "filterNewlines";
+    private static final String ESCAPE = "ESCAPE";
+    private static final Color ERRORCOLOR = Color.RED;
+    private static Color NORMALCOLOR;
+
+    private static boolean windowAlreadyExist;
+    private static JFrame mainFrame;
+    private static Object searcher;
+    private static SearchWordInFilesAction current;
+
+    private JButton buttonFind;
+    private JButton buttonStop;
+    private JButton buttonClose;
+    private JButton cancelButton;
+    private JButton chooseBaseDirButton;
+    private JComboBox comboBaseDir;
+    private JComboBox comboFilePattern;
+    private JComboBox comboWordPattern;
+    private JCheckBox checkRecursive;
+    private JCheckBox checkWordCase;
+    private JCheckBox checkFileCase;
+    private JCheckBox checkRegular;
+    private JCheckBox checkLineByLine;
+    private JCheckBox checkWhole;
+
+    private boolean comboBaseDirCanceled;
+    private boolean comboFilePatternCanceled;
+    private boolean comboWordPatternCanceled;
+
+    private String lastWordPattern;
+    private String lastFilePattern;
+    private String lastBaseDir;
+
+    protected boolean searchFiles;
+
+    /**
+     * Constructor
+     * @param name the name of the action
+     * @param editor SciNotes
+     */
+    public SearchWordInFilesAction(String name, SciNotes editor) {
+        super(name, editor);
+    }
+
+    /**
+     * doAction
+     */
+    public void doAction() {
+        current = this;
+        openSearchWindow();
+    }
+
+    /**
+     * createMenu
+     * @param label label of the menu
+     * @param editor SciNotes
+     * @param key Keystroke
+     * @return MenuItem
+     */
+    public static MenuItem createMenu(String label, final SciNotes editor, KeyStroke key) {
+        return createMenu(label, null, new SearchWordInFilesAction(label, editor), key);
+    }
+
+    /**
+     * Close the window
+     */
+    public static void closeWindow() {
+        if (windowAlreadyExist) {
+            stopSearch();
+            SwingScilabWindow window = current.getEditor().getSwingParentWindow();
+            if (window != null) {
+                window.removeWindowFocusListener(current);
+            }
+            mainFrame.removeWindowFocusListener(current);
+            mainFrame.dispose();
+            windowAlreadyExist = false;
+        }
+    }
+
+    /**
+     * Start a search
+     */
+    public void startSearch() {
+        if (SearchFile.isDone(searcher)) {
+            buttonStop.setEnabled(true);
+            buttonFind.setEnabled(false);
+            String baseDir = (String) comboBaseDir.getEditor().getItem();
+            boolean recursive = checkRecursive.isSelected();
+            boolean lineByLine = checkLineByLine.isSelected();
+            String filePattern = (String) comboFilePattern.getEditor().getItem();
+            boolean fileCase = checkFileCase.isSelected();
+            String wordPattern = null;
+            if (!searchFiles) {
+                wordPattern = (String) comboWordPattern.getEditor().getItem();
+            }
+            boolean wordCase = checkWordCase.isSelected();
+            boolean wholeWord = checkWhole.isSelected();
+            boolean regex = checkRegular.isSelected();
+            searcher = SearchFile.getSearchResultsWindow(buttonStop, getEditor(), baseDir, recursive, !lineByLine, filePattern, fileCase, wordPattern, wordCase, wholeWord, regex);
+        }
+    }
+
+    /**
+     * Stop the current search if exists
+     */
+    public static void stopSearch() {
+        if (searcher != null) {
+            SearchFile.stopSearch(searcher);
+            searcher = null;
+        }
+    }
+
+    /**
+     * {@inheritedDoc}
+     */
+    public void windowGainedFocus(WindowEvent e) {
+        if (e.getWindow() == getEditor().getSwingParentWindow()) {
+            mainFrame.setAlwaysOnTop(true);
+        }
+    }
+
+    /**
+     * {@inheritedDoc}
+     */
+    public void windowLostFocus(WindowEvent e) {
+        if (e.getOppositeWindow() != mainFrame && e.getOppositeWindow() != getEditor().getSwingParentWindow()) {
+            mainFrame.setAlwaysOnTop(false);
+        }
+    }
+
+    /**
+     * Open a window to get the name of the macro
+     * @param name the name of a macro
+     */
+    public void openSearchWindow() {
+        if (windowAlreadyExist) {
+            mainFrame.setVisible(true);
+            return;
+        }
+
+        mainFrame = new JFrame();
+        mainFrame.setAlwaysOnTop(true);
+        mainFrame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        mainFrame.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE , 0), ESCAPE);
+        mainFrame.getRootPane().getActionMap().put(ESCAPE, new AbstractAction() {
+                public void actionPerformed(ActionEvent e) {
+                    closeWindow();
+                }
+            });
+        mainFrame.setTitle(SciNotesMessages.SEARCHINFILES);
+        mainFrame.setIconImage(new ImageIcon(System.getenv("SCI") + "/modules/gui/images/icons/32x32/apps/system-search.png").getImage());
+
+        getEditor().getSwingParentWindow().addWindowFocusListener(this);
+        mainFrame.addWindowFocusListener(this);
+
+        windowAlreadyExist = true;
+
+        JLabel baseDirLabel = new JLabel(SciNotesMessages.BASEDIRECTORY);
+        comboBaseDir = new JComboBox();
+        comboBaseDir.setEditable(true);
+        chooseBaseDirButton = new JButton(SciNotesMessages.CHOOSEDIR);
+        JPanel panelBase = new JPanel();
+        JLabel filePatternLabel = new JLabel(SciNotesMessages.FILEPATTERN + ":");
+        JLabel filePatternExpLabel = new JLabel(SciNotesMessages.FILEPATTERNEXP);
+        comboFilePattern = new JComboBox();
+        comboFilePattern.setEditable(true);
+        ((JTextField) comboFilePattern.getEditor().getEditorComponent()).setColumns(32);
+        JLabel wordPatternLabel = new JLabel(SciNotesMessages.WORDPATTERN + ":");
+        comboWordPattern = new JComboBox();
+        comboWordPattern.setEditable(true);
+        ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setColumns(32);
+        NORMALCOLOR = ((JTextField) comboWordPattern.getEditor().getEditorComponent()).getForeground();
+
+        JPanel panelOptions = new JPanel();
+        panelOptions.setBorder(BorderFactory.createTitledBorder(SciNotesMessages.OPTIONS));
+        checkWordCase = new JCheckBox(SciNotesMessages.WORDCASESENSITIVE);
+        checkFileCase = new JCheckBox(SciNotesMessages.FILECASESENSITIVE);
+        checkWhole = new JCheckBox(SciNotesMessages.WHOLE_WORD);
+        checkRegular = new JCheckBox(SciNotesMessages.REGULAR_EXPRESSIONS);
+        checkLineByLine = new JCheckBox(SciNotesMessages.FILELINEBYLINE);
+        checkRecursive = new JCheckBox(SciNotesMessages.RECURSIVESEARCH);
+        panelOptions.setLayout(new GridLayout(3, 2, GAP, GAP));
+        panelOptions.add(checkWordCase);
+        panelOptions.add(checkFileCase);
+        panelOptions.add(checkWhole);
+        panelOptions.add(checkRegular);
+        panelOptions.add(checkLineByLine);
+        panelOptions.add(checkRecursive);
+
+        buttonFind = new JButton(SciNotesMessages.FIND_BUTTON);
+        buttonStop = new JButton(SciNotesMessages.STOPBUTTON);
+        buttonStop.setEnabled(false);
+        buttonClose = new JButton(SciNotesMessages.CLOSE);
+        JPanel panelButton = new JPanel();
+        panelButton.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+        panelButton.setLayout(new GridLayout(1, 4, GAP, GAP));
+        panelButton.add(new JLabel());
+        panelButton.add(buttonFind);
+        panelButton.add(buttonStop);
+        panelButton.add(buttonClose);
+
+        restoreConfiguration();
+        if (searchFiles) {
+            comboWordPattern.setEnabled(false);
+            checkWordCase.setEnabled(false);
+            checkWhole.setEnabled(false);
+            checkRegular.setEnabled(false);
+            checkLineByLine.setEnabled(false);
+            wordPatternLabel.setEnabled(false);
+        }
+
+        panelBase.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+
+        gbc.gridx = gbc.gridy = 0;
+        gbc.gridwidth = gbc.gridheight = 1;
+        gbc.weightx = gbc.weighty = 0;
+        gbc.anchor = gbc.LINE_START;
+        panelBase.add(baseDirLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.BASELINE;
+        gbc.insets = new Insets(0, 0, GAP, 0);
+        panelBase.add(comboBaseDir, gbc);
+
+        gbc.gridx = 3;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0;
+        gbc.fill = gbc.NONE;
+        panelBase.add(chooseBaseDirButton, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = gbc.LINE_START;
+        panelBase.add(filePatternLabel, gbc);
+
+        gbc.gridy = 3;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.BASELINE;
+        panelBase.add(comboFilePattern, gbc);
+
+        gbc.gridx = 1;
+        gbc.gridy = 4;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0, 0, GAP, 0);
+        panelBase.add(filePatternExpLabel, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        gbc.gridwidth = 1;
+        gbc.weightx = 0;
+        gbc.anchor = gbc.LINE_START;
+        panelBase.add(wordPatternLabel, gbc);
+
+        gbc.gridy = 6;
+        gbc.gridwidth = 3;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.anchor = GridBagConstraints.BASELINE;
+        gbc.insets = new Insets(0, 0, GAP, 0);
+        panelBase.add(comboWordPattern, gbc);
+
+        JPanel panelFrame = new JPanel();
+        panelFrame.setBorder(BorderFactory.createEmptyBorder(GAP, GAP, GAP, GAP));
+        panelFrame.setLayout(new BoxLayout(panelFrame, BoxLayout.PAGE_AXIS));
+        panelFrame.add(panelBase);
+        panelFrame.add(panelOptions);
+        panelFrame.add(panelButton);
+
+        mainFrame.setContentPane(panelFrame);
+
+        mainFrame.addWindowListener(new WindowListener() {
+                public void windowClosed(WindowEvent arg0) { }
+                public void windowDeiconified(WindowEvent arg0) { }
+                public void windowActivated(WindowEvent arg0) { }
+
+                public void windowClosing(WindowEvent arg0) {
+                    closeWindow();
+                }
+
+                public void windowDeactivated(WindowEvent arg0) { }
+                public void windowIconified(WindowEvent arg0) { };
+                public void windowOpened(WindowEvent arg0) { }
+            });
+
+        checkWordCase.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveCaseSensitive(checkWordCase.isSelected());
+                }
+            });
+
+        checkFileCase.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveFileCase(checkFileCase.isSelected());
+                }
+            });
+
+        checkWhole.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveWholeWord(checkWhole.isSelected());
+                }
+            });
+
+        checkRecursive.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveRecursive(checkRecursive.isSelected());
+                }
+            });
+
+        checkRegular.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveRegularExpression(checkRegular.isSelected());
+                }
+            });
+
+        checkLineByLine.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    ConfigSciNotesManager.saveLineByLine(checkLineByLine.isSelected());
+                }
+            });
+
+        chooseBaseDirButton.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    SwingScilabFileChooser fileChooser = ((SwingScilabFileChooser) ScilabFileChooser.createFileChooser().getAsSimpleFileChooser());
+                    fileChooser.setDialogTitle(SciNotesMessages.CHOOSEBASEDIR);
+                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    fileChooser.setAcceptAllFileFilterUsed(false);
+                    if (fileChooser.showOpenDialog(getEditor()) == JFileChooser.APPROVE_OPTION) {
+                        File path = fileChooser.getSelectedFile();
+                        if (path == null || path.isFile()) {
+                            path = fileChooser.getCurrentDirectory();
+                        }
+                        comboBaseDir.getEditor().setItem(path.toString());
+                        updateFindButtonStatus(true);
+                    }
+                }
+            });
+
+        buttonFind.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    updateCombos();
+                    startSearch();
+                }
+            });
+
+        buttonStop.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    stopSearch();
+                }
+
+            });
+
+        buttonStop.addPropertyChangeListener(new PropertyChangeListener() {
+                public void propertyChange(PropertyChangeEvent e) {
+                    if (mainFrame.isVisible() && e.getPropertyName().equals(SearchFile.SEARCHDONE)) {
+                        buttonFind.setEnabled((Boolean) e.getNewValue());
+                        buttonStop.setEnabled(!((Boolean) e.getNewValue()));
+                    }
+                }
+            });
+
+        buttonClose.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    closeWindow();
+                }
+
+            });
+
+        comboBaseDir.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    updateFindButtonStatus(true);
+                }
+            });
+
+        comboBaseDir.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboBaseDirCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+            });
+
+        comboBaseDir.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                public void keyTyped(KeyEvent e) { }
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        if (comboBaseDirCanceled) {
+                            comboBaseDirCanceled = false;
+                        } else {
+                            closeWindow();
+                        }
+                    }
+                    updateFindButtonStatus(true);
+                }
+
+                public void keyPressed(KeyEvent e) { }
+            });
+
+        comboFilePattern.addItemListener(new ItemListener() {
+                public void itemStateChanged(ItemEvent e) {
+                    updateFindButtonStatus(false);
+                }
+            });
+
+        comboFilePattern.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboFilePatternCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+            });
+
+        comboFilePattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                public void keyTyped(KeyEvent e) { }
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        if (comboFilePatternCanceled) {
+                            comboFilePatternCanceled = false;
+                        } else {
+                            closeWindow();
+                        }
+                    }
+                    updateFindButtonStatus(false);
+                }
+
+                public void keyPressed(KeyEvent e) { }
+            });
+
+        comboWordPattern.addPopupMenuListener(new PopupMenuListener() {
+                public void popupMenuCanceled(PopupMenuEvent e) {
+                    comboWordPatternCanceled = true;
+                }
+
+                public void popupMenuWillBecomeInvisible(PopupMenuEvent e) { }
+
+                public void popupMenuWillBecomeVisible(PopupMenuEvent e) { }
+            });
+
+        comboWordPattern.getEditor().getEditorComponent().addKeyListener(new KeyListener() {
+                public void keyTyped(KeyEvent e) { }
+                public void keyReleased(KeyEvent e) {
+                    if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                        if (comboWordPatternCanceled) {
+                            comboWordPatternCanceled = false;
+                        } else {
+                            closeWindow();
+                        }
+                    }
+                    if (checkRegular.isSelected()) {
+                        try {
+                            Pattern.compile((String) comboWordPattern.getEditor().getItem());
+                            ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(NORMALCOLOR);
+                            buttonFind.setEnabled(true);
+                        } catch (PatternSyntaxException pse) {
+                            ((JTextField) comboWordPattern.getEditor().getEditorComponent()).setForeground(ERRORCOLOR);
+                            buttonFind.setEnabled(false);
+                        }
+                    }
+                }
+
+                public void keyPressed(KeyEvent e) { }
+            });
+
+        mainFrame.pack();
+        mainFrame.setResizable(false);
+        mainFrame.setLocationRelativeTo(getEditor());
+        mainFrame.setVisible(true);
+    }
+
+    /**
+     * Update status of buttons
+     */
+    protected void updateFindButtonStatus(boolean baseDirModified) {
+        String baseDir = (String) comboBaseDir.getEditor().getItem();
+        String filePattern = (String) comboFilePattern.getEditor().getItem();
+        boolean goodBaseDir = !baseDirModified;
+        if (baseDirModified && !baseDir.isEmpty()) {
+            File dir = new File(baseDir);
+            if (dir.exists() && dir.isDirectory()) {
+                goodBaseDir = true;
+            }
+        }
+        if (goodBaseDir) {
+            ((JTextField) comboBaseDir.getEditor().getEditorComponent()).setForeground(NORMALCOLOR);
+            buttonFind.setEnabled(!filePattern.isEmpty());
+        } else {
+            ((JTextField) comboBaseDir.getEditor().getEditorComponent()).setForeground(ERRORCOLOR);
+            buttonFind.setEnabled(false);
+        }
+    }
+
+    /**
+     * Update the combos
+     */
+    public void updateCombos() {
+        lastBaseDir = updateRecent(comboBaseDir, lastBaseDir, ConfigSciNotesManager.RECENTBASEDIR, ConfigSciNotesManager.BASEDIR);
+        lastFilePattern = updateRecent(comboFilePattern, lastFilePattern, ConfigSciNotesManager.RECENTFILEPATTERN, ConfigSciNotesManager.FILEPATTERN);
+        lastWordPattern = updateRecent(comboWordPattern, lastWordPattern, ConfigSciNotesManager.RECENTWORDPATTERN, ConfigSciNotesManager.WORDPATTERN);
+    }
+
+    /**
+     * Restore configuration
+     */
+    private void restoreConfiguration() {
+        checkRegular.setSelected(ConfigSciNotesManager.getRegularExpression());
+        checkWhole.setSelected(ConfigSciNotesManager.getWholeWord());
+        checkWordCase.setSelected(ConfigSciNotesManager.getCaseSensitive());
+        checkFileCase.setSelected(ConfigSciNotesManager.getFileCase());
+        checkRecursive.setSelected(ConfigSciNotesManager.getRecursive());
+        checkLineByLine.setSelected(ConfigSciNotesManager.getLineByLine());
+        fillCombo(comboBaseDir, ConfigSciNotesManager.RECENTBASEDIR, ConfigSciNotesManager.BASEDIR);
+        fillCombo(comboFilePattern, ConfigSciNotesManager.RECENTFILEPATTERN, ConfigSciNotesManager.FILEPATTERN);
+        fillCombo(comboWordPattern, ConfigSciNotesManager.RECENTWORDPATTERN, ConfigSciNotesManager.WORDPATTERN);
+    }
+
+    /**
+     * fill comboBaseDir
+     */
+    private static void fillCombo(JComboBox combo, String nodeName, String childNodeName) {
+        combo.removeAllItems();
+        List<String> recent = ConfigSciNotesManager.getRecent(nodeName, childNodeName);
+        for (String item : recent) {
+            combo.addItem(item);
+        }
+    }
+
+    /**
+     * Update recent base directory
+     */
+    private static String updateRecent(JComboBox combo, String last, String nodeName, String childNodeName) {
+        String str = (String) combo.getEditor().getItem();
+        if (str != null && str.length() != 0 && !str.equals(last)) {
+            List<String> recent = ConfigSciNotesManager.getRecent(nodeName, childNodeName);
+            if (!recent.contains(str)) {
+                combo.addItem(str);
+                combo.setSelectedItem(str);
+                ConfigSciNotesManager.saveRecent(str, nodeName, childNodeName);
+                last = str;
+            }
+        }
+        return last;
+    }
+}

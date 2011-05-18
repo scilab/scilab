@@ -155,11 +155,6 @@
       <ExplicitInputPort dataColumns="1" dataType="REAL_MATRIX" id="-49bcb0f8:12d942b55d6:-7f18" ordering="2" parent="-49bcb0f8:12d942b55d6:-7f1b" style="ExplicitInputPort;align=left;verticalAlign=middle;spacing=10;rotation=0;flip=false;mirror=false" value="">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="26.0"/>
       </ExplicitInputPort>
-      <mxCell connectable="0" id="3" parent="-49bcb0f8:12d942b55d6:-7f80" style="noLabel=0;opacity=0;" value="" vertex="1">
-        <mxGeometry as="geometry" relative="1" x="470.5" y="91.1">
-          <mxPoint as="offset" x="10.0" y="10.0"/>
-        </mxGeometry>
-      </mxCell>
       <BigSom dependsOnU="1" id="-49bcb0f8:12d942b55d6:-7f17" interfaceFunctionName="BIGSOM_f" parent="-49bcb0f8:12d942b55d6:-7f80" simulationFunctionName="sum" simulationFunctionType="TYPE_2" style="BIGSOM_f;flip=false;mirror=false" value="+">
         <ScilabString as="exprs" height="1" width="1">
           <data column="0" line="0" value="[1;1]"/>

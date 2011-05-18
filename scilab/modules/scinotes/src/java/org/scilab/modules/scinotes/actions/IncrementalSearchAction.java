@@ -14,7 +14,6 @@ package org.scilab.modules.scinotes.actions;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.KeyboardFocusManager;
@@ -26,7 +25,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -38,13 +36,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -56,6 +52,7 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  */
 public final class IncrementalSearchAction extends DefaultAction {
 
+    private static final long serialVersionUID = -3093932085002970876L;
     private static final String SCI = ScilabConstants.SCI.getPath();
     private static final String TAB = "tab";
     private static final ImageIcon CLOSEICON = new ImageIcon(SCI + "/modules/gui/images/icons/close-tab.png");
@@ -63,10 +60,7 @@ public final class IncrementalSearchAction extends DefaultAction {
     private static final ImageIcon BOTICON = new ImageIcon(SCI + "/modules/gui/images/icons/16x16/actions/go-bottom.png");
     private static final int BUTTONSIZE = 28;
 
-    private static Map<SciNotes, SearchField> fields = new HashMap();
-
-    private TextBox info;
-    private JPanel panelInfoSearch;
+    private static Map<SciNotes, SearchField> fields = new HashMap<SciNotes, SearchField>();
 
     /**
      * Constructor
@@ -84,7 +78,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         if (!fields.containsKey(getEditor())) {
             SearchField field = new SearchField();
             fields.put(getEditor(), field);
-            getEditor().getTextPane().getEditorComponent().insertBottomComponent(field);
+            getEditor().insertBottomComponent(field);
             field.requestFocus();
         } else {
             fields.get(getEditor()).requestFocus();
@@ -124,13 +118,36 @@ public final class IncrementalSearchAction extends DefaultAction {
     }
 
     /**
+     * @param editor the editor where to close the search bar
+     * @return the word which is currently searching
+     */
+    public static String getWord(SciNotes editor) {
+        if (fields.containsKey(editor)) {
+            return fields.get(editor).getWord();
+        }
+
+        return null;
+    }
+
+    /**
+     * @param editor the editor where to close the search bar
+     * @return true if it is an exact search
+     */
+    public static boolean getExact(SciNotes editor) {
+        if (fields.containsKey(editor)) {
+            return fields.get(editor).getExact();
+        }
+
+        return false;
+    }
+
+    /**
      * Inner class to have an incremental search field.
      */
     class SearchField extends JPanel implements FocusListener, KeyListener {
 
         private String text;
         private JTextField field;
-        private TopBotButtons[] buttons = new TopBotButtons[2];
         private boolean exact;
 
         /**
@@ -163,6 +180,20 @@ public final class IncrementalSearchAction extends DefaultAction {
             add(panelButtons, BorderLayout.WEST);
             add(field, BorderLayout.CENTER);
             setVisible(true);
+        }
+
+        /**
+         * @return the word which is currently searching
+         */
+        public String getWord() {
+            return field.getText();
+        }
+
+        /**
+         * @return true if it is an exact search
+         */
+        public boolean getExact() {
+            return exact;
         }
 
         /**
@@ -203,7 +234,7 @@ public final class IncrementalSearchAction extends DefaultAction {
         public void hideField() {
             removeListeners();
             fields.remove(getEditor());
-            getEditor().getTextPane().getEditorComponent().insertBottomComponent(null);
+            getEditor().insertBottomComponent(null);
         }
 
         /**

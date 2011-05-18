@@ -12,17 +12,16 @@
  
 package org.scilab.modules.graphic_export;
 
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 
-import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.batik.transcoder.TranscoderInput;
-import org.apache.fop.svg.PDFTranscoder;
-import org.apache.fop.render.ps.PSTranscoder;
+import org.apache.batik.transcoder.TranscoderOutput;
 import org.apache.fop.render.ps.EPSTranscoder;
+import org.apache.fop.render.ps.PSTranscoder;
 import org.apache.fop.svg.AbstractFOPTranscoder;
-import org.apache.avalon.framework.configuration.DefaultConfiguration;
+import org.apache.fop.svg.PDFTranscoder;
 
 /**
  * Static class to convert a SVG file into a vectorial file using FOP and Batik

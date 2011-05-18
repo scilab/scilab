@@ -2,7 +2,7 @@
 /*  Scicos
 *
 *  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-*  Copyright (C) DIGITEO - 2010
+*  Copyright (C) DIGITEO - 2010-2011
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -86,7 +86,6 @@ SCICOS_BLOCKS_IMPEXP void C2F(delayv)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(delay)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(cstblk)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void C2F(csslti)(ARGS_scicos);
-SCICOS_BLOCKS_IMPEXP void C2F(affich)(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void zcross2(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void writec(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void writeau(ARGS_scicos);
@@ -400,10 +399,10 @@ SCICOS_BLOCKS_IMPEXP void absolute_value(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void absblk(ARGS_scicos);
 SCICOS_BLOCKS_IMPEXP void affich2(ARGS_scicos);
 
-#define SIZE_TAB_BLOCK_LIST 371
-int ntabsim = SIZE_TAB_BLOCK_LIST ;
+#define SIZE_TAB_BLOCK_LIST 370
+int ntabsim = SIZE_TAB_BLOCK_LIST;
 
-OpTab tabsim[SIZE_TAB_BLOCK_LIST] ={
+OpTab tabsim[SIZE_TAB_BLOCK_LIST] = {
 {"zcross",(ScicosF) C2F(zcross)},
 {"writef",(ScicosF) C2F(writef)},
 {"trash",(ScicosF) C2F(trash)},
@@ -461,7 +460,6 @@ OpTab tabsim[SIZE_TAB_BLOCK_LIST] ={
 {"delay",(ScicosF) C2F(delay)},
 {"cstblk",(ScicosF) C2F(cstblk)},
 {"csslti",(ScicosF) C2F(csslti)},
-{"affich",(ScicosF) C2F(affich)},
 {"zcross2",(ScicosF) zcross2},
 {"writec",(ScicosF) writec},
 {"writeau",(ScicosF) writeau},

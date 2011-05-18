@@ -26,6 +26,8 @@ import java.util.Arrays;
  */
 public class ScilabString implements ScilabType {
 
+	private static final long serialVersionUID = 359802519980180085L;
+
 	private String[][] data;
 
 	/**

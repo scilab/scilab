@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -97,7 +98,7 @@ function contour(x,y,z,nz,theta,alpha,leg,flag,ebox,zlev)
     k=k+n+1;
   end
   if cnt>0 then glue(a.children(1:cnt)),cnt=0,end
-  set('current_obj',a);
+  set('current_entity',a);
   a.foreground=fg
   if flag(3) == 0 then
     a.axes_visible='off';

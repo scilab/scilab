@@ -227,7 +227,8 @@ public class SwingScilabHelpBrowser extends JPanel implements SimpleHelpBrowser,
             ScilabConsole.getConsole().getInfoBar().setText("");
             ScilabConsole.getConsole().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
-        helpHistory = new DefaultHelpHistoryModel(jhelp);
+
+        helpHistory = (DefaultHelpHistoryModel) jhelp.getHistoryModel();
 
         try {
             homePageURL = new URL(jhelp.getModel().getHelpSet().getHelpSetURL().toString().replace("jhelpset.hs", "ScilabHomePage.html"));

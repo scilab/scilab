@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA, Serge Steer
+// Copyright (C) 1984-2011 - INRIA - Serge STEER
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
@@ -10,7 +10,11 @@ function nyquist(varargin)
 // Nyquist plot
 //!
   rhs=size(varargin);
-
+  symmetry=%t
+  if type(varargin(rhs))==4 then //symmetrization flag
+    symmetry=varargin(rhs)
+    rhs=rhs-1
+  end
   if type(varargin(rhs))==10 then
     comments=varargin(rhs);
     rhs=rhs-1;
@@ -87,9 +91,13 @@ function nyquist(varargin)
   mnx=min(-1,min(repf));// to make the critical point visible
   mxx=max(-1,max(repf));
 
-  mxy=max(0,max(abs(repi)));
-  mny=min(0,-mxy);
-
+  if symmetry then
+    mxy=max(0,max(abs(repi)));
+    mny=min(0,-mxy);
+  else
+    mxy=max(0,max(repi));
+    mny=min(0,min(repi));
+  end
   dx=(mxx-mnx)/30;
   dy=(mxy-mny)/30;
   rect=[mnx-dx,mny-dy;mxx+dx,mxy+dy];
@@ -115,8 +123,13 @@ function nyquist(varargin)
       ax.y_label.text=_("Im(h(exp(2iπf*dt)))");
     end
   else
-    ax.data_bounds=[min(ax.data_bounds(1,:),rect(1,:));max(ax.data_bounds(2,:),rect(2,:))];
+    rect= ax.data_bounds
+    mnx=rect(1,1);
+    mxx=rect(2,1)
+    mny=rect(1,2)
+    mxy=rect(2,2)
   end
+
   // drawing the curves
   splitf($+1)=n+1;
 
@@ -132,12 +145,22 @@ function nyquist(varargin)
   Curves=[]
 
   kf=1
-  for k=1:mn
-    xpoly([R(k,:) R(k,$:-1:1)],[I(k,:) -I(k,$:-1:1)]);
-    e=gce();e.foreground=k;
-    datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",[F(kf,:) F(kf,$:-1:1)])
-    Curves=[Curves,e];
-    kf=kf+ilf;
+  if symmetry then
+    for k=1:mn
+      xpoly([R(k,:) R(k,$:-1:1)],[I(k,:) -I(k,$:-1:1)]);
+      e=gce();e.foreground=k;
+      datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",[F(kf,:) F(kf,$:-1:1)])
+      Curves=[Curves,e];
+      kf=kf+ilf;
+    end
+  else
+    for k=1:mn
+      xpoly(R(k,:),I(k,:));
+      e=gce();e.foreground=k;
+      datatipInitStruct(e,"formatfunction","formatNyquistTip","freq",F(kf,:))
+      Curves=[Curves,e];
+      kf=kf+ilf;
+    end
   end
   clear R I
 
@@ -163,7 +186,7 @@ function nyquist(varargin)
 
     if min(abs(frq(:,ks($))-frq(:,kk))./abs(frq(:,kk)))>0.001 then
       if min(sqrt(((repf(:,ks)-repf(:,kk)*ones(ks)).^2)/dx2+..
-                   ((repi(:,ks)-repi(:,kk)*ones(ks)).^2)/dy2)) >DIc then
+                  ((repi(:,ks)-repi(:,kk)*ones(ks)).^2)/dy2)) >DIc then
         ks=[ks kk];
         d=0;
       end
@@ -184,7 +207,7 @@ function nyquist(varargin)
       xstring(repf(k,kks),repi(k,kks),msprintf("%-0.3g",frq(kf,kks)),0);
       e=gce();e.font_foreground=k;
       L=[e L];
-      if abs(repi(k,kks))>mxy/20 then //not to overlap labels
+      if symmetry&(abs(repi(k,kks))>mxy/20) then //not to overlap labels
         xstring(repf(k,kks),-repi(k,kks),msprintf("%-0.3g",-frq(kf,kks)),0);
         e=gce();e.font_foreground=k;
         L=[e L];
@@ -202,10 +225,17 @@ function nyquist(varargin)
       // we should use xarrows or xsegs here.
       // However their displayed arrow size depends
       // on the data bounds and we want to avoid this
-      xx=[repf(k,ks(1:last))         repf(k,ks(last:-1:1))+dr($:-1:1) ;
-          repf(k,ks(1:last))+dr      repf(k,ks(last:-1:1))]
-      yy=[repi(k,ks(1:last))        -repi(k,ks(last:-1:1))-di($:-1:1) ;
-          repi(k,ks(1:last))+di     -repi(k,ks(last:-1:1))]
+      if symmetry then
+        xx=[repf(k,ks(1:last))         repf(k,ks(last:-1:1))+dr($:-1:1) ;
+            repf(k,ks(1:last))+dr      repf(k,ks(last:-1:1))]
+        yy=[repi(k,ks(1:last))        -repi(k,ks(last:-1:1))-di($:-1:1) ;
+            repi(k,ks(1:last))+di     -repi(k,ks(last:-1:1))]
+      else
+        xx=[repf(k,ks(1:last))    ;
+            repf(k,ks(1:last))+dr]
+        yy=[repi(k,ks(1:last));
+            repi(k,ks(1:last))+di]
+      end
       xpolys(xx,yy)
       //xarrows([repf(k,ks(1:last));repf(k,ks(1:last))+dr],..
       //    [repi(k,ks(1:last));repi(k,ks(1:last))+di],1.5)

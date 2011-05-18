@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -25,7 +26,7 @@
   <refnamediv>
     <refname>oct2dec</refname>
 
-    <refpurpose>conversion from octal representation to integers</refpurpose>
+    <refpurpose>convert from octal to decimal</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
@@ -39,21 +40,21 @@
 
     <variablelist>
       <varlistentry>
-        <term>d</term>
-
-        <listitem>
-          <para>matrix of integers</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
         <term>o</term>
 
         <listitem>
-          <para>matrix of character strings corresponding to octal
+          <para>matrix of strings corresponding to octal
           representation</para>
         </listitem>
       </varlistentry>
+      <varlistentry>
+        <term>d</term>
+
+        <listitem>
+          <para>matrix of doubles, positive integer values</para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 

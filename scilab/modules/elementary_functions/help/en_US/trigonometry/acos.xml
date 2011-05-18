@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>acos</refname>
 
-    <refpurpose>element wise cosine inverse</refpurpose>
+    <refpurpose>element wise cosine inverse (radians)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

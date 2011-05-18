@@ -2,18 +2,21 @@
 
 // This macro compiles the files
 
-src_c_path = get_absolute_file_path("builder_c.sce");
+function builder_c()
 
-CFLAGS = "-I" + src_c_path;
+  src_c_path = get_absolute_file_path("builder_c.sce");
 
-tbx_build_src(["csum","csub","multiplybypi"],    ..
-              ["csum.c","csub.c","multiplybypi.c"],..
-              "c", ..             ..
-              src_c_path,         ..
-              "",                 ..
-              "",                 ..
-              CFLAGS);
+  CFLAGS = ilib_include_flag(src_c_path);
 
-clear tbx_build_src;
-clear src_c_path;
-clear CFLAGS;
+  tbx_build_src(["csum","csub","multiplybypi"],    ..
+                ["csum.c","csub.c","multiplybypi.c"],..
+                "c", ..             ..
+                src_c_path,         ..
+                "",                 ..
+                "",                 ..
+                CFLAGS);
+                
+endfunction
+
+builder_c();
+clear builder_c; // remove builder_c on stack

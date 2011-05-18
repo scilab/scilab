@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -10,43 +11,6 @@
 // <-- JVM NOT MANDATORY -->
 
 
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 //
 // gould.nonconvex --
 //   The Gould test case with additionnal inequality constraints.
@@ -102,7 +66,7 @@ opt = optimbase_new ();
 opt = optimbase_configure ( opt , "-numberofvariables",2);
 opt = optimbase_configure ( opt , "-verbose",1);
 [ opt , isok ] = optimbase_checkx0 ( opt );
-assert_equal ( isok , %T );
+assert_checkequal ( isok , %T );
 opt = optimbase_destroy(opt);
 //
 // Test with satisfied/unsatisfied bounds constraints
@@ -113,10 +77,10 @@ opt = optimbase_configure ( opt , "-boundsmin" , [-5.0 -5.0] );
 opt = optimbase_configure ( opt , "-boundsmax" , [5.0 5.0] );
 opt = optimbase_configure ( opt , "-x0", [1.0 1.0]' );
 [ opt , isok ] = optimbase_checkx0 ( opt );
-assert_equal ( isok , %T );
+assert_checkequal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0",[-6.0 1.0]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
-assert_equal ( isok , %F );
+assert_checkequal ( isok , %F );
 opt = optimbase_destroy(opt);
 //
 // Test with satisfied/unsatisfied nonlinear inequality constraints
@@ -127,9 +91,9 @@ opt = optimbase_configure ( opt , "-nbineqconst",4);
 opt = optimbase_configure ( opt , "-function" , gouldnonconvex );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.8429636 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
-assert_equal ( isok , %T );
+assert_checkequal ( isok , %T );
 opt = optimbase_configure ( opt , "-x0" , [ 14.0950013 , 0.0 ]');
 [ opt , isok ] = optimbase_checkx0 ( opt );
-assert_equal ( isok , %F );
+assert_checkequal ( isok , %F );
 opt = optimbase_destroy(opt);
 

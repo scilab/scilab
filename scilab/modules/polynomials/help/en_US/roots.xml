@@ -2,6 +2,7 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -17,10 +18,6 @@
           xmlns:ns5="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook">
-  <info>
-    <pubdate>$LastChangedDate: 2008-07-11 10:31:18 +0200 (ven., 11 juil. 2008)
-    $</pubdate>
-  </info>
 
   <refnamediv>
     <refname>roots</refname>
@@ -31,8 +28,10 @@
   <refsynopsisdiv>
     <title>Calling Sequence</title>
 
-    <synopsis>[x]=roots(p)
-[x]=roots(p,'e')</synopsis>
+    <synopsis>
+	x=roots(p)
+	x=roots(p,algo)
+    </synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -43,34 +42,113 @@
         <term>p</term>
 
         <listitem>
-          <para>polynomial with real or complex coefficients or vector of the
-          polynomial coefficients in decreasing degree order (Matlab
-          compatibility).</para>
+          <para>
+		  a polynomial with real or complex coefficients, or 
+		  a m-by-1 or 1-by-m matrix of doubles, the polynomial coefficients in decreasing degree order.
+		  </para>
         </listitem>
       </varlistentry>
+	  
+	<varlistentry>
+        <term>algo</term>
+
+        <listitem>
+          <para>
+		  a string, the algorithm to be used (default algo="f").
+		  If algo="e", then the eigenvalues of the companion matrix are returned.
+		  If algo="f", then the Jenkins-Traub method is used (if the polynomial is real and 
+		  has degree lower than 100).
+		  If algo="f" and the polynomial is complex, then an error is generated.
+		  If algo="f" and the polynomial has degree greater than 100, then an error is generated.
+		  </para>
+        </listitem>
+      </varlistentry>
+
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para><literal>x=roots(p)</literal> returns in the complex vector
-    <literal>x</literal> the roots of the polynomial <literal>p</literal>. For
-    real polynomials of degree &lt;=100 the fast RPOLY algorithm (based on
-    Jenkins-Traub method) is used. In the other cases the roots are computed
-    as the eigenvalues of the associated companion matrix. Use
-    <literal>x=roots(p,'e')</literal> to force this algorithm in any
-    cases.</para>
+    <para>
+	This function returns in the complex vector
+    <literal>x</literal> the roots of the polynomial <literal>p</literal>. 
+	</para>
+	
+    <para>
+	The "e" option corresponds to method based on the eigenvalues of the 
+	companion matrix. 
+	</para>
+
+    <para>
+	The "f" option corresponds to the fast RPOLY algorithm, based on
+    Jenkins-Traub method. 
+	</para>
+	
+    <para>
+	For real polynomials of degree &lt;=100, users may consider the "f" option, 
+	which might be faster in some cases. 
+	On the other hand, some specific polynomials are known to be able to 
+	make this option to fail.
+	</para>
+	
   </refsection>
 
   <refsection>
     <title>Examples</title>
 
-    <programlisting role="example"><![CDATA[ 
+	<para>
+	In the following examples, we compute roots of polynomials.
+	</para>
+
+    <programlisting role="example"><![CDATA[
+// Roots given a real polynomial
+p = poly([1 2 3],"x")
+roots(p)
+// Roots, given the real coefficients
+p = [3 2 1]
+roots(p)
+// The roots of a complex polynomial
 p=poly([0,10,1+%i,1-%i],'x');
 roots(p)
-A=rand(3,3);roots(poly(A,'x'))    // Evals by characteristic polynomial
+// The roots of the polynomial of a matrix
+A=rand(3,3);
+p = poly(A,'x')
+roots(p)
 spec(A)
+ ]]></programlisting>
+ 
+	<para>
+	The polynomial representation can have a significant 
+	impact on the roots. 
+	In the following example, suggested by Wilkinson in the 60s and presented by Moler, 
+	we consider a diagonal matrix with diagonal entries equal to 1, 2, ..., 20. 
+	The eigenvalues are obviously equal to 1, 2, ..., 20. 
+	If we compute the associated characteristic polynomial and compute its roots, 
+	we can see that the eigenvalues are significantly different from the expected 
+	ones. 
+	This implies that just representing the coefficients as IEEE doubles changes the 
+	roots. 
+	</para>
+
+    <programlisting role="example"><![CDATA[
+A = diag(1:20);
+p = poly(A,'x')
+roots(p)
+ ]]></programlisting>
+
+	<para>
+	The "f" option produces an error if the polynomial is complex or 
+	if the degree is greater than 100.
+	</para>
+
+    <programlisting role="example"><![CDATA[
+ // The following case produces an error.
+ p = %i+%s;
+ roots(p,"f")
+ // The following case produces an error.
+ p = ones(101,1);
+ roots(p,"f")
  ]]></programlisting>
   </refsection>
 
@@ -90,19 +168,26 @@ spec(A)
     <title>Authors</title>
 
     <simplelist type="vert">
-      <member>Serge Steer (INRIA)</member>
+      <member>
+	  Serge Steer (INRIA)
+	  </member>
+      <member>
+	  Copyright (C) 2011 - DIGITEO - Michael Baudin
+	  </member>
     </simplelist>
   </refsection>
 
   <refsection>
     <title>References</title>
 
-    <para>The RPOLY algorithm is described in "Algorithm 493: Zeros of a Real
+    <para>
+	The RPOLY algorithm is described in "Algorithm 493: Zeros of a Real
     Polynomial", ACM TOMS Volume 1, Issue 2 (June 1975), pp. 178-189</para>
     <para>Jenkins, M. A. and Traub, J. F. (1970), A Three-Stage Algorithm for 
     Real Polynomials Using Quadratic Iteration, SIAM J. Numer. Anal., 7(1970), 545-566.</para>
     <para>Jenkins, M. A. and Traub, J. F. (1970), Principles for Testing Polynomial Zerofinding Programs.
-    ACM TOMS 1, 1 (March 1975), pp. 26-34</para>
+    ACM TOMS 1, 1 (March 1975), pp. 26-34
+	</para>
 
   </refsection>
 

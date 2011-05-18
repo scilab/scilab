@@ -14,7 +14,6 @@ package org.scilab.modules.hdf5.read;
 
 import java.util.ArrayList;
 
-import ncsa.hdf.hdf5lib.H5;
 import ncsa.hdf.hdf5lib.exceptions.HDF5Exception;
 
 import org.scilab.modules.types.ScilabList;

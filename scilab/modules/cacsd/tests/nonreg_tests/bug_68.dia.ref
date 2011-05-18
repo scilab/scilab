@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2005-2008 - INRIA -Serge Steer
-// Copyright (C) 2009 - DIGITEO - Michael Baudin
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -13,27 +13,6 @@
 // <-- Short Description -->
 //Precision problem with the trzeros function, 
 //
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then bugmes();quit;end
-endfunction
-//
 // sort_merge --
 //   Returns the sorted array x.
 // Arguments
@@ -41,7 +20,7 @@ endfunction
 //   compfun : the comparison function
 //   data : an optionnal data to pass to the comparison function
 // Bruno Pincon
-// "quelques tests de rapidit�e entre diff�erents logiciels matriciels"
+// "quelques tests de rapidit´e entre diff´erents logiciels matriciels"
 // Modified by Michael Baudin to manage a comparison function
 //
 function [x] = sort_merge ( varargin )
@@ -116,39 +95,8 @@ function order = sort_merge_comparison ( x , y )
     order = 1
   end
 endfunction
-// 
-// compare_complexrealimag --
-//   Returns -1 if a < b, 
-//   returns 0 if a==b,
-//   returns +1 if a > b
-// Compare first by real parts, then by imaginary parts.
-// Arguments
-//   a, b : the values to be compared
-//   precision : a list made of the absolute precision (element #1),
-//      and the relative precision (element #2)
-//
-function order = compare_complexrealimag ( a , b , precision )
-  ar = real(a)
-  br = real(b)
-  areequal = ( abs ( ar - br ) <= precision(1) + precision(2) * max ( abs(ar) , abs(br) ) )
-  if ( areequal ) then
-    // Tie on the real part: compare imaginary parts
-    ai = imag(a)
-    bi = imag(b)
-    areequal = ( abs ( ai - bi ) <= precision(1) + precision(2) * max ( abs(ai) , abs(bi) ) )
-    if ( areequal ) then
-      // Tie on imaginary parts too: two numbers are "equal"
-      order = 0
-    elseif ( ai < bi ) then
-      order = -1
-    else
-      order = 1
-    end
-  elseif ( ar < br ) then
-    order = -1
-  else
-    order = 1
-  end
+function order = mycomparison ( x , y , data )
+  order = assert_comparecomplex(x,y,data(1),data(2))
 endfunction
 s=poly(0,'s'); 
 A=[-113.63636,-2840909.1,113.63636,2840909.1,0,0;
@@ -170,8 +118,6 @@ ClosedZeros1=trzeros(closed1);
 Hrond2=System*PID;
 closed2=(1/.(Hrond2));
 ClosedZeros2=trzeros(closed2);
-computed1 = sort_merge ( ClosedZeros1 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
-computed2 = sort_merge ( ClosedZeros2 , compare_complexrealimag , [ 0.0 , 10 * %eps ] );
-computed = norm ( computed1 - computed2 );
-expected = 0.0;
-assert_close ( computed, expected, 1.e-7 );
+computed1 = sort_merge ( ClosedZeros1 , mycomparison , [ 10 * %eps , 0.0 ] );
+computed2 = sort_merge ( ClosedZeros2 , mycomparison , [ 10 * %eps , 0.0 ] );
+assert_checkalmostequal ( computed1 , computed2, [] , 1.e-7 );

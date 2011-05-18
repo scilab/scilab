@@ -20,19 +20,19 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 import javax.swing.text.BadLocationException;
 
+import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.scinotes.SciNotes;
-import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.ScilabEditorPane;
-import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
-import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * HelpOnKeywordAction Class
  * @author Calixte DENIZET
  */
 public class HelpOnKeywordAction extends DefaultAction {
+
+    private static final long serialVersionUID = -7241378949942315933L;
 
     protected boolean isPopup;
 

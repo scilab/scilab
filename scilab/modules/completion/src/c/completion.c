@@ -18,7 +18,6 @@
 #include "getfunctionslist.h"
 #include "getmacrosdictionary.h"
 #include "completion_generic.h"
-#include "getfulldictionary.h"
 #include "getfilesdictionary.h"
 #include "getfieldsdictionary.h"
 #include "getDictionarySetProperties.h"

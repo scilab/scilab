@@ -20,6 +20,8 @@ import java.util.EventObject;
  */
 public class KeywordEvent extends EventObject {
 
+    private static final long serialVersionUID = 4505744754595572108L;
+    
     private int start;
     private int length;
     private int type;

@@ -1,0 +1,6 @@
+changelog of the Xcos toolbox skeleton
+
+xcos_toolbox_skeleton (1.0)
+    * Default implementation
+ -- Clément DAVID <clement.david@scilab.org> Tue, 15 Mar 2011 13:34:06 +0100
+

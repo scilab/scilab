@@ -17,7 +17,6 @@ package org.scilab.modules.gui.graphicWindow;
 
 import javax.media.opengl.GL;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
 import org.scilab.modules.gui.canvas.Canvas;
 import org.scilab.modules.gui.canvas.ScilabCanvas;
 import org.scilab.modules.gui.tab.Tab;

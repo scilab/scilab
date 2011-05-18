@@ -32,10 +32,10 @@
     <title>Calling Sequence</title>
 
     <synopsis>
-      nyquist( sl,[fmin,fmax] [,step] [,comments] )
-      nyquist( sl, frq [,comments] )
-      nyquist(frq,db,phi [,comments])
-      nyquist(frq, repf [,comments])
+      nyquist( sl,[fmin,fmax] [,step] [,comments] [,symmetry])
+      nyquist( sl, frq [,comments] [,symmetry])
+      nyquist(frq,db,phi [,comments] [,symmetry])
+      nyquist(frq, repf [,comments] [,symmetry])
     </synopsis>
   </refsynopsisdiv>
 
@@ -43,6 +43,7 @@
     <title>Arguments</title>
 
     <variablelist>
+
       <varlistentry>
         <term>sl</term>
 
@@ -55,15 +56,15 @@
         <term>fmin,fmax</term>
 
         <listitem>
-          <para>real scalars (frequency bounds (in Hz))</para>
+          <para>real scalars (frequency lower and upper bounds (in Hz)).</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>step</term>
-
         <listitem>
-          <para>real (logarithmic discretization step)</para>
+          <para>real (logarithmic discretization step), if not given
+          an adaptative discretization is used.</para>
         </listitem>
       </varlistentry>
 
@@ -72,6 +73,14 @@
 
         <listitem>
           <para>string vector (captions).</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>symmetry</term>
+
+        <listitem>
+          <para>a boolean, default value is %t.</para>
         </listitem>
       </varlistentry>
 
@@ -98,17 +107,21 @@
 
         <listitem>
           <para>matrix of complex numbers. Frequency response (one row for
-          aech output of <literal>sl</literal>)</para>
+          each output of <literal>sl</literal>)</para>
         </listitem>
       </varlistentry>
+
     </variablelist>
   </refsection>
 
   <refsection>
     <title>Description</title>
 
-    <para>Nyquist plot i.e Imaginary part versus Real part of the frequency
-    response of <literal>sl</literal>.</para>
+    <para>Nyquist plot i.e Imaginary part versus Real part of the
+    frequency response of <literal>sl</literal>. If the
+    <literal>symmetry</literal> argument is true or omitted the
+    Nyquist plot displays the symetric graph (positive and negative
+    frequencies).</para>
 
     <para>For continuous time systems <literal>sl(2*%i*%pi*w)</literal> is
     plotted. For discrete time system or discretized systems
@@ -228,6 +241,8 @@
       <member><link linkend="bode">bode</link></member>
 
       <member><link linkend="black">black</link></member>
+ 
+      <member><link linkend="nyquistfrequencybounds">nyquistfrequencybounds</link></member>
 
       <member><link linkend="calfrq">calfrq</link></member>
 

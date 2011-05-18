@@ -59,7 +59,7 @@ case 'set' then
         block_parameter_error(msprintf(gettext("Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"), minim, maxim), ..
             msprintf(gettext("''Minimum'' must be less than ''Maximum''.")));
     elseif (rule <> 1 & rule <> 2) then
-        block_parameter_error(msprintf(gettext("Wrong value for  ''Rule'' parameter: %d"), rule), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''Rule'' parameter: %d"), rule), ..
             msprintf(gettext("Must be in the interval %s."), "[1,2]"));
     else
       graphics.exprs=exprs

@@ -1,18 +1,18 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2006 - INRIA - Allan Cornet
- * Copyright (C) 2006 - INRIA - Fabrice Leray
- * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
- * Copyright (C) 2006 - INRIA - Vincent Couvert
- * Copyright (C) 2011 - DIGITEO - Allan CORNET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2006 - INRIA - Allan Cornet
+* Copyright (C) 2006 - INRIA - Fabrice Leray
+* Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
+* Copyright (C) 2006 - INRIA - Vincent Couvert
+* Copyright (C) 2011 - DIGITEO - Allan CORNET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /*------------------------------------------------------------------------*/
 /* file: sci_set.h                                                        */
@@ -42,8 +42,8 @@
 static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType, int *numrow, int *numcol) ;
 /*--------------------------------------------------------------------------*/
 /**@name int sciset(sciPointObj *pobj,char *marker, long *x, long *y, long *w, long *h)
- * Sets the value to the object
- */
+* Sets the value to the object
+*/
 static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType, int *numrow, int *numcol)
 {
     return callSetProperty( pobj, *value, valueType, *numrow, *numcol, marker ) ;
@@ -51,9 +51,9 @@ static int sciSet(sciPointObj *pobj, char *marker, size_t *value, int valueType,
 /*--------------------------------------------------------------------------*/
 
 /*-----------------------------------------------------------
- * sciset(choice-name,x1,x2,x3,x4,x5)
- * or   xset()
- *-----------------------------------------------------------*/
+* sciset(choice-name,x1,x2,x3,x4,x5)
+* or   xset()
+*-----------------------------------------------------------*/
 int sci_set(char *fname, unsigned long fname_len)
 {
     int lw = 0;
@@ -130,9 +130,9 @@ int sci_set(char *fname, unsigned long fname_len)
             valueType = VarType(3) ;
             if ( (strcmp( cstk(l2), "user_data") == 0) || (stricmp( cstk(l2), "userdata") == 0)) {
                 /* in this case set_user_data_property
-                   directly uses the  third position in the stack
-                   to get the variable which is to be set in
-                   the user_data property (any data type is allowed) S. Steer*/
+                directly uses the  third position in the stack
+                to get the variable which is to be set in
+                the user_data property (any data type is allowed) S. Steer*/
                 l3 = 3; /*position in the stack*/
                 numrow3 = -1; /*unused */
                 numcol3 = -1; /*unused */
@@ -152,11 +152,11 @@ int sci_set(char *fname, unsigned long fname_len)
             else if ( valueType == sci_strings )
             {
                 if (    strcmp( cstk(l2), "tics_labels"  ) != 0
-                        && strcmp( cstk(l2), "auto_ticks"   ) != 0
-                        && strcmp( cstk(l2), "axes_visible" ) != 0
-                        && strcmp( cstk(l2), "axes_reverse" ) != 0
-                        && strcmp( cstk(l2), "text"         ) != 0
-                        && stricmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
+                    && strcmp( cstk(l2), "auto_ticks"   ) != 0
+                    && strcmp( cstk(l2), "axes_visible" ) != 0
+                    && strcmp( cstk(l2), "axes_reverse" ) != 0
+                    && strcmp( cstk(l2), "text"         ) != 0
+                    && stricmp( cstk(l2), "string"       ) != 0) /* Added for uicontrols */
                 {
                     GetRhsVar(3,STRING_DATATYPE,&numrow3,&numcol3,&l3);
                 }
@@ -228,62 +228,106 @@ int sci_set(char *fname, unsigned long fname_len)
         }
 
         LhsVar(1)=0;
-        C2F(putlhsvar)();
-        return 0 ;
+        PutLhsVar();
     }
+    return 0;
 #if 0
-    vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
+            vis_save = sciGetVisibility(pobj) ; /*used not to redraw the figure is object remains invisible */
 
-    parentFigure = sciGetParentFigure(pobj);
+            parentFigure = sciGetParentFigure(pobj);
 
-    if (!sciIsAutomaticallyRedrawn(pobj) && parentFigure != NULL)
-    {
-        /* try to protect figure if possible */
-        startFigureDataWriting(parentFigure);
-        setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
-        endFigureDataWriting(parentFigure);
-    }
-    else
-    {
-        setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
-    }
+            if (!sciIsAutomaticallyRedrawn(pobj) && parentFigure != NULL)
+            {
+                /* try to protect figure if possible */
+                startFigureDataWriting(parentFigure);
+                setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                endFigureDataWriting(parentFigure);
+            }
+            else
+            {
+                setStatus = sciSet(pobj, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+            }
 
-    if ( setStatus < 0 )
-    {
-        /* An error occured */
-        LhsVar(1)=0;
-        C2F(putlhsvar)();
-        return 0 ;
-    }
+            if ( setStatus < 0 )
+            {
+                /* An error occured */
+                LhsVar(1)=0;
+                C2F(putlhsvar)();
+                return 0 ;
+            }
 
-    if ( !( vis_save == 0 && sciGetVisibility(pobj)== 0) && setStatus == 0 )
-    {
-        /* do not redraw figure if object remains invisible */
-        /* and if its not a model object and if it's not a gui object */
-        if (   setStatus == SET_PROPERTY_SUCCEED
-               && (vis_save || sciGetVisibility(pobj))
-               && !isModelObject(pobj)
-               && !sciIsAutomaticallyRedrawn(pobj))
-        {
-            sciDrawObj(pobj) ;
+            if ( !( vis_save == 0 && sciGetVisibility(pobj)== 0) && setStatus == 0 )
+            {
+                /* do not redraw figure if object remains invisible */
+                /* and if its not a model object and if it's not a gui object */
+                if (   setStatus == SET_PROPERTY_SUCCEED
+                    && (vis_save || sciGetVisibility(pobj))
+                    && !isModelObject(pobj)
+                    && !sciIsAutomaticallyRedrawn(pobj))
+                {
+                    sciDrawObj(pobj) ;
+                }
+            }
         }
+        else
+        {
+#define NB_PROPERTIES_SUPPORTED 6
+            /* No object specified */
+            /* ONLY supported properties are */
+            /* 'current_entity' */
+            /* 'hdl' */
+            /* 'current_figure' */
+            /* 'current_axes' */
+            /* 'default_values' */
+            /* 'figure_style' for compatibility but do nothing */
+            /* others values must return a error */
+            char *propertyField = cstk(l2);
+            char *propertiesSupported[NB_PROPERTIES_SUPPORTED] = {"current_entity",
+                "hdl",
+                "current_figure",
+                "current_axes",
+                "figure_style",
+                "default_values"};
+            int i = 0;
+            int iPropertyFounded = 0;
+            for (i = 0; i < NB_PROPERTIES_SUPPORTED; i++)
+            {
+
+                if (strcmp(propertiesSupported[i], propertyField) == 0)
+                {
+                    iPropertyFounded = 1;
+                }
+            }
+
+            if (iPropertyFounded)
+            {
+                // we do nothing with "figure_style" "new" (to remove in 5.4)
+                int bDoSet = ((isMatrixOfString) && (strcmp(propertyField, "figure_style") == 0) && (strcmp(cstk(l3), "new") == 0)) != 1;
+                if (bDoSet)
+                {
+                    sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
+                }
+            }
+            else
+            {
+                Scierror(999,_("%s: Wrong value for input argument #%d: a valid property expected.\n"), fname, 1);
+                if(isMatrixOfString)
+                {
+                    freeArrayOfString((char**)l3, numrow3*numcol3);
+                }
+                return 0;
+            }
+        }
+
+        if(isMatrixOfString)
+        {
+            freeArrayOfString((char**)l3, numrow3*numcol3);
+        }
+
+        LhsVar(1) = 0;
+        C2F(putlhsvar)();
     }
-}
-else
-{
-    /* No object specified */
-    sciSet( NULL, cstk(l2), &l3, valueType, &numrow3, &numcol3);
-}
-
-if(isMatrixOfString)
-{
-    freeArrayOfString((char**)l3, numrow3*numcol3);
-}
-
-LhsVar(1) = 0;
-C2F(putlhsvar)();
-              }
-return 0;
+    return 0;
 #endif
 }
 /*--------------------------------------------------------------------------*/

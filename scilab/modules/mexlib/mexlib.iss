@@ -22,7 +22,6 @@ Source: bin\libmx.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmex.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 Source: bin\libmat.dll; DestDir: {app}\bin; Components: {#COMPN_MEXLIB}
 ;
-Source: modules\{#MEXLIB}\VERSION.xml; DestDir: {app}\modules\{#MEXLIB}; Components: {#COMPN_MEXLIB}
 Source: modules\{#MEXLIB}\license.txt; DestDir: {app}\modules\{#MEXLIB}; Components: {#COMPN_MEXLIB}
 ;
 Source: modules\{#MEXLIB}\etc\{#MEXLIB}.quit; DestDir: {app}\modules\{#MEXLIB}\etc; Components: {#COMPN_MEXLIB}

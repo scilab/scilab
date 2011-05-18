@@ -19,7 +19,7 @@ modulename=gui
 
 #### gui : Conf files ####
 libscigui_la_rootdir = $(mydatadir)
-libscigui_la_root_DATA =  license.txt version.xml
+libscigui_la_root_DATA =  license.txt 
 
 
 #### gui : init scripts ####
@@ -308,9 +308,15 @@ libscigui_la_iconsdir=$(mydatadir)/
 nobase_libscigui_la_icons_DATA = images/icons/32x32/apps/accessories-text-editor.png \
 images/icons/32x32/apps/rrze_table.png \
 images/icons/32x32/apps/utilities-system-monitor.png \
+images/icons/32x32/apps/system-search.png \
 images/icons/16x16/actions/go-bottom.png \
 images/icons/16x16/actions/go-top.png \
 images/icons/16x16/actions/view-refresh.png \
+images/icons/16x16/search/folder.png \
+images/icons/16x16/search/file.png \
+images/icons/16x16/search/line-found.png \
+images/icons/16x16/search/scilab-file.png \
+images/icons/16x16/actions/save-and-execute.png \
 images/icons/aboutscilab.png \
 images/icons/accessories-text-editor.png \
 images/icons/applications-system.png \

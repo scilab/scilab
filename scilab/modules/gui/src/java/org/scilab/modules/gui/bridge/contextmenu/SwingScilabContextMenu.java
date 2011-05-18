@@ -49,6 +49,14 @@ public class SwingScilabContextMenu extends JPopupMenu implements SimpleContextM
 		super();
 		setInvoker(this);
 	}
+
+        /**
+         * Get the base text used for the Menu
+         * @return the text
+         */
+        public String getBaseText() {
+            return "";
+        }
 	
 	/**
 	 * Append a MenuItem to a Scilab Menu

@@ -144,10 +144,10 @@ public class SciFileFilter extends FileFilter {
             /* On Windows, files are not case sensitive */
             if (isWindows()) {
                 Pattern patternExt = Pattern.compile(mask, Pattern.CASE_INSENSITIVE | Pattern.UNICODE_CASE);
-                Matcher matchExt = patternExt.matcher(getFileExtension(pathname));
+                Matcher matchExt = patternExt.matcher(pathname.getName());
                 return matchExt.find();
             } else {
-                return pathname.getAbsolutePath().matches(mask);
+                return pathname.getName().matches(mask);
             }
         }
     }

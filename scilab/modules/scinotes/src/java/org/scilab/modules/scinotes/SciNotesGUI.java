@@ -72,13 +72,13 @@ public final class SciNotesGUI {
 
     private static final String DEFAULTACTIONPATH = "org.scilab.modules.scinotes.actions";
 
-    private static Map<String, KeyStroke> map = new HashMap();
+    private static Map<String, KeyStroke> map = new HashMap<String, KeyStroke>();
     private static Document menuConf;
 
-    private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap();
-    private static Map<SciNotes, ToolBar> mapToolBar = new HashMap();
-    private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap();
-    private static Map<SciNotes, TextBox> mapInfoBar = new HashMap();
+    private static Map<SciNotes, MenuBar> mapMenuBar = new HashMap<SciNotes, MenuBar>();
+    private static Map<SciNotes, ToolBar> mapToolBar = new HashMap<SciNotes, ToolBar>();
+    private static Map<SciNotes, JPopupMenu> mapPopup = new HashMap<SciNotes, JPopupMenu>();
+    private static Map<SciNotes, TextBox> mapInfoBar = new HashMap<SciNotes, TextBox>();
 
     static {
         ConfigSciNotesManager.addMapActionNameKeys(map);

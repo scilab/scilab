@@ -43,6 +43,8 @@ import org.scilab.modules.console.utils.ScilabLaTeXViewer;
  */
 public class ScilabDocument extends PlainDocument implements DocumentListener {
 
+    private static final long serialVersionUID = -1227880612912063687L;
+
     /**
      * The EOL in mac OS
      */
@@ -63,10 +65,10 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
     private static final int INITFUNCTIONSNUMBER = 128;
 
     private View view;
-    private List<String> saved = new Vector();
+    private List<String> saved = new Vector<String>();
     private FunctionScanner funScanner;
 
-    private Set<String> functions = new HashSet(INITFUNCTIONSNUMBER);
+    private Set<String> functions = new HashSet<String>(INITFUNCTIONSNUMBER);
 
     private boolean contentModified;
     private boolean alphaOrder;
@@ -360,7 +362,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * @return a list containing all the infos about functions available in this document
      */
     public List<FunctionScanner.FunctionInfo> getFunctionInfo() {
-        List list = new ArrayList();
+        List<FunctionScanner.FunctionInfo> list = new ArrayList<FunctionScanner.FunctionInfo>();
         Element root = getDefaultRootElement();
         for (int i = 0; i < root.getElementCount(); i++) {
             Element e = root.getElement(i);
@@ -407,7 +409,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
-            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+            Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
                     public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
                         ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
                         ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
@@ -461,7 +463,7 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
                 }
             }
         } else {
-            Set<DefaultMutableTreeNode> set = new TreeSet(new Comparator<DefaultMutableTreeNode>() {
+            Set<DefaultMutableTreeNode> set = new TreeSet<DefaultMutableTreeNode>(new Comparator<DefaultMutableTreeNode>() {
                     public int compare(DefaultMutableTreeNode o1, DefaultMutableTreeNode o2) {
                         ScilabLeafElement l1 = (ScilabLeafElement) o1.getUserObject();
                         ScilabLeafElement l2 = (ScilabLeafElement) o2.getUserObject();
@@ -763,6 +765,8 @@ public class ScilabDocument extends PlainDocument implements DocumentListener {
      * This inner class is useful to make a line numbering compatible with the whereami macro.
      */
     public class ScilabLeafElement extends LeafElement {
+
+        private static final long serialVersionUID = 4389590345677765643L;
 
         /**
          * Nothing in this line

@@ -14,7 +14,6 @@
 
 package org.scilab.modules.renderer.utils.MarkDrawing;
 
-import javax.media.opengl.GL;
 
 /**
  * Class specialized in drawing one kind of mark

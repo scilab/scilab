@@ -1,49 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge Steer
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- JVM NOT MANDATORY -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // Maple code used to create reference
 // Digits := 40; 
@@ -425,43 +389,43 @@ e=[
 0.
 ];
 c = tand(x);
-assert_close ( c , e , 40 * %eps );
+assert_checkalmostequal ( c , e , 40 * %eps );
 
 // Turn a lot around the circle
 x1 = x + 2^6*360; 
 c = tand(x1);
-assert_close ( c , e , 40 * %eps );
+assert_checkalmostequal ( c , e , 40 * %eps );
 // Turn a lot around the circle, the other side
 x2 = x - 2^6*360; 
 c = tand(x2);
-assert_close ( c , e , 40 * %eps );
+assert_checkalmostequal ( c , e , 40 * %eps );
 
-assert_equal ( tand(0) , 0 );
-assert_equal ( tand(360) , 0 );
-assert_equal ( tand(-360) , 0 );
+assert_checkequal ( tand(0) , 0 );
+assert_checkequal ( tand(360) , 0 );
+assert_checkequal ( tand(-360) , 0 );
 
-assert_equal ( tand(180) , 0 );
-assert_equal ( tand(-180) , 0 );
+assert_checkequal ( tand(180) , 0 );
+assert_checkequal ( tand(-180) , 0 );
 
-assert_close ( tand(30) , 1/sqrt(3) , %eps );
-assert_close ( tand(45) , 1         , 2 * %eps );
-assert_close ( tand(60) , sqrt(3)   , 2*%eps );
+assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
+assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
+assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );
 
-assert_equal ( isnan(tand(90))  , %t );
-assert_equal ( isnan(tand(-90)) , %t );
-assert_equal ( isnan(tand(270)) , %t );
-assert_equal ( isnan(tand(-270)) , %t );
+assert_checkequal ( isnan(tand(90))  , %t );
+assert_checkequal ( isnan(tand(-90)) , %t );
+assert_checkequal ( isnan(tand(270)) , %t );
+assert_checkequal ( isnan(tand(-270)) , %t );
 
-assert_equal ( isnan(tand(-%inf)) , %t );
-assert_equal ( isnan(tand(%inf))  , %t );
-assert_equal ( isnan(tand(%nan))  , %t );
+assert_checkequal ( isnan(tand(-%inf)) , %t );
+assert_checkequal ( isnan(tand(%inf))  , %t );
+assert_checkequal ( isnan(tand(%nan))  , %t );
 
-assert_equal ( tand([])  , [] );
+assert_checkequal ( tand([])  , [] );
 
 ieee(0)
-assert_equal ( tand(0) , 0 );
-assert_close ( tand(30) , 1/sqrt(3) , %eps );
-assert_close ( tand(45) , 1         , 2 * %eps );
-assert_close ( tand(60) , sqrt(3)   , 2*%eps );
+assert_checkequal ( tand(0) , 0 );
+assert_checkalmostequal ( tand(30) , 1/sqrt(3) , %eps );
+assert_checkalmostequal ( tand(45) , 1         , 2 * %eps );
+assert_checkalmostequal ( tand(60) , sqrt(3)   , 2*%eps );
 
 

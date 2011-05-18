@@ -574,10 +574,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\slider.c"
-				>
-			</File>
-			<File
 				RelativePath=".\tree.c"
 				>
 			</File>
@@ -741,10 +737,6 @@
 		</File>
 		<File
 			RelativePath="..\..\sci_gateway\scicos_gateway.xml"
-			>
-		</File>
-		<File
-			RelativePath="..\..\version.xml"
 			>
 		</File>
 	</Files>

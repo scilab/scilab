@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2009-2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2007-2008 - INRIA - Pierre MARECHAL
+// Copyright (C) 2009-2011 - DIGITEO - Michael Baudin
 // Copyright (C) 2011-2010 - DIGITEO - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
@@ -131,7 +131,7 @@ function test_run(varargin)
     status.list                 = [];
 
     params.longtime             = %t;
-    params.wanted_mode          = "NW";
+    params.wanted_mode          = "";
     params.error_output         = "check";
     params.reference            = "check";
     params.testTypes            = "all_tests";
@@ -351,7 +351,7 @@ function status = test_module(_params)
 
     name = splitModule(_params.moduleName);
     
-    if with_module(_params.moduleName) then
+    if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
     elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
@@ -374,7 +374,7 @@ function status = test_module(_params)
             directory_path = module.path + "/tests/" + my_types(i);
 
             for j=2:size(name,"*")
-                directory_path = directory_path + filesep() + module_items(j);
+                directory_path = directory_path + filesep() + name(j);
             end
 
             if isdir(directory_path) then
@@ -427,14 +427,13 @@ function status = test_module(_params)
     //don't test only return list of tests.
     if _params.reference == "list" then
         for i = 1:test_count
-            path = getPath(tests(i,1), my_types);
-            if ~isempty(path) then
-                displayModuleName = sprintf("%s", moduleName);
-                for j=1:size(path, "*")
-                    displayModuleName = displayModuleName + sprintf("|%s", path(j));
+            if size(name, "*") > 1 then
+                displayModuleName = sprintf("%s", name(1));
+                for j=2:size(name, "*")
+                    displayModuleName = displayModuleName + sprintf("|%s", name(j));
                 end
             else
-                displayModuleName = sprintf("%s", moduleName);
+                displayModuleName = sprintf("%s", name(1));
             end
             tests(i,1) = displayModuleName;
         end
@@ -446,16 +445,17 @@ function status = test_module(_params)
     tic();
     for i = 1:test_count
         printf("   %03d/%03d - ",i, test_count);
-        path = getPath(tests(i,1), my_types);
-        if ~isempty(path) then
-            displayModuleName = sprintf("[%s", moduleName);
-            for j=1:size(path, "*")
-                displayModuleName = displayModuleName + sprintf("|%s", path(j));
+
+        if size(name, "*") > 1 then
+            displayModuleName = sprintf("[%s", name(1));
+            for j=2:size(name, "*")
+                displayModuleName = displayModuleName + sprintf("|%s", name(j));
             end
             displayModuleName = displayModuleName + sprintf("] %s", tests(i,2));
         else
-            displayModuleName = sprintf("[%s] %s", moduleName, tests(i,2));
+            displayModuleName = sprintf("[%s] %s", name(1), tests(i,2));
         end
+
         printf("%s", displayModuleName);
         for j = length(displayModuleName):50
             printf(".");
@@ -625,6 +625,7 @@ function status = test_single(_module, _testPath, _testName)
         language = "fr_FR";
     end
 
+
     if ~isempty(grep(sciFile, "<-- ENGLISH IMPOSED -->")) then
         language = "en_US";
     end
@@ -726,9 +727,9 @@ function status = test_single(_module, _testPath, _testName)
     elseif _module.wanted_mode == "NWNI" then
         mode_arg = "-nwni";
     else
-        if mode == "NWNI" then
+        if execMode == "NWNI" then
             mode_arg = "-nwni";
-        elseif mode == "NW" then
+        elseif execMode == "NW" then
             mode_arg = "-nw";
         else
             mode_arg = "-nw";
@@ -872,6 +873,7 @@ function status = test_single(_module, _testPath, _testName)
 
     if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
         //  Do some modification in  dia file
+
         dia(grep(dia, "write(%io(2), tmpdirToPrint")) = [];
         dia(grep(dia, "TMPDIR1")) = [];
         dia(grep(dia, "diary(0)")) = [];
@@ -1025,16 +1027,6 @@ function directories = getDirectories(directory)
     for i=1:size(items,"*")
         if isdir(directory + items(i)) then
             directories = [directories; getDirectories(directory + items(i) + filesep())];
-        end
-    end
-endfunction
-
-function path = getPath(directory, ref_dir)
-    path = strsplit(directory, ["\","/"]);
-    path(path == "") = [];
-    for i = 1:size(ref_dir, "*")
-        if find(path == ref_dir(i)) then
-            path(1:find(path == ref_dir(i))) = [];
         end
     end
 endfunction

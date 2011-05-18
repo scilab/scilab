@@ -61,9 +61,12 @@ Copyright © 2003-2007 Apple, Inc., All Rights Reserved
 
 package org.scilab.modules.gui.bridge.window;
 
-import java.lang.reflect.*;
-import java.util.HashMap;
 import java.awt.Image;
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Proxy;
+
 import javax.swing.ImageIcon;
 
 

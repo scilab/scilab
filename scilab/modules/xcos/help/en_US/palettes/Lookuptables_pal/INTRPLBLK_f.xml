@@ -68,12 +68,17 @@
           </listitem>
           <listitem>
             <para>
+              <xref linkend="Example_INTRPLBLK_f">Example</xref>
+            </para>
+          </listitem>
+          <listitem>
+            <para>
               <xref linkend="Interfacingfunction_INTRPLBLK_f">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_INTRPLBLK_f">Computational function</xref>
+              <xref linkend="Seealso_INTRPLBLK_f">See also</xref>
             </para>
           </listitem>
           <listitem>
@@ -97,21 +102,20 @@
   </refsection>
   <refsection id="Description_INTRPLBLK_f">
     <title>Description</title>
-    <para>
-The output of this block is a function of the input obtained by linear
+    <para>The output of this block is a function of the input obtained by linear
 interpolation. This block has a single scalar input and a single scalar
 output port. The  coord. and  coord. give respectively the 
-coordinate and the  coordinate of the data points to be interpolated.
-  coord must be strictly increasing.   
-
-</para>
+coordinate and the  coordinate of the data points to be interpolated.</para>
+    <para>
+      <emphasis>The parameter vectors should be sorted (strictly increasing).</emphasis>
+    </para>
   </refsection>
   <refsection id="Dialogbox_INTRPLBLK_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/INTRPLBLK_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/lookuptables_pal/en_US/INTRPLBLK_f_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -130,7 +134,7 @@ coordinate and the  coordinate of the data points to be interpolated.
         <para>
           <emphasis role="bold">Y coord.</emphasis>
         </para>
-        <para> A vector (same size as<inlinemediaobject><imageobject><imagedata fileref="../../../images/INTRPLBLK_f_img2_eng.gif" align="center" valign="middle"/></imageobject></inlinemediaobject> coord).</para>
+        <para> A vector (same size as <emphasis role="bold">X</emphasis> coord).</para>
         <para> Properties : Type 'vec' of size -1 </para>
       </listitem>
     </itemizedlist>
@@ -189,24 +193,52 @@ coordinate and the  coordinate of the data points to be interpolated.
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_INTRPLBLK_f">
+    <title>Example</title>
+    <para>
+        The following example translate the sinus input signal to a different range and cut part of it.
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/lookuptables_pal/en_US/INTRPLBLK_f_en_US.xcos">
+          Open this example in Xcos.
+        </link>
+      </para>
+    <para>
+      <latex>X=\{-1.0;-0.5;0;0.5;1.0\}\ Y=\{-6;-6;0;0;6\}</latex>
+    </para>
+    <para/>
+    <para>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/lookuptables_pal/en_US/INTRPLBLK_f_diagram_en_US.png" align="center"/>
+        </imageobject>
+      </mediaobject>
+      <mediaobject>
+        <imageobject>
+          <imagedata fileref="../../../examples/lookuptables_pal/en_US/INTRPLBLK_f_scope_en_US.png" align="center"/>
+        </imageobject>
+      </mediaobject>
+    </para>
+  </refsection>
   <refsection id="Interfacingfunction_INTRPLBLK_f">
     <title>Interfacing function</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci</para>
+        <para>
+          <link type="scilab" linkend="scilab.scinotes/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci">SCI/modules/scicos_blocks/macros/NonLinear/INTRPLBLK_f.sci</link>
+        </para>
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computationalfunction_INTRPLBLK_f">
-    <title>Computational function</title>
+  <refsection role="see also" id="Seealso_INTRPLBLK_f">
+    <title>See also</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/src/fortran/intrpl.f (Type 0)</para>
+        <link linkend="INTRP2BLK_f">INTRP2BLK_f</link>
       </listitem>
     </itemizedlist>
   </refsection>
   <refsection id="Authors_INTRPLBLK_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

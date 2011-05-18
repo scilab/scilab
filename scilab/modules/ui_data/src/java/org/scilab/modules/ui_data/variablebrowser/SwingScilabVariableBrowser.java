@@ -39,8 +39,8 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.textbox.TextBox;
-import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.toolbar.ScilabToolBar;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.UIElementMapper;
 import org.scilab.modules.gui.window.Window;
 import org.scilab.modules.types.ScilabTypeEnum;
@@ -63,10 +63,10 @@ import org.scilab.modules.ui_data.actions.SparseFilteringAction;
 import org.scilab.modules.ui_data.actions.StringFilteringAction;
 import org.scilab.modules.ui_data.actions.TListFilteringAction;
 import org.scilab.modules.ui_data.actions.UncompiledFunctionFilteringAction;
-import org.scilab.modules.ui_data.variableeditor.actions.RefreshAction;
 import org.scilab.modules.ui_data.datatable.SwingTableModel;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 import org.scilab.modules.ui_data.variablebrowser.actions.CloseAction;
+import org.scilab.modules.ui_data.variablebrowser.actions.RefreshAction;
 import org.scilab.modules.ui_data.variablebrowser.rowfilter.VariableBrowserRowFilter;
 
 /**

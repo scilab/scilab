@@ -59,12 +59,12 @@ BOOL HaveAnotherWindowScilab(void)
 	return Retour;
 }
 /*--------------------------------------------------------------------------*/
-char * getLastScilabFinded(void)
+char * getLastScilabFound(void)
 {
 	return strdup(ListHiddenScilabName[0]);
 }
 /*--------------------------------------------------------------------------*/
-char * getFirstScilabFinded(void)
+char * getFirstScilabFound(void)
 {
 	return strdup(ListHiddenScilabName[NumberScilab-1]);
 }

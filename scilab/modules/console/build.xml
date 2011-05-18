@@ -14,11 +14,9 @@
  -->
 <project name="console" default="jar">
   <import file="../../build.incl.xml"/>
-
-  <property name="library.name" value="${library.console.name}" />
-
+  <property name="library.name" value="${library.console.name}"/>
+  <property name="library.title" value="Scilab console"/>
   <description>
 	Build the console Scilab module
   </description>
-
 </project>

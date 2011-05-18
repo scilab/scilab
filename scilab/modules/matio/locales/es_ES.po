@@ -1,0 +1,243 @@
+# Spanish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-24 09:45+0000\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s mlist type not yet implemented."
+msgstr "%s el tipo mlist aun no está implementado."
+
+#, c-format
+msgid "%s not yet implemented."
+msgstr "%s aun no está implementado."
+
+#, c-format
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr ""
+"%s: El almacenamiento de arreglos bidimensionales de strings aun no está "
+"implementado.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: No se puede abrir el archivo %s.\n"
+
+#, c-format
+msgid ""
+"%s: Column array of strings with different lengths saving is not "
+"implemented.\n"
+msgstr ""
+"%s: El almacenamiento de arreglos columna de strings con diferentes "
+"longitudesaun no está implementado.\n"
+
+#, c-format
+msgid "%s: Could not open file ''%s''.\n"
+msgstr "%s: No pudo abrirse el archivo ''%s''.\n"
+
+#, c-format
+msgid "%s: Could not rewind the file %s.\n"
+msgstr "%s: No se pudo rebobinar el archivo %s.\n"
+
+#, c-format
+msgid "%s: Invalid file identifier.\n"
+msgstr "%s: Identificador de archivo inválido.\n"
+
+#, c-format
+msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
+msgstr ""
+"%s: Mlists del tipo %s no pueden ser almacenadas en archivos binarios de "
+"Matlab.\n"
+
+#, c-format
+msgid "%s: N-D arrays of chars not implemented.\n"
+msgstr "%s: arreglos N-D de caracteres aun no fueron implementados.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: No hay más memoria.\n"
+
+#, c-format
+msgid ""
+"%s: No variable read in file ''%s''. Check if your file is not corrupted.\n"
+msgstr ""
+"%s: No se pudo leer la variable del archivo ''%s''. Revise si su archivo no "
+"está corrupto.\n"
+
+#, c-format
+msgid "%s: Row array of strings saving is not implemented.\n"
+msgstr ""
+"%s: El almacenamiento de arreglos fila de strings aun no está implementado.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s."
+msgstr "%s: Esta función aun no está implementada: %s."
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single double expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el primer argumento de entrada: Se esperaba un "
+"único double.\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: Single string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el primer argumento de entrada: Se esperaba un "
+"único string.\n"
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el primer argumento de entrada: Se esperaba un "
+"único booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto para el segundo argumento de entrada: Se esperaba un "
+"único string.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba en un "
+"double.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"matriz de doubles.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"matriz de enteros.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"Mlist.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba un "
+"único string.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"matriz dispersa.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: String matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
+"matriz de strings.\n"
+
+#, c-format
+msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el cuarto argumento de entrada: Se esperaba un "
+"único booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
+"cadenas de caracteres.\n"
+
+#, c-format
+msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el segundo argumento de entrada: Se esperaba un "
+"único string.\n"
+
+#, c-format
+msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
+msgstr ""
+"%s: Tipo incorrecto para el segundo argumento de entrada: Se esperaba 'r' o "
+"'w'.\n"
+
+msgid "All inputs must be character strings."
+msgstr "Todas las entradas deben ser caracteres string."
+
+msgid "Attempt to write an unsupported data type to an ASCII file."
+msgstr ""
+"Se intentó escribir un tipo de datos no soportado en un archivo ASCII."
+
+msgid "Error while writing MI."
+msgstr "Error escribiendo MI."
+
+#, c-format
+msgid "Found Datatype=%d, expecting %d."
+msgstr "Tipo de dato encontrado=%d, espererado %d."
+
+msgid "Invalid level 5 binary MAT-file!."
+msgstr "¡Archivo MAT binario de nivel 5 inválido!"
+
+msgid "MATLAB 5.0 MAT-file, Generated by Scilab"
+msgstr "MATLAB 5.0 MAT-file, Generado por Scilab"
+
+#, c-format
+msgid "Name conflict: it is not possible to save variable with name %s."
+msgstr ""
+"Conflicto de nombrado: no es posible guardar la variable con el nombre %s."
+
+#, c-format
+msgid "Not implemented DataType: %d."
+msgstr "Tipo de datos no implementado: %d."
+
+#, c-format
+msgid "Option %s not implemented: IGNORED."
+msgstr "Opción %s no implementada: IGNORADA."
+
+msgid "Option -v7 added."
+msgstr "Se agregó la opción -v7"
+
+msgid "Scilab matio module not installed.\n"
+msgstr "El módulo matio de Scilab no está instalado.\n"
+
+msgid "Scilab string matrix saved as Matlab Cell."
+msgstr "Matriz de strings de Scilab guardada como una Celda de Matlab"
+
+msgid "Unknown Class."
+msgstr "Clase desconocida."
+
+#, c-format
+msgid "Unknown integer type: %s."
+msgstr "Tipo de entero desconocido: %s"
+
+#, c-format
+msgid "Variable %s can not be saved in ASCII file: IGNORED."
+msgstr ""
+"La variable %s no puede ser almacenada en un archivo ASCII: IGNORADA."
+
+#, c-format
+msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
+msgstr ""
+"La variable %s no puede ser almacenada en un archivo Mat de nivel 4: "
+"IGNORADA."
+
+#, c-format
+msgid "Version %d MAT-file not implemented."
+msgstr "La versión %d de los archivos MAT aun no está implementada."
+
+#, c-format
+msgid "savematfile: could not save variable named %s.\n"
+msgstr "savematfile: no se pudo guardar la variable llamada %s.\n"

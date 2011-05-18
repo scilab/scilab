@@ -1121,7 +1121,7 @@ int sciInitFontBackground( sciPointObj * pobj, int colorindex )
     {
     case SCI_TEXT:
       (sciGetFontContext(pobj))->backgroundcolor =
-	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));;
+	Max (0, Min (colorindex - 1, sciGetNumColors (pobj) + 1));
       break;
     case SCI_LEGEND:
       (sciGetFontContext(pobj))->backgroundcolor =

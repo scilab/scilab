@@ -68,12 +68,12 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
+              <xref linkend="Example_EXPRESSION">Example</xref>
             </para>
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Computationalfunction_EXPRESSION">Computational function</xref>
+              <xref linkend="Interfacingfunction_EXPRESSION">Interfacing function</xref>
             </para>
           </listitem>
           <listitem>
@@ -98,8 +98,7 @@
   <refsection id="Description_EXPRESSION">
     <title>Description</title>
     <para>
-The Expression block applies the specified Scilab functions to its input. 
-
+The Expression block applies the specified Scilab expressions to its input.
 </para>
   </refsection>
   <refsection id="Dialogbox_EXPRESSION">
@@ -107,7 +106,7 @@ The Expression block applies the specified Scilab functions to its input.
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/EXPRESSION_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/userdefinedfunctions_pal/en_US/EXPRESSION_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
@@ -195,6 +194,29 @@ The Expression block applies the specified Scilab functions to its input.
       </listitem>
     </itemizedlist>
   </refsection>
+  <refsection id="Example_EXPRESSION">
+    <title>Example</title>
+    <para>
+        The following example calculate an arbitrary expression with multiple different configuration or blocks.
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/EXPRESSION_en_US.xcos">
+          Open this example in Xcos
+        </link>
+      </para>
+    <para>
+      <latex>y=u(1) - u(2) - u(3)</latex>
+    </para>
+    <para/>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_diagram_en_US.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/userdefinedfunctions_pal/en_US/EXPRESSION_scope_en_US.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
   <refsection id="Interfacingfunction_EXPRESSION">
     <title>Interfacing function</title>
     <itemizedlist>
@@ -203,16 +225,9 @@ The Expression block applies the specified Scilab functions to its input.
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Computationalfunction_EXPRESSION">
-    <title>Computational function</title>
-    <itemizedlist>
-      <listitem>
-        <para> SCI/modules/scicos_blocks/src/c/evaluate_expr.c (Type 4)</para>
-      </listitem>
-    </itemizedlist>
-  </refsection>
   <refsection id="Authors_EXPRESSION">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>
+    <para><emphasis role="bold">Clément DAVID</emphasis> - DIGITEO</para>
   </refsection>
 </refentry>

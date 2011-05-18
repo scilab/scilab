@@ -20,8 +20,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>呼出し手順</title>
-    <synopsis>[Ro(,n,sval,rcnd)] = sorder(meth,alg,jobd,batch,conct,s,Y(,U,tol,
-printw,ldwork,Ri))</synopsis>
+    <synopsis>[Ro[,n,sval,rcnd]] = sorder(meth,alg,jobd,batch,conct,s,Y[,U,tol,printw,ldwork,Ri])</synopsis>
   </refsynopsisdiv>
   <refsection>
     <title>パラメータ</title>

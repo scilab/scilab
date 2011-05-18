@@ -121,7 +121,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));;
+        C2F(scirun)(COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
     }
     else
     {

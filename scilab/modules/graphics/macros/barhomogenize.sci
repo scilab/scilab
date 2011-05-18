@@ -11,7 +11,7 @@ function  barhomogenize(varargin)
 // barhomogenize(a,style,width)
 // This function homogenizes the style and the widh of all the bars contained in the axes handle a (default is the handle of the current axes)  
 // 
-// Intput : 
+// Input : 
 // a :  the handle of the axe containing the bares (default: a=gca())
 // style : a string, 'grouped' or 'stacked' (default: style='grouped')
 // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8).

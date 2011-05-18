@@ -79,7 +79,10 @@ public class EditFormatAction extends DefaultAction {
 	 */
 	private static final Color DEFAULT_FILLCOLOR = Color.WHITE;
 
-	private static final String HASH_IDENTIFIER = "#identifier";
+	/**
+	 * Prefix used to tag text node. 
+	 */
+	public static final String HASH_IDENTIFIER = "#identifier";
 	
 	/**
 	 * Default constructor

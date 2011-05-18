@@ -2,8 +2,15 @@
 
 <!--
  * 
- * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
  * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
  -->
 
 <refentry version="5.0-subset Scilab" xml:id="assert_checkfalse" xml:lang="en"
@@ -16,57 +23,71 @@
 
 
   <refnamediv>
-    <refname>assert_checkfalse</refname><refpurpose>Check that condition is false.</refpurpose>
+    <refname>assert_checkfalse</refname>
+    <refpurpose>Check that condition is false.</refpurpose>
   </refnamediv>
 
 
 
-<refsynopsisdiv>
-   <title>Calling Sequence</title>
-   <synopsis>
-   flag = assert_checkfalse ( condition )
-   flag = assert_checkfalse ( condition )
-   [flag,errmsg] = assert_checkfalse ( condition )
-   
-   </synopsis>
-</refsynopsisdiv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>
+      flag = assert_checkfalse ( condition )
+      flag = assert_checkfalse ( condition )
+      [flag,errmsg] = assert_checkfalse ( condition )
 
-<refsection>
-   <title>Parameters</title>
-   <variablelist>
-   <varlistentry><term>condition:</term>
-      <listitem><para> a matrix of booleans</para></listitem></varlistentry>
-   <varlistentry><term>flag :</term>
-      <listitem><para> a 1x1 matrix of boolean, %t if condition is false, %f if not</para></listitem></varlistentry>
-   <varlistentry><term>errmsg :</term>
-      <listitem><para> a 1x1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para></listitem></varlistentry>
-   </variablelist>
-</refsection>
+    </synopsis>
+  </refsynopsisdiv>
 
-<refsection>
-   <title>Description</title>
-   <para>
-Performs silently if all entries in <literal>condition</literal> are false.
-   </para>
-   <para>
-Generates an error if any entry in <literal>condition</literal> 
-is true.
-Generates an error if <literal>condition</literal> is not a boolean.
-   </para>
-   <para>
-If any entry in condition is true,
-<itemizedlist>
-<listitem>if the errmsg output variable is not used, an error is generated,</listitem>
-<listitem>if the errmsg output variable is used, no error is generated.</listitem>
-</itemizedlist>
-   </para>
-   <para>
-</para>
-</refsection>
+  <refsection>
+    <title>Parameters</title>
+    <variablelist>
+      <varlistentry>
+        <term>condition:</term>
+        <listitem>
+          <para> a matrix of booleans</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>flag :</term>
+        <listitem>
+          <para> a 1-by-1 matrix of boolean, %t if condition is false, %f if not</para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>errmsg :</term>
+        <listitem>
+          <para> a 1-by-1 matrix of strings, the error message. If flag==%t, then errormsg=="". If flag==%f, then errmsg contains the error message.</para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
 
-<refsection>
-   <title>Examples</title>
-   <programlisting role="example"><![CDATA[
+  <refsection>
+    <title>Description</title>
+    <para>
+      Performs silently if all entries in <literal>condition</literal> are false.
+    </para>
+    <para>
+      Generates an error if any entry in <literal>condition</literal>
+      is true.
+      Generates an error if <literal>condition</literal> is not a boolean.
+    </para>
+    <para>
+      If any entry in condition is true,
+      <itemizedlist>
+        <listitem><para>if the errmsg output variable is not used, an error is generated,</para></listitem>
+        <listitem><para>if the errmsg output variable is used, no error is generated.</para></listitem>
+      </itemizedlist>
+    </para>
+    <para>
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+    <programlisting role="example">
+      <![CDATA[
 // Tests which pass
 assert_checkfalse ( %f );
 flag = assert_checkfalse ( %f )
@@ -82,13 +103,14 @@ flag = assert_checkfalse ( [%t %f] )
 // Wrong calls
 assert_checkfalse ( "a" )
 
-   ]]></programlisting>
-</refsection>
+   ]]>
+    </programlisting>
+  </refsection>
 
-<refsection>
-   <title>Authors</title>
-   <simplelist type="vert">
-   <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
-   </simplelist>
-</refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2009 - 2011 - DIGITEO - Michael Baudin</member>
+    </simplelist>
+  </refsection>
 </refentry>

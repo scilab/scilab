@@ -591,19 +591,19 @@
         <Array as="equations" scilabClass="ScilabList"/>
         <mxGeometry as="geometry" height="20.0" width="60.0" x="290.05358" y="90.29977000000008"/>
       </TextBlock>
-      <SplitBlock id="4" parent="-78e833a:124b4287958:-765e" simulationFunctionType="DEFAULT" style="SPLIT_f;flip=false;mirror=false">
+      <SplitBlock id="-78e833a:124b4287958:-765e4" parent="-78e833a:124b4287958:-765e" simulationFunctionType="DEFAULT" style="SPLIT_f;flip=false;mirror=false">
         <mxGeometry as="geometry" height="7.0" width="7.0" x="376.5" y="136.5"/>
       </SplitBlock>
-      <ImplicitOutputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f75" ordering="1" parent="4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
+      <ImplicitOutputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f75" ordering="1" parent="-78e833a:124b4287958:-765e4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-2.25"/>
       </ImplicitOutputPort>
-      <ImplicitOutputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f74" ordering="2" parent="4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
+      <ImplicitOutputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f74" ordering="2" parent="-78e833a:124b4287958:-765e4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-0.5"/>
       </ImplicitOutputPort>
-      <ImplicitOutputPort dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f73" ordering="3" parent="4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
+      <ImplicitOutputPort dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f73" ordering="3" parent="-78e833a:124b4287958:-765e4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="1.25"/>
       </ImplicitOutputPort>
-      <ImplicitInputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f76" ordering="1" parent="4" style="ImplicitInputPort;flip=false;mirror=false" visible="0">
+      <ImplicitInputPort connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f76" ordering="1" parent="-78e833a:124b4287958:-765e4" style="ImplicitInputPort;flip=false;mirror=false" visible="0">
         <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="-0.5"/>
       </ImplicitInputPort>
       <ImplicitLink id="-65aa365d:126fae9635e:-7f72">
@@ -612,14 +612,14 @@
         <ImplicitInputPort as="source" connectable="0" connectedLinkId="22" dataLines="1" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7fcd" ordering="1" parent="-78e833a:124b4287958:-769a" style="mirror=false;ImplicitInputPort;rotation=0;flip=false;align=center;labelPosition=right;verticalLabelPosition=middle;spacingLeft=5">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="16.0"/>
         </ImplicitInputPort>
-        <ImplicitInputPort as="target" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f76" ordering="1" parent="4" style="ImplicitInputPort;flip=false;mirror=false" visible="0">
+        <ImplicitInputPort as="target" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f76" ordering="1" parent="-78e833a:124b4287958:-765e4" style="ImplicitInputPort;flip=false;mirror=false" visible="0">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="-8.0" y="-0.5"/>
         </ImplicitInputPort>
       </ImplicitLink>
       <ImplicitLink id="-65aa365d:126fae9635e:-7f71">
         <mxGeometry as="geometry" height="80.0" width="80.0" y="-10.0"/>
         <mxCell as="parent" id="-78e833a:124b4287958:-765e" parent="-78e833a:124b4287958:-765d"/>
-        <ImplicitOutputPort as="source" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f75" ordering="1" parent="4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
+        <ImplicitOutputPort as="source" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f75" ordering="1" parent="-78e833a:124b4287958:-765e4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-2.25"/>
         </ImplicitOutputPort>
         <ImplicitInputPort as="target" connectable="0" connectedLinkId="25" dataLines="1" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7fc0" ordering="1" parent="-78e833a:124b4287958:-768e" style="mirror=false;ImplicitInputPort;rotation=180;flip=false">
@@ -633,7 +633,7 @@
           </Array>
         </mxGeometry>
         <mxCell as="parent" id="-78e833a:124b4287958:-765e" parent="-78e833a:124b4287958:-765d"/>
-        <ImplicitOutputPort as="source" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f74" ordering="2" parent="4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
+        <ImplicitOutputPort as="source" connectable="0" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7f74" ordering="2" parent="-78e833a:124b4287958:-765e4" style="ImplicitOutputPort;flip=false;mirror=false" visible="0">
           <mxGeometry as="geometry" height="8.0" width="8.0" x="7.0" y="-0.5"/>
         </ImplicitOutputPort>
         <ImplicitInputPort as="target" connectable="0" connectedLinkId="24" dataLines="1" dataType="REAL_MATRIX" id="-65aa365d:126fae9635e:-7fd7" ordering="1" parent="-78e833a:124b4287958:-76a4" style="mirror=false;ImplicitInputPort;rotation=0;flip=false;align=center;labelPosition=right;verticalLabelPosition=middle;spacingLeft=5">

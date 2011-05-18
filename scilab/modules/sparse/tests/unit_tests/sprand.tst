@@ -1,47 +1,12 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
 
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
+
 
 // Check default "typ" = "uniform"
 rand("seed",0);
@@ -50,16 +15,16 @@ nrows = 1000;
 ncols = 2000;
 density = 1/100;
 s=sprand(nrows,ncols,density);
-assert_equal ( size(s) , [nrows,ncols] );
+assert_checkequal ( size(s) , [nrows,ncols] );
 nnzs=nnz(s);
 [ij,values]=spget(s);
-assert_equal ( min(values) >= 0 , %t );
-assert_equal ( max(values) <= 1 , %t );
-assert_close ( mean(values) , 0.5 , 1.e-2 );
+assert_checkequal ( min(values) >= 0 , %t );
+assert_checkequal ( max(values) <= 1 , %t );
+assert_checkalmostequal ( mean(values) , 0.5 , 1.e-2 );
 
 // Get empty matrix
 s=sprand(0,0,0.01);
-assert_equal ( s , [] );
+assert_checkequal ( s , [] );
 
 // Test the scientific part
 // In the following script, we check that the entries of the matrix have the expected distribution. 
@@ -73,14 +38,14 @@ nrows = 1000;
 ncols = 2000;
 density = 1/100;
 s=sprand(nrows,ncols,density,typ);
-assert_equal ( size(s) , [nrows,ncols] );
+assert_checkequal ( size(s) , [nrows,ncols] );
 nnzs=nnz(s);
 [ij,values]=spget(s);
-assert_equal ( nnzs > 10000 , %t );
-assert_equal ( min(values) < -3 , %t );
-assert_close ( mean(values) , 0 , 1.e-2 );
-assert_equal ( max(values) > 3 , %t );
-assert_close ( variance(values) , 1 , 1.e-3 );
+assert_checkequal ( nnzs > 10000 , %t );
+assert_checkequal ( min(values) < -3 , %t );
+assert_checkalmostequal ( mean(values) , 0 , [] , 1.e-2 );
+assert_checkequal ( max(values) > 3 , %t );
+assert_checkalmostequal ( variance(values) , 1 , 1.e-3 );
 
 rand("seed",0);
 grand("setsd",0);
@@ -89,14 +54,14 @@ nrows = 1000;
 ncols = 2000;
 density = 1/100;
 s=sprand(nrows,ncols,density,typ);
-assert_equal ( size(s) , [nrows,ncols] );
+assert_checkequal ( size(s) , [nrows,ncols] );
 nnzs=nnz(s);
 [ij,values]=spget(s);
-assert_equal ( nnzs > 10000 , %t );
-assert_close ( min(values) , 0 , 1.e-2 );
-assert_close ( mean(values) , 0.5 , 1.e-2 );
-assert_close ( max(values) , 1 , 1.e-2 );
-assert_close ( variance(values) , 1/12 , 1.e-2 );
+assert_checkequal ( nnzs > 10000 , %t );
+assert_checkalmostequal ( min(values) , 0 , [] , 1.e-2 );
+assert_checkalmostequal ( mean(values) , 0.5 , 1.e-2 );
+assert_checkalmostequal ( max(values) , 1 , 1.e-2 );
+assert_checkalmostequal ( variance(values) , 1/12 , 1.e-2 );
 
 // In the following script, we check that the entry indices, 
 // which are also chosen at random, have the correct distribution. 
@@ -127,9 +92,9 @@ end
 // we can compute elementary statistics to check that the algorithm performed well.
 
 // The average number should be close to the expectation.
-assert_close ( density*kmax , mean(C) , 1.e-2 );
+assert_checkalmostequal ( density*kmax , mean(C) , 1.e-2 );
 // The density should be close to expected density
-assert_close ( density , mean(R) , 1.e-2 );
+assert_checkalmostequal ( density , mean(R) , 1.e-2 );
 
 // More deeper tests should involve the particular distribution of 
 // C, which follows a binomial law.

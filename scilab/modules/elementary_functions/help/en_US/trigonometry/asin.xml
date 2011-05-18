@@ -24,7 +24,7 @@
   <refnamediv>
     <refname>asin</refname>
 
-    <refpurpose>sine inverse</refpurpose>
+    <refpurpose>sine inverse (radians)</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>

@@ -104,7 +104,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
-jintfileExportjintjstringjintjfloatjintID=NULL; 
+jstringfileExportjintjstringjintjfloatjintID=NULL; 
 
 
 }
@@ -127,7 +127,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
 throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
-        jintfileExportjintjstringjintjfloatjintID=NULL; 
+        jstringfileExportjintjstringjintjfloatjintID=NULL; 
 
 
 }
@@ -147,14 +147,14 @@ throw GiwsException::JniMonitorException(getCurrentEnv(), "FileExporter");
 }
 // Method(s)
 
-int FileExporter::fileExport (JavaVM * jvm_, int figureIndex, char * fileName, int fileType, float jpegCompressionQuality, int orientation){
+char * FileExporter::fileExport (JavaVM * jvm_, int figureIndex, char * fileName, int fileType, float jpegCompressionQuality, int orientation){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
 jclass cls = curEnv->FindClass( className().c_str() );
 
-jmethodID jintfileExportjintjstringjintjfloatjintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;IFI)I" ) ;
-if (jintfileExportjintjstringjintjfloatjintID == NULL) {
+jmethodID jstringfileExportjintjstringjintjfloatjintID = curEnv->GetStaticMethodID(cls, "fileExport", "(ILjava/lang/String;IFI)Ljava/lang/String;" ) ;
+if (jstringfileExportjintjstringjintjfloatjintID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "fileExport");
 }
 
@@ -165,13 +165,23 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                        jint res =  static_cast<jint>( curEnv->CallStaticIntMethod(cls, jintfileExportjintjstringjintjfloatjintID ,figureIndex, fileName_, fileType, jpegCompressionQuality, orientation));
-                        curEnv->DeleteLocalRef(fileName_);
-curEnv->DeleteLocalRef(cls);
-if (curEnv->ExceptionCheck()) {
+                        jstring res =  static_cast<jstring>( curEnv->CallStaticObjectMethod(cls, jstringfileExportjintjstringjintjfloatjintID ,figureIndex, fileName_, fileType, jpegCompressionQuality, orientation));
+                        if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
-return res;
+
+const char *tempString = curEnv->GetStringUTFChars(res, 0);
+char * myStringBuffer = new char[strlen(tempString) + 1];
+strcpy(myStringBuffer, tempString);
+curEnv->ReleaseStringUTFChars(res, tempString);
+curEnv->DeleteLocalRef(res);
+curEnv->DeleteLocalRef(fileName_);
+curEnv->DeleteLocalRef(cls);
+if (curEnv->ExceptionCheck()) {
+delete[] myStringBuffer;
+                                throw GiwsException::JniCallMethodException(curEnv);
+}
+return myStringBuffer;
 
 }
 

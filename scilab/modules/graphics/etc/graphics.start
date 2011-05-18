@@ -19,7 +19,6 @@ end
 // =============================================================================
 if getos() == "Windows" then
   exec(SCI+"/modules/graphics/etc/nvidia_bug_7575.sce", -1);
-  exec(SCI+"/modules/graphics/etc/intel_bug_7526.sce", -1);
 end
 
 // Add demo

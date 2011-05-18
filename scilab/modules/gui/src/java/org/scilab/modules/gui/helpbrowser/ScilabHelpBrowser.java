@@ -16,21 +16,19 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
-import java.awt.event.KeyEvent;
 import java.awt.Toolkit;
-import java.io.File;
+import java.awt.event.KeyEvent;
 
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.localization.Messages;
 import org.scilab.modules.gui.bridge.ScilabBridge;
-import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.dockable.ScilabDockable;
 import org.scilab.modules.gui.events.callback.ScilabCallBack;
-import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
@@ -42,6 +40,7 @@ import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.gui.window.ScilabWindow;
 import org.scilab.modules.gui.window.Window;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Class for Scilab Help Browser in GUIs

@@ -113,8 +113,10 @@ SCICOS_BLOCKS_IMPEXP void cscopxy_draw(scicos_block * block, ScopeMemory ** pSco
       scoAddTitlesScope(*pScopeMemory,label,"x","y",NULL);
     }
 
-	/* use only single buffering to be sure to draw on the screen */
-	sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    /* use only single buffering to be sure to draw on the screen */
+    if (scoGetPointerScopeWindow(*pScopeMemory) != NULL) {
+        sciSetJavaUseSingleBuffer(scoGetPointerScopeWindow(*pScopeMemory), TRUE);
+    }
 }
 /*--------------------------------------------------------------------------*/ 
 /** \fn void cscopxy(scicos_block * block, int flag)
@@ -192,8 +194,11 @@ SCICOS_BLOCKS_IMPEXP void cscopxy(scicos_block * block, int flag)
 				/*pFIGURE_FEATURE(Pinceau)->user_data = NULL;
 				pFIGURE_FEATURE(Pinceau)->size_of_user_data = 0;*/
 				clearUserData(figure);
+				
 				/* restore double buffering */
-				sciSetJavaUseSingleBuffer(figure, FALSE);
+				if (figure) {
+                    sciSetJavaUseSingleBuffer(figure, FALSE);
+                }
 			}
 	}
 	scoFreeScopeMemory(block->work, &pScopeMemory);

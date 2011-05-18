@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) DIGITEO 2008-2010 - Yann COLLETTE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="set_param" xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+  <refnamediv>
+    <refname>set_param</refname>
+
+    <refpurpose>パラメータリストのパラメータの値を設定する</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+
+    <synopsis>[param_list,err] = set_param(list_name,param_name,param_value)</synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>引数</title>
+
+    <variablelist>
+      <varlistentry>
+        <term>list_name</term>
+
+        <listitem>
+          <para>パラメータのリスト. このリストはinit_paramをコールすることにより
+	  初期化されている必要があります.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param_name</term>
+
+        <listitem>
+          <para>文字列. 値を指定するパラメータリストのパラメータ.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param_value</term>
+
+        <listitem>
+          <para>パラメータparam_nameの値.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>param_list</term>
+
+        <listitem>
+          <para>更新後のパラメータリスト.</para>
+        </listitem>
+      </varlistentry>
+
+      <varlistentry>
+        <term>err</term>
+
+        <listitem>
+         <para>エラーフラグで,list_nameがplist型でない
+	  (このリストはinit_paramをコールすることにより初期化されていない)
+	  場合 %T に設定されます.
+	 </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+        <para>この関数は,既に存在するパラメータの値を設定します.
+	パラメータ存在しない場合,errが%Tに設定されます.
+	エラー発生時に出力パラメータerrが存在しない場合,
+	メッセージがコンソールに出力されます.
+	</para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+
+    <programlisting role="example"><![CDATA[ 
+mylist = init_param();
+mylist = add_param(mylist,'minbound',[0 0 0]);
+[mylist,err] = set_param(mylist,'minbound',[1 1 1]); disp(err);
+[mylist,err] = set_param(mylist,'maxbound',[1 1 1]); disp(err);
+ ]]></programlisting>
+  </refsection>
+
+  <refsection role="see also">
+<title>参照</title>
+
+    <simplelist type="inline">
+      <member><link linkend="init_param">init_param</link></member>
+
+      <member><link linkend="add_param">add_param</link></member>
+
+      <member><link linkend="get_param">get_param</link></member>
+
+      <member><link linkend="remove_param">remove_param</link></member>
+
+      <member><link linkend="is_param">is_param</link></member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+
+    <simplelist type="vert">
+      <member>Yann COLLETTE</member>
+    </simplelist>
+  </refsection>
+</refentry>

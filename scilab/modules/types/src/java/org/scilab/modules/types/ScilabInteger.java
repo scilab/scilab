@@ -26,6 +26,8 @@ import java.util.Arrays;
  */
 public class ScilabInteger implements ScilabType {
 
+	private static final long serialVersionUID = 1759633801332932450L;
+
 	private long[][] longData = null;
 	private short[][] shortData = null;
 	private int[][] intData = null;

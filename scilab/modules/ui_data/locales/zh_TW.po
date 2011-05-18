@@ -1,0 +1,170 @@
+# Chinese (Traditional) translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-03 05:28+0000\n"
+"Last-Translator: MouetteYang <Unknown>\n"
+"Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Java memory problem, cannot edit %s\n"
+msgstr "%s Java程式的記憶體有問題，無法編輯 %s\n"
+
+#, c-format
+msgid "%s: Type not handle yet"
+msgstr ""
+
+#, c-format
+msgid "%s: Undefined variable %s.\n"
+msgstr "%s: %s 變數未被定義.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
+
+#, c-format
+msgid "%s: ans cannot be edited.\n"
+msgstr ""
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&About Scilab..."
+msgstr "有關 Scilab( &A)"
+
+msgid "&Close"
+msgstr "&關閉"
+
+msgid "&File"
+msgstr ""
+
+msgid "Boolean"
+msgstr ""
+
+msgid "Bytes"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Compiled function"
+msgstr ""
+
+msgid "Copy"
+msgstr ""
+
+msgid "Cut"
+msgstr ""
+
+msgid "Double"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Filter"
+msgstr ""
+
+msgid "Function library"
+msgstr ""
+
+msgid "Global variables can not be edited."
+msgstr ""
+
+msgid "Graphic handles"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "Implicit polynomial"
+msgstr ""
+
+msgid "Integer"
+msgstr ""
+
+msgid "Intrinsic function"
+msgstr ""
+
+msgid "List"
+msgstr ""
+
+msgid "Matlab sparse"
+msgstr ""
+
+msgid "Mlist"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+msgid "Paste"
+msgstr ""
+
+msgid "Pointer"
+msgstr ""
+
+msgid "Polynomial"
+msgstr ""
+
+msgid "Redo"
+msgstr ""
+
+msgid "Refresh the variable "
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+
+msgid "Sparse"
+msgstr ""
+
+msgid "Sparse boolean"
+msgstr ""
+
+msgid "String"
+msgstr ""
+
+msgid "Tlist"
+msgstr ""
+
+msgid "Type"
+msgstr ""
+
+msgid "Un-compiled function"
+msgstr ""
+
+msgid "Undo"
+msgstr ""
+
+msgid "Variable Browser"
+msgstr ""
+
+msgid "Variable Editor"
+msgstr ""
+
+msgid "Visibility"
+msgstr ""

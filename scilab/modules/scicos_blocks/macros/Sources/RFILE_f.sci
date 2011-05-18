@@ -84,7 +84,7 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
 
             end //user cancel modification
 
-            fname1 = stripblanks(fname1)
+            fname1 = pathconvert(stripblanks(fname1), %f, %t)
             frmt1 = stripblanks(frmt1)
             //out=int(out)
             //nout=out

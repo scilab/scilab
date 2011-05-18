@@ -38,6 +38,8 @@ import org.scilab.modules.scinotes.utils.HTMLCodeConverter;
  */
 public class CopyAsHTMLAction extends DefaultAction {
 
+    private static final long serialVersionUID = 5363720520521282071L;
+
     protected boolean printLineNumber;
 
     /**
@@ -152,6 +154,8 @@ public class CopyAsHTMLAction extends DefaultAction {
      * Inner class to handle the HTML transfers
      */
     public static class HTMLTransferHandler extends TransferHandler {
+
+        private static final long serialVersionUID = -5089826958820112637L;
 
         /**
          * Default constructor

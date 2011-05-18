@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -15,14 +15,6 @@
 // The karmarkar function may produce a division-by-zero error.
 //
 
-function flag = MY_assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 
 Aeq = [
@@ -34,6 +26,6 @@ c = [-1;-1;0];
 x0 = [1;1;0];
 xopt=karmarkar(Aeq,beq,c,x0);
 xexpected = [1;1;0];
-MY_assert_equal ( xopt , xexpected );
+assert_checkequal ( xopt , xexpected );
 
 

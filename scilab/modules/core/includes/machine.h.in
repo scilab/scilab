@@ -57,6 +57,9 @@
 /* Whether clock_gettime is available */
 #undef HAVE_CLOCK_GETTIME
 
+/* HAVE_CPLUS_DEMANGLE */
+#undef HAVE_CPLUS_DEMANGLE
+
 /* Define to 1 if you have the <curses.h> header file. */
 #undef HAVE_CURSES_H
 
@@ -118,6 +121,9 @@
 
 /* Define to 1 if you have the `getwd' function. */
 #undef HAVE_GETWD
+
+/* HAVE_GLIBC_BACKTRACE */
+#undef HAVE_GLIBC_BACKTRACE
 
 /* Define if you have the iconv() function and it works. */
 #undef HAVE_ICONV
@@ -284,6 +290,9 @@
 
 /* Define to 1 if you have the `strrchr' function. */
 #undef HAVE_STRRCHR
+
+/* Define to 1 if you have the `strsignal' function. */
+#undef HAVE_STRSIGNAL
 
 /* Define to 1 if you have the `strstr' function. */
 #undef HAVE_STRSTR

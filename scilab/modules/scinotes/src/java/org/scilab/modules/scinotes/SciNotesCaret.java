@@ -34,11 +34,13 @@ import org.scilab.modules.commons.gui.ScilabCaret;
  */
 public class SciNotesCaret extends ScilabCaret {
 
+    private static final long serialVersionUID = 2406847391415867003L;
+
     private ScilabEditorPane pane;
     private SciNotesNavigationFilter filter;
     private NavigationFilter saveFilter;
 
-    private List<Object> selections = new ArrayList();
+    private List<Object> selections = new ArrayList<Object>();
     private int[][] positions;
     private boolean protect;
 

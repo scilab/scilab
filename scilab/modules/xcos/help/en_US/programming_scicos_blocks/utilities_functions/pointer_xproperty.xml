@@ -28,7 +28,7 @@
   </refnamediv>
   <refsynopsisdiv>
     <title>Calling Sequence</title>
-    <synopsis>[xprop]=pointer_xproperty</synopsis>
+    <synopsis>[xprop] = pointer_xproperty()</synopsis>
   </refsynopsisdiv>
   <refsection id="Module_pointer_xproperty">
     <title>Module</title>

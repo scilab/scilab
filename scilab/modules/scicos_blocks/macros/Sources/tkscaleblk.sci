@@ -62,11 +62,11 @@ function block=tkscaleblk(block,flag)
       "Position", [0 0 20 200], "SliderStep", [block.rpar(3) 2*block.rpar(3)]);
     
     // labels
-    labels = string([bounds(1)                  ;..
-                     mean([bounds(1) initial])  ;..
-                     initial                    ;..
+    labels = string([bounds(2)                  ;..
                      mean([bounds(2) initial])  ;..
-                     bounds(2)]);
+                     initial                    ;..
+                     mean([bounds(1) initial])  ;..
+                     bounds(1)]);
     labels = strcat(labels, "<br /><br /><br />");
     uicontrol(f, "Style", "text", "String", labels(1), ..
               "Position", [30  0 50 200]);

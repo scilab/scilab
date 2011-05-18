@@ -14,14 +14,15 @@
 package org.scilab.modules.console;
 
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Point;
 import java.util.List;
 
-import javax.swing.text.JTextComponent;
 import javax.swing.JScrollPane;
+import javax.swing.text.JTextComponent;
 
 import com.artenum.rosetta.interfaces.core.CompletionItem;
+
+import org.scilab.modules.completion.AbstractSciCompletionWindow;
 
 /**
  * Scilab completion window main class
@@ -96,8 +97,6 @@ public class SciCompletionWindow extends AbstractSciCompletionWindow {
 
                                 int yCarPos = ((SciInputCommandView) sciConsole.getConfiguration().getInputCommandView()).getCaretLocation().y;
                                 int newHeight =  yCarPos +  window.getHeight();
-
-                                Dimension newDim = new Dimension(newWidth, newHeight);
 
                                 SciInputCommandView sicv = (SciInputCommandView) getTextComponent();
                                 sicv.setPreferredWidth(newWidth);

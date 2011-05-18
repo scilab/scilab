@@ -1,7 +1,7 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010 - 2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -28,27 +28,31 @@ if ( sin(0) <> 0 ) then pause, end
 if ( sin(-0) <> -0 ) then pause, end
 
 
-// The following tests check cos for a small number of x in the range [0,pi].
+// The following tests check sin for a small number of x in the range [0,pi].
 // The variable x contains correctly rounded values of the exact value of x. 
 // The variable v contains correctly rounded values of the exact value of cos 
 // on the exact double representing the various values of x.
 // For example, the floating point number which is closest to %pi/2 is 
-// 7074237752028440 * 2^(0-53+1), which can be written with the decimal string 
-// 1.570796326794896558D+00. 
-// We have cos(7074237752028440 * 2^(0-53+1)) = 6.123233995736765886...*10^-17
+// 7074237752028440 * 2^-51, which can be written with the decimal string 
+// 3.141592653589793116D+00. 
+// We have sin(7074237752028440 * 2^-51) = 1.224646799147353177...*10^-16
 // exactly.
+//
 // If Scilab had support for hex, we would have used it. 
 // The exact values are computed in Wolfram Alpha.
 // We use more that 17 digits, which, if the decimal to binary conversion is 
 // correct, and if the rounding is round-to-nearest, must exactly produce 
 // values in this table.
+//
 // We avoid using values such as 2*%pi/3, which introduce one multiplication
 // and one addition (the test fail is the multiplication or division 
 // is not accurate, while the current test is not sensitive to this, i.e.
-// we test "cos", not "*"). 
+// we test "sin", not "*"). 
+//
 // Failing this test may be caused by:
 // * a bad decimal to binary conversion,
-// * a wrong implementation of cos.
+// * a wrong implementation of sin.
+//
 x = [
   5.235987755982988157D-01 // %pi/6 
   7.853981633974482790D-01 // %pi/4
@@ -97,7 +101,7 @@ if ( or(rtol>ulptol) ) then pause, end
 //
 // Check positive and negative normal numbers.
 x = [2^(-1022:-26) -2^(-1022:-26)];
-// Check that the values are close to 1.
+// Check that the values are close to x.
 // Our tolerance is : get the exact floating point number, 
 // or its neighbour.
 S = sin(x);
@@ -108,7 +112,7 @@ if ( or(rtol>ulptol) ) then pause, end
 // No matter how bad our library is, we must have abs(sin(x))<= 1.
 // If this test fails, the math library is to be absolutely rejected.
 if ( or(abs(S)>1) ) then pause, end
-// Compute the number of floats for which sin(x)<>1.
+// Compute the number of floats for which sin(x)<>x.
 // An excellent library should produce s=0.
 // This failure happens for x=2^n and n usually close to -27.
 notexact = sum(S<>x);

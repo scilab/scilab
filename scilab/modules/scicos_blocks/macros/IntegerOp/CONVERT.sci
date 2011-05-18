@@ -50,15 +50,15 @@ case 'set' then
     if ot==2 then ot=1;end
 
     if (np ~= 0 & np ~= 1 & np ~= 2) then
-        block_parameter_error(msprintf(gettext("Wrong value for ''Do on Overflow'' parameter: %d."), np), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Do on Overflow"), np), ..
           msprintf(gettext("Must be in the interval %s."), "[0, 2]"));
         ok=%f;
     elseif (it > 8 | it < 1) then
-        block_parameter_error(msprintf(gettext("Wrong value for ''Input Type'' parameter: %d."), it), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Input Type"), it), ..
         msprintf(gettext("Must be in the interval %s."), "[1, 8]"));
       ok=%f;
     elseif (ot > 8 | ot < 1) then
-        block_parameter_error(msprintf(gettext("Wrong value for ''Output Type'' parameter: %d."), ot), ..
+        block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Output Type"), ot), ..
         msprintf(gettext("Must be in the interval %s."), "[1, 8]"));
       ok=%f;
     end

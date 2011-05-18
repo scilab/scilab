@@ -602,7 +602,7 @@ class BlockModelElement extends BlockPartsElement {
 		field++; // equations
 		property = from.getEquations();
 		if (property == null) {
-			property = new ScilabDouble();
+			property = new ScilabList();
 		}
 		data.set(field, property);
 		

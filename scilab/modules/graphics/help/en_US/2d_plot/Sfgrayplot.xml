@@ -68,13 +68,13 @@ Sfgrayplot(x,y,f [,strf, rect, nax, zminmax, colminmax, mesh, colout])</synopsis
     plot is smoothed. The function <literal>fec</literal> is used for smoothing. The
     surface is plotted assuming that it is linear on a set of triangles built
     from the grid (here with n1=5, n2=3):</para>
-    <programlisting role = ""><![CDATA[ 
+    <screen><![CDATA[ 
 _____________
 | /| /| /| /|
 |/_|/_|/_|/_| 
 | /| /| /| /| 
 |/_|/_|/_|/_|
- ]]></programlisting>
+ ]]></screen>
     <para>The function <link linkend="colorbar">colorbar</link> may be used to see the color scale (but
        you must know (or compute) the min and max values).</para>
     <para>Instead of Sfgrayplot, you can use <link linkend="Sgrayplot">Sgrayplot</link> and this may be

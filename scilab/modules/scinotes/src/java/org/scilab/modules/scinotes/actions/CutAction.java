@@ -16,7 +16,6 @@ package org.scilab.modules.scinotes.actions;
 import java.awt.Toolkit;
 
 import javax.swing.KeyStroke;
-import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.pushbutton.PushButton;

@@ -5,6 +5,7 @@ loader.sce
 cleaner.sce
 loader_gateway.sce
 cleaner_gateway.sce
+jar/
 #
 # Generated files (Windows)
 #

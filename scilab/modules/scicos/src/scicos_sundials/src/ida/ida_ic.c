@@ -24,9 +24,6 @@
 /* SUNDIALS EXTENSION */
 #include "sundials_extension.h"
 
-/* Macro: loop */
-#define loop for(;;)
-
 /*
  * =================================================================
  * IDA Constants 
@@ -548,7 +545,7 @@ static int IDALineSrch(IDAMem IDA_mem, realtype *delnorm, realtype *fnorm)
 
   /* Loop on linesearch variable lambda. */
 
-  loop {
+  for(;;) {
 
     /* Get new (y,y') = (ynew,ypnew) and norm of new function value. */
     IDANewyyp(IDA_mem, lambda);

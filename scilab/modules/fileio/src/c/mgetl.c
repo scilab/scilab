@@ -23,7 +23,6 @@
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define LINE_MAX 4096
-#define UTF8BOM_BYTEORDER_MARK "﻿"
 #define CR '\r'
 #define LF '\n'
 #define EMPTYSTR ""
@@ -31,6 +30,8 @@
 static char *removeEOL(char *_inString);
 static char *convertAnsiToUtf(char *_inString);
 static char *getNextLine(FILE *stream);
+/*--------------------------------------------------------------------------*/
+static const unsigned char UTF8BOM_BYTEORDER_MARK[3] = {0xEF,0xBB,0xBF};
 /*--------------------------------------------------------------------------*/
 char **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 {

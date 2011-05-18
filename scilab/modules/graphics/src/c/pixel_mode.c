@@ -65,7 +65,7 @@ int getPixelModeIndex( const char * modeName )
   {
   case 'a' :
     {
-      /* check intput is longer than the shorter string */
+      /* check input is longer than the shorter string */
       if ( nameLen < 3 ) { break ; }
       switch( modeName[3] )
       {

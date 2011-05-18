@@ -36,6 +36,7 @@ public class SciDouble extends SciAbstractDataType implements java.io.Serializab
 	/**
 	 * Constructs a Scilab Double 
 	 * initialized to 0
+     * @deprecated
 	 * @param name  the name of the Scilab Variable 
 	 */ 
  public SciDouble(String name) {

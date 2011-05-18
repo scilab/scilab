@@ -22,7 +22,6 @@ Source: bin\{#MODULE_CALL_SCILAB}.dll; DestDir: {app}\bin; Components: {#COMPN_S
 Source: bin\{#MODULE_CALL_SCILAB}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#MODULE_CALL_SCILAB}\license.txt; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
-Source: modules\{#MODULE_CALL_SCILAB}\version.xml; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#MODULE_CALL_SCILAB}\includes\*.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#MODULE_CALL_SCILAB}\includes\{#MODULE_CALL_SCILAB}.h; DestDir: {app}\modules\{#MODULE_CALL_SCILAB}\includes; Components: {#COMPN_SCILAB}

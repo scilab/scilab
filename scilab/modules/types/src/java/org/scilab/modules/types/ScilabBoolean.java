@@ -27,6 +27,8 @@ import java.util.Arrays;
  */
 public class ScilabBoolean implements ScilabType {
 
+	private static final long serialVersionUID = 6511497080095473901L;
+
 	/* the boolean data */
 	private boolean[][] data;
 

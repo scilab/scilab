@@ -650,44 +650,86 @@ int sci_Rand(char *fname,unsigned long fname_len)
     }
     else if ( strcmp(cstk(ls),"unf")==0)
     {
-        double low, high;
+        double low = 0, high = 0;
         if ( Rhs != suite + 1)
-        { Scierror(999,_("Missing Low and High for Uniform Real law\n"));return 0;}
+        { 
+            Scierror(999,_("Missing Low and High for Uniform Real law\n"));
+            return 0;
+        }
+
         GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);return 0;}
+        if ( m1*n1 != 1) 
+        { 
+            Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);
+            return 0;
+        }
+
         GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);return 0;}
+        if ( m1*n1 != 1) 
+        { 
+            Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);
+            return 0;
+        }
+
         CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
-        low = *stk(la) ; high =  *stk(lb);
+        low = *stk(la);
+        high =  *stk(lb);
         if ( low > high )
         {
-            Scierror(999,_("Low > High\n"));
+            Scierror(999,_("%s: Wrong type for input argument. Low < High expected.\n"), fname);
             return 0;
         }
         for ( i=0 ; i < ResL*ResC ; i++)
+        {
             *stk(lr+i)= low + (high - low)* C2F(ranf)();
+        }
         LhsVar(1) = suite+2;
         PutLhsVar();
         return 0;
     }
-    else if ( strcmp(cstk(ls),"uin")==0)
+    else if ( strcmp(cstk(ls),"uin") == 0)
     {
-        double a, b;
+        double a = 0, b = 0;
         if ( Rhs != suite + 1)
-        { Scierror(999,_("Missing Low and High for Uniform int law\n"));return 0;}
+        { 
+            Scierror(999,_("Missing Low and High for Uniform int law\n"));
+            return 0;
+        }
+
         GetRhsVar(suite,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &la);
-        if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);return 0;}
+
+        if ( m1*n1 != 1) 
+        { 
+            Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);
+            return 0;
+        }
+
         GetRhsVar(suite+1,MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &lb);
-        if ( m1*n1 != 1) { Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);return 0;}
-        a = *stk(la) ; b = *stk(lb);
+        if ( m1*n1 != 1) 
+        { 
+            Scierror(999,_("%s: Wrong type for input argument: Scalar expected.\n"),fname);
+            return 0;
+        }
+        a = *stk(la);
+        b = *stk(lb);
+
+        if ( a > b )
+        {
+            Scierror(999,_("%s: Wrong type for input argument. Low < High expected.\n"), fname);
+            return 0;
+        }
+
         if ( a != floor(a) || b != floor(b) || (b-a+1) > 2147483561 )
         {
             Scierror(999,_("a and b must integers with (b-a+1) <= 2147483561"));
             return 0;
         }
+
         CreateVar(suite+2,MATRIX_OF_DOUBLE_DATATYPE,&ResL,&ResC,&lr);
         for ( i=0 ; i < ResL*ResC ; i++)
+        {
             *stk(lr+i)= C2F(ignuin)(stk(la),stk(lb));
+        }
         LhsVar(1) = suite+2;
         PutLhsVar();
         return 0;

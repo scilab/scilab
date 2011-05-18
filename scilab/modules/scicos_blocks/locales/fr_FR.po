@@ -1,0 +1,596 @@
+# French translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-27 09:34+0000\n"
+"Last-Translator: Michel Hua <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Édition"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Tools"
+msgstr "&Outils"
+
+msgid "&nbsp; Number of columns gives the number of outputs."
+msgstr "&nbsp; Le nombre de colonnes correspond au nombre de sorties."
+
+msgid "&nbsp; Number of rows must be a power of two."
+msgstr "&nbsp; Le nombre de lignes doit être une puissance de deux."
+
+msgid "&nbsp; Rows of the matrix are the output values"
+msgstr "&nbsp; Les valeurs de sorties sont les lignes de la matrice."
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;1 Upper Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;1 Moitié supérieure"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;2 Lower Half"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;2 Moitié inférieure"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 Plage de Bits à partir du MSB"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Plage de Bits jusqu'au LSB"
+
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 Plage de Bits"
+
+msgid ""
+"&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
+"[Start, End]"
+msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;Si la méthode choisie pour ''Bits à Extraire'' est "
+"''Plage de Bits'': [Début, Fin]"
+
+msgid "&nbsp;- Bits to Extract:"
+msgstr "&nbsp;- Bits à Extraire :"
+
+msgid "&nbsp;- Negative values are considered as int8(0)"
+msgstr "&nbsp;- Les valeurs négatives sont considérées comme des int8(0)"
+
+msgid "&nbsp;- Number of Bits or Index of bit : Index 0 is LSB"
+msgstr "&nbsp;- Nombre de Bits ou Index de bit : Index 0 vaut LSB"
+
+msgid "&nbsp;- Positive values are considered as int8(1)"
+msgstr "&nbsp;- Les valeurs positives sont considérées comme des int8(1)"
+
+#, c-format
+msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
+msgstr ""
+"''Valeur Initiale'' et ''Valeur Finale'' : tailles incompatibles : %d et %d."
+
+msgid "''Minimum'' must be less than ''Maximum''."
+msgstr "''Minimum'' doit être strictement inférieur à ''Maximum''."
+
+msgid "''Start'' must be less than ''End''."
+msgstr "''Start'' doit être strictement inférieur à ''End''."
+
+msgid "Accepts Inherited Events (0:No, 1:Yes)"
+msgstr "Accepte des Évènements Hérités (0:Non, 1:Oui)"
+
+msgid "Add"
+msgstr "Ajouter"
+
+msgid "Allocation problem in spline.\n"
+msgstr "Problème d'allocation dans spline.\n"
+
+msgid "Automatic"
+msgstr "Automatique"
+
+msgid "Bits Extraction"
+msgstr "Extraction de Bits"
+
+msgid "Bits to extract"
+msgstr "Bits à extraire"
+
+msgid "Boundary condition on a"
+msgstr "Condition aux bords sur un"
+
+msgid "Boundary condition on b"
+msgstr "Condition aux bords sur b"
+
+msgid "Cancel"
+msgstr "Annuler"
+
+msgid "Choice:"
+msgstr "Choix :"
+
+msgid "Clear a bit"
+msgstr "Effacer un bit"
+
+msgid "Combinatorial logic"
+msgstr "Logique combinatoire"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Essayez d'augmenter la longueur du tampon dans le bloc retard \n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+"Essayez d'augmenter la longueur du tampon dans le bloc retard variable\n"
+
+msgid "Constant discriminant"
+msgstr "Discriminant constant"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Impossible d'ouvrir /dev/audio !\n"
+
+msgid "Could not open the file!\n"
+msgstr "Impossible d'ouvrir le fichier !\n"
+
+msgid "Data Type"
+msgstr "Type de donnée"
+
+msgid "Data Type (3:int32, 4:int16, 5:int8, ...)"
+msgstr "Type de donnée (3:int32, 4:int16, 5:int8, ...)"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Les dimensions des données sont inconsistantes :\n"
+" Taille de la variable=[%d,%d] \n"
+"Taille de la sortie du bloc=[%d,%d].\n"
+
+msgid "Discriminant type:"
+msgstr "Type du discriminant :"
+
+msgid "Display"
+msgstr "Affichage"
+
+msgid "Display step value"
+msgstr "Afficher la valeur du pas"
+
+msgid "Do on Overflow"
+msgstr "Action lorsque Overflow"
+
+msgid "Do on Overflow (0:Nothing, 1:Saturate, 2:Error)"
+msgstr "Action lorsque Overflow (0:Ne rien faire, 1:Saturation, 2:Erreur)"
+
+msgid "Domain"
+msgstr "Domaine"
+
+#, c-format
+msgid "Error when opening file '%s'.\n"
+msgstr "Erreur à l'ouverture du fichier '%s'.\n"
+
+msgid "Event input port"
+msgstr "Port d'entrée de l'évènement"
+
+msgid "Event output port"
+msgstr "Port de sortie de l'évènement"
+
+msgid "Expression ="
+msgstr "Expression ="
+
+msgid "Final Value"
+msgstr "Valeur finale"
+
+msgid "Finite differences"
+msgstr "Différences finies"
+
+msgid "Finite elements"
+msgstr "Éléments finis"
+
+msgid "Frequency (rad/s)"
+msgstr "Fréquence (rad/s)"
+
+msgid "Implicit input port"
+msgstr "Port d'entrée implicite"
+
+msgid "Implicit output port"
+msgstr "Port de sortie implicite"
+
+msgid "Index of Bit (0 is least significant)"
+msgstr "Indice du Bit (0 de poids faible)"
+
+#, c-format
+msgid "Indexes must be in the interval %s."
+msgstr "Les indices doivent être dans l'intervalle %s."
+
+msgid "Initial State (zero or positive number)"
+msgstr "État initial (nombre positif ou nul)"
+
+msgid "Initial Value"
+msgstr "Valeur Initiale"
+
+msgid "Initial conditions"
+msgstr "Conditions initiales"
+
+msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Type d'entrée (1:double, 3:int32, 4:int16, 5:int8, ...)"
+
+msgid "Integer counter generator"
+msgstr "Générateur de compteur entier"
+
+msgid "Integer matrix multiplication"
+msgstr "Multiplication matricielle entière"
+
+msgid "Invalid variable type : error in hypermat scilab coding.\n"
+msgstr ""
+"Type de variable incorrect : erreur dans le code scilab d'hypermat.\n"
+
+msgid "Invalid variable type.\n"
+msgstr "Type de variable incorrect.\n"
+
+msgid "JK flip-flop"
+msgstr "Bascule JK"
+
+msgid "Magnitude"
+msgstr "Amplitude"
+
+msgid "Manual"
+msgstr "Manuel"
+
+msgid "Maximum"
+msgstr "Maximum"
+
+msgid "Measurement points"
+msgstr "Points de mesure"
+
+msgid "Minimum"
+msgstr "Minimum"
+
+msgid "Modulo counter (0 to N counter)"
+msgstr "Modulo counter (0 to N counter)"
+
+msgid "Must be a single value."
+msgstr "Un seul paramètre."
+
+#, c-format
+msgid "Must be in the interval %s."
+msgstr "Dans l'intervalle %s."
+
+msgid "Must be integer."
+msgstr "De type entier."
+
+msgid "Must have this form: [Start, End]."
+msgstr "Format à respecter : [Start, End]."
+
+msgid "Null or positive integer expected."
+msgstr "Valeur Null or entier positif non nul."
+
+msgid "Number of Bits or Index of Bit"
+msgstr "Nombre de Bits ou Indice du Bit"
+
+msgid "Number of Bits to Shift Left (Negative number to shift right)"
+msgstr ""
+"Nombre de Bits à Décaler à gauche (Signe Moins pour Décaler à droite)"
+
+msgid "Number of nodes:"
+msgstr "Nombre de nœuds :"
+
+msgid "Number of rows must be a power of two."
+msgstr "Le nombre de lignes doit être une puissance de deux."
+
+msgid "Ordering:"
+msgstr "Ordre :"
+
+msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Type de sortie (1:double, 3:int32, 4:int16, 5:int8, ...)"
+
+msgid "Output should be of Real type.\n"
+msgstr "La sortie doit être du type Réel.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "La sortie doit être du type Complexe.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "La sortie doit être du type int16.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "La sortie doit être du type int32.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "La sortie doit être du type int8.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "La sortie doit être du type uint16.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "La sortie doit être du type uint32.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "La sortie doit être du type uint8.\n"
+
+msgid "PDE Expression:"
+msgstr "Expression de l'EDP :"
+
+msgid "PDE Specification"
+msgstr "Conditions de l'EDP"
+
+msgid "PDE block"
+msgstr "Bloc EDP"
+
+msgid "Phase (rad)"
+msgstr "Phase (rad)"
+
+msgid "Port number"
+msgstr "Numéro de port"
+
+msgid "Ramp function"
+msgstr "Fonction rampe"
+
+msgid "Read error\n"
+msgstr "Erreur en lecture\n"
+
+msgid "Read error!\n"
+msgstr "Erreur en lecture !\n"
+
+msgid "Regular input port"
+msgstr "Port ordinaire d'entrée"
+
+msgid "Regular output port"
+msgstr "Port ordinaire de sortie"
+
+msgid "Remove"
+msgstr "Supprimer"
+
+msgid "Rule (1:Increment, 2:Decrement)"
+msgstr "Règle (1:Incrémenter, 2:Décrémenter)"
+
+msgid ""
+"SCOPE ERROR : Cannot use scoDrawScopeAmplitudeTimeStyle() with this type of "
+"object\n"
+msgstr ""
+"ERREUR SCOPE : Impossible d'utiliser scoDrawScopeAmplitudeTimeStyle() avec "
+"ce type d'objet\n"
+
+msgid ""
+"SCOPE ERROR : Cannot use scoRefreshDataBoundsX() with this type of object\n"
+msgstr ""
+"ERREUR SCOPE : Impossible d'utiliser scoRefreshDataBoundsX() avec ce type "
+"d'objet\n"
+
+msgid "SCOPE ERROR : Error during malloc - Check Memory\n"
+msgstr "ERREUR SCOPE : Erreur pendant malloc - Check Memory\n"
+
+msgid "SCOPE ERROR : Error in scoReallocLongDraw()"
+msgstr "ERREUR SCOPE : Erreur dans scoReallocLongDraw()"
+
+msgid "SCOPE ERROR : Unknown code error !\n"
+msgstr "ERREUR SCOPE : Code d'erreur inconnu !\n"
+
+msgid ""
+"SCOPE ERROR : sciDrawObj cannot be performed, pShortDraw is NULL for unknown "
+"reason !\n"
+" Maybe you have destroyed the windows or any parent of curves\n"
+msgstr ""
+"ERREUR SCOPE : sciDrawObj n'a pu être exécuté, pShortDraw vaut NULL pour une "
+"raison inconnue !\n"
+" Vous avez peut-être détruit la fenête ou un parent de curves\n"
+
+msgid ""
+"SCOPE ERROR : scoInitOfWindow incorrect value for dimension argument.\n"
+msgstr ""
+"ERREUR SCOPE : scoInitOfWindow, Valeur incorrecte pour la dimension de "
+"l'argument.\n"
+
+msgid "SR flip-flop"
+msgstr "Bascule RS"
+
+msgid "Same sizes expected."
+msgstr "Arguments de même taille."
+
+#, c-format
+msgid "Set %s block parameters"
+msgstr "Définir %s les paramètres du bloc"
+
+msgid "Set a bit"
+msgstr "Définir un bit"
+
+msgid "Shift Type (0:Arithmetic, 1:Circular)"
+msgstr "Type du Shift (0:Arithmétique, 1:Circulaire)"
+
+msgid "Shift/Rotates bits"
+msgstr "Décalage/Rotation de bits"
+
+msgid "Sine wave generator"
+msgstr "Générateur de sinusoïde"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "La taille du tampon ou de l'entrée a changée !\n"
+
+msgid "Slope"
+msgstr "Pente"
+
+msgid "Spatial discretization method"
+msgstr "Méthode de discrétisation spatiale"
+
+msgid "Start Time"
+msgstr "Instant de départ"
+
+msgid "Step Function"
+msgstr "Fonction de Heaviside"
+
+msgid "Step Time"
+msgstr "Pas de temps"
+
+msgid "Strictly positive integer expected."
+msgstr "Entier strictement positif en argument."
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "La variable '%s' n'existe pas.\n"
+
+msgid "The ''Initial Value'' must be 0 or 1 of type int8"
+msgstr "''Initial Value'' doit valoir 0 ou 1 et être du type int8"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Le vecteur Temps n'est pas du type double.\n"
+
+msgid "The measurement points"
+msgstr "Les points de mesure"
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "Le vecteur Temps est un vecteur de taille croissante.\n"
+
+#, c-format
+msgid ""
+"This Scope (block number : %d) has same number than another. It has been "
+"deactivated!\n"
+msgstr ""
+"Ce Scope (block number : %d) a le même numéro qu'un autre. Il a donc été "
+"désactivé !\n"
+
+msgid "Treat Bit Field as an Integer (0:No, 1:Yes)"
+msgstr "Treat Bit Field as an Integer (0:No, 1:Yes)"
+
+msgid "Trigger block must have discrete time input."
+msgstr "Le bloc Trigger a en entrée des valeurs discrètes."
+
+msgid "Truth Table (matrix of outputs)"
+msgstr "Table de Vérité (matrice de sorties)"
+
+msgid "Type conversion"
+msgstr "Conversion de type"
+
+msgid "Type:"
+msgstr "Type :"
+
+msgid "Upper Limit (positive number)"
+msgstr "Limite supérieure (Nombre strictement positif)"
+
+msgid "Validate"
+msgstr "Valider"
+
+msgid "Variable discriminant:"
+msgstr "Discriminant de variable :"
+
+#, c-format
+msgid "Write error in file '%s'.\n"
+msgstr "Erreur en écriture dans le fichier '%s'.\n"
+
+#, c-format
+msgid "Wrong size for ''Number of Bits or Index of Bit'' parameter: %s."
+msgstr ""
+"Taille incorrecte du paramètre ''Nombre de Bits\" ou \"Indice de Bit'' : %s."
+
+#, c-format
+msgid "Wrong size for ''Truth Table'' parameter: %d."
+msgstr "Taille incorrecte du paramètre ''Table de Vérité'' : %d."
+
+#, c-format
+msgid "Wrong type for ''Index of Bit'' parameter: %5.1f."
+msgstr "Taille incorrecte du paramètre ''Indice de Bit'' : %5.1f."
+
+#, c-format
+msgid "Wrong value for  ''Rule'' parameter: %d"
+msgstr "Valeur incorrecte du paramètre ''Règle'' : %d"
+
+#, c-format
+msgid "Wrong value for ''Bits to Extract'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Bits à Extraire'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Bits to Extract'' parameter: %s."
+msgstr "Valeur incorrecte du paramètre ''Bits à Extraire'' : %s."
+
+#, c-format
+msgid "Wrong value for ''Data Type'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Data Type'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Do on Overflow'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Action sur Overflow'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Frequency'' parameter: %e."
+msgstr "Valeur incorrecte du paramètre ''Fréquence'' : %e."
+
+#, c-format
+msgid "Wrong value for ''Index of Bit'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Indice de Bit'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Initial State'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''État Initial'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Input Type'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Type d'Entrée'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Output Type'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Type de Sortie'' : %d."
+
+#, c-format
+msgid "Wrong value for ''Port Number'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Numéro de Port\" : %d."
+
+#, c-format
+msgid "Wrong value for ''Shift Type'' parameter: %d"
+msgstr "Valeur incorrecte du paramètre ''Type de Décalage'' : %d"
+
+#, c-format
+msgid "Wrong value for ''Start Time'' parameter: %e."
+msgstr "Valeur incorrecte du paramètre ''Instant de Départ''  : %e."
+
+#, c-format
+msgid "Wrong value for ''Treat Bit Field as an Integer'' parameter: %d."
+msgstr ""
+"Valeur incorrecte du paramètre ''Traiter le champ de Bit comme un Entier'' : "
+"%d."
+
+msgid "Wrong value for elements of ''Truth Table'' parameter."
+msgstr "Valeur incorrecte des éléments du paramètre ''Table de Vérité''."
+
+#, c-format
+msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
+msgstr ""
+"Valeurs incorrectes des paramètres ''Maximum'' et ''Minimum'' : %d &lt; %d"
+
+#, c-format
+msgid "Wrong values for ''Number of Bits or Index of Bit'' parameter: %s."
+msgstr ""
+"Valeurs incorrectes du paramètre ''Nombre de Bits'' ou ''Indice du Bit'' : "
+"%s."
+
+#, c-format
+msgid "Wrong values for ''Port Number'' parameter: %d."
+msgstr "Valeurs incorrectes du paramètre ''Numéro de Port'' : %d."
+
+#, c-format
+msgid "Wrong values for ''Upper Limit'' parameter: %d."
+msgstr "Valeur incorrecte du paramètre ''Limite Supérieure'' : %d."
+
+msgid "degree:"
+msgstr "ordre :"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "temps de retard=%f mais dernier temps stocké=%f\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "temps de retard=%f mais dernier temps stocké=%f \n"
+
+msgid "negative"
+msgstr "strictement négatif"
+
+msgid "null"
+msgstr "null"
+
+msgid "overflow error"
+msgstr "erreur de dépassement"
+
+msgid "positive"
+msgstr "strictement positif"

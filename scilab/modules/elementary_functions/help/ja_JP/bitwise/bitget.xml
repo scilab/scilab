@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * 
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Michael Baudin
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * 
+ -->
+
+<refentry 
+          version="5.0-subset Scilab" 
+          xml:id="bitget" 
+          xml:lang="ja"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+
+
+  <refnamediv>
+    <refname>bitget</refname>
+    <refpurpose>指定した位置のビットを取得</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>呼び出し手順</title>
+    <synopsis>
+      y = bitget(x,pos)
+
+    </synopsis>
+  </refsynopsisdiv>
+
+  <refsection>
+    <title>パラメータ</title>
+    <variablelist>
+      <varlistentry>
+        <term>x :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数(uint8, uint16 または uint32)の
+	    m行n列行列.値は正の整数値である必要があります.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>pos :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数(uint8, uint16 または uint32)のm行n列行列.
+            入力 <literal>pos</literal> は 1,2,...,bitmaxの範囲とする
+	    必要があります.ただし, bitmax は x の最大ビット数です.
+	    値は正の整数値である必要があります.
+          </para>
+        </listitem>
+      </varlistentry>
+      <varlistentry>
+        <term>y :</term>
+        <listitem>
+          <para>
+	    m行n列の行列(double)またはm1 x m2 x ... x mm ハイパー行列(double)
+	    または符合なし整数.
+          </para>
+        </listitem>
+      </varlistentry>
+    </variablelist>
+  </refsection>
+
+  <refsection>
+    <title>説明</title>
+    <para>
+      符合なし整数 <literal>x</literal>を指定すると, この関数は
+      <literal>x</literal>の二進数表現の
+      <literal>pos</literal> 番目のビットを
+      符合なし整数 (0または1)として返します.
+    </para>
+  </refsection>
+
+  <refsection>
+    <title>例</title>
+    <programlisting role="example">
+      <![CDATA[
+// 19 is (10011)_2
+// The 2nd bit is 1 (starting from the end).
+x=uint8(19);
+pos=2;
+y = bitget(x,pos)
+expected = 1;
+
+// 13 is (1101)_2
+dec2bin(13)
+bitget(uint8(13),4:-1:1)
+
+// The input x can be a positive double
+bitget(13,4:-1:1)
+   ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection>
+    <title>作者</title>
+    <simplelist type="vert">
+      <member>Copyright (C) 2011 - DIGITEO - Michael Baudin</member>
+      <member>Copyright (C) INRIA - Farid BELAHCENE</member>
+    </simplelist>
+  </refsection>
+
+</refentry>

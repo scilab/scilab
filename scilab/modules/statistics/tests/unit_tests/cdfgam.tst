@@ -1,93 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-
-function d = assert_computedigits ( computed , expected )
-  nre = size(expected,"r")
-  nce = size(expected,"c")
-  // Update shape
-  expected = expected (:)
-  computed = computed (:)
-  //
-  dmin = 0
-  dmax = -log10(2^(-53))
-  //
-  d = zeros(expected)
-  //
-  n = size(expected,"*")
-  for i = 1 : n
-    if ( isnan(expected(i)) & isnan(computed(i)) ) then
-      d(i) = dmax
-    elseif ( isnan(expected(i)) & ~isnan(computed(i)) ) then
-      d(i) = dmin
-    elseif ( ~isnan(expected(i)) & isnan(computed(i)) ) then
-      d(i) = dmin
-      // From now, both expected and computed are non-nan
-    elseif ( expected(i) == 0 & computed(i) == 0 ) then
-      d(i) = dmax
-    elseif ( expected(i) == 0 & computed(i) <> 0 ) then
-      d(i) = dmin
-      // From now, expected(i) is non-zero
-    elseif ( expected(i) == computed(i) ) then
-      d(i) = dmax
-      // From now, expected and computed are different
-    elseif ( expected(i) == %inf & computed(i) <> %inf ) then
-      d(i) = dmin
-    elseif ( expected(i) == -%inf & computed(i) <> -%inf ) then
-      d(i) = dmin
-      // From now, neither of computed, nor expected is infinity
-    else
-      d(i) = max ( -log10 ( abs(computed(i)-expected(i)) / abs(expected(i)) ) , dmin )
-    end
-  end
-  //
-  // Reshape
-  d = matrix(d,nre,nce)
-endfunction
 
 //
 // Assessing the quality of the Normal distribution function
@@ -124,8 +44,8 @@ for i = 1 : ntests
   // Caution: this is the rate !
   rate = 1/scale;
   [computed,Q]=cdfgam("PQ",x,shape,rate);
-  assert_close ( computed , expected , precision );
-  assert_close ( Q , 1 - expected , precision );
+  assert_checkalmostequal ( computed , expected , precision );
+  assert_checkalmostequal ( Q , 1 - expected , precision );
 end
 
 // Table of inputs computed from R-2.8.1
@@ -191,11 +111,11 @@ for i = 1 : ntests
   shape1  = cdfgam("Shape",rate,p,q,x);
   rate1   = cdfgam("Rate",p,q,x,shape);
   if ( %t ) then
-    assert_close ( p1 , p , precision );
-    assert_close ( q1 , q , precision );
-    assert_close ( x1 , x , precision );
-    assert_close ( shape1 , shape , precinverse );
-    assert_close ( rate1 , rate , precinverse );
+    assert_checkalmostequal ( p1 , p , precision );
+    assert_checkalmostequal ( q1 , q , precision );
+    assert_checkalmostequal ( x1 , x , precision );
+    assert_checkalmostequal ( shape1 , shape , precinverse );
+    assert_checkalmostequal ( rate1 , rate , precinverse );
   end
   if ( %f ) then
     dp = assert_computedigits ( p1 , p );

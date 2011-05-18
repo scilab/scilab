@@ -1,6 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - Yann COLLETTE <yann.collette@renault.com>
-// Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2010-2011 - DIGITEO - Michael Baudin
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -11,45 +11,6 @@
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
 
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-
-///////////////////////////////////////////
 // Test that we can run with default values for parameters
 function y=test_func(x)
   y=x^2
@@ -64,14 +25,14 @@ ItMX = 100;
 T_init = compute_initial_temp(x0, test_func, 0.8, ItMX);
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history,iter] = optim_sa(x0, test_func, ItExt, ItInt, T_init, Log);
 
-assert_close ( x_best , 0.0 , 1.e-1 );
-assert_close ( f_best , 0.0 , 1.e-1 );
-assert_equal ( size(mean_list) , [1 ItExt] );
-assert_equal ( size(var_list) , [1 ItExt] );
-assert_equal ( size(temp_list) , [1 ItExt] );
-assert_equal ( size(f_history) , ItExt );
-assert_equal ( size(x_history) , ItExt );
-assert_equal ( iter>0 , %t );
+assert_checkalmostequal ( x_best , 0.0 , [] , 1.e-1 );
+assert_checkalmostequal ( f_best , 0.0 , [] , 1.e-1 );
+assert_checkequal ( size(mean_list) , [1 ItExt] );
+assert_checkequal ( size(var_list) , [1 ItExt] );
+assert_checkequal ( size(temp_list) , [1 ItExt] );
+assert_checkequal ( size(f_history) , ItExt );
+assert_checkequal ( size(x_history) , ItExt );
+assert_checkequal ( iter>0 , %t );
 
 ///////////////////////////////////////////
 // Test that we can configure our own neighbour function
@@ -102,8 +63,8 @@ saparams = add_param(saparams,"neigh_func", myneigh_func);
 T0 = compute_initial_temp(x0, quad, Proba_start, It_Pre, saparams);
 Log = %f;
 [x_opt, f_opt] = optim_sa(x0, quad, It_extern, It_intern, T0, Log,saparams);
-assert_close ( x_opt , [4 3] ,  1.e-1 );
-assert_close ( f_opt , 0 ,  1.e-1 );
+assert_checkalmostequal ( x_opt , [4 3] ,  1.e-1 );
+assert_checkalmostequal ( f_opt , 0 ,  [] , 1.e-1 );
 
 ///////////////////////////////////////////
 // Test that an additionnal parameter can be passed to the cost function
@@ -117,8 +78,8 @@ x0 = [-1 -1];
 p = [4 3];
 T0 = compute_initial_temp(x0, list(quadp,p) , Proba_start, It_Pre);
 [x_opt, f_opt] = optim_sa(x0, list(quadp,p) , 30, 30, T0, %f);
-assert_close ( x_opt , [4 3] ,  1.e-1 );
-assert_close ( f_opt , 0 ,  1.e-1 );
+assert_checkalmostequal ( x_opt , [4 3] ,  1.e-1 );
+assert_checkalmostequal ( f_opt , 0 ,  [] , 1.e-1 );
 
 ///////////////////////////////////////////
 // Test with a plot function, which serves also as a stop function.
@@ -156,8 +117,8 @@ T0 = compute_initial_temp(x0, quad , 0.7, 100, saparams);
 // This allows to check that the output function really allows to 
 // stop the algorithm.
 [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, quad , %inf, 100, T0, %f, saparams);
-assert_close ( x_best , [4 3] ,  1.e-1 );
-assert_close ( f_best , 0 ,  1.e-1 );
-assert_equal ( iter > 0 , %t );
+assert_checkalmostequal ( x_best , [4 3] ,  1.e-1 );
+assert_checkalmostequal ( f_best , 0 ,  [] , 1.e-1 );
+assert_checkequal ( iter > 0 , %t );
 
 

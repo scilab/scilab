@@ -11,7 +11,10 @@
 modulename=umfpack
 
 pkglib_LTLIBRARIES = libsciumfpack.la
+
+if UMFPACK
 noinst_LTLIBRARIES = libsciumfpack-algo.la
+endif
 
 libsciumfpack_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
@@ -20,7 +23,7 @@ libsciumfpack_la_rootdir = $(mydatadir)
 libsciumfpack_la_root_DATA =  \
 license.txt \
  \
-version.xml \
+ \
 TAUCS_license.txt \
 UMFPACK_license.txt
 

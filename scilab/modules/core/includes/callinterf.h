@@ -91,12 +91,6 @@
 /* 67 */                        #include "dynamic_gateways.h" /* ui_data */
 /* 68 */						#include "dynamic_gateways.h" /* graphic_objects */
 
-/*-------------------------------------
- * long jump to stop interface computation
- * @param n
- *-------------------------------------*/
-
-void errjump (int n);
 
 
 /** table of interfaces **/
@@ -111,5 +105,11 @@ typedef struct {
  * @return
  */
 int C2F(callinterf) (int *k);
+
+/**
+ * long jump to stop interface computation
+ */
+void errjump ();
+
 
 #endif /*__CALLINTERF__*/

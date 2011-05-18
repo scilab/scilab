@@ -90,15 +90,6 @@
 
 /* 
  * =================================================================
- * MACRO DEFINITIONS
- * =================================================================
- */
-
-/* Macro: loop */
-#define loop for(;;)
-
-/* 
- * =================================================================
  * IDAS PRIVATE CONSTANTS
  * =================================================================
  */
@@ -1431,7 +1422,7 @@ int IDASolve(void *ida_mem, realtype tout, realtype *tret,
 
   /* Looping point for internal steps. */
 
-  loop {
+  for(;;) {
    
     /* Check for too many steps taken. */
     
@@ -2460,7 +2451,7 @@ static int IDAStep(IDAMem IDA_mem)
 
   /* Looping point for attempts to take a step */
 
-  loop {  
+  for(;;) {  
 
     /*-----------------------
       Set method coefficients
@@ -2651,7 +2642,7 @@ static int IDANls(IDAMem IDA_mem)
   /* Begin the main loop. This loop is traversed at most twice. 
      The second pass only occurs when the first pass had a recoverable
      failure with old Jacobian data */
-  loop{
+  for(;;){
 
     /* Compute predicted values for yy and yp, and compute residual there. */
     IDAPredict(IDA_mem);
@@ -2776,7 +2767,7 @@ static int IDANewtonIter(IDAMem IDA_mem)
   oldnrm = ZERO;
 
   /* Looping point for Newton iteration.  Break out on any error. */
-  loop {
+  for(;;) {
 
     nni++;
 
@@ -3479,7 +3470,7 @@ static int IDARootfindStd(IDAMem IDA_mem)
   /* A sign change was found.  Loop to locate nearest root. */
 
   side = 0;  sideprev = -1;
-  loop {                                    /* Looping point */
+  for(;;) {                                    /* Looping point */
 
     /* Set weight alph.
        On the first two passes, set alph = 1.  Thereafter, reset alph
@@ -3802,7 +3793,7 @@ static int IDARootfindExt(IDAMem IDA_mem)
 	/* A sign change was found.  Loop to locate nearest root. */
 
 	side = 0;  sideprev = -1;
-	loop {                                    /* Looping point */
+	for(;;) {                                    /* Looping point */
 
 		/* Set weight alph.
 		On the first two passes, set alph = 1.  Thereafter, reset alph

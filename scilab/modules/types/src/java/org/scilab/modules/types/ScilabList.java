@@ -28,6 +28,8 @@ import java.util.Collection;
  */
 public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
 	
+	private static final long serialVersionUID = 6884293176289980909L;
+
 	/**
 	 * Construct an empty Scilab list.
 	 */

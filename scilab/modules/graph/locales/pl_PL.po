@@ -1,0 +1,56 @@
+# Polish translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-05-07 13:18+0000\n"
+"Last-Translator: I.Rokach <Unknown>\n"
+"Language-Team: Polish <pl@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "Copy"
+msgstr "Kopiuj"
+
+msgid "Cut"
+msgstr "Wytnij"
+
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Group"
+msgstr "Grupuj"
+
+msgid "Invert selection"
+msgstr "Odwróć zaznaczenie"
+
+msgid "Paste"
+msgstr "Wklej"
+
+msgid "Redo"
+msgstr "Ponów"
+
+msgid "Select all"
+msgstr "Zaznacz wszystko"
+
+msgid "UnGroup"
+msgstr ""
+
+msgid "Undo"
+msgstr "Cofnij"
+
+msgid "Untitled"
+msgstr "Bez nazwy"
+
+msgid "Zoom In"
+msgstr "Powiększ"
+
+msgid "Zoom Out"
+msgstr "Pomniejsz"

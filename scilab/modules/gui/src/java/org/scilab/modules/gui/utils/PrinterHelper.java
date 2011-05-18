@@ -36,6 +36,16 @@ public class PrinterHelper {
 		
 	}
 	
+	/**
+	 * Print a string
+	 * @param theString String to print
+	 * @param pageHeader header page added for first page
+	 * @return true if printed
+	 */
+	public static boolean printString(String theString, String pageHeader) {
+		String stringWithHeader = pageHeader + "\n\n" + theString;
+		return printString(stringWithHeader);
+	}
 
 	/**
 	 * Print a string

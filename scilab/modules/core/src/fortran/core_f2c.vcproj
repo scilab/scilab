@@ -510,10 +510,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\inibrk.c"
-				>
-			</File>
-			<File
 				RelativePath=".\inisci.c"
 				>
 			</File>
@@ -991,10 +987,6 @@
 			</File>
 			<File
 				RelativePath=".\indxg.f"
-				>
-			</File>
-			<File
-				RelativePath=".\inibrk.f"
 				>
 			</File>
 			<File

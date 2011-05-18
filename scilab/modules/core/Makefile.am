@@ -87,7 +87,9 @@ src/c/exitCodeValue.c \
 src/c/getversion.c \
 src/c/dynamic_tclsci.c \
 src/c/dynamic_parallel.c \
-src/c/storeCommand.c
+src/c/storeCommand.c \
+src/c/backtrace.c \
+src/c/signal_mgmt.c
 
 CORE_CPP_SOURCES = src/cpp/hashtable_core.cpp \
 src/cpp/namstr.cpp \
@@ -122,7 +124,6 @@ src/fortran/folhp.f \
 src/fortran/cvname.f \
 src/fortran/funs.f \
 src/fortran/fact.f \
-src/fortran/inibrk.f \
 src/fortran/typ2cod.f \
 src/fortran/prompt.f \
 src/fortran/intstr.f \
@@ -331,7 +332,7 @@ modulename=core
 
 #### core : Conf files ####
 libscicore_la_rootdir = $(mydatadir)
-libscicore_la_root_DATA =  license.txt version.xml
+libscicore_la_root_DATA =  license.txt 
 
 
 #### core : init scripts ####

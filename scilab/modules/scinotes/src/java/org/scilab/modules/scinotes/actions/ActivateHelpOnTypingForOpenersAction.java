@@ -28,6 +28,8 @@ import org.scilab.modules.scinotes.HelpOnTypingManager;
  */
 public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckAction {
 
+    private static final long serialVersionUID = 7522390935632696429L;
+
     /**
      * Constructor
      * @param name the name of the action

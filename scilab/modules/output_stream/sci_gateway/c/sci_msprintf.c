@@ -2,11 +2,11 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA
 * Copyright (C) DIGITEO - 2010-2011 - Allan CORNET
-* 
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
-* are also available at    
+* are also available at
 * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
@@ -20,8 +20,6 @@
 #include "freeArrayOfString.h"
 #include "strsubst.h"
 /*--------------------------------------------------------------------------*/
-#define TAB_CHAR_SEARCHED "\\t"
-#define TAB_CHAR_REPLACED "\t"
 #define PERCENT_CHAR '%'
 #define SPLIT_ON_CR_IN_FORMAT "<CR_IN_FORMAT>"
 #define CR_IN_FORMAT "\\n"
@@ -117,17 +115,11 @@ int sci_msprintf(char *fname, unsigned long fname_len)
     }
     else
     {
-        char *pFormatTmp = strsub(ptrFormat, TAB_CHAR_SEARCHED, TAB_CHAR_REPLACED);
-        if (pFormatTmp)
+        char *ptrFormatTmp = strsub(ptrFormat, CR_IN_FORMAT, SPLIT_ON_CR_IN_FORMAT);
+        if (ptrFormatTmp)
         {
             freeAllocatedSingleString(ptrFormat);
-            ptrFormat = strsub(pFormatTmp, CR_IN_FORMAT, SPLIT_ON_CR_IN_FORMAT);
-            FREE(pFormatTmp);
-            if (ptrFormat == NULL)
-            {
-                Scierror(999,_("%s: Memory allocation error.\n"), fname);
-                return 0;
-            }
+            ptrFormat = ptrFormatTmp;
         }
         else
         {
@@ -206,7 +198,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
 
     while (1)
     {
-        if ((rval = do_xxprintf("msprintf",(FILE *) 0, ptrFormat, Rhs, 1, lcount, (char **) &pStrs)) < 0) 
+        if ((rval = do_xxprintf("msprintf",(FILE *) 0, ptrFormat, Rhs, 1, lcount, (char **) &pStrs)) < 0)
         {
             break;
         }
@@ -226,27 +218,27 @@ int sci_msprintf(char *fname, unsigned long fname_len)
         }
 
         pStrTmp1 = pStrTmp;
-        while (*pStrTmp != '\0')  
+        while (*pStrTmp != '\0')
         {
-            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) ==0) 
+            if (strncmp(pStrTmp, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) ==0)
             {
                 k = (int)(pStrTmp - pStrTmp1);
-                if (!cat_to_last) 
-                { 
+                if (!cat_to_last)
+                {
                     /*add a new line */
-                    if (mOut == nmax) 
+                    if (mOut == nmax)
                     {
                         nmax += blk;
-                        if (pOutputStrings) 
+                        if (pOutputStrings)
                         {
                             pOutputStrings = (char **) REALLOC(pOutputStrings, nmax * sizeof(char **));
-                        } 
-                        else 
+                        }
+                        else
                         {
                             pOutputStrings = (char **) MALLOC(nmax * sizeof(char **));
                         }
 
-                        if (pOutputStrings == NULL) 
+                        if (pOutputStrings == NULL)
                         {
                             if (ptrFormat)
                             {
@@ -260,7 +252,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     }
 
                     pOutputStrings[mOut] = (char*)MALLOC((k+1) * sizeof(char));
-                    if (pOutputStrings[mOut] == NULL) 
+                    if (pOutputStrings[mOut] == NULL)
                     {
                         if (ptrFormat)
                         {
@@ -275,12 +267,12 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     pOutputStrings[mOut][k] = EMPTY_CHAR;
                     mOut++;
                 }
-                else 
+                else
                 {
                     /* cat to previous line */
                     ll = (int)strlen(pOutputStrings[mOut - 1]);
                     pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll)*sizeof(char));
-                    if (pOutputStrings[mOut - 1] == NULL) 
+                    if (pOutputStrings[mOut - 1] == NULL)
                     {
                         if (ptrFormat)
                         {
@@ -305,18 +297,18 @@ int sci_msprintf(char *fname, unsigned long fname_len)
             }
         }
         k = (int)(pStrTmp - pStrTmp1);
-        if (k > 0) 
+        if (k > 0)
         {
-            if ((!cat_to_last) || (mOut == 0)) 
-            { 
+            if ((!cat_to_last) || (mOut == 0))
+            {
                 /*add a new line */
-                if (mOut == nmax) 
+                if (mOut == nmax)
                 {
                     nmax += blk;
                     if (pOutputStrings)
                     {
                         pOutputStrings = (char **) REALLOC(pOutputStrings, nmax*sizeof(char **));
-                        if (pOutputStrings == NULL) 
+                        if (pOutputStrings == NULL)
                         {
                             if (ptrFormat)
                             {
@@ -331,7 +323,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                     else
                     {
                         pOutputStrings = (char **) MALLOC(nmax * sizeof(char **));
-                        if (pOutputStrings == NULL) 
+                        if (pOutputStrings == NULL)
                         {
                             if (ptrFormat)
                             {
@@ -346,7 +338,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                 }
 
                 pOutputStrings[mOut] = (char*) MALLOC((k + 1) * sizeof(char));
-                if (pOutputStrings[mOut] == NULL) 
+                if (pOutputStrings[mOut] == NULL)
                 {
                     if (ptrFormat)
                     {
@@ -361,12 +353,12 @@ int sci_msprintf(char *fname, unsigned long fname_len)
                 pOutputStrings[mOut][k] = EMPTY_CHAR;
                 mOut++;
             }
-            else 
-            { 
+            else
+            {
                 /* cat to previous line */
                 ll = (int)strlen(pOutputStrings[mOut - 1]);
                 pOutputStrings[mOut - 1] = (char*)REALLOC(pOutputStrings[mOut - 1], (k + 1 + ll) * sizeof(char));
-                if (pOutputStrings[mOut - 1] == NULL) 
+                if (pOutputStrings[mOut - 1] == NULL)
                 {
                     if (ptrFormat)
                     {
@@ -382,7 +374,7 @@ int sci_msprintf(char *fname, unsigned long fname_len)
             }
         }
 
-        if (strncmp(pStrTmp - lenghtSplitChar, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) != 0) 
+        if (strncmp(pStrTmp - lenghtSplitChar, SPLIT_ON_CR_IN_FORMAT, lenghtSplitChar) != 0)
         {
             cat_to_last = 1;
         }
@@ -415,4 +407,4 @@ int sci_msprintf(char *fname, unsigned long fname_len)
     }
     return 0;
 }
-/*--------------------------------------------------------------------------*/ 
+/*--------------------------------------------------------------------------*/

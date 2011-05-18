@@ -14,9 +14,16 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-03-09 14:19+0100\n"
+"Revision-Date: 2011-05-10 11:48+0100\n"
 
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 69
+# File: src/c/signal_mgmt.c, line: 75
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
+#
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 69
 msgid "  loading initial environment"
 msgstr ""
 #
@@ -275,7 +282,7 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 39
+# File: macros/perl.sci, line: 40
 #, c-format
 msgid "%s: No perl command specified."
 msgstr ""
@@ -326,7 +333,7 @@ msgstr ""
 msgid "%s: Requires scilab editor.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 68
+# File: macros/perl.sci, line: 67
 #, c-format
 msgid "%s: System error: Command executed: %s"
 msgstr ""
@@ -366,17 +373,17 @@ msgstr ""
 msgid "%s: Too many names.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 19
+# File: macros/perl.sci, line: 20
 #, c-format
 msgid "%s: Unable to find Perl file: %s"
 msgstr ""
 #
-# File: macros/perl.sci, line: 47
+# File: macros/perl.sci, line: 46
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
 msgstr ""
 #
-# File: macros/perl.sci, line: 63
+# File: macros/perl.sci, line: 62
 #, c-format
 msgid "%s: Unable to find Perl.\n"
 msgstr ""
@@ -460,7 +467,7 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 72
+# File: macros/perl.sci, line: 71
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
@@ -825,7 +832,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 #
-# File: macros/perl.sci, line: 24
+# File: macros/perl.sci, line: 25
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
@@ -1098,43 +1105,47 @@ msgstr ""
 msgid "%s: wrong code %d.\n"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 181
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 181
 msgid "&?"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 168
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 170
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 173
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 176
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 179
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 168
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 170
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 173
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 176
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 179
 msgid "&Applications"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 167
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 167
 msgid "&Control"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 165
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 165
 msgid "&Edit"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 164
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 164
 msgid "&File"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 166
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 166
 msgid "&Preferences"
 msgstr ""
 #
 # File: macros/toolboxes.sci, line: 43
 # File: macros/toolboxes.sci, line: 44
 # File: macros/toolboxes.sci, line: 48
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 182
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 182
 msgid "&Toolboxes"
 msgstr ""
 #
 # File: src/c/stack2.c, line: 2425
 msgid "A non square matrix!\n"
+msgstr ""
+#
+# File: src/c/callinterf.c, line: 121
+msgid "Aborting current computation\n"
 msgstr ""
 #
 # File: macros/whos.sci, line: 98
@@ -1171,8 +1182,11 @@ msgstr ""
 msgid "Copyright (c) 1989-2011 (INRIA)\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 182
-msgid "Do you really want to abort computation (y or n ?) \n"
+# File: src/c/signal_mgmt.c, line: 117
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
 msgstr ""
 #
 # File: src/c/tmpdir.c, line: 56
@@ -1184,18 +1198,12 @@ msgstr ""
 msgid "Error returning tlist, memory full.\n"
 msgstr ""
 #
-# File: includes/stack-c.h, line: 195
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-#
 # File: src/c/tmpdir.c, line: 139
 #, c-format
 msgid "Error: Could not create %s: %s\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 84
+# File: src/c/loadversion.c, line: 86
 #, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr ""
@@ -1215,7 +1223,7 @@ msgstr ""
 msgid "Error: Memory allocation.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 155
+# File: src/c/callinterf.c, line: 135
 #, c-format
 msgid "Error: Not a valid gateway ID %d.\n"
 msgstr ""
@@ -1245,14 +1253,14 @@ msgstr ""
 msgid "Error: Not a valid primitive ID %d.\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 149
+# File: src/c/loadversion.c, line: 151
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
 #
-# File: src/c/loadversion.c, line: 140
+# File: src/c/loadversion.c, line: 142
 #, c-format
 msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
@@ -1347,6 +1355,16 @@ msgstr ""
 msgid "Optional arguments list: \n"
 msgstr ""
 #
+# File: src/c/signal_mgmt.c, line: 479
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+#
 # File: src/c/inisci-c.c, line: 49
 # File: src/c/inisci-c.c, line: 51
 msgid "SCI environment variable not defined.\n"
@@ -1357,11 +1375,7 @@ msgstr ""
 msgid "SCIHOME not defined.\n"
 msgstr ""
 #
-# File: src/c/callinterf.c, line: 141
-msgid "SIGSTP: aborting current computation\n"
-msgstr ""
-#
-# File: src/java/org/scilab/modules/core/Scilab.java, line: 180
+# File: src/java/org/scilab/modules/core/Scilab.java, line: 183
 msgid "Scilab Console"
 msgstr ""
 #
@@ -1386,7 +1400,7 @@ msgstr ""
 msgid "Size"
 msgstr ""
 #
-# File: /pro/git/scilab.master/scilab/etc/scilab.start, line: 68
+# File: /pro/git/scilab.master.play/scilab/etc/scilab.start, line: 68
 msgid "Startup execution:"
 msgstr ""
 #
@@ -1398,10 +1412,6 @@ msgstr ""
 # File: src/c/getmodules.c, line: 84
 # File: src/c/getmodules.c, line: 119
 msgid "The SCI environment variable is not set.\n"
-msgstr ""
-#
-# File: src/c/callinterf.c, line: 181
-msgid "Trying to stop scilab in the middle of an interface.\n"
 msgstr ""
 #
 # File: macros/whos.sci, line: 96

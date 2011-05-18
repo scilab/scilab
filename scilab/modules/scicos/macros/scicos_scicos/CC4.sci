@@ -25,7 +25,7 @@ cancel=%f
 
 if tt==[] then
 
-  textmp=['#include <scicos/scicos_block4.h>';
+  textmp=['#include ""scicos_block4.h""';
           ''
           'void '+funam+'(scicos_block *block,int flag)';
          ];

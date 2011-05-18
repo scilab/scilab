@@ -1,66 +1,29 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009 - INRIA - Michael Baudin
-// Copyright (C) 2008 - INRIA - Michael Baudin
+// Copyright (C) 2008-2009 - INRIA - Michael Baudin
+// Copyright (C) 2011 - DIGITEO - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- JVM NOT MANDATORY -->
-
-//
-// assert_close --
-//   Returns 1 if the two real matrices computed and expected are close,
-//   i.e. if the relative distance between computed and expected is lesser than epsilon.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_close ( computed, expected, epsilon )
-  if expected==0.0 then
-    shift = norm(computed-expected);
-  else
-    shift = norm(computed-expected)/norm(expected);
-  end
-  if shift < epsilon then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
-//
-// assert_equal --
-//   Returns 1 if the two real matrices computed and expected are equal.
-// Arguments
-//   computed, expected : the two matrices to compare
-//   epsilon : a small number
-//
-function flag = assert_equal ( computed , expected )
-  if computed==expected then
-    flag = 1;
-  else
-    flag = 0;
-  end
-  if flag <> 1 then pause,end
-endfunction
 
 // Test with 2 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
 [xcomputed, flag, err, iter, res]=pcg(A,b);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
-if flag<>0 then pause,end
-if err>%eps then pause,end
-if iter>2 then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
+assert_checkequal ( flag , 0);
+assert_checkequal ( err , 0);
+assert_checkequal ( iter, 1);
 // Test with 3 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
 tol = 100*%eps;
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
-if (err > tol) then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
+assert_checktrue ( err <= tol);
 // Test with 4 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
@@ -68,7 +31,7 @@ tol = 100*%eps;
 maxit = 10;
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol,maxit);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
+assert_checkalmostequal ( xcomputed,xexpected,%eps);
 // Test with 5 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
@@ -77,7 +40,7 @@ maxit = 10;
 M1=[1,0;0,1];
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol,maxit,M1);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
 // Test with 6 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
@@ -87,7 +50,7 @@ M1=[1,0;0,1];
 M2=[1,0;0,1];
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol,maxit,M1,M2);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
 // Test with 7 input arguments and all output arguments
 A=[10,1;1,10];
 b=[11;11];
@@ -98,37 +61,37 @@ M2=[1,0;0,1];
 x0=[1;1];
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol,maxit,M1,M2,x0);
 xexpected=[1;1];
-if norm(xcomputed-xexpected)>%eps then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
 // Test with non-positionnal input parameters so that 0 iteration can happen
 A=[100,1;1,10];
 b=[101;11];
 [xcomputed, flag, err, iter, res]=pcg(A,b,maxIter=0);
-if (iter <> 0) then pause,end
+assert_checkequal ( iter , 0 );
 // Test with non-positionnal input parameters so that 1 iteration is sufficient
 A=[100,1;1,10];
 b=[101;11];
 [xcomputed, flag, err, iter, res]=pcg(A,b,tol=0.1);
-if (iter <> 1) then pause,end
+assert_checkequal ( iter , 1 );
 // Test with non-positionnal input parameters so that pre-conditionning is necessary
 A=[100,1;1,0.0101];
 b=[101;11];
 M=A;
 [xcomputed, flag, err, iter, res]=pcg(A,b,%M=M,maxIter=3,tol=%eps);
-if (flag <> 0) then pause,end
+assert_checkequal ( flag , 0 );
 // Test with non-positionnal input parameters so that good initialization generates 0 iterations
 A=[100,1;1,10.];
 b=[101;11];
 [xcomputed, flag, err, iter, res]=pcg(A,b,x0=[1.;1.]);
-if (iter<>0) then pause,end
+assert_checkequal ( iter , 0 );
 // Test the special case where b=0
 A=[100,1;1,10.];
 b=[0;0];
 [xcomputed, flag, err, iter, res]=pcg(A,b);
 xexpected=[0;0];
-if norm(xcomputed-xexpected)>%eps then pause,end
-if (flag<>0) then pause,end
-if (err>%eps) then pause,end
-if (iter<>0) then pause,end
+assert_checkalmostequal ( xcomputed , xexpected , %eps);
+assert_checkequal ( flag , 0 );
+assert_checktrue ( err <= %eps );
+assert_checkequal ( iter , 0 );
 // Try a hard case where preconditionning is necessary
 // This is the Hilbert 5x5 matrix : A = 1/(testmatrix("hilb",5))
 A = [
@@ -148,9 +111,9 @@ expected = [
   -1120.
     630.
 ];
-assert_close ( xcomputed , expected, 1.e8 * %eps );
-assert_equal ( flag , 0 );
-assert_equal ( iter , 2 );
+assert_checkalmostequal ( xcomputed , expected, 1.e8 * %eps );
+assert_checkequal ( flag , 0 );
+assert_checkequal ( iter , 2 );
 // Try a difficult case where preconditionning is necessary
 // Use two pre-conditionning matrices.
 // This is the Hilbert 5x5 matrix : A = 1/(testmatrix("hilb",5))
@@ -180,7 +143,7 @@ expected = [
   -1120.
     630.
 ];
-assert_close ( xcomputed , expected, 1.e8 * %eps );
-assert_equal ( flag , 0 );
-assert_equal ( iter , 2 );
+assert_checkalmostequal ( xcomputed , expected, 1.e8 * %eps );
+assert_checkequal ( flag , 0 );
+assert_checkequal ( iter , 2 );
 

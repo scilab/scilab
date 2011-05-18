@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- * Scicos
- * 
+ * Xcos
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ * Copyright 2011 Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -21,17 +22,20 @@
  * 
  * See the file ./license.txt
  -->
-<refentry xmlns="http://docbook.org/ns/docbook"
+<refentry
+  version="5.0-subset Scilab" xml:id="TEXT_f" xml:lang="en_US"
+  xmlns="http://docbook.org/ns/docbook"
   xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:ns5="http://www.w3.org/1999/xhtml"
   xmlns:svg="http://www.w3.org/2000/svg"
   xmlns:mml="http://www.w3.org/1998/Math/MathML"
   xmlns:db="http://docbook.org/ns/docbook"
-  version="5.0-subset Scilab"
-  xml:id="TEXT_f">
+>
   <refnamediv>
     <refname>TEXT_f</refname>
-    <refpurpose>Text</refpurpose>
+    <refpurpose>Free annotation</refpurpose>
   </refnamediv>
+
   <refsection>
     <title>Block Screenshot</title>
     <para>
@@ -42,12 +46,13 @@
       </inlinemediaobject>
     </para>
   </refsection>
+
   <refsection id="Contents_TEXT_f">
     <title>Contents</title>
     <itemizedlist>
       <listitem>
         <para>
-          <link linkend="TEXT_f">Text</link>
+          <link linkend="TEXT_f">Free annotation</link>
         </para>
       </listitem>
       <listitem>
@@ -74,9 +79,14 @@
           </listitem>
           <listitem>
             <para>
-              <xref linkend="Interfacingfunction_TEXT_f">Interfacing function</xref>
+              <xref linkend="Example_TEXT_f">Example</xref>
             </para>
           </listitem>
+          <listitem>
+            <para>
+              <xref linkend="See_also">See also</xref>
+            </para>
+          </listitem>          
           <listitem>
             <para>
               <xref linkend="Authors_TEXT_f">Authors</xref>
@@ -86,6 +96,7 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Palette_TEXT_f">
     <title>Palette</title>
     <itemizedlist>
@@ -96,60 +107,76 @@
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Description_TEXT_f">
     <title>Description</title>
     <para>
-	This special block is only use to add text at any point of the diagram
-	window. It has no effect on the simulation.   
-	</para>
-    <para>
-      Starting from Scilab 5.2, it is possible to write <link
-      linkend="math_rendering_features_in_graphic">LaTeX or MathML
-      expression</link>.
+      This special block is only used to add text at any point of the diagram window. It has no effect on the simulation.
     </para>
-
+    <para>
+      You can add this block directly by a mouse double click in a free part of the diagram.
+    </para>
+    <para>
+      After addition, double click on the block and write your text. If you want more control on the text (font type, size or colors),
+      a mouse right click shows a pop-up menu. Select the sub-menu item <emphasis>Edit...</emphasis> of the <emphasis>Format</emphasis> menu item.
+      This item open the tabbed dialog below where you can set the text parameters.
+    </para>
+    <para>
+      Note : the following GUI is also used to modify comment text and appearance of the blocks and links.
+    </para>
   </refsection>
+
   <refsection id="Dialogbox_TEXT_f">
     <title>Dialog box</title>
     <para>
       <inlinemediaobject>
         <imageobject>
-          <imagedata fileref="../../../../images/gui/TEXT_f_gui.gif" align="center" valign="middle"/>
+          <imagedata fileref="../../../gui/annotations_pal/en_US/TEXT_f_text_gui.png" align="center" valign="middle"/>
+        </imageobject>
+      </inlinemediaobject>
+      <inlinemediaobject>
+        <imageobject>
+          <imagedata fileref="../../../gui/annotations_pal/en_US/TEXT_f_color_gui.png" align="center" valign="middle"/>
         </imageobject>
       </inlinemediaobject>
     </para>
-    <para>
-    </para>
+    <para />
     <itemizedlist>
       <listitem>
         <para>
-          <emphasis role="bold">Text</emphasis>
+          <emphasis role="bold">Text tab</emphasis>
         </para>
-        <para> a character string, Text to be displayed</para>
-        <para> Properties : Type 'str' of size -1 </para>
+        <para>
+          In this tab, you can modify your text and its appearance with the font size, family and style. You can also use
+          some HTML tags to control you text displaying. Starting from Scilab 5.2, it is also
+          possible to write <link linkend="math_rendering_features_in_graphic">LaTeX or MathML</link> expressions.
+        </para>
       </listitem>
       <listitem>
         <para>
-          <emphasis role="bold">Font number</emphasis>
+          <emphasis role="bold">Colors tabs</emphasis>
         </para>
         <para>
-          a positive integer less than 6, number of selected font
-          (see <link linkend="graphics_fonts">Graphics fonts</link>)
+          The use of these tabs is the same for the text, border or fill colors. You can set the color with four methods :
         </para>
-        <para> Properties : Type 'vec' of size 1 </para>
-      </listitem>
-      <listitem>
-        <para>
-          <emphasis role="bold">Font size</emphasis>
-        </para>
-        <para>
-          a positive integer, selected font size.
-          (see <link linkend="graphics_fonts">Graphics fonts</link>).
-        </para>
-        <para> Properties : Type 'vec' of size 1</para>
+        <itemizedlist>
+          <listitem>
+            <para>HSV colors (hue, saturation, value).</para>
+          </listitem>
+          <listitem>
+            <para>RGB colors (red, green, blue).</para>
+          </listitem>
+          <listitem>
+            <para>HTML color : color in the form of a string of three hexadecimal numbers with two digits (RRGGBB) preceded by the character "#".</para>
+          </listitem>
+          <listitem>
+            <para>HSV color wheel : move the little white segment around the circle to set hue, and move the little circle to set the saturation and value.</para>
+          </listitem>
+        </itemizedlist>
       </listitem>
     </itemizedlist>
   </refsection>
+
   <refsection id="Defaultproperties_TEXT_f">
     <title>Default properties</title>
     <itemizedlist>
@@ -188,14 +215,33 @@
       </listitem>
     </itemizedlist>
   </refsection>
-  <refsection id="Interfacingfunction_TEXT_f">
-    <title>Interfacing function</title>
+
+  <refsection id="Example_TEXT_f">
+    <title>Example</title>
+    <para>
+      The figure below shows some examples of text annotations. The first shows the result obtained with a LaTeX
+      expression, the second the text is an ordered HTML list.
+      <link type="scilab" linkend="scilab.xcos/xcos/examples/annotations_pal/en_US/text_f_en_US.xcos">
+        Open this example in Xcos
+      </link> and select <emphasis>Format</emphasis> then <emphasis>Edit...</emphasis> in the pop-up menu to change the text parameters.
+    </para>
+    <para />
+    <mediaobject>
+      <imageobject>
+        <imagedata fileref="../../../examples/annotations_pal/en_US/text_f_diagram_en_US.png" align="center"/>
+      </imageobject>
+    </mediaobject>
+  </refsection>
+  
+  <refsection role="see also" id="See_also">
+    <title>See also</title>
     <itemizedlist>
       <listitem>
-        <para> SCI/modules/scicos_blocks/macros/Misc/TEXT_f.sci</para>
+        <link linkend="math_rendering_features_in_graphic">Math rendering</link>
       </listitem>
     </itemizedlist>
   </refsection>
+  
   <refsection id="Authors_TEXT_f">
     <title>Authors</title>
     <para><emphasis role="bold">Ramine Nikoukhah</emphasis> - INRIA</para>

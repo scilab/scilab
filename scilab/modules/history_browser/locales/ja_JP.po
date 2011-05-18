@@ -1,0 +1,59 @@
+# Japanese translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-03-14 05:10+0000\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <ja@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+msgid "?"
+msgstr "?"
+
+msgid "Cannot delete current session beginning line."
+msgstr "現在のセッション開始行を削除できません"
+
+msgid "Clear history"
+msgstr "履歴をクリア"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Command History"
+msgstr "コマンド履歴"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Edit in SciNotes"
+msgstr "SciNotesで編集"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Evaluate Selection"
+msgstr "選択部を評価"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Scilab Help"
+msgstr "Scilabヘルプ"

@@ -34,3 +34,4 @@ vartype_
 IsAScalar
 overload_
 getlistrhsvar_
+getWarningMode

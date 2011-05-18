@@ -361,7 +361,7 @@ public class BlockElement extends AbstractElement<BasicBlock> {
 		((ScilabList) base).add(new ScilabString(from.getId()));
 		
 		/*
-		 * Encoding the InputPorts and OutputPorts using there own elements
+		 * Encoding the InputPorts and OutputPorts using their own elements
 		 */
 		final InputPortElement inElement = new InputPortElement(data);
 		final OutputPortElement outElement = new OutputPortElement(data);

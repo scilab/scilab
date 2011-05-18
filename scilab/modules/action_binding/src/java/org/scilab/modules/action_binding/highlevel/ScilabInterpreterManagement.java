@@ -51,6 +51,9 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
 	 * Throw when there is a problem to communicate with the scilab interpreter.
 	 */
 	public static class InterpreterException extends Exception {
+		
+		private static final long serialVersionUID = -7222406936060866827L;
+
 		/**
 		 * Default constructor
 		 * 

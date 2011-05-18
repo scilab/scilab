@@ -4,12 +4,7 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-loadXcosLibs();
-function demo_xcosinvertpend()
-  if ~isdef('setw') then exec("SCI/modules/xcos/demos/setw.sci",-1),end
-  xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
-endfunction
+if ~isdef('setw') then exec("SCI/modules/xcos/demos/setw.sci",-1),end
+xcos("SCI/modules/xcos/demos/Inverted_pendulum.xcos");
 
-demo_xcosinvertpend();
-clear demo_xcosinvertpend;
 

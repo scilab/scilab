@@ -526,10 +526,6 @@
 			>
 		</File>
 		<File
-			RelativePath="..\..\version.xml"
-			>
-		</File>
-		<File
 			RelativePath="..\..\xcos.iss"
 			>
 		</File>

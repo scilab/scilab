@@ -54,7 +54,7 @@ void PolylineInterpColorDrawerJoGL::drawPolyline( void )
     xCoords = new double[nbVertices];
     yCoords = new double[nbVertices];
     zCoords = new double[nbVertices];
-    colors  = new int[nbVertices];;
+    colors  = new int[nbVertices];
   }
   catch (const std::exception& e)
   {

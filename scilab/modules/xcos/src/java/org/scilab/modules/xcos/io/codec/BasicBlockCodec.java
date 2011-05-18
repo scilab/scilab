@@ -24,7 +24,6 @@ import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.io.XcosObjectCodec;
 import org.w3c.dom.Element;
-import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
@@ -120,14 +119,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
 		SimulationFunctionType type = BasicBlock.SimulationFunctionType.valueOf(functionType);
 		if (type != null) {
 		    ((BasicBlock) obj).setSimulationFunctionType(type);
-		}
-	    }
-	    
-	    NamedNodeMap attrs = node.getAttributes();
-	    for (int i = 0; i < attrs.getLength(); i++) {
-		Node attr = attrs.item(i);
-		if (attr.getNodeName().compareToIgnoreCase("id") == 0) {
-		    ((mxCell) obj).setId(attr.getNodeValue());
 		}
 	    }
 

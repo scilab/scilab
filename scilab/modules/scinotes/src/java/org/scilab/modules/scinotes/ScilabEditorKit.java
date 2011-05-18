@@ -12,21 +12,20 @@
 
 package org.scilab.modules.scinotes;
 
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.nio.charset.CharacterCodingException;
-import java.io.Reader;
-import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.CharBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.Charset;
 
+import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.Document;
 import javax.swing.text.ViewFactory;
-import javax.swing.text.BadLocationException;
 
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
@@ -41,6 +40,8 @@ import org.scilab.modules.scinotes.utils.SciNotesMessages;
  * @author Calixte DENIZET
  */
 public class ScilabEditorKit extends DefaultEditorKit {
+
+    private static final long serialVersionUID = 8005575461386086815L;
 
     /**
      * The mimetype for a scilab code
@@ -145,10 +146,8 @@ public class ScilabEditorKit extends DefaultEditorKit {
      */
     public void read(Reader in, Document doc, int pos) throws IOException, BadLocationException {
         int nch;
-        int st;
         int i;
         int prev;
-        int offs = 0;
         int inc = 0;
         boolean win = false;
         boolean mac = false;

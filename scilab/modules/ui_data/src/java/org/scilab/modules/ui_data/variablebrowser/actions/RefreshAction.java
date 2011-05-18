@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.ui_data.variableeditor.actions;
+package org.scilab.modules.ui_data.variablebrowser.actions;
 
 import javax.swing.ImageIcon;
 

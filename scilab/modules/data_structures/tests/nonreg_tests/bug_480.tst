@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 //    Bug Report Id: 12070200362710754
-//    [u]intN() and iconvert() do not handle hypermatrices. It would be nice if they would. 
+//    [u]intN() and iconvert() do not handle hypermatrices. It would be nice if they would.
 //    There is a workaround -
 //    hypermat(a.dims,int8(a.entries)) - but it is somehow a detour.
 //
@@ -21,21 +21,21 @@
 //     -->a=hypermat([3,3,1],1:9);
 //
 //    -->int8(a)
-//            !--error    53 
-//    invalid input (waiting for real or complex matrix) 
+//            !--error    53
+//    invalid input (waiting for real or complex matrix)
 //
 //    Commands:
 //
 //    Enrico Segre on Linux version  distribution RH9 with   as window manager
 //    Israel  July 27, 2003 at 10:7:54
 
-a=hypermat([3,3,1],1:9);
+a=hypermat([1,3,3],1:9);
 
 result = execstr("int8(a)","errcatch","n");
 
 if result <> 0 then pause,end
 
 if result == 0 then
-	toto = (hypermat(a.dims,int8(a.entries)) == int8(a))
-	if ~(and(toto(:,:,1))) then pause,end
+  toto = (hypermat(a.dims,int8(a.entries)) == int8(a));
+  if ~(and(toto(:,:,1))) then pause,end
 end

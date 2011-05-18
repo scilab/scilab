@@ -13,13 +13,13 @@
   <refnamediv>
     <refname>floor</refname>
 
-    <refpurpose>partie entière</refpurpose>
+    <refpurpose>Arrondi vers le bas</refpurpose>
   </refnamediv>
 
   <refsynopsisdiv>
     <title>Séquence d'appel</title>
 
-    <synopsis>[y]=floor(x)</synopsis>
+    <synopsis>y=floor(x)</synopsis>
   </refsynopsisdiv>
 
   <refsection>
@@ -55,9 +55,9 @@
     <title>Exemples</title>
 
     <programlisting role="example"><![CDATA[ 
-floor([1.9 -2.5])-[1,-3]
-floor(-%inf)
-x=rand()*10^20;floor(x)-x
+floor([1.3 1.5 1.7 2.5 3.7])
+// Remarquez le résultat pour x négatif
+floor([-1.3 -1.5 -1.7 -2.5 -3.7])
  ]]></programlisting>
   </refsection>
 

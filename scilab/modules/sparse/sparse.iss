@@ -21,7 +21,6 @@
 Source: bin\{#SPARSE}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SPARSE}
 Source: bin\{#SPARSE}.dll; DestDir: {app}\bin; Components: {#COMPN_SPARSE}
 ;
-Source: modules\{#SPARSE}\VERSION.xml; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}
 Source: modules\{#SPARSE}\license.txt; DestDir: {app}\modules\{#SPARSE}; Components: {#COMPN_SPARSE}
 ;
 Source: modules\{#SPARSE}\sci_gateway\{#SPARSE}_gateway.xml; DestDir: {app}\modules\{#SPARSE}\sci_gateway; Components: {#COMPN_SPARSE}

@@ -17,6 +17,7 @@
 #include "freeArrayOfString.h"
 #include "MALLOC.h"
 #include "completion.h"
+#include "getPartLine.h"
 /*--------------------------------------------------------------------------*/
 int sci_getfields(char *fname, unsigned long fname_len)
 {
