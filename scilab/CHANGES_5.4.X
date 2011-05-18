@@ -22,6 +22,9 @@ Graphical User Interface:
 Xcos:
 =====
 
+* bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"
+                   palette.
+
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
