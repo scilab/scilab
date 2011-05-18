@@ -94,3 +94,6 @@ Bug fixes:
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
 * bug 9479 fixed - Typo fixed (intput => input).
+
+* bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
+                   unmanaged type (function, macro, ...)
