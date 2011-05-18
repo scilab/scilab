@@ -178,7 +178,7 @@ void NgonGridDataDecomposer::fillDirectGridColors(float* buffer, int bufferLengt
         {
             int currentPointIndex = getPointIndex(numX, numY, i, j);
 
-            ColorComputer::getDirectColor(z[currentPointIndex], colormap, colormapSize, &buffer[bufferOffset]);
+            ColorComputer::getDirectColor(z[currentPointIndex] - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
 
             if (elementsSize == 4)
             {
