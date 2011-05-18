@@ -43,7 +43,7 @@
   <refsection>
     <title>A few words about XML</title>
 
-    <para>An XML file resembles to an HTML file but with a more rigid syntax.
+    <para>An XML file resembles to a hTML file but with a more rigid syntax.
     The documentation of Scilab must be written using the strict subset of
     DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
     elements are fully documented in <ulink
@@ -200,7 +200,7 @@ end</programlisting>
 
 
   <refsection>
-    <title>How to create an help chapter</title>
+    <title>How to create a help chapter</title>
 
     <para>Create a directory and write down a set of xml files build as
     described above. Then start Scilab and execute <literal>xmltojar
