@@ -164,6 +164,9 @@ Bug fixes:
 
 * bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
+* bug 7358 fixed - Help pages of type and typeof have now links to the actual
+                   description pages.
+
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
 

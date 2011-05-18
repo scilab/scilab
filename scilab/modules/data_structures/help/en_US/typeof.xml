@@ -64,17 +64,15 @@
     <variablelist>
       <varlistentry>
         <term>"constant"</term>
-
         <listitem>
-          <para>if object is a real or complex constant matrix.</para>
+          <para>if object is a real or complex matrix of double.</para>
         </listitem>
       </varlistentry>
 
       <varlistentry>
         <term>"polynomial"</term>
-
         <listitem>
-          <para>if object is a polynomial matrix.</para>
+          <para>if object is a <link linkend="poly">polynomial matrix</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -82,7 +80,7 @@
         <term>"function"</term>
 
         <listitem>
-          <para>if object is a function (Scilab code).</para>
+          <para>if object is a <link linkend="function">function</link> (Scilab code). See also <link linkend="deff">deff</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -90,7 +88,7 @@
         <term>"handle"</term>
 
         <listitem>
-          <para>if object is a handle.</para>
+          <para>if object is an <link linkend="graphics_entities">handle</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -98,7 +96,7 @@
         <term>"string"</term>
 
         <listitem>
-          <para>if object is a matrix made of character strings.</para>
+          <para>if object is a matrix made of <link linkend="strings">character strings</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -106,7 +104,7 @@
         <term>"boolean"</term>
 
         <listitem>
-          <para>if object is a boolean matrix.</para>
+          <para>if object is a <link linkend="matrices">boolean matrix</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -114,7 +112,7 @@
         <term>"list"</term>
 
         <listitem>
-          <para>if object is a list.</para>
+          <para>if object is a <link linkend="list">list</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -122,7 +120,7 @@
         <term>"rational"</term>
 
         <listitem>
-          <para>if object is a rational matrix (transfer matrix).</para>
+          <para>if object is a <link linkend="rational">rational matrix</link> (transfer matrix).</para>
         </listitem>
       </varlistentry>
 
@@ -139,7 +137,8 @@
         <term>"sparse"</term>
 
         <listitem>
-          <para>if object is a (real) sparse matrix.</para>
+          <para>if object is a (real) <link
+          linkend="sparse">sparse matrix</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -147,7 +146,7 @@
         <term>"boolean sparse"</term>
 
         <listitem>
-          <para>if object is a boolean sparse matrix.</para>
+          <para>if object is a <link linkend="sparse">boolean sparse matrix</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -155,7 +154,7 @@
         <term>"hypermat"</term>
 
         <listitem>
-          <para>if object is a hypermatrix (N-dimension array with N
+          <para>if object is an <link linkend="hypermatrices">hypermatrix</link> (N-dimension array with N
           &gt;=3).</para>
         </listitem>
       </varlistentry>
@@ -164,7 +163,7 @@
         <term>"st"</term>
 
         <listitem>
-          <para>if object is a structure array.</para>
+          <para>if object is a <link linkend="struct">structure</link>.</para>
         </listitem>
       </varlistentry>
 
@@ -172,15 +171,7 @@
         <term>"ce"</term>
 
         <listitem>
-          <para>if object is a cell array.</para>
-        </listitem>
-      </varlistentry>
-
-      <varlistentry>
-        <term>the first string in the first list entry</term>
-
-        <listitem>
-          <para>if object is a tlist or mlist.</para>
+          <para>if object is a <link linkend="cell">cell</link> array.</para>
         </listitem>
       </varlistentry>
 
@@ -188,7 +179,7 @@
         <term>"fptr"</term>
 
         <listitem>
-          <para>if object is a Scilab intrinsic (C or Fortran code).</para>
+          <para>if object is a built-in Scilab function, called also gateway (C, C++ or Fortran code).</para>
         </listitem>
       </varlistentry>
 
@@ -196,7 +187,7 @@
         <term>"pointer"</term>
 
         <listitem>
-          <para>if object is a pointer (See <link
+          <para>if object is a pointer (See a use case: <link
           linkend="lufact">lufact</link>).</para>
         </listitem>
       </varlistentry>
@@ -205,7 +196,7 @@
         <term>"size implicit"</term>
 
         <listitem>
-          <para>if object is a size implicit polynom used for indexing.</para>
+          <para>if object is a size implicit polynom used for indexing. This a purely internal value.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -217,11 +208,15 @@
       <varlistentry>
         <term>"int8" or "uint8" or "int16" or "uint16" or "int32" or "uint32"</term>
         <listitem>
-          <para>if object is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. See <link
-          linkend="int8">int8</link>)</para>
+          <para>if object is a matrix of [unsigned] integers stored on 8, 16 or 32 bits. (See <link
+          linkend="int8">int</link>)</para>
         </listitem>
       </varlistentry>
     </variablelist>
+    <para>
+        Note that if the object is a <link linkend="tlist">tlist</link> or <link linkend="mlist">mlist</link>, typeof will return the first string in the first list entry
+    </para>
+
   </refsection>
 
   <refsection>
