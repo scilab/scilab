@@ -1,6 +1,7 @@
             Changes between version 5.3.2 and 5.4.0 of Scilab
             =================================================
 
+
 SciNotes:
 =========
 
@@ -29,13 +30,20 @@ Graphical User Interface:
 Xcos:
 =====
 
+* xcos_skeleton will not be loaded if you have not installed Xcos.
+
 * bug 8421 fixed - CLKFROM and CLKGOTO were not part of the "Signal Routing"
                    palette.
+
+* bug 8538 fixed - Counter block label was not reflecting parameters
 
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
 
+* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
+
 * Bug 9547 fixed - The about box was not localized due to a multi-line string.
+
 
 File input/output:
 ==================
@@ -93,14 +101,6 @@ Optimization:
                    the output function.
 
 * Bug 9567 fixed - The neldermead Overview had a TODO section.
-
-
-Xcos:
-=====
-
-* xcos_skeleton will not be loaded if you have not installed Xcos.
-
-* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
 
 
 Documentation:
