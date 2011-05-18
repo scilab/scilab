@@ -107,6 +107,9 @@
     <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\CallGraphicController.hxx">
@@ -173,6 +176,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
