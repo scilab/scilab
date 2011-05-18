@@ -262,10 +262,41 @@ public class DrawerVisitor implements IVisitor, Drawer, GraphicView {
         }
     }
 
+    /* To do: take into account colormap updates. */
     @Override
-    public void visit(Matplot matplot) {
-        // TODO
-        System.out.println("How can I draw a matplot ?");
+    public void visit(final Matplot matplot) {
+        if (matplot.getVisible()) {
+            Geometry triangles = new Geometry() {
+                @Override
+                public DrawingMode getDrawingMode() {
+                    return Geometry.DrawingMode.TRIANGLES;
+                }
+
+                @Override
+                public ElementsBuffer getVertices() {
+                    return dataManager.getVertexBuffer(matplot.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getColors() {
+                    return dataManager.getColorBuffer(matplot.getIdentifier());
+                }
+
+                @Override
+                public ElementsBuffer getNormals() {
+                    return null;
+                }
+
+                @Override
+                public IndicesBuffer getIndices() {
+                    IndicesBuffer indices = dataManager.getIndexBuffer(matplot.getIdentifier());
+                    return indices;
+                }
+            };
+
+            Appearance trianglesAppearance = new Appearance();
+            drawingTools.draw(triangles, trianglesAppearance);
+        }
     }
 
     @Override

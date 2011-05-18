@@ -61,6 +61,13 @@ public class DataManager {
     ));
 
     /**
+     * Set of properties that affect Matplot data.
+     */
+    private static final Set<String> MATPLOT_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
+            GraphicObjectProperties.__GO_DATA_MODEL__
+    ));
+
+    /**
      * Set of properties that affect polyline data.
      */
     private static final Set<String> POLYLINE_DATA_PROPERTIES = new HashSet<String>(Arrays.asList(
@@ -177,6 +184,7 @@ public class DataManager {
             if ((type.equals(GraphicObjectProperties.__GO_FAC3D__) && FAC3D_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_FEC__) && FEC_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_GRAYPLOT__) && GRAYPLOT_DATA_PROPERTIES.contains(property)) ||
+                (type.equals(GraphicObjectProperties.__GO_MATPLOT__) && MATPLOT_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_POLYLINE__) && POLYLINE_DATA_PROPERTIES.contains(property)) ||
                 (type.equals(GraphicObjectProperties.__GO_PLOT3D__) && PLOT3D_DATA_PROPERTIES.contains(property))) {
                 fillBuffers(id);
