@@ -17,6 +17,7 @@
 
 #include "Fac3DDecomposer.hxx"
 #include "NgonGridGrayplotDataDecomposer.hxx"
+#include "NgonGridMatplotDataDecomposer.hxx"
 #include "Plot3DDecomposer.hxx"
 #include "PolylineDecomposer.hxx"
 #include "TriangleMeshFecDataDecomposer.hxx"
@@ -46,6 +47,10 @@ int getDataSize(char* id)
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         return NgonGridGrayplotDataDecomposer::getDataSize(id);
+    }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        return NgonGridMatplotDataDecomposer::getDataSize(id);
     }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
@@ -80,6 +85,10 @@ void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, i
     {
         NgonGridGrayplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
     }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        NgonGridMatplotDataDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
+    }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         Plot3DDecomposer::fillVertices(id, buffer, bufferLength, elementsSize, coordinateMask, scale, translation, logMask);
@@ -108,6 +117,10 @@ void fillColors(char* id, float* BUFF, int bufferLength, int elementsSize)
     {
         NgonGridGrayplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
     }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        NgonGridMatplotDataDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
+    }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
         Plot3DDecomposer::fillColors(id, BUFF, bufferLength, elementsSize);
@@ -132,6 +145,10 @@ int getIndicesSize(char* id)
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         return NgonGridGrayplotDataDecomposer::getIndicesSize(id);
+    }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        return NgonGridMatplotDataDecomposer::getIndicesSize(id);
     }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
@@ -163,6 +180,10 @@ int fillIndices(char* id, int* buffer, int bufferLength, int logMask)
     else if (strcmp(type, __GO_GRAYPLOT__) == 0)
     {
         return NgonGridGrayplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
+    }
+    else if (strcmp(type, __GO_MATPLOT__) == 0)
+    {
+        return NgonGridMatplotDataDecomposer::fillIndices(id, buffer, bufferLength, logMask);
     }
     else if (strcmp(type, __GO_PLOT3D__) == 0)
     {
