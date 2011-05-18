@@ -56,7 +56,7 @@ namespace types
         InternalType*               clone();
         bool                        fillFromCol(int _iCols, Double *_poSource);
         bool                        fillFromRow(int _iRows, Double *_poSource);
-	    bool                        append(int _iRows, int _iCols, Double *_poSource);
+	    //bool                        append(int _iRows, int _iCols, Double *_poSource);
 
         bool                        operator==(const InternalType& it);
         bool                        operator!=(const InternalType& it);

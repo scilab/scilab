@@ -476,65 +476,208 @@ const std::wstring* getStructNameFromExp(const Exp* _pExp)
     {
         return getStructNameFromExp(&(pCall->name_get()));
     }
-    // FIXME
+    else
+    {
+        std::wostringstream os;
+        os << L"Unknow expression";
+        //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+        throw ScilabError(os.str(), 999, _pExp->location_get());
+    }
     return NULL;
 }
 
-types::Struct* getStructFromExp(const Exp* _pExp)
+bool fillStructFromExp(const Exp* _pExp, types::Struct* _pStr, int _iIndex, types::InternalType* _pIT)
 {
-    const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
     const SimpleVar* pVar =  dynamic_cast<const SimpleVar*>(_pExp);
     const CallExp* pCall =  dynamic_cast<const CallExp*>(_pExp);
+    const FieldExp* pField =  dynamic_cast<const FieldExp*>(_pExp);
+
+    if(pVar)
+    {//x.a = y
+        _pStr->addField(pVar->name_get().name_get());
+        _pStr->get(_iIndex)->set(pVar->name_get().name_get(), _pIT);
+    }
+    else if(pCall)
+    {
+    }
+    else
+    {
+        int a = 1;
+    }
+
+    return true;
+}
+
+bool getStructFromExp(const Exp* _pExp, types::Struct** _pMain, types::Struct** _pCurrent, typed_list** _pArgs, types::InternalType* _pIT)
+{
+    const FieldExp* pField      = dynamic_cast<const FieldExp*>(_pExp);
+    const SimpleVar* pVar       = dynamic_cast<const SimpleVar*>(_pExp);
+    const CallExp* pCall        = dynamic_cast<const CallExp*>(_pExp);
+    const CellCallExp* pCell    = dynamic_cast<const CellCallExp*>(_pExp);
 
     if(pField)
-    {
-        const SimpleVar* pTail = dynamic_cast<const SimpleVar*>(pField->tail_get());
-        if(pTail == NULL)
-        {
-            std::cout << "Houston ..." << std::endl;
-        }
+    {//y.x
 
-        types::Struct *pStr        = getStructFromExp(pField->head_get());
+        //evaluate head "y"
+        typed_list *pArgs   = NULL;
+        Struct* pMain       = *_pMain;
+        Struct* pCurrent    = *_pCurrent;
 
-        pStr->add(pTail->name_get().name_get());
-        types::InternalType* pIT = pStr->get(pTail->name_get().name_get());
-        if(pIT == NULL)
+        bool bOK = getStructFromExp(pField->head_get(), &pMain, &pCurrent, &pArgs, NULL);
+        if(bOK)
         {
-            types::Struct* pStruct = new types::Struct();
-            pStr->add(pTail->name_get().name_get(), pStruct);
-            pIT = pStruct;
+            pVar    = dynamic_cast<const SimpleVar*>(pField->tail_get());
+            //create field "x"
+            bool bOK = pCurrent->addField(pVar->name_get().name_get());
+            if(*_pMain == NULL && _pIT != NULL)
+            {//first stack, assign value to field and return main structure
+
+                if(pArgs != NULL)
+                {//args returned by "parent"
+                    Struct *pStr = pCurrent->extract(pArgs)->getAs<Struct>();
+                    pStr->get(0)->set(pVar->name_get().name_get(), _pIT);
+                }
+                else if(_pArgs == NULL || *_pArgs == NULL)
+                {
+                    pCurrent->get(0)->set(pVar->name_get().name_get(), _pIT);
+                }
+                else
+                {
+                    Struct* pStr = new Struct(1,1);
+                    pStr->addField(pVar->name_get().name_get());
+                    pStr->get(0)->set(pVar->name_get().name_get(), _pIT);
+                    pCurrent->insert(*_pArgs, pStr->get(0));
+                }
+            }
+            else
+            {//y.x.w
+                //in this case, we are in the middle of expression
+                //we know that "x" is a struct but we can't assign value yet
+                //so assign empty struct and return new pCurrent
+                Struct* pStr = NULL;
+
+                if(bOK)
+                {//field already exists
+                    //InternalType* pIT = pCurrent->
+                }
+
+
+                //be carrefull bOK can change in previous test
+                if(bOK)
+                {
+                    if(_pArgs == NULL || *_pArgs == NULL)
+                    {
+                        pStr = new Struct(1,1);
+                    }
+                    else
+                    {
+                        pStr = Struct::insertNew(*_pArgs, new Struct(1,1))->getAs<Struct>();
+                    }
+
+                    if(pArgs != NULL)
+                    {
+                        Struct* pStepStr = pCurrent->extract(pArgs)->getAs<Struct>();
+                        pStepStr->get(0)->set(pVar->name_get().name_get(), pStr);
+                    }
+                    else
+                    {
+                        pCurrent->get(0)->set(pVar->name_get().name_get(), pStr);
+                    }
+                }
+
+                pCurrent = pStr;
+            }
+
+            *_pMain = pMain;
+            *_pCurrent = pCurrent;
+            return true;
         }
-        return pIT->getAsStruct();
+        else
+        {
+            return false;
+        }
     }
     else if(pVar)
-    {
+    {//a.x : with x not only a SimpleVar
         types::Struct *pStr = NULL;
         types::InternalType *pIT = symbol::Context::getInstance()->get(pVar->name_get());
         if(pIT == NULL)
-        {
-            //create new list variable
-            pStr = new types::Struct();
+        {//"a" doest not exist, create it with size 1,1 and return it
+            //create new structure variable
+            if(_pArgs == NULL || *_pArgs == NULL)
+            {
+                pStr = new types::Struct(1,1);
+            }
+            else
+            {
+                pStr = Struct::insertNew(*_pArgs, new Struct(1,1))->getAs<Struct>();
+            }
             //Add variable to scope
             symbol::Context::getInstance()->put(pVar->name_get(), *pStr);
         }
         else if(pIT->isStruct() == false)
         {
-            return NULL;
+            return false;
         }
         else
         {
-            pStr = pIT->getAsStruct();
+            pStr = pIT->getAs<Struct>();
         }
 
-        return pStr;
+        if(*_pMain == NULL)
+        {
+            *_pMain = pStr;
+        }
+        *_pCurrent = pStr;
+        return true;
     }
     else if(pCall)
-    {
-        // FIXME
-        return NULL;
+    {//a(x,y)
+        ExecVisitor execMe;
+        Struct* pCurrent = NULL;
+
+        typed_list *pArgs = execMe.GetArgumentList(pCall->args_get());
+
+        //Struct* pStruct = Struct::insertNew(pArgs, new Struct(1,1))->getAs<Struct>();
+        if(*_pMain == NULL)
+        {//a is the new main but can be a complex expression
+            //bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pArgs, pStruct);
+            bool bOK = getStructFromExp(&pCall->name_get(), _pMain, &pCurrent, &pArgs, NULL);
+            if(bOK == false)
+            {
+                return false;
+            }
+        
+            *_pArgs = pArgs;
+            //const SimpleVar *pVar = dynamic_cast<const SimpleVar*>(&pCall->name_get());
+            //if(pVar)
+            //{
+            //    //Add variable to scope
+            //    symbol::Context::getInstance()->put(pVar->name_get(), **_pMain);
+            //}
+            //else
+            //{
+            //    //heu ...
+            //}
+        }
+        else
+        {//we have a parent, so assign "a" to this parent
+            //(*_pMain)->set(0, pStruct->get(0));
+        }
+        *_pCurrent = pCurrent;
+        return true;
     }
-    // FIXME
-    return NULL;
+    else if(pCell)
+    {
+    }
+    else
+    {
+        std::wostringstream os;
+        os << L"Unknown expression";
+        //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+        throw ScilabError(os.str(), 999, _pExp->location_get());
+    }
+    return false;
 }
 
 void callOnPrompt(void)

@@ -177,34 +177,6 @@ void visitprivate(const CallExp &e)
             result_set(pIT);
             return;
         }
-        else if(pIT->isStruct())
-        {
-            list<wstring> stFields;
-            list<Exp*>::const_iterator it1;
-            for(it1 = e.args_get().begin() ; it1 != e.args_get().end() ; it1++)
-            {
-                T execArg;
-                (*it1)->accept(execArg);
-                if(execArg.result_get()->isString())
-                {
-                    InternalType* pVar  = execArg.result_get();
-                    String *pString = pVar->getAs<types::String>();
-                    for(int i = 0 ; i < pString->getSize() ; i++)
-                    {
-                        stFields.push_back(pString->get(i));
-                    }
-                }
-                else
-                {//manage error
-                }
-            }
-
-            ResultList = pIT->getAsStruct()->extract(stFields);
-            for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
-            {
-                result_set(i, ResultList[i]);
-            }
-        }
         else if(pIT->isTList())
         {
             list<wstring> stFields;
@@ -357,13 +329,47 @@ void visitprivate(const CallExp &e)
             case InternalType::RealCell :
                 pOut = pIT->getAs<Cell>()->extract(pArgs);
                 break;
+            case InternalType::RealStruct :
+                {
+                    Struct* pStr = pIT->getAs<Struct>();
+                    if(pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    {//s(["x","xx"])
+                        list<wstring> wstFields;
+                        String *pS = (*pArgs)[0]->getAs<types::String>();
+                        for(int i = 0 ; i < pS->getSize() ; i++)
+                        {
+                            wstring wstField(pS->get(i));
+                            if(pStr->exists(wstField))
+                            {
+                                wstFields.push_back(wstField);
+                            }
+                            else
+                            {
+                                wchar_t szError[bsiz];
+                                os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n"), wstField.c_str());
+                                throw ScilabError(szError, 999, (*e.args_get().begin())->location_get());
+                            }
+                        }
+
+                        ResultList = pStr->extractFields(wstFields);
+                        for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                        {
+                            result_set(i, ResultList[i]);
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        pOut = pIT->getAs<Struct>()->extract(pArgs);
+                    }
+                }
             default :
                 break;
             }
         }
 
         //List extraction can return multiple items
-        if(pIT->isList() == false && pIT->isStruct() == false && pIT->isTList() == false)
+        if(pIT->isList() == false && pIT->isTList() == false)
         {
             if(pOut == NULL)
             {

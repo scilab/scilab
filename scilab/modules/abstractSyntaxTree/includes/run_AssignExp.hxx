@@ -404,7 +404,7 @@ void visitprivate(const AssignExp  &e)
                 }
                 else if(pIT->isStruct())
                 {
-                    pRet = pIT->getAsStruct()->insert(pArgs, pInsert);
+                    pRet = pIT->getAs<Struct>()->insert(pArgs, pInsert);
                 }
                 else
                 {//overloading
@@ -581,10 +581,17 @@ void visitprivate(const AssignExp  &e)
         {//a.b = x
             //a.b can be a struct or a tlist/mlist
             InternalType *pHead = NULL;
-            Struct* pStr = getStructFromExp(pField->head_get());
-            if(pStr != NULL)
+            Struct* pMain       = NULL;
+            Struct* pCurrent    = NULL;
+
+            /*getting what to assign*/
+            execMeR.expected_size_set(1);
+            e.right_exp_get().accept(execMeR);
+
+            bool bOK = getStructFromExp(pField, &pMain, &pCurrent, NULL, execMeR.result_get());
+            if(pMain != NULL)
             {
-                pHead = pStr;
+                pHead = pMain;
             }
             else
             {
@@ -604,9 +611,6 @@ void visitprivate(const AssignExp  &e)
                 const wstring *pstName = getStructNameFromExp(pField);
                 symbol::Context::getInstance()->put(symbol::Symbol(*pstName), *pHead);
             }
-            /*getting what to assign*/
-            execMeR.expected_size_set(1);
-            e.right_exp_get().accept(execMeR);
 
             //we can assign only one value
             if(execMeR.result_getSize() != 1)
@@ -639,7 +643,8 @@ void visitprivate(const AssignExp  &e)
 
             if(pHead->isStruct())
             {
-                pHead->getAsStruct()->add(pTail->name_get().name_get(), pIT);
+                //@STRUCT
+                //fillStructFromExp(pField->tail_get(), pStr, 0, pIT);
             }
             else if(pHead->isTList())
             {

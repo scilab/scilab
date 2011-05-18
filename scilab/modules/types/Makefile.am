@@ -50,6 +50,7 @@ TYPES_CPP_SOURCES = \
 			src/cpp/listoperation.cpp \
 			src/cpp/listundefined.cpp \
 			src/cpp/struct.cpp \
+			src/cpp/singlestruct.cpp \
 			src/cpp/cell.cpp \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \

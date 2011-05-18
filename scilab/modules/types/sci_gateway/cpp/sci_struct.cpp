@@ -13,6 +13,7 @@
 #include "function.hxx"
 #include "struct.hxx"
 #include "string.hxx"
+#include "cell.hxx"
 #include "funcmanager.hxx"
 
 extern "C"
@@ -26,36 +27,116 @@ using namespace types;
 
 Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &out)
 {
+    int* piDimsRef  = NULL;
+    int iDimsRef    = 0;
+
     /* Check number of input arguments: must be even */
-    if (in.size()%2 != 0)
+    if (in.size() % 2 != 0)
     {
         ScierrorW(999, _W("%ls: Wrong number of input argument(s): An even number is expected.\n"), L"struct");
         return Function::Error;
     }
 
+    //no input parameter
+    if(in.size() == 0)
+    {
+        out.push_back(new Struct());
+        return Function::OK;
+    }
+
     /* First check if all fields are Strings */
     typed_list::iterator itInput;
-
-    for (itInput = in.begin() ; itInput != in.end() ; itInput = itInput + 2)
+    for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
-        if (!(*itInput)->isString())
+        if ((*itInput)->isString() == false || (*itInput)->getAs<String>()->getSize() != 1)
         {
+            ScierrorW(999, _W("%ls: Field names must be strings.\n"), L"struct");
             return Function::Error;
         }
     }
 
-    Struct *pRetVal = new Struct();
-    InternalType *pFieldValue = NULL;
-
-    for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
+    /* Second check if dimensions of data are good*/
+    for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput+1) != in.end()) ? itInput += 2 : itInput += 1)
     {
-        std::wstring psFieldName = std::wstring((*itInput)->getAs<types::String>()->get(0));
-        ++itInput;
-        pFieldValue = *itInput;
-        pRetVal->add(psFieldName, pFieldValue);
+        if((*itInput)->getAs<Cell>() && (*itInput)->getAs<Cell>()->isScalar() == false)
+        {
+            Cell* pCell = (*itInput)->getAs<Cell>();
+            if(piDimsRef == NULL)
+            {
+                iDimsRef    = pCell->getDims();
+                piDimsRef   = pCell->getDimsArray();
+            }
+            else
+            {
+                if(iDimsRef == pCell->getDims())
+                {
+                    int* piDims = pCell->getDimsArray();
+                    for(int i = 0 ; i < iDimsRef ; i++)
+                    {
+                        if(piDims[i] != piDimsRef[i])
+                        {
+                            ScierrorW(999, _W("%ls: Arguments must be scalar or must have same dimensions.\n"), L"struct");
+                            return Function::Error;
+                        }
+                    }
+                }
+                else
+                {
+                    ScierrorW(999, _W("%ls: Arguments must be scalar or must have same dimensions.\n"), L"struct");
+                    return Function::Error;
+                }
+            }
+        }
     }
 
-    out.push_back(pRetVal);
+    Struct *pOut = NULL;
+    
+    if(piDimsRef)
+    {
+        pOut = new Struct(iDimsRef, piDimsRef);
+    }
+    else
+    {
+        pOut = new Struct(1,1);
+    }
+
+    InternalType *pFieldValue = NULL;
+    for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
+    {//for each field
+        wstring wstField((*itInput)->getAs<String>()->get(0));
+        InternalType* pData = (*(itInput + 1));
+
+        //add field in struct
+        pOut->addField(wstField);
+
+        if(pData->isCell())
+        {//non scalar cell dispatch cell data in each SingleStruct
+            Cell* pCell = pData->getAs<Cell>();
+            if(pCell->getSize() == 1)
+            {
+                for(int i = 0 ; i < pOut->getSize() ; i++)
+                {
+                    pOut->get(i)->set(wstField, pCell->get(0));
+                }
+            }
+            else
+            {
+                for(int i = 0 ; i < pOut->getSize() ; i++)
+                {
+                    pOut->get(i)->set(wstField, pCell->get(i));
+                }
+            }
+        }
+        else
+        {//others
+            for(int i = 0 ; i < pOut->getSize() ; i++)
+            {
+                pOut->get(i)->set(wstField, pData);
+            }
+        }
+    }
+
+    out.push_back(pOut);
 
     return Function::OK;
 }

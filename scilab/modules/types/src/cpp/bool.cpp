@@ -93,15 +93,14 @@ namespace types
 
     void Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
     {
-        ostr << std::endl;
         /*Comment tenir compte de la longueur des lignes dans le formatage de variable ? */
         if(isScalar())
         {//scalar
             _piDims[0] = 0;
             _piDims[1] = 0;
             int iPos = getIndex(_piDims);
-            ostr << (get(iPos) == 1 ? L"  T" : L"  F");
-            ostr << std::endl;
+            ostr << L"  ";
+            ostr << (get(iPos) == 1 ? L"T" : L"F");
         }
         else if(getCols() == 1)
         {//column vector
@@ -113,7 +112,6 @@ namespace types
                 ostr << (get(iPos) == 1 ? L"  T" : L"  F");
                 ostr << std::endl;
             }
-            ostr << std::endl;
         }
         else if(getRows() == 1)
         {//row vector
@@ -154,7 +152,6 @@ namespace types
                 ostr << std::endl << L"         column " << (getCols() - 1) / (iLineTag + 1) * iLineTag + 1 << L" to " << getCols() << std::endl << std::endl;
             }
             ostr << szTemp;
-            ostr << std::endl;
         }
         else
         {
@@ -211,7 +208,6 @@ namespace types
             }
             ostr << ostemp.str();
         }
-        ostr << std::endl;
     }
 
     bool Bool::operator==(const InternalType& it)
@@ -278,4 +274,39 @@ namespace types
     {
         return new int[_iSize];
     }
+
+    //std::wstring Bool::toStringInLine(int _iPrecision, int _iLineLen)
+    //{
+    //    std::wostringstream ostr;
+
+    //    if(isScalar() || (isVector() && getRows() == 1))
+    //    {
+    //        for(int i = 0 ; i < getSize() ; i++)
+    //        {
+    //            ostr << L"  ";
+    //            ostr << (get(i) == 0 ? L"F" : L"T");
+
+    //            if(ostr.str().length() > _iLineLen)
+    //            {
+    //                break;
+    //            }
+    //        }
+
+    //        return ostr.str();
+    //    }
+
+    //    //all other cases
+    //    ostr << L"[";
+    //    for(int i = 0 ; i < m_iDims ; i++)
+    //    {
+    //        if(i > 0)
+    //        {
+    //            ostr << L"x";
+    //        }
+    //        ostr << m_piDims[i];
+    //    }
+
+    //    ostr << L" " << getTypeStr() << L"]";
+    //    return ostr.str();
+    //}
 }

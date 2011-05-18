@@ -47,6 +47,25 @@ using namespace std;
 //	}
 //}
 
+void addSign(wostringstream* _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
+{
+	if(_bPrintPlusSign == true)
+	{
+		*_postr << (_dblVal < 0 ? MINUS_STRING : PLUS_STRING);
+	}
+	else
+	{
+		if(_bPaddSign)
+		{
+			*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
+		}
+		else
+		{
+			*_postr << (_dblVal < 0 ? MINUS_STRING : L"");
+		}
+	}
+}
+
 void getDoubleFormat(double _dblVal, int _iPrecNeeded, int *_piWidth, int *_piPrec, bool* _pbFloatingPoint)
 {
 	double dblDec				= 0;
@@ -124,22 +143,7 @@ void getComplexFormat(double _dblR, double _dblI, int _iPrecNeeded, int *_piTota
 
 void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
-	if(bPrintPlusSign == true)
-	{
-		*_postr << (_dblVal < 0 ? MINUS_STRING : PLUS_STRING);
-	}
-	else
-	{
-		if(bPaddSign)
-		{
-			*_postr << (_dblVal < 0 ? MINUS_STRING : NO_SIGN);
-		}
-		else
-		{
-			*_postr << (_dblVal < 0 ? MINUS_STRING : L"");
-		}
-	}
-
+    addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
 	configureStream(_postr, _iWidth/* + SIZE_BETWEEN_TWO_VALUES*/, _iPrec, ' ');
 
 	if(bPrintOne == true || isEqual(_dblVal, 1) == false)
@@ -148,15 +152,16 @@ void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iP
 	}
 }
 
-void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec)
+void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, int _iTotalWitdh, int _iWidthR, int _iWidthI, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
 	wostringstream ostemp;
 	/*
 	if R && !C -> R
 	if R && C -> R + Ci
 	if !R && !C -> 0
-	if(!R aa C	-> Ci
+	if(!R && C	-> Ci
 	*/
+
 
 //	*_postr << "|%" << _iTotalWitdh << "%|";
 	if(_dblR == 0)
@@ -165,7 +170,7 @@ void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 		{//no imaginary part
 
 			//0
-			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
+            addSign(&ostemp, _dblI, bPrintPlusSign, bPaddSign);
 			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			ostemp << left << 0;
 		}
@@ -173,7 +178,7 @@ void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 		{//imaginary part
 
 			//I
-			ostemp << (_dblI < 0 ? MINUS_STRING : NO_SIGN);
+            addSign(&ostemp, _dblI, bPrintPlusSign, bPaddSign);
 			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//specail case if I == 1 write only i and not 1i
@@ -188,7 +193,7 @@ void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 		{//no imaginary part
 
 			//R
-			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
+            addSign(&ostemp, _dblR, bPrintPlusSign, bPaddSign);
 			configureStream(&ostemp, _iWidthR, _iPrec, ' ');
 			printDoubleVar(&ostemp, _dblR);
 		}
@@ -196,13 +201,13 @@ void addDoubleComplexValue(wostringstream *_postr, double _dblR, double _dblI, i
 		{//imaginary part
 
 			//R
-			ostemp << (_dblR < 0 ? MINUS_STRING : NO_SIGN);
+            addSign(&ostemp, _dblR, bPrintPlusSign, bPaddSign);
 			configureStream(&ostemp, _iWidthR, _iPrec, ' ');
 			printDoubleVar(&ostemp, _dblR);
 			ostemp << SPACE_BETWEEN_REAL_COMPLEX;
 
 			//I
-			ostemp << (_dblI < 0 ? MINUS_STRING : PLUS_STRING);
+            addSign(&ostemp, _dblI, true, bPaddSign);
 			configureStream(&ostemp, _iWidthI, _iPrec, ' ');
 			if(fabs(_dblI) != 1)
 			{//special case if I == 1 write only i and not 1i

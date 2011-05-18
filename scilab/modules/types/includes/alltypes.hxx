@@ -33,6 +33,7 @@
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "list.hxx"
+#include "singlestruct.hxx"
 #include "struct.hxx"
 #include "listoperation.hxx"
 #include "listdelete.hxx"

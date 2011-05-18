@@ -227,7 +227,7 @@ namespace types
         }
         else if(isEmpty())
         {
-            ostr << L"   []";
+            ostr << L"[]";
             ostr << endl;
         }
         else if(isScalar())
@@ -240,19 +240,17 @@ namespace types
             {
                 int iWidth = 0, iPrec = 0;
                 bool bFP = false; // FloatingPoint
-                getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
+                //getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
                 addDoubleValue(&ostr, (m_pRealData[iPos]), iWidth, iPrec);
-                ostr << endl;
             }
             else
             {//complex value
                 int iWidthR = 0, iWidthI = 0;
                 int iPrecR = 0, iPrecI = 0;
                 bool bFPR = false, bFPI = false; // FloatingPoint
-                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
-                getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
+                //getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
+                //getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
                 addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
-                ostr << endl;
             }
         }
         else if(getCols() == 1)
@@ -741,62 +739,61 @@ namespace types
         return pDbl;
     }
 
-	bool Double::append(int _iRows, int _iCols, Double *_poSource)
-	{
-		int iSourceRows = _poSource->getRows();
-		int iSourceCols = _poSource->getCols();
-		int iOrigRows   = getRows();
-		int iOrigCols   = getCols();
+    //bool Double::append(int _iRows, int _iCols, Double *_poSource)
+    //{
+    //    int iSourceRows = _poSource->getRows();
+    //    int iSourceCols = _poSource->getCols();
+    //    int iOrigRows   = getRows();
+    //    int iOrigCols   = getCols();
 
-		//insert without resize
-		if(iSourceRows + _iRows > iOrigRows || iSourceCols + _iCols > iOrigCols)
-		{
-			return false;
-		}
+    //    //insert without resize
+    //    if(iSourceRows + _iRows > iOrigRows || iSourceCols + _iCols > iOrigCols)
+    //    {
+    //        return false;
+    //    }
 
-        double* pSourceReal = _poSource->get();
-        double* pSourceImg  = _poSource->getImg();
-        double* pOrigReal   = get();
-        double* pOrigImg    = getImg();
-        
-		if(m_bComplex)
-		{
-			for(int iRow = 0 ; iRow < iSourceRows ; iRow++)
-			{
-                int iDestOffset = _iCols * iOrigRows + iRow;
-                int iOrigOffset = iSourceCols * iSourceRows + iRow;
-                memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceCols * sizeof(double));
-                if(_poSource->isComplex())
-                {
-                    memcpy(pOrigImg + iDestOffset, pSourceImg + iOrigOffset, iSourceCols * sizeof(double));
-                }
-                else
-                {
-                    memset(pOrigImg + iDestOffset, 0x00, iSourceCols * sizeof(double));
-                }
-			}
-		}
-		else
-		{
-            if(iSourceRows != 1)
-            {
-                for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
-                {
-                    int iDestOffset = (iCol + _iCols ) * iOrigRows + _iRows;
-                    int iOrigOffset = iCol * iSourceRows;
-                    memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceRows * sizeof(double));
-                }
-            }
-            else
-            {
-                for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
-                {
-                    //set(_iRows, _iCols + iCol, pSourceReal[iCol]);
-                    set((_iCols + iCol) * iOrigRows + _iRows, pSourceReal[iCol]);
-                }
-            }
-		}
-		return true;
-	}
-    
+    //    double* pSourceReal = _poSource->get();
+    //    double* pSourceImg  = _poSource->getImg();
+    //    double* pOrigReal   = get();
+    //    double* pOrigImg    = getImg();
+
+    //    if(m_bComplex)
+    //    {
+    //        for(int iRow = 0 ; iRow < iSourceRows ; iRow++)
+    //        {
+    //            int iDestOffset = _iCols * iOrigRows + iRow;
+    //            int iOrigOffset = iSourceCols * iSourceRows + iRow;
+    //            memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceCols * sizeof(double));
+    //            if(_poSource->isComplex())
+    //            {
+    //                memcpy(pOrigImg + iDestOffset, pSourceImg + iOrigOffset, iSourceCols * sizeof(double));
+    //            }
+    //            else
+    //            {
+    //                memset(pOrigImg + iDestOffset, 0x00, iSourceCols * sizeof(double));
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        if(iSourceRows != 1)
+    //        {
+    //            for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
+    //            {
+    //                int iDestOffset = (iCol + _iCols ) * iOrigRows + _iRows;
+    //                int iOrigOffset = iCol * iSourceRows;
+    //                memcpy(pOrigReal + iDestOffset, pSourceReal + iOrigOffset, iSourceRows * sizeof(double));
+    //            }
+    //        }
+    //        else
+    //        {
+    //            for(int iCol = 0 ; iCol < iSourceCols ; iCol++)
+    //            {
+    //                //set(_iRows, _iCols + iCol, pSourceReal[iCol]);
+    //                set((_iCols + iCol) * iOrigRows + _iRows, pSourceReal[iCol]);
+    //            }
+    //        }
+    //    }
+    //    return true;
+    //}
 }

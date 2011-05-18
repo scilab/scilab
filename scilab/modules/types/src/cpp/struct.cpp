@@ -1,6 +1,6 @@
 /*
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-*  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+*  Copyright (C) 2011 - DIGITEO - Antoine ELIAS
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
@@ -9,240 +9,340 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
-
-#include <sstream>
-#include "symbol.hxx"
 #include "struct.hxx"
 #include "string.hxx"
-#include "scilabexception.hxx"
-
-extern "C"
-{
-#include "localization.h"
-#include "charEncoding.h"
-}
+#include "list.hxx"
 
 namespace types
 {
-    /**
-    ** Constructor & Destructor (public)
-    */
-    Struct::Struct() : Container()
+    Struct::Struct()
     {
-        m_plData = new std::map<std::wstring, InternalType *>();
-        m_iRows = 0;
-        m_iCols = 0;
-        m_iSize = 0;
+        SingleStruct** pIT  = NULL;
+        int piDims[2] = {0, 0};
+		create(piDims, 2, &pIT, NULL);
+    }
+
+    Struct::Struct(int _iRows, int _iCols)
+    {
+        SingleStruct** pIT  = NULL;
+        int piDims[2] = {_iRows, _iCols};
+		create(piDims, 2, &pIT, NULL);
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, new SingleStruct());
+        }
+    }
+
+    Struct::Struct(int _iDims, int* _piDims)
+    {
+        SingleStruct** pIT  = NULL;
+		create(_piDims, _iDims, &pIT, NULL);
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            set(i, new SingleStruct());
+        }
     }
 
     Struct::~Struct()
     {
         if(isDeletable() == true)
         {
-            delete m_plData;
-        }
-    }
-
-    /**
-    ** Private Copy Constructor and data Access
-    */
-    Struct::Struct(Struct *_oStructCopyMe)
-    {
-        m_iRows = _oStructCopyMe->getRows();
-        m_iCols = _oStructCopyMe->getCols();
-        std::map<std::wstring, InternalType *>::iterator itValues;
-        m_plData = new std::map<std::wstring, InternalType *>;
-
-        for (itValues = _oStructCopyMe->getData()->begin();
-            itValues != _oStructCopyMe->getData()->end();
-            itValues++)
-        {
-            ((*itValues).second)->IncreaseRef();
-            (*m_plData)[(*itValues).first] = (*itValues).second;
-        }
-    }
-
-    std::map<std::wstring, InternalType *> *Struct::getData()
-    {
-        return m_plData;
-    }
-
-    /**
-    ** size_get
-    ** Return the number of elements in struct
-    */
-    int Struct::getSize()
-    {
-        return (int)m_plData->size();
-    }
-
-    /**
-    ** add(symbol::Symbol*_psKey, InternalType *_typedValue)
-    ** Append the given value to the struct
-    */
-    void Struct::add(const std::wstring& _sKey, InternalType *_typedValue)
-    {
-        m_iRows = 1;
-        m_iCols = 1;
-        /* Look if we are replacing some existing value */
-        if (exists(_sKey))
-        {
-            if((*m_plData)[_sKey] != NULL)
+            for(int i = 0 ; i < getSize() ; i++)
             {
-                (*m_plData)[_sKey]->DecreaseRef();
-                if ((*m_plData)[_sKey]->isDeletable())
+                SingleStruct *pStr = m_pRealData[i];
+                if(pStr)
                 {
-                    delete (*m_plData)[_sKey];
+                    pStr->DecreaseRef();
+                    if(pStr->isDeletable())
+                    {
+                        delete pStr;
+                    }
                 }
             }
         }
-
-        //it seams std::map implementation is different between windows and linux
-        //so cloning in temporary variable before assign it.
-        _typedValue->IncreaseRef();
-        (*m_plData)[_sKey] = _typedValue;
     }
 
-
-    /**
-    ** add(symbol::Symbol*_psKey)
-    ** Append an null value to the struct
-    */
-    void Struct::add(const std::wstring& _sKey)
+    Struct::Struct(Struct *_oStructCopyMe)
     {
-        /* Look if we are replacing some existing value */
-        if (exists(_sKey))
+        SingleStruct** pIT = NULL;
+        create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
+        for(int i = 0 ; i < getSize() ; i++)
         {
-            return;
+            m_pRealData[i] = NULL;
         }
-        (*m_plData)[_sKey] = NULL;
-    }
 
-    /**
-    ** get(symbol::Symbol*_psKey)
-    ** Append the given value to the end of the List
-    */
-    InternalType* Struct::get(const std::wstring& _sKey)
-    {
-        return (*m_plData)[_sKey];
-    }
-
-    bool Struct::exists(const std::wstring& _sKey)
-    {
-        std::map<std::wstring, InternalType *>::iterator it = m_plData->find(_sKey);
-        if (it ==  m_plData->end())
+        for(int i = 0 ; i < getSize() ; i++)
         {
-            return false;
+            set(i, _oStructCopyMe->get(i)->clone());
         }
-        return true;
     }
 
-    /**
-    ** Clone
-    ** Create a new Struct and Copy all values.
-    */
     InternalType* Struct::clone()
     {
         return new Struct(this);
     }
 
-    GenericType* Struct::getColumnValues(int _iPos)
+    bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)
     {
-        return NULL;
-    }
-    /**
-    ** toString to display Structs
-    ** FIXME : Find a better indentation process
-    */
-    std::wstring Struct::toString(int _iPrecision, int _iLineLen)
-    {
-        std::wostringstream ostr;
-
-        if (getSize() == 0)
+        if(_iRows < getRows() && _iCols < getCols())
         {
-            ostr << L"Empty struct" << std::endl;
+            return set(_iCols * getRows() + _iRows, _pIT);
         }
-        else
+        return false;
+    }
+
+    bool Struct::set(int _iRows, int _iCols, const SingleStruct* _pIT)
+    {
+        if(_iRows < getRows() && _iCols < getCols())
         {
-            int iPosition = 1;
-            std::map<std::wstring, InternalType *>::iterator itValues;
-            for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
+            return set(_iCols * getRows() + _iRows, _pIT);
+        }
+        return false;
+    }
+
+    bool Struct::set(int _iIndex, SingleStruct* _pIT)
+    {
+        if(_iIndex < getSize())
+        {
+            if(m_pRealData[_iIndex] != NULL)
             {
-                ostr << itValues->first << L" : ";
-                switch  ((itValues->second)->getType())
+                m_pRealData[_iIndex]->DecreaseRef();
+                if(m_pRealData[_iIndex]->isDeletable())
                 {
-                case RealStruct :
-                    ostr << L"[ " << (itValues->second)->getAsStruct()->getRows()
-                        << L" x " << (itValues->second)->getAsStruct()->getCols()
-                        << L" struct ]";
-                    break;
-                default :
-                    ostr << (itValues->second)->toString(_iPrecision, _iLineLen);
-                    break;
+                    delete m_pRealData[_iIndex];
                 }
-                ostr << std::endl;
             }
+
+            _pIT->IncreaseRef();
+            m_pRealData[_iIndex] = _pIT;
+            return true;
         }
-        return ostr.str();
+        return false;
     }
 
-    InternalType* Struct::insert(typed_list* _pArgs, InternalType* _pSource)
+    bool Struct::set(int _iIndex, const SingleStruct* _pIT)
     {
-        //check input param
-        if(_pArgs->size() != 1)
+        if(_iIndex < getSize())
         {
-            std::wostringstream os;
-            os << _W("Unable to insert multiple item in a struct.\n");
-            throw ast::ScilabError(os.str());
-        }
-        String* pstKey = (*_pArgs)[0]->getAs<String>();
-
-        if(pstKey == NULL)
-        {
-            std::wostringstream os;
-            os << _W("Assignment between unlike types is not allowed.\n");
-            throw ast::ScilabError(os.str());
-        }
-
-        for (int i = 0 ; i < pstKey->getSize() ; ++i)
-        {
-            this->add(std::wstring(pstKey->get(i)), _pSource);
-        }
-
-        return this;
-
-    }
-
-    std::vector<InternalType*> Struct::extract(std::list<std::wstring> _stFields)
-    {
-        std::vector<InternalType*> Result;
-
-        std::list<std::wstring>::const_iterator it;
-        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
-        {
-            if(exists(*it) == false)
+            if(m_pRealData[_iIndex] != NULL)
             {
-                return Result;
+                m_pRealData[_iIndex]->DecreaseRef();
+                if(m_pRealData[_iIndex]->isDeletable())
+                {
+                    delete m_pRealData[_iIndex];
+                }
+            }
+
+            const_cast<SingleStruct*>(_pIT)->IncreaseRef();
+            m_pRealData[_iIndex] = const_cast<SingleStruct*>(_pIT);
+            return true;
+        }
+        return false;
+    }
+
+    bool Struct::set(SingleStruct** _pIT)
+    {
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(set(i, _pIT[i]) == false)
+            {
+                return false;
             }
         }
-
-        for(it = _stFields.begin() ; it != _stFields.end() ; it++)
-        {
-            Result.push_back(get(*it));
-        }
-        return Result;
+        return true;
     }
 
     String* Struct::getFieldNames()
     {
-        String* pOut = new String((int)m_plData->size(), 1);
-        std::map<std::wstring, InternalType *>::iterator it;
-
-        int i = 0;
-        for (it = m_plData->begin() ; it != m_plData->end() ; it++, i++)
+        if(getSize() != 0)
         {
-            pOut->set(i, it->first.c_str());
+            return get(0)->getFieldNames();
         }
-        return pOut;
+        else
+        {
+            return new String(1,1);
+        }
+    }
+
+    bool Struct::exists(const std::wstring& _sKey)
+    {
+        if(getSize() != 0)
+        {
+            return get(0)->exists(_sKey);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
+    bool Struct::operator==(const InternalType& it)
+    {
+        if(const_cast<InternalType &>(it).isStruct())
+        {
+            return false;
+        }
+
+        Struct* pStr = const_cast<InternalType &>(it).getAs<Struct>();
+
+        for(int i = 0 ; i < getDims() ; i++)
+        {
+            if(pStr->getDimsArray()[i] != getDimsArray()[i])
+            {
+                return false;
+            }
+        }
+
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(get(i) != pStr->get(i))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    bool Struct::operator!=(const InternalType& it)
+    {
+        return !(*this == it);
+    }
+
+    SingleStruct* Struct::getNullValue()
+    {
+        return new SingleStruct();
+    }
+
+    Struct* Struct::createEmpty(int _iDims, int* _piDims, bool _bComplex)
+    {
+        return new Struct(_iDims, _piDims);
+    }
+
+    SingleStruct* Struct::copyValue(SingleStruct* _pData)
+    {
+        _pData->IncreaseRef();
+        return _pData;
+    }
+
+    void Struct::deleteAll()
+    {
+		for(int i = 0 ; i < getSize() ; i++)
+		{
+            m_pRealData[i]->DecreaseRef();
+            if(m_pRealData[i]->isDeletable())
+            {
+                delete m_pRealData[i];
+            }
+		}
+		delete[] m_pRealData;
+        m_pRealData = NULL;
+    }
+
+    void Struct::deleteImg()
+    {
+        return;
+    }
+
+    SingleStruct** Struct::allocData(int _iSize)
+    {
+        SingleStruct** pData = new SingleStruct*[_iSize];
+        for(int i = 0 ; i < _iSize ; i++)
+        {
+            pData[i] = NULL;
+        }
+        return pData;
+   }
+
+    void Struct::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
+    {
+    }
+
+    bool Struct::addField(const std::wstring& _sKey)
+    {
+        if(getSize() == 0)
+        {
+            return false;
+        }
+
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            if(get(i)->isRef(1))
+            {//assign more than once
+                //clone it before add field
+                set(i, get(i)->clone());
+            }
+
+            get(i)->addField(_sKey);
+        }
+        return true;
+    }
+
+    std::wstring Struct::toString(int _iPrecision, int _iLineLen)
+    {
+        std::wostringstream ostr;
+
+        if(getSize() == 1)
+        {
+            SingleStruct* pSS =  get(0);
+            String* pwstFields =  pSS->getFieldNames();
+            for(int i = 0 ; i < pwstFields->getSize() ; i++)
+            {
+                std::wstring wstField(pwstFields->get(i));
+                InternalType* pIT = pSS->get(wstField);
+
+                ostr << L"  " << wstField << ": ";
+                ostr << pIT->toStringInLine(_iPrecision, _iLineLen);
+                ostr << std::endl;
+            }
+        }
+        else
+        {
+            ostr << L"  ";
+            for(int i = 0 ; i < m_iDims ; i++)
+            {
+                if(i > 0)
+                {
+                    ostr << L"x";
+                }
+                ostr << m_piDims[i];
+            }
+            ostr << L" struct array with ";
+
+            String* pwstFields = getFieldNames();
+            if(pwstFields->getSize() != 0)
+            {
+                ostr <<  L"fields:" << std::endl;
+                for(int i = 0 ; i < pwstFields->getSize() ; i++)
+                {
+                    ostr << L"    " << pwstFields->get(i) << std::endl;
+                }
+            }
+            else
+            {
+                ostr << L"no fields." << std::endl;
+            }
+        }
+
+        return ostr.str();
+    }
+
+    std::vector<InternalType*> Struct::extractFields(std::list<std::wstring> _wstFields)
+    {
+        std::vector<InternalType*> ResultList;
+        for(int i = 0 ; i < _wstFields.size() ; i++)
+        {
+            ResultList.push_back(new List());
+        }
+
+        for(int i = 0 ; i < getSize() ; i++)
+        {
+            std::vector<InternalType*> fields = get(i)->extract(_wstFields);
+
+            for(int j = 0 ; j < fields.size() ; j++)
+            {
+                ResultList[j]->getAs<List>()->append(fields[j]);
+            }
+        }
+        return ResultList;
     }
 }

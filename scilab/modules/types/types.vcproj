@@ -373,6 +373,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\src\cpp\singlestruct.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\src\cpp\string.cpp"
 				>
 			</File>
@@ -540,6 +544,10 @@
 			</File>
 			<File
 				RelativePath=".\includes\singlepoly.hxx"
+				>
+			</File>
+			<File
+				RelativePath=".\includes\singlestruct.hxx"
 				>
 			</File>
 			<File

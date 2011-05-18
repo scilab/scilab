@@ -1,0 +1,142 @@
+//
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+//
+// This file must be used under the terms of the CeCILL.
+// This source file is licensed as described in the file COPYING, which
+// you should have received as part of this distribution.  The terms
+// are also available at
+// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+//
+//
+
+//function struct
+
+firstname       = "firstname";
+firstname_new   = "firstname_new";
+lastname        = "lastname";
+lastname_new    = "lastname_new";
+email           = "email";
+email_new       = "email_new";
+phone_new       = "phone_new";
+
+// create a one dimensional struct
+st = struct("firstname", firstname, "lastname", lastname, "email", email);
+
+//assert_checkequal(st.firstname, firstname);
+if st.firstname <> firstname then pause end
+//assert_checkequal(st.lastname, lastname);
+if st.lastname <> lastname then pause end
+//assert_checkequal(st.email, email);
+if st.email <> email then pause end
+
+//change some values
+st.firstname    = firstname_new;
+st.lastname     = lastname_new;
+st.email        = email_new;
+
+// add a phone field
+st.phone        = phone_new;
+
+//assert_checkequal(st.firstname, firstname_new);
+if st.firstname <> firstname_new then pause end
+//assert_checkequal(st.lastname, lastname_new);
+if st.lastname <> lastname_new then pause end
+//assert_checkequal(st.email, email_new);
+if st.email <> email_new then pause end
+//assert_checkequal(st.language, language_new);
+if st.phone <> phone_new then pause end
+clear st;
+
+//create multi-dimentional struct (4x3x2)
+n1 = 4;
+n2 = 3;
+n3 = 2;
+
+firstnames{n1,n2,n3}    = [];
+lastnames{n1,n2,n3}     = [];
+emails{n1,n2,n3}        = [];
+
+
+for i = 1:(n1*n2*n3)
+    sz              = string(i);
+    firstnames{i}   = "firstname_" + sz;
+    lastnames{i}    = "lastname_" + sz;
+    emails{i}       = "email_" + sz;
+end
+
+st = struct("firstname", firstnames, "lastname", lastnames, "email", emails);
+
+for i = 1:24
+    if st(i).firstname <> firstnames{i} then pause end
+    if st(i).lastname <> lastnames{i} then pause end
+    if st(i).email <> emails{i} then pause end
+end
+clear firstnames
+clear lastnames
+clear emails
+clear st;
+
+//creating one dimensional structure by insertion
+firstname   = "firstname";
+lastname    = "lastname";
+email       = "email";
+
+st.firstname    = firstname;
+st.lastname     = lastname;
+st.email        = email;
+
+//assert_checkequal(st.firstname, firstname);
+if st.firstname <> firstname then pause end
+//assert_checkequal(st.lastname, lastname);
+if st.lastname <> lastname then pause end
+//assert_checkequal(st.email, email);
+if st.email <> email then pause end
+clear st;
+
+//create multi dimentional struct by insertion
+n1 = 4;
+n2 = 3;
+n3 = 2;
+
+firstnames(n1,n2,n3)    = "";
+lastnames(n1,n2,n3)     = "";
+emails(n1,n2,n3)        = "";
+
+
+for i = 1:(n1*n2*n3)
+    sz              = string(i);
+    firstnames(i)   = "firstname_" + sz;
+    lastnames(i)    = "lastname_" + sz;
+    emails(i)       = "email_" + sz;
+end
+
+//set dimension to 4x3x2
+st(4,3,2).firstname = firstnames($);
+st(4,3,2).lastname = lastnames($);
+
+//fill struct as vector
+for i = 1:(n1*n2*n3)
+    st(i).firstname = firstnames(i);
+    st(i).lastname  = lastnames(i);
+    st(i).email     = emails(i);
+end
+
+//check data on each dimension
+for i = 1:n1
+    for j = i:n2
+        for k = 1:n3
+            //assert_checkequal(st(i,j,k).firstname, firstnames(i,j,k));
+            if st(i,j,k).firstname <> firstnames(i,j,k) then pause end
+            //assert_checkequal(st(i,j,k).lastname, lastnames(i,j,k));
+            if st(i,j,k).lastname <> lastnames(i,j,k) then pause end
+            //assert_checkequal(st(i,j,k).email, emails(i,j,k));
+            if st(i,j,k).email <> emails(i,j,k) then pause end
+        end
+    end
+end
+clear firstnames
+clear lastnames
+clear emails
+clear st;
+

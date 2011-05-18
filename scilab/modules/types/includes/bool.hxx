@@ -55,6 +55,7 @@ namespace types
         /* return type as short string ( s, i, ce, l, ... )*/
         virtual std::wstring     getShortTypeStr() {return L"b";}
 
+        //virtual std::wstring    toStringInLine(int _iPrecision, int _iLineLen);
     protected :
         RealType				getType(void);
 

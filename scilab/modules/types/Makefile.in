@@ -156,14 +156,14 @@ am__objects_3 = libscitypes_la-types.lo libscitypes_la-string.lo \
 	libscitypes_la-list.lo libscitypes_la-listdelete.lo \
 	libscitypes_la-listinsert.lo libscitypes_la-listoperation.lo \
 	libscitypes_la-listundefined.lo libscitypes_la-struct.lo \
-	libscitypes_la-cell.lo libscitypes_la-tlist.lo \
-	libscitypes_la-file.lo libscitypes_la-mlist.lo \
-	libscitypes_la-threadId.lo libscitypes_la-arrayof.lo \
-	libscitypes_la-int8.lo libscitypes_la-uint8.lo \
-	libscitypes_la-int16.lo libscitypes_la-uint16.lo \
-	libscitypes_la-int32.lo libscitypes_la-uint32.lo \
-	libscitypes_la-int64.lo libscitypes_la-uint64.lo \
-	libscitypes_la-types_tools.lo
+	libscitypes_la-singlestruct.lo libscitypes_la-cell.lo \
+	libscitypes_la-tlist.lo libscitypes_la-file.lo \
+	libscitypes_la-mlist.lo libscitypes_la-threadId.lo \
+	libscitypes_la-arrayof.lo libscitypes_la-int8.lo \
+	libscitypes_la-uint8.lo libscitypes_la-int16.lo \
+	libscitypes_la-uint16.lo libscitypes_la-int32.lo \
+	libscitypes_la-uint32.lo libscitypes_la-int64.lo \
+	libscitypes_la-uint64.lo libscitypes_la-types_tools.lo
 am_libscitypes_la_OBJECTS = $(am__objects_2) $(am__objects_2) \
 	$(am__objects_3)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
@@ -565,6 +565,7 @@ TYPES_CPP_SOURCES = \
 			src/cpp/listoperation.cpp \
 			src/cpp/listundefined.cpp \
 			src/cpp/struct.cpp \
+			src/cpp/singlestruct.cpp \
 			src/cpp/cell.cpp \
 			src/cpp/tlist.cpp \
 			src/cpp/file.cpp \
@@ -791,6 +792,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-mlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-polynom.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-singlepoly.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-singlestruct.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-string.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-struct.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libscitypes_la-threadId.Plo@am__quote@
@@ -1048,6 +1050,13 @@ libscitypes_la-struct.lo: src/cpp/struct.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/struct.cpp' object='libscitypes_la-struct.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-struct.lo `test -f 'src/cpp/struct.cpp' || echo '$(srcdir)/'`src/cpp/struct.cpp
+
+libscitypes_la-singlestruct.lo: src/cpp/singlestruct.cpp
+@am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-singlestruct.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-singlestruct.Tpo -c -o libscitypes_la-singlestruct.lo `test -f 'src/cpp/singlestruct.cpp' || echo '$(srcdir)/'`src/cpp/singlestruct.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libscitypes_la-singlestruct.Tpo $(DEPDIR)/libscitypes_la-singlestruct.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='src/cpp/singlestruct.cpp' object='libscitypes_la-singlestruct.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libscitypes_la-singlestruct.lo `test -f 'src/cpp/singlestruct.cpp' || echo '$(srcdir)/'`src/cpp/singlestruct.cpp
 
 libscitypes_la-cell.lo: src/cpp/cell.cpp
 @am__fastdepCXX_TRUE@	$(LIBTOOL)  --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libscitypes_la-cell.lo -MD -MP -MF $(DEPDIR)/libscitypes_la-cell.Tpo -c -o libscitypes_la-cell.lo `test -f 'src/cpp/cell.cpp' || echo '$(srcdir)/'`src/cpp/cell.cpp

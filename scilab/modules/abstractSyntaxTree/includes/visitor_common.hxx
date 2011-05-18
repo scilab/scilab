@@ -14,6 +14,7 @@
 #define AST_VISITOR_COMMON_HXX
 
 #include "internal.hxx"
+#include "struct.hxx"
 #include "exp.hxx"
 
 #define bsiz	4096
@@ -39,7 +40,8 @@ EXTERN_AST types::InternalType* AddElementToVariableFromRow(
 
 EXTERN_AST const std::wstring* getStructNameFromExp(const ast::Exp* _pExp);
 
-EXTERN_AST types::Struct* getStructFromExp(const ast::Exp* _pExp);
+EXTERN_AST bool getStructFromExp(const ast::Exp* _pExp, types::Struct** _pMain, types::Struct** _pCurrent, types::typed_list** _pArgs, types::InternalType* _pIT);
+EXTERN_AST bool fillStructFromExp(const ast::Exp* _pExp, types::Struct* _pStr, int _iIndex, types::InternalType* _pIT);
 
 EXTERN_AST void callOnPrompt(void);
 

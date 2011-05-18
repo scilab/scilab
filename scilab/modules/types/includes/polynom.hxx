@@ -78,7 +78,7 @@ namespace types
         virtual void            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen);
 
         virtual SinglePoly*     getNullValue();
-        virtual Polynom*     createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+        virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
         virtual SinglePoly*     copyValue(SinglePoly* _pData);
         virtual void            deleteAll();
         virtual void            deleteImg();

@@ -213,7 +213,7 @@ namespace ast
     template <class T>
     class RunVisitorT : public RunVisitor
     {
-    protected :
+    public :
 
         typed_list* GetArgumentList(std::list<ast::Exp *>const& _plstArg)
         {
@@ -439,11 +439,25 @@ namespace ast
                 SimpleVar *psvRightMember = dynamic_cast<SimpleVar *>(const_cast<Exp *>(e.tail_get()));
                 if(psvRightMember != NULL)
                 {
-                    Struct* psValue = execHead.result_get()->getAsStruct();
+                    InternalType* pTemp = execHead.result_get();
+                    Struct* psValue = pTemp->getAs<Struct>();
                     if(psValue->exists(psvRightMember->name_get().name_get()))
                     {
-                        InternalType* pIT = psValue->get(psvRightMember->name_get().name_get());
-                        result_set(pIT);
+                        if(psValue->getSize() != 1)
+                        {
+                            std::list<std::wstring> wstFields;
+                            wstFields.push_back(psvRightMember->name_get().name_get());
+
+                            std::vector<InternalType*> result;
+                            result = psValue->extractFields(wstFields);
+
+                            result_set(result[0]);
+                        }
+                        else
+                        {
+                            InternalType* pIT = psValue->get(0)->get(psvRightMember->name_get().name_get());
+                            result_set(pIT);
+                        }
                     }
                     else
                     {

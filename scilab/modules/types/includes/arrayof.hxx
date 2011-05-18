@@ -603,10 +603,10 @@ namespace types
 
             for(int i = 0 ; i < pArrayOut->getSize() ; i++)
             {
-                pRealData[i] = pSource->getNullValue();
+                pRealData[i] = pSource->copyValue(pSource->getNullValue());
                 if(bComplex)
                 {
-                    pImgData[i] = pSource->getNullValue();
+                    pImgData[i] = pSource->copyValue(pSource->getNullValue());
                 }
             }
 
@@ -737,7 +737,7 @@ namespace types
 
             for(int i = 0 ; i < iNotEntireSize ; i++)
             {
-                int idx = piNotEntireIndex[i] - 1;
+                int idx = (int)piNotEntireIndex[i] - 1;
 
                 //don't care of value out of bounds
                 if(idx < iKeepSize)
@@ -1158,7 +1158,7 @@ namespace types
                     //set value to (null) value
                     for(int i = 0 ; i < m_iSizeMax ; i++)
                     {
-                        pRealData[i]    = getNullValue();
+                        pRealData[i] = copyValue(getNullValue());
                     }
 
                     //copy values into new one
@@ -1372,15 +1372,26 @@ namespace types
         virtual void subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims, int _iPrecision, int _iLineLen)
         {
         }
+
+        virtual std::wstring toStringInLine(int _iPrecision, int _iLineLen)
+        {
+            std::wostringstream ostr;
+            ostr << L"[";
+
+            for(int i = 0 ; i < m_iDims ; i++)
+            {
+                if(i > 0)
+                {
+                    ostr << L"x";
+                }
+
+                ostr << m_piDims[i];
+            }
+
+            ostr << L" " << getTypeStr() << L"]";
+            return ostr.str();
+        }
     };
 }
 
-//#include "int.hxx"
-//#include "double.hxx"
-//#include "implicitlist.hxx"
-//#include "polynom.hxx"
-//#include "bool.hxx"
-//#include "colon.hxx"
-//#include "string.hxx"
-//#include "cell.hxx"
 #endif /* !__ARRAYOF_HXX__ */
