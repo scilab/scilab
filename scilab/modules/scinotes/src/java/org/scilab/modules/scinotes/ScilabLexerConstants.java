@@ -269,6 +269,15 @@ public class ScilabLexerConstants {
     }
 
     /**
+     * Have we a LaTeX string ?
+     * @param type the type of the keyword
+     * @return true if the keyword is a LaTeX string
+     */
+    public static boolean isComment(int type) {
+        return type == COMMENT || type == AUTHORS || type == URL || type == MAIL || type == LATEX || type == WHITE_COMMENT || type == TAB_COMMENT;
+    }
+
+    /**
      * Can we have help on the keyword with type ?
      * @param type the type of the keyword
      * @return true if the keyword is helpable

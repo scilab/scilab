@@ -857,7 +857,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             while (start < end) {
                 int pos = lexer.start + lexer.yychar() + lexer.yylength();
                 String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
-                if (tok != ScilabLexerConstants.COMMENT || str.equals("\n")) {
+                if (!ScilabLexerConstants.isComment(tok) || str.equals("\n")) {
                     buf.append(str);
                 }
                 start = pos;

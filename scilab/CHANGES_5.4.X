@@ -7,6 +7,8 @@ SciNotes:
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
                    'seconds'.
 
+* bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
+
 
 File input/output:
 ==================
