@@ -38,6 +38,14 @@ New functions
   This automatically fixes the bug #4381.
 
 
+Xcos:
+=====
+
+* xcos_skeleton will not be loaded if you have not installed Xcos.
+
+* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
+
+
 Documentation:
 ==============
 
