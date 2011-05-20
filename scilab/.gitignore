@@ -107,6 +107,7 @@ workspace/
 .checkstyle
 .classpath
 .project
+.cproject
 
 # MacOS files
 .DS_Store

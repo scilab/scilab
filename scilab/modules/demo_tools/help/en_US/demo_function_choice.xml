@@ -44,7 +44,7 @@ demolist=[
 	'Simulation of a Poisson random variable','clf();PoissonT() ;';
 	'Simulation of an exponential random variable','clf();ExpT();';
 	'Simulation of a Weibull random variable','clf();WeibullT();';
-	'Simulation of an hyper geometric random variable','clf();HyperGeomT();';
+	'Simulation of a hyper geometric random variable','clf();HyperGeomT();';
 	'Simulation of an Erlang random variable','clf();ErlangT();'];
 
 demo_function_choice();

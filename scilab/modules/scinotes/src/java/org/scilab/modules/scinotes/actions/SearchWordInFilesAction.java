@@ -31,6 +31,7 @@ import java.awt.event.WindowListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
@@ -55,6 +56,7 @@ import javax.swing.event.PopupMenuListener;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.JTextComponent;
 
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
@@ -165,7 +167,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         if (SearchFile.isDone(searcher)) {
             buttonStop.setEnabled(true);
             buttonFind.setEnabled(false);
-            String baseDir = (String) comboBaseDir.getEditor().getItem();
+            String baseDir = getBaseDir((String) comboBaseDir.getEditor().getItem());
             boolean recursive = checkRecursive.isSelected();
             boolean lineByLine = checkLineByLine.isSelected();
             String filePattern = (String) comboFilePattern.getEditor().getItem();
@@ -237,6 +239,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         windowAlreadyExist = true;
 
         JLabel baseDirLabel = new JLabel(SciNotesMessages.BASEDIRECTORY);
+        JLabel baseDirExpLabel = new JLabel(SciNotesMessages.BASEDIREXP);
         comboBaseDir = new JComboBox();
         comboBaseDir.setEditable(true);
         chooseBaseDirButton = new JButton(SciNotesMessages.CHOOSEDIR);
@@ -308,18 +311,29 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.insets = new Insets(0, 0, GAP, 0);
         panelBase.add(comboBaseDir, gbc);
 
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.weightx = 1;
+        gbc.fill = GridBagConstraints.NONE;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.insets = new Insets(0, 0, GAP, 0);
+        panelBase.add(baseDirExpLabel, gbc);
+
         gbc.gridx = 3;
+        gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
         gbc.fill = gbc.NONE;
+        gbc.anchor = GridBagConstraints.BASELINE;
         panelBase.add(chooseBaseDirButton, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         gbc.anchor = gbc.LINE_START;
         panelBase.add(filePatternLabel, gbc);
 
-        gbc.gridy = 3;
+        gbc.gridy = 4;
         gbc.gridwidth = 3;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -327,7 +341,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         panelBase.add(comboFilePattern, gbc);
 
         gbc.gridx = 1;
-        gbc.gridy = 4;
+        gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.NONE;
@@ -336,13 +350,13 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         panelBase.add(filePatternExpLabel, gbc);
 
         gbc.gridx = 0;
-        gbc.gridy = 5;
+        gbc.gridy = 6;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
         gbc.anchor = gbc.LINE_START;
         panelBase.add(wordPatternLabel, gbc);
 
-        gbc.gridy = 6;
+        gbc.gridy = 7;
         gbc.gridwidth = 3;
         gbc.weightx = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
@@ -569,6 +583,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         String filePattern = (String) comboFilePattern.getEditor().getItem();
         boolean goodBaseDir = !baseDirModified;
         if (baseDirModified && !baseDir.isEmpty()) {
+            baseDir = getBaseDir(baseDir);
             File dir = new File(baseDir);
             if (dir.exists() && dir.isDirectory()) {
                 goodBaseDir = true;
@@ -581,6 +596,26 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             ((JTextField) comboBaseDir.getEditor().getEditorComponent()).setForeground(ERRORCOLOR);
             buttonFind.setEnabled(false);
         }
+    }
+
+    /**
+     * Replace ~ by user home
+     * @param baseDir the base directory
+     * @return correct base directory
+     */
+    private static String getBaseDir(String baseDir) {
+        baseDir = baseDir.trim();
+        if (baseDir != null && !baseDir.isEmpty()) {
+            if (baseDir.startsWith("~" + File.separator) || baseDir.equals("~")) {
+                return baseDir.replaceFirst("~", ScilabConstants.USERHOME);
+            } else if (baseDir.startsWith("SCI" + File.separator) || baseDir.equals("SCI")) {
+                try {
+                    return baseDir.replaceFirst("SCI", ScilabConstants.SCI.getCanonicalPath());
+                } catch (IOException e) { }
+            }
+        }
+
+        return baseDir;
     }
 
     /**

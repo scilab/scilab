@@ -378,6 +378,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\dllinfo.c"
+				>
+			</File>
+			<File
 				RelativePath=".\DllmainDynamic_link.c"
 				>
 			</File>
@@ -436,6 +440,10 @@
 			</File>
 			<File
 				RelativePath=".\dl_genErrorMessage.h"
+				>
+			</File>
+			<File
+				RelativePath=".\dllinfo.h"
 				>
 			</File>
 			<File

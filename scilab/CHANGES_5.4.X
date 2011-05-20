@@ -4,8 +4,19 @@
 SciNotes:
 =========
 
-* Add tools 'Find Files' (ctrl+shift+B) and 'Find word in Files' (ctrl+shift+F).
+* In the find/grep tools, add the possibility to use ~ as a joker for user home
+  dir. and SCI for Scilab data base dir.
 
+* bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
+                   'seconds'.
+
+* bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
+
+Xcos:
+=====
+
+* bug 9478 fixed - Block structure was not checked while adding them to a new
+                   palette.
 
 File input/output:
 ==================
@@ -25,6 +36,23 @@ New functions
   point numbers, which allows to check that two numbers are
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
+
+
+Xcos:
+=====
+
+* xcos_skeleton will not be loaded if you have not installed Xcos.
+
+* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
+
+
+Documentation:
+==============
+
+* <ALT>+<LEFT ARROW> / <ALT>+<RIGHT ARROW> allows the browse of the history.
+  (see bug 9474)
+
+* The space key behave like the page down key. (see bug 9491)
 
 
 Removed functions (previously declared as obsolete):
@@ -62,10 +90,17 @@ Bug fixes:
 * bug 4833 fixed - msprintf() interpreted "\n" as a carriage return even if "\n"
                    is supplied by the 2nd input argument.
 
+* bug 4847 fixed - In uigetfile, there was no way to select files with a given
+                   pattern.
+
+* bug 6875 fixed - test_run() could not run at once on the +3000 tests of
+                   Scilab.
+
 * bug 7061 fixed - changelog.txt, readme.txt, version.xml removed from modules.
 
 * bug 8608 fixed - dec2hex, hex2dec, dec2oct and oct2dec code have been simplified
                    and optimized.
+
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
@@ -74,4 +109,11 @@ Bug fixes:
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
+* bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
+                   a wrong error message on Windows.
+
 * bug 9479 fixed - Typo fixed (intput => input).
+
+* bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
+                   unmanaged type (function, macro, ...)
+

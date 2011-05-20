@@ -31,6 +31,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -154,15 +155,20 @@ public class CodeGenerationAction extends SuperBlockSelectedAction {
      */
     private static void doAction(final SuperBlock block,
 			final File tempInput) {
-	    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-	    block.updateBlockSettings(modifiedBlock);
-	    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
-	    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
-	    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-	    block.setChild(null);
-	    
-	    block.setStyle(block.getStyle() + ";blockWithLabel");
-	    block.setValue(block.getSimulationFunctionName());
-	    BlockPositioning.updateBlockView(block);
+		try {
+			BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+			
+		    block.updateBlockSettings(modifiedBlock);
+		    block.setInterfaceFunctionName(modifiedBlock.getInterfaceFunctionName());
+		    block.setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
+		    block.setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
+		    block.setChild(null);
+		    
+		    block.setStyle(block.getStyle() + ";blockWithLabel");
+		    block.setValue(block.getSimulationFunctionName());
+		    BlockPositioning.updateBlockView(block);
+		} catch (ScicosFormatException e) {
+			LogFactory.getLog(CodeGenerationAction.class).error(e);
+		}
 	}
 }

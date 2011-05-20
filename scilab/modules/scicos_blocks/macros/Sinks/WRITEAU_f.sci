@@ -59,7 +59,7 @@ case 'set' then
       ok=%f
     end
     if swap <> 0 & swap <> 1 then
-      block_parameter_error(msprintf(gettext("Wrong value for  ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Swap Mode"), swap), ..
         msprintf(gettext("Must be in the interval %s."), "[0, 1]"));
       ok=%f
     end

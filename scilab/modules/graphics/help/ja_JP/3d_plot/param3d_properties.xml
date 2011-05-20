@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
@@ -10,168 +10,200 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="param3d_properties">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="param3d_properties">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
   <refnamediv>
-    <refname>param3d_properties</refname>
-    <refpurpose>description of the 3D curves
-  entities properties</refpurpose>
+    <refname>param3d_プロパティ</refname>
+    <refpurpose>3次元曲線エンティティのプロパティの説明</refpurpose>
   </refnamediv>
   <refsection>
-    <title>Description</title>
-    <para>The Param3d entity is a leaf of the graphics entities hierarchy.</para>
+    <title>説明</title>
+    <para>Param3d エンティティはグラフィックエンティティ階層の葉です.</para>
     <variablelist>
       <varlistentry>
         <term>visible: </term>
         <listitem>
-          <para>This field contains the <literal>visible</literal> property value for
-        the entity . It should be <literal>"on" </literal> or <literal>"off"</literal> .
-        By default, the curves are visibles, the value's property is
-        <literal>"on" </literal>. If <literal>"off"</literal> the curves are not drawn on
-        the screen.</para>
+          <para>このフィールドは,このエンティティの <literal>visible</literal>
+	  プロパティを有します.
+	  <literal>"on" </literal> または <literal>"off"</literal> を指定してください.
+	  デフォルトで曲線は可視であり, このプロパティの値は<literal>"on" </literal>です. 
+	  <literal>"off"</literal> の場合, 曲線は画面に描画されません.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>data: </term>
         <listitem>
-          <para>This field contains the coordinates of the 3d curves. it is the
-        matrix <literal>[X,Y,Z]</literal> such as <literal>X(:,i)</literal>,
-        <literal>Y(:,i)</literal>, <literal>Z(:,i)</literal> contain the 3D coordinates of
-        the <literal>i</literal>'th curve. This field contains the default
-        <literal>line_style</literal> property value for Segs, Arcs, Rectangle and
-        Polyline objects.</para>
+          <para>
+	    このフィールドは3次元曲線の座標を有します.これは,
+	    <literal>X(:,i)</literal>,
+	    <literal>Y(:,i)</literal>, <literal>Z(:,i)</literal>が
+	    <literal>i</literal>番目の曲線の3次元座標を有するような
+	    行列<literal>[X,Y,Z]</literal>です.
+	    このフィールドは,Segs, Arcs, Rectangle および Polylineオブジェクトの
+	    <literal>line_style</literal>プロパティのデフォルト値を有します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>line_mode: </term>
         <listitem>
-          <para>This field contains the default <literal>line_mode</literal> property
-        value for the polyline. Its value should be <literal>"on" </literal>(line
-        drawn) or <literal>"off"</literal> (no line drawn).</para>
+          <para>
+	    このフィールドは,polylineの <literal>line_mode</literal>プロパティのデフォルト値を
+	    有します. この値は, <literal>"on" </literal>(線を描画) または 
+	  <literal>"off"</literal> (線を描画しない)とします.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>line_style: </term>
         <listitem>
-          <para>This field selects the type of line to be used to draw lines . Its
-        value should be an integer in [0 6]. 0 stands for solid, the other
-        values stand for a selection of dashes (see
-        <link linkend="getlinestyle">getlinestyle</link>).</para>
+          <para>
+	    このフィールドは,線を描画する際に使用される線の種類を選択します.
+	    この値は [0 6] の範囲の整数とします.
+	    0 は実線,その他は破線を意味します (
+	    <link linkend="getlinestyle">getlinestyle</link> 参照).
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>polyline_style: </term>
         <listitem>
-          <para>This field selects the way curve are drawn: interpolated
-        (default), staircase, barplot, arrowed and filled modes are available
-        through integer index [1:5].</para>
+          <para>
+	    このフィールドは曲線の描画方法を指定します:
+	    補間 (デフォルト), 階段状, 棒グラフ, 矢印および塗りつぶしモードが
+	    利用可能で,整数添字 [1:5] で指定します.</para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_mode: </term>
         <listitem>
-          <para>This field contains the default <literal>mark_mode</literal> property
-        value. Its value should be <literal>"on"</literal> or <literal>"off"</literal>
-        (default value).</para>
+          <para>このフィールドは<literal>mark_mode</literal> プロパティのデフォルト値を有します.
+	  値には,<literal>"on"</literal> または <literal>"off"</literal> (デフォルト値)を
+	  指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_style: </term>
         <listitem>
-          <para>This field contains the default <literal>mark_style</literal> property
-        value. The <literal>mark_style</literal> selects the type of mark to be
-        displayed. Its value should be an integer in [0 9] which stands for:
-        dot, plus, cross, star, filled diamond, diamond, triangle up, triangle
-        down, trefle and circle. The figure below shows the aspects of the marks
-          depending on the <literal>mark_style</literal> and the
-          <literal>mark_foreground</literal> and
-          <literal>mark_background</literal> properties.</para>
-	<para>
-	  <mediaobject>
-	    <imageobject>
-	      <imagedata fileref="../../images/marks.svg"/>
-	    </imageobject>
-	  </mediaobject>
-	</para>
+          <para>
+	    このフィールドは,<literal>mark_style</literal> プロパティのデフォルト値を有します.
+	    <literal>mark_style</literal> は表示されるマーカの種類を選択します.
+	    この値には以下の意味を有する [0 9]の範囲の整数を指定します:
+	    ドット, プラス, 十字, 星, 塗りつぶした菱形, 菱形, 上向き三角形
+	    ,下向き三角形, クローバー, 円.
+	    以下の図は<literal>mark_style</literal>,
+	    <literal>mark_foreground</literal> および
+	    <literal>mark_background</literal> プロパティ
+	    に対応するマーカの形状を
+	    示しています.
+	  </para>
+	  <para>
+	    <mediaobject>
+	      <imageobject>
+		<imagedata fileref="../../images/marks.svg"/>
+	      </imageobject>
+	    </mediaobject>
+	  </para>
 
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_size_unit: </term>
         <listitem>
-          <para>This field contains the default <literal>mark_size_unit</literal>
-        property value. If <literal>mark_size_unit</literal> is set to
-        <literal>"point"</literal>, then the <literal>mark_size</literal> value is
-        directly given in points. When <literal>mark_size_unit</literal> is set to
-        <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
-        to the font size array: therefore, its value should be an integer in
-        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
-        <link linkend="param3d">param3d</link> and pure scilab functions use
-        <literal>tabulated</literal> mode as default ; when using <link linkend="plot">plot</link>
-        function, the <literal>point</literal> mode is automatically enabled.</para>
+          <para>
+	    このフィールドは,<literal>mark_size_unit</literal>プロパティのデフォルト値を
+	    有します.
+	    <literal>mark_size_unit</literal> に
+	    <literal>"point"</literal>が指定された場合, 
+	    <literal>mark_size</literal>の値はポイント単位で直接的に指定されます.
+	    <literal>mark_size_unit</literal> に
+	    <literal>"tabulated"</literal>が指定された場合, 
+	    <literal>mark_size</literal> font size 配列に相対的に計算されます:
+	    この場合, 値は [0 5] の範囲の整数とする必要があります.
+	    それぞれは 8pt, 10pt, 12pt, 14pt, 18pt, 24pt を意味します.
+	    <link linkend="param3d">param3d</link> および
+	    Scilabの組み込み関数では,<literal>tabulated</literal> がデフォルトであること
+	    に注意してください;
+	    <link linkend="plot">plot</link>関数を使用する際,
+	    <literal>point</literal> モードが自動的に有効になります.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_size: </term>
         <listitem>
-          <para>This field contains the default <literal>mark_size</literal> property
-        value</para>
-          <para>. The <literal>mark_size</literal> selects the font size of the mark to
-        be displayed. Its value should be an integer in [0 5] whith stands for
-        8pt, 10pt, 12pt, 14pt, 18pt and 24pt (see <link linkend="getmark">getmark</link>).</para>
+          <para>
+	    このフィールドは,<literal>mark_size</literal> プロパティのデフォルト値を
+	    有します.
+	  </para>
+          <para>
+	    <literal>mark_size</literal> は,表示されるマーカのフォントの大きさを指定します.
+	    値には [0 5]の範囲の整数を指定します.これらはそれぞれ
+	    8pt, 10pt, 12pt, 14pt, 18pt および 24pt を意味します(<link linkend="getmark">getmark</link>参照).
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_foreground: </term>
         <listitem>
-          <para>This field contains the <literal>mark_foreground</literal> property
-        value which is the marks' edge color. Its value should be a color
-        index (relative to the current color_map).</para>
+          <para>
+	    このフィールドは,マーカの境界色となる
+	    <literal>mark_foreground</literal>プロパティの値を有します.
+	    この値には(カレントの color_map に対応する)色添字を指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>mark_background: </term>
         <listitem>
-          <para>This field contains the <literal>mark_background</literal> property
-        value which is the marks' face color. Its value should be a color
-        index (relative to the current color_map).</para>
+          <para>
+	    このフィールドは,マーカの背景色となる<literal>mark_background</literal>
+	    プロパティの値を有します.
+	    この値には(カレントの color_map に対応する)色添字を指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>thickness: </term>
         <listitem>
-          <para>This field contains the default <literal>thickness</literal> value of
-        the lines used to draw the axes and the curves. It should be a
-        positive integer.</para>
+          <para>このフィールドは,軸および曲線を描画する際に使用される
+	  線の<literal>thickness</literal>のデフォルト値を指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>foreground: </term>
         <listitem>
-          <para>This field contains the color index used to draw the curves. Its
-        value should be a color index (relative to the current colormap).</para>
+          <para>このフィールドは曲線を描画する際に使用される色添字を有します.
+	  この値には(カレントの color_map に対応する)色添字を指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>clip_state: </term>
         <listitem>
-          <para>This field contains the default <literal>clip_state</literal> property
-        value. Its value should be :</para>
+          <para>
+	    このフィールドは<literal>clip_state</literal>プロパティのデフォルト値を有します.
+	    この値には以下を指定します:
+	  </para>
           <itemizedlist>
             <listitem>
-              <para><literal>"off"</literal> this means that all curves created after
-            that are not clipped (default value).</para>
+              <para><literal>"off"</literal> 
+	      全ての曲線が描画後にクリップされないことを意味します (デフォルト値).
+	      </para>
             </listitem>
             <listitem>
-              <para><literal>"clipgrf"</literal> this means that all curves created
-            after that are clipped outside the Axes boundaries.</para>
+              <para><literal>"clipgrf"</literal> 
+	      全ての曲線が描画後にAxes境界の外側でクリップされることを意味します.
+	      </para>
             </listitem>
             <listitem>
-              <para><literal>"on"</literal> this means that all curves created after
-            that are clipped outside the rectangle given by property
-            clip_box.</para>
+              <para><literal>"on"</literal> 
+	      全ての曲線が描画後に clip_box プロパティにより指定される矩形の外側で
+	      クリップされることを意味します.
+	      </para>
             </listitem>
           </itemizedlist>
         </listitem>
@@ -179,42 +211,49 @@
       <varlistentry>
         <term>clip_box: </term>
         <listitem>
-          <para>This field contains the default <literal>clip_box</literal> property
-        value. Its value should be an empty matrix if clip_state is
-        <literal>"off"</literal>. Other case the clipping is given by the vector
-        <literal>[x,y,w,h]</literal> (upper-left point width height).</para>
+          <para>
+	    このフィールドは<literal>clip_box</literal>プロパティのデフォルト値を指定します.
+	    この値は, clip_state が <literal>"off"</literal>の時は空の行列とする
+	    必要があります.その他の場合,
+	    ベクトル  <literal>[x,y,w,h]</literal> (左上の点 幅 高さ)によりクリッピング
+	    を指定します.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>user_data: </term>
         <listitem>
-          <para>This field can be use to store any scilab variable in the
-	  param3d data structure, and to retreive it.</para>
+          <para>このフィールドはparam3dデータ構造体に任意のScilab変数を
+	  保存/取得する際に使用できます.
+	  </para>
         </listitem>
       </varlistentry>
       <varlistentry>
         <term>parent: </term>
         <listitem>
-          <para>This property contains the handle of the parent. The parent of the
-        3D curves entity should be of type <literal>"Axes"</literal> or
-        <literal>"Compound"</literal>.</para>
+          <para>
+	    このプロパティは親のハンドルを有します.
+	    3次元曲線エンティティの親は
+	    <literal>"Axes"</literal> または
+	    <literal>"Compound"</literal>型です.
+	  </para>
         </listitem>
       </varlistentry>
     </variablelist>
   </refsection>
   <refsection>
-    <title>Examples</title>
+    <title>例</title>
     <programlisting role="example"><![CDATA[
    
-   a=get("current_axes");//get the handle of the newly created axes
+   a=get("current_axes");//　新規に作成された軸のハンドルを取得
    t=[0:0.1:5*%pi]';
    param3d1([sin(t),sin(2*t)],[cos(t),cos(2*t)],[t/10,sin(t)])
   
    a.rotation_angles=[65,75]; 
-   a.data_bounds=[-1,-1,-1;1,1,2]; //boundaries given by data_bounds
+   a.data_bounds=[-1,-1,-1;1,1,2]; // data_boundsにより境界を指定
    a.thickness = 2;
-   h=a.children //get the handle of the param3d entity: an Compound composed of 2 curves
-   h.children(1).foreground = 3 // first curve
+   h=a.children // param3dエンティティ(2つの曲線から構成されるCompound)のハンドルを取得
+   h.children(1).foreground = 3 // 最初の曲線
    curve2 = h.children(2);
    curve2.foreground = 6;
    curve2.mark_style = 2;
@@ -223,7 +262,7 @@
   ]]></programlisting>
   </refsection>
   <refsection>
-    <title>See Also</title>
+    <title>参照</title>
     <simplelist type="inline">
       <member>
         <link linkend="set">set</link>
@@ -246,7 +285,7 @@
     </simplelist>
   </refsection>
   <refsection>
-    <title>Authors</title>
+    <title>作者</title>
     <para>Djalel ABDEMOUCHE</para>
   </refsection>
 </refentry>

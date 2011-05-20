@@ -23,65 +23,90 @@
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"
 #include "localization.h"
+#include "fromjava.h"
+#include "os_strdup.h"
 /*--------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *sciPath);
 static void DoLoadLibrarypathInEtc(char *sciPath);
 /*--------------------------------------------------------------------------*/ 
 BOOL InitializeJVM(void)
 {
-	BOOL bOK=FALSE;
-	char *sciPath=NULL;
+    BOOL bOK = FALSE;
+    char *sciPath = NULL;
 
 	sciPath=getSCI();
 
-	if (!startJVM(sciPath))
-	{
+    if (!startJVM(sciPath))
+    {
 #ifdef _MSC_VER
-		MessageBox(NULL,gettext("\nScilab cannot open JVM library.\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
+        MessageBox(NULL, gettext("\nScilab cannot open JVM library.\n"), gettext("Error"), MB_ICONEXCLAMATION|MB_OK);
 #else
-		fprintf(stderr,_("\nScilab cannot open JVM library.\n"));
+        fprintf(stderr,_("\nScilab cannot open JVM library.\n"));
 #endif
-	}
-	else
-	{
-		DoLoadLibrarypathInEtc(sciPath);
-		DoLoadClasspathInEtc(sciPath);
+    }
+    else
+    {
+        DoLoadLibrarypathInEtc(sciPath);
+        DoLoadClasspathInEtc(sciPath);
 
-		if (!createMainScilabObject())
-		{
+        if (!createMainScilabObject())
+        {
+            char *errorMsg = strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+
+            if (IsFromJava()) 
+            {
+                char *errorMsg2 = gettext("If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is not adding extra dependencies which could not be found at runtime.\n");
+                char *tempMsg = (char*)MALLOC(sizeof(char)*(strlen(errorMsg) + strlen(errorMsg2) + 1));
+                if (tempMsg)
+                {
+                    strcpy(tempMsg, errorMsg);
+                    strcat(tempMsg, errorMsg2);
+                    FREE(errorMsg);
+                    errorMsg = tempMsg;
+                }
+            }
 #ifdef _MSC_VER
-			MessageBox(NULL,gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"),gettext("Error"),MB_ICONEXCLAMATION|MB_OK);
+            MessageBox(NULL, errorMsg, gettext("Error"), MB_ICONEXCLAMATION|MB_OK);
 #else
-			fprintf(stderr,_("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+            fprintf(stderr, "%s", errorMsg);
 #endif
-		}
-		else
-			{
-				bOK=TRUE;
-			}
-	}
+            if (errorMsg)
+            {
+                FREE(errorMsg);
+                errorMsg = NULL;
+            }
+        }
+        else
+        {
+            bOK = TRUE;
+        }
+    }
 
-	if (sciPath) {FREE(sciPath);sciPath=NULL;}
+    if (sciPath) 
+    {
+        FREE(sciPath);
+        sciPath = NULL;
+    }
 
-	if (!bOK) exit(1);
+    if (!bOK) exit(1);
 
-	return TRUE;
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/ 
 static void DoLoadClasspathInEtc(char *sciPath)
 {
-	char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
-	sprintf(classpathfile,XMLCLASSPATH,sciPath);
-	LoadClasspath(classpathfile);
-	if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
+    char *classpathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLCLASSPATH)+1));
+    sprintf(classpathfile,XMLCLASSPATH,sciPath);
+    LoadClasspath(classpathfile);
+    if (classpathfile) {FREE(classpathfile); classpathfile = NULL;}
 }
 /*--------------------------------------------------------------------------*/ 
 static void DoLoadLibrarypathInEtc(char *sciPath)
 {
-	char *librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLLIBRARYPATH)+1));
-	sprintf(librarypathfile,XMLLIBRARYPATH,sciPath);
-	LoadLibrarypath(librarypathfile);
-	if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
+    char *librarypathfile = (char*)MALLOC(sizeof(char)*(strlen(sciPath)+strlen(XMLLIBRARYPATH)+1));
+    sprintf(librarypathfile,XMLLIBRARYPATH,sciPath);
+    LoadLibrarypath(librarypathfile);
+    if (librarypathfile) {FREE(librarypathfile); librarypathfile = NULL;}
 }
 /*--------------------------------------------------------------------------*/ 
 

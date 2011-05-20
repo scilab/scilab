@@ -58,7 +58,7 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
   </refsection>
   <refsection>
     <title>Description</title>
-    <para> This function plot an histogram of the <literal>data</literal> vector using the
+    <para> This function plot a histogram of the <literal>data</literal> vector using the
         classes <literal>x</literal>. When the number <literal>n</literal> of classes is provided
         instead of <literal>x</literal>, the classes are choosen equally spaced and
         <emphasis>x(1) = min(data) &lt;  x(2) = x(1) + dx  &lt;  ...  &lt; x(n+1) = max(data)</emphasis>
@@ -76,7 +76,7 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
     ]]></latex></para>
     <para>when <emphasis>x(1)&lt;=min(data)</emphasis> and <emphasis>max(data) &lt;= x(n+1)</emphasis></para>
     <para>Any <link linkend="plot2d">plot2d</link> (optional) parameter may be provided; for instance to
-       plot an histogram with the color number 2 (blue if std colormap is used) and
+       plot a histogram with the color number 2 (blue if std colormap is used) and
        to restrict the plot inside the rectangle [-3,3]x[0,0.5],
        you may use <literal>histplot(n,data, style=2, rect=[-3,0,3,0.5])</literal>.
     </para>
@@ -86,7 +86,7 @@ histplot(x, data, &lt;opt_args&gt;)</synopsis>
     <title>Examples</title>
     <simplelist>
       <member>
-	Example #1: variations around an histogram of a gaussian random sample 
+	Example #1: variations around a histogram of a gaussian random sample 
 	<programlisting role="example"><![CDATA[ 
 d=rand(1,10000,'normal');  // the gaussian random sample
 clf();histplot(20,d)

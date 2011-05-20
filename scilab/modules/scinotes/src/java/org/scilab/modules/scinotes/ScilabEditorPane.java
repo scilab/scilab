@@ -139,6 +139,13 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
         this.uuid = UUID.randomUUID();
         edComponent = new EditorComponent(this);
 
+        /*
+          When SciNotes is docked and has two tabs, switching the tabs causes a focus loss.
+          The focus is gave to the other docked component and that generates a toolbar change.
+          The solution is to set FocusCycleRoot to false (set to true by default in JEditorPane).
+        */
+        setFocusCycleRoot(false);
+
         addCaretListener(this);
         addMouseMotionListener(this);
         addMouseListener(this);
@@ -850,7 +857,7 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
             while (start < end) {
                 int pos = lexer.start + lexer.yychar() + lexer.yylength();
                 String str = selection.substring(start - sstart, Math.min(pos - sstart, len));
-                if (tok != ScilabLexerConstants.COMMENT || str.equals("\n")) {
+                if (!ScilabLexerConstants.isComment(tok) || str.equals("\n")) {
                     buf.append(str);
                 }
                 start = pos;

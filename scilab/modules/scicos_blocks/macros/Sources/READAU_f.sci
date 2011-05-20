@@ -47,7 +47,7 @@ case 'set' then
   while %t do
       [ok,fname1,N,swap,exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "READAU_f"); " "; ..
             gettext("(Read Audio File)");" "; gettext("Read is done on a binary ''.au'' file")], ..
-          [gettext("Input File Name"); gettext("Buffer size"); gettext("Swap Mode (0:No 1:Yes)")], ..
+          [gettext("Input File Name"); gettext("Buffer size"); gettext("Swap Mode (0:No, 1:Yes)")], ..
           list("str",1,"vec",1,"vec",1), exprs);
      tmask1=[];outmask=1;frmt1='uc';M=1;offset=1;
     if ~ok then break,end //user cancel modification
@@ -60,7 +60,7 @@ case 'set' then
 //     elseif alreadyran&size(tmask1)<>size(tmask) then
 //       message(['You cannot modify time management when running';'End current simulation first'])
     elseif fname1 == "" then
-      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter"), gettext("Input File Name")), gettext("You must provide a filename."));
+      block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter."), gettext("Input File Name")), gettext("You must provide a filename."));
     elseif N < 1 then
         block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Buffer size"), N), msprintf(gettext("Must be greater than %d."), 1));
     elseif alreadyran & (N <> ipar(6)) then

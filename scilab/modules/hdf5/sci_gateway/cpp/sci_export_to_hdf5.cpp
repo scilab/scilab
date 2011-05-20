@@ -30,6 +30,7 @@ extern "C"
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "h5_fileManagement.h"
+#include "deleteafile.h"
 #include "h5_writeDataToFile.h"
 #include "sci_types.h"
 }
@@ -117,6 +118,10 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
 
         //close hdf5 file
         closeHDF5File(iH5File);
+        if(bExport == false)
+        {//remove file
+            deleteafileW(pwstNameList[0]);
+        }
     }
     //create boolean return value
     types::Bool* pOut = new types::Bool(bExport);
@@ -497,7 +502,7 @@ static bool export_sparse(int _iH5File, types::InternalType* pIT,wchar_t* _pwstN
 static bool export_matlab_sparse(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 */
 static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName)
@@ -574,7 +579,7 @@ static bool export_ints(int _iH5File, types::InternalType* pIT,wchar_t* _pwstNam
 static bool export_handles(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 */
 static bool export_strings(int _iH5File, types::InternalType* pIT,wchar_t* _pwstName)
@@ -610,25 +615,25 @@ static bool export_strings(int _iH5File, types::InternalType* pIT,wchar_t* _pwst
 static bool export_u_function(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 /*
 static bool export_c_function(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 /*
 static bool export_lib(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 /*
 static bool export_lufact_pointer(int* _piKey, int *_piVar, char* _pstName)
 {
     print_type(_pstName);
-    return true;
+    return false;
 }
 */
 void print_type(char* _pstType)
