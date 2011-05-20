@@ -234,6 +234,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\UpdateBrowseVar.cpp" />
     <ClCompile Include="..\jni\BrowseVar.cpp" />
     <ClCompile Include="DllmainUi_data.c" />
     <ClCompile Include="..\jni\EditVar.cpp" />
@@ -243,6 +244,7 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_editvar.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\UpdateBrowseVar.h" />
     <ClInclude Include="..\jni\BrowseVar.hxx" />
     <ClInclude Include="..\..\includes\dynlib_ui_data.h" />
     <ClInclude Include="..\jni\EditVar.hxx" />

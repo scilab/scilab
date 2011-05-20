@@ -190,6 +190,9 @@
     <None Include="..\..\shell.iss" />
     <None Include="..\..\sci_gateway\shell_gateway.xml" />
     <None Include="..\..\version.xml" />
+    <None Include="ui_data_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="shell.rc">
