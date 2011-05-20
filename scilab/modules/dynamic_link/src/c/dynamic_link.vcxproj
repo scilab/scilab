@@ -241,6 +241,7 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="addinter.c" />
+    <ClCompile Include="dllinfo.c" />
     <ClCompile Include="dl_genErrorMessage.c" />
     <ClCompile Include="DllmainDynamic_link.c" />
     <ClCompile Include="dynamic_link.c" />
@@ -257,6 +258,7 @@ lib /DEF:"$(ProjectDir)Scilab_Windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\addinter.h" />
+    <ClInclude Include="dllinfo.h" />
     <ClInclude Include="dl_genErrorMessage.h" />
     <ClInclude Include="..\..\includes\dynamic_link.h" />
     <ClInclude Include="..\..\includes\dynlib_dynamic_link.h" />

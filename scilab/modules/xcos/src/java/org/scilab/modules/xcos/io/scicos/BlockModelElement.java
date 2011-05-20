@@ -239,12 +239,25 @@ class BlockModelElement extends BlockPartsElement {
 	 * 
 	 * @param into
 	 *            the target instance
+	 * @throws WrongStructureException on wrong value
 	 */
-	private void fillSecondRawParameters(BasicBlock into) {
+	private void fillSecondRawParameters(BasicBlock into) throws WrongStructureException {
 		// dep-ut
 		int field = DEPENDU_INDEX;
-		into.setDependsOnU(((ScilabBoolean) data.get(field)).getData()[0][0]);
-		into.setDependsOnT(((ScilabBoolean) data.get(field)).getData()[0][1]);
+		final boolean[][] dep_ut = ((ScilabBoolean) data.get(field)).getData();
+
+		if (dep_ut.length == 1 && dep_ut[0].length == 2) {
+			into.setDependsOnU(dep_ut[0][0]);
+			into.setDependsOnT(dep_ut[0][1]);
+		} else if (dep_ut.length == 2
+				&& dep_ut[0].length == 1
+				&& dep_ut[1].length == 1) {
+			into.setDependsOnU(dep_ut[0][0]);
+			into.setDependsOnT(dep_ut[1][0]);
+		} else {
+			throw new WrongStructureException(
+					((ScilabString) data.get(0)).getData()[0][DEPENDU_INDEX]);
+		}
 
 		// label
 		// do nothing

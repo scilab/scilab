@@ -27,6 +27,7 @@ import java.util.Vector;
 import java.util.logging.LogManager;
 
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -39,7 +40,11 @@ import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.palette.model.Category;
+import org.scilab.modules.xcos.palette.model.PaletteBlock;
+import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.utils.FileUtils;
 
 import com.mxgraph.view.mxStylesheet;
@@ -218,6 +223,28 @@ public final class Xcos {
 	public static synchronized Xcos getInstance() {
 		if (sharedInstance == null) {
 			sharedInstance = new Xcos();
+			
+			/*
+			 * Lazy loading of HDF5 libraries to avoid first drag lag.
+			 */
+			(new SwingWorker<Void, Void>() {
+
+				@Override
+				protected Void doInBackground() throws Exception {
+					try {
+						final Category root = PaletteManager.getInstance().getRoot();
+						
+						final PaletteBlock b = ((PreLoaded) root.getNode().get(0)).getBlock().get(0);
+						new PaletteBlockCtrl(b).getTransferable();
+					} catch (IndexOutOfBoundsException e) {
+						LOG.debug(e);
+					} catch (ClassCastException e) {
+						LOG.debug(e);
+					}
+					return null;
+				}
+			}).execute();
+			
 			LOG.trace("Session started");
 		}
 

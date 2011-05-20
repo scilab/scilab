@@ -62,6 +62,9 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dllinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\addinter.h">
@@ -83,6 +86,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\ilib_verbose.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dllinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

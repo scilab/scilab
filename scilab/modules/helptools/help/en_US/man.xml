@@ -11,62 +11,42 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  -->
-<refentry version="5.0-subset Scilab" xml:id="man" xml:lang="en"
-          xmlns="http://docbook.org/ns/docbook"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          xmlns:svg="http://www.w3.org/2000/svg"
-          xmlns:ns4="http://www.w3.org/1999/xhtml"
-          xmlns:mml="http://www.w3.org/1998/Math/MathML"
-          xmlns:db="http://docbook.org/ns/docbook">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="man" xml:lang="en">
   <info>
     <pubdate>$LastChangedDate$</pubdate>
   </info>
-
   <refnamediv>
     <refname>man</refname>
-
     <refpurpose>on line help XML file description format</refpurpose>
   </refnamediv>
-
   <refsection>
     <title>Description</title>
-
     <para>The on line help source files are written in XML.</para>
-
     <para>Source files (with extension .xml) can be found in the
     <literal>&lt;SCIDIR&gt;/modules/&lt;MODULE
     NAME&gt;/help/&lt;language&gt;/*</literal> directories. The file name is
     usually associated to a keyword (corresponding to a function name most of
     the cases) it describes.</para>
   </refsection>
-
   <refsection>
     <title>A few words about XML</title>
-
-    <para>An XML file resembles to an HTML file but with a more rigid syntax.
+    <para>An XML file resembles to a HTML file but with a more rigid syntax.
     The documentation of Scilab must be written using the strict subset of
     DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
-    elements are fully documented in <ulink
-    url="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0 : The
-    Definitive Guide"</ulink></para>
+    elements are fully documented in <link xlink:href="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0 : The
+    Definitive Guide"</link></para>
   </refsection>
-
   <refsection>
     <title>How to write a simple xml scilab help page:</title>
-
     <para>If one want to write the xml file associated to a new scilab
-    function he or she may use the Scilab function <link
-    linkend="help_skeleton">help_skeleton</link> to produce the skeleton of
+    function he or she may use the Scilab function <link linkend="help_skeleton">help_skeleton</link> to produce the skeleton of
     the xml file. In most cases the user will not be required to know xml
     syntax.</para>
   </refsection>
-
   <refsection>
     <title>How to write a simple xml scilab help page: an example</title>
-
     <para>The root element of a document which conforms to the Scilab DocBook
     5 subset must have version attribute set to "5.0-subset Scilab".</para>
-
     <programlisting role="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;refentry version="5.0-subset Scilab" xml:id="foo" xml:lang="en"
           xmlns="http://docbook.org/ns/docbook"
@@ -75,11 +55,8 @@
           xmlns:ns4="http://www.w3.org/1999/xhtml"
           xmlns:mml="http://www.w3.org/1998/Math/MathML"
           xmlns:db="http://docbook.org/ns/docbook"&gt; </programlisting>
-
-    <refsection>
-      <title>Example:</title>
-
-      <programlisting role="example">function y = foo(a,b,c)
+    <para role="bold">Example:</para>
+    <programlisting role="example">function y = foo(a,b,c)
   y = a + 2 * b + c;
 endfunction
 
@@ -87,12 +64,7 @@ path = help_skeleton('foo', TMPDIR)
 if (isdef('editor') | (funptr('editor')&lt;&gt;0)) then
   editor(path);
 end</programlisting>
-    </refsection>
-
-    <refsection>
-      <title>Generated foo.xml in TMPDIR:</title>
-    </refsection>
-
+    <para role="bold">Generated foo.xml in TMPDIR:</para>
     <programlisting role="xml">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
 &lt;!--
  * Add some comments about XML file
@@ -197,38 +169,43 @@ end</programlisting>
      &lt;/refsection&gt;
 &lt;/refentry&gt;</programlisting>
   </refsection>
-
-
   <refsection>
-    <title>How to create an help chapter</title>
+<<<<<<< HEAD
+    <title>How to create a help chapter</title>
 
+=======
+    <title>How to create an help chapter</title>
+>>>>>>> 4c52a0b... Help check: validate the help files on compilation against a derivated docbook schema
     <para>Create a directory and write down a set of xml files build as
     described above. Then start Scilab and execute <literal>xmltojar
     </literal> (see <link linkend="xmltojar">xmltojar</link> for more details)
     .</para>
   </refsection>
-
   <refsection>
     <title>How to make Scilab know a new help chapter</title>
-
-    <para>This can be done by the function <link
-    linkend="add_help_chapter">add_help_chapter</link>.</para>
+    <para>This can be done by the function <link linkend="add_help_chapter">add_help_chapter</link>.</para>
   </refsection>
   <refsection role="see also">
-<title>See Also</title>
+    <title>See Also</title>
     <simplelist type="inline">
-      <member><link linkend="apropos">apropos</link></member>
-
-      <member><link linkend="help">help</link></member>
-
-      <member><link linkend="help_skeleton">help_skeleton</link></member>
-
-      <member><link linkend="help_from_sci">help_from_sci</link></member>
-
-      <member><link linkend="xmltojar">xmltojar</link></member>
-
-      <member><link
-      linkend="add_help_chapter">add_help_chapter</link></member>
+      <member>
+        <link linkend="apropos">apropos</link>
+      </member>
+      <member>
+        <link linkend="help">help</link>
+      </member>
+      <member>
+        <link linkend="help_skeleton">help_skeleton</link>
+      </member>
+      <member>
+        <link linkend="help_from_sci">help_from_sci</link>
+      </member>
+      <member>
+        <link linkend="xmltojar">xmltojar</link>
+      </member>
+      <member>
+        <link linkend="add_help_chapter">add_help_chapter</link>
+      </member>
     </simplelist>
   </refsection>
 </refentry>

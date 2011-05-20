@@ -602,7 +602,7 @@ g_i(x) &gt;= 0, i = 1,nbineq
 
                           <listitem>
                             <para>
-                              the simplex is computed from an heuristic, in
+                              the simplex is computed from a heuristic, in
                               the neighborhood of the initial guess. This initial
                               simplex depends on the -simplex0deltausual and
                               -simplex0deltazero.
@@ -1044,7 +1044,7 @@ g_i(x) &gt;= 0, i = 1,nbineq
 
                           <listitem>
                             <para>
-                              the simplex is computed from an heuristic, in
+                              the simplex is computed from a heuristic, in
                               the neighborhood of the initial guess. This initial
                               simplex depends on the -simplex0deltausual and
                               -simplex0deltazero.

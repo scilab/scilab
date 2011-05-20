@@ -18,7 +18,7 @@ y=matrix(v,[sizes])</synopsis>
       <varlistentry>
         <term>v</term>
         <listitem>
-          <para>a vector, a matrix or an hypermatrix</para>
+          <para>a vector, a matrix or a hypermatrix</para>
         </listitem>
       </varlistentry>
       <varlistentry>
@@ -52,7 +52,7 @@ y=matrix(v,[sizes])</synopsis>
     if one of the dimension m or n is equal to -1 it is automatically
     assigned to the quotient of size(v,'*') by the other dimension,</para>
     <para>
-    For an hypermatrix such as
+    For a hypermatrix such as
     <literal>prod(size(v))==prod(sizes)</literal>, the command <literal>y=matrix(v,sizes)</literal> (or
     equivalently <literal>y=matrix(v,n1,n2,...nm)</literal>) transforms
     <literal>v</literal>  into an  matrix or hypermatrix by 
