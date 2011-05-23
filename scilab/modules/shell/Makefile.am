@@ -33,6 +33,7 @@ libscishell_la_CPPFLAGS =  $(JAVA_JNI_INCLUDE) \
 -I$(srcdir)/includes/ \
 -I$(srcdir)/src/cpp/ -I$(srcdir)/src/c/ \
 -I$(srcdir)/src/c/others/ \
+-I$(top_srcdir)/modules/ui_data/includes/ \
 -I$(top_srcdir)/libs/MALLOC/includes/
 
 # Includes need for the compilation
@@ -47,12 +48,13 @@ libscishell_la_CFLAGS= 	$(JAVA_JNI_INCLUDE) \
 			-I$(top_srcdir)/modules/completion/includes \
 			-I$(top_srcdir)/modules/localization/includes \
 			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/src/c/ \
 			-I$(top_srcdir)/modules/api_scilab/includes \
 			-I$(top_srcdir)/modules/system_env/includes \
 			-I$(top_srcdir)/modules/fileio/includes/ \
 			-I$(top_srcdir)/modules/operations/includes/ \
-			-I$(top_srcdir)/modules/string/includes/
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/fileio/includes/ \
+			-I$(top_srcdir)/modules/ui_data/includes/
 
 if IS_MACOSX
 libscishell_la_CFLAGS += -msse2

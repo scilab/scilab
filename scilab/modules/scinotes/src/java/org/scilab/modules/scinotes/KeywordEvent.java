@@ -14,6 +14,9 @@ package org.scilab.modules.scinotes;
 
 import java.util.EventObject;
 
+import javax.swing.text.Document;
+import javax.swing.text.BadLocationException;
+
 /**
  * Used to handle an event generated on a keyword
  * @author Calixte DENIZET
@@ -21,7 +24,7 @@ import java.util.EventObject;
 public class KeywordEvent extends EventObject {
 
     private static final long serialVersionUID = 4505744754595572108L;
-    
+
     private int start;
     private int length;
     private int type;
@@ -36,38 +39,52 @@ public class KeywordEvent extends EventObject {
      * @param length the length of the keyword
      */
     public KeywordEvent(Object source, EventObject event, int type, int start, int length) {
-	super(source);
-	this.start = start;
-	this.length = length;
-	this.type = type;
-	this.event = event;
+        super(source);
+        this.start = start;
+        this.length = length;
+        this.type = type;
+        this.event = event;
     }
-  
+
     /**
      * @return the position of the keyword in the doc
      */
     public int getStart() {
-	return start;
+        return start;
     }
-    
+
     /**
      * @return the length of the keyword
      */
     public int getLength() {
-	return length;
+        return length;
     }
 
     /**
      * @return the type of the keyword
      */
     public int getType() {
-	return type;
+        return type;
     }
-    
+
     /**
      * @return the event which generated this event
      */
     public EventObject getEvent() {
-	return event;
+        return event;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public String toString() {
+        ScilabEditorPane sep = (ScilabEditorPane) getSource();
+        Document doc = sep.getDocument();
+        try {
+            return doc.getText(start, length) + " at position " + start + " with type " + type;
+        } catch (BadLocationException e) {
+            System.err.println(e);
+        }
+        return "";
     }
 }

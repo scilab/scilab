@@ -12,11 +12,19 @@ SciNotes:
 
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
 
+
+Graphical User Interface:
+=========================
+
+* The variable browser now refresh itself automatically (See bug 9446).
+
+
 Xcos:
 =====
 
 * bug 9478 fixed - Block structure was not checked while adding them to a new
                    palette.
+
 
 File input/output:
 ==================
@@ -103,6 +111,9 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 9129 fixed - Completion on field did not propose graphics handle fields
+                   by default.
+
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
@@ -116,4 +127,3 @@ Bug fixes:
 
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
-

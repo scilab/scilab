@@ -32,7 +32,7 @@ UI_DATA_JNI_SOURCES = src/jni/BrowseVar.cpp \
 
 UI_DATA_C_SOURCES =
 
-UI_DATA_CPP_SOURCES =
+UI_DATA_CPP_SOURCES = src/cpp/UpdateBrowseVar.cpp
 
 GIWS_WRAPPERS = \
 src/jni/BrowseVar.giws.xml \
