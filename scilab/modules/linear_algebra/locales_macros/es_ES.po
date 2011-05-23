@@ -1,0 +1,107 @@
+# Spanish translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Argumentos de entrada #%d y #%d incompatibles: Se los esperaba del mismo "
+"tamaño.\n"
+
+#, c-format
+msgid "%s: SVD and QR not implemented in sparse.\n"
+msgstr "%s: SVD y QR no implementadas en dispersión.\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented.\n"
+msgstr "%s: Esta función aun no ha sido implementada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada: Se esperaban %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban %d ó %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un vector "
+"columna.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"cuadrada.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Symmetric expected"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba uno simétrico"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
+"{%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative integer expected.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Se esperaban enteros "
+"positivos.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: No positivo semi-definido"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Requested rank is greater than "
+"matrix dimension."
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: El rango pedido es mayor "
+"que la dimensión de la matriz."
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valores incorrectos del argumento de entrada #%d: Se esperaban enteros "
+"no-negativos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative scalar expected.\n"
+msgstr ""
+"%s: Valores incorrectos del argumentos de entrada #%d: Se esperaban "
+"escalares no-negativos.\n"

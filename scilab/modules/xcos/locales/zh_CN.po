@@ -6,105 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-05-27 10:03+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr ""
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s：文件''%s''不存在。\n"
-
-#, c-format
-msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr ""
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export ''XX'' to %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import xcos file %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -113,18 +28,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个布尔值。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为一个字符串。\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -136,80 +39,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
 
 msgid "?"
@@ -236,16 +65,7 @@ msgstr ""
 msgid "Annotations"
 msgstr ""
 
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
 msgid "Based on Scicos"
-msgstr ""
-
-msgid "Basic controller"
 msgstr ""
 
 msgid "Block Help"
@@ -263,15 +83,6 @@ msgstr ""
 msgid "Bottom"
 msgstr "底对齐"
 
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
 msgid "CVODE"
 msgstr ""
 
@@ -284,11 +95,7 @@ msgstr ""
 msgid "Center"
 msgstr "居中"
 
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 
 msgid "Close"
@@ -296,9 +103,6 @@ msgstr "关闭"
 
 msgid "Code generation"
 msgstr "代码生成"
-
-msgid "Colpitts oscillator"
-msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "命令端口必须跟控制端口相连"
@@ -319,13 +123,7 @@ msgstr ""
 msgid "Computing"
 msgstr ""
 
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
 msgid "Continuous time systems"
-msgstr ""
-
-msgid "Control Systems"
 msgstr ""
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
@@ -342,12 +140,6 @@ msgstr ""
 
 msgid "Customize"
 msgstr "自定义"
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr ""
@@ -373,26 +165,16 @@ msgstr "图表背景"
 msgid "Diagram browser"
 msgstr "图表浏览器"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 msgid "Diff. States"
-msgstr ""
-
-msgid "Differential amplifier"
 msgstr ""
 
 msgid "Discontinuities"
 msgstr ""
 
 msgid "Discrete"
-msgstr ""
-
-msgid "Discrete Controller"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
 msgstr ""
 
 msgid "Discrete time systems"
@@ -416,9 +198,6 @@ msgstr ""
 msgid "Electrical"
 msgstr ""
 
-msgid "Electrical Systems"
-msgstr ""
-
 msgid "Enable"
 msgstr ""
 
@@ -428,6 +207,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
@@ -437,12 +218,10 @@ msgstr ""
 msgid "Execution trace and Debug"
 msgstr ""
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr "显式的数据输入端口必须跟显式的数据数出端口相连"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr "显式的数据输出端口必须跟显式的数据数入端口相连"
 
 msgid "Export"
@@ -459,9 +238,6 @@ msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "载入图表失败"
-
-msgid "Fibonacci Numbers"
-msgstr ""
 
 msgid "File"
 msgstr "文件"
@@ -523,16 +299,10 @@ msgstr ""
 msgid "Goto %s"
 msgstr ""
 
-msgid "Goto/From blocks"
-msgstr ""
-
 msgid "Grid"
 msgstr "网格"
 
 msgid "Horizontal"
-msgstr ""
-
-msgid "Hydraulics blocks"
 msgstr ""
 
 msgid "IDA"
@@ -541,23 +311,25 @@ msgstr ""
 msgid "Image contains no data."
 msgstr "图像中没有数据。"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr ""
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr "隐式的数据输入端口必须跟隐式的数据数出端口相连"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr "隐式的数据输出端口必须跟隐式的数据数入端口相连"
 
 msgid "Import from XML"
 msgstr "从XML导入"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
@@ -579,13 +351,7 @@ msgstr ""
 msgid "Integrator relative tolerance"
 msgstr ""
 
-msgid "Inverted Pendulum"
-msgstr ""
-
 msgid "Italic"
-msgstr ""
-
-msgid "Kalman Filter"
 msgstr ""
 
 msgid "Left"
@@ -612,16 +378,7 @@ msgstr ""
 msgid "Loading user defined palettes"
 msgstr ""
 
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
 msgid "Lookup Tables"
-msgstr ""
-
-msgid "Lorentz butterfly"
 msgstr ""
 
 msgid "Masked SuperBlock editor"
@@ -636,16 +393,10 @@ msgstr ""
 msgid "Max integration time interval"
 msgstr ""
 
-msgid "Mechanical Systems"
-msgstr ""
-
 msgid "Middle"
 msgstr "垂直居中"
 
 msgid "Mirror"
-msgstr ""
-
-msgid "Modelica demos"
 msgstr ""
 
 msgid "Modelica initialize"
@@ -681,15 +432,6 @@ msgstr "普通 100%"
 msgid "Ok"
 msgstr "确定"
 
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
 msgid "Open"
 msgstr "打开"
 
@@ -708,9 +450,13 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
@@ -724,6 +470,8 @@ msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
 msgstr ""
 
@@ -731,12 +479,6 @@ msgid "Print"
 msgstr "打印"
 
 msgid "Quit Xcos"
-msgstr ""
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "RLC circuit"
 msgstr ""
 
 msgid "Real time scaling"
@@ -798,9 +540,6 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab模块'%s'尚未安装。\n"
 
-msgid "Scilab block"
-msgstr ""
-
 msgid "Scilab file"
 msgstr ""
 
@@ -828,19 +567,10 @@ msgstr ""
 msgid "Show/Hide shadow"
 msgstr "显示/隐藏阴影"
 
-msgid "Signal Builder"
-msgstr ""
-
 msgid "Signal Processing"
 msgstr "信号处理"
 
 msgid "Signal Routing"
-msgstr ""
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Simple Thermostat"
 msgstr ""
 
 msgid "Simulation"
@@ -861,14 +591,13 @@ msgstr ""
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
 msgid "Sources"
 msgstr "信号源"
-
-msgid "Standard demos"
-msgstr ""
 
 msgid "Start"
 msgstr "启动"
@@ -882,22 +611,10 @@ msgstr ""
 msgid "Superblock mask"
 msgstr ""
 
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
 msgid "Text Color"
 msgstr ""
 
 msgid "Text settings"
-msgstr ""
-
-msgid "The Scicos libraries are not loaded"
 msgstr ""
 
 msgid "The Scilab Consortium (DIGITEO)"
@@ -932,12 +649,13 @@ msgstr "工具"
 msgid "Top"
 msgstr "顶对齐"
 
-msgid "Transformer"
-msgstr ""
-
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
@@ -966,14 +684,6 @@ msgid ""
 msgstr ""
 
 msgid "Unable to load the native HDF5 library."
-msgstr ""
-
-#, c-format
-msgid "Unable to open %s"
-msgstr ""
-
-#, c-format
-msgid "Unable to simulate %s"
 msgstr ""
 
 msgid "Unknown Diagram Version : "
@@ -1018,9 +728,6 @@ msgstr "在Scicos中查看"
 msgid "Viewport"
 msgstr "视图区"
 
-msgid "Water tank"
-msgstr ""
-
 msgid "Will try to continue..."
 msgstr ""
 
@@ -1037,6 +744,11 @@ msgstr ""
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
+msgid "Wrong port number"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1045,9 +757,6 @@ msgstr "Xcos Demos"
 
 msgid "Xcos Help"
 msgstr "Xcos帮助"
-
-msgid "Xcos data types"
-msgstr ""
 
 msgid "Xcos error"
 msgstr "Xcos错误"
@@ -1062,13 +771,7 @@ msgid ""
 "diagram is loaded.)"
 msgstr ""
 
-msgid "Zero Crossing"
-msgstr ""
-
 msgid "Zero crossing detection"
-msgstr ""
-
-msgid "_IF_ Xcos block"
 msgstr ""
 
 msgid "comment"
@@ -1118,70 +821,4 @@ msgstr ""
 msgid "weight"
 msgstr ""
 
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr "在-nogui或-nwni模式下Scilab的'%s'模块被禁用。"
 
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "导出失败：%s\n"
-
-#~ msgid "Cut"
-#~ msgstr "剪切"
-
-#~ msgid "Copy"
-#~ msgstr "复制"
-
-#~ msgid "Zoom Out"
-#~ msgstr "缩小"
-
-#~ msgid "Undo"
-#~ msgstr "撤销"
-
-#~ msgid "Zoom In"
-#~ msgstr "放大"
-
-#~ msgid "Paste"
-#~ msgstr "粘贴"
-
-#~ msgid "Redo"
-#~ msgstr "重做"
-
-#~ msgid "Group"
-#~ msgstr "分组"
-
-#~ msgid "Select all"
-#~ msgstr "全选"
-
-#~ msgid "UnGroup"
-#~ msgstr "取消分组"
-
-#~ msgid "Invert selection"
-#~ msgstr "反转选择"
-
-#~ msgid "Quit"
-#~ msgstr "退出"
-
-#~ msgid "Browser"
-#~ msgstr "浏览器"
-
-#~ msgid "Help"
-#~ msgstr "帮助"
-
-#~ msgid "Threshold"
-#~ msgstr "阈值"
-
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos版本1.0"
-
-#~ msgid "Continuous"
-#~ msgstr "连续信号"
-
-#~ msgid "Discontinuous"
-#~ msgstr "不连续信号"
-
-#~ msgid "Math Operations"
-#~ msgstr "数学操作"
-
-#~ msgid "Line Color"
-#~ msgstr "线条颜色"

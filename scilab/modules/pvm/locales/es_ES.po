@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-02 15:26+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Fido <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -38,8 +39,7 @@ msgstr "%s: Tipo desconocido o no implementado.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Primer argumento de entrada incorrecto: Se esperaba '%s' o '%s'.\n"
+msgstr "%s: Primer argumento de entrada incorrecto: Se esperaba '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
@@ -139,9 +139,6 @@ msgstr "Existe PVM"
 msgid "PVM not found"
 msgstr "No se encontró PVM"
 
-msgid "PVM parallel Toolbox"
-msgstr "Barra de herramientas de la Máquina Virtual Paralela"
-
 msgid "Pvmd system error"
 msgstr "Error del sistema pvmd"
 
@@ -201,32 +198,3 @@ msgstr ""
 msgid "but there exists no configuration file:\n"
 msgstr "pero no existe archivo de configuración:\n"
 
-#, c-format
-#~ msgid "%s: Unknow type or not yet implemented\n"
-#~ msgstr "%s: Tipo desconocido o aun no implementado\n"
-
-#, c-format
-#~ msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-#~ msgstr "Error pvm_reduce: Operación de reducción desconocida %s\n"
-
-#~ msgid "Out of ressources"
-#~ msgstr "Sin más recursos"
-
-#~ msgid "Already oing operation"
-#~ msgstr "La operación ya es \"oing\""
-
-#, c-format
-#~ msgid "%s: work space (stacksize) is too small d\n"
-#~ msgstr "%s: espacio de trabajo (stacksize) demasiado pequeño\n"
-
-#, c-format
-#~ msgid "%s: Unknown type or not yet implemented\n"
-#~ msgstr "%s: tipo desconocido o no implementado\n"
-
-#, c-format
-#~ msgid "%s: work space (stacksize) is too small.\n"
-#~ msgstr "%s: el espacio de trabajo (tamaño de pila) es demasiado pequeño.\n"
-
-#, c-format
-#~ msgid "%s: Unknown type or not yet implemented.\n"
-#~ msgstr "%s: tipo desconocido o no implementado.\n"

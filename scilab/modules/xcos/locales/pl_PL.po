@@ -6,109 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-03-09 13:18+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: I.Rokach <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s nie jest poprawną nazwą, proszę zmienić tytuł schematu."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: Wszystkie ścieżki zdefiniowane przez zmienną %s muszą istnieć.\n"
-
-#, c-format
-msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: Plik ''%s'' nie istnieje.\n"
-
-#, c-format
-msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: Plik ''%s'' nie jest poprawnym plikiem palety.\n"
-
-#, c-format
-msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: Zamiast bloku znaleziono ''%s''.\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: Brak pamieci.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: Katalog %s nie może zostać utworzony, sprawdź czy posiadasz prawa zapisu "
-"do tego katalogu.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: Nie udało się eksportować %s do %s.\n"
-
-#, c-format
-msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: Brak mozliwości eksportu ''XX'' do %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: Nie udało się eksportować palety do hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: Nie udało się utworzyć obraz %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: Nie udało się wygenerować ikonę palety : %s już istnieje.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: Brak mozliwości importu danych z %s"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s.\n"
-msgstr "%s: Nie można zaimportować pliku xcos %s.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: Nie udało się załadować blok z %s: oczekiwano pliku hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr "%s: Nie udało się załadować blok z %s: brak zmiennej `scs_m''.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nieprawidłowa liczba parametrów wyjściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -121,20 +32,6 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: Niewłaściwy rozmiar parametru wejściowego nr %d: Oczekiwano ciągu "
 "znaków.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr "%s: Niepoprawny typ zmiennej %s: oczekiwano tablicy łańcuchów.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: oczekiwano łańcucha lub schematu "
-"struktury."
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: Nieprawidłowy typ argumentu %d: oczekiwano struktury schematu"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -152,103 +49,6 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano wektora "
 "łańcuchów.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu block.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: Nie znaleziono pliku.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano zmienną logiczną.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu 'diagram'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano łańcuch zawierający "
-"ścieżkę dostępu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: Niewłaściwy typ argumentu wejściowego %s: Oczekiwana pełna ścieżka.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano funkcji w postaci "
-"łańcucha lub typu 'block' lub łańcuch zawierający pełną ścieżkę dostępu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu uchwyt "
-"(handle).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu paleta "
-"(palette).\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu paleta "
-"(palette) lub ścieżki dostępu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano łańcuch ze ścieżką "
-"dostępu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr "%s: Niepoprawny typ parametru wejściowego %s: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano łańcuch lub "
-"strukturę.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typ łańcuchowy.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano wektor łańcuchów.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego %s: Oczekiwano nazwę "
-"istniejącego pliku.\n"
 
 msgid "?"
 msgstr "?"
@@ -274,17 +74,8 @@ msgstr "Dopasuj Bloki"
 msgid "Annotations"
 msgstr "Adnotacje"
 
-msgid "Automotive Suspension"
-msgstr "Zawieszenie samochodu"
-
-msgid "Ball on a Platform"
-msgstr "Kula na platformie"
-
 msgid "Based on Scicos"
 msgstr "Bazuje na Scicos"
-
-msgid "Basic controller"
-msgstr "Regulator podstawowy"
 
 msgid "Block Help"
 msgstr "Blok pomocy"
@@ -301,15 +92,6 @@ msgstr "Kolor obramowania"
 msgid "Bottom"
 msgstr "Dół"
 
-msgid "Bouncing Ball"
-msgstr "Podskakujaca piłka"
-
-msgid "Bouncing Balls"
-msgstr "Podskakujące pilki"
-
-msgid "Bridge Rectifer"
-msgstr ""
-
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -322,11 +104,7 @@ msgstr "Kategoria"
 msgid "Center"
 msgstr "Wyśrodkuj"
 
-msgid "Chaos Modelica"
-msgstr "Chaos (Modelica)"
-
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Kliknij na wykres, aby dodać punkt połączeniowy lub na zgodny obiekt aby "
 "zakończyć"
@@ -336,9 +114,6 @@ msgstr "Zamknij"
 
 msgid "Code generation"
 msgstr "Generowanie kodu"
-
-msgid "Colpitts oscillator"
-msgstr "Generator Colpittsa"
 
 msgid "Command port must be connected to control port"
 msgstr "Port komend musi być połączony do portu kontrolnego"
@@ -359,14 +134,8 @@ msgstr "Kompilacja"
 msgid "Computing"
 msgstr "Obliczenia"
 
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
 msgid "Continuous time systems"
 msgstr "Systemy czasu ciągłego"
-
-msgid "Control Systems"
-msgstr "Układy regulacji"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Prawa autorskie (c) 1989-2009 (INRIA)"
@@ -382,12 +151,6 @@ msgstr "utworz kategorie"
 
 msgid "Customize"
 msgstr "Dostosuj"
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr "Odwołania do bloku Debug bez śladu"
@@ -413,15 +176,11 @@ msgstr "Tło schematu"
 msgid "Diagram browser"
 msgstr "Przeglądarka schematów"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "Schemat został zmieniony od ostatniego zapisu.<br/> Czy chcesz go zapisać?"
 
 msgid "Diff. States"
-msgstr ""
-
-msgid "Differential amplifier"
 msgstr ""
 
 msgid "Discontinuities"
@@ -429,12 +188,6 @@ msgstr "Nieciągłości"
 
 msgid "Discrete"
 msgstr "Dyskretny"
-
-msgid "Discrete Controller"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
 
 msgid "Discrete time systems"
 msgstr "Systemy czasu dyskretnego"
@@ -457,9 +210,6 @@ msgstr "Do edycji"
 msgid "Electrical"
 msgstr "Elektryczny"
 
-msgid "Electrical Systems"
-msgstr "Układy elektryczne"
-
 msgid "Enable"
 msgstr "Włącz"
 
@@ -469,6 +219,8 @@ msgstr "Równania"
 msgid "Error"
 msgstr "Błąd"
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
@@ -478,14 +230,12 @@ msgstr "Obsługa zdarzeń"
 msgid "Execution trace and Debug"
 msgstr "Wykonaj śledź i analizuj"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Otwarty port danych wejściowych musi  być połączony z otwartym portem danych "
 "wyjściowych"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Otwarty port danych wyjściowych musi  być połączony z otwartym portem danych "
 "wejściowych"
@@ -504,9 +254,6 @@ msgstr "Rozszerzony"
 
 msgid "Failed to load Diagram"
 msgstr "Nie udało się załadować schematu"
-
-msgid "Fibonacci Numbers"
-msgstr "Liczby Fibonacciego"
 
 msgid "File"
 msgstr "Plik"
@@ -568,17 +315,11 @@ msgstr "Globalny"
 msgid "Goto %s"
 msgstr "Idź do %s"
 
-msgid "Goto/From blocks"
-msgstr ""
-
 msgid "Grid"
 msgstr "Siatka"
 
 msgid "Horizontal"
 msgstr "Poziomo"
-
-msgid "Hydraulics blocks"
-msgstr "Bloki hydrauliczne"
 
 msgid "IDA"
 msgstr "IDA"
@@ -586,20 +327,20 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "Obraz nie zawiera żadnych danych."
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr "Bezwarunkowy"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Bezwarunkowy port danych wejściowych musi być połączony z bezwarunkowym "
 "portem danych wyjściowych"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Bezwarunkowy port danych wyjściowych musi być połączony z bezwarunkowym "
 "portem danych wejściowych"
@@ -607,6 +348,8 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importuj z XML"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
@@ -628,14 +371,8 @@ msgstr "Integrator absolutnej tolerancji"
 msgid "Integrator relative tolerance"
 msgstr "Integrator względnej tolerancji"
 
-msgid "Inverted Pendulum"
-msgstr "Odwrócone wahadło"
-
 msgid "Italic"
 msgstr "Kursywa"
-
-msgid "Kalman Filter"
-msgstr "Filtr Karmana"
 
 msgid "Left"
 msgstr "Lewo"
@@ -658,22 +395,13 @@ msgid "Loading palettes"
 msgstr "Ładowanie palet"
 
 msgid "Loading the block"
-msgstr "Ładowanie bloku"
+msgstr ""
 
 msgid "Loading user defined palettes"
 msgstr "Ładowanie palet zdefiniowanych przez uzytkownika"
 
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
 msgid "Lookup Tables"
 msgstr "Wyszukiwanie odnośników"
-
-msgid "Lorentz butterfly"
-msgstr "Motyl Lorentza"
 
 msgid "Masked SuperBlock editor"
 msgstr "Edytor maskowania SuperBloku"
@@ -687,17 +415,11 @@ msgstr "Macierz"
 msgid "Max integration time interval"
 msgstr "Maksymalny przedział czasu całkowania"
 
-msgid "Mechanical Systems"
-msgstr "Układy mechaniczne"
-
 msgid "Middle"
 msgstr "Środek"
 
 msgid "Mirror"
 msgstr "Lustro"
-
-msgid "Modelica demos"
-msgstr "Dema Modelica"
 
 msgid "Modelica initialize"
 msgstr "Inicjalizacja Modelica"
@@ -732,15 +454,6 @@ msgstr "Normalny 100%"
 msgid "Ok"
 msgstr "OK"
 
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Old demos"
-msgstr "Stare dema"
-
-msgid "OpAmp amplifier"
-msgstr ""
-
 msgid "Open"
 msgstr "Otwórz"
 
@@ -759,9 +472,13 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr "Wykonanie śledzenia i analizy połączenia bloku za blokiem"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
@@ -777,20 +494,16 @@ msgstr ""
 "Port jest już podłączony, proszę wybrać niepodłączony port lub poprawne "
 "połączenie"
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
-msgstr "Podgląd"
+msgstr ""
 
 msgid "Print"
 msgstr "Drukuj"
 
 msgid "Quit Xcos"
 msgstr "Zamknij Xcos"
-
-msgid "RLC Circuit"
-msgstr "Obwód RCL"
-
-msgid "RLC circuit"
-msgstr "Obwód RCL"
 
 msgid "Real time scaling"
 msgstr "Skalowanie czasu rzeczywistego"
@@ -799,7 +512,7 @@ msgid "Recent Files"
 msgstr "Ostatnie pliki"
 
 msgid "Reduced"
-msgstr "Zredukowano"
+msgstr ""
 
 msgid "Region to superblock"
 msgstr "Obszar superbloku"
@@ -845,15 +558,11 @@ msgstr "Pliki Scicos"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
+msgstr "Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Moduł %s programu Scilab nie jest zainstalowany.\n"
-
-msgid "Scilab block"
-msgstr "Blok Scilab"
 
 msgid "Scilab file"
 msgstr "Pliki Scilab"
@@ -882,20 +591,11 @@ msgstr "Pokaż diagram macierzysty"
 msgid "Show/Hide shadow"
 msgstr "Pokaż / Ukryj cień"
 
-msgid "Signal Builder"
-msgstr ""
-
 msgid "Signal Processing"
 msgstr "Przetwarzanie sygnałów"
 
 msgid "Signal Routing"
 msgstr "Trasowanie (Routing) sygnału"
-
-msgid "Simple Demo"
-msgstr "Proste demo"
-
-msgid "Simple Thermostat"
-msgstr "Prosty termostat"
 
 msgid "Simulation"
 msgstr "Symulacja"
@@ -907,22 +607,21 @@ msgid "Sinks"
 msgstr "Sinks"
 
 msgid "Solve"
-msgstr "Rozwiąż"
+msgstr ""
 
 msgid "Solver"
-msgstr "Solver"
+msgstr ""
 
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
 msgid "Sources"
 msgstr "Źródła"
-
-msgid "Standard demos"
-msgstr "Dema standardowe"
 
 msgid "Start"
 msgstr "Start"
@@ -936,23 +635,11 @@ msgstr "Prosto"
 msgid "Superblock mask"
 msgstr "Maska superbloku"
 
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
 msgid "Text Color"
 msgstr "Kolor tekstu"
 
 msgid "Text settings"
 msgstr "Ustawiwnia tekstu"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Biblioteki Scicos nie są załadowane"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Konsorcjum Scilab (DIGITEO)"
@@ -990,12 +677,13 @@ msgstr "Narzędzia"
 msgid "Top"
 msgstr "Góra"
 
-msgid "Transformer"
-msgstr ""
-
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
@@ -1031,14 +719,6 @@ msgstr ""
 
 msgid "Unable to load the native HDF5 library."
 msgstr "Nie udało się załadować oryginalna bibliotekę HDF5"
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Nie mozna otworzyć %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Nie mozna symylować %s"
 
 msgid "Unknown Diagram Version : "
 msgstr "Nieznana wersja schematu: "
@@ -1082,9 +762,6 @@ msgstr "Widok w Scicos"
 msgid "Viewport"
 msgstr "Aktualny widok"
 
-msgid "Water tank"
-msgstr ""
-
 msgid "Will try to continue..."
 msgstr "Będzie starał się kontynuować..."
 
@@ -1097,12 +774,15 @@ msgstr "Tytuł okna"
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
-"Niewłaściwy parametr wejściowy \"%s\": niepoprawny węzeł, użyj "
-"'xcosPalDisable' zamiast tego.\n"
 
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 "Niepoprawny parametr wejściowy \"%s\": niedopuszczalna ścieżka drzewa.\n"
+
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
+msgid "Wrong port number"
+msgstr ""
 
 msgid "Xcos"
 msgstr "Xcos"
@@ -1112,9 +792,6 @@ msgstr "Xcos Demo"
 
 msgid "Xcos Help"
 msgstr "Pomoc Xcos"
-
-msgid "Xcos data types"
-msgstr ""
 
 msgid "Xcos error"
 msgstr "Błąd Xcos"
@@ -1133,14 +810,8 @@ msgstr ""
 "Te instrukcje po potwierdzeniu są poddane ocenie.(np. po każdym kliknięciu "
 "OK, do każdej oceny, w przypadku, gdy schemat jest załadowany.)"
 
-msgid "Zero Crossing"
-msgstr ""
-
 msgid "Zero crossing detection"
 msgstr "Wykrywanie przekroczenia zera"
-
-msgid "_IF_ Xcos block"
-msgstr ""
 
 msgid "comment"
 msgstr "komentarz"
@@ -1155,7 +826,7 @@ msgid "id"
 msgstr ""
 
 msgid "initial"
-msgstr "początkowy"
+msgstr ""
 
 msgid "kind"
 msgstr ""
@@ -1186,64 +857,50 @@ msgid "nominal"
 msgstr ""
 
 msgid "selected"
-msgstr "zaznaczony"
+msgstr ""
 
 msgid "weight"
 msgstr "waga"
 
-#~ msgid "Cut"
-#~ msgstr "Wytnij"
 
-#~ msgid "Copy"
-#~ msgstr "Kopiuj"
 
-#~ msgid "Invert selection"
-#~ msgstr "Odwrócenie zaznaczenia"
 
-#~ msgid "Paste"
-#~ msgstr "Wklej"
 
-#~ msgid "Select all"
-#~ msgstr "Zaznacz wszystko"
 
-#~ msgid "Undo"
-#~ msgstr "Cofnij"
 
-#~ msgid "Zoom Out"
-#~ msgstr "Pomniejsz"
 
-#~ msgid "Zoom In"
-#~ msgstr "Powiększ"
 
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "Nie udało się wyeksportować: %s\n"
 
-#~ msgid "Group"
-#~ msgstr "Grupuj"
 
-#~ msgid "Redo"
-#~ msgstr "Powtórz"
 
-#~ msgid "Same command executed again"
-#~ msgstr "Ponownie wykonano takie samo polecenie"
 
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "Nie mozna sie skomunikować z interpreterem"
 
-#~ msgid "UnGroup"
-#~ msgstr "W grupie"
 
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: Niepoprawny parametr wejściowy %s: oczekiwano svg lub gif.\n"
 
-#~ msgid ""
-#~ "Unable to load the HDF5 library. \n"
-#~ "Expecting version %s ; Getting version %s ."
-#~ msgstr ""
-#~ "Nie jest w stanie załadować bibliotekę HDF5. \n"
-#~ "Oczekiwana wersja %s ; Otrzymana wersja %s ."
 
-#~ msgid "Scicos data types"
-#~ msgstr "Typy danych Scicos"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

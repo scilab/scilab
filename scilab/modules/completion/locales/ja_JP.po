@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-03 14:37+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -36,9 +37,9 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 msgid "%s: Wrong size for input argument %d.\n"
 msgstr "%s: 入力引数 %d で不正なサイズです。\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr "%s: 入力引数の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
@@ -57,7 +58,13 @@ msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
+"%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s'を"
+"指定してください.\n"
+
+#
+# File: src/java/org/scilab/modules/completion/AbstractSciCompletionWindow.java, line: 262
+msgid "File or Directory"
+msgstr ""
 
 msgid "Scilab completion module not installed.\n"
 msgstr "Scilabのcompletionモジュールはインストールされていません.\n"

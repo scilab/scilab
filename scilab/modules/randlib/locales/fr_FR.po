@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-14 12:49+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Allan CORNET <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 "\n"
@@ -51,8 +52,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Mauvaise souche pour fsultra, doit être un entier dans l'interval [0, 2^32-"
-"1]\n"
+"Mauvaise souche pour fsultra, doit être un entier dans l'interval [0, "
+"2^32-1]\n"
 
 msgid ""
 "\n"
@@ -208,10 +209,13 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 "%s: Mauvais type pour le quatrième argument d'entrée: Scalaire attendu.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr "%s : Mauvais type pour l'argument d'entrée : Scalaire attendu.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Vecteur colonne attendu.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée: Vecteur colonne attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -219,8 +223,7 @@ msgstr "%s : Mauvais type pour l'argument d'entrée : Scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"
-msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Matrice carrée attendue.\n"
+msgstr "%s: Mauvais type pour l'argument d'entrée: Matrice carrée attendue.\n"
 
 #, c-format
 msgid ""
@@ -232,13 +235,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for second input argument: Scalar expected.\n"
-msgstr ""
-"%s: Mauvais type pour le second argument d'entrée: Scalaire attendu.\n"
+msgstr "%s: Mauvais type pour le second argument d'entrée: Scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for third input argument: Scalar expected.\n"
-msgstr ""
-"%s : Troisième argument d'entrée de mauvais type : scalaire attendu.\n"
+msgstr "%s : Troisième argument d'entrée de mauvais type : scalaire attendu.\n"
 
 #, c-format
 msgid ""
@@ -292,8 +293,7 @@ msgstr ""
 "%s:Mauvaise valeur pour le second argument en entrée: Doit être > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Mauvaise valeur du second argument d'entrée: Doit être entre %d et %d.\n"
 
@@ -332,18 +332,6 @@ msgstr "DF < 1.0 ou DF <= 0.0 ou Xnonc < 0.0\n"
 
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Degrés de liberté non positif\n"
-
-msgid "Erlang random variable"
-msgstr "Erlang variable aléatoire"
-
-msgid "Exponential random variable"
-msgstr "Variable exponentielle aléatoire"
-
-msgid "Hyper geometric random variable"
-msgstr "Variable aléatoire hyper géométrique"
-
-msgid "Low > High\n"
-msgstr "Low > High\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "A et B manquants pour la loi beta\n"
@@ -421,9 +409,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr "Variable aléatoire de Poisson"
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A ou B < %f\n"
@@ -431,23 +416,11 @@ msgstr "Rand(...,'bet',..): A ou B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Aléatoire"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "L'interface Scilab randlib n'est pas installée.\n"
-
-msgid "Simulation"
-msgstr "Simulation"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Simulation d'une variable binomiale aléatoire"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Simulation d'une variable discrète aléatoire"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -469,14 +442,8 @@ msgstr ""
 "La première composante de l'état mt, doit être un entier dans l'intervalle "
 "[1, 624]\n"
 
-msgid "Theory"
-msgstr "Théorie"
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Cette information concerne seulement le générateur clcg4\n"
-
-msgid "Weibull random variable"
-msgstr "Variable aléatoire de Weibull"
 
 msgid "X0 is empty\n"
 msgstr "X0 est vide\n"
@@ -484,17 +451,7 @@ msgstr "X0 est vide\n"
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a et b doivent être entiers avec (b-a+1) <= 2147483561"
 
-msgid "binomial random variable"
-msgstr "variable binomiale aléatoire"
-
-msgid "discrete random variable"
-msgstr "variable discrète aléatoire"
-
-msgid "discrete uniform random variable"
-msgstr "variable uniforme discrète aléatoire"
-
-msgid "geometric random variable"
-msgstr "variable géométrique aléatoire"
-
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
+
+

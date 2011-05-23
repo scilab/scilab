@@ -6,115 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 13:57+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s є некоректною назвою, будь ласка, змініть назву діаграми."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: всі шляхи, визначені змінною %s, мають існувати.\n"
-
-#, c-format
-msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: файла з назвою «%s» не існує.\n"
-
-#, c-format
-msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: файл «%s» не є коректним файлом палітри.\n"
-
-#, c-format
-msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: замість блоку виявлено «%s».\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: не вдалося створити каталог %s, будь ласка, перевірте, чи є у вас права "
-"доступу на запис до відповідного каталогу.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: не вдалося експортувати %s до %s.\n"
-
-#, c-format
-msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: не вдалося експортувати «XX» до %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: не вдалося експортувати палітру до hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: не вдалося створити зображення %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: не вдалося створити піктограму палітри: %s вже існує.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s: не вдалося імпортувати дані з %s"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s.\n"
-msgstr "%s: не вдалося імпортувати файл xcos %s.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-"%s: не вдалося завантажити блок з %s: мало бути використано файл hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr "%s: не вдалося завантажити блок з %s: не виявлено змінної «scs_m».\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-"%s: помилковий вхідний параметр %s: мало бути вказано svg, gif або jpg.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати значення "
-"від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -126,23 +31,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-"%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-"%s: помилковий тип вхідного параметра %d: слід використовувати тип «string» "
-"або тип структури діаграми."
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr ""
-"%s: помилковий тип вхідного параметра %d: слід використовувати тип структури "
-"діаграми."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -161,110 +49,6 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип вектора "
 "з рядків.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати блоковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr "%s: помилковий тип вхідного параметра %s: файл не знайдено.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати булівське "
-"значення.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип "
-"діаграми.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
-"до каталогу.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок повного "
-"шляху.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати функцію, що "
-"виводить значення у типах string або Block, або повний рядок шляху.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип елемента "
-"керування.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
-"або шлях до файла.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
-"до файла.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядок або "
-"структуру (struct).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати рядковий "
-"тип.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра %s: слід використовувати вектор "
-"рядків.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра %s: мало бути вказано коректний "
-"формат файла (png, jpg, gif).\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра %s: мало бути вказано існуючий "
-"файл.\n"
 
 msgid "?"
 msgstr "Довідка"
@@ -290,17 +74,8 @@ msgstr "Вирівняти блоки"
 msgid "Annotations"
 msgstr "Примітки"
 
-msgid "Automotive Suspension"
-msgstr "Автомобільна підвіска"
-
-msgid "Ball on a Platform"
-msgstr "Куля на платформі"
-
 msgid "Based on Scicos"
 msgstr "Засновано на Scicos"
-
-msgid "Basic controller"
-msgstr "Базовий регулятор"
 
 msgid "Block Help"
 msgstr "Довідка щодо блоку"
@@ -317,15 +92,6 @@ msgstr "Колір межі"
 msgid "Bottom"
 msgstr "Внизу"
 
-msgid "Bouncing Ball"
-msgstr "М’ячик-стрибунець"
-
-msgid "Bouncing Balls"
-msgstr "Зіткнення кульок"
-
-msgid "Bridge Rectifer"
-msgstr "Містковий випрямлювач"
-
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -338,11 +104,7 @@ msgstr "Категорія"
 msgid "Center"
 msgstr "По центру"
 
-msgid "Chaos Modelica"
-msgstr "Modelica (Хаос)"
-
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Клацніть лівою кнопкою миші на діаграмі, щоб додати точку з’єднання, або на "
 "відповідному елементі, щоб завершити з’єднання"
@@ -353,9 +115,6 @@ msgstr "Закрити"
 msgid "Code generation"
 msgstr "Створення коду"
 
-msgid "Colpitts oscillator"
-msgstr "Ємнісна триточка"
-
 msgid "Command port must be connected to control port"
 msgstr "Порт команди слід з’єднати з портом керування"
 
@@ -364,8 +123,7 @@ msgstr "Поширені блоки"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr ""
-"Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+msgstr "Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
 
 msgid "Compile"
 msgstr "Зібрати"
@@ -376,14 +134,8 @@ msgstr "Компіляція"
 msgid "Computing"
 msgstr "Обчислення"
 
-msgid "Cont.Plant-Hybrid Observer"
-msgstr "Неперервне спостереження за гілками-гібридами"
-
 msgid "Continuous time systems"
 msgstr "Неперервні динамічні системи"
-
-msgid "Control Systems"
-msgstr "Системи керування"
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Авторські права належать © 1989-2009 (INRIA)"
@@ -399,12 +151,6 @@ msgstr "Створити категорію"
 
 msgid "Customize"
 msgstr "Налаштувати"
-
-msgid "DC/DC Boost Converter"
-msgstr "Перетворювач DC/DC з підсиленням"
-
-msgid "DC/DC Buck Converter"
-msgstr "Перетворювач DC/DC з послабленням"
 
 msgid "Debug block calls without trace"
 msgstr "Діагностика викликів блоку без трасування"
@@ -430,8 +176,7 @@ msgstr "Тло діаграми"
 msgid "Diagram browser"
 msgstr "Перегляд діаграми"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "З часу попереднього збереження діаграму було змінено.<br/> Бажаєте зберегти "
 "її?"
@@ -439,20 +184,11 @@ msgstr ""
 msgid "Diff. States"
 msgstr "Диф. стани"
 
-msgid "Differential amplifier"
-msgstr "Диференційний підсилювач"
-
 msgid "Discontinuities"
 msgstr "Розриви"
 
 msgid "Discrete"
 msgstr "Дискретний"
-
-msgid "Discrete Controller"
-msgstr "Дискретний регулятор"
-
-msgid "Discrete Kalman Filter"
-msgstr "Дискретний фільтр Калмана"
 
 msgid "Discrete time systems"
 msgstr "Дискретні динамічні системи"
@@ -467,16 +203,13 @@ msgid "Dump"
 msgstr "Дамп"
 
 msgid "Edit"
-msgstr "Зміни"
+msgstr "Правка"
 
 msgid "Editable"
 msgstr "Можна редагувати"
 
 msgid "Electrical"
 msgstr "Електрика"
-
-msgid "Electrical Systems"
-msgstr "Електричні системи"
 
 msgid "Enable"
 msgstr "Увімкнути"
@@ -487,8 +220,10 @@ msgstr "Рівняння"
 msgid "Error"
 msgstr "Помилка"
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
-msgstr "Помилка під час спроби експортування"
+msgstr ""
 
 msgid "Event handling"
 msgstr "Обробка подій"
@@ -496,15 +231,11 @@ msgstr "Обробка подій"
 msgid "Execution trace and Debug"
 msgstr "Трасування виконання та діагностика"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
-msgstr ""
-"Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
+msgid "Explicit data input port must be connected to explicit data output port"
+msgstr "Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
-msgstr ""
-"Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
+msgid "Explicit data output port must be connected to explicit data input port"
+msgstr "Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
 
 msgid "Export"
 msgstr "Експортувати"
@@ -520,9 +251,6 @@ msgstr "Розширений"
 
 msgid "Failed to load Diagram"
 msgstr "Не вдалося завантажити діаграму"
-
-msgid "Fibonacci Numbers"
-msgstr "Числа Фібоначчі"
 
 msgid "File"
 msgstr "Файл"
@@ -584,17 +312,11 @@ msgstr "Загальний"
 msgid "Goto %s"
 msgstr "Перейти до %s"
 
-msgid "Goto/From blocks"
-msgstr "Блоки переходу/початку"
-
 msgid "Grid"
 msgstr "Ґратка"
 
 msgid "Horizontal"
 msgstr "Горизонтально"
-
-msgid "Hydraulics blocks"
-msgstr "Гідравлічні блоки"
 
 msgid "IDA"
 msgstr "IDA"
@@ -602,27 +324,29 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "Зображення не містить даних."
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
-msgstr "Адреса зображення"
+msgstr ""
 
 msgid "Implicit"
 msgstr "Неявний"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Порт неявного вводу даних має бути з’єднано з портом неявного виводу даних"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Порт неявного виводу даних має бути з’єднано з портом неявного вводу даних"
 
 msgid "Import from XML"
 msgstr "Імпортувати з XML"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
-msgstr "Виявлено несумісність"
+msgstr ""
 
 msgid "Initial computing method"
 msgstr "Початковий спосіб обчислення"
@@ -642,14 +366,8 @@ msgstr "Абсолютна похибка інтегрування"
 msgid "Integrator relative tolerance"
 msgstr "Відносна похибка інтегрування"
 
-msgid "Inverted Pendulum"
-msgstr "Обернений маятник"
-
 msgid "Italic"
 msgstr "Курсив"
-
-msgid "Kalman Filter"
-msgstr "Фільтр Калмана"
 
 msgid "Left"
 msgstr "Ліворуч"
@@ -676,17 +394,8 @@ msgstr "Завантаження блоку"
 msgid "Loading user defined palettes"
 msgstr "Завантаження визначених користувачем палітр"
 
-msgid "Logic AND gate"
-msgstr "Логічний шлюз AND"
-
-msgid "Logic NOR gate"
-msgstr "Логічний шлюз NOR"
-
 msgid "Lookup Tables"
 msgstr "Визначення табличних значень"
-
-msgid "Lorentz butterfly"
-msgstr "Метелик Лоренца"
 
 msgid "Masked SuperBlock editor"
 msgstr "Замаскований редактор суперблоку"
@@ -700,17 +409,11 @@ msgstr "Операції над матрицями"
 msgid "Max integration time interval"
 msgstr "Максимальний час інтегрування"
 
-msgid "Mechanical Systems"
-msgstr "Механічні системи"
-
 msgid "Middle"
 msgstr "Посередині"
 
 msgid "Mirror"
 msgstr "Віддзеркалити"
-
-msgid "Modelica demos"
-msgstr "Демонстрації Modelica"
 
 msgid "Modelica initialize"
 msgstr "Ініціалізація Modelica"
@@ -745,15 +448,6 @@ msgstr "Звичайний 100%"
 msgid "Ok"
 msgstr "Гаразд"
 
-msgid "Old Gain Block"
-msgstr "Старий блок підсилення"
-
-msgid "Old demos"
-msgstr "Старі демонстрації"
-
-msgid "OpAmp amplifier"
-msgstr "Операційний підсилювач"
-
 msgid "Open"
 msgstr "Відкрити"
 
@@ -772,11 +466,15 @@ msgstr "Вбудовування параметрів"
 msgid "Per block execution trace and Debug block calls"
 msgstr "Трасування за виконанням блоків та виклики діагностування блоків"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
-msgstr "Будь ласка, перевірте правильність діаграми до запуску імітації."
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
-msgstr "Будь ласка, вкажіть формат файла"
+msgstr ""
 
 msgid "Please take a look into the Scilab console"
 msgstr "Будь ласка, ознайомтеся з повідомленнями у консолі Scilab"
@@ -790,20 +488,16 @@ msgstr ""
 "Порт вже з’єднано, будь ласка, вкажіть нез’єднаний порт або коректне "
 "з’єднання."
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
-msgstr "Перегляд"
+msgstr ""
 
 msgid "Print"
 msgstr "Надрукувати"
 
 msgid "Quit Xcos"
 msgstr "Вийти з Xcos"
-
-msgid "RLC Circuit"
-msgstr "Коливальний контур"
-
-msgid "RLC circuit"
-msgstr "Коливальний контур"
 
 msgid "Real time scaling"
 msgstr "Динамічне масштабування"
@@ -864,9 +558,6 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
 
-msgid "Scilab block"
-msgstr "Блок Scilab"
-
 msgid "Scilab file"
 msgstr "Файл Scilab"
 
@@ -895,20 +586,11 @@ msgstr "Показати батьківську діаграму"
 msgid "Show/Hide shadow"
 msgstr "Показати/Сховати тінь"
 
-msgid "Signal Builder"
-msgstr "Побудова сигналів"
-
 msgid "Signal Processing"
 msgstr "Обробка сигналів"
 
 msgid "Signal Routing"
 msgstr "Маршрутизація сигналів"
-
-msgid "Simple Demo"
-msgstr "Проста демонстрація"
-
-msgid "Simple Thermostat"
-msgstr "Простий термостат"
 
 msgid "Simulation"
 msgstr "Моделювання"
@@ -928,14 +610,13 @@ msgstr "Розв’язувач"
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Розв’язувач 0 (CVODE) — 100 (IDA)"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
-msgstr "Деякі блоки було усунуто з міркувань забезпечення сумісності."
+msgstr ""
 
 msgid "Sources"
 msgstr "Джерела сигналів"
-
-msgid "Standard demos"
-msgstr "Стандартні демонстрації"
 
 msgid "Start"
 msgstr "Почати"
@@ -949,23 +630,11 @@ msgstr "Прямий"
 msgid "Superblock mask"
 msgstr "Маска суперблоку"
 
-msgid "Switched capacitor integrator"
-msgstr "Інтегральна схема на конденсаторах з перемиканням"
-
-msgid "Table Lookup"
-msgstr "Табличне перетворення"
-
-msgid "Temperature Controller"
-msgstr "Регулятор температури"
-
 msgid "Text Color"
 msgstr "Колір тексту"
 
 msgid "Text settings"
 msgstr "Параметри тексту"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Не завантажено бібліотеки Scicos"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Консорціум Scilab (DIGITEO)"
@@ -1003,14 +672,15 @@ msgstr "Інструменти"
 msgid "Top"
 msgstr "Вгорі"
 
-msgid "Transformer"
-msgstr "Перетворювач"
-
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 msgid "Unable to decode \"%s\" : invalid data."
-msgstr "Не вдалося декодувати «%s»: некоректні дані."
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 msgid "Unable to decode \"%s.%s\" : invalid field."
-msgstr "Не вдалося декодувати «%s.%s»: некоректне поле."
+msgstr ""
 
 msgid "Unable to delete "
 msgstr "Не вдалося вилучити "
@@ -1044,14 +714,6 @@ msgstr ""
 
 msgid "Unable to load the native HDF5 library."
 msgstr "Не вдалося завантажити систему бібліотеку HDF5."
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "Не вдалося відкрити %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "Не вдалося імітувати %s"
 
 msgid "Unknown Diagram Version : "
 msgstr "Невідома версія діаграми: "
@@ -1095,9 +757,6 @@ msgstr "Переглянути у Scicos"
 msgid "Viewport"
 msgstr "Демонстраційне вікно"
 
-msgid "Water tank"
-msgstr "Резервуар для води"
-
 msgid "Will try to continue..."
 msgstr "Спроба продовжити…"
 
@@ -1116,6 +775,11 @@ msgstr ""
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "Помилковий вхідний параметр «%s»: некоректна ієрархія каталогів.\n"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
+msgid "Wrong port number"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1124,9 +788,6 @@ msgstr "Демонстрації Xcos"
 
 msgid "Xcos Help"
 msgstr "Довідка з Xcos"
-
-msgid "Xcos data types"
-msgstr "Типи даних Xcos"
 
 msgid "Xcos error"
 msgstr "Помилка Xcos"
@@ -1145,14 +806,8 @@ msgstr ""
 "одразу після підтвердження (тобто натискання кнопки «Гаразд» або "
 "«Обчислити», а також під час кожного завантаження діаграми)."
 
-msgid "Zero Crossing"
-msgstr "Перетин нульового рівня"
-
 msgid "Zero crossing detection"
 msgstr "Визначення переходів через нуль"
-
-msgid "_IF_ Xcos block"
-msgstr "Блок _IF_ Xcos"
 
 msgid "comment"
 msgstr "коментар"
@@ -1203,79 +858,45 @@ msgstr "вибране"
 msgid "weight"
 msgstr "вага"
 
-#~ msgid "Copy"
-#~ msgstr "Копіювати"
 
-#~ msgid "Cut"
-#~ msgstr "Вирізати"
 
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "НЕ ВДАЛОСЯ ЕКСПОРТУВАТИ: %s\n"
 
-#~ msgid "Group"
-#~ msgstr "Групувати"
 
-#~ msgid "Invert selection"
-#~ msgstr "Інвертувати вибір"
 
-#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
-#~ msgstr ""
-#~ "Поверхневе трасування моделі (перемикачі дискретних та неперервних частин)"
 
-#~ msgid "Paste"
-#~ msgstr "Вставити"
 
-#~ msgid "Redo"
-#~ msgstr "Повторити"
 
-#~ msgid "UnGroup"
-#~ msgstr "Розгрупувати"
 
-#~ msgid "Undo"
-#~ msgstr "Вернути"
 
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "Невідома версія діаграми: "
 
-#~ msgid "Zoom In"
-#~ msgstr "Збільшити"
 
-#~ msgid "Zoom Out"
-#~ msgstr "Зменшити"
 
-#~ msgid "Same command executed again"
-#~ msgstr "Та сама команда, виконана знову"
 
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "Не вдалося обмінятися даними з інтерпретатором"
 
-#~ msgid "Select all"
-#~ msgstr "Позначити все"
 
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: помилковий вхідний параметр %s: мало бути svg або gif.\n"
 
-#~ msgid ""
-#~ "Unable to load the HDF5 library. \n"
-#~ "Expecting version %s ; Getting version %s ."
-#~ msgstr ""
-#~ "Не вдалося завантажити бібліотеку HDF5. \n"
-#~ "Потрібна версія — %s; Поточна версія — %s."
 
-#, c-format
-#~ msgid "%s: Unable to import from data from %s"
-#~ msgstr "%s: не вдалося імпортувати дані з %s"
 
-#~ msgid "Scicos data types"
-#~ msgstr "Типи даних Scicos"
 
-#~ msgid "_IF_ Scicos block"
-#~ msgstr "Блок _IF_ Scicos"
 
-#~ msgid ""
-#~ "Saxon provides only an immutable DOM, please configure another implementation"
-#~ msgstr ""
-#~ "У Saxon передбачено лише незмінні об’єктні моделі документів (DOM), "
-#~ "скористайтеся іншою реалізацією моделей."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

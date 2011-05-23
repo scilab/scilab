@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-03-14 05:21+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -43,18 +44,6 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 #, c-format
 msgid "%s: ans cannot be edited.\n"
 msgstr "%s: ans は編集できません.\n"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&About Scilab..."
-msgstr "Scilabバージョン情報(&A)..."
-
-msgid "&Close"
-msgstr "閉じる(&C)"
-
-msgid "&File"
-msgstr "ファイル(&F)"
 
 msgid "Boolean"
 msgstr "論理値"
@@ -168,3 +157,7 @@ msgstr "変数エディタ"
 
 msgid "Visibility"
 msgstr "可視性"
+
+
+
+

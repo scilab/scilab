@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-02-17 19:59+0000\n"
-"Last-Translator: Cristiano Nunes <Unknown>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 "\n"
@@ -121,8 +122,8 @@ msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
 "generator.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para "
-"\"%s\" com o gerador %s.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para \"%s"
+"\" com o gerador %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
@@ -186,8 +187,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o segundo argumento de entrada: esperava-se "
-"%dx%d.\n"
+"%s: Tamanho incorreto para o segundo argumento de entrada: esperava-se %dx"
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for fifth input argument: Scalar expected.\n"
@@ -206,6 +207,11 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o quarto argumento de entrada: esperava-se um "
 "escalar.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada: esperava-se um escalar.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
@@ -297,8 +303,7 @@ msgstr ""
 "%s: Valor incorreto para o segundo argumento de entrada: deve ser > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorreto para o segundo argumento de entrada: deve estar entre %d "
 "e %d.\n"
@@ -335,18 +340,6 @@ msgstr "DF < 1.0 ou DF <= 0.0 ou Xnonc < 0.0\n"
 
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Graus de liberdade não-positivos\n"
-
-msgid "Erlang random variable"
-msgstr "Variável aleatória de Erlang"
-
-msgid "Exponential random variable"
-msgstr "Variável aleatória exponencial"
-
-msgid "Hyper geometric random variable"
-msgstr "Variável aleatória hypergeométrica"
-
-msgid "Low > High\n"
-msgstr "Inferior > Superior\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Faltando A e B para a lei beta\n"
@@ -424,9 +417,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr "Variável aleatória de Poisson"
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A ou B < %f\n"
@@ -434,23 +424,11 @@ msgstr "Rand(...,'bet',..): A ou B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Aleatório"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "A interface randlib do Scilab não está instalada.\n"
-
-msgid "Simulation"
-msgstr "Simulação"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Simulação de uma variável aleatória binomial"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Simulação de uma variável aleatória discreta"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -470,14 +448,8 @@ msgstr "A opção %s afeta apenas o gerador clcg4\n"
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "O primeiro componente do estado mt deve ser um inteiro em [1, 624]\n"
 
-msgid "Theory"
-msgstr "Teoria"
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Esta informação refere-se apenas ao gerador clcg4\n"
-
-msgid "Weibull random variable"
-msgstr "Variável aleatória de Weibull"
 
 msgid "X0 is empty\n"
 msgstr "X0 é vazia\n"
@@ -485,17 +457,7 @@ msgstr "X0 é vazia\n"
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a e b devem ser inteiros com (b-a+1) <= 2147483561"
 
-msgid "binomial random variable"
-msgstr "variável aleatória binomial"
-
-msgid "discrete random variable"
-msgstr "variável aleatória discreta"
-
-msgid "discrete uniform random variable"
-msgstr "variável aleatória discreta uniforme"
-
-msgid "geometric random variable"
-msgstr "variável aleatória geométrica"
-
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 ou R <= 0.0\n"
+
+

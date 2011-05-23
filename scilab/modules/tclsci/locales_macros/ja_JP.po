@@ -1,0 +1,69 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/TCL_CreateSlave.sci, line: 38
+#, c-format
+msgid "%s: Slave interpreter already exists.\n"
+msgstr "%s: 従属インタープリタは既にあります。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 8
+msgid "Color"
+msgstr ""
+
+#
+# File: macros/gettklib.sci, line: 45
+#, c-format
+msgid "Error %s while loading library %s"
+msgstr "ライブラリ %2$s で %1$s エラー"
+
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 9
+msgid "Puzzle"
+msgstr ""
+
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 11
+msgid "Scale"
+msgstr ""
+
+#
+# File: demos/tk/tcltk.dem.gateway.sce, line: 10
+msgid "Scroll"
+msgstr ""

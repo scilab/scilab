@@ -6,15 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-07 17:54+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+# File: src/c/signal_mgmt.c, line: 75
+#, c-format
+msgid ""
+"\n"
+"Call stack:\n"
+msgstr ""
 
 msgid "  loading initial environment"
 msgstr "  завантаження початкового середовища"
@@ -22,9 +30,6 @@ msgstr "  завантаження початкового середовища"
 #, c-format
 msgid " and   %10d variables out of %10d.\n"
 msgstr " та  %10d змінних з %10d.\n"
-
-msgid " by "
-msgstr " Автор — "
 
 #, c-format
 msgid " results may be inaccurate. rcond = %s1\n"
@@ -51,22 +56,6 @@ msgid "%s argument and argument %d"
 msgstr "параметр %s і параметр %d"
 
 #, c-format
-msgid "%s called at line %s of %s"
-msgstr "%s викликано у рядку %s %s"
-
-#, c-format
-msgid "%s called at line %s of %s instruction."
-msgstr "%s викликано у рядку %s команди %s."
-
-#, c-format
-msgid "%s called at line %s of macro %s"
-msgstr "%s викликано у рядку %s макроса %s"
-
-#, c-format
-msgid "%s called under %s"
-msgstr "%s викликано з %s"
-
-#, c-format
 msgid "%s module not found.\n"
 msgstr "Модуль %s не знайдено.\n"
 
@@ -91,10 +80,6 @@ msgstr "%s: %s мають несумісні розмірності (%dx%d) та
 #, c-format
 msgid "%s: %s have incompatible dimensions.\n"
 msgstr "%s: %s мають несумісні розмірності.\n"
-
-#, c-format
-msgid "%s: %s is a uneditable hard coded function.\n"
-msgstr "%s: функцію %s не призначено для редагування.\n"
 
 #, c-format
 msgid "%s: %s is not a Scilab function.\n"
@@ -128,10 +113,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr "%s: не вдалося виділити пам’ять.\n"
 
 #, c-format
-msgid "%s: File doesn''t exist: %s"
-msgstr "%s: файла не існує: %s"
-
-#, c-format
 msgid "%s: Impossible to read %s gateway.\n"
 msgstr "%s: не вдалося прочитати шлюз %s.\n"
 
@@ -152,10 +133,6 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: No perl command specified."
-msgstr "%s: не вказано команди perl."
-
-#, c-format
 msgid "%s: Old version of if and while not implemented.\n"
 msgstr "%s: застарілі версії «if» та «while» не реалізовано.\n"
 
@@ -172,28 +149,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr ""
-"%s: значення поза можливими межами (не належить проміжку [%lu,%lu]).\n"
+msgstr "%s: значення поза можливими межами (не належить проміжку [%lu,%lu]).\n"
 
 #, c-format
 msgid "%s: Out of code.\n"
 msgstr "%s: поза кодом.\n"
 
 #, c-format
-msgid "%s: Please check: %s.\n"
-msgstr "%s: будь ласка, перевірте: %s.\n"
-
-#, c-format
 msgid "%s: Recursion problems. Sorry ...\n"
 msgstr "%s: проблеми з рекурсією. Вибачте…\n"
-
-#, c-format
-msgid "%s: Requires scilab editor.\n"
-msgstr "%s: потрібен редактор Scilab.\n"
-
-#, c-format
-msgid "%s: System error: Command executed: %s"
-msgstr "%s: помилка системи: виконувалася команда: %s"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -202,18 +166,6 @@ msgstr "%s: файла з назвою %s не існує.\n"
 #, c-format
 msgid "%s: Too many names.\n"
 msgstr "%s: занадто багато назв.\n"
-
-#, c-format
-msgid "%s: Unable to find Perl file: %s"
-msgstr "%s: не вдалося знайти файл Perl: %s"
-
-#, c-format
-msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: не вдалося знайти інтерпретатор Perl у «%s»"
-
-#, c-format
-msgid "%s: Unable to find Perl.\n"
-msgstr "%s: не вдалося знайти інтерпретатор Perl.\n"
 
 #, c-format
 msgid "%s: Unknown Error.\n"
@@ -248,13 +200,6 @@ msgid "%s: Wrong fromwhat value %s.\n"
 msgstr "%s: помилкове значення fromwhat — %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
-msgstr ""
-"%s: помилковий вхідний параметр №%d: мало бути вказано адресу файла скрипту "
-"Scilab.\n"
-
-#, c-format
 msgid "%s: Wrong module name %s.\n"
 msgstr "%s: помилкова назва модуля %s.\n"
 
@@ -269,12 +214,6 @@ msgstr ""
 "%d параметрів.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
-"%d.\n"
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
@@ -284,18 +223,12 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не менше за %d.\n"
-
-#, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -433,8 +366,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d : Polygon expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати багатокутник.\n"
+msgstr "%s: помилковий тип параметра %d: слід використовувати багатокутник.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -512,8 +444,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Row vector expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати вектор-рядок.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати вектор-рядок.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Scalar, '%s' or '%s' expected.\n"
@@ -569,8 +500,7 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
@@ -588,28 +518,22 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
-"цілого типу.\n"
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати зібраний "
 "макрос.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Double expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано double.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
@@ -622,12 +546,6 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати рядковий "
-"тип.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument.\n"
@@ -709,12 +627,6 @@ msgstr ""
 "«%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати 0 або 1\n"
@@ -731,23 +643,17 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "число.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: A integer value expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d. Слід використовувати значення "
-"цілого типу.\n"
+"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
+"значення.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
 "значення.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати "
-"визначену змінну.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
@@ -868,7 +774,7 @@ msgid "&Control"
 msgstr "&Керування"
 
 msgid "&Edit"
-msgstr "З&міни"
+msgstr "&Правка"
 
 msgid "&File"
 msgstr "&Файл"
@@ -882,8 +788,9 @@ msgstr "&Набори інструментів"
 msgid "A non square matrix!\n"
 msgstr "Матриця не є квадратною!\n"
 
-msgid "Bytes"
-msgstr "Байти"
+#, fuzzy
+msgid "Aborting current computation\n"
+msgstr "SIGSTP: поточні обчислення перервано\n"
 
 msgid "Cannot find Windows temporary directory (1)."
 msgstr "Не вдалося визначити тимчасовий каталог Windows (1)."
@@ -891,10 +798,6 @@ msgstr "Не вдалося визначити тимчасовий катало
 #, c-format
 msgid "Cannot load the module declaration file: %s.\n"
 msgstr "Не вдалося завантажити файл оголошення модуля: %s.\n"
-
-#, c-format
-msgid "Checking: %s\n"
-msgstr "Перевірка: %s\n"
 
 msgid "Commands:\n"
 msgstr "Команди:\n"
@@ -905,11 +808,17 @@ msgstr "Консорціум Scilab (DIGITEO)\n"
 msgid "Copyright (c) 1989-2007 (ENPC)\n"
 msgstr "Авторські права належать ENPC, ©1989–2007\n"
 
+#, fuzzy
 msgid "Copyright (c) 1989-2011 (INRIA)\n"
-msgstr "© INRIA, 1989–2011\n"
+msgstr "Авторські права належать INRIA, ©1989–2010\n"
 
-msgid "Do you really want to abort computation (y or n ?) \n"
-msgstr "Ви справді бажаєте перервати обчислення (y (так) або n (ні)?) \n"
+#
+# File: src/c/signal_mgmt.c, line: 117
+#, c-format
+msgid ""
+"End of stack\n"
+"\n"
+msgstr ""
 
 msgid "Error"
 msgstr "Помилка"
@@ -918,13 +827,6 @@ msgid "Error returning tlist, memory full.\n"
 msgstr ""
 "Помилка під час спроби повернути tlist, перевищено обмеження на розміри "
 "пам’яті.\n"
-
-msgid ""
-"Error(x) is deprecated and will be removed in Scilab 5.4. Please consider "
-"SciError(x).\n"
-msgstr ""
-"Error(x) вважається застарілою функцією, її буде вилучено у Scilab 5.4. Будь "
-"ласка, скористайтеся функцією SciError(x).\n"
 
 #, c-format
 msgid "Error: Could not create %s: %s\n"
@@ -1029,9 +931,6 @@ msgstr "Не вдалося завантажити бібліотеку %s: %s\n
 msgid "Internal Functions:\n"
 msgstr "Вбудовані функції:\n"
 
-msgid "Introduction"
-msgstr "Вступ"
-
 #, c-format
 msgid "Invalid %c,%c matrices.\n"
 msgstr "Некоректні матриці %c, %c.\n"
@@ -1045,9 +944,6 @@ msgstr "Некоректний діапазон часу.\n"
 msgid "List full.\n"
 msgstr "Список переповнено.\n"
 
-msgid "Name"
-msgstr "Назва"
-
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Простору для виділення стека Scilab не залишилося.\n"
 
@@ -1057,14 +953,22 @@ msgstr "Список додаткових параметрів порожній.
 msgid "Optional arguments list: \n"
 msgstr "Список додаткових параметрів: \n"
 
+#
+# File: src/c/signal_mgmt.c, line: 479
+#, c-format
+msgid ""
+"Oups. A fatal error has been detected by Scilab.\n"
+"Your instance will probably crash soon.\n"
+"Please report a bug on %s with the following\n"
+"information:\n"
+"%s %s\n"
+msgstr ""
+
 msgid "SCI environment variable not defined.\n"
 msgstr "Змінну середовища SCI не визначено.\n"
 
 msgid "SCIHOME not defined.\n"
 msgstr "SCIHOME не визначено.\n"
-
-msgid "SIGSTP: aborting current computation\n"
-msgstr "SIGSTP: поточні обчислення перервано\n"
 
 msgid "Scilab Console"
 msgstr "Консоль Scilab"
@@ -1084,9 +988,6 @@ msgstr ""
 "Версія Scilab «%d.%d.%d.%d»\n"
 "%s\n"
 
-msgid "Size"
-msgstr "Розмір"
-
 msgid "Startup execution:"
 msgstr "Команда запуску:"
 
@@ -1095,12 +996,6 @@ msgstr "TMPDIR не визначено.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "Змінну середовища SCI не визначено.\n"
-
-msgid "Trying to stop scilab in the middle of an interface.\n"
-msgstr "Спроба перервати роботу Scilab під час взаємодії з користувачем.\n"
-
-msgid "Type"
-msgstr "Тип"
 
 #, c-format
 msgid "Undefined variable %s.\n"
@@ -1119,13 +1014,6 @@ msgstr "Вилучення з черги %s: параметр не задано.
 msgid "Unqueuing %s - seq.\n"
 msgstr "Вилучення з черги %s: послідовність.\n"
 
-msgid "User variables are:"
-msgstr "Змінними користувача є:"
-
-#, c-format
-msgid "Using %s elements ouf of %s"
-msgstr "На основі %s елементів з %s"
-
 #, c-format
 msgid "WARNING: %s"
 msgstr "ПОПЕРЕДЖЕННЯ: %s"
@@ -1137,9 +1025,9 @@ msgstr "ПОПЕРЕДЖЕННЯ: %s\n"
 msgid "Warning"
 msgstr "Попередження"
 
-#, c-format
+#, fuzzy, c-format
 msgid "Warning: Could not find %s\n"
-msgstr "Попередження: не вдалося знайти %s\n"
+msgstr "Помилка: не вдалося розібрати файл %s\n"
 
 #, c-format
 msgid "Warning: Problems with %s.\n"
@@ -1211,205 +1099,33 @@ msgstr "третій"
 msgid "tlist not completely filled.\n"
 msgstr "tlist заповнено не до кінця.\n"
 
-#~ msgid "Only for Microsoft Windows."
-#~ msgstr "Тільки для Microsoft Windows."
 
-#, c-format
-#~ msgid "%s: An error occurred.\n"
-#~ msgstr "%s: Сталася помилка.\n"
 
-#~ msgid "                 Consortium Scilab (DIGITEO)\n"
-#~ msgstr "                 Консорціум Scilab (DIGITEO)\n"
 
-#~ msgid "               Copyright (c) 1989-2009 (INRIA)\n"
-#~ msgstr "               Авторські права належать © 1989-2009 (INRIA)\n"
 
-#~ msgid "Enable"
-#~ msgstr "Увімкнути"
 
-#~ msgid "Operating System: "
-#~ msgstr "Операційна система: "
 
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: A integer expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-#~ "значення.\n"
 
-#, c-format
-#~ msgid "Compilation date: %s"
-#~ msgstr "Дата збирання: %s"
 
-#, c-format
-#~ msgid "Compilation time: %s"
-#~ msgstr "Час збирання: %s"
 
-#, c-format
-#~ msgid "Compiled with %s"
-#~ msgstr "Зібрано за допомогою %s"
 
-#, c-format
-#~ msgid "Compiler Architecture: %s"
-#~ msgstr "Архітектура компілятора: %s"
 
-#, c-format
-#~ msgid "Directory separator: %s"
-#~ msgstr "Роздільник каталогів: %s"
 
-#~ msgid "Free Physical Memory (Kbytes): %*I64d"
-#~ msgstr "Вільної фізичної пам’яті (кілобайтів): %*I64d"
 
-#~ msgid "Free Virtual Memory (Kbytes): %*I64d"
-#~ msgstr "Вільної віртуальної пам’яті (кілобайтів): %*I64d"
 
-#, c-format
-#~ msgid "Memory in use: %*ld %%"
-#~ msgstr "Використано пам’яті: %*ld %%"
 
-#, c-format
-#~ msgid "Number of processors: %d"
-#~ msgstr "Кількість процесорів: %d"
 
-#, c-format
-#~ msgid "PCRE Version: %d.%d"
-#~ msgstr "Версія PCRE: %d.%d"
 
-#, c-format
-#~ msgid "TCL version: %s"
-#~ msgstr "Версія TCL: %s"
 
-#, c-format
-#~ msgid "TK version: %s"
-#~ msgstr "Версія TK: %s"
 
-#, c-format
-#~ msgid "Tcl/Tk: %s"
-#~ msgstr "Tcl/Tk: %s"
 
-#~ msgid "Total Paging File (Kbytes): %*I64d"
-#~ msgstr "Загалом у файлі кешу сторінок (кілобайтів): %*I64d"
 
-#~ msgid "Total Physical Memory (Kbytes): %*I64d"
-#~ msgstr "Загалом фізичної пам’яті (кілобайтів): %*I64d"
 
-#~ msgid "Total Virtual Memory (Kbytes): %*I64d"
-#~ msgstr "Загалом віртуальної пам’яті (кілобайтів): %*I64d"
 
-#, c-format
-#~ msgid ""
-#~ "%s: Cannot alloc more memory.\n"
-#~ "Try gstacksize('max').\n"
-#~ msgstr ""
-#~ "%s: не вдалося отримати більше пам’яті.\n"
-#~ "Спробуйте ввести команду gstacksize('max').\n"
 
-#, c-format
-#~ msgid ""
-#~ "%s: Cannot allocate more memory.\n"
-#~ "Try stacksize('max').\n"
-#~ msgstr ""
-#~ "%s: не вдалося виділити пам’ять.\n"
-#~ "Спробуйте stacksize('max').\n"
 
-#, c-format
-#~ msgid "%s: Invalid '%s' value.\n"
-#~ msgstr "%s: некоректне значення «%s».\n"
 
-#, c-format
-#~ msgid "%s: Wrong file VERSION %s.\n"
-#~ msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
 
-#, c-format
-#~ msgid "%s: Wrong file VERSION in %s.\n"
-#~ msgstr "%s: помилковий запис VERSION у файлі — %s.\n"
 
-#, c-format
-#~ msgid "%s: Wrong type for argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип параметра №%d: слід використовувати скалярний тип, «%s» "
-#~ "або «%s».\n"
 
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Named variable expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати іменовану "
-#~ "змінну.\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-#~ "тип, «%s», «%s».\n"
-
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong value for input argument #%d: Scalar, '%s' or '%s' expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d: слід використовувати скалярне "
-#~ "значення, «%s» або «%s».\n"
-
-#, c-format
-#~ msgid ""
-#~ "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
-#~ "contains <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
-#~ msgstr ""
-#~ "Помилка: некоректний файл версії %s (файл має починатися записом "
-#~ "<MODULE_VERSION> і містити запис <VERSION major='' minor='' maintenance='' "
-#~ "revision='' string=''>)\n"
-
-#~ msgid "Free Extended Memory (Kbytes): %*I64d"
-#~ msgstr "Вільної розширеної пам’яті (кілобайтів): %*I64d"
-
-#~ msgid "Free Paging File (Kbytes): %*I64d"
-#~ msgstr "Вільно у файлі кешу сторінок (кілобайтів): %*I64d"
-
-#, c-format
-#~ msgid "Path separator: %s"
-#~ msgstr "Роздільник каталогів: %s"
-
-#, c-format
-#~ msgid "Screen size: %d x %d %d bits"
-#~ msgstr "Параметри екрана: %d x %d %d бітів на колір"
-
-#, c-format
-#~ msgid "Version: %s"
-#~ msgstr "Версія: %s"
-
-#, c-format
-#~ msgid "Video card driver version: %s"
-#~ msgstr "Версія драйвера відеокартки: %s"
-
-#, c-format
-#~ msgid "Video card: %s"
-#~ msgstr "Відеокартка: %s"
-
-#~ msgid ""
-#~ "Warning: the operational team of the Scilab Consortium\n"
-#~ "doesn't provide and doesn't support this version of Scilab built with\n"
-#~ msgstr ""
-#~ "Попередження: команда консорціуму Scilab\n"
-#~ "не супроводжує і не підтримує цю версію Scilab, зібрану за допомогою\n"
-
-#, c-format
-#~ msgid "XML version: %s"
-#~ msgstr "Версія XML: %s"
-
-#~ msgid "               Copyright (c) 1989-2007 (ENPC)\n"
-#~ msgstr "               Авторські права належать ENPC, ©1989–2007\n"
-
-#~ msgid "               Copyright (c) 1989-2010 (INRIA)\n"
-#~ msgstr "               Авторські права належать INRIA, ©1989–2010\n"
-
-#, c-format
-#~ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-#~ msgstr ""
-#~ "%s: помилкове значення вхідного параметра №%d. Слід використовувати ціле "
-#~ "значення.\n"
-
-#~ msgid "Copyright (c) 1989-2010 (INRIA)\n"
-#~ msgstr "Авторські права належать INRIA, ©1989–2010\n"

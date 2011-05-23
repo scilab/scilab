@@ -6,106 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-08 16:17+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s 不是個有效的名稱, 請修改這個圖( diagram)的標題( title) ."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
-
-#, c-format
-msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: 檔案''%s''  不存在.\n"
-
-#, c-format
-msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: File ''%s'' 不是個有效的 palette file.\n"
-
-#, c-format
-msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: 找到 ''%s'' 並不是 block.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權限.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: 不能匯出( export) %s 到 %s.\n"
-
-#, c-format
-msgid "%s: Unable to export ''XX'' to %s"
-msgstr "%s: 無法輸出「XX」到 %s"
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s:不能匯出( export) palette到 hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: 不能產生(generate) 圖片( image) %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: 不能產生(generate)  palette icon : %s 已存在.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr "%s:無法匯入從 %s 匯入資料"
-
-#, c-format
-msgid "%s: Unable to import xcos file %s.\n"
-msgstr "%s: 無法匯入 xcos 檔 %s.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: 不能載入(load )block 從 %s: hdf5 file 才對.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數的個數錯誤: 應該有  %d 個.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 輸入參數個數錯誤: 應該有 %d 個.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數個數錯誤: 應該有 %d 至 %d 個.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -114,18 +29,6 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr "%s: 第 %d 個 參數型別有誤: 字串或 diagram structure才對"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: 第 %d 個 參數型別有誤: diagram structure才對"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -138,83 +41,6 @@ msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串向量.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr "%s: 參數 %s 型別有誤: 找不到(not found)檔案.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr "%s: 參數 %s 型別有誤: 布林(boolean)才對.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr "%s: 參數 %s 型別有誤: diagram 型別才對.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr "%s: 參數 %s 型別有誤: 目錄路徑字串(directory path string)才對.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr "%s: 參數 %s 型別有誤: 完整路徑字串(full path string)才對.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: 參數 %s 型別有誤: function as string or Block type or full path string "
-"expected.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: Wrong type for input argument %s: handle type expected.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr "%s: Wrong type for input argument %s: palette type expected.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr "%s: Wrong type for input argument %s: path string expected.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -240,17 +66,8 @@ msgstr "對齊區塊"
 msgid "Annotations"
 msgstr "注解"
 
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
 msgid "Based on Scicos"
 msgstr "根據 Scicos"
-
-msgid "Basic controller"
-msgstr ""
 
 msgid "Block Help"
 msgstr "區塊說明"
@@ -267,15 +84,6 @@ msgstr "邊框顏色"
 msgid "Bottom"
 msgstr "底部"
 
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
 msgid "CVODE"
 msgstr "CVODE 常微分方程"
 
@@ -288,11 +96,7 @@ msgstr ""
 msgid "Center"
 msgstr "中間"
 
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr "點按 diagram 以增加link point 或是 相容的目標來完成"
 
 msgid "Close"
@@ -300,9 +104,6 @@ msgstr "關閉"
 
 msgid "Code generation"
 msgstr "產生程式碼"
-
-msgid "Colpitts oscillator"
-msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "命令埠必須連接到控制埠"
@@ -323,14 +124,8 @@ msgstr ""
 msgid "Computing"
 msgstr ""
 
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
 msgid "Continuous time systems"
 msgstr "連續的 time systems"
-
-msgid "Control Systems"
-msgstr ""
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "版權所有 (c) 1989-2009 (INRIA)"
@@ -346,12 +141,6 @@ msgstr ""
 
 msgid "Customize"
 msgstr "自訂"
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr "Debug block 呼叫沒有 trace"
@@ -377,14 +166,10 @@ msgstr "圖框背景"
 msgid "Diagram browser"
 msgstr "圖框瀏覽器"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 
 msgid "Diff. States"
-msgstr ""
-
-msgid "Differential amplifier"
 msgstr ""
 
 msgid "Discontinuities"
@@ -392,12 +177,6 @@ msgstr "不連續性"
 
 msgid "Discrete"
 msgstr "離散"
-
-msgid "Discrete Controller"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
 
 msgid "Discrete time systems"
 msgstr "離散時間系統"
@@ -420,9 +199,6 @@ msgstr "可編輯的"
 msgid "Electrical"
 msgstr "電力"
 
-msgid "Electrical Systems"
-msgstr ""
-
 msgid "Enable"
 msgstr ""
 
@@ -432,6 +208,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
@@ -441,12 +219,10 @@ msgstr "事件處理"
 msgid "Execution trace and Debug"
 msgstr "執行 trace and Debug"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr "明確資料輸入埠必須連接到明確資料輸出埠"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr "明確資料輸出埠必須連接到明確資料輸入埠"
 
 msgid "Export"
@@ -463,9 +239,6 @@ msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "載入圖框失敗"
-
-msgid "Fibonacci Numbers"
-msgstr ""
 
 msgid "File"
 msgstr "檔案"
@@ -527,17 +300,11 @@ msgstr ""
 msgid "Goto %s"
 msgstr "Goto %s"
 
-msgid "Goto/From blocks"
-msgstr ""
-
 msgid "Grid"
 msgstr "網格"
 
 msgid "Horizontal"
 msgstr "水平"
-
-msgid "Hydraulics blocks"
-msgstr ""
 
 msgid "IDA"
 msgstr "IDA"
@@ -545,23 +312,25 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "影像內容無資料"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr "默認（Implicit）"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr "不明確資料的輸入埠必須連接到不明確資料的輸出埠"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr "不明確資料的輸出埠必須連接到不明確資料的輸入埠"
 
 msgid "Import from XML"
 msgstr "從 XML 檔案匯入"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
@@ -583,13 +352,7 @@ msgstr "絶對容錯積分器"
 msgid "Integrator relative tolerance"
 msgstr "相對容錯積分器"
 
-msgid "Inverted Pendulum"
-msgstr ""
-
 msgid "Italic"
-msgstr ""
-
-msgid "Kalman Filter"
 msgstr ""
 
 msgid "Left"
@@ -616,17 +379,8 @@ msgstr ""
 msgid "Loading user defined palettes"
 msgstr "載入使用者自訂的調色盤"
 
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
 msgid "Lookup Tables"
 msgstr "查詢表"
-
-msgid "Lorentz butterfly"
-msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Masked SuperBlock 編輯器"
@@ -640,17 +394,11 @@ msgstr "矩陣"
 msgid "Max integration time interval"
 msgstr "最大整合的間隔時間"
 
-msgid "Mechanical Systems"
-msgstr ""
-
 msgid "Middle"
 msgstr "中間"
 
 msgid "Mirror"
 msgstr "鏡象"
-
-msgid "Modelica demos"
-msgstr ""
 
 msgid "Modelica initialize"
 msgstr ""
@@ -685,15 +433,6 @@ msgstr "正常 100%"
 msgid "Ok"
 msgstr "確定"
 
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
 msgid "Open"
 msgstr "開啟"
 
@@ -712,9 +451,13 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr "每一block 執行trace和 Debug block calls"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
@@ -728,6 +471,8 @@ msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr "Port 已連上, 請選擇一個未連上的port 或是有效的link."
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
 msgstr ""
 
@@ -736,12 +481,6 @@ msgstr "列印"
 
 msgid "Quit Xcos"
 msgstr "離開 Xcos"
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "RLC circuit"
-msgstr ""
 
 msgid "Real time scaling"
 msgstr "即時延展"
@@ -802,9 +541,6 @@ msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' 模組尚未安裝.\n"
 
-msgid "Scilab block"
-msgstr ""
-
 msgid "Scilab file"
 msgstr "Scilab 檔"
 
@@ -832,20 +568,11 @@ msgstr "顯示上層的 diagram"
 msgid "Show/Hide shadow"
 msgstr "顯示/隱藏 陰影"
 
-msgid "Signal Builder"
-msgstr ""
-
 msgid "Signal Processing"
 msgstr "訊號處理"
 
 msgid "Signal Routing"
 msgstr "訊回迴路"
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Simple Thermostat"
-msgstr ""
 
 msgid "Simulation"
 msgstr "模擬"
@@ -865,14 +592,13 @@ msgstr ""
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "求解器 0 (CVODE) - 100 (IDA)"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
 msgid "Sources"
 msgstr "訊號源"
-
-msgid "Standard demos"
-msgstr ""
 
 msgid "Start"
 msgstr "開始"
@@ -886,23 +612,11 @@ msgstr "直線"
 msgid "Superblock mask"
 msgstr "Superblock 遮罩"
 
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
 msgid "Text Color"
 msgstr ""
 
 msgid "Text settings"
 msgstr ""
-
-msgid "The Scicos libraries are not loaded"
-msgstr "Scicos 函式庫沒載入"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "Scilab 集團組織 (DIGITEO)"
@@ -934,12 +648,13 @@ msgstr "工具"
 msgid "Top"
 msgstr "頂部"
 
-msgid "Transformer"
-msgstr ""
-
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
@@ -969,14 +684,6 @@ msgstr ""
 
 msgid "Unable to load the native HDF5 library."
 msgstr ""
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "無法開啟 %s。"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "無法模擬 %s"
 
 msgid "Unknown Diagram Version : "
 msgstr "未知的 Diagram版本 : "
@@ -1020,9 +727,6 @@ msgstr "檢示 Scicos"
 msgid "Viewport"
 msgstr "觀察窗"
 
-msgid "Water tank"
-msgstr ""
-
 msgid "Will try to continue..."
 msgstr "繼續測試..."
 
@@ -1039,6 +743,11 @@ msgstr ""
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
+msgid "Wrong port number"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1047,9 +756,6 @@ msgstr "Xcos 展示"
 
 msgid "Xcos Help"
 msgstr "Xcos 說明"
-
-msgid "Xcos data types"
-msgstr ""
 
 msgid "Xcos error"
 msgstr "Xcos 錯誤"
@@ -1063,17 +769,11 @@ msgid ""
 "evaluated once confirmed.(i.e. you click on OK, by Eval and every time "
 "diagram is loaded.)"
 msgstr ""
-"你應該在scilab 指令處使用 Scilab 指令去定義區塊中的符號式參數.<br/>這些指令已被證實過.(換言之, 當你按 OK, 則圖框就被 "
-"Eval 載入一次.)"
-
-msgid "Zero Crossing"
-msgstr ""
+"你應該在scilab 指令處使用 Scilab 指令去定義區塊中的符號式參數.<br/>這些指令已"
+"被證實過.(換言之, 當你按 OK, 則圖框就被 Eval 載入一次.)"
 
 msgid "Zero crossing detection"
 msgstr "Zero crossing 偵測"
-
-msgid "_IF_ Xcos block"
-msgstr ""
 
 msgid "comment"
 msgstr ""
@@ -1122,110 +822,35 @@ msgstr ""
 msgid "weight"
 msgstr ""
 
-#~ msgid "CeCILL License"
-#~ msgstr "CeCILL 授權"
 
-#~ msgid "All rights reserved"
-#~ msgstr "版權所有"
 
-#~ msgid "Copyright 2009"
-#~ msgstr "版權 (c)2009"
 
-#~ msgid "Continuous"
-#~ msgstr "連續"
 
-#~ msgid "Copy"
-#~ msgstr "複制"
 
-#~ msgid "Discontinuous"
-#~ msgstr "非連續"
 
-#~ msgid "Cut"
-#~ msgstr "剪下"
 
-#~ msgid ""
-#~ "Diagram has been modified since last save\n"
-#~ "save it?"
-#~ msgstr ""
-#~ "相較上次存檔,圖框已被修改\n"
-#~ "是否儲存?"
 
-#~ msgid "Events"
-#~ msgstr "事件"
 
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "匯出至 %s 失敗\n"
 
-#~ msgid "Group"
-#~ msgstr "群組"
 
-#~ msgid "Invert selection"
-#~ msgstr "反向選擇"
 
-#~ msgid "Math Operations"
-#~ msgstr "數學運算元"
 
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
 
-#~ msgid "Paste"
-#~ msgstr "貼上"
 
-#~ msgid "Redo"
-#~ msgstr "重複"
 
-#~ msgid "Port Action"
-#~ msgstr "啟動埠"
 
-#~ msgid "Quit"
-#~ msgstr "離開"
 
-#~ msgid "Select all"
-#~ msgstr "全選"
 
-#~ msgid "Set Debug Level"
-#~ msgstr "除錯等級設定"
 
-#~ msgid "Set deugging level (0,1,2,3) </br> it performs scicos_debug(n)"
-#~ msgstr "設定除錯等級 (0,1,2,3) </br> 執行 scicos_debu(n)"
 
-#~ msgid "The Scilab Consortium / DIGITEO"
-#~ msgstr "The Scilab Consortium / DIGITEO"
 
-#~ msgid "Undo"
-#~ msgstr "回復"
 
-#~ msgid "Threshold"
-#~ msgstr "閥值"
 
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "圖框版本未知: "
 
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Xcos 版本 1.0"
 
-#~ msgid "Xcos 1.0"
-#~ msgstr "Xcos 1.0"
 
-#~ msgid "Zoom Out"
-#~ msgstr "縮小"
 
-#~ msgid "Zoom In"
-#~ msgstr "放大"
 
-#~ msgid "UnGroup"
-#~ msgstr "未群組化"
 
-#~ msgid "Final inegration time"
-#~ msgstr "最後整合時間"
 
-#~ msgid "Same command executed again"
-#~ msgstr "相同命令再執行一次"
 
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "無法聯繫上interpreter"
-
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: Wrong input argument %s: svg or gif expected.\n"

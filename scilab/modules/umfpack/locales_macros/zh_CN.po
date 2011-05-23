@@ -1,0 +1,142 @@
+# Simplified Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
+"Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" 使用iterative power方法逼近(lM,vM) \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" 使用inverse iterative power方法逼近(lm,vm) \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               点击以继续                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           经过 %d 次迭代后没有达到（只得到 %e） \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           然后重新输入 scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   然后点击OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr ""
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " 警告：对IM在 rtol = %e 处收敛 \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " 警告：对lm在 rtol =%e 处收敛 \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " 请在Scilab提示窗口中输入下面的内容：          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " 迭代 %3d：IM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " 迭代 %3d：lm = %e  \n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s：第二个参数的类型和（或）大小和（或）值不正确。\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr "%s：此矩阵没有值（只有非零模式）：请输入一些1。"
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s：文件包含一个rhs但是它没有被读！"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s：矩阵和LU系数不具有同样的维数！\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s：输入参数的数目错误。\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s：输入参数的数目错误：至少%d个。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为稀疏方阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为稀疏方阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为系数矩阵。\n"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr "%s：目前没有读unassembled（elemental）稀疏矩阵。"
+
+msgid "Choose a sparse matrix"
+msgstr "请选择一个系数矩阵"
+
+msgid "Click to choose a demo"
+msgstr "点击来选择一个demo"
+
+msgid "display a speed comparison test"
+msgstr "显示一个速度比较测试"
+
+msgid "how to use this stuff"
+msgstr "如何使用此内容"
+
+msgid "small tests for condestsp"
+msgstr "condestsp的小测试"

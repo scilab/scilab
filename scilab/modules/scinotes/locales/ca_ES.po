@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-29 16:41+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -37,9 +38,11 @@ msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
 "tenir les mateixes dimensions.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
 msgstr ""
+"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
+"de text.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -58,13 +61,24 @@ msgstr ""
 "%s: L'argument %d és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de text.\n"
 
-msgid "... file with echo"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
+msgid "(* for any string and ? for any character)"
 msgstr ""
 
-msgid "... file with no echo"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
 msgstr ""
 
-msgid "... the selection with echo;... until the caret, with echo"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 msgid "?"
@@ -82,9 +96,13 @@ msgstr "Tot"
 msgid "Alphabetic order"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 55
 msgid "An error occured when exporting the code using FOP"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 56
 msgid "An error occured when printing"
 msgstr ""
 
@@ -97,6 +115,8 @@ msgstr ""
 msgid "Anchors"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 180
 msgid "Apply & Reindent"
 msgstr ""
 
@@ -106,17 +126,15 @@ msgstr "Esteu segur que voleu tancar l'SciNotes?"
 msgid "Auto (Default)"
 msgstr "Automàtic (Predeterminat)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr ""
-
-msgid "Auto-completion on if,function,..."
-msgstr ""
-
 msgid "Background Color"
 msgstr ""
 
 msgid "Backward"
 msgstr "Enrere"
+
+#, fuzzy
+msgid "Base directory:"
+msgstr "%s és un directori."
 
 msgid "Binary file: read-only mode"
 msgstr "Fitxer binari: mode de només lectura"
@@ -127,16 +145,23 @@ msgstr "Negreta"
 msgid "Cancel"
 msgstr "Cancel·la"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 227
 msgid "Cannot guess the file encoding."
 msgstr ""
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "No s'ha pogut carregar el \"scinotesConfiguration.xml\""
 
-msgid "Capitalize Selection;Capitalize character"
-msgstr ""
-
 msgid "Case sensitive"
+msgstr "Distingix majúscules i minúscules"
+
+#, fuzzy
+msgid "Case-sensitivity (File name)"
+msgstr "Distingix majúscules i minúscules"
+
+#, fuzzy
+msgid "Case-sensitivity (Word)"
 msgstr "Distingix majúscules i minúscules"
 
 msgid "Change Color"
@@ -144,6 +169,15 @@ msgstr "Canvia el color"
 
 msgid "Change Colors"
 msgstr "Canvia els colors"
+
+#, fuzzy
+msgid "Choose the search base directory"
+msgstr "%s és un directori."
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
+msgid "Choose..."
+msgstr ""
 
 msgid "Circular search"
 msgstr ""
@@ -175,15 +209,14 @@ msgstr "S'ha cancel·lat l'acoloriment"
 msgid "Colorize"
 msgstr "Acoloreix"
 
-msgid "Columns actions"
-msgstr ""
-
 msgid "Comment Selection"
 msgstr "Comenta la selecció"
 
 msgid "Complete"
 msgstr "Finalitzat"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 289
 msgid "Configure Tabulation"
 msgstr ""
 
@@ -193,13 +226,7 @@ msgstr ""
 msgid "Copy"
 msgstr "Copia"
 
-msgid "Copy as HTML with line number"
-msgstr ""
-
 msgid "Copy selection in a new tab"
-msgstr ""
-
-msgid "Copy tab in new window"
 msgstr ""
 
 msgid "Copyright (c)"
@@ -214,9 +241,6 @@ msgstr "No s'ha trobat la consola ni l'intèrpret de comandes."
 msgid "Could not find the temporary file."
 msgstr "No s'ha trobat el fitxer temporal"
 
-msgid "Current file encoding"
-msgstr ""
-
 msgid "Cursor Color"
 msgstr ""
 
@@ -226,14 +250,8 @@ msgstr "Retalla"
 msgid "Default"
 msgstr "Predeterminat"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-
 msgid "Delete"
 msgstr "Elimina"
-
-msgid "Detach tab in new window"
-msgstr ""
 
 msgid "Direction"
 msgstr "Direcció"
@@ -241,11 +259,18 @@ msgstr "Direcció"
 msgid "Document"
 msgstr "Document"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 296
 msgid "Double chevrons"
 msgstr ""
 
 msgid "Edit"
 msgstr "Edita"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
+msgid "Elapsed time: %s sec."
+msgstr ""
 
 msgid "Enable Auto Reformat"
 msgstr "Habilita el format automàtic"
@@ -253,8 +278,9 @@ msgstr "Habilita el format automàtic"
 msgid "Encoding"
 msgstr "Codificació"
 
+#, fuzzy
 msgid "Encoding problems"
-msgstr ""
+msgstr "Codificació"
 
 msgid "Enter line number"
 msgstr "Entreu el número de línia"
@@ -265,12 +291,11 @@ msgstr ""
 msgid "Evaluate Selection"
 msgstr "Avalua la selecció"
 
-msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr ""
-
 msgid "Evaluate from beginning..."
 msgstr "Avalua des del principi..."
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 301
 msgid "Exact"
 msgstr ""
 
@@ -283,14 +308,16 @@ msgstr "Executa el fitxer a l'Scilab"
 msgid "Exit"
 msgstr "Surt"
 
-msgid "Export"
-msgstr ""
-
 msgid "File"
 msgstr "Fitxer"
 
 msgid "File already exists"
 msgstr "El fitxer ja existeix"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
+msgid "File pattern"
+msgstr ""
 
 msgid "Find"
 msgstr "Cerca"
@@ -313,29 +340,22 @@ msgstr "Endavant"
 msgid "Functions"
 msgstr ""
 
-msgid "Generate comments for help_from_sci"
-msgstr ""
-
 msgid "Generate help from function"
 msgstr "Genera l'ajuda de la funció"
 
 msgid "Go to line: "
 msgstr ""
 
-msgid "Go to next anchor"
-msgstr ""
-
-msgid "Go to previous anchor"
-msgstr ""
-
 msgid "Goto line"
 msgstr "Ves a la línia"
 
+#
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 312
+msgid "Graphics handle field"
+msgstr ""
+
 msgid "Help about '"
 msgstr "Ajuda sobre '"
-
-msgid "Help on ;Help on selection"
-msgstr ""
 
 msgid "Help on selected text or keyword"
 msgstr "Ajuda del text seleccionat o de la paraula clau"
@@ -352,17 +372,12 @@ msgstr "Ajuda a l'escriptura"
 msgid "Highlight current line"
 msgstr "Ressalta la línia actual"
 
+#, fuzzy
 msgid "Horizontal rule"
-msgstr ""
-
-msgid "Horizontal wrapping"
-msgstr ""
+msgstr "Divideix horitzontalment"
 
 msgid "Ignore"
 msgstr "Ignora"
-
-msgid "Incremental Search"
-msgstr ""
 
 msgid "Invalid regular expression : %s"
 msgstr "Expressió regular invàlida: %s"
@@ -370,19 +385,27 @@ msgstr "Expressió regular invàlida: %s"
 msgid "Italic"
 msgstr "Cursiva"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 292
 msgid "Length"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 203
 msgid "Line %s, Column %s."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 202
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Line Endings"
 msgstr "Finals de línia"
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 325
+msgid "Line by line"
 msgstr ""
 
 msgid "Load Into Scilab"
@@ -397,12 +420,6 @@ msgstr "Mac Classic (CR)"
 msgid "Mail to "
 msgstr ""
 
-msgid "Make Selection Lowercase"
-msgstr ""
-
-msgid "Make Selection Uppercase"
-msgstr ""
-
 msgid "Natural order"
 msgstr ""
 
@@ -414,6 +431,10 @@ msgstr "Pestanya següent"
 
 msgid "No Line Numbering"
 msgstr "Sense números de línia"
+
+#, fuzzy
+msgid "No help"
+msgstr "Ajuda de SciNotes"
 
 msgid "No split"
 msgstr "Sense divisió"
@@ -427,6 +448,8 @@ msgstr ""
 msgid "Normal Line Numbering"
 msgstr "Números de línia normals"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 255
 msgid "Numeration"
 msgstr ""
 
@@ -437,9 +460,6 @@ msgid "Open"
 msgstr "Obre"
 
 msgid "Open URL"
-msgstr ""
-
-msgid "Open file in ..."
 msgstr ""
 
 msgid "Open function source file"
@@ -472,12 +492,6 @@ msgstr "Configuració de pàgina"
 msgid "Paste"
 msgstr "Enganxa"
 
-msgid "Paste Column"
-msgstr ""
-
-msgid "Preferences"
-msgstr ""
-
 msgid "Press CTRL and move the mouse over the link to activate it"
 msgstr ""
 
@@ -493,14 +507,38 @@ msgstr "Imprimeix"
 msgid "Print Preview"
 msgstr "Previsualitza la impressió"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 317
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr "Mode de només lectura"
 
 msgid "Recent Files"
 msgstr "Fitxers recents"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+msgid "Recursive"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 324
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
 msgstr "Refés"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
+msgid "Regex"
+msgstr ""
+
+#, fuzzy
+msgid "Regular expression (Word)"
+msgstr "Expressions regulars"
 
 msgid "Regular expressions"
 msgstr "Expressions regulars"
@@ -511,17 +549,8 @@ msgstr ""
 msgid "Reload"
 msgstr "Recarrega"
 
-msgid "Remove anchor"
-msgstr ""
-
-msgid "Remove trailing spaces"
-msgstr ""
-
 msgid "Remove trailing whitespaces"
 msgstr "Elimina els espais del darrere"
-
-msgid "Repeat on the Column"
-msgstr ""
 
 msgid "Replace"
 msgstr "Reemplaça"
@@ -547,9 +576,6 @@ msgstr ""
 msgid "Restore files from your last SciNotes session ?"
 msgstr ""
 
-msgid "Restore opened files on start-up"
-msgstr ""
-
 msgid "Restore the last sessions"
 msgstr ""
 
@@ -561,9 +587,6 @@ msgstr "Desa-ho tot"
 
 msgid "Save as"
 msgstr "Anomena i desa"
-
-msgid "Save file in ..."
-msgstr ""
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -592,11 +615,17 @@ msgstr "Abast"
 msgid "Search"
 msgstr "Cerca"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 306
+msgid "Search Files..."
+msgstr ""
+
+#, fuzzy
+msgid "Search in Files..."
+msgstr "Fitxers recents"
+
 msgid "Select All"
 msgstr "Selecciona-ho tot"
-
-msgid "Select current block"
-msgstr ""
 
 msgid "Selected lines"
 msgstr "Línies seleccionades"
@@ -604,16 +633,10 @@ msgstr "Línies seleccionades"
 msgid "Set Colors"
 msgstr "Determina els colors"
 
-msgid "Set Colors ..."
-msgstr ""
-
 msgid "Set Font"
 msgstr "Determina la font"
 
 msgid "Set an anchor"
-msgstr ""
-
-msgid "Set anchor"
 msgstr ""
 
 msgid "Settings"
@@ -634,14 +657,16 @@ msgstr "Mostra/amaga la barra d'eines"
 msgid "Source of '"
 msgstr "Font de '"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr ""
-
 msgid "Split horizontally"
 msgstr "Divideix horitzontalment"
 
 msgid "Split vertically"
 msgstr "Divideix verticalment"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 319
+msgid "Stop"
+msgstr ""
 
 msgid "Strike Through"
 msgstr "Tatxat"
@@ -649,22 +674,26 @@ msgstr "Tatxat"
 msgid "String %s not found"
 msgstr "No s'ha trobat la cadena %s"
 
-msgid "Suppress comments when executing selection"
-msgstr ""
-
 msgid "Syntax Type"
 msgstr "Tipus de sintaxi"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 293
 msgid "Tab representation"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 290
 msgid "Tab style"
 msgstr ""
 
+#, fuzzy
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
+"El fitxer %s no existeix\n"
+" El voleu crear?"
 
 msgid ""
 "The file %s has been modified by another program !\n"
@@ -676,16 +705,21 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "No s'ha pogut convertir el text."
 
+#, fuzzy
 msgid "The file could not be created, check the path"
-msgstr ""
+msgstr "No s'ha pogut convertir el text."
 
 msgid "The file could not be saved."
 msgstr "No s'ha pogut desar el text."
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 225
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 44
 msgid "The file is not writable so it is opened in read-only mode"
 msgstr ""
 
@@ -699,8 +733,8 @@ msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"Aquest fitxer és molt gran. És millor l'opció \"Executa el fitxer al "
-"Scilab\".\n"
+"Aquest fitxer és molt gran. És millor l'opció \"Executa el fitxer al Scilab"
+"\".\n"
 "Esteu segur que voleu continuar?"
 
 msgid "Tools"
@@ -721,9 +755,13 @@ msgstr "Unix (LF)"
 msgid "Untitled "
 msgstr "Sense títol "
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 291
 msgid "Use spaces"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 295
 msgid "Vertical rule"
 msgstr ""
 
@@ -739,21 +777,28 @@ msgstr "Nombres de línia amb Whereami"
 msgid "Whole word"
 msgstr "Paraula completa"
 
-msgid "Window"
-msgstr ""
-
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
+
+#, fuzzy
+msgid "Word"
+msgstr "Ajust de paraula"
 
 msgid "Word Wrap"
 msgstr "Ajust de paraula"
 
-msgid "Working directories;Add a directory;Remove last directory"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 316
+msgid "Word pattern"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 46
 msgid "You do not have the permissions to read this file"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 45
 msgid "You do not have the permissions to write this file"
 msgstr ""
 
@@ -771,33 +816,10 @@ msgstr "Heu arribat al final del document"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Heu de desar les modificacions per executar aquest fitxer a l'Scilab."
+msgstr "Heu de desar les modificacions per executar aquest fitxer a l'Scilab."
 
 msgid "Your modifications will be lost, change encoding anyway?"
 msgstr "Perdreu les modificacions. Tot i així, voleu canviar la codificació?"
 
 msgid "close this tab"
 msgstr "Tanca aquesta pestanya"
-
-#~ msgid "Continue?"
-#~ msgstr "Voleu continuar?"
-
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Edita la selecció en una nova pestanya"
-
-#~ msgid "No text selected"
-#~ msgstr "No heu seleccionat cap text"
-
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "El fitxer %s no existeix\n"
-#~ " El voleu crear?"
-
-#~ msgid "Wrap search"
-#~ msgstr "Ajusta la cerca"
-
-#~ msgid "No text to execute"
-#~ msgstr "No hi ha text a executar"

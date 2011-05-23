@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-08-13 15:50+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "X-Poedit-Country: Japan\n"
 "X-Poedit-Language: Japanese\n"
 
@@ -44,7 +45,8 @@ msgstr "%s: 未知または未実装の型です.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
-msgstr "%s: 最初の入力引数が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
@@ -186,9 +188,6 @@ msgstr "PVMは存在します"
 msgid "PVM not found"
 msgstr "PVMが見つかりません"
 
-msgid "PVM parallel Toolbox"
-msgstr "PVM  パラレル ツールボックス"
-
 #
 # File: src/c/pvm_proc_ctrl.c, line: 226
 msgid "Pvmd system error"
@@ -233,7 +232,9 @@ msgstr ""
 msgid ""
 "The standard configuration file $SCI%s%s needs the environment variables %s, "
 "%s, %s to be set. PVM can not be started.\n"
-msgstr "標準構成ファイル $SCI%s%s は、環境変数 %s、%s、%s のセットを必要とします。PVMは開始できません。\n"
+msgstr ""
+"標準構成ファイル $SCI%s%s は、環境変数 %s、%s、%s のセットを必要とします。PVM"
+"は開始できません。\n"
 
 #
 # File: src/c/pvm_proc_ctrl.c, line: 200
@@ -263,44 +264,3 @@ msgstr ""
 msgid "but there exists no configuration file:\n"
 msgstr "構成ファイルが存在しません:\n"
 
-#
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 50
-# File: sci_gateway/c/sci_pvm_send.c, line: 51
-#, c-format
-#~ msgid "%s: work space (stacksize) is too small d\n"
-#~ msgstr "%s: 作業スペース(スタックサイズ)はとても小さい d です。\n"
-
-#
-# File: sci_gateway/c/sci_pvm_bcast.c, line: 52
-# File: sci_gateway/c/sci_pvm_send.c, line: 53
-#, c-format
-#~ msgid "%s: Unknow type or not yet implemented\n"
-#~ msgstr "%s: 未知の型、または、まだ装備されていません\n"
-
-#
-# File: src/c/pvm_proc_ctrl.c, line: 228
-#~ msgid "Out of ressources"
-#~ msgstr "リソース外"
-
-#
-# File: src/c/pvm_proc_ctrl.c, line: 231
-#~ msgid "Already oing operation"
-#~ msgstr "すでに oing 操作"
-
-#
-# File: src/c/pvm_grp.c, line: 138
-#, c-format
-#~ msgid "Error pvm_reduce: Unknow reduction operation %s\n"
-#~ msgstr "エラー pvm_reduce: 未知の約分操作 %s\n"
-
-#, c-format
-#~ msgid "%s: Unknown type or not yet implemented\n"
-#~ msgstr "%s: 未知の型、もしくはまだ装備されていません\n"
-
-#, c-format
-#~ msgid "%s: work space (stacksize) is too small.\n"
-#~ msgstr "%s: ワークスペース (stacksize) が小さすぎます.\n"
-
-#, c-format
-#~ msgid "%s: Unknown type or not yet implemented.\n"
-#~ msgstr "%s: 未知の型または未実装です.\n"

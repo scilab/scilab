@@ -7,15 +7,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-01-16 18:49+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -59,37 +60,10 @@ msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr "%s: у файлі ole2 %s не виявлено потоку даних xls.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
 "тип.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
-msgid "%s: file %s does not exist.\n"
-msgstr "%s: файла з назвою «%s» не існує.\n"
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
@@ -119,8 +93,7 @@ msgstr ""
 "за «%s» і «%s»"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося відкрити %s для запису "
 "(%s)\n"
@@ -212,8 +185,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
+msgstr "%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -304,3 +276,8 @@ msgstr "ripOLE: спроба декодування %s призвела до п�
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"
 msgstr "ripOLE: спроба декодування %s призвела до помилки %d.\n"
+
+
+
+
+

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-29 10:02+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "       inside function: %s.\n"
@@ -205,29 +206,12 @@ msgstr ""
 "   Es retorna la solució de l'ordre anterior.\n"
 
 #, c-format
-msgid "%s: Type %s is not handled : Define the function %s2%s."
-msgstr "%s: El tipus %s no s'ha tractat : Definiu la funció %s2%s."
-
-#, c-format
-msgid "%s: Wrong export format: %s"
-msgstr "%s: El format d'exportació és incorrecte: %s"
-
-#, c-format
 msgid "%s: Wrong input parameters.\n"
 msgstr "%s: Els paràmetres d'entrada són incorrectes.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr "%s: El nombre d'arguments d'entrada: Han de ser entre %d i %d."
-
-#, c-format
 msgid "%s: Wrong number of input arguments.\n"
 msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser de %d a %d"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -235,9 +219,11 @@ msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Hi pot haver %d com a "
 "màxim.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
 msgstr ""
+"%s: El nombre d'arguments d'entrada és incorrecte: Les dades no concorden "
+"amb el format.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
@@ -272,10 +258,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
@@ -354,21 +336,8 @@ msgstr ""
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: L'argument d'entrada #%d té un valor incorrecte.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
-"''%s'', ''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 0 expected.\n"
@@ -387,8 +356,7 @@ msgstr ""
 "diari no existeix.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Error. No s'ha pogut "
 "tancar el diari %d.\n"
@@ -400,8 +368,7 @@ msgstr ""
 "tancar el diari.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Error. No s'ha pogut "
 "parar el diari %d.\n"
@@ -506,10 +473,6 @@ msgstr "%s: problema singular o asimètric.\n"
 #, c-format
 msgid "%s: sum(m) must be less than 40.\n"
 msgstr "%s: sum(m) ha de ser menor que 40.\n"
-
-#, c-format
-msgid "%s: system cannot be displayed in this page.\n"
-msgstr "%s: No es pot mostrar el sistema en aquesta pàgina.\n"
 
 #, c-format
 msgid "%s: termination because of roundoff noise.\n"
@@ -692,8 +655,7 @@ msgstr "L'equip no respon...\n"
 
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
-msgstr ""
-"Reinici en calent: Dimensió de la taula de treball (argument n:%d).\n"
+msgstr "Reinici en calent: Dimensió de la taula de treball (argument n:%d).\n"
 
 msgid "Imaginary part\n"
 msgstr "Part imaginària\n"
@@ -782,8 +744,7 @@ msgid "Input arguments should have the same formal variable name.\n"
 msgstr ""
 "Els arguments d'entrada han de tenir el mateix nom formal de variable.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Banda esquerra de la instrucció: Falta un punt o un parèntesi esquerre.\n"
 
@@ -811,8 +772,7 @@ msgstr "L'índex és invàlid.\n"
 
 #, c-format
 msgid "Invalid return value for function passed in arg %d.\n"
-msgstr ""
-"El valor de retorn de la funció passada a l'argument %d no és vàlid.\n"
+msgstr "El valor de retorn de la funció passada a l'argument %d no és vàlid.\n"
 
 #, c-format
 msgid ""
@@ -896,8 +856,9 @@ msgstr "No s'ha implementat al Scilab...\n"
 msgid "Null variable cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar cap variable nul·la.\n"
 
+#, fuzzy
 msgid "Operands of / and \\ operations must not contain NaN or Inf.\n"
-msgstr ""
+msgstr "Els operants de les operacions / i \\ no poden contenir NaN de inf.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
 msgstr ""
@@ -1272,8 +1233,7 @@ msgstr "L'argument d'entrada %d és incorrecte.\n"
 msgid "Wrong number of input arguments:\n"
 msgstr "El nombre d'arguments d'entrada és incorrecte:\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "El nombre d'arguments d'entrada és incorrecte: Aquesta funció no té "
 "arguments d'entrada.\n"
@@ -1292,8 +1252,7 @@ msgid "Wrong size for argument %d.\n"
 msgstr "L'argument %d té una mida incorrecta.\n"
 
 msgid "Wrong size for argument: Incompatible dimensions.\n"
-msgstr ""
-"L'argument té una mida incorrecta: Les dimensions són incompatibles.\n"
+msgstr "L'argument té una mida incorrecta: Les dimensions són incompatibles.\n"
 
 #, c-format
 msgid "Wrong type argument %d: Sparse or full scalar matrix expected.\n"
@@ -1322,13 +1281,11 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for argument %d: In continuous time expected.\n"
-msgstr ""
-"L'argument %d és d'un tipus incorrecte: Ha de ser de temps continu.\n"
+msgstr "L'argument %d és d'un tipus incorrecte: Ha de ser de temps continu.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: In discrete time expected.\n"
-msgstr ""
-"L'argument %d és d'un tipus incorrecte: Ha de ser de temps discret.\n"
+msgstr "L'argument %d és d'un tipus incorrecte: Ha de ser de temps discret.\n"
 
 #, c-format
 msgid "Wrong type for argument %d: In state space form expected.\n"
@@ -1500,11 +1457,10 @@ msgid "semi def fails.\n"
 msgstr "Falla el semi def.\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
-"sfact : S'ha assolit la convergència incompleta de precisió relativa : "
-"10**(%s).\n"
+"sfact : S'ha assolit la convergència incompleta de precisió relativa : 10**"
+"(%s).\n"
 
 msgid "stack size exceeded!\n"
 msgstr "S'ha excedit la mida de la pila!\n"
@@ -1523,107 +1479,11 @@ msgstr "no s'ha definit el domini temporal de l'argument %d.\n"
 msgid "varargout keyword cannot be used here.\n"
 msgstr "Aquí no es pot utilitzar la paraula varargout.\n"
 
-#~ msgid "Incorrect # of outputs in the function\n"
-#~ msgstr "El nombre de sortides de la funció és incorrecte\n"
 
-#~ msgid "Function has no output.\n"
-#~ msgstr "La funció no té cap sortida.\n"
 
-#~ msgid "Wrong number of arguments in function call...\n"
-#~ msgstr "El nombre d'arguments a la crida a la funció és incorrecte...\n"
 
-#~ msgid "Function has no input argument...\n"
-#~ msgstr "La funció no té cap argument d'entrada...\n"
 
-#, c-format
-#~ msgid ""
-#~ "Fatal error!!! Your variables have been saved in the file : %s\n"
-#~ "Bad call to a scilab function ?\n"
-#~ "Otherwise, send a bug report to :\n"
-#~ msgstr ""
-#~ "Error fatal!!! S'ha desat les vostres variables al fitxer: %s\n"
-#~ "Hi ha hagut una crida incorrecta a una funció del Scilab?\n"
-#~ "En cas contrari, envieu un informe d'error a:\n"
 
-#~ msgid "No more logical units available!\n"
-#~ msgstr "No hi ha més unitats lògiques disponibles!\n"
 
-#, c-format
-#~ msgid "%s: singular or assymetric problem.\n"
-#~ msgstr "%s: El problema és singular o assimètric.\n"
 
-#~ msgid "%: This method is NOT implemented.\n"
-#~ msgstr "%: Aquest mètode no està implementat.\n"
 
-#~ msgid "Operands of / and \\ operations  must not contain NaN of Inf.\n"
-#~ msgstr "Els operands d'operacions / i \\ no poden contenir el NaN de Inf.\n"
-
-#~ msgid "A sparse matrix entry is defined with two differents values.\n"
-#~ msgstr "S'ha definit una matriu dispersa amb dos valors diferents.\n"
-
-#~ msgid "Binary direct acces files must be opened by 'file'.\n"
-#~ msgstr "Heu d'obrir els fitxers d'accés directe binari amb 'file'.\n"
-
-#, c-format
-#~ msgid "%s: Th colocation matrix is singular.\n"
-#~ msgstr "%s: La matriu de col·locació és singular.\n"
-
-#, c-format
-#~ msgid "Too many global variables! , max number is %d.\n"
-#~ msgstr "Hi ha massa variables globals, el nombre màxim és %d.\n"
-
-#~ msgid "Error while writing in file,(disk full or deleted file.\n"
-#~ msgstr ""
-#~ "Error d'escriptura al fitxer (el disc és ple o s'ha eliminat el fitxer).\n"
-
-#, c-format
-#~ msgid "Rank defficient. rank = %d\n"
-#~ msgstr "El rang és deficient. rank = %d\n"
-
-#, c-format
-#~ msgid "At time: %s ,Too many iteration to achieve required precision.\n"
-#~ msgstr "A l'hora: %s ,Massa iteracions per a assolir la precisió demanada.\n"
-
-#~ msgid ""
-#~ "Warning: Jacobian external is given, but\n"
-#~ " not used!,  see %ODEOPTIONS(6).\n"
-#~ msgstr ""
-#~ "Avís: S'ha donat una Jacobiana externa, però\n"
-#~ " no s'ha utilitzat. Veieu %ODEOPTIONS(6).\n"
-
-#~ msgid ""
-#~ "Warning: integration not completed! check tolerance parameters or step "
-#~ "size.\n"
-#~ msgstr ""
-#~ "Avís: No s'ha completat la integració. Comproveu els paràmetres de "
-#~ "tolerància o la mida del pas.\n"
-
-#~ msgid "Too many input/output entries for hilited block.\n"
-#~ msgstr "Hi ha massa entrades d'entrada/sortida per al bloc marcat.\n"
-
-#~ msgid "Too many input/output ports for hilited block.\n"
-#~ msgstr "Hi ha massa blocs d'entrada/sortida per al bloc marcat.\n"
-
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s : Error d'assignació de memòria.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: Must be > 0.\n"
-#~ msgstr "%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser > 0.\n"
-
-#~ msgid "'o' format not allowed."
-#~ msgstr "El format 'o' no està permès."
-
-#~ msgid "Warning: obsolete use of eye rand or ones.\n"
-#~ msgstr "Avís: Utilització obsoleta d'identitat aleatòria, o uns.\n"
-
-#, c-format
-#~ msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-#~ msgstr ""
-#~ "%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
-#~ "%d.\n"
-
-#~ msgid "Operands of / and \\ operations must not contain NaN of Inf.\n"
-#~ msgstr ""
-#~ "Els operants de les operacions / i \\ no poden contenir NaN de inf.\n"

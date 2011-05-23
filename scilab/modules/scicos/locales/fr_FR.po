@@ -6,22 +6,23 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-27 06:49+0000\n"
-"Last-Translator: Michel Hua <Unknown>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: ycollet <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 "\n"
 "         (already programmed) event. There may be an error in"
 msgstr ""
 "\n"
-"         événement (déjà programmé). Il y a peut-être une erreur dans"
+"         événement (déjà programmé). Il peut y a une erreur dans"
 
 msgid ""
 "\n"
@@ -145,21 +146,6 @@ msgid "  that must be informed with the following values :\n"
 msgstr "  qui doit être informée avec la valeurs suivantes:\n"
 
 #, c-format
-msgid " %s.mo cannot be compiled\n"
-msgstr " %s.mo ne peut pas être compilée\n"
-
-#, c-format
-msgid " %s.mo compilation forced\n"
-msgstr " Compilation de %s.mo forcée\n"
-
-#, c-format
-msgid " %s.mo must be recompiled\n"
-msgstr " %s.mo doit être recompilée\n"
-
-msgid " Scilab is in no gui mode : Scicos is unavailable"
-msgstr " Scilab est en mode sans-UI : Scicos n'est pas disponible"
-
-#, c-format
 msgid "%s : Allocation error.\n"
 msgstr "%s : Erreur d'allocation.\n"
 
@@ -280,18 +266,15 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Dimension non déterminée. in(%d)=%d. Ajuster votre modèle SVP.\n"
+msgstr "%s : Dimension non déterminée. in(%d)=%d. Ajuster votre modèle SVP.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Dimension non déterminée. in2(%d)=%d. Ajuster votre modèle SVP.\n"
+msgstr "%s : Dimension non déterminée. in2(%d)=%d. Ajuster votre modèle SVP.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Dimension non déterminée. out(%d)=%d. Ajuster votre modèle SVP.\n"
+msgstr "%s : Dimension non déterminée. out(%d)=%d. Ajuster votre modèle SVP.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
@@ -335,8 +318,7 @@ msgstr ""
 "supporté pour outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : erreur. Le type %d de la matrice d'entier scalaire n'est pas encore "
 "supporté pour outtb.\n"
@@ -388,132 +370,12 @@ msgid "%s :the handle is not or no more valid.\n"
 msgstr "%s : le handle n'est pas ou n'est plus valide.\n"
 
 #, c-format
-msgid "%s is not a valid directory\n"
-msgstr "%s n'est pas un répertoire valide\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s n'est pas un nom valide, changez, svp, le titre du diagramme."
-
-#, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: Les 1er et 2nd arguments doivent avoir une dimension identique\n"
 
 #, c-format
-msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr ""
-"%s: Impossible de trouver les fichiers MO dans le répertoire suivant: %s.\n"
-
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: Le diagramme ne compile pas à l'étape %d.\n"
-
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: Erreur: Un bloc scifunc n'a pas été défini."
-
-#, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr ""
-"%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
-
-#, c-format
-msgid "%s: First argument must be a Scicos diagram data structure\n"
-msgstr ""
-"%s: Le premier argument doit être une structure de donnée d'un diagramme "
-"Scicos\n"
-
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: Les ports d'entrée ne sont pas numérotés correctement.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation de mémoire.\n"
-
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: Les ports de sortie ne sont pas numérotés correctement.\n"
-
-#, c-format
-msgid "%s: Unable to find diagram inputs\n"
-msgstr "%s : Impossible de trouver les entrées du diagramme\n"
-
-#, c-format
-msgid "%s: Unable to find diagram outputs\n"
-msgstr "%s : Impossible de trouver les sorties du diagramme\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre incorrect d'argument(s) d'entrée : Au moins %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée. Doit être entre %d et %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s : Nombre incorrect d'arguments d'entrée : entre %d et %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments de sortie : %d attendus.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un seul entier "
-"attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
-"de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-"%s : Type incorrect de l'argument d'entrée #%d : structure de données de "
-"type %s attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
-msgstr ""
-"%s : Type incorrect de l'argument d'entrée #%d : Diagramme attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A list expected.\n"
-msgstr "%s : Type incorrect de l'argument d'entrée #%d : Liste attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Entier attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s : Type incorrect de l'argument d'entrée #%d : Tableau de chaîne de "
-"caractères attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
-msgstr "%s : Valeur incorrect de l'argument d'entrée #%d : ''%s'' attendu.\n"
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -550,48 +412,8 @@ msgstr "%s: erreur %d. Erreur non définie.\n"
 msgid "%s: scicosim is not running.\n"
 msgstr "%s: scicosim n'est pas lancé.\n"
 
-msgid "&?"
-msgstr "&?"
-
-msgid "&Edit"
-msgstr "&Edition"
-
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Tools"
-msgstr "&Outils"
-
-#, c-format
-msgid "&nbsp; %s input port size is: %s"
-msgstr "&nbsp; %s la taille du port d'entrée est : %s"
-
-#, c-format
-msgid "&nbsp; %s output port size is: %s"
-msgstr "&nbsp; Taille du port de sortie %s : %s"
-
-#, c-format
-msgid "&nbsp;Input port %s size is: %s"
-msgstr "&nbsp;Taille du port d'entrée %s : %s"
-
-#, c-format
-msgid "&nbsp;Input port %s type is: %s"
-msgstr "&nbsp;Type du port d'entrée %s : %s"
-
-#, c-format
-msgid "&nbsp;Output port %s size is: %s"
-msgstr "&nbsp;Taille du port de sortie %s : %s"
-
-#, c-format
-msgid "&nbsp;Output port %s type is: %s"
-msgstr "&nbsp;Type du port de sortie %s : %s"
-
-msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-msgstr "''scicos'' n'est plus accessible, veuillez utiliser ''xcos''.\n"
-
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr ""
-"**** SUNDIALS.IDA échec de l'initialisation -> essayer encore *****\n"
+msgstr "**** SUNDIALS.IDA échec de l'initialisation -> essayer encore *****\n"
 
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr "**** SUNDIALS.IDA initialisé avec succès *****\n"
@@ -636,75 +458,6 @@ msgstr "- [\"str1\";\"str2\",...] est une matrice de chaînes de caractères\n"
 
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
 msgstr "- myvar : un int32 ou une matrice double ou une tlist.\n"
-
-msgid "?"
-msgstr "?"
-
-msgid "About Scicos"
-msgstr "A propos de Scicos"
-
-msgid "Activate Scilab Window"
-msgstr "Active la Fenêtre Scilab"
-
-msgid "Add a new color at the Scicos palette"
-msgstr "Ajoute une nouvelle couleur dans la palette Scicos"
-
-msgid "Add color"
-msgstr "Ajoute une couleur"
-
-msgid "Add new block"
-msgstr "Ajoute un nouveau block"
-
-msgid "Align"
-msgstr "Aligner"
-
-msgid "An Atomic Superblock cannot contain sample clocks"
-msgstr ""
-"Un Superblock Atomique ne peut pas contenir d'horloges d'échantillonnage"
-
-msgid "An error occur when evaluating context:"
-msgstr "Une erreur est survenue pendant l'évaluation du contexte:"
-
-#, c-format
-msgid ""
-"An unexpected  error occurred while executing the menu\n"
-"%s:\n"
-msgstr ""
-"Une erreur inattendue est survenue pendant l'exécution du menu\n"
-"%s:\n"
-
-msgid "Analyze Diagram"
-msgstr "Analyse le Diagramme"
-
-msgid "Atomic"
-msgstr "Atomique"
-
-msgid "Available Parameters"
-msgstr "Paramètres Disponibles"
-
-msgid "Background color"
-msgstr "Couleur de l'arrière-plan"
-
-msgid "Background color ? :"
-msgstr "Couleur de fond ? :"
-
-msgid "Block Documentation"
-msgstr "Documentation du Block"
-
-msgid "Block ID font name"
-msgstr "Nom de la police de caractère de l'ID du Block"
-
-msgid "Block ID font size"
-msgstr "Taille de la police de caractère de l'ID du block"
-
-msgid "BrowseTo"
-msgstr "Parcourir"
-
-msgid "Browser"
-msgstr "Navigateur"
-
-msgid "C Code Generation"
-msgstr "Génération de Code C"
 
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "CV_BAD_ABSTOL: abstol a des composantes nétagives (illégale)."
@@ -836,8 +589,7 @@ msgstr ""
 "façon irrécupérable."
 
 msgid "CV_LSOLVE_NULL: The linear solver''s solve routine is NULL."
-msgstr ""
-"CV_LSOLVE_NULL: La routine de résolution du solveur linéaire est NULL."
+msgstr "CV_LSOLVE_NULL: La routine de résolution du solveur linéaire est NULL."
 
 msgid ""
 "CV_MEM_FAIL: a memory allocation failed, including an attempt to increase "
@@ -850,8 +602,7 @@ msgid "CV_MEM_NULL: the cvode memory was NULL"
 msgstr "CV_MEM_NULL: la mémoire cvode était NULL"
 
 msgid "CV_NO_EFUN: itol = CV_WF but no EwtSet function was provided."
-msgstr ""
-"CV_NO_EFUN: itol = CV_WF mais aucune fonction EwtSet n'a été fournie."
+msgstr "CV_NO_EFUN: itol = CV_WF mais aucune fonction EwtSet n'a été fournie."
 
 msgid ""
 "CV_NO_ESTOP: itask = CV_NORMAL_TSTOP or itask = CV_ONE_STEP_TSTOP but tstop "
@@ -871,8 +622,7 @@ msgid "CV_NULL_ABSTOL: absolute tolerances is = NULL illegal."
 msgstr "CV_NULL_ABSTOL: les tolérances absolues is = NULL illégal."
 
 msgid "CV_NULL_F: user supplied ODE routine is (NULL) illegal."
-msgstr ""
-"CV_NULL_F: la routine ODE fournie par l'utilisateur est NULL illégal."
+msgstr "CV_NULL_F: la routine ODE fournie par l'utilisateur est NULL illégal."
 
 msgid "CV_NULL_G: user supplied zero-crossing routine is (NULL) illegal."
 msgstr ""
@@ -942,181 +692,10 @@ msgstr ""
 msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
 msgstr "CV_YOUT_NULL: ''yout'' = NULL illégal."
 
-msgid "Calc"
-msgstr "Calculer"
-
-msgid "Can''t convert old diagram (problem in version)"
-msgstr "Impossible de convertir l'ancien diagramme (problème de version)"
-
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 "Ne peut pas trouver le mode initial, peut être y a-t-il une condition de "
 "mode glissant"
-
-msgid "Choose export format:"
-msgstr "choisissez un format d'exportation:"
-
-msgid "Click block to label"
-msgstr "Cliquez sur le block pour ajouter un label"
-
-msgid "Click block to resize"
-msgstr "Cliquez sur le block pour le redimensionner"
-
-msgid "Click object to move, drag and click (left to fix, right to cancel)"
-msgstr ""
-"Cliquez sur un objet à déplacer, glissez et cliquez (clique gauche pour le "
-"fixer, clique droit pour abandonner)"
-
-msgid ""
-"Click on a Super Block (without activation output) to obtain a coded block!"
-msgstr ""
-"Cliquez sur un Super Block (sans sortie d'activation) pour obtenir un block "
-"codé!"
-
-msgid "Click on a block to set or get its documentation"
-msgstr "Cliquez sur un block pour affecter ou récupérer sa documentation"
-
-msgid "Click on a port of object to be moved"
-msgstr "Cliquez sur un port, cliquez sur un port de l'objet à déplacer"
-
-msgid "Click on a super block"
-msgstr "Cliquez sur un Super Block"
-
-msgid "Click on an object to set or get identification"
-msgstr "Cliquez sur un objet pour affecter ou récupérer son identification"
-
-msgid "Click on block to  open graphic icon editor"
-msgstr "Cliquez sur un block pour ouvrir l'éditeur graphique d'icone"
-
-msgid "Click on block to be flipped"
-msgstr "Cliquez sur le block à renverser"
-
-msgid "Click on block to be turned left"
-msgstr "Cliquez sur le block à tourner à gauche"
-
-msgid "Click on block to be turned right"
-msgstr "Cliquez sur le block à tourner à droite"
-
-msgid "Click on block to edit its icon"
-msgstr "Cliquez sur le block pour éditer son icone"
-
-msgid "Click on object  to get information on it"
-msgstr "Cliquez sur l'objet pour obtenir de l'information"
-
-msgid "Click on object to choose its color"
-msgstr "Cliquez sur l'objet pour choisir sa couleur"
-
-msgid ""
-"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
-msgstr ""
-"Cliquez sur l'objet à dupliquer, glisser, cliquer (clique gauche pour "
-"copier, clique droit pour abandonner)"
-
-msgid "Click to open block or make a link"
-msgstr "Cliquez pour ouvrir le block ou pour contruire un lien"
-
-msgid "Click where you want object to be placed (right-click to cancel)"
-msgstr "Cliquer où vous voulez placer l'objet (clic-droit pour annuler)"
-
-msgid "Close"
-msgstr "Fermer"
-
-msgid "Code Generation only works for a Superblock !\n"
-msgstr "La génération de code fonctionne uniquement pour un super-bloc !\n"
-
-msgid "Code generation applies only to Super Blocks."
-msgstr "La génération de code s'applique seulement aux super-blocs."
-
-msgid "Color"
-msgstr "Couleur"
-
-msgid "Compile"
-msgstr "Compiler"
-
-msgid "Connection error"
-msgstr "Erreur de connexion"
-
-msgid "Context"
-msgstr "Contexte"
-
-msgid "Copy"
-msgstr "Copier"
-
-msgid "Create Atomic"
-msgstr "Créé Atomique"
-
-msgid "Create Mask"
-msgstr "Créer un masque"
-
-msgid "CtrlSelect"
-msgstr "CtrlSélect"
-
-msgid "Customize Mask"
-msgstr "Personnaliser le masque"
-
-msgid "Customize block GUI:"
-msgstr "Customise l'interface graphique du block:"
-
-msgid "Cut"
-msgstr "Couper"
-
-msgid "Cut: Click on the object to cut"
-msgstr "Couper : Cliquer sur l'objet pour le couper"
-
-msgid "Debug Level"
-msgstr "Niveau de débogage"
-
-msgid "Default link colors"
-msgstr "Couleurs par défaut du lien"
-
-msgid "Default window parameters"
-msgstr "Paramètres par défaut de la fenêtre"
-
-msgid "Defined shortcuts"
-msgstr "Raccourcis définis"
-
-msgid "Delete"
-msgstr "Supprimer"
-
-msgid "Delete: Click on the object to delete"
-msgstr "Suppression : Cliquer sur l'objet pour le supprimer"
-
-msgid "Demos"
-msgstr "Démos"
-
-msgid "Details"
-msgstr "Détails"
-
-msgid "Diagram"
-msgstr "Diagramme"
-
-msgid ""
-"Diagram has been compiled for explicit solver\n"
-"switching to explicit solver"
-msgstr ""
-"Ce diagramme a été compilé pour le solveur explicite\n"
-"démarrage du solveur explicite"
-
-msgid ""
-"Diagram has been compiled for implicit solver\n"
-"switching to implicit solver"
-msgstr ""
-"Ce diagramme a été compilé pour le solveur implicite\n"
-"démarrage du solveur implicite"
-
-msgid "Done\n"
-msgstr "Effectué\n"
-
-msgid "Drag, click left for final or intermediate points or right to cancel"
-msgstr ""
-"Glisser, clic gauche pour les points finaux ou intermédiaires ou droit de "
-"annuler"
-
-msgid "Duplicate"
-msgstr "Dupliquer"
-
-msgid "Edit"
-msgstr "Edition"
 
 msgid "End of activation"
 msgstr "Fin d'activation"
@@ -1124,14 +703,8 @@ msgstr "Fin d'activation"
 msgid "End of activation\n"
 msgstr "Fin d'activation\n"
 
-msgid "End problem: "
-msgstr "Problème à la Fin : "
-
 msgid "Entering the block \n"
 msgstr "Entre dans le block \n"
-
-msgid "Error\n"
-msgstr "Erreur\n"
 
 msgid "Error in the Debug block \n"
 msgstr "Erreur dans le bloc de débogage \n"
@@ -1144,88 +717,12 @@ msgstr "Erreur : impossible de trouver '%s'  \n"
 msgid "Error: cannot write to  '%s'  \n"
 msgstr "Erreur : impossible d'écrire dans '%s'  \n"
 
-msgid "Eval"
-msgstr "Évaluation"
-
-msgid "Event links color? :"
-msgstr "Couleur des liens évènement? :"
-
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr "Événement : %d activé à t=%f\n"
 
-msgid "Exit"
-msgstr "Quitter"
-
-msgid "Export"
-msgstr "Exporter"
-
-msgid "Export All"
-msgstr "Exporter tout"
-
-#, c-format
-msgid "Export in file %s failed\n"
-msgstr "Exportation dans le fichier %s a échoué\n"
-
-msgid "File"
-msgstr "Fichier"
-
-msgid "Fit diagram to figure"
-msgstr "Adapter le diagramme à la figure"
-
-msgid "Flip"
-msgstr "Pivoter"
-
-msgid "Following palette(s) ignored (associated file(s) no more exist):"
-msgstr ""
-"La(les) palette(s) suivante(s) est(sont) ignorée(s) (le(s) dossier(s) "
-"associé(s) n'existe(nt) plus) :"
-
-msgid "Foreground color ? :"
-msgstr "Couleur de premier plan ? :"
-
-msgid "Format"
-msgstr "Format"
-
-msgid "Free"
-msgstr "Gratuit"
-
 msgid "Function not found\n"
 msgstr "Fonction non trouvée\n"
-
-msgid "Get Info"
-msgstr "Obtenir les informations"
-
-msgid "Help"
-msgstr "Aide"
-
-msgid "Highlighted block has connected ports<br />with  incompatible types."
-msgstr ""
-"Le bloc sélectionné a des ports connectés <br />avec des types  "
-"incompatibles."
-
-msgid "Highlighted block has connected ports<br />with incompatible sizes."
-msgstr ""
-"Le bloc sélectionné a des ports connectés<br />avec des tailles "
-"incompatibles."
-
-msgid ""
-"Highlighted block(s) have connected ports<br />with  incompatible sizes."
-msgstr ""
-"Le ou les blocs sélectionnés ont des ports connectés<br />avec des tailles "
-"incompatibles."
-
-msgid ""
-"Highlighted block(s) have connected ports<br />with  incompatible types."
-msgstr ""
-"Le ou les blocs sélectionnés ont des ports connectés<br />avec des types "
-"incompatibles."
-
-msgid "ID font definitions"
-msgstr "Définitions des ID des polices"
-
-msgid "ID fonts"
-msgstr "ID des polices"
 
 msgid ""
 "IDACalc cannot find the initial condition at this point. If you are using a "
@@ -1290,8 +787,7 @@ msgstr ""
 "direction d'intégration."
 
 msgid "IDA_CLOSE_ROOTS: Root found at and very near starting time."
-msgstr ""
-"IDA_CLOSE_ROOTS: Racine trouvée à et très près de l'instant de départ."
+msgstr "IDA_CLOSE_ROOTS: Racine trouvée à et très près de l'instant de départ."
 
 msgid ""
 "IDA_CONSTR_FAIL: IDACalcIC was unable to find a solution satisfying the "
@@ -1480,21 +976,6 @@ msgstr "IDA_YPRET_NULL: yret = NULL illégal.."
 msgid "IDA_YRET_NULL: yret = NULL illegal.."
 msgstr "IDA_YRET_NULL: yret = NULL illégal.."
 
-msgid "Icon"
-msgstr "Icône"
-
-msgid "Icon Editor"
-msgstr "Éditeur d'icônes"
-
-msgid "Identification"
-msgstr "Identification"
-
-msgid "Initialisation problem:"
-msgstr "Problème à l'Initialisation :"
-
-msgid "It is impossible to set ID for this type of object"
-msgstr "Il est impossible de définir l'ID pour ce type d'objet"
-
 msgid ""
 "KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
 "verify your model. There might be an error in the computing function, for "
@@ -1525,9 +1006,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV:  L'algorithme de recherche linéaire n'a pas été "
 "capable de trouver un intéré suffisamment distinct de l'itéré courant.. Cet "
@@ -1634,284 +1115,13 @@ msgstr ""
 "KIN_SYSFUNC_FAIL: Erreur dans la fonction de calcul. Vérifier votre modèle "
 "SVP."
 
-msgid "Label"
-msgstr "Etiquettes"
-
 #, c-format
 msgid "Leaving block %d \n"
 msgstr "Laisser le bloc %d \n"
 
-msgid "Link"
-msgstr "Lien"
-
-msgid "Link ID font name"
-msgstr "Nom de police de caractères de l'ID du lien"
-
-msgid "Link ID font size"
-msgstr "Taille de la police de caractères de l'ID du lien"
-
-msgid "Link parameters"
-msgstr "Paramètres de lien"
-
-msgid "Load as Palette"
-msgstr "Charger en tant que palette"
-
-msgid "Mask"
-msgstr "Masque"
-
-msgid "Mask can only be created for Super Blocks."
-msgstr "Les Masques ne peuvent être crées que pour les Super Blocks."
-
-msgid "Modelica initialize"
-msgstr "Initialisation de Modelica"
-
-msgid "Modify title and menu labels."
-msgstr "Modifier les étiquettes de titre et de menu."
-
-msgid "Move"
-msgstr "Déplacer"
-
-msgid "MoveLink "
-msgstr "Déplacer le Lien "
-
-msgid "Multiple selection cannot be used here"
-msgstr "Le choix multiple ne peut pas être employé ici"
-
-msgid "Navigator window"
-msgstr "Fenêtre de navigateur"
-
-msgid "New"
-msgstr "Nouveau"
-
-msgid "No"
-msgstr "Non"
-
-msgid "No selected block in the current Scicos window."
-msgstr "Aucun bloc sélectionné dans la fenêtre courante de Scicos."
-
-msgid "Only  blocks can be selected for this operation."
-msgstr "Seuls des blocs peuvent être choisis pour cette opération."
-
-msgid "Only one block can be selected in current window for this operation."
-msgstr ""
-"Un seul bloc peut être sélectionné dans la fenêtre actuelle pour cette "
-"opération."
-
-msgid "Open"
-msgstr "Ouvrir"
-
-msgid "Open a Scicos demonstration diagram"
-msgstr "Ouvrir un diagramme de démonstration de Xcos"
-
-msgid "Open a Scicos diagram"
-msgstr "Ouvrir un diagramme de Xicos"
-
-msgid "Open/Set"
-msgstr "Ouvrir/Régler"
-
-msgid "Pal editor"
-msgstr "Editeur de Palette"
-
-msgid "Palette"
-msgstr "Palette"
-
-msgid "Palettes"
-msgstr "Palettes"
-
-msgid "Palettes Tree"
-msgstr "Arbre de palettes"
-
-msgid "Paste"
-msgstr "Coller"
-
-msgid "Place in Diagram"
-msgstr "Placer dans le diagramme"
-
-msgid "PlaceinBrowser"
-msgstr "Placer dans l'Explorateur"
-
-msgid "PlaceinDiagram"
-msgstr "Placer dans le Diagramme"
-
-msgid "Please report"
-msgstr "Faites un rapport svp"
-
-msgid "Popup"
-msgstr "Fenêtre qui apparaît"
-
-msgid ""
-"Press left mouse button, drag region and release (right button to cancel)"
-msgstr ""
-"Presser le bouton gauche de la sourie, glisser la région et relacher (bouton "
-"droit pour abandonner)"
-
-msgid "Problem saving a backup; I cannot activate Scilab\n"
-msgstr ""
-"Problème lors de la sauvegarde du backup ; Je ne peux pas activer Scilab\n"
-
-#, c-format
-msgid "Problem while building library %s\n"
-msgstr "Un problème est arrivé en construisant la bibliothèque %s\n"
-
-msgid "Problem with the block generated from modelica blocks."
-msgstr "Problème avec le bloc généré à partir des blocs Modelica."
-
-msgid "Properties"
-msgstr "Propriétés"
-
-msgid "Purge"
-msgstr "Purger"
-
-msgid "Region to Palette"
-msgstr "Région vers Palette"
-
-msgid "Region to Super Block"
-msgstr "Région vers Super Block"
-
-msgid "Regular links color ? :"
-msgstr "Couleur des liens réguliers ?:"
-
-msgid "Remove Atomic"
-msgstr "Supprimer Atomique"
-
-msgid "Remove Mask"
-msgstr "Enlever le masque"
-
-msgid "Rename"
-msgstr "Renommer"
-
-msgid "Replot"
-msgstr "Retracer"
-
-#, c-format
-msgid "Requested action: %s is not available"
-msgstr "Action demandée : %s n'est pas disponible"
-
-msgid "Resize"
-msgstr "Redimensionner"
-
-msgid "Resize is allowed only for Blocks or Links."
-msgstr "Le redimensionnement n'est permis que pour les blocs et les liens."
-
-msgid "Rotate Left"
-msgstr "Tourner vers la gauche"
-
-msgid "Rotate Right"
-msgstr "Tourner vers la droite"
-
-msgid "Run"
-msgstr "Exécuter"
-
-msgid "Save"
-msgstr "Enregistrer"
-
-msgid "Save As"
-msgstr "Enregistrer sous..."
-
-msgid "Save Block GUI"
-msgstr "Sauver l'UI du block"
-
-msgid "Save as Interf Func"
-msgstr "Sauver en Interf Func"
-
-msgid "Save as Palette"
-msgstr "Sauvegarder une palette"
-
-msgid "Scicos Documentation"
-msgstr "Documentation de Xcos"
-
-#, c-format
-msgid "Scicos version %s\n"
-msgstr "Version de Scicos %s\n"
-
-#, c-format
-msgid "Scilab Graphics of %s"
-msgstr "Graphiques de Scilab de %s"
-
-msgid "Select a block."
-msgstr "Sélectionner un block"
-
-msgid "Select a directory path"
-msgstr "Choisir un chemin de dossier"
-
-msgid "SelectAll"
-msgstr "Tout sélectionner"
-
-msgid "SelectLink  "
-msgstr "Sélectionner le lien  "
-
-msgid "SelectRegion"
-msgstr "Selectionner la région"
-
-msgid "Set Block identification"
-msgstr "Définir l'identification bloc"
-
-msgid "Set Block sizes"
-msgstr "Définir la taille bloc"
-
-msgid "Set Diagram Info"
-msgstr "Définir l'information de diagramme"
-
-msgid "Set grid"
-msgstr "Définir la grille"
-
-msgid "Set link Identification"
-msgstr "Définir l'identification de lien"
-
-msgid "Set link edition mode"
-msgstr "Définir le mode d'édition de lien"
-
-msgid "Setup"
-msgstr "Configurer"
-
-msgid "Shortcuts"
-msgstr "Raccourcis"
-
-msgid "Show Block Shadow"
-msgstr "Afficher l'ombre du block"
-
-msgid "Simulate"
-msgstr "Simuler"
-
-msgid "Simulation parameters not set:"
-msgstr "Les paramètres de simulation n'ont pas été définis :"
-
-msgid "Simulation problem: "
-msgstr "Problème à la simulation : "
-
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr "Curseur t=%10.3f, drapeau=%d \n"
-
-msgid "Smart"
-msgstr "Rapide"
-
-msgid "Smart Move"
-msgstr "Déplacement intelligent"
-
-msgid "Smart move does not work yet with multiple selection"
-msgstr ""
-"Le déplacement intelligent ne fonctionne pas avec une sélection multiple"
-
-msgid "Sorry file name not defined in "
-msgstr "Désolé le nom de fichier n'est pas défini dans "
-
-msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr "Désolé : Seuls les langages C et Fortran sont supportés"
-
-msgid "Stop"
-msgstr "Arrêter"
-
-msgid "The current icon depends on block parameter\n"
-msgstr "L'icône courant dépend des paramètres du bloc\n"
-
-#, c-format
-msgid "The key %s is already in use for %s"
-msgstr "La clef %s est déjà en service pour %s"
-
-#, c-format
-msgid "The key %s is not a valid letter"
-msgstr "La clef %s n'est pas une lettre valide"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -1925,67 +1135,11 @@ msgstr ""
 "fixed=false) dans un modèle Modelical. Ceci sera corrigée dans une prochaine "
 "version"
 
-#, c-format
-msgid ""
-"The parameter(s) %s \n"
-"must be defined in the"
-msgstr ""
-"Le(s) paramètre(s) %s \n"
-"doit(doivent) être défini(s) dans"
-
-#, c-format
-msgid "The variable name %s cannot be used as block parameter: ignored"
-msgstr ""
-"Le nom de variable %s ne peut être utilisé comme paramètre de bloc : ignoré"
-
-msgid "Thickness"
-msgstr "Épaisseur"
-
-msgid "This block is not masked."
-msgstr "Ce bloc n'est pas masqué."
-
-msgid "This window is not an active palette"
-msgstr "Cette fenêtre n'est pas une palette active"
-
-msgid "This window is not an active scicos window"
-msgstr "Cette fenêtre n'est pas une fenêtre active de scicos"
-
-msgid "Title of the GUI"
-msgstr "Titre de la GUI"
-
-msgid "TkPopup "
-msgstr "TkPopup "
-
-#, c-format
-msgid "To avoid this message, please update the %s.scicos_pal file."
-msgstr "Pour éviter ce message, mettre svp le fichier %s.scicos_pal."
-
-msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-msgstr "Pour réactiver Scicos, cliquer sur un diagramme ou tapez xcos();\n"
-
-msgid "Toggle grid"
-msgstr "Basculer la grille"
-
-msgid "Tools"
-msgstr "Outils"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Type not recognized"
-msgstr "Type non reconnu"
-
 msgid "Undefined Function type\n"
 msgstr "Type de fonction non défini\n"
 
 msgid "Undefined data type."
 msgstr "Type de données non défini."
-
-msgid "Undo"
-msgstr "Défaire"
-
-msgid "Up To Main Diagram"
-msgstr "Jusqu'au diagramme principal"
 
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
@@ -1993,31 +1147,6 @@ msgid ""
 msgstr ""
 "Utilisation : [myvar]=getscicosvars([« str1 » ; « str2 » ; …]);\n"
 "\n"
-
-msgid "Use 3D aspect?"
-msgstr "Utiliser l'aspect 3D ?"
-
-msgid "View"
-msgstr "Vue"
-
-#, c-format
-msgid "Warning %d menus have identical name %s\n"
-msgstr "Attention %d menus ont des noms %s identiques\n"
-
-#, c-format
-msgid ""
-"Warning the variable %s do not match any context variable name\n"
-"ignored"
-msgstr ""
-"Attention la variable %s ne correspond à aucun nom de variable dans ce "
-"contexte\n"
-"ignoré"
-
-msgid "Xcos block parameter error"
-msgstr "Erreur de paramètre de bloc Xcos"
-
-msgid "Yes"
-msgstr "Oui"
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -2030,15 +1159,6 @@ msgstr ""
 "paramètres. Ainsi vous devriez soit recompiler votre diagramme Scicos soit "
 "[re]lancer l'interface d'initialisation pour régénérer le fichier XML avec "
 "de nouveaux paramètres."
-
-msgid "Your diagram is not saved. Do not quit Scilab or "
-msgstr "Votre diagramme n'est pas sauvegarder. Ne pas quitter Scilab ou "
-
-msgid "Zoom in"
-msgstr "Zoom avant"
-
-msgid "Zoom out"
-msgstr "Zoom arrière"
 
 msgid "algebraic loop detected"
 msgstr "Boucle algébrique détectée"
@@ -2061,14 +1181,8 @@ msgstr "impossible d'allouer la mémoire"
 msgid "cannot allocate memory in block=%d"
 msgstr "impossible d'allouer la mémoire dans le block=%d"
 
-msgid "current choice is "
-msgstr "le choix courant est "
-
 msgid "event conflict"
 msgstr "conflit d'événement"
-
-msgid "height"
-msgstr "hauteur"
 
 msgid "initial conditions not converging"
 msgstr "les conditions initiales ne convergent pas"
@@ -2094,9 +1208,6 @@ msgstr "problème d'ordonnancement"
 msgid "scicos unexpected error, please report..."
 msgstr "Erreur inattendue Scicos, rapportez le bug SVP..."
 
-msgid "scs_show active..."
-msgstr "scs_show actif..."
-
 msgid "singularity in a block"
 msgstr "singularité dans un bloc"
 
@@ -2116,43 +1227,223 @@ msgstr "fonction de type 2 non permise pour des des blocs de scilab\n"
 msgid "unknown or erroneous block"
 msgstr "bloc inconnu ou incorrect"
 
-msgid "width"
-msgstr "largeur"
-
 #, c-format
 msgid "with flag %d "
 msgstr "avec le drapeau %d "
 
-#, c-format
-#~ msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable.\n"
-#~ msgstr ""
-#~ "%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible.\n"
 
-#, c-format
-#~ msgid "%s: An error occurred during the compilation of the Modelica block."
-#~ msgstr ""
-#~ "%s: Une erreur s'est produite pendant la compilation du bloc Modelica."
 
-#~ msgid "Scicos"
-#~ msgstr "Scicos"
 
-#, c-format
-#~ msgid ""
-#~ "%s: Diagram does not compile in pass %d.\n"
-#~ "'),"
-#~ msgstr ""
-#~ "%s: Le diagramme ne compile pas à l'étape %d.\n"
-#~ "'),"
 
-#, c-format
-#~ msgid "%s: Error : the following command line failed to execute: %s.\n"
-#~ msgstr "%s: Erreur : la commande suivante n'a pas pu s'exécuter: %s.\n"
 
-#~ msgid "Sorry compiling problem"
-#~ msgstr "Désolé pour ce probleme de compilation"
 
-#~ msgid "A compatible C compiler required."
-#~ msgstr "Un compilateur C est nécessaire."
 
-#~ msgid "Click on a port, click on a port of object to be moved"
-#~ msgstr "Cliquez sur un port, cliquez sur un port de l'objet à déplacer"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

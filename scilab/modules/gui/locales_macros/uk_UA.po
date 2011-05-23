@@ -1,0 +1,457 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s:  №%d збіг вузлів.\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s:  №%d збіг батьківських вузлів.\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: Некоректна вершина.\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: Некоректна батьківська вершина.\n"
+
+#, c-format
+msgid "%s: Invalid position ''%s''.\n"
+msgstr "%s: Некоректне розташування «%s».\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: Збігу вузлів не виявлено.\n"
+
+#, c-format
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr "%s: нічого не знайдено для властивості «%s» і значення «%s».\n"
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr "%s: нічого не знайдено.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: тип %s не реалізовано.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr ""
+"%s: помилкові вхідні параметри: слід використовувати параметри %s або %s\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr ""
+"%s: помилкові вхідні параметри: слід використовувати параметри %s, %s або "
+"%s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не менше за "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: помилковий розмір для %s: слід використовувати дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: помилковий розмір для %s: слід використовувати вектор-рядок рядків.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+"керування «Figure» або дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: помилковий тип %s: слід використовувати список.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: помилковий тип для %s: слід використовувати дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: помилковий тип для %s: слід використовувати вектор-рядок рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: помилковий тип %s: слід використовувати тип «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr ""
+"%s: помилковий тип властивості «%s»: слід використовувати тип «string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d або №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати елемент "
+"керування графічним об’єктом або дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип списку з "
+"двох елементів.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати булівське "
+"значення.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
+"або «tree».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «tree».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «tree» "
+"або «string».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
+"''callback''.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип «label», "
+"«icon» або «callback».\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr ""
+"%s: помилковий тип вхідних параметрів з №%d: слід використовувати «tree».\n"
+
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr ""
+"%s: помилкове значення властивості «%s»: слід використовувати %d, %d або "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
+"«%s» або «%s».\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: у цьому режимі додавати меню у консоль не можна: %s.\n"
+
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: у цьому режимі додавати меню не можна: %s.\n"
+
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: у режимі NWNI функцією не можна користуватися.\n"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&Edit"
+msgstr "&Правка"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Tools"
+msgstr "&Інструменти"
+
+msgid "<Enter color name here>"
+msgstr "<Тут слід ввести назву кольору>"
+
+msgid "About Scilab..."
+msgstr "Про Scilab..."
+
+msgid "Acknowledgements"
+msgstr "Подяки"
+
+msgid "Add color in listbox"
+msgstr "Додати колір з панелі списку"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" належить до помилкового типу %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" має некоректну розмірність: \n"
+" слід було використовувати розмірність %s.\n"
+
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+"Відповідь, дана на %s, \n"
+" є помилковою, див. повідомлення про помилку у вікні scilab.\n"
+
+msgid "Application"
+msgstr "Програма"
+
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"Автори:\n"
+"Консорціум Scilab / INRIA / ENPC / Учасники розробки\n"
+"\n"
+
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Colors list edition"
+msgstr "Редагування списку кольорів"
+
+msgid "Control Plot3d"
+msgstr "Керування Plot3d"
+
+msgid "Display selection"
+msgstr "Показ позначеного"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "Ви справді хочете вийти зі Scilab?"
+
+msgid "Error"
+msgstr "Помилка"
+
+msgid "Exit figure"
+msgstr "Закрити вікно рисунка"
+
+msgid "File"
+msgstr "Файл"
+
+msgid "GUI"
+msgstr "Інтерфейс"
+
+msgid "Launch plot2d"
+msgstr "Запустити plot2d"
+
+msgid "Launch plot3d"
+msgstr "Запустити plot3d"
+
+msgid "Menu"
+msgstr "Меню"
+
+#, c-format
+msgid "Menu ''%s'' is %s."
+msgstr "Меню «%s» %s."
+
+msgid "Menu status"
+msgstr "Стан меню"
+
+msgid "No"
+msgstr "Ні"
+
+msgid "No color selected."
+msgstr "Не вибрано жодного кольору."
+
+msgid "Ok"
+msgstr "Гаразд"
+
+msgid "Please enter a color name first."
+msgstr "Будь ласка, спочатку введіть назву кольору."
+
+msgid "Popupmenu selection"
+msgstr "Вибір у контекстному меню"
+
+msgid "Quit Scilab"
+msgstr "Завершити роботу Scilab"
+
+msgid "Quit demonstration"
+msgstr "Закрити вікно демонстрації"
+
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"Scilab 5.0 та наступні версії випущено за умов дотримання ліцензії CeCILL.\n"
+
+msgid "Scilab Contributors..."
+msgstr "Учасники розробки Scilab…"
+
+msgid "Scilab Graphics"
+msgstr "Графічні дані Scilab"
+
+msgid "Selected colors"
+msgstr "Вибрані кольори"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "Вибрані кольори: %s."
+
+msgid "Selected menu"
+msgstr "Позначене меню"
+
+msgid "Slider demo"
+msgstr "Демонстрація роботи повзунка"
+
+msgid "Slider value: "
+msgstr "Значення на повзунку: "
+
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"Деякі з модулів Scilab випущено за умов дотримання ліцензії GPLv2.\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "Підменю 1"
+
+msgid "Sub-menu 2"
+msgstr "Підменю 2"
+
+msgid "Sub-menu 2-1"
+msgstr "Підменю 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "Підменю 2-2"
+
+msgid "Uicontrols demo"
+msgstr "Демонстрація елементів керування"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "Демонстрація елементів керування інтерфейсом з LaTeX"
+
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"Версія %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "Так"
+
+#, c-format
+msgid "You clicked on menu ''%s''."
+msgstr "Ви натиснули позначку меню «%s»."
+
+#, c-format
+msgid "You selected ''%s''."
+msgstr "Вами вибрано «%s»."
+
+msgid "blue"
+msgstr "синій"
+
+msgid "checked"
+msgstr "позначено"
+
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: знайдено порожнє ієрархічне меню."
+
+msgid "green"
+msgstr "зелений"
+
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "елемент1|елемент2|елемент3|елемент4"
+
+msgid "red"
+msgstr "червоний"
+
+msgid "unchecked"
+msgstr "не позначено"
+
+msgid "yellow"
+msgstr "жовтий"

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-29 10:11+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s : No more memory.\n"
@@ -53,13 +54,8 @@ msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr "%s: Els elements de l'argument #%d han de tenir un ordre creixent.\n"
 
 #, c-format
-msgid "%s: Given expression has no value.\n"
-msgstr "%s: L'expressió donada no té valor.\n"
-
-#, c-format
 msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
-msgstr ""
-"%s: El límit no és relevant per a la comprovació DFA: Serà ignorat.\n"
+msgstr "%s: El límit no és relevant per a la comprovació DFA: Serà ignorat.\n"
 
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
@@ -82,27 +78,8 @@ msgid "%s: Returned count is too big for offset size.\n"
 msgstr "%s: El recompte retornat és massa gran per a la mida indicada.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s: Aquesta característica no està implementada: %s.\n"
-
-#, c-format
-msgid ""
-"%s: This feature has not been implemented: Variable translation of type %s.\n"
-msgstr ""
-"%s: Aquesta característica no s'ha implementat: Ha de ser una variable del "
-"tipus %s.\n"
-
-#, c-format
 msgid "%s: Unknown error.\n"
 msgstr "%s: Error desconegut.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -118,20 +95,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un caràcter.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A character or vector of characters "
-"expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un caràcter o "
-"un vector de caràcters.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"caràcters.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
@@ -141,12 +104,6 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
-"enter.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
@@ -201,11 +158,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser ''%s''.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser ''%s'' o "
@@ -231,22 +183,10 @@ msgstr ""
 "escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
-"de text.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"enter.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Character expected.\n"
@@ -298,14 +238,6 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
-"character strings or list expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"de nombres reals o complexos o de cadenes de text o una llista.\n"
-
-#, c-format
-msgid ""
 "%s: Wrong type for input argument #%d: Row vector of strings or column "
 "vector of strings expected.\n"
 msgstr ""
@@ -334,19 +266,9 @@ msgid "%s: Wrong type for input argument(s).\n"
 msgstr "%s: Els arguments d'entrada són d'un tipus incorrecte.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser una cadena de "
-"caràcters.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -374,8 +296,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser 'u' "
-"(superior) or 'l' (inferior) expected.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser "
+"'u' (superior) or 'l' (inferior) expected.\n"
 
 #, c-format
 msgid ""
@@ -406,20 +328,11 @@ msgstr ""
 "caràcters, no un patró regexp.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té valors incorrecte: Ha de ser un enter no-"
-"negatiu.\n"
-
-#, c-format
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= 1.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= 1.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una matriu de "
 "cadenes de text.\n"
@@ -435,41 +348,17 @@ msgstr "%s: No s'ha pogut obtenir les dimensions de la matriu.\n"
 msgid "WARNING : \n"
 msgstr "Avís: \n"
 
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: Matrix of character strings.\n"
-#~ msgstr ""
-#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-#~ "de cadenes de text.\n"
 
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong values for input argument #%d: ''r'',''l'' or ''c'' expected.\n"
-#~ msgstr ""
-#~ "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''r'',''l'' "
-#~ "or ''c''.\n"
 
-#, c-format
-#~ msgid "%s: Wrong type for input argument #%d: A character expected.\n"
-#~ msgstr ""
-#~ "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
-#~ "caràcter.\n"
 
-#, c-format
-#~ msgid "%s : Wrong size for input argument #%d.\n"
-#~ msgstr "%s : L'argument d'entrada #%d té una mida incorrecta.\n"
 
-#, c-format
-#~ msgid "%s : Memory allocation error.\n"
-#~ msgstr "%s : Error d'assignació de memòria.\n"
 
-#, c-format
-#~ msgid "WARNING: Please use %s instead.\n"
-#~ msgstr "Avís: Utilitzeu %s.\n"
 
-#, c-format
-#~ msgid "WARNING: Function %s is obsolete.\n"
-#~ msgstr "Avís: La funció %s és obsoleta.\n"
 
-#, c-format
-#~ msgid "WARNING: This function will be permanently removed in Scilab %s.\n"
-#~ msgstr "Avís: Aquesta funció s'eliminarà de forma permanent a Scilab %s.\n"
+
+
+
+
+
+
+

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-04-05 13:56+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 " has been modified since last save\n"
@@ -37,11 +38,10 @@ msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
 "збігатися.\n"
 
-#, c-format
+#, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: A single string.\n"
 msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати рядок з одного "
-"символу.\n"
+"%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
@@ -60,14 +60,25 @@ msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
 
-msgid "... file with echo"
-msgstr "…файл з виведенням"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
+msgid "(* for any string and ? for any character)"
+msgstr ""
 
-msgid "... file with no echo"
-msgstr "…файл без виведення"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
+msgid "(~ for user home dir. and SCI for Scilab base dir.)"
+msgstr ""
 
-msgid "... the selection with echo;... until the caret, with echo"
-msgstr "…позначене з виведенням;…до курсора з виведенням"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+msgid "<html>%s <i>(%s matches)</i></html>"
+msgstr ""
 
 msgid "?"
 msgstr "Довідка"
@@ -84,11 +95,15 @@ msgstr "Всі"
 msgid "Alphabetic order"
 msgstr "За абеткою"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 55
 msgid "An error occured when exporting the code using FOP"
-msgstr "Під час експортування коду за допомогою FOP сталася помилка"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 56
 msgid "An error occured when printing"
-msgstr "Під час спроби друку сталася помилка"
+msgstr ""
 
 msgid "Anchor's name: "
 msgstr "Назва прив’язки: "
@@ -99,8 +114,10 @@ msgstr "Прив’язка: "
 msgid "Anchors"
 msgstr "Прив’язки"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 180
 msgid "Apply & Reindent"
-msgstr "Застосувати і змінити відступи"
+msgstr ""
 
 msgid "Are you sure that you want to close SciNotes ?"
 msgstr "Ви справді бажаєте завершити роботу SciNotes?"
@@ -108,17 +125,15 @@ msgstr "Ви справді бажаєте завершити роботу SciNo
 msgid "Auto (Default)"
 msgstr "Автоматично (типово)"
 
-msgid "Auto-completion on (,&quot;,..."
-msgstr "Автодоповнення для (, &quot;…"
-
-msgid "Auto-completion on if,function,..."
-msgstr "Автодоповнення для if, function…"
-
 msgid "Background Color"
 msgstr "Колір тла"
 
 msgid "Backward"
 msgstr "Назад"
+
+#, fuzzy
+msgid "Base directory:"
+msgstr "%s — це каталог."
 
 msgid "Binary file: read-only mode"
 msgstr "Бінарний файл: режим лише читання"
@@ -129,16 +144,23 @@ msgstr "Жирний"
 msgid "Cancel"
 msgstr "Скасувати"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 227
 msgid "Cannot guess the file encoding."
-msgstr "Не вдалося визначити кодування даних файла."
+msgstr ""
 
 msgid "Cannot load \"scinotesConfiguration.xml\""
 msgstr "Не вдалося завантажити «scinotesConfiguration.xml»"
 
-msgid "Capitalize Selection;Capitalize character"
-msgstr "Змінити регістр позначеного;Змінити регістр символу"
-
 msgid "Case sensitive"
+msgstr "З врахуванням регістру"
+
+#, fuzzy
+msgid "Case-sensitivity (File name)"
+msgstr "З врахуванням регістру"
+
+#, fuzzy
+msgid "Case-sensitivity (Word)"
 msgstr "З врахуванням регістру"
 
 msgid "Change Color"
@@ -146,6 +168,15 @@ msgstr "Змінити колір"
 
 msgid "Change Colors"
 msgstr "Змінити кольори"
+
+#, fuzzy
+msgid "Choose the search base directory"
+msgstr "%s — це каталог."
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
+msgid "Choose..."
+msgstr ""
 
 msgid "Circular search"
 msgstr "Циклічний пошук"
@@ -177,17 +208,16 @@ msgstr "Розфарбування скасовано"
 msgid "Colorize"
 msgstr "Розфарбовування"
 
-msgid "Columns actions"
-msgstr "Дії над стовпчиками"
-
 msgid "Comment Selection"
 msgstr "Закоментувати позначене"
 
 msgid "Complete"
 msgstr "Завершити"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 289
 msgid "Configure Tabulation"
-msgstr "Налаштування табуляції"
+msgstr ""
 
 msgid "Continue ?"
 msgstr "Продовжити?"
@@ -195,14 +225,8 @@ msgstr "Продовжити?"
 msgid "Copy"
 msgstr "Копіювати"
 
-msgid "Copy as HTML with line number"
-msgstr "Копіювати як HTML з номерами рядків"
-
 msgid "Copy selection in a new tab"
 msgstr "Копіювати позначене до нової вкладки"
-
-msgid "Copy tab in new window"
-msgstr "Копіювати вкладку у окреме вікно"
 
 msgid "Copyright (c)"
 msgstr "Авторські права належать ©"
@@ -216,9 +240,6 @@ msgstr "Не вдалося виявити консолі або InterpreterMana
 msgid "Could not find the temporary file."
 msgstr "Не вдалося виявити тимчасовий файл."
 
-msgid "Current file encoding"
-msgstr "Кодування поточного файла"
-
 msgid "Cursor Color"
 msgstr "Колір курсора"
 
@@ -228,15 +249,8 @@ msgstr "Вирізати"
 msgid "Default"
 msgstr "Типовий"
 
-msgid "Default SciNotes file encoding;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-msgstr ""
-"Типове кодування файлів SciNotes;UTF-8;Windows 1252 (ANSI);ISO-8859-1"
-
 msgid "Delete"
 msgstr "Вилучити"
-
-msgid "Detach tab in new window"
-msgstr "Від’єднати вкладку у окреме вікно"
 
 msgid "Direction"
 msgstr "Напрямок"
@@ -244,11 +258,18 @@ msgstr "Напрямок"
 msgid "Document"
 msgstr "Документ"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 296
 msgid "Double chevrons"
-msgstr "Подвійний шеврон"
+msgstr ""
 
 msgid "Edit"
-msgstr "Зміни"
+msgstr "Правка"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
+msgid "Elapsed time: %s sec."
+msgstr ""
 
 msgid "Enable Auto Reformat"
 msgstr "Увімкнути автоматичну зміну формату"
@@ -256,8 +277,9 @@ msgstr "Увімкнути автоматичну зміну формату"
 msgid "Encoding"
 msgstr "Кодування"
 
+#, fuzzy
 msgid "Encoding problems"
-msgstr "Проблеми з кодуванням"
+msgstr "Кодування"
 
 msgid "Enter line number"
 msgstr "Введіть номер рядка"
@@ -268,14 +290,13 @@ msgstr "Помилка під час спроби читання рядка"
 msgid "Evaluate Selection"
 msgstr "Обчислити позначене"
 
-msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "Обчислити позначене з виведенням;Обчислити до курсора з виведенням"
-
 msgid "Evaluate from beginning..."
 msgstr "Обчислити з початку…"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 301
 msgid "Exact"
-msgstr "Точно"
+msgstr ""
 
 msgid "Execute"
 msgstr "Виконати"
@@ -286,14 +307,16 @@ msgstr "Виконати файл у Scilab"
 msgid "Exit"
 msgstr "Вийти"
 
-msgid "Export"
-msgstr "Експорт"
-
 msgid "File"
 msgstr "Файл"
 
 msgid "File already exists"
 msgstr "Файл вже існує"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
+msgid "File pattern"
+msgstr ""
 
 msgid "Find"
 msgstr "Знайти"
@@ -316,29 +339,22 @@ msgstr "Вперед"
 msgid "Functions"
 msgstr "Функції"
 
-msgid "Generate comments for help_from_sci"
-msgstr "Створити записи коментарів для help_from_sci"
-
 msgid "Generate help from function"
 msgstr "Створити довідку на основі функції"
 
 msgid "Go to line: "
 msgstr "Перейти до рядка: "
 
-msgid "Go to next anchor"
-msgstr "Перейти до наступної прив’язки"
-
-msgid "Go to previous anchor"
-msgstr "Перейти до попередньої прив’язки"
-
 msgid "Goto line"
 msgstr "Перейти до рядка"
 
+#
+# File: src/java/org/scilab/modules/scinotes/actions/SciNotesCompletionAction.java, line: 312
+msgid "Graphics handle field"
+msgstr ""
+
 msgid "Help about '"
 msgstr "Довідка щодо «"
-
-msgid "Help on ;Help on selection"
-msgstr "Довідка щодо ;Довідка щодо позначеного"
 
 msgid "Help on selected text or keyword"
 msgstr "Довідка щодо позначеного фрагмента тексту або слова"
@@ -355,17 +371,12 @@ msgstr "Довідка при введенні"
 msgid "Highlight current line"
 msgstr "Підсвічувати поточний рядок"
 
+#, fuzzy
 msgid "Horizontal rule"
-msgstr "Горизонтальна лінійка"
-
-msgid "Horizontal wrapping"
-msgstr "Горизонтальна розбивка на рядки"
+msgstr "Розділити горизонтально"
 
 msgid "Ignore"
 msgstr "Ігнорувати"
-
-msgid "Incremental Search"
-msgstr "Покроковий пошук"
 
 msgid "Invalid regular expression : %s"
 msgstr "Некоректний формальний вираз: %s"
@@ -373,20 +384,28 @@ msgstr "Некоректний формальний вираз: %s"
 msgid "Italic"
 msgstr "Курсив"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 292
 msgid "Length"
-msgstr "Довжина"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 203
 msgid "Line %s, Column %s."
-msgstr "Рядок %s, позиція %s."
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 202
 msgid "Line %s, Column %s. Function '%s' at Line %s."
-msgstr "Рядок %s, позиція %s. Функція «%s» у рядку %s."
+msgstr ""
 
 msgid "Line Endings"
 msgstr "Завершення рядків"
 
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Нумерація рядків;Вимкнено;Звичайна;Сумісна з Whereami"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 325
+msgid "Line by line"
+msgstr ""
 
 msgid "Load Into Scilab"
 msgstr "Завантажити до Scilab"
@@ -400,12 +419,6 @@ msgstr "Класичний для Mac (CR)"
 msgid "Mail to "
 msgstr "Надіслати листа до "
 
-msgid "Make Selection Lowercase"
-msgstr "Замінити великі літери у позначеному малими"
-
-msgid "Make Selection Uppercase"
-msgstr "Замінити малі літери у позначеному великими"
-
 msgid "Natural order"
 msgstr "Природній порядок"
 
@@ -417,6 +430,10 @@ msgstr "Наступна вкладка"
 
 msgid "No Line Numbering"
 msgstr "Без нумерації рядків"
+
+#, fuzzy
+msgid "No help"
+msgstr "Довідка SciNotes"
 
 msgid "No split"
 msgstr "Без поділу"
@@ -430,6 +447,7 @@ msgstr "Немає тексту для обробки."
 msgid "Normal Line Numbering"
 msgstr "Звичайна нумерація рядків"
 
+#, fuzzy
 msgid "Numeration"
 msgstr "Нумерація"
 
@@ -441,9 +459,6 @@ msgstr "Відкрити"
 
 msgid "Open URL"
 msgstr "Відкрити URL"
-
-msgid "Open file in ..."
-msgstr "Відкрити файл у…"
 
 msgid "Open function source file"
 msgstr "Відкрити файл коду функції"
@@ -475,12 +490,6 @@ msgstr "Налаштування сторінки"
 msgid "Paste"
 msgstr "Вставити"
 
-msgid "Paste Column"
-msgstr "Вставити стовпчик"
-
-msgid "Preferences"
-msgstr "Параметри"
-
 msgid "Press CTRL and move the mouse over the link to activate it"
 msgstr ""
 "Натисніть клавішу CTRL і пересуньте вказівник миші на посилання, щоб задіяти "
@@ -498,14 +507,37 @@ msgstr "Надрукувати"
 msgid "Print Preview"
 msgstr "Перегляд друку"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 317
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr "Режим тільки для читання"
 
 msgid "Recent Files"
 msgstr "Нещодавні файли"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+msgid "Recursive"
+msgstr ""
+
+#, fuzzy
+msgid "Recursive search"
+msgstr "Циклічний пошук"
+
 msgid "Redo"
 msgstr "Повторити"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
+msgid "Regex"
+msgstr ""
+
+#, fuzzy
+msgid "Regular expression (Word)"
+msgstr "Формальні вирази"
 
 msgid "Regular expressions"
 msgstr "Формальні вирази"
@@ -516,17 +548,8 @@ msgstr "Відносний"
 msgid "Reload"
 msgstr "Перезавантажити"
 
-msgid "Remove anchor"
-msgstr "Вилучити прив’язку"
-
-msgid "Remove trailing spaces"
-msgstr "Вилучати кінцеві пробіли"
-
 msgid "Remove trailing whitespaces"
 msgstr "Вилучити кінцеві пробіли"
-
-msgid "Repeat on the Column"
-msgstr "Повторити над цим стовпчиком"
 
 msgid "Replace"
 msgstr "Замінити"
@@ -552,9 +575,6 @@ msgstr "Поновити пошук з початку"
 msgid "Restore files from your last SciNotes session ?"
 msgstr "Відкрити файли з вашого попереднього сеансу у SciNotes?"
 
-msgid "Restore opened files on start-up"
-msgstr "Відкривати попередні файли під час запуску"
-
 msgid "Restore the last sessions"
 msgstr "Відновлення попереднього сеансу"
 
@@ -566,9 +586,6 @@ msgstr "Зберегти всі"
 
 msgid "Save as"
 msgstr "Зберегти як"
-
-msgid "Save file in ..."
-msgstr "Зберегти файл у…"
 
 msgid "SciNotes"
 msgstr "SciNotes"
@@ -596,11 +613,17 @@ msgstr "Область"
 msgid "Search"
 msgstr "Пошук"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 306
+msgid "Search Files..."
+msgstr ""
+
+#, fuzzy
+msgid "Search in Files..."
+msgstr "Нещодавні файли"
+
 msgid "Select All"
 msgstr "Вибрати все"
-
-msgid "Select current block"
-msgstr "Позначити поточний блок"
 
 msgid "Selected lines"
 msgstr "Позначені рядки"
@@ -608,16 +631,10 @@ msgstr "Позначені рядки"
 msgid "Set Colors"
 msgstr "Вказати кольори"
 
-msgid "Set Colors ..."
-msgstr "Вказати кольори…"
-
 msgid "Set Font"
 msgstr "Вказати шрифт"
 
 msgid "Set an anchor"
-msgstr "Встановити прив’язку"
-
-msgid "Set anchor"
 msgstr "Встановити прив’язку"
 
 msgid "Settings"
@@ -638,14 +655,16 @@ msgstr "Показати/Сховати панель інструментів"
 msgid "Source of '"
 msgstr "Джерело «"
 
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Розділений перегляд;Вимкнено;Горизонтально;Вертикально"
-
 msgid "Split horizontally"
 msgstr "Розділити горизонтально"
 
 msgid "Split vertically"
 msgstr "Розділити вертикально"
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 319
+msgid "Stop"
+msgstr ""
 
 msgid "Strike Through"
 msgstr "Перекреслити"
@@ -653,24 +672,26 @@ msgstr "Перекреслити"
 msgid "String %s not found"
 msgstr "Рядка %s не знайдено"
 
-msgid "Suppress comments when executing selection"
-msgstr "Придушити коментарі під час виконання позначеного"
-
 msgid "Syntax Type"
 msgstr "Тип синтаксису"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 293
 msgid "Tab representation"
-msgstr "Показ табуляції"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 290
 msgid "Tab style"
-msgstr "Стиль табуляції"
+msgstr ""
 
+#, fuzzy
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
 "Файла з назвою %s не існує.\n"
-"Створити такий файл?"
+" Бажаєте його створити?"
 
 msgid ""
 "The file %s has been modified by another program !\n"
@@ -682,20 +703,23 @@ msgstr ""
 msgid "The file could not be converted."
 msgstr "Перетворити файл не вдалося."
 
+#, fuzzy
 msgid "The file could not be created, check the path"
-msgstr "Не вдалося створити файл, перевірте вказану адресу"
+msgstr "Перетворити файл не вдалося."
 
 msgid "The file could not be saved."
 msgstr "Зберегти файл не вдалося."
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 225
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
-"Справжнім кодуванням символів файла є %s, файл буде збережено у кодуванні "
-"%s. Зберегти?"
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 44
 msgid "The file is not writable so it is opened in read-only mode"
-msgstr "Файл непридатний до запису, його відкрито у режимі читання"
+msgstr ""
 
 msgid "This file"
 msgstr "Поточний файл"
@@ -729,11 +753,15 @@ msgstr "Unix (LF)"
 msgid "Untitled "
 msgstr "Без назви "
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 291
 msgid "Use spaces"
-msgstr "Використовувати пробіли"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 295
 msgid "Vertical rule"
-msgstr "Вертикальна лінійка"
+msgstr ""
 
 msgid "View"
 msgstr "Перегляд"
@@ -747,23 +775,30 @@ msgstr "Нумерація рядків Whereami"
 msgid "Whole word"
 msgstr "Цілі слова"
 
-msgid "Window"
-msgstr "Вікно"
-
 msgid "Windows/DOS (CR + LF)"
 msgstr "Windows/DOS (CR + LF)"
+
+#, fuzzy
+msgid "Word"
+msgstr "Перенесення слів"
 
 msgid "Word Wrap"
 msgstr "Перенесення слів"
 
-msgid "Working directories;Add a directory;Remove last directory"
-msgstr "Робочі каталоги;Додати каталог;Вилучити останній каталог"
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 316
+msgid "Word pattern"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 46
 msgid "You do not have the permissions to read this file"
-msgstr "У вас немає прав доступу до читання цього файла"
+msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 45
 msgid "You do not have the permissions to write this file"
-msgstr "У вас немає прав доступу до запису даних до цього файла"
+msgstr ""
 
 msgid "You have passed the beginning of the document"
 msgstr "Перехід за початок документа"
@@ -782,39 +817,29 @@ msgid ""
 msgstr "Перш ніж виконувати цей файл у Scilab, його вміст слід зберегти."
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr ""
-"Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
+msgstr "Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
 
 msgid "close this tab"
 msgstr "закрити цю вкладку"
 
-#~ msgid "Continue?"
-#~ msgstr "Продовжити?"
 
-#~ msgid "Edit selection in a new tab"
-#~ msgstr "Редагувати позначене у новій вкладці"
 
-#~ msgid "No text selected"
-#~ msgstr "Не позначено жодного фрагмента тексту"
 
-#~ msgid "No text to execute"
-#~ msgstr "Немає тексту для обробки"
 
-#~ msgid ""
-#~ "The file %s doesn't exist\n"
-#~ " Do you want to create it?"
-#~ msgstr ""
-#~ "Файла з назвою %s не існує.\n"
-#~ " Бажаєте його створити?"
 
-#~ msgid "Wrap search"
-#~ msgstr "Циклічний пошук"
 
-#~ msgid "Edition"
-#~ msgstr "Редагування"
 
-#~ msgid "Numerotation"
-#~ msgstr "Нумерація"
 
-#~ msgid "Open file in ...;Add a directory;Remove last directory"
-#~ msgstr "Відкрити файл у…;Додати каталог;Вилучити останній каталог"
+
+
+
+
+
+
+
+
+
+
+
+
+

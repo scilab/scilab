@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-11 18:04+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: kkirill <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 "\n"
@@ -53,8 +54,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
+"Неверное начальное число для fsultra, должно быть целым в диапазоне [0, "
+"2^32-1]\n"
 
 msgid ""
 "\n"
@@ -190,8 +191,7 @@ msgstr "%s: Неверный размер входного параметра: �
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: Mean и Cov нулевого размера.\n"
+msgstr "%s: Неверный размер входных параметров: Mean и Cov нулевого размера.\n"
 
 #, c-format
 msgid "%s: Wrong size for second input argument: %dx%d expected.\n"
@@ -208,6 +208,10 @@ msgstr "%s: Неверный тип входного параметра №1: о
 #, c-format
 msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №4: ожидался скаляр.\n"
+
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr "%s: Неверный тип входного параметра: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
@@ -258,8 +262,7 @@ msgstr "%s: Неверное значение входного параметр�
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра: ожидалось между «%s» и %d.\n"
+msgstr "%s: Неверное значение входного параметра: ожидалось между «%s» и %d.\n"
 
 #, c-format
 msgid ""
@@ -286,8 +289,7 @@ msgid "%s: Wrong value for second input argument: Must be > %d.\n"
 msgstr "%s: Неверное значение входного параметра №2: должно быть > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №2: должно быть между %d и %d.\n"
 
@@ -315,8 +317,8 @@ msgstr ""
 
 msgid "Bad seeds for kiss, must be integers in [0,2^32-1]\n"
 msgstr ""
-"Неверное начальное число для kiss, должно быть целым в диапазоне [0, 2^32-"
-"1]\n"
+"Неверное начальное число для kiss, должно быть целым в диапазоне [0, "
+"2^32-1]\n"
 
 msgid "DF < 1 or XNONC < 0\n"
 msgstr "DF < 1 или XNONC < 0\n"
@@ -326,18 +328,6 @@ msgstr "DF < 1.0 или DF <= 0.0 или Xnonc < 0.0\n"
 
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Степени свободы не положительны\n"
-
-msgid "Erlang random variable"
-msgstr "Случайная переменная Эрланга"
-
-msgid "Exponential random variable"
-msgstr "Экспоненциальная случайная переменная"
-
-msgid "Hyper geometric random variable"
-msgstr "Гипергеометрическая случайная переменная"
-
-msgid "Low > High\n"
-msgstr "Low > High\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Отсутствуют A и B для бета-распределения\n"
@@ -416,9 +406,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr "Случайная переменная Пуассона"
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A или B < %f\n"
@@ -426,23 +413,11 @@ msgstr "Rand(...,'bet',..): A или B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Случайные величины"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "Интерфейс Scilab randlib не установлен.\n"
-
-msgid "Simulation"
-msgstr "Моделирование"
-
-msgid "Simulation of a binomial random variable"
-msgstr "Моделирование биномиальное случайной переменной"
-
-msgid "Simulation of a discrete random variable"
-msgstr "Моделирование дискретной случайной переменой"
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -462,14 +437,8 @@ msgstr "Параметр %s влияет только на генератор cl
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr "Первый элемент вектора mt, должен быть целым в диапазоне [1, 624]\n"
 
-msgid "Theory"
-msgstr "Теория"
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Эта информация относится только к генератору clcg4\n"
-
-msgid "Weibull random variable"
-msgstr "Случайная переменная Вейбулла"
 
 msgid "X0 is empty\n"
 msgstr "X0 пуст\n"
@@ -477,17 +446,7 @@ msgstr "X0 пуст\n"
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a и b должны быть целыми, (b-a+1) <= 2147483561"
 
-msgid "binomial random variable"
-msgstr "Биномиальная случайная переменная"
-
-msgid "discrete random variable"
-msgstr "Дискретная случайная переменная"
-
-msgid "discrete uniform random variable"
-msgstr "Дискретная равномерная случайная переменная"
-
-msgid "geometric random variable"
-msgstr "Геометрическая случайная переменная"
-
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 или R <= 0.0\n"
+
+

@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-01-25 09:31+0000\n"
-"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Petersen <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid "Could not change the Console Font."
 msgstr "Kann den Konsolenzeichensatz nicht ändern."
@@ -22,8 +23,10 @@ msgstr "Kann den Konsolenzeichensatz nicht ändern."
 msgid "Could not change the Console Foreground."
 msgstr "Kann den Konsolenvordergrund nicht ändern."
 
+#
+# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
 msgid "Field"
-msgstr "Feld"
+msgstr ""
 
 msgid "File or Directory"
 msgstr "Datei oder Verzeichnis"

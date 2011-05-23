@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-02-17 09:23+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 msgid ""
 "\n"
@@ -47,8 +48,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, 2^32-"
-"1]\n"
+"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, "
+"2^32-1]\n"
 
 msgid ""
 "\n"
@@ -209,6 +210,11 @@ msgid "%s: Wrong type for fourth input argument: Scalar expected.\n"
 msgstr ""
 "%s: El quart argument és d'un tipus incorrecte: Ha de ser un escalar.\n"
 
+#, fuzzy, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un escalar.\n"
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
@@ -296,8 +302,7 @@ msgstr ""
 "%s: El segon argument d'entrada té un valor incorrecte: Ha de ser > %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: El segon argument d'entrada té un valor incorrecte: Ha de ser entre %d i "
 "%d.\n"
@@ -336,18 +341,6 @@ msgstr "DF < 1.0 o DF <= 0.0 o Xnonc < 0.0\n"
 
 msgid "Degrees of freedom nonpositive\n"
 msgstr "Els graus de llibertat no són positius\n"
-
-msgid "Erlang random variable"
-msgstr ""
-
-msgid "Exponential random variable"
-msgstr ""
-
-msgid "Hyper geometric random variable"
-msgstr ""
-
-msgid "Low > High\n"
-msgstr "Low > High\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Falten la A i la B per a la llei beta\n"
@@ -425,9 +418,6 @@ msgstr "P(%d,%d) < 0\n"
 msgid "P(%d,%d) > 1\n"
 msgstr "P(%d,%d) > 1\n"
 
-msgid "Poisson random variable"
-msgstr ""
-
 #, c-format
 msgid "Rand(...,'bet',..): A or B < %f\n"
 msgstr "Rand(...,'bet',..): A o B < %f\n"
@@ -435,23 +425,11 @@ msgstr "Rand(...,'bet',..): A o B < %f\n"
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
 
-msgid "Random"
-msgstr "Aleatori"
-
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"
 
 msgid "Scilab randlib interface not installed.\n"
 msgstr "La interfície randlib del Scilab no està instal·lada.\n"
-
-msgid "Simulation"
-msgstr ""
-
-msgid "Simulation of a binomial random variable"
-msgstr ""
-
-msgid "Simulation of a discrete random variable"
-msgstr ""
 
 #, c-format
 msgid "Sum of P(%d,1:%d)=%f ~= 1\n"
@@ -472,14 +450,8 @@ msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
 msgstr ""
 "El primer component de l'estat mt, ha de ser un enter dins el rang [0, 624]\n"
 
-msgid "Theory"
-msgstr ""
-
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "Aquesta informació només té a veure amb el generador clcg4\n"
-
-msgid "Weibull random variable"
-msgstr ""
 
 msgid "X0 is empty\n"
 msgstr "X0 és buida\n"
@@ -487,17 +459,7 @@ msgstr "X0 és buida\n"
 msgid "a and b must integers with (b-a+1) <= 2147483561"
 msgstr "a i b han de ser enters amb (b-a+1) <= 2147483561"
 
-msgid "binomial random variable"
-msgstr ""
-
-msgid "discrete random variable"
-msgstr ""
-
-msgid "discrete uniform random variable"
-msgstr ""
-
-msgid "geometric random variable"
-msgstr ""
-
 msgid "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
 msgstr "grand(..'gam',A,R) : A <= 0.0 or R <= 0.0\n"
+
+

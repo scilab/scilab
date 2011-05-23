@@ -1,15 +1,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Scilab\n"
-"Report-Msgid-Bugs-To: <localization@scilab.org>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-06-19 13:43+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: tim loo <timloo0710@gmail.com>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #
@@ -21,8 +22,7 @@ msgstr "%s: 錯誤產生: %s\n"
 #
 # File: sci_gateway/c/sci_fftw.c, line: 228
 #, c-format
-msgid ""
-"%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
+msgid "%s: Incompatible input arguments '#%d and '#%d': Same sizes expected.\n"
 msgstr "%s: Incompatible input arguments '#%d and '#%d': 應為相同大小.\n"
 
 #
@@ -80,8 +80,7 @@ msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s: 輸入參數型別有誤 #%d: N-階陣列才對.\n"
 
 #, c-format
@@ -128,10 +127,3 @@ msgstr "FFTW 無法讀入 wisdom 資訊."
 # File: src/nofftw/nofftw.c, line: 18
 msgid "Scilab FFTW module not installed.\n"
 msgstr "未安裝 Scilab FFTW 模組.\n"
-
-#
-# File: sci_gateway/c/sci_fftw.c, line: 187
-#, c-format
-#~ msgid ""
-#~ "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
-#~ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為 N-維陣列.\n"

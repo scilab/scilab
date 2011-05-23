@@ -1,0 +1,155 @@
+# Spanish translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" aproximar (lM,vM) con el método iterativo de potencias \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" aproximar (lm,vm) con el método iterativo de potencias inversas \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               CLICK PARA CONTINUAR                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           no se alcanzó tras %d iteraciones (solo %e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           luego reingrese scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   después haga click en OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " El tamaño de la pila no es suficiente para esta demostración "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Advertencia : para convergencia lM en rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Advertencia : para convergencia lm en rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " ingrese lo siguiente en la línea de comandos de Scilab :          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " iteración %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " iteración %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr "%s: Tipo y/o tamaño y/o valor Invalido para el segundo argumento.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: No hay valores para esta matriz (solo patrón no cero) : coloque algunos "
+"1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: El archivo contiene una RHS pero no puede ser leído!"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: La matriz y la factorización LU no tienen la misma dimensión !\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Número incorrecto de argumento(s) de entrada.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban al menos %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"dispersa cuadrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
+"dispersa cuadrada.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: se esperaba una matriz "
+"dispersa.\n"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: actualmente no se puede leer una matriz dispersa no ensamblada "
+"(elemental)."
+
+msgid "Choose a sparse matrix"
+msgstr "Seleccione una matriz dispersa"
+
+msgid "Click to choose a demo"
+msgstr "Click para elegir un demo"
+
+msgid "display a speed comparison test"
+msgstr "muestra un test de comparación de velocidad"
+
+msgid "how to use this stuff"
+msgstr "como usar estas cosas"
+
+msgid "small tests for condestsp"
+msgstr "Pequeños tests para condestsp"

@@ -6,39 +6,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2011-05-07 12:56+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Kamil Dąbrowski <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
-msgid " -- View Code -- "
-msgstr " -- Zobacz Kod -- "
 
-msgid "&?"
-msgstr "&?"
 
-msgid "&Edit"
-msgstr "&Edycja"
 
-msgid "&File"
-msgstr "&Plik"
 
-msgid "&Tools"
-msgstr "&Narzędzia"
 
-msgid "Close"
-msgstr "Zamknij"
 
-msgid "Demos"
-msgstr "Dema"
 
-msgid "File"
-msgstr "Plik"
-
-msgid "Open in Editor"
-msgstr "Otwórz w edytorze"

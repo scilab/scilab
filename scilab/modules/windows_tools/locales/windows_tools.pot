@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 10:57+0100\n"
+"Revision-Date: 2011-05-23 14:48+0100\n"
 
 # File: sci_gateway/c/sci_winqueryreg.c, line: 172
 #, c-format
@@ -46,11 +46,6 @@ msgstr ""
 msgid "%s: No more memory.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 40
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_dos.c, line: 86
 # File: sci_gateway/c/sci_dos.c, line: 147
 #, c-format
@@ -70,7 +65,6 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 37
 # File: sci_gateway/c/sci_findfileassociation.c, line: 38
 # File: sci_gateway/c/sci_winqueryreg.c, line: 53
 # File: sci_gateway/c/sci_winqueryreg.c, line: 79
@@ -110,25 +104,9 @@ msgstr ""
 msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
 msgstr ""
 #
-# File: macros/powershell.sci, line: 15
-msgid "Error(s) : see help powershell"
-msgstr ""
-#
-# File: macros/powershell.sci, line: 21
-msgid "Only for Microsoft Windows."
-msgstr ""
-#
 # File: sci_gateway/c/sci_consolebox.c, line: 45
 # File: sci_gateway/c/sci_consolebox.c, line: 82
 msgid "Only on Windows Mode, not in Console Mode.\n"
-msgstr ""
-#
-# File: macros/powershell.sci, line: 15
-msgid "Please verify your powershell command without Scilab."
-msgstr ""
-#
-# File: macros/powershell.sci, line: 28
-msgid "Powershell 1.0 not found."
 msgstr ""
 #
 # File: src/c/scilab_windows/splashScreen.c, line: 73

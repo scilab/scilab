@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-12-03 11:43+0000\n"
-"Last-Translator: cmdrhenner <cmdrhenner@gmail.com>\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Tim Schulze-Hartung <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid ""
@@ -68,7 +69,6 @@ msgstr ""
 "JVM Fehler in AttachCurrentThread: kann nicht an den aktuellen "
 "Programmprozess anhängen.\n"
 
-#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -166,18 +166,25 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "Fehler: kann Datei nicht einlesen %s.\n"
 
+#
+# File: src/c/InitializeJVM.c, line: 60
+msgid ""
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
+msgstr ""
+
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 "Wenn Sie eine Binärversion von Scilab verwenden, geben Sie einen "
 "Fehlerbreicht unter http://bugzilla.scilab.org/ ab.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 "Wenn Sie eine selbsterzeugte Version von Scilab verwenden, aktualisieren Sie "
 "das Skript Bin/Scilab, um einen Pfad zu JVM zu geben.\n"
@@ -194,10 +201,14 @@ msgstr "JNI: nicht genug Speicher"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "JVM Schnittstelle in -nogui oder -nwni Modus hinzufügen.\n"
 
+#
+# File: src/c/JVM.c, line: 207
 #, c-format
 msgid "Options:\n"
-msgstr "Optionen:\n"
+msgstr ""
 
+#
+# File: src/c/JVM.c, line: 125
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
@@ -246,9 +257,3 @@ msgstr "Warnung: kann keine Klassenpfad Deklarationsdatei %s finden.\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "Falsches Format für %s.\n"
-
-#~ msgid "Console"
-#~ msgstr "Konsole"
-
-#~ msgid "Scilab Console"
-#~ msgstr "Scilab-Konsole"

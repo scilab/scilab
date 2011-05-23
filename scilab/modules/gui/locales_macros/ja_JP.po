@@ -1,0 +1,519 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s:  #%d matching nodes.\n"
+msgstr "%s: #%d と一致するノード。\n"
+
+#, c-format
+msgid "%s:  #%d matching parent nodes.\n"
+msgstr "%s: #%d と一致した親ノード。\n"
+
+#, c-format
+msgid "%s: Invalid node.\n"
+msgstr "%s: 無効なノードです。\n"
+
+#, c-format
+msgid "%s: Invalid parent node.\n"
+msgstr "%s: 無効な親ノード。\n"
+
+#, c-format
+msgid "%s: Invalid position ''%s''.\n"
+msgstr "%s: 無効なオプション ''%s'' です。\n"
+
+#, c-format
+msgid "%s: No matching node.\n"
+msgstr "%s: 一致するノードがありません。\n"
+
+#, c-format
+msgid "%s: No results found for property ''%s'' and value ''%s''.\n"
+msgstr "%s: プロパティ ''%s'' および値 ''%s'' に関する結果が見つかりません.\n"
+
+#, c-format
+msgid "%s: No results found.\n"
+msgstr "%s: 結果が見つかりません.\n"
+
+#, c-format
+msgid "%s: Type %s is not implemented.\n"
+msgstr "%s: %s 型は実装されていません.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s or %s expected.\n"
+msgstr "%s: 入力引数が間違っています: %sまたは%sを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong input arguments: %s, %s or %s expected.\n"
+msgstr "%s: 入力引数が間違っています: %s,%s または %s を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A real expected.\n"
+msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
+msgstr ""
+"%s: %sの大きさが間違っています: 文字列の行ベクトルを指定してください.\n"
+
+#
+# File: macros/figure.sci, line: 26
+# File: macros/figure.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A ''Figure'' handle or a real "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズです: ''図形'' ハンドル、または 実数を想定しま"
+"す。\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A list expected.\n"
+msgstr "%s: %s の型が間違っています: リストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A real expected.\n"
+msgstr "%s: %s の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A row vector of strings expected.\n"
+msgstr "%s: %s の型が間違っています: 文字列の列ベクトルを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for %s: A string expected.\n"
+msgstr "%s: %s の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for ''%s'' property: A string expected.\n"
+msgstr "%s: ''%s'' プロパティの型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+"%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: グラフィックのハンドルまたは実数を指定"
+"してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr "%s: 入力引数 #%d の型が正しくありません: リストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 項目数2のリストを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or Tree expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列またはツリーを指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Tree or String expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ツリーまたは文字列を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: must be ''label'', ''icon'' or "
+"''callback''.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 'label'', ''icon'' または "
+"''callback''を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input arguments from #%d: Tree expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: ツリーを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for ''%s'' property: %d, %d or %d expected.\n"
+msgstr ""
+"%s: ''%s'' プロパティの値が間違っています: %d, %d または %d を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ''%s'', ''%s''  または ''%s'' を指定し"
+"てください.\n"
+
+#, c-format
+msgid "%s: can not add a menu in console in this mode: %s.\n"
+msgstr "%s: この方法ではコンソールにメニューを加えることができません: %s\n"
+
+#
+# File: macros/clipboard.sci, line: 51
+#, c-format
+msgid "%s: can not add a menu in this mode: %s.\n"
+msgstr "%s: この方法ではメニューを加えることができません: %s\n"
+
+#
+# File: macros/clipboard.sci, line: 51
+#, c-format
+msgid "%s: function not available in NWNI mode.\n"
+msgstr "%s: NWNIモードでは利用できない関数です。\n"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
+# File: scilab_fake_localization_file.c, line: 34
+# File: scilab_fake_localization_file.c, line: 39
+# File: scilab_fake_localization_file.c, line: 73
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 61
+# File: scilab_fake_localization_file.c, line: 26
+# File: scilab_fake_localization_file.c, line: 51
+msgid "&Edit"
+msgstr "編集(&E)"
+
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 59
+# File: scilab_fake_localization_file.c, line: 1
+# File: scilab_fake_localization_file.c, line: 37
+# File: scilab_fake_localization_file.c, line: 41
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 60
+# File: scilab_fake_localization_file.c, line: 21
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+msgid "<Enter color name here>"
+msgstr "<色名をここに入力してください>"
+
+#
+# File: macros/about.sci, line: 20
+msgid "About Scilab..."
+msgstr "Scilab バージョン情報..."
+
+#
+# File: macros/about.sci, line: 20
+msgid "Acknowledgements"
+msgstr "謝辞"
+
+msgid "Add color in listbox"
+msgstr "リストボックスで色を加える"
+
+#
+# File: macros/getvalue.sci, line: 193
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has incorrect type %s.\n"
+msgstr ""
+"%s に与えられた応答\n"
+" 不正確な型 %s を持っています。\n"
+
+#
+# File: macros/getvalue.sci, line: 189
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" has invalid dimension: \n"
+" waiting for dimension %s.\n"
+msgstr ""
+"%s に与えられた応答\n"
+" 無効な次元を持っています:\n"
+" 次元 %s を待ちます。\n"
+
+#
+# File: macros/getvalue.sci, line: 195
+#, c-format
+msgid ""
+"Answer given for %s \n"
+" is incorrect see error message in scilab window.\n"
+msgstr ""
+"%s に与えられた応答\n"
+" 不正確です、scilabウィンドウでエラー・メッセージを見て下さい。\n"
+
+#
+# File: scilab_fake_localization_file.c, line: 69
+msgid "Application"
+msgstr "アプリケーション"
+
+#
+# File: macros/about.sci, line: 18
+msgid ""
+"Authors:\n"
+"Scilab Consortium / INRIA / ENPC / Contributors\n"
+"\n"
+msgstr ""
+"作者:\n"
+"Scilabコンソーシアム　/ INRIA / ENPC / 貢献者達\n"
+"\n"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 76
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Colors list edition"
+msgstr "色一覧"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
+msgid "Control Plot3d"
+msgstr "Plot3d コントロール"
+
+#
+# File: scilab_fake_localization_file.c, line: 47
+msgid "Display selection"
+msgstr "表示選択"
+
+msgid "Do you really want to quit Scilab?"
+msgstr "本当にScilabを抜けますか?"
+
+msgid "Error"
+msgstr "エラー"
+
+msgid "Exit figure"
+msgstr "終了構成"
+
+#
+# File: demos/cb_uicontrol_plot3d.dem.sci, line: 73
+msgid "File"
+msgstr "ファイル"
+
+#
+# File: etc/gui.start, line: 13
+msgid "GUI"
+msgstr "GUI"
+
+msgid "Launch plot2d"
+msgstr "plot2d を開始する"
+
+msgid "Launch plot3d"
+msgstr "plot3d を開始する"
+
+msgid "Menu"
+msgstr "メニュー"
+
+#, c-format
+msgid "Menu ''%s'' is %s."
+msgstr "メニュー ''%s'' は %s"
+
+msgid "Menu status"
+msgstr "メニュー状態"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "No color selected."
+msgstr "色選択なし"
+
+#
+# File: macros/about.sci, line: 20
+msgid "Ok"
+msgstr "OK"
+
+msgid "Please enter a color name first."
+msgstr "最初に色名を入力してください。"
+
+msgid "Popupmenu selection"
+msgstr "ポップアップメニュー選択"
+
+#
+# File: macros/about.sci, line: 20
+msgid "Quit Scilab"
+msgstr "Scilabを抜ける"
+
+#
+# File: scilab_fake_localization_file.c, line: 75
+msgid "Quit demonstration"
+msgstr "デモを抜ける"
+
+#
+# File: macros/about.sci, line: 16
+msgid ""
+"Scilab 5.0 and future versions are released under the terms of the CeCILL "
+"license.\n"
+msgstr ""
+"Scilab 5.0 と 将来バージョン は CeCILLライセンス の条件の下でリリースされま"
+"す。\n"
+
+#
+# File: macros/about.sci, line: 30
+msgid "Scilab Contributors..."
+msgstr "Scilab の貢献者達..."
+
+msgid "Scilab Graphics"
+msgstr "Scilab グラフィック"
+
+#
+# File: scilab_fake_localization_file.c, line: 56
+msgid "Selected colors"
+msgstr "色選択"
+
+#, c-format
+msgid "Selected colors are: %s."
+msgstr "選択された色: %s"
+
+#
+# File: etc/graphics_menubar.xml, line: 41
+# File: etc/graphics_menubar.xml, line: 52
+# File: etc/graphics_menubar.xml, line: 63
+# File: etc/graphics_menubar.xml, line: 74
+# File: etc/graphics_menubar.xml, line: 85
+# File: etc/graphics_menubar.xml, line: 98
+# File: etc/graphics_menubar.xml, line: 109
+# File: etc/graphics_menubar.xml, line: 120
+# File: etc/graphics_menubar.xml, line: 131
+# File: etc/graphics_menubar.xml, line: 142
+msgid "Selected menu"
+msgstr "メニュー選択"
+
+msgid "Slider demo"
+msgstr "スライダーデモ"
+
+msgid "Slider value: "
+msgstr "スライダー値: "
+
+#
+# File: macros/about.sci, line: 17
+msgid ""
+"Some Scilab modules are released under the GPLv2 license.\n"
+"\n"
+msgstr ""
+"いくつかの Scilabモジュール は、GPLv2ライセンス の下でリリースされます。\n"
+"\n"
+
+msgid "Sub-menu 1"
+msgstr "サブ・メニュー 1"
+
+msgid "Sub-menu 2"
+msgstr "サブ・メニュー 2"
+
+msgid "Sub-menu 2-1"
+msgstr "サブ・メニュー 2-1"
+
+msgid "Sub-menu 2-2"
+msgstr "サブ・メニュー 2-2"
+
+msgid "Uicontrols demo"
+msgstr "UIコントロール・デモ"
+
+msgid "Uicontrols demo with LaTeX"
+msgstr "LaTeXを指定するuicontrolsのデモ"
+
+#
+# File: macros/about.sci, line: 19
+#, c-format
+msgid ""
+"Version %s (%s)\n"
+"\n"
+msgstr ""
+"バージョン %s (%s)\n"
+"\n"
+
+msgid "Yes"
+msgstr "はい"
+
+#, c-format
+msgid "You clicked on menu ''%s''."
+msgstr "''%s'' メニューを選択"
+
+#, c-format
+msgid "You selected ''%s''."
+msgstr "''%s'' 選択"
+
+msgid "blue"
+msgstr "青"
+
+msgid "checked"
+msgstr "チェック"
+
+#
+# File: macros/createpopup.sci, line: 50
+msgid "createPopupItems: found an empty cascading menu."
+msgstr "createPopupItems: 何も無いカスケード・メニューを見つけました。"
+
+msgid "green"
+msgstr "緑"
+
+#
+# File: macros/about.sci, line: 20
+msgid "http://www.scilab.org/"
+msgstr "http://www.scilab.org/"
+
+msgid "item1|item2|item3|item4"
+msgstr "項目1|項目2|項目3|項目4"
+
+msgid "red"
+msgstr "赤"
+
+msgid "unchecked"
+msgstr "チェックなし"
+
+msgid "yellow"
+msgstr "黄"

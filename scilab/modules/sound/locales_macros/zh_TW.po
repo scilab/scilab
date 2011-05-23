@@ -1,0 +1,162 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: tim loo <timloo0710@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: 錯誤產生: %s\n"
+
+#, c-format
+msgid "%s: An error occurred: %s is not supported.\n"
+msgstr "%s: 一個錯誤發生 %s 並不支援.\n"
+
+#, c-format
+msgid "%s: An error occurred: Data compression format %s is not supported.\n"
+msgstr "%s: 錯誤: 未支持資料壓縮格式 %s .\n"
+
+#, c-format
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr "%s: 一個錯誤發生: 無效的檔案格式. 讀取大量<%s> 發生錯誤.\n"
+
+#, c-format
+msgid "%s: Audio capabilities not available.\n"
+msgstr "%s: 音訊功能尚未作用.\n"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: 無法開啟檔案 %s.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): 最少應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s).\n"
+msgstr "%s: 輸出參數之數目錯誤(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments.\n"
+msgstr "%s: 輸出參數數目錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
+"vector of %d integers.\n"
+msgstr "%s:輸入參數的值有誤#%d: 必須是%s or %s,整數或者是%d個整數的向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: Index range must be specified as a "
+"scalar or %d-element vector.\n"
+msgstr "%s:輸入參數的值有誤:索引值的範圍必須設定成純量或是%d-元素向量.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument: Filename must be a string.\n"
+msgstr "%s: 輸入參數數值錯誤: 檔案名稱必須為一字串.\n"
+
+msgid ".wav file does not contain the RIFF identifier."
+msgstr ".wav檔裏沒有 RIFF 指示符號."
+
+msgid ".wav file does not contain the wave identifier."
+msgstr ".wav檔裏沒有wave  指示符號."
+
+#
+# File: demos/sound.dem.sce, line: 36
+msgid "A complete picture of the sound."
+msgstr ""
+
+msgid "Cannot read .wav file  with more than 16 bits per sample."
+msgstr "不能用每個樣本大於16 bits 才讀.wav檔"
+
+msgid "Data array must have 1- or 2-dimensions only."
+msgstr "數據陣列必須只有1- or 2-維 ."
+
+msgid "Error reading .wav file."
+msgstr "讀取.wav 檔有誤."
+
+msgid "Error reading <fact-ck> chunk."
+msgstr "讀<fact-ck>區塊有誤."
+
+msgid "Error reading wav file."
+msgstr "讀取.wav 檔有誤."
+
+msgid "Error while writing sound file."
+msgstr "寫入聲音檔時有誤."
+
+#
+# File: demos/sound.dem.sce, line: 21
+msgid "Fourier analysis of 0.5 seconds of sound parameters."
+msgstr ""
+
+msgid "Incorrect chunk size information in RIFF file."
+msgstr "RIFF 檔案中有不正確的區塊大小資訊"
+
+msgid "Invalid .wav file: found data before format information."
+msgstr "無效的.wav檔:在格式資訊中發現資料"
+
+msgid "Invalid sample limits (use ascending order)."
+msgstr "無效的取樣限制(使用遞減順序)."
+
+msgid "Invalid wav format."
+msgstr "無法的wav 格式"
+
+msgid "Mu-law can only be used with 8 bit data. Use method=''linear'' instead."
+msgstr "Mu-law 只能在8 bit數據使用。請改用method=''linear''."
+
+msgid "Requires 2-D values only."
+msgstr "只需求2-D值."
+
+msgid "Sample limit vector must have 2 entries."
+msgstr "取樣的極限向量只能有2個輸入值."
+
+msgid "Sample limits out of range."
+msgstr "取樣的限制值超過範圍."
+
+msgid "Unknown data format."
+msgstr "未知的資料格式."
+
+msgid "Unrecognized data format."
+msgstr "無法理解的資料格式"
+
+msgid "only 8/16/24/32 bits for the encoding."
+msgstr "只有8/16/24/32 位元 可以用作編碼."
+
+#
+# File: demos/sound.dem.sce, line: 36
+msgid "see ''mapsound'' function"
+msgstr ""

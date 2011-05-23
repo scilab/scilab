@@ -6,15 +6,16 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2009-10-25 15:32+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid ""
@@ -39,7 +40,8 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"错误：不能返回Scilab Java环境（jvm_SCILAB）：请检查在调用该函数之前JVM是否被Scilab装载。\n"
+"错误：不能返回Scilab Java环境（jvm_SCILAB）：请检查在调用该函数之前JVM是否被"
+"Scilab装载。\n"
 
 #, c-format
 msgid ""
@@ -65,7 +67,6 @@ msgstr ""
 "\n"
 "AttachCurrentThread中出现JVM错误：不能关联到当前线程。\n"
 
-#, c-format
 msgid ""
 "\n"
 "Scilab cannot create Scilab Java Main-Class (we have not been able to find "
@@ -73,7 +74,8 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Scilab无法创建Scilab Java Main-Class（无法找到main Scilab类。请检查Scilab和第三方软件包是否可用）。\n"
+"Scilab无法创建Scilab Java Main-Class（无法找到main Scilab类。请检查Scilab和第"
+"三方软件包是否可用）。\n"
 
 #, c-format
 msgid ""
@@ -124,12 +126,15 @@ msgstr "错误"
 msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
-msgstr "错误：不是一个正确的classpath 文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
+msgstr ""
+"错误：不是一个正确的classpath 文件%s（不是以'utf-8'编码），文件使用的是'%s'编"
+"码。\n"
 
 #, c-format
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr "错误：不是一个正确的path文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
+msgstr ""
+"错误：不是一个正确的path文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
 
 #, c-format
 msgid "Error in the creation of the Java VM: %s\n"
@@ -155,16 +160,23 @@ msgstr ""
 msgid "Error: could not parse file %s\n"
 msgstr "错误：不能分析文件%s\n"
 
-#, c-format
+#
+# File: src/c/InitializeJVM.c, line: 60
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
+"not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 
 msgid "JNI version error"
@@ -179,10 +191,14 @@ msgstr "JNI：内存不足"
 msgid "JVM interface disabled in -nogui or -nwni modes.\n"
 msgstr "在-nogui或-nwni模式下JVM接口被禁用。\n"
 
+#
+# File: src/c/JVM.c, line: 207
 #, c-format
 msgid "Options:\n"
 msgstr ""
 
+#
+# File: src/c/JVM.c, line: 125
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
@@ -229,6 +245,3 @@ msgstr "警告：无法找到classpath声明文件%s。\n"
 #, c-format
 msgid "Wrong format for %s.\n"
 msgstr "%s的格式错误。\n"
-
-#~ msgid "Console"
-#~ msgstr "控制台"

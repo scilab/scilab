@@ -6,113 +6,20 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
-"PO-Revision-Date: 2010-07-29 11:02+0000\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 12981)\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s no és un nom vàlid, canvieu el nom del diagrama."
-
-#, c-format
-msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s: Tots els camins definits per la variable %s han d'existir.\n"
-
-#, c-format
-msgid "%s: File ''%s'' does not exist.\n"
-msgstr "%s: No existeix el fitxer ''%s''.\n"
-
-#, c-format
-msgid "%s: File ''%s'' is not a valid palette file.\n"
-msgstr "%s: El fitxer ''%s'' no és un fitxer de paleta vàlid.\n"
-
-#, c-format
-msgid "%s: Found ''%s'' instead of a block.\n"
-msgstr "%s: S'ha trobat ''%s'' en comptes d'un bloc.\n"
+"X-Generator: Launchpad (build Unknown)\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
-
-#, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
-msgstr ""
-"%s: No es pot crear el directori %s. Comproveu si hi teniu accés "
-"d'escriptura.\n"
-
-#, c-format
-msgid "%s: Unable to export %s to %s.\n"
-msgstr "%s: No s'ha pogut exportar %s a %s.\n"
-
-#, c-format
-msgid "%s: Unable to export ''XX'' to %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to export the palette to hdf5.\n"
-msgstr "%s: No s'ha pogut exportar la paleta a hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: No s'ha pogut generar la imatge %s.\n"
-
-#, c-format
-msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: No s'ha pogut generar la icona de la paleta: Ja existeix %s.\n"
-
-#, c-format
-msgid "%s: Unable to import data from %s"
-msgstr ""
-
-#, c-format
-msgid "%s: Unable to import xcos file %s.\n"
-msgstr "%s: No s'ha pogut importar el fitxer xcos %s.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr ""
-"%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
-
-#, c-format
-msgid "%s: Unable to load block from %s: no `scs_m'' variable found.\n"
-msgstr ""
-"%s: No s'ha pogut carregar el bloc de %s: No s'ha trobat la variable "
-"`scs_m''.\n"
-
-#, c-format
-msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: El nombre d'arguments de sortida és incorrecte: Han de ser entre %d i "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -124,21 +31,6 @@ msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
-
-#, c-format
-msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-"%s: La variable %s és d'un tipus incorrecte: Ha de ser un vector de text.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: String or diagram structure expected"
-msgstr ""
-"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text o "
-"un diagrama"
-
-#, c-format
-msgid "%s: Wrong type for argument %d: diagram structure expected"
-msgstr "%s: L'argument %d és d'un tipus incorrecte: Ha de ser un diagrama"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -156,104 +48,6 @@ msgid "%s: Wrong type for input argument #%d: A string vector expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "de cadenes de text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: No s'ha trobat el "
-"fitxer.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: boolean expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un booleà.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
-"diagrama.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí a un "
-"directori.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: full path string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí "
-"absolut.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una funció, "
-"un bloc o un camí absolut.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un "
-"tractament.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: palette type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta o "
-"un camí.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: path string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text o "
-"una estructura.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un text.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %s: string vector expected.\n"
-msgstr ""
-"%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un vector de "
-"text.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
-msgstr ""
 
 msgid "?"
 msgstr "?"
@@ -279,17 +73,8 @@ msgstr "Alinea els blocs"
 msgid "Annotations"
 msgstr "Anotacions"
 
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
 msgid "Based on Scicos"
 msgstr "Basat en l'Scicos"
-
-msgid "Basic controller"
-msgstr ""
 
 msgid "Block Help"
 msgstr "Ajuda de bloc"
@@ -306,15 +91,6 @@ msgstr "Color de les vores"
 msgid "Bottom"
 msgstr "Inferior"
 
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
 msgid "CVODE"
 msgstr "CVODE"
 
@@ -327,11 +103,7 @@ msgstr "Categoria"
 msgid "Center"
 msgstr "Centrat"
 
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Feu clic al diagrama per afegir un punt d'enllaç o en un destí compatible "
 "per finalitzar"
@@ -341,9 +113,6 @@ msgstr "Tanca"
 
 msgid "Code generation"
 msgstr "Generació de codi"
-
-msgid "Colpitts oscillator"
-msgstr ""
 
 msgid "Command port must be connected to control port"
 msgstr "Un port de comanda ha d'estar connectat a un port de control"
@@ -364,14 +133,8 @@ msgstr ""
 msgid "Computing"
 msgstr ""
 
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
 msgid "Continuous time systems"
 msgstr "Sistemes temporals continus"
-
-msgid "Control Systems"
-msgstr ""
 
 msgid "Copyright (c) 1989-2009 (INRIA)"
 msgstr "Copyright (c) 1989-2009 (INRIA)"
@@ -387,12 +150,6 @@ msgstr "Crea una categoria"
 
 msgid "Customize"
 msgstr "Personalitza"
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
 
 msgid "Debug block calls without trace"
 msgstr "Crides a blocs de depuració sense traces"
@@ -418,8 +175,7 @@ msgstr "Fons del diagrama"
 msgid "Diagram browser"
 msgstr "Explorador de diagrames"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
 "desar?"
@@ -427,20 +183,11 @@ msgstr ""
 msgid "Diff. States"
 msgstr ""
 
-msgid "Differential amplifier"
-msgstr ""
-
 msgid "Discontinuities"
 msgstr "Discontinuitats"
 
 msgid "Discrete"
 msgstr "Discret"
-
-msgid "Discrete Controller"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
 
 msgid "Discrete time systems"
 msgstr "Sistemes temporals discrets"
@@ -463,9 +210,6 @@ msgstr "Editable"
 msgid "Electrical"
 msgstr "Elèctric"
 
-msgid "Electrical Systems"
-msgstr ""
-
 msgid "Enable"
 msgstr "Activa"
 
@@ -475,6 +219,8 @@ msgstr ""
 msgid "Error"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 198
 msgid "Error on export"
 msgstr ""
 
@@ -484,14 +230,12 @@ msgstr "Tractaments d'esdeveniments"
 msgid "Execution trace and Debug"
 msgstr "Depuració i traces de l'execució"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Un port de dades d'entrada explícit ha d'estar connectat a un port de dades "
 "de sortida explícit"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Un port de dades de sortida explícit ha d'estar connectat a un port de dades "
 "d'entrada explícit"
@@ -510,9 +254,6 @@ msgstr ""
 
 msgid "Failed to load Diagram"
 msgstr "No s'ha pogut carregar el diagrama"
-
-msgid "Fibonacci Numbers"
-msgstr ""
 
 msgid "File"
 msgstr "Fitxer"
@@ -574,17 +315,11 @@ msgstr ""
 msgid "Goto %s"
 msgstr "Vés a %s"
 
-msgid "Goto/From blocks"
-msgstr ""
-
 msgid "Grid"
 msgstr "Quadrícula"
 
 msgid "Horizontal"
 msgstr "Horitzontal"
-
-msgid "Hydraulics blocks"
-msgstr ""
 
 msgid "IDA"
 msgstr "IDA"
@@ -592,20 +327,20 @@ msgstr "IDA"
 msgid "Image contains no data."
 msgstr "La imatge no conté dades."
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 108
 msgid "Image path"
 msgstr ""
 
 msgid "Implicit"
 msgstr "Implícit"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Un port de dades d'entrada implícit ha d'estar connectat a un port de dades "
 "de sortida implícit"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Un port de dades de sortida implícit ha d'estar connectat a un port de dades "
 "d'entrada implícit"
@@ -613,6 +348,8 @@ msgstr ""
 msgid "Import from XML"
 msgstr "Importa de XML"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 48
 msgid "Incompatibility detected"
 msgstr ""
 
@@ -634,14 +371,8 @@ msgstr "Tolerància absoluta de l'integrador"
 msgid "Integrator relative tolerance"
 msgstr "Tolerància relativa de l'integrador"
 
-msgid "Inverted Pendulum"
-msgstr ""
-
 msgid "Italic"
 msgstr "Cursiva"
-
-msgid "Kalman Filter"
-msgstr ""
 
 msgid "Left"
 msgstr "Esquerra"
@@ -667,17 +398,8 @@ msgstr ""
 msgid "Loading user defined palettes"
 msgstr "S'està carregant les paletes d'usuari"
 
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
 msgid "Lookup Tables"
 msgstr "Taules de cerca"
-
-msgid "Lorentz butterfly"
-msgstr ""
 
 msgid "Masked SuperBlock editor"
 msgstr "Editor de superblocs emmascarats"
@@ -691,17 +413,11 @@ msgstr "Matriu"
 msgid "Max integration time interval"
 msgstr "Intèrval màxim d'integració"
 
-msgid "Mechanical Systems"
-msgstr ""
-
 msgid "Middle"
 msgstr "Centre"
 
 msgid "Mirror"
 msgstr "Inverteix"
-
-msgid "Modelica demos"
-msgstr ""
 
 msgid "Modelica initialize"
 msgstr "Inicialitza la modelica"
@@ -736,15 +452,6 @@ msgstr "Normal 100%"
 msgid "Ok"
 msgstr "Accepta"
 
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
 msgid "Open"
 msgstr "Obre"
 
@@ -763,9 +470,13 @@ msgstr ""
 msgid "Per block execution trace and Debug block calls"
 msgstr "Crides a traces i depuracions per execucions de blocs"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 49
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 197
 msgid "Please specify a file format"
 msgstr ""
 
@@ -781,6 +492,8 @@ msgstr ""
 "El port ja està connectat. Seleccioneu un port desconnectat o un enllaç "
 "vàlid."
 
+#
+# File: src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 123
 msgid "Preview"
 msgstr ""
 
@@ -789,12 +502,6 @@ msgstr "Imprimeix"
 
 msgid "Quit Xcos"
 msgstr "Tanca el Xcos"
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "RLC circuit"
-msgstr ""
 
 msgid "Real time scaling"
 msgstr "Escalat en temps real"
@@ -856,9 +563,6 @@ msgstr ""
 msgid "Scilab '%s' module not installed.\n"
 msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
 
-msgid "Scilab block"
-msgstr ""
-
 msgid "Scilab file"
 msgstr "Fitxer d'Scilab"
 
@@ -887,20 +591,11 @@ msgstr "Mostra el diagrama superior"
 msgid "Show/Hide shadow"
 msgstr "Mostra/amaga les ombres"
 
-msgid "Signal Builder"
-msgstr ""
-
 msgid "Signal Processing"
 msgstr "Processat de senyal"
 
 msgid "Signal Routing"
 msgstr "Enrutament de senyal"
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Simple Thermostat"
-msgstr ""
 
 msgid "Simulation"
 msgstr "Simulació"
@@ -920,14 +615,13 @@ msgstr ""
 msgid "Solver 0 (CVODE) - 100 (IDA)"
 msgstr "Solver 0 (CVODE) - 100 (IDA)"
 
+#
+# File: src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
 msgid "Sources"
 msgstr "Fonts"
-
-msgid "Standard demos"
-msgstr ""
 
 msgid "Start"
 msgstr "Inicia"
@@ -941,23 +635,11 @@ msgstr "Directe"
 msgid "Superblock mask"
 msgstr "Màscara de superbloc"
 
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
 msgid "Text Color"
 msgstr "Color del text"
 
 msgid "Text settings"
 msgstr "Configuració del text"
-
-msgid "The Scicos libraries are not loaded"
-msgstr "No s'ha carregat les llibreries de Scicos"
 
 msgid "The Scilab Consortium (DIGITEO)"
 msgstr "El Scilab Consortium (DIGITEO)"
@@ -980,8 +662,8 @@ msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
-"El fitxer de configuració de la paleta d'usuari (palettes.xml) és "
-"invàlid.<BR> S'utilitzarà el predeterminat."
+"El fitxer de configuració de la paleta d'usuari (palettes.xml) és invàlid."
+"<BR> S'utilitzarà el predeterminat."
 
 msgid "Thermo-Hydraulics"
 msgstr "Termohidràulica"
@@ -995,12 +677,13 @@ msgstr "Eines"
 msgid "Top"
 msgstr "Superior"
 
-msgid "Transformer"
-msgstr ""
-
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 23
 msgid "Unable to decode \"%s\" : invalid data."
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/xcos/io/scicos/ScicosFormatException.java, line: 24
 msgid "Unable to decode \"%s.%s\" : invalid field."
 msgstr ""
 
@@ -1034,14 +717,6 @@ msgstr ""
 
 msgid "Unable to load the native HDF5 library."
 msgstr ""
-
-#, c-format
-msgid "Unable to open %s"
-msgstr "No s'ha pogut obrir %s"
-
-#, c-format
-msgid "Unable to simulate %s"
-msgstr "No s'ha pogut fer la simulació %s"
 
 msgid "Unknown Diagram Version : "
 msgstr "Diagrama de versió desconegut: "
@@ -1085,9 +760,6 @@ msgstr "Visualitza a l'Scicos"
 msgid "Viewport"
 msgstr "Finestra de visualització"
 
-msgid "Water tank"
-msgstr ""
-
 msgid "Will try to continue..."
 msgstr "S'intenta continuar..."
 
@@ -1104,6 +776,11 @@ msgstr ""
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr "L'argument d'entrada \"%s\" és incorrecte: No és un camí vàlid.\n"
 
+#
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 279
+msgid "Wrong port number"
+msgstr ""
+
 msgid "Xcos"
 msgstr "Xcos"
 
@@ -1112,9 +789,6 @@ msgstr "Mostres de Xcos"
 
 msgid "Xcos Help"
 msgstr "Ajuda de Xcos"
-
-msgid "Xcos data types"
-msgstr ""
 
 msgid "Xcos error"
 msgstr "Error de Xcos"
@@ -1134,14 +808,8 @@ msgstr ""
 "exemple, quan feu clic a Accepta, a Eval i cada cop que es carrega el "
 "diagrama)."
 
-msgid "Zero Crossing"
-msgstr ""
-
 msgid "Zero crossing detection"
 msgstr "Detecció d'encreuament pel zero"
-
-msgid "_IF_ Xcos block"
-msgstr ""
 
 msgid "comment"
 msgstr ""
@@ -1190,116 +858,42 @@ msgstr ""
 msgid "weight"
 msgstr ""
 
-#, c-format
-#~ msgid "Scilab '%s' module disabled in -nogui or -nwni mode."
-#~ msgstr ""
-#~ "El mòdul '%s' de Scilab està deshabilitat en els modes -nogui o -nwni."
 
-#, c-format
-#~ msgid "FAILED TO EXPORT: %s\n"
-#~ msgstr "Ha fallat l'exportació: %s\n"
 
-#~ msgid "Cut"
-#~ msgstr "Retalla"
 
-#~ msgid "Copy"
-#~ msgstr "Copia"
 
-#~ msgid "Zoom Out"
-#~ msgstr "Allunya"
 
-#~ msgid "Undo"
-#~ msgstr "Desfés"
 
-#~ msgid "Zoom In"
-#~ msgstr "Apropa"
 
-#~ msgid "Paste"
-#~ msgstr "Enganxa"
 
-#~ msgid "Redo"
-#~ msgstr "Refés"
 
-#~ msgid "Group"
-#~ msgstr "Agrupa"
 
-#~ msgid "Select all"
-#~ msgstr "Selecciona-ho tot"
 
-#~ msgid "Invert selection"
-#~ msgstr "Inverteix la selecció"
 
-#~ msgid "UnGroup"
-#~ msgstr "Desagrupa"
 
-#~ msgid "Quit"
-#~ msgstr "Surt"
 
-#~ msgid "Browser"
-#~ msgstr "Explorador"
 
-#~ msgid "Help"
-#~ msgstr "Ajuda"
 
-#~ msgid "Threshold"
-#~ msgstr "Llindar"
 
-#~ msgid "Xcos version 1.0"
-#~ msgstr "Versió de Xcos 1.0"
 
-#~ msgid "Continuous"
-#~ msgstr "Continu"
 
-#~ msgid "Discontinuous"
-#~ msgstr "Discontinu"
 
-#~ msgid "Events"
-#~ msgstr "Esdeveniments"
 
-#~ msgid "Port Action"
-#~ msgstr "Acció de port"
 
-#~ msgid "Math Operations"
-#~ msgstr "Operacions matemàtiques"
 
-#~ msgid "Modelica"
-#~ msgstr "Modelica"
 
-#~ msgid ""
-#~ "Diagram has been modified since last save\n"
-#~ "save it?"
-#~ msgstr ""
-#~ "El diagrama s'ha modificat des de l'últim cop que es va desar\n"
-#~ "El voleu desar?"
 
-#~ msgid "Line Color"
-#~ msgstr "Color de línia"
 
-#~ msgid "Light Simulation trace (Discrete and Continous part switches)"
-#~ msgstr "Traca de la simulació (interruptors de parts discretes i contínues)"
 
-#~ msgid "Remove user defined palette"
-#~ msgstr "Elimina les paletes d'usuari"
 
-#~ msgid "Unknow Diagram Version : "
-#~ msgstr "Versió de diagrama desconeguda : "
 
-#~ msgid "Xcos 1.0"
-#~ msgstr "Xcos 1.0"
 
-#~ msgid "Unable to communicate with the interpreter"
-#~ msgstr "No s'ha pogut comunicar amb l'intèrpret"
 
-#~ msgid "Same command executed again"
-#~ msgstr "Torneu a executar la mateixa comanda"
 
-#, c-format
-#~ msgid "%s: Wrong input argument %s: svg or gif expected.\n"
-#~ msgstr "%s: L'argument d'entrada %s és incorrecte: Ha de ser svg o gif.\n"
 
-#~ msgid ""
-#~ "Unable to load the HDF5 library. \n"
-#~ "Expecting version %s ; Getting version %s ."
-#~ msgstr ""
-#~ "No s'ha pogut carregar la llibreria HDF5. \n"
-#~ "Ha de ser la versió %s ; Hi ha la versió %s ."
+
+
+
+
+
+
