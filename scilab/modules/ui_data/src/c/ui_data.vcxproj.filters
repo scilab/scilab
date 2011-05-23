@@ -2,27 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{9044ad4b-68bd-43dd-9dd8-80429a66292d}</UniqueIdentifier>
+      <UniqueIdentifier>{b3b7bb09-fde8-4585-a8a1-a2d7987a0f27}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{f5de4a0f-2155-4a2d-8b32-56b00fde2c39}</UniqueIdentifier>
+      <UniqueIdentifier>{ac908e10-4200-4f9d-9d13-2eb7663fc999}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{085bd88d-d97e-43ea-9d50-f6e8ee023026}</UniqueIdentifier>
+      <UniqueIdentifier>{36cd08a5-5f86-4ae2-a766-05184cb62d60}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{dde6e8e6-4ef8-4bb0-a3f9-e36ed52420f2}</UniqueIdentifier>
+      <UniqueIdentifier>{b9dfdfdc-6382-4087-9f93-bde14e3cc581}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{3572c96e-9d91-4578-874e-df4648c0242d}</UniqueIdentifier>
+      <UniqueIdentifier>{1b2a3299-bd5e-42da-b480-4e3cb2e10a42}</UniqueIdentifier>
     </Filter>
     <Filter Include="swig">
-      <UniqueIdentifier>{e80c00e9-808d-4fe1-ae70-8b758e25110f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{b5e2adde-d2fd-4625-9c9b-654817244158}</UniqueIdentifier>
+      <UniqueIdentifier>{56c1a5d7-1a73-4535-8be2-9fe6fae66979}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,9 +64,6 @@
     <ClInclude Include="..\..\includes\gw_ui_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\UpdateBrowseVar.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="LibScilab_Import.def">
@@ -78,11 +72,8 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\ui_data.iss" />
     <None Include="..\..\sci_gateway\ui_data_gateway.xml" />
-    <None Include="..\..\version.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="ui_data.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <None Include="..\..\locales\ui_data.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

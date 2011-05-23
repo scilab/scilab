@@ -2,27 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{f25272a1-9c37-4283-b9be-f02b20fa554e}</UniqueIdentifier>
+      <UniqueIdentifier>{3ee4f540-0163-4e1e-aede-ea62845399a4}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{0600940f-c932-4a19-852b-1fa288604839}</UniqueIdentifier>
+      <UniqueIdentifier>{f5606a93-2fac-4683-99ce-b42622ad0cb3}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{6ce5747b-ba49-43df-bba9-ab7c4a42174f}</UniqueIdentifier>
+      <UniqueIdentifier>{073f976c-ab32-4e64-b3e6-4396a5001aa0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c851460c-fc36-41ef-a010-d914f8d07eb1}</UniqueIdentifier>
+      <UniqueIdentifier>{200c77b5-d6d4-4887-9cc7-0eea7fc08173}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{065bc75d-7cea-49da-8175-18022b52059b}</UniqueIdentifier>
+      <UniqueIdentifier>{d258c4f7-7fcb-4fd7-afb0-a44af76c7859}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{085b96c7-ebd7-4309-aa96-7bf92c81cf41}</UniqueIdentifier>
+      <UniqueIdentifier>{417ff5df-f0d7-47df-b56e-2d15e3312e52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{1111ba6f-2a3d-4841-9870-995a4fc81bad}</UniqueIdentifier>
+      <UniqueIdentifier>{fd4c7059-9d6b-4302-ab5f-e44fe487e4f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -110,6 +110,9 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_haltscicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -179,9 +182,6 @@
     <ClCompile Include="var2sci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="copyvarfromlistentry.h">
@@ -237,9 +237,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\scicos.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="Action_binding_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -273,7 +270,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos.iss" />
     <None Include="..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\scicos.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="scicos.rc">
@@ -282,8 +281,5 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
-    <Library Include="..\..\..\..\bin\scicos_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
-    <Library Include="..\..\..\..\bin\scicos_blocks_f.lib" />
   </ItemGroup>
 </Project>

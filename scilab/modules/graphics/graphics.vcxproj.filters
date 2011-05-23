@@ -10,16 +10,16 @@
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{00d01199-4da0-4dcb-8abf-1f17c663ec44}</UniqueIdentifier>
+      <UniqueIdentifier>{e736f282-59df-4c68-af4f-335a1c3ac2f7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{1a287cd0-8c67-4a0e-8773-fac00ae79703}</UniqueIdentifier>
+      <UniqueIdentifier>{3121e62a-5a7d-4fdf-b467-a092a4c57a84}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{6468d872-6934-4cec-ae2d-718c8fb2c7d9}</UniqueIdentifier>
+      <UniqueIdentifier>{220e4d17-cc59-4d47-9b19-da2def0b1aa8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{0dea5d13-b6ce-4d7e-9f23-529a3fd8f5d3}</UniqueIdentifier>
+      <UniqueIdentifier>{f0ef4dd3-39bd-452a-a735-25ed69770789}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1305,28 +1305,25 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\graphics.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="Gui_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\graphics.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

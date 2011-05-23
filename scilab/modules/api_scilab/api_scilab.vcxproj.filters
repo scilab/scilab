@@ -14,16 +14,16 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{15edb4c6-d082-4cbe-9dff-d8ec59b8000b}</UniqueIdentifier>
+      <UniqueIdentifier>{2a35df24-4a87-4a61-a74c-100c0d1f8532}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{464ed1fa-a4c4-4f6d-b93a-fdd224b948dc}</UniqueIdentifier>
+      <UniqueIdentifier>{0f5fa494-583c-4ea7-ad2c-5da81cd08230}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{b932a4d2-93a8-4158-baf6-1c16745c908f}</UniqueIdentifier>
+      <UniqueIdentifier>{c2eaa0af-8ad9-40e2-8e3b-50de764aa516}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{e48e7300-dca0-44e2-b801-cb27b30871fe}</UniqueIdentifier>
+      <UniqueIdentifier>{a5fd53b0-ac0c-4220-9487-7028c8cbe485}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +48,9 @@
     <ClCompile Include="src\cpp\api_list.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\api_oldstack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\cpp\api_pointer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,6 +64,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\DllmainApi_scilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\overload.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -113,6 +119,9 @@
     <ClInclude Include="includes\api_list.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\api_oldstack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\api_pointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -131,6 +140,9 @@
     <ClInclude Include="includes\dynlib_api_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\overload.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\api_scilab.rc">
@@ -144,12 +156,6 @@
     <None Include="Localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="String_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="api_scilab_export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
@@ -158,8 +164,12 @@
     </None>
     <None Include="api_scilab.iss" />
     <None Include="Makefile.am" />
+    <None Include="locales\api_scilab.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
+    <Library Include="..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

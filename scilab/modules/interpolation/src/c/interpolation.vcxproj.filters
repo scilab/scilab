@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1e2defb3-192e-4fad-bd03-18fb5bbd76f8}</UniqueIdentifier>
+      <UniqueIdentifier>{95764ecf-f81b-4a56-9498-7470bdb3130c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{641b8926-11c9-423c-b626-b50013d1f81a}</UniqueIdentifier>
+      <UniqueIdentifier>{60ddd6b5-c21d-4a53-b620-fcf0511d5ae8}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{d686d340-2bec-4b35-8a68-85faf78e1e80}</UniqueIdentifier>
+      <UniqueIdentifier>{2ed13f31-c480-4101-9aff-3c8072452c61}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{1ee9be78-5b2a-4de4-bca5-6024096bb8d7}</UniqueIdentifier>
+      <UniqueIdentifier>{0e942ba0-4f67-4f79-aae5-0a6e0d6b4e7b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{7f7eec9f-537f-422d-8962-13e0b4f6d270}</UniqueIdentifier>
+      <UniqueIdentifier>{1f757c76-ad7f-4ef5-bf1a-a24cf5f1d296}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{4e10f20b-f6e8-4036-94e7-42c3edd5b86b}</UniqueIdentifier>
+      <UniqueIdentifier>{c65543b3-bb81-465a-bfaa-8b6afa1fb9e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -84,9 +84,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\interpolation.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="interpolation_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -96,16 +93,19 @@
     <None Include="..\..\interpolation.iss" />
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="slatec_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\interpolation.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="interpolation.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\interpolation_f.lib" />
-    <Library Include="..\..\..\..\bin\slatec_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

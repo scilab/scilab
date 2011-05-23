@@ -2,27 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{d06abe7a-6d60-479d-b9b0-62f118a757af}</UniqueIdentifier>
+      <UniqueIdentifier>{a15f4242-443e-450c-aa9d-a50fa6905ad9}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{ba4b3921-3584-4397-866d-4f8a27be514e}</UniqueIdentifier>
+      <UniqueIdentifier>{483e4596-e037-40a2-bc95-a2213212a07d}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{68d992b7-e5b2-4ed8-a137-ce9dc10899f8}</UniqueIdentifier>
+      <UniqueIdentifier>{d39df72a-fa47-4a07-99f8-70250ae50c66}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{0091bf1e-e3bc-4549-81a3-1d2948c91bb5}</UniqueIdentifier>
+      <UniqueIdentifier>{2d534235-ef07-4590-832a-bfd041e273c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{828f99a6-1f41-413d-a8bb-4c369de7236a}</UniqueIdentifier>
+      <UniqueIdentifier>{b6df8b1a-7653-4c8f-b6f6-9674c7457de9}</UniqueIdentifier>
     </Filter>
     <Filter Include="swig">
-      <UniqueIdentifier>{02063f4a-e400-4e3c-8e5b-bd6f2482d652}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{305b5756-3bed-4018-9588-9d7b4f74b668}</UniqueIdentifier>
+      <UniqueIdentifier>{b2ca3b4a-3fc4-4c6b-90f2-af1e8ff083ab}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,11 +56,8 @@
     </None>
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="history_browser.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <None Include="..\..\locales\history_browser.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

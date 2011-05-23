@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{316cf092-c9f0-4f99-aa64-5af157e8a83a}</UniqueIdentifier>
+      <UniqueIdentifier>{aded1612-80a4-4b81-ada6-eb7dc4e3ec63}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{fad3c022-86be-4857-bc9f-2e4fe5fd2edd}</UniqueIdentifier>
+      <UniqueIdentifier>{9daf170c-c5d3-4ead-a744-c11e8b3e7ac2}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{45724d66-e3b1-47ea-b55e-0fa57a0ea7ad}</UniqueIdentifier>
+      <UniqueIdentifier>{b611d4f9-7b51-424a-b96e-e54691e988e9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{904af939-3d69-42ed-b307-5e579251f2ab}</UniqueIdentifier>
+      <UniqueIdentifier>{b4458877-baaf-42dd-8bad-bf64cc638519}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{7998bc74-53d6-4722-9039-a752fdd160f4}</UniqueIdentifier>
+      <UniqueIdentifier>{d0c64939-0321-48b1-b4e8-926c4411e411}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{69c4e4c0-be86-4904-a307-5fe29873d391}</UniqueIdentifier>
+      <UniqueIdentifier>{716879fc-41c6-4152-9b35-23374b603552}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -29,11 +29,22 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_double.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="matldiv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matmult.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrdiv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\double.pot">
-      <Filter>localization</Filter>
-    </None>
+    <ClInclude Include="..\..\includes\double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="double_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -42,11 +53,16 @@
     </None>
     <None Include="..\..\double.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\double.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="double.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
   </ItemGroup>
 </Project>

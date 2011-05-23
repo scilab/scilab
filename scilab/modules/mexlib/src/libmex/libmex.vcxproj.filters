@@ -14,10 +14,10 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{30d95717-f8e0-432a-a38c-477adaff30c3}</UniqueIdentifier>
+      <UniqueIdentifier>{4fdc94d6-aa4f-4d05-aacf-7238c272d8f1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{b4f6f14e-5c21-48ed-9301-c70d1842b175}</UniqueIdentifier>
+      <UniqueIdentifier>{2ebe5db2-fced-447b-bb7b-35bd57454eed}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +42,12 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\locales\en_US\messages.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="..\..\mexlib.iss" />
+  </ItemGroup>
+  <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib">
       <Filter>Libraries Dependencies</Filter>
     </Library>
@@ -51,9 +57,5 @@
     <Library Include="..\..\..\..\bin\LibScilab.lib">
       <Filter>Libraries Dependencies</Filter>
     </Library>
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\mexlib.iss" />
   </ItemGroup>
 </Project>

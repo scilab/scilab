@@ -2,27 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{c4c91712-1b98-4aa6-b7c7-df5aaf6b9f03}</UniqueIdentifier>
+      <UniqueIdentifier>{e2b9f7fa-b61d-41ae-8f2b-15611778e3d4}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{cbe6abd4-dcb2-4b31-b1f1-d43e9a72d411}</UniqueIdentifier>
+      <UniqueIdentifier>{6ba0e743-4c4b-4803-9481-4a8b77402c23}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{f274011b-952b-4933-ac2c-803e38acb313}</UniqueIdentifier>
+      <UniqueIdentifier>{393fdd5c-f2ae-4bb0-8cfd-fc828992206c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{8be3461d-09ca-4983-9f34-5ef03a5eb5c5}</UniqueIdentifier>
+      <UniqueIdentifier>{fb12dde7-2d84-4f75-a732-f4e9fbb3f236}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{d5fa84c0-6405-4733-8847-ed1db94a09ce}</UniqueIdentifier>
+      <UniqueIdentifier>{5c666eb7-0126-4c9f-9e58-271aedb79942}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{86592303-2128-45bb-94cb-5ad8bad15686}</UniqueIdentifier>
+      <UniqueIdentifier>{09ee527b-078e-45a5-894c-8c0764b0ca69}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{540a0e24-61c1-48a5-b6a1-f5f2c90f567a}</UniqueIdentifier>
+      <UniqueIdentifier>{7b2ceaec-21a2-4981-8331-96ebba9ae942}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -69,6 +69,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\parallel.iss" />
     <None Include="..\..\sci_gateway\parallel_gateway.xml" />
+    <None Include="..\..\locales\parallel.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="parallel.rc">

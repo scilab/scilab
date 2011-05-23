@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{260abc32-07ea-4da4-9630-b83e1aa11dc7}</UniqueIdentifier>
+      <UniqueIdentifier>{f032eece-2851-4404-b8a1-59bd1750b483}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{59a78c95-8df9-4d5f-b16b-c7f16724adef}</UniqueIdentifier>
+      <UniqueIdentifier>{f6bebfe1-91cb-4ace-a42e-05a247b55c2c}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{92f266b2-9328-43a7-be76-83f188b5a3dc}</UniqueIdentifier>
+      <UniqueIdentifier>{77ee3e76-fad1-43b7-a074-41575d9748e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{511bdabf-0be8-4291-a44d-b0e6349545d0}</UniqueIdentifier>
+      <UniqueIdentifier>{391cee38-7872-4b6a-845a-bbecf19e3af0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{738a1597-c051-45b1-81d9-72fb62f0b64d}</UniqueIdentifier>
+      <UniqueIdentifier>{f92a9a37-7685-4aa8-8a70-d5e53746dea1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{8db17d92-f1b6-4acc-8d4e-337d10640158}</UniqueIdentifier>
+      <UniqueIdentifier>{18152b45-4345-4d2c-be08-6e030ed4b9a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,7 +51,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\symbolic.pot">
+    <None Include="..\..\locales\en_US\messages.pot">
       <Filter>localization</Filter>
     </None>
     <None Include="LibScilab_Import.def">
@@ -60,7 +60,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\symbolic.iss" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
-    <None Include="..\..\version.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="symbolic.rc">

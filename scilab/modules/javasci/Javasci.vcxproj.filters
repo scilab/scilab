@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{15ec80be-2eb1-4a30-b9ed-bbfb13daa61c}</UniqueIdentifier>
+      <UniqueIdentifier>{491946b4-1a29-4fa7-b74c-f1460392d869}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +95,5 @@
   <ItemGroup>
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\LibScilab.lib" />
   </ItemGroup>
 </Project>

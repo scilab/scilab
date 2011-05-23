@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{6e490b15-93d6-4d7c-a33c-5d4a630d6338}</UniqueIdentifier>
+      <UniqueIdentifier>{e728a8f8-545a-47a1-a899-642cf3618b1f}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{8b7962c1-93d3-4748-ac8a-621ac41036db}</UniqueIdentifier>
+      <UniqueIdentifier>{f980eeac-3ee4-4aea-9ed3-ed310fae1699}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{62709d73-73da-4395-afd0-46784f961fca}</UniqueIdentifier>
+      <UniqueIdentifier>{5fcdbb5d-9057-4e67-962c-bf0a1708b217}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{dbf58b7f-af52-47c7-ab58-e884855b6425}</UniqueIdentifier>
+      <UniqueIdentifier>{e6d9fed9-3cbb-4052-88c1-966a55d2422c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{36153962-1001-4332-96ce-886892d5a839}</UniqueIdentifier>
+      <UniqueIdentifier>{2bf5bc76-2ecb-4384-9f46-33c04f217de8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{72afcca3-4d4b-4dcb-b214-2f19acf56414}</UniqueIdentifier>
+    <Filter Include="Resource File">
+      <UniqueIdentifier>{f3d8e885-67d0-4496-873d-92991026ef2d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,9 +38,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_io.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_file.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_getenv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -48,9 +45,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_host.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_load.c">
@@ -69,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_setenv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_unix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_write.c">
@@ -112,7 +103,7 @@
     <ClInclude Include="..\..\includes\setenvc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="systemc.h">
+    <ClInclude Include="..\..\includes\systemc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="v2cuniterror.h">
@@ -120,9 +111,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\io.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="io_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -132,14 +120,19 @@
     <None Include="Scilab_Windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="System_env_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
     <None Include="..\..\io.iss" />
     <None Include="..\..\sci_gateway\io_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\io.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="io.rc">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource File</Filter>
     </ResourceCompile>
   </ItemGroup>
 </Project>

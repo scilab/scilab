@@ -2,34 +2,58 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{2532be4c-7f4f-4a9e-820f-06722d341c6b}</UniqueIdentifier>
+      <UniqueIdentifier>{2068e2cb-ce86-437f-8685-89b6942dfb46}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{d7cc4029-d91d-49f3-9b01-5c53fb62896f}</UniqueIdentifier>
+      <UniqueIdentifier>{ce11eec4-2834-4eec-9258-63e6a4c13a8d}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{52824dfe-3d89-4089-8d41-fdd0a8810c30}</UniqueIdentifier>
+      <UniqueIdentifier>{552724fe-4239-4f72-b733-afcf843eb214}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{24d1972f-fc65-4972-b9b5-54a21b8851bd}</UniqueIdentifier>
+      <UniqueIdentifier>{91e1eaf8-658c-452a-94e9-38533810809a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{b448109a-0d70-4f7e-9e44-0d6b8a41cb4e}</UniqueIdentifier>
+      <UniqueIdentifier>{35779a4f-1356-45e6-a6e1-6807f034708d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{efacc063-b3ce-4b6a-8cb7-9c31b2f5efd6}</UniqueIdentifier>
+      <UniqueIdentifier>{6989e61f-932b-4c57-af54-b880faf03ac4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="add_vector.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="basic_functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ceil.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="cmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="cupro.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainElementary_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dmsum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dsearch.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eye.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="finite.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="floor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="gsort.c">
@@ -48,6 +72,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="IsEqualVar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix_generation.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mprod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="qsort-char.c">
@@ -116,9 +146,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_expm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_eye.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_floor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -167,9 +194,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_number_properties.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ones.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_prod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -189,9 +213,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_sin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_size.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_spones.c">
@@ -218,10 +239,10 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_triu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_zeros.c">
+    <ClCompile Include="scidcopy.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scidcopy.c">
+    <ClCompile Include="sub_vector.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="unsfdcopy.c">
@@ -237,6 +258,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="vfrexp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="vmul.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xerhlt.c">
@@ -288,8 +312,14 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\elementary_functions.pot">
-      <Filter>localization</Filter>
+    <None Include="api_scilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="cacsd_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="elem_func_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
@@ -297,10 +327,18 @@
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="Operations_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="sparse_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\elementary_functions.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc">

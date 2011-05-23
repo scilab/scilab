@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{161996ad-c6a7-4b3a-9399-661831bc6390}</UniqueIdentifier>
+      <UniqueIdentifier>{d5acb340-d343-4f16-a530-02aeba1eaf4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{7f5c10fb-d9f5-4d01-8be1-a6a730fb9003}</UniqueIdentifier>
+      <UniqueIdentifier>{44ecf66c-a25d-4ae4-9d47-b3a8d11aeee3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{797cad15-667e-45f1-93a8-a1d93f52adbc}</UniqueIdentifier>
+      <UniqueIdentifier>{c568adf1-6931-4d3b-9568-470c1d7bd9c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -99,14 +99,14 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\spreadsheet.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
     <None Include="spreadsheet.iss" />
     <None Include="sci_gateway\spreadsheet_gateway.xml" />
+    <None Include="locales\spreadsheet.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

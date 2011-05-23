@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{d188dca4-be45-4bb9-bbc7-d266571d8029}</UniqueIdentifier>
+      <UniqueIdentifier>{8374b26a-fd5d-4b83-823a-bd83826c6341}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c7aed667-a8d6-494d-973e-957f7dd98ab4}</UniqueIdentifier>
+      <UniqueIdentifier>{d6efdcda-26d8-4367-87dc-2a39c3350b4b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{bc8f77dd-a806-4fde-8b3b-87ac7306c242}</UniqueIdentifier>
+      <UniqueIdentifier>{932f0b45-e579-413d-9ecf-5c1948ac5b59}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,17 +51,14 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\sound.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="scilab_windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
     <None Include="sound.iss" />
     <None Include="sci_gateway\sound_gateway.xml" />
+    <None Include="locales\sound.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

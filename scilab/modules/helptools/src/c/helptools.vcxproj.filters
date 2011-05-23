@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{0f3c557d-c407-474e-a9e5-eae1cfa2d865}</UniqueIdentifier>
+      <UniqueIdentifier>{09c87d10-b6b6-4530-af38-f9f36207b14b}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{b83281d9-a756-48bb-94e6-1d8dcb268b6e}</UniqueIdentifier>
+      <UniqueIdentifier>{2301100a-a3b4-4b54-ac25-5bb2fe5e23aa}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{88764958-4577-4396-aa75-b0b673009284}</UniqueIdentifier>
+      <UniqueIdentifier>{79c5386b-ee41-47cd-8c79-6ded8c4b1551}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{2bb2a1e4-3cd7-4173-9acf-4b982ed8102d}</UniqueIdentifier>
+      <UniqueIdentifier>{546d9f1c-b2f7-41d7-9467-98bc6bddd3e0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{bf0f900d-aa11-44ac-93fe-c7db0fb5cc64}</UniqueIdentifier>
+      <UniqueIdentifier>{7aaf618f-e0b0-4b3c-bc03-9331460c5e92}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{b1f5187c-a8c8-4fef-ad85-f32876b34f5f}</UniqueIdentifier>
+      <UniqueIdentifier>{458d897a-4c4b-4f72-902a-42abfbfd394e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,6 +33,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_helptools.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\helptools_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_buildDoc.cpp">
@@ -58,21 +61,23 @@
     <ClInclude Include="..\..\includes\gw_helptools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\helptools_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\jni\SciDocMain.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\helptools.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\helptools.iss" />
     <None Include="..\..\sci_gateway\helptools_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\helptools.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="helptools.rc">

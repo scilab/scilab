@@ -7,6 +7,10 @@ EXPORTS
 ; --------------------------------------- 
 intlib_
 whereismacro_
+<<<<<<< HEAD
 intdeff_
 intexec_
 intexecstr_
+=======
+intdeff_
+>>>>>>> ffa30c4... YaSp VS 2010

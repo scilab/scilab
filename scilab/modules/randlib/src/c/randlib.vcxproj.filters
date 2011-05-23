@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{c589a035-8331-47ce-8175-bf82bc45db6c}</UniqueIdentifier>
+      <UniqueIdentifier>{b15886d4-0a73-48c9-ba31-5a59ec8fd7f5}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{253e7969-1685-4fd5-8faf-1470ebdfc965}</UniqueIdentifier>
+      <UniqueIdentifier>{41852aef-218e-4453-9b9c-be1e12c61b00}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{74fcaecf-1f1b-4912-91dc-8f3691c8ccbd}</UniqueIdentifier>
+      <UniqueIdentifier>{53fafc8e-e736-4d87-bf93-de534129cbb6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{14ef7e69-e958-4e76-b571-8506b4b6b686}</UniqueIdentifier>
+      <UniqueIdentifier>{4b543df2-d2b2-433b-a725-aafcf2b4fa97}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{c9c3e3ae-b75a-4d06-92ed-0de6e36c209d}</UniqueIdentifier>
+      <UniqueIdentifier>{80c06748-e7c5-4eb6-b326-e72efd192340}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{a9c4d8a1-69fb-4b02-ae40-124cd3fda1bd}</UniqueIdentifier>
+      <UniqueIdentifier>{adf6d867-b3fe-4f4b-8902-d47fedc5bff5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -87,9 +87,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\randlib.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -99,15 +96,16 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\randlib.iss" />
     <None Include="..\..\sci_gateway\randlib_gateway.xml" />
-    <None Include="..\..\version.xml" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\randlib.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="randlib.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\..\..\bin\randlib_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

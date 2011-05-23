@@ -14,16 +14,16 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{59b09166-e0dc-4af8-80d7-c1b94b362d0b}</UniqueIdentifier>
+      <UniqueIdentifier>{5e87bf84-e124-4381-a1ba-7dba57648fa3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{d1a46ec7-24d4-4d22-acb2-f75b917cc1bf}</UniqueIdentifier>
+      <UniqueIdentifier>{8ddc6c6b-592a-4936-a6e4-d7ee7cfa79bc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{c9945103-8a6e-4f93-84e0-d57996b88d87}</UniqueIdentifier>
+      <UniqueIdentifier>{6d0fb24b-6d87-4602-bf15-39054068f510}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{a40c8363-a9b5-4a67-80d3-c1c8514f8cc8}</UniqueIdentifier>
+      <UniqueIdentifier>{f50347d6-e2e3-4bbf-b49e-1431f1b8a788}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -82,9 +82,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_javalibrarypath.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_system_getproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_system_setproperty.c">
@@ -161,7 +158,7 @@
     <ClInclude Include="src\c\loadLibrarypath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\system_getproperty.h">
+    <ClInclude Include="includes\system_getproperty.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\system_setproperty.h">
@@ -177,9 +174,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\jvm.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="Call_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -195,5 +189,8 @@
     <None Include="jvm.iss" />
     <None Include="sci_gateway\jvm_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="locales\jvm.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

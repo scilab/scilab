@@ -57,18 +57,18 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 </NMakeCleanCommandLine>
@@ -80,18 +80,18 @@ call ant clean
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 </NMakeCleanCommandLine>
@@ -103,18 +103,18 @@ call ant clean
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 </NMakeCleanCommandLine>
@@ -126,18 +126,18 @@ call ant clean
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant
 </NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)java\jdk
-set PATH=$(SolutionDir)java\ant\bin;%PATH%;
+    <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">set JAVA_HOME=$(SolutionDir)\java\jdk
+set PATH=$(SolutionDir)\java\ant\bin%3b%PATH%%3b
 cd ..\..
 call ant clean
 </NMakeCleanCommandLine>
@@ -154,12 +154,16 @@ call ant clean
     <None Include="..\..\build.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\action_binding\src\java\action_binding-JAVA.vcxproj">
-      <Project>{b2911268-79e2-4fe5-ad59-2c3cb7cb794e}</Project>
+    <ProjectReference Include="..\..\..\action_binding\src\c\action_binding.vcxproj">
+      <Project>{8a654cc5-22c1-4972-a8cf-1b89f78b5383}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\gui\src\java\gui-JAVA.vcxproj">
       <Project>{f01c26e3-e409-4e74-ba84-c7c4a71a7fdc}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\jvm\src\java\jvm-JAVA.vcxproj">
+      <Project>{e9783492-017e-4811-9cc7-6b71856f847c}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\java\localization-JAVA.vcxproj">

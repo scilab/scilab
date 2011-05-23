@@ -2,21 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{5c5e1adc-2a57-45a2-9bcc-0d584f86aaf8}</UniqueIdentifier>
+      <UniqueIdentifier>{2a4b934a-8e57-44e8-972f-883f7d99a947}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{fe205ab9-974b-42cf-8f22-9886967a1c5c}</UniqueIdentifier>
+      <UniqueIdentifier>{1b36c1b3-c3d8-4470-9d9e-96efc2ccd8db}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{36da833f-eb67-489f-a609-9921cae3b997}</UniqueIdentifier>
+      <UniqueIdentifier>{3c9a8c5a-e989-4ab0-88d9-b31beaf8ae73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c2601202-2c27-49e6-b2e5-500839247091}</UniqueIdentifier>
+      <UniqueIdentifier>{eeaf5ee1-68d8-49c6-85e7-c662901f9447}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{f93061bc-eb15-411c-883c-7d772d9c3eed}</UniqueIdentifier>
+      <UniqueIdentifier>{088f19d6-0377-45a6-8b6f-def4f1096ef0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="StartupMessageBox.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="strdup_windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stristr.c">
@@ -169,9 +166,6 @@
     <ClInclude Include="StartupMessageBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\includes\strdup_windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stristr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -205,6 +199,9 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="System_env_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="windows_tools_Import.def">

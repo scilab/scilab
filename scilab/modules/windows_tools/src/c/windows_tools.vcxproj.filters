@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{6b897292-8de0-4852-afaf-f445f3eb2f00}</UniqueIdentifier>
+      <UniqueIdentifier>{3bfdea25-7a34-4ce6-8c48-194643fa7500}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{a19b6de5-a578-4b32-badf-de1fbf9f0773}</UniqueIdentifier>
+      <UniqueIdentifier>{0fc2b883-b911-4cd6-8622-fc4a3b352fb8}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{24ae625f-c135-4f8f-b127-eee116430079}</UniqueIdentifier>
+      <UniqueIdentifier>{372d3da7-1631-4607-9e51-238e52caf2c5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{8b8c75c2-9ebc-4ade-b38a-6790a5eb898f}</UniqueIdentifier>
+      <UniqueIdentifier>{968b43f3-e8a5-4385-b1ee-1885522cd582}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{dc56d296-fa41-4dd0-aec2-a6db08bb93ae}</UniqueIdentifier>
+      <UniqueIdentifier>{2c949341-6144-4b30-a6b9-a48342ae22ad}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{28fc6a90-3106-4a95-b4df-600a1c72bd91}</UniqueIdentifier>
+      <UniqueIdentifier>{9725de84-2791-49ca-835d-f163637f7f6a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +86,9 @@
     <ClCompile Include="WinConsole.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\windows_tools_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="winopen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -100,6 +103,9 @@
     <ClInclude Include="FindFileAssociation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\FocusOnConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\gw_windows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -112,13 +118,13 @@
     <ClInclude Include="registry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\TerminateWindows_tools.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WinConsole.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\windows_tools_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="winopen.h">
@@ -126,9 +132,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\windows_tools.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="Call_scilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -141,14 +144,23 @@
     <None Include="scilab_windows_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="System_env_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
     <None Include="..\..\windows_tools.iss" />
     <None Include="..\..\sci_gateway\windows_tools_gateway.xml" />
+    <None Include="..\..\locales\windows_tools.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="windows_tools.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

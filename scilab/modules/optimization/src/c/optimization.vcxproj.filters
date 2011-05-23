@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{ae4b7045-0d5f-41eb-b509-7a3eec4e865c}</UniqueIdentifier>
+      <UniqueIdentifier>{96353fda-cf88-4e81-b559-5a1637b538c2}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{b84f72dd-818e-4247-a9de-140234f3c003}</UniqueIdentifier>
+      <UniqueIdentifier>{aa9bea2a-f681-4fde-9b40-5a6ea6a6d12a}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{8f475a84-ec76-4509-ab3b-ba8f3440a3c5}</UniqueIdentifier>
+      <UniqueIdentifier>{6b2f6e4c-e3c2-46d3-875a-459dc81cf67b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{b0049a8b-6a0c-4b3e-8eca-3dbce3979765}</UniqueIdentifier>
+      <UniqueIdentifier>{c2eda7a4-1dd7-4799-a580-78f9faa6c8ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{453e0080-87c3-4f4b-98cc-ff5b35e6f5b2}</UniqueIdentifier>
+      <UniqueIdentifier>{bf9e12ec-8bbc-448b-b7bc-e4c786fd39cf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{af72edc2-8ff5-492c-a180-26b3e81c8fd2}</UniqueIdentifier>
+      <UniqueIdentifier>{55c012f7-eb32-49bd-92b0-6aa5215ad059}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -75,9 +75,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\optimization.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -87,7 +84,12 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\optimization.iss" />
     <None Include="..\..\sci_gateway\optimization_gateway.xml" />
-    <None Include="..\..\version.xml" />
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\optimization.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="optimization.rc">
@@ -97,6 +99,5 @@
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\sparse_f.lib" />
   </ItemGroup>
 </Project>

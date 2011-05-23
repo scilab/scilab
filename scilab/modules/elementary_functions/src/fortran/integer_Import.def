@@ -1,4 +1,4 @@
-	LIBRARY    integer.dll
+LIBRARY    integer.dll
 
 
 EXPORTS

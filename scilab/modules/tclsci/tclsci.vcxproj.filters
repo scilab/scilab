@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{1c6aeb18-3198-4656-b960-cb3d7fc9080d}</UniqueIdentifier>
+      <UniqueIdentifier>{003e7ad2-38ba-4dc1-9955-6671023e6c8b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{78213cf4-3476-4551-95d2-eb86a7265195}</UniqueIdentifier>
+      <UniqueIdentifier>{2fc360db-a74e-4658-8eac-70387483e4fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{259830e8-8029-4548-8595-ea3408564627}</UniqueIdentifier>
+      <UniqueIdentifier>{0b461200-71af-4e2e-a467-603d0e29b74b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,9 +168,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\tclsci.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="graphics_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -186,5 +183,8 @@
     <None Include="Makefile.am" />
     <None Include="tclsci.iss" />
     <None Include="sci_gateway\tclsci_gateway.xml" />
+    <None Include="locales\tclsci.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

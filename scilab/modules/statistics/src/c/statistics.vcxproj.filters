@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{cedc8de4-c00c-49bf-bc04-beb37e6e4801}</UniqueIdentifier>
+      <UniqueIdentifier>{0b70e1c0-63b3-4678-806f-f0868d035c2f}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{ca2feca2-903a-430a-a7bb-c5b2f309bcab}</UniqueIdentifier>
+      <UniqueIdentifier>{c96d9976-4adb-47d5-8b6a-c98a5dae62c3}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{a82769a2-e58f-4604-b440-a8ddca0906a5}</UniqueIdentifier>
+      <UniqueIdentifier>{d3cbe41d-6a47-41a0-a643-81c8f1b7b519}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5e9fc7b7-98f1-459b-b57f-0335e2a62806}</UniqueIdentifier>
+      <UniqueIdentifier>{ef25954f-93db-42ba-bce0-8ee5a356f685}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{3955b2f0-d01e-4424-9669-df4e7ca49bff}</UniqueIdentifier>
+      <UniqueIdentifier>{e846cdb0-b71d-407c-bfbe-94a38e54fe45}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{91df8ccb-f137-48e5-b354-35d2bbbbe18b}</UniqueIdentifier>
+      <UniqueIdentifier>{b28ebfa3-78c3-46ad-b5f4-0fa846e6994b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +68,9 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_cdft.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_string_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CdfBase.h">
@@ -84,16 +87,18 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\statistics.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\statistics.iss" />
     <None Include="..\..\sci_gateway\statistics_gateway.xml" />
-    <None Include="..\..\version.xml" />
+    <None Include="dcd_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\statistics.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="statistics.rc">
@@ -102,6 +107,5 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\dcd_f.lib" />
   </ItemGroup>
 </Project>

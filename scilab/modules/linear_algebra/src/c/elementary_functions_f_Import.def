@@ -1,0 +1,12 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+;
+pythag_
+dset_
+bdiag_
+wbdiag_
+wwrdiv_

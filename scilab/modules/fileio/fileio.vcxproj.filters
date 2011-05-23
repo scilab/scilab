@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{0c7afadb-e1e0-4e60-bfe0-c0b0c5562a7a}</UniqueIdentifier>
+      <UniqueIdentifier>{62994f43-b42e-4aeb-8e06-648f8b459d9f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5242b2fd-2d16-4f1d-8956-a8423174c495}</UniqueIdentifier>
+      <UniqueIdentifier>{e6705d68-f3b5-4c22-a72a-8da15f1158d8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{c2ac3a60-9af3-4dc5-8034-7be742eeac99}</UniqueIdentifier>
+      <UniqueIdentifier>{d08b1778-6c8d-41ed-a06c-128245d2288c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -51,13 +51,16 @@
     <ClCompile Include="src\c\do_xxscanf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\expandPathVariable.c">
+    <ClCompile Include="src\cpp\expandPathVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\FileExist.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\fileinfo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\filemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\filesmanagement.c">
@@ -111,52 +114,46 @@
     <ClCompile Include="src\c\isDrive.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mclearerr.c">
+    <ClCompile Include="src\cpp\mclose.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mclose.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\meof.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\merror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\mget.c">
+    <ClCompile Include="src\cpp\mget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\mgeti.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mgetl.c">
+    <ClCompile Include="src\cpp\mgetl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mgetstr.c">
+    <ClCompile Include="src\cpp\mgetstr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mopen.c">
+    <ClCompile Include="src\cpp\mopen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\movefile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mput.c">
+    <ClCompile Include="src\cpp\mput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\mputi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mputl.c">
+    <ClCompile Include="src\cpp\mputl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mputstr.c">
+    <ClCompile Include="src\cpp\mseek.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mseek.c">
+    <ClCompile Include="src\cpp\mtell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mtell.c">
+    <ClCompile Include="src\cpp\newest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\os_wfopen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\pathconvert.c">
@@ -171,34 +168,10 @@
     <ClCompile Include="src\c\scanf_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_basename.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_chdir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_copyfile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_createdir.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_deletefile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_fileext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_fileinfo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_fileparts.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_filesep.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_findfiles.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_fprintfMat.c">
@@ -222,25 +195,7 @@
     <ClCompile Include="sci_gateway\c\sci_getrelativefilename.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_getshortpathname.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_isdir.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_isfile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_maxfiles.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mclearerr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mclose.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_merror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_mfprintf.c">
@@ -249,58 +204,19 @@
     <ClCompile Include="sci_gateway\c\sci_mfscanf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mget.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mgetl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mgetstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_moef.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mopen.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_movefile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mput.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mputl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mputstr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_mscanf.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mseek.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_msscanf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_mtell.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_newest.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_pathconvert.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_pathsep.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_pwd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_removedir.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\scicurdir.c">
@@ -317,25 +233,48 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ResourceCompile Include="src\c\fileio.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="io_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="Localization_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="System_env_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="fileio.iss" />
+    <None Include="sci_gateway\fileio_gateway.xml" />
+    <None Include="Makefile.am" />
+    <None Include="locales\fileio.pot">
+      <Filter>localization</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\blasplus.lib" />
+    <Library Include="..\..\bin\lapack.lib" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="includes\addfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\basename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\cluni0.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\copyfile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\createdirectory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\delfile.h">
+    <ClInclude Include="includes\deleteafile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\do_xxscanf.h">
+    <ClInclude Include="includes\delfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dynlib_fileio.h">
@@ -347,7 +286,10 @@
     <ClInclude Include="includes\FileExist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\fileinfo.h">
+    <ClInclude Include="includes\fileio_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\filemanager.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\filesmanagement.h">
@@ -359,16 +301,7 @@
     <ClInclude Include="includes\findfiles.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\fprintfMat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fscanfMat.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\fullpath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\getdrives.h">
+    <ClInclude Include="includes\fullpath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\getfiledesc.h">
@@ -383,10 +316,7 @@
     <ClInclude Include="includes\getFullFilename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\getlongpathname.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\getrelativefilename.h">
+    <ClInclude Include="includes\getshortpathname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\gw_fileio.h">
@@ -395,49 +325,16 @@
     <ClInclude Include="includes\isdir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\isDrive.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mclearerr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\mclose.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\meof.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\merror.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\mget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\mgeti.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mgetl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mgetstr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\mopen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\movefile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\mput.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mputstr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\mseek.h">
@@ -446,13 +343,16 @@
     <ClInclude Include="includes\mtell.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\pathconvert.h">
+    <ClInclude Include="includes\newest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\os_wfopen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\readline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\removedir.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\scanf_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\scicurdir.h">
@@ -461,36 +361,8 @@
     <ClInclude Include="includes\splitpath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\Status2Mode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\URIFileToFilename.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="src\c\fileio.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="locales\en_US\fileio.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="io_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="LibScilab_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="fileio.iss" />
-    <None Include="sci_gateway\fileio_gateway.xml" />
-    <None Include="Makefile.am" />
   </ItemGroup>
 </Project>

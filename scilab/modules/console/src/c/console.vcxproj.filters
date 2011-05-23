@@ -2,27 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1a223a39-760f-4323-bb53-17e62dcd93a0}</UniqueIdentifier>
+      <UniqueIdentifier>{ced5918e-74cd-4e54-a9e3-88078447ee4d}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{44b9bf1c-597e-412e-babe-9cdbed2fdd28}</UniqueIdentifier>
+      <UniqueIdentifier>{0efda04f-f941-4f0c-b8a7-ce49a3e3f76a}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{44071cb2-2fa6-49a5-961a-8e36decf76f7}</UniqueIdentifier>
+      <UniqueIdentifier>{f8538065-3e14-41c4-a2a9-57da13466dc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{9c905273-835b-42e2-8015-d53efd1d6ea8}</UniqueIdentifier>
+      <UniqueIdentifier>{bbc6e764-f9d8-4e58-886f-cc95c274878b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{d4a02b78-5c10-46c7-9134-7baf97580d8e}</UniqueIdentifier>
+      <UniqueIdentifier>{a3c53915-3aea-4826-b4f1-a4c60c4f5eea}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{7fb5a234-015b-4c70-94bd-5df1f01d0059}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{097f223c-2859-4ab8-816c-43e87a00ce20}</UniqueIdentifier>
+      <UniqueIdentifier>{c78ee50a-35c6-4bad-a85e-695feeca34ef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -77,6 +74,11 @@
     <ClCompile Include="..\cpp\SetConsolePrompt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="console.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\ClearConsole.h">
@@ -141,9 +143,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\console.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\jni\DropFiles.i">
       <Filter>Swig Files</Filter>
     </None>
@@ -160,12 +159,9 @@
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\console.iss" />
-    <None Include="..\..\console.xml" />
     <None Include="..\..\Makefile.am" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="console.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
+    <None Include="..\..\locales\console.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

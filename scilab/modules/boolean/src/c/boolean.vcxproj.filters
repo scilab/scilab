@@ -2,24 +2,24 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{c9a14699-f936-4f4f-8eaf-407db6ac545e}</UniqueIdentifier>
+      <UniqueIdentifier>{d9bf83dd-1baf-45e6-9879-66f1fbeb65c1}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{a438147f-0b0c-412a-91d1-ae5964bd95f6}</UniqueIdentifier>
+      <UniqueIdentifier>{d8fc54b8-74ed-4b17-9b4b-760058549a64}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{8f4464f8-a758-4bf8-8ea7-3729c980a25e}</UniqueIdentifier>
+      <UniqueIdentifier>{8f6c9d89-6623-4ca0-82a0-1b3f216e71bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{d527f468-a954-452b-a3b6-22c45d15e52f}</UniqueIdentifier>
+      <UniqueIdentifier>{db6b18f6-6ded-4b54-a08f-886668f69653}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{42202bfe-8518-4b07-a18b-0b25f4549af0}</UniqueIdentifier>
+      <UniqueIdentifier>{bdd1e514-ed54-45e6-9e38-146da92c1894}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{b13f1fe3-5da5-4a05-a772-c6876f611fc6}</UniqueIdentifier>
+      <UniqueIdentifier>{d3d6fc04-eeff-42c8-9ac1-f20fb74b6b26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -60,9 +60,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\boolean.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="boolean_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -71,7 +68,9 @@
     </None>
     <None Include="..\..\boolean.iss" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\boolean.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="boolean.rc">

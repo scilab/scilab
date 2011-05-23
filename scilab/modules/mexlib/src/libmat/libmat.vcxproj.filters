@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{dbeffa4a-5d59-463e-b17a-64883141146b}</UniqueIdentifier>
+      <UniqueIdentifier>{567e5ac3-4edc-4ee2-bf81-7768b8d337d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -48,6 +48,5 @@
     <Library Include="..\..\..\..\bin\LibScilab.lib">
       <Filter>Libraries Dependencies</Filter>
     </Library>
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

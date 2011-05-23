@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{4aebd52a-7330-4fb3-bbe1-02f7a0948d38}</UniqueIdentifier>
+      <UniqueIdentifier>{902d314b-9b40-45aa-9557-351761f008db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{efe8558a-57ae-4db7-a76c-a0dccca7c82a}</UniqueIdentifier>
+      <UniqueIdentifier>{e8abf3b9-0974-4a1f-a04a-bf96547bd23a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{31aaf602-aeee-4fdb-afb0-c7aae48c3775}</UniqueIdentifier>
+      <UniqueIdentifier>{d93b9e8c-b9f2-46fe-a5db-26eb576db096}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -129,8 +129,11 @@
     <None Include="Makefile.am" />
     <None Include="matio.iss" />
     <None Include="sci_gateway\matio_gateway.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\sparse_f.lib" />
+    <None Include="sparse_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="locales\matio.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

@@ -2,27 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{19d2a85f-7690-4fdf-8bb4-f7e1dc50d460}</UniqueIdentifier>
+      <UniqueIdentifier>{df4d67cb-c090-4168-aa07-01ce20e08753}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{55d9d1af-082f-4311-b1f6-a44066f9a7c8}</UniqueIdentifier>
+      <UniqueIdentifier>{3f144949-f1d5-493a-b2ba-54ab79d83381}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{56fe17a1-a4bf-47ae-803a-a2ca03e2dae5}</UniqueIdentifier>
+      <UniqueIdentifier>{19024ac8-f660-40a3-8bf6-188e60d5fe99}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{1469692c-f4a5-4bf1-bb0f-2e2f00e029a4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{aaf7c2f6-d447-42e4-896f-f08966ed6b04}</UniqueIdentifier>
+      <UniqueIdentifier>{c0e11fcc-ebdc-4815-a0bf-a70dcd79e62f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="banier.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="callDynamicGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -209,19 +203,7 @@
     <ClCompile Include="run.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_arg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_banner.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_clear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_clearfun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_clearglobal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_comp.c">
@@ -240,15 +222,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_errclear.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_error.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_exists.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_exit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_format.c">
@@ -272,22 +245,7 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_getmemory.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getmodules.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getscilabmode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_getvariablesonstack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getversion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_global.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_gstacksize.c">
@@ -302,16 +260,10 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_intppty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_isdef.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_iserror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_isglobal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lasterror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_macr2lst.c">
@@ -368,15 +320,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_who.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_with_module.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SCIHOME.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scilabmode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scimem.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -387,12 +330,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\search_functions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setgetSCIpath.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SetScilabEnvironment.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stack1.c">
@@ -407,7 +344,7 @@
     <ClCompile Include="stackinfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="storeCommand.c">
+    <ClCompile Include="..\cpp\storeCommand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="str2sci.c">
@@ -428,9 +365,6 @@
     <ClCompile Include="timer.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tmpdir.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="transposeMatrix.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -440,10 +374,7 @@
     <ClCompile Include="version.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="warningmode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="with_module.c">
+    <ClCompile Include="..\cpp\with_module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xscion.c">
@@ -451,13 +382,21 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="banier.h">
+    <None Include="..\..\core.iss" />
+    <None Include="..\..\sci_gateway\core_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\locales\core.pot">
+      <Filter>localization</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuildStep Include="..\..\includes\machine.h.vc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\banner.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\BOOL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="callDynamicGateway.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h">
@@ -472,28 +411,13 @@
     <ClInclude Include="..\..\includes\commandwords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\core_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\core_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="cs2st.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="csignal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\doublecomplex.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_gateways.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_parallel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="dynamic_tclsci.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="eqid.h">
+    <ClInclude Include="..\..\includes\dynlib_core_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\ExceptionMessage.h">
@@ -502,25 +426,16 @@
     <ClInclude Include="..\..\includes\existfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="exitCodeValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="expr.h">
+    <ClInclude Include="..\..\includes\exit_status.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\freeArrayOfString.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="funcprot.h">
+    <ClInclude Include="..\..\includes\Funtab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getdebuginfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getdynamicdebuginfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getdynamicDebugInfo_Windows.h">
+    <ClInclude Include="..\..\includes\getcommandlineargs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\GetExceptionCode.h">
@@ -529,16 +444,13 @@
     <ClInclude Include="..\..\includes\getfunctionslist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\getmemory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\getmodules.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getstaticDebugInfo_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getvariablesname.h">
@@ -553,19 +465,13 @@
     <ClInclude Include="..\..\includes\gw_core.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="gw_dynamic_generic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\gw_user.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_user2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="hashtable_core.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ifexpr.h">
+    <ClInclude Include="..\..\includes\inffic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\inisci-c.h">
@@ -574,10 +480,7 @@
     <ClInclude Include="..\..\includes\InitializeCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="InitScilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inittypenames.h">
+    <ClInclude Include="..\..\includes\initMacOSXEnv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\intmacr2tree.h">
@@ -586,13 +489,13 @@
     <ClInclude Include="..\..\includes\isanan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\IsAScalar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\islittleendian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\LaunchScilabSignal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadFunctionsTab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\loadversion.h">
@@ -601,28 +504,13 @@
     <ClInclude Include="..\..\includes\machine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="md5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\mode_exec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\PARAMS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="parse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\partition.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\PATH_MAX.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="predef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="readGateway.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\realmain.h">
@@ -640,19 +528,13 @@
     <ClInclude Include="..\..\includes\returnPropertyList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="run.h">
+    <ClInclude Include="..\..\includes\runner.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\mexlib\includes\sci_gateway.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\SCIHOME.h">
+    <ClInclude Include="..\..\includes\sci_types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scilabDefaults.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scilabmode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scimem.h">
@@ -667,16 +549,10 @@
     <ClInclude Include="..\..\includes\scisparse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\setgetSCIpath.h">
+    <ClInclude Include="..\..\includes\setPrecisionFPU.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\SetScilabEnvironment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack-c.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack-def.h">
+    <ClInclude Include="..\..\includes\sigbas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\stack.h">
@@ -691,22 +567,25 @@
     <ClInclude Include="..\..\includes\stack3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\stack-c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stack-def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\stackinfo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\stackTypeVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\storeCommand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="str2sci.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\syncexec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="terme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TerminateCore.h">
+    <ClInclude Include="..\..\includes\tasks.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\texmacs.h">
@@ -715,44 +594,23 @@
     <ClInclude Include="..\..\includes\Thread_Wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\timerEvents.h">
+    <ClInclude Include="..\..\includes\timer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\tmpdir.h">
+    <ClInclude Include="..\..\includes\timerEvents.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\transposeMatrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="typename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\unrolled_algorithms.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\version.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\warningmode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="with_module.h">
+    <ClInclude Include="..\..\includes\with_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\xscion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\locales\en_US\core.pot">
-      <Filter>localization</Filter>
-    </None>
-    <None Include="..\..\core.iss" />
-    <None Include="..\..\sci_gateway\core_gateway.xml" />
-    <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuildStep Include="..\..\includes\machine.h.vc" />
   </ItemGroup>
 </Project>

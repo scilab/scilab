@@ -6,166 +6,166 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\brigde">
-      <UniqueIdentifier>{62cbf609-8f47-4da5-b7bc-9eb0dae1b76d}</UniqueIdentifier>
+      <UniqueIdentifier>{b03d771c-3a61-4d9b-a05c-32eca43748b0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\canvas">
-      <UniqueIdentifier>{f74eab02-21cd-4f5d-81e0-86acdf6d6257}</UniqueIdentifier>
+      <UniqueIdentifier>{4c6da275-e35f-446d-abdf-427af7e14a6f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\checkbox">
-      <UniqueIdentifier>{5bb7954d-9db4-496d-9e22-c38e645074eb}</UniqueIdentifier>
+      <UniqueIdentifier>{c1cb03f4-0f1e-4d7d-a6a2-1791b1bb7d65}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\console">
-      <UniqueIdentifier>{8d826ab9-3c71-4360-a541-e4259b3a9bb7}</UniqueIdentifier>
+      <UniqueIdentifier>{a8903184-bac3-4270-b982-e98c7a3052c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\editbox">
-      <UniqueIdentifier>{dd1b10a6-12e2-48d7-9686-3269e657304e}</UniqueIdentifier>
+      <UniqueIdentifier>{d7a01e24-504b-4889-a3e6-56e7dcdfcdc4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\filechooser">
-      <UniqueIdentifier>{ad700acd-ddf9-4426-ac03-3f1551676106}</UniqueIdentifier>
+      <UniqueIdentifier>{e7136778-ff26-4635-a95c-7907cb5d8d7b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\frame">
-      <UniqueIdentifier>{8f9369a3-be36-4cb2-ae15-f5181ea56101}</UniqueIdentifier>
+      <UniqueIdentifier>{413d42cd-6a48-404e-a581-ee2db85abff9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\label">
-      <UniqueIdentifier>{7ff039a9-c7ca-4a6f-a4d4-b156b2707211}</UniqueIdentifier>
+      <UniqueIdentifier>{cd2b290b-f7fa-4acb-a43d-c5bcd48a4008}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\layout">
-      <UniqueIdentifier>{382ded63-6c29-42cc-804d-93158242e62b}</UniqueIdentifier>
+      <UniqueIdentifier>{dff2eee0-7966-4ff0-ab71-f4bc6ce25518}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\listbox">
-      <UniqueIdentifier>{a0cf3f43-b35e-4945-866f-61e83ac5f65e}</UniqueIdentifier>
+      <UniqueIdentifier>{ec14ed5f-f838-4268-a50f-bc31ddb6b8ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\menu">
-      <UniqueIdentifier>{4a3fe965-ec4a-457d-ab00-d76b8f09a4ea}</UniqueIdentifier>
+      <UniqueIdentifier>{a713d480-e153-47a5-afa2-33783b69652c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\menubar">
-      <UniqueIdentifier>{864ac457-2390-4b64-98d9-e486598072cf}</UniqueIdentifier>
+      <UniqueIdentifier>{d56496b4-2b0a-488f-b5d9-f3ed7caa178e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\menuitem">
-      <UniqueIdentifier>{372cbb70-5eb1-4598-98f7-be07f4822271}</UniqueIdentifier>
+      <UniqueIdentifier>{9040772f-5155-4bb9-a3fc-ec1a427e2b5f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\popupmenu">
-      <UniqueIdentifier>{cbfca102-1f99-42d0-848f-6522a6c824ac}</UniqueIdentifier>
+      <UniqueIdentifier>{11013535-250c-479a-a3d7-ffab0c87b457}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\pushbutton">
-      <UniqueIdentifier>{dc6c8f0c-d861-4d18-84c6-7293d54785c6}</UniqueIdentifier>
+      <UniqueIdentifier>{10c5a28b-bf5f-40ad-92a3-41d030be90a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\radiobutton">
-      <UniqueIdentifier>{b80e9c2a-e626-4108-a0d6-150b1e35915b}</UniqueIdentifier>
+      <UniqueIdentifier>{e632ded2-7ffc-4ef7-8cd9-5289547b567d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\radiogroup">
-      <UniqueIdentifier>{d0f83d24-8c36-4de9-9634-671225660935}</UniqueIdentifier>
+      <UniqueIdentifier>{a936ae8e-e2bf-4bfb-a93a-f3f3671420a2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\separator">
-      <UniqueIdentifier>{ce82fd01-93d7-465d-916b-85848b617dd0}</UniqueIdentifier>
+      <UniqueIdentifier>{8c3e448e-3146-4e69-afdd-4f178df5db61}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\slider">
-      <UniqueIdentifier>{b92f9a94-90ad-4155-922b-916464e8aea3}</UniqueIdentifier>
+      <UniqueIdentifier>{73fa97f2-66a7-4ce1-af95-67cff7c2ea55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\tab">
-      <UniqueIdentifier>{22a00f41-ee84-4bcd-b1df-76f55752b972}</UniqueIdentifier>
+      <UniqueIdentifier>{fb242da3-852f-4feb-9385-c658c7a193a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\textbox">
-      <UniqueIdentifier>{f46eb70d-424b-4da9-9210-44bb4b5b25ef}</UniqueIdentifier>
+      <UniqueIdentifier>{6c8af5e0-bf78-49c5-8998-4807efafd59f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\toolbar">
-      <UniqueIdentifier>{50ea0c78-6110-4bb2-a431-0f1a74d86a94}</UniqueIdentifier>
+      <UniqueIdentifier>{0f35c0a8-1e28-4b16-8ce1-c67026b5bdc8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\brigde\window">
-      <UniqueIdentifier>{f3b55c6d-b7df-4bf5-a0dc-bbee33bed3e1}</UniqueIdentifier>
+      <UniqueIdentifier>{bd48de72-853c-46ee-b3e3-542335618bdf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\canvas">
-      <UniqueIdentifier>{7e72e746-f290-4fd2-9801-452ebfadede7}</UniqueIdentifier>
+      <UniqueIdentifier>{bf1458d4-1303-4d66-9549-1b6fd947555d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\checkbox">
-      <UniqueIdentifier>{6d2ed64f-3ff6-4bc5-b505-ebaf82d5aa68}</UniqueIdentifier>
+      <UniqueIdentifier>{13b1b5f5-8dce-41d9-afa4-c1ffc956d388}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\console">
-      <UniqueIdentifier>{aace9d46-3ba2-49aa-9595-997716bc4d26}</UniqueIdentifier>
+      <UniqueIdentifier>{c22184d1-93f6-4e80-b9cc-109df2ab4d39}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\container">
-      <UniqueIdentifier>{920fb112-786d-44eb-b736-e757b0221e77}</UniqueIdentifier>
+      <UniqueIdentifier>{393950bf-eaeb-4938-bee4-845448aeb911}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\dockable">
-      <UniqueIdentifier>{dd7f0bf0-eab6-4d6d-892f-597c0df2673d}</UniqueIdentifier>
+      <UniqueIdentifier>{bf65567f-684c-4371-9acf-6b51b779fb28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\editbox">
-      <UniqueIdentifier>{3f2713e8-1729-4715-b194-18cee71b534a}</UniqueIdentifier>
+      <UniqueIdentifier>{2c43b66d-50af-4176-afc9-da40b64908c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\events">
-      <UniqueIdentifier>{ea197444-6096-48e4-b906-9ebb70a88f29}</UniqueIdentifier>
+      <UniqueIdentifier>{05157fe4-3e64-406e-aa13-1224c3472416}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\events\callback">
-      <UniqueIdentifier>{7f931f95-cc00-4d79-ac41-21180edbee99}</UniqueIdentifier>
+      <UniqueIdentifier>{0f25ba91-fa0b-447b-9d3e-cc0ccdc1b199}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\filechooser">
-      <UniqueIdentifier>{d8bbce7f-3f83-4e92-8f33-362f759682e5}</UniqueIdentifier>
+      <UniqueIdentifier>{9553c0ba-2f08-442a-98ec-6871ed9f6492}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\frame">
-      <UniqueIdentifier>{2e9267d1-0d69-4a53-b6de-118ce8671f19}</UniqueIdentifier>
+      <UniqueIdentifier>{6e9dfecd-da3d-4ecc-a2cf-b3abe93200af}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\graphicWindow">
-      <UniqueIdentifier>{e659d980-e6ec-4862-8ed8-549c657009ae}</UniqueIdentifier>
+      <UniqueIdentifier>{95cc63b4-8a64-4e9d-9199-f962efdc6a77}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\label">
-      <UniqueIdentifier>{15ca7e0c-3612-4dfe-abe3-b6f3685457d5}</UniqueIdentifier>
+      <UniqueIdentifier>{ef26e3b8-735f-4f3a-84fa-dfa503ce15e1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\layout">
-      <UniqueIdentifier>{9ab0245b-d90d-481f-88ae-8481a1a4bd42}</UniqueIdentifier>
+      <UniqueIdentifier>{e42c5985-54b6-4a8c-8d99-35b8eec55354}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\listbox">
-      <UniqueIdentifier>{20aca86d-44da-4a29-bc1d-25a2d2636a58}</UniqueIdentifier>
+      <UniqueIdentifier>{0ab8b478-9314-4161-9874-a3305115be58}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\menu">
-      <UniqueIdentifier>{ab239e12-513f-45da-81ff-e6eafbe776f2}</UniqueIdentifier>
+      <UniqueIdentifier>{82854824-66ff-457a-9adc-489ba09265fd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\menubar">
-      <UniqueIdentifier>{60471335-ae8d-4b1d-ad89-f7f7a59208ae}</UniqueIdentifier>
+      <UniqueIdentifier>{5d3b33d3-3629-404b-8b7d-68e1278b763b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\menuitem">
-      <UniqueIdentifier>{515b983e-f349-4e33-aa65-680718bca6d6}</UniqueIdentifier>
+      <UniqueIdentifier>{c5a05869-691a-4db2-b82e-db4a37eff50c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\popupmenu">
-      <UniqueIdentifier>{2cc8e6e9-2087-4b6c-a70f-66d5773e3094}</UniqueIdentifier>
+      <UniqueIdentifier>{6ed61dcc-f5f6-495b-9f8d-c12b7a6d5c86}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\pushbutton">
-      <UniqueIdentifier>{441bad4d-573c-443e-b8ac-28855b775533}</UniqueIdentifier>
+      <UniqueIdentifier>{ecf1e3d4-d509-440b-87c4-3182c16ddfc5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\radiobutton">
-      <UniqueIdentifier>{5061a213-8117-4858-a0bd-8af607b5fa65}</UniqueIdentifier>
+      <UniqueIdentifier>{abd64995-c261-42da-989f-327c7803d729}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\radiogroup">
-      <UniqueIdentifier>{2a0daf2b-99d7-4316-8fc3-26a5897f7f1c}</UniqueIdentifier>
+      <UniqueIdentifier>{220e0a00-a627-4147-8678-573cf5b29149}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\separator">
-      <UniqueIdentifier>{8e1b14cb-07ba-41e4-aebb-7dbe5a5aa9e2}</UniqueIdentifier>
+      <UniqueIdentifier>{fc6e7a6e-3aa6-4f7d-b7b2-21afe0adc77d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\slider">
-      <UniqueIdentifier>{d51805d7-eadb-485e-a0fa-b3c5fd86cca9}</UniqueIdentifier>
+      <UniqueIdentifier>{8f4b6f9e-2fbb-4883-81de-376d756ed22e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\tab">
-      <UniqueIdentifier>{c32a3f10-3c55-4993-93b4-981a202e97f0}</UniqueIdentifier>
+      <UniqueIdentifier>{90ae7291-863b-4ab7-8b58-bc010fcacd2f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\text">
-      <UniqueIdentifier>{d7e52f28-ce41-4a1d-8ead-d4addf96a4c0}</UniqueIdentifier>
+      <UniqueIdentifier>{b5cb6ba3-3ef9-48a0-a0e6-66eb4527a30c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\textbox">
-      <UniqueIdentifier>{c6c2697b-8c97-4953-9fea-281b896dd0e1}</UniqueIdentifier>
+      <UniqueIdentifier>{fcbfed16-8507-4304-972b-a9fab0908a1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\toolbar">
-      <UniqueIdentifier>{cf54ea29-4991-4c13-8b54-fe08cd502e5f}</UniqueIdentifier>
+      <UniqueIdentifier>{8edce28d-ba33-4759-b5a5-a96fc8c8b7bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\uielement">
-      <UniqueIdentifier>{2a080f34-2471-4fb4-9cd6-9596a3d436f5}</UniqueIdentifier>
+      <UniqueIdentifier>{27fabadb-bc33-480a-b8e9-f13af300f4e9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\utils">
-      <UniqueIdentifier>{930c5feb-4936-44f1-8d7d-477aa4e7e98e}</UniqueIdentifier>
+      <UniqueIdentifier>{453022f8-459a-4206-b1a3-170f0cd4191d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\widget">
-      <UniqueIdentifier>{50963fde-089e-4dfe-b40d-32d16452ee6f}</UniqueIdentifier>
+      <UniqueIdentifier>{6985e443-3d93-434c-beee-3edab8bf34ec}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\window">
-      <UniqueIdentifier>{2bf6d3d9-0d93-452b-8c9d-e2f7e3fe5260}</UniqueIdentifier>
+      <UniqueIdentifier>{f7eafc47-15ea-43e5-8485-e108502bf732}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

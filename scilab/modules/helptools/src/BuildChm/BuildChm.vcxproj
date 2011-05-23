@@ -55,29 +55,22 @@
     <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],%27en_US%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],%27fr_FR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltochm([],[],%27ja_JP%27)%3bexit%3b
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
+
 IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\helptools\chm\scilab_*.chm"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e cclean_help();exit(0);
-
-exit /B 0
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help()%3bexit%3b
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -87,27 +80,22 @@ exit /B 0
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],%27en_US%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],%27fr_FR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltochm([],[],%27ja_JP%27)%3bexit%3b
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
+
 IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\helptools\chm\scilab_*.chm"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e cclean_help();exit(0);
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help()%3bexit%3b
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -117,27 +105,22 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],%27en_US%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],%27fr_FR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltochm([],[],%27ja_JP%27)%3bexit%3b
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
+
 IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\helptools\chm\scilab_*.chm"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e cclean_help();exit(0);
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help()%3bexit%3b
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
@@ -147,27 +130,22 @@ IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\hel
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
-
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-</NMakeBuildCommandLine>
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"</NMakeBuildCommandLine>
     <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
 
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],'en_US');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],'fr_FR');exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],'pt_BR');exit(0);
-exit /B 0
-
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltochm([],[],%27en_US%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltochm([],[],%27fr_FR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltochm([],[],%27pt_BR%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltochm([],[],%27ja_JP%27)%3bexit%3b
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Release|x64'">IF EXIST "$(SolutionDir)modules\helptools\chm" rmdir /s /q "$(SolutionDir)modules\helptools\chm"
+
 IF EXIST "$(SolutionDir)modules\helptools\chm" del /q "$(SolutionDir)modules\helptools\chm\scilab_*.chm"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\scilex.exe" -nb -l en -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit(0);
-"$(SolutionDir)bin\scilex.exe" -nb -l pt_BR -nouserstartup -nw -e cclean_help();exit(0);
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help()%3bexit%3b
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

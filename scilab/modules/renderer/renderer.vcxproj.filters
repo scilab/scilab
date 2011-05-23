@@ -6,114 +6,114 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\FigureDrawing">
-      <UniqueIdentifier>{f8ae6f86-688c-4829-9ab9-42074dab6a60}</UniqueIdentifier>
+      <UniqueIdentifier>{f0c10d21-707f-4fa2-9802-a11a43156172}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\PolylineDrawing">
-      <UniqueIdentifier>{d385f7d4-c15d-447e-8b95-bbeb854aac8f}</UniqueIdentifier>
+      <UniqueIdentifier>{ae3c22d1-09a7-42fa-a2be-3bd1fcda9e2d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\SubwinDrawing">
-      <UniqueIdentifier>{8d923d4f-419e-4aca-9064-8dd5a174d536}</UniqueIdentifier>
+      <UniqueIdentifier>{fcba75d8-e405-47df-a046-8f48364790e2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\RectangleDrawing">
-      <UniqueIdentifier>{794fdbcc-47cb-4ae7-a526-e5982c86e1d6}</UniqueIdentifier>
+      <UniqueIdentifier>{4fb63f42-c219-487c-974d-9dfe59d00815}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GraphicSynchronization">
-      <UniqueIdentifier>{6d58a5f2-29bf-4e82-a543-67ba20db8512}</UniqueIdentifier>
+      <UniqueIdentifier>{ae18ccb7-a964-47fc-8e7c-aa09ed4646a7}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\ArcDrawing">
-      <UniqueIdentifier>{bf7b01ce-234f-4f9f-aba3-bd1abb0ebfe5}</UniqueIdentifier>
+      <UniqueIdentifier>{0c708746-efcd-47c0-9b4b-97f16f5532f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\TextDrawing">
-      <UniqueIdentifier>{07f93c17-ae84-4408-9e2e-26dc0bcf0353}</UniqueIdentifier>
+      <UniqueIdentifier>{85b8b0f5-95b7-4ab3-8da9-2ad0c22a0fe6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\LabelDrawing">
-      <UniqueIdentifier>{d9fb448e-c23f-48a7-8f03-c1d1e45c6886}</UniqueIdentifier>
+      <UniqueIdentifier>{94c2bc98-b721-4744-ad8b-dc8e217817c9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\SurfaceDrawing">
-      <UniqueIdentifier>{2523bd68-bc83-4801-989d-59efa3b15126}</UniqueIdentifier>
+      <UniqueIdentifier>{9bfc7bb7-6109-497c-87d3-438eb609d2a1}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\CompoundDrawing">
-      <UniqueIdentifier>{47c9bb68-bec3-4f90-abbc-2b15247ed150}</UniqueIdentifier>
+      <UniqueIdentifier>{dc9570c0-c825-4784-8792-d0a4aa9b791e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\SegsDrawing">
-      <UniqueIdentifier>{06634c08-c05e-4bcf-9cc1-8be0678d1777}</UniqueIdentifier>
+      <UniqueIdentifier>{2f61b1cc-8dd7-45c0-8a05-10c1af2efc98}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\GrayplotDrawing">
-      <UniqueIdentifier>{d8b1b0e1-955b-4cf8-aeac-528de2c937fa}</UniqueIdentifier>
+      <UniqueIdentifier>{4d3af17b-0268-4bba-aa9c-594d19e7da69}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\FecDrawing">
-      <UniqueIdentifier>{dd953b20-b619-46d8-8ad1-1099ef4e343f}</UniqueIdentifier>
+      <UniqueIdentifier>{dfa102b9-4f7a-43c6-86f7-657e397926a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\LegendDrawing">
-      <UniqueIdentifier>{e19d3579-6247-41cd-9713-311c7b424367}</UniqueIdentifier>
+      <UniqueIdentifier>{bc390c4b-9af8-478d-b447-1c7c830e5aab}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\AxesDrawing">
-      <UniqueIdentifier>{2b7d0e80-0745-486b-8aae-f603b936b957}</UniqueIdentifier>
+      <UniqueIdentifier>{345aef9d-deae-40f8-9b48-468f9595108c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Header Files\PolylineDrawing">
-      <UniqueIdentifier>{dc9c2b2b-a7f7-4019-8a9b-20d021894089}</UniqueIdentifier>
+      <UniqueIdentifier>{df62c3b6-7b0b-4351-8710-ff2d66c65b54}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SubwinDrawing">
-      <UniqueIdentifier>{9ee73def-e821-482d-82c0-e6eb08c24aad}</UniqueIdentifier>
+      <UniqueIdentifier>{38f90447-20d5-4cf9-b839-96e63ada2cd5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\RectangleDrawing">
-      <UniqueIdentifier>{3c92de1e-a70b-41e5-9ca0-083fbf0347bc}</UniqueIdentifier>
+      <UniqueIdentifier>{4daeb306-cc3b-4c67-8108-ff73dabcbcdd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GraphicSynchronization">
-      <UniqueIdentifier>{7775e038-d4c9-4769-9918-d5b01de96e74}</UniqueIdentifier>
+      <UniqueIdentifier>{22f90a62-f36b-4e0f-8551-7dfe3d8fb869}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\ArcDrawing">
-      <UniqueIdentifier>{510712c8-b4d3-47cf-9e5a-957e2ee46058}</UniqueIdentifier>
+      <UniqueIdentifier>{a3fce594-47fb-4553-8a66-5021610f2047}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\FigureDrawing">
-      <UniqueIdentifier>{5a5b65bc-4d68-4c1e-a1c7-1d994b2ae2f5}</UniqueIdentifier>
+      <UniqueIdentifier>{bc2271f1-a83e-4f80-9b2c-8aa88fa37f65}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\TextDrawing">
-      <UniqueIdentifier>{d9620e16-a7e4-4b98-9528-95d050aee748}</UniqueIdentifier>
+      <UniqueIdentifier>{74e1e67b-9b00-419c-97f7-7a29f0f1a3cf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\LabelDrawing">
-      <UniqueIdentifier>{41c3109e-0c9d-4c8e-a403-b6fde4c3cb06}</UniqueIdentifier>
+      <UniqueIdentifier>{857ad2ec-ca71-4d7c-9668-dc1af4c15cf9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SurfaceDrawing">
-      <UniqueIdentifier>{39c25f36-115c-4f52-aa9d-d3aeadea1b28}</UniqueIdentifier>
+      <UniqueIdentifier>{bb4b21d5-59ac-4be7-b611-e3f0d169a672}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\GrayplotDrawing">
-      <UniqueIdentifier>{12d8680f-fdb7-4a33-990b-5d16ef27201b}</UniqueIdentifier>
+      <UniqueIdentifier>{38e7204c-60ca-497d-a499-262e3a1b6a19}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\SegsDrawing">
-      <UniqueIdentifier>{f9c9dfe3-7207-4e18-b1be-6f4ac59216d7}</UniqueIdentifier>
+      <UniqueIdentifier>{f74cdac1-5764-45e3-8234-1687f8f2b5bf}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\CompoundDrawing">
-      <UniqueIdentifier>{9e5915d4-e4ec-4b8c-8284-d2feca793e68}</UniqueIdentifier>
+      <UniqueIdentifier>{a635aa4a-072c-42fe-b559-3582599d0985}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\FecDrawing">
-      <UniqueIdentifier>{b1e492d2-a014-4c60-b6db-11f31282ee9d}</UniqueIdentifier>
+      <UniqueIdentifier>{67d05f96-730d-4134-b493-ef1a598ab880}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\LegendDrawing">
-      <UniqueIdentifier>{b14a59f1-a8c8-4491-8abf-77151b6954c0}</UniqueIdentifier>
+      <UniqueIdentifier>{2ee1b681-6c74-4d5f-a3ae-bc51aca26b3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\AxesDrawing">
-      <UniqueIdentifier>{3d9abe35-a706-4a1b-9c17-2d76e32aab45}</UniqueIdentifier>
+      <UniqueIdentifier>{53a7c44b-9579-4028-baaa-0ae10353cf8e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{9555e937-c805-4ed2-80cf-d2a005e1c955}</UniqueIdentifier>
+      <UniqueIdentifier>{961d8ba8-213e-4ee1-b775-832fc2523c17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{976451c8-f78f-4065-aeb6-de6cdfb004ba}</UniqueIdentifier>
+      <UniqueIdentifier>{6505e19e-8c45-4440-8b7c-36e22fda6e6e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{8642c816-0eba-4c1b-9a87-e60d9f49748d}</UniqueIdentifier>
+      <UniqueIdentifier>{af25c10e-2213-4548-9faa-271a753e7c55}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{76e25c4c-e4c8-4a8a-8a2f-89a78724ea48}</UniqueIdentifier>
+      <UniqueIdentifier>{bd682af6-6fcf-42ea-ba6c-e8a4d0fc2c45}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1749,9 +1749,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\renderer.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="renderer_header.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
@@ -1764,11 +1761,19 @@
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
     <None Include="sci_gateway\renderer_gateway.xml" />
+    <None Include="locales\renderer.pot">
+      <Filter>localization</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\doublylinkedlist.lib">
+      <Filter>Libraries Dependencies</Filter>
+    </Library>
+    <Library Include="..\..\bin\libjvm.lib">
+      <Filter>Libraries Dependencies</Filter>
+    </Library>
   </ItemGroup>
 </Project>

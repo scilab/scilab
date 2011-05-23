@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{48417ee9-caba-413c-8fcc-59155a1aca3d}</UniqueIdentifier>
+      <UniqueIdentifier>{bff968d3-46db-41e0-acab-413874381f65}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{6df8e177-72d9-4fb8-818f-b8859e2dcb8c}</UniqueIdentifier>
+      <UniqueIdentifier>{59acd7b9-d0ab-420b-9d33-1747a5d5d97a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{dd98937c-c836-454b-b380-e8d26e6329d4}</UniqueIdentifier>
+      <UniqueIdentifier>{d0df262e-9c6a-498c-ad08-2defaabe4f95}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -168,17 +168,14 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\pvm.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Makefile.am" />
     <None Include="pvm.iss" />
     <None Include="sci_gateway\pvm_gateway.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\..\bin\sparse_f.lib" />
+    <None Include="locales\pvm.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
 </Project>

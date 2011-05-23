@@ -2,31 +2,43 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{b57b15f9-2aee-42eb-8013-1bb4f8421f7b}</UniqueIdentifier>
+      <UniqueIdentifier>{5fb5fcb3-8e79-4f4f-be4b-1e3ec7831a6b}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{67cf3887-9383-45e0-952f-9151ebb1a9dd}</UniqueIdentifier>
+      <UniqueIdentifier>{48209318-a936-4b66-8537-2bbb2efbce1e}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{953abc14-186a-4dc4-bfcf-70212d364ded}</UniqueIdentifier>
+      <UniqueIdentifier>{e3449aaf-b6ec-4470-b6a3-ff1a719141da}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5d65a9b1-5b80-4f5f-a595-6ecb497ce9e0}</UniqueIdentifier>
+      <UniqueIdentifier>{5daa5568-2dfb-4a38-91ea-48cf61ecb7ed}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{ffd43533-ec0f-4ef2-8df7-68565fcb9bd4}</UniqueIdentifier>
+      <UniqueIdentifier>{aba69fcb-6a8b-4ff2-8b93-a3a22d876916}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{0d992d75-2a84-4f60-bf0c-9a7816d802a2}</UniqueIdentifier>
+      <UniqueIdentifier>{120475e9-ee55-4057-a707-f57045a49c1d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\c\assembleEigenvectors.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="balanc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="chol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="det.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="DllmainLinear_algebra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eigen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra.c">
@@ -35,7 +47,28 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="hess.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="invert_matrix.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="issymmetric.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lsq.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qr.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rcond.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="schur.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="schurtable.c">
@@ -104,6 +137,9 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_zheev.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="svd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\sci_gateway\c\assembleEigenvectors.h">
@@ -132,9 +168,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\linear_algebra.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -144,7 +177,15 @@
     <None Include="..\..\linear_algebra.iss" />
     <None Include="..\..\sci_gateway\linear_algebra_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="slicot_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\locales\linear_algebra.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="linear_algebra.rc">
@@ -154,8 +195,5 @@
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />
     <Library Include="..\..\..\..\bin\lapack.lib" />
-    <Library Include="..\..\..\..\bin\slicot_f.lib" />
-    <Library Include="..\..\..\..\bin\linear_algebra_f.lib" />
-    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
   </ItemGroup>
 </Project>

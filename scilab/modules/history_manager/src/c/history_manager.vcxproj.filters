@@ -2,27 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{6616dcc5-f69b-4bfe-83eb-88d0f2471441}</UniqueIdentifier>
+      <UniqueIdentifier>{3e9edb55-21ae-441c-b074-6526c1716aff}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{3bfe846b-a423-452d-88d3-3e290eb27424}</UniqueIdentifier>
+      <UniqueIdentifier>{b6d462cc-b192-49e1-8c9e-0065b1ac93aa}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{c8956280-7655-48f2-8fe9-d5600ec73a18}</UniqueIdentifier>
+      <UniqueIdentifier>{2e89cea6-50aa-4d71-abc3-6ece5ebfc805}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{2e808030-9704-4b3f-b373-334fab3921cc}</UniqueIdentifier>
+      <UniqueIdentifier>{ee2326cd-837e-40e1-8363-5ac36f5340bb}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{65162aac-fafa-4565-8011-e44ac5265bcf}</UniqueIdentifier>
+      <UniqueIdentifier>{27ddd46d-e338-40ff-a71f-23f8cd7cf5a9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{09a1bccf-3b5c-4a0f-aca3-ccc6887f9344}</UniqueIdentifier>
+      <UniqueIdentifier>{bfbd935f-c181-49da-aafb-59f2d3c1bf1f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{2beeced8-787c-41fc-b95b-36996397d2e9}</UniqueIdentifier>
+      <UniqueIdentifier>{80234861-e418-4dd9-935f-522ec1f6fc55}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,7 +97,7 @@
     <ClInclude Include="..\..\includes\dynlib_history_manager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getCommentDateSession.h">
+    <ClInclude Include="..\..\includes\getCommentDateSession.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_history_manager.h">
@@ -123,9 +123,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\locales\en_US\history_manager.pot">
-      <Filter>localization</Filter>
-    </None>
     <None Include="..\jni\HistoryManagement.i">
       <Filter>Swig Files</Filter>
     </None>
@@ -144,13 +141,15 @@
     <None Include="localization_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Scilab_windows_Import.def">
+    <None Include="System_env_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\history_manager.iss" />
     <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="..\..\version.xml" />
+    <None Include="..\..\locales\history_manager.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="history_manager.rc">
