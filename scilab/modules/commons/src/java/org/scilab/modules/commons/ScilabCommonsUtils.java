@@ -12,6 +12,10 @@
 
 package org.scilab.modules.commons;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -21,6 +25,8 @@ import java.security.NoSuchAlgorithmException;
  * @author Calixte DENIZET
  */
 public final class ScilabCommonsUtils {
+
+    private static final int BUFFERSIZE = 8192;
 
     private static MessageDigest MD5;
     static {
@@ -46,4 +52,48 @@ public final class ScilabCommonsUtils {
         return new BigInteger(1, bytes).toString(16);
     }
 
+    /**
+     * Copy a file
+     * @param inFile src file
+     * @param outFile dest file
+     * @return true if the operation succeeded
+     */
+    public static boolean copyFile(File inFile, File outFile) {
+        FileReader in = null;
+        FileWriter out = null;
+        boolean success = false;
+
+        try {
+            in = new FileReader(inFile);
+            out = new FileWriter(outFile);
+            char[] buffer = new char[BUFFERSIZE];
+            int n;
+
+            while ((n = in.read(buffer)) != -1) {
+                out.write(buffer, 0, n);
+            }
+
+            success = true;
+        } catch (IOException e) {
+            System.err.println("Error in copying file " + inFile.getAbsolutePath() + " to " + outFile.getAbsolutePath());
+            System.err.println(e);
+        } finally {
+            if (in != null) {
+                try {
+                    in.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
+            if (out != null) {
+                try {
+                    out.close();
+                } catch (IOException e) {
+                    System.err.println(e);
+                }
+            }
+        }
+
+        return success;
+    }
 }
