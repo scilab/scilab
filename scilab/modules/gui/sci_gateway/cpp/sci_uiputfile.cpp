@@ -39,13 +39,10 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 	int nbRow = 0, nbCol = 0;
 	int nbRow2 = 0, nbCol2 = 0;
 	int nbRow3 = 0, nbCol3 = 0;
-	int nbRow4 = 0, nbCol4 = 0;
 
 	int nbRowOutSelection = 1, nbColOutSelection = 0;
 	int nbRowOutFilterIndex = 1, nbColOutFilterIndex = 1;
 	int nbRowOutPath = 1, nbColOutPath = 1;
-
-	int voidSelectionAdr = 0;
 
 	char *optName = NULL;
 
@@ -54,7 +51,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 	char **titleBox = NULL, *selectionPathName = NULL;
 	char ** initialDirectory = NULL;
 	int multipleSelection = 0;
-	int multipleSelectionAdr  = NULL;
 
 	char **selection = NULL;
 	char **selectionFileNames = NULL;
@@ -112,7 +108,6 @@ int sci_uiputfile(char *fname, unsigned long fname_len)
 	/* call uiputfile with 2 arg */
 	if (Rhs >= 2)
 	{
-		int out_n = 0;
 		char *path = NULL;
 
 		if (VarType(2) != sci_strings) 

@@ -1127,7 +1127,6 @@ int createScalarUnsignedInteger16(void* _pvCtx, int _iVar, unsigned short _usDat
 int createScalarUnsignedInteger32(void* _pvCtx, int _iVar, unsigned int _uiData)
 {
 	SciErr sciErr;
-	unsigned int* puiData = NULL;
 
 	sciErr = createMatrixOfUnsignedInteger32(_pvCtx, _iVar, 1, 1, &_uiData);
 	if(sciErr.iErr)

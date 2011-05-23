@@ -1,0 +1,15 @@
+LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+; elementary_functions_f
+dmmul_
+dmmul1_
+dexpm1_
+mtran_
+wexpm1_
+wmmul_
+wsqrt_
+urand_ 
+sciround_

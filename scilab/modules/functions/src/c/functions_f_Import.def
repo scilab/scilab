@@ -7,3 +7,6 @@ EXPORTS
 ; --------------------------------------- 
 intlib_
 whereismacro_
+intdeff_
+intexec_
+intexecstr_

@@ -110,7 +110,6 @@ BOOL HistoryFile::writeToFile(std::string filename)
 
         if (pFile)
         {
-            char *commentendsession = NULL;
             list<CommandLine>::iterator it_commands;
             for(it_commands=this->Commands.begin(); it_commands != this->Commands.end(); ++it_commands)
             {

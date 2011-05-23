@@ -12,6 +12,7 @@ c
 c     operations sur les matrices de handle
 c     
       include 'stack.h'
+      character tmpbuf * (bsiz)
       integer op
 c     
       integer dot,colon,quote
@@ -23,8 +24,8 @@ c
       op=fin
 c     
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') fin
-         call basout(io,wte,' hndlops op: '//buf(1:4))
+         write(tmpbuf(1:4),'(i4)') fin
+         call basout(io,wte,' hndlops op: '//tmpbuf(1:4))
       endif
 c     
 c     operations binaires et ternaires

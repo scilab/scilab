@@ -20,6 +20,7 @@ c
       integer varargin(nsiz),varargout(nsiz),id(nsiz)
       integer scivarindex
       integer p
+      character tmpbuf * (bsiz)
       equivalence (ival(1),val)
       data blank/40/,eol/99/
       data varargin/169544223,387059739,nz2*673720360/
@@ -30,9 +31,9 @@ c
 c
       r=rstk(pt)
       if (ddt .eq. 4) then
-         write(buf(1:18),'(2i4,i6)') pt,r,fin
-         call basout(io,wte,' macro  pt:'//buf(1:4)//' rstk(pt):'//
-     &        buf(5:8)//' fin:'//buf(9:14))
+         write(tmpbuf(1:18),'(2i4,i6)') pt,r,fin
+         call basout(io,wte,' macro  pt:'//tmpbuf(1:4)//' rstk(pt):'//
+     &        tmpbuf(5:8)//' fin:'//tmpbuf(9:14))
       endif
 c
       ir=r/100

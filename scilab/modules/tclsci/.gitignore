@@ -7,6 +7,7 @@ tclsci.def
 #
 includes/tcltk/
 src/notclsci/notclsci.def
+tcl/BWidget/
 tcl/tcl8.5/
 tcl/tcl8/
 tcl/tk8.5/

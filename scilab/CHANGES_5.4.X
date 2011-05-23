@@ -1,4 +1,4 @@
-            Changes between version 5.3.X and 5.4.0 of Scilab
+            Changes between version 5.3.2 and 5.4.0 of Scilab
             =================================================
 
 SciNotes:
@@ -87,6 +87,8 @@ Performance:
 Compilation:
 ============
 
+* Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
 * Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
@@ -110,6 +112,8 @@ Bug fixes:
                    and optimized.
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
+
+* bug 8863 fixed - The disabled test passes on the current build.
 
 * bug 9129 fixed - Completion on field did not propose graphics handle fields
                    by default.
