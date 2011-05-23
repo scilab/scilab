@@ -110,8 +110,6 @@ BOOL HistorySearch::search(void)
 
 			if ( strncmp(line.c_str(),this->my_token.c_str(),strlen(this->my_token.c_str())) == 0 )
 			{
-				char *ptrLine = NULL;
-
 				i++;
 				if (this->my_lines) this->my_lines = (char**)REALLOC(this->my_lines,i*(sizeof(char*)));
 				else this->my_lines = (char**)MALLOC(i*(sizeof(char*)));
@@ -147,7 +145,6 @@ BOOL HistorySearch::search(void)
 		{
 			std::string line = (*it_commands).get();
 			{
-				char *ptrLine = NULL;
 				i++;
 				if (this->my_lines) this->my_lines = (char**)REALLOC(this->my_lines,i*(sizeof(char*)));
 				else this->my_lines = (char**)MALLOC(i*(sizeof(char*)));

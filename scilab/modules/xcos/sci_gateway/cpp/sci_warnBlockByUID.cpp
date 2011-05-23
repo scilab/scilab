@@ -38,7 +38,6 @@ int sci_warnBlockByUID(char *fname,unsigned long fname_len)
 
 	int m1 = 0, n1 = 0;
 	int *piAddressVarOne = NULL;
-	int m2 = 0, n2 = 0;
 	int *piAddressVarTwo = NULL;
 
 	char *pStVarOne = NULL;

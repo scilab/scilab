@@ -1,0 +1,8 @@
+	LIBRARY    fileio.dll
+
+
+EXPORTS
+;
+;fileio
+mputi_
+mgetnc_

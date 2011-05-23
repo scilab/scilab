@@ -1,0 +1,10 @@
+	LIBRARY    linear_algebra.dll
+
+
+EXPORTS
+;
+;linear_algebra
+;
+intinv_
+intbackslash_
+intslash_

@@ -23,7 +23,7 @@ extern void  C2F(zbeshv) (double *xr,double *xi,int* nx, double *alpha,
 int sci_besselh(char *fname,unsigned long fname_len)
 {
     int m1 = 0, n1 = 0, l1 = 0, m2 = 0, n2 = 0, it2 = 0, l2 = 0, l2i = 0, mr = 0;
-    int nr = 0, itr = 0, lr = 0, li = 0, lw = 0, lwr = 0, rhs1 = 0, lwi = 0;
+    int nr = 0, itr = 0, lr = 0, li = 0, lwr = 0, rhs1 = 0, lwi = 0;
     int r1 = 0, r2 = 0, na = 0, nx = 0, kode = 0, lpos = 0;
     int un = 1, ierr = 0;
     int K = 0;

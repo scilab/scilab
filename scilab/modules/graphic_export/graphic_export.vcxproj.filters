@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\cpp">
+      <UniqueIdentifier>{f4ab7f90-5f5b-483d-8e92-7012c652b3ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\c">
+      <UniqueIdentifier>{502e9a4c-bb06-455c-8d11-a4305274866b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\h">
+      <UniqueIdentifier>{5aff4dcd-99ac-4a5c-8e52-dbd9fb43a4b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\hxx">
+      <UniqueIdentifier>{a7b0044a-2c69-410f-87cb-d993c38a3e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{ecc8c744-a38e-4b5e-b756-8cd3db39149f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Swig Files">
+      <UniqueIdentifier>{bbdfe59c-b5ef-4aaf-85d0-9e740266cca4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{25023111-5ef7-4ca5-aefc-8e034eebac17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{de518bb0-eaaf-4e2d-997b-55ec528f6b4c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\jni\GiwsException.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\exportToFile.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\FileExporter.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GL2PSConstant.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\GL2PSToJOGL.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GL2PSWrapping.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\JOGLConstant.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\JoGLInterface.cpp">
+      <Filter>Source Files\cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\DllmainGraphics_export.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\gl2ps\gl2ps.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\GL2PSConstant_wrap.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\GL2PSWrapping_wrap.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_graphic_export.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2bmp.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2eps.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2gif.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2jpg.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2pdf.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2png.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2ppm.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2ps.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xs2svg.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\xs2file.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\jni\GiwsException.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\dynlib_graphic_export.h">
+      <Filter>Header Files\h</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\gl2ps\gl2ps.h">
+      <Filter>Header Files\h</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\gw_graphic_export.h">
+      <Filter>Header Files\h</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\JoGLInterface.h">
+      <Filter>Header Files\h</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\xs2file.h">
+      <Filter>Header Files\h</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\exportToFile.hxx">
+      <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\FileExporter.hxx">
+      <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\GL2PSConstant.hxx">
+      <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\GL2PSWrapping.hxx">
+      <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+    <ClInclude Include="src\jni\JOGLConstant.hxx">
+      <Filter>Header Files\hxx</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="graphic_export.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="graphics_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="renderer_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="graphic_export.iss" />
+    <None Include="sci_gateway\graphic_export_gateway.xml" />
+    <None Include="Makefile.am" />
+  </ItemGroup>
+</Project>

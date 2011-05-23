@@ -1,0 +1,416 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>linear_algebra_f</ProjectName>
+    <ProjectGuid>{3735EFF9-925B-45B1-82CF-762658E69E70}</ProjectGuid>
+    <RootNamespace>linear_algebra_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build linear_algebra_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
+copy *.def linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;linear_algebra.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>linear_algebra_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build linear_algebra_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
+copy *.def linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;linear_algebra.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>linear_algebra_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build linear_algebra_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
+copy *.def linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;linear_algebra.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>linear_algebra_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Dependencies</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)linear_algebra_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linear_algebra.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LINEAR_ALGEBRA_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build linear_algebra_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\bin\dumpexts -o %%~nf.def -n linear_algebra_f.dll %%f &gt;nul
+copy *.def linear_algebra_f.def &gt;nul
+copy linear_algebra_f.def ..\linear_algebra_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy linear_algebra_f_header.def+linear_algebra_f.vcdef linear_algebra_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;linear_algebra.lib;output_stream.lib;elementary_functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>linear_algebra_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\fortran\bschur.c" />
+    <ClCompile Include="common_f2c.c" />
+    <ClCompile Include="complexify.c" />
+    <ClCompile Include="DGELSY1.c" />
+    <ClCompile Include="doldqr.c" />
+    <ClCompile Include="intddet.c" />
+    <ClCompile Include="intdgebal.c" />
+    <ClCompile Include="intdgecon.c" />
+    <ClCompile Include="intdgees0.c" />
+    <ClCompile Include="intdgees1.c" />
+    <ClCompile Include="intdgehrd.c" />
+    <ClCompile Include="intdgelsy.c" />
+    <ClCompile Include="intdgeqpf3.c" />
+    <ClCompile Include="intdgeqpf4.c" />
+    <ClCompile Include="intdgesv3.c" />
+    <ClCompile Include="intdgesv4.c" />
+    <ClCompile Include="intdgesvd1.c" />
+    <ClCompile Include="intdgesvd2.c" />
+    <ClCompile Include="intdgetrf.c" />
+    <ClCompile Include="intdgetri.c" />
+    <ClCompile Include="intdggbal.c" />
+    <ClCompile Include="intdgges.c" />
+    <ClCompile Include="intdoldsvd.c" />
+    <ClCompile Include="intdpotrf.c" />
+    <ClCompile Include="intfschur.c" />
+    <ClCompile Include="intgschur.c" />
+    <ClCompile Include="intogschur.c" />
+    <ClCompile Include="intoschur.c" />
+    <ClCompile Include="intozgschur.c" />
+    <ClCompile Include="intzdet.c" />
+    <ClCompile Include="intzfschur.c" />
+    <ClCompile Include="intzgebal.c" />
+    <ClCompile Include="intzgecon.c" />
+    <ClCompile Include="intzgees0.c" />
+    <ClCompile Include="intzgees1.c" />
+    <ClCompile Include="intzgehrd.c" />
+    <ClCompile Include="intzgelsy.c" />
+    <ClCompile Include="intzgeqpf3.c" />
+    <ClCompile Include="intzgeqpf4.c" />
+    <ClCompile Include="intzgesv3.c" />
+    <ClCompile Include="intzgesv4.c" />
+    <ClCompile Include="intzgesvd1.c" />
+    <ClCompile Include="intzgesvd2.c" />
+    <ClCompile Include="intzgetrf.c" />
+    <ClCompile Include="intzgetri.c" />
+    <ClCompile Include="intzggbal.c" />
+    <ClCompile Include="intzgges.c" />
+    <ClCompile Include="intzgschur.c" />
+    <ClCompile Include="intzoldsvd.c" />
+    <ClCompile Include="intzpotrf.c" />
+    <ClCompile Include="intzschur.c" />
+    <ClCompile Include="issymmetric.c" />
+    <ClCompile Include="scischur.c" />
+    <ClCompile Include="writebuf.c" />
+    <ClCompile Include="zoldqr.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bschur.f" />
+    <f2c_rule Include="complexify.f" />
+    <f2c_rule Include="DGELSY1.f" />
+    <f2c_rule Include="doldqr.f" />
+    <f2c_rule Include="intddet.f" />
+    <f2c_rule Include="intdgebal.f" />
+    <f2c_rule Include="intdgecon.f" />
+    <f2c_rule Include="intdgees0.f" />
+    <f2c_rule Include="intdgees1.f" />
+    <f2c_rule Include="intdgehrd.f" />
+    <f2c_rule Include="intdgelsy.f" />
+    <f2c_rule Include="intdgeqpf3.f" />
+    <f2c_rule Include="intdgeqpf4.f" />
+    <f2c_rule Include="intdgesv3.f" />
+    <f2c_rule Include="intdgesv4.f" />
+    <f2c_rule Include="intdgesvd1.f" />
+    <f2c_rule Include="intdgesvd2.f" />
+    <f2c_rule Include="intdgetrf.f" />
+    <f2c_rule Include="intdgetri.f" />
+    <f2c_rule Include="intdggbal.f" />
+    <f2c_rule Include="intdgges.f" />
+    <f2c_rule Include="intdoldsvd.f" />
+    <f2c_rule Include="intdpotrf.f" />
+    <f2c_rule Include="intfschur.f" />
+    <f2c_rule Include="intgschur.f" />
+    <f2c_rule Include="intogschur.f" />
+    <f2c_rule Include="intoschur.f" />
+    <f2c_rule Include="intozgschur.f" />
+    <f2c_rule Include="intzdet.f" />
+    <f2c_rule Include="intzfschur.f" />
+    <f2c_rule Include="intzgebal.f" />
+    <f2c_rule Include="intzgecon.f" />
+    <f2c_rule Include="intzgees0.f" />
+    <f2c_rule Include="intzgees1.f" />
+    <f2c_rule Include="intzgehrd.f" />
+    <f2c_rule Include="intzgelsy.f" />
+    <f2c_rule Include="intzgeqpf3.f" />
+    <f2c_rule Include="intzgeqpf4.f" />
+    <f2c_rule Include="intzgesv3.f" />
+    <f2c_rule Include="intzgesv4.f" />
+    <f2c_rule Include="intzgesvd1.f" />
+    <f2c_rule Include="intzgesvd2.f" />
+    <f2c_rule Include="intzgetrf.f" />
+    <f2c_rule Include="intzgetri.f" />
+    <f2c_rule Include="intzggbal.f" />
+    <f2c_rule Include="intzgges.f" />
+    <f2c_rule Include="intzgschur.f" />
+    <f2c_rule Include="intzoldsvd.f" />
+    <f2c_rule Include="intzpotrf.f" />
+    <f2c_rule Include="intzschur.f" />
+    <f2c_rule Include="issymmetric.f" />
+    <f2c_rule Include="scischur.f" />
+    <f2c_rule Include="writebuf.f" />
+    <f2c_rule Include="zoldqr.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\sci_gateway\linear_algebra_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\elementary_functions\src\fortran\elementary_functions_f2c.vcxproj">
+      <Project>{dbc45b0d-6e0a-4107-b284-5a3b0c5bb50d}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>
