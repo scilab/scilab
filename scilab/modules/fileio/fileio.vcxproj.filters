@@ -229,9 +229,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="io_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="LibScilab_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
@@ -249,10 +246,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
-    <Library Include="..\..\bin\lapack.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="includes\addfile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -266,6 +259,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\delfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\do_xxscanf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\dynlib_fileio.h">
@@ -346,6 +342,9 @@
     <ClInclude Include="includes\removedir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\scanf_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="includes\scicurdir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -353,15 +352,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\URIFileToFilename.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\scilab_sscanf.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\do_xxscanf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\scanf_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -18,18 +18,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\scilabexception.cpp">
+    <ClCompile Include="..\src\cpp\scilabexception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\dynlib_ast_tools.hxx">
+    <ClInclude Include="..\includes\dynlib_ast_tools.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\location.hxx">
+    <ClInclude Include="..\includes\location.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\scilabexception.hxx">
+    <ClInclude Include="..\includes\scilabexception.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -39,7 +39,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\bin\blasplus.lib" />
-    <Library Include="..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

@@ -326,15 +326,8 @@
     <ResourceCompile Include="libscilab.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\modules\gui\src\c\wsci\resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\LibScilab.def" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\modules\abstractSyntaxTree\abstractSyntaxTree-tools.vcxproj">
+    <ProjectReference Include="..\..\modules\abstractSyntaxTree\abstractSyntaxTree-tools\abstractSyntaxTree-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\..\modules\abstractSyntaxTree\abstractSyntaxTree.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>

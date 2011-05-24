@@ -178,7 +178,7 @@
     <Library Include="..\..\..\..\bin\libintl.lib" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\abstractSyntaxTree\abstractSyntaxTree-tools.vcxproj">
+    <ProjectReference Include="..\..\..\abstractSyntaxTree\abstractSyntaxTree-tools\abstractSyntaxTree-tools.vcxproj">
       <Project>{1f4a0344-99ed-461b-bd53-1593788fb34d}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">

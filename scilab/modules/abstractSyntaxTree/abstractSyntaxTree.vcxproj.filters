@@ -176,9 +176,6 @@
     <ClInclude Include="includes\printvisitor.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\returnexp.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -116,9 +116,6 @@
     <ClInclude Include="includes\dynlib_jvm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\getClasspath.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\getJvmOptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
