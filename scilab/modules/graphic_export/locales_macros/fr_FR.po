@@ -28,57 +28,57 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s : Incapable de créer un fichier d'export, permission refusée.\n"
+msgstr "%s : Incapable de créer un fichier d''export, permission refusée.\n"
 
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
-msgstr "%s : Incapable d'exécuter pstoedit.\n"
+msgstr "%s : Incapable d''exécuter pstoedit.\n"
 
 #, fuzzy, c-format
 msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s : Incapable d'exécuter pstoedit.\n"
+msgstr "%s : Incapable d''exécuter pstoedit.\n"
 
 #, c-format
 msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
 "to be able to use this feature.\n"
 msgstr ""
-"%s : Impossible de localiser pstoedit. Installer pstoedit ou l'ajouter au "
-"PATH pour être capable d'utiliser cette fonctionnalité.\n"
+"%s : Impossible de localiser pstoedit. Installer pstoedit ou l''ajouter au "
+"PATH pour être capable d''utiliser cette fonctionnalité.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s : Mauvais nombre d'arguments d'entrée : Chaîne de caractères attendue "
+"%s : Mauvais nombre d''arguments d''entrée : Chaîne de caractères attendue "
 "avec les drivers ''%s'', ''%s'', ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s : Mauvais nombre d'arguments d'entrée : La fonction n'a pas d'argument "
-"d'entrée avec les drivers ''%s'' ou ''%s''.\n"
+"%s : Mauvais nombre d''arguments d''entrée : La fonction n''a pas d''argument "
+"d''entrée avec les drivers ''%s'' ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Entier attendu.\n"
+msgstr "%s : Mauvais type pour l''argument d''entrée n°%d : Entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : ''%s'' ou ''%s'' "
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : ''%s'' ou ''%s'' "
 "attendu.\n"
 
 #, c-format
@@ -86,7 +86,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour le paramètre d'entrée #%d : ''%s'', ''%s'', "
+"%s : Mauvaise valeur pour le paramètre d''entrée #%d : ''%s'', ''%s'', "
 "''%s'', ''%s'', ''%s'' ou ''%s'' attendue.\n"
 
 #

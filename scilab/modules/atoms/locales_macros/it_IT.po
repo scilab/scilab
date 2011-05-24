@@ -91,7 +91,7 @@ msgstr "%s: Si è verificato un errore durante il caricamento di ''%s-%s'':\n"
 
 #, c-format
 msgid "%s: Another version of the package %s is already loaded : %s\n"
-msgstr "%s: È già caricata un'altra versione del pacchetto %s : %s\n"
+msgstr "%s: È già caricata un''altra versione del pacchetto %s : %s\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package ''%s''\n"
@@ -108,7 +108,7 @@ msgstr "%s: Errore durante la creazione della directory ''%s''.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"
-msgstr "%s: L'estrazione del file DESCRIPTION (''%s'') è fallita.\n"
+msgstr "%s: L''estrazione del file DESCRIPTION (''%s'') è fallita.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -146,7 +146,7 @@ msgstr "%s: Il file config (''%s'') non è formattato bene alla riga %d\n"
 
 #, c-format
 msgid "%s: The dependency tree cannot be resolved.\n"
-msgstr "%s: L'albero delle dipendenze non può essere risolto.\n"
+msgstr "%s: L''albero delle dipendenze non può essere risolto.\n"
 
 #, c-format
 msgid "%s: The description is not well formated at line %d\n"
@@ -194,7 +194,7 @@ msgstr "%s: Il file scaricato non verifica lo MD5SUM:\n"
 
 #, c-format
 msgid "%s: The extraction of the archive ''%s'' has failed.\n"
-msgstr "%s: L'estrazione dell'archivio ''%s'' è fallita.\n"
+msgstr "%s: L''estrazione dell''archivio ''%s'' è fallita.\n"
 
 #, c-format
 msgid "%s: The file %s doesn''t exist or is not read accessible.\n"
@@ -238,7 +238,7 @@ msgid ""
 "to the autoload list for all users:\n"
 msgstr ""
 "%s: Il seguente modulo è installato nella sezione utente,non è possibile "
-"aggiungerlo all'elenco autoload per tutti gli utenti:\n"
+"aggiungerlo all''elenco autoload per tutti gli utenti:\n"
 
 #, c-format
 msgid "%s: The following module is not installed:\n"
@@ -276,7 +276,7 @@ msgid ""
 "%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una lunghezza sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una lunghezza sbagliata: era attesa una "
 "stringa lunga 32 caratteri.\n"
 
 #, c-format
@@ -323,45 +323,45 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe 1x1 o 1x2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe 1x2.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: Era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: Era attesa una "
 "matrice di stringhe 1x1 o 1x2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "valore booleano.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "singola stringa.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx1 o mx2.\n"
 
 #, c-format
@@ -369,7 +369,7 @@ msgid ""
 "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx1, mx2 o mx3.\n"
 
 #, c-format
@@ -377,112 +377,112 @@ msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx1, mx2 o mx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx2 o mx3.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice di stringhe mx3.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
 "booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
 "booleano.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un booleano "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un booleano "
 "o un stringa singola.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una struct.\n"
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una struct.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa attesa una "
 "lista tipizzata orientata alle matrici.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
-msgstr "%s: L'argomento #%d è di tipo sbagliato: era attesa una mlist.\n"
+msgstr "%s: L''argomento #%d è di tipo sbagliato: era attesa una mlist.\n"
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
 "package name.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere il nome "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere il nome "
 "di un pacchetto di Atoms.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
 msgstr ""
-"%s: Valore errato per l'argomento in ingresso #%d: ''%s'' non è una "
+"%s: Valore errato per l''argomento in ingresso #%d: ''%s'' non è una "
 "categoria registrata"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' is not a valid URL.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: ''%s'' non è un URL "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: ''%s'' non è un URL "
 "valido.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr ""
-"%s: Valore errato per l'argomento in ingresso #%d: era atteso ''all'' o "
+"%s: Valore errato per l''argomento in ingresso #%d: era atteso ''all'' o "
 "''main''.\n"
 
 #, c-format
@@ -490,7 +490,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
 "''session'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
 "''all'',''allusers'',''user'' o ''session''.\n"
 
 #, c-format
@@ -498,7 +498,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
 "''official'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''all'', "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''all'', "
 "''user'', ''allusers'' o ''official''.\n"
 
 #, c-format
@@ -506,21 +506,21 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valore errato per l'argomento in ingresso #%d: era atteso ''filter:"
+"%s: Valore errato per l''argomento in ingresso #%d: era atteso ''filter:"
 "all'',''filter:main'' o una categoria valida.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
 "''system'' o ''install'' .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''user''' "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''user''' "
 "o ''allusers''.\n"
 
 #, c-format
@@ -528,7 +528,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: L'argomento #%d in ingresso ha un valore sbagliato: era atteso ''user'' "
+"%s: L''argomento #%d in ingresso ha un valore sbagliato: era atteso ''user'' "
 "o ''alluser'' o ''all''.\n"
 
 #, c-format
@@ -536,7 +536,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''user'', "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''user'', "
 "''allusers'' o ''all''.\n"
 
 #, c-format
@@ -544,26 +544,26 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso "
 "''user''', ''allusers'' o ''all''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: Era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: Era attesa una "
 "categoria valida.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ASC o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ASC o "
 "DESC.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
 "impostata la versione di tutti i moduli.\n"
 
 #, c-format
@@ -571,20 +571,20 @@ msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named "
 "''%s''.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: dovrebbe avere un "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: dovrebbe avere un "
 "campo chiamato ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attese le "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: erano attese le "
 "lettere ''A'' o ''I''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be a atoms package name.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere il nome "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere il nome "
 "di un pacchetto di Atoms.\n"
 
 #, c-format
@@ -592,7 +592,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: Single string that ends with .tar."
 "gz, .tgz or .zip expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa singola che finisce per .tar.gz, .tgz o .zip.\n"
 
 #, c-format
@@ -600,7 +600,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
 "or ''DESCRIPTION'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che contenga ''TOOLBOXES'' o ''DESCRIPTION'' .\n"
 
 #, c-format
@@ -608,7 +608,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che finisca con DESCRIPTION.\n"
 
 #, c-format
@@ -616,7 +616,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che inizi con ''http://'',''ftp://'' o ''file://''.\n"
 
 #, c-format
@@ -624,17 +624,17 @@ msgid ""
 "%s: Wrong value for input argument #%d: The matrix oriented typed list is "
 "not well formatted.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: la lista tipizzata "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: la lista tipizzata "
 "orientata alle matrici non è formattata bene.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This ("
-msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato: questo ("
+msgstr "%s: L''argomento in ingresso #%d ha un valore sbagliato: questo ("
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: non è una versione "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: non è una versione "
 "valida.\n"
 
 #, c-format
@@ -642,14 +642,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: This is not a valid version/"
 "dependency.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: questa non è una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: questa non è una "
 "versione/dipendenza valida.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''error'' "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''error'' "
 "o ''warning''.\n"
 
 #, c-format
@@ -799,7 +799,7 @@ msgstr "Elimina"
 msgid "Remove done! Please restart Scilab to take changes into account. "
 msgstr ""
 "Rimozione eseguita! Riavviare Scilab per rendere effettive le variazioni "
-"nell'account. "
+"nell''account. "
 
 msgid "Remove failed!"
 msgstr "Rimozione fallita!"

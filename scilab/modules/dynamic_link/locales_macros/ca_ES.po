@@ -34,12 +34,12 @@ msgstr ""
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr ""
-"   %s: No s'ha copiat el %s: Els directoris d'origen i de destí són els "
+"   %s: No s''ha copiat el %s: Els directoris d''origen i de destí són els "
 "mateixos (%s).\n"
 
 #, c-format
 msgid "   %s: File %s ignored.\n"
-msgstr "   %s: S'ignora el fitxer %s.\n"
+msgstr "   %s: S''ignora el fitxer %s.\n"
 
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
@@ -55,14 +55,14 @@ msgstr "   %s: Substitueix la referència pel fitxer actual.\n"
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
-msgstr "   %s: Utilitzar l'anterior detecció del compilador.\n"
+msgstr "   %s: Utilitzar l''anterior detecció del compilador.\n"
 
 #, c-format
 msgid "   %s: configure : Generate Makefile.\n"
 msgstr "   %s: Configuració: Generació del Makefile.\n"
 
 msgid "   Building shared library (be patient)\n"
-msgstr "   S'està generant la llibreria compartida (sigueu pacient)\n"
+msgstr "   S''està generant la llibreria compartida (sigueu pacient)\n"
 
 #, c-format
 msgid "   Command: %s\n"
@@ -82,7 +82,7 @@ msgid "   Generate a cleaner file\n"
 msgstr "   Genera un fitxer de neteja\n"
 
 msgid "   Generate a gateway file\n"
-msgstr "   Genera un fitxer de porta d'enllaç\n"
+msgstr "   Genera un fitxer de porta d''enllaç\n"
 
 msgid "   Generate a loader file\n"
 msgstr "   Genera un fitxer de càrrega\n"
@@ -92,18 +92,18 @@ msgid "   Output: %s\n"
 msgstr "   Sortida: %s\n"
 
 msgid "   Running the Makefile\n"
-msgstr "   S'està executant el Makefile\n"
+msgstr "   S''està executant el Makefile\n"
 
 msgid "   Running the makefile\n"
-msgstr "   S'està executant el makefile\n"
+msgstr "   S''està executant el makefile\n"
 
 #, c-format
 msgid "   stderr: %s\n"
-msgstr "   Sortida d'error: %s\n"
+msgstr "   Sortida d''error: %s\n"
 
 #, fuzzy, c-format
 msgid "%s: %s already loaded in scilab."
-msgstr "%s: Ja s'ha carregat de la llibreria %s\n"
+msgstr "%s: Ja s''ha carregat de la llibreria %s\n"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -111,22 +111,22 @@ msgstr "%s: Es necessita un compilador de Fortran o de C.\n"
 
 #, fuzzy, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d.\n"
+msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 
 #, fuzzy, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d.\n"
+msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
-msgstr "%s: S'ha produït un error en la compilació:\n"
+msgstr "%s: S''ha produït un error en la compilació:\n"
 
 #, c-format
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
 msgstr ""
-"%s: S'ha produït un error en la detecció del compilador. Establiu "
+"%s: S''ha produït un error en la detecció del compilador. Establiu "
 "ilib_verbose(2) per més informació.\n"
 
 #, c-format
@@ -139,7 +139,7 @@ msgstr "%s: Comanda de generació: %s\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+msgstr "%s: No s''ha pogut obrir el fitxer %s.\n"
 
 #
 # File: macros/ilib_compile.sci, line: 184
@@ -155,7 +155,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
-msgstr "%s: S'ha produït un error en modificar la referència del Makefile:\n"
+msgstr "%s: S''ha produït un error en modificar la referència del Makefile:\n"
 
 #
 # File: macros/ilib_include_flag.sci, line: 21
@@ -178,7 +178,7 @@ msgstr "%s: El fitxer %s no existeix.\n"
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
-msgstr "%s: Aquesta característica s'ha implementat per a Windows.\n"
+msgstr "%s: Aquesta característica s''ha implementat per a Windows.\n"
 
 #, c-format
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
@@ -191,91 +191,91 @@ msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
 msgstr ""
-"%s: Avís: La compilació no ha retornat cap codi d'error, però la sortida "
-"d'errors no és buida:\n"
+"%s: Avís: La compilació no ha retornat cap codi d''error, però la sortida "
+"d''errors no és buida:\n"
 
 #, c-format
 msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: Avís: L'Scilab no ha pogut trobar on són les fonts de Scilab. Obriu un "
-"informe d'error a http://bugzilla.scilab.org/\n"
+"%s: Avís: L''Scilab no ha pogut trobar on són les fonts de Scilab. Obriu un "
+"informe d''error a http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+msgstr "%s: El nombre d''arguments d''entrada és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser %d,%d o %d.\n"
+"%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser %d,%d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Com a mínim han de ser "
+"%s: El nombre d''arguments d''entrada és incorrecte: Com a mínim han de ser "
 "%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+msgstr "%s: L''argument d''entrada #%d té una mida incorrecta.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d.\n"
+msgstr "%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "caràcters < 999.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
 "de text.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '''' o "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser '''' o "
 "''[]''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un "
-"d'aquests {%s}.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un "
+"d''aquests {%s}.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
+"%s: L''argument d''entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Es necessita un compilador de Fortran o de C."
@@ -302,4 +302,4 @@ msgstr ""
 
 #, c-format
 msgid "stderr: %s\n"
-msgstr "Sortida d'error: %s\n"
+msgstr "Sortida d''error: %s\n"

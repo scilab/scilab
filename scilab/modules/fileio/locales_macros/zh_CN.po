@@ -115,4 +115,4 @@ msgstr ""
 
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s：警告：目录 '%s' 已经存在。\n"
+msgstr "%s：警告：目录 ''%s'' 已经存在。\n"

@@ -19,93 +19,93 @@ msgstr ""
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
-msgstr "%s: L'expression donnée n'a pas de valeur.\n"
+msgstr "%s: L''expression donnée n''a pas de valeur.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
-msgstr "%s : Cette fonctionnalité n'a pas été implémentée : %s.\n"
+msgstr "%s : Cette fonctionnalité n''a pas été implémentée : %s.\n"
 
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
 msgstr ""
-"%s : Cette fonctionnalité n'a pas encore été implémentée : Traduction d'une "
+"%s : Cette fonctionnalité n''a pas encore été implémentée : Traduction d''une "
 "variable du type %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un caractères ou un "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un caractères ou un "
 "vecteur de caractères attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un entier attendu.\n"
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: ''%s'' attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: ''%s'' attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
-"%s : Mauvais type d'argument d'entrée #%d : Un tableau de chaînes de "
+"%s : Mauvais type d''argument d''entrée #%d : Un tableau de chaînes de "
 "caractères est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Un entier attendu.\n"
+msgstr "%s : Mauvais type pour l''argument d''entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Matrice réelle ou complexe, "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Matrice réelle ou complexe, "
 "matrice de chaîne de caractères ou list attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée : Chaîne de caractère attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée : Chaîne de caractère attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
-"%s: valeur erronée pour l'argument de saisie %d: %s, %s ou %s attendu.\n"
+"%s: valeur erronée pour l''argument de saisie %d: %s, %s ou %s attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un entier non-négatif "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Un entier non-négatif "
 "attendu.\n"

@@ -43,15 +43,15 @@ msgstr "%s : Le fichier %s ne contient aucune fonction.\n"
 
 #, c-format
 msgid "%s: File %s doesn''t exist.\n"
-msgstr "%s : Le fichier %s n'existe pas.\n"
+msgstr "%s : Le fichier %s n''existe pas.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr "%s:  Je ne peux trouver aucun fichier avec l'extension %s dans %s\n"
+msgstr "%s:  Je ne peux trouver aucun fichier avec l''extension %s dans %s\n"
 
 #, c-format
 msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s : Impossible d'ouvrir le fichier %s en écriture\n"
+msgstr "%s : Impossible d''ouvrir le fichier %s en écriture\n"
 
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
@@ -59,11 +59,11 @@ msgstr "%s : Fonction incorrecte dans le fichier %s.\n"
 
 #, c-format
 msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s : Pas de fichiers avec l'extension %s trouvés dans %s\n"
+msgstr "%s : Pas de fichiers avec l''extension %s trouvés dans %s\n"
 
 #, c-format
 msgid "%s: Please check: %s\n"
-msgstr "%s : Vérifier s'il vous plait : %s\n"
+msgstr "%s : Vérifier s''il vous plait : %s\n"
 
 #
 # File: macros/warnobsolete.sci, line: 21
@@ -81,7 +81,7 @@ msgstr "%s : Régénère noms et bibliothèques\n"
 
 #, c-format
 msgid "%s: The function has not been built for profiling"
-msgstr "%s : La fonction n'a pas été construite pour le profiling"
+msgstr "%s : La fonction n''a pas été construite pour le profiling"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -94,47 +94,47 @@ msgstr "%s : Attention : Erreur dans le fichier %s : %s. Fichier ignoré\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n°%d.\n"
+msgstr "%s : Mauvais type pour l''argument d''entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Un caractère attendu.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d : Un caractère attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Fonction Scilab attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d : Fonction Scilab attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un nom de fonction "
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Un nom de fonction "
 "Scilab est attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Nom de fonction Scilab "
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Nom de fonction Scilab "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
-"%s : Mauvaises valeurs pour l'argument d'entrée : Pas de données de profil "
+"%s : Mauvaises valeurs pour l''argument d''entrée : Pas de données de profil "
 "dans la fonction\n"
 
 #, c-format
@@ -185,7 +185,7 @@ msgstr "Pas de variable nommée : %s"
 
 #, c-format
 msgid "Please use %s instead."
-msgstr "Utilisez plutôt %s s'il vous plait."
+msgstr "Utilisez plutôt %s s''il vous plait."
 
 #, c-format
 msgid "This feature will be permanently removed in Scilab %s"

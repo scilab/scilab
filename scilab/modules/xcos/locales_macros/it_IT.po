@@ -59,11 +59,11 @@ msgstr "%s: È impossibile esportare la tavolozza ad hdf5.\n"
 
 #, c-format
 msgid "%s: Unable to generate the image %s.\n"
-msgstr "%s: È impossibile generare l'immagine %s.\n"
+msgstr "%s: È impossibile generare l''immagine %s.\n"
 
 #, c-format
 msgid "%s: Unable to generate the palette icon : %s already exists.\n"
-msgstr "%s: È impossibile generaree l'icona della tavolozza: %s già esiste.\n"
+msgstr "%s: È impossibile generaree l''icona della tavolozza: %s già esiste.\n"
 
 #, c-format
 msgid "%s: Unable to import data from %s"
@@ -85,7 +85,7 @@ msgstr ""
 
 #, fuzzy, c-format
 msgid "%s: Wrong input argument %s: svg, gif or jpg expected.\n"
-msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso svg o gif.\n"
+msgstr "%s: L''argomento in ingresso %s è sbagliato: era atteso svg o gif.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -126,40 +126,40 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for argument %d: diagram structure expected"
 msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una struttura "
+"%s: L''argomento in ingresso %d è di tipo sbagliato: era attesa una struttura "
 "di diagramma"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un blocco.\n"
+"%s: L''argomento in ingresso %s è di tipo sbagliato: era atteso un blocco.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: file non trovato.\n"
+"%s: L''argomento in ingresso %s è di tipo sbagliato: file non trovato.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un booleano.\n"
+"%s: L''argomento in ingresso %s è di tipo sbagliato: era atteso un booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: era atteso un "
+"%s: L''argomento in ingresso %s è di tipo sbagliato: era atteso un "
 "diagramma.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
+"%s: L''argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
 "di percorso di directory.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
+"%s: L''argomento in ingresso %s è di tipo sbagliato: era attesa una stringa "
 "di percorso completo.\n"
 
 #, c-format
@@ -170,43 +170,43 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: handle type expected.\n"
-msgstr "%s: L'argomento in ingresso %s è sbagliato: era atteso un gestore.\n"
+msgstr "%s: L''argomento in ingresso %s è sbagliato: era atteso un gestore.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è sbagliato: era attesa una tavolozza.\n"
+"%s: L''argomento in ingresso %s è sbagliato: era attesa una tavolozza.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è sbagliato: era attesa una tavolozza o un "
+"%s: L''argomento in ingresso %s è sbagliato: era attesa una tavolozza o un "
 "persorso.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: path string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa di "
+"%s: L''argomento in ingresso %s è sbagliato: era attesa una stringa di "
 "percorso.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string expected.\n"
-msgstr "%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
+msgstr "%s: L''argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string or struct expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa o una "
+"%s: L''argomento in ingresso %s è sbagliato: era attesa una stringa o una "
 "struct.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
-msgstr "%s: L'argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
+msgstr "%s: L''argomento in ingresso %s è sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s è sbagliato: era atteso un vettore di "
+"%s: L''argomento in ingresso %s è sbagliato: era atteso un vettore di "
 "stringhe.\n"
 
 #, fuzzy, c-format
@@ -214,13 +214,13 @@ msgid ""
 "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s ha un valore sbagliato: era atteso un file "
+"%s: L''argomento in ingresso %s ha un valore sbagliato: era atteso un file "
 "esistente.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument %s: An existing file expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %s ha un valore sbagliato: era atteso un file "
+"%s: L''argomento in ingresso %s ha un valore sbagliato: era atteso un file "
 "esistente.\n"
 
 #

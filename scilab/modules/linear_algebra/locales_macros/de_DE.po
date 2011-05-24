@@ -75,7 +75,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
 msgstr ""
-"%s: falscher Wert für Eingangsargument '%d: nicht semi-definite positive Zahl"
+"%s: falscher Wert für Eingangsargument ''%d: nicht semi-definite positive Zahl"
 
 #, c-format
 msgid ""

@@ -136,4 +136,4 @@ msgstr ""
 
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s: Ostrzeżenie: Katalog '%s' już istnieje.\n"
+msgstr "%s: Ostrzeżenie: Katalog ''%s'' już istnieje.\n"

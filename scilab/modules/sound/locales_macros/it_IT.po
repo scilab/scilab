@@ -72,18 +72,18 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
+msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
@@ -99,20 +99,20 @@ msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
 msgstr ""
-"%s: L'argomento in ingresso è di tipo sbagliato: l'estensione dell'indice "
+"%s: L''argomento in ingresso è di tipo sbagliato: l''estensione dell''indice "
 "deve essere specificata come uno scalare o un vettore a %d elementi.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
-"%s: L'argomento in ingresso ha dei valori sbagliati: nomefile deve essere "
+"%s: L''argomento in ingresso ha dei valori sbagliati: nomefile deve essere "
 "una stringa.\n"
 
 msgid ".wav file does not contain the RIFF identifier."
-msgstr "il file .wav non contiene l'identificatore RIFF."
+msgstr "il file .wav non contiene l''identificatore RIFF."
 
 msgid ".wav file does not contain the wave identifier."
-msgstr "il file .wav non contiene l'identificatore dell'onda."
+msgstr "il file .wav non contiene l''identificatore dell''onda."
 
 #
 # File: demos/sound.dem.sce, line: 36
@@ -144,16 +144,16 @@ msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
 msgid "Incorrect chunk size information in RIFF file."
-msgstr "C'è una informazione sulla grandezza del blocco inesatto nel file RIFF"
+msgstr "C''è una informazione sulla grandezza del blocco inesatto nel file RIFF"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
-"File .wav non valido: sono stati trovati dei dati prima dell'informatione "
+"File .wav non valido: sono stati trovati dei dati prima dell''informatione "
 "sul formato"
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr ""
-"Estremi del campione audio non valido (usare l'ordinamento ascendente)."
+"Estremi del campione audio non valido (usare l''ordinamento ascendente)."
 
 msgid "Invalid wav format."
 msgstr "Formato wav non valido"

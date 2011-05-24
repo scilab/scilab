@@ -67,7 +67,7 @@ msgstr "%s: Wrong type  for input argument #%d: 應為實數常數矩陣.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為整數或 '%s' .\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為整數或 ''%s'' .\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

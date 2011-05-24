@@ -202,4 +202,4 @@ msgstr ""
 # File: sci_gateway/c/sci_createdir.c, line: 52
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s: 警告: ディレクトリ '%s' は既にあります。\n"
+msgstr "%s: 警告: ディレクトリ ''%s'' は既にあります。\n"

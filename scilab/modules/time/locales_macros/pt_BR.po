@@ -80,7 +80,7 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro ou '%s'.\n"
+"inteiro ou ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

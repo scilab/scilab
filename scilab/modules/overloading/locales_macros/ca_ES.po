@@ -32,17 +32,17 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Real vector expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -59,7 +59,7 @@ msgstr "Una assignació nul·la només pot tenir un índex"
 
 msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr ""
-"L'afecció d'una cadena de caràcters en una matriu de nombres no està "
+"L''afecció d''una cadena de caràcters en una matriu de nombres no està "
 "implementada."
 
 msgid "Incorrect assignment.\n"
@@ -69,4 +69,4 @@ msgid "Invalid field name."
 msgstr ""
 
 msgid "Invalid index.\n"
-msgstr "L'índex és invàlid.\n"
+msgstr "L''índex és invàlid.\n"

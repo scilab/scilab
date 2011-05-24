@@ -25,7 +25,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 msgid "Error(s) : see help powershell"

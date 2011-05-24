@@ -69,7 +69,7 @@ msgstr "%s : le fichier %s n''a pas été déplacé dans le répertoire %s."
 
 #, c-format
 msgid "%s: %s has not been generated."
-msgstr "%s : %s n'a pas été généré."
+msgstr "%s : %s n''a pas été généré."
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
@@ -78,7 +78,7 @@ msgstr "%s : Ne peut pas ouvrir le fichier %s.\n"
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
 msgstr ""
-"%s : Le répertoire %s n'existe pas ou l'accès à ce répertoire n'est pas "
+"%s : Le répertoire %s n''existe pas ou l''accès à ce répertoire n''est pas "
 "autorisé."
 
 #, c-format
@@ -88,7 +88,7 @@ msgstr "%s: Fichier non géré %s."
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s : Arguments d'entrée n°%d et n°%d incompatibles : Même dimension "
+"%s : Arguments d''entrée n°%d et n°%d incompatibles : Même dimension "
 "attendue.\n"
 
 #
@@ -115,88 +115,88 @@ msgstr "%s: Les 2 mlist ne doivent pas avoir de champ en commun.\n"
 
 #, c-format
 msgid "%s: The CHAPTER file is not well formated at line %d\n"
-msgstr "%s: Le fichier CHAPTER n'est pas bien formaté à la ligne %d\n"
+msgstr "%s: Le fichier CHAPTER n''est pas bien formaté à la ligne %d\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s : Le fichier %s n'existe pas.\n"
+msgstr "%s : Le fichier %s n''existe pas.\n"
 
 #, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
-msgstr "%s : Le navigateur d'aide n'est pas accessible dans le mode %s.\n"
+msgstr "%s : Le navigateur d''aide n''est pas accessible dans le mode %s.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
 msgstr ""
-"%s: Le fichier last_successful_build n'est pas bien formaté à la ligne %d\n"
+"%s: Le fichier last_successful_build n''est pas bien formaté à la ligne %d\n"
 
 #, c-format
 msgid "%s: This function is only supported on Windows platforms.\n"
 msgstr ""
-"%s : Cette fonction n'est utilisable que sur les plateformes Windows.\n"
+"%s : Cette fonction n''est utilisable que sur les plateformes Windows.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée : Au plus %d attendus.\n"
+msgstr "%s : Mauvais nombre d''argument(s) d''entrée : Au plus %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument en entrée: %d à %d attendu.\n"
+msgstr "%s : Mauvais nombre d''argument en entrée: %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un entier attendu.\n"
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"%s : Mauvaise dimension pour l''argument d''entrée n° %d : Une simple chaîne "
 "de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n° %d : Un booléen attendu.\n"
+"%s : Mauvais type pour l''argument d''entrée n° %d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Un entier attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Table de chaîne de "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Table de chaîne de "
 "caractères attendue.\n"
 
 #, c-format
@@ -209,7 +209,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: A string that end with ."
 "last_successful_build expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de caractères "
 "terminant par .last_successful_build attendue.\n"
 
 #, c-format
@@ -217,7 +217,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: A string that end with CHAPTER "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Une chaîne de caractères "
 "finissant par CHAPTER attendue.\n"
 
 #, c-format
@@ -225,26 +225,26 @@ msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un répertoire existant "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Un répertoire existant "
 "valide attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un fichier existant "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Un fichier existant "
 "valide attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: An existing directory expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un répertoire existant "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Un répertoire existant "
 "attendu.\n"
 
 #, c-format
 msgid "%s: help file(.jar) is not installed.\n"
-msgstr "%s : le fichier d'aide (.jar) n'est pas installé\n"
+msgstr "%s : le fichier d''aide (.jar) n''est pas installé\n"
 
 #, c-format
 msgid "%s: hhc.exe not found.\n"
@@ -259,13 +259,13 @@ msgid "%s: processed %i files.\n"
 msgstr "%s : %i fichiers traités.\n"
 
 msgid "-- Deleting help files --\n"
-msgstr "-- Suppression des fichiers d'aide --\n"
+msgstr "-- Suppression des fichiers d''aide --\n"
 
 msgid "Building the scilab manual file ["
 msgstr "Construit le fichier du manuel Scilab ["
 
 msgid "Help chapter"
-msgstr "Chapitre d'aide"
+msgstr "Chapitre d''aide"
 
 #, c-format
 msgid "Warning %s does not follow the dtd"

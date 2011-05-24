@@ -19,11 +19,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Can''t go to directory ''%s''.\n"
-msgstr "%s: Impossibile aprire la directory \"%s\".\n"
+msgstr "%s: Impossibile aprire la directory ""%s"".\n"
 
 #, c-format
 msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
-msgstr "%s: La directory \"%s\" non esiste o non è accessibile in lettura.\n"
+msgstr "%s: La directory ""%s"" non esiste o non è accessibile in lettura.\n"
 
 #, c-format
 msgid ""
@@ -70,57 +70,56 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "valore booleano.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: erano attese "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: erano attese "
 "almeno %d righe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
 "booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un array di "
 "stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: impossibile aprire \"%s"
-"\".\n"
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: impossibile aprire ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
 "or is not read accessible.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: la directory \"%s\" "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: la directory ""%s"" "
 "non esiste o non è accessibile in lettura.\n"
 
 #, c-format

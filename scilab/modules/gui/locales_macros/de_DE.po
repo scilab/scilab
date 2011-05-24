@@ -23,7 +23,7 @@ msgstr "%s: #%d übereinstimmende Knotenpunkte\n"
 
 #, c-format
 msgid "%s:  #%d matching parent nodes.\n"
-msgstr "%s. '%d übereinstimmende Knotenpunkte.\n"
+msgstr "%s. ''%d übereinstimmende Knotenpunkte.\n"
 
 #, c-format
 msgid "%s: Invalid node.\n"
@@ -138,7 +138,7 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: eine Realzahl erwartet.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+"%s: falscher Typ für Eingangsargument ''%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"

@@ -49,7 +49,7 @@ msgstr "   %s : Modification du Makefile dans TMPDIR.\n"
 #, c-format
 msgid "   %s: Need to run the compiler detection (configure).\n"
 msgstr ""
-"   %s: Nécessite l'exécution de la détection du compilateur (configure).\n"
+"   %s: Nécessite l''exécution de la détection du compilateur (configure).\n"
 
 #, c-format
 msgid "   %s: Substitute the reference by the actual file.\n"
@@ -113,11 +113,11 @@ msgstr "%s : Un compilateur fortran ou C est requis.\n"
 
 #, fuzzy, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
+msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
+msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
@@ -128,12 +128,12 @@ msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
 msgstr ""
-"%s: Une erreur s'est produite durant la détection du compilateur. Mettre "
-"ilib_verbose(2) pour plus d'informations.\n"
+"%s: Une erreur s''est produite durant la détection du compilateur. Mettre "
+"ilib_verbose(2) pour plus d''informations.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
+msgstr "%s : Une erreur s''est produite : %s\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -175,7 +175,7 @@ msgstr "%s : La commande était :\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
-msgstr "%s : Le fichier %s n'existe pas.\n"
+msgstr "%s : Le fichier %s n''existe pas.\n"
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -191,7 +191,7 @@ msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
 msgstr ""
-"%s : Attention : Pas de code d'erreur retourné par la compilation, mais il y "
+"%s : Attention : Pas de code d''erreur retourné par la compilation, mais il y "
 "a des erreurs en sortie :\n"
 
 #, c-format
@@ -199,79 +199,79 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: Attention: Scilab n'a pas été capble de trouver où sont les sources de "
-"Scilab. Soumettez un rapport de bug à l'adresse http://bugzilla.scilab.org/\n"
+"%s: Attention: Scilab n''a pas été capble de trouver où sont les sources de "
+"Scilab. Soumettez un rapport de bug à l''adresse http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée.\n"
+msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: Mauvais nombre d'argument(s) d'entrée: %d,%d ou %d attendu.\n"
+msgstr "%s: Mauvais nombre d''argument(s) d''entrée: %d,%d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entré(s): au moins %d d'attendu(s).\n"
+msgstr "%s: Mauvais nombre d''arguments d''entré(s): au moins %d d''attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d.\n"
+msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée n°%d : %d attendu.\n"
+msgstr "%s : Mauvaise dimension pour l''argument d''entrée n°%d : %d attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice de "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice de "
 "chaînes de caractères < 999 attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice de chaînes de "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Une matrice de chaînes de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
 msgstr ""
-"%s : Type inapproprié pour l'argument d'entrée #%d : Matrice de chaînes de "
+"%s : Type inapproprié pour l''argument d''entrée #%d : Matrice de chaînes de "
 "caractères attendue.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
 msgstr ""
-"%s: Valeur inappropriée pour l'argument d'entrée #%d: '''' or ''[]'' "
+"%s: Valeur inappropriée pour l''argument d''entrée #%d: '''' or ''[]'' "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
-"l'ensemble {%s}.\n"
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être dans "
+"l''ensemble {%s}.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s : Mauvaise valeur pour l'argument d'entrée n°%d : Un int attendu.\n"
+msgstr "%s : Mauvaise valeur pour l''argument d''entrée n°%d : Un int attendu.\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "Un compilateur Fortran ou C est nécessaire."

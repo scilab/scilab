@@ -105,7 +105,7 @@ msgstr "%s: Już załadowano z biblioteki %s\n"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
-msgstr "%s: Wymagany jest kompilator C lub Fortran'a.\n"
+msgstr "%s: Wymagany jest kompilator C lub Fortran''a.\n"
 
 #, fuzzy, c-format
 msgid "%s: A managed file extension for input argument #%d expected."

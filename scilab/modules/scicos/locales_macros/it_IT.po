@@ -112,13 +112,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "singolo intero.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "singola stringa.\n"
 
 #, c-format
@@ -129,42 +129,42 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 msgid "&?"
@@ -663,7 +663,7 @@ msgstr ""
 
 #, c-format
 msgid "Problem while building library %s\n"
-msgstr "C'è stato un problema durante la creazione della libreria %s\n"
+msgstr "C''è stato un problema durante la creazione della libreria %s\n"
 
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 164

@@ -17,7 +17,7 @@ msgstr ""
 # File: macros/lmisolver.sci, line: 135
 #, c-format
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " 限制條件數目 (%s)'),'lmisolver',%m,%fm));"
+msgstr " 限制條件數目 (%s)''),''lmisolver'',%m,%fm));"
 
 #, c-format
 msgid "%s: %s"

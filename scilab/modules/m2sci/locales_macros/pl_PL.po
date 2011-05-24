@@ -320,7 +320,7 @@ msgstr ""
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "Rozpakowywanie %s z tlist'y ''%s'' jeszcze nie jest zaimplementowane."
+msgstr "Rozpakowywanie %s z tlist''y ''%s'' jeszcze nie jest zaimplementowane."
 
 msgid "File"
 msgstr "Plik"
@@ -685,7 +685,7 @@ msgstr "Tak"
 
 #, c-format
 msgid "contents must be a ''contents'' tlist instead of a: %s."
-msgstr "zawartością musi być tlist'a ''contents'' zamiast :%s."
+msgstr "zawartością musi być tlist''a ''contents'' zamiast :%s."
 
 msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
@@ -728,7 +728,7 @@ msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr "infer musi być tlistą ''infer'' zamiast: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "argument wejściowy musi być tlist'a ''operation''."
+msgstr "argument wejściowy musi być tlist''a ''operation''."
 
 msgid "is Real."
 msgstr "jest typu real."

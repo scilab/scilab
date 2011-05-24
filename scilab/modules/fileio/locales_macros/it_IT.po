@@ -44,37 +44,37 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
 "descrittore di file.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "nomefile\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un "
 "descrittore di file.\n"
 
 #, c-format
@@ -82,37 +82,37 @@ msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un nomefile "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un nomefile "
 "o un descrittore di file.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso è di tipo sbagliato: era attesa una stringa.\n"
+"%s: L''argomento in ingresso è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
 "descrittore di file valido.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere ''%s''.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -125,7 +125,7 @@ msgstr ""
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"
 msgstr ""
-"%s: è stata raggiunta la fine dell'input prima della conversione finale.\n"
+"%s: è stata raggiunta la fine dell''input prima della conversione finale.\n"
 
 #
 # File: macros/mkdir.sci, line: 132
@@ -140,4 +140,4 @@ msgstr ""
 
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s: Attenzione: la directory '%s' già esiste.\n"
+msgstr "%s: Attenzione: la directory ''%s'' già esiste.\n"

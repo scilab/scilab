@@ -563,7 +563,7 @@ msgid "Label"
 msgstr "Мітка"
 
 msgid "Link"
-msgstr "Зв'язок"
+msgstr "Зв''язок"
 
 msgid "Link ID font name"
 msgstr "Гарнітура шрифту ідентифікатора зв’язку"

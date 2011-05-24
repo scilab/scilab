@@ -92,10 +92,10 @@ msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
 msgstr ""
 
 msgid "''Minimum'' must be less than ''Maximum''."
-msgstr "''Mínimo'' debe ser menor que \"Máximo\"."
+msgstr "''Mínimo'' debe ser menor que ""Máximo""."
 
 msgid "''Start'' must be less than ''End''."
-msgstr "\"Inicio\" debe ser menor que \"Final\"."
+msgstr "''Inicio'' debe ser menor que ''Final''."
 
 #
 # File: macros/Sources/READAU_f.sci, line: 49
@@ -187,7 +187,7 @@ msgstr "Tipo de dato"
 
 #, fuzzy, c-format
 msgid "Directory ''%s'' does not exist"
-msgstr "La variable '%s' no existe.\n"
+msgstr "La variable ''%s'' no existe.\n"
 
 msgid "Discriminant type:"
 msgstr "Tipo de discriminante:"
@@ -579,7 +579,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Write to C binary file"
-msgstr "Error escribiendo el archivo '%s'.\n"
+msgstr "Error escribiendo el archivo ''%s''.\n"
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
@@ -600,7 +600,7 @@ msgstr "Tamaño incorrecto para el parámetro ''Tabla de verdad'': %d."
 
 #, fuzzy, c-format
 msgid "Wrong type for ''%s'' parameter"
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, fuzzy, c-format
 msgid "Wrong type for ''%s'' parameter: %5.1f."
@@ -608,15 +608,15 @@ msgstr "Tipo incorrecto para el parámetro ''Índice de bit'': %5.1f."
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter."
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter: %s."
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
@@ -624,7 +624,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for ''Initial State'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro \"Estado inicial\": %d."
+msgstr "Valor incorrecto para el parámetro ""Estado inicial"": %d."
 
 #, fuzzy
 msgid "Wrong value for ''Output File Name'' parameter"
@@ -632,36 +632,36 @@ msgstr "Valor incorrecto para el parámetro ''Tipo de salida'': %d."
 
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro \"Puerto número\": %d."
+msgstr "Valor incorrecto para el parámetro ""Puerto número"": %d."
 
 #, fuzzy, c-format
 msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
-msgstr "Valor incorrecto para el parámetro \"Tiempo inicial\": %e."
+msgstr "Valor incorrecto para el parámetro ""Tiempo inicial"": %e."
 
 #, fuzzy, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, fuzzy, c-format
 msgid "Wrong values for ''%s'' parameter: %s."
-msgstr "Valor incorrecto para el parámetro \"Regla\": %d"
+msgstr "Valor incorrecto para el parámetro ""Regla"": %d"
 
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
 msgstr ""
-"Valores incorrectos para los parámetros \"Máximo\" y \"Mínimo\": %d &lt; %d"
+"Valores incorrectos para los parámetros ""Máximo"" y ""Mínimo"": %d &lt; %d"
 
 #, c-format
 msgid "Wrong values for ''Port Number'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro \"Puerto número\": %d."
+msgstr "Valor incorrecto para el parámetro ""Puerto número"": %d."
 
 #, c-format
 msgid "Wrong values for ''Upper Limit'' parameter: %d."
-msgstr "Valor incorrecto para el parámetro \"\": %d."
+msgstr "Valor incorrecto para el parámetro "": %d."
 
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 63

@@ -43,7 +43,7 @@ msgstr "              stacksize(3000000);                    "
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
 msgstr ""
-"           n'est pas atteinte après %d itérations (ai obtenu uniquement "
+"           n''est pas atteinte après %d itérations (ai obtenu uniquement "
 "%e) \n"
 
 msgid "           then re enter scisptdemo()                "
@@ -59,7 +59,7 @@ msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
 
 msgid " For this demo the current stack size is not enough "
-msgstr " Pour cette démo la taille courante de la pile n'est pas suffisante. "
+msgstr " Pour cette démo la taille courante de la pile n''est pas suffisante. "
 
 #, c-format
 msgid " Warning : for lM convergence at rtol = %e \n"
@@ -97,41 +97,41 @@ msgstr "%s: Le fichier contient un rhs mais ne sera pas lu !"
 
 #, c-format
 msgid "%s: The matrix and the LU factors have not the same dimension !\n"
-msgstr "%s: La matrice et les facteursLU n'ont pas la même dimension !\n"
+msgstr "%s: La matrice et les facteursLU n''ont pas la même dimension !\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée.\n"
+msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) en entrée : Au moins %d attendus.\n"
+msgstr "%s : Mauvais nombre d''argument(s) en entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une matrice creuse "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une matrice creuse "
 "carrée attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une matrice creuse carrée "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Une matrice creuse carrée "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: une matrice creuse "
+"%s: Mauvais type pour l''argument d''entrée n° %d: une matrice creuse "
 "attendue.\n"
 
 #, c-format

@@ -78,7 +78,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany '%s' lub "
+"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany ''%s'' lub "
 "integer.\n"
 
 #, c-format

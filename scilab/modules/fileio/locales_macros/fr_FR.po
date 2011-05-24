@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
+msgstr "%s : Une erreur s''est produite : %s\n"
 
 #, c-format
 msgid "%s: Incorrect format.\n"
@@ -35,46 +35,46 @@ msgstr "%s : Options ignorées.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s : Mauvais nombre d'argument(s) d'entrée.\n"
+msgstr "%s : Mauvais nombre d''argument(s) d''entrée.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s : Mauvais nombre d'argument(s) de sortie.\n"
+msgstr "%s : Mauvais nombre d''argument(s) de sortie.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Une chaîne de "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A file descriptor expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un descripteur de "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un descripteur de "
 "fichier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A filename expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un nom de fichier "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un nom de fichier "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Une chaîne de caractères "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A file descriptor expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un descripteur de fichier "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Un descripteur de fichier "
 "attendu.\n"
 
 #, c-format
@@ -82,35 +82,35 @@ msgid ""
 "%s: Wrong type for input argument #%d: A filename or file descriptor "
 "expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée %d: Un nom de fichier attendu.\n"
+"%s: Mauvais type pour l''argument d''entrée %d: Un nom de fichier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée : Chaîne de caractère attendue.\n"
+"%s : Mauvais type pour l''argument d''entrée : Chaîne de caractère attendue.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A valid file descriptor expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Un descripteur de "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Un descripteur de "
 "fichier valide attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be ''%s''.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être ''%s''.\n"
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -122,7 +122,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: end of input reached before final conversion.\n"
-msgstr "%s: la fin de l'entrée a été atteinte avant la conversion finale.\n"
+msgstr "%s: la fin de l''entrée a été atteinte avant la conversion finale.\n"
 
 #
 # File: macros/mkdir.sci, line: 132
@@ -137,4 +137,4 @@ msgstr ""
 
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s : Attention : le répertoire '%s' existe déjà.\n"
+msgstr "%s : Attention : le répertoire ''%s'' existe déjà.\n"

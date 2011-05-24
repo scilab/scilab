@@ -71,7 +71,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実定数行列を�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数または ''%s'' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

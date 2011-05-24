@@ -19,11 +19,11 @@ msgstr ""
 
 #, c-format
 msgid "%s is not an installed module"
-msgstr "%s n'est pas un module installé"
+msgstr "%s n''est pas un module installé"
 
 #, c-format
 msgid "%s is not an installed module or toolbox"
-msgstr "%s n'est pas une toolbox ou un module installé"
+msgstr "%s n''est pas une toolbox ou un module installé"
 
 #
 # File: macros/assert/assert_checkalmostequal.sci, line: 109
@@ -103,15 +103,15 @@ msgstr ""
 #, fuzzy, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #
 # File: macros/assert/assert_checkerror.sci, line: 66
@@ -146,56 +146,56 @@ msgstr "%s : Mauvais premier argument: Fichier avec un suffixe .dia attendu."
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument."
-msgstr "%s : Mauvaise dimension pour l'argument d'entrée."
+msgstr "%s : Mauvaise dimension pour l''argument d''entrée."
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Boolean matrix expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: %s attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: %s attendu.\n"
 
 #, c-format
 msgid "No variable %s_ref in reference file"
@@ -211,7 +211,7 @@ msgstr "Echec du test. Voir : fc /L /N %s"
 
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
-msgstr "Echec du test ERREUR DETECTEE pendant l'execution de %s"
+msgstr "Echec du test ERREUR DETECTEE pendant l''execution de %s"
 
 msgid "Test passed"
 msgstr "Succès du test"
@@ -222,7 +222,7 @@ msgstr "Le fichier ref (%s) n''existe pas"
 
 #, c-format
 msgid "The test %s is not available from the %s module"
-msgstr "Le test %s n'est pas disponible dans le module %s"
+msgstr "Le test %s n''est pas disponible dans le module %s"
 
 msgid "error : Input argument sizes are not valid"
-msgstr "erreur : les dimensions de l'argument d'entrée ne sont pas valides"
+msgstr "erreur : les dimensions de l''argument d''entrée ne sont pas valides"

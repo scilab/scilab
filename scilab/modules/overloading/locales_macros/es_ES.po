@@ -60,7 +60,7 @@ msgstr ""
 
 msgid "A null assignment can have only one non-colon index"
 msgstr ""
-"Una asignación nula puede tener solo un indice que no sea dos puntos ':'"
+"Una asignación nula puede tener solo un indice que no sea dos puntos '':'"
 
 msgid "Affection of a string in a matrix of numbers is not implemented."
 msgstr ""

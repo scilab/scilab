@@ -30,15 +30,15 @@ msgid " %s.mo must be recompiled\n"
 msgstr " %s.mo doit être recompilée\n"
 
 msgid " Scilab is in no gui mode : Scicos is unavailable"
-msgstr " Scilab est en mode sans-UI : Scicos n'est pas disponible"
+msgstr " Scilab est en mode sans-UI : Scicos n''est pas disponible"
 
 #, c-format
 msgid "%s is not a valid directory\n"
-msgstr "%s n'est pas un répertoire valide\n"
+msgstr "%s n''est pas un répertoire valide\n"
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s n'est pas un nom valide, changez, svp, le titre du diagramme."
+msgstr "%s n''est pas un nom valide, changez, svp, le titre du diagramme."
 
 #, c-format
 msgid "%s: Cannot find any MO files in the following location: %s.\n"
@@ -47,25 +47,25 @@ msgstr ""
 
 #, c-format
 msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: Le diagramme ne compile pas à l'étape %d.\n"
+msgstr "%s: Le diagramme ne compile pas à l''étape %d.\n"
 
 #, c-format
 msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: Erreur: Un bloc scifunc n'a pas été défini."
+msgstr "%s: Erreur: Un bloc scifunc n''a pas été défini."
 
 #, c-format
 msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr "%s: Erreur: Le compilateur Modelica (modelicac) n'est pas disponible."
+msgstr "%s: Erreur: Le compilateur Modelica (modelicac) n''est pas disponible."
 
 #, c-format
 msgid "%s: First argument must be a Scicos diagram data structure\n"
 msgstr ""
-"%s: Le premier argument doit être une structure de donnée d'un diagramme "
+"%s: Le premier argument doit être une structure de donnée d''un diagramme "
 "Scicos\n"
 
 #, c-format
 msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: Les ports d'entrée ne sont pas numérotés correctement.\n"
+msgstr "%s: Les ports d''entrée ne sont pas numérotés correctement.\n"
 
 #, c-format
 msgid "%s: Output ports are not numbered properly.\n"
@@ -87,73 +87,73 @@ msgstr ""
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée. Doit être entre %d et %d.\n"
+msgstr "%s: Mauvais nombre d''arguments d''entrée. Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments de sortie : %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments de sortie : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
 msgstr ""
-"%s: Mauvaise dimension pour l'argument d'entrée n° %d: Un seul entier "
+"%s: Mauvaise dimension pour l''argument d''entrée n° %d: Un seul entier "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"%s : Mauvaise dimension pour l''argument d''entrée n° %d : Une simple chaîne "
 "de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s : Mauvaise dimension pour les arguments d'entrée n°%d et n°%d.\n"
+msgstr "%s : Mauvaise dimension pour les arguments d''entrée n°%d et n°%d.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s : Mauvais type pour l'argument d'entrée n°%d : Entier attendu.\n"
+msgstr "%s : Mauvais type pour l''argument d''entrée n°%d : Entier attendu.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 msgid "&?"
 msgstr "&?"
@@ -206,7 +206,7 @@ msgid "&nbsp;Output port %s type is: %s"
 msgstr ""
 
 msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-msgstr "''scicos'' n'est plus accessible, veuillez utiliser ''xcos''.\n"
+msgstr "''scicos'' n''est plus accessible, veuillez utiliser ''xcos''.\n"
 
 msgid "?"
 msgstr "?"
@@ -231,17 +231,17 @@ msgstr "Aligner"
 
 msgid "An Atomic Superblock cannot contain sample clocks"
 msgstr ""
-"Un Superblock Atomique ne peut pas contenir d'horloges d'échantillonnage"
+"Un Superblock Atomique ne peut pas contenir d''horloges d''échantillonnage"
 
 msgid "An error occur when evaluating context:"
-msgstr "Une erreur est survenue pendant l'évaluation du contexte:"
+msgstr "Une erreur est survenue pendant l''évaluation du contexte:"
 
 #, c-format
 msgid ""
 "An unexpected  error occurred while executing the menu\n"
 "%s:\n"
 msgstr ""
-"Une erreur inattendue est survenue pendant l'exécution du menu\n"
+"Une erreur inattendue est survenue pendant l''exécution du menu\n"
 "%s:\n"
 
 msgid "Analyze Diagram"
@@ -254,7 +254,7 @@ msgid "Available Parameters"
 msgstr "Paramètres Disponibles"
 
 msgid "Background color"
-msgstr "Couleur de l'arrière-plan"
+msgstr "Couleur de l''arrière-plan"
 
 msgid "Background color ? :"
 msgstr "Couleur de fond ? :"
@@ -263,10 +263,10 @@ msgid "Block Documentation"
 msgstr "Documentation du Block"
 
 msgid "Block ID font name"
-msgstr "Nom de la police de caractère de l'ID du Block"
+msgstr "Nom de la police de caractère de l''ID du Block"
 
 msgid "Block ID font size"
-msgstr "Taille de la police de caractère de l'ID du block"
+msgstr "Taille de la police de caractère de l''ID du block"
 
 msgid "BrowseTo"
 msgstr ""
@@ -286,7 +286,7 @@ msgid "Can''t convert old diagram (problem in version)"
 msgstr ""
 
 msgid "Choose export format:"
-msgstr "choisissez un format d'exportation:"
+msgstr "choisissez un format d''exportation:"
 
 msgid "Click block to label"
 msgstr "Cliquez sur le block pour ajouter un label"
@@ -302,14 +302,14 @@ msgstr ""
 msgid ""
 "Click on a Super Block (without activation output) to obtain a coded block!"
 msgstr ""
-"Cliquez sur un Super Block (sans sortie d'activation) pour obtenir un block "
+"Cliquez sur un Super Block (sans sortie d''activation) pour obtenir un block "
 "codé!"
 
 msgid "Click on a block to set or get its documentation"
 msgstr "Cliquez sur un block pour affecter ou récupérer sa documentation"
 
 msgid "Click on a port of object to be moved"
-msgstr "Cliquez sur un port, cliquez sur un port de l'objet à déplacer"
+msgstr "Cliquez sur un port, cliquez sur un port de l''objet à déplacer"
 
 msgid "Click on a super block"
 msgstr "Cliquez sur un Super Block"
@@ -318,7 +318,7 @@ msgid "Click on an object to set or get identification"
 msgstr "Cliquez sur un objet pour affecter ou récupérer son identification"
 
 msgid "Click on block to  open graphic icon editor"
-msgstr "Cliquez sur un block pour ouvrir l'éditeur graphique d'icone"
+msgstr "Cliquez sur un block pour ouvrir l''éditeur graphique d''icone"
 
 msgid "Click on block to be flipped"
 msgstr "Cliquez sur le block à renverser"
@@ -333,22 +333,22 @@ msgid "Click on block to edit its icon"
 msgstr "Cliquez sur le block pour éditer son icone"
 
 msgid "Click on object  to get information on it"
-msgstr "Cliquez sur l'objet pour obtenir de l'information"
+msgstr "Cliquez sur l''objet pour obtenir de l''information"
 
 msgid "Click on object to choose its color"
-msgstr "Cliquez sur l'objet pour choisir sa couleur"
+msgstr "Cliquez sur l''objet pour choisir sa couleur"
 
 msgid ""
 "Click on the object to duplicate, drag, click (left to copy, right to cancel)"
 msgstr ""
-"Cliquez sur l'objet à dupliquer, glisser, cliquer (clique gauche pour "
+"Cliquez sur l''objet à dupliquer, glisser, cliquer (clique gauche pour "
 "copier, clique droit pour abandonner)"
 
 msgid "Click to open block or make a link"
 msgstr "Cliquez pour ouvrir le block ou pour contruire un lien"
 
 msgid "Click where you want object to be placed (right-click to cancel)"
-msgstr "Cliquer où vous voulez placer l'objet (clic-droit pour annuler)"
+msgstr "Cliquer où vous voulez placer l''objet (clic-droit pour annuler)"
 
 msgid "Close"
 msgstr "Fermer"
@@ -357,7 +357,7 @@ msgid "Code Generation only works for a Superblock !\n"
 msgstr "La génération de code fonctionne uniquement pour un super-bloc !\n"
 
 msgid "Code generation applies only to Super Blocks."
-msgstr "La génération de code s'applique seulement aux super-blocs."
+msgstr "La génération de code s''applique seulement aux super-blocs."
 
 msgid "Color"
 msgstr "Couleur"
@@ -367,7 +367,7 @@ msgstr "Compiler"
 
 #, fuzzy
 msgid "Connection error"
-msgstr "%s : Erreur d'allocation.\n"
+msgstr "%s : Erreur d''allocation.\n"
 
 msgid "Context"
 msgstr "Contexte"
@@ -388,13 +388,13 @@ msgid "Customize Mask"
 msgstr "Personnaliser le masque"
 
 msgid "Customize block GUI:"
-msgstr "Customise l'interface graphique du block:"
+msgstr "Customise l''interface graphique du block:"
 
 msgid "Cut"
 msgstr "Couper"
 
 msgid "Cut: Click on the object to cut"
-msgstr "Couper : Cliquer sur l'objet pour le couper"
+msgstr "Couper : Cliquer sur l''objet pour le couper"
 
 msgid "Debug Level"
 msgstr "Niveau de débogage"
@@ -412,7 +412,7 @@ msgid "Delete"
 msgstr "Supprimer"
 
 msgid "Delete: Click on the object to delete"
-msgstr "Suppression : Cliquer sur l'objet pour le supprimer"
+msgstr "Suppression : Cliquer sur l''objet pour le supprimer"
 
 msgid "Demos"
 msgstr "Démos"
@@ -490,7 +490,7 @@ msgstr "Pivoter"
 msgid "Following palette(s) ignored (associated file(s) no more exist):"
 msgstr ""
 "La(les) palette(s) suivante(s) est(sont) ignorée(s) (le(s) dossier(s) associé"
-"(s) n'existe(nt) plus) :"
+"(s) n''existe(nt) plus) :"
 
 msgid "Foreground color ? :"
 msgstr "Couleur de premier plan ? :"
@@ -541,7 +541,7 @@ msgid "Icon"
 msgstr "Icône"
 
 msgid "Icon Editor"
-msgstr "Éditeur d'icônes"
+msgstr "Éditeur d''icônes"
 
 msgid "Identification"
 msgstr "Identification"
@@ -552,7 +552,7 @@ msgid "Initialisation problem:"
 msgstr ""
 
 msgid "It is impossible to set ID for this type of object"
-msgstr "Il est impossible de définir l'ID pour ce type d'objet"
+msgstr "Il est impossible de définir l''ID pour ce type d''objet"
 
 msgid "Label"
 msgstr "Etiquettes"
@@ -561,10 +561,10 @@ msgid "Link"
 msgstr "Lien"
 
 msgid "Link ID font name"
-msgstr "Nom de police de caractères de l'ID du lien"
+msgstr "Nom de police de caractères de l''ID du lien"
 
 msgid "Link ID font size"
-msgstr "Taille de la police de caractères de l'ID du lien"
+msgstr "Taille de la police de caractères de l''ID du lien"
 
 msgid "Link parameters"
 msgstr "Paramètres de lien"
@@ -703,13 +703,13 @@ msgstr "Retracer"
 
 #, c-format
 msgid "Requested action: %s is not available"
-msgstr "Action demandée : %s n'est pas disponible"
+msgstr "Action demandée : %s n''est pas disponible"
 
 msgid "Resize"
 msgstr "Redimensionner"
 
 msgid "Resize is allowed only for Blocks or Links."
-msgstr "Le redimensionnement n'est permis que pour les blocs et les liens."
+msgstr "Le redimensionnement n''est permis que pour les blocs et les liens."
 
 msgid "Rotate Left"
 msgstr "Tourner vers la gauche"
@@ -727,7 +727,7 @@ msgid "Save As"
 msgstr "Enregistrer sous..."
 
 msgid "Save Block GUI"
-msgstr "Sauver l'UI du block"
+msgstr "Sauver l''UI du block"
 
 msgid "Save as Interf Func"
 msgstr "Sauver en Interf Func"
@@ -762,22 +762,22 @@ msgid "SelectRegion"
 msgstr ""
 
 msgid "Set Block identification"
-msgstr "Définir l'identification bloc"
+msgstr "Définir l''identification bloc"
 
 msgid "Set Block sizes"
 msgstr "Définir la taille bloc"
 
 msgid "Set Diagram Info"
-msgstr "Définir l'information de diagramme"
+msgstr "Définir l''information de diagramme"
 
 msgid "Set grid"
 msgstr "Définir la grille"
 
 msgid "Set link Identification"
-msgstr "Définir l'identification de lien"
+msgstr "Définir l''identification de lien"
 
 msgid "Set link edition mode"
-msgstr "Définir le mode d'édition de lien"
+msgstr "Définir le mode d''édition de lien"
 
 msgid "Setup"
 msgstr "Configurer"
@@ -786,7 +786,7 @@ msgid "Shortcuts"
 msgstr "Raccourcis"
 
 msgid "Show Block Shadow"
-msgstr "Afficher l'ombre du block"
+msgstr "Afficher l''ombre du block"
 
 msgid "Simulate"
 msgstr "Simuler"
@@ -798,7 +798,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Simulation problem: "
-msgstr "problème d'ordonnancement"
+msgstr "problème d''ordonnancement"
 
 msgid "Smart"
 msgstr "Rapide"
@@ -811,7 +811,7 @@ msgstr ""
 "Le déplacement intelligent ne fonctionne pas avec une sélection multiple"
 
 msgid "Sorry file name not defined in "
-msgstr "Désolé le nom de fichier n'est pas défini dans "
+msgstr "Désolé le nom de fichier n''est pas défini dans "
 
 msgid "Sorry: Only C or FORTRAN languages are supported"
 msgstr "Désolé : Seuls les langages C et Fortran sont supportés"
@@ -820,7 +820,7 @@ msgid "Stop"
 msgstr "Arrêter"
 
 msgid "The current icon depends on block parameter\n"
-msgstr "L'icône courant dépend des paramètres du bloc\n"
+msgstr "L''icône courant dépend des paramètres du bloc\n"
 
 #, c-format
 msgid "The key %s is already in use for %s"
@@ -828,7 +828,7 @@ msgstr "La clef %s est déjà en service pour %s"
 
 #, c-format
 msgid "The key %s is not a valid letter"
-msgstr "La clef %s n'est pas une lettre valide"
+msgstr "La clef %s n''est pas une lettre valide"
 
 #, c-format
 msgid ""
@@ -848,13 +848,13 @@ msgid "Thickness"
 msgstr "Épaisseur"
 
 msgid "This block is not masked."
-msgstr "Ce bloc n'est pas masqué."
+msgstr "Ce bloc n''est pas masqué."
 
 msgid "This window is not an active palette"
-msgstr "Cette fenêtre n'est pas une palette active"
+msgstr "Cette fenêtre n''est pas une palette active"
 
 msgid "This window is not an active scicos window"
-msgstr "Cette fenêtre n'est pas une fenêtre active de scicos"
+msgstr "Cette fenêtre n''est pas une fenêtre active de scicos"
 
 msgid "Title of the GUI"
 msgstr "Titre de la GUI"
@@ -885,10 +885,10 @@ msgid "Undo"
 msgstr "Défaire"
 
 msgid "Up To Main Diagram"
-msgstr "Jusqu'au diagramme principal"
+msgstr "Jusqu''au diagramme principal"
 
 msgid "Use 3D aspect?"
-msgstr "Utiliser l'aspect 3D ?"
+msgstr "Utiliser l''aspect 3D ?"
 
 msgid "View"
 msgstr "Vue"
@@ -913,7 +913,7 @@ msgid "Yes"
 msgstr "Oui"
 
 msgid "Your diagram is not saved. Do not quit Scilab or "
-msgstr "Votre diagramme n'est pas sauvegarder. Ne pas quitter Scilab ou "
+msgstr "Votre diagramme n''est pas sauvegarder. Ne pas quitter Scilab ou "
 
 msgid "Zoom in"
 msgstr "Zoom avant"

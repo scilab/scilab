@@ -20,25 +20,25 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, c-format

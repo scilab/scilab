@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s must be called before any action.\n"
-msgstr "%s: S'ha de cridar a %s abans de cada acció.\n"
+msgstr "%s: S''ha de cridar a %s abans de cada acció.\n"
 
 #, c-format
 msgid "%s: EMF format only available under Microsoft Windows OS.\n"
@@ -27,7 +27,7 @@ msgstr "%s: El format EMF només està disponible en Microsoft Windows.\n"
 
 #, c-format
 msgid "%s: Unable to create export file, permission denied.\n"
-msgstr "%s: No es pot crear el fitxer d'exportació, permís denegat.\n"
+msgstr "%s: No es pot crear el fitxer d''exportació, permís denegat.\n"
 
 #, c-format
 msgid "%s: Unable to execute pstoedit.\n"
@@ -42,7 +42,7 @@ msgid ""
 "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
 "to be able to use this feature.\n"
 msgstr ""
-"%s: No s'ha pogut trobar el pstoedit. Instal·leu el pstoedit o afegiu-lo al "
+"%s: No s''ha pogut trobar el pstoedit. Instal·leu el pstoedit o afegiu-lo al "
 "PATH per poder utilitzar aquesta característica.\n"
 
 #, c-format
@@ -50,35 +50,35 @@ msgid ""
 "%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser una cadena de "
+"%s: El nombre d''arguments d''entrada és incorrecte: Ha de ser una cadena de "
 "text amb els controladors ''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: Function has no input argument with "
 "''%s'' or ''%s'' drivers.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: La funció no té cap "
-"argument d'entrada amb els controladors ''%s'' o ''%s''.\n"
+"%s: El nombre d''arguments d''entrada és incorrecte: La funció no té cap "
+"argument d''entrada amb els controladors ''%s'' o ''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
+msgstr "%s: L''argument #%d és d''un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
 "''%s''.\n"
 
 #, c-format
@@ -86,7 +86,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ''%s'', "
 "''%s'', ''%s'', ''%s'', ''%s'' o ''%s''.\n"
 
 #

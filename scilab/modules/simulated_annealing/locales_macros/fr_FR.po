@@ -31,7 +31,7 @@ msgstr "%s: cit_f est obligatoire"
 
 #, c-format
 msgid "%s: error - wrong accept type"
-msgstr "%s: erreur - mauvais type d'acceptation"
+msgstr "%s: erreur - mauvais type d''acceptation"
 
 #
 # File: demos/SAdemo.sce, line: 10

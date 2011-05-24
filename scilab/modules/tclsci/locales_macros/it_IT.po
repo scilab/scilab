@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Slave interpreter already exists.\n"
-msgstr "%s: L'interprete slave già esiste.\n"
+msgstr "%s: L''interprete slave già esiste.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -34,13 +34,13 @@ msgstr "%s: Il numero degli argomenti in uscita è sbagliato: era atteso %d.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un "
 "booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #

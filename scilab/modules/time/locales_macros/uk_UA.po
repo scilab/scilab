@@ -175,7 +175,7 @@ msgid "Fri"
 msgstr "Птн"
 
 msgid "Friday"
-msgstr "п'ятниця"
+msgstr "п''ятниця"
 
 msgid "Hour"
 msgstr "Година"

@@ -155,7 +155,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while modifying the reference Makefile:\n"
-msgstr "%s: Error al modificar la referencia 'Makefile':\n"
+msgstr "%s: Error al modificar la referencia ''Makefile'':\n"
 
 #
 # File: macros/ilib_include_flag.sci, line: 21

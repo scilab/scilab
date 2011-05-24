@@ -31,7 +31,7 @@ msgstr "%s: El cit_f és obligatori"
 
 #, c-format
 msgid "%s: error - wrong accept type"
-msgstr "%s: error - Tipus d'acceptació errònia"
+msgstr "%s: error - Tipus d''acceptació errònia"
 
 #
 # File: demos/SAdemo.sce, line: 10

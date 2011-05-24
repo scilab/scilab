@@ -87,7 +87,7 @@ msgstr "%s quando viene chiamato con tre uscite"
 
 #, c-format
 msgid "%s will be ignored at run time."
-msgstr "%s verrà ignorato durante l'esecuzione."
+msgstr "%s verrà ignorato durante l''esecuzione."
 
 #, c-format
 msgid "%s with two outputs."
@@ -170,7 +170,7 @@ msgid ""
 "// Input: tree = Matlab funcall tree\n"
 "// Output: tree = Scilab equivalent for tree"
 msgstr ""
-"// Diritto d'autore INRIA (Generato da M2SCI)\n"
+"// Diritto d''autore INRIA (Generato da M2SCI)\n"
 "// Funzione di conversione per %s() di Matlab\n"
 "// Ingresso: albero = albero funcall di Matlab\n"
 "// Uscita: albero = equivalente di Scilab per albero"
@@ -235,7 +235,7 @@ msgid ""
 "All children will be deleted, no HandleVisibility property in Scilab "
 "graphics."
 msgstr ""
-"Tutti gli oggetti figli saranno distrutti, non c'è la proprietà "
+"Tutti gli oggetti figli saranno distrutti, non c''è la proprietà "
 "HandleVisibility nella grafica di Scilab"
 
 msgid "All properties will be reset."
@@ -248,13 +248,13 @@ msgstr "Tutte le finestre saranno eliminate."
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
 msgstr ""
-"Almeno un operando è una matrice vuota per l'operatore: %s, il risultato è "
+"Almeno un operando è una matrice vuota per l''operatore: %s, il risultato è "
 "impostato a [] ."
 
 #, c-format
 msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"Almeno un operando di %s è una matrice vuota, l'equivalente in Scilab è []."
+"Almeno un operando di %s è una matrice vuota, l''equivalente in Scilab è []."
 
 #, c-format
 msgid "Bad use of isdefinedvar() with input: %s."
@@ -270,7 +270,7 @@ msgid "Call to chol() with 2 outputs."
 msgstr "Chiamata a chol() con 2 uscite."
 
 msgid "Call to sparse(): nzmax option ignored."
-msgstr "Chiamata a sparse(): l'opzione nzmax viene ignorata."
+msgstr "Chiamata a sparse(): l''opzione nzmax viene ignorata."
 
 msgid "Cancel"
 msgstr "Annulla"
@@ -317,14 +317,14 @@ msgstr "Gli eventi di disegno non sono accodati in Scilab."
 
 #, c-format
 msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
-msgstr "Errore durante l'esecuzione : [sci_equiv]=sci_%s(mtlb_expr)."
+msgstr "Errore durante l''esecuzione : [sci_equiv]=sci_%s(mtlb_expr)."
 
 msgid "Extraction from strings with more than two indexes not implemented."
-msgstr "L'estrazione da stringhe con più di due indici non è sviluppata."
+msgstr "L''estrazione da stringhe con più di due indici non è sviluppata."
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
-msgstr "L'estrazione di %s dalla tlist ''%s'' non è ancora sviluppata."
+msgstr "L''estrazione di %s dalla tlist ''%s'' non è ancora sviluppata."
 
 msgid "File"
 msgstr "File"
@@ -347,7 +347,7 @@ msgid ""
 "have."
 msgstr ""
 "Per sparse() di Scilab, i valori in ingresso devono avere la stessa "
-"dimensione, non è certo che l'abbiano."
+"dimensione, non è certo che l''abbiano."
 
 msgid "Generate formated code:"
 msgstr "Genera codice formattato:"
@@ -358,16 +358,16 @@ msgstr "Genera del codice ben formattato "
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
 msgstr ""
-"La variabile globale %s è stata aggiunta all'elenco della variabile M2SCI."
+"La variabile globale %s è stata aggiunta all''elenco della variabile M2SCI."
 
 #, c-format
 msgid ""
 "If %s is outside [-1,1]\n"
 "   complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
-"Se %s è fuori dall'intervallo [-1,1]\n"
+"Se %s è fuori dall''intervallo [-1,1]\n"
 "\n"
-"   la parte complessa del risultato di %s sarà l'opposto di quella di Matlab."
+"   la parte complessa del risultato di %s sarà l''opposto di quella di Matlab."
 
 #, c-format
 msgid ""
@@ -375,7 +375,7 @@ msgid ""
 "   real part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Se %s è fuori da [-1,1]\n"
-"   la parte reale del risultato di %s sarà l'opposto di quello di Matlab."
+"   la parte reale del risultato di %s sarà l''opposto di quello di Matlab."
 
 #, c-format
 msgid ""
@@ -460,7 +460,7 @@ msgstr ""
 "sequenza di chiamata originale."
 
 msgid "Mfile2sci help page"
-msgstr "Pagina d'aiuto di Mfile2sci"
+msgstr "Pagina d''aiuto di Mfile2sci"
 
 msgid "NO"
 msgstr "NO"
@@ -470,7 +470,7 @@ msgstr "No"
 
 #, c-format
 msgid "No Scilab equivalent for: %s"
-msgstr "Non c'è un equivalente in Scilab per: %s"
+msgstr "Non c''è un equivalente in Scilab per: %s"
 
 msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
 msgstr ""
@@ -478,11 +478,11 @@ msgstr ""
 "()."
 
 msgid "No minor grid in Scilab."
-msgstr "Non c'è alcuna griglia più piccola in Scilab"
+msgstr "Non c''è alcuna griglia più piccola in Scilab"
 
 #, c-format
 msgid "No simple equivalent, so %s() is called."
-msgstr "Non c'è un equivalente semplice, così viene chiamato %s()"
+msgstr "Non c''è un equivalente semplice, così viene chiamato %s()"
 
 #, c-format
 msgid "Not enough information on %s to set the proper flag."
@@ -510,10 +510,10 @@ msgid "Only double values used: "
 msgstr "Usati solo valori double: "
 
 msgid "Option -append not yet handled: will be ignored."
-msgstr "L'opzione -append non è ancora gestita: sarà ignorata"
+msgstr "L''opzione -append non è ancora gestita: sarà ignorata"
 
 msgid "Option -regexp not yet handled: will be ignored."
-msgstr "L'opzione -regexp non è ancora gestita: sarà ignorata"
+msgstr "L''opzione -regexp non è ancora gestita: sarà ignorata"
 
 msgid "Options"
 msgstr "Opzioni"
@@ -548,7 +548,7 @@ msgid ""
 "Scilab %s() does not work when dim input argument is greater than number of "
 "dims of first rhs..."
 msgstr ""
-"%s() di Scilab non funziona quando la dimensione dell'argomento in ingresso "
+"%s() di Scilab non funziona quando la dimensione dell''argomento in ingresso "
 "è più grande del numero di dim. del primo rhs..."
 
 #, c-format
@@ -591,7 +591,7 @@ msgid "TESTING M2SCI: creating varslist file..."
 msgstr "CONTROLLO DI M2SCI IN CORSO: creazione del file varslist..."
 
 msgid "Translatepaths help page"
-msgstr "Pagina d'aiuto di Translatepaths"
+msgstr "Pagina d''aiuto di Translatepaths"
 
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
@@ -654,7 +654,7 @@ msgstr "Modalità prolissa: "
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
 msgstr ""
-"Verificare che l'espressione valutata da execstr() sia compatibile con "
+"Verificare che l''espressione valutata da execstr() sia compatibile con "
 "Scilab."
 
 msgid ""
@@ -686,7 +686,7 @@ msgstr "I dati utente sono di dimensioni sbagliate."
 
 msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
 msgstr ""
-"C'è un argomento sbagliato in getrhs() (deve essere una tlist ''funcall'')."
+"C''è un argomento sbagliato in getrhs() (deve essere una tlist ''funcall'')."
 
 msgid "Wrong number of inputs."
 msgstr "Il numero di ingressi è sbagliato."
@@ -721,7 +721,7 @@ msgstr "endsymbol dovrebbe essere una stringa di caratteri e non un: %s."
 
 #, c-format
 msgid "expression can not be a: %s."
-msgstr "l'espressione non può essere un: %s."
+msgstr "l''espressione non può essere un: %s."
 
 msgid "fopen used with three outputs."
 msgstr "fopen è utilizzato con tre uscite."
@@ -741,7 +741,7 @@ msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr "infer deve essere una tlist ''infer'' invece di un: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "l'argomento in ingresso deve essere una tlist ''operation''"
+msgstr "l''argomento in ingresso deve essere una tlist ''operation''"
 
 msgid "is Real."
 msgstr "è reale"
@@ -778,14 +778,14 @@ msgid "lhsnb must be a constant instead of a: %s."
 msgstr "lhsnb deve essere una constante invece di un: %s."
 
 msgid "list of properties is not yet implemented."
-msgstr "l'elenco delle proprietà non è ancora sviluppato."
+msgstr "l''elenco delle proprietà non è ancora sviluppato."
 
 msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
 "ignored."
 msgstr ""
 "loginfo: verb_mode 0 non dovrebbe essere usato in questo contesto,"
-"l'informazione è ignorata."
+"l''informazione è ignorata."
 
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr "m2sciassume è obsoleto, viene usato invece m2scideclare."
@@ -830,7 +830,7 @@ msgstr "operatore %s non è stato trovato"
 
 #, c-format
 msgid "operator must be a string instead of a: %s."
-msgstr "l'operatorei deve essere una stringa invece di un: %s."
+msgstr "l''operatorei deve essere una stringa invece di un: %s."
 
 #, c-format
 msgid "out must be a list instead of a: %s."
@@ -843,7 +843,7 @@ msgstr "estrazione ricorsiva da una variabile %s di tipo %s."
 #, c-format
 msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
-"l'estrazione ricorsiva con un indice di tipo %s non è ancora sviluppata."
+"l''estrazione ricorsiva con un indice di tipo %s non è ancora sviluppata."
 
 #, c-format
 msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
@@ -892,11 +892,11 @@ msgstr "tipo di clausola sconosciuto: %s."
 
 #, c-format
 msgid "unknown instruction type %s."
-msgstr "L'istruzione %s è di tipo sconosciuto."
+msgstr "L''istruzione %s è di tipo sconosciuto."
 
 #, c-format
 msgid "wrong property %s."
 msgstr "la proprietò %s è sbagliata."
 
 msgid "wrong type of input."
-msgstr "l'ingresso è di tipo sbagliato."
+msgstr "l''ingresso è di tipo sbagliato."

@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " numero di vincoli (%s)'),'lmisolver',%m,%fm));"
+msgstr " numero di vincoli (%s)''),''lmisolver'',%m,%fm));"
 
 #, c-format
 msgid "%s: %s"
@@ -67,25 +67,25 @@ msgstr ""
 
 #, c-format
 msgid "%s: Empty function (use -function option)."
-msgstr "%s: Funzione vuota (usare l'opzione -function)."
+msgstr "%s: Funzione vuota (usare l''opzione -function)."
 
 #, c-format
 msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
-"%s: Era atteso un booleano, ma per la variabile %s all'ingresso #%d si è "
+"%s: Era atteso un booleano, ma per la variabile %s all''ingresso #%d si è "
 "ottenuto %s invece."
 
 #, c-format
 msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
-"%s: Era attesa una funzione, ma per la variabile %s all'ingresso #%d si è "
+"%s: Era attesa una funzione, ma per la variabile %s all''ingresso #%d si è "
 "ottenuto %s invece."
 
 #, c-format
 msgid ""
 "%s: Expected real variable for variable %s at input #%d, but got %s instead."
 msgstr ""
-"%s: Era attesa variabile reale, ma per la variabile %s all'ingresso #%d si è "
+"%s: Era attesa variabile reale, ma per la variabile %s all''ingresso #%d si è "
 "ottenuto %s invece."
 
 #, c-format
@@ -93,7 +93,7 @@ msgid ""
 "%s: Expected string variable for variable %s at input #%d, but got %s "
 "instead."
 msgstr ""
-"%s: Era attesa variabile stringa, ma per la variabile %s all'ingresso #%d si "
+"%s: Era attesa variabile stringa, ma per la variabile %s all''ingresso #%d si "
 "è ottenuto %s invece."
 
 #
@@ -105,11 +105,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
-msgstr "%s: La cronologia è disabilitata ; abilitare l'opzione -storehistory."
+msgstr "%s: La cronologia è disabilitata ; abilitare l''opzione -storehistory."
 
 #, c-format
 msgid "%s: History disabled ; turn on -storehistory option."
-msgstr "%s: La cronologia è disabilitata ; avviare l'opzione -storehistory."
+msgstr "%s: La cronologia è disabilitata ; avviare l''opzione -storehistory."
 
 #, c-format
 msgid ""
@@ -120,16 +120,16 @@ msgstr ""
 
 #, c-format
 msgid "%s: Initial guess [%s] is not feasible."
-msgstr "%s: L'ipotesi iniziale [%s] non è realizzabile."
+msgstr "%s: L''ipotesi iniziale [%s] non è realizzabile."
 
 #, c-format
 msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: L'ipotesi iniziale non è fattibile.\n"
+msgstr "%s: L''ipotesi iniziale non è fattibile.\n"
 
 #, c-format
 msgid "%s: Log file handle non zero while starting up the logging."
 msgstr ""
-"%s: Il gestore del file di registro non è zero durante l'inizio del login."
+"%s: Il gestore del file di registro non è zero durante l''inizio del login."
 
 #, c-format
 msgid "%s: Logging already started."
@@ -141,7 +141,7 @@ msgstr "%s: La registrazione non è partita."
 
 #, c-format
 msgid "%s: Negative iteration index %d is not allowed."
-msgstr "%s: L' indice di iterazione negativo %d non è ammesso."
+msgstr "%s: L'' indice di iterazione negativo %d non è ammesso."
 
 #, c-format
 msgid "%s: Negative iteration index are not allowed."
@@ -196,24 +196,24 @@ msgstr ""
 
 #, c-format
 msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr "%s: L'ordine deve essere 1,2 o 4.\n"
+msgstr "%s: L''ordine deve essere 1,2 o 4.\n"
 
 #, c-format
 msgid "%s: Problem has constraints, but fixed algorithm ignores them."
-msgstr "%s: Il problema ha dei vincoli, ma l'algoritmo fisso li ignora."
+msgstr "%s: Il problema ha dei vincoli, ma l''algoritmo fisso li ignora."
 
 #, c-format
 msgid "%s: Problem has constraints, but variable algorithm ignores them."
-msgstr "%s: Il problema ha dei vincoli, ma l'algoritmo variabile li ignora."
+msgstr "%s: Il problema ha dei vincoli, ma l''algoritmo variabile li ignora."
 
 #, c-format
 msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
-"%s: Il problema non ha vincoli, ma l'algoritmo Box è pensato per quelli."
+"%s: Il problema non ha vincoli, ma l''algoritmo Box è pensato per quelli."
 
 #, fuzzy, c-format
 msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: L'ordine deve essere 1,2 o 4.\n"
+msgstr "%s: L''ordine deve essere 1,2 o 4.\n"
 
 #, c-format
 msgid "%s: Randomized bounds initial simplex is not available without bounds."
@@ -226,7 +226,7 @@ msgid ""
 "%s: The -withderivatives option is true but all algorithms in neldermead are "
 "derivative-free."
 msgstr ""
-"%s: L'opzione -withderivatives è attiva, ma tutti gli algoritmi  in "
+"%s: L''opzione -withderivatives è attiva, ma tutti gli algoritmi  in "
 "neldermead non usano la derivata."
 
 #, c-format
@@ -263,11 +263,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: The elements of the argument #%d must be in [%d %d].\n"
-msgstr "%s: Gli elementi dell'argomento #%d devono essere in [%d %d].\n"
+msgstr "%s: Gli elementi dell''argomento #%d devono essere in [%d %d].\n"
 
 #, c-format
 msgid "%s: The exclusion index vector has %d rows instead of 1."
-msgstr "%s: Il vettore dell'indice di esclusione ha %d righe invece di 1."
+msgstr "%s: Il vettore dell''indice di esclusione ha %d righe invece di 1."
 
 #, c-format
 msgid ""
@@ -296,8 +296,8 @@ msgid ""
 "%s: The len vector is not consistent with the x0 point. Current shape of x0 "
 "is %d x %d while current shape of len is %d x %d."
 msgstr ""
-"%s: Il vettore len non è consistente con il punto x0. L'attuale forma di x0 "
-"è %d x %d mentre l'attuale forma di len è %d x %d."
+"%s: Il vettore len non è consistente con il punto x0. L''attuale forma di x0 "
+"è %d x %d mentre l''attuale forma di len è %d x %d."
 
 #, c-format
 msgid "%s: The matrix %s from costf(x0,%d) has %d columns, instead of %d."
@@ -360,12 +360,12 @@ msgid ""
 "%s: The restarteps option is expected to be a scalar, but current shape is "
 "%d x %d"
 msgstr ""
-"%s:L'opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale è "
+"%s:L''opzione restartsteps dovrebbe essere uno scalare, ma la forma attuale è "
 "%d x %d"
 
 #, c-format
 msgid "%s: The restarteps option is expected to be positive"
-msgstr "%s:L'opzione restartsteps dovrebbe essere positiva"
+msgstr "%s:L''opzione restartsteps dovrebbe essere positiva"
 
 #, c-format
 msgid "%s: The restartstep vector is expected to be positive"
@@ -383,13 +383,13 @@ msgstr ""
 msgid ""
 "%s: The value of the ''OutputFcn'' option is neither a function nor a list."
 msgstr ""
-"%s: Il valore dell'opzione ''OutputFcn'' non è una funzione né una lista."
+"%s: Il valore dell''opzione ''OutputFcn'' non è una funzione né una lista."
 
 #, c-format
 msgid ""
 "%s: The value of the ''PlotFcns'' option is neither a function nor a list."
 msgstr ""
-"%s: Il valore dell'opzione ''PlotFcns'' non è una funzione né una lista."
+"%s: Il valore dell''opzione ''PlotFcns'' non è una funzione né una lista."
 
 #, c-format
 msgid ""
@@ -425,7 +425,7 @@ msgstr "%s: %s è inatteso come numero massimo di iterazioni."
 
 #, c-format
 msgid "%s: Unexpected negative value %s for %s option"
-msgstr "%s: C'è l 'inatteso valore negativo %s per l'opzione %s"
+msgstr "%s: C''è l ''inatteso valore negativo %s per l''opzione %s"
 
 #, c-format
 msgid ""
@@ -496,7 +496,7 @@ msgid ""
 "functions which do not have two parameters."
 msgstr ""
 "%s: Il numero di variabili %d è inatteso. Non è possibile tracciare "
-"l'andamento del contorno per funzioni che non hanno due parametri."
+"l''andamento del contorno per funzioni che non hanno due parametri."
 
 #, c-format
 msgid "%s: Unknown -method %s"
@@ -532,15 +532,15 @@ msgstr "%s: Il passo %s non è conosciuto"
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
-msgstr "%s: Il valore %s per l'opzione %s è sconosciuto"
+msgstr "%s: Il valore %s per l''opzione %s è sconosciuto"
 
 #, c-format
 msgid "%s: Unknown value %s for -scalingsimplex0 option"
-msgstr "%s: Il valore %s per l'opzione -scalingsimplex0 è sconosciuto"
+msgstr "%s: Il valore %s per l''opzione -scalingsimplex0 è sconosciuto"
 
 #, c-format
 msgid "%s: Unknown value %s for -simplex0method option"
-msgstr "%s: Il valore %s per l'opzione -simplex0method non è conosciuto"
+msgstr "%s: Il valore %s per l''opzione -simplex0method non è conosciuto"
 
 #, c-format
 msgid "%s: Unrecognized parameter name ''%s''."
@@ -548,7 +548,7 @@ msgstr "%s: ''%s'' non è riconosciuto come nome per un parametro."
 
 #, c-format
 msgid "%s: Unrecognized value ''%s'' for ''Display'' option."
-msgstr "%s: Il valore ''%s'' per l'opzione ''Mostra'' non è riconosciuto."
+msgstr "%s: Il valore ''%s'' per l''opzione ''Mostra'' non è riconosciuto."
 
 #, c-format
 msgid "%s: Weighting matrix must be square.\n"
@@ -586,12 +586,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d."
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata."
+msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore colonna.\n"
 
 #, fuzzy, c-format
@@ -599,37 +599,37 @@ msgid ""
 "%s: Wrong type for element #%d in input argument #%d: A function is "
 "expected, but current type is %s.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A function expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: N-dimensionnal array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un array n-"
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un array n-"
 "dimensionale.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
+"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
 "esterno\n"
 
 #
@@ -642,32 +642,32 @@ msgstr ""
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata."
+msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. maxiter must be a floating point "
 "integer."
 msgstr ""
-"%s: L'argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
+"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
 "esterno\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
-"%s: L'argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
+"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
 "esterno\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. rtolf must be in [0,1]."
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata."
+msgstr "%s: L''argomento in ingresso #%d ha una dimensione sbagliata."
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the equality "
 "constraints."
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, fuzzy, c-format
@@ -675,25 +675,25 @@ msgid ""
 "%s: Wrong value for input argument #%d. x0 does not satisfy the inequality "
 "constraints."
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
-"%s: L'argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
+"%s: L''argomento in ingresso #%s è di tipo sbagliato: ne era atteso uno "
 "esterno\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. x0 is not positive."
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "funzione.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong value for input argument #%d. x0 lower than lower bound lb."
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "numero %d di colonne.\n"
 
 #

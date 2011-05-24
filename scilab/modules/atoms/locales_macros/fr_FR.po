@@ -79,7 +79,7 @@ msgstr "%s: ''%s - %s'' n''est pas installé.\n"
 
 #, c-format
 msgid "%s: ''%s'' (''%s'' section) is not installed.\n"
-msgstr "%s: ''%s'' (section ''%s'') n'est pas installé.\n"
+msgstr "%s: ''%s'' (section ''%s'') n''est pas installé.\n"
 
 #, c-format
 msgid "%s: ''%s'' isn''t installed.\n"
@@ -114,7 +114,7 @@ msgstr "%s: L''extraction du fichier DESCRIPTION (''%s'') a échoué.\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
-"%s : Arguments d'entrée n°%d et n°%d incompatibles : Même dimension "
+"%s : Arguments d''entrée n°%d et n°%d incompatibles : Même dimension "
 "attendue.\n"
 
 #, c-format
@@ -123,7 +123,7 @@ msgstr "%s: Le module ''%s - %s'' n''est pas installé.\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed (''%s'' section).\n"
-msgstr "%s: Le module ''%s'' n'est pas installé (section ''%s'').\n"
+msgstr "%s: Le module ''%s'' n''est pas installé (section ''%s'').\n"
 
 #, c-format
 msgid "%s: Module ''%s'' is not installed.\n"
@@ -132,20 +132,20 @@ msgstr "%s: Le module ''%s'' n''est pas installé.\n"
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
-"%s: Ni Wget ni Curl n'ont été trouvé: Veuillez installer un de ces  outils\n"
+"%s: Ni Wget ni Curl n''ont été trouvé: Veuillez installer un de ces  outils\n"
 
 #, c-format
 msgid ""
 "%s: Several versions of a package (%s) cannot be loaded at the same scilab "
 "session :\n"
 msgstr ""
-"%s: Plusieurs version d'un package (%s) ne peuvent pas être chargées dans la "
+"%s: Plusieurs version d''un package (%s) ne peuvent pas être chargées dans la "
 "même session Scilab :\n"
 
 #, c-format
 msgid "%s: The config file (''%s'') is not well formated at line %d\n"
 msgstr ""
-"%s: Le fichier de configuration (''%s'') n'est pas correctement formaté à la "
+"%s: Le fichier de configuration (''%s'') n''est pas correctement formaté à la "
 "ligne %d\n"
 
 #, c-format
@@ -173,7 +173,7 @@ msgid ""
 "%s: The directory ''%s'' cannot been created, please check if you have write "
 "access on this directory.\n"
 msgstr ""
-"%s: Le répertoire ''%s'' n'a pu être créé, veuillez vérifier que vous "
+"%s: Le répertoire ''%s'' n''a pu être créé, veuillez vérifier que vous "
 "disposez des droits en écriture sur ce répertoire.\n"
 
 #, c-format
@@ -210,7 +210,7 @@ msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
 "the %s field\n"
 msgstr ""
-"%s : Le fichier %s n'est pas correctement formaté, la boîte à outils %s - %s "
+"%s : Le fichier %s n''est pas correctement formaté, la boîte à outils %s - %s "
 "ne contient pas le %s champ\n"
 
 #, c-format
@@ -230,7 +230,7 @@ msgstr ""
 #, c-format
 msgid "%s: The file ''%s'' is not well formated at line %d\n"
 msgstr ""
-"%s : Le fichier ''%s'' n'est pas pas correctement formaté à la ligne %d\n"
+"%s : Le fichier ''%s'' n''est pas pas correctement formaté à la ligne %d\n"
 
 #, c-format
 msgid "%s: The following file hasn''t been copied:\n"
@@ -284,16 +284,16 @@ msgid ""
 "%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une chaine de 32 "
+"%s: Mauvaise taille pour l''argument d''entrée n° %d: Une chaine de 32 "
 "caracteres est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument en entrée: %d à %d attendu.\n"
+msgstr "%s : Mauvais nombre d''argument en entrée: %d à %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
@@ -301,19 +301,19 @@ msgstr "%s: Mauvais nombre d''argument d''entrée: au plus %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d ou %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s : Mauvais nombre d'arguments d'entrée : %d à %d attendus.\n"
+msgstr "%s : Mauvais nombre d''arguments d''entrée : %d à %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s: Mauvais nombre d'arguments d'entrée: au plus %d attendus.\n"
+msgstr "%s: Mauvais nombre d''arguments d''entrée: au plus %d attendus.\n"
 
 #, c-format
 msgid ""
@@ -332,24 +332,24 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
-"%s : Taille incorrecte pour l'argument d'entrée #%d : Une matrice de chaîne "
+"%s : Taille incorrecte pour l''argument d''entrée #%d : Une matrice de chaîne "
 "1x1 ou 1x2 est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Un booléen attendu.\n"
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une chaîne de "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n° %d : Une simple chaîne "
+"%s : Mauvaise dimension pour l''argument d''entrée n° %d : Une simple chaîne "
 "de caractères attendue.\n"
 
 #, c-format
@@ -397,41 +397,41 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : un booléen attendu.\n"
+"%s : Mauvais type pour l''argument d''entrée n°%d : un booléen attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
-msgstr "%s: Mauvais type pour l'argument d'entrée n° %d: Booléen attendu.\n"
+msgstr "%s: Mauvais type pour l''argument d''entrée n° %d: Booléen attendu.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Booléen ou simple chaîne de "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Booléen ou simple chaîne de "
 "caractères attendus.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Une chaîne de caractères "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument d'entrée n°%d : Table de chaîne de "
+"%s : Mauvais type pour l''argument d''entrée n°%d : Table de chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Mauvais type pour l'argument n° %d : Chaîne de caractères attendue.\n"
+"%s : Mauvais type pour l''argument n° %d : Chaîne de caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -458,7 +458,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
 msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : ''%s'' n'est pas une "
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : ''%s'' n''est pas une "
 "catégorie enregistrée."
 
 #, c-format
@@ -470,7 +470,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''all'' or ''main'' expected.\n"
 msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : ''all'' ou ''main'' "
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : ''all'' ou ''main'' "
 "attendu.\n"
 
 #, c-format
@@ -494,7 +494,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : ''filter:all'', "
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : ''filter:all'', "
 "''filter:main'' ou une catégorie principale valide est attendue.\n"
 
 #, c-format
@@ -538,7 +538,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : Une catégorie valide "
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : Une catégorie valide "
 "est attendue.\n"
 
 #, c-format
@@ -550,7 +550,7 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n°%d : Toutes les versions des "
+"%s: Mauvaise valeur pour l''argument d''entrée n°%d : Toutes les versions des "
 "modules devrait etre present.\n"
 
 #, c-format
@@ -558,7 +558,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named "
 "''%s''.\n"
 msgstr ""
-"%s : Valeur incorrecte pour l'argument d'entrée #%d : Il devrait avoir un "
+"%s : Valeur incorrecte pour l''argument d''entrée #%d : Il devrait avoir un "
 "champ nommé ''%s''.\n"
 
 #, c-format
@@ -603,7 +603,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that start with "
 "''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
-"%s: Mauvaise valeur pour l'argument d'entrée n° %d: Chaîne commençant par "
+"%s: Mauvaise valeur pour l''argument d''entrée n° %d: Chaîne commençant par "
 "''http://'', ''ftp://'' ou ''file://'' attendue.\n"
 
 #, c-format
@@ -649,7 +649,7 @@ msgstr ""
 #, c-format
 msgid "%s: You have not enough rights to remove the package %s (%s).\n"
 msgstr ""
-"%s: Vous n'avez pas assez de droits pour supprimer le paquet %s (%s).\n"
+"%s: Vous n''avez pas assez de droits pour supprimer le paquet %s (%s).\n"
 
 #, c-format
 msgid "%s: You haven''t write access on this directory : %s.\n"
@@ -735,7 +735,7 @@ msgid "Install"
 msgstr "Installer"
 
 msgid "Install Directory"
-msgstr "Répertoire d'installation"
+msgstr "Répertoire d''installation"
 
 msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
@@ -768,10 +768,10 @@ msgstr "Mainteneur(s)"
 
 msgid "No ATOMS module is available. Please, check your Internet connection."
 msgstr ""
-"Aucun module ATOMS n'est disponible. Svp, vérifier votre connexion internet."
+"Aucun module ATOMS n''est disponible. Svp, vérifier votre connexion internet."
 
 msgid "No ATOMS module is available: your repository list is empty."
-msgstr "Aucun module ATOMS n'est disponible : votre liste de dépôt est vide."
+msgstr "Aucun module ATOMS n''est disponible : votre liste de dépôt est vide."
 
 msgid "Package"
 msgstr "Package"

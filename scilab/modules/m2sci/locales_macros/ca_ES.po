@@ -19,15 +19,15 @@ msgstr ""
 
 #, c-format
 msgid " -- Each function converted separately: %s -- "
-msgstr " -- Cada funció s'ha convertit per separat: %s -- "
+msgstr " -- Cada funció s''ha convertit per separat: %s -- "
 
 #, c-format
 msgid " -- File %s contains more than one function -- "
-msgstr " -- El fitxer %s conté més d'una funció -- "
+msgstr " -- El fitxer %s conté més d''una funció -- "
 
 #, c-format
 msgid " -- Temporary files put in: %s -- "
-msgstr " -- Els fitxers temporals s'han desat a: %s -- "
+msgstr " -- Els fitxers temporals s''han desat a: %s -- "
 
 msgid " may be replaced by:"
 msgstr " es pot reemplaçar per:"
@@ -36,23 +36,23 @@ msgstr " es pot reemplaçar per:"
 msgid ""
 "%d Matlab Function(s) not yet converted, original calling sequence used:"
 msgstr ""
-"%d Funcions de Matlab encara no convertides, s'ha utilitzat la seqüència "
+"%d Funcions de Matlab encara no convertides, s''ha utilitzat la seqüència "
 "original de crida:"
 
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
 msgstr ""
-"%d funcions de barres d'eina de Matlab, s'ha utilitzat la seqüència original "
+"%d funcions de barres d''eina de Matlab, s''ha utilitzat la seqüència original "
 "de crida:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
 msgstr ""
-"%d funcions desconegudes, s'ha utilitzat la seqüència original de crida:"
+"%d funcions desconegudes, s''ha utilitzat la seqüència original de crida:"
 
 #, c-format
 msgid "%graphicswindow set to default value Handle."
-msgstr "El %graphicswindow s'ha definit al seu valor predeterminat Handle."
+msgstr "El %graphicswindow s''ha definit al seu valor predeterminat Handle."
 
 #, c-format
 msgid "%s (See fileinfo() function)."
@@ -72,7 +72,7 @@ msgstr "%s no està implementat."
 
 #, c-format
 msgid "%s is not yet implemented."
-msgstr "Encara no s'ha implementat el %s."
+msgstr "Encara no s''ha implementat el %s."
 
 #, c-format
 msgid "%s line %s out of %s..."
@@ -88,7 +88,7 @@ msgstr "%s quan es crida amb tres sortides."
 
 #, c-format
 msgid "%s will be ignored at run time."
-msgstr "S'ignorarà el %s en temps d'execució."
+msgstr "S''ignorarà el %s en temps d''execució."
 
 #, c-format
 msgid "%s with two outputs."
@@ -96,11 +96,11 @@ msgstr "%s amb dues entrades."
 
 #, c-format
 msgid "%s() called with skip parameter."
-msgstr "S'ha cridat al %s() amb el paràmetre skip."
+msgstr "S''ha cridat al %s() amb el paràmetre skip."
 
 #, c-format
 msgid "%s, flag IGNORED."
-msgstr "S'ha ignorat la marca %s."
+msgstr "S''ha ignorat la marca %s."
 
 #, c-format
 msgid "%s: %s module is not installed.\n"
@@ -108,11 +108,11 @@ msgstr "%s: El mòdul %s no està instal·lat.\n"
 
 #, c-format
 msgid "%s: Output value set to ''on''."
-msgstr "%s: La variable de sortida s'ha deixat com a ''on''."
+msgstr "%s: La variable de sortida s''ha deixat com a ''on''."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 msgid "&?"
 msgstr "&?"
@@ -127,7 +127,7 @@ msgid "&Tools"
 msgstr "&Eines"
 
 msgid "''nobalance'' option, IGNORED."
-msgstr "S'ha ignorat l'opció ''nobalance''."
+msgstr "S''ha ignorat l''opció ''nobalance''."
 
 #, c-format
 msgid "(Find this function in matlab/%s)."
@@ -152,14 +152,14 @@ msgid "-- Creation of [%s] (Macros) --\n"
 msgstr "-- Creació de [%s] (Macros) --\n"
 
 msgid "-all option ignored."
-msgstr "S'ignorarà l'opció -all."
+msgstr "S''ignorarà l''opció -all."
 
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
 msgstr ""
-"//  dims(i,:) és el vector de dimensió i-èssima de l'argument de sortida"
+"//  dims(i,:) és el vector de dimensió i-èssima de l''argument de sortida"
 
 msgid "//  prop(i) is the ith output argument property"
-msgstr "//  prop(i) és la propietat i-èssima de l'argument de sortida"
+msgstr "//  prop(i) és la propietat i-èssima de l''argument de sortida"
 
 #, c-format
 msgid ""
@@ -178,7 +178,7 @@ msgstr "// Visualització del mode"
 
 msgid "// Display warning for floating point exception"
 msgstr ""
-"// Visualització de l'avís per a l'excepció de nombre decimal amb coma "
+"// Visualització de l''avís per a l''excepció de nombre decimal amb coma "
 "flotant"
 
 #, c-format
@@ -197,12 +197,12 @@ msgid "// Inference for varargout"
 msgstr "// Interfície per al varargout"
 
 msgid "// Number of arguments in function call"
-msgstr "// Nombre d'arguments de la crida a la funció"
+msgstr "// Nombre d''arguments de la crida a la funció"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr ""
-"// Inicialització de variables de sortida (no s'ha trobat per a les "
-"d'entrada)"
+"// Inicialització de variables de sortida (no s''ha trobat per a les "
+"d''entrada)"
 
 msgid "0"
 msgstr "0"
@@ -235,31 +235,31 @@ msgid ""
 "All children will be deleted, no HandleVisibility property in Scilab "
 "graphics."
 msgstr ""
-"S'eliminaran tots els fitlls, ni hi ha la propietat HandleVisibility als "
+"S''eliminaran tots els fitlls, ni hi ha la propietat HandleVisibility als "
 "gràfics de Scilab."
 
 msgid "All properties will be reset."
 msgstr "Es reiniciaran totes les propietats."
 
 msgid "All windows will be deleted."
-msgstr "S'eliminaran totes les finestres."
+msgstr "S''eliminaran totes les finestres."
 
 #, c-format
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
 msgstr ""
-"Com a mínim un operand és una matriu buida a l'operador: %s, s'ha definit el "
+"Com a mínim un operand és una matriu buida a l''operador: %s, s''ha definit el "
 "resultat com a []."
 
 #, c-format
 msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
-"Com a mínim un operand de %s és una matriu buida. L'equivalent al Scilab és "
+"Com a mínim un operand de %s és una matriu buida. L''equivalent al Scilab és "
 "[]."
 
 #, c-format
 msgid "Bad use of isdefinedvar() with input: %s."
-msgstr "Utilització incorrecta de isdefinedvar() amb l'entrada: %s."
+msgstr "Utilització incorrecta de isdefinedvar() amb l''entrada: %s."
 
 msgid "Bessel function is not implemented for 2 outputs arguments."
 msgstr "La funció de Bessel no està implementada per a 2 arguments de sortida."
@@ -271,7 +271,7 @@ msgid "Call to chol() with 2 outputs."
 msgstr "Crida a chol() amb 2 sortides."
 
 msgid "Call to sparse(): nzmax option ignored."
-msgstr "Crida al sparse(): S'ignorarà l'opció nzmax."
+msgstr "Crida al sparse(): S''ignorarà l''opció nzmax."
 
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -283,10 +283,10 @@ msgid "Conversion mode"
 msgstr "Mode de conversió"
 
 msgid "Conversion of M-tree..."
-msgstr "Conversió de l'arbre M..."
+msgstr "Conversió de l''arbre M..."
 
 msgid "Conversion of M-tree: Done"
-msgstr "Conversió de l'arbre M: Feta"
+msgstr "Conversió de l''arbre M: Feta"
 
 msgid "Convert"
 msgstr "Converteix"
@@ -308,37 +308,37 @@ msgstr ""
 "per: %s\n"
 "   Dimensió donada per a m2scideclare: %s\n"
 "   Dimensio actual: %s\n"
-"   S'ha ignorat el m2scideclare"
+"   S''ha ignorat el m2scideclare"
 
 msgid "Directory name: "
 msgstr "Nom del directori: "
 
 msgid "Drawing events are not queued in Scilab."
-msgstr "Els esdeveniments de dibuix no s'encuen al Scilab."
+msgstr "Els esdeveniments de dibuix no s''encuen al Scilab."
 
 #, c-format
 msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
-msgstr "Error en l'execució de: [sci_equiv]=sci_%s(mtlb_expr)."
+msgstr "Error en l''execució de: [sci_equiv]=sci_%s(mtlb_expr)."
 
 msgid "Extraction from strings with more than two indexes not implemented."
 msgstr ""
-"No s'ha implementat l'extracció a partir de cadenes de text amb més de dos "
+"No s''ha implementat l''extracció a partir de cadenes de text amb més de dos "
 "índexos."
 
 #, c-format
 msgid "Extraction of %s from ''%s'' tlist is not yet implemented."
 msgstr ""
-"Encara no s'ha implementat l'extració de %s a partir d'una tlist ''%s''."
+"Encara no s''ha implementat l''extració de %s a partir d''una tlist ''%s''."
 
 msgid "File"
 msgstr "Fitxer"
 
 #, c-format
 msgid "File %s is an empty file ! Nothing done..."
-msgstr "El fitxer %s és buit! No s'ha fet res..."
+msgstr "El fitxer %s és buit! No s''ha fet res..."
 
 msgid "File contains no instruction, no translation made..."
-msgstr "El fitxer no conté cap instrucció, no s'ha realitzat la traducció..."
+msgstr "El fitxer no conté cap instrucció, no s''ha realitzat la traducció..."
 
 msgid "File name: "
 msgstr "Nom del fitxer: "
@@ -350,7 +350,7 @@ msgid ""
 "For Scilab sparse(), input values must have the same size, not sure they "
 "have."
 msgstr ""
-"Per al sparse() de Scilab, els valors d'entrada han de tenir la mateixa "
+"Per al sparse() de Scilab, els valors d''entrada han de tenir la mateixa "
 "mida, segurament no la tenen."
 
 msgid "Generate formated code:"
@@ -361,7 +361,7 @@ msgstr "Genera codi per a imprimir: "
 
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
-msgstr "S'ha afegit la variable global %s a la llista de variables del M2SCI."
+msgstr "S''ha afegit la variable global %s a la llista de variables del M2SCI."
 
 #, c-format
 msgid ""
@@ -369,7 +369,7 @@ msgid ""
 "   complex part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Si %s no és al rang[-1,1]\n"
-"   la part complexa de la sortida %s serà l'oposat al del Matlab."
+"   la part complexa de la sortida %s serà l''oposat al del Matlab."
 
 #, c-format
 msgid ""
@@ -377,7 +377,7 @@ msgid ""
 "   real part of output of %s will be the opposite of Matlab one."
 msgstr ""
 "Si %s és fora de [-1,1]\n"
-"   la part real de %s serà l'oposada del Matlab."
+"   la part real de %s serà l''oposada del Matlab."
 
 #, c-format
 msgid ""
@@ -388,10 +388,10 @@ msgstr ""
 "de manera que el resultat serà %s."
 
 msgid "Input directory"
-msgstr "Directori d'entrada"
+msgstr "Directori d''entrada"
 
 msgid "Input file"
-msgstr "Fitxer d'entrada"
+msgstr "Fitxer d''entrada"
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
@@ -406,10 +406,10 @@ msgid "L.%d: Unknown variable %s."
 msgstr "L.%d: Variable desconeguda %s."
 
 msgid "M-file reading..."
-msgstr "S'està llegint el fitxer M..."
+msgstr "S''està llegint el fitxer M..."
 
 msgid "M-file reading: Done"
-msgstr "S'ha llegit el fitxer M."
+msgstr "S''ha llegit el fitxer M."
 
 #, c-format
 msgid "M2SCI bug: extraction from unknown variable %s in varslist."
@@ -426,23 +426,23 @@ msgstr ""
 "de manera que el resultat serà 1."
 
 msgid "Macro to tree conversion..."
-msgstr "Macro per a la conversió d'arbre..."
+msgstr "Macro per a la conversió d''arbre..."
 
 msgid "Macro to tree conversion: Done"
 msgstr "Conversió de macro a arbre: Feta"
 
 msgid "Matlab exist(), mtlb_exist() is called."
-msgstr "S'ha cridat al exist(), mtlb_exist() del Matlab."
+msgstr "S''ha cridat al exist(), mtlb_exist() del Matlab."
 
 #, c-format
 msgid "Matlab function %s not yet converted, original calling sequence used."
 msgstr ""
-"La funció %s de Matlab encara no s'ha convertit, s'utilitzarà la seqüència "
+"La funció %s de Matlab encara no s''ha convertit, s''utilitzarà la seqüència "
 "original de la crida."
 
 #, c-format
 msgid "Matlab function %s not yet converted."
-msgstr "La funció %s del Matlab encara no s'ha convertit."
+msgstr "La funció %s del Matlab encara no s''ha convertit."
 
 msgid "Matlab to Scilab conversion tool"
 msgstr "Eina de conversió de Matlab a Scilab"
@@ -451,18 +451,18 @@ msgstr "Eina de conversió de Matlab a Scilab"
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used"
 msgstr ""
-"La funció de barra d'eines %s del Matlab no s'ha convertit, s'utilitzarà la "
+"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà la "
 "seqüència original de crida"
 
 #, c-format
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used."
 msgstr ""
-"La funció de barra d'eines %s del Matlab no s'ha convertit, s'utilitzarà la "
+"La funció de barra d''eines %s del Matlab no s''ha convertit, s''utilitzarà la "
 "seqüència original de crida."
 
 msgid "Mfile2sci help page"
-msgstr "Pàgina d'ajuda del Mfile2sci"
+msgstr "Pàgina d''ajuda del Mfile2sci"
 
 msgid "NO"
 msgstr "NO"
@@ -480,7 +480,7 @@ msgstr ""
 "al mtlb_findstr()."
 
 msgid "No minor grid in Scilab."
-msgstr "No s'ha definit la reixa menor del Scilab."
+msgstr "No s''ha definit la reixa menor del Scilab."
 
 #, c-format
 msgid "No simple equivalent, so %s() is called."
@@ -491,7 +491,7 @@ msgid "Not enough information on %s to set the proper flag."
 msgstr "No hi ha prou informació a %s per a definir la marca correcta."
 
 msgid "Not yet implemented."
-msgstr "Encara no s'ha implementat."
+msgstr "Encara no s''ha implementat."
 
 msgid "OFF"
 msgstr "APAGAT"
@@ -502,20 +502,20 @@ msgstr "ENCÉS"
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
 msgstr ""
-"Un dels operands és una matriu buida a: %s, s'ha definit el resultat com a "
+"Un dels operands és una matriu buida a: %s, s''ha definit el resultat com a "
 "[]."
 
 msgid "Only double values used in M-file:"
 msgstr "Només valors double al fitxer M:"
 
 msgid "Only double values used: "
-msgstr "Només s'ha utilitzat valors double: "
+msgstr "Només s''ha utilitzat valors double: "
 
 msgid "Option -append not yet handled: will be ignored."
-msgstr "Encara no es pot tractar l'opció -append: S'ignorarà."
+msgstr "Encara no es pot tractar l''opció -append: S''ignorarà."
 
 msgid "Option -regexp not yet handled: will be ignored."
-msgstr "Encara no es pot tractar l'opció -regexp: S'ignorarà."
+msgstr "Encara no es pot tractar l''opció -regexp: S''ignorarà."
 
 msgid "Options"
 msgstr "Opcions"
@@ -534,7 +534,7 @@ msgstr ""
 "m2scideclare per: %s\n"
 "   Tipus donat per a m2scideclare: %s\n"
 "   Tipus actual: %s\n"
-"   S'ha ignorat el m2scideclare"
+"   S''ha ignorat el m2scideclare"
 
 msgid "Recursive conversion: "
 msgstr "Conversió recursiva: "
@@ -550,13 +550,13 @@ msgid ""
 "Scilab %s() does not work when dim input argument is greater than number of "
 "dims of first rhs..."
 msgstr ""
-"El %s() de Scilab no funciona quan la dimensió de l'argument d'entrada és "
+"El %s() de Scilab no funciona quan la dimensió de l''argument d''entrada és "
 "major que el nombre de dimensions del primer rhs..."
 
 #, c-format
 msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
 msgstr ""
-"El %s() del Scilab no funciona amb valors complexos: S'ha ignorat la crida "
+"El %s() del Scilab no funciona amb valors complexos: S''ha ignorat la crida "
 "al %s()."
 
 msgid ""
@@ -564,7 +564,7 @@ msgid ""
 "used."
 msgstr ""
 "El qr() de Scilab i el de Matlab no dónen el mateix resultat per a aquest "
-"cas: S'utilitzarà el mtlb_qr()."
+"cas: S''utilitzarà el mtlb_qr()."
 
 msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
 msgstr ""
@@ -589,10 +589,10 @@ msgid "Syntax modification: Done"
 msgstr "Modificació de la sintaxi: Feta"
 
 msgid "TESTING M2SCI: creating varslist file..."
-msgstr "PROVANT EL M2SCI: S'està creant el fitxer varslist..."
+msgstr "PROVANT EL M2SCI: S''està creant el fitxer varslist..."
 
 msgid "Translatepaths help page"
-msgstr "Pàgina d'ajuda del Translatepaths"
+msgstr "Pàgina d''ajuda del Translatepaths"
 
 msgid ""
 "Translation may be improved: see the //! comments and for all mtlb_<funname> "
@@ -619,11 +619,11 @@ msgstr ""
 "per: %s\n"
 "   Tipus donat per a m2scideclare: %s\n"
 "   Tipus actual: %s\n"
-"   S'ha ignorat el m2scideclare"
+"   S''ha ignorat el m2scideclare"
 
 #, c-format
 msgid "Unhandled class: %s."
-msgstr "No s'ha tractat la classe: %s."
+msgstr "No s''ha tractat la classe: %s."
 
 #, c-format
 msgid "Unknown datatype %s."
@@ -632,7 +632,7 @@ msgstr "El tipus de dades %s és desconegut."
 #, c-format
 msgid "Unknown function %s not converted, original calling sequence used."
 msgstr ""
-"La funció desconeguda %s no s'ha convertit, s'utilitzarà la seqüència "
+"La funció desconeguda %s no s''ha convertit, s''utilitzarà la seqüència "
 "original de crida."
 
 #, c-format
@@ -641,7 +641,7 @@ msgstr "La propietat %s és desconeguda."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
 msgstr ""
-"El tipus del paràmetre d'entrada és desconegut: considereu fclose(fid)."
+"El tipus del paràmetre d''entrada és desconegut: considereu fclose(fid)."
 
 #, c-format
 msgid "Variable %s supposed to be the Imaginary unit."
@@ -655,13 +655,13 @@ msgstr "Mode detallat: "
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
 msgstr ""
-"Verifiqueu que l'expressió evaluada per execstr() és compatible amb el "
+"Verifiqueu que l''expressió evaluada per execstr() és compatible amb el "
 "Scilab."
 
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
 msgstr ""
-"Verifiqueu que les funcions sobrecarregades s'han escrit per a les entrades "
+"Verifiqueu que les funcions sobrecarregades s''han escrit per a les entrades "
 "a display()."
 
 msgid "W and A permission parameters."
@@ -683,15 +683,15 @@ msgstr ""
 "         Es generarà %s.sci, %s.cat i sci_%s.sci !"
 
 msgid "Wrong dimensions user data."
-msgstr "Les dades de l'usuari tenen una dimensió incorrecta."
+msgstr "Les dades de l''usuari tenen una dimensió incorrecta."
 
 msgid "Wrong input argument in getrhs() (Must be a ''funcall'' tlist)."
 msgstr ""
-"L'argument d'entrada a getrhs() és incorrecte (Ha de ser un tlist "
+"L''argument d''entrada a getrhs() és incorrecte (Ha de ser un tlist "
 "''funcall'')."
 
 msgid "Wrong number of inputs."
-msgstr "El nombre d'entrades és incorrecte."
+msgstr "El nombre d''entrades és incorrecte."
 
 msgid "YES"
 msgstr "SÍ"
@@ -704,7 +704,7 @@ msgid "contents must be a ''contents'' tlist instead of a: %s."
 msgstr "El contents ha de ser un tlist de ''contents'' en comptes de: %s."
 
 msgid "cube_scaling only used in 3d mode."
-msgstr "El cube_scaling només s'utilitza en el mode 3D."
+msgstr "El cube_scaling només s''utilitza en el mode 3D."
 
 #, c-format
 msgid "destination variable is not a cell: %s is of type %s."
@@ -723,10 +723,10 @@ msgstr "El símbol final hauria de ser un caràcter i no un: %s."
 
 #, c-format
 msgid "expression can not be a: %s."
-msgstr "L'expressió no pot ser un: %s."
+msgstr "L''expressió no pot ser un: %s."
 
 msgid "fopen used with three outputs."
-msgstr "S'ha utilitzat el fopen amb tres sortides."
+msgstr "S''ha utilitzat el fopen amb tres sortides."
 
 msgid "fopen(''all'') has no translation."
 msgstr "No hi ha cap traducció per al fopen(''all'')."
@@ -736,14 +736,14 @@ msgstr "si"
 
 #, c-format
 msgid "index must be a list instead of a: %s."
-msgstr "L'índex ha de ser una llista en comptes de : %s."
+msgstr "L''índex ha de ser una llista en comptes de : %s."
 
 #, c-format
 msgid "infer must be an ''infer'' tlist instead of a: %s."
 msgstr "El infer ha de ser un tlist de ''infer'' en comptes de: %s."
 
 msgid "input argument must be an ''operation'' tlist."
-msgstr "L'argument d'entrada ha de ser un tlist ''operation''."
+msgstr "L''argument d''entrada ha de ser un tlist ''operation''."
 
 msgid "is Real."
 msgstr "és real."
@@ -780,24 +780,24 @@ msgid "lhsnb must be a constant instead of a: %s."
 msgstr "El lhsnb ha de ser una constant en comptes de: %s."
 
 msgid "list of properties is not yet implemented."
-msgstr "Encara no s'ha implementat la llista de propietats."
+msgstr "Encara no s''ha implementat la llista de propietats."
 
 msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
 "ignored."
 msgstr ""
-"loginfos: El verb_mode 0 no s'hauria d'utilitzar en aquest context, s'ha "
+"loginfos: El verb_mode 0 no s''hauria d''utilitzar en aquest context, s''ha "
 "ignorat la informació."
 
 msgid "m2sciassume is obsolete, used m2scideclare instead."
-msgstr "El m2sciassume és obsolet, s'ha utilitzat el m2scideclare."
+msgstr "El m2sciassume és obsolet, s''ha utilitzat el m2scideclare."
 
 #, c-format
 msgid "matname must be a string instead of a: %s."
 msgstr "El matname ha de ser una cadena de text en comptes de: %s."
 
 msgid "message_id ignored in following line."
-msgstr "S'ha ignorat el message_id a la línia següent."
+msgstr "S''ha ignorat el message_id a la línia següent."
 
 #, c-format
 msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
@@ -827,7 +827,7 @@ msgstr "El operands han de ser una llista en comptes de: %s."
 
 #, c-format
 msgid "operator %s not found."
-msgstr "No s'ha trobat l'operador %s."
+msgstr "No s''ha trobat l''operador %s."
 
 #, c-format
 msgid "operator must be a string instead of a: %s."
@@ -839,12 +839,12 @@ msgstr "El out  han de ser una llista en comptes de: %s."
 
 #, c-format
 msgid "recursive extraction from a variable %s of type %s."
-msgstr "Extracció recursiva d'una variable %s del tipus %s."
+msgstr "Extracció recursiva d''una variable %s del tipus %s."
 
 #, c-format
 msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
-"Encara no s'ha implementat l'extracció recursiva amb un índex del tipus %s."
+"Encara no s''ha implementat l''extracció recursiva amb un índex del tipus %s."
 
 #, c-format
 msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
@@ -867,7 +867,7 @@ msgid "sciname must be a string instead of a: %s."
 msgstr "El sciname ha de ser una cadena de text en comptes de: %s."
 
 msgid "second output argument will be ignored."
-msgstr "S'ignorarà el segon arugment de sortida."
+msgstr "S''ignorarà el segon arugment de sortida."
 
 msgid "string output can be different from Matlab num2str output."
 msgstr ""
@@ -879,7 +879,7 @@ msgstr "Hi ha massa dades."
 
 #, c-format
 msgid "type %d is not implemented."
-msgstr "El tipus %d no s'ha implementat."
+msgstr "El tipus %d no s''ha implementat."
 
 #, c-format
 msgid "type must be a ''type'' tlist instead of a: %s."
@@ -894,11 +894,11 @@ msgstr "El tipus de clàusula és incorrecte: %s."
 
 #, c-format
 msgid "unknown instruction type %s."
-msgstr "El tipus d'instrucció %s és desconegut."
+msgstr "El tipus d''instrucció %s és desconegut."
 
 #, c-format
 msgid "wrong property %s."
 msgstr "La propietat %s és incorrecta."
 
 msgid "wrong type of input."
-msgstr "L'entrada és d'un tipus incorrecte."
+msgstr "L''entrada és d''un tipus incorrecte."

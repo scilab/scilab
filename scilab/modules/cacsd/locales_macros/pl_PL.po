@@ -142,11 +142,11 @@ msgstr "%s: Bezpośredni przepust ustawiony na zero.\n"
 
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
-msgstr "%s: Równania Francis'a nie spełnione.\n"
+msgstr "%s: Równania Francis''a nie spełnione.\n"
 
 #, c-format
 msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
-msgstr "%s: Częstotliwości poza częstotliwością Nyquist'a są ignorowane.\n"
+msgstr "%s: Częstotliwości poza częstotliwością Nyquist''a są ignorowane.\n"
 
 #, c-format
 msgid "%s: Hybrid system not implemented.\n"
@@ -244,7 +244,7 @@ msgstr "%s: Potrzeba %s => Użyj wartości domyślnej %s=%d.\n"
 #, c-format
 msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
 msgstr ""
-"%s: Negatywne częstotliwości poniżej częstotliwości Nyquist'a są "
+"%s: Negatywne częstotliwości poniżej częstotliwości Nyquist''a są "
 "ignorowane.\n"
 
 #, c-format
@@ -265,7 +265,7 @@ msgstr "%s: Norma błędu = %g\n"
 
 #, c-format
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
-msgstr "%s: Rozwiązanie Riccati'ego niedokładne: błąd rownania = %g.\n"
+msgstr "%s: Rozwiązanie Riccati''ego niedokładne: błąd rownania = %g.\n"
 
 #, c-format
 msgid "%s: Some input(s) are undefined.\n"
@@ -290,7 +290,7 @@ msgstr "%s: Odchylenie standardowe estymatora %s:\n"
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr ""
-"%s: Program do rozwiązania stacjonarnego równania Riccati'ego nie znalazł "
+"%s: Program do rozwiązania stacjonarnego równania Riccati''ego nie znalazł "
 "rozwiązania.\n"
 
 #, c-format
@@ -754,7 +754,7 @@ msgid "Denominator :"
 msgstr "Mianownik"
 
 msgid "Evans root locus"
-msgstr "umiejscowienie pierwiastka Evans'a"
+msgstr "umiejscowienie pierwiastka Evans''a"
 
 msgid "Frequency (Hz)"
 msgstr "Częstotliwość (Hz)"
@@ -763,7 +763,7 @@ msgid "Gain :"
 msgstr "Przyrost :"
 
 msgid "Hall chart"
-msgstr "Wykres Hall'a"
+msgstr "Wykres Hall''a"
 
 msgid "Hz"
 msgstr "Hz"
@@ -800,7 +800,7 @@ msgid "Numerator :"
 msgstr "Licznik"
 
 msgid "Nyquist plot"
-msgstr "Wykres Nyquist'a"
+msgstr "Wykres Nyquist''a"
 
 msgid "Phase (deg)"
 msgstr "Faza (stopnie)"

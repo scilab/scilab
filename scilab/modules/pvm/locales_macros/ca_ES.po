@@ -18,4 +18,4 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "PVM parallel Toolbox"
-msgstr "Barra d'eines paral·lela de PVM"
+msgstr "Barra d''eines paral·lela de PVM"

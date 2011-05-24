@@ -67,7 +67,7 @@ msgstr "%s：输入参数#%d的类型错误：应该为实数常量矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为整数或者'%s'。\n"
+msgstr "%s：输入参数#%d的类型错误：应该为整数或者''%s''。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"

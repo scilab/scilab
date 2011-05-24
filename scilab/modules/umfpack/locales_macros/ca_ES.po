@@ -43,7 +43,7 @@ msgstr "              stacksize(3000000);                    "
 #, c-format
 msgid "           don''t reached after %d iterations (got only %e) \n"
 msgstr ""
-"           no s'ha assolit després de %d iteracions (només s'ha obtingut "
+"           no s''ha assolit després de %d iteracions (només s''ha obtingut "
 "%e) \n"
 
 msgid "           then re enter scisptdemo()                "
@@ -100,39 +100,39 @@ msgstr "%s: La matriu i els factors LU no tenen la mateixa dimensió.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: El nombre d'arguments d'entrada és incorrecte.\n"
+msgstr "%s: El nombre d''arguments d''entrada és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una matriu "
 "dispersa quadrada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
 "dispersa quadrada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una matriu "
 "dispersa.\n"
 
 #, c-format
@@ -149,7 +149,7 @@ msgid "display a speed comparison test"
 msgstr "mostra un test de comparació de velocitat"
 
 msgid "how to use this stuff"
-msgstr "Com s'utilitza"
+msgstr "Com s''utilitza"
 
 msgid "small tests for condestsp"
 msgstr "petits tests per a condestsp"

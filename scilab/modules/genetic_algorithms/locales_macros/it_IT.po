@@ -43,7 +43,7 @@ msgstr "%s: iterazione %d / %d\n"
 
 #, c-format
 msgid "%s: optimization starting, please wait ...\n"
-msgstr "%s: avvio dell'ottimizzazione in corso,attendere...\n"
+msgstr "%s: avvio dell''ottimizzazione in corso,attendere...\n"
 
 #, c-format
 msgid "%s: wrong direction"

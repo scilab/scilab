@@ -75,13 +75,13 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
-"stessa dim. dell'arg. in ingr. #%d.\n"
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
+"stessa dim. dell''arg. in ingr. #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
 "vettore colonna.\n"
 
 #, c-format
@@ -89,47 +89,47 @@ msgid ""
 "%s: Wrong size for input argument #%d: Same size as input argument #%d "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
-"stessa dim. dell'arg. in ingr. #%d.\n"
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa la "
+"stessa dim. dell''arg. in ingr. #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice quadrata.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
+msgstr "%s: L''argomento in ingresso #%d è di tipo sbagliato.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
 "colonna.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
 "scalare.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "quadrata.\n"
 
 #, c-format
@@ -137,7 +137,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa la trasposta "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa la trasposta "
 "della funzione %s.\n"
 
 #, fuzzy, c-format
@@ -145,14 +145,14 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, fuzzy, c-format
@@ -160,7 +160,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
 "%s: %d.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa la "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
 "trasposta della funzione %s.\n"
 
 #, fuzzy, c-format
@@ -168,19 +168,19 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
 "is expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa la "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
 "trasposta della funzione %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
 "vettore colonna.\n"
 
 #, c-format
@@ -188,22 +188,22 @@ msgid ""
 "%s: Wrong value for input argument #%d: Transpose of the function %s "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa la "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa la "
 "trasposta della funzione %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un "
 "vettore.\n"
 
 #, c-format
 msgid "Algorithm fails\n"
-msgstr "L'algoritmo fallisce\n"
+msgstr "L''algoritmo fallisce\n"
 
 #, c-format
 msgid "Algorithm pass\n"
-msgstr "Passo dell'algoritmo\n"
+msgstr "Passo dell''algoritmo\n"
 
 #, c-format
 msgid "Arguments:\n"

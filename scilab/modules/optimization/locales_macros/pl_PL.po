@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid " number of of constraints (%s)'),'lmisolver',%m,%fm));"
-msgstr " liczba ograniczeń (%s)'),'lmisolver',%m,%fm));"
+msgstr " liczba ograniczeń (%s)''),''lmisolver'',%m,%fm));"
 
 #, c-format
 msgid "%s: %s"

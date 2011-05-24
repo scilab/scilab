@@ -83,7 +83,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+"%s: falscher Typ für Eingangsargument ''%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -129,4 +129,4 @@ msgstr ""
 
 #, fuzzy
 msgid "This directory already exists in "
-msgstr "%s: Warnung: VErzeichnis '%s' existiert bereits.\n"
+msgstr "%s: Warnung: VErzeichnis ''%s'' existiert bereits.\n"

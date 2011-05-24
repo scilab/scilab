@@ -72,7 +72,7 @@ msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
 "[Start, End]"
 msgstr ""
-"&nbsp;&nbsp;&nbsp;&nbsp;\"展開するビット\"を\"ビットの範囲\"に設定するかどう"
+"&nbsp;&nbsp;&nbsp;&nbsp;""展開するビット""を""ビットの範囲""に設定するかどう"
 "か: [開始,終了]"
 
 msgid "&nbsp;- Bits to Extract:"
@@ -89,7 +89,7 @@ msgstr "&nbsp;- 正の値は int8(1) とみなされます"
 
 #, c-format
 msgid "''Initial Value'' and ''Final Value'': incompatible sizes: %d and %d."
-msgstr "\"初期値\"と\"終端値\": 大きさに互換性がありません: %d および %d."
+msgstr "''初期値''と''終端値'': 大きさに互換性がありません: %d および %d."
 
 msgid "''Minimum'' must be less than ''Maximum''."
 msgstr "'Minimum'' は ''Maximum''よりも小さくする必要があります."
@@ -187,7 +187,7 @@ msgstr "データ型"
 
 #, fuzzy, c-format
 msgid "Directory ''%s'' does not exist"
-msgstr "変数'%s'が存在しません.\n"
+msgstr "変数''%s''が存在しません.\n"
 
 msgid "Discriminant type:"
 msgstr "判別式の型:"
@@ -519,7 +519,7 @@ msgid "Swap Mode (0:No, 1:Yes)"
 msgstr ""
 
 msgid "The ''Initial Value'' must be 0 or 1 of type int8"
-msgstr "\"初期値\"はint8型の0または1とする必要があります"
+msgstr "''初期値''はint8型の0または1とする必要があります"
 
 msgid "The measurement points"
 msgstr "観測点"
@@ -577,7 +577,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Write to C binary file"
-msgstr "ファイル '%s'への書込みエラー.\n"
+msgstr "ファイル ''%s''への書込みエラー.\n"
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
@@ -586,79 +586,79 @@ msgstr ""
 
 #, fuzzy, c-format
 msgid "Wrong size for ''%s'' parameter"
-msgstr "\"真理値表\"パラメータの大きさが間違っています: %d."
+msgstr "''真理値表''パラメータの大きさが間違っています: %s."
 
 #, fuzzy, c-format
 msgid "Wrong size for ''%s'' parameter: %d."
-msgstr "\"真理値表\"パラメータの大きさが間違っています: %d."
+msgstr "''真理値表''パラメータの大きさが間違っています: %d."
 
 #, fuzzy, c-format
 msgid "Wrong size for ''%s'' parameter: %s."
-msgstr "\"真理値表\"パラメータの大きさが間違っています: %d."
+msgstr "''真理値表''パラメータの大きさが間違っています: %d."
 
 #, fuzzy, c-format
 msgid "Wrong type for ''%s'' parameter"
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, fuzzy, c-format
 msgid "Wrong type for ''%s'' parameter: %5.1f."
-msgstr "\"ビット添字\"パラメータの型が間違っています: %5.1f."
+msgstr "''ビット添字''パラメータの型が間違っています: %5.1f."
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter."
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter: %d."
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, fuzzy, c-format
 msgid "Wrong value for ''%s'' parameter: %s."
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong value for ''Frequency'' parameter: %e."
-msgstr "\"周波数\"パラメータに間違った値が使用されました %e."
+msgstr "''周波数''パラメータに間違った値が使用されました %e."
 
 #, c-format
 msgid "Wrong value for ''Initial State'' parameter: %d."
-msgstr "\"初期値状態量\"パラメータの値が間違っています: %d."
+msgstr "''初期値状態量''パラメータの値が間違っています: %d."
 
 #, fuzzy
 msgid "Wrong value for ''Output File Name'' parameter"
-msgstr "\"出力型\"パラメータの値が間違っています: %d."
+msgstr "''出力型''パラメータの値が間違っています: %d."
 
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "\"ポート番号\"パラメータの値が間違っています: %d."
+msgstr "''ポート番号''パラメータの値が間違っています: %d."
 
 #, fuzzy, c-format
 msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
-msgstr "\"開始時刻\"パラメータの値が間違っています: %e."
+msgstr "''開始時刻''パラメータの値が間違っています: %e."
 
 #, fuzzy, c-format
 msgid "Wrong values for ''%s'' parameter: %5.1e."
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, fuzzy, c-format
 msgid "Wrong values for ''%s'' parameter: %s."
-msgstr "\"規則\"パラメータの値が間違っています: %d"
+msgstr "''規則''パラメータの値が間違っています: %d"
 
 #, c-format
 msgid "Wrong values for ''Maximum'' and ''Minimum'' parameters: %d &lt; %d"
-msgstr "\"最大\"および\"最初\"パラメータの値が間違っています: %d &lt; %d"
+msgstr "''最大''および""最初""パラメータの値が間違っています: %d &lt; %d"
 
 #, c-format
 msgid "Wrong values for ''Port Number'' parameter: %d."
-msgstr "\"ポート番号\"パラメータの値が間違っています: %d."
+msgstr "''ポート番号''パラメータの値が間違っています: %d."
 
 #, c-format
 msgid "Wrong values for ''Upper Limit'' parameter: %d."
-msgstr "\"上限\"パラメータの値が間違っています: %d."
+msgstr "''上限''パラメータの値が間違っています: %d."
 
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 63

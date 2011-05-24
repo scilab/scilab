@@ -64,7 +64,7 @@ msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument ''#%d'': '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument ''#%d'': ''%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
@@ -75,7 +75,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+"%s: falscher Typ für Eingangsargument ''%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"

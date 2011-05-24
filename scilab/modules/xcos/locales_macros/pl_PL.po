@@ -137,7 +137,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument %s: diagram type expected.\n"
 msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu 'diagram'.\n"
+"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu ''diagram''.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
@@ -156,7 +156,7 @@ msgid ""
 "full path string expected.\n"
 msgstr ""
 "%s: Niepoprawny typ parametru wejściowego %s: oczekiwano funkcji w postaci "
-"łańcucha lub typu 'block' lub łańcuch zawierający pełną ścieżkę dostępu.\n"
+"łańcucha lub typu ''block'' lub łańcuch zawierający pełną ścieżkę dostępu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: handle type expected.\n"

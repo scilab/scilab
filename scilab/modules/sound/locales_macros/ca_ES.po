@@ -23,7 +23,7 @@ msgstr "%s: Hi ha hagut un error: %s\n"
 
 #, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
-msgstr "%s: S'ha produït un error: %s no està suportat.\n"
+msgstr "%s: S''ha produït un error: %s no està suportat.\n"
 
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
@@ -34,7 +34,7 @@ msgstr ""
 #, c-format
 msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de <"
+"%s: S''ha produït un error: Format de fitxer invàlid. Error en la lectura de <"
 "%s>.\n"
 
 #, c-format
@@ -43,44 +43,44 @@ msgstr "%s: No hi ha disponible el sistema de so.\n"
 
 #, c-format
 msgid "%s: Cannot open file %s.\n"
-msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+msgstr "%s: No s''ha pogut obrir el fitxer %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
+msgstr "%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Hi ha d''haver entre %d i %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+msgstr "%s: El nombre d''arguments de sortida és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
-msgstr "%s: El nombre d'arguments de sortida és incorrecte.\n"
+msgstr "%s: El nombre d''arguments de sortida és incorrecte.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
+msgstr "%s: L''argument d''entrada #%d té una mida incorrecta.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"%s: L''argument d''entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
 
 #, c-format
@@ -88,7 +88,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s o %s, un "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser %s o %s, un "
 "enter o un vector de %d enters.\n"
 
 #, c-format
@@ -96,20 +96,20 @@ msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
 msgstr ""
-"%s: L'argument d'entrada té un valor incorrecte: El rang d'índexos s'ha "
-"d'especificar com un escalar o un vector de %d elements.\n"
+"%s: L''argument d''entrada té un valor incorrecte: El rang d''índexos s''ha "
+"d''especificar com un escalar o un vector de %d elements.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
-"%s: L'argument d'entrada té valors incorrectes: El nom del fitxer ha de ser "
+"%s: L''argument d''entrada té valors incorrectes: El nom del fitxer ha de ser "
 "una cadena de text.\n"
 
 msgid ".wav file does not contain the RIFF identifier."
-msgstr "El fitxer .wav no conté l'identificador RIFF."
+msgstr "El fitxer .wav no conté l''identificador RIFF."
 
 msgid ".wav file does not contain the wave identifier."
-msgstr "El fitxer .wav no conté l'identificador d'ona."
+msgstr "El fitxer .wav no conté l''identificador d''ona."
 
 #
 # File: demos/sound.dem.sce, line: 36
@@ -117,7 +117,7 @@ msgid "A complete picture of the sound."
 msgstr ""
 
 msgid "Cannot read .wav file  with more than 16 bits per sample."
-msgstr "No s'ha pogut llegir el fitxer .wav amb més de 16 bits per mostra."
+msgstr "No s''ha pogut llegir el fitxer .wav amb més de 16 bits per mostra."
 
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "El vector de dades ha de tenir només 1 o 2 dimensions."
@@ -140,11 +140,11 @@ msgid "Fourier analysis of 0.5 seconds of sound parameters."
 msgstr ""
 
 msgid "Incorrect chunk size information in RIFF file."
-msgstr "S'ha trobat informació incorrecta de peça en el fitxer RIFF."
+msgstr "S''ha trobat informació incorrecta de peça en el fitxer RIFF."
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
-"El fitxer .wav és invàlid: s'ha trobat dades abans de la informació del "
+"El fitxer .wav és invàlid: s''ha trobat dades abans de la informació del "
 "format."
 
 msgid "Invalid sample limits (use ascending order)."

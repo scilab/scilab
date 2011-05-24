@@ -19,7 +19,7 @@ msgstr ""
 
 #, c-format
 msgid " - min / max value found = %f / %f\n"
-msgstr " - S'ha trobat els valors mínim / màxim = %f / %f\n"
+msgstr " - S''ha trobat els valors mínim / màxim = %f / %f\n"
 
 #, c-format
 msgid "%s: F_in is mandatory"
@@ -43,7 +43,7 @@ msgstr "%s: Iteració %d / %d\n"
 
 #, c-format
 msgid "%s: optimization starting, please wait ...\n"
-msgstr "%s: S'està iniciant l'optimització, espereu ...\n"
+msgstr "%s: S''està iniciant l''optimització, espereu ...\n"
 
 #, c-format
 msgid "%s: wrong direction"

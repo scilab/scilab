@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "  loading initial environment"
-msgstr "  caricamento dell'ambiente iniziale"
+msgstr "  caricamento dell''ambiente iniziale"
 
 msgid " by "
 msgstr " da "
@@ -57,7 +57,7 @@ msgstr "%s: Controllare %s.\n"
 
 #, c-format
 msgid "%s: Requires scilab editor.\n"
-msgstr "%s: richiede l'editor di Scilab.\n"
+msgstr "%s: richiede l''editor di Scilab.\n"
 
 #, c-format
 msgid "%s: System error: Command executed: %s"
@@ -82,7 +82,7 @@ msgstr "%s: Impossibile trovare Perl.\n"
 #, c-format
 msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è sbagliato: era atteso un percorso ad un "
+"%s: L''argomento in ingresso #%d è sbagliato: era atteso un percorso ad un "
 "file script di Scilab.\n"
 
 #, c-format
@@ -106,31 +106,31 @@ msgstr ""
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
 "booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attese delle "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attese delle "
 "stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'' o "
 "''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "variabile definita.\n"
 
 msgid "&?"
@@ -171,13 +171,13 @@ msgid "Size"
 msgstr "Dimensione"
 
 msgid "Startup execution:"
-msgstr "Esecuzione d'avvio:"
+msgstr "Esecuzione d''avvio:"
 
 msgid "Type"
 msgstr "Tipo"
 
 msgid "User variables are:"
-msgstr "Le variabili dell'utente sono:"
+msgstr "Le variabili dell''utente sono:"
 
 #, c-format
 msgid "Using %s elements ouf of %s"

@@ -252,7 +252,7 @@ msgstr "%s: falscher Typ für Eingangsargument #%d: eine Realzahl erwartet.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
+"%s: falscher Typ für Eingangsargument ''%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
@@ -369,13 +369,13 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s'' erwartet.\n"
 
 #, fuzzy, c-format
 msgid ""
 "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
 "''%s'', ''%s'' or ''%s'' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s'' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"

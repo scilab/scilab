@@ -63,7 +63,7 @@ msgid "&nbsp;&nbsp;&nbsp;&nbsp;3 Range from MSB"
 msgstr "&nbsp;&nbsp;&nbsp;&nbsp;3 Plage de Bits à partir du MSB"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;4 Range to LSB"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Plage de Bits jusqu'au LSB"
+msgstr "&nbsp;&nbsp;&nbsp;&nbsp;4 Plage de Bits jusqu''au LSB"
 
 msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
 msgstr "&nbsp;&nbsp;&nbsp;&nbsp;5 Plage de Bits"
@@ -188,7 +188,7 @@ msgstr "Type de donnée"
 
 #, fuzzy, c-format
 msgid "Directory ''%s'' does not exist"
-msgstr "La variable '%s' n'existe pas.\n"
+msgstr "La variable ''%s'' n''existe pas.\n"
 
 msgid "Discriminant type:"
 msgstr "Type du discriminant :"
@@ -210,7 +210,7 @@ msgstr "Domaine"
 
 #, fuzzy, c-format
 msgid "Elements must be in the interval %s."
-msgstr "Les indices doivent être dans l'intervalle %s."
+msgstr "Les indices doivent être dans l''intervalle %s."
 
 #
 # File: macros/Sinks/WRITEC_f.sci, line: 68
@@ -232,10 +232,10 @@ msgid "Event clock generator"
 msgstr "Générateur de compteur entier"
 
 msgid "Event input port"
-msgstr "Port d'entrée de l'évènement"
+msgstr "Port d''entrée de l''évènement"
 
 msgid "Event output port"
-msgstr "Port de sortie de l'évènement"
+msgstr "Port de sortie de l''évènement"
 
 msgid "Expression ="
 msgstr "Expression ="
@@ -253,7 +253,7 @@ msgid "Frequency (rad/s)"
 msgstr "Fréquence (rad/s)"
 
 msgid "Implicit input port"
-msgstr "Port d'entrée implicite"
+msgstr "Port d''entrée implicite"
 
 msgid "Implicit output port"
 msgstr "Port de sortie implicite"
@@ -275,7 +275,7 @@ msgstr "Indice du Bit (0 de poids faible)"
 
 #, c-format
 msgid "Indexes must be in the interval %s."
-msgstr "Les indices doivent être dans l'intervalle %s."
+msgstr "Les indices doivent être dans l''intervalle %s."
 
 msgid "Initial State (zero or positive number)"
 msgstr "État initial (nombre positif ou nul)"
@@ -316,7 +316,7 @@ msgid "Input Type"
 msgstr "Type de donnée"
 
 msgid "Input Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
-msgstr "Type d'entrée (1:double, 3:int32, 4:int16, 5:int8, ...)"
+msgstr "Type d''entrée (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
 msgid "Integer counter generator"
 msgstr "Générateur de compteur entier"
@@ -350,7 +350,7 @@ msgstr "Un seul paramètre."
 
 #, fuzzy, c-format
 msgid "Must be greater than %d."
-msgstr "Dans l'intervalle %s."
+msgstr "Dans l''intervalle %s."
 
 #, fuzzy
 msgid "Must be greater than 1."
@@ -358,7 +358,7 @@ msgstr "De type entier."
 
 #, c-format
 msgid "Must be in the interval %s."
-msgstr "Dans l'intervalle %s."
+msgstr "Dans l''intervalle %s."
 
 msgid "Must be integer."
 msgstr "De type entier."
@@ -395,7 +395,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Output Format"
-msgstr "Port de sortie de l'évènement"
+msgstr "Port de sortie de l''évènement"
 
 #, fuzzy
 msgid "Output Type"
@@ -405,10 +405,10 @@ msgid "Output Type (1:double, 3:int32, 4:int16, 5:int8, ...)"
 msgstr "Type de sortie (1:double, 3:int32, 4:int16, 5:int8, ...)"
 
 msgid "PDE Expression:"
-msgstr "Expression de l'EDP :"
+msgstr "Expression de l''EDP :"
 
 msgid "PDE Specification"
-msgstr "Conditions de l'EDP"
+msgstr "Conditions de l''EDP"
 
 msgid "PDE block"
 msgstr "Bloc EDP"
@@ -434,7 +434,7 @@ msgid "Read is done on a binary ''.au'' file"
 msgstr ""
 
 msgid "Regular input port"
-msgstr "Port ordinaire d'entrée"
+msgstr "Port ordinaire d''entrée"
 
 msgid "Regular output port"
 msgstr "Port ordinaire de sortie"
@@ -578,7 +578,7 @@ msgstr ""
 
 #, fuzzy
 msgid "Write to C binary file"
-msgstr "Erreur en écriture dans le fichier '%s'.\n"
+msgstr "Erreur en écriture dans le fichier ''%s''.\n"
 
 #
 # File: macros/Sinks/WFILE_f.sci, line: 43
@@ -631,7 +631,7 @@ msgstr "Valeur incorrecte du paramètre ''Type de Sortie'' : %d."
 
 #, c-format
 msgid "Wrong value for ''Port Number'' parameter: %d."
-msgstr "Valeur incorrecte du paramètre ''Numéro de Port\" : %d."
+msgstr "Valeur incorrecte du paramètre ''Numéro de Port"" : %d."
 
 #, fuzzy, c-format
 msgid "Wrong value for ''Rule'' parameter: %d"

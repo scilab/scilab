@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: Launchpad (build Unknown)\n"
 
 msgid "  loading initial environment"
-msgstr "  s'està carregant l'entorn inicial"
+msgstr "  s''està carregant l''entorn inicial"
 
 msgid " by "
 msgstr ""
@@ -49,7 +49,7 @@ msgstr "%s: No existeix el fitxer: %s"
 
 #, c-format
 msgid "%s: No perl command specified."
-msgstr "%s: No s'ha especificat cap comanda perl."
+msgstr "%s: No s''ha especificat cap comanda perl."
 
 #, c-format
 msgid "%s: Please check: %s.\n"
@@ -57,7 +57,7 @@ msgstr "%s: Comproveu: %s.\n"
 
 #, c-format
 msgid "%s: Requires scilab editor.\n"
-msgstr "%s: Requereix l'editor de l'Scilab.\n"
+msgstr "%s: Requereix l''editor de l''Scilab.\n"
 
 #, c-format
 msgid "%s: System error: Command executed: %s"
@@ -73,61 +73,61 @@ msgstr "%s: No es pot trobar el fitxer Perl: %s"
 
 #, c-format
 msgid "%s: Unable to find Perl in ''%s''"
-msgstr "%s: No s'ha trobat el Perl a ''%s''"
+msgstr "%s: No s''ha trobat el Perl a ''%s''"
 
 #, c-format
 msgid "%s: Unable to find Perl.\n"
-msgstr "%s: No s'ha trobat el Perl.\n"
+msgstr "%s: No s''ha trobat el Perl.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és incorrecte: Ha de ser el camí a un fitxer "
+"%s: L''argument d''entrada #%d és incorrecte: Ha de ser el camí a un fitxer "
 "script.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Són necessaris %d com a mínim.\n"
+"%s: Nombre d''arguments d''entrada incorrecte: Són necessaris %d com a mínim.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
+"%s: Nombre incorrecte d''arguments d''entrada: Se''n necessiten %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Han de ser com a mínim "
+"%s: El nombre d''arguments d''entrada és incorrecte: Han de ser com a mínim "
 "%d.\n"
 
 #, fuzzy, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte. Ha de ser un nombre "
 "real.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"%s: L''argument d''entrada #%d és d''un tipus incorrecte: Ha de ser una cadena "
 "de text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser ''%s'' or "
 "''%s''.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una variable "
+"%s: L''argument d''entrada #%d té un valor incorrecte: Ha de ser una variable "
 "definida.\n"
 
 msgid "&?"
@@ -149,14 +149,14 @@ msgid "&Preferences"
 msgstr "&Preferències"
 
 msgid "&Toolboxes"
-msgstr "&Barres d'eines"
+msgstr "&Barres d''eines"
 
 msgid "Bytes"
 msgstr ""
 
 #, c-format
 msgid "Checking: %s\n"
-msgstr "S'està comprovant: %s\n"
+msgstr "S''està comprovant: %s\n"
 
 msgid "Introduction"
 msgstr "Introducció"
@@ -168,14 +168,14 @@ msgid "Size"
 msgstr ""
 
 msgid "Startup execution:"
-msgstr "Execució a l'arrancada:"
+msgstr "Execució a l''arrancada:"
 
 msgid "Type"
 msgstr ""
 
 msgid "User variables are:"
-msgstr "Les variables d'usuari són:"
+msgstr "Les variables d''usuari són:"
 
 #, c-format
 msgid "Using %s elements ouf of %s"
-msgstr "S'estan utilitzant %s elements de %s"
+msgstr "S''estan utilitzant %s elements de %s"
