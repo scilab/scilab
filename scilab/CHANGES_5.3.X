@@ -7,6 +7,8 @@ Bug fixes:
 * Bug 9475 fixed - A mistake in the translation of a string was causing Scinotes
                    to fail with the Japanese and Polish localizations.
 
+* Bug 9527 fixed - Problem when a text was exported in SVG from the GUI.
+
 * Bug 9545 fixed - contrib/loader.sce was no longer installed under GNU/Linux
                    and Mac OS X.
 
