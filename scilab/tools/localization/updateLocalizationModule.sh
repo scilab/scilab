@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
@@ -24,12 +24,12 @@ if test $# -ne 1; then
     echo "Syntax : $0 <module>"
     echo "If <module> is equal to 'process_all', it will parse all Scilab module"
     echo "per module"
-    exit -1
+    exit 42
 fi
 
 if test -z "$SCI"; then
     echo "Please define the variable SCI" 
-    exit -1
+    exit 42
 fi
 
 MODULES=$1
@@ -164,21 +164,12 @@ function process_module {
     else
         sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
-
-    if test -f $LOCALIZATION_FILE_US.tmp; then
-        cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
-        rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
-    else
-        echo "$LOCALIZATION_FILE_US.tmp is empty (no string found)"
-    fi
-    
+    cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
+    rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
     if test -z "$(msgcat $LOCALIZATION_FILE_US)"; then
-        echo "Empty localization template. Deleting $LOCALIZATION_FILE_US";
-
+        # empty template. Kill it!
         rm $LOCALIZATION_FILE_US
-        rmdir $TARGETDIR/
     fi
-    
 
     # Remove fake file used to extract string from XML
     rm $FAKE_C_FILE 2> /dev/null
