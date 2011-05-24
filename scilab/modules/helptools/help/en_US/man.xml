@@ -33,8 +33,8 @@
     <para>An XML file resembles to a HTML file but with a more rigid syntax.
     The documentation of Scilab must be written using the strict subset of
     DocBook 5 defined in SCI/modules/helptools/schema/scilab.rnc. DocBook 5
-    elements are fully documented in <link xlink:href="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0 : The
-    Definitive Guide"</link></para>
+    elements are fully documented in <ulink url="http://docbook.org/tdg5/en/html/docbook.html">"DocBook 5.0: The
+    Definitive Guide"</ulink></para>
   </refsection>
   <refsection>
     <title>How to write a simple xml scilab help page:</title>
@@ -170,12 +170,7 @@ end</programlisting>
 &lt;/refentry&gt;</programlisting>
   </refsection>
   <refsection>
-<<<<<<< HEAD
     <title>How to create a help chapter</title>
-
-=======
-    <title>How to create an help chapter</title>
->>>>>>> 4c52a0b... Help check: validate the help files on compilation against a derivated docbook schema
     <para>Create a directory and write down a set of xml files build as
     described above. Then start Scilab and execute <literal>xmltojar
     </literal> (see <link linkend="xmltojar">xmltojar</link> for more details)
