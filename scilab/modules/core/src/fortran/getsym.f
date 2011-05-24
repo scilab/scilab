@@ -78,6 +78,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       integer namecd(nlgh), chcnt, io 
       integer blank, dot, percen, slash
       integer name, num, cmt
+      character tmpbuf * (bsiz) 
 
 *     STATEMENTS FUNCTIONS
       integer c
@@ -148,8 +149,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
       if (ddt .lt. 3) return
 
       if (sym .eq. num) then
-         write(buf(1:11),'(1x,e10.3)') syv
-         call basout(io,wte,buf(1:11))
+         write(tmpbuf(1:11),'(1x,e10.3)') syv
+         call basout(io,wte,tmpbuf(1:11))
       else if (sym .eq. name) then
          call prntid(syn(1),1,wte)
       else if (sym .eq. cmt) then

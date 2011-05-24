@@ -16,6 +16,8 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JComponent;
 import javax.swing.KeyStroke;
@@ -25,15 +27,17 @@ import javax.swing.text.Element;
 import javax.swing.text.StyledDocument;
 import javax.swing.text.BadLocationException;
 
-import com.artenum.rosetta.interfaces.ui.CompletionWindow;
-import com.artenum.rosetta.interfaces.ui.OutputView;
-import com.artenum.rosetta.interfaces.ui.PromptView;
-import com.artenum.rosetta.interfaces.ui.InputCommandView;
+import com.artenum.rosetta.core.CompletionItemImpl;
+import com.artenum.rosetta.interfaces.core.CompletionItem;
 import com.artenum.rosetta.interfaces.core.InputParsingManager;
 import com.artenum.rosetta.interfaces.core.HistoryManager;
 import com.artenum.rosetta.interfaces.core.GenericInterpreter;
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
 import com.artenum.rosetta.interfaces.core.CompletionManager;
+import com.artenum.rosetta.interfaces.ui.CompletionWindow;
+import com.artenum.rosetta.interfaces.ui.OutputView;
+import com.artenum.rosetta.interfaces.ui.PromptView;
+import com.artenum.rosetta.interfaces.ui.InputCommandView;
 
 import org.scilab.modules.completion.Completion;
 import org.scilab.modules.console.CompletionAction;
@@ -44,9 +48,14 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 
+import org.scilab.modules.localization.Messages;
+
+import org.scilab.modules.scinotes.KeywordEvent;
 import org.scilab.modules.scinotes.ScilabKeywords;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
+import org.scilab.modules.scinotes.ScilabEditorPane;
+import org.scilab.modules.scinotes.ScilabLexerConstants;
 import org.scilab.modules.scinotes.utils.SciNotesCompletionWindow;
 
 /**
@@ -160,7 +169,15 @@ public final class SciNotesCompletionAction extends CompletionAction {
                 int pos = editor.getTextPane().getCaretPosition();
                 int line = root.getElementIndex(pos);
                 int start = root.getElement(line).getStartOffset();
-                int end = root.getElement(line).getEndOffset();
+                KeywordEvent ke = editor.getTextPane().getKeywordEvent();
+                if (ke.getType() == ScilabLexerConstants.FIELD) {
+                    ke = editor.getTextPane().getKeywordEvent(ke.getStart() - 1);
+                    if (ke.getType() == ScilabLexerConstants.ID) {
+                        // Here we try to complete a field of an unknown variable so
+                        // we suppose that it will be a handle
+                        return "";
+                    }
+                }
                 return editor.getTextPane().getDocument().getText(start, pos - start);
             } catch (BadLocationException e) { }
             return "";
@@ -256,13 +273,65 @@ public final class SciNotesCompletionAction extends CompletionAction {
     }
 
     /**
+     * Inner class to handle special completion case in SciNotes.
+     * When a field name is met, we can suppose that is a handle.
+     */
+    class SciNotesCompletionManager extends SciCompletionManager {
+
+        /**
+         * {@inheritDoc}
+         */
+        public SciNotesCompletionManager() {
+            super();
+        }
+
+        /**
+         * {@inheritDoc}
+         */
+        public List<CompletionItem> getCompletionItems() {
+            List<CompletionItem> list = super.getCompletionItems();
+            if (list.isEmpty()) {
+                ScilabEditorPane sep = editor.getTextPane();
+                KeywordEvent ke = sep.getKeywordEvent();
+                String searchedPattern = null;
+                boolean handle = false;
+                try {
+                    if (ke.getType() == ScilabLexerConstants.OPERATOR) {
+                        String str = sep.getDocument().getText(ke.getStart(), ke.getLength());
+                        if (str.equals(".")) {
+                            searchedPattern = " ";
+                        }
+                    } else if (ke.getType() == ScilabLexerConstants.FIELD) {
+                        searchedPattern = sep.getDocument().getText(ke.getStart(), ke.getLength());
+                    }
+                } catch (BadLocationException e) {
+                    System.err.println(e);
+                }
+
+                String[] scilabHandlesDictionnary = Completion.searchHandleGraphicsPropertiesDictionary(searchedPattern);
+                String type = Messages.gettext("Graphics handle field");
+
+                list = new ArrayList<CompletionItem>();
+                if (scilabHandlesDictionnary != null) {
+                    for (String item : scilabHandlesDictionnary) {
+                        dictionnary.add(new CompletionItemImpl(type, item + " (" + type + ")", item, Messages.gettext("No help")));
+                    }
+                }
+
+                return dictionnary;
+            }
+            return list;
+        }
+    }
+
+    /**
      * Inner class which implements interface ConsoleConfiguration.
      * Only use to be compatible with the way to complete in the console
      */
     class SciNotesCompletionConfiguration implements ConsoleConfiguration {
 
         private SciNotesInputParsingManager xipm = new SciNotesInputParsingManager();
-        private SciCompletionManager scm = new SciCompletionManager();
+        private SciCompletionManager scm = new SciNotesCompletionManager();
         private SciNotesCompletionWindow cwi;
 
         /**

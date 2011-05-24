@@ -9,4 +9,5 @@ bin
 src/c/helptools.def
 pdf
 web
+etc/SciDocConf.xml
 

@@ -31,6 +31,7 @@
 #include "zzledt.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
+#include "UpdateBrowseVar.h"
 #ifdef _MSC_VER
 
 #include "mmapWindows.h"
@@ -227,6 +228,10 @@ void C2F(zzledt)(char *buffer,int *buf_size,int *len_line,int * eof,
           {
               __WaitThreadDie(WatchGetCmdLineThread);
           }
+	  if (getScilabMode() != SCILAB_NWNI)
+	  {
+              UpdateBrowseVar(TRUE);
+	  }
           __CreateThread(&WatchGetCmdLineThread, &watchGetCommandLine);
           WatchGetCmdLineThreadAlive = TRUE;
       }

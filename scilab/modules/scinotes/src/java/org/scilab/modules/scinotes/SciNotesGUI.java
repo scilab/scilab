@@ -293,6 +293,7 @@ public final class SciNotesGUI {
     private static Object getMenuItem(String action, String label, SciNotes editor) {
         ClassLoader loader = ClassLoader.getSystemClassLoader();
         String className = "";
+        Method method = null;
         try {
             if (action.lastIndexOf(DOT) != -1)  {
                 className = action;
@@ -300,17 +301,33 @@ public final class SciNotesGUI {
                 className = DEFAULTACTIONPATH + DOT + action;
             }
             Class clazz = loader.loadClass(className);
-            Method method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
-            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+            method = clazz.getMethod("createMenu", new Class[]{String.class, SciNotes.class, KeyStroke.class});
         } catch (ClassNotFoundException e) {
             System.err.println("No action: " + className);
         } catch (NoSuchMethodException e) {
             System.err.println("No valid method createMenu in action: " + className);
+        }
+
+        if (method == null) {
+            return null;
+        }
+
+        try {
+            return method.invoke(null, new Object[]{Messages.gettext(label), editor, map.get(action)});
+        } catch (InvocationTargetException e) {
+            System.err.println("Warning: problem to create the menu for action: " + className);
+            System.err.println("The menu label is: " + Messages.gettext(label));
+            System.err.println("English version will be used instead.");
+            System.err.println("Please report a bug at: http://bugzilla.scilab.org");
+            try {
+                return method.invoke(null, new Object[]{label, editor, map.get(action)});
+            } catch (InvocationTargetException ex) {
+                System.err.println("Problem to create menu of the action: " + className);
+            } catch (IllegalAccessException ex) {
+                System.err.println("The method createMenu must be public: " + className);
+            }
         } catch (IllegalAccessException e) {
             System.err.println("The method createMenu must be public: " + className);
-        } catch (InvocationTargetException e) {
-            System.err.println("The method createMenu in " + className + " threw an exception :");
-            e.printStackTrace();
         }
 
         return null;

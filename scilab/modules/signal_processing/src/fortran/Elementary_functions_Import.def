@@ -1,0 +1,6 @@
+	LIBRARY    elementary_functions.dll
+
+
+EXPORTS
+;elementary_functions
+unsfdcopy_

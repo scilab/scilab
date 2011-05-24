@@ -1,0 +1,10 @@
+	LIBRARY    output_stream.dll
+
+
+EXPORTS
+;
+;output_stream
+basout_
+error_
+erro_
+

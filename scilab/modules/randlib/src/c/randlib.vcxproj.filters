@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{c589a035-8331-47ce-8175-bf82bc45db6c}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{253e7969-1685-4fd5-8faf-1470ebdfc965}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{74fcaecf-1f1b-4912-91dc-8f3691c8ccbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{14ef7e69-e958-4e76-b571-8506b4b6b686}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{c9c3e3ae-b75a-4d06-92ed-0de6e36c209d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{a9c4d8a1-69fb-4b02-ae40-124cd3fda1bd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="clcg2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="clcg4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainRandlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fsultra.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genbet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_randlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ignbin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="igngeom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ignpoi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kiss.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_grand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sexpo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sgamma.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="urand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\clcg4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_randlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\grand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_randlib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\others_generators.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\randlib.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="randlib_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\randlib.iss" />
+    <None Include="..\..\sci_gateway\randlib_gateway.xml" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="randlib.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\randlib_f.lib" />
+    <Library Include="..\..\..\..\bin\elementary_functions_f.lib" />
+  </ItemGroup>
+</Project>

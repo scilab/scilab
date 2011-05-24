@@ -1,0 +1,8 @@
+LIBRARY    polynomials_f.dll
+
+
+EXPORTS
+;
+; polynomials_f
+dprxc_
+wprxc_

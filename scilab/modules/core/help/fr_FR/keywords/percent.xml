@@ -11,7 +11,7 @@
     <title>Description</title>
     <para>
     Certains noms de variables prédéfinies commencent par le caractère <literal>%</literal>, tels que <literal>%i</literal> (pour <literal>sqrt(-1)</literal>), <literal>%inf</literal> (pour <literal>Infinity</literal>), <literal>%pi</literal> (pour <literal>3.14...</literal>),
-    <literal>%T</literal> (pour la constante booléene <literal>"true"="vrai"</literal>),...
+    <literal>%T</literal> (pour la constante booléenne <literal>"true"="vrai"</literal>),...
   </para>
     <para>
     De plus, les fonctions dont les noms commencent par <literal>%</literal> sont spéciales : 

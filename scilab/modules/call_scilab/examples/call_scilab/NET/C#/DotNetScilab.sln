@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetScilab", "dotnetsci\DotNetScilab.csproj", "{C3F0C7DC-82AD-405B-990A-BF2C5B7F46FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "cs_example", "cs_example\cs_example.csproj", "{10B5A5BF-3204-4B47-91C0-7FA614EFA94A}"

@@ -214,7 +214,7 @@
       memory. Several functions allow to create a simplex with special shapes,
       including axes-by-axes (optimsimplex_axes), regular
       (optimsimplex_spendley), randomized bounds simplex with arbitrary nbve
-      vertices (optimsimplex_randbounds) and an heuristical small variation
+      vertices (optimsimplex_randbounds) and a heuristical small variation
       around a given point (optimsimplex_pfeffer).
     </para>
 
@@ -2100,7 +2100,7 @@ s1 = optimsimplex_destroy ( s1 );
     </para>
 
     <para>
-      Pfeffer's method is an heuristic which is presented in "Global
+      Pfeffer's method is a heuristic which is presented in "Global
       Optimization Of Lennard-Jones Atomic Clusters" by Ellen Fan. It is due to
       L. Pfeffer at Stanford and it is used in fminsearch.
     </para>

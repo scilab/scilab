@@ -16,6 +16,7 @@ c     ==============================================================
 c
       double precision dlamch,x
       integer id(nsiz),j,vt,semi
+      character tmpbuf * (bsiz)
 c
       integer ogettype,lr,lc,lr1,lc1,v
       character*4 name
@@ -25,10 +26,10 @@ c
       data semi/43/
 c
       if (ddt .eq. 4) then
-         write(buf(1:4),'(i4)') j
-         call cvname(id,buf(5:4+nsiz*4),1)
-         call basout(io,wte,' nextj j:'//buf(1:4)//' var:'//
-     $        buf(5:4+nsiz*4))
+         write(tmpbuf(1:4),'(i4)') j
+         call cvname(id,tmpbuf(5:4+nsiz*4),1)
+         call basout(io,wte,' nextj j:'//tmpbuf(1:4)//' var:'//
+     $        tmpbuf(5:4+nsiz*4))
       endif
 c
       j = j + 1

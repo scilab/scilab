@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/ 
 #pragma comment(lib,"../../../../bin/libintl.lib")
 #pragma comment(lib,"../../../../bin/hdf5dll.lib")
-#pragma comment(lib,"../../../../bin/hdf5_cppdll.lib")
 /*--------------------------------------------------------------------------*/ 
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

@@ -15,7 +15,7 @@
 #include <windows.h>
 #include <string.h>
 #include <stdio.h>
-#include <xmlwin32version.h>
+#include <xmlversion.h>
 #include <tcl.h>
 #include <tk.h>
 #include "MALLOC.h"

@@ -57,7 +57,7 @@
       </listitem>
       <listitem>
         <para>
-	If <literal>A</literal> is an hypermatrix
+	If <literal>A</literal> is a hypermatrix
 	<literal>R = mtlb_any(A)</literal> may be replaced by <literal>R = or(A,firstnonsingleton(A))</literal>
 	or by <literal>R = or(A,user_defined_value)</literal> if the first non-singleton dimensions of A is known.
 	</para>

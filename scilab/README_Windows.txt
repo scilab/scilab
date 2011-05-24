@@ -17,19 +17,19 @@
 I - TO RUN SCILAB (BINARY VERSION)
 ******************************************************************************
 
-    1 - You have already installed Scilab by executing "scilab-5.3.exe".
-        By default Scilab is in "C:\Program Files\scilab-5.3" directory.
+    1 - You have already installed Scilab by executing "scilab-5.4.0.exe".
+        By default Scilab is in "C:\Program Files\scilab-5.4.0" directory.
 
-    2 - Run Scilab by executing "Scilab 5.3" from the startup menu.
+    2 - Run Scilab by executing "Scilab 5.4" from the startup menu.
         In fact, it is a link to "wscilex.exe" in Scilab subdirectory "bin",
         so you can run Scilab by executing directly "wscilex.exe".
 
-    3 - Scilab has been compiled with Visual C++ .NET 2008 Pro
-          (Intel C 2011 XE & Fortran 2011 XE, see III below).
+    3 - Scilab has been compiled with Visual C++ .NET 2010 Pro
+        (Intel C/C++  & Fortran 2011 XE, see III below).
         All examples of dynamic link given with Scilab are prepared
-        for Visual C++.
+        for Visual C++ 2010.
 
-    4 - If you want use Microsoft Visual C++ 2008 Express with Scilab 5.3
+    4 - If you want use Microsoft Visual C++ 2010 Express with Scilab 5.4.0
         http://www.microsoft.com/express/vc/
 
     5 - If you have any problems or suggestions concerning Scilab,
@@ -41,7 +41,7 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 ******************************************************************************
 
     To uninstall Scilab you can use the unintaller. You will find it in the
-    "Scilab 5.3" item of the Program Group.
+    "Scilab 5.4.0" item of the Program Group.
     You can also use the Add/Remove Programs of the Control Panel.
 
 
@@ -49,10 +49,10 @@ II - TO UNINSTALL SCILAB (BINARY VERSION)
 III - TO COMPILE SCILAB FROM A SOURCE VERSION
 ******************************************************************************
 
-    We have compiled this distribution with Visual Studio 2008 (Intel C 2011 XE &
+    We have compiled this distribution with Visual Studio 2010 (Intel C/C++ &
     Fortran 2011 XE).
 
-    To compile with Visual C++ .NET 2008,  see Readme_visual.txt
+    To compile with Visual C++ .NET 2010,  see Readme_visual.txt
 
 ******************************************************************************
 IV - DOCUMENTATION
@@ -77,11 +77,12 @@ V - SOME IMPORTANT FILES AND DIRECTORIES
               in your SCIHOME directory.
 
 
- Scilab.sln : Visual Studio 2008 Scilab Solution with Intel Fortran.
+ Scilab.sln : Visual Studio 2010 Scilab Solution with Intel Fortran.
 
- Scilab_f2c.sln : Visual Studio 2008 Scilab Solution without Intel Fortran.
+ Scilab_f2c.sln : Visual Studio 2010 Scilab Solution without Intel Fortran.
+                  (express)
 
- bin/      : executable code and scripts.
+ bin/    : executable code and scripts.
 
  scilex  : executable code of Scilab (Console version).
  wscilex  : executable code of Scilab (Windows version).
@@ -106,4 +107,5 @@ VI - OTHER RESOURCES
 
   4 - Browse our packages available through ATOMS:
     http://atoms.scilab.org/
+
 ******************************************************************************

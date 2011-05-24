@@ -1,0 +1,10 @@
+LIBRARY    elementary_functions.dll
+
+
+EXPORTS
+
+
+;elementary_functions
+scidcopy_
+unsfdcopy_
+int2db_

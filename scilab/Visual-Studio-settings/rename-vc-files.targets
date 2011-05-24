@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <PropertyPageSchema
+      Include="$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml" />
+    <AvailableItemName
+      Include="rename_vc_extension_files">
+      <Targets>_rename_vc_extension_files</Targets>
+    </AvailableItemName>
+  </ItemGroup>
+  <UsingTask
+    TaskName="rename_vc_extension_files"
+    TaskFactory="XamlTaskFactory"
+    AssemblyName="Microsoft.Build.Tasks.v4.0">
+    <Task>$(MSBuildThisFileDirectory)$(MSBuildThisFileName).xml</Task>
+  </UsingTask>
+  <Target
+    Name="_rename_vc_extension_files"
+    BeforeTargets="$(rename_vc_extension_filesBeforeTargets)"
+    AfterTargets="$(rename_vc_extension_filesAfterTargets)"
+    Condition="'@(rename_vc_extension_files)' != ''"
+    DependsOnTargets="$(rename_vc_extension_filesDependsOn);Computerename_vc_extension_filesOutput"
+    Outputs="%(rename_vc_extension_files.Outputs)"
+    Inputs="%(rename_vc_extension_files.Identity);%(rename_vc_extension_files.AdditionalDependencies);$(MSBuildProjectFile)">
+    <ItemGroup
+      Condition="'@(SelectedFiles)' != ''">
+      <rename_vc_extension_files
+        Remove="@(rename_vc_extension_files)"
+        Condition="'%(Identity)' != '@(SelectedFiles)'" />
+    </ItemGroup>
+    <ItemGroup>
+      <rename_vc_extension_files_tlog
+        Include="%(rename_vc_extension_files.Outputs)"
+        Condition="'%(rename_vc_extension_files.Outputs)' != '' and '%(rename_vc_extension_files.ExcludedFromBuild)' != 'true'">
+        <Source>@(rename_vc_extension_files, '|')</Source>
+      </rename_vc_extension_files_tlog>
+    </ItemGroup>
+    <Message
+      Importance="High"
+      Text="%(rename_vc_extension_files.ExecutionDescription)" />
+    <WriteLinesToFile
+      Condition="'@(rename_vc_extension_files_tlog)' != '' and '%(rename_vc_extension_files_tlog.ExcludedFromBuild)' != 'true'"
+      File="$(IntDir)$(ProjectName).write.1.tlog"
+      Lines="^%(rename_vc_extension_files_tlog.Source);@(rename_vc_extension_files_tlog-&gt;'%(Fullpath)')" />
+    <rename_vc_extension_files
+      Condition="'@(rename_vc_extension_files)' != '' and '%(rename_vc_extension_files.ExcludedFromBuild)' != 'true'"
+      CommandLineTemplate="%(rename_vc_extension_files.CommandLineTemplate)"
+      AdditionalOptions="%(rename_vc_extension_files.AdditionalOptions)"
+      Inputs="%(rename_vc_extension_files.Identity)" />
+  </Target>
+  <PropertyGroup>
+    <ComputeLinkInputsTargets>
+            $(ComputeLinkInputsTargets);
+            Computerename_vc_extension_filesOutput;
+          </ComputeLinkInputsTargets>
+    <ComputeLibInputsTargets>
+            $(ComputeLibInputsTargets);
+            Computerename_vc_extension_filesOutput;
+          </ComputeLibInputsTargets>
+  </PropertyGroup>
+  <Target
+    Name="Computerename_vc_extension_filesOutput"
+    Condition="'@(rename_vc_extension_files)' != ''">
+    <ItemGroup>
+      <rename_vc_extension_filesDirsToMake
+        Condition="'@(rename_vc_extension_files)' != '' and '%(rename_vc_extension_files.ExcludedFromBuild)' != 'true'"
+        Include="%(rename_vc_extension_files.Outputs)" />
+      <Link
+        Include="%(rename_vc_extension_filesDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <Lib
+        Include="%(rename_vc_extension_filesDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+      <ImpLib
+        Include="%(rename_vc_extension_filesDirsToMake.Identity)"
+        Condition="'%(Extension)'=='.obj' or '%(Extension)'=='.res' or '%(Extension)'=='.rsc' or '%(Extension)'=='.lib'" />
+    </ItemGroup>
+    <MakeDir
+      Directories="@(rename_vc_extension_filesDirsToMake-&gt;'%(RootDir)%(Directory)')" />
+  </Target>
+</Project>

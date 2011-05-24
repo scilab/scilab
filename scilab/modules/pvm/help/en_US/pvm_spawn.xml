@@ -100,7 +100,7 @@ setenv PVM_EXPORT DISPLAY:MYSTERYVAR
     tids in the array are always valid.</para>
     <para>
     When the argument <literal>where</literal>
-    is omitted an heuristic (round-robin assignment) is used to distribute the
+    is omitted a heuristic (round-robin assignment) is used to distribute the
     <literal>ntask</literal> processes across the virtual machine.</para>
     <para>
     In the special case where a multiprocessor is specified by

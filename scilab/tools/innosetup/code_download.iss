@@ -106,6 +106,8 @@ function Install_MKL: Boolean;
 
         if not FileExists( TmpDirNameMKL + 'blasplus.dll' ) then bOK:= false;
         if not FileExists( TmpDirNameMKL + 'lapack.dll' ) then bOK:= false;
+        if not FileExists( TmpDirNameMKL + 'mkl_intel_thread.dll' ) then bOK:= false;
+        if not FileExists( TmpDirNameMKL + 'mkl_core.dll' ) then bOK:= false;
         if not FileExists( TmpDirNameMKL + 'readme-mkl.txt' ) then bOK:= false;
 
         if (bOK = true) then
@@ -117,6 +119,12 @@ function Install_MKL: Boolean;
                 if (bOK = false) then Result := false;
 
                 bOK := FileCopy(TmpDirNameMKL + 'lapack.dll', DestinationDir + 'lapack.dll', false);
+                if (bOK = false) then Result := false;
+
+                bOK := FileCopy(TmpDirNameMKL + 'mkl_intel_thread.dll', DestinationDir + 'mkl_intel_thread.dll', false);
+                if (bOK = false) then Result := false;
+
+                bOK := FileCopy(TmpDirNameMKL + 'mkl_core.dll', DestinationDir + 'mkl_core.dll', false);
                 if (bOK = false) then Result := false;
 
                 bOK := FileCopy(TmpDirNameMKL + 'readme-mkl.txt', DestinationDir + 'readme-mkl.txt', false);
@@ -180,6 +188,8 @@ function Download_MKL: Boolean;
             begin
                 isxdl_AddFile(URL + 'blasplus.dll', DestinationTmpDirNameMKL + 'blasplus.dll');
                 isxdl_AddFile(URL + 'lapack.dll', DestinationTmpDirNameMKL + 'lapack.dll');
+                isxdl_AddFile(URL + 'mkl_intel_thread.dll', DestinationTmpDirNameMKL + 'mkl_intel_thread.dll');
+                isxdl_AddFile(URL + 'mkl_core.dll', DestinationTmpDirNameMKL + 'mkl_core.dll');
                 isxdl_AddFile(URL + 'readme-mkl.txt', DestinationTmpDirNameMKL + 'readme-mkl.txt');
                 isxdl_AddFile(URL + 'md5-mkl.txt', DestinationTmpDirNameMKL + 'md5-mkl.txt');
 

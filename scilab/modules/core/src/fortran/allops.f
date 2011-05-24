@@ -15,6 +15,7 @@ c ======================================================================
       integer ogettype, vt,vt1,id(nsiz),r,op,bl(nsiz)
       logical compil,ptover
       integer iadr
+      character tmpbuf * (bsiz)
 
 c
       iadr(l)=l+l-1
@@ -23,9 +24,10 @@ c
       if(pt.gt.0) r=rstk(pt)
 c
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') fin,pt,r
-         call basout(io,wte,' allops op:'//buf(1:4)//' pt:'//buf(5:8)//
-     &                   ' rstk(pt):'//buf(9:12))
+         write(tmpbuf(1:12),'(3i4)') fin,pt,r
+         call basout(io,wte,' allops op:'//tmpbuf(1:4)//' pt:'
+     &    //tmpbuf(5:8)//
+     &    ' rstk(pt):'//tmpbuf(9:12))
       endif
 c
 c     compilation allops :<5 fin rhs lhs>

@@ -90,7 +90,7 @@
         <term>"handle"</term>
 
         <listitem>
-          <para>if object is an handle.</para>
+          <para>if object is a handle.</para>
         </listitem>
       </varlistentry>
 
@@ -155,7 +155,7 @@
         <term>"hypermat"</term>
 
         <listitem>
-          <para>if object is an hypermatrix (N-dimension array with N
+          <para>if object is a hypermatrix (N-dimension array with N
           &gt;=3).</para>
         </listitem>
       </varlistentry>

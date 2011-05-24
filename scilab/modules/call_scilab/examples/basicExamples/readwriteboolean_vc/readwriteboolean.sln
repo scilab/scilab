@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "readwriteboolean", "readwriteboolean.vcproj", "{B6DB2C8F-6D2C-4F78-BC21-3692D9A0C7F7}"
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "readwriteboolean", "readwriteboolean.vcxproj", "{B6DB2C8F-6D2C-4F78-BC21-3692D9A0C7F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

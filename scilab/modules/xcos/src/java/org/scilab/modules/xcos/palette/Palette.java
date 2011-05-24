@@ -38,7 +38,6 @@ import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
-import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.swing.mxGraphComponent;
@@ -395,7 +394,12 @@ if (next.toString().equals(path[categoryCounter])
 	@ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
 	public static void generatePaletteIcon(final String blockPath, final String iconPath)
 			throws IOException {
-		final BasicBlock block = new H5RWHandler(blockPath).readBlock();
+		BasicBlock block;
+		try {
+			block = new H5RWHandler(blockPath).readBlock();
+		} catch (ScicosFormatException e) {
+			throw new IOException(e);
+		}
 
 		if (block == null || block.getGeometry() == null) {
 			return;

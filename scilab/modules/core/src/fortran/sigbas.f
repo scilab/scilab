@@ -19,13 +19,14 @@ c
       logical iflag,interruptible
       common /basbrk/ iflag,interruptible
       integer  ilk,k,l,lunit,nc,mode(2)
+      character tmpbuf * (bsiz)
 c     
       iadr(l)=l+l-1
 c      sadr(l)=(l/2)+1
 c
       if(ddt.eq.4) then
-         write(buf(1:5),'(i5)') n
-         call basout(io,wte,'signal :'//buf(1:5))
+         write(tmpbuf(1:5),'(i5)') n
+         call basout(io,wte,'signal :'//tmpbuf(1:5))
       endif
 c
       mode(2)=0

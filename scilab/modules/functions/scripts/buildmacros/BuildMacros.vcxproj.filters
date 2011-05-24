@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{24208bff-fcb1-41c8-8b49-d4d921fa09cc}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{65c3421f-36a1-4bf3-be49-c77f32611504}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{10503c39-c1bf-4b23-a00b-1bf9550012b8}</UniqueIdentifier>
+      <Extensions>ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="buildmacros.sce">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="cleanmacros.sce">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="loadgenlib.sce">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

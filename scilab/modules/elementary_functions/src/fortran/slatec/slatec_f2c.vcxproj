@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>slatec_f</ProjectName>
+    <ProjectGuid>{EAF0949C-28D2-497C-954F-FC13B32FF2F3}</ProjectGuid>
+    <RootNamespace>slatec_f2c</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <PreBuildEvent>
+      <Message>Build Libscilab.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slatec_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slatec_f.dll %%f &gt;nul
+copy *.def slatec_f.def &gt;nul
+copy slatec_f.def ..\slatec_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slatec_f_header.def+slatec_f.vcdef slatec_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slatec_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <PreBuildEvent>
+      <Message>Build Libscilab.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slatec_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slatec_f.dll %%f &gt;nul
+copy *.def slatec_f.def &gt;nul
+copy slatec_f.def ..\slatec_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slatec_f_header.def+slatec_f.vcdef slatec_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slatec_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <PreBuildEvent>
+      <Message>Build Libscilab.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slatec_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slatec_f.dll %%f &gt;nul
+copy *.def slatec_f.def &gt;nul
+copy slatec_f.def ..\slatec_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slatec_f_header.def+slatec_f.vcdef slatec_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slatec_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <PreBuildEvent>
+      <Message>Build Libscilab.lib (dependencies)</Message>
+      <Command>lib /DEF:"$(ProjectDir)LibScilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)LibScilab.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Elementary_functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
+</Command>
+    </PreBuildEvent>
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>../../../../../libs/f2c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;SLATEC_F2C_EXPORTS;FORDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>StreamingSIMDExtensions</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Build slatec_f.def</Message>
+      <Command>cd $(IntDir)
+for %%f in (*.obj) do  ..\..\..\..\..\..\bin\dumpexts -o %%~nf.def -n slatec_f.dll %%f &gt;nul
+copy *.def slatec_f.def &gt;nul
+copy slatec_f.def ..\slatec_f.vcdef &gt;nul
+del *.def &gt;nul
+cd ..
+copy slatec_f_header.def+slatec_f.vcdef slatec_f.def &gt;nul
+</Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>Libscilab.lib;elementary_functions_f.lib;elementary_functions.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>slatec_f.def</ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="balanc.c" />
+    <ClCompile Include="common_f2c.c" />
+    <ClCompile Include="d9b0mp.c" />
+    <ClCompile Include="d9b1mp.c" />
+    <ClCompile Include="d9knus.c" />
+    <ClCompile Include="d9lgmc.c" />
+    <ClCompile Include="dasyik.c" />
+    <ClCompile Include="dasyjy.c" />
+    <ClCompile Include="dbdiff.c" />
+    <ClCompile Include="dbesi.c" />
+    <ClCompile Include="dbesi0.c" />
+    <ClCompile Include="dbesi1.c" />
+    <ClCompile Include="dbesj.c" />
+    <ClCompile Include="dbesj0.c" />
+    <ClCompile Include="dbesj1.c" />
+    <ClCompile Include="dbesk.c" />
+    <ClCompile Include="dbesk0.c" />
+    <ClCompile Include="dbesk1.c" />
+    <ClCompile Include="dbesks.c" />
+    <ClCompile Include="dbesy.c" />
+    <ClCompile Include="dbesy0.c" />
+    <ClCompile Include="dbesy1.c" />
+    <ClCompile Include="dbkias.c" />
+    <ClCompile Include="dbkisr.c" />
+    <ClCompile Include="dbsi0e.c" />
+    <ClCompile Include="dbsi1e.c" />
+    <ClCompile Include="dbsk0e.c" />
+    <ClCompile Include="dbsk1e.c" />
+    <ClCompile Include="dbskes.c" />
+    <ClCompile Include="dbskin.c" />
+    <ClCompile Include="dbsknu.c" />
+    <ClCompile Include="dbsynu.c" />
+    <ClCompile Include="dcsevl.c" />
+    <ClCompile Include="dexint.c" />
+    <ClCompile Include="dgamlm.c" />
+    <ClCompile Include="dgamln.c" />
+    <ClCompile Include="dgamma.c" />
+    <ClCompile Include="dgamrn.c" />
+    <ClCompile Include="dhkseq.c" />
+    <ClCompile Include="djairy.c" />
+    <ClCompile Include="dlngam.c" />
+    <ClCompile Include="dpsixn.c" />
+    <ClCompile Include="dtensbs.c" />
+    <ClCompile Include="dxlegf.c" />
+    <ClCompile Include="dyairy.c" />
+    <ClCompile Include="fdump.c" />
+    <ClCompile Include="gamma.c" />
+    <ClCompile Include="initds.c" />
+    <ClCompile Include="j4save.c" />
+    <ClCompile Include="pchim.c" />
+    <ClCompile Include="xercnt.c" />
+    <ClCompile Include="xermsg.c" />
+    <ClCompile Include="xerprn.c" />
+    <ClCompile Include="xersve.c" />
+    <ClCompile Include="xgetua.c" />
+    <ClCompile Include="zabs.c" />
+    <ClCompile Include="zacai.c" />
+    <ClCompile Include="zacon.c" />
+    <ClCompile Include="zairy.c" />
+    <ClCompile Include="zasyi.c" />
+    <ClCompile Include="zbesh.c" />
+    <ClCompile Include="zbesi.c" />
+    <ClCompile Include="zbesj.c" />
+    <ClCompile Include="zbesk.c" />
+    <ClCompile Include="zbesy.c" />
+    <ClCompile Include="zbinu.c" />
+    <ClCompile Include="zbknu.c" />
+    <ClCompile Include="zbuni.c" />
+    <ClCompile Include="zbunk.c" />
+    <ClCompile Include="zdiv.c" />
+    <ClCompile Include="zexp.c" />
+    <ClCompile Include="zkscl.c" />
+    <ClCompile Include="zlog.c" />
+    <ClCompile Include="zmlri.c" />
+    <ClCompile Include="zmlt.c" />
+    <ClCompile Include="zrati.c" />
+    <ClCompile Include="zs1s2.c" />
+    <ClCompile Include="zseri.c" />
+    <ClCompile Include="zshch.c" />
+    <ClCompile Include="zsqrt.c" />
+    <ClCompile Include="zuchk.c" />
+    <ClCompile Include="zunhj.c" />
+    <ClCompile Include="zuni1.c" />
+    <ClCompile Include="zuni2.c" />
+    <ClCompile Include="zunik.c" />
+    <ClCompile Include="zunk1.c" />
+    <ClCompile Include="zunk2.c" />
+    <ClCompile Include="zuoik.c" />
+    <ClCompile Include="zwrsk.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="balanc.f" />
+    <f2c_rule Include="d9b0mp.f" />
+    <f2c_rule Include="d9b1mp.f" />
+    <f2c_rule Include="d9knus.f" />
+    <f2c_rule Include="d9lgmc.f" />
+    <f2c_rule Include="dasyik.f" />
+    <f2c_rule Include="dasyjy.f" />
+    <f2c_rule Include="dbdiff.f" />
+    <f2c_rule Include="dbesi.f" />
+    <f2c_rule Include="dbesi0.f" />
+    <f2c_rule Include="dbesi1.f" />
+    <f2c_rule Include="dbesj.f" />
+    <f2c_rule Include="dbesj0.f" />
+    <f2c_rule Include="dbesj1.f" />
+    <f2c_rule Include="dbesk.f" />
+    <f2c_rule Include="dbesk0.f" />
+    <f2c_rule Include="dbesk1.f" />
+    <f2c_rule Include="dbesks.f" />
+    <f2c_rule Include="dbesy.f" />
+    <f2c_rule Include="dbesy0.f" />
+    <f2c_rule Include="dbesy1.f" />
+    <f2c_rule Include="dbkias.f" />
+    <f2c_rule Include="dbkisr.f" />
+    <f2c_rule Include="dbsi0e.f" />
+    <f2c_rule Include="dbsi1e.f" />
+    <f2c_rule Include="dbsk0e.f" />
+    <f2c_rule Include="dbsk1e.f" />
+    <f2c_rule Include="dbskes.f" />
+    <f2c_rule Include="dbskin.f" />
+    <f2c_rule Include="dbsknu.f" />
+    <f2c_rule Include="dbsynu.f" />
+    <f2c_rule Include="dcsevl.f" />
+    <f2c_rule Include="dexint.f" />
+    <f2c_rule Include="dgamlm.f" />
+    <f2c_rule Include="dgamln.f" />
+    <f2c_rule Include="dgamma.f" />
+    <f2c_rule Include="dgamrn.f" />
+    <f2c_rule Include="dhkseq.f" />
+    <f2c_rule Include="djairy.f" />
+    <f2c_rule Include="dlngam.f" />
+    <f2c_rule Include="dpsixn.f" />
+    <f2c_rule Include="dtensbs.f" />
+    <f2c_rule Include="dxlegf.f" />
+    <f2c_rule Include="dyairy.f" />
+    <f2c_rule Include="fdump.f" />
+    <f2c_rule Include="gamma.f" />
+    <f2c_rule Include="initds.f" />
+    <f2c_rule Include="j4save.f" />
+    <f2c_rule Include="pchim.f" />
+    <f2c_rule Include="xercnt.f" />
+    <f2c_rule Include="xermsg.f" />
+    <f2c_rule Include="xerprn.f" />
+    <f2c_rule Include="xersve.f" />
+    <f2c_rule Include="xgetua.f" />
+    <f2c_rule Include="zabs.f" />
+    <f2c_rule Include="zacai.f" />
+    <f2c_rule Include="zacon.f" />
+    <f2c_rule Include="zairy.f" />
+    <f2c_rule Include="zasyi.f" />
+    <f2c_rule Include="zbesh.f" />
+    <f2c_rule Include="zbesi.f" />
+    <f2c_rule Include="zbesj.f" />
+    <f2c_rule Include="zbesk.f" />
+    <f2c_rule Include="zbesy.f" />
+    <f2c_rule Include="zbinu.f" />
+    <f2c_rule Include="zbknu.f" />
+    <f2c_rule Include="zbuni.f" />
+    <f2c_rule Include="zbunk.f" />
+    <f2c_rule Include="zdiv.f" />
+    <f2c_rule Include="zexp.f" />
+    <f2c_rule Include="zkscl.f" />
+    <f2c_rule Include="zlog.f" />
+    <f2c_rule Include="zmlri.f" />
+    <f2c_rule Include="zmlt.f" />
+    <f2c_rule Include="zrati.f" />
+    <f2c_rule Include="zs1s2.f" />
+    <f2c_rule Include="zseri.f" />
+    <f2c_rule Include="zshch.f" />
+    <f2c_rule Include="zsqrt.f" />
+    <f2c_rule Include="zuchk.f" />
+    <f2c_rule Include="zunhj.f" />
+    <f2c_rule Include="zuni1.f" />
+    <f2c_rule Include="zuni2.f" />
+    <f2c_rule Include="zunik.f" />
+    <f2c_rule Include="zunk1.f" />
+    <f2c_rule Include="zunk2.f" />
+    <f2c_rule Include="zuoik.f" />
+    <f2c_rule Include="zwrsk.f" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
+      <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\..\..\..\..\Visual-Studio-settings\f2c.targets" />
+  </ImportGroup>
+</Project>

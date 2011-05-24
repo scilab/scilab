@@ -340,7 +340,7 @@ shiftfv &lt; options.TolFun
     fminsearch corresponds to the -simplex0method flag of the neldermead
     component, with the "pfeffer" method. It is associated with the
     -simplex0deltausual = 0.05 and -simplex0deltazero = 0.0075 parameters.
-    Pfeffer's method is an heuristic which is presented in "Global
+    Pfeffer's method is a heuristic which is presented in "Global
     Optimization Of Lennard-Jones Atomic Clusters" by Ellen Fan. It is due to
     L. Pfeffer at Stanford. See in the help of optimsimplex for more
     details.</para>

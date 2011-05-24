@@ -32,7 +32,6 @@ int syncexec(char *str, int *ns, int *ierr, int *seq, long int str_len)
 	static int one = 1;
 	int Pts, Tops;
 	static int k;
-	static int ir;
 
 	static int *Ids  = C2F(recu).ids-nsiz-1;
 	static int *Rstk = C2F(recu).rstk-1;

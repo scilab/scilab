@@ -39,6 +39,7 @@ c
       logical compil,vcopyobj
       integer id(nsiz),vol,vk
       integer cbot
+      character tmpbuf * (bsiz)
 c     
       logical eqid,local
       integer iadr
@@ -47,8 +48,8 @@ c
 c     
       if (ddt .eq. 4) then
          call cvname(id,buf,1)
-         write(buf(nlgh+1:),'(i8)') fin
-         call basout(io,wte,' stackg  '//buf(1:nlgh+9))
+         write(tmpbuf(nlgh+1:),'(i8)') fin
+         call basout(io,wte,' stackg  '//tmpbuf(1:nlgh+9))
       endif
 c     
 

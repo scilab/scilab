@@ -87,6 +87,7 @@ import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -1140,11 +1141,16 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
 					LOG.trace("Updating data.");
 					
 				// Now read new Block
-			    BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
-			    updateBlockSettings(modifiedBlock);
-			    
-			    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
-				    currentBlock));
+				try {
+					BasicBlock modifiedBlock = new H5RWHandler(tempInput).readBlock();
+					updateBlockSettings(modifiedBlock);
+				    
+				    graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, 
+					    currentBlock));
+				} catch (ScicosFormatException e1) {
+					LOG.error(e1);
+				}
+
 			    delete(tempInput);
 				} else {
 					LOG.trace("No needs to update data.");

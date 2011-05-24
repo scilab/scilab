@@ -2,7 +2,14 @@ LIBRARY    signal_processing.dll
 
 
 EXPORTS
+corrtyp_
+corradr_
+iercorr_
+rem001_
+oops_
+corrname_
+tg02bd_
+setdgetx_
+setdgety_ 
 dgety_
 dgetx_
-setdgetx_
-setdgety_

@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Fortran Files">
+      <UniqueIdentifier>{1e471463-5740-4315-918f-8b1e325d24e1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="dgbfa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgeco.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgedi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgefa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dgesl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dpofa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dqrdc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dqrsl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dqrsm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hhdml.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="icopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pade.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="spofa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="util.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wcopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wgeco.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wgefa.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wgesl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="wpade.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <f2c_rule Include="dgbfa.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgeco.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgedi.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgefa.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dgesl.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dpofa.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dqrdc.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dqrsl.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="dqrsm.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="hhdml.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="icopy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="pade.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="spofa.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="util.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="wcopy.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="wgeco.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="wgefa.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="wgesl.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="wpade.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\..\bin\lapack.lib" />
+    <Library Include="..\..\..\..\..\bin\libf2c.lib" />
+  </ItemGroup>
+</Project>

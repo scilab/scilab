@@ -15,14 +15,9 @@ function main_builder()
 // Check Scilab's version
 // =============================================================================
 
-  try
-    v = getversion("scilab");
-  catch
-    error(gettext("Scilab 5.3.2 or more is required."));
-  end
-
-  if or(v < [5 3 2 0]) then
-    // new API in scilab 5.3.2
+  // check minimal version (xcosPal required)
+  if ~isdef('xcosPal') then
+    // and xcos features required
     error(gettext('Scilab 5.3.2 or more is required.'));
   end
 
@@ -44,5 +39,7 @@ function main_builder()
   tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
 endfunction
 
-main_builder();
-clear main_builder; // remove main_builder on stack
+if with_module('xcos') then
+  main_builder();
+  clear main_builder; // remove main_builder on stack
+end

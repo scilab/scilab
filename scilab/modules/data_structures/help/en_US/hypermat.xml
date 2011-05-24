@@ -42,7 +42,7 @@
   <refsection>
     <title>Description</title>
     <para>
-    Initialize an hypermatrix whose dimensions are given in the vector dims
+    Initialize a hypermatrix whose dimensions are given in the vector dims
     and entries are given in optional argument <literal>v</literal></para>
     <para>
     M data structure contains the vector of matrix dimensions

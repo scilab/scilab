@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.io.scicos.H5RWHandler;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -433,6 +434,8 @@ public abstract class ContextUpdate extends BasicBlock {
 			updateBlockSettings(modifiedBlock);
 
 		} catch (IOException e) {
+			LOG_LOCAL.error(e);
+		} catch (ScicosFormatException e) {
 			LOG_LOCAL.error(e);
 		}
 	}

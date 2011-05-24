@@ -19,6 +19,7 @@ c     ======================================================================
       integer lparen,rparen
       integer r,r1
       logical eqid,istrue,ok,first,eptover
+      character tmpbuf * (bsiz)
       parameter (nz1=nsiz-1,nz2=nsiz-2)
       parameter (iif=1,iwhile=2,iselect=3)
       data semi/43/,equal/50/,eol/99/,blank/40/
@@ -36,6 +37,7 @@ c     ======================================================================
       data for/672864271,nz1*673720360/
 
 
+
 c     
       r = -fin-10
       fin = 0
@@ -43,9 +45,9 @@ c
       if(pt.gt.0) r1=rstk(pt)
 c     
       if (ddt .eq. 4) then
-         write(buf(1:12),'(3i4)') pt,r1,r
-         call basout(io,wte,' clause pt:'//buf(1:4)//' rstk(pt):'//
-     &        buf(5:8)//' -fin-10:'//buf(9:12))
+         write(tmpbuf(1:12),'(3i4)') pt,r1,r
+         call basout(io,wte,' clause pt:'//tmpbuf(1:4)//' rstk(pt):'//
+     &        tmpbuf(5:8)//' -fin-10:'//tmpbuf(9:12))
       endif
 c     
       if(r.le.0.and.pt.le.0) then

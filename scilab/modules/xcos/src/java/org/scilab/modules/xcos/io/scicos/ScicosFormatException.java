@@ -84,6 +84,14 @@ public abstract class ScicosFormatException extends Exception {
 		public WrongStructureException() { }
 		
 		/**
+		 * Constructor with a field.
+		 * @param field the erroneous field
+		 */
+		public WrongStructureException(String field) {
+			super(String.format(UNABLE_TO_DECODE_INVALID_DATA, field));
+		}
+		
+		/**
 		 * Constructor with field descriptor.
 		 * @param fields the erroneous fields
 		 */

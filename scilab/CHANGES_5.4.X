@@ -1,4 +1,4 @@
-            Changes between version 5.3.X and 5.4.0 of Scilab
+            Changes between version 5.3.2 and 5.4.0 of Scilab
             =================================================
 
 Graphic capabilities
@@ -16,10 +16,26 @@ GUI:
 SciNotes:
 =========
 
+* In the find/grep tools, add the possibility to use ~ as a joker for user home
+  dir. and SCI for Scilab data base dir.
+
 * bug 9476 fixed - In find/grep tools, use the abbreviation 'sec' instead of
                    'seconds'.
 
 * bug 9505 fixed - A LaTeX string in a comment was not considered as a comment.
+
+
+Graphical User Interface:
+=========================
+
+* The variable browser now refresh itself automatically (See bug 9446).
+
+
+Xcos:
+=====
+
+* bug 9478 fixed - Block structure was not checked while adding them to a new
+                   palette.
 
 
 File input/output:
@@ -40,6 +56,14 @@ New functions
   point numbers, which allows to check that two numbers are
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
+
+
+Xcos:
+=====
+
+* xcos_skeleton will not be loaded if you have not installed Xcos.
+
+* bug 9506 fixed - some libraries dependencies were not loaded for xcos_skeleton startup.
 
 
 Documentation:
@@ -75,6 +99,8 @@ Performance:
 Compilation:
 ============
 
+* Under Windows, Scilab uses VS 2010 Pro and Express solution.
+
 * Under GNU/Linux and Mac OS X, all modules build as standalone its algorithms
   as a static library (only available in the source tree).
   This will avoid an important dependency tree for unitary testing.
@@ -99,10 +125,21 @@ Bug fixes:
 
 * bug 8768 fixed - GetRhsVar(..., STRING_DATATYPE, ...) did not check size of input argument.
 
+* bug 8863 fixed - The disabled test passes on the current build.
+
+* bug 9129 fixed - Completion on field did not propose graphics handle fields
+                   by default.
+
 * bug 9156 fixed - mgetl.c compilation failed on some Windows.
 
 * bug 9164 fixed - The unit tests now use the new assert functions.
 
 * bug 9277 fixed - escape character "\" did not work with msprintf.
 
+* bug 9432 fixed - link a 64 bit dynamic library on a 32 bit platform returned
+                   a wrong error message on Windows.
+
 * bug 9479 fixed - Typo fixed (intput => input).
+
+* bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
+                   unmanaged type (function, macro, ...)

@@ -65,7 +65,7 @@
 <title>See Also</title>
     <simplelist type="inline">
     <member>
-        Browse <ulink url="file:///SCI/modules/javasci/javadoc/index.html">the documentation of Javasci v2.</ulink>
+        Browse <link type="remote" linkend="javasci/javadoc/index.html">the documentation of Javasci v2.</link>
        </member>
       <member>
         <link linkend="javasci.Scilab">javasci.Scilab</link>

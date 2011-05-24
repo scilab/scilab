@@ -95,8 +95,7 @@ public class testScilabString {
         new File(fileName).delete();
     }
      
-    //@Test(dependsOnMethods={"testStringMatrix"})
-    // Commented because of bug #8863
+    @Test(dependsOnMethods={"testStringMatrix"})
     public void testMultiByteString() throws NullPointerException, HDF5Exception {
         String[][] dataStringMatix = {
                 {"éàᐛ@(1,1)", "éàᐛ@(1,1)"},

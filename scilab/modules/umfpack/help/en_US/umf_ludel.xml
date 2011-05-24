@@ -17,7 +17,7 @@
       <varlistentry>
         <term>LU_ptr  </term>
         <listitem>
-          <para>a pointer to an handle of umf lu factors (L,U,p,q,R)</para>
+          <para>a pointer to a handle of umf lu factors (L,U,p,q,R)</para>
         </listitem>
       </varlistentry>
     </variablelist>

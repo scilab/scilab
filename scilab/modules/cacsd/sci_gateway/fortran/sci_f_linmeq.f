@@ -125,6 +125,7 @@ C
 
       include 'stack.h'
       character*(*) fname
+      character tmpbuf * (bsiz)
 
 
 C .. Parameters ..
@@ -725,9 +726,10 @@ C
          else 
             TEMP =SCALE **2
          endif 
-         WRITE (buf ,'
+         WRITE (tmpbuf ,'
      $      ( '' WARNING: THE RIGHT HAND SIDES WERE '',''SCALED BY'',
      $       D13.6, '' TO AVOID OVERFLOW. '' )')TEMP 
+         buf = tmpbuf
       endif 
 C
       if (INFO.NE.0 .AND..NOT.PERTRB )THEN 
@@ -736,10 +738,11 @@ C
          call msgs(1000,0)
       endif 
       if (PERTRB )THEN 
-         WRITE (buf ,'
+         WRITE (tmpbuf ,'
      $      ( '' WARNING: THE EQUATION IS (ALMOST) '',
      $      ''SINGULAR; PERTURBED VALUES HAVE BEEN USED. '' )')
-          call msgs(1000,0)
+         buf = tmpbuf
+         call msgs(1000,0)
       endif 
 C
       RETURN 

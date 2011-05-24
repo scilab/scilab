@@ -1,0 +1,325 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{f7f68ab3-2e45-4e25-97ae-9e34c8077cb0}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{c4a8dba3-1685-457a-b52f-07f9a9d3ef9d}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl</Extensions>
+    </Filter>
+    <Filter Include="localization">
+      <UniqueIdentifier>{7aa3d07f-8e92-414d-9dc5-e4d7e84fdbb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies">
+      <UniqueIdentifier>{177d6e79-691d-4230-8347-7e4c4a25cfe4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries Dependencies\Imports">
+      <UniqueIdentifier>{bd04df94-daa7-4c75-bd88-bf956ee9dd0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{26903272-4bda-43d6-b5df-4251760d59ff}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="db2int.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DllmainInteger.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genabs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genadd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genbitops.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gencheck.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genconcatcol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genconcatrow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gencopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gencuprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gencusum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gendiag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gendot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genextrac1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genextrac2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genimpl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="geninsert1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="geninsert2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genisany.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genkron.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmax2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmcopy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmcuprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmcusum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmdiag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmdsp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmin2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmmax.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmmin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmmul.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmsum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genmtran.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genprod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genrdiv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genscal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gensubst.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gensum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gentril.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gentriu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genvmul.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_integer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="i_nextj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="tpconv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="integer.rc">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\db2int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\dynlib_integer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genabs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genadd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genbitops.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gencheck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genconcatcol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genconcatrow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gencopy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gencuprod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gencusum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gendiag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gendot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genextrac1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genextrac2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genimpl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\geninsert1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\geninsert2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genisany.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genkron.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmax2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmcopy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmcuprod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmcusum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmdiag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmdsp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmin2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmmax.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmmin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmmul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmprod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmsum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genmtran.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genprod.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genrdiv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genscal.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genset.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gensubst.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gensum.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gentril.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gentriu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\genvmul.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\gw_integer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\i_nextj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\tpconv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\locales\en_US\integer.pot">
+      <Filter>localization</Filter>
+    </None>
+    <None Include="integer_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="LibScilab_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="Polynomials_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="..\..\integer.iss" />
+    <None Include="..\..\sci_gateway\integer_gateway.xml" />
+    <None Include="..\..\Makefile.am" />
+    <None Include="..\..\version.xml" />
+  </ItemGroup>
+</Project>

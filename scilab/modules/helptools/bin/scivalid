@@ -28,7 +28,7 @@ if [ -e "$binDir/../../../thirdparty" ]; then
 elif [ -e "$binDir/../../../../../thirdparty" ]; then
 	libDir=$binDir/../../../../../thirdparty
 else
-	echo "Don't find the thirdparty directory."
+	echo "Could not find the thirdparty directory."
 	exit 2
 fi
 
@@ -43,4 +43,5 @@ fi
 # validation
 # ==============================================================================
 
-java -jar "$libDir/jing.jar" -c "$schemaDir/scilab.rnc" "$@"
+java -jar "$libDir/jing.jar" "$schemaDir/scilab.rng" "$@"
+

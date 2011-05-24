@@ -118,7 +118,7 @@
             </listitem>
             <listitem>
               <para>If the value is 2 the polyline produces a staircase plot. Two
-            consecutives points are linked by an horizontal line followed by a
+            consecutives points are linked by a horizontal line followed by a
             vertical line.</para>
             </listitem>
             <listitem>

@@ -43,8 +43,6 @@ sci_xcosDiagramToHDF5(char *fname, unsigned long fname_len)
     int* piAddr1 = NULL;
     char* pstXcosFile = NULL;
 
-    int iVarType2 = 0;
-
     int iRows2 = 0;
     int iCols2 = 0;
     int iLen2 = 0;

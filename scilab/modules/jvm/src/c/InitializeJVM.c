@@ -70,7 +70,7 @@ BOOL InitializeJVM(void)
 #ifdef _MSC_VER
             MessageBox(NULL, errorMsg, gettext("Error"), MB_ICONEXCLAMATION|MB_OK);
 #else
-            fprintf(stderr, errorMsg);
+            fprintf(stderr, "%s", errorMsg);
 #endif
             if (errorMsg)
             {

@@ -32,7 +32,6 @@ int C2F(sci_lasterror)(char *fname,unsigned long fname_len)
 
     if (Rhs == 1)
     {
-        int iType = 0;
         int *piAddressVarOne = NULL;
 
         /* get Address of inputs */

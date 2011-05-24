@@ -11,18 +11,15 @@ function xcos_skeletonlib = startModule()
     return;
   end
 
-// Check Scilab's version
+// check minimal version (xcosPal required)
 // =============================================================================
-  try
-    v = getversion("scilab");
-  catch
-    error(gettext("Scilab 5.3.2 or more is required."));
+  if ~isdef('xcosPal') then
+    // and xcos features required
+    error(gettext('Scilab 5.3.2 or more is required.'));
   end
-
-  if or(v < [5 3 2 0]) then
-    // new API in scilab 5.3.2
-    error(gettext("Scilab 5.3.2 or more is required."));
-  end
+// =============================================================================  
+// force to load some libraries (dependancies)
+  loadScicos();
 // =============================================================================
   etc_tlbx  = get_absolute_file_path("xcos_toolbox_skeleton.start");
   etc_tlbx  = getshortpathname(etc_tlbx);
@@ -87,5 +84,7 @@ function xcos_skeletonlib = startModule()
 
 endfunction
 
-xcos_skeletonlib = startModule();
-clear startModule; // remove startModule on stack
+if with_module('xcos') then
+  xcos_skeletonlib = startModule();
+  clear startModule; // remove startModule on stack
+end

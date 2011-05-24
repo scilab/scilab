@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup
+    Condition="'$(f2c_ruleBeforeTargets)' == '' and '$(f2c_ruleAfterTargets)' == '' and '$(ConfigurationType)' != 'Makefile'">
+    <f2c_ruleBeforeTargets>Midl</f2c_ruleBeforeTargets>
+    <f2c_ruleAfterTargets>CustomBuild</f2c_ruleAfterTargets>
+  </PropertyGroup>
+  <PropertyGroup>
+    <f2c_ruleDependsOn
+      Condition="'$(ConfigurationType)' != 'Makefile'">_SelectedFiles;$(f2c_ruleDependsOn)</f2c_ruleDependsOn>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <f2c_rule>
+      <CommandLineTemplate>cd "%(RootDir)%(Directory)"
+"$(SolutionDir)bin\f2c.exe" -E -I..\..\..\core\includes -I..\..\..\..\core\includes "%(Filename)%(Extension)" 2&gt;NUL
+
+</CommandLineTemplate>
+      <Outputs>%(RootDir)%(Directory)%(Filename).c</Outputs>
+      <ExecutionDescription>Converting %(Filename).f to %(Filename).c ...</ExecutionDescription>
+      <ShowOnlyRuleProperties>false</ShowOnlyRuleProperties>
+    </f2c_rule>
+  </ItemDefinitionGroup>
+</Project>

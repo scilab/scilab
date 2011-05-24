@@ -74,7 +74,7 @@ void sciblk4(scicos_block *Blocks, int flag)
 
   /* Retrieve funtyp by import structure */
   strcpy(C2F(cha1).buf,"funtyp");
-  ierr=getscicosvarsfromimport(C2F(cha1).buf,&ptr,&nv,&mv);
+  ierr=getscicosvarsfromimport(C2F(cha1).buf,(void**)&ptr,&nv,&mv);
   if (ierr==0) goto err;
   funtyp = (int *) ptr;
 
