@@ -175,10 +175,11 @@ Bug fixes:
 * bug 9510 fixed - export_to_hdf5 did not return %f when trying to export
                    unmanaged type (function, macro, ...)
 
+* bug 9527 fixed - Problem when a text was exported in SVG from the gui.
+
 * bug 9540 fixed - MKL Pentium 4 target was not downloaded by installer on Windows.
 
 * bug 9543 fixed - Scilab did not use the default DocumentBuilderFactory
                    to parse XML configuration files.
 
 * bug 9555 fixed - Typo in the 'deff' help page.
-
