@@ -45,8 +45,11 @@ New functions
   "numerically almost equal", i.e. that the relative error is small.
   This automatically fixes the bug #4381.
 
+
 Optimization:
 =============
+
+* neldermead: Added a demo - search for largest smallest polygon.
 
 * bug 7891 fixed - The neldermead component had too many options.
   Tagged -costfargument option of optimbase as obsolete: will be 
@@ -71,7 +74,8 @@ Optimization:
   will be maintained for backward compatibility until 5.4.1.
   See the help page of neldermead for details to update your 
   code, if required.
-  
+
+
 Xcos:
 =====
 
