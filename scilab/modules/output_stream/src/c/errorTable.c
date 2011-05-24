@@ -1666,7 +1666,7 @@ static char *getConvertedNameFromStack(int cvnametype)
         break;
 
     default:
-        strcpy(local_variable_buffer,_("\"unknown data\""));
+        strcpy(local_variable_buffer,_("Unknown data.\n"));
         break;
     }
 
