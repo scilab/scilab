@@ -1273,6 +1273,8 @@ function this = neldermead_box ( this )
         if ( verbose == 1 ) then
             this = neldermead_logsummary ( this, iter,xlow,flow,currentcenter,simplex);
         end
+        this.optbase = optimbase_set ( this.optbase , "-xopt" , xlow );
+        this.optbase = optimbase_set ( this.optbase , "-fopt" , flow );
         stop = neldermead_outputcmd ( this, "iter" , simplex , step )
         if ( stop ) then
             status = "userstop"
