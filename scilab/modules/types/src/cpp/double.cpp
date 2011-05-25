@@ -240,7 +240,7 @@ namespace types
             {
                 int iWidth = 0, iPrec = 0;
                 bool bFP = false; // FloatingPoint
-                //getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
+                getDoubleFormat((m_pRealData[iPos]), _iPrecision, &iWidth, &iPrec, &bFP);
                 addDoubleValue(&ostr, (m_pRealData[iPos]), iWidth, iPrec);
             }
             else
@@ -248,8 +248,8 @@ namespace types
                 int iWidthR = 0, iWidthI = 0;
                 int iPrecR = 0, iPrecI = 0;
                 bool bFPR = false, bFPI = false; // FloatingPoint
-                //getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
-                //getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
+                getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), _iPrecision, &iWidthR, &iPrecR, &bFPR);
+                getDoubleFormat(ZeroIsZero(m_pImgData[iPos]), _iPrecision, &iWidthI, &iPrecI, &bFPI);
                 addDoubleComplexValue(&ostr, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), iWidthR + iWidthI, iWidthR, iWidthI, Max(iPrecR, iPrecI));
             }
         }
