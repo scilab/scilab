@@ -62,6 +62,9 @@ Documentation:
 
 * The space key behave like the page down key. (see bug 9491)
 
+* Management of the revhistory / revision tag to provide information about
+  the history of the function.
+
 
 Removed functions (previously declared as obsolete):
 ====================================================
