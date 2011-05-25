@@ -205,7 +205,7 @@ void visitprivate(const AssignExp  &e)
                 pITR = pIL;
             }
 
-            if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty())
+            if(pITR->isDouble() && pITR->getAs<Double>()->isEmpty() && pIT->isStruct() == false)
             {//insert [] so deletion !
                 if(pIT == NULL)
                 {
@@ -268,7 +268,9 @@ void visitprivate(const AssignExp  &e)
                     }
                     else if(pIT->isStruct())
                     {
-                        // a.b = [] is not a deletion !!
+                        // a("b") = [] is not a deletion !!
+                        Struct* pStr = pIT->getAs<Struct>();
+
                         pOut = pIT->getAs<Struct>()->insert(pArgs, pITR);
                     }
 
@@ -404,7 +406,27 @@ void visitprivate(const AssignExp  &e)
                 }
                 else if(pIT->isStruct())
                 {
-                    pRet = pIT->getAs<Struct>()->insert(pArgs, pInsert);
+                    Struct* pStr = pIT->getAs<Struct>();
+                    if(pArgs->size() == 1 && (*pArgs)[0]->isString())
+                    {//s("x") = y
+                        String *pS = (*pArgs)[0]->getAs<types::String>();
+                        if(pS->isScalar() == false)
+                        {
+                            //manage error
+                            std::wostringstream os;
+                            os << _W("Invalid Index.\n");
+                            //os << ((Location)e.right_exp_get().location_get()).location_getString() << std::endl;
+                            throw ScilabError(os.str(), 999, e.right_exp_get().location_get());
+                        }
+
+                        pStr->addField(pS->get(0));
+                        pStr->get(0)->set(pS->get(0), pInsert);
+                        pRet = pStr;
+                    }
+                    else
+                    {
+                            pRet = pStr->insert(pArgs, pInsert);
+                    }
                 }
                 else
                 {//overloading

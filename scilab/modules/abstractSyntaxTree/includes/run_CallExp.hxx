@@ -352,9 +352,16 @@ void visitprivate(const CallExp &e)
                         }
 
                         ResultList = pStr->extractFields(wstFields);
-                        for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                        if(ResultList.size() == 1 && ResultList[0]->getAs<List>()->getSize() == 1)
                         {
-                            result_set(i, ResultList[i]);
+                            result_set(ResultList[0]->getAs<List>()->get(0));
+                        }
+                        else
+                        {
+                            for(int i = 0 ; i < static_cast<int>(ResultList.size()) ; i++)
+                            {
+                                result_set(i, ResultList[i]);
+                            }
                         }
                         return;
                     }

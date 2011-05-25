@@ -45,7 +45,15 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
     // STRUCT
     if (in[0]->isStruct() == true)
     {
-        out.push_back(in[0]->getAs<Struct>()->getFieldNames());
+        String* pFields = in[0]->getAs<Struct>()->getFieldNames();
+        if(pFields)
+        {
+            out.push_back(pFields);
+        }
+        else
+        {
+            out.push_back(Double::Empty());
+        }
         return Function::OK;
     }
 

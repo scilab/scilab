@@ -80,22 +80,34 @@ IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\hel
     <NMakeForcedUsingAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(NMakeForcedUsingAssemblies)</NMakeForcedUsingAssemblies>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
-    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
+    <NMakeBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],%27en_US%27)%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],%27fr_FR%27)%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],%27pt_BR%27)%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],%27ja_JP%27)%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit;
+</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
+IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
+
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit;
+
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l en -e xmltojar([],[],'en_US');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l fr -e xmltojar([],[],'fr_FR');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l pt_BR -e xmltojar([],[],'pt_BR');exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -nouserstartup -nw -l ja_JP -e xmltojar([],[],'ja_JP');exit;
 </NMakeReBuildCommandLine>
     <NMakeCleanCommandLine Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">IF EXIST "$(SolutionDir)modules\helptools\javaHelp" rmdir /s /q "$(SolutionDir)modules\helptools\javaHelp"
 
 IF EXIST "$(SolutionDir)modules\helptools\jar" del /q "$(SolutionDir)modules\helptools\jar\scilab_*.jar"  1&gt;NUL 2&gt;NUL
 
-"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help()%3bexit%3b
-"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help()%3bexit%3b
+"$(SolutionDir)bin\Yasp.exe" -nb -l en -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l fr -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l pt_BR -nouserstartup -nw -e clean_help();exit;
+"$(SolutionDir)bin\Yasp.exe" -nb -l ja_JP -nouserstartup -nw -e clean_help();exit;
 </NMakeCleanCommandLine>
     <NMakeOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
     <NMakePreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>

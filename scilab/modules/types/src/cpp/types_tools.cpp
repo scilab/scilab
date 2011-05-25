@@ -114,15 +114,20 @@ namespace types
                 pCurrentArg = pDbl;
             }
 
-            _piCountDim[i] = pCurrentArg->getSize();
-            _piMaxDim[i] = 0;
-            for(int j = 0 ; j < _piCountDim[i] ; j++)
+            if(pCurrentArg)
             {
-                _piMaxDim[i] = Max(_piMaxDim[i], static_cast<int>(pCurrentArg->get(j)));
+                _piCountDim[i] = pCurrentArg->getSize();
+                _piMaxDim[i] = 0;
+                for(int j = 0 ; j < _piCountDim[i] ; j++)
+                {
+                    _piMaxDim[i] = Max(_piMaxDim[i], static_cast<int>(pCurrentArg->get(j)));
+                }
+
+                iSeqCount *= _piCountDim[i];
             }
 
-            iSeqCount *= _piCountDim[i];
             _pArgsOut->push_back(pCurrentArg);
+
         }
 
         //returns a negative value if at least one parameter is undefined

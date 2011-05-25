@@ -160,7 +160,7 @@ namespace types
         }
         else
         {
-            return new String(1,1);
+            return NULL;
         }
     }
 
@@ -261,7 +261,8 @@ namespace types
     {
         if(getSize() == 0)
         {
-            return false;
+            //change dimension to 1x1 and add field
+            resize(1,1);
         }
 
         for(int i = 0 ; i < getSize() ; i++)
@@ -281,7 +282,11 @@ namespace types
     {
         std::wostringstream ostr;
 
-        if(getSize() == 1)
+        if(getSize() == 0)
+        {
+            ostr << L"0x0 struct array with no field.";
+        }
+        else if(getSize() == 1)
         {
             SingleStruct* pSS =  get(0);
             String* pwstFields =  pSS->getFieldNames();
@@ -309,17 +314,10 @@ namespace types
             ostr << L" struct array with ";
 
             String* pwstFields = getFieldNames();
-            if(pwstFields->getSize() != 0)
+            ostr <<  L"fields:" << std::endl;
+            for(int i = 0 ; i < pwstFields->getSize() ; i++)
             {
-                ostr <<  L"fields:" << std::endl;
-                for(int i = 0 ; i < pwstFields->getSize() ; i++)
-                {
-                    ostr << L"    " << pwstFields->get(i) << std::endl;
-                }
-            }
-            else
-            {
-                ostr << L"no fields." << std::endl;
+                ostr << L"    " << pwstFields->get(i) << std::endl;
             }
         }
 
