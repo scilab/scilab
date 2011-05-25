@@ -166,6 +166,27 @@ void visitprivate(const OpExp &e)
                 result_set(pResult);
                 break;
             }
+        case OpExp::dotpower :
+            {
+                try
+                {
+                    pResult = GenericDotPower(execMeL.result_get(), execMeR.result_get());
+                }
+                catch (ScilabException *pSE)
+                {
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
+                }
+
+                if (pResult == NULL)
+                {
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
+
+                }
+                result_set(pResult);
+                break;
+            }
         case OpExp::eq :
             {
               try
@@ -564,40 +585,23 @@ void visitprivate(const OpExp &e)
             }
         case OpExp::power :
             {
-                if(TypeL == GenericType::RealDouble && TypeR == GenericType::RealDouble)
+                try
                 {
-                    Double *pL			= pITL->getAs<Double>();
-                    Double *pR			= pITR->getAs<Double>();
+                    pResult = GenericPower(execMeL.result_get(), execMeR.result_get());
+                }
+                catch (ScilabException *pSE)
+                {
+                    pSE->SetErrorLocation(e.right_get().location_get());
+                    throw pSE;
+                }
 
-                    int iResult = PowerDoubleByDouble(pL, pR, (Double**)&pResult);
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
-                }
-                else if(TypeL == GenericType::RealPoly && TypeR == GenericType::RealDouble)
+                if (pResult == NULL)
                 {
-                    Polynom *pL	= pITL->getAs<types::Polynom>();
-                    Double *pR			= pITR->getAs<Double>();
+                    // We did not have any algorithm matching, so we try to call OverLoad
+                    pResult = callOverload(e.oper_get(), &execMeL, &execMeR);
 
-                    int iResult = PowerPolyByDouble(pL, pR, (Polynom**)&pResult);
-                    if(iResult != 0)
-                    {
-                        std::wostringstream os;
-                        os << _W("Inconsistent row/column dimensions.\n");
-                        //os << ((Location)e.right_get().location_get()).location_getString() << std::endl;
-                        throw ScilabError(os.str(), 999, e.right_get().location_get());
-                    }
-                    result_set(pResult);
                 }
-                else
-                {
-                    result_set(callOverload(e.oper_get(), &execMeL, &execMeR));
-                }
+                result_set(pResult);
                 break;
             }
         default :

@@ -14,12 +14,19 @@
 #define __TYPES_POWER_HXX__
 
 #include "dynlib_operations.hxx"
+#include "internal.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 
 using namespace types;
 
-EXTERN_OP int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
-EXTERN_OP int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut);
+//power operations
+EXTERN_OP InternalType* GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand);
+int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
+int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut);
+
+//dot power operations
+EXTERN_OP InternalType* GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRightOperand);
+int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
 
 #endif /* __TYPES_POWER_HXX__ */
