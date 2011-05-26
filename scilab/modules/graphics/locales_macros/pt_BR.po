@@ -1,0 +1,731 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Adriano Steffler <Unknown>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s: Entidade inválida para %s\n"
+
+#
+# File: macros/polarplot.sci, line: 152
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: Erro: não foi capaz de avaliar a função de entrada ''%s''."
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: Erro: não foi capaz de avaliar a função de entrada."
+
+#
+# File: macros/comet.sci, line: 86
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 71
+# File: macros/comet3d.sci, line: 96
+# File: macros/comet3d.sci, line: 107
+# File: macros/comet.sci, line: 79
+# File: macros/comet.sci, line: 94
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument #%d must be a handle on a axes.\n"
+msgstr ""
+"%s: O argumento de entrada #%d deve ser um manipulador em um dos eixos.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: O argumento de entrada #%d deve ser um número real.\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: A legenda não se encaixa no contexto atual. Ignorada\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: Nenhum manipulador ''%s'' foi encontrado.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se pelo menos "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou de %d a "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#
+# File: macros/comet3d.sci, line: 91
+# File: macros/comet3d.sci, line: 102
+# File: macros/comet3d.sci, line: 125
+# File: macros/comet.sci, line: 102
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/legend.sci, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz %d x %d ou %d x %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: Tamanho incorreto de argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
+"%d expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de dimensão maior que %d por %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"texto.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"vetor.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada %d: esperava-se um "
+"manipulador ''Axes'' .\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
+"by-%d expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada ''%s'': esperava-se uma "
+"matriz de dimensões maiores que %d por %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada ''%s'': esperava-se uma "
+"matriz não vazia.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada ''%s'': esperava-se um "
+"vetor.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
+"dimensions.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada ''%s'' e ''%s'': as "
+"dimensões são incompatíveis.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada ''%s'' e ''%s'': "
+"esperava-se matrizes de tamanhos iguais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumentos de entrada ''%s'' e ''%s'': "
+"esperava-se tamanhos iguais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para os argumento de entrada ''%s'': esperava-se um "
+"vetor de tamanho %d.\n"
+
+#
+# File: macros/comet3d.sci, line: 115
+# File: macros/comet.sci, line: 68
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 27
+# File: macros/comet3d.sci, line: 55
+# File: macros/comet3d.sci, line: 58
+# File: macros/comet3d.sci, line: 62
+# File: macros/comet.sci, line: 29
+# File: macros/comet.sci, line: 53
+# File: macros/comet.sci, line: 65
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Tipo incorreto para o argumento de entrada #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se a estrutura "
+"de dados %s.\n"
+
+#
+# File: macros/datatips/datatipToggle.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 26
+# File: macros/datatips/datatipSetInterp.sci, line: 20
+# File: macros/datatips/datatipRemove.sci, line: 18
+# File: macros/datatips/datatipRemove.sci, line: 37
+# File: macros/datatips/datatipSetOrientation.sci, line: 17
+# File: macros/datatips/datatipEventhandler.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 287
+# File: macros/datatips/datatipCreate.sci, line: 22
+# File: macros/datatips/datatipCreate.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
+"real.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um vetor de "
+"manipuladores ''Figure''."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador ''Axes''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador de gráfico.\n"
+
+#
+# File: macros/histplot.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 67
+# File: macros/histplot.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real array or graphic handle array "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais ou de manipuladores de gráfico.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: Tipo errado de argumento de entrada #%d: Esperava-se um escalar.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de textos.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: function expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma função.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
+"manipulador ''Axes''.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada ''%s'': esperava-se uma "
+"matriz de números reais.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: Tipo incorreto para o argumento de entrada.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se ''clear'' "
+"ou ''reset''."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A %d digits integer with digits "
+"greater than %d expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um inteiro "
+"de %d dígitos, cada um maior que %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
+"inteiro maior ou igual a %d.\n"
+
+#
+# File: macros/comet3d.sci, line: 118
+# File: macros/histplot.sci, line: 87
+# File: macros/comet.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar no intervalo "
+"[%s,%s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
+"conjunto {%s}.\n"
+
+#
+# File: macros/plot3d2.sci, line: 61
+# File: macros/polarplot.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/fplot2d.sci, line: 42
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se ''%s''.\n"
+
+#
+# File: macros/histplot.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: O manipulador não é mais válido. Ignorado.\n"
+
+#, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: muitos argumentos de entrada"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "&Editar"
+
+msgid "&File"
+msgstr "&Arquivo"
+
+msgid "&Tools"
+msgstr "&Ferramentas"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 72
+msgid "... as well as very tiny radii"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 49
+msgid "A partial viewport may be set with clipping"
+msgstr ""
+
+msgid "Autumn"
+msgstr "Outono"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 60
+msgid "Big radii are supported..."
+msgstr ""
+
+msgid "Bone"
+msgstr "Osso"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Color number"
+msgstr "Quantidade de cores"
+
+msgid "Common X axis"
+msgstr "Eixo X em comum"
+
+msgid "Copper"
+msgstr "Cobre"
+
+msgid "Customize your complex function"
+msgstr "Personalizar sua função complexa"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 45
+msgid "Data on the full circle ..."
+msgstr ""
+
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr ""
+"Dtatips não podem ser ligadas a esta curva,\n"
+"o campo user_data já está utilizado"
+
+msgid "Delete all datatips"
+msgstr "Deletar todos os datatips"
+
+msgid "Delete all datatips for the selected curve"
+msgstr "Deletar todos os datatips da curva selecionada"
+
+msgid "Delete last datatip"
+msgstr "Deletar o último datatip"
+
+msgid "Delete nearest datatip"
+msgstr "Deletar datatip mais próximo"
+
+msgid "Disable interpolation"
+msgstr "Desabilitar a interpolação"
+
+msgid "Edit the curve tip display function"
+msgstr "Editar a função de visualização do tip de curva"
+
+msgid "Enable interpolation"
+msgstr "Habilitar a interpolação"
+
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr "Erro %d na linha %d da função: ''%s''"
+
+#
+# File: macros/histplot.sci, line: 58
+msgid "Exact gaussian density"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 57
+msgid "Gaussian random sample histogram"
+msgstr ""
+
+msgid "Graphics"
+msgstr "Gráficos"
+
+msgid "Graphics with 2 different Y-scales"
+msgstr "Gráficos com duas escalas Y diferentes"
+
+msgid "Gray"
+msgstr "Cinzento"
+
+msgid "HSV"
+msgstr "HSV"
+
+msgid "Hot"
+msgstr "Quente"
+
+msgid "Jet"
+msgstr "Jato"
+
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+"Clique com o botão da esquerda sobre a curva para criar um datatip; o botão "
+"da direita abre-o"
+
+msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+"Clique com o botão da esquerda sobre a curva para criar um datatip; o botão "
+"da direita abre um menu de contexto"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"Clique com o esquerdo em uma entidade do gŕafico para abrir seu editor de "
+"propriedades"
+
+msgid "Misc"
+msgstr "Miscelânea"
+
+msgid "Multiple datatips mode"
+msgstr "Modo de datatips múltiplos"
+
+msgid "Name"
+msgstr "Nome"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 55
+msgid "Negative radii are supported:"
+msgstr ""
+
+msgid "Ocean"
+msgstr "Oceano"
+
+msgid "Ok"
+msgstr "Ok"
+
+msgid "Pink"
+msgstr "Rosa"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "Desenha com 3 escalas Y diferentes com a X compartilhada"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 19
+msgid "Press enter to go on..."
+msgstr ""
+
+msgid "Rainbow"
+msgstr "Arco-íris"
+
+msgid "Redraw all datatips"
+msgstr "Redesenhar todos os datatips"
+
+msgid "Scale n1"
+msgstr "Escala nº 1"
+
+msgid "Select tip orientation"
+msgstr "Selecione a orientação do tip"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 77
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
+msgid "Spring"
+msgstr "Primavera"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 27
+msgid "Still a single quadrant..."
+msgstr ""
+
+msgid "Summer"
+msgstr "Verão"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Interface Tcl/Tk não está instalada."
+
+msgid "The selected file cannot be executed"
+msgstr "O arquivo selecionado não pode ser executado"
+
+msgid "The selected file defines more than one function"
+msgstr "O arquivo selecionado define mais de uma função"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "A função selecionada deve ter um parâmetro de saída (str)"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr ""
+"A função selecionada deve ter 3 parâmetros de entrada (curva, ponto, índice)"
+
+msgid "Unique datatip mode"
+msgstr "Modo de datatip único"
+
+msgid "White"
+msgstr "Branco"
+
+msgid "Winter"
+msgstr "Inverno"
+
+msgid "automatic"
+msgstr "automático"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 66
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 55
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
+msgid "lower left"
+msgstr "inferior esquerdo"
+
+msgid "lower right"
+msgstr "inferior direito"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 35
+msgid "on 2 quadrants..."
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 23
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr ""
+
+msgid "select the curve tip display function"
+msgstr "Selecione a função de exibição do tip da curva"
+
+msgid "upper left"
+msgstr "superior esquerdo"
+
+msgid "upper right"
+msgstr "superior direito"

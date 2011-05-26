@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2008-09-22 14:07+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
+"Language: uk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -144,21 +145,6 @@ msgid "  that must be informed with the following values :\n"
 msgstr "  якій слід передати такі значення:\n"
 
 #, c-format
-msgid " %s.mo cannot be compiled\n"
-msgstr " не вдалося зібрати %s.mo\n"
-
-#, c-format
-msgid " %s.mo compilation forced\n"
-msgstr " збирання %s.mo виконується у примусовому режимі\n"
-
-#, c-format
-msgid " %s.mo must be recompiled\n"
-msgstr " %s.mo доведеться зібрати повторно\n"
-
-msgid " Scilab is in no gui mode : Scicos is unavailable"
-msgstr " Scilab працює не у графічному режимі: скористатися Scicos не можна"
-
-#, c-format
 msgid "%s : Allocation error.\n"
 msgstr "%s: помилка розподілу пам’яті.\n"
 
@@ -253,8 +239,7 @@ msgstr "%s: другим елементом sim має бути список.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have a maximum of seven elements.\n"
-msgstr ""
-"%s: шостий параметр має складатися не більше, ніж з семи елементів.\n"
+msgstr "%s: шостий параметр має складатися не більше, ніж з семи елементів.\n"
 
 #, c-format
 msgid "%s : Sixth argument must have at least four elements.\n"
@@ -341,8 +326,7 @@ msgstr ""
 "точності (double) ще не реалізовано.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s: помилка. Підтримку типу %d у outtb числової матриці з цілих значень "
 "(int) ще не реалізовано.\n"
@@ -392,89 +376,12 @@ msgid "%s :the handle is not or no more valid.\n"
 msgstr "%s: елемент керування не є коректним.\n"
 
 #, c-format
-msgid "%s is not a valid directory\n"
-msgstr "%s не є коректною адресою каталогу\n"
-
-#, c-format
-msgid "%s is not a valid name, please change the title of the diagram."
-msgstr "%s є некоректною назвою, будь ласка, змініть назву діаграми."
-
-#, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: розмірності першого і другого параметрів мають збігатися\n"
 
 #, c-format
-msgid "%s: Cannot find any MO files in the following location: %s.\n"
-msgstr "%s: не вдалося знайти жодного файла MO за такою адресою: %s.\n"
-
-#, c-format
-msgid "%s: Diagram does not compile in pass %d.\n"
-msgstr "%s: не вдалося створити діаграму на кроці %d.\n"
-
-#, c-format
-msgid "%s: Error: A scifunc block has not been defined."
-msgstr "%s: помилка: блок scifunc не було визначено."
-
-#, c-format
-msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
-msgstr "%s: помилка: не вдалося знайти компілятор Modelica (MODELICAC)."
-
-#, c-format
-msgid "%s: First argument must be a Scicos diagram data structure\n"
-msgstr "%s: першим параметром повинна бути структура даних діаграми Scicos\n"
-
-#, c-format
-msgid "%s: Input ports are not numbered properly.\n"
-msgstr "%s: помилкова нумерації портів вхідних даних.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
-msgid "%s: Output ports are not numbered properly.\n"
-msgstr "%s: помилкова нумерації портів вихідних даних.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів. Їх має бути від %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути одне ціле "
-"число.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
-"рядок.\n"
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d.\n"
-msgstr "%s: помилкові розмірності вхідних параметрів №%d та №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
 
 #, c-format
 msgid "%s: error %d. A type of a scilab object has changed.\n"
@@ -490,8 +397,7 @@ msgstr "%s: помилка %d. Помилкове значення int sub_type 
 
 #, c-format
 msgid "%s: error %d. No more space on the stack for new data.\n"
-msgstr ""
-"%s: помилка %d. У стеку більше не залишилося місця для нових даних.\n"
+msgstr "%s: помилка %d. У стеку більше не залишилося місця для нових даних.\n"
 
 #, c-format
 msgid "%s: error %d. Only int or double object are accepted.\n"
@@ -510,25 +416,8 @@ msgstr "%s: помилка %d. Невизначена помилка.\n"
 msgid "%s: scicosim is not running.\n"
 msgstr "%s: scicosim не запущено.\n"
 
-msgid "&?"
-msgstr "&Довідка"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Інструменти"
-
-msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
-msgstr ""
-"«scicos» більше не підтримується, будь ласка, скористайтеся «xcos».\n"
-
 msgid "**** SUNDIALS.IDA failed to initialize ->try again *****\n"
-msgstr ""
-"**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
+msgstr "**** Не вдалося ініціалізувати SUNDIALS.IDA -> повторна спроба *****\n"
 
 msgid "**** SUNDIALS.IDA successfully initialized *****\n"
 msgstr "**** SUNDIALS.IDA успішно ініціалізовано *****\n"
@@ -573,74 +462,6 @@ msgstr "- [\"рядок1\";\"рядок2\",...] — матриця з рядкі
 
 msgid "- myvar : an int32 or double matrix or a Tlist.\n"
 msgstr "- моя_змінна: значення int32, матриця з double або Tlist.\n"
-
-msgid "?"
-msgstr "Довідка"
-
-msgid "About Scicos"
-msgstr "Про Scicos"
-
-msgid "Activate Scilab Window"
-msgstr "Вікно активації Scilab"
-
-msgid "Add a new color at the Scicos palette"
-msgstr "Додавання нового кольору до палітри Scicos"
-
-msgid "Add color"
-msgstr "Додати колір"
-
-msgid "Add new block"
-msgstr "Додати новий блок"
-
-msgid "Align"
-msgstr "Вирівняти"
-
-msgid "An Atomic Superblock cannot contain sample clocks"
-msgstr "Елементарний суперблок не може містити шаблонів годинника"
-
-msgid "An error occur when evaluating context:"
-msgstr "Під час спроби оцінки контексту сталася помилка:"
-
-#, c-format
-msgid ""
-"An unexpected  error occurred while executing the menu\n"
-"%s:\n"
-msgstr ""
-"Сталася помилка під час спроби відкриття меню\n"
-"%s:\n"
-
-msgid "Analyze Diagram"
-msgstr "Аналізувати діаграму"
-
-msgid "Atomic"
-msgstr "Елементарний"
-
-msgid "Available Parameters"
-msgstr "Доступні параметри"
-
-msgid "Background color"
-msgstr "Колір тла"
-
-msgid "Background color ? :"
-msgstr "Колір тла:"
-
-msgid "Block Documentation"
-msgstr "Документація з блоку"
-
-msgid "Block ID font name"
-msgstr "Гарнітура шрифту ідентифікатора блоку"
-
-msgid "Block ID font size"
-msgstr "Розмір шрифту ідентифікатору блоку"
-
-msgid "BrowseTo"
-msgstr "Перегляд"
-
-msgid "Browser"
-msgstr "Переглядач"
-
-msgid "C Code Generation"
-msgstr "Створення коду мовою C"
 
 msgid "CV_BAD_ABSTOL: abstol has negative component(s) (illegal)."
 msgstr "CV_BAD_ABSTOL: abstol містить від’ємні компоненти (є некоректним)."
@@ -880,163 +701,9 @@ msgstr ""
 msgid "CV_YOUT_NULL: ''yout'' = NULL illegal."
 msgstr "CV_YOUT_NULL: некоректне значення «yout» = NULL."
 
-msgid "Calc"
-msgstr "Калькулятор"
-
 msgid "Cannot find the initial mode, maybe there is a sliding mode condition"
 msgstr ""
 "Не вдалося визначити початковий режим, можливо, маємо умову ковзного режиму"
-
-msgid "Choose export format:"
-msgstr "Виберіть формат для експортування:"
-
-msgid "Click block to label"
-msgstr "Клацніть на блоці для визначення мітки"
-
-msgid "Click block to resize"
-msgstr "Клацніть на блоці для зміни розмірів"
-
-msgid "Click object to move, drag and click (left to fix, right to cancel)"
-msgstr ""
-"Клацніть на об’єкті, щоб пересунути його. Перетягніть і клацніть (лівою, щоб "
-"зафіксувати, правою, щоб скасувати)"
-
-msgid ""
-"Click on a Super Block (without activation output) to obtain a coded block!"
-msgstr ""
-"Клацніть на суперблоці (без активації виведення даних), щоб переглянути блок "
-"коду!"
-
-msgid "Click on a block to set or get its documentation"
-msgstr "Клацніть на блоці, щоб змінити або переглянути документацію з нього"
-
-msgid "Click on a port of object to be moved"
-msgstr "Клацніть на тому порті об’єкта, який слід пересунути"
-
-msgid "Click on a super block"
-msgstr "Клацніть на суперблоці"
-
-msgid "Click on an object to set or get identification"
-msgstr ""
-"Клацніть на об’єкті, щоб змінити або переглянути параметри ідентифікації"
-
-msgid "Click on block to  open graphic icon editor"
-msgstr "Клацніть на блоці, щоб відкрити редактор графічних піктограм"
-
-msgid "Click on block to be flipped"
-msgstr "Клацніть на блоці, який слід віддзеркалити"
-
-msgid "Click on block to be turned left"
-msgstr "Клацніть на блоці, який слід обертати за годинниковою стрілкою"
-
-msgid "Click on block to be turned right"
-msgstr "Клацніть на блоці, який слід обертати проти годинникової стрілки"
-
-msgid "Click on block to edit its icon"
-msgstr "Клацніть на блоці, щоб змінити його піктограму"
-
-msgid "Click on object  to get information on it"
-msgstr "Клацніть на об’єкті, щоб переглянути відомості про нього"
-
-msgid "Click on object to choose its color"
-msgstr "Клацніть на об’єкті, щоб вибрати його колір"
-
-msgid ""
-"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
-msgstr ""
-"Клацніть на об’єкті, щоб здублювати його, перетягніть вказівник і ще раз "
-"клацніть (лівою кнопкою, щоб скопіювати, правою, щоб скасувати)"
-
-msgid "Click to open block or make a link"
-msgstr "Клацніть, щоб відкрити блок, або створити зв’язок"
-
-msgid "Click where you want object to be placed (right-click to cancel)"
-msgstr ""
-"Клацніть лівою у тому місці, де ви бажаєте розташувати об’єкт (клацніть "
-"правою кнопкою, щоб скасувати)"
-
-msgid "Close"
-msgstr "Закрити"
-
-msgid "Code Generation only works for a Superblock !\n"
-msgstr "Створення коду працює лише для суперблоків!\n"
-
-msgid "Code generation applies only to Super Blocks."
-msgstr "Створювати коду можна лише для суперблоків."
-
-msgid "Color"
-msgstr "Колір"
-
-msgid "Compile"
-msgstr "Зібрати"
-
-msgid "Context"
-msgstr "Контекст"
-
-msgid "Copy"
-msgstr "Копіювати"
-
-msgid "Create Atomic"
-msgstr "Створити елементарний об’єкт"
-
-msgid "Create Mask"
-msgstr "Створити маску"
-
-msgid "CtrlSelect"
-msgstr "Ctrl-позначення"
-
-msgid "Customize Mask"
-msgstr "Змінити маску"
-
-msgid "Customize block GUI:"
-msgstr "Налаштування інтерфейсу блоку:"
-
-msgid "Cut"
-msgstr "Вирізати"
-
-msgid "Cut: Click on the object to cut"
-msgstr "Вирізання: клацніть на об’єкті, який слід вирізати"
-
-msgid "Debug Level"
-msgstr "Докладність діагностичних повідомлень"
-
-msgid "Default link colors"
-msgstr "Типові кольори зв’язків"
-
-msgid "Default window parameters"
-msgstr "Типові параметри вікна"
-
-msgid "Defined shortcuts"
-msgstr "Визначені клавіатурні скорочення"
-
-msgid "Delete"
-msgstr "Вилучити"
-
-msgid "Delete: Click on the object to delete"
-msgstr "Вилучити: клацніть на об’єкті, який слід вилучити"
-
-msgid "Demos"
-msgstr "Демонстрації"
-
-msgid "Details"
-msgstr "Подробиці"
-
-msgid "Diagram"
-msgstr "Діаграма"
-
-msgid "Done\n"
-msgstr "Виконано\n"
-
-msgid "Drag, click left for final or intermediate points or right to cancel"
-msgstr ""
-"Перетягніть вказівник, клацніть лівою для позначення остаточної або "
-"проміжної точки, клацніть правою, щоб скасувати."
-
-msgid "Duplicate"
-msgstr "Здублювати"
-
-msgid "Edit"
-msgstr "Правка"
 
 msgid "End of activation"
 msgstr "Завершення активації"
@@ -1046,9 +713,6 @@ msgstr "Завершення активації\n"
 
 msgid "Entering the block \n"
 msgstr "Вхід до блоку \n"
-
-msgid "Error\n"
-msgstr "Помилка\n"
 
 msgid "Error in the Debug block \n"
 msgstr "Помилка у діагностичному блоці \n"
@@ -1061,64 +725,12 @@ msgstr "Помилка: не вдалося знайти «%s»  \n"
 msgid "Error: cannot write to  '%s'  \n"
 msgstr "Помилка: не вдалося здійснити запис до «%s»  \n"
 
-msgid "Eval"
-msgstr "Обчислити"
-
-msgid "Event links color? :"
-msgstr "Колір зв’язків між подіями:"
-
 #, c-format
 msgid "Event: %d activated at t=%f\n"
 msgstr "Подія: %d задіяно у момент t=%f\n"
 
-msgid "Exit"
-msgstr "Вийти"
-
-msgid "Export"
-msgstr "Експортувати"
-
-msgid "Export All"
-msgstr "Експортувати все"
-
-#, c-format
-msgid "Export in file %s failed\n"
-msgstr "Спроба експортування даних до файла %s завершилася невдало\n"
-
-msgid "File"
-msgstr "Файл"
-
-msgid "Fit diagram to figure"
-msgstr "Масштаб діаграми за рисунком"
-
-msgid "Flip"
-msgstr "Віддзеркалити"
-
-msgid "Following palette(s) ignored (associated file(s) no more exist):"
-msgstr "Пропущено такі палітри (відповідних файлів вже не існує):"
-
-msgid "Foreground color ? :"
-msgstr "Колір тексту:"
-
-msgid "Format"
-msgstr "Формат"
-
-msgid "Free"
-msgstr "Довільний"
-
 msgid "Function not found\n"
 msgstr "Не знайдено функції\n"
-
-msgid "Get Info"
-msgstr "Отримати відомості"
-
-msgid "Help"
-msgstr "Довідка"
-
-msgid "ID font definitions"
-msgstr "Параметри шрифту ідентифікатора"
-
-msgid "ID fonts"
-msgstr "Шрифти ідентифікаторів"
 
 msgid ""
 "IDACalc cannot find the initial condition at this point. If you are using a "
@@ -1331,8 +943,7 @@ msgstr ""
 "некритичної помилки."
 
 msgid "IDA_RES_NULL: the returned residual res = NULL is illegal."
-msgstr ""
-"IDA_RES_NULL: повернуте значення нев’язки, res = NULL, є некоректним."
+msgstr "IDA_RES_NULL: повернуте значення нев’язки, res = NULL, є некоректним."
 
 msgid "IDA_RTFUNC_FAIL: The root founding function failed."
 msgstr "IDA_RTFUNC_FAIL: функції пошуку коренів не вдалося знайти кореня."
@@ -1381,18 +992,6 @@ msgstr "IDA_YPRET_NULL: некоректне значення yret = NULL…"
 msgid "IDA_YRET_NULL: yret = NULL illegal.."
 msgstr "IDA_YRET_NULL: некоректне значення yret = NULL…"
 
-msgid "Icon"
-msgstr "Піктограма"
-
-msgid "Icon Editor"
-msgstr "Редактор піктограм"
-
-msgid "Identification"
-msgstr "Ідентифікація"
-
-msgid "It is impossible to set ID for this type of object"
-msgstr "Встановити ідентифікатор для цього типу або об’єкта неможливо."
-
 msgid ""
 "KIN_FIRST_SYSFUNC_ERR: The system function failed at the first call. Please "
 "verify your model. There might be an error in the computing function, for "
@@ -1422,9 +1021,9 @@ msgid ""
 "KIN_LINESEARCH_NONCONV:  The line-search algorithm was unable to find an "
 "iterate sufficiently distinct  from the current iterate failure to satisfy "
 "the sufficient decrease condition could mean the current iterate is close to "
-"an approximate solution of the given nonlinear system, the finite-difference "
-" approximation of the matrix-vector product  J(u)*v is inaccurate, or the "
-"real scalar scsteptol is too large "
+"an approximate solution of the given nonlinear system, the finite-"
+"difference  approximation of the matrix-vector product  J(u)*v is "
+"inaccurate, or the real scalar scsteptol is too large "
 msgstr ""
 "KIN_LINESEARCH_NONCONV: за допомогою алгоритму лінійного пошуку не вдалося "
 "знайти ітерацію, яка б суттєво відрізнялася від поточної помилкової і "
@@ -1525,274 +1124,13 @@ msgstr ""
 "KIN_SYSFUNC_FAIL: помилка у функції обчислення. Будь ласка, перевірте вашу "
 "модель."
 
-msgid "Label"
-msgstr "Мітка"
-
 #, c-format
 msgid "Leaving block %d \n"
 msgstr "Вихід з блоку %d \n"
 
-msgid "Link"
-msgstr "Зв'язок"
-
-msgid "Link ID font name"
-msgstr "Гарнітура шрифту ідентифікатора зв’язку"
-
-msgid "Link ID font size"
-msgstr "Розмір шрифту ідентифікатора зв’язку"
-
-msgid "Link parameters"
-msgstr "Параметри зв’язку"
-
-msgid "Load as Palette"
-msgstr "Завантажити як палітру"
-
-msgid "Mask"
-msgstr "Маска"
-
-msgid "Mask can only be created for Super Blocks."
-msgstr "Маску можна створювати лише для суперблоків."
-
-msgid "Modelica initialize"
-msgstr "Ініціалізація Modelica"
-
-msgid "Modify title and menu labels."
-msgstr "Змінити заголовок і пункти меню."
-
-msgid "Move"
-msgstr "Пересунути"
-
-msgid "MoveLink "
-msgstr "Пересунути зв’язок "
-
-msgid "Multiple selection cannot be used here"
-msgstr "Тут не можна використовувати одночасне позначення декількох об’єктів"
-
-msgid "Navigator window"
-msgstr "Вікно навігації"
-
-msgid "New"
-msgstr "Створити"
-
-msgid "No"
-msgstr "Ні"
-
-msgid "No selected block in the current Scicos window."
-msgstr "У поточному вікні Scicos немає позначених блоків."
-
-msgid "Only  blocks can be selected for this operation."
-msgstr "Для виконання цієї дії можна позначати лише блоки."
-
-msgid "Only one block can be selected in current window for this operation."
-msgstr ""
-"Для виконання цієї дії потрібно позначити у поточному вікні лише один блок."
-
-msgid "Open"
-msgstr "Відкрити"
-
-msgid "Open a Scicos demonstration diagram"
-msgstr "Відкрити приклад діаграми Scicos"
-
-msgid "Open a Scicos diagram"
-msgstr "Відкрити діаграму Scicos"
-
-msgid "Open/Set"
-msgstr "Відкрити/Визначити"
-
-msgid "Pal editor"
-msgstr "Редактор палітр"
-
-msgid "Palette"
-msgstr "Палітра"
-
-msgid "Palettes"
-msgstr "Палітри"
-
-msgid "Palettes Tree"
-msgstr "Ієрархія палітр"
-
-msgid "Paste"
-msgstr "Вставити"
-
-msgid "Place in Diagram"
-msgstr "Розташувати на діаграмі"
-
-msgid "PlaceinBrowser"
-msgstr "Розташувати у переглядачі"
-
-msgid "PlaceinDiagram"
-msgstr "Розташувати на діаграмі"
-
-msgid "Please report"
-msgstr "Будь ласка, повідомте нам"
-
-msgid "Popup"
-msgstr "Контекстне вікно"
-
-msgid ""
-"Press left mouse button, drag region and release (right button to cancel)"
-msgstr ""
-"Натисніть ліву кнопку миші, перетягніть рамку для позначення області і "
-"відпустіть кнопку (правою кнопкою можна скасувати дію)"
-
-msgid "Problem saving a backup; I cannot activate Scilab\n"
-msgstr "Проблем зі створенням резервної копії. Не вдалося задіяти Scilab\n"
-
-#, c-format
-msgid "Problem while building library %s\n"
-msgstr "Проблема під час спроби збирання бібліотеки %s\n"
-
-msgid "Properties"
-msgstr "Властивості"
-
-msgid "Purge"
-msgstr "Очистити"
-
-msgid "Region to Palette"
-msgstr "Область у палітру"
-
-msgid "Region to Super Block"
-msgstr "Область у суперблок"
-
-msgid "Regular links color ? :"
-msgstr "Колір звичайних зв’язків:"
-
-msgid "Remove Atomic"
-msgstr "Вилучити елементарний об’єкт"
-
-msgid "Remove Mask"
-msgstr "Вилучити маску"
-
-msgid "Rename"
-msgstr "Перейменувати"
-
-msgid "Replot"
-msgstr "Перемалювати"
-
-#, c-format
-msgid "Requested action: %s is not available"
-msgstr "Вказана дія: не вдалося отримати доступ до %s"
-
-msgid "Resize"
-msgstr "Змінити розміри"
-
-msgid "Resize is allowed only for Blocks or Links."
-msgstr "Змінювати розміри можна лише для блоків і зв’язків."
-
-msgid "Rotate Left"
-msgstr "Обернути ліворуч"
-
-msgid "Rotate Right"
-msgstr "Обернути праворуч"
-
-msgid "Run"
-msgstr "Виконати"
-
-msgid "Save"
-msgstr "Зберегти"
-
-msgid "Save As"
-msgstr "Зберегти як"
-
-msgid "Save Block GUI"
-msgstr "Зберегти графічний інтерфейс блоку"
-
-msgid "Save as Interf Func"
-msgstr "Зберегти як функцію Interf"
-
-msgid "Save as Palette"
-msgstr "Зберегти як палітру"
-
-msgid "Scicos Documentation"
-msgstr "Документація з Scicos"
-
-#, c-format
-msgid "Scicos version %s\n"
-msgstr "Версія Scicos %s\n"
-
-#, c-format
-msgid "Scilab Graphics of %s"
-msgstr "Графічні дані Scilab %s"
-
-msgid "Select a block."
-msgstr "Позначте блок."
-
-msgid "Select a directory path"
-msgstr "Виберіть шлях до каталогу"
-
-msgid "SelectAll"
-msgstr "Вибрати все"
-
-msgid "SelectLink  "
-msgstr "Вибрати зв’язок  "
-
-msgid "SelectRegion"
-msgstr "Вибрати область"
-
-msgid "Set Block identification"
-msgstr "Встановити ідентифікатор блоку"
-
-msgid "Set Block sizes"
-msgstr "Встановити розміри блоку"
-
-msgid "Set Diagram Info"
-msgstr "Визначити відомості щодо діаграми"
-
-msgid "Set grid"
-msgstr "Визначити параметри сітки"
-
-msgid "Set link Identification"
-msgstr "Встановити ідентифікацію зв’язків"
-
-msgid "Set link edition mode"
-msgstr "Встановити режим редагування зв’язків"
-
-msgid "Setup"
-msgstr "Налаштування"
-
-msgid "Shortcuts"
-msgstr "Клавіатурні скорочення"
-
-msgid "Show Block Shadow"
-msgstr "Показувати тіні від блоків"
-
-msgid "Simulate"
-msgstr "Імітувати"
-
 #, c-format
 msgid "Slider t=%10.3f, flag=%d \n"
 msgstr "Повзунок t=%10.3f, прапорець=%d \n"
-
-msgid "Smart"
-msgstr "Кмітливий"
-
-msgid "Smart Move"
-msgstr "Кмітливе пересування"
-
-msgid "Smart move does not work yet with multiple selection"
-msgstr ""
-"Роботу кмітливого режиму пересування для позначення з декількох об’єктів ще "
-"не реалізовано"
-
-msgid "Sorry file name not defined in "
-msgstr "Вибачте, назву файла не визначено у "
-
-msgid "Sorry: Only C or FORTRAN languages are supported"
-msgstr "Вибачте, передбачено підтримку лише мов C і FORTRAN"
-
-msgid "Stop"
-msgstr "Зупинити"
-
-msgid "The current icon depends on block parameter\n"
-msgstr "Поточна піктограма залежить від параметра блоку\n"
-
-#, c-format
-msgid "The key %s is already in use for %s"
-msgstr "Клавішу %s вже використано для %s"
-
-#, c-format
-msgid "The key %s is not a valid letter"
-msgstr "Клавіша %s не є клавішею літери"
 
 msgid ""
 "The number of parameter provided by Scicos blocks is different from what "
@@ -1805,66 +1143,11 @@ msgstr ""
 "приховати за допомогою властивості FIXED (тобто призначити fixed=false) у "
 "моделі Modelica. Цю помилку буде виправлено у наступних версіях."
 
-#, c-format
-msgid ""
-"The parameter(s) %s \n"
-"must be defined in the"
-msgstr ""
-"Параметри %s \n"
-"слід визначати у"
-
-msgid "Thickness"
-msgstr "Товщина"
-
-msgid "This block is not masked."
-msgstr "Цей блок не замасковано."
-
-msgid "This window is not an active palette"
-msgstr "Це вікно не є активною палітрою"
-
-msgid "This window is not an active scicos window"
-msgstr "Це вікно не є активним вікном scicos"
-
-msgid "Title of the GUI"
-msgstr "Заголовок графічного інтерфейсу"
-
-msgid "TkPopup "
-msgstr "TkPopup "
-
-#, c-format
-msgid "To avoid this message, please update the %s.scicos_pal file."
-msgstr ""
-"Щоб це повідомлення більше не з’являлося, будь ласка, оновіть файл "
-"%s.scicos_pal."
-
-msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
-msgstr ""
-"Щоб повторно активувати Scicos, клацніть на діаграмі або віддайте команду "
-"scicos();\n"
-
-msgid "Toggle grid"
-msgstr "Увімкнути/Вимкнути показ сітки"
-
-msgid "Tools"
-msgstr "Інструменти"
-
-msgid "Type"
-msgstr "Тип"
-
-msgid "Type not recognized"
-msgstr "Тип не розпізнано"
-
 msgid "Undefined Function type\n"
 msgstr "Невизначений тип функції\n"
 
 msgid "Undefined data type."
 msgstr "Невизначений тип даних."
-
-msgid "Undo"
-msgstr "Вернути"
-
-msgid "Up To Main Diagram"
-msgstr "Вгору до основної діаграми"
 
 msgid ""
 "Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
@@ -1872,19 +1155,6 @@ msgid ""
 msgstr ""
 "Використання : [моя_змінна]=getscicosvars([\"рядок1\";\"рядок2\";...]);\n"
 "\n"
-
-msgid "Use 3D aspect?"
-msgstr "Використовувати просторове представлення?"
-
-msgid "View"
-msgstr "Перегляд"
-
-#, c-format
-msgid "Warning %d menus have identical name %s\n"
-msgstr "Попередження: у меню %d є пункти з тотожними назвами %s\n"
-
-msgid "Yes"
-msgstr "Так"
 
 msgid ""
 "You have changed a parameter in your model, but the model has been compiled "
@@ -1896,16 +1166,6 @@ msgstr ""
 "XML, що містить початкові значення і параметри. Отже вам слід або повторно "
 "зібрати вашу діаграму Scicos, або перезапустити інтерфейс ініціалізації для "
 "повторного створення цього файла XML з новими параметрами."
-
-msgid "Your diagram is not saved. Do not quit Scilab or "
-msgstr ""
-"Вашу діаграму не було збережено. Не завершуйте роботу Scilab, інакше "
-
-msgid "Zoom in"
-msgstr "Збільшити"
-
-msgid "Zoom out"
-msgstr "Зменшити"
 
 msgid "algebraic loop detected"
 msgstr "виявлено алгебраїчний цикл"
@@ -1928,14 +1188,8 @@ msgstr "не вдалося виділити пам’ять"
 msgid "cannot allocate memory in block=%d"
 msgstr "не вдалося виділити пам'ять у блоці=%d"
 
-msgid "current choice is "
-msgstr "поточним вибором є "
-
 msgid "event conflict"
 msgstr "конфлікт подій"
-
-msgid "height"
-msgstr "висота"
 
 msgid "initial conditions not converging"
 msgstr "збіжність за таких початкових умов неможлива"
@@ -1961,9 +1215,6 @@ msgstr "проблема побудови розкладу"
 msgid "scicos unexpected error, please report..."
 msgstr "неочікувана помилка scicos, будь ласка, повідомте про неї…"
 
-msgid "scs_show active..."
-msgstr "задіяно scs_show…"
-
 msgid "singularity in a block"
 msgstr "сингулярність у блоці"
 
@@ -1983,9 +1234,6 @@ msgstr "не можна використовувати функції типу 2
 
 msgid "unknown or erroneous block"
 msgstr "невідомий або помилковий блок"
-
-msgid "width"
-msgstr "ширина"
 
 #, c-format
 msgid "with flag %d "

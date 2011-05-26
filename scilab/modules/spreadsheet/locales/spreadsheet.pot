@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 11:48+0100\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
 
 # File: sci_gateway/c/sci_xls_open.c, line: 120
 #, c-format
@@ -67,41 +67,10 @@ msgstr ""
 msgid "%s: There is no xls stream in the ole2 file %s.\n"
 msgstr ""
 #
-# File: macros/write_csv.sci, line: 42
-# File: macros/write_csv.sci, line: 50
-# File: macros/read_csv.sci, line: 21
-# File: macros/read_csv.sci, line: 33
-#, c-format
-msgid "%s: Wrong size for input argument #%d: a string expected.\n"
-msgstr ""
-#
-# File: macros/write_csv.sci, line: 34
-#, c-format
-msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_xls_read.c, line: 39
 # File: sci_gateway/c/sci_xls_read.c, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
-#
-# File: macros/write_csv.sci, line: 38
-# File: macros/write_csv.sci, line: 46
-# File: macros/read_csv.sci, line: 17
-# File: macros/read_csv.sci, line: 29
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string expected.\n"
-msgstr ""
-#
-# File: macros/write_csv.sci, line: 54
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-#
-# File: macros/read_csv.sci, line: 41
-#, c-format
-msgid "%s: file %s does not exist.\n"
 msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 370
@@ -111,21 +80,17 @@ msgstr ""
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 282
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
+msgid "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
 msgstr ""
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 294
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
+msgid "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
 msgstr ""
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 157
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
-"'%s' and '%s'"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from '%s' and '%s'"
 msgstr ""
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 176
@@ -135,8 +100,7 @@ msgstr ""
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 169
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 331
@@ -161,8 +125,7 @@ msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 1312
 #, c-format
-msgid ""
-"%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
+msgid "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
 msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 1046
@@ -173,9 +136,7 @@ msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 1030
 #, c-format
-msgid ""
-"%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
-"position = 0x%x"
+msgid "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat position = 0x%x"
 msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 976
@@ -215,9 +176,7 @@ msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 1560
 #, c-format
-msgid ""
-"%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
-"and '%s'"
+msgid "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' and '%s'"
 msgstr ""
 #
 # File: src/c/ripole/ole.c, line: 1570
@@ -232,16 +191,12 @@ msgstr ""
 #
 # File: src/c/ripole/pldstr.c, line: 500
 #, c-format
-msgid ""
-"%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
-"replacement operation"
+msgid "%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform replacement operation"
 msgstr ""
 #
 # File: src/c/ripole/pldstr.c, line: 582
 #, c-format
-msgid ""
-"%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
-"with '%s'"
+msgid "%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' with '%s'"
 msgstr ""
 #
 # File: src/c/ripole/ripole.c, line: 130

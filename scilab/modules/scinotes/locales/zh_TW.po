@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-02-14 04:22+0000\n"
 "Last-Translator: Kate Anderson <katelovegod@msn.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,6 +24,7 @@ msgstr ""
 " 儲存後又再修正\n"
 "儲存"
 
+#, fuzzy, c-format
 msgid "%s is a directory."
 msgstr "%目錄"
 
@@ -51,6 +53,11 @@ msgstr ""
 msgid "%s: Wrong type for argument %d: String matrix expected.\n"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 315
+msgid "(* for any string and ? for any character)"
+msgstr ""
+
 msgid "... file with echo"
 msgstr ""
 
@@ -58,6 +65,18 @@ msgid "... file with no echo"
 msgstr ""
 
 msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 309
+#, c-format
+msgid "<html>%s <i>(%s match)</i></html>"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 308
+#, c-format
+msgid "<html>%s <i>(%s matches)</i></html>"
 msgstr ""
 
 msgid "?"
@@ -111,6 +130,11 @@ msgstr ""
 msgid "Backward"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 312
+msgid "Base directory:"
+msgstr ""
+
 msgid "Binary file: read-only mode"
 msgstr ""
 
@@ -132,10 +156,30 @@ msgstr ""
 msgid "Case sensitive"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 323
+msgid "Case-sensitivity (File name)"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 322
+msgid "Case-sensitivity (Word)"
+msgstr ""
+
 msgid "Change Color"
 msgstr ""
 
 msgid "Change Colors"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 327
+msgid "Choose the search base directory"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 318
+msgid "Choose..."
 msgstr ""
 
 msgid "Circular search"
@@ -240,6 +284,18 @@ msgstr ""
 msgid "Edit"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 311
+#, c-format
+msgid "Elapsed time: %s second."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 310
+#, c-format
+msgid "Elapsed time: %s seconds."
+msgstr ""
+
 msgid "Enable Auto Reformat"
 msgstr ""
 
@@ -285,6 +341,11 @@ msgstr ""
 msgid "File already exists"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 314
+msgid "File pattern"
+msgstr ""
+
 msgid "Find"
 msgstr ""
 
@@ -292,6 +353,16 @@ msgid "Find Next"
 msgstr ""
 
 msgid "Find Previous"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 52
+msgid "Find files"
+msgstr ""
+
+#
+# File: scilab_fake_localization_file.c, line: 51
+msgid "Find word in files"
 msgstr ""
 
 msgid "Find/Replace"
@@ -357,6 +428,7 @@ msgstr ""
 msgid "Incremental Search"
 msgstr ""
 
+#, c-format
 msgid "Invalid regular expression : %s"
 msgstr ""
 
@@ -366,13 +438,20 @@ msgstr ""
 msgid "Length"
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s."
 msgstr ""
 
+#, c-format
 msgid "Line %s, Column %s. Function '%s' at Line %s."
 msgstr ""
 
 msgid "Line Endings"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 325
+msgid "Line by line"
 msgstr ""
 
 msgid "Line numbering;Off;Normal;Whereami compatible"
@@ -486,13 +565,38 @@ msgstr ""
 msgid "Print Preview"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 317
+msgid "Read file line by line"
+msgstr ""
+
 msgid "Read-only mode"
 msgstr ""
 
 msgid "Recent Files"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 313
+msgid "Recursive"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 324
+msgid "Recursive search"
+msgstr ""
+
 msgid "Redo"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 320
+msgid "Regex"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 326
+msgid "Regular expression (Word)"
 msgstr ""
 
 msgid "Regular expressions"
@@ -552,6 +656,11 @@ msgstr ""
 msgid "Save All"
 msgstr ""
 
+#
+# File: scilab_fake_localization_file.c, line: 84
+msgid "Save and execute"
+msgstr ""
+
 msgid "Save as"
 msgstr ""
 
@@ -582,6 +691,16 @@ msgid "Scope"
 msgstr ""
 
 msgid "Search"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 306
+msgid "Search Files..."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 307
+msgid "Search in Files..."
 msgstr ""
 
 msgid "Select All"
@@ -623,6 +742,11 @@ msgstr ""
 msgid "Show/Hide ToolBar"
 msgstr ""
 
+#
+# File: scilab_fake_localization_file.c, line: 45
+msgid "Single to double quote strings"
+msgstr ""
+
 msgid "Source of '"
 msgstr ""
 
@@ -635,9 +759,15 @@ msgstr ""
 msgid "Split vertically"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 319
+msgid "Stop"
+msgstr ""
+
 msgid "Strike Through"
 msgstr ""
 
+#, c-format
 msgid "String %s not found"
 msgstr ""
 
@@ -653,11 +783,13 @@ msgstr ""
 msgid "Tab style"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s does not exist\n"
 "Do you want to create it?"
 msgstr ""
 
+#, c-format
 msgid ""
 "The file %s has been modified by another program !\n"
 " Overwrite it ?"
@@ -672,6 +804,7 @@ msgstr ""
 msgid "The file could not be saved."
 msgstr ""
 
+#, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
 msgstr ""
@@ -732,7 +865,17 @@ msgstr ""
 msgid "Windows/DOS (CR + LF)"
 msgstr ""
 
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 321
+msgid "Word"
+msgstr ""
+
 msgid "Word Wrap"
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/scinotes/utils/SciNotesMessages.java, line: 316
+msgid "Word pattern"
 msgstr ""
 
 msgid "Working directories;Add a directory;Remove last directory"

@@ -1,0 +1,153 @@
+# Russian translation for scilab
+# Copyright (c) 2008 Rosetta Contributors and Canonical Ltd 2008
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: kkirill <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+msgid ""
+"\n"
+" approximate (lM,vM) with the iterative power method \n"
+msgstr ""
+"\n"
+" примерно (lM,vM) с использованием итеративного степенного метода \n"
+
+msgid ""
+"\n"
+" approximate (lm,vm) with the inverse iterative power method \n"
+msgstr ""
+"\n"
+" примерно (lm,vm) с использованием инверсного итеративного степенного "
+"метода \n"
+
+msgid "                                                     "
+msgstr "                                                     "
+
+msgid "               CLICK TO  CONTINUE                    "
+msgstr "               КЛИКНИТЕ ДЛЯ ПРОДОЛЖЕНИЯ                    "
+
+msgid "              stacksize(3000000);                    "
+msgstr "              stacksize(3000000);                    "
+
+#, c-format
+msgid "           don''t reached after %d iterations (got only %e) \n"
+msgstr "           не достигнуто после %d итераций (получено только %e) \n"
+
+msgid "           then re enter scisptdemo()                "
+msgstr "           затем введите опять scisptdemo()                "
+
+msgid "   then click on OK   "
+msgstr "   затем нажмите OK   "
+
+msgid " ----------------------------------------------------- \n"
+msgstr " ----------------------------------------------------- \n"
+
+msgid " ------------------------------------------------------------\n"
+msgstr " ------------------------------------------------------------\n"
+
+msgid " For this demo the current stack size is not enough "
+msgstr " Для данного примера текущий размер стека недостаточен. "
+
+#, c-format
+msgid " Warning : for lM convergence at rtol = %e \n"
+msgstr " Внимание : сходимость lM при rtol = %e \n"
+
+#, c-format
+msgid " Warning : for lm convergence at rtol = %e \n"
+msgstr " Внимание : сходимость lm при rtol = %e \n"
+
+msgid " enter the following at the scilab prompt :          "
+msgstr " введите следующее в строку приглашения scilab :          "
+
+#, c-format
+msgid " iteration %3d : lM = %e  \n"
+msgstr " итерация %3d : lM = %e  \n"
+
+#, c-format
+msgid " iteration %3d : lm = %e  \n"
+msgstr " итерация %3d : lm = %e  \n"
+
+#, c-format
+msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
+msgstr ""
+"%s: Неправильный тип и (или) размер и (или) значение второго параметра.\n"
+
+#, c-format
+msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
+msgstr ""
+"%s: Нет значений для данной матрицы (допустимы только ненулевые структуры): "
+"добавьте несколько 1."
+
+#, c-format
+msgid "%s: The file contains a rhs but it will not be read !"
+msgstr "%s: Фал содержит вектор rhs, но он не будет прочитан!"
+
+#, c-format
+msgid "%s: The matrix and the LU factors have not the same dimension !\n"
+msgstr "%s: Матрица и LU-разложения имеют разные размерности!\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s).\n"
+msgstr "%s: Неверное количество входных параметров.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась квадратная разреженная "
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась квадратная разреженная "
+"матрица.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидалась разреженная матрица.\n"
+
+#, c-format
+msgid "%s: currently don''t read unassembled (elemental) sparse matrix."
+msgstr ""
+"%s: на данный момент не читаются несобранные (элементарные) разреженные "
+"матрицы."
+
+msgid "Choose a sparse matrix"
+msgstr "Выберите разреженную матрицу"
+
+msgid "Click to choose a demo"
+msgstr "Дважды нажмите левую кнопку мыши для выбора примера"
+
+msgid "display a speed comparison test"
+msgstr "Сравнение производительности"
+
+msgid "how to use this stuff"
+msgstr "Примеры использования"
+
+msgid "small tests for condestsp"
+msgstr "Тестирование функции condestsp"

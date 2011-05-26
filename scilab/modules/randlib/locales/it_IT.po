@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
+"Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -209,6 +210,13 @@ msgstr ""
 "%s: Il quarto argomento in ingresso è di tipo sbagliato: era atteso uno "
 "scalare.\n"
 
+#
+# File: sci_gateway/c/sci_grand.c, line: 679
+# File: sci_gateway/c/sci_grand.c, line: 718
+#, c-format
+msgid "%s: Wrong type for input argument. Low < High expected.\n"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong type for input argument: Column vector expected.\n"
 msgstr ""
@@ -290,8 +298,8 @@ msgid ""
 "%s: Wrong value for second input argument: '%s', '%s', '%s', '%s', '%s' or "
 "'%s' expected.\n"
 msgstr ""
-"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso "
-"\"%s\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
+"%s: Il secondo argomento in ingresso ha un valore sbagliato: era atteso \"%s"
+"\", \"%s\", \"%s\", \"%s\", \"%s\" o\"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: Must be > %d.\n"
@@ -300,8 +308,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for second input argument: Must be between %d and %d.\n"
+msgid "%s: Wrong value for second input argument: Must be between %d and %d.\n"
 msgstr ""
 "%s: Il secondo argomento in ingresso ha un valore sbagliato: deve essere tra "
 "%d e %d.\n"
@@ -338,9 +345,6 @@ msgstr "DF < 1.0 o DF <= 0.0 o Xnonc < 0.0\n"
 
 msgid "Degrees of freedom nonpositive\n"
 msgstr "I gradi di libertà non sono positivi\n"
-
-msgid "Low > High\n"
-msgstr "Low > High\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Mancano A e B per la legge Beta\n"
@@ -424,9 +428,6 @@ msgstr "Rand(...,'bet',..): A or B < %f\n"
 
 msgid "Rand: DF <= 0\n"
 msgstr "Rand: DF <= 0\n"
-
-msgid "Random"
-msgstr "Casuale"
 
 msgid "SD < 0.0\n"
 msgstr "SD < 0.0\n"

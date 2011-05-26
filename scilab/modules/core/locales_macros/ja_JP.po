@@ -1,0 +1,212 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-Language: Japanese\n"
+
+msgid "  loading initial environment"
+msgstr "  初期環境をロードしています"
+
+msgid " by "
+msgstr " by "
+
+#, c-format
+msgid "%s called at line %s of %s"
+msgstr "%1$s は, %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called at line %s of %s instruction."
+msgstr "%1$s は, 命令 %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called at line %s of macro %s"
+msgstr "%1$s は,マクロ %3$s の %2$s 行目でコールされました."
+
+#, c-format
+msgid "%s called under %s"
+msgstr "%s は %s からコールされました."
+
+#, c-format
+msgid "%s: %s is a uneditable hard coded function.\n"
+msgstr "%s: %s は編集できないハードコードされている関数です.\n"
+
+#
+# File: macros/check_versions.sci, line: 31
+#, c-format
+msgid "%s: File doesn''t exist: %s"
+msgstr "%s: ファイルは存在しません: %s"
+
+#, c-format
+msgid "%s: No perl command specified."
+msgstr "%s: Perl コマンドが指定されていません."
+
+#, c-format
+msgid "%s: Please check: %s.\n"
+msgstr "%s: %s を確認してください.\n"
+
+#, c-format
+msgid "%s: Requires scilab editor.\n"
+msgstr "%s: Scilabエディタが必要です.\n"
+
+#
+# File: macros/perl.sci, line: 68
+#, c-format
+msgid "%s: System error: Command executed: %s"
+msgstr "%s: システム・エラー: コマンドは実行されました: %s"
+
+#
+# File: macros/add_demo.sci, line: 13
+# File: sci_gateway/c/sci_getmd5.c, line: 82
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は、存在しません。\n"
+
+#, c-format
+msgid "%s: Unable to find Perl file: %s"
+msgstr "%s: Perlファイルが見つかりません: %s"
+
+#
+# File: macros/perl.sci, line: 47
+#, c-format
+msgid "%s: Unable to find Perl in ''%s''"
+msgstr "%s: ''%s'' でPerlを見つけられません"
+
+#
+# File: macros/perl.sci, line: 63
+#, c-format
+msgid "%s: Unable to find Perl.\n"
+msgstr "%s: Perlを見つけられません。\n"
+
+#, c-format
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgstr ""
+"%s: 入力引数 #%d に誤りがあります: Scilabスクリプトファイルのパスを指定してく"
+"ださい.\n"
+
+#
+# File: macros/edit.sci, line: 24
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が違います: 少なくとも %d が予想されます。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+
+#
+# File: macros/edit.sci, line: 31
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ''%s'' または ''%s'' を指定してくださ"
+"い.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+
+#
+# File: etc/scilab.start, line: 195
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: etc/scilab.start, line: 179
+# File: etc/scilab.start, line: 181
+# File: etc/scilab.start, line: 184
+# File: etc/scilab.start, line: 187
+# File: etc/scilab.start, line: 190
+# File: etc/scilab.start, line: 193
+msgid "&Applications"
+msgstr "アプリケーション(&A)"
+
+#
+# File: etc/scilab.start, line: 178
+msgid "&Control"
+msgstr "コントロール(&C)"
+
+#
+# File: etc/scilab.start, line: 176
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: etc/scilab.start, line: 175
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: etc/scilab.start, line: 177
+msgid "&Preferences"
+msgstr "設定(&P)"
+
+#
+# File: etc/scilab.start, line: 196
+# File: macros/toolboxes.sci, line: 127
+# File: macros/toolboxes.sci, line: 128
+# File: macros/toolboxes.sci, line: 132
+msgid "&Toolboxes"
+msgstr "ツールボックス(&T)"
+
+msgid "Bytes"
+msgstr "バイト"
+
+#, c-format
+msgid "Checking: %s\n"
+msgstr "確認中: %s\n"
+
+msgid "Introduction"
+msgstr "導入"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Size"
+msgstr "サイズ"
+
+msgid "Startup execution:"
+msgstr "スタートアップを実行中:"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "User variables are:"
+msgstr "ユーザー変数:"
+
+#, c-format
+msgid "Using %s elements ouf of %s"
+msgstr "%s 個の要素メモリを使用中 (全体: %s)"

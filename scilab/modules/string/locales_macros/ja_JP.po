@@ -1,0 +1,132 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/evstr.sci, line: 48
+#, c-format
+msgid "%s: Given expression has no value.\n"
+msgstr "%s: 与えられた表現はいかなる値も持っていません。\n"
+
+#, c-format
+msgid "%s: This feature has not been implemented: %s.\n"
+msgstr "%s: この特徴は装備されていません。: %s\n"
+
+#, c-format
+msgid ""
+"%s: This feature has not been implemented: Variable translation of type %s.\n"
+msgstr "%s: この特徴は装備されていません: 型 %s の翻訳変数\n"
+
+# File: macros/arobasestring2strings.sci, line: 23
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数で不正な数: %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#
+# File: macros/tokenpos.sci, line: 19
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A character or vector of characters "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"
+
+#
+# File: macros/arobasestring2strings.sci, line: 37
+# File: macros/tokenpos.sci, line: 16
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_convstr.c, line: 71
+# File: sci_gateway/c/sci_strindex.c, line: 141
+# File: sci_gateway/c/sci_strsubst.c, line: 97
+# File: sci_gateway/c/sci_strsubst.c, line: 107
+# File: sci_gateway/c/sci_strtok.c, line: 53
+# File: sci_gateway/c/sci_strtok.c, line: 73
+# File: sci_gateway/c/sci_tokens.c, line: 146
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
+
+#
+# File: macros/blanks.sci, line: 21
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 出力引数 #%d で不正なサイズ: 整数を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ''%s'' を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+
+#
+# File: sci_gateway/c/sci_convstr.c, line: 77
+# File: sci_gateway/c/sci_strcmp.c, line: 64
+# File: sci_gateway/c/sci_strindex.c, line: 269
+# File: sci_gateway/c/sci_strsubst.c, line: 77
+# File: sci_gateway/c/sci_strsubst.c, line: 81
+# File: sci_gateway/c/sci_strtok.c, line: 59
+# File: sci_gateway/c/sci_strtok.c, line: 80
+# File: sci_gateway/c/sci_tokens.c, line: 151
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/blanks.sci, line: 17
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+#
+# File: macros/evstr.sci, line: 45
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
+"character strings or list expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 実、または、複素行列、文字列の行列、または、リス"
+"トを想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument: String expected.\n"
+msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
+
+#
+# File: macros/blanks.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定します。\n"

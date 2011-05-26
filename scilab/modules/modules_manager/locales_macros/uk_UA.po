@@ -1,0 +1,155 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the scilab package.
+#
+# Yuri Chornoivan <yurchor@gmail.com>, 2011.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
+"PO-Revision-Date: 2011-03-20 03:02+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: ukPlural-Forms: nplurals=1; plural=0;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 12981)\n"
+
+#, c-format
+msgid "%s: Can''t go to directory ''%s''.\n"
+msgstr "%s: не вдалося перейти до каталогу «%s».\n"
+
+#, c-format
+msgid "%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr "%s: каталогу «%s» не існує, або читання цього каталогу неможливе.\n"
+
+#, c-format
+msgid ""
+"%s: The file %s cannot been created, please check if you have write access "
+"on this file.\n"
+msgstr ""
+"%s: не вдалося створити файл %s, будь ласка, перевірте, чи є у вас права "
+"доступу на запис до відповідного каталогу.\n"
+
+#, c-format
+msgid "%s: The file ''%s'' doesn''t exist or is not read accessible.\n"
+msgstr "%s: файла з назвою «%s» не існує, або читання цього файла неможливе.\n"
+
+#, c-format
+msgid "%s: This module required a C compiler and it has not been found.\n"
+msgstr ""
+"%s: для роботи цього модуля потрібен компілятор C, якого не знайдено.\n"
+
+#, c-format
+msgid ""
+"%s: This module requires a C or Fortran compiler and it has not been found.\n"
+msgstr ""
+"%s: для роботи цього модуля потрібен компілятор C або Fortran, якого не "
+"знайдено.\n"
+
+#
+# File: macros/tbx_build_blocks.sci, line: 59
+# File: macros/tbx_build_blocks.sci, line: 67
+# File: macros/tbx_build_blocks.sci, line: 74
+#, c-format
+msgid "%s: Unable to export %s to %s.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"булівське значення.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути не більше за %d "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив з "
+"рядків.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Can''t go to ''%s''.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: не вдалося перейти до «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: The directory ''%s'' doesn''t exist "
+"or is not read accessible.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: каталогу «%s» не існує або "
+"цей каталог непридатний до читання.\n"
+
+#, c-format
+msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
+msgstr "%s: у цьому режимі роботи scilab не можна збирати документацію: %s.\n"
+
+#
+# File: macros/tbx_build_blocks.sci, line: 40
+msgid "Building blocks...\n"
+msgstr ""
+
+msgid "Building gateway...\n"
+msgstr "Збирання шлюзу…\n"
+
+msgid "Building help...\n"
+msgstr "Збирання довідки…\n"
+
+msgid "Building macros...\n"
+msgstr "Збирання макросів…\n"
+
+msgid "Building sources...\n"
+msgstr "Збирання кодів…\n"
+
+msgid "Generating cleaner.sce...\n"
+msgstr "Створення cleaner.sce…\n"
+
+msgid "Generating cleaner_gateway.sce...\n"
+msgstr "Створення cleaner_gateway.sce…\n"
+
+msgid "Generating loader.sce...\n"
+msgstr "Створення loader.sce…\n"
+
+msgid "Generating loader_gateway.sce...\n"
+msgstr "Створення loader_gateway.sce…\n"

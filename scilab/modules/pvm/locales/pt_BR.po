@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -38,13 +39,11 @@ msgstr "%s: Tipo desconhecido ou ainda não implementado.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Primeiro argumento de entrada errado: Esperava-se '%s' ou '%s'.\n"
+msgstr "%s: Primeiro argumento de entrada errado: Esperava-se '%s' ou '%s'.\n"
 
 #, c-format
 msgid "%s: workspace (stacksize) is too small.\n"
-msgstr ""
-"%s: espaço de trabalho (tamanho da pilha - stacksize) muito pequeno.\n"
+msgstr "%s: espaço de trabalho (tamanho da pilha - stacksize) muito pequeno.\n"
 
 msgid "(group,instance) already exists"
 msgstr "(grupo, instância) já existe"
@@ -61,6 +60,8 @@ msgstr "ID de mensagem ruim"
 msgid "Bad parameter"
 msgstr "Parâmetro ruim"
 
+#
+# File: src/c/pvm_proc_ctrl.c, line: 209
 msgid "Barrier count mismatch"
 msgstr ""
 
@@ -139,9 +140,6 @@ msgstr "O PVM existe"
 
 msgid "PVM not found"
 msgstr "PVM não encontrado"
-
-msgid "PVM parallel Toolbox"
-msgstr "Computações Paralelas com PVM"
 
 msgid "Pvmd system error"
 msgstr "Erro de sistema Pvmd"

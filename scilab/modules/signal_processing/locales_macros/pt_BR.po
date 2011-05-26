@@ -1,0 +1,332 @@
+# Brazilian Portuguese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
+"Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
+msgstr "%s: Os argumentos #%d e #%d devem ter os mesmos tamanhos.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
+"less than argument #%d.\n"
+msgstr ""
+"%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se que "
+"o argumento #%d fosse menor que o argumento #%d.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
+msgstr ""
+"%s: Os argumentos #%d e #%d estão incompatíveis: esperava-se o mesmo grau.\n"
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
+"expected.\n"
+msgstr ""
+"%s: Argumentos de entrada incompatíveis #%d e #%d: esperava-se o mesmo "
+"número de elementos.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Os argumentos de entrada #%d e #%d estão incompatíveis: esperava-se as "
+"mesmas dimensões.\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: O argumento de entrada #%d deve ser um número real.\n"
+
+#, c-format
+msgid "%s: Too abrupt change near end of frequency range.\n"
+msgstr "%s: Mudança muito abrupta perto do final do intervalo de frequência.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se de %d a %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz de %d elementos.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"polinômio.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A single input, single output system "
+"expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
+"sistema de única entrada e única saída.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"matriz alta.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d:  Linear dynamical system or row "
+"vector of floats expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um sistema "
+"linear dinâmico ou um vetor linha de números reais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Array of floating point numbers "
+"expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de números reais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
+"de frações racionais.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve estar no intervalo "
+"[%s,%s].\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
+"conjunto {%s}.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Distance between Max and Min "
+"elements must be greater than %g.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: a distância entre os "
+"elementos Máx e Mín deve ser maior que %g.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: os elementos devem "
+"estar em ordem crescente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in the interval "
+"[%s, %s].\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: os elementos devem "
+"estar no intervalo [%s, %s].\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: os elementos têm que "
+"ser positivos.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: esperava-se números "
+"inteiros não negativos.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Not sampled high enough.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: não foi amostrado o "
+"suficiente.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: The first element must be %s and "
+"the last %s.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: o primeiro elemento "
+"deve ser %s e o último %s.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
+msgstr ""
+"%s: Valores incorretos para o argumento de entrada #%d: o grau deve "
+"pertencer ao conjunto {%s}.\n"
+
+#
+# File: demos/arma/arma3.dem.sce, line: 10
+msgid "Arma Spectral power estimation:"
+msgstr ""
+
+msgid "Arma identification"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 14
+msgid "Arma simulation and identification"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 16
+msgid "Arma, Spectral power estimation"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 15
+msgid "Arma, bidimensional version"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 12
+msgid "Bode plots"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 10
+msgid "Discrete IIR filter"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 8
+msgid "IIR filter design"
+msgstr ""
+
+#
+# File: demos/arma/arma1.dem.sce, line: 45
+msgid "Identification ARX (least square):"
+msgstr ""
+
+#
+# File: demos/arma/arma2.dem.sce, line: 26
+msgid "Identification ARX (least square): "
+msgstr ""
+
+#
+# File: demos/remezfilt.dem.sce, line: 23
+msgid "Minimax FIR filter"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 9
+msgid "Minimax FIR filter design"
+msgstr ""
+
+#
+# File: demos/bode.dem.sce, line: 30
+# File: demos/bode.dem.sce, line: 40
+# File: demos/bode.dem.sce, line: 47
+# File: demos/winfilt.dem.sce, line: 26
+# File: demos/winfilt.dem.sce, line: 41
+# File: demos/winfilt.dem.sce, line: 57
+# File: demos/spect.dem.sce, line: 45
+# File: demos/spect.dem.sce, line: 55
+# File: demos/remezfilt.dem.sce, line: 30
+# File: demos/remezfilt.dem.sce, line: 51
+# File: demos/iirfilt.dem.sce, line: 22
+msgid "Press Return to continue ... \n"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr "Processamento de sinais"
+
+#
+# File: demos/arma/arma1.dem.sce, line: 29
+msgid "Simulation of an ARMAX process:"
+msgstr ""
+
+#
+# File: demos/arma/arma2.dem.sce, line: 20
+msgid "Simulation of an ARMAX process: "
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 7
+msgid "Spectral Estimation"
+msgstr ""
+
+msgid "Spectral power"
+msgstr "Potência espectral"
+
+msgid "Theoretical value"
+msgstr "Valor teórico"
+
+msgid "Using macro mese"
+msgstr "Usando macro mese"
+
+#
+# File: demos/signal.dem.gateway.sce, line: 11
+msgid "Wiegner filter"
+msgstr ""
+
+#
+# File: demos/signal.dem.gateway.sce, line: 13
+msgid "Window FIR filters"
+msgstr ""
+
+msgid "estimates xf"
+msgstr "estima xf"
+
+msgid "estimates xs"
+msgstr "estima xs"
+
+msgid "frequency"
+msgstr "frequência"
+
+#
+# File: demos/remezfilt.dem.sce, line: 25
+msgid "length 33"
+msgstr ""
+
+#
+# File: demos/remezfilt.dem.sce, line: 24
+msgid "low pass  cut-off in [.23,.27]"
+msgstr ""
+
+msgid "real state"
+msgstr "estado real"
+
+msgid "spectral estimate"
+msgstr "estimativa espectral"

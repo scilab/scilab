@@ -6,11 +6,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2007-11-26 18:05+0100\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:37+0100\n"
 "PO-Revision-Date: 2011-04-04 22:09+0100\n"
 "Last-Translator: Shiqi Yu <shiqi.yu@gmail.com>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -68,6 +69,8 @@ msgstr "     密度= %lf%%\n"
 msgid "     Fill-ins = %d\n"
 msgstr "     填充项= %d\n"
 
+#
+# File: src/c/spOutput.c, line: 719
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
 msgstr ""
@@ -99,130 +102,12 @@ msgid "     Total number of elements = %d\n"
 msgstr "     元素总量= %d\n"
 
 #, c-format
-msgid "  Iteration #%s/%s residual : %s\n"
-msgstr ""
-
-#, c-format
-msgid "  New residual = %s < tol = %s => break\n"
-msgstr ""
-
-#, c-format
-msgid "  Type of preconditionning #1 : %d\n"
-msgstr ""
-
-#, c-format
-msgid "  Type of preconditionning #2 : %d\n"
-msgstr ""
-
-#, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr "%s: 遇到零在对角线上的矩阵。\n"
 
 #, c-format
-msgid "%s: Convergence error.\n"
-msgstr "%s：收敛错误。\n"
-
-#, c-format
-msgid "%s: Did not converge.\n"
-msgstr "%s：无法收敛。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument: At least %d expected.\n"
-msgstr "%s：输入参数的个数错误：应该至少有%d个。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d到%d个参数。\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Same size as input argument #%d "
-"expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该与输入参数#%d的大小相同。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为方阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s：输入参数#%d的类型错误。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为列向量。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为标量。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为方阵。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Transpose of the function %s "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为列向量。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Transpose of the function %s "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Vector expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为向量。\n"
-
-#, c-format
-msgid "Algorithm fails\n"
-msgstr "算法失败\n"
-
-#, c-format
-msgid "Algorithm pass\n"
-msgstr "算法通过\n"
-
-#, c-format
-msgid "Arguments:\n"
-msgstr "参数：\n"
-
-#, c-format
 msgid "Columns %1d to %1d.\n"
 msgstr "列数从%1d到%1d。\n"
-
-#, c-format
-msgid "Final residual = %s > tol =%s\n"
-msgstr "最后剩余= %s > tol =%s\n"
 
 #, c-format
 msgid ""
@@ -256,10 +141,8 @@ msgstr "矩阵是复数矩阵。\n"
 msgid "Matrix is real.\n"
 msgstr "矩阵是实数矩阵。\n"
 
-#, c-format
-msgid "Norm of right-hand side : %s\n"
-msgstr "规范化右边: %s\n"
-
+#
+# File: src/c/spOutput.c, line: 335
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
 msgstr ""
@@ -268,6 +151,8 @@ msgstr ""
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr "操作数的分解内循环= %d。\n"
 
+#
+# File: src/c/spFactor.c, line: 3011
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
@@ -288,13 +173,11 @@ msgstr "最小对角线元素 = %-1.4lg。\n"
 msgid "Smallest element in matrix = %-1.4lg.\n"
 msgstr "矩阵中的最小元素 = %-1.4lg。\n"
 
+#
+# File: src/c/spOutput.c, line: 328
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr ""
-
-#, c-format
-msgid "Special processing where the right-hand side is zero.\n"
-msgstr "特别处理右侧是零的。\n"
 
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"

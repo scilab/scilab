@@ -1,0 +1,896 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/%h_save.sci, line: 690
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s: %s の不正な入力\n"
+
+#
+# File: macros/polarplot.sci, line: 152
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: エラー : 入力関数 ''%s'' を評価できません。"
+
+#
+# File: macros/plot.sci, line: 219
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: エラー : 入力関数を評価できません。"
+
+#
+# File: macros/comet.sci, line: 86
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 71
+# File: macros/comet3d.sci, line: 96
+# File: macros/comet3d.sci, line: 107
+# File: macros/comet.sci, line: 79
+# File: macros/comet.sci, line: 94
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_fec.c, line: 69
+# File: sci_gateway/c/sci_grayplot.c, line: 59
+# File: sci_gateway/c/sci_matplot.c, line: 61
+# File: sci_gateway/c/sci_param3d.c, line: 61
+# File: sci_gateway/c/sci_param3d1.c, line: 63
+# File: sci_gateway/c/sci_plot2d.c, line: 94
+# File: sci_gateway/c/sci_plot2d.c, line: 115
+# File: sci_gateway/c/sci_plot2d1.c, line: 121
+# File: sci_gateway/c/sci_plot2d1.c, line: 139
+# File: sci_gateway/c/sci_plot3d.c, line: 69
+#, c-format
+msgid "%s: Input argument #%d must be a handle on a axes.\n"
+msgstr "%s: 入力引数 #%d は軸のハンドルでなければなりません。\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: 入力引数 #%d は実数でなければなりません.\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: 凡例はカレントのコンテキストに適合しません.　スキップしました.\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: ''%s'' ハンドルが見つかりません.\n"
+
+#
+# File: macros/ged.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_xrect.c, line: 110
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。"
+
+#
+# File: sci_gateway/c/sci_xrect.c, line: 110
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d または、%d を想定します。\n"
+
+#
+# File: macros/clf.sci, line: 40
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: 入力引数の数が不正です: %d から %d を想定します。"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
+
+#
+# File: macros/plot3d3.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: 少なくとも %d が予想されます。\n"
+
+#
+# File: macros/sca.sci, line: 15
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+
+#
+# File: macros/ged.sci, line: 21
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d を想定します。\n"
+
+#
+# File: macros/square.sci, line: 25
+# File: macros/xbasc.sci, line: 46
+# File: macros/xclear.sci, line: 46
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d または %d を想定します。\n"
+
+#
+# File: sci_gateway/c/sci_StringBox.c, line: 120
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr ""
+"%1$s: 入力引数の数が不正です: %4$d への %2$d または %3$d を想定します。\n"
+
+#
+# File: macros/getcolor.sci, line: 38
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 入力引数の数が不正です: %d から %d が想定されます。\n"
+
+#
+# File: macros/comet3d.sci, line: 91
+# File: macros/comet3d.sci, line: 102
+# File: macros/comet3d.sci, line: 125
+# File: macros/comet.sci, line: 102
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/legend.sci, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: %d 行 %d 列　または %d 行 %d 列"
+"の行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
+"%d expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: %d 行 %d 列より大きい行列を指定"
+"してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさに誤りがあります: 文字列を指定してください.\n"
+
+#
+# File: macros/getcolor.sci, line: 21
+# File: macros/getcolor.sci, line: 29
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+
+#
+# File: macros/xbasc.sci, line: 25
+# File: macros/xclear.sci, line: 25
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: ベクトルを想定します。\n"
+
+#
+# File: macros/autumncolormap.sci, line: 14
+# File: macros/bonecolormap.sci, line: 14
+# File: macros/coolcolormap.sci, line: 14
+# File: macros/coppercolormap.sci, line: 14
+# File: macros/oceancolormap.sci, line: 14
+# File: macros/pinkcolormap.sci, line: 14
+# File: macros/rainbowcolormap.sci, line: 14
+# File: macros/springcolormap.sci, line: 14
+# File: macros/summercolormap.sci, line: 14
+# File: macros/whitecolormap.sci, line: 14
+# File: macros/wintercolormap.sci, line: 14
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr ""
+"%s: 入力引数 %d の大きさが正しくありません: ''Axes'' ハンドルを1つ指定してく"
+"ださい.\n"
+
+#
+# File: sci_gateway/c/sci_zoom_rect.c, line: 60
+# File: sci_gateway/c/sci_zoom_rect.c, line: 64
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
+"by-%d expected.\n"
+msgstr ""
+"%s: 入力引数 ''%s'' で不正なサイズ: %d-by-%d より大きいサイズの行列を想定しま"
+"す。\n"
+
+#
+# File: macros/getcolor.sci, line: 21
+# File: macros/getcolor.sci, line: 29
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgstr "%s: 入力引数 ''%s'' で不正なサイズ: 空でない行列を想定します。\n"
+
+#
+# File: macros/xbasc.sci, line: 25
+# File: macros/xclear.sci, line: 25
+#, c-format
+msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgstr "%s: 入力引数 ''%s'' で不正なサイズ: ベクトルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_Legend.c, line: 61
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
+"dimensions.\n"
+msgstr ""
+"%s: 入力引数 ''%s'' と ''%s'' で不正なサイズ: 次元に互換性がありません。\n"
+
+#
+# File: sci_gateway/c/sci_param3d1.c, line: 88
+# File: sci_gateway/c/sci_plot3d.c, line: 92
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 ''%s'' と ''%s'' で不正なサイズ: 同じサイズの行列を想定しま"
+"す。\n"
+
+#
+# File: sci_gateway/c/sci_plot3d.c, line: 142
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgstr ""
+"%s: 入力引数 ''%s'' と ''%s'' で不正なサイズ: 同じサイズを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_zoom_rect.c, line: 60
+# File: sci_gateway/c/sci_zoom_rect.c, line: 64
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+msgstr ""
+"%s: 入力引数 ''%s'' で不正なサイズ: サイズ %d のベクトルを想定します。\n"
+
+#
+# File: macros/comet3d.sci, line: 115
+# File: macros/comet.sci, line: 68
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 27
+# File: macros/comet3d.sci, line: 55
+# File: macros/comet3d.sci, line: 58
+# File: macros/comet3d.sci, line: 62
+# File: macros/comet.sci, line: 29
+# File: macros/comet.sci, line: 53
+# File: macros/comet.sci, line: 65
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_xtitle.c, line: 88
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d で不正な型です。\n"
+
+#
+# File: macros/getcolor.sci, line: 18
+# File: macros/getcolor.sci, line: 26
+# File: sci_gateway/c/sci_xlfont.c, line: 130
+# File: sci_gateway/c/sci_xlfont.c, line: 216
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: %s データ構造を想定します。\n"
+
+#
+# File: macros/datatips/datatipToggle.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 26
+# File: macros/datatips/datatipSetInterp.sci, line: 20
+# File: macros/datatips/datatipRemove.sci, line: 18
+# File: macros/datatips/datatipRemove.sci, line: 37
+# File: macros/datatips/datatipSetOrientation.sci, line: 17
+# File: macros/datatips/datatipEventhandler.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 287
+# File: macros/datatips/datatipCreate.sci, line: 22
+# File: macros/datatips/datatipCreate.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
+
+#
+# File: macros/getcolor.sci, line: 32
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 実を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字を想定します。\n"
+
+#
+# File: macros/xbasc.sci, line: 25
+# File: macros/xclear.sci, line: 25
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ベクトルを想定します。\n"
+
+#
+# File: macros/clf.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr ""
+"%s: 入力引数 #%d で不正な型: ''構成''のベクトル・ハンドルを想定します。"
+
+#
+# File: macros/sca.sci, line: 20
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: ''軸'' ハンドルを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_set.c, line: 198
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
+
+#
+# File: macros/histplot.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 67
+# File: macros/histplot.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_StringBox.c, line: 42
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real array or graphic handle array "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 実配列 または グラフィック・ハンドル配列を想定し"
+"ます。\n"
+
+#
+# File: src/c/getHandleProperty/set_color_flag_property.c, line: 50
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 60
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 54
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: スカラーを想定します。\n"
+
+#
+# File: sci_gateway/c/sci_set.c, line: 198
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字配列を想定します。\n"
+
+#
+# File: src/c/getHandleProperty/set_xtics_coord_property.c, line: 66
+# File: src/c/getHandleProperty/set_yticks_coord_property.c, line: 60
+#, c-format
+msgid "%s: Wrong type for input argument #%d: function expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 関数を想定します。\n"
+
+#
+# File: macros/sca.sci, line: 20
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr "%s: 入力引数 %d で不正な型: ''軸'' ハンドルを想定します。\n"
+
+#
+# File: macros/ged.sci, line: 26
+# File: macros/ged.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgstr "%s: 入力引数 ''%s'' で不正な型: 実行列を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: 入力引数で不正な型です。\n"
+
+#
+# File: macros/clf.sci, line: 44
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr ""
+"%s: 入力引数 #%d で不正な値: ''クリア''または、''リセット''を想定します。"
+
+#
+# File: macros/autumncolormap.sci, line: 18
+# File: macros/bonecolormap.sci, line: 18
+# File: macros/coolcolormap.sci, line: 18
+# File: macros/coppercolormap.sci, line: 18
+# File: macros/oceancolormap.sci, line: 18
+# File: macros/pinkcolormap.sci, line: 18
+# File: macros/rainbowcolormap.sci, line: 18
+# File: macros/springcolormap.sci, line: 18
+# File: macros/summercolormap.sci, line: 18
+# File: macros/whitecolormap.sci, line: 18
+# File: macros/wintercolormap.sci, line: 18
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A %d digits integer with digits "
+"greater than %d expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: %d 桁 は %d 以上の整数桁を想定します。\n"
+
+#
+# File: macros/autumncolormap.sci, line: 18
+# File: macros/bonecolormap.sci, line: 18
+# File: macros/coolcolormap.sci, line: 18
+# File: macros/coppercolormap.sci, line: 18
+# File: macros/oceancolormap.sci, line: 18
+# File: macros/pinkcolormap.sci, line: 18
+# File: macros/rainbowcolormap.sci, line: 18
+# File: macros/springcolormap.sci, line: 18
+# File: macros/summercolormap.sci, line: 18
+# File: macros/whitecolormap.sci, line: 18
+# File: macros/wintercolormap.sci, line: 18
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 整数は、 %d より等しいか大きくなければなりませ"
+"ん。\n"
+
+#
+# File: macros/comet3d.sci, line: 118
+# File: macros/histplot.sci, line: 87
+# File: macros/comet.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#
+# File: src/c/SetProperty.c, line: 762
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 入力引数 #%d で不正な値: [%s, %s] の間でなくてはなりません。\n"
+
+#
+# File: sci_gateway/c/sci_delete.c, line: 75
+# File: sci_gateway/c/sci_move.c, line: 52
+# File: sci_gateway/c/sci_xstringb.c, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 入力引数 #%d で不正な値: set {%s} である必要があります。\n"
+
+#
+# File: macros/plot3d2.sci, line: 61
+# File: macros/polarplot.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/fplot2d.sci, line: 42
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_delete.c, line: 75
+# File: sci_gateway/c/sci_move.c, line: 52
+# File: sci_gateway/c/sci_xstringb.c, line: 71
+#, c-format
+msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: ''%s'' を想定します。\n"
+
+#
+# File: macros/histplot.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
+#
+# File: macros/%h_save.sci, line: 38
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: ハンドルは扱えません、明確に無視しました。\n"
+
+#, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: 入力引数の数が多すぎます"
+
+#
+# File: macros/getcolor.sci, line: 77
+# File: macros/getlinestyle.sci, line: 19
+# File: macros/getmark.sci, line: 25
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: macros/getcolor.sci, line: 76
+# File: macros/getfont.sci, line: 37
+# File: macros/getlinestyle.sci, line: 17
+# File: macros/getmark.sci, line: 23
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: macros/getcolor.sci, line: 74
+# File: macros/getfont.sci, line: 39
+# File: macros/getlinestyle.sci, line: 16
+# File: macros/getmark.sci, line: 22
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: macros/getcolor.sci, line: 75
+# File: macros/getfont.sci, line: 38
+# File: macros/getlinestyle.sci, line: 18
+# File: macros/getmark.sci, line: 24
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 72
+msgid "... as well as very tiny radii"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 49
+msgid "A partial viewport may be set with clipping"
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 216
+# File: demos/misc/misc.dem.sci, line: 214
+msgid "Autumn"
+msgstr "秋"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 60
+msgid "Big radii are supported..."
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 232
+# File: demos/misc/misc.dem.sci, line: 230
+msgid "Bone"
+msgstr "骨"
+
+#
+# File: macros/getcolor.sci, line: 129
+# File: macros/getcolor.sci, line: 132
+msgid "Cancel"
+msgstr "キャンセル"
+
+#
+# File: macros/getcolor.sci, line: 161
+msgid "Color number"
+msgstr "色番号"
+
+msgid "Common X axis"
+msgstr "共通のX軸"
+
+#
+# File: demos/misc.dem.sci, line: 248
+# File: demos/misc/misc.dem.sci, line: 246
+msgid "Copper"
+msgstr "銅"
+
+msgid "Customize your complex function"
+msgstr "複雑関数をカスタマイズして下さい"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 45
+msgid "Data on the full circle ..."
+msgstr ""
+
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr "データtipsはこの曲線には付加できません."
+
+msgid "Delete all datatips"
+msgstr "データtipsを全て削除"
+
+msgid "Delete all datatips for the selected curve"
+msgstr "選択した曲線のデータtipsを全て削除"
+
+msgid "Delete last datatip"
+msgstr "最後のデータtipsを削除"
+
+msgid "Delete nearest datatip"
+msgstr "最も近いデータtipsを削除"
+
+msgid "Disable interpolation"
+msgstr "補間を無効にする"
+
+msgid "Edit the curve tip display function"
+msgstr "曲線tip表示関数を編集"
+
+msgid "Enable interpolation"
+msgstr "補間を有効にする"
+
+#
+# File: macros/plot.sci, line: 217
+# File: macros/plot.sci, line: 219
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr "エラー %d 関数 で 行 %d のエラー: ''%s''"
+
+#
+# File: macros/histplot.sci, line: 58
+msgid "Exact gaussian density"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 57
+msgid "Gaussian random sample histogram"
+msgstr ""
+
+#
+# File: etc/graphics.start, line: 20
+msgid "Graphics"
+msgstr "グラフィック"
+
+msgid "Graphics with 2 different Y-scales"
+msgstr "異なるYスケールを有するグラフィックス"
+
+#
+# File: demos/misc.dem.sci, line: 152
+# File: demos/misc/misc.dem.sci, line: 150
+msgid "Gray"
+msgstr "灰"
+
+#
+# File: demos/misc.dem.sci, line: 120
+# File: demos/misc/misc.dem.sci, line: 118
+msgid "HSV"
+msgstr "HSV"
+
+#
+# File: demos/misc.dem.sci, line: 136
+# File: demos/misc/misc.dem.sci, line: 134
+msgid "Hot"
+msgstr "最新"
+
+#
+# File: demos/misc.dem.sci, line: 104
+# File: demos/misc/misc.dem.sci, line: 102
+msgid "Jet"
+msgstr "JET"
+
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr "datatipを作成するには曲線上で左クリック,右クリックで開きます"
+
+msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+"曲線の左クリックによりデータtipを作成, 右クリックによりコンテキストメニューを"
+"開く"
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+"プロパティエディタを開くには,グラフィックエンティティの上で左クリックしてくだ"
+"さい"
+
+#
+# File: demos/misc/misc.dem.sci, line: 57
+msgid "Misc"
+msgstr "雑務"
+
+msgid "Multiple datatips mode"
+msgstr "複数データtipsモード"
+
+#
+# File: macros/getcolor.sci, line: 161
+msgid "Name"
+msgstr "名前"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 55
+msgid "Negative radii are supported:"
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 296
+# File: demos/misc/misc.dem.sci, line: 294
+msgid "Ocean"
+msgstr "海"
+
+#
+# File: macros/getcolor.sci, line: 128
+# File: macros/getcolor.sci, line: 131
+msgid "Ok"
+msgstr "OK"
+
+#
+# File: demos/misc.dem.sci, line: 264
+# File: demos/misc/misc.dem.sci, line: 262
+msgid "Pink"
+msgstr "桃"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
+msgid "Plot with 3 different Y scales at shared X"
+msgstr "3つの異なるYスケールを共通のXでプロット"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 19
+msgid "Press enter to go on..."
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 280
+# File: demos/misc/misc.dem.sci, line: 278
+msgid "Rainbow"
+msgstr "虹"
+
+msgid "Redraw all datatips"
+msgstr "全てのデータtipsを再描画"
+
+msgid "Scale n1"
+msgstr "スケール n1"
+
+msgid "Select tip orientation"
+msgstr "tipの方向を選択"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 77
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 184
+# File: demos/misc/misc.dem.sci, line: 182
+msgid "Spring"
+msgstr "春"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 27
+msgid "Still a single quadrant..."
+msgstr ""
+
+#
+# File: demos/misc.dem.sci, line: 200
+# File: demos/misc/misc.dem.sci, line: 198
+msgid "Summer"
+msgstr "夏"
+
+msgid "Tcl/Tk interface not installed."
+msgstr "Tcl/Tkインターフェイスはインストールされていません."
+
+msgid "The selected file cannot be executed"
+msgstr "選択されたファイルは実行できません"
+
+msgid "The selected file defines more than one function"
+msgstr "選択されたファイルでは複数の関数が定義されています"
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr "選択された関数は1 個の出力引数 (str) を有する必要があります"
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr "選択された関数は 3個の入力引数 (curve,pt,index) を有する必要があります"
+
+msgid "Unique datatip mode"
+msgstr "ユニーク データtipモード"
+
+#
+# File: demos/misc.dem.sci, line: 312
+# File: demos/misc/misc.dem.sci, line: 310
+msgid "White"
+msgstr "白"
+
+#
+# File: demos/misc.dem.sci, line: 168
+# File: demos/misc/misc.dem.sci, line: 166
+msgid "Winter"
+msgstr "冬"
+
+msgid "automatic"
+msgstr "自動"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 66
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 55
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
+msgid "lower left"
+msgstr "左下"
+
+msgid "lower right"
+msgstr "右下"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 35
+msgid "on 2 quadrants..."
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 23
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr ""
+
+msgid "select the curve tip display function"
+msgstr "曲線tip表示関数を選択"
+
+msgid "upper left"
+msgstr "左上"
+
+msgid "upper right"
+msgstr "右上"

@@ -1,0 +1,83 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s is not an installed module"
+msgstr "%s はインストール済みのモジュールではありません."
+
+#, c-format
+msgid "%s is not an installed module or toolbox"
+msgstr "%s はインストール済みのモジュールまたはツールボックスではありません."
+
+#
+# File: macros/test_run.sci, line: 877
+#, c-format
+msgid "%s: The test ''%s'' doesn''t exist or is not read available.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong first input argument: File with .dia suffix expected."
+msgstr ""
+"%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してく"
+"ださい."
+
+#, c-format
+msgid "%s: Wrong size for input argument."
+msgstr "%s: 入力引数の大きさが間違っています."
+
+#
+# File: macros/test_run.sci, line: 873
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#
+# File: macros/testexamples.sci, line: 17
+# File: macros/testexamples.sci, line: 32
+#, c-format
+msgid "No variable %s_ref in reference file"
+msgstr "参照ファイルの変数　%s_ref はありません"
+
+#, c-format
+msgid "Test Failed. See : diff -wu  %s"
+msgstr "テストが失敗しました. 参照: diff -wu %s"
+
+#, c-format
+msgid "Test Failed. See : fc /L /N  %s"
+msgstr "テストが失敗しました. 参照: fc /L /N %s"
+
+#, c-format
+msgid "Test failed ERROR DETECTED while executing %s"
+msgstr "テストが失敗しました. %s を実行中にエラーが検出されました."
+
+msgid "Test passed"
+msgstr "テストに合格しました"
+
+#, c-format
+msgid "The ref file (%s) doesn''t exist"
+msgstr "参照先ファイル (%s) が存在しません"
+
+#, c-format
+msgid "The test %s is not available from the %s module"
+msgstr "テスト %s は %s モジュールで利用できません."
+
+msgid "error : Input argument sizes are not valid"
+msgstr "エラー: 入力引数の大きさが間違っています."

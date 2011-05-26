@@ -1,0 +1,646 @@
+# Traditional Chinese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
+"Language-Team: Traditional Chinese <zh_TW@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"Revision-Date: 2011-04-04 22:09+0100\n"
+
+#, c-format
+msgid "%s : Invalid entity %s\n"
+msgstr "%s : 不正確項目%s\n"
+
+#
+# File: macros/polarplot.sci, line: 152
+#, c-format
+msgid "%s: ''%s'' cannot be used with ''%s''.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function ''%s''."
+msgstr "%s: 錯誤: 無法計算輸入函數  ''%s''."
+
+#, c-format
+msgid "%s: Error : unable to evaluate input function."
+msgstr "%s: 錯誤: 無法計算輸入函數."
+
+#
+# File: macros/comet.sci, line: 86
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 71
+# File: macros/comet3d.sci, line: 96
+# File: macros/comet3d.sci, line: 107
+# File: macros/comet.sci, line: 79
+# File: macros/comet.sci, line: 94
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument #%d must be a handle on a axes.\n"
+msgstr "%s: 第 #%d 輸入參數必須為 axes 的代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Input argument #%d must be real.\n"
+msgstr "%s: 第 #%d 輸入參數必須為實數.\n"
+
+#, c-format
+msgid "%s: Legend does not fit with the current context. Skipped\n"
+msgstr "%s: 說明項 (Legend)  無法適合目前的環境. 放棄\n"
+
+#, c-format
+msgid "%s: No ''%s'' handle found.\n"
+msgstr "%s: 找不到 ''%s'' 代碼 (handle)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected."
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數."
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d 到 %d 之數.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr "%s: 多個輸入參數的個數錯誤: 應該至少有 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 到 %d 個.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤: 應為 %d 或 %d 個.\n"
+
+#
+# File: macros/comet3d.sci, line: 91
+# File: macros/comet3d.sci, line: 102
+# File: macros/comet3d.sci, line: 125
+# File: macros/comet.sci, line: 102
+#, c-format
+msgid "%s: Wrong size for argument %d: %d expected.\n"
+msgstr ""
+
+#
+# File: macros/legend.sci, line: 55
+#, c-format
+msgid "%s: Wrong size for input argument #%d."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
+"expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為 %d-X-%d 或 %d-X-%d 矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
+"%d expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一大於 %d-X-%d 的矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一實數.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一純量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一向量.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一整數.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
+msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一 ''Axes'' 代碼 (handle).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
+"by-%d expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 大小錯誤: 應該為一維度大於 %d-X-%d 的矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 大小錯誤: 應該為一非空矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 大小錯誤: 應該為一向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
+"dimensions.\n"
+msgstr "%s: 輸入參數 ''%s'' 及 ''%s'' 大小錯誤: 長度不相容.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
+"expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 及 ''%s'' 大小錯誤: 應該為相同大小的矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 及 ''%s'' 大小錯誤: 應該為相同大小.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 大小錯誤: 應該為長度為 %d 的向量.\n"
+
+#
+# File: macros/comet3d.sci, line: 115
+# File: macros/comet.sci, line: 68
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/comet3d.sci, line: 27
+# File: macros/comet3d.sci, line: 55
+# File: macros/comet3d.sci, line: 58
+# File: macros/comet3d.sci, line: 62
+# File: macros/comet.sci, line: 29
+# File: macros/comet.sci, line: 53
+# File: macros/comet.sci, line: 65
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是　%s 資料結構.\n"
+
+#
+# File: macros/datatips/datatipToggle.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 18
+# File: macros/datatips/datatipMove.sci, line: 26
+# File: macros/datatips/datatipSetInterp.sci, line: 20
+# File: macros/datatips/datatipRemove.sci, line: 18
+# File: macros/datatips/datatipRemove.sci, line: 37
+# File: macros/datatips/datatipSetOrientation.sci, line: 17
+# File: macros/datatips/datatipEventhandler.sci, line: 213
+# File: macros/datatips/datatipEventhandler.sci, line: 287
+# File: macros/datatips/datatipCreate.sci, line: 22
+# File: macros/datatips/datatipCreate.sci, line: 41
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一實數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一實數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一字串.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一向量.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
+"expected."
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是向量或 ''Figure'' 代碼(handle)."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
+msgstr "%s: 輸入參數#%d 的型態錯誤: 應該是 ''Axes'' 的代碼(handle).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 Graphic 代碼(handle).\n"
+
+#
+# File: macros/histplot.sci, line: 89
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 67
+# File: macros/histplot.sci, line: 69
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real array or graphic handle array "
+"expected.\n"
+msgstr ""
+"%s: 第 #%d 個輸入參數型態錯誤: 應該是或實數向量 graphic　代碼 (handle) 之向量"
+"expected.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是純量.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是字串陣列.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: function expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一函數.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
+msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是 ''Axes'' 代碼 (handle).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
+msgstr "%s: 輸入參數 ''%s'' 型態錯誤: 應該是一實數矩陣.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument.\n"
+msgstr "%s: 輸入參數型態錯誤.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該為 ''clear'' 或 ''reset''."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A %d digits integer with digits "
+"greater than %d expected.\n"
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該為一 %d 位數之整數(須大於 %d).\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
+"expected.\n"
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該為一大於或等於 %d 的整數.\n"
+
+#
+# File: macros/comet3d.sci, line: 118
+# File: macros/histplot.sci, line: 87
+# File: macros/comet.sci, line: 71
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該位於區間 [%s, %s].內\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該在集合 {%s} 內.\n"
+
+#
+# File: macros/plot3d2.sci, line: 61
+# File: macros/polarplot.sci, line: 53
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
+"expected.\n"
+msgstr ""
+
+#
+# File: macros/fplot2d.sci, line: 42
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
+"''%s'', ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
+msgstr "%s: 第 #%d 個輸入參數數值錯誤: 應該是 ''%s''.\n"
+
+#
+# File: macros/histplot.sci, line: 95
+#, c-format
+msgid ""
+"%s: Wrong values for input argument #%d: Elements must be in increasing "
+"order.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: handle no more valid ignored.\n"
+msgstr "%s: 此代碼 (handle) 不再有效, 忽略.\n"
+
+#, c-format
+msgid "%s: too many input arguments"
+msgstr "%s: 輸入參數過多"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&Edit"
+msgstr "編輯(&E)"
+
+msgid "&File"
+msgstr "檔案(&F)"
+
+msgid "&Tools"
+msgstr "工具(&T)"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 72
+msgid "... as well as very tiny radii"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 49
+msgid "A partial viewport may be set with clipping"
+msgstr ""
+
+msgid "Autumn"
+msgstr "秋"
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 60
+msgid "Big radii are supported..."
+msgstr ""
+
+msgid "Bone"
+msgstr ""
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Color number"
+msgstr ""
+
+msgid "Common X axis"
+msgstr ""
+
+msgid "Copper"
+msgstr ""
+
+msgid "Customize your complex function"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 45
+msgid "Data on the full circle ..."
+msgstr ""
+
+msgid ""
+"Data tips cannot be attached to this curve,\n"
+"the user_data field is already used"
+msgstr ""
+
+msgid "Delete all datatips"
+msgstr ""
+
+msgid "Delete all datatips for the selected curve"
+msgstr ""
+
+msgid "Delete last datatip"
+msgstr ""
+
+msgid "Delete nearest datatip"
+msgstr ""
+
+msgid "Disable interpolation"
+msgstr ""
+
+msgid "Edit the curve tip display function"
+msgstr ""
+
+msgid "Enable interpolation"
+msgstr ""
+
+#, c-format
+msgid "Error %d at line %d of the function: ''%s''"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 58
+msgid "Exact gaussian density"
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 57
+msgid "Gaussian random sample histogram"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Graphics with 2 different Y-scales"
+msgstr ""
+
+msgid "Gray"
+msgstr ""
+
+msgid "HSV"
+msgstr ""
+
+msgid "Hot"
+msgstr ""
+
+msgid "Jet"
+msgstr ""
+
+msgid "Left click on a curve to create a datatip, right opens"
+msgstr ""
+
+msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgstr ""
+
+msgid "Left click on a graphic entity to open its property editor"
+msgstr ""
+
+msgid "Misc"
+msgstr ""
+
+msgid "Multiple datatips mode"
+msgstr ""
+
+msgid "Name"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 55
+msgid "Negative radii are supported:"
+msgstr ""
+
+msgid "Ocean"
+msgstr ""
+
+msgid "Ok"
+msgstr ""
+
+msgid "Pink"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
+msgid ""
+"Please press enter into the Scilab console to see more polarplot examples"
+msgstr ""
+
+msgid "Plot with 3 different Y scales at shared X"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 19
+msgid "Press enter to go on..."
+msgstr ""
+
+msgid "Rainbow"
+msgstr ""
+
+msgid "Redraw all datatips"
+msgstr ""
+
+msgid "Scale n1"
+msgstr ""
+
+msgid "Select tip orientation"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 77
+msgid "Several curves may be plotted at the same time"
+msgstr ""
+
+msgid "Spring"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 27
+msgid "Still a single quadrant..."
+msgstr ""
+
+msgid "Summer"
+msgstr ""
+
+msgid "Tcl/Tk interface not installed."
+msgstr ""
+
+msgid "The selected file cannot be executed"
+msgstr ""
+
+msgid "The selected file defines more than one function"
+msgstr ""
+
+msgid "The selected function must have 1 output parameter (str)"
+msgstr ""
+
+msgid "The selected function must have 3 input parameters (curve,pt,index)"
+msgstr ""
+
+msgid "Unique datatip mode"
+msgstr ""
+
+msgid "White"
+msgstr ""
+
+msgid "Winter"
+msgstr ""
+
+msgid "automatic"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 66
+msgid "even huge radii, with properly formatted labels..."
+msgstr ""
+
+#
+# File: macros/histplot.sci, line: 55
+msgid "histplot() : (normalized) histogram plot"
+msgstr ""
+
+msgid "lower left"
+msgstr ""
+
+msgid "lower right"
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 35
+msgid "on 2 quadrants..."
+msgstr ""
+
+#
+# File: demos/2d_3d_plots/polarplot.dem.sce, line: 23
+msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+msgstr ""
+
+msgid "select the curve tip display function"
+msgstr ""
+
+msgid "upper left"
+msgstr ""
+
+msgid "upper right"
+msgstr ""

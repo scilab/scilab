@@ -1,0 +1,78 @@
+# Spanish translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Fido <Unknown>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+
+#, c-format
+msgid "%s is not a valid field name."
+msgstr "%s no es un nombre de campo válido."
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr ""
+"%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#
+# File: macros/%st_matrix.sci, line: 21
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#
+# File: macros/%st_matrix.sci, line: 15
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgstr ""
+"%s: Valor incorrecto del argumento de entrada #%d: Debe estar en el conjunto "
+"{%s}.\n"
+
+#
+# File: macros/%st_matrix.sci, line: 30
+#, c-format
+msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgstr ""
+
+msgid "A null assignment can have only one non-colon index"
+msgstr ""
+"Una asignación nula puede tener solo un indice que no sea dos puntos '':'"
+
+msgid "Affection of a string in a matrix of numbers is not implemented."
+msgstr ""
+"Correspondencia de un string en una matriz de números no está implementado."
+
+msgid "Incorrect assignment.\n"
+msgstr "Asignación incorrecta.\n"
+
+msgid "Invalid field name."
+msgstr "Nombre de campo inválido"
+
+msgid "Invalid index.\n"
+msgstr "Índice inválido.\n"

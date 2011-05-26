@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-10 11:48+0100\n"
+"Revision-Date: 2011-05-26 16:58+0100\n"
 
 # File: sci_gateway/c/sci_drawaxis.c, line: 186
 msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
@@ -23,11 +23,6 @@ msgstr ""
 # File: sci_gateway/c/sci_xset.c, line: 75
 #, c-format
 msgid "%s : '%s' must be set\n"
-msgstr ""
-#
-# File: macros/%h_save.sci, line: 714
-#, c-format
-msgid "%s : Invalid entity %s\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_surface_color_property.c, line: 75
@@ -66,35 +61,24 @@ msgstr ""
 msgid "%s: '%s' handle does not or no longer exists.\n"
 msgstr ""
 #
-# File: macros/polarplot.sci, line: 152
-#, c-format
-msgid "%s: ''%s'' cannot be used with ''%s''.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_plot2d.c, line: 281
 #, c-format
-msgid ""
-"%s: At least one x data must be strictly positive to compute the bounds and "
-"use logarithmic mode.\n"
+msgid "%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_plot2d.c, line: 292
 #, c-format
-msgid ""
-"%s: At least one y data must be strictly positive to compute the bounds and "
-"use logarithmic mode\n"
+msgid "%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_plot2d.c, line: 240
 #, c-format
-msgid ""
-"%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
+msgid "%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_plot2d.c, line: 246
 #, c-format
-msgid ""
-"%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
+msgid "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 #
 # File: src/c/SetProperty.c, line: 3474
@@ -110,16 +94,6 @@ msgstr ""
 # File: sci_gateway/c/sci_glue.c, line: 58
 #, c-format
 msgid "%s: Each handle should not appear twice.\n"
-msgstr ""
-#
-# File: macros/plot.sci, line: 225
-#, c-format
-msgid "%s: Error : unable to evaluate input function ''%s''."
-msgstr ""
-#
-# File: macros/plot.sci, line: 227
-#, c-format
-msgid "%s: Error : unable to evaluate input function."
 msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 182
@@ -154,23 +128,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_xstring.c, line: 65
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"
-msgstr ""
-#
-# File: macros/comet.sci, line: 86
-#, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
-msgstr ""
-#
-# File: macros/comet3d.sci, line: 71
-# File: macros/comet3d.sci, line: 96
-# File: macros/comet3d.sci, line: 107
-# File: macros/comet.sci, line: 79
-# File: macros/comet.sci, line: 94
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same element number expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xrects.c, line: 53
@@ -183,17 +141,6 @@ msgstr ""
 msgid "%s: Input argument #%d must be a '%s' handle.\n"
 msgstr ""
 #
-# File: macros/replot.sci, line: 27
-#, c-format
-msgid "%s: Input argument #%d must be a handle on a axes.\n"
-msgstr ""
-#
-# File: macros/Sfgrayplot.sci, line: 33
-# File: macros/Sfgrayplot.sci, line: 36
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr ""
-#
 # File: src/c/getHandleProperty/set_links_property.c, line: 59
 #, c-format
 msgid "%s: Input argument and the legend must have the same parent axes.\n"
@@ -202,11 +149,6 @@ msgstr ""
 # File: sci_gateway/c/sci_xfpolys.c, line: 64
 #, c-format
 msgid "%s: Interpolated shading only works for polygons of size %d or %d\n"
-msgstr ""
-#
-# File: macros/%h_load.sci, line: 492
-#, c-format
-msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_param3d1.c, line: 65
@@ -220,11 +162,6 @@ msgstr ""
 # File: sci_gateway/c/sci_plot2d1.c, line: 118
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
-msgstr ""
-#
-# File: macros/legend.sci, line: 80
-#, c-format
-msgid "%s: No ''%s'' handle found.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_color_mode_property.c, line: 110
@@ -350,9 +287,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_xset.c, line: 162
 #, c-format
-msgid ""
-"%s: Old graphic mode is no longer available. Please refer to the set help "
-"page.\n"
+msgid "%s: Old graphic mode is no longer available. Please refer to the set help page.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_swap_handles.c, line: 41
@@ -415,149 +350,14 @@ msgstr ""
 msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
 msgstr ""
 #
-# File: macros/isoview.sci, line: 14
-# File: macros/addcolor.sci, line: 15
-# File: macros/jetcolormap.sci, line: 19
-# File: macros/hotcolormap.sci, line: 15
-# File: macros/nf3d.sci, line: 15
-# File: macros/wintercolormap.sci, line: 15
-# File: macros/graycolormap.sci, line: 16
-# File: macros/rainbowcolormap.sci, line: 15
-# File: macros/ghdl_fields.sci, line: 14
-# File: macros/bonecolormap.sci, line: 15
-# File: macros/dragrect.sci, line: 13
-# File: macros/coppercolormap.sci, line: 15
-# File: macros/getSurfPropertyName.sci, line: 12
-# File: macros/datatips/datatipGetStruct.sci, line: 13
-# File: macros/datatips/datatipSetStruct.sci, line: 12
-# File: macros/datatips/orthProj.sci, line: 17
-# File: macros/datatips/datatipRemoveAll.sci, line: 13
-# File: macros/datatips/datatipSetOrientation.sci, line: 13
-# File: macros/coolcolormap.sci, line: 15
-# File: macros/hsvcolormap.sci, line: 13
-# File: macros/springcolormap.sci, line: 15
-# File: macros/seteventhandler.sci, line: 14
-# File: macros/summercolormap.sci, line: 15
-# File: macros/get_figure_handle.sci, line: 13
-# File: macros/pinkcolormap.sci, line: 15
-# File: macros/milk_drop.sci, line: 12
-# File: macros/autumncolormap.sci, line: 14
-# File: macros/ghdl2tree.sci, line: 13
-# File: macros/projaff.sci, line: 26
-# File: macros/oceancolormap.sci, line: 15
-# File: macros/name2rgb.sci, line: 13
-# File: macros/getColorIndex.sci, line: 15
-# File: macros/whitecolormap.sci, line: 15
-# File: macros/eval3dp.sci, line: 42
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-#
-# File: macros/subplot.sci, line: 13
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
-#
-# File: macros/replot.sci, line: 17
-# File: macros/secto3d.sci, line: 35
-# File: macros/hsv2rgb.sci, line: 12
-# File: macros/xload.sci, line: 12
-# File: macros/titlepage.sci, line: 17
 # File: sci_gateway/c/sci_xrect.c, line: 108
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 #
-# File: macros/xrpoly.sci, line: 23
-# File: macros/rotate.sci, line: 20
-# File: macros/xstringl.sci, line: 36
-# File: macros/scaling.sci, line: 21
-# File: macros/clf.sci, line: 40
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected."
-msgstr ""
-#
-# File: macros/barh.sci, line: 20
-# File: macros/xnumb.sci, line: 11
-# File: macros/bar.sci, line: 21
-# File: macros/barhomogenize.sci, line: 20
-# File: macros/pie.sci, line: 74
-# File: macros/oldplot.sci, line: 16
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-#
-# File: macros/genfac3d.sci, line: 37
-# File: macros/sd2sci.sci, line: 12
-# File: macros/fplot3d.sci, line: 30
-# File: macros/contour2d.sci, line: 14
-# File: macros/fgrayplot.sci, line: 33
-# File: macros/contour.sci, line: 32
-# File: macros/fcontour.sci, line: 49
-# File: macros/fplot2d.sci, line: 27
-# File: macros/title.sci, line: 14
-# File: macros/paramfplot2d.sci, line: 28
-# File: macros/plot3d2.sci, line: 24
-# File: macros/fcontour2d.sci, line: 24
-# File: macros/datatips/datatipSetDisplay.sci, line: 14
-# File: macros/datatips/datatipMove.sci, line: 14
-# File: macros/datatips/datatipSetInterp.sci, line: 15
-# File: macros/datatips/datatipRemove.sci, line: 12
-# File: macros/datatips/datatipInitStruct.sci, line: 19
-# File: macros/datatips/datatipCreate.sci, line: 17
-# File: macros/graduate.sci, line: 39
-# File: macros/ylabel.sci, line: 14
-# File: macros/legends.sci, line: 22
-# File: macros/xinfo.sci, line: 14
-# File: macros/xlabel.sci, line: 14
-# File: macros/histplot.sci, line: 63
-# File: macros/fplot3d1.sci, line: 32
-# File: macros/ged_insert.sci, line: 15
-# File: macros/errbar.sci, line: 33
-# File: macros/graypolarplot.sci, line: 28
-# File: macros/zlabel.sci, line: 13
-# File: macros/plot3d3.sci, line: 16
-# File: macros/legend.sci, line: 12
-# File: macros/plotframe.sci, line: 25
-# File: macros/xsave.sci, line: 11
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-#
-# File: macros/sca.sci, line: 15
-#, c-format
-msgid "%s: Wrong number of input argument: %d expected.\n"
-msgstr ""
-#
-# File: macros/ged.sci, line: 20
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-#
-# File: macros/eval3d.sci, line: 26
-# File: macros/twinkle.sci, line: 25
-# File: macros/square.sci, line: 25
-# File: macros/xclear.sci, line: 46
-# File: macros/color.sci, line: 38
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-#
-# File: macros/comet3d.sci, line: 50
 # File: sci_gateway/c/sci_StringBox.c, line: 120
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
-msgstr ""
-#
-# File: macros/colorbar.sci, line: 41
-# File: macros/Sfgrayplot.sci, line: 28
-# File: macros/fac3d.sci, line: 41
-# File: macros/colordef.sci, line: 13
-# File: macros/comet.sci, line: 50
-# File: macros/getcolor.sci, line: 38
-# File: macros/fac3d1.sci, line: 43
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_champ.c, line: 63
@@ -568,14 +368,6 @@ msgstr ""
 # File: sci_gateway/c/sci_plot2d.c, line: 174
 #, c-format
 msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
-msgstr ""
-#
-# File: macros/comet3d.sci, line: 91
-# File: macros/comet3d.sci, line: 102
-# File: macros/comet3d.sci, line: 125
-# File: macros/comet.sci, line: 102
-#, c-format
-msgid "%s: Wrong size for argument %d: %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xarcs.c, line: 63
@@ -603,11 +395,6 @@ msgstr ""
 # File: src/c/getHandleProperty/set_data_property.c, line: 137
 #, c-format
 msgid "%s: Wrong size for arguments #%d: Incompatible length.\n"
-msgstr ""
-#
-# File: macros/legend.sci, line: 55
-#, c-format
-msgid "%s: Wrong size for input argument #%d."
 msgstr ""
 #
 # File: src/c/GetCommandArg.c, line: 46
@@ -647,31 +434,15 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: %s expected.\n"
 msgstr ""
 #
-# File: macros/surf.sci, line: 116
-# File: macros/surf.sci, line: 156
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
-"expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_show_window.c, line: 53
 # File: sci_gateway/c/sci_show_window.c, line: 79
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A '%s' handle or a real scalar "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A '%s' handle or a real scalar expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 87
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"
-msgstr ""
-#
-# File: macros/ged.sci, line: 28
-# File: macros/ged.sci, line: 36
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_rubberbox.c, line: 171
@@ -682,58 +453,9 @@ msgid ""
 "."
 msgstr ""
 #
-# File: macros/surf.sci, line: 94
-# File: macros/surf.sci, line: 110
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
-"%d expected.\n"
-msgstr ""
-#
-# File: macros/getcolor.sci, line: 35
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-#
-# File: macros/bonecolormap.sci, line: 21
-# File: macros/color.sci, line: 30
 # File: sci_gateway/c/sci_xlfont.c, line: 211
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-#
-# File: macros/name2rgb.sci, line: 21
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-#
-# File: macros/getcolor.sci, line: 21
-# File: macros/getcolor.sci, line: 29
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-#
-# File: macros/fplot2d.sci, line: 25
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr ""
-#
-# File: macros/jetcolormap.sci, line: 25
-# File: macros/hotcolormap.sci, line: 21
-# File: macros/wintercolormap.sci, line: 21
-# File: macros/graycolormap.sci, line: 22
-# File: macros/rainbowcolormap.sci, line: 21
-# File: macros/coppercolormap.sci, line: 21
-# File: macros/coolcolormap.sci, line: 21
-# File: macros/hsvcolormap.sci, line: 19
-# File: macros/springcolormap.sci, line: 21
-# File: macros/summercolormap.sci, line: 21
-# File: macros/pinkcolormap.sci, line: 21
-# File: macros/autumncolormap.sci, line: 20
-# File: macros/oceancolormap.sci, line: 21
-# File: macros/whitecolormap.sci, line: 21
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_param3d1.c, line: 95
@@ -755,8 +477,7 @@ msgstr ""
 # File: src/c/GetCommandArg.c, line: 175
 # File: src/c/GetCommandArg.c, line: 192
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: String of %d characters expected.\n"
+msgid "%s: Wrong size for input argument #%d: String of %d characters expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 55
@@ -768,32 +489,7 @@ msgstr ""
 # File: sci_gateway/c/sci_rubberbox.c, line: 151
 # File: sci_gateway/c/sci_rubberbox.c, line: 205
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
-msgstr ""
-#
-# File: macros/sca.sci, line: 25
-#, c-format
-msgid "%s: Wrong size for input argument %d: An ''Axes'' handle expected.\n"
-msgstr ""
-#
-# File: macros/surf.sci, line: 219
-#, c-format
-msgid ""
-"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
-"by-%d expected.\n"
-msgstr ""
-#
-# File: macros/checkXYPair.sci, line: 66
-# File: macros/checkXYPair.sci, line: 73
-#, c-format
-msgid ""
-"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
-msgstr ""
-#
-# File: macros/checkXYPair.sci, line: 18
-#, c-format
-msgid "%s: Wrong size for input argument ''%s'': A vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_plot2d.c, line: 180
@@ -812,50 +508,6 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 #
-# File: macros/checkXYPair.sci, line: 102
-# File: macros/checkXYPair.sci, line: 121
-# File: macros/checkXYPair.sci, line: 134
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
-"dimensions.\n"
-msgstr ""
-#
-# File: macros/surf.sci, line: 409
-# File: macros/surf.sci, line: 415
-# File: macros/surf.sci, line: 434
-# File: macros/surf.sci, line: 458
-# File: macros/surf.sci, line: 531
-# File: macros/surf.sci, line: 537
-# File: macros/surf.sci, line: 563
-# File: macros/surf.sci, line: 596
-# File: macros/surf.sci, line: 632
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
-"expected.\n"
-msgstr ""
-#
-# File: macros/surf.sci, line: 486
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
-msgstr ""
-#
-# File: macros/surf.sci, line: 390
-# File: macros/surf.sci, line: 396
-# File: macros/surf.sci, line: 428
-# File: macros/surf.sci, line: 464
-# File: macros/surf.sci, line: 505
-# File: macros/surf.sci, line: 511
-# File: macros/surf.sci, line: 557
-# File: macros/surf.sci, line: 602
-# File: macros/rotate.sci, line: 25
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
-msgstr ""
-#
 # File: src/c/Format.c, line: 1195
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
@@ -867,34 +519,6 @@ msgstr ""
 msgid "%s: Wrong type for argument #%d: Columns vectors expected.\n"
 msgstr ""
 #
-# File: macros/comet3d.sci, line: 115
-# File: macros/comet.sci, line: 68
-#, c-format
-msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
-msgstr ""
-#
-# File: macros/comet3d.sci, line: 27
-# File: macros/comet3d.sci, line: 55
-# File: macros/comet3d.sci, line: 58
-# File: macros/comet3d.sci, line: 62
-# File: macros/comet.sci, line: 29
-# File: macros/comet.sci, line: 53
-# File: macros/comet.sci, line: 65
-#, c-format
-msgid "%s: Wrong type for argument %d: Real vector expected.\n"
-msgstr ""
-#
-# File: macros/sd2sci.sci, line: 23
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-#
-# File: macros/addcolor.sci, line: 23
-# File: macros/colorbar.sci, line: 57
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_StringBox.c, line: 138
 #, c-format
 msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
@@ -903,36 +527,13 @@ msgstr ""
 # File: sci_gateway/c/sci_show_window.c, line: 67
 # File: sci_gateway/c/sci_show_window.c, line: 98
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A '%s' handle or a real scalar "
-"expected.\n"
-msgstr ""
-#
-# File: macros/datatips/datatipToggle.sci, line: 18
-# File: macros/datatips/datatipMove.sci, line: 18
-# File: macros/datatips/datatipMove.sci, line: 26
-# File: macros/datatips/datatipSetInterp.sci, line: 20
-# File: macros/datatips/datatipRemove.sci, line: 18
-# File: macros/datatips/datatipRemove.sci, line: 37
-# File: macros/datatips/datatipSetOrientation.sci, line: 17
-# File: macros/datatips/datatipEventhandler.sci, line: 213
-# File: macros/datatips/datatipEventhandler.sci, line: 287
-# File: macros/datatips/datatipCreate.sci, line: 22
-# File: macros/datatips/datatipCreate.sci, line: 41
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 79
 # File: sci_gateway/c/sci_StringBox.c, line: 107
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
-msgstr ""
-#
-# File: macros/ged.sci, line: 25
-# File: macros/ged.sci, line: 33
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xlfont.c, line: 147
@@ -942,38 +543,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 #
-# File: macros/isoview.sci, line: 19
-# File: macros/getcolor.sci, line: 32
-# File: macros/color.sci, line: 27
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-#
-# File: macros/name2rgb.sci, line: 17
-# File: macros/getColorIndex.sci, line: 19
-# File: macros/getcolor.sci, line: 18
-# File: macros/getcolor.sci, line: 26
 # File: sci_gateway/c/sci_xlfont.c, line: 130
 # File: sci_gateway/c/sci_xlfont.c, line: 218
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-#
-# File: macros/xclear.sci, line: 25
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
-msgstr ""
-#
-# File: macros/clf.sci, line: 53
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
-"expected."
-msgstr ""
-#
-# File: macros/surf.sci, line: 49
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An ''Axes'' handle expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xgetmouse.c, line: 58
@@ -983,26 +556,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 100
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
-msgstr ""
-#
-# File: macros/replot.sci, line: 30
-# File: macros/twinkle.sci, line: 14
-# File: macros/twinkle.sci, line: 19
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
+msgid "%s: Wrong type for input argument #%d: Figure or Axes handle expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 156
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
-msgstr ""
-#
-# File: macros/histplot.sci, line: 89
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: Handle or vector of double expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_contour2di.c, line: 48
@@ -1020,24 +579,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: Non-negative int expected.\n"
 msgstr ""
 #
-# File: macros/histplot.sci, line: 67
-# File: macros/histplot.sci, line: 69
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real  expected.\n"
-msgstr ""
-#
-# File: macros/legends.sci, line: 30
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real array or graphic handle array "
-"expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_plot2d.c, line: 86
 # File: sci_gateway/c/sci_plot2d.c, line: 114
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_rubberbox.c, line: 192
@@ -1047,19 +592,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_rubberbox.c, line: 178
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real row vector or a boolean "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_StringBox.c, line: 42
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr ""
-#
-# File: macros/twinkle.sci, line: 22
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_addcb.c, line: 54
@@ -1071,25 +609,13 @@ msgstr ""
 # File: sci_gateway/c/sci_rotate_axes.c, line: 66
 # File: sci_gateway/c/sci_rotate_axes.c, line: 89
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Single Figure or Axes handle "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Single Figure or Axes handle expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_get.c, line: 86
 # File: sci_gateway/c/sci_get.c, line: 102
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-#
-# File: macros/getfont.sci, line: 17
-# File: macros/legends.sci, line: 25
-# File: macros/colordef.sci, line: 18
-# File: macros/colordef.sci, line: 26
-# File: macros/titlepage.sci, line: 21
-# File: macros/color.sci, line: 16
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_set.c, line: 210
@@ -1100,28 +626,6 @@ msgstr ""
 # File: sci_gateway/c/sci_move.c, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
-msgstr ""
-#
-# File: macros/Sfgrayplot.sci, line: 39
-#, c-format
-msgid "%s: Wrong type for input argument #%d: function expected.\n"
-msgstr ""
-#
-# File: macros/sca.sci, line: 20
-#, c-format
-msgid "%s: Wrong type for input argument %d: An ''Axes'' handle expected.\n"
-msgstr ""
-#
-# File: macros/surf.sci, line: 190
-# File: macros/surf.sci, line: 202
-# File: macros/surf.sci, line: 214
-#, c-format
-msgid "%s: Wrong type for input argument ''%s'': A Real matrix expected.\n"
-msgstr ""
-#
-# File: macros/getLineSpec.sci, line: 75
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_showalluimenushandles.c, line: 44
@@ -1137,15 +641,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_unzoom.c, line: 63
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Vector of Axes and Figure handles "
-"expected.\n"
+msgid "%s: Wrong type for input argument: Vector of Axes and Figure handles expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 169
 #, c-format
-msgid ""
-"%s: Wrong type for input arguments: Handle or vector of double expected.\n"
+msgid "%s: Wrong type for input arguments: Handle or vector of double expected.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 145
@@ -1165,73 +666,15 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 #
-# File: macros/clf.sci, line: 44
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
-msgstr ""
-#
-# File: macros/subplot.sci, line: 24
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A %d digits integer with digits "
-"greater than %d expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_xlfont.c, line: 124
 # File: sci_gateway/c/sci_xlfont.c, line: 206
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid fontname expected.\n"
 msgstr ""
 #
-# File: macros/jetcolormap.sci, line: 30
-# File: macros/hotcolormap.sci, line: 26
-# File: macros/wintercolormap.sci, line: 26
-# File: macros/graycolormap.sci, line: 27
-# File: macros/rainbowcolormap.sci, line: 26
-# File: macros/bonecolormap.sci, line: 26
-# File: macros/coppercolormap.sci, line: 26
-# File: macros/coolcolormap.sci, line: 26
-# File: macros/hsvcolormap.sci, line: 24
-# File: macros/springcolormap.sci, line: 26
-# File: macros/summercolormap.sci, line: 26
-# File: macros/pinkcolormap.sci, line: 26
-# File: macros/autumncolormap.sci, line: 25
-# File: macros/oceancolormap.sci, line: 26
-# File: macros/whitecolormap.sci, line: 26
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
-"expected.\n"
-msgstr ""
-#
 # File: sci_gateway/c/sci_Legend.c, line: 80
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Incorrect value.\n"
-msgstr ""
-#
-# File: macros/comet3d.sci, line: 118
-# File: macros/histplot.sci, line: 87
-# File: macros/comet.sci, line: 71
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr ""
-#
-# File: macros/color.sci, line: 33
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-#
-# File: macros/edit_curv.sci, line: 69
-# File: macros/comet3d.sci, line: 128
-# File: macros/colordef.sci, line: 33
-# File: macros/colordef.sci, line: 47
-# File: macros/colordef.sci, line: 72
-# File: macros/comet.sci, line: 105
-# File: macros/legend.sci, line: 51
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_xlfont.c, line: 180
@@ -1241,28 +684,12 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_zoom_rect.c, line: 144
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
+msgid "%s: Wrong value for input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 #
-# File: sci_gateway/c/sci_set.c, line: 295
+# File: sci_gateway/c/sci_set.c, line: 303
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid property expected.\n"
-msgstr ""
-#
-# File: macros/plot3d2.sci, line: 61
-# File: macros/polarplot.sci, line: 53
-#, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
-msgstr ""
-#
-# File: macros/fplot2d.sci, line: 42
-#, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: sci_gateway/c/sci_plot3d.c, line: 143
@@ -1273,8 +700,7 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_plot3d.c, line: 138
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_data_property.c, line: 293
@@ -1283,64 +709,15 @@ msgstr ""
 msgid "%s: Wrong value: Vector is not monotonous.\n"
 msgstr ""
 #
-# File: macros/color.sci, line: 20
-#, c-format
-msgid "%s: Wrong values for input argument #%d: ''%s'' expected.\n"
-msgstr ""
-#
-# File: macros/histplot.sci, line: 95
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
-#
-# File: macros/%h_save.sci, line: 38
-#, c-format
-msgid "%s: handle no more valid ignored.\n"
-msgstr ""
-#
 # File: src/c/SetProperty.c, line: 2782
 #, c-format
 msgid "%s: please use %s instead.\n"
-msgstr ""
-#
-# File: macros/datatips/datatipManagerMode.sci, line: 45
-#, c-format
-msgid "%s: too many input arguments"
 msgstr ""
 #
 # File: src/c/sciCall.c, line: 632
 # File: src/c/sciCall.c, line: 664
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
-msgstr ""
-#
-# File: macros/getlinestyle.sci, line: 19
-# File: macros/getmark.sci, line: 25
-# File: macros/getcolor.sci, line: 77
-msgid "&?"
-msgstr ""
-#
-# File: macros/getlinestyle.sci, line: 17
-# File: macros/getfont.sci, line: 39
-# File: macros/getmark.sci, line: 23
-# File: macros/getcolor.sci, line: 76
-msgid "&Edit"
-msgstr ""
-#
-# File: macros/getlinestyle.sci, line: 16
-# File: macros/getfont.sci, line: 41
-# File: macros/getmark.sci, line: 22
-# File: macros/getcolor.sci, line: 74
-msgid "&File"
-msgstr ""
-#
-# File: macros/getlinestyle.sci, line: 18
-# File: macros/getfont.sci, line: 40
-# File: macros/getmark.sci, line: 24
-# File: macros/getcolor.sci, line: 75
-msgid "&Tools"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_current_figure_property.c, line: 59
@@ -1558,16 +935,8 @@ msgstr ""
 msgid "'%s' property does not exist for this handle.\n"
 msgstr ""
 #
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 72
-msgid "... as well as very tiny radii"
-msgstr ""
-#
 # File: src/c/DestroyObjects.c, line: 179
 msgid "A Label object cannot be deleted.\n"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 49
-msgid "A partial viewport may be set with clipping"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_surface_color_property.c, line: 67
@@ -1575,21 +944,9 @@ msgstr ""
 msgid "Argument #%d must have %d elements.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 208
-msgid "Autumn"
-msgstr ""
-#
 # File: src/c/Format.c, line: 1388
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 60
-msgid "Big radii are supported..."
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 224
-msgid "Bone"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_data_property.c, line: 253
@@ -1605,27 +962,12 @@ msgstr ""
 msgid "Can not set directly a label object.\n"
 msgstr ""
 #
-# File: macros/getcolor.sci, line: 129
-# File: macros/getcolor.sci, line: 132
-msgid "Cancel"
-msgstr ""
-#
 # File: src/c/getHandleProperty/set_children_property.c, line: 29
 msgid "Children property can not be modified directly.\n"
 msgstr ""
 #
 # File: src/c/ColorMapManagement.c, line: 41
-msgid ""
-"Color matrix is NULL: Can not build color scaled linearly into the current "
-"colormap"
-msgstr ""
-#
-# File: macros/getcolor.sci, line: 161
-msgid "Color number"
-msgstr ""
-#
-# File: demos/2d_3d_plots/plotyyy.dem.sce, line: 27
-msgid "Common X axis"
+msgid "Color matrix is NULL: Can not build color scaled linearly into the current colormap"
 msgstr ""
 #
 # File: src/c/GetProperty.c, line: 3304
@@ -1633,24 +975,6 @@ msgstr ""
 # File: src/c/GetProperty.c, line: 3346
 # File: src/c/GetProperty.c, line: 3371
 msgid "Coordinates modifications are only applicable on axes objects.\n"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 240
-msgid "Copper"
-msgstr ""
-#
-# File: demos/cmplxfunc/demo_custom.dem.sce, line: 56
-msgid "Customize your complex function"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 45
-msgid "Data on the full circle ..."
-msgstr ""
-#
-# File: macros/datatips/datatipInitStruct.sci, line: 50
-msgid ""
-"Data tips cannot be attached to this curve,\n"
-"the user_data field is already used"
 msgstr ""
 #
 # File: src/c/InitObjects.c, line: 159
@@ -1667,50 +991,9 @@ msgstr ""
 msgid "Default figure cannot be create.\n"
 msgstr ""
 #
-# File: macros/datatips/datatipEventhandler.sci, line: 85
-# File: macros/datatips/datatipEventhandler.sci, line: 107
-msgid "Delete all datatips"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 86
-# File: macros/datatips/datatipEventhandler.sci, line: 109
-msgid "Delete all datatips for the selected curve"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 88
-# File: macros/datatips/datatipEventhandler.sci, line: 126
-msgid "Delete last datatip"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 87
-# File: macros/datatips/datatipEventhandler.sci, line: 111
-msgid "Delete nearest datatip"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 95
-# File: macros/datatips/datatipEventhandler.sci, line: 137
-msgid "Disable interpolation"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 89
-# File: macros/datatips/datatipEventhandler.sci, line: 131
-msgid "Edit the curve tip display function"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 97
-# File: macros/datatips/datatipEventhandler.sci, line: 135
-msgid "Enable interpolation"
-msgstr ""
-#
 # File: src/c/DestroyObjects.c, line: 157
 #, c-format
 msgid "Entity with type %d cannot be destroyed.\n"
-msgstr ""
-#
-# File: macros/plot.sci, line: 225
-# File: macros/plot.sci, line: 227
-#, c-format
-msgid "Error %d at line %d of the function: ''%s''"
 msgstr ""
 #
 # File: src/c/HandleManagement.c, line: 658
@@ -1731,13 +1014,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 172
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 193
 #, c-format
-msgid ""
-"Error: data_bounds on %s axis must be strictly positive to switch to "
-"logarithmic mode.\n"
-msgstr ""
-#
-# File: macros/histplot.sci, line: 58
-msgid "Exact gaussian density"
+msgid "Error: data_bounds on %s axis must be strictly positive to switch to logarithmic mode.\n"
 msgstr ""
 #
 # File: src/c/SetProperty.c, line: 1931
@@ -1745,29 +1022,9 @@ msgstr ""
 msgid "Figure name may not contains any %% character, except a single %%d.\n"
 msgstr ""
 #
-# File: macros/histplot.sci, line: 57
-msgid "Gaussian random sample histogram"
-msgstr ""
-#
 # File: src/c/InitObjects.c, line: 466
 #, c-format
 msgid "Graphic window number %d"
-msgstr ""
-#
-# File: etc/graphics.start, line: 28
-msgid "Graphics"
-msgstr ""
-#
-# File: demos/2d_3d_plots/plotyy.dem.sce, line: 37
-msgid "Graphics with 2 different Y-scales"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 144
-msgid "Gray"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 112
-msgid "HSV"
 msgstr ""
 #
 # File: src/c/HandleManagement.c, line: 695
@@ -1796,10 +1053,6 @@ msgstr ""
 msgid "Handle number %d is not or no more valid.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 128
-msgid "Hot"
-msgstr ""
-#
 # File: src/c/BuildObjects.c, line: 1767
 msgid "Impossible case when building axis\n"
 msgstr ""
@@ -1820,43 +1073,9 @@ msgstr ""
 msgid "Internal Error: Loop in graduate1\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 96
-msgid "Jet"
-msgstr ""
-#
-# File: macros/datatips/datatipManagerMode.sci, line: 64
-msgid "Left click on a curve to create a datatip, right opens"
-msgstr ""
-#
-# File: macros/datatips/datatipManagerMode.sci, line: 52
-# File: macros/datatips/datatipManagerMode.sci, line: 75
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
-msgstr ""
-#
-# File: macros/ged.sci, line: 121
-msgid "Left click on a graphic entity to open its property editor"
-msgstr ""
-#
 # File: src/c/SetProperty.c, line: 601
 #, c-format
 msgid "Line width must be greater than %d.\n"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 51
-msgid "Misc"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 100
-# File: macros/datatips/datatipEventhandler.sci, line: 139
-msgid "Multiple datatips mode"
-msgstr ""
-#
-# File: macros/getcolor.sci, line: 161
-msgid "Name"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 55
-msgid "Negative radii are supported:"
 msgstr ""
 #
 # File: src/c/Interaction.c, line: 159
@@ -1899,19 +1118,9 @@ msgstr ""
 msgid "Object #%d is not correctly placed in the hierarchy.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 288
-msgid "Ocean"
-msgstr ""
-#
-# File: macros/getcolor.sci, line: 128
-# File: macros/getcolor.sci, line: 131
-msgid "Ok"
-msgstr ""
-#
 # File: src/c/getHandleProperty/set_old_style_property.c, line: 35
 # File: src/c/getHandleProperty/set_figure_style_property.c, line: 41
-msgid ""
-"Old graphic mode is no longer available. Please refer to the set help page.\n"
+msgid "Old graphic mode is no longer available. Please refer to the set help page.\n"
 msgstr ""
 #
 # File: src/c/GetProperty.c, line: 3619
@@ -1922,42 +1131,12 @@ msgstr ""
 msgid "Parent property can not be modified directly.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 256
-msgid "Pink"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
-msgid ""
-"Please press enter into the Scilab console to see more polarplot examples"
-msgstr ""
-#
 # File: src/c/Format.c, line: 308
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 #
-# File: demos/2d_3d_plots/plotyyy.dem.sce, line: 26
-msgid "Plot with 3 different Y scales at shared X"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 19
-msgid "Press enter to go on..."
-msgstr ""
-#
 # File: src/c/BuildObjects.c, line: 855
 msgid "Problem with sciInitFontContext\n"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 272
-msgid "Rainbow"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 92
-# File: macros/datatips/datatipEventhandler.sci, line: 143
-msgid "Redraw all datatips"
-msgstr ""
-#
-# File: demos/2d_3d_plots/plotyyy.dem.sce, line: 27
-msgid "Scale n1"
 msgstr ""
 #
 # File: src/nographics/nographics.c, line: 75
@@ -1966,30 +1145,6 @@ msgstr ""
 #
 # File: sci_gateway/c/gw_graphics.c, line: 128
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 156
-msgid "Select tip orientation"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 77
-msgid "Several curves may be plotted at the same time"
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 176
-msgid "Spring"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 27
-msgid "Still a single quadrant..."
-msgstr ""
-#
-# File: demos/misc/misc.dem.sce, line: 192
-msgid "Summer"
-msgstr ""
-#
-# File: macros/ged.sci, line: 12
-msgid "Tcl/Tk interface not installed."
 msgstr ""
 #
 # File: src/c/SetProperty.c, line: 928
@@ -2032,22 +1187,6 @@ msgstr ""
 # File: src/c/BuildObjects.c, line: 2172
 # File: src/c/BuildObjects.c, line: 2376
 msgid "The parent has to be a SUBWIN\n"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 269
-msgid "The selected file cannot be executed"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 275
-msgid "The selected file defines more than one function"
-msgstr ""
-#
-# File: macros/datatips/datatipSetDisplay.sci, line: 54
-msgid "The selected function must have 1 output parameter (str)"
-msgstr ""
-#
-# File: macros/datatips/datatipSetDisplay.sci, line: 50
-msgid "The selected function must have 3 input parameters (curve,pt,index)"
 msgstr ""
 #
 # File: src/c/Interaction.c, line: 504
@@ -2099,18 +1238,11 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_interp_color_vector_property.c, line: 59
 #, c-format
-msgid ""
-"Under interpolated color mode the column dimension of the color vector must "
-"match the number of points defining the line (which must be %d or %d).\n"
+msgid "Under interpolated color mode the column dimension of the color vector must match the number of points defining the line (which must be %d or %d).\n"
 msgstr ""
 #
 # File: src/c/SetProperty.c, line: 2518
 msgid "Unhandled data field\n"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 102
-# File: macros/datatips/datatipEventhandler.sci, line: 141
-msgid "Unique datatip mode"
 msgstr ""
 #
 # File: src/c/getHandleProperty/GetHashTable.c, line: 252
@@ -2132,24 +1264,18 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_axes_size_property.c, line: 62
 #, c-format
-msgid ""
-"WARNING: '%s' property can not be modified if the %s is docked with other "
-"elements.\n"
+msgid "WARNING: '%s' property can not be modified if the %s is docked with other elements.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_outside_colors_property.c, line: 60
 # File: src/c/getHandleProperty/set_color_range_property.c, line: 61
 #, c-format
-msgid ""
-"WARNING: Wrong value for '%s' property: indices outside the colormap will be "
-"clamped.\n"
+msgid "WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 71
 #, c-format
-msgid ""
-"Warning: %s has been set by user ; you must first increase the size of the "
-"%s string vector before switching to the new %s mode.\n"
+msgid "Warning: %s has been set by user ; you must first increase the size of the %s string vector before switching to the new %s mode.\n"
 msgstr ""
 #
 # File: src/c/Format.c, line: 1300
@@ -2160,9 +1286,7 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/get_tics_color_property.c, line: 36
 #, c-format
-msgid ""
-"Warning: %s use is deprecated and no more taken into account, use %s "
-"property to edit Axes color.\n"
+msgid "Warning: %s use is deprecated and no more taken into account, use %s property to edit Axes color.\n"
 msgstr ""
 #
 # File: src/c/DrawObjects.c, line: 143
@@ -2184,23 +1308,13 @@ msgstr ""
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 304
-msgid "White"
-msgstr ""
-#
 # File: src/c/BuildObjects.c, line: 1200
 msgid "Width and height must be positive.\n"
 msgstr ""
 #
-# File: demos/misc/misc.dem.sce, line: 160
-msgid "Winter"
-msgstr ""
-#
 # File: src/c/getHandleProperty/set_data_property.c, line: 238
 #, c-format
-msgid ""
-"Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
-"expected.\n"
+msgid "Wrong size for %s element: A %d-by-%d matrix or a vector of size %d expected.\n"
 msgstr ""
 #
 # File: src/c/getHandleProperty/set_data_bounds_property.c, line: 145
@@ -2536,45 +1650,4 @@ msgstr ""
 # File: src/c/getHandleProperty/set_interp_color_mode_property.c, line: 48
 #, c-format
 msgid "You must first specify an %s for this object.\n"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 155
-msgid "automatic"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 66
-msgid "even huge radii, with properly formatted labels..."
-msgstr ""
-#
-# File: macros/histplot.sci, line: 55
-msgid "histplot() : (normalized) histogram plot"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 155
-msgid "lower left"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 155
-msgid "lower right"
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 35
-msgid "on 2 quadrants..."
-msgstr ""
-#
-# File: demos/2d_3d_plots/polarplot.dem.sce, line: 23
-msgid "polarplot(): Only quadrant(s) reached by data are displayed"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 90
-# File: macros/datatips/datatipEventhandler.sci, line: 133
-msgid "select the curve tip display function"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 155
-msgid "upper left"
-msgstr ""
-#
-# File: macros/datatips/datatipEventhandler.sci, line: 155
-msgid "upper right"
 msgstr ""

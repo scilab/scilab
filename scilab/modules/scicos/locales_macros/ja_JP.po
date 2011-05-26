@@ -1,0 +1,978 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 79
+#, c-format
+msgid " %s.mo cannot be compiled\n"
+msgstr " %s.mo を生成できませんでした。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 55
+#, c-format
+msgid " %s.mo compilation forced\n"
+msgstr " %s.mo を強制的に生成しました。\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 76
+#, c-format
+msgid " %s.mo must be recompiled\n"
+msgstr " %s.mo は生成されなくてはなりません。\n"
+
+msgid " Scilab is in no gui mode : Scicos is unavailable"
+msgstr " Scilab が GUIモードではありません: Scicos は使用できません"
+
+#, c-format
+msgid "%s is not a valid directory\n"
+msgstr "%s は有効なディレクトリではありません.\n"
+
+#, c-format
+msgid "%s is not a valid name, please change the title of the diagram."
+msgstr "%s は有効な名前ではありません, 図のタイトルを変更してください."
+
+#, c-format
+msgid "%s: Cannot find any MO files in the following location: %s.\n"
+msgstr "%s: MOファイルが以下の場所で見つかりませんでした: %s.\n"
+
+#, c-format
+msgid "%s: Diagram does not compile in pass %d.\n"
+msgstr "%s: 図形をパス %d でコンパイルできません.\n"
+
+#
+# File: macros/scicos_scicos/build_block.sci, line: 31
+#, c-format
+msgid "%s: Error: A scifunc block has not been defined."
+msgstr "%s: エラー: scifuncブロックは、定義されませんでした。"
+
+#
+# File: macros/scicos_scicos/MODCOM.sci, line: 83
+# File: macros/scicos_scicos/build_block.sci, line: 75
+# File: macros/scicos_scicos/compile_modelica.sci, line: 28
+#, c-format
+msgid "%s: Error: Modelica compiler (MODELICAC) is unavailable."
+msgstr "%s: エラー: Modelica(MODELICAC)コンパイラーは有効でありません。"
+
+#, c-format
+msgid "%s: First argument must be a Scicos diagram data structure\n"
+msgstr "%s: 最初の引数は、Scicos 図形データ構造体でなくてはなりません\n"
+
+#, c-format
+msgid "%s: Input ports are not numbered properly.\n"
+msgstr "%s: 入力ポートの番号付けが間違っています.\n"
+
+#, c-format
+msgid "%s: Output ports are not numbered properly.\n"
+msgstr "%s: 出力ポートの番号付けが間違っています.\n"
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 120
+# File: macros/scicos_auto/lincos.sci, line: 131
+#, c-format
+msgid "%s: Unable to find diagram inputs\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 123
+# File: macros/scicos_auto/lincos.sci, line: 134
+#, c-format
+msgid "%s: Unable to find diagram outputs\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 82
+# File: macros/scicos_auto/lincos.sci, line: 95
+#, c-format
+msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 181
+#, c-format
+msgid "%s: Wrong number of input arguments. Must be between %d and %d.\n"
+msgstr "%s: 入力引数の数が不正です: %d と %d の間である必要があります。\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 104
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single integer expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#
+# File: macros/scicos_auto/lincos.sci, line: 180
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d.\n"
+msgstr "%s: 入力引数 #%d と #%d で不正なサイズです。\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 115
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/steadycos.sci, line: 85
+# File: macros/scicos_auto/lincos.sci, line: 98
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A diagram expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 119
+# File: macros/scicos_auto/scicos_simulate.sci, line: 123
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 131
+# File: macros/scicos_utils/block_parameter_error.sci, line: 24
+# File: macros/scicos_utils/block_parameter_error.sci, line: 27
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 127
+#, c-format
+msgid "%s: Wrong value for input argument #%d: ''%s'' expected.\n"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 54
+# File: macros/scicos_scicos/do_palettes.sci, line: 92
+# File: macros/scicos_scicos/menu_stuff.sci, line: 28
+msgid "&?"
+msgstr "その他(&?)"
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 52
+# File: macros/scicos_scicos/do_palettes.sci, line: 90
+# File: macros/scicos_scicos/menu_stuff.sci, line: 26
+msgid "&Edit"
+msgstr "編集(&E)"
+
+#
+# File: macros/scicos_scicos/menu_stuff.sci, line: 25
+msgid "&File"
+msgstr "ファイル(&F)"
+
+#
+# File: macros/scicos_scicos/do_load_as_palette.sci, line: 53
+# File: macros/scicos_scicos/do_palettes.sci, line: 91
+# File: macros/scicos_scicos/menu_stuff.sci, line: 27
+msgid "&Tools"
+msgstr "ツール(&T)"
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 140
+#, c-format
+msgid "&nbsp; %s input port size is: %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 139
+#, c-format
+msgid "&nbsp; %s output port size is: %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 110
+#, c-format
+msgid "&nbsp;Input port %s size is: %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 114
+# File: macros/scicos_scicos/bad_connection.sci, line: 144
+#, c-format
+msgid "&nbsp;Input port %s type is: %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 109
+#, c-format
+msgid "&nbsp;Output port %s size is: %s"
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 113
+# File: macros/scicos_scicos/bad_connection.sci, line: 143
+#, c-format
+msgid "&nbsp;Output port %s type is: %s"
+msgstr ""
+
+msgid "''scicos'' is no more available, please use ''xcos'' instead.\n"
+msgstr "''scicos''は利用できません、代わりに''xcos'' を使ってください。\n"
+
+msgid "?"
+msgstr "ヘルプ"
+
+msgid "About Scicos"
+msgstr "Scicosについて"
+
+msgid "Activate Scilab Window"
+msgstr "Scilabウインドウをアクティブにする"
+
+msgid "Add a new color at the Scicos palette"
+msgstr "Scicosパレットで新しい色を加えて下さい"
+
+msgid "Add color"
+msgstr "色の追加"
+
+msgid "Add new block"
+msgstr "新しいブロックの追加"
+
+msgid "Align"
+msgstr "整列"
+
+msgid "An Atomic Superblock cannot contain sample clocks"
+msgstr "Atomic スーパーブロックはサンプルクロックを有することができません."
+
+msgid "An error occur when evaluating context:"
+msgstr "コンテキストを評価する際にエラーが発生しました:"
+
+#, c-format
+msgid ""
+"An unexpected  error occurred while executing the menu\n"
+"%s:\n"
+msgstr ""
+"メニューを実行中に予期しないエラーが発生しました\n"
+"%s:\n"
+
+msgid "Analyze Diagram"
+msgstr "図形を分析"
+
+msgid "Atomic"
+msgstr "Atomic"
+
+msgid "Available Parameters"
+msgstr "使用可能なパラメータ"
+
+msgid "Background color"
+msgstr "背景色"
+
+msgid "Background color ? :"
+msgstr "背景色 ? :"
+
+msgid "Block Documentation"
+msgstr "ブロック資料"
+
+msgid "Block ID font name"
+msgstr "ブロックID フォント名"
+
+msgid "Block ID font size"
+msgstr "ブロックID フォントサイズ"
+
+msgid "BrowseTo"
+msgstr "ブラウズする"
+
+msgid "Browser"
+msgstr "ブラウズ"
+
+msgid "C Code Generation"
+msgstr "Cコード生成"
+
+msgid "Calc"
+msgstr "Calc(計算)"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 209
+msgid "Can''t convert old diagram (problem in version)"
+msgstr ""
+
+msgid "Choose export format:"
+msgstr "エクスポート・フォーマットを選択:"
+
+msgid "Click block to label"
+msgstr "ブロックをクリックしてラベルへ"
+
+msgid "Click block to resize"
+msgstr "ブロックをクリックしてリサイズへ"
+
+msgid "Click object to move, drag and click (left to fix, right to cancel)"
+msgstr ""
+"オブジェクトをクリックして動作、ドラッグしてクリック(左ボタン:確定、右ボタン:"
+"キャンセル)"
+
+msgid ""
+"Click on a Super Block (without activation output) to obtain a coded block!"
+msgstr ""
+"スーパ・ブロックをクリックして(活動化出力無しで)コード化されたブロックを取得"
+"します!"
+
+msgid "Click on a block to set or get its documentation"
+msgstr "文書を設定または取得するブロックをクリックしてください"
+
+msgid "Click on a port of object to be moved"
+msgstr "ポートをクリックし, 移動するオブジェクトのポートをクリック"
+
+msgid "Click on a super block"
+msgstr "スーパ・ブロックをクリックします"
+
+msgid "Click on an object to set or get identification"
+msgstr "オブジェクトをクリックして識別をセットするかまたは取得します"
+
+msgid "Click on block to  open graphic icon editor"
+msgstr "ブロックをクリックしてグラフィック・アイコン編集を開きます"
+
+msgid "Click on block to be flipped"
+msgstr "ブロックをクリックして返します"
+
+msgid "Click on block to be turned left"
+msgstr "ブロックをクリックして左回転します"
+
+msgid "Click on block to be turned right"
+msgstr "ブロックをクリックして右回転します"
+
+msgid "Click on block to edit its icon"
+msgstr "ブロックをクリックしてアイコンを編集します"
+
+msgid "Click on object  to get information on it"
+msgstr "オブジェクトをクリックして関係する情報を取得します"
+
+msgid "Click on object to choose its color"
+msgstr "オブジェクトをクリックして色を選択します"
+
+msgid ""
+"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgstr ""
+"複製するオブジェクトをクリックして下さい、ドラッグしてクリック(左でコピー、右"
+"でキャンセル)"
+
+msgid "Click to open block or make a link"
+msgstr "クリックしてブロックを開くか、またはリンクを作って下さい"
+
+msgid "Click where you want object to be placed (right-click to cancel)"
+msgstr "オブジェクトを置きたい場所でクリックします(右クリックで取り消し)"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "Code Generation only works for a Superblock !\n"
+msgstr "コード生成は、スーパー・ブロックのために働きます !\n"
+
+msgid "Code generation applies only to Super Blocks."
+msgstr "コード生成は、スーパー・ブロックにのみ適合します。"
+
+msgid "Color"
+msgstr "色"
+
+msgid "Compile"
+msgstr "コンパイル"
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 82
+# File: macros/scicos_scicos/bad_connection.sci, line: 85
+# File: macros/scicos_scicos/bad_connection.sci, line: 110
+# File: macros/scicos_scicos/bad_connection.sci, line: 114
+# File: macros/scicos_scicos/bad_connection.sci, line: 140
+# File: macros/scicos_scicos/bad_connection.sci, line: 144
+msgid "Connection error"
+msgstr ""
+
+msgid "Context"
+msgstr "コンテキスト"
+
+msgid "Copy"
+msgstr "コピー"
+
+msgid "Create Atomic"
+msgstr "アトミック生成"
+
+msgid "Create Mask"
+msgstr "マスク生成"
+
+msgid "CtrlSelect"
+msgstr "コントロール選択"
+
+msgid "Customize Mask"
+msgstr "マスクをカスタマイズ"
+
+msgid "Customize block GUI:"
+msgstr "ブロックGUIをカスタマイズ:"
+
+msgid "Cut"
+msgstr "切り取り"
+
+msgid "Cut: Click on the object to cut"
+msgstr "切り取り: 対象のオブジェクトをクリックしてください"
+
+msgid "Debug Level"
+msgstr "デバッグ・レベル"
+
+msgid "Default link colors"
+msgstr "リンク色初期値"
+
+msgid "Default window parameters"
+msgstr "ウインドウ・パラメータ初期値"
+
+msgid "Defined shortcuts"
+msgstr "定義されたショートカット"
+
+msgid "Delete"
+msgstr "削除"
+
+msgid "Delete: Click on the object to delete"
+msgstr "削除: 対象のオブジェクトをクリックしてください"
+
+msgid "Demos"
+msgstr "デモ"
+
+msgid "Details"
+msgstr "詳細"
+
+msgid "Diagram"
+msgstr "図形"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 290
+msgid ""
+"Diagram has been compiled for explicit solver\n"
+"switching to explicit solver"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 285
+msgid ""
+"Diagram has been compiled for implicit solver\n"
+"switching to implicit solver"
+msgstr ""
+
+msgid "Done\n"
+msgstr "完了\n"
+
+msgid "Drag, click left for final or intermediate points or right to cancel"
+msgstr "ドラッグ、左クリックは取り消す最終または中間の点、または右でキャンセル"
+
+msgid "Duplicate"
+msgstr "重複"
+
+msgid "Edit"
+msgstr "編集"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 367
+msgid "End problem: "
+msgstr ""
+
+msgid "Error\n"
+msgstr "エラー\n"
+
+msgid "Eval"
+msgstr "Eval(評価)"
+
+msgid "Event links color? :"
+msgstr "イベント・リンク 色? :"
+
+msgid "Exit"
+msgstr "出口"
+
+msgid "Export"
+msgstr "エクスポート"
+
+msgid "Export All"
+msgstr "全てエクスポート"
+
+#, c-format
+msgid "Export in file %s failed\n"
+msgstr "ファイル %s エクスポートで失敗しました\n"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Fit diagram to figure"
+msgstr "適当な図形構造"
+
+msgid "Flip"
+msgstr "反転"
+
+msgid "Following palette(s) ignored (associated file(s) no more exist):"
+msgstr "以下のパレットは無視されました(関連したファイルはもはや存在しません):"
+
+msgid "Foreground color ? :"
+msgstr "前景色"
+
+msgid "Format"
+msgstr "フォーマット"
+
+msgid "Free"
+msgstr "解放"
+
+msgid "Get Info"
+msgstr "情報取得"
+
+msgid "Help"
+msgstr "ヘルプ"
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 85
+msgid "Highlighted block has connected ports<br />with  incompatible types."
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 82
+msgid "Highlighted block has connected ports<br />with incompatible sizes."
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 108
+# File: macros/scicos_scicos/bad_connection.sci, line: 138
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgstr ""
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 112
+# File: macros/scicos_scicos/bad_connection.sci, line: 142
+msgid ""
+"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgstr ""
+
+msgid "ID font definitions"
+msgstr "IDフォント定義"
+
+msgid "ID fonts"
+msgstr "IDフォント"
+
+msgid "Icon"
+msgstr "アイコン"
+
+msgid "Icon Editor"
+msgstr "アイコン編集"
+
+msgid "Identification"
+msgstr "識別"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 319
+msgid "Initialisation problem:"
+msgstr ""
+
+msgid "It is impossible to set ID for this type of object"
+msgstr "このオブジェクトの型にIDを設定することができません"
+
+msgid "Label"
+msgstr "ラベル"
+
+msgid "Link"
+msgstr "リンク"
+
+msgid "Link ID font name"
+msgstr "リンクID フォント名"
+
+msgid "Link ID font size"
+msgstr "リンクID フォントサイズ"
+
+msgid "Link parameters"
+msgstr "リンクパラメータ"
+
+msgid "Load as Palette"
+msgstr "パレットとしてロード"
+
+msgid "Mask"
+msgstr "マスク"
+
+msgid "Mask can only be created for Super Blocks."
+msgstr "マスクは、スーパ・ブロックのために作ることができます。"
+
+msgid "Modelica initialize"
+msgstr "原型の初期化"
+
+msgid "Modify title and menu labels."
+msgstr "タイトルとメニュー・ラベルを修正して下さい。"
+
+msgid "Move"
+msgstr "移動"
+
+msgid "MoveLink "
+msgstr "リンク移動 "
+
+msgid "Multiple selection cannot be used here"
+msgstr "複数の選択は、ここで使うことができません"
+
+msgid "Navigator window"
+msgstr "ナビゲーター・ウインドウ"
+
+msgid "New"
+msgstr "新規"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "No selected block in the current Scicos window."
+msgstr "現在のScicos ウインドウでブロックを選択しませんでした。"
+
+msgid "Only  blocks can be selected for this operation."
+msgstr "ブロックだけがこの操作で選ぶことができます。"
+
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 34
+msgid "Only one block can be selected in current window for this operation."
+msgstr "単一のブロックは、現在のウインドウで選択ができます。"
+
+msgid "Open"
+msgstr "開く"
+
+msgid "Open a Scicos demonstration diagram"
+msgstr "Scicos デモ図形 を開く"
+
+msgid "Open a Scicos diagram"
+msgstr "Scicos 図形 を開く"
+
+msgid "Open/Set"
+msgstr "開く/設定"
+
+msgid "Pal editor"
+msgstr "仲間の編集"
+
+msgid "Palette"
+msgstr "パレット"
+
+msgid "Palettes"
+msgstr "パレット"
+
+msgid "Palettes Tree"
+msgstr "パレット・ツリー"
+
+msgid "Paste"
+msgstr "貼り付け"
+
+msgid "Place in Diagram"
+msgstr "図形の場所"
+
+msgid "PlaceinBrowser"
+msgstr "ブラウザの場所"
+
+msgid "PlaceinDiagram"
+msgstr "図形の場所"
+
+msgid "Please report"
+msgstr "報告してください"
+
+msgid "Popup"
+msgstr "ポップアップ"
+
+msgid ""
+"Press left mouse button, drag region and release (right button to cancel)"
+msgstr ""
+"マウスの左ボタンを押し,リージョンをドラッグし,離してください (右ボタンでキャ"
+"ンセル)"
+
+msgid "Problem saving a backup; I cannot activate Scilab\n"
+msgstr "バックアップ保存の問題; Scilabを有効にできません\n"
+
+#
+# File: macros/scicos_scicos/genmoc.sci, line: 95
+#, c-format
+msgid "Problem while building library %s\n"
+msgstr "ライブラリ %s の構築中に問題がありました。\n"
+
+#
+# File: macros/scicos_scicos/bad_connection.sci, line: 164
+msgid "Problem with the block generated from modelica blocks."
+msgstr ""
+
+msgid "Properties"
+msgstr "プロパティ"
+
+msgid "Purge"
+msgstr "浄化"
+
+msgid "Region to Palette"
+msgstr "パレットへの領域"
+
+msgid "Region to Super Block"
+msgstr "スーパー・ブロックへの領域"
+
+msgid "Regular links color ? :"
+msgstr "正規のリンク色 ? :"
+
+msgid "Remove Atomic"
+msgstr "原子除去"
+
+msgid "Remove Mask"
+msgstr "マスク除去"
+
+msgid "Rename"
+msgstr "名前変更"
+
+msgid "Replot"
+msgstr "再プロット"
+
+#, c-format
+msgid "Requested action: %s is not available"
+msgstr "アクションの要求: %s は有効ではありません。"
+
+msgid "Resize"
+msgstr "リサイズ"
+
+msgid "Resize is allowed only for Blocks or Links."
+msgstr "リサイズは、ブロックまたはリンクのためだけに許されます。"
+
+msgid "Rotate Left"
+msgstr "左循環"
+
+msgid "Rotate Right"
+msgstr "右循環"
+
+msgid "Run"
+msgstr "実行"
+
+msgid "Save"
+msgstr "保存"
+
+msgid "Save As"
+msgstr "名前を付けて保存"
+
+msgid "Save Block GUI"
+msgstr "ブロックGUI保存"
+
+msgid "Save as Interf Func"
+msgstr "干渉関数として保存"
+
+msgid "Save as Palette"
+msgstr "パレットとして保存"
+
+msgid "Scicos Documentation"
+msgstr "Scicos ドキュメント"
+
+#, c-format
+msgid "Scicos version %s\n"
+msgstr "Scicos バージョン %s\n"
+
+#, c-format
+msgid "Scilab Graphics of %s"
+msgstr "%s のScilabグラフィック"
+
+msgid "Select a block."
+msgstr "ブロック選択"
+
+msgid "Select a directory path"
+msgstr "ディレクトリPATH選択"
+
+msgid "SelectAll"
+msgstr "全て選択"
+
+msgid "SelectLink  "
+msgstr "リンク選択  "
+
+msgid "SelectRegion"
+msgstr "領域選択"
+
+msgid "Set Block identification"
+msgstr "ブロック・識別設定"
+
+msgid "Set Block sizes"
+msgstr "ブロック・サイズ設定"
+
+msgid "Set Diagram Info"
+msgstr "図形情報の設定"
+
+msgid "Set grid"
+msgstr "グリッド設定"
+
+msgid "Set link Identification"
+msgstr "リンク・識別設定"
+
+msgid "Set link edition mode"
+msgstr "リンク・編集モード設定"
+
+msgid "Setup"
+msgstr "設定"
+
+msgid "Shortcuts"
+msgstr "ショートカット"
+
+msgid "Show Block Shadow"
+msgstr "ブロック影表示"
+
+msgid "Simulate"
+msgstr "シミュレーション"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 314
+msgid "Simulation parameters not set:"
+msgstr ""
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 336
+msgid "Simulation problem: "
+msgstr ""
+
+msgid "Smart"
+msgstr "スマート"
+
+msgid "Smart Move"
+msgstr "スマート動作"
+
+msgid "Smart move does not work yet with multiple selection"
+msgstr "スマート動作は複数の選択でもう作業できません"
+
+msgid "Sorry file name not defined in "
+msgstr "すみません、ファイル名は定義されていません "
+
+msgid "Sorry: Only C or FORTRAN languages are supported"
+msgstr "すみません: C か FORTRAN言語のみがサポートされています"
+
+msgid "Stop"
+msgstr "停止"
+
+#
+# File: macros/scicos_scicos/do_icon_edit.sci, line: 67
+msgid "The current icon depends on block parameter\n"
+msgstr "現在のアイコンは、ブロック・パラメーターに依存します\n"
+
+#, c-format
+msgid "The key %s is already in use for %s"
+msgstr "キー %1$s は、すでに %2$s のため使われています。"
+
+#, c-format
+msgid "The key %s is not a valid letter"
+msgstr "キー %s は、妥当な文ではありません"
+
+#, c-format
+msgid ""
+"The parameter(s) %s \n"
+"must be defined in the"
+msgstr ""
+"パラメーター%s\n"
+"が定義されなくてはいけません"
+
+#
+# File: macros/scicos_scicos/script2var.sci, line: 69
+#, c-format
+msgid "The variable name %s cannot be used as block parameter: ignored"
+msgstr ""
+
+msgid "Thickness"
+msgstr "厚さ"
+
+msgid "This block is not masked."
+msgstr "このブロックはマスクされていません。"
+
+msgid "This window is not an active palette"
+msgstr "このウインドウは、有効なパレットではありません"
+
+msgid "This window is not an active scicos window"
+msgstr "このウインドウは、有効なscicosウインドウではありません"
+
+msgid "Title of the GUI"
+msgstr "GUIのタイトル"
+
+msgid "TkPopup "
+msgstr "TkPopup "
+
+#, c-format
+msgid "To avoid this message, please update the %s.scicos_pal file."
+msgstr ""
+"メッセージを避けるために、どうぞ %s を更新して下さい。scicos_pal ファイル"
+
+msgid "To reactivate Scicos, click on a diagram or type scicos();\n"
+msgstr "Scicosを復活させるため、図形または型scicos()をクリックして下さい;\n"
+
+msgid "Toggle grid"
+msgstr "トグル・グリッド"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Type"
+msgstr "型"
+
+msgid "Type not recognized"
+msgstr "認められない型"
+
+msgid "Undo"
+msgstr "元に戻す"
+
+msgid "Up To Main Diagram"
+msgstr "主な図形まで"
+
+msgid "Use 3D aspect?"
+msgstr "3Dを使っていますか?"
+
+msgid "View"
+msgstr "ビュー"
+
+#, c-format
+msgid "Warning %d menus have identical name %s\n"
+msgstr "警告 %d メニューは、同一の名前 %s を持っています\n"
+
+#
+# File: macros/scicos_auto/scicos_simulate.sci, line: 250
+#, c-format
+msgid ""
+"Warning the variable %s do not match any context variable name\n"
+"ignored"
+msgstr ""
+
+#
+# File: macros/scicos_utils/block_parameter_error.sci, line: 31
+msgid "Xcos block parameter error"
+msgstr ""
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "Your diagram is not saved. Do not quit Scilab or "
+msgstr "あなたの図形は保存されません。また、Scilabを終わらせない "
+
+msgid "Zoom in"
+msgstr "ズーム・イン"
+
+msgid "Zoom out"
+msgstr "ズーム・アウト"
+
+msgid "current choice is "
+msgstr "現在の選択 "
+
+msgid "height"
+msgstr "高さ"
+
+msgid "scs_show active..."
+msgstr "scs_show 有効..."
+
+msgid "width"
+msgstr "幅"

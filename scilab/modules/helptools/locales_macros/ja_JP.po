@@ -1,0 +1,357 @@
+# Japanese translation for scilab
+# Copyright (c) 2009 Rosetta Contributors and Canonical Ltd 2009
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2009.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2011-03-09 11:38+0100\n"
+"PO-Revision-Date: 2011-04-04 22:09+0100\n"
+"Last-Translator: Rui Hirokawa <Unknown>\n"
+"Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: Japan\n"
+"X-Poedit-Language: Japanese\n"
+
+#
+# File: macros/xmltoformat.sci, line: 327
+# File: macros/xmltoformat.sci, line: 342
+# File: macros/xmltoformat.sci, line: 363
+# File: macros/xmltoformat.sci, line: 411
+# File: macros/xmltoformat.sci, line: 615
+# File: macros/xmltoformat.sci, line: 714
+# File: macros/xmltoformat.sci, line: 729
+# File: macros/xmltoformat.sci, line: 748
+#, c-format
+msgid "\t%s\n"
+msgstr "\t%s\n"
+
+#
+# File: macros/xmlfiletohtml.sci, line: 66
+#, c-format
+msgid "\tProcessing file %s.xml\n"
+msgstr "\tファイル %s.xml 加工\n"
+
+#
+# File: macros/xmltoformat.sci, line: 391
+msgid ""
+"\n"
+"Building master documents:\n"
+msgstr ""
+"\n"
+"マスタードキュメントの構築:\n"
+
+#
+# File: macros/xmltoformat.sci, line: 383
+#, c-format
+msgid ""
+"\n"
+"Building the Scilab manual master document for %s.\n"
+msgstr ""
+"\n"
+"%sのScilabマニュアル マスタードキュメントを構築。\n"
+
+#
+# File: macros/xmltoformat.sci, line: 562
+# File: macros/xmltoformat.sci, line: 679
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s] in %s.\n"
+msgstr ""
+
+#
+# File: macros/xmltoformat.sci, line: 674
+#, c-format
+msgid ""
+"\n"
+"Building the manual file [%s].\n"
+msgstr ""
+
+#
+# File: macros/xmltoformat.sci, line: 391
+msgid ""
+"\n"
+"Building the master document:\n"
+msgstr ""
+"\n"
+"マスタードキュメントの構築:\n"
+
+#, c-format
+msgid "%02d-%02d-%04d"
+msgstr "%02d-%02d-%04d"
+
+#
+# File: macros/xmltoformat.sci, line: 499
+# File: macros/xmltoformat.sci, line: 580
+# File: macros/xmltoformat.sci, line: 675
+#, c-format
+msgid "%s: %s file hasn''t been moved in the %s directory."
+msgstr "%s: %sファイルは、%sディレクトリーで動かせませんでした。"
+
+#
+# File: macros/xmltoformat.sci, line: 491
+# File: macros/xmltoformat.sci, line: 572
+# File: macros/xmltoformat.sci, line: 667
+#, c-format
+msgid "%s: %s has not been generated."
+msgstr "%s: %s は構築できませんでした。"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません。\n"
+
+#
+# File: macros/clean_help.sci, line: 72
+# File: macros/clean_help.sci, line: 87
+# File: macros/clean_help.sci, line: 100
+# File: macros/xmltoformat.sci, line: 228
+# File: macros/xmltoformat.sci, line: 243
+# File: macros/xmltoformat.sci, line: 256
+# File: macros/xmltoformat.sci, line: 483
+# File: macros/xmltoformat.sci, line: 510
+# File: macros/xmltoformat.sci, line: 564
+# File: macros/xmltoformat.sci, line: 591
+# File: macros/xmltoformat.sci, line: 659
+# File: macros/xmltoformat.sci, line: 686
+#, c-format
+msgid "%s: Directory %s does not exist or read access denied."
+msgstr ""
+"%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
+
+#, c-format
+msgid "%s: File skipped %s."
+msgstr "%s: ファイル %s はスキップされました 。"
+
+#
+# File: macros/clean_help.sci, line: 44
+# File: macros/xmltoformat.sci, line: 60
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+
+#
+# File: macros/xmltoformat.sci, line: 857
+#, c-format
+msgid "%s: Please check %s, number of modules is invalid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Processing file: %s\n"
+msgstr "%s: 加工ファイル: %s\n"
+
+#, c-format
+msgid "%s: Processing file: %s to %s\n"
+msgstr "%1$s: 加工ファイル: %3$s への %2$s\n"
+
+#, c-format
+msgid "%s: Reading from directory %s\n"
+msgstr "%s: ディレクトリ　%s からの読み込み\n"
+
+#, c-format
+msgid "%s: The 2 mlist must not have any field in common .\n"
+msgstr "%s: 2 mlistは、共通のフィールドを持てません。\n"
+
+#, c-format
+msgid "%s: The CHAPTER file is not well formated at line %d\n"
+msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされません\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: ファイル %s は存在しません。\n"
+
+#
+# File: macros/help.sci, line: 42
+#, c-format
+msgid "%s: The help browser is disabled in %s mode.\n"
+msgstr "%s: %s モードで、ヘルプブラウザは無効にされます。\n"
+
+#, c-format
+msgid "%s: The last_successful_build file is not well formated at line %d\n"
+msgstr ""
+"%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
+
+#
+# File: macros/xmltochm.sci, line: 13
+#, c-format
+msgid "%s: This function is only supported on Windows platforms.\n"
+msgstr "%s: この関数はWindowsプラットホームだけをサポートします。\n"
+
+#
+# File: macros/xmltochm.sci, line: 33
+# File: macros/xmltohtml.sci, line: 28
+# File: macros/xmltojar.sci, line: 28
+# File: macros/xmltopdf.sci, line: 28
+# File: macros/xmltops.sci, line: 28
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: 入力引数(s)で不正な値: すくなくとも %d を想定します。\n"
+
+#
+# File: macros/manedit.sci, line: 16
+#, c-format
+msgid "%s: Wrong number of input argument: %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d を想定します。\n"
+
+#
+# File: macros/clean_help.sci, line: 44
+# File: macros/xmltoformat.sci, line: 60
+#, c-format
+msgid "%s: Wrong number of input argument: %d to %d expected.\n"
+msgstr "%1$s: 入力引数で不正な数: %3$d への %2$d を想定します。\n"
+
+# File: macros/apropos.sci, line: 13
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d を想定します。\n"
+
+#
+# File: macros/clean_help.sci, line: 44
+# File: macros/xmltoformat.sci, line: 60
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: 入力引数で不正な値: %d から %d を想定します。\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 単一文字列を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 真偽値を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
+
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 134
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 文字配列を想定します。\n"
+
+#
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80
+# File: sci_gateway/cpp/sci_buildDoc.cpp, line: 134
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgstr "%s: 入力引数 #%d で不正な型: 行列志向型のリストを想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定しま"
+"す。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
+"expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: CHAPTERで文字列の終了を想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing directory is "
+"expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るファイルを想定します。\n"
+
+#
+# File: macros/help.sci, line: 24
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: 既にあるディレクトリを想定します。\n"
+
+#, c-format
+msgid "%s: help file(.jar) is not installed.\n"
+msgstr "%s: ヘルプファイル(.jar) がインストールされていません.\n"
+
+#, c-format
+msgid "%s: hhc.exe not found.\n"
+msgstr "%s: hhc.exe が見つかりません。\n"
+
+#
+# File: macros/xmltoformat.sci, line: 491
+# File: macros/xmltoformat.sci, line: 572
+# File: macros/xmltoformat.sci, line: 667
+#, c-format
+msgid "%s: no file generate.\n"
+msgstr "%s: ファイル生成なし。\n"
+
+#, c-format
+msgid "%s: processed %i files.\n"
+msgstr "%s: 加工された %i ファイル。\n"
+
+#
+# File: macros/clean_help.sci, line: 112
+msgid "-- Deleting help files --\n"
+msgstr "-- ヘルプファイルを削除 --\n"
+
+#
+# File: macros/xmltoformat.sci, line: 439
+msgid "Building the scilab manual file ["
+msgstr "scilabマニュアル・ファイルの構築 ["
+
+#
+# File: macros/xmltoformat.sci, line: 157
+msgid "Help chapter"
+msgstr "ヘルプ章"
+
+#
+# File: macros/xmlfiletohtml.sci, line: 99
+#, c-format
+msgid "Warning %s does not follow the dtd"
+msgstr "警告 %s は、dtdに従っていません"
