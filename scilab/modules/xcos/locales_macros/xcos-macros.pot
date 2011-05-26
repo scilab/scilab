@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:49+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/xcosConfigureModelica.sci, line: 27
 #, c-format
@@ -44,9 +44,7 @@ msgstr ""
 #
 # File: macros/getModelicaPath.sci, line: 54
 #, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
+msgid "%s: The directory %s cannot been created, please check if you have write access on this directory.\n"
 msgstr ""
 #
 # File: macros/%diagram_xcos.sci, line: 36
@@ -186,9 +184,7 @@ msgstr ""
 #
 # File: macros/xcosPalAddBlock.sci, line: 118
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: function as string or Block type or "
-"full path string expected.\n"
+msgid "%s: Wrong type for input argument %s: function as string or Block type or full path string expected.\n"
 msgstr ""
 #
 # File: macros/generateBlockImage.sci, line: 74
@@ -234,9 +230,7 @@ msgstr ""
 #
 # File: macros/xcosPalAddBlock.sci, line: 145
 #, c-format
-msgid ""
-"%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) "
-"expected.\n"
+msgid "%s: Wrong value for input argument %s: A valid file format (png, jpg, gif) expected.\n"
 msgstr ""
 #
 # File: macros/xcosPalAddBlock.sci, line: 139
@@ -246,9 +240,7 @@ msgstr ""
 #
 # File: macros/loadXcosLibs.sci, line: 72
 #, c-format
-msgid ""
-"%s: the block %s is no more available, please update the diagram with a "
-"compatible one."
+msgid "%s: the block %s is no more available, please update the diagram with a compatible one."
 msgstr ""
 #
 # File: demos/mechanical_systems.dem.gateway.sce, line: 7

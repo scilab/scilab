@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: src/c/spOutput.c, line: 332
 #, c-format
@@ -22,7 +22,6 @@ msgid ""
 "\n"
 "Density = %2.2lf%%.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 323
 #, c-format
@@ -30,7 +29,6 @@ msgid ""
 "\n"
 "Largest diagonal element = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 309
 #, c-format
@@ -38,7 +36,6 @@ msgid ""
 "\n"
 "Largest element in matrix = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 327
 #, c-format
@@ -46,61 +43,51 @@ msgid ""
 "\n"
 "Largest pivot element = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 731
 #, c-format
 msgid "     Absolute Threshold = %e\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 726
 #, c-format
 msgid "     Average number of elements per row = %lf\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 722
 #, c-format
 msgid "     Average number of fill-ins per row = %lf%%\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 728
 #, c-format
 msgid "     Density = %lf%%\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 721
 #, c-format
 msgid "     Fill-ins = %d\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 719
 #, c-format
 msgid "     Initial average number of elements per row = %lf\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 716
 #, c-format
 msgid "     Initial number of elements = %d\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 732
 #, c-format
 msgid "     Largest Element = %e\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 730
 #, c-format
 msgid "     Relative Threshold = %e\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 733
 #, c-format
@@ -109,26 +96,22 @@ msgid ""
 "\n"
 "\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 724
 #, c-format
 msgid "     Total number of elements = %d\n"
 msgstr ""
-
 #
 # File: src/c/lu.c, line: 121
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 224
 # File: src/c/spOutput.c, line: 226
 #, c-format
 msgid "Columns %1d to %1d.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 177
 #, c-format
@@ -136,103 +119,86 @@ msgid ""
 "MATRIX SUMMARY\n"
 "\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 184
 #, c-format
 msgid "Matrix after factorization:\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 186
 #, c-format
 msgid "Matrix before factorization:\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 180
 #, c-format
 msgid "Matrix has been reordered.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 686
 #, c-format
 msgid "Matrix has not been factored.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 690
 #, c-format
 msgid "Matrix is complex.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 692
 #, c-format
 msgid "Matrix is real.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 335
 #, c-format
 msgid "Number of fill-ins = %1d.\n"
 msgstr ""
-
 #
 # File: src/c/spFactor.c, line: 711
 #, c-format
 msgid "Operation count for inner loop of factorization = %d.\n"
 msgstr ""
-
 #
 # File: src/c/spFactor.c, line: 3011
 #, c-format
 msgid "Pivot found at %1d,%1d using "
 msgstr ""
-
 #
 # File: src/c/spFactor.c, line: 233
 #, c-format
 msgid "Reordering,  Step = %1d\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 178
 #, c-format
 msgid "Size of matrix = %1u x %1u.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 324
 #, c-format
 msgid "Smallest diagonal element = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 310
 #, c-format
 msgid "Smallest element in matrix = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 328
 #, c-format
 msgid "Smallest pivot element = %-1.4lg.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 419
 #, c-format
 msgid "Warning : The following matrix is factored in to LU form.\n"
 msgstr ""
-
 #
 # File: includes/spDefs.h, line: 379
 #, c-format
 msgid "sparse: panic in file `%s' at line %d.\n"
 msgstr ""
-
 #
 # File: src/c/spOutput.c, line: 687
 #, c-format

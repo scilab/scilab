@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/xend.sci, line: 18
 #, c-format
@@ -45,16 +45,12 @@ msgstr ""
 #
 # File: macros/xs2fig.sci, line: 63
 #, c-format
-msgid ""
-"%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH "
-"to be able to use this feature.\n"
+msgid "%s: Unable to locate pstoedit. Please install pstoedit or add it to the PATH to be able to use this feature.\n"
 msgstr ""
 #
 # File: macros/xinit.sci, line: 27
 #, c-format
-msgid ""
-"%s: Wrong number of input argument: String expected with ''%s'', ''%s'', "
-"''%s'' or ''%s'' drivers.\n"
+msgid "%s: Wrong number of input argument: String expected with ''%s'', ''%s'', ''%s'' or ''%s'' drivers.\n"
 msgstr ""
 #
 # File: macros/xs2emf.sci, line: 16
@@ -65,9 +61,7 @@ msgstr ""
 #
 # File: macros/xinit.sci, line: 21
 #, c-format
-msgid ""
-"%s: Wrong number of input arguments: Function has no input argument with "
-"''%s'' or ''%s'' drivers.\n"
+msgid "%s: Wrong number of input arguments: Function has no input argument with ''%s'' or ''%s'' drivers.\n"
 msgstr ""
 #
 # File: macros/xs2emf.sci, line: 22
@@ -91,9 +85,7 @@ msgstr ""
 #
 # File: macros/driver.sci, line: 26
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/xs2fig.sci, line: 52

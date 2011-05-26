@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/recompilefunction.sci, line: 44
 #, c-format
@@ -141,14 +141,12 @@ msgstr ""
 #
 # File: macros/recompilefunction.sci, line: 19
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
+msgid "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
 msgstr ""
 #
 # File: macros/head_comments.sci, line: 22
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
+msgid "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
 msgstr ""
 #
 # File: macros/plotprofile.sci, line: 44

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/h_inf.sci, line: 45
 #, c-format
@@ -230,16 +230,12 @@ msgstr ""
 # File: macros/bode.sci, line: 56
 # File: macros/bode.sci, line: 60
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
-"expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same column dimensions expected.\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 65
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same formal variable names "
-"expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same formal variable names expected.\n"
 msgstr ""
 #
 # File: macros/black.sci, line: 113
@@ -247,17 +243,13 @@ msgstr ""
 # File: macros/gainplot.sci, line: 70
 # File: macros/bode.sci, line: 76
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of elements "
-"expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same number of elements expected.\n"
 msgstr ""
 #
 # File: macros/frep2tf.sci, line: 105
 # File: macros/armax1.sci, line: 54
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
-"expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 90
@@ -267,8 +259,7 @@ msgstr ""
 # File: macros/ddp.sci, line: 57
 # File: macros/ddp.sci, line: 60
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 60
@@ -419,9 +410,7 @@ msgstr ""
 #
 # File: macros/stabil.sci, line: 40
 #, c-format
-msgid ""
-"%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
-"part.\n"
+msgid "%s: System not stabilizable (or detectable) => Stabilizing the stabilizable part.\n"
 msgstr ""
 #
 # File: macros/linfn.sci, line: 229
@@ -559,9 +548,7 @@ msgstr ""
 # File: macros/bode.sci, line: 27
 # File: macros/bode.sci, line: 45
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A row vector with length>%d "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A row vector with length>%d expected.\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 20
@@ -590,9 +577,7 @@ msgstr ""
 # File: macros/g_margin.sci, line: 20
 # File: macros/routh_t.sci, line: 40
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Single input, single output system "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: Single input, single output system expected.\n"
 msgstr ""
 #
 # File: macros/trzeros.sci, line: 22
@@ -612,8 +597,7 @@ msgstr ""
 # File: macros/armac.sci, line: 31
 # File: macros/armac.sci, line: 42
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
+msgid "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr ""
 #
 # File: macros/bloc2ss.sci, line: 181
@@ -623,9 +607,7 @@ msgstr ""
 #
 # File: macros/armac.sci, line: 36
 #, c-format
-msgid ""
-"%s: Wrong size of input argument #%d: Number of columns are incompatible "
-"with %s.\n"
+msgid "%s: Wrong size of input argument #%d: Number of columns are incompatible with %s.\n"
 msgstr ""
 #
 # File: macros/sgrid.sci, line: 49
@@ -639,8 +621,7 @@ msgstr ""
 # File: macros/zgrid.sci, line: 70
 # File: macros/zgrid.sci, line: 74
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d : real floating point array expected\n"
+msgid "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 #
 # File: macros/arma2p.sci, line: 15
@@ -654,9 +635,7 @@ msgstr ""
 # File: macros/trzeros.sci, line: 41
 # File: macros/evans.sci, line: 37
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A linear dynamical system or a "
-"polynomial expected.\n"
+msgid "%s: Wrong type for input argument #%d: A linear dynamical system or a polynomial expected.\n"
 msgstr ""
 #
 # File: macros/bloc2ss.sci, line: 17
@@ -682,22 +661,17 @@ msgstr ""
 # File: macros/plzr.sci, line: 36
 # File: macros/plzr.sci, line: 48
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Array of floating point numbers "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"
 msgstr ""
 #
 # File: macros/hankelsv.sci, line: 19
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Continuous-time linear system "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Continuous-time linear system expected.\n"
 msgstr ""
 #
 # File: macros/obs_gram.sci, line: 50
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr ""
 #
 # File: macros/cont_mat.sci, line: 35
@@ -709,8 +683,7 @@ msgstr ""
 # File: macros/plzr.sci, line: 42
 # File: macros/obsv_mat.sci, line: 26
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
 #
 # File: macros/black.sci, line: 102
@@ -718,9 +691,7 @@ msgstr ""
 # File: macros/gainplot.sci, line: 63
 # File: macros/bode.sci, line: 67
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
-"of floats expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear dynamical system or row vector of floats expected.\n"
 msgstr ""
 #
 # File: macros/invrs.sci, line: 15
@@ -751,15 +722,12 @@ msgstr ""
 # File: macros/lft.sci, line: 39
 # File: macros/kpure.sci, line: 22
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space or a transfer "
-"function expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space or a transfer function expected.\n"
 msgstr ""
 #
 # File: macros/sm2ss.sci, line: 35
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space system expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
 msgstr ""
 #
 # File: macros/syslin.sci, line: 53
@@ -780,8 +748,7 @@ msgstr ""
 #
 # File: macros/hankelsv.sci, line: 13
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: State-space linear system expected.\n"
+msgid "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
 msgstr ""
 #
 # File: macros/cainv.sci, line: 60
@@ -791,15 +758,12 @@ msgstr ""
 #
 # File: macros/syslin.sci, line: 38
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: String, Scalar or empty matrix expected.\n"
 msgstr ""
 #
 # File: macros/routh_t.sci, line: 36
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgid "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 #
 # File: macros/abcd.sci, line: 21
@@ -814,9 +778,7 @@ msgstr ""
 # File: macros/plzr.sci, line: 44
 # File: macros/obsv_mat.sci, line: 28
 #, c-format
-msgid ""
-"%s: Wrong type of input argument #%d: Array of floating point numbers "
-"expected.\n"
+msgid "%s: Wrong type of input argument #%d: Array of floating point numbers expected.\n"
 msgstr ""
 #
 # File: macros/findx0BD.sci, line: 77
@@ -840,8 +802,7 @@ msgstr ""
 # File: macros/nehari.sci, line: 27
 # File: macros/linf.sci, line: 25
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Continuous time system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Continuous time system expected.\n"
 msgstr ""
 #
 # File: macros/copfac.sci, line: 57
@@ -875,15 +836,12 @@ msgstr ""
 # File: macros/nehari.sci, line: 56
 # File: macros/hankelsv.sci, line: 26
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
+msgid "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
 msgstr ""
 #
 # File: macros/evans.sci, line: 40
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Single input, single output system "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: Single input, single output system expected.\n"
 msgstr ""
 #
 # File: macros/copfac.sci, line: 49
@@ -902,15 +860,12 @@ msgstr ""
 #
 # File: macros/lqr.sci, line: 27
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
+msgid "%s: Wrong value for input argument #%d: Time domain must be ''c'' or ''d''.\n"
 msgstr ""
 #
 # File: macros/nyquistfrequencybounds.sci, line: 19
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: second row must be greater than "
-"first one.\n"
+msgid "%s: Wrong value for input argument #%d: second row must be greater than first one.\n"
 msgstr ""
 #
 # File: macros/repfreq.sci, line: 75
@@ -921,8 +876,7 @@ msgstr ""
 #
 # File: macros/armax.sci, line: 71
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
+msgid "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
 msgstr ""
 #
 # File: macros/plzr.sci, line: 21
@@ -941,14 +895,12 @@ msgstr ""
 #
 # File: macros/inistate.sci, line: 55
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Discrete time system expected.\n"
+msgid "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
 msgstr ""
 #
 # File: macros/dtsi.sci, line: 128
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
+msgid "%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
 msgstr ""
 #
 # File: macros/arhnk.sci, line: 23
@@ -958,8 +910,7 @@ msgstr ""
 #
 # File: macros/statgain.sci, line: 30
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
+msgid "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr ""
 #
 # File: macros/statgain.sci, line: 25
@@ -1068,9 +1019,7 @@ msgid "Irreducible Factors of transfer function (click below)"
 msgstr ""
 #
 # File: macros/trfmod.sci, line: 105
-msgid ""
-"Irreducible Factors of transfer function natural frequency and damping "
-"factor (click below)"
+msgid "Irreducible Factors of transfer function natural frequency and damping factor (click below)"
 msgstr ""
 #
 # File: macros/black.sci, line: 151

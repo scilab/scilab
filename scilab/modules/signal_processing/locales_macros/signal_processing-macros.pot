@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/cspect.sci, line: 67
 # File: macros/pspect.sci, line: 75
@@ -24,9 +24,7 @@ msgstr ""
 #
 # File: macros/pspect.sci, line: 38
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
-"less than argument #%d.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be less than argument #%d.\n"
 msgstr ""
 #
 # File: macros/bilt.sci, line: 49
@@ -36,9 +34,7 @@ msgstr ""
 #
 # File: macros/cepstrum.sci, line: 36
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
-"expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same numbers of elements expected.\n"
 msgstr ""
 #
 # File: macros/yulewalk.sci, line: 44
@@ -110,9 +106,7 @@ msgstr ""
 # File: macros/frmag.sci, line: 41
 # File: macros/trans.sci, line: 27
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A single input, single output system "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A single input, single output system expected.\n"
 msgstr ""
 #
 # File: macros/lattn.sci, line: 73
@@ -123,9 +117,7 @@ msgstr ""
 #
 # File: macros/frmag.sci, line: 53
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d:  Linear dynamical system or row "
-"vector of floats expected.\n"
+msgid "%s: Wrong type for input argument #%d:  Linear dynamical system or row vector of floats expected.\n"
 msgstr ""
 #
 # File: macros/bilt.sci, line: 25
@@ -145,23 +137,19 @@ msgstr ""
 # File: macros/trans.sci, line: 39
 # File: macros/trans.sci, line: 53
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Array of floating point numbers "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Array of floating point numbers expected.\n"
 msgstr ""
 #
 # File: macros/trans.sci, line: 24
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: rational fraction array expected.\n"
+msgid "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 #
 # File: macros/%asn.sci, line: 23
 # File: macros/remezb.sci, line: 40
 # File: macros/window.sci, line: 78
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgid "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 #
 # File: macros/iir.sci, line: 50
@@ -182,25 +170,19 @@ msgstr ""
 #
 # File: macros/cepstrum.sci, line: 32
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Distance between Max and Min "
-"elements must be greater than %g.\n"
+msgid "%s: Wrong values for input argument #%d: Distance between Max and Min elements must be greater than %g.\n"
 msgstr ""
 #
 # File: macros/yulewalk.sci, line: 62
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+msgid "%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"
 msgstr ""
 #
 # File: macros/iir.sci, line: 63
 # File: macros/iir.sci, line: 66
 # File: macros/lattn.sci, line: 65
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in the interval "
-"[%s, %s].\n"
+msgid "%s: Wrong values for input argument #%d: Elements must be in the interval [%s, %s].\n"
 msgstr ""
 #
 # File: macros/cepstrum.sci, line: 29
@@ -213,8 +195,7 @@ msgstr ""
 # File: macros/iir.sci, line: 46
 # File: macros/lattn.sci, line: 56
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 #
 # File: macros/cepstrum.sci, line: 80
@@ -224,15 +205,12 @@ msgstr ""
 #
 # File: macros/yulewalk.sci, line: 53
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: The first element must be %s and "
-"the last %s.\n"
+msgid "%s: Wrong values for input argument #%d: The first element must be %s and the last %s.\n"
 msgstr ""
 #
 # File: macros/bilt.sci, line: 46
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
+msgid "%s: Wrong values for input argument #%d: degree must be in the set {%s}.\n"
 msgstr ""
 #
 # File: demos/arma/arma3.dem.sce, line: 10

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/ilib_gen_Make_unix.sci, line: 272
 #, c-format
@@ -34,8 +34,7 @@ msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 148
 #, c-format
-msgid ""
-"   %s: Did not copy %s: Source and target directories are the same (%s).\n"
+msgid "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 181
@@ -68,7 +67,7 @@ msgstr ""
 msgid "   %s: configure : Generate Makefile.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 76
+# File: macros/ilib_compile.sci, line: 87
 msgid "   Building shared library (be patient)\n"
 msgstr ""
 #
@@ -77,31 +76,31 @@ msgstr ""
 msgid "   Command: %s\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 70
+# File: macros/ilib_compile.sci, line: 81
 msgid "   Compilation of "
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 115
-# File: macros/ilib_for_link.sci, line: 92
+# File: macros/ilib_build.sci, line: 110
+# File: macros/ilib_for_link.sci, line: 88
 msgid "   Generate a Makefile\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 113
+# File: macros/ilib_build.sci, line: 108
 #, c-format
 msgid "   Generate a Makefile: %s\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 134
-# File: macros/ilib_for_link.sci, line: 118
+# File: macros/ilib_build.sci, line: 129
+# File: macros/ilib_for_link.sci, line: 114
 msgid "   Generate a cleaner file\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 95
+# File: macros/ilib_build.sci, line: 90
 msgid "   Generate a gateway file\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 102
-# File: macros/ilib_for_link.sci, line: 64
+# File: macros/ilib_build.sci, line: 97
+# File: macros/ilib_for_link.sci, line: 60
 msgid "   Generate a loader file\n"
 msgstr ""
 #
@@ -110,11 +109,11 @@ msgstr ""
 msgid "   Output: %s\n"
 msgstr ""
 #
-# File: macros/ilib_for_link.sci, line: 108
+# File: macros/ilib_for_link.sci, line: 104
 msgid "   Running the Makefile\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 128
+# File: macros/ilib_build.sci, line: 123
 msgid "   Running the makefile\n"
 msgstr ""
 #
@@ -123,7 +122,7 @@ msgstr ""
 msgid "   stderr: %s\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 89
+# File: macros/ilib_build.sci, line: 84
 #, c-format
 msgid "%s: %s already loaded in scilab."
 msgstr ""
@@ -134,28 +133,14 @@ msgstr ""
 msgid "%s: A Fortran or C compiler is required.\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 55
-# File: macros/ilib_compile.sci, line: 44
-# File: macros/ilib_mex_build.sci, line: 30
-#, c-format
-msgid "%s: A managed file extension for input argument #%d expected."
-msgstr ""
-#
-# File: macros/ilib_for_link.sci, line: 47
-#, c-format
-msgid "%s: A managed file extension for input argument #%d expected.\n"
-msgstr ""
-#
-# File: macros/ilib_compile.sci, line: 162
+# File: macros/ilib_compile.sci, line: 173
 #, c-format
 msgid "%s: An error occurred during the compilation:\n"
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 281
 #, c-format
-msgid ""
-"%s: An error occurred during the detection of the compiler(s). Set "
-"ilib_verbose(2) for more information.\n"
+msgid "%s: An error occurred during the detection of the compiler(s). Set ilib_verbose(2) for more information.\n"
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 113
@@ -164,7 +149,7 @@ msgstr ""
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 156
+# File: macros/ilib_compile.sci, line: 167
 #, c-format
 msgid "%s: Build command: %s\n"
 msgstr ""
@@ -176,12 +161,12 @@ msgstr ""
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 184
+# File: macros/ilib_compile.sci, line: 195
 #, c-format
 msgid "%s: Could not find the built library ''%s''.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 84
+# File: macros/ilib_compile.sci, line: 95
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""
@@ -201,7 +186,7 @@ msgstr ""
 msgid "%s: Feature not available under Microsoft Windows.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 166
+# File: macros/ilib_compile.sci, line: 177
 #, c-format
 msgid "%s: The command was:\n"
 msgstr ""
@@ -222,18 +207,14 @@ msgstr ""
 msgid "%s: This feature required Microsoft visual studio C compiler.\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 175
+# File: macros/ilib_compile.sci, line: 186
 #, c-format
-msgid ""
-"%s: Warning: No error code returned by the compilation but the error output "
-"is not empty:\n"
+msgid "%s: Warning: No error code returned by the compilation but the error output is not empty:\n"
 msgstr ""
 #
-# File: macros/ilib_compile.sci, line: 128
+# File: macros/ilib_compile.sci, line: 139
 #, c-format
-msgid ""
-"%s: Warning: Scilab has not been able to find where the Scilab sources are. "
-"Please submit a bug report on http://bugzilla.scilab.org/\n"
+msgid "%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 #
 # File: macros/windows/dlwMake.sci, line: 18
@@ -263,8 +244,8 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 #
-# File: macros/windows/dlwGenerateMakefile.sci, line: 56
-# File: macros/ilib_gen_Make.sci, line: 59
+# File: macros/windows/dlwGenerateMakefile.sci, line: 65
+# File: macros/ilib_gen_Make.sci, line: 63
 # File: macros/ilib_gen_loader.sci, line: 68
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -277,8 +258,7 @@ msgstr ""
 #
 # File: macros/ilib_build.sci, line: 46
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
+msgid "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
 msgstr ""
 #
 # File: macros/ilib_build.sci, line: 38
@@ -300,7 +280,7 @@ msgstr ""
 # File: macros/dllinfo.sci, line: 29
 # File: macros/dllinfo.sci, line: 42
 # File: macros/ilib_build.sci, line: 34
-# File: macros/ilib_compile.sci, line: 49
+# File: macros/ilib_compile.sci, line: 50
 # File: macros/ilib_gen_loader.sci, line: 47
 # File: macros/ilib_gen_loader.sci, line: 79
 # File: macros/ilib_gen_loader.sci, line: 87
@@ -328,13 +308,9 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 #
-# File: macros/windows/dlwGenerateMakefile.sci, line: 165
+# File: macros/windows/dlwGenerateMakefile.sci, line: 180
 # File: macros/ilib_gen_Make_unix.sci, line: 153
 # File: macros/ilib_gen_Make_unix.sci, line: 169
-# File: macros/ilib_gen_Make.sci, line: 38
-# File: macros/ilib_build.sci, line: 65
-# File: macros/ilib_mex_build.sci, line: 34
-# File: macros/ilib_for_link.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
 msgstr ""
@@ -343,11 +319,19 @@ msgstr ""
 msgid "A Fortran or C compiler is required."
 msgstr ""
 #
+# File: macros/ilib_build.sci, line: 55
+# File: macros/ilib_compile.sci, line: 44
+# File: macros/ilib_mex_build.sci, line: 30
+# File: macros/ilib_for_link.sci, line: 43
+#, c-format
+msgid "A managed file extension for input argument #%d"
+msgstr ""
+#
 # File: etc/dynamic_link.start, line: 39
 msgid "Dynamic link"
 msgstr ""
 #
-# File: macros/ilib_for_link.sci, line: 77
+# File: macros/ilib_for_link.sci, line: 73
 msgid "F2C cannot build fortran 90"
 msgstr ""
 #
@@ -356,17 +340,17 @@ msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 236
-# File: macros/ilib_compile.sci, line: 157
+# File: macros/ilib_compile.sci, line: 168
 #, c-format
 msgid "Output: %s\n"
 msgstr ""
 #
-# File: macros/ilib_build.sci, line: 90
+# File: macros/ilib_build.sci, line: 85
 msgid "You need to unload this library before."
 msgstr ""
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 238
-# File: macros/ilib_compile.sci, line: 158
+# File: macros/ilib_compile.sci, line: 169
 #, c-format
 msgid "stderr: %s\n"
 msgstr ""

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:49+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/scicos_scicos/genmoc.sci, line: 82
 #, c-format
@@ -353,8 +353,7 @@ msgid "Click object to move, drag and click (left to fix, right to cancel)"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 276
-msgid ""
-"Click on a Super Block (without activation output) to obtain a coded block!"
+msgid "Click on a Super Block (without activation output) to obtain a coded block!"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 282
@@ -406,8 +405,7 @@ msgid "Click on object to choose its color"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 259
-msgid ""
-"Click on the object to duplicate, drag, click (left to copy, right to cancel)"
+msgid "Click on the object to duplicate, drag, click (left to copy, right to cancel)"
 msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 268
@@ -631,14 +629,12 @@ msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 108
 # File: macros/scicos_scicos/bad_connection.sci, line: 138
-msgid ""
-"Highlighted block(s) have connected ports<br />with  incompatible sizes."
+msgid "Highlighted block(s) have connected ports<br />with  incompatible sizes."
 msgstr ""
 #
 # File: macros/scicos_scicos/bad_connection.sci, line: 112
 # File: macros/scicos_scicos/bad_connection.sci, line: 142
-msgid ""
-"Highlighted block(s) have connected ports<br />with  incompatible types."
+msgid "Highlighted block(s) have connected ports<br />with  incompatible types."
 msgstr ""
 #
 # File: macros/scicos_scicos/do_options.sci, line: 138
@@ -823,8 +819,7 @@ msgstr ""
 #
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 255
 # File: macros/scicos_menus/set_initial_xcos_menus.sci, line: 256
-msgid ""
-"Press left mouse button, drag region and release (right button to cancel)"
+msgid "Press left mouse button, drag region and release (right button to cancel)"
 msgstr ""
 #
 # File: macros/scicos_auto/scicos.sci, line: 647
@@ -1103,7 +1098,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 #
-# File: macros/scicos_scicos/create_modelica.sci, line: 283
+# File: macros/scicos_scicos/create_modelica.sci, line: 281
 msgid "Type not recognized"
 msgstr ""
 #

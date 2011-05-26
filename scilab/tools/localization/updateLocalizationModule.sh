@@ -48,17 +48,19 @@ EXTENSIONS=( 'c' 'h' 'cpp' 'hxx' 'java' )
 EXTENSIONS_MACROS=( sci sce start quit )
 TARGETDIR=locales/
 TARGETDIR_MACROS=locales_macros/
-HEADER_TEMPLATE=$SCI/modules/localization/locales/header.pot
+HEADER_TEMPLATE=$SCI/modules/localization/data/header.pot
 GUI_FILES="etc/*.xml"
 FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
-
+# Gettext arg
+XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --sort-output --no-wrap "
+    
 process_XML_files() {
 # First expression => remove line which does NOT contain label
 # Second expression =>  extract the content of the label and switch it to a gettext fake instruction
 # Third expression => remove empty lines
 # Please note that it will only extract string from the label tag
-    if test -x "$(ls $GUI_FILES 2>/dev/null)"; then
+    if test -n "$(ls $GUI_FILES 2>/dev/null)"; then
         COMMON_SED='s/&amp;/\&/g'
         sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES > $FAKE_C_FILE
         sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
@@ -77,8 +79,6 @@ function generate_find_command {
 #
 # Retrieve all the sources files
     FILESCMD='find . -type f '
-# Gettext arg
-    XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --sort-output "
 ####### GENERATES THE FIND COMMAND
     i=0
     NB_ELEMENT=${#EXT[@]}
@@ -119,7 +119,7 @@ function process_module {
     else
         generate_find_command EXTENSIONS
     fi
-    echo $FILESCMD
+
     FILES=`eval $FILESCMD|tr "\n" " "`
 
     if test "$MODULE" = "core" -o "$MODULE" = "./core"; then
@@ -128,12 +128,16 @@ function process_module {
     fi
 
     # Also extract string straight from the XML because we have some gettext calls in it
-    if test -x "$(ls $GUI_FILES 2>/dev/null)"; then
+    if test -n "$(ls $GUI_FILES 2>/dev/null)" -a $IS_MACROS -ne 1; then
         FILES="$FILES `ls $GUI_FILES`"
     fi
     MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
 
-    echo "..... Parsing all sources in $PATHTOPROCESS"
+    if test $IS_MACROS -eq 1; then
+        echo "..... Parsing all Scilab macros in $PATHTOPROCESS"
+    else
+        echo "..... Parsing all sources in $PATHTOPROCESS"
+    fi
 # Parse all the sources and get the string which should be localized
     
 
@@ -147,7 +151,7 @@ function process_module {
         CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US|sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
     fi
 
-    echo "........ Generate the english localization file by parsing the code"
+    echo "........ Generate the English localization file by parsing the code"
     if test $IS_MACROS -eq 1; then
         # It is Scilab code... xgettext does not how to process it
         XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
@@ -160,8 +164,21 @@ function process_module {
     else
         sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
-    cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
-    rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
+
+    if test -f $LOCALIZATION_FILE_US.tmp; then
+        cat $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US
+        rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
+    else
+        echo "$LOCALIZATION_FILE_US.tmp is empty (no string found)"
+    fi
+    
+    if test -z "$(msgcat $LOCALIZATION_FILE_US)"; then
+        echo "Empty localization template. Deleting $LOCALIZATION_FILE_US";
+
+        rm $LOCALIZATION_FILE_US
+        rmdir $TARGETDIR/
+    fi
+    
 
     # Remove fake file used to extract string from XML
     rm $FAKE_C_FILE 2> /dev/null

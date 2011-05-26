@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:49+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/Sources/tkscaleblk.sci, line: 52
 msgid "&?"
@@ -77,9 +77,7 @@ msgid "&nbsp;&nbsp;&nbsp;&nbsp;5 Range of Bits"
 msgstr ""
 #
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 50
-msgid ""
-"&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': "
-"[Start, End]"
+msgid "&nbsp;&nbsp;&nbsp;&nbsp;If ''Bits to Extract'' is set to ''Range of bits'': [Start, End]"
 msgstr ""
 #
 # File: macros/IntegerOp/EXTRACTBITS.sci, line: 46
@@ -627,9 +625,7 @@ msgid "Simulation running !!! You cannot modify Input file name"
 msgstr ""
 #
 # File: macros/Sinks/WFILE_f.sci, line: 57
-msgid ""
-"Simulation running !!! You cannot switch<br />between formatted and "
-"unformatted when running"
+msgid "Simulation running !!! You cannot switch<br />between formatted and unformatted when running"
 msgstr ""
 #
 # File: macros/Sources/GENSIN_f.sci, line: 40
@@ -682,6 +678,9 @@ msgid "Swap Mode"
 msgstr ""
 #
 # File: macros/Sources/READAU_f.sci, line: 50
+msgid "Swap Mode (0:No 1:Yes)"
+msgstr ""
+#
 # File: macros/Sinks/WRITEC_f.sci, line: 46
 # File: macros/Sinks/WRITEAU_f.sci, line: 43
 msgid "Swap Mode (0:No, 1:Yes)"
@@ -784,13 +783,32 @@ msgstr ""
 msgid "Wrong type for ''%s'' parameter: %5.1f."
 msgstr ""
 #
+# File: macros/Sinks/WRITEC_f.sci, line: 89
+# File: macros/Sinks/WRITEAU_f.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''%s'' parameter: %d."
+msgstr ""
+#
+# File: macros/Sources/Counter.sci, line: 62
+#, c-format
+msgid "Wrong value for  ''Rule'' parameter: %d"
+msgstr ""
+#
 # File: macros/Sources/READAU_f.sci, line: 63
-# File: macros/IntegerOp/LOGIC.sci, line: 55
 # File: macros/Sinks/WRITEC_f.sci, line: 71
+#, c-format
+msgid "Wrong value for ''%s'' parameter"
+msgstr ""
+#
 # File: macros/Sinks/WRITEC_f.sci, line: 76
 # File: macros/Sinks/WFILE_f.sci, line: 69
 #, c-format
 msgid "Wrong value for ''%s'' parameter."
+msgstr ""
+#
+# File: macros/IntegerOp/SHIFT.sci, line: 50
+#, c-format
+msgid "Wrong value for ''%s'' parameter: %d"
 msgstr ""
 #
 # File: macros/Sources/READAU_f.sci, line: 65
@@ -807,7 +825,6 @@ msgstr ""
 # File: macros/IntegerOp/CONVERT.sci, line: 53
 # File: macros/IntegerOp/CONVERT.sci, line: 57
 # File: macros/IntegerOp/CONVERT.sci, line: 61
-# File: macros/IntegerOp/SHIFT.sci, line: 50
 # File: macros/IntegerOp/SHIFT.sci, line: 106
 # File: macros/IntegerOp/LOGIC.sci, line: 59
 # File: macros/IntegerOp/BITSET.sci, line: 53
@@ -816,9 +833,7 @@ msgstr ""
 # File: macros/IntegerOp/BITSET.sci, line: 83
 # File: macros/Sinks/WRITEC_f.sci, line: 81
 # File: macros/Sinks/WRITEC_f.sci, line: 85
-# File: macros/Sinks/WRITEC_f.sci, line: 89
 # File: macros/Sinks/WRITEAU_f.sci, line: 57
-# File: macros/Sinks/WRITEAU_f.sci, line: 62
 # File: macros/Sinks/WFILE_f.sci, line: 79
 # File: macros/Sinks/WFILE_f.sci, line: 83
 #, c-format
@@ -857,14 +872,14 @@ msgstr ""
 msgid "Wrong value for ''Port Number'' parameter: %d."
 msgstr ""
 #
-# File: macros/Sources/Counter.sci, line: 62
-#, c-format
-msgid "Wrong value for ''Rule'' parameter: %d"
-msgstr ""
-#
 # File: macros/Sources/RAMP.sci, line: 44
 #, c-format
 msgid "Wrong value for ''Start Time'' parameter: %e."
+msgstr ""
+#
+# File: macros/IntegerOp/LOGIC.sci, line: 55
+#, c-format
+msgid "Wrong value for of ''%s'' parameter."
 msgstr ""
 #
 # File: macros/Sources/CLOCK_c.sci, line: 49

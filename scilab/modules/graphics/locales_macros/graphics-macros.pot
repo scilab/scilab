@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/%h_save.sci, line: 714
 #, c-format
@@ -38,8 +38,7 @@ msgstr ""
 #
 # File: macros/comet.sci, line: 86
 #, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
+msgid "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
 #
 # File: macros/comet3d.sci, line: 71
@@ -231,9 +230,7 @@ msgstr ""
 # File: macros/surf.sci, line: 116
 # File: macros/surf.sci, line: 156
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d or %d-by-%d matrix expected.\n"
 msgstr ""
 #
 # File: macros/ged.sci, line: 28
@@ -245,9 +242,7 @@ msgstr ""
 # File: macros/surf.sci, line: 94
 # File: macros/surf.sci, line: 110
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-"
-"%d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A matrix of size greater than %d-by-%d expected.\n"
 msgstr ""
 #
 # File: macros/getcolor.sci, line: 35
@@ -302,16 +297,13 @@ msgstr ""
 #
 # File: macros/surf.sci, line: 219
 #, c-format
-msgid ""
-"%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-"
-"by-%d expected.\n"
+msgid "%s: Wrong size for input argument ''%s'': A matrix of size greater than %d-by-%d expected.\n"
 msgstr ""
 #
 # File: macros/checkXYPair.sci, line: 66
 # File: macros/checkXYPair.sci, line: 73
 #, c-format
-msgid ""
-"%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
+msgid "%s: Wrong size for input argument ''%s'': A non empty matrix expected.\n"
 msgstr ""
 #
 # File: macros/checkXYPair.sci, line: 18
@@ -323,9 +315,7 @@ msgstr ""
 # File: macros/checkXYPair.sci, line: 121
 # File: macros/checkXYPair.sci, line: 134
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible "
-"dimensions.\n"
+msgid "%s: Wrong size for input arguments ''%s'' and ''%s'': Incompatible dimensions.\n"
 msgstr ""
 #
 # File: macros/surf.sci, line: 409
@@ -338,15 +328,12 @@ msgstr ""
 # File: macros/surf.sci, line: 596
 # File: macros/surf.sci, line: 632
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size "
-"expected.\n"
+msgid "%s: Wrong size for input arguments ''%s'' and ''%s'': Matrices of same size expected.\n"
 msgstr ""
 #
 # File: macros/surf.sci, line: 486
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
+msgid "%s: Wrong size for input arguments ''%s'' and ''%s'': Same size expected.\n"
 msgstr ""
 #
 # File: macros/surf.sci, line: 390
@@ -359,8 +346,7 @@ msgstr ""
 # File: macros/surf.sci, line: 602
 # File: macros/rotate.sci, line: 25
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
+msgid "%s: Wrong size for input arguments ''%s'': A vector of size %d expected.\n"
 msgstr ""
 #
 # File: macros/comet3d.sci, line: 115
@@ -434,9 +420,7 @@ msgstr ""
 #
 # File: macros/clf.sci, line: 53
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A vector of ''Figure'' handle "
-"expected."
+msgid "%s: Wrong type for input argument #%d: A vector of ''Figure'' handle expected."
 msgstr ""
 #
 # File: macros/surf.sci, line: 49
@@ -464,9 +448,7 @@ msgstr ""
 #
 # File: macros/legends.sci, line: 30
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real array or graphic handle array "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: Real array or graphic handle array expected.\n"
 msgstr ""
 #
 # File: macros/twinkle.sci, line: 22
@@ -508,15 +490,12 @@ msgstr ""
 #
 # File: macros/clf.sci, line: 44
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
+msgid "%s: Wrong value for input argument #%d: ''clear'' or ''reset'' expected."
 msgstr ""
 #
 # File: macros/subplot.sci, line: 24
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A %d digits integer with digits "
-"greater than %d expected.\n"
+msgid "%s: Wrong value for input argument #%d: A %d digits integer with digits greater than %d expected.\n"
 msgstr ""
 #
 # File: macros/jetcolormap.sci, line: 30
@@ -535,9 +514,7 @@ msgstr ""
 # File: macros/oceancolormap.sci, line: 26
 # File: macros/whitecolormap.sci, line: 26
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: An integer greater or equal than %d "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer greater or equal than %d expected.\n"
 msgstr ""
 #
 # File: macros/comet3d.sci, line: 118
@@ -549,8 +526,7 @@ msgstr ""
 #
 # File: macros/color.sci, line: 33
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
+msgid "%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
 msgstr ""
 #
 # File: macros/edit_curv.sci, line: 69
@@ -567,16 +543,12 @@ msgstr ""
 # File: macros/plot3d2.sci, line: 61
 # File: macros/polarplot.sci, line: 53
 #, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' "
-"expected.\n"
+msgid "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/fplot2d.sci, line: 42
 #, c-format
-msgid ""
-"%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', "
-"''%s'', ''%s'' or ''%s'' expected.\n"
+msgid "%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
 #
 # File: macros/color.sci, line: 20
@@ -586,9 +558,7 @@ msgstr ""
 #
 # File: macros/histplot.sci, line: 95
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
+msgid "%s: Wrong values for input argument #%d: Elements must be in increasing order.\n"
 msgstr ""
 #
 # File: macros/%h_save.sci, line: 38
@@ -796,8 +766,7 @@ msgid "Pink"
 msgstr ""
 #
 # File: demos/2d_3d_plots/polarplot.dem.sce, line: 17
-msgid ""
-"Please press enter into the Scilab console to see more polarplot examples"
+msgid "Please press enter into the Scilab console to see more polarplot examples"
 msgstr ""
 #
 # File: demos/2d_3d_plots/plotyyy.dem.sce, line: 26

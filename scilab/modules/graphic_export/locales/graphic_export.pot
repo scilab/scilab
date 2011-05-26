@@ -14,62 +14,53 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: src/c/xs2file.c, line: 208
 #, c-format
 msgid "%s: %s\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 100
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 78
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 173
 # File: src/c/xs2file.c, line: 215
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Single character string expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 184
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 53
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 142
 # File: src/c/xs2file.c, line: 221
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Single character string expected.\n"
 msgstr ""
-
 #
 # File: src/c/xs2file.c, line: 165
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-
 #
 # File: src/nographic_export/nographic_export.c, line: 20
 msgid "Scilab Graphic export module not installed.\n"
 msgstr ""
-
 #
 # File: sci_gateway/c/gw_graphic_export.c, line: 64
 msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"

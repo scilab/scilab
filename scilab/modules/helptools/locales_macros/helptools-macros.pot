@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:49+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/xmltoformat.sci, line: 389
 # File: macros/xmltoformat.sci, line: 416
@@ -267,22 +267,17 @@ msgstr ""
 # File: macros/xmltoformat.sci, line: 1734
 # File: macros/xmltoformat.sci, line: 1870
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgid "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
 #
 # File: macros/xmltoformat.sci, line: 1273
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+msgid "%s: Wrong value for input argument #%d: A string that end with .last_successful_build expected.\n"
 msgstr ""
 #
 # File: macros/xmltoformat.sci, line: 1203
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A string that end with CHAPTER "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: A string that end with CHAPTER expected.\n"
 msgstr ""
 #
 # File: macros/help_from_sci.sci, line: 147
@@ -290,22 +285,18 @@ msgstr ""
 # File: macros/xmltoformat.sci, line: 1058
 # File: macros/xmltoformat.sci, line: 1147
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid existing directory is "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid existing directory is expected.\n"
 msgstr ""
 #
 # File: macros/xmltoformat.sci, line: 1210
 # File: macros/xmltoformat.sci, line: 1280
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid existing file is expected.\n"
 msgstr ""
 #
 # File: macros/add_help_chapter.sci, line: 95
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: An existing directory expected.\n"
+msgid "%s: Wrong value for input argument #%d: An existing directory expected.\n"
 msgstr ""
 #
 # File: macros/help.sci, line: 51

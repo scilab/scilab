@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2011-05-23 14:48+0100\n"
+"Revision-Date: 2011-05-26 14:36+0100\n"
 
 # File: macros/atomsAutoloadAdd.sci, line: 168
 # File: macros/atomsAutoloadAdd.sci, line: 173
@@ -180,9 +180,7 @@ msgstr ""
 # File: macros/atomsLoad.sci, line: 247
 # File: macros/atomsLoad.sci, line: 272
 #, c-format
-msgid ""
-"%s: Several versions of a package (%s) cannot be loaded at the same scilab "
-"session :\n"
+msgid "%s: Several versions of a package (%s) cannot be loaded at the same scilab session :\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsGetConfig.sci, line: 86
@@ -204,9 +202,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsLoadSave.sci, line: 48
 # File: macros/atomsInstall.sci, line: 280
 #, c-format
-msgid ""
-"%s: The directory %s cannot been created, please check if you have write "
-"access on this directory.\n"
+msgid "%s: The directory %s cannot been created, please check if you have write access on this directory.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsExtract.sci, line: 57
@@ -217,23 +213,17 @@ msgstr ""
 # File: macros/atomsInstall.sci, line: 125
 # File: macros/atomsInstall.sci, line: 137
 #, c-format
-msgid ""
-"%s: The directory ''%s'' cannot been created, please check if you have write "
-"access on this directory.\n"
+msgid "%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"
 msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 223
 #, c-format
-msgid ""
-"%s: The directory of this package (%s-%s) cannot been deleted, please check "
-"if you have write access on this directory : %s.\n"
+msgid "%s: The directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"
 msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 210
 #, c-format
-msgid ""
-"%s: The directory of this package (%s-%s) is located neither in SCI nor in "
-"SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
+msgid "%s: The directory of this package (%s-%s) is located neither in SCI nor in SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 241
@@ -254,9 +244,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 126
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 170
 #, c-format
-msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain "
-"the %s field\n"
+msgid "%s: The file %s is not well formated, the toolbox %s - %s doesn''t contain the %s field\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONwrite.sci, line: 136
@@ -293,9 +281,7 @@ msgstr ""
 # File: macros/atomsAutoloadAdd.sci, line: 167
 # File: macros/atomsAutoloadAdd.sci, line: 190
 #, c-format
-msgid ""
-"%s: The following module is installed in the user section, you cannot add it "
-"to the autoload list for all users:\n"
+msgid "%s: The following module is installed in the user section, you cannot add it to the autoload list for all users:\n"
 msgstr ""
 #
 # File: macros/atomsAutoloadAdd.sci, line: 172
@@ -324,22 +310,17 @@ msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 242
 #, c-format
-msgid ""
-"%s: The root directory of this package (%s-%s) cannot been deleted, please "
-"check if you have write access on this directory : %s.\n"
+msgid "%s: The root directory of this package (%s-%s) cannot been deleted, please check if you have write access on this directory : %s.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONaddField.sci, line: 149
 #, c-format
-msgid ""
-"%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
+msgid "%s: The version ''%s'' of the package ''%s'' is not present in the struct.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 65
 #, c-format
-msgid ""
-"%s: Wrong length for input argument #%d: String which has 32-characters "
-"length expected.\n"
+msgid "%s: Wrong length for input argument #%d: String which has 32-characters length expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsAutoloadLoad.sci, line: 24
@@ -458,8 +439,7 @@ msgstr ""
 # File: macros/atomsDepTreeShow.sci, line: 49
 # File: macros/atomsShow.sci, line: 39
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsToolboxDetails.sci, line: 40
@@ -472,8 +452,7 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsGetAvailable.sci, line: 74
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsGetAvailable.sci, line: 94
@@ -543,8 +522,7 @@ msgstr ""
 # File: macros/atomsRemove.sci, line: 50
 # File: macros/atomsInstall.sci, line: 50
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsAutoloadCheck.sci, line: 40
@@ -552,9 +530,7 @@ msgstr ""
 # File: macros/atomsIsInstalled.sci, line: 49
 # File: macros/atomsAutoloadDel.sci, line: 46
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atomsTest.sci, line: 44
@@ -562,16 +538,13 @@ msgstr ""
 # File: macros/atomsIsLoaded.sci, line: 52
 # File: macros/atomsGetLoadedPath.sci, line: 32
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
-"expected.\n"
+msgid "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 35
 # File: macros/atoms_internals/atomsGetInstalledDetails.sci, line: 34
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 34
@@ -613,8 +586,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsGetInstalledStatus.sci, line: 49
 # File: macros/atomsAutoloadDel.sci, line: 75
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
 msgstr ""
 #
 # File: macros/atomsGetInstalled.sci, line: 46
@@ -774,8 +746,7 @@ msgstr ""
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 214
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 77
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
+msgid "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsReadDesc.sci, line: 36
@@ -785,15 +756,12 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsGetVersions.sci, line: 75
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be an available atoms "
-"package name.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be an available atoms package name.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 344
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
+msgid "%s: Wrong value for input argument #%d: ''%s'' is not a registered category"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsRepositorySetOfl.sci, line: 37
@@ -808,29 +776,22 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsPath.sci, line: 45
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or "
-"''session'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''all'',''allusers'',''user'' or ''session'' expected.\n"
 msgstr ""
 #
 # File: macros/atomsRepositoryList.sci, line: 50
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or "
-"''official'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''all'',''user'',''allusers'' or ''official'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsCategoryGet.sci, line: 84
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a "
-"valid main category expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''filter:all'',''filter:main'' or a valid main category expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsPath.sci, line: 41
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''system'' or ''install'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsSaveInstalled.sci, line: 38
@@ -845,8 +806,7 @@ msgstr ""
 # File: macros/atomsAutoloadAdd.sci, line: 82
 # File: macros/atomsInstall.sci, line: 101
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsToremoveProcess.sci, line: 59
@@ -859,16 +819,12 @@ msgstr ""
 # File: macros/atomsRepositoryDel.sci, line: 74
 # File: macros/atomsRemove.sci, line: 105
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''user'' or ''allusers'' or ''all'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsAutoloadCheck.sci, line: 51
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''user'', ''allusers'' or ''all'' expected.\n"
 msgstr ""
 #
 # File: macros/atomsGetInstalled.sci, line: 50
@@ -884,9 +840,7 @@ msgstr ""
 # File: macros/atomsIsInstalled.sci, line: 80
 # File: macros/atomsAutoloadDel.sci, line: 79
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: ''user'',''allusers'' or ''all'' expected.\n"
 msgstr ""
 #
 # File: macros/atomsList.sci, line: 43
@@ -902,21 +856,17 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsGetInstalledPath.sci, line: 41
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: All modules version should be set.\n"
+msgid "%s: Wrong value for input argument #%d: All modules version should be set.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 73
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: It should have a field named "
-"''%s''.\n"
+msgid "%s: Wrong value for input argument #%d: It should have a field named ''%s''.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsInstallRegister.sci, line: 52
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters ''A'' or ''I'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsCompatibleVersions.sci, line: 39
@@ -926,38 +876,28 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsExtract.sci, line: 49
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+msgid "%s: Wrong value for input argument #%d: Single string that ends with .tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONread.sci, line: 70
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' "
-"or ''DESCRIPTION'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: String that contains ''TOOLBOXES'' or ''DESCRIPTION'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsReadDesc.sci, line: 32
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
-"expected.\n"
+msgid "%s: Wrong value for input argument #%d: String that ends with DESCRIPTION expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 61
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"''http://'',''ftp://'' or ''file://'' expected.\n"
+msgid "%s: Wrong value for input argument #%d: String that start with ''http://'',''ftp://'' or ''file://'' expected.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsDESCRIPTIONcat.sci, line: 236
 # File: macros/atoms_internals/atomsDESCRIPTIONwrite.sci, line: 79
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: The matrix oriented typed list is "
-"not well formatted.\n"
+msgid "%s: Wrong value for input argument #%d: The matrix oriented typed list is not well formatted.\n"
 msgstr ""
 #
 # File: macros/atomsRepositoryAdd.sci, line: 49
@@ -975,21 +915,17 @@ msgstr ""
 #
 # File: macros/atoms_internals/atomsIsCompatible.sci, line: 50
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version/dependency.\n"
 msgstr ""
 #
 # File: macros/atoms_internals/atomsError.sci, line: 36
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
+msgid "%s: Wrong value for input argument #%d:''error'' or ''warning'' expected.\n"
 msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 149
 #, c-format
-msgid ""
-"%s: You have not enough rights to remove any version of the package %s.\n"
+msgid "%s: You have not enough rights to remove any version of the package %s.\n"
 msgstr ""
 #
 # File: macros/atomsRemove.sci, line: 141
