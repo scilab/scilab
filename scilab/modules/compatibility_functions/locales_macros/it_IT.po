@@ -42,7 +42,7 @@ msgstr "%s: ''%s'' è usato solo in modalità 3d"
 
 #, c-format
 msgid "%s: ''%s'' option ignored.\n"
-msgstr "%s: l'opzione ''%s'' è stata ignorata.\n"
+msgstr "%s: l''opzione ''%s'' è stata ignorata.\n"
 
 #, c-format
 msgid "%s: All windows deleted.\n"
@@ -70,11 +70,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: No equivalent for ''%s'' property.\n"
-msgstr "%s: Non c'è nessun equivalente per la proprietà ''%s''.\n"
+msgstr "%s: Non c''è nessun equivalente per la proprietà ''%s''.\n"
 
 #, c-format
 msgid "%s: No minor grid in Scilab.\n"
-msgstr "%s: Non c'è una griglia minore in Scilab.\n"
+msgstr "%s: Non c''è una griglia minore in Scilab.\n"
 
 #, c-format
 msgid "%s: Not yet implemented.\n"
@@ -145,7 +145,7 @@ msgstr "%s: Tipo sconosciuto.\n"
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è sbagliato: la grandezza non è "
+"%s: L''argomento in ingresso #%d è sbagliato: la grandezza non è "
 "consistente.\n"
 
 #, c-format
@@ -185,20 +185,20 @@ msgstr "%s: La dimensione di ''%s'' è sbagliata: era atteso un vettore.\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
 "scalare.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matlab vector of strings expected.\n"
 msgstr ""
-"%s L'argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
+"%s L''argomento in ingresso #%d ha una grandezza sbagliata: era atteso un "
 "vettore di stringhe creato con Matlab.\n"
 
 #, c-format
@@ -206,38 +206,38 @@ msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un reale,un "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un reale,un "
 "intero o una matrice di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
 "colonna.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "quadrata.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
 msgstr ""
-"%s: L'argomento in ingresso è di tipo sbagliato: gli elementi delle cella "
+"%s: L''argomento in ingresso è di tipo sbagliato: gli elementi delle cella "
 "devono essere array di caratteri.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso è di tipo sbagliato: era attesa una cella.\n"
+"%s: L''argomento in ingresso è di tipo sbagliato: era attesa una cella.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
@@ -254,35 +254,35 @@ msgid ""
 "%s: Wrong value for input argument #%d: %s, %s, %s, ''%s'', ''%s'' or ''%s'' "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore errato: era atteso %s, %s, %s, "
+"%s: L''argomento in ingresso #%d ha un valore errato: era atteso %s, %s, %s, "
 "''%s'', ''%s'' o ''%s''\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: %s, %s,''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s, "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso %s, %s, "
 "''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ''%s'', ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'', "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso ''%s'', "
 "''%s'' o ''%s''.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valore "
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: era atteso un valore "
 "intero positivo.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell'insieme {%s}.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell''insieme {%s}.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"

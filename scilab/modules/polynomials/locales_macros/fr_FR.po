@@ -19,32 +19,32 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s : L'argument d'entrée n°%d doit être réel.\n"
+msgstr "%s : L''argument d''entrée n°%d doit être réel.\n"
 
 #, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
-msgstr "%s: Type non admis pour l'argument d'entrée n° %d\n"
+msgstr "%s: Type non admis pour l''argument d''entrée n° %d\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Mauvais nombre d'argument(s) en entrée : %d attendu.\n"
+msgstr "%s : Mauvais nombre d''argument(s) en entrée : %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
-"%s : Mauvaise taille pour l'argument d'entrée n°%d : Un polynôme est "
+"%s : Mauvaise taille pour l''argument d''entrée n°%d : Un polynôme est "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée n° %d: Une fraction rationnelle "
+"%s: Mauvaise taille pour l''argument d''entrée n° %d: Une fraction rationnelle "
 "est attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument  d'entrée n° %d: Un vecteur ligne est "
+"%s: Mauvaise taille pour l''argument  d''entrée n° %d: Un vecteur ligne est "
 "attendu.\n"
 
 #, c-format
@@ -52,13 +52,13 @@ msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
 msgstr ""
-"%s: Mauvaise taille pour l'argument d'entrée n° %d: Un système mono-entrée, "
+"%s: Mauvaise taille pour l''argument d''entrée n° %d: Un système mono-entrée, "
 "mono-sortie est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s : Mauvaise dimension pour l'argument d'entrée n°%d : Une matrice carrée "
+"%s : Mauvaise dimension pour l''argument d''entrée n°%d : Une matrice carrée "
 "attendue.\n"
 
 #, c-format
@@ -66,7 +66,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument  d'entrée n° %d: un tableau de flottants, "
+"%s: Mauvais type pour l''argument  d''entrée n° %d: un tableau de flottants, "
 "de polynômes ou de fractions rationnelles est attendu.\n"
 
 #, c-format
@@ -74,24 +74,24 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or polynomial "
 "array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée n° %d: Un système dynamique "
+"%s: Mauvais type pour l''argument d''entrée n° %d: Un système dynamique "
 "linéaire ou un tableau de polynôme est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
-"%s: Mauvais type pour l'argument d'entrée: Un tableau de polynômes est "
+"%s: Mauvais type pour l''argument d''entrée: Un tableau de polynômes est "
 "attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s : Mauvaise valeur pour l'argument d'entrée n°%d : Doit être dans "
-"l'ensemble {%s}.\n"
+"%s : Mauvaise valeur pour l''argument d''entrée n°%d : Doit être dans "
+"l''ensemble {%s}.\n"
 
 #, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
-msgstr "%s: Les arguments d'entrée n° %d et n° %d sont incompatibles.\n"
+msgstr "%s: Les arguments d''entrée n° %d et n° %d sont incompatibles.\n"
 
 msgid "Computing determinant: Be patient...\n"
 msgstr "Calcul du déterminant: Soyez patient ...\n"

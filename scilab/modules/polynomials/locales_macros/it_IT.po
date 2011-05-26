@@ -19,11 +19,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: L'argomento in ingresso #%d deve essere reale.\n"
+msgstr "%s: L''argomento in ingresso #%d deve essere reale.\n"
 
 #, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo inatteso.\n"
+msgstr "%s: L''argomento in ingresso #%d è di tipo inatteso.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -33,19 +33,19 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "polinomio.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "frazione razionale.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
 msgstr ""
-"%s: L' argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L'' argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "vettore riga.\n"
 
 #, c-format
@@ -53,13 +53,13 @@ msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "sistema con input e output singoli.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"%s: L''argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice quadrata.\n"
 
 #, c-format
@@ -67,7 +67,7 @@ msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
 msgstr ""
-"%s: L' argomento  in ingresso #%d è di tipo sbagliato: era atteso un numero "
+"%s: L'' argomento  in ingresso #%d è di tipo sbagliato: era atteso un numero "
 "in virgola mobile o un polinomio o un vettore di frazioni razionali.\n"
 
 #, c-format
@@ -75,20 +75,20 @@ msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or polynomial "
 "array expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un sistema "
+"%s: L''argomento in ingresso #%d è di tipo sbagliato: era atteso un sistema "
 "lineare dinamico o un vettore di polinomi.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr ""
-"%s: L'argomento  in ingresso è di tipo sbagliato: era atteso un vettore di "
+"%s: L''argomento  in ingresso è di tipo sbagliato: era atteso un vettore di "
 "polinomi.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere "
-"nell'insieme {%s}.\n"
+"%s: L''argomento in ingresso #%d ha un valore sbagliato: deve essere "
+"nell''insieme {%s}.\n"
 
 #, c-format
 msgid "%s: incompatible input arguments %d and %d\n"
